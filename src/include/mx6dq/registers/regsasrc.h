@@ -63,6 +63,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCTR - ASRC Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ASRC_ASRCTR - ASRC Control Register (RW)
@@ -126,15 +141,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ASRCEN      (0x00000001)  //!< Bit mask for ASRC_ASRCTR_ASRCEN.
 
 //! @brief Get value of ASRC_ASRCTR_ASRCEN from a register value.
-#define BG_ASRC_ASRCTR_ASRCEN(r)   (((r) & BM_ASRC_ASRCTR_ASRCEN) >> BP_ASRC_ASRCTR_ASRCEN)
+#define BG_ASRC_ASRCTR_ASRCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ASRCEN) >> BP_ASRC_ASRCTR_ASRCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ASRCEN.
-#define BF_ASRC_ASRCTR_ASRCEN(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ASRCEN) & BM_ASRC_ASRCTR_ASRCEN)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ASRCEN.
-#define BF_ASRC_ASRCTR_ASRCEN(v)   (((v) << BP_ASRC_ASRCTR_ASRCEN) & BM_ASRC_ASRCTR_ASRCEN)
-#endif
+#define BF_ASRC_ASRCTR_ASRCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ASRCEN) & BM_ASRC_ASRCTR_ASRCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASRCEN field to a new value.
@@ -151,15 +161,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ASREA      (0x00000002)  //!< Bit mask for ASRC_ASRCTR_ASREA.
 
 //! @brief Get value of ASRC_ASRCTR_ASREA from a register value.
-#define BG_ASRC_ASRCTR_ASREA(r)   (((r) & BM_ASRC_ASRCTR_ASREA) >> BP_ASRC_ASRCTR_ASREA)
+#define BG_ASRC_ASRCTR_ASREA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ASREA) >> BP_ASRC_ASRCTR_ASREA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ASREA.
-#define BF_ASRC_ASRCTR_ASREA(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ASREA) & BM_ASRC_ASRCTR_ASREA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ASREA.
-#define BF_ASRC_ASRCTR_ASREA(v)   (((v) << BP_ASRC_ASRCTR_ASREA) & BM_ASRC_ASRCTR_ASREA)
-#endif
+#define BF_ASRC_ASRCTR_ASREA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ASREA) & BM_ASRC_ASRCTR_ASREA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASREA field to a new value.
@@ -176,15 +181,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ASREB      (0x00000004)  //!< Bit mask for ASRC_ASRCTR_ASREB.
 
 //! @brief Get value of ASRC_ASRCTR_ASREB from a register value.
-#define BG_ASRC_ASRCTR_ASREB(r)   (((r) & BM_ASRC_ASRCTR_ASREB) >> BP_ASRC_ASRCTR_ASREB)
+#define BG_ASRC_ASRCTR_ASREB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ASREB) >> BP_ASRC_ASRCTR_ASREB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ASREB.
-#define BF_ASRC_ASRCTR_ASREB(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ASREB) & BM_ASRC_ASRCTR_ASREB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ASREB.
-#define BF_ASRC_ASRCTR_ASREB(v)   (((v) << BP_ASRC_ASRCTR_ASREB) & BM_ASRC_ASRCTR_ASREB)
-#endif
+#define BF_ASRC_ASRCTR_ASREB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ASREB) & BM_ASRC_ASRCTR_ASREB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASREB field to a new value.
@@ -201,15 +201,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ASREC      (0x00000008)  //!< Bit mask for ASRC_ASRCTR_ASREC.
 
 //! @brief Get value of ASRC_ASRCTR_ASREC from a register value.
-#define BG_ASRC_ASRCTR_ASREC(r)   (((r) & BM_ASRC_ASRCTR_ASREC) >> BP_ASRC_ASRCTR_ASREC)
+#define BG_ASRC_ASRCTR_ASREC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ASREC) >> BP_ASRC_ASRCTR_ASREC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ASREC.
-#define BF_ASRC_ASRCTR_ASREC(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ASREC) & BM_ASRC_ASRCTR_ASREC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ASREC.
-#define BF_ASRC_ASRCTR_ASREC(v)   (((v) << BP_ASRC_ASRCTR_ASREC) & BM_ASRC_ASRCTR_ASREC)
-#endif
+#define BF_ASRC_ASRCTR_ASREC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ASREC) & BM_ASRC_ASRCTR_ASREC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASREC field to a new value.
@@ -227,15 +222,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_SRST      (0x00000010)  //!< Bit mask for ASRC_ASRCTR_SRST.
 
 //! @brief Get value of ASRC_ASRCTR_SRST from a register value.
-#define BG_ASRC_ASRCTR_SRST(r)   (((r) & BM_ASRC_ASRCTR_SRST) >> BP_ASRC_ASRCTR_SRST)
+#define BG_ASRC_ASRCTR_SRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_SRST) >> BP_ASRC_ASRCTR_SRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_SRST.
-#define BF_ASRC_ASRCTR_SRST(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_SRST) & BM_ASRC_ASRCTR_SRST)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_SRST.
-#define BF_ASRC_ASRCTR_SRST(v)   (((v) << BP_ASRC_ASRCTR_SRST) & BM_ASRC_ASRCTR_SRST)
-#endif
+#define BF_ASRC_ASRCTR_SRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_SRST) & BM_ASRC_ASRCTR_SRST)
 
 /* --- Register HW_ASRC_ASRCTR, field IDRA[13] (RW)
  *
@@ -249,15 +239,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_IDRA      (0x00002000)  //!< Bit mask for ASRC_ASRCTR_IDRA.
 
 //! @brief Get value of ASRC_ASRCTR_IDRA from a register value.
-#define BG_ASRC_ASRCTR_IDRA(r)   (((r) & BM_ASRC_ASRCTR_IDRA) >> BP_ASRC_ASRCTR_IDRA)
+#define BG_ASRC_ASRCTR_IDRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_IDRA) >> BP_ASRC_ASRCTR_IDRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_IDRA.
-#define BF_ASRC_ASRCTR_IDRA(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_IDRA) & BM_ASRC_ASRCTR_IDRA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_IDRA.
-#define BF_ASRC_ASRCTR_IDRA(v)   (((v) << BP_ASRC_ASRCTR_IDRA) & BM_ASRC_ASRCTR_IDRA)
-#endif
+#define BF_ASRC_ASRCTR_IDRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_IDRA) & BM_ASRC_ASRCTR_IDRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRA field to a new value.
@@ -274,15 +259,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_USRA      (0x00004000)  //!< Bit mask for ASRC_ASRCTR_USRA.
 
 //! @brief Get value of ASRC_ASRCTR_USRA from a register value.
-#define BG_ASRC_ASRCTR_USRA(r)   (((r) & BM_ASRC_ASRCTR_USRA) >> BP_ASRC_ASRCTR_USRA)
+#define BG_ASRC_ASRCTR_USRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_USRA) >> BP_ASRC_ASRCTR_USRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_USRA.
-#define BF_ASRC_ASRCTR_USRA(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_USRA) & BM_ASRC_ASRCTR_USRA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_USRA.
-#define BF_ASRC_ASRCTR_USRA(v)   (((v) << BP_ASRC_ASRCTR_USRA) & BM_ASRC_ASRCTR_USRA)
-#endif
+#define BF_ASRC_ASRCTR_USRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_USRA) & BM_ASRC_ASRCTR_USRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USRA field to a new value.
@@ -301,15 +281,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_IDRB      (0x00008000)  //!< Bit mask for ASRC_ASRCTR_IDRB.
 
 //! @brief Get value of ASRC_ASRCTR_IDRB from a register value.
-#define BG_ASRC_ASRCTR_IDRB(r)   (((r) & BM_ASRC_ASRCTR_IDRB) >> BP_ASRC_ASRCTR_IDRB)
+#define BG_ASRC_ASRCTR_IDRB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_IDRB) >> BP_ASRC_ASRCTR_IDRB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_IDRB.
-#define BF_ASRC_ASRCTR_IDRB(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_IDRB) & BM_ASRC_ASRCTR_IDRB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_IDRB.
-#define BF_ASRC_ASRCTR_IDRB(v)   (((v) << BP_ASRC_ASRCTR_IDRB) & BM_ASRC_ASRCTR_IDRB)
-#endif
+#define BF_ASRC_ASRCTR_IDRB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_IDRB) & BM_ASRC_ASRCTR_IDRB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRB field to a new value.
@@ -326,15 +301,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_USRB      (0x00010000)  //!< Bit mask for ASRC_ASRCTR_USRB.
 
 //! @brief Get value of ASRC_ASRCTR_USRB from a register value.
-#define BG_ASRC_ASRCTR_USRB(r)   (((r) & BM_ASRC_ASRCTR_USRB) >> BP_ASRC_ASRCTR_USRB)
+#define BG_ASRC_ASRCTR_USRB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_USRB) >> BP_ASRC_ASRCTR_USRB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_USRB.
-#define BF_ASRC_ASRCTR_USRB(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_USRB) & BM_ASRC_ASRCTR_USRB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_USRB.
-#define BF_ASRC_ASRCTR_USRB(v)   (((v) << BP_ASRC_ASRCTR_USRB) & BM_ASRC_ASRCTR_USRB)
-#endif
+#define BF_ASRC_ASRCTR_USRB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_USRB) & BM_ASRC_ASRCTR_USRB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USRB field to a new value.
@@ -353,15 +323,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_IDRC      (0x00020000)  //!< Bit mask for ASRC_ASRCTR_IDRC.
 
 //! @brief Get value of ASRC_ASRCTR_IDRC from a register value.
-#define BG_ASRC_ASRCTR_IDRC(r)   (((r) & BM_ASRC_ASRCTR_IDRC) >> BP_ASRC_ASRCTR_IDRC)
+#define BG_ASRC_ASRCTR_IDRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_IDRC) >> BP_ASRC_ASRCTR_IDRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_IDRC.
-#define BF_ASRC_ASRCTR_IDRC(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_IDRC) & BM_ASRC_ASRCTR_IDRC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_IDRC.
-#define BF_ASRC_ASRCTR_IDRC(v)   (((v) << BP_ASRC_ASRCTR_IDRC) & BM_ASRC_ASRCTR_IDRC)
-#endif
+#define BF_ASRC_ASRCTR_IDRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_IDRC) & BM_ASRC_ASRCTR_IDRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRC field to a new value.
@@ -378,15 +343,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_USRC      (0x00040000)  //!< Bit mask for ASRC_ASRCTR_USRC.
 
 //! @brief Get value of ASRC_ASRCTR_USRC from a register value.
-#define BG_ASRC_ASRCTR_USRC(r)   (((r) & BM_ASRC_ASRCTR_USRC) >> BP_ASRC_ASRCTR_USRC)
+#define BG_ASRC_ASRCTR_USRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_USRC) >> BP_ASRC_ASRCTR_USRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_USRC.
-#define BF_ASRC_ASRCTR_USRC(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_USRC) & BM_ASRC_ASRCTR_USRC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_USRC.
-#define BF_ASRC_ASRCTR_USRC(v)   (((v) << BP_ASRC_ASRCTR_USRC) & BM_ASRC_ASRCTR_USRC)
-#endif
+#define BF_ASRC_ASRCTR_USRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_USRC) & BM_ASRC_ASRCTR_USRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USRC field to a new value.
@@ -408,15 +368,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ATSA      (0x00100000)  //!< Bit mask for ASRC_ASRCTR_ATSA.
 
 //! @brief Get value of ASRC_ASRCTR_ATSA from a register value.
-#define BG_ASRC_ASRCTR_ATSA(r)   (((r) & BM_ASRC_ASRCTR_ATSA) >> BP_ASRC_ASRCTR_ATSA)
+#define BG_ASRC_ASRCTR_ATSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ATSA) >> BP_ASRC_ASRCTR_ATSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ATSA.
-#define BF_ASRC_ASRCTR_ATSA(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ATSA) & BM_ASRC_ASRCTR_ATSA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ATSA.
-#define BF_ASRC_ASRCTR_ATSA(v)   (((v) << BP_ASRC_ASRCTR_ATSA) & BM_ASRC_ASRCTR_ATSA)
-#endif
+#define BF_ASRC_ASRCTR_ATSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ATSA) & BM_ASRC_ASRCTR_ATSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATSA field to a new value.
@@ -438,15 +393,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ATSB      (0x00200000)  //!< Bit mask for ASRC_ASRCTR_ATSB.
 
 //! @brief Get value of ASRC_ASRCTR_ATSB from a register value.
-#define BG_ASRC_ASRCTR_ATSB(r)   (((r) & BM_ASRC_ASRCTR_ATSB) >> BP_ASRC_ASRCTR_ATSB)
+#define BG_ASRC_ASRCTR_ATSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ATSB) >> BP_ASRC_ASRCTR_ATSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ATSB.
-#define BF_ASRC_ASRCTR_ATSB(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ATSB) & BM_ASRC_ASRCTR_ATSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ATSB.
-#define BF_ASRC_ASRCTR_ATSB(v)   (((v) << BP_ASRC_ASRCTR_ATSB) & BM_ASRC_ASRCTR_ATSB)
-#endif
+#define BF_ASRC_ASRCTR_ATSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ATSB) & BM_ASRC_ASRCTR_ATSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATSB field to a new value.
@@ -468,15 +418,10 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_ATSC      (0x00400000)  //!< Bit mask for ASRC_ASRCTR_ATSC.
 
 //! @brief Get value of ASRC_ASRCTR_ATSC from a register value.
-#define BG_ASRC_ASRCTR_ATSC(r)   (((r) & BM_ASRC_ASRCTR_ATSC) >> BP_ASRC_ASRCTR_ATSC)
+#define BG_ASRC_ASRCTR_ATSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_ATSC) >> BP_ASRC_ASRCTR_ATSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCTR_ATSC.
-#define BF_ASRC_ASRCTR_ATSC(v)   ((((reg32_t) v) << BP_ASRC_ASRCTR_ATSC) & BM_ASRC_ASRCTR_ATSC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCTR_ATSC.
-#define BF_ASRC_ASRCTR_ATSC(v)   (((v) << BP_ASRC_ASRCTR_ATSC) & BM_ASRC_ASRCTR_ATSC)
-#endif
+#define BF_ASRC_ASRCTR_ATSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCTR_ATSC) & BM_ASRC_ASRCTR_ATSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATSC field to a new value.
@@ -492,7 +437,11 @@ typedef union _hw_asrc_asrctr
 #define BM_ASRC_ASRCTR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCTR_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCTR_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCTR_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCTR_UNIMPLEMENTED) >> BP_ASRC_ASRCTR_UNIMPLEMENTED)
+#define BG_ASRC_ASRCTR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCTR_UNIMPLEMENTED) >> BP_ASRC_ASRCTR_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIER - ASRC Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -553,15 +502,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADIEA      (0x00000001)  //!< Bit mask for ASRC_ASRIER_ADIEA.
 
 //! @brief Get value of ASRC_ASRIER_ADIEA from a register value.
-#define BG_ASRC_ASRIER_ADIEA(r)   (((r) & BM_ASRC_ASRIER_ADIEA) >> BP_ASRC_ASRIER_ADIEA)
+#define BG_ASRC_ASRIER_ADIEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADIEA) >> BP_ASRC_ASRIER_ADIEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADIEA.
-#define BF_ASRC_ASRIER_ADIEA(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADIEA) & BM_ASRC_ASRIER_ADIEA)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADIEA.
-#define BF_ASRC_ASRIER_ADIEA(v)   (((v) << BP_ASRC_ASRIER_ADIEA) & BM_ASRC_ASRIER_ADIEA)
-#endif
+#define BF_ASRC_ASRIER_ADIEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADIEA) & BM_ASRC_ASRIER_ADIEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADIEA field to a new value.
@@ -582,15 +526,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADIEB      (0x00000002)  //!< Bit mask for ASRC_ASRIER_ADIEB.
 
 //! @brief Get value of ASRC_ASRIER_ADIEB from a register value.
-#define BG_ASRC_ASRIER_ADIEB(r)   (((r) & BM_ASRC_ASRIER_ADIEB) >> BP_ASRC_ASRIER_ADIEB)
+#define BG_ASRC_ASRIER_ADIEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADIEB) >> BP_ASRC_ASRIER_ADIEB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADIEB.
-#define BF_ASRC_ASRIER_ADIEB(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADIEB) & BM_ASRC_ASRIER_ADIEB)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADIEB.
-#define BF_ASRC_ASRIER_ADIEB(v)   (((v) << BP_ASRC_ASRIER_ADIEB) & BM_ASRC_ASRIER_ADIEB)
-#endif
+#define BF_ASRC_ASRIER_ADIEB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADIEB) & BM_ASRC_ASRIER_ADIEB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADIEB field to a new value.
@@ -611,15 +550,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADIEC      (0x00000004)  //!< Bit mask for ASRC_ASRIER_ADIEC.
 
 //! @brief Get value of ASRC_ASRIER_ADIEC from a register value.
-#define BG_ASRC_ASRIER_ADIEC(r)   (((r) & BM_ASRC_ASRIER_ADIEC) >> BP_ASRC_ASRIER_ADIEC)
+#define BG_ASRC_ASRIER_ADIEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADIEC) >> BP_ASRC_ASRIER_ADIEC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADIEC.
-#define BF_ASRC_ASRIER_ADIEC(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADIEC) & BM_ASRC_ASRIER_ADIEC)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADIEC.
-#define BF_ASRC_ASRIER_ADIEC(v)   (((v) << BP_ASRC_ASRIER_ADIEC) & BM_ASRC_ASRIER_ADIEC)
-#endif
+#define BF_ASRC_ASRIER_ADIEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADIEC) & BM_ASRC_ASRIER_ADIEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADIEC field to a new value.
@@ -640,15 +574,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADOEA      (0x00000008)  //!< Bit mask for ASRC_ASRIER_ADOEA.
 
 //! @brief Get value of ASRC_ASRIER_ADOEA from a register value.
-#define BG_ASRC_ASRIER_ADOEA(r)   (((r) & BM_ASRC_ASRIER_ADOEA) >> BP_ASRC_ASRIER_ADOEA)
+#define BG_ASRC_ASRIER_ADOEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADOEA) >> BP_ASRC_ASRIER_ADOEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADOEA.
-#define BF_ASRC_ASRIER_ADOEA(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADOEA) & BM_ASRC_ASRIER_ADOEA)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADOEA.
-#define BF_ASRC_ASRIER_ADOEA(v)   (((v) << BP_ASRC_ASRIER_ADOEA) & BM_ASRC_ASRIER_ADOEA)
-#endif
+#define BF_ASRC_ASRIER_ADOEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADOEA) & BM_ASRC_ASRIER_ADOEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADOEA field to a new value.
@@ -669,15 +598,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADOEB      (0x00000010)  //!< Bit mask for ASRC_ASRIER_ADOEB.
 
 //! @brief Get value of ASRC_ASRIER_ADOEB from a register value.
-#define BG_ASRC_ASRIER_ADOEB(r)   (((r) & BM_ASRC_ASRIER_ADOEB) >> BP_ASRC_ASRIER_ADOEB)
+#define BG_ASRC_ASRIER_ADOEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADOEB) >> BP_ASRC_ASRIER_ADOEB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADOEB.
-#define BF_ASRC_ASRIER_ADOEB(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADOEB) & BM_ASRC_ASRIER_ADOEB)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADOEB.
-#define BF_ASRC_ASRIER_ADOEB(v)   (((v) << BP_ASRC_ASRIER_ADOEB) & BM_ASRC_ASRIER_ADOEB)
-#endif
+#define BF_ASRC_ASRIER_ADOEB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADOEB) & BM_ASRC_ASRIER_ADOEB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADOEB field to a new value.
@@ -698,15 +622,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_ADOEC      (0x00000020)  //!< Bit mask for ASRC_ASRIER_ADOEC.
 
 //! @brief Get value of ASRC_ASRIER_ADOEC from a register value.
-#define BG_ASRC_ASRIER_ADOEC(r)   (((r) & BM_ASRC_ASRIER_ADOEC) >> BP_ASRC_ASRIER_ADOEC)
+#define BG_ASRC_ASRIER_ADOEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_ADOEC) >> BP_ASRC_ASRIER_ADOEC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_ADOEC.
-#define BF_ASRC_ASRIER_ADOEC(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_ADOEC) & BM_ASRC_ASRIER_ADOEC)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_ADOEC.
-#define BF_ASRC_ASRIER_ADOEC(v)   (((v) << BP_ASRC_ASRIER_ADOEC) & BM_ASRC_ASRIER_ADOEC)
-#endif
+#define BF_ASRC_ASRIER_ADOEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_ADOEC) & BM_ASRC_ASRIER_ADOEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADOEC field to a new value.
@@ -727,15 +646,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_AOLIE      (0x00000040)  //!< Bit mask for ASRC_ASRIER_AOLIE.
 
 //! @brief Get value of ASRC_ASRIER_AOLIE from a register value.
-#define BG_ASRC_ASRIER_AOLIE(r)   (((r) & BM_ASRC_ASRIER_AOLIE) >> BP_ASRC_ASRIER_AOLIE)
+#define BG_ASRC_ASRIER_AOLIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_AOLIE) >> BP_ASRC_ASRIER_AOLIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_AOLIE.
-#define BF_ASRC_ASRIER_AOLIE(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_AOLIE) & BM_ASRC_ASRIER_AOLIE)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_AOLIE.
-#define BF_ASRC_ASRIER_AOLIE(v)   (((v) << BP_ASRC_ASRIER_AOLIE) & BM_ASRC_ASRIER_AOLIE)
-#endif
+#define BF_ASRC_ASRIER_AOLIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_AOLIE) & BM_ASRC_ASRIER_AOLIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOLIE field to a new value.
@@ -756,15 +670,10 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_AFPWE      (0x00000080)  //!< Bit mask for ASRC_ASRIER_AFPWE.
 
 //! @brief Get value of ASRC_ASRIER_AFPWE from a register value.
-#define BG_ASRC_ASRIER_AFPWE(r)   (((r) & BM_ASRC_ASRIER_AFPWE) >> BP_ASRC_ASRIER_AFPWE)
+#define BG_ASRC_ASRIER_AFPWE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_AFPWE) >> BP_ASRC_ASRIER_AFPWE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIER_AFPWE.
-#define BF_ASRC_ASRIER_AFPWE(v)   ((((reg32_t) v) << BP_ASRC_ASRIER_AFPWE) & BM_ASRC_ASRIER_AFPWE)
-#else
-//! @brief Format value for bitfield ASRC_ASRIER_AFPWE.
-#define BF_ASRC_ASRIER_AFPWE(v)   (((v) << BP_ASRC_ASRIER_AFPWE) & BM_ASRC_ASRIER_AFPWE)
-#endif
+#define BF_ASRC_ASRIER_AFPWE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIER_AFPWE) & BM_ASRC_ASRIER_AFPWE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AFPWE field to a new value.
@@ -781,7 +690,11 @@ typedef union _hw_asrc_asrier
 #define BM_ASRC_ASRIER_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIER_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIER_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIER_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIER_UNIMPLEMENTED) >> BP_ASRC_ASRIER_UNIMPLEMENTED)
+#define BG_ASRC_ASRIER_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIER_UNIMPLEMENTED) >> BP_ASRC_ASRIER_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCNCR - ASRC Channel Number Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -851,15 +764,10 @@ typedef union _hw_asrc_asrcncr
 #define BM_ASRC_ASRCNCR_ANCA      (0x00000007)  //!< Bit mask for ASRC_ASRCNCR_ANCA.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCA from a register value.
-#define BG_ASRC_ASRCNCR_ANCA(r)   (((r) & BM_ASRC_ASRCNCR_ANCA) >> BP_ASRC_ASRCNCR_ANCA)
+#define BG_ASRC_ASRCNCR_ANCA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCA) >> BP_ASRC_ASRCNCR_ANCA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCNCR_ANCA.
-#define BF_ASRC_ASRCNCR_ANCA(v)   ((((reg32_t) v) << BP_ASRC_ASRCNCR_ANCA) & BM_ASRC_ASRCNCR_ANCA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCNCR_ANCA.
-#define BF_ASRC_ASRCNCR_ANCA(v)   (((v) << BP_ASRC_ASRCNCR_ANCA) & BM_ASRC_ASRCNCR_ANCA)
-#endif
+#define BF_ASRC_ASRCNCR_ANCA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCNCR_ANCA) & BM_ASRC_ASRCNCR_ANCA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ANCA field to a new value.
@@ -890,15 +798,10 @@ typedef union _hw_asrc_asrcncr
 #define BM_ASRC_ASRCNCR_ANCB      (0x00000038)  //!< Bit mask for ASRC_ASRCNCR_ANCB.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCB from a register value.
-#define BG_ASRC_ASRCNCR_ANCB(r)   (((r) & BM_ASRC_ASRCNCR_ANCB) >> BP_ASRC_ASRCNCR_ANCB)
+#define BG_ASRC_ASRCNCR_ANCB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCB) >> BP_ASRC_ASRCNCR_ANCB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCNCR_ANCB.
-#define BF_ASRC_ASRCNCR_ANCB(v)   ((((reg32_t) v) << BP_ASRC_ASRCNCR_ANCB) & BM_ASRC_ASRCNCR_ANCB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCNCR_ANCB.
-#define BF_ASRC_ASRCNCR_ANCB(v)   (((v) << BP_ASRC_ASRCNCR_ANCB) & BM_ASRC_ASRCNCR_ANCB)
-#endif
+#define BF_ASRC_ASRCNCR_ANCB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCNCR_ANCB) & BM_ASRC_ASRCNCR_ANCB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ANCB field to a new value.
@@ -930,15 +833,10 @@ typedef union _hw_asrc_asrcncr
 #define BM_ASRC_ASRCNCR_ANCC      (0x000001c0)  //!< Bit mask for ASRC_ASRCNCR_ANCC.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCC from a register value.
-#define BG_ASRC_ASRCNCR_ANCC(r)   (((r) & BM_ASRC_ASRCNCR_ANCC) >> BP_ASRC_ASRCNCR_ANCC)
+#define BG_ASRC_ASRCNCR_ANCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCC) >> BP_ASRC_ASRCNCR_ANCC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCNCR_ANCC.
-#define BF_ASRC_ASRCNCR_ANCC(v)   ((((reg32_t) v) << BP_ASRC_ASRCNCR_ANCC) & BM_ASRC_ASRCNCR_ANCC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCNCR_ANCC.
-#define BF_ASRC_ASRCNCR_ANCC(v)   (((v) << BP_ASRC_ASRCNCR_ANCC) & BM_ASRC_ASRCNCR_ANCC)
-#endif
+#define BF_ASRC_ASRCNCR_ANCC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCNCR_ANCC) & BM_ASRC_ASRCNCR_ANCC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ANCC field to a new value.
@@ -955,7 +853,11 @@ typedef union _hw_asrc_asrcncr
 #define BM_ASRC_ASRCNCR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCNCR_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCNCR_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCNCR_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCNCR_UNIMPLEMENTED) >> BP_ASRC_ASRCNCR_UNIMPLEMENTED)
+#define BG_ASRC_ASRCNCR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_UNIMPLEMENTED) >> BP_ASRC_ASRCNCR_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCFG - ASRC Filter Configuration Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1025,15 +927,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_PREMODA      (0x000000c0)  //!< Bit mask for ASRC_ASRCFG_PREMODA.
 
 //! @brief Get value of ASRC_ASRCFG_PREMODA from a register value.
-#define BG_ASRC_ASRCFG_PREMODA(r)   (((r) & BM_ASRC_ASRCFG_PREMODA) >> BP_ASRC_ASRCFG_PREMODA)
+#define BG_ASRC_ASRCFG_PREMODA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_PREMODA) >> BP_ASRC_ASRCFG_PREMODA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_PREMODA.
-#define BF_ASRC_ASRCFG_PREMODA(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_PREMODA) & BM_ASRC_ASRCFG_PREMODA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_PREMODA.
-#define BF_ASRC_ASRCFG_PREMODA(v)   (((v) << BP_ASRC_ASRCFG_PREMODA) & BM_ASRC_ASRCFG_PREMODA)
-#endif
+#define BF_ASRC_ASRCFG_PREMODA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_PREMODA) & BM_ASRC_ASRCFG_PREMODA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREMODA field to a new value.
@@ -1058,15 +955,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_POSTMODA      (0x00000300)  //!< Bit mask for ASRC_ASRCFG_POSTMODA.
 
 //! @brief Get value of ASRC_ASRCFG_POSTMODA from a register value.
-#define BG_ASRC_ASRCFG_POSTMODA(r)   (((r) & BM_ASRC_ASRCFG_POSTMODA) >> BP_ASRC_ASRCFG_POSTMODA)
+#define BG_ASRC_ASRCFG_POSTMODA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_POSTMODA) >> BP_ASRC_ASRCFG_POSTMODA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_POSTMODA.
-#define BF_ASRC_ASRCFG_POSTMODA(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_POSTMODA) & BM_ASRC_ASRCFG_POSTMODA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_POSTMODA.
-#define BF_ASRC_ASRCFG_POSTMODA(v)   (((v) << BP_ASRC_ASRCFG_POSTMODA) & BM_ASRC_ASRCFG_POSTMODA)
-#endif
+#define BF_ASRC_ASRCFG_POSTMODA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_POSTMODA) & BM_ASRC_ASRCFG_POSTMODA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POSTMODA field to a new value.
@@ -1092,15 +984,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_PREMODB      (0x00000c00)  //!< Bit mask for ASRC_ASRCFG_PREMODB.
 
 //! @brief Get value of ASRC_ASRCFG_PREMODB from a register value.
-#define BG_ASRC_ASRCFG_PREMODB(r)   (((r) & BM_ASRC_ASRCFG_PREMODB) >> BP_ASRC_ASRCFG_PREMODB)
+#define BG_ASRC_ASRCFG_PREMODB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_PREMODB) >> BP_ASRC_ASRCFG_PREMODB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_PREMODB.
-#define BF_ASRC_ASRCFG_PREMODB(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_PREMODB) & BM_ASRC_ASRCFG_PREMODB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_PREMODB.
-#define BF_ASRC_ASRCFG_PREMODB(v)   (((v) << BP_ASRC_ASRCFG_PREMODB) & BM_ASRC_ASRCFG_PREMODB)
-#endif
+#define BF_ASRC_ASRCFG_PREMODB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_PREMODB) & BM_ASRC_ASRCFG_PREMODB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREMODB field to a new value.
@@ -1125,15 +1012,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_POSTMODB      (0x00003000)  //!< Bit mask for ASRC_ASRCFG_POSTMODB.
 
 //! @brief Get value of ASRC_ASRCFG_POSTMODB from a register value.
-#define BG_ASRC_ASRCFG_POSTMODB(r)   (((r) & BM_ASRC_ASRCFG_POSTMODB) >> BP_ASRC_ASRCFG_POSTMODB)
+#define BG_ASRC_ASRCFG_POSTMODB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_POSTMODB) >> BP_ASRC_ASRCFG_POSTMODB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_POSTMODB.
-#define BF_ASRC_ASRCFG_POSTMODB(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_POSTMODB) & BM_ASRC_ASRCFG_POSTMODB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_POSTMODB.
-#define BF_ASRC_ASRCFG_POSTMODB(v)   (((v) << BP_ASRC_ASRCFG_POSTMODB) & BM_ASRC_ASRCFG_POSTMODB)
-#endif
+#define BF_ASRC_ASRCFG_POSTMODB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_POSTMODB) & BM_ASRC_ASRCFG_POSTMODB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POSTMODB field to a new value.
@@ -1159,15 +1041,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_PREMODC      (0x0000c000)  //!< Bit mask for ASRC_ASRCFG_PREMODC.
 
 //! @brief Get value of ASRC_ASRCFG_PREMODC from a register value.
-#define BG_ASRC_ASRCFG_PREMODC(r)   (((r) & BM_ASRC_ASRCFG_PREMODC) >> BP_ASRC_ASRCFG_PREMODC)
+#define BG_ASRC_ASRCFG_PREMODC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_PREMODC) >> BP_ASRC_ASRCFG_PREMODC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_PREMODC.
-#define BF_ASRC_ASRCFG_PREMODC(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_PREMODC) & BM_ASRC_ASRCFG_PREMODC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_PREMODC.
-#define BF_ASRC_ASRCFG_PREMODC(v)   (((v) << BP_ASRC_ASRCFG_PREMODC) & BM_ASRC_ASRCFG_PREMODC)
-#endif
+#define BF_ASRC_ASRCFG_PREMODC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_PREMODC) & BM_ASRC_ASRCFG_PREMODC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREMODC field to a new value.
@@ -1192,15 +1069,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_POSTMODC      (0x00030000)  //!< Bit mask for ASRC_ASRCFG_POSTMODC.
 
 //! @brief Get value of ASRC_ASRCFG_POSTMODC from a register value.
-#define BG_ASRC_ASRCFG_POSTMODC(r)   (((r) & BM_ASRC_ASRCFG_POSTMODC) >> BP_ASRC_ASRCFG_POSTMODC)
+#define BG_ASRC_ASRCFG_POSTMODC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_POSTMODC) >> BP_ASRC_ASRCFG_POSTMODC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_POSTMODC.
-#define BF_ASRC_ASRCFG_POSTMODC(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_POSTMODC) & BM_ASRC_ASRCFG_POSTMODC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_POSTMODC.
-#define BF_ASRC_ASRCFG_POSTMODC(v)   (((v) << BP_ASRC_ASRCFG_POSTMODC) & BM_ASRC_ASRCFG_POSTMODC)
-#endif
+#define BF_ASRC_ASRCFG_POSTMODC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_POSTMODC) & BM_ASRC_ASRCFG_POSTMODC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POSTMODC field to a new value.
@@ -1221,15 +1093,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_NDPRA      (0x00040000)  //!< Bit mask for ASRC_ASRCFG_NDPRA.
 
 //! @brief Get value of ASRC_ASRCFG_NDPRA from a register value.
-#define BG_ASRC_ASRCFG_NDPRA(r)   (((r) & BM_ASRC_ASRCFG_NDPRA) >> BP_ASRC_ASRCFG_NDPRA)
+#define BG_ASRC_ASRCFG_NDPRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_NDPRA) >> BP_ASRC_ASRCFG_NDPRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_NDPRA.
-#define BF_ASRC_ASRCFG_NDPRA(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_NDPRA) & BM_ASRC_ASRCFG_NDPRA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_NDPRA.
-#define BF_ASRC_ASRCFG_NDPRA(v)   (((v) << BP_ASRC_ASRCFG_NDPRA) & BM_ASRC_ASRCFG_NDPRA)
-#endif
+#define BF_ASRC_ASRCFG_NDPRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_NDPRA) & BM_ASRC_ASRCFG_NDPRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NDPRA field to a new value.
@@ -1250,15 +1117,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_NDPRB      (0x00080000)  //!< Bit mask for ASRC_ASRCFG_NDPRB.
 
 //! @brief Get value of ASRC_ASRCFG_NDPRB from a register value.
-#define BG_ASRC_ASRCFG_NDPRB(r)   (((r) & BM_ASRC_ASRCFG_NDPRB) >> BP_ASRC_ASRCFG_NDPRB)
+#define BG_ASRC_ASRCFG_NDPRB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_NDPRB) >> BP_ASRC_ASRCFG_NDPRB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_NDPRB.
-#define BF_ASRC_ASRCFG_NDPRB(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_NDPRB) & BM_ASRC_ASRCFG_NDPRB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_NDPRB.
-#define BF_ASRC_ASRCFG_NDPRB(v)   (((v) << BP_ASRC_ASRCFG_NDPRB) & BM_ASRC_ASRCFG_NDPRB)
-#endif
+#define BF_ASRC_ASRCFG_NDPRB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_NDPRB) & BM_ASRC_ASRCFG_NDPRB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NDPRB field to a new value.
@@ -1279,15 +1141,10 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_NDPRC      (0x00100000)  //!< Bit mask for ASRC_ASRCFG_NDPRC.
 
 //! @brief Get value of ASRC_ASRCFG_NDPRC from a register value.
-#define BG_ASRC_ASRCFG_NDPRC(r)   (((r) & BM_ASRC_ASRCFG_NDPRC) >> BP_ASRC_ASRCFG_NDPRC)
+#define BG_ASRC_ASRCFG_NDPRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_NDPRC) >> BP_ASRC_ASRCFG_NDPRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCFG_NDPRC.
-#define BF_ASRC_ASRCFG_NDPRC(v)   ((((reg32_t) v) << BP_ASRC_ASRCFG_NDPRC) & BM_ASRC_ASRCFG_NDPRC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCFG_NDPRC.
-#define BF_ASRC_ASRCFG_NDPRC(v)   (((v) << BP_ASRC_ASRCFG_NDPRC) & BM_ASRC_ASRCFG_NDPRC)
-#endif
+#define BF_ASRC_ASRCFG_NDPRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCFG_NDPRC) & BM_ASRC_ASRCFG_NDPRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NDPRC field to a new value.
@@ -1306,7 +1163,7 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_INIRQA      (0x00200000)  //!< Bit mask for ASRC_ASRCFG_INIRQA.
 
 //! @brief Get value of ASRC_ASRCFG_INIRQA from a register value.
-#define BG_ASRC_ASRCFG_INIRQA(r)   (((r) & BM_ASRC_ASRCFG_INIRQA) >> BP_ASRC_ASRCFG_INIRQA)
+#define BG_ASRC_ASRCFG_INIRQA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_INIRQA) >> BP_ASRC_ASRCFG_INIRQA)
 
 /* --- Register HW_ASRC_ASRCFG, field INIRQB[22] (RO)
  *
@@ -1319,7 +1176,7 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_INIRQB      (0x00400000)  //!< Bit mask for ASRC_ASRCFG_INIRQB.
 
 //! @brief Get value of ASRC_ASRCFG_INIRQB from a register value.
-#define BG_ASRC_ASRCFG_INIRQB(r)   (((r) & BM_ASRC_ASRCFG_INIRQB) >> BP_ASRC_ASRCFG_INIRQB)
+#define BG_ASRC_ASRCFG_INIRQB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_INIRQB) >> BP_ASRC_ASRCFG_INIRQB)
 
 /* --- Register HW_ASRC_ASRCFG, field INIRQC[23] (RO)
  *
@@ -1332,7 +1189,7 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_INIRQC      (0x00800000)  //!< Bit mask for ASRC_ASRCFG_INIRQC.
 
 //! @brief Get value of ASRC_ASRCFG_INIRQC from a register value.
-#define BG_ASRC_ASRCFG_INIRQC(r)   (((r) & BM_ASRC_ASRCFG_INIRQC) >> BP_ASRC_ASRCFG_INIRQC)
+#define BG_ASRC_ASRCFG_INIRQC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_INIRQC) >> BP_ASRC_ASRCFG_INIRQC)
 
 /* --- Register HW_ASRC_ASRCFG, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -1343,7 +1200,11 @@ typedef union _hw_asrc_asrcfg
 #define BM_ASRC_ASRCFG_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCFG_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCFG_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCFG_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCFG_UNIMPLEMENTED) >> BP_ASRC_ASRCFG_UNIMPLEMENTED)
+#define BG_ASRC_ASRCFG_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCFG_UNIMPLEMENTED) >> BP_ASRC_ASRCFG_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCSR - ASRC Clock Source Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1423,15 +1284,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AICSA      (0x0000000f)  //!< Bit mask for ASRC_ASRCSR_AICSA.
 
 //! @brief Get value of ASRC_ASRCSR_AICSA from a register value.
-#define BG_ASRC_ASRCSR_AICSA(r)   (((r) & BM_ASRC_ASRCSR_AICSA) >> BP_ASRC_ASRCSR_AICSA)
+#define BG_ASRC_ASRCSR_AICSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AICSA) >> BP_ASRC_ASRCSR_AICSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AICSA.
-#define BF_ASRC_ASRCSR_AICSA(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AICSA) & BM_ASRC_ASRCSR_AICSA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AICSA.
-#define BF_ASRC_ASRCSR_AICSA(v)   (((v) << BP_ASRC_ASRCSR_AICSA) & BM_ASRC_ASRCSR_AICSA)
-#endif
+#define BF_ASRC_ASRCSR_AICSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AICSA) & BM_ASRC_ASRCSR_AICSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICSA field to a new value.
@@ -1466,15 +1322,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AICSB      (0x000000f0)  //!< Bit mask for ASRC_ASRCSR_AICSB.
 
 //! @brief Get value of ASRC_ASRCSR_AICSB from a register value.
-#define BG_ASRC_ASRCSR_AICSB(r)   (((r) & BM_ASRC_ASRCSR_AICSB) >> BP_ASRC_ASRCSR_AICSB)
+#define BG_ASRC_ASRCSR_AICSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AICSB) >> BP_ASRC_ASRCSR_AICSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AICSB.
-#define BF_ASRC_ASRCSR_AICSB(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AICSB) & BM_ASRC_ASRCSR_AICSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AICSB.
-#define BF_ASRC_ASRCSR_AICSB(v)   (((v) << BP_ASRC_ASRCSR_AICSB) & BM_ASRC_ASRCSR_AICSB)
-#endif
+#define BF_ASRC_ASRCSR_AICSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AICSB) & BM_ASRC_ASRCSR_AICSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICSB field to a new value.
@@ -1509,15 +1360,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AICSC      (0x00000f00)  //!< Bit mask for ASRC_ASRCSR_AICSC.
 
 //! @brief Get value of ASRC_ASRCSR_AICSC from a register value.
-#define BG_ASRC_ASRCSR_AICSC(r)   (((r) & BM_ASRC_ASRCSR_AICSC) >> BP_ASRC_ASRCSR_AICSC)
+#define BG_ASRC_ASRCSR_AICSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AICSC) >> BP_ASRC_ASRCSR_AICSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AICSC.
-#define BF_ASRC_ASRCSR_AICSC(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AICSC) & BM_ASRC_ASRCSR_AICSC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AICSC.
-#define BF_ASRC_ASRCSR_AICSC(v)   (((v) << BP_ASRC_ASRCSR_AICSC) & BM_ASRC_ASRCSR_AICSC)
-#endif
+#define BF_ASRC_ASRCSR_AICSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AICSC) & BM_ASRC_ASRCSR_AICSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICSC field to a new value.
@@ -1552,15 +1398,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AOCSA      (0x0000f000)  //!< Bit mask for ASRC_ASRCSR_AOCSA.
 
 //! @brief Get value of ASRC_ASRCSR_AOCSA from a register value.
-#define BG_ASRC_ASRCSR_AOCSA(r)   (((r) & BM_ASRC_ASRCSR_AOCSA) >> BP_ASRC_ASRCSR_AOCSA)
+#define BG_ASRC_ASRCSR_AOCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AOCSA) >> BP_ASRC_ASRCSR_AOCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AOCSA.
-#define BF_ASRC_ASRCSR_AOCSA(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AOCSA) & BM_ASRC_ASRCSR_AOCSA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AOCSA.
-#define BF_ASRC_ASRCSR_AOCSA(v)   (((v) << BP_ASRC_ASRCSR_AOCSA) & BM_ASRC_ASRCSR_AOCSA)
-#endif
+#define BF_ASRC_ASRCSR_AOCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AOCSA) & BM_ASRC_ASRCSR_AOCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCSA field to a new value.
@@ -1595,15 +1436,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AOCSB      (0x000f0000)  //!< Bit mask for ASRC_ASRCSR_AOCSB.
 
 //! @brief Get value of ASRC_ASRCSR_AOCSB from a register value.
-#define BG_ASRC_ASRCSR_AOCSB(r)   (((r) & BM_ASRC_ASRCSR_AOCSB) >> BP_ASRC_ASRCSR_AOCSB)
+#define BG_ASRC_ASRCSR_AOCSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AOCSB) >> BP_ASRC_ASRCSR_AOCSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AOCSB.
-#define BF_ASRC_ASRCSR_AOCSB(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AOCSB) & BM_ASRC_ASRCSR_AOCSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AOCSB.
-#define BF_ASRC_ASRCSR_AOCSB(v)   (((v) << BP_ASRC_ASRCSR_AOCSB) & BM_ASRC_ASRCSR_AOCSB)
-#endif
+#define BF_ASRC_ASRCSR_AOCSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AOCSB) & BM_ASRC_ASRCSR_AOCSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCSB field to a new value.
@@ -1638,15 +1474,10 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_AOCSC      (0x00f00000)  //!< Bit mask for ASRC_ASRCSR_AOCSC.
 
 //! @brief Get value of ASRC_ASRCSR_AOCSC from a register value.
-#define BG_ASRC_ASRCSR_AOCSC(r)   (((r) & BM_ASRC_ASRCSR_AOCSC) >> BP_ASRC_ASRCSR_AOCSC)
+#define BG_ASRC_ASRCSR_AOCSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_AOCSC) >> BP_ASRC_ASRCSR_AOCSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCSR_AOCSC.
-#define BF_ASRC_ASRCSR_AOCSC(v)   ((((reg32_t) v) << BP_ASRC_ASRCSR_AOCSC) & BM_ASRC_ASRCSR_AOCSC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCSR_AOCSC.
-#define BF_ASRC_ASRCSR_AOCSC(v)   (((v) << BP_ASRC_ASRCSR_AOCSC) & BM_ASRC_ASRCSR_AOCSC)
-#endif
+#define BF_ASRC_ASRCSR_AOCSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCSR_AOCSC) & BM_ASRC_ASRCSR_AOCSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCSC field to a new value.
@@ -1663,7 +1494,11 @@ typedef union _hw_asrc_asrcsr
 #define BM_ASRC_ASRCSR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCSR_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCSR_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCSR_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCSR_UNIMPLEMENTED) >> BP_ASRC_ASRCSR_UNIMPLEMENTED)
+#define BG_ASRC_ASRCSR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCSR_UNIMPLEMENTED) >> BP_ASRC_ASRCSR_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCDR1 - ASRC Clock Divider Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1720,15 +1555,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AICPA      (0x00000007)  //!< Bit mask for ASRC_ASRCDR1_AICPA.
 
 //! @brief Get value of ASRC_ASRCDR1_AICPA from a register value.
-#define BG_ASRC_ASRCDR1_AICPA(r)   (((r) & BM_ASRC_ASRCDR1_AICPA) >> BP_ASRC_ASRCDR1_AICPA)
+#define BG_ASRC_ASRCDR1_AICPA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AICPA) >> BP_ASRC_ASRCDR1_AICPA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AICPA.
-#define BF_ASRC_ASRCDR1_AICPA(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AICPA) & BM_ASRC_ASRCDR1_AICPA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AICPA.
-#define BF_ASRC_ASRCDR1_AICPA(v)   (((v) << BP_ASRC_ASRCDR1_AICPA) & BM_ASRC_ASRCDR1_AICPA)
-#endif
+#define BF_ASRC_ASRCDR1_AICPA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AICPA) & BM_ASRC_ASRCDR1_AICPA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICPA field to a new value.
@@ -1745,15 +1575,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AICDA      (0x00000038)  //!< Bit mask for ASRC_ASRCDR1_AICDA.
 
 //! @brief Get value of ASRC_ASRCDR1_AICDA from a register value.
-#define BG_ASRC_ASRCDR1_AICDA(r)   (((r) & BM_ASRC_ASRCDR1_AICDA) >> BP_ASRC_ASRCDR1_AICDA)
+#define BG_ASRC_ASRCDR1_AICDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AICDA) >> BP_ASRC_ASRCDR1_AICDA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AICDA.
-#define BF_ASRC_ASRCDR1_AICDA(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AICDA) & BM_ASRC_ASRCDR1_AICDA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AICDA.
-#define BF_ASRC_ASRCDR1_AICDA(v)   (((v) << BP_ASRC_ASRCDR1_AICDA) & BM_ASRC_ASRCDR1_AICDA)
-#endif
+#define BF_ASRC_ASRCDR1_AICDA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AICDA) & BM_ASRC_ASRCDR1_AICDA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICDA field to a new value.
@@ -1770,15 +1595,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AICPB      (0x000001c0)  //!< Bit mask for ASRC_ASRCDR1_AICPB.
 
 //! @brief Get value of ASRC_ASRCDR1_AICPB from a register value.
-#define BG_ASRC_ASRCDR1_AICPB(r)   (((r) & BM_ASRC_ASRCDR1_AICPB) >> BP_ASRC_ASRCDR1_AICPB)
+#define BG_ASRC_ASRCDR1_AICPB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AICPB) >> BP_ASRC_ASRCDR1_AICPB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AICPB.
-#define BF_ASRC_ASRCDR1_AICPB(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AICPB) & BM_ASRC_ASRCDR1_AICPB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AICPB.
-#define BF_ASRC_ASRCDR1_AICPB(v)   (((v) << BP_ASRC_ASRCDR1_AICPB) & BM_ASRC_ASRCDR1_AICPB)
-#endif
+#define BF_ASRC_ASRCDR1_AICPB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AICPB) & BM_ASRC_ASRCDR1_AICPB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICPB field to a new value.
@@ -1795,15 +1615,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AICDB      (0x00000e00)  //!< Bit mask for ASRC_ASRCDR1_AICDB.
 
 //! @brief Get value of ASRC_ASRCDR1_AICDB from a register value.
-#define BG_ASRC_ASRCDR1_AICDB(r)   (((r) & BM_ASRC_ASRCDR1_AICDB) >> BP_ASRC_ASRCDR1_AICDB)
+#define BG_ASRC_ASRCDR1_AICDB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AICDB) >> BP_ASRC_ASRCDR1_AICDB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AICDB.
-#define BF_ASRC_ASRCDR1_AICDB(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AICDB) & BM_ASRC_ASRCDR1_AICDB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AICDB.
-#define BF_ASRC_ASRCDR1_AICDB(v)   (((v) << BP_ASRC_ASRCDR1_AICDB) & BM_ASRC_ASRCDR1_AICDB)
-#endif
+#define BF_ASRC_ASRCDR1_AICDB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AICDB) & BM_ASRC_ASRCDR1_AICDB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICDB field to a new value.
@@ -1820,15 +1635,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AOCPA      (0x00007000)  //!< Bit mask for ASRC_ASRCDR1_AOCPA.
 
 //! @brief Get value of ASRC_ASRCDR1_AOCPA from a register value.
-#define BG_ASRC_ASRCDR1_AOCPA(r)   (((r) & BM_ASRC_ASRCDR1_AOCPA) >> BP_ASRC_ASRCDR1_AOCPA)
+#define BG_ASRC_ASRCDR1_AOCPA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AOCPA) >> BP_ASRC_ASRCDR1_AOCPA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AOCPA.
-#define BF_ASRC_ASRCDR1_AOCPA(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AOCPA) & BM_ASRC_ASRCDR1_AOCPA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AOCPA.
-#define BF_ASRC_ASRCDR1_AOCPA(v)   (((v) << BP_ASRC_ASRCDR1_AOCPA) & BM_ASRC_ASRCDR1_AOCPA)
-#endif
+#define BF_ASRC_ASRCDR1_AOCPA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AOCPA) & BM_ASRC_ASRCDR1_AOCPA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCPA field to a new value.
@@ -1845,15 +1655,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AOCDA      (0x00038000)  //!< Bit mask for ASRC_ASRCDR1_AOCDA.
 
 //! @brief Get value of ASRC_ASRCDR1_AOCDA from a register value.
-#define BG_ASRC_ASRCDR1_AOCDA(r)   (((r) & BM_ASRC_ASRCDR1_AOCDA) >> BP_ASRC_ASRCDR1_AOCDA)
+#define BG_ASRC_ASRCDR1_AOCDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AOCDA) >> BP_ASRC_ASRCDR1_AOCDA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AOCDA.
-#define BF_ASRC_ASRCDR1_AOCDA(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AOCDA) & BM_ASRC_ASRCDR1_AOCDA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AOCDA.
-#define BF_ASRC_ASRCDR1_AOCDA(v)   (((v) << BP_ASRC_ASRCDR1_AOCDA) & BM_ASRC_ASRCDR1_AOCDA)
-#endif
+#define BF_ASRC_ASRCDR1_AOCDA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AOCDA) & BM_ASRC_ASRCDR1_AOCDA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCDA field to a new value.
@@ -1870,15 +1675,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AOCPB      (0x001c0000)  //!< Bit mask for ASRC_ASRCDR1_AOCPB.
 
 //! @brief Get value of ASRC_ASRCDR1_AOCPB from a register value.
-#define BG_ASRC_ASRCDR1_AOCPB(r)   (((r) & BM_ASRC_ASRCDR1_AOCPB) >> BP_ASRC_ASRCDR1_AOCPB)
+#define BG_ASRC_ASRCDR1_AOCPB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AOCPB) >> BP_ASRC_ASRCDR1_AOCPB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AOCPB.
-#define BF_ASRC_ASRCDR1_AOCPB(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AOCPB) & BM_ASRC_ASRCDR1_AOCPB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AOCPB.
-#define BF_ASRC_ASRCDR1_AOCPB(v)   (((v) << BP_ASRC_ASRCDR1_AOCPB) & BM_ASRC_ASRCDR1_AOCPB)
-#endif
+#define BF_ASRC_ASRCDR1_AOCPB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AOCPB) & BM_ASRC_ASRCDR1_AOCPB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCPB field to a new value.
@@ -1895,15 +1695,10 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_AOCDB      (0x00e00000)  //!< Bit mask for ASRC_ASRCDR1_AOCDB.
 
 //! @brief Get value of ASRC_ASRCDR1_AOCDB from a register value.
-#define BG_ASRC_ASRCDR1_AOCDB(r)   (((r) & BM_ASRC_ASRCDR1_AOCDB) >> BP_ASRC_ASRCDR1_AOCDB)
+#define BG_ASRC_ASRCDR1_AOCDB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_AOCDB) >> BP_ASRC_ASRCDR1_AOCDB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR1_AOCDB.
-#define BF_ASRC_ASRCDR1_AOCDB(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR1_AOCDB) & BM_ASRC_ASRCDR1_AOCDB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR1_AOCDB.
-#define BF_ASRC_ASRCDR1_AOCDB(v)   (((v) << BP_ASRC_ASRCDR1_AOCDB) & BM_ASRC_ASRCDR1_AOCDB)
-#endif
+#define BF_ASRC_ASRCDR1_AOCDB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR1_AOCDB) & BM_ASRC_ASRCDR1_AOCDB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCDB field to a new value.
@@ -1919,7 +1714,11 @@ typedef union _hw_asrc_asrcdr1
 #define BM_ASRC_ASRCDR1_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCDR1_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCDR1_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCDR1_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCDR1_UNIMPLEMENTED) >> BP_ASRC_ASRCDR1_UNIMPLEMENTED)
+#define BG_ASRC_ASRCDR1_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR1_UNIMPLEMENTED) >> BP_ASRC_ASRCDR1_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCDR2 - ASRC Clock Divider Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1973,15 +1772,10 @@ typedef union _hw_asrc_asrcdr2
 #define BM_ASRC_ASRCDR2_AICPC      (0x00000007)  //!< Bit mask for ASRC_ASRCDR2_AICPC.
 
 //! @brief Get value of ASRC_ASRCDR2_AICPC from a register value.
-#define BG_ASRC_ASRCDR2_AICPC(r)   (((r) & BM_ASRC_ASRCDR2_AICPC) >> BP_ASRC_ASRCDR2_AICPC)
+#define BG_ASRC_ASRCDR2_AICPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR2_AICPC) >> BP_ASRC_ASRCDR2_AICPC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR2_AICPC.
-#define BF_ASRC_ASRCDR2_AICPC(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR2_AICPC) & BM_ASRC_ASRCDR2_AICPC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR2_AICPC.
-#define BF_ASRC_ASRCDR2_AICPC(v)   (((v) << BP_ASRC_ASRCDR2_AICPC) & BM_ASRC_ASRCDR2_AICPC)
-#endif
+#define BF_ASRC_ASRCDR2_AICPC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR2_AICPC) & BM_ASRC_ASRCDR2_AICPC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICPC field to a new value.
@@ -1998,15 +1792,10 @@ typedef union _hw_asrc_asrcdr2
 #define BM_ASRC_ASRCDR2_AICDC      (0x00000038)  //!< Bit mask for ASRC_ASRCDR2_AICDC.
 
 //! @brief Get value of ASRC_ASRCDR2_AICDC from a register value.
-#define BG_ASRC_ASRCDR2_AICDC(r)   (((r) & BM_ASRC_ASRCDR2_AICDC) >> BP_ASRC_ASRCDR2_AICDC)
+#define BG_ASRC_ASRCDR2_AICDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR2_AICDC) >> BP_ASRC_ASRCDR2_AICDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR2_AICDC.
-#define BF_ASRC_ASRCDR2_AICDC(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR2_AICDC) & BM_ASRC_ASRCDR2_AICDC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR2_AICDC.
-#define BF_ASRC_ASRCDR2_AICDC(v)   (((v) << BP_ASRC_ASRCDR2_AICDC) & BM_ASRC_ASRCDR2_AICDC)
-#endif
+#define BF_ASRC_ASRCDR2_AICDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR2_AICDC) & BM_ASRC_ASRCDR2_AICDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AICDC field to a new value.
@@ -2023,15 +1812,10 @@ typedef union _hw_asrc_asrcdr2
 #define BM_ASRC_ASRCDR2_AOCPC      (0x000001c0)  //!< Bit mask for ASRC_ASRCDR2_AOCPC.
 
 //! @brief Get value of ASRC_ASRCDR2_AOCPC from a register value.
-#define BG_ASRC_ASRCDR2_AOCPC(r)   (((r) & BM_ASRC_ASRCDR2_AOCPC) >> BP_ASRC_ASRCDR2_AOCPC)
+#define BG_ASRC_ASRCDR2_AOCPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR2_AOCPC) >> BP_ASRC_ASRCDR2_AOCPC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR2_AOCPC.
-#define BF_ASRC_ASRCDR2_AOCPC(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR2_AOCPC) & BM_ASRC_ASRCDR2_AOCPC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR2_AOCPC.
-#define BF_ASRC_ASRCDR2_AOCPC(v)   (((v) << BP_ASRC_ASRCDR2_AOCPC) & BM_ASRC_ASRCDR2_AOCPC)
-#endif
+#define BF_ASRC_ASRCDR2_AOCPC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR2_AOCPC) & BM_ASRC_ASRCDR2_AOCPC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCPC field to a new value.
@@ -2048,15 +1832,10 @@ typedef union _hw_asrc_asrcdr2
 #define BM_ASRC_ASRCDR2_AOCDC      (0x00000e00)  //!< Bit mask for ASRC_ASRCDR2_AOCDC.
 
 //! @brief Get value of ASRC_ASRCDR2_AOCDC from a register value.
-#define BG_ASRC_ASRCDR2_AOCDC(r)   (((r) & BM_ASRC_ASRCDR2_AOCDC) >> BP_ASRC_ASRCDR2_AOCDC)
+#define BG_ASRC_ASRCDR2_AOCDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR2_AOCDC) >> BP_ASRC_ASRCDR2_AOCDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCDR2_AOCDC.
-#define BF_ASRC_ASRCDR2_AOCDC(v)   ((((reg32_t) v) << BP_ASRC_ASRCDR2_AOCDC) & BM_ASRC_ASRCDR2_AOCDC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCDR2_AOCDC.
-#define BF_ASRC_ASRCDR2_AOCDC(v)   (((v) << BP_ASRC_ASRCDR2_AOCDC) & BM_ASRC_ASRCDR2_AOCDC)
-#endif
+#define BF_ASRC_ASRCDR2_AOCDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCDR2_AOCDC) & BM_ASRC_ASRCDR2_AOCDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AOCDC field to a new value.
@@ -2072,7 +1851,11 @@ typedef union _hw_asrc_asrcdr2
 #define BM_ASRC_ASRCDR2_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCDR2_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCDR2_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCDR2_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCDR2_UNIMPLEMENTED) >> BP_ASRC_ASRCDR2_UNIMPLEMENTED)
+#define BG_ASRC_ASRCDR2_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCDR2_UNIMPLEMENTED) >> BP_ASRC_ASRCDR2_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRSTR - ASRC Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2145,7 +1928,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDEA      (0x00000001)  //!< Bit mask for ASRC_ASRSTR_AIDEA.
 
 //! @brief Get value of ASRC_ASRSTR_AIDEA from a register value.
-#define BG_ASRC_ASRSTR_AIDEA(r)   (((r) & BM_ASRC_ASRSTR_AIDEA) >> BP_ASRC_ASRSTR_AIDEA)
+#define BG_ASRC_ASRSTR_AIDEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDEA) >> BP_ASRC_ASRSTR_AIDEA)
 
 /* --- Register HW_ASRC_ASRSTR, field AIDEB[1] (RO)
  *
@@ -2161,7 +1944,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDEB      (0x00000002)  //!< Bit mask for ASRC_ASRSTR_AIDEB.
 
 //! @brief Get value of ASRC_ASRSTR_AIDEB from a register value.
-#define BG_ASRC_ASRSTR_AIDEB(r)   (((r) & BM_ASRC_ASRSTR_AIDEB) >> BP_ASRC_ASRSTR_AIDEB)
+#define BG_ASRC_ASRSTR_AIDEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDEB) >> BP_ASRC_ASRSTR_AIDEB)
 
 /* --- Register HW_ASRC_ASRSTR, field AIDEC[2] (RO)
  *
@@ -2177,7 +1960,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDEC      (0x00000004)  //!< Bit mask for ASRC_ASRSTR_AIDEC.
 
 //! @brief Get value of ASRC_ASRSTR_AIDEC from a register value.
-#define BG_ASRC_ASRSTR_AIDEC(r)   (((r) & BM_ASRC_ASRSTR_AIDEC) >> BP_ASRC_ASRSTR_AIDEC)
+#define BG_ASRC_ASRSTR_AIDEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDEC) >> BP_ASRC_ASRSTR_AIDEC)
 
 /* --- Register HW_ASRC_ASRSTR, field AODFA[3] (RO)
  *
@@ -2193,7 +1976,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODFA      (0x00000008)  //!< Bit mask for ASRC_ASRSTR_AODFA.
 
 //! @brief Get value of ASRC_ASRSTR_AODFA from a register value.
-#define BG_ASRC_ASRSTR_AODFA(r)   (((r) & BM_ASRC_ASRSTR_AODFA) >> BP_ASRC_ASRSTR_AODFA)
+#define BG_ASRC_ASRSTR_AODFA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODFA) >> BP_ASRC_ASRSTR_AODFA)
 
 /* --- Register HW_ASRC_ASRSTR, field AODFB[4] (RO)
  *
@@ -2209,7 +1992,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODFB      (0x00000010)  //!< Bit mask for ASRC_ASRSTR_AODFB.
 
 //! @brief Get value of ASRC_ASRSTR_AODFB from a register value.
-#define BG_ASRC_ASRSTR_AODFB(r)   (((r) & BM_ASRC_ASRSTR_AODFB) >> BP_ASRC_ASRSTR_AODFB)
+#define BG_ASRC_ASRSTR_AODFB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODFB) >> BP_ASRC_ASRSTR_AODFB)
 
 /* --- Register HW_ASRC_ASRSTR, field AODFC[5] (RO)
  *
@@ -2225,7 +2008,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODFC      (0x00000020)  //!< Bit mask for ASRC_ASRSTR_AODFC.
 
 //! @brief Get value of ASRC_ASRSTR_AODFC from a register value.
-#define BG_ASRC_ASRSTR_AODFC(r)   (((r) & BM_ASRC_ASRSTR_AODFC) >> BP_ASRC_ASRSTR_AODFC)
+#define BG_ASRC_ASRSTR_AODFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODFC) >> BP_ASRC_ASRSTR_AODFC)
 
 /* --- Register HW_ASRC_ASRSTR, field AOLE[6] (RO)
  *
@@ -2243,7 +2026,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AOLE      (0x00000040)  //!< Bit mask for ASRC_ASRSTR_AOLE.
 
 //! @brief Get value of ASRC_ASRSTR_AOLE from a register value.
-#define BG_ASRC_ASRSTR_AOLE(r)   (((r) & BM_ASRC_ASRSTR_AOLE) >> BP_ASRC_ASRSTR_AOLE)
+#define BG_ASRC_ASRSTR_AOLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AOLE) >> BP_ASRC_ASRSTR_AOLE)
 
 /* --- Register HW_ASRC_ASRSTR, field FPWT[7] (RO)
  *
@@ -2256,7 +2039,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_FPWT      (0x00000080)  //!< Bit mask for ASRC_ASRSTR_FPWT.
 
 //! @brief Get value of ASRC_ASRSTR_FPWT from a register value.
-#define BG_ASRC_ASRSTR_FPWT(r)   (((r) & BM_ASRC_ASRSTR_FPWT) >> BP_ASRC_ASRSTR_FPWT)
+#define BG_ASRC_ASRSTR_FPWT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_FPWT) >> BP_ASRC_ASRSTR_FPWT)
 
 /* --- Register HW_ASRC_ASRSTR, field AIDUA[8] (RO)
  *
@@ -2268,7 +2051,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDUA      (0x00000100)  //!< Bit mask for ASRC_ASRSTR_AIDUA.
 
 //! @brief Get value of ASRC_ASRSTR_AIDUA from a register value.
-#define BG_ASRC_ASRSTR_AIDUA(r)   (((r) & BM_ASRC_ASRSTR_AIDUA) >> BP_ASRC_ASRSTR_AIDUA)
+#define BG_ASRC_ASRSTR_AIDUA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDUA) >> BP_ASRC_ASRSTR_AIDUA)
 
 /* --- Register HW_ASRC_ASRSTR, field AIDUB[9] (RO)
  *
@@ -2280,7 +2063,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDUB      (0x00000200)  //!< Bit mask for ASRC_ASRSTR_AIDUB.
 
 //! @brief Get value of ASRC_ASRSTR_AIDUB from a register value.
-#define BG_ASRC_ASRSTR_AIDUB(r)   (((r) & BM_ASRC_ASRSTR_AIDUB) >> BP_ASRC_ASRSTR_AIDUB)
+#define BG_ASRC_ASRSTR_AIDUB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDUB) >> BP_ASRC_ASRSTR_AIDUB)
 
 /* --- Register HW_ASRC_ASRSTR, field AIDUC[10] (RO)
  *
@@ -2292,7 +2075,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIDUC      (0x00000400)  //!< Bit mask for ASRC_ASRSTR_AIDUC.
 
 //! @brief Get value of ASRC_ASRSTR_AIDUC from a register value.
-#define BG_ASRC_ASRSTR_AIDUC(r)   (((r) & BM_ASRC_ASRSTR_AIDUC) >> BP_ASRC_ASRSTR_AIDUC)
+#define BG_ASRC_ASRSTR_AIDUC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIDUC) >> BP_ASRC_ASRSTR_AIDUC)
 
 /* --- Register HW_ASRC_ASRSTR, field AODOA[11] (RO)
  *
@@ -2304,7 +2087,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODOA      (0x00000800)  //!< Bit mask for ASRC_ASRSTR_AODOA.
 
 //! @brief Get value of ASRC_ASRSTR_AODOA from a register value.
-#define BG_ASRC_ASRSTR_AODOA(r)   (((r) & BM_ASRC_ASRSTR_AODOA) >> BP_ASRC_ASRSTR_AODOA)
+#define BG_ASRC_ASRSTR_AODOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODOA) >> BP_ASRC_ASRSTR_AODOA)
 
 /* --- Register HW_ASRC_ASRSTR, field AODOB[12] (RO)
  *
@@ -2316,7 +2099,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODOB      (0x00001000)  //!< Bit mask for ASRC_ASRSTR_AODOB.
 
 //! @brief Get value of ASRC_ASRSTR_AODOB from a register value.
-#define BG_ASRC_ASRSTR_AODOB(r)   (((r) & BM_ASRC_ASRSTR_AODOB) >> BP_ASRC_ASRSTR_AODOB)
+#define BG_ASRC_ASRSTR_AODOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODOB) >> BP_ASRC_ASRSTR_AODOB)
 
 /* --- Register HW_ASRC_ASRSTR, field AODOC[13] (RO)
  *
@@ -2328,7 +2111,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AODOC      (0x00002000)  //!< Bit mask for ASRC_ASRSTR_AODOC.
 
 //! @brief Get value of ASRC_ASRSTR_AODOC from a register value.
-#define BG_ASRC_ASRSTR_AODOC(r)   (((r) & BM_ASRC_ASRSTR_AODOC) >> BP_ASRC_ASRSTR_AODOC)
+#define BG_ASRC_ASRSTR_AODOC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AODOC) >> BP_ASRC_ASRSTR_AODOC)
 
 /* --- Register HW_ASRC_ASRSTR, field AIOLA[14] (RO)
  *
@@ -2341,7 +2124,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIOLA      (0x00004000)  //!< Bit mask for ASRC_ASRSTR_AIOLA.
 
 //! @brief Get value of ASRC_ASRSTR_AIOLA from a register value.
-#define BG_ASRC_ASRSTR_AIOLA(r)   (((r) & BM_ASRC_ASRSTR_AIOLA) >> BP_ASRC_ASRSTR_AIOLA)
+#define BG_ASRC_ASRSTR_AIOLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIOLA) >> BP_ASRC_ASRSTR_AIOLA)
 
 /* --- Register HW_ASRC_ASRSTR, field AIOLB[15] (RO)
  *
@@ -2354,7 +2137,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIOLB      (0x00008000)  //!< Bit mask for ASRC_ASRSTR_AIOLB.
 
 //! @brief Get value of ASRC_ASRSTR_AIOLB from a register value.
-#define BG_ASRC_ASRSTR_AIOLB(r)   (((r) & BM_ASRC_ASRSTR_AIOLB) >> BP_ASRC_ASRSTR_AIOLB)
+#define BG_ASRC_ASRSTR_AIOLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIOLB) >> BP_ASRC_ASRSTR_AIOLB)
 
 /* --- Register HW_ASRC_ASRSTR, field AIOLC[16] (RO)
  *
@@ -2367,7 +2150,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AIOLC      (0x00010000)  //!< Bit mask for ASRC_ASRSTR_AIOLC.
 
 //! @brief Get value of ASRC_ASRSTR_AIOLC from a register value.
-#define BG_ASRC_ASRSTR_AIOLC(r)   (((r) & BM_ASRC_ASRSTR_AIOLC) >> BP_ASRC_ASRSTR_AIOLC)
+#define BG_ASRC_ASRSTR_AIOLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AIOLC) >> BP_ASRC_ASRSTR_AIOLC)
 
 /* --- Register HW_ASRC_ASRSTR, field AOOLA[17] (RO)
  *
@@ -2380,7 +2163,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AOOLA      (0x00020000)  //!< Bit mask for ASRC_ASRSTR_AOOLA.
 
 //! @brief Get value of ASRC_ASRSTR_AOOLA from a register value.
-#define BG_ASRC_ASRSTR_AOOLA(r)   (((r) & BM_ASRC_ASRSTR_AOOLA) >> BP_ASRC_ASRSTR_AOOLA)
+#define BG_ASRC_ASRSTR_AOOLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AOOLA) >> BP_ASRC_ASRSTR_AOOLA)
 
 /* --- Register HW_ASRC_ASRSTR, field AOOLB[18] (RO)
  *
@@ -2393,7 +2176,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AOOLB      (0x00040000)  //!< Bit mask for ASRC_ASRSTR_AOOLB.
 
 //! @brief Get value of ASRC_ASRSTR_AOOLB from a register value.
-#define BG_ASRC_ASRSTR_AOOLB(r)   (((r) & BM_ASRC_ASRSTR_AOOLB) >> BP_ASRC_ASRSTR_AOOLB)
+#define BG_ASRC_ASRSTR_AOOLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AOOLB) >> BP_ASRC_ASRSTR_AOOLB)
 
 /* --- Register HW_ASRC_ASRSTR, field AOOLC[19] (RO)
  *
@@ -2406,7 +2189,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_AOOLC      (0x00080000)  //!< Bit mask for ASRC_ASRSTR_AOOLC.
 
 //! @brief Get value of ASRC_ASRSTR_AOOLC from a register value.
-#define BG_ASRC_ASRSTR_AOOLC(r)   (((r) & BM_ASRC_ASRSTR_AOOLC) >> BP_ASRC_ASRSTR_AOOLC)
+#define BG_ASRC_ASRSTR_AOOLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_AOOLC) >> BP_ASRC_ASRSTR_AOOLC)
 
 /* --- Register HW_ASRC_ASRSTR, field ATQOL[20] (RO)
  *
@@ -2419,7 +2202,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_ATQOL      (0x00100000)  //!< Bit mask for ASRC_ASRSTR_ATQOL.
 
 //! @brief Get value of ASRC_ASRSTR_ATQOL from a register value.
-#define BG_ASRC_ASRSTR_ATQOL(r)   (((r) & BM_ASRC_ASRSTR_ATQOL) >> BP_ASRC_ASRSTR_ATQOL)
+#define BG_ASRC_ASRSTR_ATQOL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_ATQOL) >> BP_ASRC_ASRSTR_ATQOL)
 
 /* --- Register HW_ASRC_ASRSTR, field DSLCNT[21] (RO)
  *
@@ -2434,7 +2217,7 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_DSLCNT      (0x00200000)  //!< Bit mask for ASRC_ASRSTR_DSLCNT.
 
 //! @brief Get value of ASRC_ASRSTR_DSLCNT from a register value.
-#define BG_ASRC_ASRSTR_DSLCNT(r)   (((r) & BM_ASRC_ASRSTR_DSLCNT) >> BP_ASRC_ASRSTR_DSLCNT)
+#define BG_ASRC_ASRSTR_DSLCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_DSLCNT) >> BP_ASRC_ASRSTR_DSLCNT)
 
 /* --- Register HW_ASRC_ASRSTR, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -2445,7 +2228,11 @@ typedef union _hw_asrc_asrstr
 #define BM_ASRC_ASRSTR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRSTR_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRSTR_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRSTR_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRSTR_UNIMPLEMENTED) >> BP_ASRC_ASRSTR_UNIMPLEMENTED)
+#define BG_ASRC_ASRSTR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRSTR_UNIMPLEMENTED) >> BP_ASRC_ASRSTR_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRPMN1 - ASRC Parameter Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2498,15 +2285,10 @@ typedef union _hw_asrc_asrpmn1
 #define BM_ASRC_ASRPMN1_PARAMETER_VALUE      (0x00ffffff)  //!< Bit mask for ASRC_ASRPMN1_PARAMETER_VALUE.
 
 //! @brief Get value of ASRC_ASRPMN1_PARAMETER_VALUE from a register value.
-#define BG_ASRC_ASRPMN1_PARAMETER_VALUE(r)   (((r) & BM_ASRC_ASRPMN1_PARAMETER_VALUE) >> BP_ASRC_ASRPMN1_PARAMETER_VALUE)
+#define BG_ASRC_ASRPMN1_PARAMETER_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN1_PARAMETER_VALUE) >> BP_ASRC_ASRPMN1_PARAMETER_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRPMN1_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN1_PARAMETER_VALUE(v)   ((((reg32_t) v) << BP_ASRC_ASRPMN1_PARAMETER_VALUE) & BM_ASRC_ASRPMN1_PARAMETER_VALUE)
-#else
-//! @brief Format value for bitfield ASRC_ASRPMN1_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN1_PARAMETER_VALUE(v)   (((v) << BP_ASRC_ASRPMN1_PARAMETER_VALUE) & BM_ASRC_ASRPMN1_PARAMETER_VALUE)
-#endif
+#define BF_ASRC_ASRPMN1_PARAMETER_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRPMN1_PARAMETER_VALUE) & BM_ASRC_ASRPMN1_PARAMETER_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
@@ -2522,7 +2304,11 @@ typedef union _hw_asrc_asrpmn1
 #define BM_ASRC_ASRPMN1_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRPMN1_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRPMN1_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRPMN1_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRPMN1_UNIMPLEMENTED) >> BP_ASRC_ASRPMN1_UNIMPLEMENTED)
+#define BG_ASRC_ASRPMN1_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN1_UNIMPLEMENTED) >> BP_ASRC_ASRPMN1_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRPMN2 - ASRC Parameter Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2575,15 +2361,10 @@ typedef union _hw_asrc_asrpmn2
 #define BM_ASRC_ASRPMN2_PARAMETER_VALUE      (0x00ffffff)  //!< Bit mask for ASRC_ASRPMN2_PARAMETER_VALUE.
 
 //! @brief Get value of ASRC_ASRPMN2_PARAMETER_VALUE from a register value.
-#define BG_ASRC_ASRPMN2_PARAMETER_VALUE(r)   (((r) & BM_ASRC_ASRPMN2_PARAMETER_VALUE) >> BP_ASRC_ASRPMN2_PARAMETER_VALUE)
+#define BG_ASRC_ASRPMN2_PARAMETER_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN2_PARAMETER_VALUE) >> BP_ASRC_ASRPMN2_PARAMETER_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRPMN2_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN2_PARAMETER_VALUE(v)   ((((reg32_t) v) << BP_ASRC_ASRPMN2_PARAMETER_VALUE) & BM_ASRC_ASRPMN2_PARAMETER_VALUE)
-#else
-//! @brief Format value for bitfield ASRC_ASRPMN2_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN2_PARAMETER_VALUE(v)   (((v) << BP_ASRC_ASRPMN2_PARAMETER_VALUE) & BM_ASRC_ASRPMN2_PARAMETER_VALUE)
-#endif
+#define BF_ASRC_ASRPMN2_PARAMETER_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRPMN2_PARAMETER_VALUE) & BM_ASRC_ASRPMN2_PARAMETER_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
@@ -2599,7 +2380,11 @@ typedef union _hw_asrc_asrpmn2
 #define BM_ASRC_ASRPMN2_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRPMN2_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRPMN2_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRPMN2_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRPMN2_UNIMPLEMENTED) >> BP_ASRC_ASRPMN2_UNIMPLEMENTED)
+#define BG_ASRC_ASRPMN2_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN2_UNIMPLEMENTED) >> BP_ASRC_ASRPMN2_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRPMN3 - ASRC Parameter Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2652,15 +2437,10 @@ typedef union _hw_asrc_asrpmn3
 #define BM_ASRC_ASRPMN3_PARAMETER_VALUE      (0x00ffffff)  //!< Bit mask for ASRC_ASRPMN3_PARAMETER_VALUE.
 
 //! @brief Get value of ASRC_ASRPMN3_PARAMETER_VALUE from a register value.
-#define BG_ASRC_ASRPMN3_PARAMETER_VALUE(r)   (((r) & BM_ASRC_ASRPMN3_PARAMETER_VALUE) >> BP_ASRC_ASRPMN3_PARAMETER_VALUE)
+#define BG_ASRC_ASRPMN3_PARAMETER_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN3_PARAMETER_VALUE) >> BP_ASRC_ASRPMN3_PARAMETER_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRPMN3_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN3_PARAMETER_VALUE(v)   ((((reg32_t) v) << BP_ASRC_ASRPMN3_PARAMETER_VALUE) & BM_ASRC_ASRPMN3_PARAMETER_VALUE)
-#else
-//! @brief Format value for bitfield ASRC_ASRPMN3_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN3_PARAMETER_VALUE(v)   (((v) << BP_ASRC_ASRPMN3_PARAMETER_VALUE) & BM_ASRC_ASRPMN3_PARAMETER_VALUE)
-#endif
+#define BF_ASRC_ASRPMN3_PARAMETER_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRPMN3_PARAMETER_VALUE) & BM_ASRC_ASRPMN3_PARAMETER_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
@@ -2676,7 +2456,11 @@ typedef union _hw_asrc_asrpmn3
 #define BM_ASRC_ASRPMN3_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRPMN3_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRPMN3_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRPMN3_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRPMN3_UNIMPLEMENTED) >> BP_ASRC_ASRPMN3_UNIMPLEMENTED)
+#define BG_ASRC_ASRPMN3_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN3_UNIMPLEMENTED) >> BP_ASRC_ASRPMN3_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRPMN4 - ASRC Parameter Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2729,15 +2513,10 @@ typedef union _hw_asrc_asrpmn4
 #define BM_ASRC_ASRPMN4_PARAMETER_VALUE      (0x00ffffff)  //!< Bit mask for ASRC_ASRPMN4_PARAMETER_VALUE.
 
 //! @brief Get value of ASRC_ASRPMN4_PARAMETER_VALUE from a register value.
-#define BG_ASRC_ASRPMN4_PARAMETER_VALUE(r)   (((r) & BM_ASRC_ASRPMN4_PARAMETER_VALUE) >> BP_ASRC_ASRPMN4_PARAMETER_VALUE)
+#define BG_ASRC_ASRPMN4_PARAMETER_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN4_PARAMETER_VALUE) >> BP_ASRC_ASRPMN4_PARAMETER_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRPMN4_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN4_PARAMETER_VALUE(v)   ((((reg32_t) v) << BP_ASRC_ASRPMN4_PARAMETER_VALUE) & BM_ASRC_ASRPMN4_PARAMETER_VALUE)
-#else
-//! @brief Format value for bitfield ASRC_ASRPMN4_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN4_PARAMETER_VALUE(v)   (((v) << BP_ASRC_ASRPMN4_PARAMETER_VALUE) & BM_ASRC_ASRPMN4_PARAMETER_VALUE)
-#endif
+#define BF_ASRC_ASRPMN4_PARAMETER_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRPMN4_PARAMETER_VALUE) & BM_ASRC_ASRPMN4_PARAMETER_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
@@ -2753,7 +2532,11 @@ typedef union _hw_asrc_asrpmn4
 #define BM_ASRC_ASRPMN4_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRPMN4_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRPMN4_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRPMN4_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRPMN4_UNIMPLEMENTED) >> BP_ASRC_ASRPMN4_UNIMPLEMENTED)
+#define BG_ASRC_ASRPMN4_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN4_UNIMPLEMENTED) >> BP_ASRC_ASRPMN4_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRPMN5 - ASRC Parameter Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2806,15 +2589,10 @@ typedef union _hw_asrc_asrpmn5
 #define BM_ASRC_ASRPMN5_PARAMETER_VALUE      (0x00ffffff)  //!< Bit mask for ASRC_ASRPMN5_PARAMETER_VALUE.
 
 //! @brief Get value of ASRC_ASRPMN5_PARAMETER_VALUE from a register value.
-#define BG_ASRC_ASRPMN5_PARAMETER_VALUE(r)   (((r) & BM_ASRC_ASRPMN5_PARAMETER_VALUE) >> BP_ASRC_ASRPMN5_PARAMETER_VALUE)
+#define BG_ASRC_ASRPMN5_PARAMETER_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN5_PARAMETER_VALUE) >> BP_ASRC_ASRPMN5_PARAMETER_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRPMN5_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN5_PARAMETER_VALUE(v)   ((((reg32_t) v) << BP_ASRC_ASRPMN5_PARAMETER_VALUE) & BM_ASRC_ASRPMN5_PARAMETER_VALUE)
-#else
-//! @brief Format value for bitfield ASRC_ASRPMN5_PARAMETER_VALUE.
-#define BF_ASRC_ASRPMN5_PARAMETER_VALUE(v)   (((v) << BP_ASRC_ASRPMN5_PARAMETER_VALUE) & BM_ASRC_ASRPMN5_PARAMETER_VALUE)
-#endif
+#define BF_ASRC_ASRPMN5_PARAMETER_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRPMN5_PARAMETER_VALUE) & BM_ASRC_ASRPMN5_PARAMETER_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARAMETER_VALUE field to a new value.
@@ -2830,7 +2608,11 @@ typedef union _hw_asrc_asrpmn5
 #define BM_ASRC_ASRPMN5_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRPMN5_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRPMN5_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRPMN5_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRPMN5_UNIMPLEMENTED) >> BP_ASRC_ASRPMN5_UNIMPLEMENTED)
+#define BG_ASRC_ASRPMN5_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRPMN5_UNIMPLEMENTED) >> BP_ASRC_ASRPMN5_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRTFR1 - ASRC ASRC Task Queue FIFO Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2882,15 +2664,10 @@ typedef union _hw_asrc_asrtfr1
 #define BM_ASRC_ASRTFR1_TF_BASE      (0x00001fc0)  //!< Bit mask for ASRC_ASRTFR1_TF_BASE.
 
 //! @brief Get value of ASRC_ASRTFR1_TF_BASE from a register value.
-#define BG_ASRC_ASRTFR1_TF_BASE(r)   (((r) & BM_ASRC_ASRTFR1_TF_BASE) >> BP_ASRC_ASRTFR1_TF_BASE)
+#define BG_ASRC_ASRTFR1_TF_BASE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRTFR1_TF_BASE) >> BP_ASRC_ASRTFR1_TF_BASE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRTFR1_TF_BASE.
-#define BF_ASRC_ASRTFR1_TF_BASE(v)   ((((reg32_t) v) << BP_ASRC_ASRTFR1_TF_BASE) & BM_ASRC_ASRTFR1_TF_BASE)
-#else
-//! @brief Format value for bitfield ASRC_ASRTFR1_TF_BASE.
-#define BF_ASRC_ASRTFR1_TF_BASE(v)   (((v) << BP_ASRC_ASRTFR1_TF_BASE) & BM_ASRC_ASRTFR1_TF_BASE)
-#endif
+#define BF_ASRC_ASRTFR1_TF_BASE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRTFR1_TF_BASE) & BM_ASRC_ASRTFR1_TF_BASE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TF_BASE field to a new value.
@@ -2906,7 +2683,7 @@ typedef union _hw_asrc_asrtfr1
 #define BM_ASRC_ASRTFR1_TF_FILL      (0x000fe000)  //!< Bit mask for ASRC_ASRTFR1_TF_FILL.
 
 //! @brief Get value of ASRC_ASRTFR1_TF_FILL from a register value.
-#define BG_ASRC_ASRTFR1_TF_FILL(r)   (((r) & BM_ASRC_ASRTFR1_TF_FILL) >> BP_ASRC_ASRTFR1_TF_FILL)
+#define BG_ASRC_ASRTFR1_TF_FILL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRTFR1_TF_FILL) >> BP_ASRC_ASRTFR1_TF_FILL)
 
 /* --- Register HW_ASRC_ASRTFR1, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -2917,7 +2694,11 @@ typedef union _hw_asrc_asrtfr1
 #define BM_ASRC_ASRTFR1_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRTFR1_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRTFR1_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRTFR1_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRTFR1_UNIMPLEMENTED) >> BP_ASRC_ASRTFR1_UNIMPLEMENTED)
+#define BG_ASRC_ASRTFR1_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRTFR1_UNIMPLEMENTED) >> BP_ASRC_ASRTFR1_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRCCR - ASRC Channel Counter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2974,15 +2755,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACIA      (0x0000000f)  //!< Bit mask for ASRC_ASRCCR_ACIA.
 
 //! @brief Get value of ASRC_ASRCCR_ACIA from a register value.
-#define BG_ASRC_ASRCCR_ACIA(r)   (((r) & BM_ASRC_ASRCCR_ACIA) >> BP_ASRC_ASRCCR_ACIA)
+#define BG_ASRC_ASRCCR_ACIA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACIA) >> BP_ASRC_ASRCCR_ACIA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACIA.
-#define BF_ASRC_ASRCCR_ACIA(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACIA) & BM_ASRC_ASRCCR_ACIA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACIA.
-#define BF_ASRC_ASRCCR_ACIA(v)   (((v) << BP_ASRC_ASRCCR_ACIA) & BM_ASRC_ASRCCR_ACIA)
-#endif
+#define BF_ASRC_ASRCCR_ACIA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACIA) & BM_ASRC_ASRCCR_ACIA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACIA field to a new value.
@@ -3000,15 +2776,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACIB      (0x000000f0)  //!< Bit mask for ASRC_ASRCCR_ACIB.
 
 //! @brief Get value of ASRC_ASRCCR_ACIB from a register value.
-#define BG_ASRC_ASRCCR_ACIB(r)   (((r) & BM_ASRC_ASRCCR_ACIB) >> BP_ASRC_ASRCCR_ACIB)
+#define BG_ASRC_ASRCCR_ACIB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACIB) >> BP_ASRC_ASRCCR_ACIB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACIB.
-#define BF_ASRC_ASRCCR_ACIB(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACIB) & BM_ASRC_ASRCCR_ACIB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACIB.
-#define BF_ASRC_ASRCCR_ACIB(v)   (((v) << BP_ASRC_ASRCCR_ACIB) & BM_ASRC_ASRCCR_ACIB)
-#endif
+#define BF_ASRC_ASRCCR_ACIB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACIB) & BM_ASRC_ASRCCR_ACIB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACIB field to a new value.
@@ -3026,15 +2797,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACIC      (0x00000f00)  //!< Bit mask for ASRC_ASRCCR_ACIC.
 
 //! @brief Get value of ASRC_ASRCCR_ACIC from a register value.
-#define BG_ASRC_ASRCCR_ACIC(r)   (((r) & BM_ASRC_ASRCCR_ACIC) >> BP_ASRC_ASRCCR_ACIC)
+#define BG_ASRC_ASRCCR_ACIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACIC) >> BP_ASRC_ASRCCR_ACIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACIC.
-#define BF_ASRC_ASRCCR_ACIC(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACIC) & BM_ASRC_ASRCCR_ACIC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACIC.
-#define BF_ASRC_ASRCCR_ACIC(v)   (((v) << BP_ASRC_ASRCCR_ACIC) & BM_ASRC_ASRCCR_ACIC)
-#endif
+#define BF_ASRC_ASRCCR_ACIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACIC) & BM_ASRC_ASRCCR_ACIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACIC field to a new value.
@@ -3052,15 +2818,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACOA      (0x0000f000)  //!< Bit mask for ASRC_ASRCCR_ACOA.
 
 //! @brief Get value of ASRC_ASRCCR_ACOA from a register value.
-#define BG_ASRC_ASRCCR_ACOA(r)   (((r) & BM_ASRC_ASRCCR_ACOA) >> BP_ASRC_ASRCCR_ACOA)
+#define BG_ASRC_ASRCCR_ACOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACOA) >> BP_ASRC_ASRCCR_ACOA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACOA.
-#define BF_ASRC_ASRCCR_ACOA(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACOA) & BM_ASRC_ASRCCR_ACOA)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACOA.
-#define BF_ASRC_ASRCCR_ACOA(v)   (((v) << BP_ASRC_ASRCCR_ACOA) & BM_ASRC_ASRCCR_ACOA)
-#endif
+#define BF_ASRC_ASRCCR_ACOA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACOA) & BM_ASRC_ASRCCR_ACOA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACOA field to a new value.
@@ -3078,15 +2839,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACOB      (0x000f0000)  //!< Bit mask for ASRC_ASRCCR_ACOB.
 
 //! @brief Get value of ASRC_ASRCCR_ACOB from a register value.
-#define BG_ASRC_ASRCCR_ACOB(r)   (((r) & BM_ASRC_ASRCCR_ACOB) >> BP_ASRC_ASRCCR_ACOB)
+#define BG_ASRC_ASRCCR_ACOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACOB) >> BP_ASRC_ASRCCR_ACOB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACOB.
-#define BF_ASRC_ASRCCR_ACOB(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACOB) & BM_ASRC_ASRCCR_ACOB)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACOB.
-#define BF_ASRC_ASRCCR_ACOB(v)   (((v) << BP_ASRC_ASRCCR_ACOB) & BM_ASRC_ASRCCR_ACOB)
-#endif
+#define BF_ASRC_ASRCCR_ACOB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACOB) & BM_ASRC_ASRCCR_ACOB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACOB field to a new value.
@@ -3104,15 +2860,10 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_ACOC      (0x00f00000)  //!< Bit mask for ASRC_ASRCCR_ACOC.
 
 //! @brief Get value of ASRC_ASRCCR_ACOC from a register value.
-#define BG_ASRC_ASRCCR_ACOC(r)   (((r) & BM_ASRC_ASRCCR_ACOC) >> BP_ASRC_ASRCCR_ACOC)
+#define BG_ASRC_ASRCCR_ACOC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_ACOC) >> BP_ASRC_ASRCCR_ACOC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRCCR_ACOC.
-#define BF_ASRC_ASRCCR_ACOC(v)   ((((reg32_t) v) << BP_ASRC_ASRCCR_ACOC) & BM_ASRC_ASRCCR_ACOC)
-#else
-//! @brief Format value for bitfield ASRC_ASRCCR_ACOC.
-#define BF_ASRC_ASRCCR_ACOC(v)   (((v) << BP_ASRC_ASRCCR_ACOC) & BM_ASRC_ASRCCR_ACOC)
-#endif
+#define BF_ASRC_ASRCCR_ACOC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRCCR_ACOC) & BM_ASRC_ASRCCR_ACOC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACOC field to a new value.
@@ -3128,7 +2879,11 @@ typedef union _hw_asrc_asrccr
 #define BM_ASRC_ASRCCR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRCCR_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRCCR_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRCCR_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRCCR_UNIMPLEMENTED) >> BP_ASRC_ASRCCR_UNIMPLEMENTED)
+#define BG_ASRC_ASRCCR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCCR_UNIMPLEMENTED) >> BP_ASRC_ASRCCR_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDIA - ASRC Data Input Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3174,15 +2929,10 @@ typedef union _hw_asrc_asrdia
 #define BM_ASRC_ASRDIA_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDIA_DATA.
 
 //! @brief Get value of ASRC_ASRDIA_DATA from a register value.
-#define BG_ASRC_ASRDIA_DATA(r)   (((r) & BM_ASRC_ASRDIA_DATA) >> BP_ASRC_ASRDIA_DATA)
+#define BG_ASRC_ASRDIA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIA_DATA) >> BP_ASRC_ASRDIA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRDIA_DATA.
-#define BF_ASRC_ASRDIA_DATA(v)   ((((reg32_t) v) << BP_ASRC_ASRDIA_DATA) & BM_ASRC_ASRDIA_DATA)
-#else
-//! @brief Format value for bitfield ASRC_ASRDIA_DATA.
-#define BF_ASRC_ASRDIA_DATA(v)   (((v) << BP_ASRC_ASRDIA_DATA) & BM_ASRC_ASRDIA_DATA)
-#endif
+#define BF_ASRC_ASRDIA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRDIA_DATA) & BM_ASRC_ASRDIA_DATA)
 
 /* --- Register HW_ASRC_ASRDIA, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3193,7 +2943,11 @@ typedef union _hw_asrc_asrdia
 #define BM_ASRC_ASRDIA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDIA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDIA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDIA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDIA_UNIMPLEMENTED) >> BP_ASRC_ASRDIA_UNIMPLEMENTED)
+#define BG_ASRC_ASRDIA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIA_UNIMPLEMENTED) >> BP_ASRC_ASRDIA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDOA - ASRC Data Output Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3238,7 +2992,7 @@ typedef union _hw_asrc_asrdoa
 #define BM_ASRC_ASRDOA_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDOA_DATA.
 
 //! @brief Get value of ASRC_ASRDOA_DATA from a register value.
-#define BG_ASRC_ASRDOA_DATA(r)   (((r) & BM_ASRC_ASRDOA_DATA) >> BP_ASRC_ASRDOA_DATA)
+#define BG_ASRC_ASRDOA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOA_DATA) >> BP_ASRC_ASRDOA_DATA)
 
 /* --- Register HW_ASRC_ASRDOA, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3249,7 +3003,11 @@ typedef union _hw_asrc_asrdoa
 #define BM_ASRC_ASRDOA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDOA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDOA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDOA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDOA_UNIMPLEMENTED) >> BP_ASRC_ASRDOA_UNIMPLEMENTED)
+#define BG_ASRC_ASRDOA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOA_UNIMPLEMENTED) >> BP_ASRC_ASRDOA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDIB - ASRC Data Input Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3295,15 +3053,10 @@ typedef union _hw_asrc_asrdib
 #define BM_ASRC_ASRDIB_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDIB_DATA.
 
 //! @brief Get value of ASRC_ASRDIB_DATA from a register value.
-#define BG_ASRC_ASRDIB_DATA(r)   (((r) & BM_ASRC_ASRDIB_DATA) >> BP_ASRC_ASRDIB_DATA)
+#define BG_ASRC_ASRDIB_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIB_DATA) >> BP_ASRC_ASRDIB_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRDIB_DATA.
-#define BF_ASRC_ASRDIB_DATA(v)   ((((reg32_t) v) << BP_ASRC_ASRDIB_DATA) & BM_ASRC_ASRDIB_DATA)
-#else
-//! @brief Format value for bitfield ASRC_ASRDIB_DATA.
-#define BF_ASRC_ASRDIB_DATA(v)   (((v) << BP_ASRC_ASRDIB_DATA) & BM_ASRC_ASRDIB_DATA)
-#endif
+#define BF_ASRC_ASRDIB_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRDIB_DATA) & BM_ASRC_ASRDIB_DATA)
 
 /* --- Register HW_ASRC_ASRDIB, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3314,7 +3067,11 @@ typedef union _hw_asrc_asrdib
 #define BM_ASRC_ASRDIB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDIB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDIB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDIB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDIB_UNIMPLEMENTED) >> BP_ASRC_ASRDIB_UNIMPLEMENTED)
+#define BG_ASRC_ASRDIB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIB_UNIMPLEMENTED) >> BP_ASRC_ASRDIB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDOB - ASRC Data Output Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3359,7 +3116,7 @@ typedef union _hw_asrc_asrdob
 #define BM_ASRC_ASRDOB_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDOB_DATA.
 
 //! @brief Get value of ASRC_ASRDOB_DATA from a register value.
-#define BG_ASRC_ASRDOB_DATA(r)   (((r) & BM_ASRC_ASRDOB_DATA) >> BP_ASRC_ASRDOB_DATA)
+#define BG_ASRC_ASRDOB_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOB_DATA) >> BP_ASRC_ASRDOB_DATA)
 
 /* --- Register HW_ASRC_ASRDOB, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3370,7 +3127,11 @@ typedef union _hw_asrc_asrdob
 #define BM_ASRC_ASRDOB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDOB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDOB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDOB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDOB_UNIMPLEMENTED) >> BP_ASRC_ASRDOB_UNIMPLEMENTED)
+#define BG_ASRC_ASRDOB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOB_UNIMPLEMENTED) >> BP_ASRC_ASRDOB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDIC - ASRC Data Input Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3416,15 +3177,10 @@ typedef union _hw_asrc_asrdic
 #define BM_ASRC_ASRDIC_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDIC_DATA.
 
 //! @brief Get value of ASRC_ASRDIC_DATA from a register value.
-#define BG_ASRC_ASRDIC_DATA(r)   (((r) & BM_ASRC_ASRDIC_DATA) >> BP_ASRC_ASRDIC_DATA)
+#define BG_ASRC_ASRDIC_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIC_DATA) >> BP_ASRC_ASRDIC_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRDIC_DATA.
-#define BF_ASRC_ASRDIC_DATA(v)   ((((reg32_t) v) << BP_ASRC_ASRDIC_DATA) & BM_ASRC_ASRDIC_DATA)
-#else
-//! @brief Format value for bitfield ASRC_ASRDIC_DATA.
-#define BF_ASRC_ASRDIC_DATA(v)   (((v) << BP_ASRC_ASRDIC_DATA) & BM_ASRC_ASRDIC_DATA)
-#endif
+#define BF_ASRC_ASRDIC_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRDIC_DATA) & BM_ASRC_ASRDIC_DATA)
 
 /* --- Register HW_ASRC_ASRDIC, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3435,7 +3191,11 @@ typedef union _hw_asrc_asrdic
 #define BM_ASRC_ASRDIC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDIC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDIC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDIC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDIC_UNIMPLEMENTED) >> BP_ASRC_ASRDIC_UNIMPLEMENTED)
+#define BG_ASRC_ASRDIC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDIC_UNIMPLEMENTED) >> BP_ASRC_ASRDIC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRDOC - ASRC Data Output Register for Pair
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3480,7 +3240,7 @@ typedef union _hw_asrc_asrdoc
 #define BM_ASRC_ASRDOC_DATA      (0x00ffffff)  //!< Bit mask for ASRC_ASRDOC_DATA.
 
 //! @brief Get value of ASRC_ASRDOC_DATA from a register value.
-#define BG_ASRC_ASRDOC_DATA(r)   (((r) & BM_ASRC_ASRDOC_DATA) >> BP_ASRC_ASRDOC_DATA)
+#define BG_ASRC_ASRDOC_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOC_DATA) >> BP_ASRC_ASRDOC_DATA)
 
 /* --- Register HW_ASRC_ASRDOC, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -3491,7 +3251,11 @@ typedef union _hw_asrc_asrdoc
 #define BM_ASRC_ASRDOC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRDOC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRDOC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRDOC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRDOC_UNIMPLEMENTED) >> BP_ASRC_ASRDOC_UNIMPLEMENTED)
+#define BG_ASRC_ASRDOC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRDOC_UNIMPLEMENTED) >> BP_ASRC_ASRDOC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRHA - ASRC Ideal Ratio for Pair A-High Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3542,15 +3306,10 @@ typedef union _hw_asrc_asridrha
 #define BM_ASRC_ASRIDRHA_IDRATIOA      (0x000000ff)  //!< Bit mask for ASRC_ASRIDRHA_IDRATIOA.
 
 //! @brief Get value of ASRC_ASRIDRHA_IDRATIOA from a register value.
-#define BG_ASRC_ASRIDRHA_IDRATIOA(r)   (((r) & BM_ASRC_ASRIDRHA_IDRATIOA) >> BP_ASRC_ASRIDRHA_IDRATIOA)
+#define BG_ASRC_ASRIDRHA_IDRATIOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHA_IDRATIOA) >> BP_ASRC_ASRIDRHA_IDRATIOA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRHA_IDRATIOA.
-#define BF_ASRC_ASRIDRHA_IDRATIOA(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRHA_IDRATIOA) & BM_ASRC_ASRIDRHA_IDRATIOA)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRHA_IDRATIOA.
-#define BF_ASRC_ASRIDRHA_IDRATIOA(v)   (((v) << BP_ASRC_ASRIDRHA_IDRATIOA) & BM_ASRC_ASRIDRHA_IDRATIOA)
-#endif
+#define BF_ASRC_ASRIDRHA_IDRATIOA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRHA_IDRATIOA) & BM_ASRC_ASRIDRHA_IDRATIOA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOA field to a new value.
@@ -3566,7 +3325,11 @@ typedef union _hw_asrc_asridrha
 #define BM_ASRC_ASRIDRHA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRHA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRHA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRHA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRHA_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHA_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRHA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHA_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRLA - ASRC Ideal Ratio for Pair A -Low Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3616,15 +3379,10 @@ typedef union _hw_asrc_asridrla
 #define BM_ASRC_ASRIDRLA_IDRATIOA      (0x00ffffff)  //!< Bit mask for ASRC_ASRIDRLA_IDRATIOA.
 
 //! @brief Get value of ASRC_ASRIDRLA_IDRATIOA from a register value.
-#define BG_ASRC_ASRIDRLA_IDRATIOA(r)   (((r) & BM_ASRC_ASRIDRLA_IDRATIOA) >> BP_ASRC_ASRIDRLA_IDRATIOA)
+#define BG_ASRC_ASRIDRLA_IDRATIOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLA_IDRATIOA) >> BP_ASRC_ASRIDRLA_IDRATIOA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRLA_IDRATIOA.
-#define BF_ASRC_ASRIDRLA_IDRATIOA(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRLA_IDRATIOA) & BM_ASRC_ASRIDRLA_IDRATIOA)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRLA_IDRATIOA.
-#define BF_ASRC_ASRIDRLA_IDRATIOA(v)   (((v) << BP_ASRC_ASRIDRLA_IDRATIOA) & BM_ASRC_ASRIDRLA_IDRATIOA)
-#endif
+#define BF_ASRC_ASRIDRLA_IDRATIOA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRLA_IDRATIOA) & BM_ASRC_ASRIDRLA_IDRATIOA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOA field to a new value.
@@ -3640,7 +3398,11 @@ typedef union _hw_asrc_asridrla
 #define BM_ASRC_ASRIDRLA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRLA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRLA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRLA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRLA_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLA_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRLA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLA_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRHB - ASRC Ideal Ratio for Pair B-High Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3691,15 +3453,10 @@ typedef union _hw_asrc_asridrhb
 #define BM_ASRC_ASRIDRHB_IDRATIOB      (0x000000ff)  //!< Bit mask for ASRC_ASRIDRHB_IDRATIOB.
 
 //! @brief Get value of ASRC_ASRIDRHB_IDRATIOB from a register value.
-#define BG_ASRC_ASRIDRHB_IDRATIOB(r)   (((r) & BM_ASRC_ASRIDRHB_IDRATIOB) >> BP_ASRC_ASRIDRHB_IDRATIOB)
+#define BG_ASRC_ASRIDRHB_IDRATIOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHB_IDRATIOB) >> BP_ASRC_ASRIDRHB_IDRATIOB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRHB_IDRATIOB.
-#define BF_ASRC_ASRIDRHB_IDRATIOB(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRHB_IDRATIOB) & BM_ASRC_ASRIDRHB_IDRATIOB)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRHB_IDRATIOB.
-#define BF_ASRC_ASRIDRHB_IDRATIOB(v)   (((v) << BP_ASRC_ASRIDRHB_IDRATIOB) & BM_ASRC_ASRIDRHB_IDRATIOB)
-#endif
+#define BF_ASRC_ASRIDRHB_IDRATIOB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRHB_IDRATIOB) & BM_ASRC_ASRIDRHB_IDRATIOB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOB field to a new value.
@@ -3715,7 +3472,11 @@ typedef union _hw_asrc_asridrhb
 #define BM_ASRC_ASRIDRHB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRHB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRHB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRHB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRHB_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHB_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRHB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHB_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRLB - ASRC Ideal Ratio for Pair B-Low Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3765,15 +3526,10 @@ typedef union _hw_asrc_asridrlb
 #define BM_ASRC_ASRIDRLB_IDRATIOB      (0x00ffffff)  //!< Bit mask for ASRC_ASRIDRLB_IDRATIOB.
 
 //! @brief Get value of ASRC_ASRIDRLB_IDRATIOB from a register value.
-#define BG_ASRC_ASRIDRLB_IDRATIOB(r)   (((r) & BM_ASRC_ASRIDRLB_IDRATIOB) >> BP_ASRC_ASRIDRLB_IDRATIOB)
+#define BG_ASRC_ASRIDRLB_IDRATIOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLB_IDRATIOB) >> BP_ASRC_ASRIDRLB_IDRATIOB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRLB_IDRATIOB.
-#define BF_ASRC_ASRIDRLB_IDRATIOB(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRLB_IDRATIOB) & BM_ASRC_ASRIDRLB_IDRATIOB)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRLB_IDRATIOB.
-#define BF_ASRC_ASRIDRLB_IDRATIOB(v)   (((v) << BP_ASRC_ASRIDRLB_IDRATIOB) & BM_ASRC_ASRIDRLB_IDRATIOB)
-#endif
+#define BF_ASRC_ASRIDRLB_IDRATIOB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRLB_IDRATIOB) & BM_ASRC_ASRIDRLB_IDRATIOB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOB field to a new value.
@@ -3789,7 +3545,11 @@ typedef union _hw_asrc_asridrlb
 #define BM_ASRC_ASRIDRLB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRLB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRLB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRLB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRLB_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLB_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRLB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLB_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRHC - ASRC Ideal Ratio for Pair C-High Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3840,15 +3600,10 @@ typedef union _hw_asrc_asridrhc
 #define BM_ASRC_ASRIDRHC_IDRATIOC      (0x000000ff)  //!< Bit mask for ASRC_ASRIDRHC_IDRATIOC.
 
 //! @brief Get value of ASRC_ASRIDRHC_IDRATIOC from a register value.
-#define BG_ASRC_ASRIDRHC_IDRATIOC(r)   (((r) & BM_ASRC_ASRIDRHC_IDRATIOC) >> BP_ASRC_ASRIDRHC_IDRATIOC)
+#define BG_ASRC_ASRIDRHC_IDRATIOC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHC_IDRATIOC) >> BP_ASRC_ASRIDRHC_IDRATIOC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRHC_IDRATIOC.
-#define BF_ASRC_ASRIDRHC_IDRATIOC(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRHC_IDRATIOC) & BM_ASRC_ASRIDRHC_IDRATIOC)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRHC_IDRATIOC.
-#define BF_ASRC_ASRIDRHC_IDRATIOC(v)   (((v) << BP_ASRC_ASRIDRHC_IDRATIOC) & BM_ASRC_ASRIDRHC_IDRATIOC)
-#endif
+#define BF_ASRC_ASRIDRHC_IDRATIOC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRHC_IDRATIOC) & BM_ASRC_ASRIDRHC_IDRATIOC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOC field to a new value.
@@ -3864,7 +3619,11 @@ typedef union _hw_asrc_asridrhc
 #define BM_ASRC_ASRIDRHC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRHC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRHC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRHC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRHC_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHC_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRHC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRHC_UNIMPLEMENTED) >> BP_ASRC_ASRIDRHC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRIDRLC - ASRC Ideal Ratio for Pair C-Low Part
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3914,15 +3673,10 @@ typedef union _hw_asrc_asridrlc
 #define BM_ASRC_ASRIDRLC_IDRATIOC      (0x00ffffff)  //!< Bit mask for ASRC_ASRIDRLC_IDRATIOC.
 
 //! @brief Get value of ASRC_ASRIDRLC_IDRATIOC from a register value.
-#define BG_ASRC_ASRIDRLC_IDRATIOC(r)   (((r) & BM_ASRC_ASRIDRLC_IDRATIOC) >> BP_ASRC_ASRIDRLC_IDRATIOC)
+#define BG_ASRC_ASRIDRLC_IDRATIOC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLC_IDRATIOC) >> BP_ASRC_ASRIDRLC_IDRATIOC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRIDRLC_IDRATIOC.
-#define BF_ASRC_ASRIDRLC_IDRATIOC(v)   ((((reg32_t) v) << BP_ASRC_ASRIDRLC_IDRATIOC) & BM_ASRC_ASRIDRLC_IDRATIOC)
-#else
-//! @brief Format value for bitfield ASRC_ASRIDRLC_IDRATIOC.
-#define BF_ASRC_ASRIDRLC_IDRATIOC(v)   (((v) << BP_ASRC_ASRIDRLC_IDRATIOC) & BM_ASRC_ASRIDRLC_IDRATIOC)
-#endif
+#define BF_ASRC_ASRIDRLC_IDRATIOC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRIDRLC_IDRATIOC) & BM_ASRC_ASRIDRLC_IDRATIOC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDRATIOC field to a new value.
@@ -3938,7 +3692,11 @@ typedef union _hw_asrc_asridrlc
 #define BM_ASRC_ASRIDRLC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRIDRLC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRIDRLC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRIDRLC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRIDRLC_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLC_UNIMPLEMENTED)
+#define BG_ASRC_ASRIDRLC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRIDRLC_UNIMPLEMENTED) >> BP_ASRC_ASRIDRLC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASR76K - ASRC 76kHz Period in terms of ASRC processing clock
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3992,15 +3750,10 @@ typedef union _hw_asrc_asr76k
 #define BM_ASRC_ASR76K_ASR76K      (0x0001ffff)  //!< Bit mask for ASRC_ASR76K_ASR76K.
 
 //! @brief Get value of ASRC_ASR76K_ASR76K from a register value.
-#define BG_ASRC_ASR76K_ASR76K(r)   (((r) & BM_ASRC_ASR76K_ASR76K) >> BP_ASRC_ASR76K_ASR76K)
+#define BG_ASRC_ASR76K_ASR76K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASR76K_ASR76K) >> BP_ASRC_ASR76K_ASR76K)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASR76K_ASR76K.
-#define BF_ASRC_ASR76K_ASR76K(v)   ((((reg32_t) v) << BP_ASRC_ASR76K_ASR76K) & BM_ASRC_ASR76K_ASR76K)
-#else
-//! @brief Format value for bitfield ASRC_ASR76K_ASR76K.
-#define BF_ASRC_ASR76K_ASR76K(v)   (((v) << BP_ASRC_ASR76K_ASR76K) & BM_ASRC_ASR76K_ASR76K)
-#endif
+#define BF_ASRC_ASR76K_ASR76K(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASR76K_ASR76K) & BM_ASRC_ASR76K_ASR76K)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASR76K field to a new value.
@@ -4016,7 +3769,11 @@ typedef union _hw_asrc_asr76k
 #define BM_ASRC_ASR76K_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASR76K_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASR76K_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASR76K_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASR76K_UNIMPLEMENTED) >> BP_ASRC_ASR76K_UNIMPLEMENTED)
+#define BG_ASRC_ASR76K_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASR76K_UNIMPLEMENTED) >> BP_ASRC_ASR76K_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASR56K - ASRC 56kHz Period in terms of ASRC processing clock
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4070,15 +3827,10 @@ typedef union _hw_asrc_asr56k
 #define BM_ASRC_ASR56K_ASR56K      (0x0001ffff)  //!< Bit mask for ASRC_ASR56K_ASR56K.
 
 //! @brief Get value of ASRC_ASR56K_ASR56K from a register value.
-#define BG_ASRC_ASR56K_ASR56K(r)   (((r) & BM_ASRC_ASR56K_ASR56K) >> BP_ASRC_ASR56K_ASR56K)
+#define BG_ASRC_ASR56K_ASR56K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASR56K_ASR56K) >> BP_ASRC_ASR56K_ASR56K)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASR56K_ASR56K.
-#define BF_ASRC_ASR56K_ASR56K(v)   ((((reg32_t) v) << BP_ASRC_ASR56K_ASR56K) & BM_ASRC_ASR56K_ASR56K)
-#else
-//! @brief Format value for bitfield ASRC_ASR56K_ASR56K.
-#define BF_ASRC_ASR56K_ASR56K(v)   (((v) << BP_ASRC_ASR56K_ASR56K) & BM_ASRC_ASR56K_ASR56K)
-#endif
+#define BF_ASRC_ASR56K_ASR56K(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASR56K_ASR56K) & BM_ASRC_ASR56K_ASR56K)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASR56K field to a new value.
@@ -4094,7 +3846,11 @@ typedef union _hw_asrc_asr56k
 #define BM_ASRC_ASR56K_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASR56K_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASR56K_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASR56K_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASR56K_UNIMPLEMENTED) >> BP_ASRC_ASR56K_UNIMPLEMENTED)
+#define BG_ASRC_ASR56K_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASR56K_UNIMPLEMENTED) >> BP_ASRC_ASR56K_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCRA - ASRC Misc Control Register for Pair A
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4155,15 +3911,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA      (0x0000003f)  //!< Bit mask for ASRC_ASRMCRA_INFIFO_THRESHOLDA.
 
 //! @brief Get value of ASRC_ASRMCRA_INFIFO_THRESHOLDA from a register value.
-#define BG_ASRC_ASRMCRA_INFIFO_THRESHOLDA(r)   (((r) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA) >> BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
+#define BG_ASRC_ASRMCRA_INFIFO_THRESHOLDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA) >> BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_INFIFO_THRESHOLDA.
-#define BF_ASRC_ASRMCRA_INFIFO_THRESHOLDA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_INFIFO_THRESHOLDA.
-#define BF_ASRC_ASRMCRA_INFIFO_THRESHOLDA(v)   (((v) << BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
-#endif
+#define BF_ASRC_ASRMCRA_INFIFO_THRESHOLDA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_INFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_INFIFO_THRESHOLDA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INFIFO_THRESHOLDA field to a new value.
@@ -4180,15 +3931,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_RSYNOFA      (0x00000400)  //!< Bit mask for ASRC_ASRMCRA_RSYNOFA.
 
 //! @brief Get value of ASRC_ASRMCRA_RSYNOFA from a register value.
-#define BG_ASRC_ASRMCRA_RSYNOFA(r)   (((r) & BM_ASRC_ASRMCRA_RSYNOFA) >> BP_ASRC_ASRMCRA_RSYNOFA)
+#define BG_ASRC_ASRMCRA_RSYNOFA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_RSYNOFA) >> BP_ASRC_ASRMCRA_RSYNOFA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_RSYNOFA.
-#define BF_ASRC_ASRMCRA_RSYNOFA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_RSYNOFA) & BM_ASRC_ASRMCRA_RSYNOFA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_RSYNOFA.
-#define BF_ASRC_ASRMCRA_RSYNOFA(v)   (((v) << BP_ASRC_ASRMCRA_RSYNOFA) & BM_ASRC_ASRMCRA_RSYNOFA)
-#endif
+#define BF_ASRC_ASRMCRA_RSYNOFA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_RSYNOFA) & BM_ASRC_ASRMCRA_RSYNOFA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNOFA field to a new value.
@@ -4205,15 +3951,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_RSYNIFA      (0x00000800)  //!< Bit mask for ASRC_ASRMCRA_RSYNIFA.
 
 //! @brief Get value of ASRC_ASRMCRA_RSYNIFA from a register value.
-#define BG_ASRC_ASRMCRA_RSYNIFA(r)   (((r) & BM_ASRC_ASRMCRA_RSYNIFA) >> BP_ASRC_ASRMCRA_RSYNIFA)
+#define BG_ASRC_ASRMCRA_RSYNIFA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_RSYNIFA) >> BP_ASRC_ASRMCRA_RSYNIFA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_RSYNIFA.
-#define BF_ASRC_ASRMCRA_RSYNIFA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_RSYNIFA) & BM_ASRC_ASRMCRA_RSYNIFA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_RSYNIFA.
-#define BF_ASRC_ASRMCRA_RSYNIFA(v)   (((v) << BP_ASRC_ASRMCRA_RSYNIFA) & BM_ASRC_ASRMCRA_RSYNIFA)
-#endif
+#define BF_ASRC_ASRMCRA_RSYNIFA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_RSYNIFA) & BM_ASRC_ASRMCRA_RSYNIFA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNIFA field to a new value.
@@ -4233,15 +3974,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA      (0x0003f000)  //!< Bit mask for ASRC_ASRMCRA_OUTFIFO_THRESHOLDA.
 
 //! @brief Get value of ASRC_ASRMCRA_OUTFIFO_THRESHOLDA from a register value.
-#define BG_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(r)   (((r) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA) >> BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
+#define BG_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA) >> BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_OUTFIFO_THRESHOLDA.
-#define BF_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_OUTFIFO_THRESHOLDA.
-#define BF_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(v)   (((v) << BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
-#endif
+#define BF_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA) & BM_ASRC_ASRMCRA_OUTFIFO_THRESHOLDA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OUTFIFO_THRESHOLDA field to a new value.
@@ -4262,15 +3998,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_BYPASSPOLYA      (0x00100000)  //!< Bit mask for ASRC_ASRMCRA_BYPASSPOLYA.
 
 //! @brief Get value of ASRC_ASRMCRA_BYPASSPOLYA from a register value.
-#define BG_ASRC_ASRMCRA_BYPASSPOLYA(r)   (((r) & BM_ASRC_ASRMCRA_BYPASSPOLYA) >> BP_ASRC_ASRMCRA_BYPASSPOLYA)
+#define BG_ASRC_ASRMCRA_BYPASSPOLYA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_BYPASSPOLYA) >> BP_ASRC_ASRMCRA_BYPASSPOLYA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_BYPASSPOLYA.
-#define BF_ASRC_ASRMCRA_BYPASSPOLYA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_BYPASSPOLYA) & BM_ASRC_ASRMCRA_BYPASSPOLYA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_BYPASSPOLYA.
-#define BF_ASRC_ASRMCRA_BYPASSPOLYA(v)   (((v) << BP_ASRC_ASRMCRA_BYPASSPOLYA) & BM_ASRC_ASRMCRA_BYPASSPOLYA)
-#endif
+#define BF_ASRC_ASRMCRA_BYPASSPOLYA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_BYPASSPOLYA) & BM_ASRC_ASRMCRA_BYPASSPOLYA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASSPOLYA field to a new value.
@@ -4295,15 +4026,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_BUFSTALLA      (0x00200000)  //!< Bit mask for ASRC_ASRMCRA_BUFSTALLA.
 
 //! @brief Get value of ASRC_ASRMCRA_BUFSTALLA from a register value.
-#define BG_ASRC_ASRMCRA_BUFSTALLA(r)   (((r) & BM_ASRC_ASRMCRA_BUFSTALLA) >> BP_ASRC_ASRMCRA_BUFSTALLA)
+#define BG_ASRC_ASRMCRA_BUFSTALLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_BUFSTALLA) >> BP_ASRC_ASRMCRA_BUFSTALLA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_BUFSTALLA.
-#define BF_ASRC_ASRMCRA_BUFSTALLA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_BUFSTALLA) & BM_ASRC_ASRMCRA_BUFSTALLA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_BUFSTALLA.
-#define BF_ASRC_ASRMCRA_BUFSTALLA(v)   (((v) << BP_ASRC_ASRMCRA_BUFSTALLA) & BM_ASRC_ASRMCRA_BUFSTALLA)
-#endif
+#define BF_ASRC_ASRMCRA_BUFSTALLA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_BUFSTALLA) & BM_ASRC_ASRMCRA_BUFSTALLA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUFSTALLA field to a new value.
@@ -4326,15 +4052,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_EXTTHRSHA      (0x00400000)  //!< Bit mask for ASRC_ASRMCRA_EXTTHRSHA.
 
 //! @brief Get value of ASRC_ASRMCRA_EXTTHRSHA from a register value.
-#define BG_ASRC_ASRMCRA_EXTTHRSHA(r)   (((r) & BM_ASRC_ASRMCRA_EXTTHRSHA) >> BP_ASRC_ASRMCRA_EXTTHRSHA)
+#define BG_ASRC_ASRMCRA_EXTTHRSHA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_EXTTHRSHA) >> BP_ASRC_ASRMCRA_EXTTHRSHA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_EXTTHRSHA.
-#define BF_ASRC_ASRMCRA_EXTTHRSHA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_EXTTHRSHA) & BM_ASRC_ASRMCRA_EXTTHRSHA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_EXTTHRSHA.
-#define BF_ASRC_ASRMCRA_EXTTHRSHA(v)   (((v) << BP_ASRC_ASRMCRA_EXTTHRSHA) & BM_ASRC_ASRMCRA_EXTTHRSHA)
-#endif
+#define BF_ASRC_ASRMCRA_EXTTHRSHA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_EXTTHRSHA) & BM_ASRC_ASRMCRA_EXTTHRSHA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTTHRSHA field to a new value.
@@ -4356,15 +4077,10 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_ZEROBUFA      (0x00800000)  //!< Bit mask for ASRC_ASRMCRA_ZEROBUFA.
 
 //! @brief Get value of ASRC_ASRMCRA_ZEROBUFA from a register value.
-#define BG_ASRC_ASRMCRA_ZEROBUFA(r)   (((r) & BM_ASRC_ASRMCRA_ZEROBUFA) >> BP_ASRC_ASRMCRA_ZEROBUFA)
+#define BG_ASRC_ASRMCRA_ZEROBUFA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_ZEROBUFA) >> BP_ASRC_ASRMCRA_ZEROBUFA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRA_ZEROBUFA.
-#define BF_ASRC_ASRMCRA_ZEROBUFA(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRA_ZEROBUFA) & BM_ASRC_ASRMCRA_ZEROBUFA)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRA_ZEROBUFA.
-#define BF_ASRC_ASRMCRA_ZEROBUFA(v)   (((v) << BP_ASRC_ASRMCRA_ZEROBUFA) & BM_ASRC_ASRMCRA_ZEROBUFA)
-#endif
+#define BF_ASRC_ASRMCRA_ZEROBUFA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRA_ZEROBUFA) & BM_ASRC_ASRMCRA_ZEROBUFA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZEROBUFA field to a new value.
@@ -4381,7 +4097,11 @@ typedef union _hw_asrc_asrmcra
 #define BM_ASRC_ASRMCRA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCRA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCRA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCRA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCRA_UNIMPLEMENTED) >> BP_ASRC_ASRMCRA_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCRA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRA_UNIMPLEMENTED) >> BP_ASRC_ASRMCRA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRFSTA - ASRC FIFO Status Register for Pair A
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4431,7 +4151,7 @@ typedef union _hw_asrc_asrfsta
 #define BM_ASRC_ASRFSTA_INFIFO_FILLA      (0x0000007f)  //!< Bit mask for ASRC_ASRFSTA_INFIFO_FILLA.
 
 //! @brief Get value of ASRC_ASRFSTA_INFIFO_FILLA from a register value.
-#define BG_ASRC_ASRFSTA_INFIFO_FILLA(r)   (((r) & BM_ASRC_ASRFSTA_INFIFO_FILLA) >> BP_ASRC_ASRFSTA_INFIFO_FILLA)
+#define BG_ASRC_ASRFSTA_INFIFO_FILLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTA_INFIFO_FILLA) >> BP_ASRC_ASRFSTA_INFIFO_FILLA)
 
 /* --- Register HW_ASRC_ASRFSTA, field IAEA[11] (RO)
  *
@@ -4443,7 +4163,7 @@ typedef union _hw_asrc_asrfsta
 #define BM_ASRC_ASRFSTA_IAEA      (0x00000800)  //!< Bit mask for ASRC_ASRFSTA_IAEA.
 
 //! @brief Get value of ASRC_ASRFSTA_IAEA from a register value.
-#define BG_ASRC_ASRFSTA_IAEA(r)   (((r) & BM_ASRC_ASRFSTA_IAEA) >> BP_ASRC_ASRFSTA_IAEA)
+#define BG_ASRC_ASRFSTA_IAEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTA_IAEA) >> BP_ASRC_ASRFSTA_IAEA)
 
 /* --- Register HW_ASRC_ASRFSTA, field OUTFIFO_FILLA[18:12] (RO)
  *
@@ -4455,7 +4175,7 @@ typedef union _hw_asrc_asrfsta
 #define BM_ASRC_ASRFSTA_OUTFIFO_FILLA      (0x0007f000)  //!< Bit mask for ASRC_ASRFSTA_OUTFIFO_FILLA.
 
 //! @brief Get value of ASRC_ASRFSTA_OUTFIFO_FILLA from a register value.
-#define BG_ASRC_ASRFSTA_OUTFIFO_FILLA(r)   (((r) & BM_ASRC_ASRFSTA_OUTFIFO_FILLA) >> BP_ASRC_ASRFSTA_OUTFIFO_FILLA)
+#define BG_ASRC_ASRFSTA_OUTFIFO_FILLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTA_OUTFIFO_FILLA) >> BP_ASRC_ASRFSTA_OUTFIFO_FILLA)
 
 /* --- Register HW_ASRC_ASRFSTA, field OAFA[23] (RO)
  *
@@ -4467,7 +4187,7 @@ typedef union _hw_asrc_asrfsta
 #define BM_ASRC_ASRFSTA_OAFA      (0x00800000)  //!< Bit mask for ASRC_ASRFSTA_OAFA.
 
 //! @brief Get value of ASRC_ASRFSTA_OAFA from a register value.
-#define BG_ASRC_ASRFSTA_OAFA(r)   (((r) & BM_ASRC_ASRFSTA_OAFA) >> BP_ASRC_ASRFSTA_OAFA)
+#define BG_ASRC_ASRFSTA_OAFA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTA_OAFA) >> BP_ASRC_ASRFSTA_OAFA)
 
 /* --- Register HW_ASRC_ASRFSTA, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -4478,7 +4198,11 @@ typedef union _hw_asrc_asrfsta
 #define BM_ASRC_ASRFSTA_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRFSTA_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRFSTA_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRFSTA_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRFSTA_UNIMPLEMENTED) >> BP_ASRC_ASRFSTA_UNIMPLEMENTED)
+#define BG_ASRC_ASRFSTA_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTA_UNIMPLEMENTED) >> BP_ASRC_ASRFSTA_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCRB - ASRC Misc Control Register for Pair B
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4539,15 +4263,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB      (0x0000003f)  //!< Bit mask for ASRC_ASRMCRB_INFIFO_THRESHOLDB.
 
 //! @brief Get value of ASRC_ASRMCRB_INFIFO_THRESHOLDB from a register value.
-#define BG_ASRC_ASRMCRB_INFIFO_THRESHOLDB(r)   (((r) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB) >> BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
+#define BG_ASRC_ASRMCRB_INFIFO_THRESHOLDB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB) >> BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_INFIFO_THRESHOLDB.
-#define BF_ASRC_ASRMCRB_INFIFO_THRESHOLDB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_INFIFO_THRESHOLDB.
-#define BF_ASRC_ASRMCRB_INFIFO_THRESHOLDB(v)   (((v) << BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
-#endif
+#define BF_ASRC_ASRMCRB_INFIFO_THRESHOLDB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_INFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_INFIFO_THRESHOLDB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INFIFO_THRESHOLDB field to a new value.
@@ -4564,15 +4283,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_RSYNOFB      (0x00000400)  //!< Bit mask for ASRC_ASRMCRB_RSYNOFB.
 
 //! @brief Get value of ASRC_ASRMCRB_RSYNOFB from a register value.
-#define BG_ASRC_ASRMCRB_RSYNOFB(r)   (((r) & BM_ASRC_ASRMCRB_RSYNOFB) >> BP_ASRC_ASRMCRB_RSYNOFB)
+#define BG_ASRC_ASRMCRB_RSYNOFB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_RSYNOFB) >> BP_ASRC_ASRMCRB_RSYNOFB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_RSYNOFB.
-#define BF_ASRC_ASRMCRB_RSYNOFB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_RSYNOFB) & BM_ASRC_ASRMCRB_RSYNOFB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_RSYNOFB.
-#define BF_ASRC_ASRMCRB_RSYNOFB(v)   (((v) << BP_ASRC_ASRMCRB_RSYNOFB) & BM_ASRC_ASRMCRB_RSYNOFB)
-#endif
+#define BF_ASRC_ASRMCRB_RSYNOFB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_RSYNOFB) & BM_ASRC_ASRMCRB_RSYNOFB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNOFB field to a new value.
@@ -4589,15 +4303,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_RSYNIFB      (0x00000800)  //!< Bit mask for ASRC_ASRMCRB_RSYNIFB.
 
 //! @brief Get value of ASRC_ASRMCRB_RSYNIFB from a register value.
-#define BG_ASRC_ASRMCRB_RSYNIFB(r)   (((r) & BM_ASRC_ASRMCRB_RSYNIFB) >> BP_ASRC_ASRMCRB_RSYNIFB)
+#define BG_ASRC_ASRMCRB_RSYNIFB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_RSYNIFB) >> BP_ASRC_ASRMCRB_RSYNIFB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_RSYNIFB.
-#define BF_ASRC_ASRMCRB_RSYNIFB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_RSYNIFB) & BM_ASRC_ASRMCRB_RSYNIFB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_RSYNIFB.
-#define BF_ASRC_ASRMCRB_RSYNIFB(v)   (((v) << BP_ASRC_ASRMCRB_RSYNIFB) & BM_ASRC_ASRMCRB_RSYNIFB)
-#endif
+#define BF_ASRC_ASRMCRB_RSYNIFB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_RSYNIFB) & BM_ASRC_ASRMCRB_RSYNIFB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNIFB field to a new value.
@@ -4617,15 +4326,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB      (0x0003f000)  //!< Bit mask for ASRC_ASRMCRB_OUTFIFO_THRESHOLDB.
 
 //! @brief Get value of ASRC_ASRMCRB_OUTFIFO_THRESHOLDB from a register value.
-#define BG_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(r)   (((r) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB) >> BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
+#define BG_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB) >> BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_OUTFIFO_THRESHOLDB.
-#define BF_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_OUTFIFO_THRESHOLDB.
-#define BF_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(v)   (((v) << BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
-#endif
+#define BF_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB) & BM_ASRC_ASRMCRB_OUTFIFO_THRESHOLDB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OUTFIFO_THRESHOLDB field to a new value.
@@ -4646,15 +4350,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_BYPASSPOLYB      (0x00100000)  //!< Bit mask for ASRC_ASRMCRB_BYPASSPOLYB.
 
 //! @brief Get value of ASRC_ASRMCRB_BYPASSPOLYB from a register value.
-#define BG_ASRC_ASRMCRB_BYPASSPOLYB(r)   (((r) & BM_ASRC_ASRMCRB_BYPASSPOLYB) >> BP_ASRC_ASRMCRB_BYPASSPOLYB)
+#define BG_ASRC_ASRMCRB_BYPASSPOLYB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_BYPASSPOLYB) >> BP_ASRC_ASRMCRB_BYPASSPOLYB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_BYPASSPOLYB.
-#define BF_ASRC_ASRMCRB_BYPASSPOLYB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_BYPASSPOLYB) & BM_ASRC_ASRMCRB_BYPASSPOLYB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_BYPASSPOLYB.
-#define BF_ASRC_ASRMCRB_BYPASSPOLYB(v)   (((v) << BP_ASRC_ASRMCRB_BYPASSPOLYB) & BM_ASRC_ASRMCRB_BYPASSPOLYB)
-#endif
+#define BF_ASRC_ASRMCRB_BYPASSPOLYB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_BYPASSPOLYB) & BM_ASRC_ASRMCRB_BYPASSPOLYB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASSPOLYB field to a new value.
@@ -4679,15 +4378,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_BUFSTALLB      (0x00200000)  //!< Bit mask for ASRC_ASRMCRB_BUFSTALLB.
 
 //! @brief Get value of ASRC_ASRMCRB_BUFSTALLB from a register value.
-#define BG_ASRC_ASRMCRB_BUFSTALLB(r)   (((r) & BM_ASRC_ASRMCRB_BUFSTALLB) >> BP_ASRC_ASRMCRB_BUFSTALLB)
+#define BG_ASRC_ASRMCRB_BUFSTALLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_BUFSTALLB) >> BP_ASRC_ASRMCRB_BUFSTALLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_BUFSTALLB.
-#define BF_ASRC_ASRMCRB_BUFSTALLB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_BUFSTALLB) & BM_ASRC_ASRMCRB_BUFSTALLB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_BUFSTALLB.
-#define BF_ASRC_ASRMCRB_BUFSTALLB(v)   (((v) << BP_ASRC_ASRMCRB_BUFSTALLB) & BM_ASRC_ASRMCRB_BUFSTALLB)
-#endif
+#define BF_ASRC_ASRMCRB_BUFSTALLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_BUFSTALLB) & BM_ASRC_ASRMCRB_BUFSTALLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUFSTALLB field to a new value.
@@ -4710,15 +4404,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_EXTTHRSHB      (0x00400000)  //!< Bit mask for ASRC_ASRMCRB_EXTTHRSHB.
 
 //! @brief Get value of ASRC_ASRMCRB_EXTTHRSHB from a register value.
-#define BG_ASRC_ASRMCRB_EXTTHRSHB(r)   (((r) & BM_ASRC_ASRMCRB_EXTTHRSHB) >> BP_ASRC_ASRMCRB_EXTTHRSHB)
+#define BG_ASRC_ASRMCRB_EXTTHRSHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_EXTTHRSHB) >> BP_ASRC_ASRMCRB_EXTTHRSHB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_EXTTHRSHB.
-#define BF_ASRC_ASRMCRB_EXTTHRSHB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_EXTTHRSHB) & BM_ASRC_ASRMCRB_EXTTHRSHB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_EXTTHRSHB.
-#define BF_ASRC_ASRMCRB_EXTTHRSHB(v)   (((v) << BP_ASRC_ASRMCRB_EXTTHRSHB) & BM_ASRC_ASRMCRB_EXTTHRSHB)
-#endif
+#define BF_ASRC_ASRMCRB_EXTTHRSHB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_EXTTHRSHB) & BM_ASRC_ASRMCRB_EXTTHRSHB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTTHRSHB field to a new value.
@@ -4740,15 +4429,10 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_ZEROBUFB      (0x00800000)  //!< Bit mask for ASRC_ASRMCRB_ZEROBUFB.
 
 //! @brief Get value of ASRC_ASRMCRB_ZEROBUFB from a register value.
-#define BG_ASRC_ASRMCRB_ZEROBUFB(r)   (((r) & BM_ASRC_ASRMCRB_ZEROBUFB) >> BP_ASRC_ASRMCRB_ZEROBUFB)
+#define BG_ASRC_ASRMCRB_ZEROBUFB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_ZEROBUFB) >> BP_ASRC_ASRMCRB_ZEROBUFB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRB_ZEROBUFB.
-#define BF_ASRC_ASRMCRB_ZEROBUFB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRB_ZEROBUFB) & BM_ASRC_ASRMCRB_ZEROBUFB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRB_ZEROBUFB.
-#define BF_ASRC_ASRMCRB_ZEROBUFB(v)   (((v) << BP_ASRC_ASRMCRB_ZEROBUFB) & BM_ASRC_ASRMCRB_ZEROBUFB)
-#endif
+#define BF_ASRC_ASRMCRB_ZEROBUFB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRB_ZEROBUFB) & BM_ASRC_ASRMCRB_ZEROBUFB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZEROBUFB field to a new value.
@@ -4765,7 +4449,11 @@ typedef union _hw_asrc_asrmcrb
 #define BM_ASRC_ASRMCRB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCRB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCRB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCRB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCRB_UNIMPLEMENTED) >> BP_ASRC_ASRMCRB_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCRB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRB_UNIMPLEMENTED) >> BP_ASRC_ASRMCRB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRFSTB - ASRC FIFO Status Register for Pair B
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4815,7 +4503,7 @@ typedef union _hw_asrc_asrfstb
 #define BM_ASRC_ASRFSTB_INFIFO_FILLB      (0x0000007f)  //!< Bit mask for ASRC_ASRFSTB_INFIFO_FILLB.
 
 //! @brief Get value of ASRC_ASRFSTB_INFIFO_FILLB from a register value.
-#define BG_ASRC_ASRFSTB_INFIFO_FILLB(r)   (((r) & BM_ASRC_ASRFSTB_INFIFO_FILLB) >> BP_ASRC_ASRFSTB_INFIFO_FILLB)
+#define BG_ASRC_ASRFSTB_INFIFO_FILLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTB_INFIFO_FILLB) >> BP_ASRC_ASRFSTB_INFIFO_FILLB)
 
 /* --- Register HW_ASRC_ASRFSTB, field IAEB[11] (RO)
  *
@@ -4827,7 +4515,7 @@ typedef union _hw_asrc_asrfstb
 #define BM_ASRC_ASRFSTB_IAEB      (0x00000800)  //!< Bit mask for ASRC_ASRFSTB_IAEB.
 
 //! @brief Get value of ASRC_ASRFSTB_IAEB from a register value.
-#define BG_ASRC_ASRFSTB_IAEB(r)   (((r) & BM_ASRC_ASRFSTB_IAEB) >> BP_ASRC_ASRFSTB_IAEB)
+#define BG_ASRC_ASRFSTB_IAEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTB_IAEB) >> BP_ASRC_ASRFSTB_IAEB)
 
 /* --- Register HW_ASRC_ASRFSTB, field OUTFIFO_FILLB[18:12] (RO)
  *
@@ -4839,7 +4527,7 @@ typedef union _hw_asrc_asrfstb
 #define BM_ASRC_ASRFSTB_OUTFIFO_FILLB      (0x0007f000)  //!< Bit mask for ASRC_ASRFSTB_OUTFIFO_FILLB.
 
 //! @brief Get value of ASRC_ASRFSTB_OUTFIFO_FILLB from a register value.
-#define BG_ASRC_ASRFSTB_OUTFIFO_FILLB(r)   (((r) & BM_ASRC_ASRFSTB_OUTFIFO_FILLB) >> BP_ASRC_ASRFSTB_OUTFIFO_FILLB)
+#define BG_ASRC_ASRFSTB_OUTFIFO_FILLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTB_OUTFIFO_FILLB) >> BP_ASRC_ASRFSTB_OUTFIFO_FILLB)
 
 /* --- Register HW_ASRC_ASRFSTB, field OAFB[23] (RO)
  *
@@ -4851,7 +4539,7 @@ typedef union _hw_asrc_asrfstb
 #define BM_ASRC_ASRFSTB_OAFB      (0x00800000)  //!< Bit mask for ASRC_ASRFSTB_OAFB.
 
 //! @brief Get value of ASRC_ASRFSTB_OAFB from a register value.
-#define BG_ASRC_ASRFSTB_OAFB(r)   (((r) & BM_ASRC_ASRFSTB_OAFB) >> BP_ASRC_ASRFSTB_OAFB)
+#define BG_ASRC_ASRFSTB_OAFB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTB_OAFB) >> BP_ASRC_ASRFSTB_OAFB)
 
 /* --- Register HW_ASRC_ASRFSTB, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -4862,7 +4550,11 @@ typedef union _hw_asrc_asrfstb
 #define BM_ASRC_ASRFSTB_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRFSTB_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRFSTB_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRFSTB_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRFSTB_UNIMPLEMENTED) >> BP_ASRC_ASRFSTB_UNIMPLEMENTED)
+#define BG_ASRC_ASRFSTB_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTB_UNIMPLEMENTED) >> BP_ASRC_ASRFSTB_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCRC - ASRC Misc Control Register for Pair C
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4923,15 +4615,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC      (0x0000003f)  //!< Bit mask for ASRC_ASRMCRC_INFIFO_THRESHOLDC.
 
 //! @brief Get value of ASRC_ASRMCRC_INFIFO_THRESHOLDC from a register value.
-#define BG_ASRC_ASRMCRC_INFIFO_THRESHOLDC(r)   (((r) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC) >> BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
+#define BG_ASRC_ASRMCRC_INFIFO_THRESHOLDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC) >> BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_INFIFO_THRESHOLDC.
-#define BF_ASRC_ASRMCRC_INFIFO_THRESHOLDC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_INFIFO_THRESHOLDC.
-#define BF_ASRC_ASRMCRC_INFIFO_THRESHOLDC(v)   (((v) << BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
-#endif
+#define BF_ASRC_ASRMCRC_INFIFO_THRESHOLDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_INFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_INFIFO_THRESHOLDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INFIFO_THRESHOLDC field to a new value.
@@ -4948,15 +4635,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_RSYNOFC      (0x00000400)  //!< Bit mask for ASRC_ASRMCRC_RSYNOFC.
 
 //! @brief Get value of ASRC_ASRMCRC_RSYNOFC from a register value.
-#define BG_ASRC_ASRMCRC_RSYNOFC(r)   (((r) & BM_ASRC_ASRMCRC_RSYNOFC) >> BP_ASRC_ASRMCRC_RSYNOFC)
+#define BG_ASRC_ASRMCRC_RSYNOFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_RSYNOFC) >> BP_ASRC_ASRMCRC_RSYNOFC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_RSYNOFC.
-#define BF_ASRC_ASRMCRC_RSYNOFC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_RSYNOFC) & BM_ASRC_ASRMCRC_RSYNOFC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_RSYNOFC.
-#define BF_ASRC_ASRMCRC_RSYNOFC(v)   (((v) << BP_ASRC_ASRMCRC_RSYNOFC) & BM_ASRC_ASRMCRC_RSYNOFC)
-#endif
+#define BF_ASRC_ASRMCRC_RSYNOFC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_RSYNOFC) & BM_ASRC_ASRMCRC_RSYNOFC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNOFC field to a new value.
@@ -4973,15 +4655,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_RSYNIFC      (0x00000800)  //!< Bit mask for ASRC_ASRMCRC_RSYNIFC.
 
 //! @brief Get value of ASRC_ASRMCRC_RSYNIFC from a register value.
-#define BG_ASRC_ASRMCRC_RSYNIFC(r)   (((r) & BM_ASRC_ASRMCRC_RSYNIFC) >> BP_ASRC_ASRMCRC_RSYNIFC)
+#define BG_ASRC_ASRMCRC_RSYNIFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_RSYNIFC) >> BP_ASRC_ASRMCRC_RSYNIFC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_RSYNIFC.
-#define BF_ASRC_ASRMCRC_RSYNIFC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_RSYNIFC) & BM_ASRC_ASRMCRC_RSYNIFC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_RSYNIFC.
-#define BF_ASRC_ASRMCRC_RSYNIFC(v)   (((v) << BP_ASRC_ASRMCRC_RSYNIFC) & BM_ASRC_ASRMCRC_RSYNIFC)
-#endif
+#define BF_ASRC_ASRMCRC_RSYNIFC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_RSYNIFC) & BM_ASRC_ASRMCRC_RSYNIFC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSYNIFC field to a new value.
@@ -5001,15 +4678,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC      (0x0003f000)  //!< Bit mask for ASRC_ASRMCRC_OUTFIFO_THRESHOLDC.
 
 //! @brief Get value of ASRC_ASRMCRC_OUTFIFO_THRESHOLDC from a register value.
-#define BG_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(r)   (((r) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC) >> BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
+#define BG_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC) >> BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_OUTFIFO_THRESHOLDC.
-#define BF_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_OUTFIFO_THRESHOLDC.
-#define BF_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(v)   (((v) << BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
-#endif
+#define BF_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC) & BM_ASRC_ASRMCRC_OUTFIFO_THRESHOLDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OUTFIFO_THRESHOLDC field to a new value.
@@ -5030,15 +4702,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_BYPASSPOLYC      (0x00100000)  //!< Bit mask for ASRC_ASRMCRC_BYPASSPOLYC.
 
 //! @brief Get value of ASRC_ASRMCRC_BYPASSPOLYC from a register value.
-#define BG_ASRC_ASRMCRC_BYPASSPOLYC(r)   (((r) & BM_ASRC_ASRMCRC_BYPASSPOLYC) >> BP_ASRC_ASRMCRC_BYPASSPOLYC)
+#define BG_ASRC_ASRMCRC_BYPASSPOLYC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_BYPASSPOLYC) >> BP_ASRC_ASRMCRC_BYPASSPOLYC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_BYPASSPOLYC.
-#define BF_ASRC_ASRMCRC_BYPASSPOLYC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_BYPASSPOLYC) & BM_ASRC_ASRMCRC_BYPASSPOLYC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_BYPASSPOLYC.
-#define BF_ASRC_ASRMCRC_BYPASSPOLYC(v)   (((v) << BP_ASRC_ASRMCRC_BYPASSPOLYC) & BM_ASRC_ASRMCRC_BYPASSPOLYC)
-#endif
+#define BF_ASRC_ASRMCRC_BYPASSPOLYC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_BYPASSPOLYC) & BM_ASRC_ASRMCRC_BYPASSPOLYC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASSPOLYC field to a new value.
@@ -5063,15 +4730,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_BUFSTALLC      (0x00200000)  //!< Bit mask for ASRC_ASRMCRC_BUFSTALLC.
 
 //! @brief Get value of ASRC_ASRMCRC_BUFSTALLC from a register value.
-#define BG_ASRC_ASRMCRC_BUFSTALLC(r)   (((r) & BM_ASRC_ASRMCRC_BUFSTALLC) >> BP_ASRC_ASRMCRC_BUFSTALLC)
+#define BG_ASRC_ASRMCRC_BUFSTALLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_BUFSTALLC) >> BP_ASRC_ASRMCRC_BUFSTALLC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_BUFSTALLC.
-#define BF_ASRC_ASRMCRC_BUFSTALLC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_BUFSTALLC) & BM_ASRC_ASRMCRC_BUFSTALLC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_BUFSTALLC.
-#define BF_ASRC_ASRMCRC_BUFSTALLC(v)   (((v) << BP_ASRC_ASRMCRC_BUFSTALLC) & BM_ASRC_ASRMCRC_BUFSTALLC)
-#endif
+#define BF_ASRC_ASRMCRC_BUFSTALLC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_BUFSTALLC) & BM_ASRC_ASRMCRC_BUFSTALLC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUFSTALLC field to a new value.
@@ -5094,15 +4756,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_EXTTHRSHC      (0x00400000)  //!< Bit mask for ASRC_ASRMCRC_EXTTHRSHC.
 
 //! @brief Get value of ASRC_ASRMCRC_EXTTHRSHC from a register value.
-#define BG_ASRC_ASRMCRC_EXTTHRSHC(r)   (((r) & BM_ASRC_ASRMCRC_EXTTHRSHC) >> BP_ASRC_ASRMCRC_EXTTHRSHC)
+#define BG_ASRC_ASRMCRC_EXTTHRSHC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_EXTTHRSHC) >> BP_ASRC_ASRMCRC_EXTTHRSHC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_EXTTHRSHC.
-#define BF_ASRC_ASRMCRC_EXTTHRSHC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_EXTTHRSHC) & BM_ASRC_ASRMCRC_EXTTHRSHC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_EXTTHRSHC.
-#define BF_ASRC_ASRMCRC_EXTTHRSHC(v)   (((v) << BP_ASRC_ASRMCRC_EXTTHRSHC) & BM_ASRC_ASRMCRC_EXTTHRSHC)
-#endif
+#define BF_ASRC_ASRMCRC_EXTTHRSHC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_EXTTHRSHC) & BM_ASRC_ASRMCRC_EXTTHRSHC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTTHRSHC field to a new value.
@@ -5124,15 +4781,10 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_ZEROBUFC      (0x00800000)  //!< Bit mask for ASRC_ASRMCRC_ZEROBUFC.
 
 //! @brief Get value of ASRC_ASRMCRC_ZEROBUFC from a register value.
-#define BG_ASRC_ASRMCRC_ZEROBUFC(r)   (((r) & BM_ASRC_ASRMCRC_ZEROBUFC) >> BP_ASRC_ASRMCRC_ZEROBUFC)
+#define BG_ASRC_ASRMCRC_ZEROBUFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_ZEROBUFC) >> BP_ASRC_ASRMCRC_ZEROBUFC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCRC_ZEROBUFC.
-#define BF_ASRC_ASRMCRC_ZEROBUFC(v)   ((((reg32_t) v) << BP_ASRC_ASRMCRC_ZEROBUFC) & BM_ASRC_ASRMCRC_ZEROBUFC)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCRC_ZEROBUFC.
-#define BF_ASRC_ASRMCRC_ZEROBUFC(v)   (((v) << BP_ASRC_ASRMCRC_ZEROBUFC) & BM_ASRC_ASRMCRC_ZEROBUFC)
-#endif
+#define BF_ASRC_ASRMCRC_ZEROBUFC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCRC_ZEROBUFC) & BM_ASRC_ASRMCRC_ZEROBUFC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZEROBUFC field to a new value.
@@ -5149,7 +4801,11 @@ typedef union _hw_asrc_asrmcrc
 #define BM_ASRC_ASRMCRC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCRC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCRC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCRC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCRC_UNIMPLEMENTED) >> BP_ASRC_ASRMCRC_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCRC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCRC_UNIMPLEMENTED) >> BP_ASRC_ASRMCRC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRFSTC - ASRC FIFO Status Register for Pair C
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5199,7 +4855,7 @@ typedef union _hw_asrc_asrfstc
 #define BM_ASRC_ASRFSTC_INFIFO_FILLC      (0x0000007f)  //!< Bit mask for ASRC_ASRFSTC_INFIFO_FILLC.
 
 //! @brief Get value of ASRC_ASRFSTC_INFIFO_FILLC from a register value.
-#define BG_ASRC_ASRFSTC_INFIFO_FILLC(r)   (((r) & BM_ASRC_ASRFSTC_INFIFO_FILLC) >> BP_ASRC_ASRFSTC_INFIFO_FILLC)
+#define BG_ASRC_ASRFSTC_INFIFO_FILLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTC_INFIFO_FILLC) >> BP_ASRC_ASRFSTC_INFIFO_FILLC)
 
 /* --- Register HW_ASRC_ASRFSTC, field IAEC[11] (RO)
  *
@@ -5211,7 +4867,7 @@ typedef union _hw_asrc_asrfstc
 #define BM_ASRC_ASRFSTC_IAEC      (0x00000800)  //!< Bit mask for ASRC_ASRFSTC_IAEC.
 
 //! @brief Get value of ASRC_ASRFSTC_IAEC from a register value.
-#define BG_ASRC_ASRFSTC_IAEC(r)   (((r) & BM_ASRC_ASRFSTC_IAEC) >> BP_ASRC_ASRFSTC_IAEC)
+#define BG_ASRC_ASRFSTC_IAEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTC_IAEC) >> BP_ASRC_ASRFSTC_IAEC)
 
 /* --- Register HW_ASRC_ASRFSTC, field OUTFIFO_FILLC[18:12] (RO)
  *
@@ -5223,7 +4879,7 @@ typedef union _hw_asrc_asrfstc
 #define BM_ASRC_ASRFSTC_OUTFIFO_FILLC      (0x0007f000)  //!< Bit mask for ASRC_ASRFSTC_OUTFIFO_FILLC.
 
 //! @brief Get value of ASRC_ASRFSTC_OUTFIFO_FILLC from a register value.
-#define BG_ASRC_ASRFSTC_OUTFIFO_FILLC(r)   (((r) & BM_ASRC_ASRFSTC_OUTFIFO_FILLC) >> BP_ASRC_ASRFSTC_OUTFIFO_FILLC)
+#define BG_ASRC_ASRFSTC_OUTFIFO_FILLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTC_OUTFIFO_FILLC) >> BP_ASRC_ASRFSTC_OUTFIFO_FILLC)
 
 /* --- Register HW_ASRC_ASRFSTC, field OAFC[23] (RO)
  *
@@ -5235,7 +4891,7 @@ typedef union _hw_asrc_asrfstc
 #define BM_ASRC_ASRFSTC_OAFC      (0x00800000)  //!< Bit mask for ASRC_ASRFSTC_OAFC.
 
 //! @brief Get value of ASRC_ASRFSTC_OAFC from a register value.
-#define BG_ASRC_ASRFSTC_OAFC(r)   (((r) & BM_ASRC_ASRFSTC_OAFC) >> BP_ASRC_ASRFSTC_OAFC)
+#define BG_ASRC_ASRFSTC_OAFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTC_OAFC) >> BP_ASRC_ASRFSTC_OAFC)
 
 /* --- Register HW_ASRC_ASRFSTC, field UNIMPLEMENTED[31:24] (RU)
  *
@@ -5246,7 +4902,11 @@ typedef union _hw_asrc_asrfstc
 #define BM_ASRC_ASRFSTC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRFSTC_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRFSTC_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRFSTC_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRFSTC_UNIMPLEMENTED) >> BP_ASRC_ASRFSTC_UNIMPLEMENTED)
+#define BG_ASRC_ASRFSTC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRFSTC_UNIMPLEMENTED) >> BP_ASRC_ASRFSTC_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCR1A - ASRC Misc Control Register 1 for Pair X
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5306,15 +4966,10 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_OW16      (0x00000001)  //!< Bit mask for ASRC_ASRMCR1A_OW16.
 
 //! @brief Get value of ASRC_ASRMCR1A_OW16 from a register value.
-#define BG_ASRC_ASRMCR1A_OW16(r)   (((r) & BM_ASRC_ASRMCR1A_OW16) >> BP_ASRC_ASRMCR1A_OW16)
+#define BG_ASRC_ASRMCR1A_OW16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_OW16) >> BP_ASRC_ASRMCR1A_OW16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1A_OW16.
-#define BF_ASRC_ASRMCR1A_OW16(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1A_OW16) & BM_ASRC_ASRMCR1A_OW16)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1A_OW16.
-#define BF_ASRC_ASRMCR1A_OW16(v)   (((v) << BP_ASRC_ASRMCR1A_OW16) & BM_ASRC_ASRMCR1A_OW16)
-#endif
+#define BF_ASRC_ASRMCR1A_OW16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1A_OW16) & BM_ASRC_ASRMCR1A_OW16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OW16 field to a new value.
@@ -5336,15 +4991,10 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_OSGN      (0x00000002)  //!< Bit mask for ASRC_ASRMCR1A_OSGN.
 
 //! @brief Get value of ASRC_ASRMCR1A_OSGN from a register value.
-#define BG_ASRC_ASRMCR1A_OSGN(r)   (((r) & BM_ASRC_ASRMCR1A_OSGN) >> BP_ASRC_ASRMCR1A_OSGN)
+#define BG_ASRC_ASRMCR1A_OSGN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_OSGN) >> BP_ASRC_ASRMCR1A_OSGN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1A_OSGN.
-#define BF_ASRC_ASRMCR1A_OSGN(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1A_OSGN) & BM_ASRC_ASRMCR1A_OSGN)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1A_OSGN.
-#define BF_ASRC_ASRMCR1A_OSGN(v)   (((v) << BP_ASRC_ASRMCR1A_OSGN) & BM_ASRC_ASRMCR1A_OSGN)
-#endif
+#define BF_ASRC_ASRMCR1A_OSGN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1A_OSGN) & BM_ASRC_ASRMCR1A_OSGN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OSGN field to a new value.
@@ -5365,15 +5015,10 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_OMSB      (0x00000004)  //!< Bit mask for ASRC_ASRMCR1A_OMSB.
 
 //! @brief Get value of ASRC_ASRMCR1A_OMSB from a register value.
-#define BG_ASRC_ASRMCR1A_OMSB(r)   (((r) & BM_ASRC_ASRMCR1A_OMSB) >> BP_ASRC_ASRMCR1A_OMSB)
+#define BG_ASRC_ASRMCR1A_OMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_OMSB) >> BP_ASRC_ASRMCR1A_OMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1A_OMSB.
-#define BF_ASRC_ASRMCR1A_OMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1A_OMSB) & BM_ASRC_ASRMCR1A_OMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1A_OMSB.
-#define BF_ASRC_ASRMCR1A_OMSB(v)   (((v) << BP_ASRC_ASRMCR1A_OMSB) & BM_ASRC_ASRMCR1A_OMSB)
-#endif
+#define BF_ASRC_ASRMCR1A_OMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1A_OMSB) & BM_ASRC_ASRMCR1A_OMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OMSB field to a new value.
@@ -5394,15 +5039,10 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_IMSB      (0x00000100)  //!< Bit mask for ASRC_ASRMCR1A_IMSB.
 
 //! @brief Get value of ASRC_ASRMCR1A_IMSB from a register value.
-#define BG_ASRC_ASRMCR1A_IMSB(r)   (((r) & BM_ASRC_ASRMCR1A_IMSB) >> BP_ASRC_ASRMCR1A_IMSB)
+#define BG_ASRC_ASRMCR1A_IMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_IMSB) >> BP_ASRC_ASRMCR1A_IMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1A_IMSB.
-#define BF_ASRC_ASRMCR1A_IMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1A_IMSB) & BM_ASRC_ASRMCR1A_IMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1A_IMSB.
-#define BF_ASRC_ASRMCR1A_IMSB(v)   (((v) << BP_ASRC_ASRMCR1A_IMSB) & BM_ASRC_ASRMCR1A_IMSB)
-#endif
+#define BF_ASRC_ASRMCR1A_IMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1A_IMSB) & BM_ASRC_ASRMCR1A_IMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMSB field to a new value.
@@ -5421,15 +5061,10 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_IWD      (0x00000e00)  //!< Bit mask for ASRC_ASRMCR1A_IWD.
 
 //! @brief Get value of ASRC_ASRMCR1A_IWD from a register value.
-#define BG_ASRC_ASRMCR1A_IWD(r)   (((r) & BM_ASRC_ASRMCR1A_IWD) >> BP_ASRC_ASRMCR1A_IWD)
+#define BG_ASRC_ASRMCR1A_IWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_IWD) >> BP_ASRC_ASRMCR1A_IWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1A_IWD.
-#define BF_ASRC_ASRMCR1A_IWD(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1A_IWD) & BM_ASRC_ASRMCR1A_IWD)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1A_IWD.
-#define BF_ASRC_ASRMCR1A_IWD(v)   (((v) << BP_ASRC_ASRMCR1A_IWD) & BM_ASRC_ASRMCR1A_IWD)
-#endif
+#define BF_ASRC_ASRMCR1A_IWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1A_IWD) & BM_ASRC_ASRMCR1A_IWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IWD field to a new value.
@@ -5445,7 +5080,11 @@ typedef union _hw_asrc_asrmcr1a
 #define BM_ASRC_ASRMCR1A_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCR1A_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCR1A_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCR1A_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCR1A_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1A_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCR1A_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1A_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1A_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCR1B - ASRC Misc Control Register 1 for Pair X
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5505,15 +5144,10 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_OW16      (0x00000001)  //!< Bit mask for ASRC_ASRMCR1B_OW16.
 
 //! @brief Get value of ASRC_ASRMCR1B_OW16 from a register value.
-#define BG_ASRC_ASRMCR1B_OW16(r)   (((r) & BM_ASRC_ASRMCR1B_OW16) >> BP_ASRC_ASRMCR1B_OW16)
+#define BG_ASRC_ASRMCR1B_OW16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_OW16) >> BP_ASRC_ASRMCR1B_OW16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1B_OW16.
-#define BF_ASRC_ASRMCR1B_OW16(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1B_OW16) & BM_ASRC_ASRMCR1B_OW16)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1B_OW16.
-#define BF_ASRC_ASRMCR1B_OW16(v)   (((v) << BP_ASRC_ASRMCR1B_OW16) & BM_ASRC_ASRMCR1B_OW16)
-#endif
+#define BF_ASRC_ASRMCR1B_OW16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1B_OW16) & BM_ASRC_ASRMCR1B_OW16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OW16 field to a new value.
@@ -5535,15 +5169,10 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_OSGN      (0x00000002)  //!< Bit mask for ASRC_ASRMCR1B_OSGN.
 
 //! @brief Get value of ASRC_ASRMCR1B_OSGN from a register value.
-#define BG_ASRC_ASRMCR1B_OSGN(r)   (((r) & BM_ASRC_ASRMCR1B_OSGN) >> BP_ASRC_ASRMCR1B_OSGN)
+#define BG_ASRC_ASRMCR1B_OSGN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_OSGN) >> BP_ASRC_ASRMCR1B_OSGN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1B_OSGN.
-#define BF_ASRC_ASRMCR1B_OSGN(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1B_OSGN) & BM_ASRC_ASRMCR1B_OSGN)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1B_OSGN.
-#define BF_ASRC_ASRMCR1B_OSGN(v)   (((v) << BP_ASRC_ASRMCR1B_OSGN) & BM_ASRC_ASRMCR1B_OSGN)
-#endif
+#define BF_ASRC_ASRMCR1B_OSGN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1B_OSGN) & BM_ASRC_ASRMCR1B_OSGN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OSGN field to a new value.
@@ -5564,15 +5193,10 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_OMSB      (0x00000004)  //!< Bit mask for ASRC_ASRMCR1B_OMSB.
 
 //! @brief Get value of ASRC_ASRMCR1B_OMSB from a register value.
-#define BG_ASRC_ASRMCR1B_OMSB(r)   (((r) & BM_ASRC_ASRMCR1B_OMSB) >> BP_ASRC_ASRMCR1B_OMSB)
+#define BG_ASRC_ASRMCR1B_OMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_OMSB) >> BP_ASRC_ASRMCR1B_OMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1B_OMSB.
-#define BF_ASRC_ASRMCR1B_OMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1B_OMSB) & BM_ASRC_ASRMCR1B_OMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1B_OMSB.
-#define BF_ASRC_ASRMCR1B_OMSB(v)   (((v) << BP_ASRC_ASRMCR1B_OMSB) & BM_ASRC_ASRMCR1B_OMSB)
-#endif
+#define BF_ASRC_ASRMCR1B_OMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1B_OMSB) & BM_ASRC_ASRMCR1B_OMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OMSB field to a new value.
@@ -5593,15 +5217,10 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_IMSB      (0x00000100)  //!< Bit mask for ASRC_ASRMCR1B_IMSB.
 
 //! @brief Get value of ASRC_ASRMCR1B_IMSB from a register value.
-#define BG_ASRC_ASRMCR1B_IMSB(r)   (((r) & BM_ASRC_ASRMCR1B_IMSB) >> BP_ASRC_ASRMCR1B_IMSB)
+#define BG_ASRC_ASRMCR1B_IMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_IMSB) >> BP_ASRC_ASRMCR1B_IMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1B_IMSB.
-#define BF_ASRC_ASRMCR1B_IMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1B_IMSB) & BM_ASRC_ASRMCR1B_IMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1B_IMSB.
-#define BF_ASRC_ASRMCR1B_IMSB(v)   (((v) << BP_ASRC_ASRMCR1B_IMSB) & BM_ASRC_ASRMCR1B_IMSB)
-#endif
+#define BF_ASRC_ASRMCR1B_IMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1B_IMSB) & BM_ASRC_ASRMCR1B_IMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMSB field to a new value.
@@ -5620,15 +5239,10 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_IWD      (0x00000e00)  //!< Bit mask for ASRC_ASRMCR1B_IWD.
 
 //! @brief Get value of ASRC_ASRMCR1B_IWD from a register value.
-#define BG_ASRC_ASRMCR1B_IWD(r)   (((r) & BM_ASRC_ASRMCR1B_IWD) >> BP_ASRC_ASRMCR1B_IWD)
+#define BG_ASRC_ASRMCR1B_IWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_IWD) >> BP_ASRC_ASRMCR1B_IWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1B_IWD.
-#define BF_ASRC_ASRMCR1B_IWD(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1B_IWD) & BM_ASRC_ASRMCR1B_IWD)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1B_IWD.
-#define BF_ASRC_ASRMCR1B_IWD(v)   (((v) << BP_ASRC_ASRMCR1B_IWD) & BM_ASRC_ASRMCR1B_IWD)
-#endif
+#define BF_ASRC_ASRMCR1B_IWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1B_IWD) & BM_ASRC_ASRMCR1B_IWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IWD field to a new value.
@@ -5644,7 +5258,11 @@ typedef union _hw_asrc_asrmcr1b
 #define BM_ASRC_ASRMCR1B_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCR1B_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCR1B_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCR1B_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCR1B_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1B_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCR1B_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1B_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1B_UNIMPLEMENTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ASRC_ASRMCR1C - ASRC Misc Control Register 1 for Pair X
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5704,15 +5322,10 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_OW16      (0x00000001)  //!< Bit mask for ASRC_ASRMCR1C_OW16.
 
 //! @brief Get value of ASRC_ASRMCR1C_OW16 from a register value.
-#define BG_ASRC_ASRMCR1C_OW16(r)   (((r) & BM_ASRC_ASRMCR1C_OW16) >> BP_ASRC_ASRMCR1C_OW16)
+#define BG_ASRC_ASRMCR1C_OW16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_OW16) >> BP_ASRC_ASRMCR1C_OW16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1C_OW16.
-#define BF_ASRC_ASRMCR1C_OW16(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1C_OW16) & BM_ASRC_ASRMCR1C_OW16)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1C_OW16.
-#define BF_ASRC_ASRMCR1C_OW16(v)   (((v) << BP_ASRC_ASRMCR1C_OW16) & BM_ASRC_ASRMCR1C_OW16)
-#endif
+#define BF_ASRC_ASRMCR1C_OW16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1C_OW16) & BM_ASRC_ASRMCR1C_OW16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OW16 field to a new value.
@@ -5734,15 +5347,10 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_OSGN      (0x00000002)  //!< Bit mask for ASRC_ASRMCR1C_OSGN.
 
 //! @brief Get value of ASRC_ASRMCR1C_OSGN from a register value.
-#define BG_ASRC_ASRMCR1C_OSGN(r)   (((r) & BM_ASRC_ASRMCR1C_OSGN) >> BP_ASRC_ASRMCR1C_OSGN)
+#define BG_ASRC_ASRMCR1C_OSGN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_OSGN) >> BP_ASRC_ASRMCR1C_OSGN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1C_OSGN.
-#define BF_ASRC_ASRMCR1C_OSGN(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1C_OSGN) & BM_ASRC_ASRMCR1C_OSGN)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1C_OSGN.
-#define BF_ASRC_ASRMCR1C_OSGN(v)   (((v) << BP_ASRC_ASRMCR1C_OSGN) & BM_ASRC_ASRMCR1C_OSGN)
-#endif
+#define BF_ASRC_ASRMCR1C_OSGN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1C_OSGN) & BM_ASRC_ASRMCR1C_OSGN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OSGN field to a new value.
@@ -5763,15 +5371,10 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_OMSB      (0x00000004)  //!< Bit mask for ASRC_ASRMCR1C_OMSB.
 
 //! @brief Get value of ASRC_ASRMCR1C_OMSB from a register value.
-#define BG_ASRC_ASRMCR1C_OMSB(r)   (((r) & BM_ASRC_ASRMCR1C_OMSB) >> BP_ASRC_ASRMCR1C_OMSB)
+#define BG_ASRC_ASRMCR1C_OMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_OMSB) >> BP_ASRC_ASRMCR1C_OMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1C_OMSB.
-#define BF_ASRC_ASRMCR1C_OMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1C_OMSB) & BM_ASRC_ASRMCR1C_OMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1C_OMSB.
-#define BF_ASRC_ASRMCR1C_OMSB(v)   (((v) << BP_ASRC_ASRMCR1C_OMSB) & BM_ASRC_ASRMCR1C_OMSB)
-#endif
+#define BF_ASRC_ASRMCR1C_OMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1C_OMSB) & BM_ASRC_ASRMCR1C_OMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OMSB field to a new value.
@@ -5792,15 +5395,10 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_IMSB      (0x00000100)  //!< Bit mask for ASRC_ASRMCR1C_IMSB.
 
 //! @brief Get value of ASRC_ASRMCR1C_IMSB from a register value.
-#define BG_ASRC_ASRMCR1C_IMSB(r)   (((r) & BM_ASRC_ASRMCR1C_IMSB) >> BP_ASRC_ASRMCR1C_IMSB)
+#define BG_ASRC_ASRMCR1C_IMSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_IMSB) >> BP_ASRC_ASRMCR1C_IMSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1C_IMSB.
-#define BF_ASRC_ASRMCR1C_IMSB(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1C_IMSB) & BM_ASRC_ASRMCR1C_IMSB)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1C_IMSB.
-#define BF_ASRC_ASRMCR1C_IMSB(v)   (((v) << BP_ASRC_ASRMCR1C_IMSB) & BM_ASRC_ASRMCR1C_IMSB)
-#endif
+#define BF_ASRC_ASRMCR1C_IMSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1C_IMSB) & BM_ASRC_ASRMCR1C_IMSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMSB field to a new value.
@@ -5819,15 +5417,10 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_IWD      (0x00000e00)  //!< Bit mask for ASRC_ASRMCR1C_IWD.
 
 //! @brief Get value of ASRC_ASRMCR1C_IWD from a register value.
-#define BG_ASRC_ASRMCR1C_IWD(r)   (((r) & BM_ASRC_ASRMCR1C_IWD) >> BP_ASRC_ASRMCR1C_IWD)
+#define BG_ASRC_ASRMCR1C_IWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_IWD) >> BP_ASRC_ASRMCR1C_IWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ASRC_ASRMCR1C_IWD.
-#define BF_ASRC_ASRMCR1C_IWD(v)   ((((reg32_t) v) << BP_ASRC_ASRMCR1C_IWD) & BM_ASRC_ASRMCR1C_IWD)
-#else
-//! @brief Format value for bitfield ASRC_ASRMCR1C_IWD.
-#define BF_ASRC_ASRMCR1C_IWD(v)   (((v) << BP_ASRC_ASRMCR1C_IWD) & BM_ASRC_ASRMCR1C_IWD)
-#endif
+#define BF_ASRC_ASRMCR1C_IWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ASRC_ASRMCR1C_IWD) & BM_ASRC_ASRMCR1C_IWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IWD field to a new value.
@@ -5843,7 +5436,7 @@ typedef union _hw_asrc_asrmcr1c
 #define BM_ASRC_ASRMCR1C_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for ASRC_ASRMCR1C_UNIMPLEMENTED.
 
 //! @brief Get value of ASRC_ASRMCR1C_UNIMPLEMENTED from a register value.
-#define BG_ASRC_ASRMCR1C_UNIMPLEMENTED(r)   (((r) & BM_ASRC_ASRMCR1C_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1C_UNIMPLEMENTED)
+#define BG_ASRC_ASRMCR1C_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRMCR1C_UNIMPLEMENTED) >> BP_ASRC_ASRMCR1C_UNIMPLEMENTED)
 
 
 /*!

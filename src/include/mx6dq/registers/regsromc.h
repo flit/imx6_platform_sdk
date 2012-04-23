@@ -53,6 +53,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH0D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ROMC_ROMPATCH0D - ROMC Data Registers (RW)
@@ -110,20 +125,19 @@ typedef union _hw_romc_rompatch0d
 #define BM_ROMC_ROMPATCH0D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH0D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH0D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH0D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH0D_DATAX) >> BP_ROMC_ROMPATCH0D_DATAX)
+#define BG_ROMC_ROMPATCH0D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH0D_DATAX) >> BP_ROMC_ROMPATCH0D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH0D_DATAX.
-#define BF_ROMC_ROMPATCH0D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH0D_DATAX) & BM_ROMC_ROMPATCH0D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH0D_DATAX.
-#define BF_ROMC_ROMPATCH0D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH0D_DATAX) & BM_ROMC_ROMPATCH0D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH0D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH0D_DATAX) & BM_ROMC_ROMPATCH0D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH0D_DATAX(v)   (HW_ROMC_ROMPATCH0D_WR((HW_ROMC_ROMPATCH0D_RD() & ~BM_ROMC_ROMPATCH0D_DATAX) | BF_ROMC_ROMPATCH0D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH1D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -182,20 +196,19 @@ typedef union _hw_romc_rompatch1d
 #define BM_ROMC_ROMPATCH1D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH1D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH1D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH1D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH1D_DATAX) >> BP_ROMC_ROMPATCH1D_DATAX)
+#define BG_ROMC_ROMPATCH1D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH1D_DATAX) >> BP_ROMC_ROMPATCH1D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH1D_DATAX.
-#define BF_ROMC_ROMPATCH1D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH1D_DATAX) & BM_ROMC_ROMPATCH1D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH1D_DATAX.
-#define BF_ROMC_ROMPATCH1D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH1D_DATAX) & BM_ROMC_ROMPATCH1D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH1D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH1D_DATAX) & BM_ROMC_ROMPATCH1D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH1D_DATAX(v)   (HW_ROMC_ROMPATCH1D_WR((HW_ROMC_ROMPATCH1D_RD() & ~BM_ROMC_ROMPATCH1D_DATAX) | BF_ROMC_ROMPATCH1D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH2D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -254,20 +267,19 @@ typedef union _hw_romc_rompatch2d
 #define BM_ROMC_ROMPATCH2D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH2D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH2D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH2D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH2D_DATAX) >> BP_ROMC_ROMPATCH2D_DATAX)
+#define BG_ROMC_ROMPATCH2D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH2D_DATAX) >> BP_ROMC_ROMPATCH2D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH2D_DATAX.
-#define BF_ROMC_ROMPATCH2D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH2D_DATAX) & BM_ROMC_ROMPATCH2D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH2D_DATAX.
-#define BF_ROMC_ROMPATCH2D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH2D_DATAX) & BM_ROMC_ROMPATCH2D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH2D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH2D_DATAX) & BM_ROMC_ROMPATCH2D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH2D_DATAX(v)   (HW_ROMC_ROMPATCH2D_WR((HW_ROMC_ROMPATCH2D_RD() & ~BM_ROMC_ROMPATCH2D_DATAX) | BF_ROMC_ROMPATCH2D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH3D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -326,20 +338,19 @@ typedef union _hw_romc_rompatch3d
 #define BM_ROMC_ROMPATCH3D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH3D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH3D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH3D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH3D_DATAX) >> BP_ROMC_ROMPATCH3D_DATAX)
+#define BG_ROMC_ROMPATCH3D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH3D_DATAX) >> BP_ROMC_ROMPATCH3D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH3D_DATAX.
-#define BF_ROMC_ROMPATCH3D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH3D_DATAX) & BM_ROMC_ROMPATCH3D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH3D_DATAX.
-#define BF_ROMC_ROMPATCH3D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH3D_DATAX) & BM_ROMC_ROMPATCH3D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH3D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH3D_DATAX) & BM_ROMC_ROMPATCH3D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH3D_DATAX(v)   (HW_ROMC_ROMPATCH3D_WR((HW_ROMC_ROMPATCH3D_RD() & ~BM_ROMC_ROMPATCH3D_DATAX) | BF_ROMC_ROMPATCH3D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH4D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -398,20 +409,19 @@ typedef union _hw_romc_rompatch4d
 #define BM_ROMC_ROMPATCH4D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH4D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH4D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH4D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH4D_DATAX) >> BP_ROMC_ROMPATCH4D_DATAX)
+#define BG_ROMC_ROMPATCH4D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH4D_DATAX) >> BP_ROMC_ROMPATCH4D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH4D_DATAX.
-#define BF_ROMC_ROMPATCH4D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH4D_DATAX) & BM_ROMC_ROMPATCH4D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH4D_DATAX.
-#define BF_ROMC_ROMPATCH4D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH4D_DATAX) & BM_ROMC_ROMPATCH4D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH4D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH4D_DATAX) & BM_ROMC_ROMPATCH4D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH4D_DATAX(v)   (HW_ROMC_ROMPATCH4D_WR((HW_ROMC_ROMPATCH4D_RD() & ~BM_ROMC_ROMPATCH4D_DATAX) | BF_ROMC_ROMPATCH4D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH5D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -470,20 +480,19 @@ typedef union _hw_romc_rompatch5d
 #define BM_ROMC_ROMPATCH5D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH5D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH5D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH5D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH5D_DATAX) >> BP_ROMC_ROMPATCH5D_DATAX)
+#define BG_ROMC_ROMPATCH5D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH5D_DATAX) >> BP_ROMC_ROMPATCH5D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH5D_DATAX.
-#define BF_ROMC_ROMPATCH5D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH5D_DATAX) & BM_ROMC_ROMPATCH5D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH5D_DATAX.
-#define BF_ROMC_ROMPATCH5D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH5D_DATAX) & BM_ROMC_ROMPATCH5D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH5D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH5D_DATAX) & BM_ROMC_ROMPATCH5D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH5D_DATAX(v)   (HW_ROMC_ROMPATCH5D_WR((HW_ROMC_ROMPATCH5D_RD() & ~BM_ROMC_ROMPATCH5D_DATAX) | BF_ROMC_ROMPATCH5D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH6D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -542,20 +551,19 @@ typedef union _hw_romc_rompatch6d
 #define BM_ROMC_ROMPATCH6D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH6D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH6D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH6D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH6D_DATAX) >> BP_ROMC_ROMPATCH6D_DATAX)
+#define BG_ROMC_ROMPATCH6D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH6D_DATAX) >> BP_ROMC_ROMPATCH6D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH6D_DATAX.
-#define BF_ROMC_ROMPATCH6D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH6D_DATAX) & BM_ROMC_ROMPATCH6D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH6D_DATAX.
-#define BF_ROMC_ROMPATCH6D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH6D_DATAX) & BM_ROMC_ROMPATCH6D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH6D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH6D_DATAX) & BM_ROMC_ROMPATCH6D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH6D_DATAX(v)   (HW_ROMC_ROMPATCH6D_WR((HW_ROMC_ROMPATCH6D_RD() & ~BM_ROMC_ROMPATCH6D_DATAX) | BF_ROMC_ROMPATCH6D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH7D - ROMC Data Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -614,20 +622,19 @@ typedef union _hw_romc_rompatch7d
 #define BM_ROMC_ROMPATCH7D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH7D_DATAX.
 
 //! @brief Get value of ROMC_ROMPATCH7D_DATAX from a register value.
-#define BG_ROMC_ROMPATCH7D_DATAX(r)   (((r) & BM_ROMC_ROMPATCH7D_DATAX) >> BP_ROMC_ROMPATCH7D_DATAX)
+#define BG_ROMC_ROMPATCH7D_DATAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH7D_DATAX) >> BP_ROMC_ROMPATCH7D_DATAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH7D_DATAX.
-#define BF_ROMC_ROMPATCH7D_DATAX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH7D_DATAX) & BM_ROMC_ROMPATCH7D_DATAX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH7D_DATAX.
-#define BF_ROMC_ROMPATCH7D_DATAX(v)   (((v) << BP_ROMC_ROMPATCH7D_DATAX) & BM_ROMC_ROMPATCH7D_DATAX)
-#endif
+#define BF_ROMC_ROMPATCH7D_DATAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH7D_DATAX) & BM_ROMC_ROMPATCH7D_DATAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH7D_DATAX(v)   (HW_ROMC_ROMPATCH7D_WR((HW_ROMC_ROMPATCH7D_RD() & ~BM_ROMC_ROMPATCH7D_DATAX) | BF_ROMC_ROMPATCH7D_DATAX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCHCNTL - ROMC Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -686,15 +693,10 @@ typedef union _hw_romc_rompatchcntl
 #define BM_ROMC_ROMPATCHCNTL_DATAFIX      (0x000000ff)  //!< Bit mask for ROMC_ROMPATCHCNTL_DATAFIX.
 
 //! @brief Get value of ROMC_ROMPATCHCNTL_DATAFIX from a register value.
-#define BG_ROMC_ROMPATCHCNTL_DATAFIX(r)   (((r) & BM_ROMC_ROMPATCHCNTL_DATAFIX) >> BP_ROMC_ROMPATCHCNTL_DATAFIX)
+#define BG_ROMC_ROMPATCHCNTL_DATAFIX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHCNTL_DATAFIX) >> BP_ROMC_ROMPATCHCNTL_DATAFIX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCHCNTL_DATAFIX.
-#define BF_ROMC_ROMPATCHCNTL_DATAFIX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCHCNTL_DATAFIX) & BM_ROMC_ROMPATCHCNTL_DATAFIX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCHCNTL_DATAFIX.
-#define BF_ROMC_ROMPATCHCNTL_DATAFIX(v)   (((v) << BP_ROMC_ROMPATCHCNTL_DATAFIX) & BM_ROMC_ROMPATCHCNTL_DATAFIX)
-#endif
+#define BF_ROMC_ROMPATCHCNTL_DATAFIX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCHCNTL_DATAFIX) & BM_ROMC_ROMPATCHCNTL_DATAFIX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATAFIX field to a new value.
@@ -716,21 +718,20 @@ typedef union _hw_romc_rompatchcntl
 #define BM_ROMC_ROMPATCHCNTL_DIS      (0x20000000)  //!< Bit mask for ROMC_ROMPATCHCNTL_DIS.
 
 //! @brief Get value of ROMC_ROMPATCHCNTL_DIS from a register value.
-#define BG_ROMC_ROMPATCHCNTL_DIS(r)   (((r) & BM_ROMC_ROMPATCHCNTL_DIS) >> BP_ROMC_ROMPATCHCNTL_DIS)
+#define BG_ROMC_ROMPATCHCNTL_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHCNTL_DIS) >> BP_ROMC_ROMPATCHCNTL_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCHCNTL_DIS.
-#define BF_ROMC_ROMPATCHCNTL_DIS(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCHCNTL_DIS) & BM_ROMC_ROMPATCHCNTL_DIS)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCHCNTL_DIS.
-#define BF_ROMC_ROMPATCHCNTL_DIS(v)   (((v) << BP_ROMC_ROMPATCHCNTL_DIS) & BM_ROMC_ROMPATCHCNTL_DIS)
-#endif
+#define BF_ROMC_ROMPATCHCNTL_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCHCNTL_DIS) & BM_ROMC_ROMPATCHCNTL_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIS field to a new value.
 #define BW_ROMC_ROMPATCHCNTL_DIS(v)   (HW_ROMC_ROMPATCHCNTL_WR((HW_ROMC_ROMPATCHCNTL_RD() & ~BM_ROMC_ROMPATCHCNTL_DIS) | BF_ROMC_ROMPATCHCNTL_DIS(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCHENH - ROMC Enable Register High
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -768,6 +769,10 @@ typedef union _hw_romc_rompatchenh
 /*
  * constants & macros for individual ROMC_ROMPATCHENH bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCHENL - ROMC Enable Register Low
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -826,21 +831,20 @@ typedef union _hw_romc_rompatchenl
 #define BM_ROMC_ROMPATCHENL_ENABLE      (0x0000ffff)  //!< Bit mask for ROMC_ROMPATCHENL_ENABLE.
 
 //! @brief Get value of ROMC_ROMPATCHENL_ENABLE from a register value.
-#define BG_ROMC_ROMPATCHENL_ENABLE(r)   (((r) & BM_ROMC_ROMPATCHENL_ENABLE) >> BP_ROMC_ROMPATCHENL_ENABLE)
+#define BG_ROMC_ROMPATCHENL_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHENL_ENABLE) >> BP_ROMC_ROMPATCHENL_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCHENL_ENABLE.
-#define BF_ROMC_ROMPATCHENL_ENABLE(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCHENL_ENABLE) & BM_ROMC_ROMPATCHENL_ENABLE)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCHENL_ENABLE.
-#define BF_ROMC_ROMPATCHENL_ENABLE(v)   (((v) << BP_ROMC_ROMPATCHENL_ENABLE) & BM_ROMC_ROMPATCHENL_ENABLE)
-#endif
+#define BF_ROMC_ROMPATCHENL_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCHENL_ENABLE) & BM_ROMC_ROMPATCHENL_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_ROMC_ROMPATCHENL_ENABLE(v)   (HW_ROMC_ROMPATCHENL_WR((HW_ROMC_ROMPATCHENL_RD() & ~BM_ROMC_ROMPATCHENL_ENABLE) | BF_ROMC_ROMPATCHENL_ENABLE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH0A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -901,15 +905,10 @@ typedef union _hw_romc_rompatch0a
 #define BM_ROMC_ROMPATCH0A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH0A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH0A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH0A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH0A_THUMBX) >> BP_ROMC_ROMPATCH0A_THUMBX)
+#define BG_ROMC_ROMPATCH0A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH0A_THUMBX) >> BP_ROMC_ROMPATCH0A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH0A_THUMBX.
-#define BF_ROMC_ROMPATCH0A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH0A_THUMBX) & BM_ROMC_ROMPATCH0A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH0A_THUMBX.
-#define BF_ROMC_ROMPATCH0A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH0A_THUMBX) & BM_ROMC_ROMPATCH0A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH0A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH0A_THUMBX) & BM_ROMC_ROMPATCH0A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -928,20 +927,19 @@ typedef union _hw_romc_rompatch0a
 #define BM_ROMC_ROMPATCH0A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH0A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH0A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH0A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH0A_ADDRX) >> BP_ROMC_ROMPATCH0A_ADDRX)
+#define BG_ROMC_ROMPATCH0A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH0A_ADDRX) >> BP_ROMC_ROMPATCH0A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH0A_ADDRX.
-#define BF_ROMC_ROMPATCH0A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH0A_ADDRX) & BM_ROMC_ROMPATCH0A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH0A_ADDRX.
-#define BF_ROMC_ROMPATCH0A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH0A_ADDRX) & BM_ROMC_ROMPATCH0A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH0A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH0A_ADDRX) & BM_ROMC_ROMPATCH0A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH0A_ADDRX(v)   (HW_ROMC_ROMPATCH0A_WR((HW_ROMC_ROMPATCH0A_RD() & ~BM_ROMC_ROMPATCH0A_ADDRX) | BF_ROMC_ROMPATCH0A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH1A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1002,15 +1000,10 @@ typedef union _hw_romc_rompatch1a
 #define BM_ROMC_ROMPATCH1A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH1A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH1A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH1A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH1A_THUMBX) >> BP_ROMC_ROMPATCH1A_THUMBX)
+#define BG_ROMC_ROMPATCH1A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH1A_THUMBX) >> BP_ROMC_ROMPATCH1A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH1A_THUMBX.
-#define BF_ROMC_ROMPATCH1A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH1A_THUMBX) & BM_ROMC_ROMPATCH1A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH1A_THUMBX.
-#define BF_ROMC_ROMPATCH1A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH1A_THUMBX) & BM_ROMC_ROMPATCH1A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH1A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH1A_THUMBX) & BM_ROMC_ROMPATCH1A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1029,20 +1022,19 @@ typedef union _hw_romc_rompatch1a
 #define BM_ROMC_ROMPATCH1A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH1A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH1A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH1A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH1A_ADDRX) >> BP_ROMC_ROMPATCH1A_ADDRX)
+#define BG_ROMC_ROMPATCH1A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH1A_ADDRX) >> BP_ROMC_ROMPATCH1A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH1A_ADDRX.
-#define BF_ROMC_ROMPATCH1A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH1A_ADDRX) & BM_ROMC_ROMPATCH1A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH1A_ADDRX.
-#define BF_ROMC_ROMPATCH1A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH1A_ADDRX) & BM_ROMC_ROMPATCH1A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH1A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH1A_ADDRX) & BM_ROMC_ROMPATCH1A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH1A_ADDRX(v)   (HW_ROMC_ROMPATCH1A_WR((HW_ROMC_ROMPATCH1A_RD() & ~BM_ROMC_ROMPATCH1A_ADDRX) | BF_ROMC_ROMPATCH1A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH2A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1103,15 +1095,10 @@ typedef union _hw_romc_rompatch2a
 #define BM_ROMC_ROMPATCH2A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH2A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH2A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH2A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH2A_THUMBX) >> BP_ROMC_ROMPATCH2A_THUMBX)
+#define BG_ROMC_ROMPATCH2A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH2A_THUMBX) >> BP_ROMC_ROMPATCH2A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH2A_THUMBX.
-#define BF_ROMC_ROMPATCH2A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH2A_THUMBX) & BM_ROMC_ROMPATCH2A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH2A_THUMBX.
-#define BF_ROMC_ROMPATCH2A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH2A_THUMBX) & BM_ROMC_ROMPATCH2A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH2A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH2A_THUMBX) & BM_ROMC_ROMPATCH2A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1130,20 +1117,19 @@ typedef union _hw_romc_rompatch2a
 #define BM_ROMC_ROMPATCH2A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH2A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH2A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH2A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH2A_ADDRX) >> BP_ROMC_ROMPATCH2A_ADDRX)
+#define BG_ROMC_ROMPATCH2A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH2A_ADDRX) >> BP_ROMC_ROMPATCH2A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH2A_ADDRX.
-#define BF_ROMC_ROMPATCH2A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH2A_ADDRX) & BM_ROMC_ROMPATCH2A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH2A_ADDRX.
-#define BF_ROMC_ROMPATCH2A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH2A_ADDRX) & BM_ROMC_ROMPATCH2A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH2A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH2A_ADDRX) & BM_ROMC_ROMPATCH2A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH2A_ADDRX(v)   (HW_ROMC_ROMPATCH2A_WR((HW_ROMC_ROMPATCH2A_RD() & ~BM_ROMC_ROMPATCH2A_ADDRX) | BF_ROMC_ROMPATCH2A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH3A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1204,15 +1190,10 @@ typedef union _hw_romc_rompatch3a
 #define BM_ROMC_ROMPATCH3A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH3A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH3A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH3A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH3A_THUMBX) >> BP_ROMC_ROMPATCH3A_THUMBX)
+#define BG_ROMC_ROMPATCH3A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH3A_THUMBX) >> BP_ROMC_ROMPATCH3A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH3A_THUMBX.
-#define BF_ROMC_ROMPATCH3A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH3A_THUMBX) & BM_ROMC_ROMPATCH3A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH3A_THUMBX.
-#define BF_ROMC_ROMPATCH3A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH3A_THUMBX) & BM_ROMC_ROMPATCH3A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH3A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH3A_THUMBX) & BM_ROMC_ROMPATCH3A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1231,20 +1212,19 @@ typedef union _hw_romc_rompatch3a
 #define BM_ROMC_ROMPATCH3A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH3A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH3A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH3A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH3A_ADDRX) >> BP_ROMC_ROMPATCH3A_ADDRX)
+#define BG_ROMC_ROMPATCH3A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH3A_ADDRX) >> BP_ROMC_ROMPATCH3A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH3A_ADDRX.
-#define BF_ROMC_ROMPATCH3A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH3A_ADDRX) & BM_ROMC_ROMPATCH3A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH3A_ADDRX.
-#define BF_ROMC_ROMPATCH3A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH3A_ADDRX) & BM_ROMC_ROMPATCH3A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH3A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH3A_ADDRX) & BM_ROMC_ROMPATCH3A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH3A_ADDRX(v)   (HW_ROMC_ROMPATCH3A_WR((HW_ROMC_ROMPATCH3A_RD() & ~BM_ROMC_ROMPATCH3A_ADDRX) | BF_ROMC_ROMPATCH3A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH4A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1305,15 +1285,10 @@ typedef union _hw_romc_rompatch4a
 #define BM_ROMC_ROMPATCH4A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH4A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH4A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH4A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH4A_THUMBX) >> BP_ROMC_ROMPATCH4A_THUMBX)
+#define BG_ROMC_ROMPATCH4A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH4A_THUMBX) >> BP_ROMC_ROMPATCH4A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH4A_THUMBX.
-#define BF_ROMC_ROMPATCH4A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH4A_THUMBX) & BM_ROMC_ROMPATCH4A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH4A_THUMBX.
-#define BF_ROMC_ROMPATCH4A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH4A_THUMBX) & BM_ROMC_ROMPATCH4A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH4A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH4A_THUMBX) & BM_ROMC_ROMPATCH4A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1332,20 +1307,19 @@ typedef union _hw_romc_rompatch4a
 #define BM_ROMC_ROMPATCH4A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH4A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH4A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH4A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH4A_ADDRX) >> BP_ROMC_ROMPATCH4A_ADDRX)
+#define BG_ROMC_ROMPATCH4A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH4A_ADDRX) >> BP_ROMC_ROMPATCH4A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH4A_ADDRX.
-#define BF_ROMC_ROMPATCH4A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH4A_ADDRX) & BM_ROMC_ROMPATCH4A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH4A_ADDRX.
-#define BF_ROMC_ROMPATCH4A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH4A_ADDRX) & BM_ROMC_ROMPATCH4A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH4A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH4A_ADDRX) & BM_ROMC_ROMPATCH4A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH4A_ADDRX(v)   (HW_ROMC_ROMPATCH4A_WR((HW_ROMC_ROMPATCH4A_RD() & ~BM_ROMC_ROMPATCH4A_ADDRX) | BF_ROMC_ROMPATCH4A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH5A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1406,15 +1380,10 @@ typedef union _hw_romc_rompatch5a
 #define BM_ROMC_ROMPATCH5A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH5A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH5A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH5A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH5A_THUMBX) >> BP_ROMC_ROMPATCH5A_THUMBX)
+#define BG_ROMC_ROMPATCH5A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH5A_THUMBX) >> BP_ROMC_ROMPATCH5A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH5A_THUMBX.
-#define BF_ROMC_ROMPATCH5A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH5A_THUMBX) & BM_ROMC_ROMPATCH5A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH5A_THUMBX.
-#define BF_ROMC_ROMPATCH5A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH5A_THUMBX) & BM_ROMC_ROMPATCH5A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH5A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH5A_THUMBX) & BM_ROMC_ROMPATCH5A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1433,20 +1402,19 @@ typedef union _hw_romc_rompatch5a
 #define BM_ROMC_ROMPATCH5A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH5A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH5A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH5A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH5A_ADDRX) >> BP_ROMC_ROMPATCH5A_ADDRX)
+#define BG_ROMC_ROMPATCH5A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH5A_ADDRX) >> BP_ROMC_ROMPATCH5A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH5A_ADDRX.
-#define BF_ROMC_ROMPATCH5A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH5A_ADDRX) & BM_ROMC_ROMPATCH5A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH5A_ADDRX.
-#define BF_ROMC_ROMPATCH5A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH5A_ADDRX) & BM_ROMC_ROMPATCH5A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH5A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH5A_ADDRX) & BM_ROMC_ROMPATCH5A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH5A_ADDRX(v)   (HW_ROMC_ROMPATCH5A_WR((HW_ROMC_ROMPATCH5A_RD() & ~BM_ROMC_ROMPATCH5A_ADDRX) | BF_ROMC_ROMPATCH5A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH6A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1507,15 +1475,10 @@ typedef union _hw_romc_rompatch6a
 #define BM_ROMC_ROMPATCH6A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH6A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH6A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH6A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH6A_THUMBX) >> BP_ROMC_ROMPATCH6A_THUMBX)
+#define BG_ROMC_ROMPATCH6A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH6A_THUMBX) >> BP_ROMC_ROMPATCH6A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH6A_THUMBX.
-#define BF_ROMC_ROMPATCH6A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH6A_THUMBX) & BM_ROMC_ROMPATCH6A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH6A_THUMBX.
-#define BF_ROMC_ROMPATCH6A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH6A_THUMBX) & BM_ROMC_ROMPATCH6A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH6A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH6A_THUMBX) & BM_ROMC_ROMPATCH6A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1534,20 +1497,19 @@ typedef union _hw_romc_rompatch6a
 #define BM_ROMC_ROMPATCH6A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH6A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH6A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH6A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH6A_ADDRX) >> BP_ROMC_ROMPATCH6A_ADDRX)
+#define BG_ROMC_ROMPATCH6A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH6A_ADDRX) >> BP_ROMC_ROMPATCH6A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH6A_ADDRX.
-#define BF_ROMC_ROMPATCH6A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH6A_ADDRX) & BM_ROMC_ROMPATCH6A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH6A_ADDRX.
-#define BF_ROMC_ROMPATCH6A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH6A_ADDRX) & BM_ROMC_ROMPATCH6A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH6A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH6A_ADDRX) & BM_ROMC_ROMPATCH6A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH6A_ADDRX(v)   (HW_ROMC_ROMPATCH6A_WR((HW_ROMC_ROMPATCH6A_RD() & ~BM_ROMC_ROMPATCH6A_ADDRX) | BF_ROMC_ROMPATCH6A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH7A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1608,15 +1570,10 @@ typedef union _hw_romc_rompatch7a
 #define BM_ROMC_ROMPATCH7A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH7A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH7A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH7A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH7A_THUMBX) >> BP_ROMC_ROMPATCH7A_THUMBX)
+#define BG_ROMC_ROMPATCH7A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH7A_THUMBX) >> BP_ROMC_ROMPATCH7A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH7A_THUMBX.
-#define BF_ROMC_ROMPATCH7A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH7A_THUMBX) & BM_ROMC_ROMPATCH7A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH7A_THUMBX.
-#define BF_ROMC_ROMPATCH7A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH7A_THUMBX) & BM_ROMC_ROMPATCH7A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH7A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH7A_THUMBX) & BM_ROMC_ROMPATCH7A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1635,20 +1592,19 @@ typedef union _hw_romc_rompatch7a
 #define BM_ROMC_ROMPATCH7A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH7A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH7A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH7A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH7A_ADDRX) >> BP_ROMC_ROMPATCH7A_ADDRX)
+#define BG_ROMC_ROMPATCH7A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH7A_ADDRX) >> BP_ROMC_ROMPATCH7A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH7A_ADDRX.
-#define BF_ROMC_ROMPATCH7A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH7A_ADDRX) & BM_ROMC_ROMPATCH7A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH7A_ADDRX.
-#define BF_ROMC_ROMPATCH7A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH7A_ADDRX) & BM_ROMC_ROMPATCH7A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH7A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH7A_ADDRX) & BM_ROMC_ROMPATCH7A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH7A_ADDRX(v)   (HW_ROMC_ROMPATCH7A_WR((HW_ROMC_ROMPATCH7A_RD() & ~BM_ROMC_ROMPATCH7A_ADDRX) | BF_ROMC_ROMPATCH7A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH8A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1709,15 +1665,10 @@ typedef union _hw_romc_rompatch8a
 #define BM_ROMC_ROMPATCH8A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH8A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH8A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH8A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH8A_THUMBX) >> BP_ROMC_ROMPATCH8A_THUMBX)
+#define BG_ROMC_ROMPATCH8A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH8A_THUMBX) >> BP_ROMC_ROMPATCH8A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH8A_THUMBX.
-#define BF_ROMC_ROMPATCH8A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH8A_THUMBX) & BM_ROMC_ROMPATCH8A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH8A_THUMBX.
-#define BF_ROMC_ROMPATCH8A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH8A_THUMBX) & BM_ROMC_ROMPATCH8A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH8A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH8A_THUMBX) & BM_ROMC_ROMPATCH8A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1736,20 +1687,19 @@ typedef union _hw_romc_rompatch8a
 #define BM_ROMC_ROMPATCH8A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH8A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH8A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH8A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH8A_ADDRX) >> BP_ROMC_ROMPATCH8A_ADDRX)
+#define BG_ROMC_ROMPATCH8A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH8A_ADDRX) >> BP_ROMC_ROMPATCH8A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH8A_ADDRX.
-#define BF_ROMC_ROMPATCH8A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH8A_ADDRX) & BM_ROMC_ROMPATCH8A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH8A_ADDRX.
-#define BF_ROMC_ROMPATCH8A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH8A_ADDRX) & BM_ROMC_ROMPATCH8A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH8A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH8A_ADDRX) & BM_ROMC_ROMPATCH8A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH8A_ADDRX(v)   (HW_ROMC_ROMPATCH8A_WR((HW_ROMC_ROMPATCH8A_RD() & ~BM_ROMC_ROMPATCH8A_ADDRX) | BF_ROMC_ROMPATCH8A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH9A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1810,15 +1760,10 @@ typedef union _hw_romc_rompatch9a
 #define BM_ROMC_ROMPATCH9A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH9A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH9A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH9A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH9A_THUMBX) >> BP_ROMC_ROMPATCH9A_THUMBX)
+#define BG_ROMC_ROMPATCH9A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH9A_THUMBX) >> BP_ROMC_ROMPATCH9A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH9A_THUMBX.
-#define BF_ROMC_ROMPATCH9A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH9A_THUMBX) & BM_ROMC_ROMPATCH9A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH9A_THUMBX.
-#define BF_ROMC_ROMPATCH9A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH9A_THUMBX) & BM_ROMC_ROMPATCH9A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH9A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH9A_THUMBX) & BM_ROMC_ROMPATCH9A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1837,20 +1782,19 @@ typedef union _hw_romc_rompatch9a
 #define BM_ROMC_ROMPATCH9A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH9A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH9A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH9A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH9A_ADDRX) >> BP_ROMC_ROMPATCH9A_ADDRX)
+#define BG_ROMC_ROMPATCH9A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH9A_ADDRX) >> BP_ROMC_ROMPATCH9A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH9A_ADDRX.
-#define BF_ROMC_ROMPATCH9A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH9A_ADDRX) & BM_ROMC_ROMPATCH9A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH9A_ADDRX.
-#define BF_ROMC_ROMPATCH9A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH9A_ADDRX) & BM_ROMC_ROMPATCH9A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH9A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH9A_ADDRX) & BM_ROMC_ROMPATCH9A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH9A_ADDRX(v)   (HW_ROMC_ROMPATCH9A_WR((HW_ROMC_ROMPATCH9A_RD() & ~BM_ROMC_ROMPATCH9A_ADDRX) | BF_ROMC_ROMPATCH9A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH10A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1911,15 +1855,10 @@ typedef union _hw_romc_rompatch10a
 #define BM_ROMC_ROMPATCH10A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH10A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH10A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH10A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH10A_THUMBX) >> BP_ROMC_ROMPATCH10A_THUMBX)
+#define BG_ROMC_ROMPATCH10A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH10A_THUMBX) >> BP_ROMC_ROMPATCH10A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH10A_THUMBX.
-#define BF_ROMC_ROMPATCH10A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH10A_THUMBX) & BM_ROMC_ROMPATCH10A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH10A_THUMBX.
-#define BF_ROMC_ROMPATCH10A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH10A_THUMBX) & BM_ROMC_ROMPATCH10A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH10A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH10A_THUMBX) & BM_ROMC_ROMPATCH10A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -1938,20 +1877,19 @@ typedef union _hw_romc_rompatch10a
 #define BM_ROMC_ROMPATCH10A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH10A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH10A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH10A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH10A_ADDRX) >> BP_ROMC_ROMPATCH10A_ADDRX)
+#define BG_ROMC_ROMPATCH10A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH10A_ADDRX) >> BP_ROMC_ROMPATCH10A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH10A_ADDRX.
-#define BF_ROMC_ROMPATCH10A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH10A_ADDRX) & BM_ROMC_ROMPATCH10A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH10A_ADDRX.
-#define BF_ROMC_ROMPATCH10A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH10A_ADDRX) & BM_ROMC_ROMPATCH10A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH10A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH10A_ADDRX) & BM_ROMC_ROMPATCH10A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH10A_ADDRX(v)   (HW_ROMC_ROMPATCH10A_WR((HW_ROMC_ROMPATCH10A_RD() & ~BM_ROMC_ROMPATCH10A_ADDRX) | BF_ROMC_ROMPATCH10A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH11A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2012,15 +1950,10 @@ typedef union _hw_romc_rompatch11a
 #define BM_ROMC_ROMPATCH11A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH11A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH11A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH11A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH11A_THUMBX) >> BP_ROMC_ROMPATCH11A_THUMBX)
+#define BG_ROMC_ROMPATCH11A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH11A_THUMBX) >> BP_ROMC_ROMPATCH11A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH11A_THUMBX.
-#define BF_ROMC_ROMPATCH11A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH11A_THUMBX) & BM_ROMC_ROMPATCH11A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH11A_THUMBX.
-#define BF_ROMC_ROMPATCH11A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH11A_THUMBX) & BM_ROMC_ROMPATCH11A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH11A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH11A_THUMBX) & BM_ROMC_ROMPATCH11A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -2039,20 +1972,19 @@ typedef union _hw_romc_rompatch11a
 #define BM_ROMC_ROMPATCH11A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH11A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH11A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH11A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH11A_ADDRX) >> BP_ROMC_ROMPATCH11A_ADDRX)
+#define BG_ROMC_ROMPATCH11A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH11A_ADDRX) >> BP_ROMC_ROMPATCH11A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH11A_ADDRX.
-#define BF_ROMC_ROMPATCH11A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH11A_ADDRX) & BM_ROMC_ROMPATCH11A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH11A_ADDRX.
-#define BF_ROMC_ROMPATCH11A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH11A_ADDRX) & BM_ROMC_ROMPATCH11A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH11A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH11A_ADDRX) & BM_ROMC_ROMPATCH11A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH11A_ADDRX(v)   (HW_ROMC_ROMPATCH11A_WR((HW_ROMC_ROMPATCH11A_RD() & ~BM_ROMC_ROMPATCH11A_ADDRX) | BF_ROMC_ROMPATCH11A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH12A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2113,15 +2045,10 @@ typedef union _hw_romc_rompatch12a
 #define BM_ROMC_ROMPATCH12A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH12A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH12A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH12A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH12A_THUMBX) >> BP_ROMC_ROMPATCH12A_THUMBX)
+#define BG_ROMC_ROMPATCH12A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH12A_THUMBX) >> BP_ROMC_ROMPATCH12A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH12A_THUMBX.
-#define BF_ROMC_ROMPATCH12A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH12A_THUMBX) & BM_ROMC_ROMPATCH12A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH12A_THUMBX.
-#define BF_ROMC_ROMPATCH12A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH12A_THUMBX) & BM_ROMC_ROMPATCH12A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH12A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH12A_THUMBX) & BM_ROMC_ROMPATCH12A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -2140,20 +2067,19 @@ typedef union _hw_romc_rompatch12a
 #define BM_ROMC_ROMPATCH12A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH12A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH12A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH12A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH12A_ADDRX) >> BP_ROMC_ROMPATCH12A_ADDRX)
+#define BG_ROMC_ROMPATCH12A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH12A_ADDRX) >> BP_ROMC_ROMPATCH12A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH12A_ADDRX.
-#define BF_ROMC_ROMPATCH12A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH12A_ADDRX) & BM_ROMC_ROMPATCH12A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH12A_ADDRX.
-#define BF_ROMC_ROMPATCH12A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH12A_ADDRX) & BM_ROMC_ROMPATCH12A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH12A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH12A_ADDRX) & BM_ROMC_ROMPATCH12A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH12A_ADDRX(v)   (HW_ROMC_ROMPATCH12A_WR((HW_ROMC_ROMPATCH12A_RD() & ~BM_ROMC_ROMPATCH12A_ADDRX) | BF_ROMC_ROMPATCH12A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH13A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2214,15 +2140,10 @@ typedef union _hw_romc_rompatch13a
 #define BM_ROMC_ROMPATCH13A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH13A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH13A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH13A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH13A_THUMBX) >> BP_ROMC_ROMPATCH13A_THUMBX)
+#define BG_ROMC_ROMPATCH13A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH13A_THUMBX) >> BP_ROMC_ROMPATCH13A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH13A_THUMBX.
-#define BF_ROMC_ROMPATCH13A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH13A_THUMBX) & BM_ROMC_ROMPATCH13A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH13A_THUMBX.
-#define BF_ROMC_ROMPATCH13A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH13A_THUMBX) & BM_ROMC_ROMPATCH13A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH13A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH13A_THUMBX) & BM_ROMC_ROMPATCH13A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -2241,20 +2162,19 @@ typedef union _hw_romc_rompatch13a
 #define BM_ROMC_ROMPATCH13A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH13A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH13A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH13A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH13A_ADDRX) >> BP_ROMC_ROMPATCH13A_ADDRX)
+#define BG_ROMC_ROMPATCH13A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH13A_ADDRX) >> BP_ROMC_ROMPATCH13A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH13A_ADDRX.
-#define BF_ROMC_ROMPATCH13A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH13A_ADDRX) & BM_ROMC_ROMPATCH13A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH13A_ADDRX.
-#define BF_ROMC_ROMPATCH13A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH13A_ADDRX) & BM_ROMC_ROMPATCH13A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH13A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH13A_ADDRX) & BM_ROMC_ROMPATCH13A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH13A_ADDRX(v)   (HW_ROMC_ROMPATCH13A_WR((HW_ROMC_ROMPATCH13A_RD() & ~BM_ROMC_ROMPATCH13A_ADDRX) | BF_ROMC_ROMPATCH13A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH14A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2315,15 +2235,10 @@ typedef union _hw_romc_rompatch14a
 #define BM_ROMC_ROMPATCH14A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH14A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH14A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH14A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH14A_THUMBX) >> BP_ROMC_ROMPATCH14A_THUMBX)
+#define BG_ROMC_ROMPATCH14A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH14A_THUMBX) >> BP_ROMC_ROMPATCH14A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH14A_THUMBX.
-#define BF_ROMC_ROMPATCH14A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH14A_THUMBX) & BM_ROMC_ROMPATCH14A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH14A_THUMBX.
-#define BF_ROMC_ROMPATCH14A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH14A_THUMBX) & BM_ROMC_ROMPATCH14A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH14A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH14A_THUMBX) & BM_ROMC_ROMPATCH14A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -2342,20 +2257,19 @@ typedef union _hw_romc_rompatch14a
 #define BM_ROMC_ROMPATCH14A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH14A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH14A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH14A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH14A_ADDRX) >> BP_ROMC_ROMPATCH14A_ADDRX)
+#define BG_ROMC_ROMPATCH14A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH14A_ADDRX) >> BP_ROMC_ROMPATCH14A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH14A_ADDRX.
-#define BF_ROMC_ROMPATCH14A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH14A_ADDRX) & BM_ROMC_ROMPATCH14A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH14A_ADDRX.
-#define BF_ROMC_ROMPATCH14A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH14A_ADDRX) & BM_ROMC_ROMPATCH14A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH14A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH14A_ADDRX) & BM_ROMC_ROMPATCH14A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH14A_ADDRX(v)   (HW_ROMC_ROMPATCH14A_WR((HW_ROMC_ROMPATCH14A_RD() & ~BM_ROMC_ROMPATCH14A_ADDRX) | BF_ROMC_ROMPATCH14A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCH15A - ROMC Address Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2416,15 +2330,10 @@ typedef union _hw_romc_rompatch15a
 #define BM_ROMC_ROMPATCH15A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH15A_THUMBX.
 
 //! @brief Get value of ROMC_ROMPATCH15A_THUMBX from a register value.
-#define BG_ROMC_ROMPATCH15A_THUMBX(r)   (((r) & BM_ROMC_ROMPATCH15A_THUMBX) >> BP_ROMC_ROMPATCH15A_THUMBX)
+#define BG_ROMC_ROMPATCH15A_THUMBX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH15A_THUMBX) >> BP_ROMC_ROMPATCH15A_THUMBX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH15A_THUMBX.
-#define BF_ROMC_ROMPATCH15A_THUMBX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH15A_THUMBX) & BM_ROMC_ROMPATCH15A_THUMBX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH15A_THUMBX.
-#define BF_ROMC_ROMPATCH15A_THUMBX(v)   (((v) << BP_ROMC_ROMPATCH15A_THUMBX) & BM_ROMC_ROMPATCH15A_THUMBX)
-#endif
+#define BF_ROMC_ROMPATCH15A_THUMBX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH15A_THUMBX) & BM_ROMC_ROMPATCH15A_THUMBX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THUMBX field to a new value.
@@ -2443,20 +2352,19 @@ typedef union _hw_romc_rompatch15a
 #define BM_ROMC_ROMPATCH15A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH15A_ADDRX.
 
 //! @brief Get value of ROMC_ROMPATCH15A_ADDRX from a register value.
-#define BG_ROMC_ROMPATCH15A_ADDRX(r)   (((r) & BM_ROMC_ROMPATCH15A_ADDRX) >> BP_ROMC_ROMPATCH15A_ADDRX)
+#define BG_ROMC_ROMPATCH15A_ADDRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCH15A_ADDRX) >> BP_ROMC_ROMPATCH15A_ADDRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCH15A_ADDRX.
-#define BF_ROMC_ROMPATCH15A_ADDRX(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCH15A_ADDRX) & BM_ROMC_ROMPATCH15A_ADDRX)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCH15A_ADDRX.
-#define BF_ROMC_ROMPATCH15A_ADDRX(v)   (((v) << BP_ROMC_ROMPATCH15A_ADDRX) & BM_ROMC_ROMPATCH15A_ADDRX)
-#endif
+#define BF_ROMC_ROMPATCH15A_ADDRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCH15A_ADDRX) & BM_ROMC_ROMPATCH15A_ADDRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH15A_ADDRX(v)   (HW_ROMC_ROMPATCH15A_WR((HW_ROMC_ROMPATCH15A_RD() & ~BM_ROMC_ROMPATCH15A_ADDRX) | BF_ROMC_ROMPATCH15A_ADDRX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ROMC_ROMPATCHSR - ROMC Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2514,7 +2422,7 @@ typedef union _hw_romc_rompatchsr
 #define BM_ROMC_ROMPATCHSR_SOURCE      (0x0000003f)  //!< Bit mask for ROMC_ROMPATCHSR_SOURCE.
 
 //! @brief Get value of ROMC_ROMPATCHSR_SOURCE from a register value.
-#define BG_ROMC_ROMPATCHSR_SOURCE(r)   (((r) & BM_ROMC_ROMPATCHSR_SOURCE) >> BP_ROMC_ROMPATCHSR_SOURCE)
+#define BG_ROMC_ROMPATCHSR_SOURCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHSR_SOURCE) >> BP_ROMC_ROMPATCHSR_SOURCE)
 
 
 /* --- Register HW_ROMC_ROMPATCHSR, field SW[17] (W1C)
@@ -2531,15 +2439,10 @@ typedef union _hw_romc_rompatchsr
 #define BM_ROMC_ROMPATCHSR_SW      (0x00020000)  //!< Bit mask for ROMC_ROMPATCHSR_SW.
 
 //! @brief Get value of ROMC_ROMPATCHSR_SW from a register value.
-#define BG_ROMC_ROMPATCHSR_SW(r)   (((r) & BM_ROMC_ROMPATCHSR_SW) >> BP_ROMC_ROMPATCHSR_SW)
+#define BG_ROMC_ROMPATCHSR_SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHSR_SW) >> BP_ROMC_ROMPATCHSR_SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ROMC_ROMPATCHSR_SW.
-#define BF_ROMC_ROMPATCHSR_SW(v)   ((((reg32_t) v) << BP_ROMC_ROMPATCHSR_SW) & BM_ROMC_ROMPATCHSR_SW)
-#else
-//! @brief Format value for bitfield ROMC_ROMPATCHSR_SW.
-#define BF_ROMC_ROMPATCHSR_SW(v)   (((v) << BP_ROMC_ROMPATCHSR_SW) & BM_ROMC_ROMPATCHSR_SW)
-#endif
+#define BF_ROMC_ROMPATCHSR_SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ROMC_ROMPATCHSR_SW) & BM_ROMC_ROMPATCHSR_SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW field to a new value.

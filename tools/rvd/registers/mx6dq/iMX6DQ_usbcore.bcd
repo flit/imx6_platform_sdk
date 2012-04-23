@@ -372,15 +372,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBC_UOG_TXFILLTUNING_TXFIFOT3={\
         gui_name="TXFIFOTHRES":position=16:size=6:read_only=false\
       }\
-    }:Register.G_USBC_UOG_IC_USB={\
-      gui_name="UOG_IC_USB":start=0x0218416c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_USBC_UOG_IC_USB_IC_VDD1={\
-        gui_name="IC_VDD1":position=0:size=3:read_only=false\
-      }:\
-        bit_fields.B_USBC_UOG_IC_USB_IC1={\
-        gui_name="IC1":position=3:size=1:read_only=false\
-      }\
     }:Register.G_USBC_UOG_ENDPTNAK={\
       gui_name="UOG_ENDPTNAK":start=0x02184178:length=4:\
       read_only=false:write_only=false:\
@@ -399,11 +390,17 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBC_UOG_ENDPTNAKEN_EPTNE={\
         gui_name="EPTNE":position=16:size=8:read_only=false\
       }\
+    }:Register.G_USBC_UOG_CONFIGFLAG={\
+      gui_name="UOG_CONFIGFLAG":start=0x02184180:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_USBC_UOG_CONFIGFLAG_CF={\
+        gui_name="CF":position=0:size=1:read_only=true\
+      }\
     }:Register.G_USBC_UOG_PORTSC1={\
       gui_name="UOG_PORTSC1":start=0x02184184:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBC_UOG_PORTSC1_CCS={\
-        gui_name="CCS":position=0:size=1:read_only=false\
+        gui_name="CCS":position=0:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_PORTSC1_CSC={\
         gui_name="CSC":position=1:size=1:read_only=false\
@@ -415,7 +412,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PEC":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UOG_PORTSC1_OCA={\
-        gui_name="OCA":position=4:size=1:read_only=false\
+        gui_name="OCA":position=4:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_PORTSC1_OCC={\
         gui_name="OCC":position=5:size=1:read_only=false\
@@ -430,7 +427,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PR":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UOG_PORTSC1_HSP={\
-        gui_name="HSP":position=9:size=1:read_only=false\
+        gui_name="HSP":position=9:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_PORTSC1_LS={\
         gui_name="LS":position=10:size=2:read_only=false\
@@ -496,25 +493,25 @@ Advanced_Information.Cortex-A9={\
         gui_name="IDPU":position=5:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_ID={\
-        gui_name="ID":position=8:size=1:read_only=false\
+        gui_name="ID":position=8:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_AVV={\
-        gui_name="AVV":position=9:size=1:read_only=false\
+        gui_name="AVV":position=9:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_ASV={\
-        gui_name="ASV":position=10:size=1:read_only=false\
+        gui_name="ASV":position=10:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_BSV={\
-        gui_name="BSV":position=11:size=1:read_only=false\
+        gui_name="BSV":position=11:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_BSE={\
-        gui_name="BSE":position=12:size=1:read_only=false\
+        gui_name="BSE":position=12:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC__1MST={\
-        gui_name="_1MST":position=13:size=1:read_only=false\
+        gui_name="_1MST":position=13:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_DPS={\
-        gui_name="DPS":position=14:size=1:read_only=false\
+        gui_name="DPS":position=14:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UOG_OTGSC_IDIS={\
         gui_name="IDIS":position=16:size=1:read_only=false\
@@ -1242,20 +1239,17 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBC_UH1_TXFILLTUNING_TXFIFOT7={\
         gui_name="TXFIFOTHRES":position=16:size=6:read_only=false\
       }\
-    }:Register.G_USBC_UH1_IC_USB={\
-      gui_name="UH1_IC_USB":start=0x0218436c:length=4:\
+    }:Register.G_USBC_UH1_CONFIGFLAG={\
+      gui_name="UH1_CONFIGFLAG":start=0x02184380:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBC_UH1_IC_USB_IC_VDD1={\
-        gui_name="IC_VDD1":position=0:size=3:read_only=false\
-      }:\
-        bit_fields.B_USBC_UH1_IC_USB_IC1={\
-        gui_name="IC1":position=3:size=1:read_only=false\
+        bit_fields.B_USBC_UH1_CONFIGFLAG_CF={\
+        gui_name="CF":position=0:size=1:read_only=true\
       }\
     }:Register.G_USBC_UH1_PORTSC1={\
       gui_name="UH1_PORTSC1":start=0x02184384:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBC_UH1_PORTSC1_CCS={\
-        gui_name="CCS":position=0:size=1:read_only=false\
+        gui_name="CCS":position=0:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH1_PORTSC1_CSC={\
         gui_name="CSC":position=1:size=1:read_only=false\
@@ -1267,7 +1261,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PEC":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH1_PORTSC1_OCA={\
-        gui_name="OCA":position=4:size=1:read_only=false\
+        gui_name="OCA":position=4:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH1_PORTSC1_OCC={\
         gui_name="OCC":position=5:size=1:read_only=false\
@@ -1282,7 +1276,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PR":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH1_PORTSC1_HSP={\
-        gui_name="HSP":position=9:size=1:read_only=false\
+        gui_name="HSP":position=9:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH1_PORTSC1_LS={\
         gui_name="LS":position=10:size=2:read_only=false\
@@ -1677,20 +1671,17 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBC_UH2_TXFILLTUNING_TXFIFO10={\
         gui_name="TXFIFOTHRES":position=16:size=6:read_only=false\
       }\
-    }:Register.G_USBC_UH2_IC_USB={\
-      gui_name="UH2_IC_USB":start=0x0218456c:length=4:\
+    }:Register.G_USBC_UH2_CONFIGFLAG={\
+      gui_name="UH2_CONFIGFLAG":start=0x02184580:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBC_UH2_IC_USB_IC_VDD1={\
-        gui_name="IC_VDD1":position=0:size=3:read_only=false\
-      }:\
-        bit_fields.B_USBC_UH2_IC_USB_IC1={\
-        gui_name="IC1":position=3:size=1:read_only=false\
+        bit_fields.B_USBC_UH2_CONFIGFLAG_CF={\
+        gui_name="CF":position=0:size=1:read_only=true\
       }\
     }:Register.G_USBC_UH2_PORTSC1={\
       gui_name="UH2_PORTSC1":start=0x02184584:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBC_UH2_PORTSC1_CCS={\
-        gui_name="CCS":position=0:size=1:read_only=false\
+        gui_name="CCS":position=0:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH2_PORTSC1_CSC={\
         gui_name="CSC":position=1:size=1:read_only=false\
@@ -1702,7 +1693,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PEC":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH2_PORTSC1_OCA={\
-        gui_name="OCA":position=4:size=1:read_only=false\
+        gui_name="OCA":position=4:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH2_PORTSC1_OCC={\
         gui_name="OCC":position=5:size=1:read_only=false\
@@ -1717,7 +1708,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PR":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH2_PORTSC1_HSP={\
-        gui_name="HSP":position=9:size=1:read_only=false\
+        gui_name="HSP":position=9:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH2_PORTSC1_LS={\
         gui_name="LS":position=10:size=2:read_only=false\
@@ -2112,20 +2103,17 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBC_UH3_TXFILLTUNING_TXFIFO13={\
         gui_name="TXFIFOTHRES":position=16:size=6:read_only=false\
       }\
-    }:Register.G_USBC_UH3_IC_USB={\
-      gui_name="UH3_IC_USB":start=0x0218476c:length=4:\
+    }:Register.G_USBC_UH3_CONFIGFLAG={\
+      gui_name="UH3_CONFIGFLAG":start=0x02184780:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBC_UH3_IC_USB_IC_VDD1={\
-        gui_name="IC_VDD1":position=0:size=3:read_only=false\
-      }:\
-        bit_fields.B_USBC_UH3_IC_USB_IC1={\
-        gui_name="IC1":position=3:size=1:read_only=false\
+        bit_fields.B_USBC_UH3_CONFIGFLAG_CF={\
+        gui_name="CF":position=0:size=1:read_only=true\
       }\
     }:Register.G_USBC_UH3_PORTSC1={\
       gui_name="UH3_PORTSC1":start=0x02184784:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBC_UH3_PORTSC1_CCS={\
-        gui_name="CCS":position=0:size=1:read_only=false\
+        gui_name="CCS":position=0:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH3_PORTSC1_CSC={\
         gui_name="CSC":position=1:size=1:read_only=false\
@@ -2137,7 +2125,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PEC":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH3_PORTSC1_OCA={\
-        gui_name="OCA":position=4:size=1:read_only=false\
+        gui_name="OCA":position=4:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH3_PORTSC1_OCC={\
         gui_name="OCC":position=5:size=1:read_only=false\
@@ -2152,7 +2140,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="PR":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_USBC_UH3_PORTSC1_HSP={\
-        gui_name="HSP":position=9:size=1:read_only=false\
+        gui_name="HSP":position=9:size=1:read_only=true\
       }:\
         bit_fields.B_USBC_UH3_PORTSC1_LS={\
         gui_name="LS":position=10:size=2:read_only=false\
@@ -2387,11 +2375,6 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UOG_TXFILLTUNING_TXFIFOT3":\
     line="$$":\
     line="$+":\
-    line="=G_USBC_UOG_IC_USB":\
-    line="B_USBC_UOG_IC_USB_IC_VDD1":\
-    line="B_USBC_UOG_IC_USB_IC1":\
-    line="$$":\
-    line="$+":\
     line="=G_USBC_UOG_ENDPTNAK":\
     line="B_USBC_UOG_ENDPTNAK_EPRN":\
     line="B_USBC_UOG_ENDPTNAK_EPTN":\
@@ -2400,6 +2383,10 @@ Advanced_Information.Cortex-A9={\
     line="=G_USBC_UOG_ENDPTNAKEN":\
     line="B_USBC_UOG_ENDPTNAKEN_EPRNE":\
     line="B_USBC_UOG_ENDPTNAKEN_EPTNE":\
+    line="$$":\
+    line="$+":\
+    line="=G_USBC_UOG_CONFIGFLAG":\
+    line="B_USBC_UOG_CONFIGFLAG_CF":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UOG_PORTSC1":\
@@ -2759,9 +2746,8 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UH1_TXFILLTUNING_TXFIFOT7":\
     line="$$":\
     line="$+":\
-    line="=G_USBC_UH1_IC_USB":\
-    line="B_USBC_UH1_IC_USB_IC_VDD1":\
-    line="B_USBC_UH1_IC_USB_IC1":\
+    line="=G_USBC_UH1_CONFIGFLAG":\
+    line="B_USBC_UH1_CONFIGFLAG_CF":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UH1_PORTSC1":\
@@ -2954,9 +2940,8 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UH2_TXFILLTUNING_TXFIFO10":\
     line="$$":\
     line="$+":\
-    line="=G_USBC_UH2_IC_USB":\
-    line="B_USBC_UH2_IC_USB_IC_VDD1":\
-    line="B_USBC_UH2_IC_USB_IC1":\
+    line="=G_USBC_UH2_CONFIGFLAG":\
+    line="B_USBC_UH2_CONFIGFLAG_CF":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UH2_PORTSC1":\
@@ -3149,9 +3134,8 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UH3_TXFILLTUNING_TXFIFO13":\
     line="$$":\
     line="$+":\
-    line="=G_USBC_UH3_IC_USB":\
-    line="B_USBC_UH3_IC_USB_IC_VDD1":\
-    line="B_USBC_UH3_IC_USB_IC1":\
+    line="=G_USBC_UH3_CONFIGFLAG":\
+    line="B_USBC_UH3_CONFIGFLAG_CF":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UH3_PORTSC1":\

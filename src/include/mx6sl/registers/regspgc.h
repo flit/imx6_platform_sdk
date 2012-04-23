@@ -29,6 +29,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_PGC_CTRL - PGC Control REgister
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_PGC_CTRL - PGC Control REgister (RW)
@@ -80,21 +95,20 @@ typedef union _hw_pgc_ctrl
 #define BM_PGC_CTRL_PCR      (0x00000001)  //!< Bit mask for PGC_CTRL_PCR.
 
 //! @brief Get value of PGC_CTRL_PCR from a register value.
-#define BG_PGC_CTRL_PCR(r)   (((r) & BM_PGC_CTRL_PCR) >> BP_PGC_CTRL_PCR)
+#define BG_PGC_CTRL_PCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_CTRL_PCR) >> BP_PGC_CTRL_PCR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_CTRL_PCR.
-#define BF_PGC_CTRL_PCR(v)   ((((reg32_t) v) << BP_PGC_CTRL_PCR) & BM_PGC_CTRL_PCR)
-#else
-//! @brief Format value for bitfield PGC_CTRL_PCR.
-#define BF_PGC_CTRL_PCR(v)   (((v) << BP_PGC_CTRL_PCR) & BM_PGC_CTRL_PCR)
-#endif
+#define BF_PGC_CTRL_PCR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_CTRL_PCR) & BM_PGC_CTRL_PCR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PCR field to a new value.
 #define BW_PGC_CTRL_PCR(v)   (HW_PGC_CTRL_WR((HW_PGC_CTRL_RD() & ~BM_PGC_CTRL_PCR) | BF_PGC_CTRL_PCR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_PGC_PUPSCR - Power Up Sequence Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -146,15 +160,10 @@ typedef union _hw_pgc_pupscr
 #define BM_PGC_PUPSCR_SW      (0x0000003f)  //!< Bit mask for PGC_PUPSCR_SW.
 
 //! @brief Get value of PGC_PUPSCR_SW from a register value.
-#define BG_PGC_PUPSCR_SW(r)   (((r) & BM_PGC_PUPSCR_SW) >> BP_PGC_PUPSCR_SW)
+#define BG_PGC_PUPSCR_SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_PUPSCR_SW) >> BP_PGC_PUPSCR_SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_PUPSCR_SW.
-#define BF_PGC_PUPSCR_SW(v)   ((((reg32_t) v) << BP_PGC_PUPSCR_SW) & BM_PGC_PUPSCR_SW)
-#else
-//! @brief Format value for bitfield PGC_PUPSCR_SW.
-#define BF_PGC_PUPSCR_SW(v)   (((v) << BP_PGC_PUPSCR_SW) & BM_PGC_PUPSCR_SW)
-#endif
+#define BF_PGC_PUPSCR_SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_PUPSCR_SW) & BM_PGC_PUPSCR_SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW field to a new value.
@@ -171,20 +180,19 @@ typedef union _hw_pgc_pupscr
 #define BM_PGC_PUPSCR_SW2ISO      (0x00003f00)  //!< Bit mask for PGC_PUPSCR_SW2ISO.
 
 //! @brief Get value of PGC_PUPSCR_SW2ISO from a register value.
-#define BG_PGC_PUPSCR_SW2ISO(r)   (((r) & BM_PGC_PUPSCR_SW2ISO) >> BP_PGC_PUPSCR_SW2ISO)
+#define BG_PGC_PUPSCR_SW2ISO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_PUPSCR_SW2ISO) >> BP_PGC_PUPSCR_SW2ISO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_PUPSCR_SW2ISO.
-#define BF_PGC_PUPSCR_SW2ISO(v)   ((((reg32_t) v) << BP_PGC_PUPSCR_SW2ISO) & BM_PGC_PUPSCR_SW2ISO)
-#else
-//! @brief Format value for bitfield PGC_PUPSCR_SW2ISO.
-#define BF_PGC_PUPSCR_SW2ISO(v)   (((v) << BP_PGC_PUPSCR_SW2ISO) & BM_PGC_PUPSCR_SW2ISO)
-#endif
+#define BF_PGC_PUPSCR_SW2ISO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_PUPSCR_SW2ISO) & BM_PGC_PUPSCR_SW2ISO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW2ISO field to a new value.
 #define BW_PGC_PUPSCR_SW2ISO(v)   (HW_PGC_PUPSCR_WR((HW_PGC_PUPSCR_RD() & ~BM_PGC_PUPSCR_SW2ISO) | BF_PGC_PUPSCR_SW2ISO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PGC_PDNSCR - Pull Down Sequence Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -235,15 +243,10 @@ typedef union _hw_pgc_pdnscr
 #define BM_PGC_PDNSCR_ISO      (0x0000003f)  //!< Bit mask for PGC_PDNSCR_ISO.
 
 //! @brief Get value of PGC_PDNSCR_ISO from a register value.
-#define BG_PGC_PDNSCR_ISO(r)   (((r) & BM_PGC_PDNSCR_ISO) >> BP_PGC_PDNSCR_ISO)
+#define BG_PGC_PDNSCR_ISO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_PDNSCR_ISO) >> BP_PGC_PDNSCR_ISO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_PDNSCR_ISO.
-#define BF_PGC_PDNSCR_ISO(v)   ((((reg32_t) v) << BP_PGC_PDNSCR_ISO) & BM_PGC_PDNSCR_ISO)
-#else
-//! @brief Format value for bitfield PGC_PDNSCR_ISO.
-#define BF_PGC_PDNSCR_ISO(v)   (((v) << BP_PGC_PDNSCR_ISO) & BM_PGC_PDNSCR_ISO)
-#endif
+#define BF_PGC_PDNSCR_ISO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_PDNSCR_ISO) & BM_PGC_PDNSCR_ISO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISO field to a new value.
@@ -260,20 +263,19 @@ typedef union _hw_pgc_pdnscr
 #define BM_PGC_PDNSCR_ISO2SW      (0x00003f00)  //!< Bit mask for PGC_PDNSCR_ISO2SW.
 
 //! @brief Get value of PGC_PDNSCR_ISO2SW from a register value.
-#define BG_PGC_PDNSCR_ISO2SW(r)   (((r) & BM_PGC_PDNSCR_ISO2SW) >> BP_PGC_PDNSCR_ISO2SW)
+#define BG_PGC_PDNSCR_ISO2SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_PDNSCR_ISO2SW) >> BP_PGC_PDNSCR_ISO2SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_PDNSCR_ISO2SW.
-#define BF_PGC_PDNSCR_ISO2SW(v)   ((((reg32_t) v) << BP_PGC_PDNSCR_ISO2SW) & BM_PGC_PDNSCR_ISO2SW)
-#else
-//! @brief Format value for bitfield PGC_PDNSCR_ISO2SW.
-#define BF_PGC_PDNSCR_ISO2SW(v)   (((v) << BP_PGC_PDNSCR_ISO2SW) & BM_PGC_PDNSCR_ISO2SW)
-#endif
+#define BF_PGC_PDNSCR_ISO2SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_PDNSCR_ISO2SW) & BM_PGC_PDNSCR_ISO2SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISO2SW field to a new value.
 #define BW_PGC_PDNSCR_ISO2SW(v)   (HW_PGC_PDNSCR_WR((HW_PGC_PDNSCR_RD() & ~BM_PGC_PDNSCR_ISO2SW) | BF_PGC_PDNSCR_ISO2SW(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PGC_SR - Power Gating Controller Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -328,15 +330,10 @@ typedef union _hw_pgc_sr
 #define BM_PGC_SR_PSR      (0x00000001)  //!< Bit mask for PGC_SR_PSR.
 
 //! @brief Get value of PGC_SR_PSR from a register value.
-#define BG_PGC_SR_PSR(r)   (((r) & BM_PGC_SR_PSR) >> BP_PGC_SR_PSR)
+#define BG_PGC_SR_PSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PGC_SR_PSR) >> BP_PGC_SR_PSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PGC_SR_PSR.
-#define BF_PGC_SR_PSR(v)   ((((reg32_t) v) << BP_PGC_SR_PSR) & BM_PGC_SR_PSR)
-#else
-//! @brief Format value for bitfield PGC_SR_PSR.
-#define BF_PGC_SR_PSR(v)   (((v) << BP_PGC_SR_PSR) & BM_PGC_SR_PSR)
-#endif
+#define BF_PGC_SR_PSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PGC_SR_PSR) & BM_PGC_SR_PSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSR field to a new value.

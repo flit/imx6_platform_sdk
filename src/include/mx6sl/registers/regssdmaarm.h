@@ -131,6 +131,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer (RW)
@@ -178,20 +193,19 @@ typedef union _hw_sdmaarm_mc0ptr
 #define BM_SDMAARM_MC0PTR_MC0PTR      (0xffffffff)  //!< Bit mask for SDMAARM_MC0PTR_MC0PTR.
 
 //! @brief Get value of SDMAARM_MC0PTR_MC0PTR from a register value.
-#define BG_SDMAARM_MC0PTR_MC0PTR(r)   (((r) & BM_SDMAARM_MC0PTR_MC0PTR) >> BP_SDMAARM_MC0PTR_MC0PTR)
+#define BG_SDMAARM_MC0PTR_MC0PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_MC0PTR_MC0PTR) >> BP_SDMAARM_MC0PTR_MC0PTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_MC0PTR_MC0PTR.
-#define BF_SDMAARM_MC0PTR_MC0PTR(v)   ((((reg32_t) v) << BP_SDMAARM_MC0PTR_MC0PTR) & BM_SDMAARM_MC0PTR_MC0PTR)
-#else
-//! @brief Format value for bitfield SDMAARM_MC0PTR_MC0PTR.
-#define BF_SDMAARM_MC0PTR_MC0PTR(v)   (((v) << BP_SDMAARM_MC0PTR_MC0PTR) & BM_SDMAARM_MC0PTR_MC0PTR)
-#endif
+#define BF_SDMAARM_MC0PTR_MC0PTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_MC0PTR_MC0PTR) & BM_SDMAARM_MC0PTR_MC0PTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MC0PTR field to a new value.
 #define BW_SDMAARM_MC0PTR_MC0PTR(v)   (HW_SDMAARM_MC0PTR_WR((HW_SDMAARM_MC0PTR_RD() & ~BM_SDMAARM_MC0PTR_MC0PTR) | BF_SDMAARM_MC0PTR_MC0PTR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_INTR - Channel Interrupts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -244,20 +258,19 @@ typedef union _hw_sdmaarm_intr
 #define BM_SDMAARM_INTR_HI      (0xffffffff)  //!< Bit mask for SDMAARM_INTR_HI.
 
 //! @brief Get value of SDMAARM_INTR_HI from a register value.
-#define BG_SDMAARM_INTR_HI(r)   (((r) & BM_SDMAARM_INTR_HI) >> BP_SDMAARM_INTR_HI)
+#define BG_SDMAARM_INTR_HI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_INTR_HI) >> BP_SDMAARM_INTR_HI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_INTR_HI.
-#define BF_SDMAARM_INTR_HI(v)   ((((reg32_t) v) << BP_SDMAARM_INTR_HI) & BM_SDMAARM_INTR_HI)
-#else
-//! @brief Format value for bitfield SDMAARM_INTR_HI.
-#define BF_SDMAARM_INTR_HI(v)   (((v) << BP_SDMAARM_INTR_HI) & BM_SDMAARM_INTR_HI)
-#endif
+#define BF_SDMAARM_INTR_HI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_INTR_HI) & BM_SDMAARM_INTR_HI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HI field to a new value.
 #define BW_SDMAARM_INTR_HI(v)   (HW_SDMAARM_INTR_WR((HW_SDMAARM_INTR_RD() & ~BM_SDMAARM_INTR_HI) | BF_SDMAARM_INTR_HI(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_STOP_STAT - Channel Stop/Channel Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -307,20 +320,19 @@ typedef union _hw_sdmaarm_stop_stat
 #define BM_SDMAARM_STOP_STAT_HE      (0xffffffff)  //!< Bit mask for SDMAARM_STOP_STAT_HE.
 
 //! @brief Get value of SDMAARM_STOP_STAT_HE from a register value.
-#define BG_SDMAARM_STOP_STAT_HE(r)   (((r) & BM_SDMAARM_STOP_STAT_HE) >> BP_SDMAARM_STOP_STAT_HE)
+#define BG_SDMAARM_STOP_STAT_HE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_STOP_STAT_HE) >> BP_SDMAARM_STOP_STAT_HE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_STOP_STAT_HE.
-#define BF_SDMAARM_STOP_STAT_HE(v)   ((((reg32_t) v) << BP_SDMAARM_STOP_STAT_HE) & BM_SDMAARM_STOP_STAT_HE)
-#else
-//! @brief Format value for bitfield SDMAARM_STOP_STAT_HE.
-#define BF_SDMAARM_STOP_STAT_HE(v)   (((v) << BP_SDMAARM_STOP_STAT_HE) & BM_SDMAARM_STOP_STAT_HE)
-#endif
+#define BF_SDMAARM_STOP_STAT_HE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_STOP_STAT_HE) & BM_SDMAARM_STOP_STAT_HE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HE field to a new value.
 #define BW_SDMAARM_STOP_STAT_HE(v)   (HW_SDMAARM_STOP_STAT_WR((HW_SDMAARM_STOP_STAT_RD() & ~BM_SDMAARM_STOP_STAT_HE) | BF_SDMAARM_STOP_STAT_HE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_HSTART - Channel Start
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -378,20 +390,19 @@ typedef union _hw_sdmaarm_hstart
 #define BM_SDMAARM_HSTART_HSTART      (0xffffffff)  //!< Bit mask for SDMAARM_HSTART_HSTART.
 
 //! @brief Get value of SDMAARM_HSTART_HSTART from a register value.
-#define BG_SDMAARM_HSTART_HSTART(r)   (((r) & BM_SDMAARM_HSTART_HSTART) >> BP_SDMAARM_HSTART_HSTART)
+#define BG_SDMAARM_HSTART_HSTART(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_HSTART_HSTART) >> BP_SDMAARM_HSTART_HSTART)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_HSTART_HSTART.
-#define BF_SDMAARM_HSTART_HSTART(v)   ((((reg32_t) v) << BP_SDMAARM_HSTART_HSTART) & BM_SDMAARM_HSTART_HSTART)
-#else
-//! @brief Format value for bitfield SDMAARM_HSTART_HSTART.
-#define BF_SDMAARM_HSTART_HSTART(v)   (((v) << BP_SDMAARM_HSTART_HSTART) & BM_SDMAARM_HSTART_HSTART)
-#endif
+#define BF_SDMAARM_HSTART_HSTART(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_HSTART_HSTART) & BM_SDMAARM_HSTART_HSTART)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSTART field to a new value.
 #define BW_SDMAARM_HSTART_HSTART(v)   (HW_SDMAARM_HSTART_WR((HW_SDMAARM_HSTART_RD() & ~BM_SDMAARM_HSTART_HSTART) | BF_SDMAARM_HSTART_HSTART(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVTOVR - Channel Event Override
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -439,20 +450,19 @@ typedef union _hw_sdmaarm_evtovr
 #define BM_SDMAARM_EVTOVR_EO      (0xffffffff)  //!< Bit mask for SDMAARM_EVTOVR_EO.
 
 //! @brief Get value of SDMAARM_EVTOVR_EO from a register value.
-#define BG_SDMAARM_EVTOVR_EO(r)   (((r) & BM_SDMAARM_EVTOVR_EO) >> BP_SDMAARM_EVTOVR_EO)
+#define BG_SDMAARM_EVTOVR_EO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVTOVR_EO) >> BP_SDMAARM_EVTOVR_EO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_EVTOVR_EO.
-#define BF_SDMAARM_EVTOVR_EO(v)   ((((reg32_t) v) << BP_SDMAARM_EVTOVR_EO) & BM_SDMAARM_EVTOVR_EO)
-#else
-//! @brief Format value for bitfield SDMAARM_EVTOVR_EO.
-#define BF_SDMAARM_EVTOVR_EO(v)   (((v) << BP_SDMAARM_EVTOVR_EO) & BM_SDMAARM_EVTOVR_EO)
-#endif
+#define BF_SDMAARM_EVTOVR_EO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_EVTOVR_EO) & BM_SDMAARM_EVTOVR_EO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EO field to a new value.
 #define BW_SDMAARM_EVTOVR_EO(v)   (HW_SDMAARM_EVTOVR_WR((HW_SDMAARM_EVTOVR_RD() & ~BM_SDMAARM_EVTOVR_EO) | BF_SDMAARM_EVTOVR_EO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_DSPOVR - Channel BP Override
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -507,21 +517,20 @@ typedef union _hw_sdmaarm_dspovr
 #define BM_SDMAARM_DSPOVR_DO      (0xffffffff)  //!< Bit mask for SDMAARM_DSPOVR_DO.
 
 //! @brief Get value of SDMAARM_DSPOVR_DO from a register value.
-#define BG_SDMAARM_DSPOVR_DO(r)   (((r) & BM_SDMAARM_DSPOVR_DO) >> BP_SDMAARM_DSPOVR_DO)
+#define BG_SDMAARM_DSPOVR_DO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_DSPOVR_DO) >> BP_SDMAARM_DSPOVR_DO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_DSPOVR_DO.
-#define BF_SDMAARM_DSPOVR_DO(v)   ((((reg32_t) v) << BP_SDMAARM_DSPOVR_DO) & BM_SDMAARM_DSPOVR_DO)
-#else
-//! @brief Format value for bitfield SDMAARM_DSPOVR_DO.
-#define BF_SDMAARM_DSPOVR_DO(v)   (((v) << BP_SDMAARM_DSPOVR_DO) & BM_SDMAARM_DSPOVR_DO)
-#endif
+#define BF_SDMAARM_DSPOVR_DO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_DSPOVR_DO) & BM_SDMAARM_DSPOVR_DO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DO field to a new value.
 #define BW_SDMAARM_DSPOVR_DO(v)   (HW_SDMAARM_DSPOVR_WR((HW_SDMAARM_DSPOVR_RD() & ~BM_SDMAARM_DSPOVR_DO) | BF_SDMAARM_DSPOVR_DO(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_HOSTOVR - Channel ARM platform Override
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -570,20 +579,19 @@ typedef union _hw_sdmaarm_hostovr
 #define BM_SDMAARM_HOSTOVR_HO      (0xffffffff)  //!< Bit mask for SDMAARM_HOSTOVR_HO.
 
 //! @brief Get value of SDMAARM_HOSTOVR_HO from a register value.
-#define BG_SDMAARM_HOSTOVR_HO(r)   (((r) & BM_SDMAARM_HOSTOVR_HO) >> BP_SDMAARM_HOSTOVR_HO)
+#define BG_SDMAARM_HOSTOVR_HO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_HOSTOVR_HO) >> BP_SDMAARM_HOSTOVR_HO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_HOSTOVR_HO.
-#define BF_SDMAARM_HOSTOVR_HO(v)   ((((reg32_t) v) << BP_SDMAARM_HOSTOVR_HO) & BM_SDMAARM_HOSTOVR_HO)
-#else
-//! @brief Format value for bitfield SDMAARM_HOSTOVR_HO.
-#define BF_SDMAARM_HOSTOVR_HO(v)   (((v) << BP_SDMAARM_HOSTOVR_HO) & BM_SDMAARM_HOSTOVR_HO)
-#endif
+#define BF_SDMAARM_HOSTOVR_HO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_HOSTOVR_HO) & BM_SDMAARM_HOSTOVR_HO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HO field to a new value.
 #define BW_SDMAARM_HOSTOVR_HO(v)   (HW_SDMAARM_HOSTOVR_WR((HW_SDMAARM_HOSTOVR_RD() & ~BM_SDMAARM_HOSTOVR_HO) | BF_SDMAARM_HOSTOVR_HO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVTPEND - Channel Event Pending
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -637,20 +645,19 @@ typedef union _hw_sdmaarm_evtpend
 #define BM_SDMAARM_EVTPEND_EP      (0xffffffff)  //!< Bit mask for SDMAARM_EVTPEND_EP.
 
 //! @brief Get value of SDMAARM_EVTPEND_EP from a register value.
-#define BG_SDMAARM_EVTPEND_EP(r)   (((r) & BM_SDMAARM_EVTPEND_EP) >> BP_SDMAARM_EVTPEND_EP)
+#define BG_SDMAARM_EVTPEND_EP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVTPEND_EP) >> BP_SDMAARM_EVTPEND_EP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_EVTPEND_EP.
-#define BF_SDMAARM_EVTPEND_EP(v)   ((((reg32_t) v) << BP_SDMAARM_EVTPEND_EP) & BM_SDMAARM_EVTPEND_EP)
-#else
-//! @brief Format value for bitfield SDMAARM_EVTPEND_EP.
-#define BF_SDMAARM_EVTPEND_EP(v)   (((v) << BP_SDMAARM_EVTPEND_EP) & BM_SDMAARM_EVTPEND_EP)
-#endif
+#define BF_SDMAARM_EVTPEND_EP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_EVTPEND_EP) & BM_SDMAARM_EVTPEND_EP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EP field to a new value.
 #define BW_SDMAARM_EVTPEND_EP(v)   (HW_SDMAARM_EVTPEND_WR((HW_SDMAARM_EVTPEND_RD() & ~BM_SDMAARM_EVTPEND_EP) | BF_SDMAARM_EVTPEND_EP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_RESET - Reset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -696,7 +703,7 @@ typedef union _hw_sdmaarm_reset
 #define BM_SDMAARM_RESET_RESET      (0x00000001)  //!< Bit mask for SDMAARM_RESET_RESET.
 
 //! @brief Get value of SDMAARM_RESET_RESET from a register value.
-#define BG_SDMAARM_RESET_RESET(r)   (((r) & BM_SDMAARM_RESET_RESET) >> BP_SDMAARM_RESET_RESET)
+#define BG_SDMAARM_RESET_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_RESET_RESET) >> BP_SDMAARM_RESET_RESET)
 
 /* --- Register HW_SDMAARM_RESET, field RESCHED[1] (RO)
  *
@@ -710,7 +717,11 @@ typedef union _hw_sdmaarm_reset
 #define BM_SDMAARM_RESET_RESCHED      (0x00000002)  //!< Bit mask for SDMAARM_RESET_RESCHED.
 
 //! @brief Get value of SDMAARM_RESET_RESCHED from a register value.
-#define BG_SDMAARM_RESET_RESCHED(r)   (((r) & BM_SDMAARM_RESET_RESCHED) >> BP_SDMAARM_RESET_RESCHED)
+#define BG_SDMAARM_RESET_RESCHED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_RESET_RESCHED) >> BP_SDMAARM_RESET_RESCHED)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVTERR - DMA Request Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -761,7 +772,11 @@ typedef union _hw_sdmaarm_evterr
 #define BM_SDMAARM_EVTERR_CHNERR      (0xffffffff)  //!< Bit mask for SDMAARM_EVTERR_CHNERR.
 
 //! @brief Get value of SDMAARM_EVTERR_CHNERR from a register value.
-#define BG_SDMAARM_EVTERR_CHNERR(r)   (((r) & BM_SDMAARM_EVTERR_CHNERR) >> BP_SDMAARM_EVTERR_CHNERR)
+#define BG_SDMAARM_EVTERR_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVTERR_CHNERR) >> BP_SDMAARM_EVTERR_CHNERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_INTRMASK - Channel ARM platform Interrupt Mask
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -810,20 +825,19 @@ typedef union _hw_sdmaarm_intrmask
 #define BM_SDMAARM_INTRMASK_HIMASK      (0xffffffff)  //!< Bit mask for SDMAARM_INTRMASK_HIMASK.
 
 //! @brief Get value of SDMAARM_INTRMASK_HIMASK from a register value.
-#define BG_SDMAARM_INTRMASK_HIMASK(r)   (((r) & BM_SDMAARM_INTRMASK_HIMASK) >> BP_SDMAARM_INTRMASK_HIMASK)
+#define BG_SDMAARM_INTRMASK_HIMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_INTRMASK_HIMASK) >> BP_SDMAARM_INTRMASK_HIMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_INTRMASK_HIMASK.
-#define BF_SDMAARM_INTRMASK_HIMASK(v)   ((((reg32_t) v) << BP_SDMAARM_INTRMASK_HIMASK) & BM_SDMAARM_INTRMASK_HIMASK)
-#else
-//! @brief Format value for bitfield SDMAARM_INTRMASK_HIMASK.
-#define BF_SDMAARM_INTRMASK_HIMASK(v)   (((v) << BP_SDMAARM_INTRMASK_HIMASK) & BM_SDMAARM_INTRMASK_HIMASK)
-#endif
+#define BF_SDMAARM_INTRMASK_HIMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_INTRMASK_HIMASK) & BM_SDMAARM_INTRMASK_HIMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HIMASK field to a new value.
 #define BW_SDMAARM_INTRMASK_HIMASK(v)   (HW_SDMAARM_INTRMASK_WR((HW_SDMAARM_INTRMASK_RD() & ~BM_SDMAARM_INTRMASK_HIMASK) | BF_SDMAARM_INTRMASK_HIMASK(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_PSW - Schedule Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -872,7 +886,7 @@ typedef union _hw_sdmaarm_psw
 #define BM_SDMAARM_PSW_CCR      (0x0000000f)  //!< Bit mask for SDMAARM_PSW_CCR.
 
 //! @brief Get value of SDMAARM_PSW_CCR from a register value.
-#define BG_SDMAARM_PSW_CCR(r)   (((r) & BM_SDMAARM_PSW_CCR) >> BP_SDMAARM_PSW_CCR)
+#define BG_SDMAARM_PSW_CCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_PSW_CCR) >> BP_SDMAARM_PSW_CCR)
 
 /* --- Register HW_SDMAARM_PSW, field CCP[7:4] (RO)
  *
@@ -890,7 +904,7 @@ typedef union _hw_sdmaarm_psw
 #define BM_SDMAARM_PSW_CCP      (0x000000f0)  //!< Bit mask for SDMAARM_PSW_CCP.
 
 //! @brief Get value of SDMAARM_PSW_CCP from a register value.
-#define BG_SDMAARM_PSW_CCP(r)   (((r) & BM_SDMAARM_PSW_CCP) >> BP_SDMAARM_PSW_CCP)
+#define BG_SDMAARM_PSW_CCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_PSW_CCP) >> BP_SDMAARM_PSW_CCP)
 
 
 /* --- Register HW_SDMAARM_PSW, field NCR[12:8] (RO)
@@ -903,7 +917,7 @@ typedef union _hw_sdmaarm_psw
 #define BM_SDMAARM_PSW_NCR      (0x00001f00)  //!< Bit mask for SDMAARM_PSW_NCR.
 
 //! @brief Get value of SDMAARM_PSW_NCR from a register value.
-#define BG_SDMAARM_PSW_NCR(r)   (((r) & BM_SDMAARM_PSW_NCR) >> BP_SDMAARM_PSW_NCR)
+#define BG_SDMAARM_PSW_NCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_PSW_NCR) >> BP_SDMAARM_PSW_NCR)
 
 /* --- Register HW_SDMAARM_PSW, field NCP[15:13] (RO)
  *
@@ -919,8 +933,12 @@ typedef union _hw_sdmaarm_psw
 #define BM_SDMAARM_PSW_NCP      (0x0000e000)  //!< Bit mask for SDMAARM_PSW_NCP.
 
 //! @brief Get value of SDMAARM_PSW_NCP from a register value.
-#define BG_SDMAARM_PSW_NCP(r)   (((r) & BM_SDMAARM_PSW_NCP) >> BP_SDMAARM_PSW_NCP)
+#define BG_SDMAARM_PSW_NCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_PSW_NCP) >> BP_SDMAARM_PSW_NCP)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVTERRDBG - DMA Request Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -965,7 +983,11 @@ typedef union _hw_sdmaarm_evterrdbg
 #define BM_SDMAARM_EVTERRDBG_CHNERR      (0xffffffff)  //!< Bit mask for SDMAARM_EVTERRDBG_CHNERR.
 
 //! @brief Get value of SDMAARM_EVTERRDBG_CHNERR from a register value.
-#define BG_SDMAARM_EVTERRDBG_CHNERR(r)   (((r) & BM_SDMAARM_EVTERRDBG_CHNERR) >> BP_SDMAARM_EVTERRDBG_CHNERR)
+#define BG_SDMAARM_EVTERRDBG_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVTERRDBG_CHNERR) >> BP_SDMAARM_EVTERRDBG_CHNERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_CONFIG - Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1030,15 +1052,10 @@ typedef union _hw_sdmaarm_config
 #define BM_SDMAARM_CONFIG_CSM      (0x00000003)  //!< Bit mask for SDMAARM_CONFIG_CSM.
 
 //! @brief Get value of SDMAARM_CONFIG_CSM from a register value.
-#define BG_SDMAARM_CONFIG_CSM(r)   (((r) & BM_SDMAARM_CONFIG_CSM) >> BP_SDMAARM_CONFIG_CSM)
+#define BG_SDMAARM_CONFIG_CSM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CONFIG_CSM) >> BP_SDMAARM_CONFIG_CSM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CONFIG_CSM.
-#define BF_SDMAARM_CONFIG_CSM(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_CSM) & BM_SDMAARM_CONFIG_CSM)
-#else
-//! @brief Format value for bitfield SDMAARM_CONFIG_CSM.
-#define BF_SDMAARM_CONFIG_CSM(v)   (((v) << BP_SDMAARM_CONFIG_CSM) & BM_SDMAARM_CONFIG_CSM)
-#endif
+#define BF_SDMAARM_CONFIG_CSM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CONFIG_CSM) & BM_SDMAARM_CONFIG_CSM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSM field to a new value.
@@ -1062,15 +1079,10 @@ typedef union _hw_sdmaarm_config
 #define BM_SDMAARM_CONFIG_ACR      (0x00000010)  //!< Bit mask for SDMAARM_CONFIG_ACR.
 
 //! @brief Get value of SDMAARM_CONFIG_ACR from a register value.
-#define BG_SDMAARM_CONFIG_ACR(r)   (((r) & BM_SDMAARM_CONFIG_ACR) >> BP_SDMAARM_CONFIG_ACR)
+#define BG_SDMAARM_CONFIG_ACR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CONFIG_ACR) >> BP_SDMAARM_CONFIG_ACR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CONFIG_ACR.
-#define BF_SDMAARM_CONFIG_ACR(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_ACR) & BM_SDMAARM_CONFIG_ACR)
-#else
-//! @brief Format value for bitfield SDMAARM_CONFIG_ACR.
-#define BF_SDMAARM_CONFIG_ACR(v)   (((v) << BP_SDMAARM_CONFIG_ACR) & BM_SDMAARM_CONFIG_ACR)
-#endif
+#define BF_SDMAARM_CONFIG_ACR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CONFIG_ACR) & BM_SDMAARM_CONFIG_ACR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACR field to a new value.
@@ -1092,15 +1104,10 @@ typedef union _hw_sdmaarm_config
 #define BM_SDMAARM_CONFIG_RTDOBS      (0x00000800)  //!< Bit mask for SDMAARM_CONFIG_RTDOBS.
 
 //! @brief Get value of SDMAARM_CONFIG_RTDOBS from a register value.
-#define BG_SDMAARM_CONFIG_RTDOBS(r)   (((r) & BM_SDMAARM_CONFIG_RTDOBS) >> BP_SDMAARM_CONFIG_RTDOBS)
+#define BG_SDMAARM_CONFIG_RTDOBS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CONFIG_RTDOBS) >> BP_SDMAARM_CONFIG_RTDOBS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CONFIG_RTDOBS.
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_RTDOBS) & BM_SDMAARM_CONFIG_RTDOBS)
-#else
-//! @brief Format value for bitfield SDMAARM_CONFIG_RTDOBS.
-#define BF_SDMAARM_CONFIG_RTDOBS(v)   (((v) << BP_SDMAARM_CONFIG_RTDOBS) & BM_SDMAARM_CONFIG_RTDOBS)
-#endif
+#define BF_SDMAARM_CONFIG_RTDOBS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CONFIG_RTDOBS) & BM_SDMAARM_CONFIG_RTDOBS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTDOBS field to a new value.
@@ -1121,21 +1128,20 @@ typedef union _hw_sdmaarm_config
 #define BM_SDMAARM_CONFIG_DSPDMA      (0x00001000)  //!< Bit mask for SDMAARM_CONFIG_DSPDMA.
 
 //! @brief Get value of SDMAARM_CONFIG_DSPDMA from a register value.
-#define BG_SDMAARM_CONFIG_DSPDMA(r)   (((r) & BM_SDMAARM_CONFIG_DSPDMA) >> BP_SDMAARM_CONFIG_DSPDMA)
+#define BG_SDMAARM_CONFIG_DSPDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CONFIG_DSPDMA) >> BP_SDMAARM_CONFIG_DSPDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CONFIG_DSPDMA.
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((((reg32_t) v) << BP_SDMAARM_CONFIG_DSPDMA) & BM_SDMAARM_CONFIG_DSPDMA)
-#else
-//! @brief Format value for bitfield SDMAARM_CONFIG_DSPDMA.
-#define BF_SDMAARM_CONFIG_DSPDMA(v)   (((v) << BP_SDMAARM_CONFIG_DSPDMA) & BM_SDMAARM_CONFIG_DSPDMA)
-#endif
+#define BF_SDMAARM_CONFIG_DSPDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CONFIG_DSPDMA) & BM_SDMAARM_CONFIG_DSPDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSPDMA field to a new value.
 #define BW_SDMAARM_CONFIG_DSPDMA(v)   (HW_SDMAARM_CONFIG_WR((HW_SDMAARM_CONFIG_RD() & ~BM_SDMAARM_CONFIG_DSPDMA) | BF_SDMAARM_CONFIG_DSPDMA(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_LOCK - SDMA LOCK
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1194,15 +1200,10 @@ typedef union _hw_sdmaarm_sdma_lock
 #define BM_SDMAARM_SDMA_LOCK_LOCK      (0x00000001)  //!< Bit mask for SDMAARM_SDMA_LOCK_LOCK.
 
 //! @brief Get value of SDMAARM_SDMA_LOCK_LOCK from a register value.
-#define BG_SDMAARM_SDMA_LOCK_LOCK(r)   (((r) & BM_SDMAARM_SDMA_LOCK_LOCK) >> BP_SDMAARM_SDMA_LOCK_LOCK)
+#define BG_SDMAARM_SDMA_LOCK_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_LOCK_LOCK) >> BP_SDMAARM_SDMA_LOCK_LOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_LOCK_LOCK.
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_LOCK_LOCK) & BM_SDMAARM_SDMA_LOCK_LOCK)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_LOCK.
-#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   (((v) << BP_SDMAARM_SDMA_LOCK_LOCK) & BM_SDMAARM_SDMA_LOCK_LOCK)
-#endif
+#define BF_SDMAARM_SDMA_LOCK_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_LOCK_LOCK) & BM_SDMAARM_SDMA_LOCK_LOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK field to a new value.
@@ -1225,21 +1226,20 @@ typedef union _hw_sdmaarm_sdma_lock
 #define BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR      (0x00000002)  //!< Bit mask for SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
 
 //! @brief Get value of SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR from a register value.
-#define BG_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(r)   (((r) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) >> BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
+#define BG_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) >> BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR.
-#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (((v) << BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
-#endif
+#define BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) & BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRESET_LOCK_CLR field to a new value.
 #define BW_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)   (HW_SDMAARM_SDMA_LOCK_WR((HW_SDMAARM_SDMA_LOCK_RD() & ~BM_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR) | BF_SDMAARM_SDMA_LOCK_SRESET_LOCK_CLR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ONCE_ENB - OnCE Enable
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1292,20 +1292,19 @@ typedef union _hw_sdmaarm_once_enb
 #define BM_SDMAARM_ONCE_ENB_ENB      (0x00000001)  //!< Bit mask for SDMAARM_ONCE_ENB_ENB.
 
 //! @brief Get value of SDMAARM_ONCE_ENB_ENB from a register value.
-#define BG_SDMAARM_ONCE_ENB_ENB(r)   (((r) & BM_SDMAARM_ONCE_ENB_ENB) >> BP_SDMAARM_ONCE_ENB_ENB)
+#define BG_SDMAARM_ONCE_ENB_ENB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_ENB_ENB) >> BP_SDMAARM_ONCE_ENB_ENB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_ONCE_ENB_ENB.
-#define BF_SDMAARM_ONCE_ENB_ENB(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_ENB_ENB) & BM_SDMAARM_ONCE_ENB_ENB)
-#else
-//! @brief Format value for bitfield SDMAARM_ONCE_ENB_ENB.
-#define BF_SDMAARM_ONCE_ENB_ENB(v)   (((v) << BP_SDMAARM_ONCE_ENB_ENB) & BM_SDMAARM_ONCE_ENB_ENB)
-#endif
+#define BF_SDMAARM_ONCE_ENB_ENB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_ONCE_ENB_ENB) & BM_SDMAARM_ONCE_ENB_ENB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENB field to a new value.
 #define BW_SDMAARM_ONCE_ENB_ENB(v)   (HW_SDMAARM_ONCE_ENB_WR((HW_SDMAARM_ONCE_ENB_RD() & ~BM_SDMAARM_ONCE_ENB_ENB) | BF_SDMAARM_ONCE_ENB_ENB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ONCE_DATA - OnCE Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1352,20 +1351,19 @@ typedef union _hw_sdmaarm_once_data
 #define BM_SDMAARM_ONCE_DATA_DATA      (0xffffffff)  //!< Bit mask for SDMAARM_ONCE_DATA_DATA.
 
 //! @brief Get value of SDMAARM_ONCE_DATA_DATA from a register value.
-#define BG_SDMAARM_ONCE_DATA_DATA(r)   (((r) & BM_SDMAARM_ONCE_DATA_DATA) >> BP_SDMAARM_ONCE_DATA_DATA)
+#define BG_SDMAARM_ONCE_DATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_DATA_DATA) >> BP_SDMAARM_ONCE_DATA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_ONCE_DATA_DATA.
-#define BF_SDMAARM_ONCE_DATA_DATA(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_DATA_DATA) & BM_SDMAARM_ONCE_DATA_DATA)
-#else
-//! @brief Format value for bitfield SDMAARM_ONCE_DATA_DATA.
-#define BF_SDMAARM_ONCE_DATA_DATA(v)   (((v) << BP_SDMAARM_ONCE_DATA_DATA) & BM_SDMAARM_ONCE_DATA_DATA)
-#endif
+#define BF_SDMAARM_ONCE_DATA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_ONCE_DATA_DATA) & BM_SDMAARM_ONCE_DATA_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_SDMAARM_ONCE_DATA_DATA(v)   (HW_SDMAARM_ONCE_DATA_WR((HW_SDMAARM_ONCE_DATA_RD() & ~BM_SDMAARM_ONCE_DATA_DATA) | BF_SDMAARM_ONCE_DATA_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ONCE_INSTR - OnCE Instruction Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1413,20 +1411,19 @@ typedef union _hw_sdmaarm_once_instr
 #define BM_SDMAARM_ONCE_INSTR_INSTR      (0x0000ffff)  //!< Bit mask for SDMAARM_ONCE_INSTR_INSTR.
 
 //! @brief Get value of SDMAARM_ONCE_INSTR_INSTR from a register value.
-#define BG_SDMAARM_ONCE_INSTR_INSTR(r)   (((r) & BM_SDMAARM_ONCE_INSTR_INSTR) >> BP_SDMAARM_ONCE_INSTR_INSTR)
+#define BG_SDMAARM_ONCE_INSTR_INSTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_INSTR_INSTR) >> BP_SDMAARM_ONCE_INSTR_INSTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_ONCE_INSTR_INSTR.
-#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_INSTR_INSTR) & BM_SDMAARM_ONCE_INSTR_INSTR)
-#else
-//! @brief Format value for bitfield SDMAARM_ONCE_INSTR_INSTR.
-#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   (((v) << BP_SDMAARM_ONCE_INSTR_INSTR) & BM_SDMAARM_ONCE_INSTR_INSTR)
-#endif
+#define BF_SDMAARM_ONCE_INSTR_INSTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_ONCE_INSTR_INSTR) & BM_SDMAARM_ONCE_INSTR_INSTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INSTR field to a new value.
 #define BW_SDMAARM_ONCE_INSTR_INSTR(v)   (HW_SDMAARM_ONCE_INSTR_WR((HW_SDMAARM_ONCE_INSTR_RD() & ~BM_SDMAARM_ONCE_INSTR_INSTR) | BF_SDMAARM_ONCE_INSTR_INSTR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ONCE_STAT - OnCE Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1488,7 +1485,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_ECDR      (0x00000007)  //!< Bit mask for SDMAARM_ONCE_STAT_ECDR.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_ECDR from a register value.
-#define BG_SDMAARM_ONCE_STAT_ECDR(r)   (((r) & BM_SDMAARM_ONCE_STAT_ECDR) >> BP_SDMAARM_ONCE_STAT_ECDR)
+#define BG_SDMAARM_ONCE_STAT_ECDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_ECDR) >> BP_SDMAARM_ONCE_STAT_ECDR)
 
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field MST[7] (RO)
@@ -1504,7 +1501,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_MST      (0x00000080)  //!< Bit mask for SDMAARM_ONCE_STAT_MST.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_MST from a register value.
-#define BG_SDMAARM_ONCE_STAT_MST(r)   (((r) & BM_SDMAARM_ONCE_STAT_MST) >> BP_SDMAARM_ONCE_STAT_MST)
+#define BG_SDMAARM_ONCE_STAT_MST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_MST) >> BP_SDMAARM_ONCE_STAT_MST)
 
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field SWB[8] (RO)
@@ -1516,7 +1513,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_SWB      (0x00000100)  //!< Bit mask for SDMAARM_ONCE_STAT_SWB.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_SWB from a register value.
-#define BG_SDMAARM_ONCE_STAT_SWB(r)   (((r) & BM_SDMAARM_ONCE_STAT_SWB) >> BP_SDMAARM_ONCE_STAT_SWB)
+#define BG_SDMAARM_ONCE_STAT_SWB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_SWB) >> BP_SDMAARM_ONCE_STAT_SWB)
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field ODR[9] (RO)
  *
@@ -1527,7 +1524,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_ODR      (0x00000200)  //!< Bit mask for SDMAARM_ONCE_STAT_ODR.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_ODR from a register value.
-#define BG_SDMAARM_ONCE_STAT_ODR(r)   (((r) & BM_SDMAARM_ONCE_STAT_ODR) >> BP_SDMAARM_ONCE_STAT_ODR)
+#define BG_SDMAARM_ONCE_STAT_ODR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_ODR) >> BP_SDMAARM_ONCE_STAT_ODR)
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field EDR[10] (RO)
  *
@@ -1538,7 +1535,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_EDR      (0x00000400)  //!< Bit mask for SDMAARM_ONCE_STAT_EDR.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_EDR from a register value.
-#define BG_SDMAARM_ONCE_STAT_EDR(r)   (((r) & BM_SDMAARM_ONCE_STAT_EDR) >> BP_SDMAARM_ONCE_STAT_EDR)
+#define BG_SDMAARM_ONCE_STAT_EDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_EDR) >> BP_SDMAARM_ONCE_STAT_EDR)
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field RCV[11] (RO)
  *
@@ -1550,7 +1547,7 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_RCV      (0x00000800)  //!< Bit mask for SDMAARM_ONCE_STAT_RCV.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_RCV from a register value.
-#define BG_SDMAARM_ONCE_STAT_RCV(r)   (((r) & BM_SDMAARM_ONCE_STAT_RCV) >> BP_SDMAARM_ONCE_STAT_RCV)
+#define BG_SDMAARM_ONCE_STAT_RCV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_RCV) >> BP_SDMAARM_ONCE_STAT_RCV)
 
 /* --- Register HW_SDMAARM_ONCE_STAT, field PST[15:12] (RO)
  *
@@ -1591,8 +1588,12 @@ typedef union _hw_sdmaarm_once_stat
 #define BM_SDMAARM_ONCE_STAT_PST      (0x0000f000)  //!< Bit mask for SDMAARM_ONCE_STAT_PST.
 
 //! @brief Get value of SDMAARM_ONCE_STAT_PST from a register value.
-#define BG_SDMAARM_ONCE_STAT_PST(r)   (((r) & BM_SDMAARM_ONCE_STAT_PST) >> BP_SDMAARM_ONCE_STAT_PST)
+#define BG_SDMAARM_ONCE_STAT_PST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_STAT_PST) >> BP_SDMAARM_ONCE_STAT_PST)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ONCE_CMD - OnCE Command Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1651,21 +1652,20 @@ typedef union _hw_sdmaarm_once_cmd
 #define BM_SDMAARM_ONCE_CMD_CMD      (0x0000000f)  //!< Bit mask for SDMAARM_ONCE_CMD_CMD.
 
 //! @brief Get value of SDMAARM_ONCE_CMD_CMD from a register value.
-#define BG_SDMAARM_ONCE_CMD_CMD(r)   (((r) & BM_SDMAARM_ONCE_CMD_CMD) >> BP_SDMAARM_ONCE_CMD_CMD)
+#define BG_SDMAARM_ONCE_CMD_CMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ONCE_CMD_CMD) >> BP_SDMAARM_ONCE_CMD_CMD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_ONCE_CMD_CMD.
-#define BF_SDMAARM_ONCE_CMD_CMD(v)   ((((reg32_t) v) << BP_SDMAARM_ONCE_CMD_CMD) & BM_SDMAARM_ONCE_CMD_CMD)
-#else
-//! @brief Format value for bitfield SDMAARM_ONCE_CMD_CMD.
-#define BF_SDMAARM_ONCE_CMD_CMD(v)   (((v) << BP_SDMAARM_ONCE_CMD_CMD) & BM_SDMAARM_ONCE_CMD_CMD)
-#endif
+#define BF_SDMAARM_ONCE_CMD_CMD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_ONCE_CMD_CMD) & BM_SDMAARM_ONCE_CMD_CMD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD field to a new value.
 #define BW_SDMAARM_ONCE_CMD_CMD(v)   (HW_SDMAARM_ONCE_CMD_WR((HW_SDMAARM_ONCE_CMD_RD() & ~BM_SDMAARM_ONCE_CMD_CMD) | BF_SDMAARM_ONCE_CMD_CMD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_ILLINSTADDR - Illegal Instruction Trap Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1715,20 +1715,19 @@ typedef union _hw_sdmaarm_illinstaddr
 #define BM_SDMAARM_ILLINSTADDR_ILLINSTADDR      (0x00003fff)  //!< Bit mask for SDMAARM_ILLINSTADDR_ILLINSTADDR.
 
 //! @brief Get value of SDMAARM_ILLINSTADDR_ILLINSTADDR from a register value.
-#define BG_SDMAARM_ILLINSTADDR_ILLINSTADDR(r)   (((r) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR) >> BP_SDMAARM_ILLINSTADDR_ILLINSTADDR)
+#define BG_SDMAARM_ILLINSTADDR_ILLINSTADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR) >> BP_SDMAARM_ILLINSTADDR_ILLINSTADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_ILLINSTADDR_ILLINSTADDR.
-#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   ((((reg32_t) v) << BP_SDMAARM_ILLINSTADDR_ILLINSTADDR) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
-#else
-//! @brief Format value for bitfield SDMAARM_ILLINSTADDR_ILLINSTADDR.
-#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   (((v) << BP_SDMAARM_ILLINSTADDR_ILLINSTADDR) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
-#endif
+#define BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_ILLINSTADDR_ILLINSTADDR) & BM_SDMAARM_ILLINSTADDR_ILLINSTADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ILLINSTADDR field to a new value.
 #define BW_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)   (HW_SDMAARM_ILLINSTADDR_WR((HW_SDMAARM_ILLINSTADDR_RD() & ~BM_SDMAARM_ILLINSTADDR_ILLINSTADDR) | BF_SDMAARM_ILLINSTADDR_ILLINSTADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_CHN0ADDR - Channel 0 Boot Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1782,15 +1781,10 @@ typedef union _hw_sdmaarm_chn0addr
 #define BM_SDMAARM_CHN0ADDR_CHN0ADDR      (0x00003fff)  //!< Bit mask for SDMAARM_CHN0ADDR_CHN0ADDR.
 
 //! @brief Get value of SDMAARM_CHN0ADDR_CHN0ADDR from a register value.
-#define BG_SDMAARM_CHN0ADDR_CHN0ADDR(r)   (((r) & BM_SDMAARM_CHN0ADDR_CHN0ADDR) >> BP_SDMAARM_CHN0ADDR_CHN0ADDR)
+#define BG_SDMAARM_CHN0ADDR_CHN0ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CHN0ADDR_CHN0ADDR) >> BP_SDMAARM_CHN0ADDR_CHN0ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CHN0ADDR_CHN0ADDR.
-#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   ((((reg32_t) v) << BP_SDMAARM_CHN0ADDR_CHN0ADDR) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
-#else
-//! @brief Format value for bitfield SDMAARM_CHN0ADDR_CHN0ADDR.
-#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   (((v) << BP_SDMAARM_CHN0ADDR_CHN0ADDR) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
-#endif
+#define BF_SDMAARM_CHN0ADDR_CHN0ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CHN0ADDR_CHN0ADDR) & BM_SDMAARM_CHN0ADDR_CHN0ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHN0ADDR field to a new value.
@@ -1815,21 +1809,20 @@ typedef union _hw_sdmaarm_chn0addr
 #define BM_SDMAARM_CHN0ADDR_SMSZ      (0x00004000)  //!< Bit mask for SDMAARM_CHN0ADDR_SMSZ.
 
 //! @brief Get value of SDMAARM_CHN0ADDR_SMSZ from a register value.
-#define BG_SDMAARM_CHN0ADDR_SMSZ(r)   (((r) & BM_SDMAARM_CHN0ADDR_SMSZ) >> BP_SDMAARM_CHN0ADDR_SMSZ)
+#define BG_SDMAARM_CHN0ADDR_SMSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_CHN0ADDR_SMSZ) >> BP_SDMAARM_CHN0ADDR_SMSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_CHN0ADDR_SMSZ.
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((((reg32_t) v) << BP_SDMAARM_CHN0ADDR_SMSZ) & BM_SDMAARM_CHN0ADDR_SMSZ)
-#else
-//! @brief Format value for bitfield SDMAARM_CHN0ADDR_SMSZ.
-#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   (((v) << BP_SDMAARM_CHN0ADDR_SMSZ) & BM_SDMAARM_CHN0ADDR_SMSZ)
-#endif
+#define BF_SDMAARM_CHN0ADDR_SMSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_CHN0ADDR_SMSZ) & BM_SDMAARM_CHN0ADDR_SMSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SMSZ field to a new value.
 #define BW_SDMAARM_CHN0ADDR_SMSZ(v)   (HW_SDMAARM_CHN0ADDR_WR((HW_SDMAARM_CHN0ADDR_RD() & ~BM_SDMAARM_CHN0ADDR_SMSZ) | BF_SDMAARM_CHN0ADDR_SMSZ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVT_MIRROR - DMA Requests
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1879,8 +1872,12 @@ typedef union _hw_sdmaarm_evt_mirror
 #define BM_SDMAARM_EVT_MIRROR_EVENTS      (0xffffffff)  //!< Bit mask for SDMAARM_EVT_MIRROR_EVENTS.
 
 //! @brief Get value of SDMAARM_EVT_MIRROR_EVENTS from a register value.
-#define BG_SDMAARM_EVT_MIRROR_EVENTS(r)   (((r) & BM_SDMAARM_EVT_MIRROR_EVENTS) >> BP_SDMAARM_EVT_MIRROR_EVENTS)
+#define BG_SDMAARM_EVT_MIRROR_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVT_MIRROR_EVENTS) >> BP_SDMAARM_EVT_MIRROR_EVENTS)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_EVT_MIRROR2 - DMA Requests 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1931,8 +1928,12 @@ typedef union _hw_sdmaarm_evt_mirror2
 #define BM_SDMAARM_EVT_MIRROR2_EVENTS      (0x0000ffff)  //!< Bit mask for SDMAARM_EVT_MIRROR2_EVENTS.
 
 //! @brief Get value of SDMAARM_EVT_MIRROR2_EVENTS from a register value.
-#define BG_SDMAARM_EVT_MIRROR2_EVENTS(r)   (((r) & BM_SDMAARM_EVT_MIRROR2_EVENTS) >> BP_SDMAARM_EVT_MIRROR2_EVENTS)
+#define BG_SDMAARM_EVT_MIRROR2_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_EVT_MIRROR2_EVENTS) >> BP_SDMAARM_EVT_MIRROR2_EVENTS)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_XTRIG_CONF1 - Cross-Trigger Events Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1991,15 +1992,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_NUM0      (0x0000003f)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM0.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_NUM0 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_NUM0(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM0) >> BP_SDMAARM_XTRIG_CONF1_NUM0)
+#define BG_SDMAARM_XTRIG_CONF1_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_NUM0) >> BP_SDMAARM_XTRIG_CONF1_NUM0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM0.
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM0.
-#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_NUM0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_NUM0) & BM_SDMAARM_XTRIG_CONF1_NUM0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM0 field to a new value.
@@ -2023,15 +2019,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_CNF0      (0x00000040)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF0.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_CNF0 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_CNF0(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF0) >> BP_SDMAARM_XTRIG_CONF1_CNF0)
+#define BG_SDMAARM_XTRIG_CONF1_CNF0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_CNF0) >> BP_SDMAARM_XTRIG_CONF1_CNF0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF0.
-#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF0) & BM_SDMAARM_XTRIG_CONF1_CNF0)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF0.
-#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF0) & BM_SDMAARM_XTRIG_CONF1_CNF0)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_CNF0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_CNF0) & BM_SDMAARM_XTRIG_CONF1_CNF0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF0 field to a new value.
@@ -2049,15 +2040,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_NUM1      (0x00003f00)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM1.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_NUM1 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_NUM1(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM1) >> BP_SDMAARM_XTRIG_CONF1_NUM1)
+#define BG_SDMAARM_XTRIG_CONF1_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_NUM1) >> BP_SDMAARM_XTRIG_CONF1_NUM1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM1.
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM1) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM1.
-#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM1) & BM_SDMAARM_XTRIG_CONF1_NUM1)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_NUM1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_NUM1) & BM_SDMAARM_XTRIG_CONF1_NUM1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM1 field to a new value.
@@ -2081,15 +2067,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_CNF1      (0x00004000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF1.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_CNF1 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_CNF1(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF1) >> BP_SDMAARM_XTRIG_CONF1_CNF1)
+#define BG_SDMAARM_XTRIG_CONF1_CNF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_CNF1) >> BP_SDMAARM_XTRIG_CONF1_CNF1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF1.
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF1) & BM_SDMAARM_XTRIG_CONF1_CNF1)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF1.
-#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF1) & BM_SDMAARM_XTRIG_CONF1_CNF1)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_CNF1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_CNF1) & BM_SDMAARM_XTRIG_CONF1_CNF1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF1 field to a new value.
@@ -2107,15 +2088,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_NUM2      (0x003f0000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM2.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_NUM2 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_NUM2(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM2) >> BP_SDMAARM_XTRIG_CONF1_NUM2)
+#define BG_SDMAARM_XTRIG_CONF1_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_NUM2) >> BP_SDMAARM_XTRIG_CONF1_NUM2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM2.
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM2) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM2.
-#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM2) & BM_SDMAARM_XTRIG_CONF1_NUM2)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_NUM2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_NUM2) & BM_SDMAARM_XTRIG_CONF1_NUM2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM2 field to a new value.
@@ -2139,15 +2115,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_CNF2      (0x00400000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF2.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_CNF2 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_CNF2(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF2) >> BP_SDMAARM_XTRIG_CONF1_CNF2)
+#define BG_SDMAARM_XTRIG_CONF1_CNF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_CNF2) >> BP_SDMAARM_XTRIG_CONF1_CNF2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF2.
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF2) & BM_SDMAARM_XTRIG_CONF1_CNF2)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF2.
-#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF2) & BM_SDMAARM_XTRIG_CONF1_CNF2)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_CNF2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_CNF2) & BM_SDMAARM_XTRIG_CONF1_CNF2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF2 field to a new value.
@@ -2165,15 +2136,10 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_NUM3      (0x3f000000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_NUM3.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_NUM3 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_NUM3(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_NUM3) >> BP_SDMAARM_XTRIG_CONF1_NUM3)
+#define BG_SDMAARM_XTRIG_CONF1_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_NUM3) >> BP_SDMAARM_XTRIG_CONF1_NUM3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM3.
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_NUM3) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_NUM3.
-#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_NUM3) & BM_SDMAARM_XTRIG_CONF1_NUM3)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_NUM3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_NUM3) & BM_SDMAARM_XTRIG_CONF1_NUM3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM3 field to a new value.
@@ -2198,21 +2164,20 @@ typedef union _hw_sdmaarm_xtrig_conf1
 #define BM_SDMAARM_XTRIG_CONF1_CNF3      (0x40000000)  //!< Bit mask for SDMAARM_XTRIG_CONF1_CNF3.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF1_CNF3 from a register value.
-#define BG_SDMAARM_XTRIG_CONF1_CNF3(r)   (((r) & BM_SDMAARM_XTRIG_CONF1_CNF3) >> BP_SDMAARM_XTRIG_CONF1_CNF3)
+#define BG_SDMAARM_XTRIG_CONF1_CNF3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF1_CNF3) >> BP_SDMAARM_XTRIG_CONF1_CNF3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF3.
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF1_CNF3) & BM_SDMAARM_XTRIG_CONF1_CNF3)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF1_CNF3.
-#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   (((v) << BP_SDMAARM_XTRIG_CONF1_CNF3) & BM_SDMAARM_XTRIG_CONF1_CNF3)
-#endif
+#define BF_SDMAARM_XTRIG_CONF1_CNF3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF1_CNF3) & BM_SDMAARM_XTRIG_CONF1_CNF3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF3 field to a new value.
 #define BW_SDMAARM_XTRIG_CONF1_CNF3(v)   (HW_SDMAARM_XTRIG_CONF1_WR((HW_SDMAARM_XTRIG_CONF1_RD() & ~BM_SDMAARM_XTRIG_CONF1_CNF3) | BF_SDMAARM_XTRIG_CONF1_CNF3(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_XTRIG_CONF2 - Cross-Trigger Events Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2271,15 +2236,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_NUM4      (0x0000003f)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM4.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_NUM4 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_NUM4(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM4) >> BP_SDMAARM_XTRIG_CONF2_NUM4)
+#define BG_SDMAARM_XTRIG_CONF2_NUM4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_NUM4) >> BP_SDMAARM_XTRIG_CONF2_NUM4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM4.
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM4) & BM_SDMAARM_XTRIG_CONF2_NUM4)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM4.
-#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM4) & BM_SDMAARM_XTRIG_CONF2_NUM4)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_NUM4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_NUM4) & BM_SDMAARM_XTRIG_CONF2_NUM4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM4 field to a new value.
@@ -2303,15 +2263,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_CNF4      (0x00000040)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF4.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_CNF4 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_CNF4(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF4) >> BP_SDMAARM_XTRIG_CONF2_CNF4)
+#define BG_SDMAARM_XTRIG_CONF2_CNF4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_CNF4) >> BP_SDMAARM_XTRIG_CONF2_CNF4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF4.
-#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF4) & BM_SDMAARM_XTRIG_CONF2_CNF4)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF4.
-#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF4) & BM_SDMAARM_XTRIG_CONF2_CNF4)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_CNF4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_CNF4) & BM_SDMAARM_XTRIG_CONF2_CNF4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF4 field to a new value.
@@ -2329,15 +2284,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_NUM5      (0x00003f00)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM5.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_NUM5 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_NUM5(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM5) >> BP_SDMAARM_XTRIG_CONF2_NUM5)
+#define BG_SDMAARM_XTRIG_CONF2_NUM5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_NUM5) >> BP_SDMAARM_XTRIG_CONF2_NUM5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM5.
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM5) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM5.
-#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM5) & BM_SDMAARM_XTRIG_CONF2_NUM5)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_NUM5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_NUM5) & BM_SDMAARM_XTRIG_CONF2_NUM5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM5 field to a new value.
@@ -2361,15 +2311,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_CNF5      (0x00004000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF5.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_CNF5 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_CNF5(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF5) >> BP_SDMAARM_XTRIG_CONF2_CNF5)
+#define BG_SDMAARM_XTRIG_CONF2_CNF5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_CNF5) >> BP_SDMAARM_XTRIG_CONF2_CNF5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF5.
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF5) & BM_SDMAARM_XTRIG_CONF2_CNF5)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF5.
-#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF5) & BM_SDMAARM_XTRIG_CONF2_CNF5)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_CNF5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_CNF5) & BM_SDMAARM_XTRIG_CONF2_CNF5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF5 field to a new value.
@@ -2387,15 +2332,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_NUM6      (0x003f0000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM6.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_NUM6 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_NUM6(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM6) >> BP_SDMAARM_XTRIG_CONF2_NUM6)
+#define BG_SDMAARM_XTRIG_CONF2_NUM6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_NUM6) >> BP_SDMAARM_XTRIG_CONF2_NUM6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM6.
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM6) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM6.
-#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM6) & BM_SDMAARM_XTRIG_CONF2_NUM6)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_NUM6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_NUM6) & BM_SDMAARM_XTRIG_CONF2_NUM6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM6 field to a new value.
@@ -2419,15 +2359,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_CNF6      (0x00400000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF6.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_CNF6 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_CNF6(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF6) >> BP_SDMAARM_XTRIG_CONF2_CNF6)
+#define BG_SDMAARM_XTRIG_CONF2_CNF6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_CNF6) >> BP_SDMAARM_XTRIG_CONF2_CNF6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF6.
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF6) & BM_SDMAARM_XTRIG_CONF2_CNF6)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF6.
-#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF6) & BM_SDMAARM_XTRIG_CONF2_CNF6)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_CNF6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_CNF6) & BM_SDMAARM_XTRIG_CONF2_CNF6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF6 field to a new value.
@@ -2445,15 +2380,10 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_NUM7      (0x3f000000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_NUM7.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_NUM7 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_NUM7(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_NUM7) >> BP_SDMAARM_XTRIG_CONF2_NUM7)
+#define BG_SDMAARM_XTRIG_CONF2_NUM7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_NUM7) >> BP_SDMAARM_XTRIG_CONF2_NUM7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM7.
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_NUM7) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_NUM7.
-#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_NUM7) & BM_SDMAARM_XTRIG_CONF2_NUM7)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_NUM7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_NUM7) & BM_SDMAARM_XTRIG_CONF2_NUM7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM7 field to a new value.
@@ -2477,21 +2407,20 @@ typedef union _hw_sdmaarm_xtrig_conf2
 #define BM_SDMAARM_XTRIG_CONF2_CNF7      (0x40000000)  //!< Bit mask for SDMAARM_XTRIG_CONF2_CNF7.
 
 //! @brief Get value of SDMAARM_XTRIG_CONF2_CNF7 from a register value.
-#define BG_SDMAARM_XTRIG_CONF2_CNF7(r)   (((r) & BM_SDMAARM_XTRIG_CONF2_CNF7) >> BP_SDMAARM_XTRIG_CONF2_CNF7)
+#define BG_SDMAARM_XTRIG_CONF2_CNF7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_XTRIG_CONF2_CNF7) >> BP_SDMAARM_XTRIG_CONF2_CNF7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF7.
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((((reg32_t) v) << BP_SDMAARM_XTRIG_CONF2_CNF7) & BM_SDMAARM_XTRIG_CONF2_CNF7)
-#else
-//! @brief Format value for bitfield SDMAARM_XTRIG_CONF2_CNF7.
-#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   (((v) << BP_SDMAARM_XTRIG_CONF2_CNF7) & BM_SDMAARM_XTRIG_CONF2_CNF7)
-#endif
+#define BF_SDMAARM_XTRIG_CONF2_CNF7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_XTRIG_CONF2_CNF7) & BM_SDMAARM_XTRIG_CONF2_CNF7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNF7 field to a new value.
 #define BW_SDMAARM_XTRIG_CONF2_CNF7(v)   (HW_SDMAARM_XTRIG_CONF2_WR((HW_SDMAARM_XTRIG_CONF2_RD() & ~BM_SDMAARM_XTRIG_CONF2_CNF7) | BF_SDMAARM_XTRIG_CONF2_CNF7(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI0 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2541,20 +2470,19 @@ typedef union _hw_sdmaarm_sdma_chnpri0
 #define BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI0_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI0_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI0_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI0_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI0_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI0_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI0_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI0_WR((HW_SDMAARM_SDMA_CHNPRI0_RD() & ~BM_SDMAARM_SDMA_CHNPRI0_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI0_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI1 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2604,20 +2532,19 @@ typedef union _hw_sdmaarm_sdma_chnpri1
 #define BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI1_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI1_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI1_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI1_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI1_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI1_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI1_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI1_WR((HW_SDMAARM_SDMA_CHNPRI1_RD() & ~BM_SDMAARM_SDMA_CHNPRI1_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI1_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI2 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2667,20 +2594,19 @@ typedef union _hw_sdmaarm_sdma_chnpri2
 #define BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI2_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI2_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI2_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI2_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI2_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI2_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI2_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI2_WR((HW_SDMAARM_SDMA_CHNPRI2_RD() & ~BM_SDMAARM_SDMA_CHNPRI2_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI2_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI3 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2730,20 +2656,19 @@ typedef union _hw_sdmaarm_sdma_chnpri3
 #define BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI3_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI3_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI3_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI3_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI3_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI3_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI3_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI3_WR((HW_SDMAARM_SDMA_CHNPRI3_RD() & ~BM_SDMAARM_SDMA_CHNPRI3_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI3_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI4 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2793,20 +2718,19 @@ typedef union _hw_sdmaarm_sdma_chnpri4
 #define BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI4_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI4_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI4_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI4_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI4_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI4_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI4_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI4_WR((HW_SDMAARM_SDMA_CHNPRI4_RD() & ~BM_SDMAARM_SDMA_CHNPRI4_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI4_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI5 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2856,20 +2780,19 @@ typedef union _hw_sdmaarm_sdma_chnpri5
 #define BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI5_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI5_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI5_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI5_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI5_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI5_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI5_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI5_WR((HW_SDMAARM_SDMA_CHNPRI5_RD() & ~BM_SDMAARM_SDMA_CHNPRI5_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI5_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI6 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2919,20 +2842,19 @@ typedef union _hw_sdmaarm_sdma_chnpri6
 #define BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI6_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI6_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI6_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI6_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI6_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI6_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI6_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI6_WR((HW_SDMAARM_SDMA_CHNPRI6_RD() & ~BM_SDMAARM_SDMA_CHNPRI6_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI6_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI7 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2982,20 +2904,19 @@ typedef union _hw_sdmaarm_sdma_chnpri7
 #define BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI7_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI7_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI7_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI7_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI7_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI7_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI7_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI7_WR((HW_SDMAARM_SDMA_CHNPRI7_RD() & ~BM_SDMAARM_SDMA_CHNPRI7_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI7_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI8 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3045,20 +2966,19 @@ typedef union _hw_sdmaarm_sdma_chnpri8
 #define BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI8_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI8_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI8_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI8_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI8_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI8_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI8_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI8_WR((HW_SDMAARM_SDMA_CHNPRI8_RD() & ~BM_SDMAARM_SDMA_CHNPRI8_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI8_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI9 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3108,20 +3028,19 @@ typedef union _hw_sdmaarm_sdma_chnpri9
 #define BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI9_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI9_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI9_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI9_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI9_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI9_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI9_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI9_WR((HW_SDMAARM_SDMA_CHNPRI9_RD() & ~BM_SDMAARM_SDMA_CHNPRI9_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI9_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI10 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3171,20 +3090,19 @@ typedef union _hw_sdmaarm_sdma_chnpri10
 #define BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI10_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI10_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI10_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI10_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI10_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI10_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI10_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI10_WR((HW_SDMAARM_SDMA_CHNPRI10_RD() & ~BM_SDMAARM_SDMA_CHNPRI10_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI10_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI11 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3234,20 +3152,19 @@ typedef union _hw_sdmaarm_sdma_chnpri11
 #define BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI11_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI11_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI11_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI11_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI11_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI11_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI11_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI11_WR((HW_SDMAARM_SDMA_CHNPRI11_RD() & ~BM_SDMAARM_SDMA_CHNPRI11_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI11_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI12 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3297,20 +3214,19 @@ typedef union _hw_sdmaarm_sdma_chnpri12
 #define BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI12_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI12_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI12_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI12_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI12_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI12_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI12_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI12_WR((HW_SDMAARM_SDMA_CHNPRI12_RD() & ~BM_SDMAARM_SDMA_CHNPRI12_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI12_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI13 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3360,20 +3276,19 @@ typedef union _hw_sdmaarm_sdma_chnpri13
 #define BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI13_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI13_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI13_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI13_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI13_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI13_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI13_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI13_WR((HW_SDMAARM_SDMA_CHNPRI13_RD() & ~BM_SDMAARM_SDMA_CHNPRI13_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI13_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI14 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3423,20 +3338,19 @@ typedef union _hw_sdmaarm_sdma_chnpri14
 #define BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI14_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI14_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI14_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI14_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI14_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI14_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI14_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI14_WR((HW_SDMAARM_SDMA_CHNPRI14_RD() & ~BM_SDMAARM_SDMA_CHNPRI14_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI14_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI15 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3486,20 +3400,19 @@ typedef union _hw_sdmaarm_sdma_chnpri15
 #define BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI15_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI15_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI15_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI15_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI15_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI15_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI15_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI15_WR((HW_SDMAARM_SDMA_CHNPRI15_RD() & ~BM_SDMAARM_SDMA_CHNPRI15_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI15_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI16 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3549,20 +3462,19 @@ typedef union _hw_sdmaarm_sdma_chnpri16
 #define BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI16_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI16_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI16_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI16_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI16_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI16_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI16_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI16_WR((HW_SDMAARM_SDMA_CHNPRI16_RD() & ~BM_SDMAARM_SDMA_CHNPRI16_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI16_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI17 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3612,20 +3524,19 @@ typedef union _hw_sdmaarm_sdma_chnpri17
 #define BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI17_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI17_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI17_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI17_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI17_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI17_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI17_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI17_WR((HW_SDMAARM_SDMA_CHNPRI17_RD() & ~BM_SDMAARM_SDMA_CHNPRI17_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI17_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI18 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3675,20 +3586,19 @@ typedef union _hw_sdmaarm_sdma_chnpri18
 #define BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI18_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI18_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI18_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI18_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI18_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI18_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI18_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI18_WR((HW_SDMAARM_SDMA_CHNPRI18_RD() & ~BM_SDMAARM_SDMA_CHNPRI18_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI18_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI19 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3738,20 +3648,19 @@ typedef union _hw_sdmaarm_sdma_chnpri19
 #define BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI19_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI19_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI19_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI19_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI19_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI19_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI19_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI19_WR((HW_SDMAARM_SDMA_CHNPRI19_RD() & ~BM_SDMAARM_SDMA_CHNPRI19_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI19_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI20 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3801,20 +3710,19 @@ typedef union _hw_sdmaarm_sdma_chnpri20
 #define BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI20_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI20_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI20_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI20_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI20_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI20_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI20_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI20_WR((HW_SDMAARM_SDMA_CHNPRI20_RD() & ~BM_SDMAARM_SDMA_CHNPRI20_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI20_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI21 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3864,20 +3772,19 @@ typedef union _hw_sdmaarm_sdma_chnpri21
 #define BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI21_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI21_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI21_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI21_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI21_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI21_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI21_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI21_WR((HW_SDMAARM_SDMA_CHNPRI21_RD() & ~BM_SDMAARM_SDMA_CHNPRI21_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI21_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI22 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3927,20 +3834,19 @@ typedef union _hw_sdmaarm_sdma_chnpri22
 #define BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI22_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI22_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI22_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI22_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI22_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI22_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI22_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI22_WR((HW_SDMAARM_SDMA_CHNPRI22_RD() & ~BM_SDMAARM_SDMA_CHNPRI22_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI22_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI23 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3990,20 +3896,19 @@ typedef union _hw_sdmaarm_sdma_chnpri23
 #define BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI23_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI23_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI23_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI23_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI23_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI23_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI23_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI23_WR((HW_SDMAARM_SDMA_CHNPRI23_RD() & ~BM_SDMAARM_SDMA_CHNPRI23_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI23_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI24 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4053,20 +3958,19 @@ typedef union _hw_sdmaarm_sdma_chnpri24
 #define BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI24_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI24_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI24_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI24_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI24_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI24_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI24_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI24_WR((HW_SDMAARM_SDMA_CHNPRI24_RD() & ~BM_SDMAARM_SDMA_CHNPRI24_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI24_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI25 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4116,20 +4020,19 @@ typedef union _hw_sdmaarm_sdma_chnpri25
 #define BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI25_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI25_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI25_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI25_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI25_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI25_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI25_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI25_WR((HW_SDMAARM_SDMA_CHNPRI25_RD() & ~BM_SDMAARM_SDMA_CHNPRI25_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI25_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI26 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4179,20 +4082,19 @@ typedef union _hw_sdmaarm_sdma_chnpri26
 #define BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI26_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI26_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI26_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI26_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI26_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI26_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI26_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI26_WR((HW_SDMAARM_SDMA_CHNPRI26_RD() & ~BM_SDMAARM_SDMA_CHNPRI26_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI26_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI27 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4242,20 +4144,19 @@ typedef union _hw_sdmaarm_sdma_chnpri27
 #define BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI27_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI27_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI27_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI27_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI27_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI27_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI27_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI27_WR((HW_SDMAARM_SDMA_CHNPRI27_RD() & ~BM_SDMAARM_SDMA_CHNPRI27_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI27_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI28 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4305,20 +4206,19 @@ typedef union _hw_sdmaarm_sdma_chnpri28
 #define BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI28_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI28_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI28_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI28_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI28_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI28_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI28_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI28_WR((HW_SDMAARM_SDMA_CHNPRI28_RD() & ~BM_SDMAARM_SDMA_CHNPRI28_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI28_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI29 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4368,20 +4268,19 @@ typedef union _hw_sdmaarm_sdma_chnpri29
 #define BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI29_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI29_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI29_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI29_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI29_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI29_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI29_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI29_WR((HW_SDMAARM_SDMA_CHNPRI29_RD() & ~BM_SDMAARM_SDMA_CHNPRI29_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI29_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI30 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4431,20 +4330,19 @@ typedef union _hw_sdmaarm_sdma_chnpri30
 #define BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI30_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI30_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI30_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI30_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI30_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI30_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI30_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI30_WR((HW_SDMAARM_SDMA_CHNPRI30_RD() & ~BM_SDMAARM_SDMA_CHNPRI30_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI30_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNPRI31 - Channel Priority Registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4494,20 +4392,19 @@ typedef union _hw_sdmaarm_sdma_chnpri31
 #define BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN      (0x00000007)  //!< Bit mask for SDMAARM_SDMA_CHNPRI31_CHNPRIN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNPRI31_CHNPRIN from a register value.
-#define BG_SDMAARM_SDMA_CHNPRI31_CHNPRIN(r)   (((r) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
+#define BG_SDMAARM_SDMA_CHNPRI31_CHNPRIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN) >> BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI31_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNPRI31_CHNPRIN.
-#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   (((v) << BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
-#endif
+#define BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNPRI31_CHNPRIN) & BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHNPRIN field to a new value.
 #define BW_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)   (HW_SDMAARM_SDMA_CHNPRI31_WR((HW_SDMAARM_SDMA_CHNPRI31_RD() & ~BM_SDMAARM_SDMA_CHNPRI31_CHNPRIN) | BF_SDMAARM_SDMA_CHNPRI31_CHNPRIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL0 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4558,20 +4455,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl0
 #define BM_SDMAARM_SDMA_CHNENBL0_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL0_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL0_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL0_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL0_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL0_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL0_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL0_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL0_ENBLN) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL0_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL0_ENBLN) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL0_ENBLN) & BM_SDMAARM_SDMA_CHNENBL0_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL0_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL0_WR((HW_SDMAARM_SDMA_CHNENBL0_RD() & ~BM_SDMAARM_SDMA_CHNENBL0_ENBLN) | BF_SDMAARM_SDMA_CHNENBL0_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL1 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4622,20 +4518,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl1
 #define BM_SDMAARM_SDMA_CHNENBL1_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL1_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL1_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL1_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL1_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL1_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL1_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL1_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL1_ENBLN) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL1_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL1_ENBLN) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL1_ENBLN) & BM_SDMAARM_SDMA_CHNENBL1_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL1_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL1_WR((HW_SDMAARM_SDMA_CHNENBL1_RD() & ~BM_SDMAARM_SDMA_CHNENBL1_ENBLN) | BF_SDMAARM_SDMA_CHNENBL1_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL2 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4686,20 +4581,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl2
 #define BM_SDMAARM_SDMA_CHNENBL2_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL2_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL2_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL2_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL2_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL2_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL2_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL2_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL2_ENBLN) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL2_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL2_ENBLN) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL2_ENBLN) & BM_SDMAARM_SDMA_CHNENBL2_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL2_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL2_WR((HW_SDMAARM_SDMA_CHNENBL2_RD() & ~BM_SDMAARM_SDMA_CHNENBL2_ENBLN) | BF_SDMAARM_SDMA_CHNENBL2_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL3 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4750,20 +4644,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl3
 #define BM_SDMAARM_SDMA_CHNENBL3_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL3_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL3_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL3_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL3_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL3_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL3_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL3_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL3_ENBLN) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL3_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL3_ENBLN) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL3_ENBLN) & BM_SDMAARM_SDMA_CHNENBL3_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL3_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL3_WR((HW_SDMAARM_SDMA_CHNENBL3_RD() & ~BM_SDMAARM_SDMA_CHNENBL3_ENBLN) | BF_SDMAARM_SDMA_CHNENBL3_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL4 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4814,20 +4707,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl4
 #define BM_SDMAARM_SDMA_CHNENBL4_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL4_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL4_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL4_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL4_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL4_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL4_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL4_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL4_ENBLN) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL4_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL4_ENBLN) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL4_ENBLN) & BM_SDMAARM_SDMA_CHNENBL4_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL4_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL4_WR((HW_SDMAARM_SDMA_CHNENBL4_RD() & ~BM_SDMAARM_SDMA_CHNENBL4_ENBLN) | BF_SDMAARM_SDMA_CHNENBL4_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL5 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4878,20 +4770,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl5
 #define BM_SDMAARM_SDMA_CHNENBL5_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL5_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL5_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL5_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL5_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL5_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL5_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL5_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL5_ENBLN) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL5_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL5_ENBLN) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL5_ENBLN) & BM_SDMAARM_SDMA_CHNENBL5_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL5_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL5_WR((HW_SDMAARM_SDMA_CHNENBL5_RD() & ~BM_SDMAARM_SDMA_CHNENBL5_ENBLN) | BF_SDMAARM_SDMA_CHNENBL5_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL6 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4942,20 +4833,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl6
 #define BM_SDMAARM_SDMA_CHNENBL6_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL6_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL6_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL6_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL6_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL6_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL6_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL6_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL6_ENBLN) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL6_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL6_ENBLN) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL6_ENBLN) & BM_SDMAARM_SDMA_CHNENBL6_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL6_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL6_WR((HW_SDMAARM_SDMA_CHNENBL6_RD() & ~BM_SDMAARM_SDMA_CHNENBL6_ENBLN) | BF_SDMAARM_SDMA_CHNENBL6_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL7 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5006,20 +4896,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl7
 #define BM_SDMAARM_SDMA_CHNENBL7_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL7_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL7_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL7_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL7_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL7_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL7_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL7_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL7_ENBLN) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL7_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL7_ENBLN) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL7_ENBLN) & BM_SDMAARM_SDMA_CHNENBL7_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL7_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL7_WR((HW_SDMAARM_SDMA_CHNENBL7_RD() & ~BM_SDMAARM_SDMA_CHNENBL7_ENBLN) | BF_SDMAARM_SDMA_CHNENBL7_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL8 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5070,20 +4959,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl8
 #define BM_SDMAARM_SDMA_CHNENBL8_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL8_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL8_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL8_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL8_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL8_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL8_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL8_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL8_ENBLN) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL8_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL8_ENBLN) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL8_ENBLN) & BM_SDMAARM_SDMA_CHNENBL8_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL8_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL8_WR((HW_SDMAARM_SDMA_CHNENBL8_RD() & ~BM_SDMAARM_SDMA_CHNENBL8_ENBLN) | BF_SDMAARM_SDMA_CHNENBL8_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL9 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5134,20 +5022,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl9
 #define BM_SDMAARM_SDMA_CHNENBL9_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL9_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL9_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL9_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL9_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL9_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL9_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL9_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL9_ENBLN) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL9_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL9_ENBLN) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL9_ENBLN) & BM_SDMAARM_SDMA_CHNENBL9_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL9_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL9_WR((HW_SDMAARM_SDMA_CHNENBL9_RD() & ~BM_SDMAARM_SDMA_CHNENBL9_ENBLN) | BF_SDMAARM_SDMA_CHNENBL9_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL10 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5198,20 +5085,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl10
 #define BM_SDMAARM_SDMA_CHNENBL10_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL10_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL10_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL10_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL10_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL10_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL10_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL10_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL10_ENBLN) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL10_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL10_ENBLN) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL10_ENBLN) & BM_SDMAARM_SDMA_CHNENBL10_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL10_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL10_WR((HW_SDMAARM_SDMA_CHNENBL10_RD() & ~BM_SDMAARM_SDMA_CHNENBL10_ENBLN) | BF_SDMAARM_SDMA_CHNENBL10_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL11 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5262,20 +5148,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl11
 #define BM_SDMAARM_SDMA_CHNENBL11_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL11_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL11_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL11_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL11_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL11_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL11_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL11_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL11_ENBLN) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL11_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL11_ENBLN) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL11_ENBLN) & BM_SDMAARM_SDMA_CHNENBL11_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL11_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL11_WR((HW_SDMAARM_SDMA_CHNENBL11_RD() & ~BM_SDMAARM_SDMA_CHNENBL11_ENBLN) | BF_SDMAARM_SDMA_CHNENBL11_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL12 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5326,20 +5211,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl12
 #define BM_SDMAARM_SDMA_CHNENBL12_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL12_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL12_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL12_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL12_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL12_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL12_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL12_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL12_ENBLN) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL12_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL12_ENBLN) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL12_ENBLN) & BM_SDMAARM_SDMA_CHNENBL12_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL12_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL12_WR((HW_SDMAARM_SDMA_CHNENBL12_RD() & ~BM_SDMAARM_SDMA_CHNENBL12_ENBLN) | BF_SDMAARM_SDMA_CHNENBL12_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL13 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5390,20 +5274,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl13
 #define BM_SDMAARM_SDMA_CHNENBL13_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL13_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL13_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL13_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL13_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL13_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL13_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL13_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL13_ENBLN) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL13_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL13_ENBLN) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL13_ENBLN) & BM_SDMAARM_SDMA_CHNENBL13_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL13_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL13_WR((HW_SDMAARM_SDMA_CHNENBL13_RD() & ~BM_SDMAARM_SDMA_CHNENBL13_ENBLN) | BF_SDMAARM_SDMA_CHNENBL13_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL14 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5454,20 +5337,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl14
 #define BM_SDMAARM_SDMA_CHNENBL14_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL14_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL14_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL14_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL14_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL14_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL14_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL14_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL14_ENBLN) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL14_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL14_ENBLN) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL14_ENBLN) & BM_SDMAARM_SDMA_CHNENBL14_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL14_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL14_WR((HW_SDMAARM_SDMA_CHNENBL14_RD() & ~BM_SDMAARM_SDMA_CHNENBL14_ENBLN) | BF_SDMAARM_SDMA_CHNENBL14_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL15 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5518,20 +5400,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl15
 #define BM_SDMAARM_SDMA_CHNENBL15_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL15_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL15_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL15_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL15_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL15_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL15_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL15_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL15_ENBLN) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL15_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL15_ENBLN) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL15_ENBLN) & BM_SDMAARM_SDMA_CHNENBL15_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL15_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL15_WR((HW_SDMAARM_SDMA_CHNENBL15_RD() & ~BM_SDMAARM_SDMA_CHNENBL15_ENBLN) | BF_SDMAARM_SDMA_CHNENBL15_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL16 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5582,20 +5463,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl16
 #define BM_SDMAARM_SDMA_CHNENBL16_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL16_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL16_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL16_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL16_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL16_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL16_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL16_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL16_ENBLN) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL16_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL16_ENBLN) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL16_ENBLN) & BM_SDMAARM_SDMA_CHNENBL16_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL16_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL16_WR((HW_SDMAARM_SDMA_CHNENBL16_RD() & ~BM_SDMAARM_SDMA_CHNENBL16_ENBLN) | BF_SDMAARM_SDMA_CHNENBL16_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL17 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5646,20 +5526,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl17
 #define BM_SDMAARM_SDMA_CHNENBL17_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL17_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL17_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL17_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL17_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL17_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL17_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL17_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL17_ENBLN) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL17_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL17_ENBLN) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL17_ENBLN) & BM_SDMAARM_SDMA_CHNENBL17_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL17_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL17_WR((HW_SDMAARM_SDMA_CHNENBL17_RD() & ~BM_SDMAARM_SDMA_CHNENBL17_ENBLN) | BF_SDMAARM_SDMA_CHNENBL17_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL18 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5710,20 +5589,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl18
 #define BM_SDMAARM_SDMA_CHNENBL18_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL18_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL18_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL18_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL18_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL18_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL18_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL18_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL18_ENBLN) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL18_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL18_ENBLN) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL18_ENBLN) & BM_SDMAARM_SDMA_CHNENBL18_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL18_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL18_WR((HW_SDMAARM_SDMA_CHNENBL18_RD() & ~BM_SDMAARM_SDMA_CHNENBL18_ENBLN) | BF_SDMAARM_SDMA_CHNENBL18_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL19 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5774,20 +5652,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl19
 #define BM_SDMAARM_SDMA_CHNENBL19_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL19_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL19_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL19_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL19_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL19_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL19_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL19_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL19_ENBLN) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL19_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL19_ENBLN) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL19_ENBLN) & BM_SDMAARM_SDMA_CHNENBL19_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL19_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL19_WR((HW_SDMAARM_SDMA_CHNENBL19_RD() & ~BM_SDMAARM_SDMA_CHNENBL19_ENBLN) | BF_SDMAARM_SDMA_CHNENBL19_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL20 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5838,20 +5715,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl20
 #define BM_SDMAARM_SDMA_CHNENBL20_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL20_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL20_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL20_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL20_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL20_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL20_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL20_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL20_ENBLN) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL20_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL20_ENBLN) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL20_ENBLN) & BM_SDMAARM_SDMA_CHNENBL20_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL20_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL20_WR((HW_SDMAARM_SDMA_CHNENBL20_RD() & ~BM_SDMAARM_SDMA_CHNENBL20_ENBLN) | BF_SDMAARM_SDMA_CHNENBL20_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL21 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5902,20 +5778,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl21
 #define BM_SDMAARM_SDMA_CHNENBL21_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL21_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL21_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL21_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL21_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL21_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL21_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL21_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL21_ENBLN) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL21_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL21_ENBLN) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL21_ENBLN) & BM_SDMAARM_SDMA_CHNENBL21_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL21_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL21_WR((HW_SDMAARM_SDMA_CHNENBL21_RD() & ~BM_SDMAARM_SDMA_CHNENBL21_ENBLN) | BF_SDMAARM_SDMA_CHNENBL21_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL22 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5966,20 +5841,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl22
 #define BM_SDMAARM_SDMA_CHNENBL22_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL22_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL22_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL22_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL22_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL22_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL22_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL22_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL22_ENBLN) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL22_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL22_ENBLN) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL22_ENBLN) & BM_SDMAARM_SDMA_CHNENBL22_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL22_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL22_WR((HW_SDMAARM_SDMA_CHNENBL22_RD() & ~BM_SDMAARM_SDMA_CHNENBL22_ENBLN) | BF_SDMAARM_SDMA_CHNENBL22_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL23 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6030,20 +5904,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl23
 #define BM_SDMAARM_SDMA_CHNENBL23_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL23_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL23_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL23_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL23_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL23_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL23_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL23_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL23_ENBLN) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL23_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL23_ENBLN) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL23_ENBLN) & BM_SDMAARM_SDMA_CHNENBL23_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL23_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL23_WR((HW_SDMAARM_SDMA_CHNENBL23_RD() & ~BM_SDMAARM_SDMA_CHNENBL23_ENBLN) | BF_SDMAARM_SDMA_CHNENBL23_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL24 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6094,20 +5967,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl24
 #define BM_SDMAARM_SDMA_CHNENBL24_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL24_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL24_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL24_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL24_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL24_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL24_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL24_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL24_ENBLN) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL24_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL24_ENBLN) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL24_ENBLN) & BM_SDMAARM_SDMA_CHNENBL24_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL24_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL24_WR((HW_SDMAARM_SDMA_CHNENBL24_RD() & ~BM_SDMAARM_SDMA_CHNENBL24_ENBLN) | BF_SDMAARM_SDMA_CHNENBL24_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL25 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6158,20 +6030,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl25
 #define BM_SDMAARM_SDMA_CHNENBL25_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL25_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL25_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL25_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL25_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL25_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL25_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL25_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL25_ENBLN) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL25_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL25_ENBLN) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL25_ENBLN) & BM_SDMAARM_SDMA_CHNENBL25_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL25_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL25_WR((HW_SDMAARM_SDMA_CHNENBL25_RD() & ~BM_SDMAARM_SDMA_CHNENBL25_ENBLN) | BF_SDMAARM_SDMA_CHNENBL25_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL26 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6222,20 +6093,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl26
 #define BM_SDMAARM_SDMA_CHNENBL26_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL26_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL26_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL26_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL26_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL26_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL26_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL26_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL26_ENBLN) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL26_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL26_ENBLN) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL26_ENBLN) & BM_SDMAARM_SDMA_CHNENBL26_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL26_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL26_WR((HW_SDMAARM_SDMA_CHNENBL26_RD() & ~BM_SDMAARM_SDMA_CHNENBL26_ENBLN) | BF_SDMAARM_SDMA_CHNENBL26_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL27 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6286,20 +6156,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl27
 #define BM_SDMAARM_SDMA_CHNENBL27_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL27_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL27_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL27_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL27_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL27_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL27_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL27_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL27_ENBLN) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL27_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL27_ENBLN) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL27_ENBLN) & BM_SDMAARM_SDMA_CHNENBL27_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL27_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL27_WR((HW_SDMAARM_SDMA_CHNENBL27_RD() & ~BM_SDMAARM_SDMA_CHNENBL27_ENBLN) | BF_SDMAARM_SDMA_CHNENBL27_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL28 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6350,20 +6219,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl28
 #define BM_SDMAARM_SDMA_CHNENBL28_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL28_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL28_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL28_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL28_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL28_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL28_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL28_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL28_ENBLN) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL28_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL28_ENBLN) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL28_ENBLN) & BM_SDMAARM_SDMA_CHNENBL28_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL28_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL28_WR((HW_SDMAARM_SDMA_CHNENBL28_RD() & ~BM_SDMAARM_SDMA_CHNENBL28_ENBLN) | BF_SDMAARM_SDMA_CHNENBL28_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL29 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6414,20 +6282,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl29
 #define BM_SDMAARM_SDMA_CHNENBL29_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL29_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL29_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL29_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL29_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL29_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL29_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL29_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL29_ENBLN) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL29_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL29_ENBLN) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL29_ENBLN) & BM_SDMAARM_SDMA_CHNENBL29_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL29_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL29_WR((HW_SDMAARM_SDMA_CHNENBL29_RD() & ~BM_SDMAARM_SDMA_CHNENBL29_ENBLN) | BF_SDMAARM_SDMA_CHNENBL29_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL30 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6478,20 +6345,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl30
 #define BM_SDMAARM_SDMA_CHNENBL30_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL30_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL30_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL30_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL30_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL30_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL30_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL30_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL30_ENBLN) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL30_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL30_ENBLN) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL30_ENBLN) & BM_SDMAARM_SDMA_CHNENBL30_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL30_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL30_WR((HW_SDMAARM_SDMA_CHNENBL30_RD() & ~BM_SDMAARM_SDMA_CHNENBL30_ENBLN) | BF_SDMAARM_SDMA_CHNENBL30_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL31 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6542,20 +6408,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl31
 #define BM_SDMAARM_SDMA_CHNENBL31_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL31_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL31_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL31_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL31_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL31_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL31_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL31_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL31_ENBLN) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL31_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL31_ENBLN) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL31_ENBLN) & BM_SDMAARM_SDMA_CHNENBL31_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL31_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL31_WR((HW_SDMAARM_SDMA_CHNENBL31_RD() & ~BM_SDMAARM_SDMA_CHNENBL31_ENBLN) | BF_SDMAARM_SDMA_CHNENBL31_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL32 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6606,20 +6471,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl32
 #define BM_SDMAARM_SDMA_CHNENBL32_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL32_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL32_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL32_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL32_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL32_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL32_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL32_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL32_ENBLN) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL32_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL32_ENBLN) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL32_ENBLN) & BM_SDMAARM_SDMA_CHNENBL32_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL32_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL32_WR((HW_SDMAARM_SDMA_CHNENBL32_RD() & ~BM_SDMAARM_SDMA_CHNENBL32_ENBLN) | BF_SDMAARM_SDMA_CHNENBL32_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL33 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6670,20 +6534,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl33
 #define BM_SDMAARM_SDMA_CHNENBL33_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL33_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL33_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL33_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL33_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL33_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL33_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL33_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL33_ENBLN) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL33_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL33_ENBLN) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL33_ENBLN) & BM_SDMAARM_SDMA_CHNENBL33_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL33_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL33_WR((HW_SDMAARM_SDMA_CHNENBL33_RD() & ~BM_SDMAARM_SDMA_CHNENBL33_ENBLN) | BF_SDMAARM_SDMA_CHNENBL33_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL34 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6734,20 +6597,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl34
 #define BM_SDMAARM_SDMA_CHNENBL34_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL34_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL34_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL34_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL34_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL34_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL34_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL34_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL34_ENBLN) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL34_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL34_ENBLN) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL34_ENBLN) & BM_SDMAARM_SDMA_CHNENBL34_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL34_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL34_WR((HW_SDMAARM_SDMA_CHNENBL34_RD() & ~BM_SDMAARM_SDMA_CHNENBL34_ENBLN) | BF_SDMAARM_SDMA_CHNENBL34_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL35 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6798,20 +6660,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl35
 #define BM_SDMAARM_SDMA_CHNENBL35_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL35_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL35_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL35_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL35_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL35_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL35_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL35_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL35_ENBLN) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL35_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL35_ENBLN) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL35_ENBLN) & BM_SDMAARM_SDMA_CHNENBL35_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL35_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL35_WR((HW_SDMAARM_SDMA_CHNENBL35_RD() & ~BM_SDMAARM_SDMA_CHNENBL35_ENBLN) | BF_SDMAARM_SDMA_CHNENBL35_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL36 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6862,20 +6723,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl36
 #define BM_SDMAARM_SDMA_CHNENBL36_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL36_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL36_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL36_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL36_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL36_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL36_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL36_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL36_ENBLN) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL36_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL36_ENBLN) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL36_ENBLN) & BM_SDMAARM_SDMA_CHNENBL36_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL36_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL36_WR((HW_SDMAARM_SDMA_CHNENBL36_RD() & ~BM_SDMAARM_SDMA_CHNENBL36_ENBLN) | BF_SDMAARM_SDMA_CHNENBL36_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL37 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6926,20 +6786,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl37
 #define BM_SDMAARM_SDMA_CHNENBL37_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL37_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL37_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL37_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL37_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL37_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL37_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL37_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL37_ENBLN) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL37_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL37_ENBLN) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL37_ENBLN) & BM_SDMAARM_SDMA_CHNENBL37_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL37_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL37_WR((HW_SDMAARM_SDMA_CHNENBL37_RD() & ~BM_SDMAARM_SDMA_CHNENBL37_ENBLN) | BF_SDMAARM_SDMA_CHNENBL37_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL38 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6990,20 +6849,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl38
 #define BM_SDMAARM_SDMA_CHNENBL38_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL38_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL38_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL38_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL38_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL38_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL38_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL38_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL38_ENBLN) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL38_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL38_ENBLN) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL38_ENBLN) & BM_SDMAARM_SDMA_CHNENBL38_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL38_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL38_WR((HW_SDMAARM_SDMA_CHNENBL38_RD() & ~BM_SDMAARM_SDMA_CHNENBL38_ENBLN) | BF_SDMAARM_SDMA_CHNENBL38_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL39 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7054,20 +6912,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl39
 #define BM_SDMAARM_SDMA_CHNENBL39_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL39_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL39_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL39_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL39_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL39_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL39_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL39_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL39_ENBLN) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL39_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL39_ENBLN) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL39_ENBLN) & BM_SDMAARM_SDMA_CHNENBL39_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL39_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL39_WR((HW_SDMAARM_SDMA_CHNENBL39_RD() & ~BM_SDMAARM_SDMA_CHNENBL39_ENBLN) | BF_SDMAARM_SDMA_CHNENBL39_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL40 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7118,20 +6975,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl40
 #define BM_SDMAARM_SDMA_CHNENBL40_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL40_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL40_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL40_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL40_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL40_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL40_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL40_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL40_ENBLN) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL40_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL40_ENBLN) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL40_ENBLN) & BM_SDMAARM_SDMA_CHNENBL40_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL40_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL40_WR((HW_SDMAARM_SDMA_CHNENBL40_RD() & ~BM_SDMAARM_SDMA_CHNENBL40_ENBLN) | BF_SDMAARM_SDMA_CHNENBL40_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL41 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7182,20 +7038,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl41
 #define BM_SDMAARM_SDMA_CHNENBL41_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL41_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL41_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL41_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL41_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL41_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL41_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL41_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL41_ENBLN) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL41_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL41_ENBLN) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL41_ENBLN) & BM_SDMAARM_SDMA_CHNENBL41_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL41_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL41_WR((HW_SDMAARM_SDMA_CHNENBL41_RD() & ~BM_SDMAARM_SDMA_CHNENBL41_ENBLN) | BF_SDMAARM_SDMA_CHNENBL41_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL42 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7246,20 +7101,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl42
 #define BM_SDMAARM_SDMA_CHNENBL42_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL42_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL42_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL42_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL42_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL42_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL42_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL42_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL42_ENBLN) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL42_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL42_ENBLN) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL42_ENBLN) & BM_SDMAARM_SDMA_CHNENBL42_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL42_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL42_WR((HW_SDMAARM_SDMA_CHNENBL42_RD() & ~BM_SDMAARM_SDMA_CHNENBL42_ENBLN) | BF_SDMAARM_SDMA_CHNENBL42_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL43 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7310,20 +7164,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl43
 #define BM_SDMAARM_SDMA_CHNENBL43_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL43_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL43_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL43_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL43_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL43_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL43_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL43_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL43_ENBLN) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL43_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL43_ENBLN) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL43_ENBLN) & BM_SDMAARM_SDMA_CHNENBL43_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL43_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL43_WR((HW_SDMAARM_SDMA_CHNENBL43_RD() & ~BM_SDMAARM_SDMA_CHNENBL43_ENBLN) | BF_SDMAARM_SDMA_CHNENBL43_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL44 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7374,20 +7227,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl44
 #define BM_SDMAARM_SDMA_CHNENBL44_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL44_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL44_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL44_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL44_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL44_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL44_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL44_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL44_ENBLN) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL44_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL44_ENBLN) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL44_ENBLN) & BM_SDMAARM_SDMA_CHNENBL44_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL44_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL44_WR((HW_SDMAARM_SDMA_CHNENBL44_RD() & ~BM_SDMAARM_SDMA_CHNENBL44_ENBLN) | BF_SDMAARM_SDMA_CHNENBL44_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL45 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7438,20 +7290,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl45
 #define BM_SDMAARM_SDMA_CHNENBL45_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL45_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL45_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL45_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL45_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL45_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL45_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL45_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL45_ENBLN) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL45_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL45_ENBLN) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL45_ENBLN) & BM_SDMAARM_SDMA_CHNENBL45_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL45_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL45_WR((HW_SDMAARM_SDMA_CHNENBL45_RD() & ~BM_SDMAARM_SDMA_CHNENBL45_ENBLN) | BF_SDMAARM_SDMA_CHNENBL45_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL46 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7502,20 +7353,19 @@ typedef union _hw_sdmaarm_sdma_chnenbl46
 #define BM_SDMAARM_SDMA_CHNENBL46_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL46_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL46_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL46_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL46_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL46_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL46_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL46_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL46_ENBLN) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL46_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL46_ENBLN) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL46_ENBLN) & BM_SDMAARM_SDMA_CHNENBL46_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.
 #define BW_SDMAARM_SDMA_CHNENBL46_ENBLN(v)   (HW_SDMAARM_SDMA_CHNENBL46_WR((HW_SDMAARM_SDMA_CHNENBL46_RD() & ~BM_SDMAARM_SDMA_CHNENBL46_ENBLN) | BF_SDMAARM_SDMA_CHNENBL46_ENBLN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMAARM_SDMA_CHNENBL47 - Channel Enable RAM
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7566,15 +7416,10 @@ typedef union _hw_sdmaarm_sdma_chnenbl47
 #define BM_SDMAARM_SDMA_CHNENBL47_ENBLN      (0xffffffff)  //!< Bit mask for SDMAARM_SDMA_CHNENBL47_ENBLN.
 
 //! @brief Get value of SDMAARM_SDMA_CHNENBL47_ENBLN from a register value.
-#define BG_SDMAARM_SDMA_CHNENBL47_ENBLN(r)   (((r) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL47_ENBLN)
+#define BG_SDMAARM_SDMA_CHNENBL47_ENBLN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN) >> BP_SDMAARM_SDMA_CHNENBL47_ENBLN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL47_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   ((((reg32_t) v) << BP_SDMAARM_SDMA_CHNENBL47_ENBLN) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
-#else
-//! @brief Format value for bitfield SDMAARM_SDMA_CHNENBL47_ENBLN.
-#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   (((v) << BP_SDMAARM_SDMA_CHNENBL47_ENBLN) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
-#endif
+#define BF_SDMAARM_SDMA_CHNENBL47_ENBLN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMAARM_SDMA_CHNENBL47_ENBLN) & BM_SDMAARM_SDMA_CHNENBL47_ENBLN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENBLN field to a new value.

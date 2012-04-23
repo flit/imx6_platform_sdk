@@ -77,6 +77,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CTRL - Control Register 0
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_PXP_CTRL - Control Register 0 (RW)
@@ -119,17 +134,14 @@ typedef union _hw_pxp_ctrl
  * constants & macros for entire PXP_CTRL register
  */
 #define HW_PXP_CTRL_ADDR      (REGS_PXP_BASE + 0x0)
-#define HW_PXP_CTRL_SET_ADDR  (HW_PXP_CTRL_ADDR + 0x4)
-#define HW_PXP_CTRL_CLR_ADDR  (HW_PXP_CTRL_ADDR + 0x8)
-#define HW_PXP_CTRL_TOG_ADDR  (HW_PXP_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CTRL           (*(volatile hw_pxp_ctrl_t *) HW_PXP_CTRL_ADDR)
 #define HW_PXP_CTRL_RD()      (HW_PXP_CTRL.U)
 #define HW_PXP_CTRL_WR(v)     (HW_PXP_CTRL.U = (v))
-#define HW_PXP_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_CTRL_SET_ADDR) = (v))
-#define HW_PXP_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_CTRL_SET(v)    (HW_PXP_CTRL_WR(HW_PXP_CTRL_RD() |  (v)))
+#define HW_PXP_CTRL_CLR(v)    (HW_PXP_CTRL_WR(HW_PXP_CTRL_RD() & ~(v)))
+#define HW_PXP_CTRL_TOG(v)    (HW_PXP_CTRL_WR(HW_PXP_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -147,19 +159,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_ENABLE      (0x00000001)  //!< Bit mask for PXP_CTRL_ENABLE.
 
 //! @brief Get value of PXP_CTRL_ENABLE from a register value.
-#define BG_PXP_CTRL_ENABLE(r)   (((r) & BM_PXP_CTRL_ENABLE) >> BP_PXP_CTRL_ENABLE)
+#define BG_PXP_CTRL_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_ENABLE) >> BP_PXP_CTRL_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_ENABLE.
-#define BF_PXP_CTRL_ENABLE(v)   ((((reg32_t) v) << BP_PXP_CTRL_ENABLE) & BM_PXP_CTRL_ENABLE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_ENABLE.
-#define BF_PXP_CTRL_ENABLE(v)   (((v) << BP_PXP_CTRL_ENABLE) & BM_PXP_CTRL_ENABLE)
-#endif
+#define BF_PXP_CTRL_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_ENABLE) & BM_PXP_CTRL_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
-#define BW_PXP_CTRL_ENABLE(v)   BF_CS1(PXP_CTRL, ENABLE, v)
+#define BW_PXP_CTRL_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ENABLE) | BF_PXP_CTRL_ENABLE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field IRQ_ENABLE[1] (RW)
@@ -172,19 +179,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_IRQ_ENABLE      (0x00000002)  //!< Bit mask for PXP_CTRL_IRQ_ENABLE.
 
 //! @brief Get value of PXP_CTRL_IRQ_ENABLE from a register value.
-#define BG_PXP_CTRL_IRQ_ENABLE(r)   (((r) & BM_PXP_CTRL_IRQ_ENABLE) >> BP_PXP_CTRL_IRQ_ENABLE)
+#define BG_PXP_CTRL_IRQ_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_IRQ_ENABLE) >> BP_PXP_CTRL_IRQ_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_IRQ_ENABLE.
-#define BF_PXP_CTRL_IRQ_ENABLE(v)   ((((reg32_t) v) << BP_PXP_CTRL_IRQ_ENABLE) & BM_PXP_CTRL_IRQ_ENABLE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_IRQ_ENABLE.
-#define BF_PXP_CTRL_IRQ_ENABLE(v)   (((v) << BP_PXP_CTRL_IRQ_ENABLE) & BM_PXP_CTRL_IRQ_ENABLE)
-#endif
+#define BF_PXP_CTRL_IRQ_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_IRQ_ENABLE) & BM_PXP_CTRL_IRQ_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRQ_ENABLE field to a new value.
-#define BW_PXP_CTRL_IRQ_ENABLE(v)   BF_CS1(PXP_CTRL, IRQ_ENABLE, v)
+#define BW_PXP_CTRL_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_IRQ_ENABLE) | BF_PXP_CTRL_IRQ_ENABLE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field NEXT_IRQ_ENABLE[2] (RW)
@@ -198,19 +200,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_NEXT_IRQ_ENABLE      (0x00000004)  //!< Bit mask for PXP_CTRL_NEXT_IRQ_ENABLE.
 
 //! @brief Get value of PXP_CTRL_NEXT_IRQ_ENABLE from a register value.
-#define BG_PXP_CTRL_NEXT_IRQ_ENABLE(r)   (((r) & BM_PXP_CTRL_NEXT_IRQ_ENABLE) >> BP_PXP_CTRL_NEXT_IRQ_ENABLE)
+#define BG_PXP_CTRL_NEXT_IRQ_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_NEXT_IRQ_ENABLE) >> BP_PXP_CTRL_NEXT_IRQ_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_NEXT_IRQ_ENABLE.
-#define BF_PXP_CTRL_NEXT_IRQ_ENABLE(v)   ((((reg32_t) v) << BP_PXP_CTRL_NEXT_IRQ_ENABLE) & BM_PXP_CTRL_NEXT_IRQ_ENABLE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_NEXT_IRQ_ENABLE.
-#define BF_PXP_CTRL_NEXT_IRQ_ENABLE(v)   (((v) << BP_PXP_CTRL_NEXT_IRQ_ENABLE) & BM_PXP_CTRL_NEXT_IRQ_ENABLE)
-#endif
+#define BF_PXP_CTRL_NEXT_IRQ_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_NEXT_IRQ_ENABLE) & BM_PXP_CTRL_NEXT_IRQ_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NEXT_IRQ_ENABLE field to a new value.
-#define BW_PXP_CTRL_NEXT_IRQ_ENABLE(v)   BF_CS1(PXP_CTRL, NEXT_IRQ_ENABLE, v)
+#define BW_PXP_CTRL_NEXT_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_NEXT_IRQ_ENABLE) | BF_PXP_CTRL_NEXT_IRQ_ENABLE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field LUT_DMA_IRQ_ENABLE[3] (RW)
@@ -223,19 +220,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE      (0x00000008)  //!< Bit mask for PXP_CTRL_LUT_DMA_IRQ_ENABLE.
 
 //! @brief Get value of PXP_CTRL_LUT_DMA_IRQ_ENABLE from a register value.
-#define BG_PXP_CTRL_LUT_DMA_IRQ_ENABLE(r)   (((r) & BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE) >> BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE)
+#define BG_PXP_CTRL_LUT_DMA_IRQ_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE) >> BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_LUT_DMA_IRQ_ENABLE.
-#define BF_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   ((((reg32_t) v) << BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE) & BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_LUT_DMA_IRQ_ENABLE.
-#define BF_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   (((v) << BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE) & BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE)
-#endif
+#define BF_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE) & BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_DMA_IRQ_ENABLE field to a new value.
-#define BW_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   BF_CS1(PXP_CTRL, LUT_DMA_IRQ_ENABLE, v)
+#define BW_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE) | BF_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field ENABLE_LCD_HANDSHAKE[4] (RW)
@@ -249,19 +241,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE      (0x00000010)  //!< Bit mask for PXP_CTRL_ENABLE_LCD_HANDSHAKE.
 
 //! @brief Get value of PXP_CTRL_ENABLE_LCD_HANDSHAKE from a register value.
-#define BG_PXP_CTRL_ENABLE_LCD_HANDSHAKE(r)   (((r) & BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE) >> BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE)
+#define BG_PXP_CTRL_ENABLE_LCD_HANDSHAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE) >> BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_ENABLE_LCD_HANDSHAKE.
-#define BF_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   ((((reg32_t) v) << BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE) & BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_ENABLE_LCD_HANDSHAKE.
-#define BF_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   (((v) << BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE) & BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE)
-#endif
+#define BF_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE) & BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_LCD_HANDSHAKE field to a new value.
-#define BW_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   BF_CS1(PXP_CTRL, ENABLE_LCD_HANDSHAKE, v)
+#define BW_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE) | BF_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field ROTATE[9:8] (RW)
@@ -280,19 +267,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_ROTATE      (0x00000300)  //!< Bit mask for PXP_CTRL_ROTATE.
 
 //! @brief Get value of PXP_CTRL_ROTATE from a register value.
-#define BG_PXP_CTRL_ROTATE(r)   (((r) & BM_PXP_CTRL_ROTATE) >> BP_PXP_CTRL_ROTATE)
+#define BG_PXP_CTRL_ROTATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_ROTATE) >> BP_PXP_CTRL_ROTATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_ROTATE.
-#define BF_PXP_CTRL_ROTATE(v)   ((((reg32_t) v) << BP_PXP_CTRL_ROTATE) & BM_PXP_CTRL_ROTATE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_ROTATE.
-#define BF_PXP_CTRL_ROTATE(v)   (((v) << BP_PXP_CTRL_ROTATE) & BM_PXP_CTRL_ROTATE)
-#endif
+#define BF_PXP_CTRL_ROTATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_ROTATE) & BM_PXP_CTRL_ROTATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROTATE field to a new value.
-#define BW_PXP_CTRL_ROTATE(v)   BF_CS1(PXP_CTRL, ROTATE, v)
+#define BW_PXP_CTRL_ROTATE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ROTATE) | BF_PXP_CTRL_ROTATE(v)))
 #endif
 
 #define BV_PXP_CTRL_ROTATE__ROT_0 (0x0) //!< 
@@ -309,19 +291,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_HFLIP      (0x00000400)  //!< Bit mask for PXP_CTRL_HFLIP.
 
 //! @brief Get value of PXP_CTRL_HFLIP from a register value.
-#define BG_PXP_CTRL_HFLIP(r)   (((r) & BM_PXP_CTRL_HFLIP) >> BP_PXP_CTRL_HFLIP)
+#define BG_PXP_CTRL_HFLIP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_HFLIP) >> BP_PXP_CTRL_HFLIP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_HFLIP.
-#define BF_PXP_CTRL_HFLIP(v)   ((((reg32_t) v) << BP_PXP_CTRL_HFLIP) & BM_PXP_CTRL_HFLIP)
-#else
-//! @brief Format value for bitfield PXP_CTRL_HFLIP.
-#define BF_PXP_CTRL_HFLIP(v)   (((v) << BP_PXP_CTRL_HFLIP) & BM_PXP_CTRL_HFLIP)
-#endif
+#define BF_PXP_CTRL_HFLIP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_HFLIP) & BM_PXP_CTRL_HFLIP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HFLIP field to a new value.
-#define BW_PXP_CTRL_HFLIP(v)   BF_CS1(PXP_CTRL, HFLIP, v)
+#define BW_PXP_CTRL_HFLIP(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_HFLIP) | BF_PXP_CTRL_HFLIP(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field VFLIP[11] (RW)
@@ -333,19 +310,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_VFLIP      (0x00000800)  //!< Bit mask for PXP_CTRL_VFLIP.
 
 //! @brief Get value of PXP_CTRL_VFLIP from a register value.
-#define BG_PXP_CTRL_VFLIP(r)   (((r) & BM_PXP_CTRL_VFLIP) >> BP_PXP_CTRL_VFLIP)
+#define BG_PXP_CTRL_VFLIP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_VFLIP) >> BP_PXP_CTRL_VFLIP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_VFLIP.
-#define BF_PXP_CTRL_VFLIP(v)   ((((reg32_t) v) << BP_PXP_CTRL_VFLIP) & BM_PXP_CTRL_VFLIP)
-#else
-//! @brief Format value for bitfield PXP_CTRL_VFLIP.
-#define BF_PXP_CTRL_VFLIP(v)   (((v) << BP_PXP_CTRL_VFLIP) & BM_PXP_CTRL_VFLIP)
-#endif
+#define BF_PXP_CTRL_VFLIP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_VFLIP) & BM_PXP_CTRL_VFLIP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VFLIP field to a new value.
-#define BW_PXP_CTRL_VFLIP(v)   BF_CS1(PXP_CTRL, VFLIP, v)
+#define BW_PXP_CTRL_VFLIP(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_VFLIP) | BF_PXP_CTRL_VFLIP(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field ROT_POS[22] (RW)
@@ -361,19 +333,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_ROT_POS      (0x00400000)  //!< Bit mask for PXP_CTRL_ROT_POS.
 
 //! @brief Get value of PXP_CTRL_ROT_POS from a register value.
-#define BG_PXP_CTRL_ROT_POS(r)   (((r) & BM_PXP_CTRL_ROT_POS) >> BP_PXP_CTRL_ROT_POS)
+#define BG_PXP_CTRL_ROT_POS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_ROT_POS) >> BP_PXP_CTRL_ROT_POS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_ROT_POS.
-#define BF_PXP_CTRL_ROT_POS(v)   ((((reg32_t) v) << BP_PXP_CTRL_ROT_POS) & BM_PXP_CTRL_ROT_POS)
-#else
-//! @brief Format value for bitfield PXP_CTRL_ROT_POS.
-#define BF_PXP_CTRL_ROT_POS(v)   (((v) << BP_PXP_CTRL_ROT_POS) & BM_PXP_CTRL_ROT_POS)
-#endif
+#define BF_PXP_CTRL_ROT_POS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_ROT_POS) & BM_PXP_CTRL_ROT_POS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROT_POS field to a new value.
-#define BW_PXP_CTRL_ROT_POS(v)   BF_CS1(PXP_CTRL, ROT_POS, v)
+#define BW_PXP_CTRL_ROT_POS(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ROT_POS) | BF_PXP_CTRL_ROT_POS(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field BLOCK_SIZE[23] (RW)
@@ -389,19 +356,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_BLOCK_SIZE      (0x00800000)  //!< Bit mask for PXP_CTRL_BLOCK_SIZE.
 
 //! @brief Get value of PXP_CTRL_BLOCK_SIZE from a register value.
-#define BG_PXP_CTRL_BLOCK_SIZE(r)   (((r) & BM_PXP_CTRL_BLOCK_SIZE) >> BP_PXP_CTRL_BLOCK_SIZE)
+#define BG_PXP_CTRL_BLOCK_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_BLOCK_SIZE) >> BP_PXP_CTRL_BLOCK_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_BLOCK_SIZE.
-#define BF_PXP_CTRL_BLOCK_SIZE(v)   ((((reg32_t) v) << BP_PXP_CTRL_BLOCK_SIZE) & BM_PXP_CTRL_BLOCK_SIZE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_BLOCK_SIZE.
-#define BF_PXP_CTRL_BLOCK_SIZE(v)   (((v) << BP_PXP_CTRL_BLOCK_SIZE) & BM_PXP_CTRL_BLOCK_SIZE)
-#endif
+#define BF_PXP_CTRL_BLOCK_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_BLOCK_SIZE) & BM_PXP_CTRL_BLOCK_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BLOCK_SIZE field to a new value.
-#define BW_PXP_CTRL_BLOCK_SIZE(v)   BF_CS1(PXP_CTRL, BLOCK_SIZE, v)
+#define BW_PXP_CTRL_BLOCK_SIZE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_BLOCK_SIZE) | BF_PXP_CTRL_BLOCK_SIZE(v)))
 #endif
 
 #define BV_PXP_CTRL_BLOCK_SIZE__8X8 (0x0) //!< Process 8x8 pixel blocks.
@@ -423,19 +385,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_EN_REPEAT      (0x10000000)  //!< Bit mask for PXP_CTRL_EN_REPEAT.
 
 //! @brief Get value of PXP_CTRL_EN_REPEAT from a register value.
-#define BG_PXP_CTRL_EN_REPEAT(r)   (((r) & BM_PXP_CTRL_EN_REPEAT) >> BP_PXP_CTRL_EN_REPEAT)
+#define BG_PXP_CTRL_EN_REPEAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_EN_REPEAT) >> BP_PXP_CTRL_EN_REPEAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_EN_REPEAT.
-#define BF_PXP_CTRL_EN_REPEAT(v)   ((((reg32_t) v) << BP_PXP_CTRL_EN_REPEAT) & BM_PXP_CTRL_EN_REPEAT)
-#else
-//! @brief Format value for bitfield PXP_CTRL_EN_REPEAT.
-#define BF_PXP_CTRL_EN_REPEAT(v)   (((v) << BP_PXP_CTRL_EN_REPEAT) & BM_PXP_CTRL_EN_REPEAT)
-#endif
+#define BF_PXP_CTRL_EN_REPEAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_EN_REPEAT) & BM_PXP_CTRL_EN_REPEAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN_REPEAT field to a new value.
-#define BW_PXP_CTRL_EN_REPEAT(v)   BF_CS1(PXP_CTRL, EN_REPEAT, v)
+#define BW_PXP_CTRL_EN_REPEAT(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_EN_REPEAT) | BF_PXP_CTRL_EN_REPEAT(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field CLKGATE[30] (RW)
@@ -448,19 +405,14 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for PXP_CTRL_CLKGATE.
 
 //! @brief Get value of PXP_CTRL_CLKGATE from a register value.
-#define BG_PXP_CTRL_CLKGATE(r)   (((r) & BM_PXP_CTRL_CLKGATE) >> BP_PXP_CTRL_CLKGATE)
+#define BG_PXP_CTRL_CLKGATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_CLKGATE) >> BP_PXP_CTRL_CLKGATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_CLKGATE.
-#define BF_PXP_CTRL_CLKGATE(v)   ((((reg32_t) v) << BP_PXP_CTRL_CLKGATE) & BM_PXP_CTRL_CLKGATE)
-#else
-//! @brief Format value for bitfield PXP_CTRL_CLKGATE.
-#define BF_PXP_CTRL_CLKGATE(v)   (((v) << BP_PXP_CTRL_CLKGATE) & BM_PXP_CTRL_CLKGATE)
-#endif
+#define BF_PXP_CTRL_CLKGATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_CLKGATE) & BM_PXP_CTRL_CLKGATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKGATE field to a new value.
-#define BW_PXP_CTRL_CLKGATE(v)   BF_CS1(PXP_CTRL, CLKGATE, v)
+#define BW_PXP_CTRL_CLKGATE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_CLKGATE) | BF_PXP_CTRL_CLKGATE(v)))
 #endif
 
 /* --- Register HW_PXP_CTRL, field SFTRST[31] (RW)
@@ -474,20 +426,19 @@ typedef union _hw_pxp_ctrl
 #define BM_PXP_CTRL_SFTRST      (0x80000000)  //!< Bit mask for PXP_CTRL_SFTRST.
 
 //! @brief Get value of PXP_CTRL_SFTRST from a register value.
-#define BG_PXP_CTRL_SFTRST(r)   (((r) & BM_PXP_CTRL_SFTRST) >> BP_PXP_CTRL_SFTRST)
+#define BG_PXP_CTRL_SFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CTRL_SFTRST) >> BP_PXP_CTRL_SFTRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CTRL_SFTRST.
-#define BF_PXP_CTRL_SFTRST(v)   ((((reg32_t) v) << BP_PXP_CTRL_SFTRST) & BM_PXP_CTRL_SFTRST)
-#else
-//! @brief Format value for bitfield PXP_CTRL_SFTRST.
-#define BF_PXP_CTRL_SFTRST(v)   (((v) << BP_PXP_CTRL_SFTRST) & BM_PXP_CTRL_SFTRST)
-#endif
+#define BF_PXP_CTRL_SFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CTRL_SFTRST) & BM_PXP_CTRL_SFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SFTRST field to a new value.
-#define BW_PXP_CTRL_SFTRST(v)   BF_CS1(PXP_CTRL, SFTRST, v)
+#define BW_PXP_CTRL_SFTRST(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_SFTRST) | BF_PXP_CTRL_SFTRST(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_STAT - Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -522,17 +473,14 @@ typedef union _hw_pxp_stat
  * constants & macros for entire PXP_STAT register
  */
 #define HW_PXP_STAT_ADDR      (REGS_PXP_BASE + 0x10)
-#define HW_PXP_STAT_SET_ADDR  (HW_PXP_STAT_ADDR + 0x4)
-#define HW_PXP_STAT_CLR_ADDR  (HW_PXP_STAT_ADDR + 0x8)
-#define HW_PXP_STAT_TOG_ADDR  (HW_PXP_STAT_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_STAT           (*(volatile hw_pxp_stat_t *) HW_PXP_STAT_ADDR)
 #define HW_PXP_STAT_RD()      (HW_PXP_STAT.U)
 #define HW_PXP_STAT_WR(v)     (HW_PXP_STAT.U = (v))
-#define HW_PXP_STAT_SET(v)    ((*(volatile reg32_t *) HW_PXP_STAT_SET_ADDR) = (v))
-#define HW_PXP_STAT_CLR(v)    ((*(volatile reg32_t *) HW_PXP_STAT_CLR_ADDR) = (v))
-#define HW_PXP_STAT_TOG(v)    ((*(volatile reg32_t *) HW_PXP_STAT_TOG_ADDR) = (v))
+#define HW_PXP_STAT_SET(v)    (HW_PXP_STAT_WR(HW_PXP_STAT_RD() |  (v)))
+#define HW_PXP_STAT_CLR(v)    (HW_PXP_STAT_WR(HW_PXP_STAT_RD() & ~(v)))
+#define HW_PXP_STAT_TOG(v)    (HW_PXP_STAT_WR(HW_PXP_STAT_RD() ^  (v)))
 #endif
 
 /*
@@ -549,19 +497,14 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_IRQ      (0x00000001)  //!< Bit mask for PXP_STAT_IRQ.
 
 //! @brief Get value of PXP_STAT_IRQ from a register value.
-#define BG_PXP_STAT_IRQ(r)   (((r) & BM_PXP_STAT_IRQ) >> BP_PXP_STAT_IRQ)
+#define BG_PXP_STAT_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_IRQ) >> BP_PXP_STAT_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_STAT_IRQ.
-#define BF_PXP_STAT_IRQ(v)   ((((reg32_t) v) << BP_PXP_STAT_IRQ) & BM_PXP_STAT_IRQ)
-#else
-//! @brief Format value for bitfield PXP_STAT_IRQ.
-#define BF_PXP_STAT_IRQ(v)   (((v) << BP_PXP_STAT_IRQ) & BM_PXP_STAT_IRQ)
-#endif
+#define BF_PXP_STAT_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_STAT_IRQ) & BM_PXP_STAT_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRQ field to a new value.
-#define BW_PXP_STAT_IRQ(v)   BF_CS1(PXP_STAT, IRQ, v)
+#define BW_PXP_STAT_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_IRQ) | BF_PXP_STAT_IRQ(v)))
 #endif
 
 /* --- Register HW_PXP_STAT, field AXI_WRITE_ERROR[1] (RW)
@@ -573,19 +516,14 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_AXI_WRITE_ERROR      (0x00000002)  //!< Bit mask for PXP_STAT_AXI_WRITE_ERROR.
 
 //! @brief Get value of PXP_STAT_AXI_WRITE_ERROR from a register value.
-#define BG_PXP_STAT_AXI_WRITE_ERROR(r)   (((r) & BM_PXP_STAT_AXI_WRITE_ERROR) >> BP_PXP_STAT_AXI_WRITE_ERROR)
+#define BG_PXP_STAT_AXI_WRITE_ERROR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_AXI_WRITE_ERROR) >> BP_PXP_STAT_AXI_WRITE_ERROR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_STAT_AXI_WRITE_ERROR.
-#define BF_PXP_STAT_AXI_WRITE_ERROR(v)   ((((reg32_t) v) << BP_PXP_STAT_AXI_WRITE_ERROR) & BM_PXP_STAT_AXI_WRITE_ERROR)
-#else
-//! @brief Format value for bitfield PXP_STAT_AXI_WRITE_ERROR.
-#define BF_PXP_STAT_AXI_WRITE_ERROR(v)   (((v) << BP_PXP_STAT_AXI_WRITE_ERROR) & BM_PXP_STAT_AXI_WRITE_ERROR)
-#endif
+#define BF_PXP_STAT_AXI_WRITE_ERROR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_STAT_AXI_WRITE_ERROR) & BM_PXP_STAT_AXI_WRITE_ERROR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_WRITE_ERROR field to a new value.
-#define BW_PXP_STAT_AXI_WRITE_ERROR(v)   BF_CS1(PXP_STAT, AXI_WRITE_ERROR, v)
+#define BW_PXP_STAT_AXI_WRITE_ERROR(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_AXI_WRITE_ERROR) | BF_PXP_STAT_AXI_WRITE_ERROR(v)))
 #endif
 
 /* --- Register HW_PXP_STAT, field AXI_READ_ERROR[2] (RW)
@@ -597,19 +535,14 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_AXI_READ_ERROR      (0x00000004)  //!< Bit mask for PXP_STAT_AXI_READ_ERROR.
 
 //! @brief Get value of PXP_STAT_AXI_READ_ERROR from a register value.
-#define BG_PXP_STAT_AXI_READ_ERROR(r)   (((r) & BM_PXP_STAT_AXI_READ_ERROR) >> BP_PXP_STAT_AXI_READ_ERROR)
+#define BG_PXP_STAT_AXI_READ_ERROR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_AXI_READ_ERROR) >> BP_PXP_STAT_AXI_READ_ERROR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_STAT_AXI_READ_ERROR.
-#define BF_PXP_STAT_AXI_READ_ERROR(v)   ((((reg32_t) v) << BP_PXP_STAT_AXI_READ_ERROR) & BM_PXP_STAT_AXI_READ_ERROR)
-#else
-//! @brief Format value for bitfield PXP_STAT_AXI_READ_ERROR.
-#define BF_PXP_STAT_AXI_READ_ERROR(v)   (((v) << BP_PXP_STAT_AXI_READ_ERROR) & BM_PXP_STAT_AXI_READ_ERROR)
-#endif
+#define BF_PXP_STAT_AXI_READ_ERROR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_STAT_AXI_READ_ERROR) & BM_PXP_STAT_AXI_READ_ERROR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_READ_ERROR field to a new value.
-#define BW_PXP_STAT_AXI_READ_ERROR(v)   BF_CS1(PXP_STAT, AXI_READ_ERROR, v)
+#define BW_PXP_STAT_AXI_READ_ERROR(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_AXI_READ_ERROR) | BF_PXP_STAT_AXI_READ_ERROR(v)))
 #endif
 
 /* --- Register HW_PXP_STAT, field NEXT_IRQ[3] (RW)
@@ -622,19 +555,14 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_NEXT_IRQ      (0x00000008)  //!< Bit mask for PXP_STAT_NEXT_IRQ.
 
 //! @brief Get value of PXP_STAT_NEXT_IRQ from a register value.
-#define BG_PXP_STAT_NEXT_IRQ(r)   (((r) & BM_PXP_STAT_NEXT_IRQ) >> BP_PXP_STAT_NEXT_IRQ)
+#define BG_PXP_STAT_NEXT_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_NEXT_IRQ) >> BP_PXP_STAT_NEXT_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_STAT_NEXT_IRQ.
-#define BF_PXP_STAT_NEXT_IRQ(v)   ((((reg32_t) v) << BP_PXP_STAT_NEXT_IRQ) & BM_PXP_STAT_NEXT_IRQ)
-#else
-//! @brief Format value for bitfield PXP_STAT_NEXT_IRQ.
-#define BF_PXP_STAT_NEXT_IRQ(v)   (((v) << BP_PXP_STAT_NEXT_IRQ) & BM_PXP_STAT_NEXT_IRQ)
-#endif
+#define BF_PXP_STAT_NEXT_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_STAT_NEXT_IRQ) & BM_PXP_STAT_NEXT_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NEXT_IRQ field to a new value.
-#define BW_PXP_STAT_NEXT_IRQ(v)   BF_CS1(PXP_STAT, NEXT_IRQ, v)
+#define BW_PXP_STAT_NEXT_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_NEXT_IRQ) | BF_PXP_STAT_NEXT_IRQ(v)))
 #endif
 
 /* --- Register HW_PXP_STAT, field AXI_ERROR_ID[7:4] (RO)
@@ -646,7 +574,7 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_AXI_ERROR_ID      (0x000000f0)  //!< Bit mask for PXP_STAT_AXI_ERROR_ID.
 
 //! @brief Get value of PXP_STAT_AXI_ERROR_ID from a register value.
-#define BG_PXP_STAT_AXI_ERROR_ID(r)   (((r) & BM_PXP_STAT_AXI_ERROR_ID) >> BP_PXP_STAT_AXI_ERROR_ID)
+#define BG_PXP_STAT_AXI_ERROR_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_AXI_ERROR_ID) >> BP_PXP_STAT_AXI_ERROR_ID)
 
 /* --- Register HW_PXP_STAT, field LUT_DMA_LOAD_DONE_IRQ[8] (RW)
  *
@@ -657,19 +585,14 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ      (0x00000100)  //!< Bit mask for PXP_STAT_LUT_DMA_LOAD_DONE_IRQ.
 
 //! @brief Get value of PXP_STAT_LUT_DMA_LOAD_DONE_IRQ from a register value.
-#define BG_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(r)   (((r) & BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) >> BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ)
+#define BG_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) >> BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_STAT_LUT_DMA_LOAD_DONE_IRQ.
-#define BF_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   ((((reg32_t) v) << BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) & BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ)
-#else
-//! @brief Format value for bitfield PXP_STAT_LUT_DMA_LOAD_DONE_IRQ.
-#define BF_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   (((v) << BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) & BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ)
-#endif
+#define BF_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) & BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_DMA_LOAD_DONE_IRQ field to a new value.
-#define BW_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   BF_CS1(PXP_STAT, LUT_DMA_LOAD_DONE_IRQ, v)
+#define BW_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) | BF_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)))
 #endif
 
 /* --- Register HW_PXP_STAT, field BLOCKY[23:16] (RO)
@@ -681,7 +604,7 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_BLOCKY      (0x00ff0000)  //!< Bit mask for PXP_STAT_BLOCKY.
 
 //! @brief Get value of PXP_STAT_BLOCKY from a register value.
-#define BG_PXP_STAT_BLOCKY(r)   (((r) & BM_PXP_STAT_BLOCKY) >> BP_PXP_STAT_BLOCKY)
+#define BG_PXP_STAT_BLOCKY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_BLOCKY) >> BP_PXP_STAT_BLOCKY)
 
 /* --- Register HW_PXP_STAT, field BLOCKX[31:24] (RO)
  *
@@ -692,7 +615,11 @@ typedef union _hw_pxp_stat
 #define BM_PXP_STAT_BLOCKX      (0xff000000)  //!< Bit mask for PXP_STAT_BLOCKX.
 
 //! @brief Get value of PXP_STAT_BLOCKX from a register value.
-#define BG_PXP_STAT_BLOCKX(r)   (((r) & BM_PXP_STAT_BLOCKX) >> BP_PXP_STAT_BLOCKX)
+#define BG_PXP_STAT_BLOCKX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_BLOCKX) >> BP_PXP_STAT_BLOCKX)
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_CTRL - Output Buffer Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -725,17 +652,14 @@ typedef union _hw_pxp_out_ctrl
  * constants & macros for entire PXP_OUT_CTRL register
  */
 #define HW_PXP_OUT_CTRL_ADDR      (REGS_PXP_BASE + 0x20)
-#define HW_PXP_OUT_CTRL_SET_ADDR  (HW_PXP_OUT_CTRL_ADDR + 0x4)
-#define HW_PXP_OUT_CTRL_CLR_ADDR  (HW_PXP_OUT_CTRL_ADDR + 0x8)
-#define HW_PXP_OUT_CTRL_TOG_ADDR  (HW_PXP_OUT_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_CTRL           (*(volatile hw_pxp_out_ctrl_t *) HW_PXP_OUT_CTRL_ADDR)
 #define HW_PXP_OUT_CTRL_RD()      (HW_PXP_OUT_CTRL.U)
 #define HW_PXP_OUT_CTRL_WR(v)     (HW_PXP_OUT_CTRL.U = (v))
-#define HW_PXP_OUT_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_CTRL_SET_ADDR) = (v))
-#define HW_PXP_OUT_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_OUT_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_OUT_CTRL_SET(v)    (HW_PXP_OUT_CTRL_WR(HW_PXP_OUT_CTRL_RD() |  (v)))
+#define HW_PXP_OUT_CTRL_CLR(v)    (HW_PXP_OUT_CTRL_WR(HW_PXP_OUT_CTRL_RD() & ~(v)))
+#define HW_PXP_OUT_CTRL_TOG(v)    (HW_PXP_OUT_CTRL_WR(HW_PXP_OUT_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -772,19 +696,14 @@ typedef union _hw_pxp_out_ctrl
 #define BM_PXP_OUT_CTRL_FORMAT      (0x0000001f)  //!< Bit mask for PXP_OUT_CTRL_FORMAT.
 
 //! @brief Get value of PXP_OUT_CTRL_FORMAT from a register value.
-#define BG_PXP_OUT_CTRL_FORMAT(r)   (((r) & BM_PXP_OUT_CTRL_FORMAT) >> BP_PXP_OUT_CTRL_FORMAT)
+#define BG_PXP_OUT_CTRL_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_CTRL_FORMAT) >> BP_PXP_OUT_CTRL_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_CTRL_FORMAT.
-#define BF_PXP_OUT_CTRL_FORMAT(v)   ((((reg32_t) v) << BP_PXP_OUT_CTRL_FORMAT) & BM_PXP_OUT_CTRL_FORMAT)
-#else
-//! @brief Format value for bitfield PXP_OUT_CTRL_FORMAT.
-#define BF_PXP_OUT_CTRL_FORMAT(v)   (((v) << BP_PXP_OUT_CTRL_FORMAT) & BM_PXP_OUT_CTRL_FORMAT)
-#endif
+#define BF_PXP_OUT_CTRL_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_CTRL_FORMAT) & BM_PXP_OUT_CTRL_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FORMAT field to a new value.
-#define BW_PXP_OUT_CTRL_FORMAT(v)   BF_CS1(PXP_OUT_CTRL, FORMAT, v)
+#define BW_PXP_OUT_CTRL_FORMAT(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_FORMAT) | BF_PXP_OUT_CTRL_FORMAT(v)))
 #endif
 
 #define BV_PXP_OUT_CTRL_FORMAT__ARGB8888 (0x0) //!< 32-bit pixels
@@ -822,19 +741,14 @@ typedef union _hw_pxp_out_ctrl
 #define BM_PXP_OUT_CTRL_INTERLACED_OUTPUT      (0x00000300)  //!< Bit mask for PXP_OUT_CTRL_INTERLACED_OUTPUT.
 
 //! @brief Get value of PXP_OUT_CTRL_INTERLACED_OUTPUT from a register value.
-#define BG_PXP_OUT_CTRL_INTERLACED_OUTPUT(r)   (((r) & BM_PXP_OUT_CTRL_INTERLACED_OUTPUT) >> BP_PXP_OUT_CTRL_INTERLACED_OUTPUT)
+#define BG_PXP_OUT_CTRL_INTERLACED_OUTPUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_CTRL_INTERLACED_OUTPUT) >> BP_PXP_OUT_CTRL_INTERLACED_OUTPUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_CTRL_INTERLACED_OUTPUT.
-#define BF_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)   ((((reg32_t) v) << BP_PXP_OUT_CTRL_INTERLACED_OUTPUT) & BM_PXP_OUT_CTRL_INTERLACED_OUTPUT)
-#else
-//! @brief Format value for bitfield PXP_OUT_CTRL_INTERLACED_OUTPUT.
-#define BF_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)   (((v) << BP_PXP_OUT_CTRL_INTERLACED_OUTPUT) & BM_PXP_OUT_CTRL_INTERLACED_OUTPUT)
-#endif
+#define BF_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_CTRL_INTERLACED_OUTPUT) & BM_PXP_OUT_CTRL_INTERLACED_OUTPUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTERLACED_OUTPUT field to a new value.
-#define BW_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)   BF_CS1(PXP_OUT_CTRL, INTERLACED_OUTPUT, v)
+#define BW_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_INTERLACED_OUTPUT) | BF_PXP_OUT_CTRL_INTERLACED_OUTPUT(v)))
 #endif
 
 #define BV_PXP_OUT_CTRL_INTERLACED_OUTPUT__PROGRESSIVE (0x0) //!< All data written in progressive format to the OUTBUF Pointer.
@@ -852,19 +766,14 @@ typedef union _hw_pxp_out_ctrl
 #define BM_PXP_OUT_CTRL_ALPHA_OUTPUT      (0x00800000)  //!< Bit mask for PXP_OUT_CTRL_ALPHA_OUTPUT.
 
 //! @brief Get value of PXP_OUT_CTRL_ALPHA_OUTPUT from a register value.
-#define BG_PXP_OUT_CTRL_ALPHA_OUTPUT(r)   (((r) & BM_PXP_OUT_CTRL_ALPHA_OUTPUT) >> BP_PXP_OUT_CTRL_ALPHA_OUTPUT)
+#define BG_PXP_OUT_CTRL_ALPHA_OUTPUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_CTRL_ALPHA_OUTPUT) >> BP_PXP_OUT_CTRL_ALPHA_OUTPUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_CTRL_ALPHA_OUTPUT.
-#define BF_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   ((((reg32_t) v) << BP_PXP_OUT_CTRL_ALPHA_OUTPUT) & BM_PXP_OUT_CTRL_ALPHA_OUTPUT)
-#else
-//! @brief Format value for bitfield PXP_OUT_CTRL_ALPHA_OUTPUT.
-#define BF_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   (((v) << BP_PXP_OUT_CTRL_ALPHA_OUTPUT) & BM_PXP_OUT_CTRL_ALPHA_OUTPUT)
-#endif
+#define BF_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_CTRL_ALPHA_OUTPUT) & BM_PXP_OUT_CTRL_ALPHA_OUTPUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPHA_OUTPUT field to a new value.
-#define BW_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   BF_CS1(PXP_OUT_CTRL, ALPHA_OUTPUT, v)
+#define BW_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_ALPHA_OUTPUT) | BF_PXP_OUT_CTRL_ALPHA_OUTPUT(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_CTRL, field ALPHA[31:24] (RW)
@@ -877,20 +786,19 @@ typedef union _hw_pxp_out_ctrl
 #define BM_PXP_OUT_CTRL_ALPHA      (0xff000000)  //!< Bit mask for PXP_OUT_CTRL_ALPHA.
 
 //! @brief Get value of PXP_OUT_CTRL_ALPHA from a register value.
-#define BG_PXP_OUT_CTRL_ALPHA(r)   (((r) & BM_PXP_OUT_CTRL_ALPHA) >> BP_PXP_OUT_CTRL_ALPHA)
+#define BG_PXP_OUT_CTRL_ALPHA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_CTRL_ALPHA) >> BP_PXP_OUT_CTRL_ALPHA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_CTRL_ALPHA.
-#define BF_PXP_OUT_CTRL_ALPHA(v)   ((((reg32_t) v) << BP_PXP_OUT_CTRL_ALPHA) & BM_PXP_OUT_CTRL_ALPHA)
-#else
-//! @brief Format value for bitfield PXP_OUT_CTRL_ALPHA.
-#define BF_PXP_OUT_CTRL_ALPHA(v)   (((v) << BP_PXP_OUT_CTRL_ALPHA) & BM_PXP_OUT_CTRL_ALPHA)
-#endif
+#define BF_PXP_OUT_CTRL_ALPHA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_CTRL_ALPHA) & BM_PXP_OUT_CTRL_ALPHA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPHA field to a new value.
-#define BW_PXP_OUT_CTRL_ALPHA(v)   BF_CS1(PXP_OUT_CTRL, ALPHA, v)
+#define BW_PXP_OUT_CTRL_ALPHA(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_ALPHA) | BF_PXP_OUT_CTRL_ALPHA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_BUF - Output Frame Buffer Pointer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -917,17 +825,14 @@ typedef union _hw_pxp_out_buf
  * constants & macros for entire PXP_OUT_BUF register
  */
 #define HW_PXP_OUT_BUF_ADDR      (REGS_PXP_BASE + 0x30)
-#define HW_PXP_OUT_BUF_SET_ADDR  (HW_PXP_OUT_BUF_ADDR + 0x4)
-#define HW_PXP_OUT_BUF_CLR_ADDR  (HW_PXP_OUT_BUF_ADDR + 0x8)
-#define HW_PXP_OUT_BUF_TOG_ADDR  (HW_PXP_OUT_BUF_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_BUF           (*(volatile hw_pxp_out_buf_t *) HW_PXP_OUT_BUF_ADDR)
 #define HW_PXP_OUT_BUF_RD()      (HW_PXP_OUT_BUF.U)
 #define HW_PXP_OUT_BUF_WR(v)     (HW_PXP_OUT_BUF.U = (v))
-#define HW_PXP_OUT_BUF_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF_SET_ADDR) = (v))
-#define HW_PXP_OUT_BUF_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF_CLR_ADDR) = (v))
-#define HW_PXP_OUT_BUF_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF_TOG_ADDR) = (v))
+#define HW_PXP_OUT_BUF_SET(v)    (HW_PXP_OUT_BUF_WR(HW_PXP_OUT_BUF_RD() |  (v)))
+#define HW_PXP_OUT_BUF_CLR(v)    (HW_PXP_OUT_BUF_WR(HW_PXP_OUT_BUF_RD() & ~(v)))
+#define HW_PXP_OUT_BUF_TOG(v)    (HW_PXP_OUT_BUF_WR(HW_PXP_OUT_BUF_RD() ^  (v)))
 #endif
 
 /*
@@ -944,20 +849,19 @@ typedef union _hw_pxp_out_buf
 #define BM_PXP_OUT_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_OUT_BUF_ADDR.
 
 //! @brief Get value of PXP_OUT_BUF_ADDR from a register value.
-#define BG_PXP_OUT_BUF_ADDR(r)   (((r) & BM_PXP_OUT_BUF_ADDR) >> BP_PXP_OUT_BUF_ADDR)
+#define BG_PXP_OUT_BUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_BUF_ADDR) >> BP_PXP_OUT_BUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_BUF_ADDR.
-#define BF_PXP_OUT_BUF_ADDR(v)   ((((reg32_t) v) << BP_PXP_OUT_BUF_ADDR) & BM_PXP_OUT_BUF_ADDR)
-#else
-//! @brief Format value for bitfield PXP_OUT_BUF_ADDR.
-#define BF_PXP_OUT_BUF_ADDR(v)   (((v) << BP_PXP_OUT_BUF_ADDR) & BM_PXP_OUT_BUF_ADDR)
-#endif
+#define BF_PXP_OUT_BUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_BUF_ADDR) & BM_PXP_OUT_BUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_OUT_BUF_ADDR(v)   BF_CS1(PXP_OUT_BUF, ADDR, v)
+#define BW_PXP_OUT_BUF_ADDR(v)   (HW_PXP_OUT_BUF_WR((HW_PXP_OUT_BUF_RD() & ~BM_PXP_OUT_BUF_ADDR) | BF_PXP_OUT_BUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_BUF2 - Output Frame Buffer Pointer #2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -987,17 +891,14 @@ typedef union _hw_pxp_out_buf2
  * constants & macros for entire PXP_OUT_BUF2 register
  */
 #define HW_PXP_OUT_BUF2_ADDR      (REGS_PXP_BASE + 0x40)
-#define HW_PXP_OUT_BUF2_SET_ADDR  (HW_PXP_OUT_BUF2_ADDR + 0x4)
-#define HW_PXP_OUT_BUF2_CLR_ADDR  (HW_PXP_OUT_BUF2_ADDR + 0x8)
-#define HW_PXP_OUT_BUF2_TOG_ADDR  (HW_PXP_OUT_BUF2_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_BUF2           (*(volatile hw_pxp_out_buf2_t *) HW_PXP_OUT_BUF2_ADDR)
 #define HW_PXP_OUT_BUF2_RD()      (HW_PXP_OUT_BUF2.U)
 #define HW_PXP_OUT_BUF2_WR(v)     (HW_PXP_OUT_BUF2.U = (v))
-#define HW_PXP_OUT_BUF2_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF2_SET_ADDR) = (v))
-#define HW_PXP_OUT_BUF2_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF2_CLR_ADDR) = (v))
-#define HW_PXP_OUT_BUF2_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_BUF2_TOG_ADDR) = (v))
+#define HW_PXP_OUT_BUF2_SET(v)    (HW_PXP_OUT_BUF2_WR(HW_PXP_OUT_BUF2_RD() |  (v)))
+#define HW_PXP_OUT_BUF2_CLR(v)    (HW_PXP_OUT_BUF2_WR(HW_PXP_OUT_BUF2_RD() & ~(v)))
+#define HW_PXP_OUT_BUF2_TOG(v)    (HW_PXP_OUT_BUF2_WR(HW_PXP_OUT_BUF2_RD() ^  (v)))
 #endif
 
 /*
@@ -1014,20 +915,19 @@ typedef union _hw_pxp_out_buf2
 #define BM_PXP_OUT_BUF2_ADDR      (0xffffffff)  //!< Bit mask for PXP_OUT_BUF2_ADDR.
 
 //! @brief Get value of PXP_OUT_BUF2_ADDR from a register value.
-#define BG_PXP_OUT_BUF2_ADDR(r)   (((r) & BM_PXP_OUT_BUF2_ADDR) >> BP_PXP_OUT_BUF2_ADDR)
+#define BG_PXP_OUT_BUF2_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_BUF2_ADDR) >> BP_PXP_OUT_BUF2_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_BUF2_ADDR.
-#define BF_PXP_OUT_BUF2_ADDR(v)   ((((reg32_t) v) << BP_PXP_OUT_BUF2_ADDR) & BM_PXP_OUT_BUF2_ADDR)
-#else
-//! @brief Format value for bitfield PXP_OUT_BUF2_ADDR.
-#define BF_PXP_OUT_BUF2_ADDR(v)   (((v) << BP_PXP_OUT_BUF2_ADDR) & BM_PXP_OUT_BUF2_ADDR)
-#endif
+#define BF_PXP_OUT_BUF2_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_BUF2_ADDR) & BM_PXP_OUT_BUF2_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_OUT_BUF2_ADDR(v)   BF_CS1(PXP_OUT_BUF2, ADDR, v)
+#define BW_PXP_OUT_BUF2_ADDR(v)   (HW_PXP_OUT_BUF2_WR((HW_PXP_OUT_BUF2_RD() & ~BM_PXP_OUT_BUF2_ADDR) | BF_PXP_OUT_BUF2_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_PITCH - Output Buffer Pitch
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1054,17 +954,14 @@ typedef union _hw_pxp_out_pitch
  * constants & macros for entire PXP_OUT_PITCH register
  */
 #define HW_PXP_OUT_PITCH_ADDR      (REGS_PXP_BASE + 0x50)
-#define HW_PXP_OUT_PITCH_SET_ADDR  (HW_PXP_OUT_PITCH_ADDR + 0x4)
-#define HW_PXP_OUT_PITCH_CLR_ADDR  (HW_PXP_OUT_PITCH_ADDR + 0x8)
-#define HW_PXP_OUT_PITCH_TOG_ADDR  (HW_PXP_OUT_PITCH_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_PITCH           (*(volatile hw_pxp_out_pitch_t *) HW_PXP_OUT_PITCH_ADDR)
 #define HW_PXP_OUT_PITCH_RD()      (HW_PXP_OUT_PITCH.U)
 #define HW_PXP_OUT_PITCH_WR(v)     (HW_PXP_OUT_PITCH.U = (v))
-#define HW_PXP_OUT_PITCH_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PITCH_SET_ADDR) = (v))
-#define HW_PXP_OUT_PITCH_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PITCH_CLR_ADDR) = (v))
-#define HW_PXP_OUT_PITCH_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PITCH_TOG_ADDR) = (v))
+#define HW_PXP_OUT_PITCH_SET(v)    (HW_PXP_OUT_PITCH_WR(HW_PXP_OUT_PITCH_RD() |  (v)))
+#define HW_PXP_OUT_PITCH_CLR(v)    (HW_PXP_OUT_PITCH_WR(HW_PXP_OUT_PITCH_RD() & ~(v)))
+#define HW_PXP_OUT_PITCH_TOG(v)    (HW_PXP_OUT_PITCH_WR(HW_PXP_OUT_PITCH_RD() ^  (v)))
 #endif
 
 /*
@@ -1080,20 +977,19 @@ typedef union _hw_pxp_out_pitch
 #define BM_PXP_OUT_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_OUT_PITCH_PITCH.
 
 //! @brief Get value of PXP_OUT_PITCH_PITCH from a register value.
-#define BG_PXP_OUT_PITCH_PITCH(r)   (((r) & BM_PXP_OUT_PITCH_PITCH) >> BP_PXP_OUT_PITCH_PITCH)
+#define BG_PXP_OUT_PITCH_PITCH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_PITCH_PITCH) >> BP_PXP_OUT_PITCH_PITCH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_PITCH_PITCH.
-#define BF_PXP_OUT_PITCH_PITCH(v)   ((((reg32_t) v) << BP_PXP_OUT_PITCH_PITCH) & BM_PXP_OUT_PITCH_PITCH)
-#else
-//! @brief Format value for bitfield PXP_OUT_PITCH_PITCH.
-#define BF_PXP_OUT_PITCH_PITCH(v)   (((v) << BP_PXP_OUT_PITCH_PITCH) & BM_PXP_OUT_PITCH_PITCH)
-#endif
+#define BF_PXP_OUT_PITCH_PITCH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_PITCH_PITCH) & BM_PXP_OUT_PITCH_PITCH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PITCH field to a new value.
-#define BW_PXP_OUT_PITCH_PITCH(v)   BF_CS1(PXP_OUT_PITCH, PITCH, v)
+#define BW_PXP_OUT_PITCH_PITCH(v)   (HW_PXP_OUT_PITCH_WR((HW_PXP_OUT_PITCH_RD() & ~BM_PXP_OUT_PITCH_PITCH) | BF_PXP_OUT_PITCH_PITCH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_LRC - Output Surface Lower Right Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1128,17 +1024,14 @@ typedef union _hw_pxp_out_lrc
  * constants & macros for entire PXP_OUT_LRC register
  */
 #define HW_PXP_OUT_LRC_ADDR      (REGS_PXP_BASE + 0x60)
-#define HW_PXP_OUT_LRC_SET_ADDR  (HW_PXP_OUT_LRC_ADDR + 0x4)
-#define HW_PXP_OUT_LRC_CLR_ADDR  (HW_PXP_OUT_LRC_ADDR + 0x8)
-#define HW_PXP_OUT_LRC_TOG_ADDR  (HW_PXP_OUT_LRC_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_LRC           (*(volatile hw_pxp_out_lrc_t *) HW_PXP_OUT_LRC_ADDR)
 #define HW_PXP_OUT_LRC_RD()      (HW_PXP_OUT_LRC.U)
 #define HW_PXP_OUT_LRC_WR(v)     (HW_PXP_OUT_LRC.U = (v))
-#define HW_PXP_OUT_LRC_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_LRC_SET_ADDR) = (v))
-#define HW_PXP_OUT_LRC_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_LRC_CLR_ADDR) = (v))
-#define HW_PXP_OUT_LRC_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_LRC_TOG_ADDR) = (v))
+#define HW_PXP_OUT_LRC_SET(v)    (HW_PXP_OUT_LRC_WR(HW_PXP_OUT_LRC_RD() |  (v)))
+#define HW_PXP_OUT_LRC_CLR(v)    (HW_PXP_OUT_LRC_WR(HW_PXP_OUT_LRC_RD() & ~(v)))
+#define HW_PXP_OUT_LRC_TOG(v)    (HW_PXP_OUT_LRC_WR(HW_PXP_OUT_LRC_RD() ^  (v)))
 #endif
 
 /*
@@ -1156,19 +1049,14 @@ typedef union _hw_pxp_out_lrc
 #define BM_PXP_OUT_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_LRC_Y.
 
 //! @brief Get value of PXP_OUT_LRC_Y from a register value.
-#define BG_PXP_OUT_LRC_Y(r)   (((r) & BM_PXP_OUT_LRC_Y) >> BP_PXP_OUT_LRC_Y)
+#define BG_PXP_OUT_LRC_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_LRC_Y) >> BP_PXP_OUT_LRC_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_LRC_Y.
-#define BF_PXP_OUT_LRC_Y(v)   ((((reg32_t) v) << BP_PXP_OUT_LRC_Y) & BM_PXP_OUT_LRC_Y)
-#else
-//! @brief Format value for bitfield PXP_OUT_LRC_Y.
-#define BF_PXP_OUT_LRC_Y(v)   (((v) << BP_PXP_OUT_LRC_Y) & BM_PXP_OUT_LRC_Y)
-#endif
+#define BF_PXP_OUT_LRC_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_LRC_Y) & BM_PXP_OUT_LRC_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y field to a new value.
-#define BW_PXP_OUT_LRC_Y(v)   BF_CS1(PXP_OUT_LRC, Y, v)
+#define BW_PXP_OUT_LRC_Y(v)   (HW_PXP_OUT_LRC_WR((HW_PXP_OUT_LRC_RD() & ~BM_PXP_OUT_LRC_Y) | BF_PXP_OUT_LRC_Y(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_LRC, field X[29:16] (RW)
@@ -1182,20 +1070,19 @@ typedef union _hw_pxp_out_lrc
 #define BM_PXP_OUT_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_LRC_X.
 
 //! @brief Get value of PXP_OUT_LRC_X from a register value.
-#define BG_PXP_OUT_LRC_X(r)   (((r) & BM_PXP_OUT_LRC_X) >> BP_PXP_OUT_LRC_X)
+#define BG_PXP_OUT_LRC_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_LRC_X) >> BP_PXP_OUT_LRC_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_LRC_X.
-#define BF_PXP_OUT_LRC_X(v)   ((((reg32_t) v) << BP_PXP_OUT_LRC_X) & BM_PXP_OUT_LRC_X)
-#else
-//! @brief Format value for bitfield PXP_OUT_LRC_X.
-#define BF_PXP_OUT_LRC_X(v)   (((v) << BP_PXP_OUT_LRC_X) & BM_PXP_OUT_LRC_X)
-#endif
+#define BF_PXP_OUT_LRC_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_LRC_X) & BM_PXP_OUT_LRC_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X field to a new value.
-#define BW_PXP_OUT_LRC_X(v)   BF_CS1(PXP_OUT_LRC, X, v)
+#define BW_PXP_OUT_LRC_X(v)   (HW_PXP_OUT_LRC_WR((HW_PXP_OUT_LRC_RD() & ~BM_PXP_OUT_LRC_X) | BF_PXP_OUT_LRC_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_PS_ULC - Processed Surface Upper Left Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1231,17 +1118,14 @@ typedef union _hw_pxp_out_ps_ulc
  * constants & macros for entire PXP_OUT_PS_ULC register
  */
 #define HW_PXP_OUT_PS_ULC_ADDR      (REGS_PXP_BASE + 0x70)
-#define HW_PXP_OUT_PS_ULC_SET_ADDR  (HW_PXP_OUT_PS_ULC_ADDR + 0x4)
-#define HW_PXP_OUT_PS_ULC_CLR_ADDR  (HW_PXP_OUT_PS_ULC_ADDR + 0x8)
-#define HW_PXP_OUT_PS_ULC_TOG_ADDR  (HW_PXP_OUT_PS_ULC_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_PS_ULC           (*(volatile hw_pxp_out_ps_ulc_t *) HW_PXP_OUT_PS_ULC_ADDR)
 #define HW_PXP_OUT_PS_ULC_RD()      (HW_PXP_OUT_PS_ULC.U)
 #define HW_PXP_OUT_PS_ULC_WR(v)     (HW_PXP_OUT_PS_ULC.U = (v))
-#define HW_PXP_OUT_PS_ULC_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_ULC_SET_ADDR) = (v))
-#define HW_PXP_OUT_PS_ULC_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_ULC_CLR_ADDR) = (v))
-#define HW_PXP_OUT_PS_ULC_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_ULC_TOG_ADDR) = (v))
+#define HW_PXP_OUT_PS_ULC_SET(v)    (HW_PXP_OUT_PS_ULC_WR(HW_PXP_OUT_PS_ULC_RD() |  (v)))
+#define HW_PXP_OUT_PS_ULC_CLR(v)    (HW_PXP_OUT_PS_ULC_WR(HW_PXP_OUT_PS_ULC_RD() & ~(v)))
+#define HW_PXP_OUT_PS_ULC_TOG(v)    (HW_PXP_OUT_PS_ULC_WR(HW_PXP_OUT_PS_ULC_RD() ^  (v)))
 #endif
 
 /*
@@ -1258,19 +1142,14 @@ typedef union _hw_pxp_out_ps_ulc
 #define BM_PXP_OUT_PS_ULC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_PS_ULC_Y.
 
 //! @brief Get value of PXP_OUT_PS_ULC_Y from a register value.
-#define BG_PXP_OUT_PS_ULC_Y(r)   (((r) & BM_PXP_OUT_PS_ULC_Y) >> BP_PXP_OUT_PS_ULC_Y)
+#define BG_PXP_OUT_PS_ULC_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_PS_ULC_Y) >> BP_PXP_OUT_PS_ULC_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_PS_ULC_Y.
-#define BF_PXP_OUT_PS_ULC_Y(v)   ((((reg32_t) v) << BP_PXP_OUT_PS_ULC_Y) & BM_PXP_OUT_PS_ULC_Y)
-#else
-//! @brief Format value for bitfield PXP_OUT_PS_ULC_Y.
-#define BF_PXP_OUT_PS_ULC_Y(v)   (((v) << BP_PXP_OUT_PS_ULC_Y) & BM_PXP_OUT_PS_ULC_Y)
-#endif
+#define BF_PXP_OUT_PS_ULC_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_PS_ULC_Y) & BM_PXP_OUT_PS_ULC_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y field to a new value.
-#define BW_PXP_OUT_PS_ULC_Y(v)   BF_CS1(PXP_OUT_PS_ULC, Y, v)
+#define BW_PXP_OUT_PS_ULC_Y(v)   (HW_PXP_OUT_PS_ULC_WR((HW_PXP_OUT_PS_ULC_RD() & ~BM_PXP_OUT_PS_ULC_Y) | BF_PXP_OUT_PS_ULC_Y(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_PS_ULC, field X[29:16] (RW)
@@ -1283,20 +1162,19 @@ typedef union _hw_pxp_out_ps_ulc
 #define BM_PXP_OUT_PS_ULC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_PS_ULC_X.
 
 //! @brief Get value of PXP_OUT_PS_ULC_X from a register value.
-#define BG_PXP_OUT_PS_ULC_X(r)   (((r) & BM_PXP_OUT_PS_ULC_X) >> BP_PXP_OUT_PS_ULC_X)
+#define BG_PXP_OUT_PS_ULC_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_PS_ULC_X) >> BP_PXP_OUT_PS_ULC_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_PS_ULC_X.
-#define BF_PXP_OUT_PS_ULC_X(v)   ((((reg32_t) v) << BP_PXP_OUT_PS_ULC_X) & BM_PXP_OUT_PS_ULC_X)
-#else
-//! @brief Format value for bitfield PXP_OUT_PS_ULC_X.
-#define BF_PXP_OUT_PS_ULC_X(v)   (((v) << BP_PXP_OUT_PS_ULC_X) & BM_PXP_OUT_PS_ULC_X)
-#endif
+#define BF_PXP_OUT_PS_ULC_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_PS_ULC_X) & BM_PXP_OUT_PS_ULC_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X field to a new value.
-#define BW_PXP_OUT_PS_ULC_X(v)   BF_CS1(PXP_OUT_PS_ULC, X, v)
+#define BW_PXP_OUT_PS_ULC_X(v)   (HW_PXP_OUT_PS_ULC_WR((HW_PXP_OUT_PS_ULC_RD() & ~BM_PXP_OUT_PS_ULC_X) | BF_PXP_OUT_PS_ULC_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_PS_LRC - Processed Surface Lower Right Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1330,17 +1208,14 @@ typedef union _hw_pxp_out_ps_lrc
  * constants & macros for entire PXP_OUT_PS_LRC register
  */
 #define HW_PXP_OUT_PS_LRC_ADDR      (REGS_PXP_BASE + 0x80)
-#define HW_PXP_OUT_PS_LRC_SET_ADDR  (HW_PXP_OUT_PS_LRC_ADDR + 0x4)
-#define HW_PXP_OUT_PS_LRC_CLR_ADDR  (HW_PXP_OUT_PS_LRC_ADDR + 0x8)
-#define HW_PXP_OUT_PS_LRC_TOG_ADDR  (HW_PXP_OUT_PS_LRC_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_PS_LRC           (*(volatile hw_pxp_out_ps_lrc_t *) HW_PXP_OUT_PS_LRC_ADDR)
 #define HW_PXP_OUT_PS_LRC_RD()      (HW_PXP_OUT_PS_LRC.U)
 #define HW_PXP_OUT_PS_LRC_WR(v)     (HW_PXP_OUT_PS_LRC.U = (v))
-#define HW_PXP_OUT_PS_LRC_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_LRC_SET_ADDR) = (v))
-#define HW_PXP_OUT_PS_LRC_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_LRC_CLR_ADDR) = (v))
-#define HW_PXP_OUT_PS_LRC_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_PS_LRC_TOG_ADDR) = (v))
+#define HW_PXP_OUT_PS_LRC_SET(v)    (HW_PXP_OUT_PS_LRC_WR(HW_PXP_OUT_PS_LRC_RD() |  (v)))
+#define HW_PXP_OUT_PS_LRC_CLR(v)    (HW_PXP_OUT_PS_LRC_WR(HW_PXP_OUT_PS_LRC_RD() & ~(v)))
+#define HW_PXP_OUT_PS_LRC_TOG(v)    (HW_PXP_OUT_PS_LRC_WR(HW_PXP_OUT_PS_LRC_RD() ^  (v)))
 #endif
 
 /*
@@ -1357,19 +1232,14 @@ typedef union _hw_pxp_out_ps_lrc
 #define BM_PXP_OUT_PS_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_PS_LRC_Y.
 
 //! @brief Get value of PXP_OUT_PS_LRC_Y from a register value.
-#define BG_PXP_OUT_PS_LRC_Y(r)   (((r) & BM_PXP_OUT_PS_LRC_Y) >> BP_PXP_OUT_PS_LRC_Y)
+#define BG_PXP_OUT_PS_LRC_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_PS_LRC_Y) >> BP_PXP_OUT_PS_LRC_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_PS_LRC_Y.
-#define BF_PXP_OUT_PS_LRC_Y(v)   ((((reg32_t) v) << BP_PXP_OUT_PS_LRC_Y) & BM_PXP_OUT_PS_LRC_Y)
-#else
-//! @brief Format value for bitfield PXP_OUT_PS_LRC_Y.
-#define BF_PXP_OUT_PS_LRC_Y(v)   (((v) << BP_PXP_OUT_PS_LRC_Y) & BM_PXP_OUT_PS_LRC_Y)
-#endif
+#define BF_PXP_OUT_PS_LRC_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_PS_LRC_Y) & BM_PXP_OUT_PS_LRC_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y field to a new value.
-#define BW_PXP_OUT_PS_LRC_Y(v)   BF_CS1(PXP_OUT_PS_LRC, Y, v)
+#define BW_PXP_OUT_PS_LRC_Y(v)   (HW_PXP_OUT_PS_LRC_WR((HW_PXP_OUT_PS_LRC_RD() & ~BM_PXP_OUT_PS_LRC_Y) | BF_PXP_OUT_PS_LRC_Y(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_PS_LRC, field X[29:16] (RW)
@@ -1382,20 +1252,19 @@ typedef union _hw_pxp_out_ps_lrc
 #define BM_PXP_OUT_PS_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_PS_LRC_X.
 
 //! @brief Get value of PXP_OUT_PS_LRC_X from a register value.
-#define BG_PXP_OUT_PS_LRC_X(r)   (((r) & BM_PXP_OUT_PS_LRC_X) >> BP_PXP_OUT_PS_LRC_X)
+#define BG_PXP_OUT_PS_LRC_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_PS_LRC_X) >> BP_PXP_OUT_PS_LRC_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_PS_LRC_X.
-#define BF_PXP_OUT_PS_LRC_X(v)   ((((reg32_t) v) << BP_PXP_OUT_PS_LRC_X) & BM_PXP_OUT_PS_LRC_X)
-#else
-//! @brief Format value for bitfield PXP_OUT_PS_LRC_X.
-#define BF_PXP_OUT_PS_LRC_X(v)   (((v) << BP_PXP_OUT_PS_LRC_X) & BM_PXP_OUT_PS_LRC_X)
-#endif
+#define BF_PXP_OUT_PS_LRC_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_PS_LRC_X) & BM_PXP_OUT_PS_LRC_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X field to a new value.
-#define BW_PXP_OUT_PS_LRC_X(v)   BF_CS1(PXP_OUT_PS_LRC, X, v)
+#define BW_PXP_OUT_PS_LRC_X(v)   (HW_PXP_OUT_PS_LRC_WR((HW_PXP_OUT_PS_LRC_RD() & ~BM_PXP_OUT_PS_LRC_X) | BF_PXP_OUT_PS_LRC_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_AS_ULC - Alpha Surface Upper Left Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1428,17 +1297,14 @@ typedef union _hw_pxp_out_as_ulc
  * constants & macros for entire PXP_OUT_AS_ULC register
  */
 #define HW_PXP_OUT_AS_ULC_ADDR      (REGS_PXP_BASE + 0x90)
-#define HW_PXP_OUT_AS_ULC_SET_ADDR  (HW_PXP_OUT_AS_ULC_ADDR + 0x4)
-#define HW_PXP_OUT_AS_ULC_CLR_ADDR  (HW_PXP_OUT_AS_ULC_ADDR + 0x8)
-#define HW_PXP_OUT_AS_ULC_TOG_ADDR  (HW_PXP_OUT_AS_ULC_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_AS_ULC           (*(volatile hw_pxp_out_as_ulc_t *) HW_PXP_OUT_AS_ULC_ADDR)
 #define HW_PXP_OUT_AS_ULC_RD()      (HW_PXP_OUT_AS_ULC.U)
 #define HW_PXP_OUT_AS_ULC_WR(v)     (HW_PXP_OUT_AS_ULC.U = (v))
-#define HW_PXP_OUT_AS_ULC_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_ULC_SET_ADDR) = (v))
-#define HW_PXP_OUT_AS_ULC_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_ULC_CLR_ADDR) = (v))
-#define HW_PXP_OUT_AS_ULC_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_ULC_TOG_ADDR) = (v))
+#define HW_PXP_OUT_AS_ULC_SET(v)    (HW_PXP_OUT_AS_ULC_WR(HW_PXP_OUT_AS_ULC_RD() |  (v)))
+#define HW_PXP_OUT_AS_ULC_CLR(v)    (HW_PXP_OUT_AS_ULC_WR(HW_PXP_OUT_AS_ULC_RD() & ~(v)))
+#define HW_PXP_OUT_AS_ULC_TOG(v)    (HW_PXP_OUT_AS_ULC_WR(HW_PXP_OUT_AS_ULC_RD() ^  (v)))
 #endif
 
 /*
@@ -1455,19 +1321,14 @@ typedef union _hw_pxp_out_as_ulc
 #define BM_PXP_OUT_AS_ULC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_AS_ULC_Y.
 
 //! @brief Get value of PXP_OUT_AS_ULC_Y from a register value.
-#define BG_PXP_OUT_AS_ULC_Y(r)   (((r) & BM_PXP_OUT_AS_ULC_Y) >> BP_PXP_OUT_AS_ULC_Y)
+#define BG_PXP_OUT_AS_ULC_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_AS_ULC_Y) >> BP_PXP_OUT_AS_ULC_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_AS_ULC_Y.
-#define BF_PXP_OUT_AS_ULC_Y(v)   ((((reg32_t) v) << BP_PXP_OUT_AS_ULC_Y) & BM_PXP_OUT_AS_ULC_Y)
-#else
-//! @brief Format value for bitfield PXP_OUT_AS_ULC_Y.
-#define BF_PXP_OUT_AS_ULC_Y(v)   (((v) << BP_PXP_OUT_AS_ULC_Y) & BM_PXP_OUT_AS_ULC_Y)
-#endif
+#define BF_PXP_OUT_AS_ULC_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_AS_ULC_Y) & BM_PXP_OUT_AS_ULC_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y field to a new value.
-#define BW_PXP_OUT_AS_ULC_Y(v)   BF_CS1(PXP_OUT_AS_ULC, Y, v)
+#define BW_PXP_OUT_AS_ULC_Y(v)   (HW_PXP_OUT_AS_ULC_WR((HW_PXP_OUT_AS_ULC_RD() & ~BM_PXP_OUT_AS_ULC_Y) | BF_PXP_OUT_AS_ULC_Y(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_AS_ULC, field X[29:16] (RW)
@@ -1480,20 +1341,19 @@ typedef union _hw_pxp_out_as_ulc
 #define BM_PXP_OUT_AS_ULC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_AS_ULC_X.
 
 //! @brief Get value of PXP_OUT_AS_ULC_X from a register value.
-#define BG_PXP_OUT_AS_ULC_X(r)   (((r) & BM_PXP_OUT_AS_ULC_X) >> BP_PXP_OUT_AS_ULC_X)
+#define BG_PXP_OUT_AS_ULC_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_AS_ULC_X) >> BP_PXP_OUT_AS_ULC_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_AS_ULC_X.
-#define BF_PXP_OUT_AS_ULC_X(v)   ((((reg32_t) v) << BP_PXP_OUT_AS_ULC_X) & BM_PXP_OUT_AS_ULC_X)
-#else
-//! @brief Format value for bitfield PXP_OUT_AS_ULC_X.
-#define BF_PXP_OUT_AS_ULC_X(v)   (((v) << BP_PXP_OUT_AS_ULC_X) & BM_PXP_OUT_AS_ULC_X)
-#endif
+#define BF_PXP_OUT_AS_ULC_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_AS_ULC_X) & BM_PXP_OUT_AS_ULC_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X field to a new value.
-#define BW_PXP_OUT_AS_ULC_X(v)   BF_CS1(PXP_OUT_AS_ULC, X, v)
+#define BW_PXP_OUT_AS_ULC_X(v)   (HW_PXP_OUT_AS_ULC_WR((HW_PXP_OUT_AS_ULC_RD() & ~BM_PXP_OUT_AS_ULC_X) | BF_PXP_OUT_AS_ULC_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_OUT_AS_LRC - Alpha Surface Lower Right Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1525,17 +1385,14 @@ typedef union _hw_pxp_out_as_lrc
  * constants & macros for entire PXP_OUT_AS_LRC register
  */
 #define HW_PXP_OUT_AS_LRC_ADDR      (REGS_PXP_BASE + 0xa0)
-#define HW_PXP_OUT_AS_LRC_SET_ADDR  (HW_PXP_OUT_AS_LRC_ADDR + 0x4)
-#define HW_PXP_OUT_AS_LRC_CLR_ADDR  (HW_PXP_OUT_AS_LRC_ADDR + 0x8)
-#define HW_PXP_OUT_AS_LRC_TOG_ADDR  (HW_PXP_OUT_AS_LRC_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_OUT_AS_LRC           (*(volatile hw_pxp_out_as_lrc_t *) HW_PXP_OUT_AS_LRC_ADDR)
 #define HW_PXP_OUT_AS_LRC_RD()      (HW_PXP_OUT_AS_LRC.U)
 #define HW_PXP_OUT_AS_LRC_WR(v)     (HW_PXP_OUT_AS_LRC.U = (v))
-#define HW_PXP_OUT_AS_LRC_SET(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_LRC_SET_ADDR) = (v))
-#define HW_PXP_OUT_AS_LRC_CLR(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_LRC_CLR_ADDR) = (v))
-#define HW_PXP_OUT_AS_LRC_TOG(v)    ((*(volatile reg32_t *) HW_PXP_OUT_AS_LRC_TOG_ADDR) = (v))
+#define HW_PXP_OUT_AS_LRC_SET(v)    (HW_PXP_OUT_AS_LRC_WR(HW_PXP_OUT_AS_LRC_RD() |  (v)))
+#define HW_PXP_OUT_AS_LRC_CLR(v)    (HW_PXP_OUT_AS_LRC_WR(HW_PXP_OUT_AS_LRC_RD() & ~(v)))
+#define HW_PXP_OUT_AS_LRC_TOG(v)    (HW_PXP_OUT_AS_LRC_WR(HW_PXP_OUT_AS_LRC_RD() ^  (v)))
 #endif
 
 /*
@@ -1552,19 +1409,14 @@ typedef union _hw_pxp_out_as_lrc
 #define BM_PXP_OUT_AS_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_AS_LRC_Y.
 
 //! @brief Get value of PXP_OUT_AS_LRC_Y from a register value.
-#define BG_PXP_OUT_AS_LRC_Y(r)   (((r) & BM_PXP_OUT_AS_LRC_Y) >> BP_PXP_OUT_AS_LRC_Y)
+#define BG_PXP_OUT_AS_LRC_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_AS_LRC_Y) >> BP_PXP_OUT_AS_LRC_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_AS_LRC_Y.
-#define BF_PXP_OUT_AS_LRC_Y(v)   ((((reg32_t) v) << BP_PXP_OUT_AS_LRC_Y) & BM_PXP_OUT_AS_LRC_Y)
-#else
-//! @brief Format value for bitfield PXP_OUT_AS_LRC_Y.
-#define BF_PXP_OUT_AS_LRC_Y(v)   (((v) << BP_PXP_OUT_AS_LRC_Y) & BM_PXP_OUT_AS_LRC_Y)
-#endif
+#define BF_PXP_OUT_AS_LRC_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_AS_LRC_Y) & BM_PXP_OUT_AS_LRC_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y field to a new value.
-#define BW_PXP_OUT_AS_LRC_Y(v)   BF_CS1(PXP_OUT_AS_LRC, Y, v)
+#define BW_PXP_OUT_AS_LRC_Y(v)   (HW_PXP_OUT_AS_LRC_WR((HW_PXP_OUT_AS_LRC_RD() & ~BM_PXP_OUT_AS_LRC_Y) | BF_PXP_OUT_AS_LRC_Y(v)))
 #endif
 
 /* --- Register HW_PXP_OUT_AS_LRC, field X[29:16] (RW)
@@ -1577,20 +1429,19 @@ typedef union _hw_pxp_out_as_lrc
 #define BM_PXP_OUT_AS_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_AS_LRC_X.
 
 //! @brief Get value of PXP_OUT_AS_LRC_X from a register value.
-#define BG_PXP_OUT_AS_LRC_X(r)   (((r) & BM_PXP_OUT_AS_LRC_X) >> BP_PXP_OUT_AS_LRC_X)
+#define BG_PXP_OUT_AS_LRC_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_OUT_AS_LRC_X) >> BP_PXP_OUT_AS_LRC_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_OUT_AS_LRC_X.
-#define BF_PXP_OUT_AS_LRC_X(v)   ((((reg32_t) v) << BP_PXP_OUT_AS_LRC_X) & BM_PXP_OUT_AS_LRC_X)
-#else
-//! @brief Format value for bitfield PXP_OUT_AS_LRC_X.
-#define BF_PXP_OUT_AS_LRC_X(v)   (((v) << BP_PXP_OUT_AS_LRC_X) & BM_PXP_OUT_AS_LRC_X)
-#endif
+#define BF_PXP_OUT_AS_LRC_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_OUT_AS_LRC_X) & BM_PXP_OUT_AS_LRC_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X field to a new value.
-#define BW_PXP_OUT_AS_LRC_X(v)   BF_CS1(PXP_OUT_AS_LRC, X, v)
+#define BW_PXP_OUT_AS_LRC_X(v)   (HW_PXP_OUT_AS_LRC_WR((HW_PXP_OUT_AS_LRC_RD() & ~BM_PXP_OUT_AS_LRC_X) | BF_PXP_OUT_AS_LRC_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_CTRL - Processed Surface (PS) Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1623,17 +1474,14 @@ typedef union _hw_pxp_ps_ctrl
  * constants & macros for entire PXP_PS_CTRL register
  */
 #define HW_PXP_PS_CTRL_ADDR      (REGS_PXP_BASE + 0xb0)
-#define HW_PXP_PS_CTRL_SET_ADDR  (HW_PXP_PS_CTRL_ADDR + 0x4)
-#define HW_PXP_PS_CTRL_CLR_ADDR  (HW_PXP_PS_CTRL_ADDR + 0x8)
-#define HW_PXP_PS_CTRL_TOG_ADDR  (HW_PXP_PS_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_CTRL           (*(volatile hw_pxp_ps_ctrl_t *) HW_PXP_PS_CTRL_ADDR)
 #define HW_PXP_PS_CTRL_RD()      (HW_PXP_PS_CTRL.U)
 #define HW_PXP_PS_CTRL_WR(v)     (HW_PXP_PS_CTRL.U = (v))
-#define HW_PXP_PS_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_CTRL_SET_ADDR) = (v))
-#define HW_PXP_PS_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_PS_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_PS_CTRL_SET(v)    (HW_PXP_PS_CTRL_WR(HW_PXP_PS_CTRL_RD() |  (v)))
+#define HW_PXP_PS_CTRL_CLR(v)    (HW_PXP_PS_CTRL_WR(HW_PXP_PS_CTRL_RD() & ~(v)))
+#define HW_PXP_PS_CTRL_TOG(v)    (HW_PXP_PS_CTRL_WR(HW_PXP_PS_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -1666,19 +1514,14 @@ typedef union _hw_pxp_ps_ctrl
 #define BM_PXP_PS_CTRL_FORMAT      (0x0000001f)  //!< Bit mask for PXP_PS_CTRL_FORMAT.
 
 //! @brief Get value of PXP_PS_CTRL_FORMAT from a register value.
-#define BG_PXP_PS_CTRL_FORMAT(r)   (((r) & BM_PXP_PS_CTRL_FORMAT) >> BP_PXP_PS_CTRL_FORMAT)
+#define BG_PXP_PS_CTRL_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CTRL_FORMAT) >> BP_PXP_PS_CTRL_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CTRL_FORMAT.
-#define BF_PXP_PS_CTRL_FORMAT(v)   ((((reg32_t) v) << BP_PXP_PS_CTRL_FORMAT) & BM_PXP_PS_CTRL_FORMAT)
-#else
-//! @brief Format value for bitfield PXP_PS_CTRL_FORMAT.
-#define BF_PXP_PS_CTRL_FORMAT(v)   (((v) << BP_PXP_PS_CTRL_FORMAT) & BM_PXP_PS_CTRL_FORMAT)
-#endif
+#define BF_PXP_PS_CTRL_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CTRL_FORMAT) & BM_PXP_PS_CTRL_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FORMAT field to a new value.
-#define BW_PXP_PS_CTRL_FORMAT(v)   BF_CS1(PXP_PS_CTRL, FORMAT, v)
+#define BW_PXP_PS_CTRL_FORMAT(v)   (HW_PXP_PS_CTRL_WR((HW_PXP_PS_CTRL_RD() & ~BM_PXP_PS_CTRL_FORMAT) | BF_PXP_PS_CTRL_FORMAT(v)))
 #endif
 
 #define BV_PXP_PS_CTRL_FORMAT__RGB888 (0x4) //!< 32-bit pixels (unpacked 24-bit format)
@@ -1706,19 +1549,14 @@ typedef union _hw_pxp_ps_ctrl
 #define BM_PXP_PS_CTRL_WB_SWAP      (0x00000020)  //!< Bit mask for PXP_PS_CTRL_WB_SWAP.
 
 //! @brief Get value of PXP_PS_CTRL_WB_SWAP from a register value.
-#define BG_PXP_PS_CTRL_WB_SWAP(r)   (((r) & BM_PXP_PS_CTRL_WB_SWAP) >> BP_PXP_PS_CTRL_WB_SWAP)
+#define BG_PXP_PS_CTRL_WB_SWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CTRL_WB_SWAP) >> BP_PXP_PS_CTRL_WB_SWAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CTRL_WB_SWAP.
-#define BF_PXP_PS_CTRL_WB_SWAP(v)   ((((reg32_t) v) << BP_PXP_PS_CTRL_WB_SWAP) & BM_PXP_PS_CTRL_WB_SWAP)
-#else
-//! @brief Format value for bitfield PXP_PS_CTRL_WB_SWAP.
-#define BF_PXP_PS_CTRL_WB_SWAP(v)   (((v) << BP_PXP_PS_CTRL_WB_SWAP) & BM_PXP_PS_CTRL_WB_SWAP)
-#endif
+#define BF_PXP_PS_CTRL_WB_SWAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CTRL_WB_SWAP) & BM_PXP_PS_CTRL_WB_SWAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_SWAP field to a new value.
-#define BW_PXP_PS_CTRL_WB_SWAP(v)   BF_CS1(PXP_PS_CTRL, WB_SWAP, v)
+#define BW_PXP_PS_CTRL_WB_SWAP(v)   (HW_PXP_PS_CTRL_WR((HW_PXP_PS_CTRL_RD() & ~BM_PXP_PS_CTRL_WB_SWAP) | BF_PXP_PS_CTRL_WB_SWAP(v)))
 #endif
 
 /* --- Register HW_PXP_PS_CTRL, field DECY[9:8] (RW)
@@ -1736,19 +1574,14 @@ typedef union _hw_pxp_ps_ctrl
 #define BM_PXP_PS_CTRL_DECY      (0x00000300)  //!< Bit mask for PXP_PS_CTRL_DECY.
 
 //! @brief Get value of PXP_PS_CTRL_DECY from a register value.
-#define BG_PXP_PS_CTRL_DECY(r)   (((r) & BM_PXP_PS_CTRL_DECY) >> BP_PXP_PS_CTRL_DECY)
+#define BG_PXP_PS_CTRL_DECY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CTRL_DECY) >> BP_PXP_PS_CTRL_DECY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CTRL_DECY.
-#define BF_PXP_PS_CTRL_DECY(v)   ((((reg32_t) v) << BP_PXP_PS_CTRL_DECY) & BM_PXP_PS_CTRL_DECY)
-#else
-//! @brief Format value for bitfield PXP_PS_CTRL_DECY.
-#define BF_PXP_PS_CTRL_DECY(v)   (((v) << BP_PXP_PS_CTRL_DECY) & BM_PXP_PS_CTRL_DECY)
-#endif
+#define BF_PXP_PS_CTRL_DECY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CTRL_DECY) & BM_PXP_PS_CTRL_DECY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DECY field to a new value.
-#define BW_PXP_PS_CTRL_DECY(v)   BF_CS1(PXP_PS_CTRL, DECY, v)
+#define BW_PXP_PS_CTRL_DECY(v)   (HW_PXP_PS_CTRL_WR((HW_PXP_PS_CTRL_RD() & ~BM_PXP_PS_CTRL_DECY) | BF_PXP_PS_CTRL_DECY(v)))
 #endif
 
 #define BV_PXP_PS_CTRL_DECY__DISABLE (0x0) //!< Disable pre-decimation filter.
@@ -1771,25 +1604,24 @@ typedef union _hw_pxp_ps_ctrl
 #define BM_PXP_PS_CTRL_DECX      (0x00000c00)  //!< Bit mask for PXP_PS_CTRL_DECX.
 
 //! @brief Get value of PXP_PS_CTRL_DECX from a register value.
-#define BG_PXP_PS_CTRL_DECX(r)   (((r) & BM_PXP_PS_CTRL_DECX) >> BP_PXP_PS_CTRL_DECX)
+#define BG_PXP_PS_CTRL_DECX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CTRL_DECX) >> BP_PXP_PS_CTRL_DECX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CTRL_DECX.
-#define BF_PXP_PS_CTRL_DECX(v)   ((((reg32_t) v) << BP_PXP_PS_CTRL_DECX) & BM_PXP_PS_CTRL_DECX)
-#else
-//! @brief Format value for bitfield PXP_PS_CTRL_DECX.
-#define BF_PXP_PS_CTRL_DECX(v)   (((v) << BP_PXP_PS_CTRL_DECX) & BM_PXP_PS_CTRL_DECX)
-#endif
+#define BF_PXP_PS_CTRL_DECX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CTRL_DECX) & BM_PXP_PS_CTRL_DECX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DECX field to a new value.
-#define BW_PXP_PS_CTRL_DECX(v)   BF_CS1(PXP_PS_CTRL, DECX, v)
+#define BW_PXP_PS_CTRL_DECX(v)   (HW_PXP_PS_CTRL_WR((HW_PXP_PS_CTRL_RD() & ~BM_PXP_PS_CTRL_DECX) | BF_PXP_PS_CTRL_DECX(v)))
 #endif
 
 #define BV_PXP_PS_CTRL_DECX__DISABLE (0x0) //!< Disable pre-decimation filter.
 #define BV_PXP_PS_CTRL_DECX__DECX2 (0x1) //!< Decimate PS by 2.
 #define BV_PXP_PS_CTRL_DECX__DECX4 (0x2) //!< Decimate PS by 4.
 #define BV_PXP_PS_CTRL_DECX__DECX8 (0x3) //!< Decimate PS by 8.
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_BUF - PS Input Buffer Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1819,17 +1651,14 @@ typedef union _hw_pxp_ps_buf
  * constants & macros for entire PXP_PS_BUF register
  */
 #define HW_PXP_PS_BUF_ADDR      (REGS_PXP_BASE + 0xc0)
-#define HW_PXP_PS_BUF_SET_ADDR  (HW_PXP_PS_BUF_ADDR + 0x4)
-#define HW_PXP_PS_BUF_CLR_ADDR  (HW_PXP_PS_BUF_ADDR + 0x8)
-#define HW_PXP_PS_BUF_TOG_ADDR  (HW_PXP_PS_BUF_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_BUF           (*(volatile hw_pxp_ps_buf_t *) HW_PXP_PS_BUF_ADDR)
 #define HW_PXP_PS_BUF_RD()      (HW_PXP_PS_BUF.U)
 #define HW_PXP_PS_BUF_WR(v)     (HW_PXP_PS_BUF.U = (v))
-#define HW_PXP_PS_BUF_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_BUF_SET_ADDR) = (v))
-#define HW_PXP_PS_BUF_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_BUF_CLR_ADDR) = (v))
-#define HW_PXP_PS_BUF_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_BUF_TOG_ADDR) = (v))
+#define HW_PXP_PS_BUF_SET(v)    (HW_PXP_PS_BUF_WR(HW_PXP_PS_BUF_RD() |  (v)))
+#define HW_PXP_PS_BUF_CLR(v)    (HW_PXP_PS_BUF_WR(HW_PXP_PS_BUF_RD() & ~(v)))
+#define HW_PXP_PS_BUF_TOG(v)    (HW_PXP_PS_BUF_WR(HW_PXP_PS_BUF_RD() ^  (v)))
 #endif
 
 /*
@@ -1845,20 +1674,19 @@ typedef union _hw_pxp_ps_buf
 #define BM_PXP_PS_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_BUF_ADDR.
 
 //! @brief Get value of PXP_PS_BUF_ADDR from a register value.
-#define BG_PXP_PS_BUF_ADDR(r)   (((r) & BM_PXP_PS_BUF_ADDR) >> BP_PXP_PS_BUF_ADDR)
+#define BG_PXP_PS_BUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_BUF_ADDR) >> BP_PXP_PS_BUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_BUF_ADDR.
-#define BF_PXP_PS_BUF_ADDR(v)   ((((reg32_t) v) << BP_PXP_PS_BUF_ADDR) & BM_PXP_PS_BUF_ADDR)
-#else
-//! @brief Format value for bitfield PXP_PS_BUF_ADDR.
-#define BF_PXP_PS_BUF_ADDR(v)   (((v) << BP_PXP_PS_BUF_ADDR) & BM_PXP_PS_BUF_ADDR)
-#endif
+#define BF_PXP_PS_BUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_BUF_ADDR) & BM_PXP_PS_BUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_PS_BUF_ADDR(v)   BF_CS1(PXP_PS_BUF, ADDR, v)
+#define BW_PXP_PS_BUF_ADDR(v)   (HW_PXP_PS_BUF_WR((HW_PXP_PS_BUF_RD() & ~BM_PXP_PS_BUF_ADDR) | BF_PXP_PS_BUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_UBUF - PS U/Cb or 2 Plane UV Input Buffer Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1889,17 +1717,14 @@ typedef union _hw_pxp_ps_ubuf
  * constants & macros for entire PXP_PS_UBUF register
  */
 #define HW_PXP_PS_UBUF_ADDR      (REGS_PXP_BASE + 0xd0)
-#define HW_PXP_PS_UBUF_SET_ADDR  (HW_PXP_PS_UBUF_ADDR + 0x4)
-#define HW_PXP_PS_UBUF_CLR_ADDR  (HW_PXP_PS_UBUF_ADDR + 0x8)
-#define HW_PXP_PS_UBUF_TOG_ADDR  (HW_PXP_PS_UBUF_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_UBUF           (*(volatile hw_pxp_ps_ubuf_t *) HW_PXP_PS_UBUF_ADDR)
 #define HW_PXP_PS_UBUF_RD()      (HW_PXP_PS_UBUF.U)
 #define HW_PXP_PS_UBUF_WR(v)     (HW_PXP_PS_UBUF.U = (v))
-#define HW_PXP_PS_UBUF_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_UBUF_SET_ADDR) = (v))
-#define HW_PXP_PS_UBUF_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_UBUF_CLR_ADDR) = (v))
-#define HW_PXP_PS_UBUF_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_UBUF_TOG_ADDR) = (v))
+#define HW_PXP_PS_UBUF_SET(v)    (HW_PXP_PS_UBUF_WR(HW_PXP_PS_UBUF_RD() |  (v)))
+#define HW_PXP_PS_UBUF_CLR(v)    (HW_PXP_PS_UBUF_WR(HW_PXP_PS_UBUF_RD() & ~(v)))
+#define HW_PXP_PS_UBUF_TOG(v)    (HW_PXP_PS_UBUF_WR(HW_PXP_PS_UBUF_RD() ^  (v)))
 #endif
 
 /*
@@ -1915,20 +1740,19 @@ typedef union _hw_pxp_ps_ubuf
 #define BM_PXP_PS_UBUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_UBUF_ADDR.
 
 //! @brief Get value of PXP_PS_UBUF_ADDR from a register value.
-#define BG_PXP_PS_UBUF_ADDR(r)   (((r) & BM_PXP_PS_UBUF_ADDR) >> BP_PXP_PS_UBUF_ADDR)
+#define BG_PXP_PS_UBUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_UBUF_ADDR) >> BP_PXP_PS_UBUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_UBUF_ADDR.
-#define BF_PXP_PS_UBUF_ADDR(v)   ((((reg32_t) v) << BP_PXP_PS_UBUF_ADDR) & BM_PXP_PS_UBUF_ADDR)
-#else
-//! @brief Format value for bitfield PXP_PS_UBUF_ADDR.
-#define BF_PXP_PS_UBUF_ADDR(v)   (((v) << BP_PXP_PS_UBUF_ADDR) & BM_PXP_PS_UBUF_ADDR)
-#endif
+#define BF_PXP_PS_UBUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_UBUF_ADDR) & BM_PXP_PS_UBUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_PS_UBUF_ADDR(v)   BF_CS1(PXP_PS_UBUF, ADDR, v)
+#define BW_PXP_PS_UBUF_ADDR(v)   (HW_PXP_PS_UBUF_WR((HW_PXP_PS_UBUF_RD() & ~BM_PXP_PS_UBUF_ADDR) | BF_PXP_PS_UBUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_VBUF - PS V/Cr Input Buffer Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1963,17 +1787,14 @@ typedef union _hw_pxp_ps_vbuf
  * constants & macros for entire PXP_PS_VBUF register
  */
 #define HW_PXP_PS_VBUF_ADDR      (REGS_PXP_BASE + 0xe0)
-#define HW_PXP_PS_VBUF_SET_ADDR  (HW_PXP_PS_VBUF_ADDR + 0x4)
-#define HW_PXP_PS_VBUF_CLR_ADDR  (HW_PXP_PS_VBUF_ADDR + 0x8)
-#define HW_PXP_PS_VBUF_TOG_ADDR  (HW_PXP_PS_VBUF_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_VBUF           (*(volatile hw_pxp_ps_vbuf_t *) HW_PXP_PS_VBUF_ADDR)
 #define HW_PXP_PS_VBUF_RD()      (HW_PXP_PS_VBUF.U)
 #define HW_PXP_PS_VBUF_WR(v)     (HW_PXP_PS_VBUF.U = (v))
-#define HW_PXP_PS_VBUF_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_VBUF_SET_ADDR) = (v))
-#define HW_PXP_PS_VBUF_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_VBUF_CLR_ADDR) = (v))
-#define HW_PXP_PS_VBUF_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_VBUF_TOG_ADDR) = (v))
+#define HW_PXP_PS_VBUF_SET(v)    (HW_PXP_PS_VBUF_WR(HW_PXP_PS_VBUF_RD() |  (v)))
+#define HW_PXP_PS_VBUF_CLR(v)    (HW_PXP_PS_VBUF_WR(HW_PXP_PS_VBUF_RD() & ~(v)))
+#define HW_PXP_PS_VBUF_TOG(v)    (HW_PXP_PS_VBUF_WR(HW_PXP_PS_VBUF_RD() ^  (v)))
 #endif
 
 /*
@@ -1989,20 +1810,19 @@ typedef union _hw_pxp_ps_vbuf
 #define BM_PXP_PS_VBUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_VBUF_ADDR.
 
 //! @brief Get value of PXP_PS_VBUF_ADDR from a register value.
-#define BG_PXP_PS_VBUF_ADDR(r)   (((r) & BM_PXP_PS_VBUF_ADDR) >> BP_PXP_PS_VBUF_ADDR)
+#define BG_PXP_PS_VBUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_VBUF_ADDR) >> BP_PXP_PS_VBUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_VBUF_ADDR.
-#define BF_PXP_PS_VBUF_ADDR(v)   ((((reg32_t) v) << BP_PXP_PS_VBUF_ADDR) & BM_PXP_PS_VBUF_ADDR)
-#else
-//! @brief Format value for bitfield PXP_PS_VBUF_ADDR.
-#define BF_PXP_PS_VBUF_ADDR(v)   (((v) << BP_PXP_PS_VBUF_ADDR) & BM_PXP_PS_VBUF_ADDR)
-#endif
+#define BF_PXP_PS_VBUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_VBUF_ADDR) & BM_PXP_PS_VBUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_PS_VBUF_ADDR(v)   BF_CS1(PXP_PS_VBUF, ADDR, v)
+#define BW_PXP_PS_VBUF_ADDR(v)   (HW_PXP_PS_VBUF_WR((HW_PXP_PS_VBUF_RD() & ~BM_PXP_PS_VBUF_ADDR) | BF_PXP_PS_VBUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_PITCH - Processed Surface Pitch
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2035,17 +1855,14 @@ typedef union _hw_pxp_ps_pitch
  * constants & macros for entire PXP_PS_PITCH register
  */
 #define HW_PXP_PS_PITCH_ADDR      (REGS_PXP_BASE + 0xf0)
-#define HW_PXP_PS_PITCH_SET_ADDR  (HW_PXP_PS_PITCH_ADDR + 0x4)
-#define HW_PXP_PS_PITCH_CLR_ADDR  (HW_PXP_PS_PITCH_ADDR + 0x8)
-#define HW_PXP_PS_PITCH_TOG_ADDR  (HW_PXP_PS_PITCH_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_PITCH           (*(volatile hw_pxp_ps_pitch_t *) HW_PXP_PS_PITCH_ADDR)
 #define HW_PXP_PS_PITCH_RD()      (HW_PXP_PS_PITCH.U)
 #define HW_PXP_PS_PITCH_WR(v)     (HW_PXP_PS_PITCH.U = (v))
-#define HW_PXP_PS_PITCH_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_PITCH_SET_ADDR) = (v))
-#define HW_PXP_PS_PITCH_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_PITCH_CLR_ADDR) = (v))
-#define HW_PXP_PS_PITCH_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_PITCH_TOG_ADDR) = (v))
+#define HW_PXP_PS_PITCH_SET(v)    (HW_PXP_PS_PITCH_WR(HW_PXP_PS_PITCH_RD() |  (v)))
+#define HW_PXP_PS_PITCH_CLR(v)    (HW_PXP_PS_PITCH_WR(HW_PXP_PS_PITCH_RD() & ~(v)))
+#define HW_PXP_PS_PITCH_TOG(v)    (HW_PXP_PS_PITCH_WR(HW_PXP_PS_PITCH_RD() ^  (v)))
 #endif
 
 /*
@@ -2061,20 +1878,19 @@ typedef union _hw_pxp_ps_pitch
 #define BM_PXP_PS_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_PS_PITCH_PITCH.
 
 //! @brief Get value of PXP_PS_PITCH_PITCH from a register value.
-#define BG_PXP_PS_PITCH_PITCH(r)   (((r) & BM_PXP_PS_PITCH_PITCH) >> BP_PXP_PS_PITCH_PITCH)
+#define BG_PXP_PS_PITCH_PITCH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_PITCH_PITCH) >> BP_PXP_PS_PITCH_PITCH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_PITCH_PITCH.
-#define BF_PXP_PS_PITCH_PITCH(v)   ((((reg32_t) v) << BP_PXP_PS_PITCH_PITCH) & BM_PXP_PS_PITCH_PITCH)
-#else
-//! @brief Format value for bitfield PXP_PS_PITCH_PITCH.
-#define BF_PXP_PS_PITCH_PITCH(v)   (((v) << BP_PXP_PS_PITCH_PITCH) & BM_PXP_PS_PITCH_PITCH)
-#endif
+#define BF_PXP_PS_PITCH_PITCH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_PITCH_PITCH) & BM_PXP_PS_PITCH_PITCH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PITCH field to a new value.
-#define BW_PXP_PS_PITCH_PITCH(v)   BF_CS1(PXP_PS_PITCH, PITCH, v)
+#define BW_PXP_PS_PITCH_PITCH(v)   (HW_PXP_PS_PITCH_WR((HW_PXP_PS_PITCH_RD() & ~BM_PXP_PS_PITCH_PITCH) | BF_PXP_PS_PITCH_PITCH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_BACKGROUND - PS Background Color
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2107,17 +1923,14 @@ typedef union _hw_pxp_ps_background
  * constants & macros for entire PXP_PS_BACKGROUND register
  */
 #define HW_PXP_PS_BACKGROUND_ADDR      (REGS_PXP_BASE + 0x100)
-#define HW_PXP_PS_BACKGROUND_SET_ADDR  (HW_PXP_PS_BACKGROUND_ADDR + 0x4)
-#define HW_PXP_PS_BACKGROUND_CLR_ADDR  (HW_PXP_PS_BACKGROUND_ADDR + 0x8)
-#define HW_PXP_PS_BACKGROUND_TOG_ADDR  (HW_PXP_PS_BACKGROUND_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_BACKGROUND           (*(volatile hw_pxp_ps_background_t *) HW_PXP_PS_BACKGROUND_ADDR)
 #define HW_PXP_PS_BACKGROUND_RD()      (HW_PXP_PS_BACKGROUND.U)
 #define HW_PXP_PS_BACKGROUND_WR(v)     (HW_PXP_PS_BACKGROUND.U = (v))
-#define HW_PXP_PS_BACKGROUND_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_BACKGROUND_SET_ADDR) = (v))
-#define HW_PXP_PS_BACKGROUND_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_BACKGROUND_CLR_ADDR) = (v))
-#define HW_PXP_PS_BACKGROUND_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_BACKGROUND_TOG_ADDR) = (v))
+#define HW_PXP_PS_BACKGROUND_SET(v)    (HW_PXP_PS_BACKGROUND_WR(HW_PXP_PS_BACKGROUND_RD() |  (v)))
+#define HW_PXP_PS_BACKGROUND_CLR(v)    (HW_PXP_PS_BACKGROUND_WR(HW_PXP_PS_BACKGROUND_RD() & ~(v)))
+#define HW_PXP_PS_BACKGROUND_TOG(v)    (HW_PXP_PS_BACKGROUND_WR(HW_PXP_PS_BACKGROUND_RD() ^  (v)))
 #endif
 
 /*
@@ -2134,20 +1947,19 @@ typedef union _hw_pxp_ps_background
 #define BM_PXP_PS_BACKGROUND_COLOR      (0x00ffffff)  //!< Bit mask for PXP_PS_BACKGROUND_COLOR.
 
 //! @brief Get value of PXP_PS_BACKGROUND_COLOR from a register value.
-#define BG_PXP_PS_BACKGROUND_COLOR(r)   (((r) & BM_PXP_PS_BACKGROUND_COLOR) >> BP_PXP_PS_BACKGROUND_COLOR)
+#define BG_PXP_PS_BACKGROUND_COLOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_BACKGROUND_COLOR) >> BP_PXP_PS_BACKGROUND_COLOR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_BACKGROUND_COLOR.
-#define BF_PXP_PS_BACKGROUND_COLOR(v)   ((((reg32_t) v) << BP_PXP_PS_BACKGROUND_COLOR) & BM_PXP_PS_BACKGROUND_COLOR)
-#else
-//! @brief Format value for bitfield PXP_PS_BACKGROUND_COLOR.
-#define BF_PXP_PS_BACKGROUND_COLOR(v)   (((v) << BP_PXP_PS_BACKGROUND_COLOR) & BM_PXP_PS_BACKGROUND_COLOR)
-#endif
+#define BF_PXP_PS_BACKGROUND_COLOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_BACKGROUND_COLOR) & BM_PXP_PS_BACKGROUND_COLOR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COLOR field to a new value.
-#define BW_PXP_PS_BACKGROUND_COLOR(v)   BF_CS1(PXP_PS_BACKGROUND, COLOR, v)
+#define BW_PXP_PS_BACKGROUND_COLOR(v)   (HW_PXP_PS_BACKGROUND_WR((HW_PXP_PS_BACKGROUND_RD() & ~BM_PXP_PS_BACKGROUND_COLOR) | BF_PXP_PS_BACKGROUND_COLOR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_SCALE - PS Scale Factor Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2182,17 +1994,14 @@ typedef union _hw_pxp_ps_scale
  * constants & macros for entire PXP_PS_SCALE register
  */
 #define HW_PXP_PS_SCALE_ADDR      (REGS_PXP_BASE + 0x110)
-#define HW_PXP_PS_SCALE_SET_ADDR  (HW_PXP_PS_SCALE_ADDR + 0x4)
-#define HW_PXP_PS_SCALE_CLR_ADDR  (HW_PXP_PS_SCALE_ADDR + 0x8)
-#define HW_PXP_PS_SCALE_TOG_ADDR  (HW_PXP_PS_SCALE_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_SCALE           (*(volatile hw_pxp_ps_scale_t *) HW_PXP_PS_SCALE_ADDR)
 #define HW_PXP_PS_SCALE_RD()      (HW_PXP_PS_SCALE.U)
 #define HW_PXP_PS_SCALE_WR(v)     (HW_PXP_PS_SCALE.U = (v))
-#define HW_PXP_PS_SCALE_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_SCALE_SET_ADDR) = (v))
-#define HW_PXP_PS_SCALE_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_SCALE_CLR_ADDR) = (v))
-#define HW_PXP_PS_SCALE_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_SCALE_TOG_ADDR) = (v))
+#define HW_PXP_PS_SCALE_SET(v)    (HW_PXP_PS_SCALE_WR(HW_PXP_PS_SCALE_RD() |  (v)))
+#define HW_PXP_PS_SCALE_CLR(v)    (HW_PXP_PS_SCALE_WR(HW_PXP_PS_SCALE_RD() & ~(v)))
+#define HW_PXP_PS_SCALE_TOG(v)    (HW_PXP_PS_SCALE_WR(HW_PXP_PS_SCALE_RD() ^  (v)))
 #endif
 
 /*
@@ -2211,19 +2020,14 @@ typedef union _hw_pxp_ps_scale
 #define BM_PXP_PS_SCALE_XSCALE      (0x00007fff)  //!< Bit mask for PXP_PS_SCALE_XSCALE.
 
 //! @brief Get value of PXP_PS_SCALE_XSCALE from a register value.
-#define BG_PXP_PS_SCALE_XSCALE(r)   (((r) & BM_PXP_PS_SCALE_XSCALE) >> BP_PXP_PS_SCALE_XSCALE)
+#define BG_PXP_PS_SCALE_XSCALE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_SCALE_XSCALE) >> BP_PXP_PS_SCALE_XSCALE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_SCALE_XSCALE.
-#define BF_PXP_PS_SCALE_XSCALE(v)   ((((reg32_t) v) << BP_PXP_PS_SCALE_XSCALE) & BM_PXP_PS_SCALE_XSCALE)
-#else
-//! @brief Format value for bitfield PXP_PS_SCALE_XSCALE.
-#define BF_PXP_PS_SCALE_XSCALE(v)   (((v) << BP_PXP_PS_SCALE_XSCALE) & BM_PXP_PS_SCALE_XSCALE)
-#endif
+#define BF_PXP_PS_SCALE_XSCALE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_SCALE_XSCALE) & BM_PXP_PS_SCALE_XSCALE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the XSCALE field to a new value.
-#define BW_PXP_PS_SCALE_XSCALE(v)   BF_CS1(PXP_PS_SCALE, XSCALE, v)
+#define BW_PXP_PS_SCALE_XSCALE(v)   (HW_PXP_PS_SCALE_WR((HW_PXP_PS_SCALE_RD() & ~BM_PXP_PS_SCALE_XSCALE) | BF_PXP_PS_SCALE_XSCALE(v)))
 #endif
 
 /* --- Register HW_PXP_PS_SCALE, field YSCALE[30:16] (RW)
@@ -2238,20 +2042,19 @@ typedef union _hw_pxp_ps_scale
 #define BM_PXP_PS_SCALE_YSCALE      (0x7fff0000)  //!< Bit mask for PXP_PS_SCALE_YSCALE.
 
 //! @brief Get value of PXP_PS_SCALE_YSCALE from a register value.
-#define BG_PXP_PS_SCALE_YSCALE(r)   (((r) & BM_PXP_PS_SCALE_YSCALE) >> BP_PXP_PS_SCALE_YSCALE)
+#define BG_PXP_PS_SCALE_YSCALE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_SCALE_YSCALE) >> BP_PXP_PS_SCALE_YSCALE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_SCALE_YSCALE.
-#define BF_PXP_PS_SCALE_YSCALE(v)   ((((reg32_t) v) << BP_PXP_PS_SCALE_YSCALE) & BM_PXP_PS_SCALE_YSCALE)
-#else
-//! @brief Format value for bitfield PXP_PS_SCALE_YSCALE.
-#define BF_PXP_PS_SCALE_YSCALE(v)   (((v) << BP_PXP_PS_SCALE_YSCALE) & BM_PXP_PS_SCALE_YSCALE)
-#endif
+#define BF_PXP_PS_SCALE_YSCALE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_SCALE_YSCALE) & BM_PXP_PS_SCALE_YSCALE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YSCALE field to a new value.
-#define BW_PXP_PS_SCALE_YSCALE(v)   BF_CS1(PXP_PS_SCALE, YSCALE, v)
+#define BW_PXP_PS_SCALE_YSCALE(v)   (HW_PXP_PS_SCALE_WR((HW_PXP_PS_SCALE_RD() & ~BM_PXP_PS_SCALE_YSCALE) | BF_PXP_PS_SCALE_YSCALE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_OFFSET - PS Scale Offset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2288,17 +2091,14 @@ typedef union _hw_pxp_ps_offset
  * constants & macros for entire PXP_PS_OFFSET register
  */
 #define HW_PXP_PS_OFFSET_ADDR      (REGS_PXP_BASE + 0x120)
-#define HW_PXP_PS_OFFSET_SET_ADDR  (HW_PXP_PS_OFFSET_ADDR + 0x4)
-#define HW_PXP_PS_OFFSET_CLR_ADDR  (HW_PXP_PS_OFFSET_ADDR + 0x8)
-#define HW_PXP_PS_OFFSET_TOG_ADDR  (HW_PXP_PS_OFFSET_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_OFFSET           (*(volatile hw_pxp_ps_offset_t *) HW_PXP_PS_OFFSET_ADDR)
 #define HW_PXP_PS_OFFSET_RD()      (HW_PXP_PS_OFFSET.U)
 #define HW_PXP_PS_OFFSET_WR(v)     (HW_PXP_PS_OFFSET.U = (v))
-#define HW_PXP_PS_OFFSET_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_OFFSET_SET_ADDR) = (v))
-#define HW_PXP_PS_OFFSET_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_OFFSET_CLR_ADDR) = (v))
-#define HW_PXP_PS_OFFSET_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_OFFSET_TOG_ADDR) = (v))
+#define HW_PXP_PS_OFFSET_SET(v)    (HW_PXP_PS_OFFSET_WR(HW_PXP_PS_OFFSET_RD() |  (v)))
+#define HW_PXP_PS_OFFSET_CLR(v)    (HW_PXP_PS_OFFSET_WR(HW_PXP_PS_OFFSET_RD() & ~(v)))
+#define HW_PXP_PS_OFFSET_TOG(v)    (HW_PXP_PS_OFFSET_WR(HW_PXP_PS_OFFSET_RD() ^  (v)))
 #endif
 
 /*
@@ -2316,19 +2116,14 @@ typedef union _hw_pxp_ps_offset
 #define BM_PXP_PS_OFFSET_XOFFSET      (0x00000fff)  //!< Bit mask for PXP_PS_OFFSET_XOFFSET.
 
 //! @brief Get value of PXP_PS_OFFSET_XOFFSET from a register value.
-#define BG_PXP_PS_OFFSET_XOFFSET(r)   (((r) & BM_PXP_PS_OFFSET_XOFFSET) >> BP_PXP_PS_OFFSET_XOFFSET)
+#define BG_PXP_PS_OFFSET_XOFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_OFFSET_XOFFSET) >> BP_PXP_PS_OFFSET_XOFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_OFFSET_XOFFSET.
-#define BF_PXP_PS_OFFSET_XOFFSET(v)   ((((reg32_t) v) << BP_PXP_PS_OFFSET_XOFFSET) & BM_PXP_PS_OFFSET_XOFFSET)
-#else
-//! @brief Format value for bitfield PXP_PS_OFFSET_XOFFSET.
-#define BF_PXP_PS_OFFSET_XOFFSET(v)   (((v) << BP_PXP_PS_OFFSET_XOFFSET) & BM_PXP_PS_OFFSET_XOFFSET)
-#endif
+#define BF_PXP_PS_OFFSET_XOFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_OFFSET_XOFFSET) & BM_PXP_PS_OFFSET_XOFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the XOFFSET field to a new value.
-#define BW_PXP_PS_OFFSET_XOFFSET(v)   BF_CS1(PXP_PS_OFFSET, XOFFSET, v)
+#define BW_PXP_PS_OFFSET_XOFFSET(v)   (HW_PXP_PS_OFFSET_WR((HW_PXP_PS_OFFSET_RD() & ~BM_PXP_PS_OFFSET_XOFFSET) | BF_PXP_PS_OFFSET_XOFFSET(v)))
 #endif
 
 /* --- Register HW_PXP_PS_OFFSET, field YOFFSET[27:16] (RW)
@@ -2342,20 +2137,19 @@ typedef union _hw_pxp_ps_offset
 #define BM_PXP_PS_OFFSET_YOFFSET      (0x0fff0000)  //!< Bit mask for PXP_PS_OFFSET_YOFFSET.
 
 //! @brief Get value of PXP_PS_OFFSET_YOFFSET from a register value.
-#define BG_PXP_PS_OFFSET_YOFFSET(r)   (((r) & BM_PXP_PS_OFFSET_YOFFSET) >> BP_PXP_PS_OFFSET_YOFFSET)
+#define BG_PXP_PS_OFFSET_YOFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_OFFSET_YOFFSET) >> BP_PXP_PS_OFFSET_YOFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_OFFSET_YOFFSET.
-#define BF_PXP_PS_OFFSET_YOFFSET(v)   ((((reg32_t) v) << BP_PXP_PS_OFFSET_YOFFSET) & BM_PXP_PS_OFFSET_YOFFSET)
-#else
-//! @brief Format value for bitfield PXP_PS_OFFSET_YOFFSET.
-#define BF_PXP_PS_OFFSET_YOFFSET(v)   (((v) << BP_PXP_PS_OFFSET_YOFFSET) & BM_PXP_PS_OFFSET_YOFFSET)
-#endif
+#define BF_PXP_PS_OFFSET_YOFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_OFFSET_YOFFSET) & BM_PXP_PS_OFFSET_YOFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YOFFSET field to a new value.
-#define BW_PXP_PS_OFFSET_YOFFSET(v)   BF_CS1(PXP_PS_OFFSET, YOFFSET, v)
+#define BW_PXP_PS_OFFSET_YOFFSET(v)   (HW_PXP_PS_OFFSET_WR((HW_PXP_PS_OFFSET_RD() & ~BM_PXP_PS_OFFSET_YOFFSET) | BF_PXP_PS_OFFSET_YOFFSET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_CLRKEYLOW - PS Color Key Low
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2386,17 +2180,14 @@ typedef union _hw_pxp_ps_clrkeylow
  * constants & macros for entire PXP_PS_CLRKEYLOW register
  */
 #define HW_PXP_PS_CLRKEYLOW_ADDR      (REGS_PXP_BASE + 0x130)
-#define HW_PXP_PS_CLRKEYLOW_SET_ADDR  (HW_PXP_PS_CLRKEYLOW_ADDR + 0x4)
-#define HW_PXP_PS_CLRKEYLOW_CLR_ADDR  (HW_PXP_PS_CLRKEYLOW_ADDR + 0x8)
-#define HW_PXP_PS_CLRKEYLOW_TOG_ADDR  (HW_PXP_PS_CLRKEYLOW_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_CLRKEYLOW           (*(volatile hw_pxp_ps_clrkeylow_t *) HW_PXP_PS_CLRKEYLOW_ADDR)
 #define HW_PXP_PS_CLRKEYLOW_RD()      (HW_PXP_PS_CLRKEYLOW.U)
 #define HW_PXP_PS_CLRKEYLOW_WR(v)     (HW_PXP_PS_CLRKEYLOW.U = (v))
-#define HW_PXP_PS_CLRKEYLOW_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYLOW_SET_ADDR) = (v))
-#define HW_PXP_PS_CLRKEYLOW_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYLOW_CLR_ADDR) = (v))
-#define HW_PXP_PS_CLRKEYLOW_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYLOW_TOG_ADDR) = (v))
+#define HW_PXP_PS_CLRKEYLOW_SET(v)    (HW_PXP_PS_CLRKEYLOW_WR(HW_PXP_PS_CLRKEYLOW_RD() |  (v)))
+#define HW_PXP_PS_CLRKEYLOW_CLR(v)    (HW_PXP_PS_CLRKEYLOW_WR(HW_PXP_PS_CLRKEYLOW_RD() & ~(v)))
+#define HW_PXP_PS_CLRKEYLOW_TOG(v)    (HW_PXP_PS_CLRKEYLOW_WR(HW_PXP_PS_CLRKEYLOW_RD() ^  (v)))
 #endif
 
 /*
@@ -2413,20 +2204,19 @@ typedef union _hw_pxp_ps_clrkeylow
 #define BM_PXP_PS_CLRKEYLOW_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_PS_CLRKEYLOW_PIXEL.
 
 //! @brief Get value of PXP_PS_CLRKEYLOW_PIXEL from a register value.
-#define BG_PXP_PS_CLRKEYLOW_PIXEL(r)   (((r) & BM_PXP_PS_CLRKEYLOW_PIXEL) >> BP_PXP_PS_CLRKEYLOW_PIXEL)
+#define BG_PXP_PS_CLRKEYLOW_PIXEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CLRKEYLOW_PIXEL) >> BP_PXP_PS_CLRKEYLOW_PIXEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CLRKEYLOW_PIXEL.
-#define BF_PXP_PS_CLRKEYLOW_PIXEL(v)   ((((reg32_t) v) << BP_PXP_PS_CLRKEYLOW_PIXEL) & BM_PXP_PS_CLRKEYLOW_PIXEL)
-#else
-//! @brief Format value for bitfield PXP_PS_CLRKEYLOW_PIXEL.
-#define BF_PXP_PS_CLRKEYLOW_PIXEL(v)   (((v) << BP_PXP_PS_CLRKEYLOW_PIXEL) & BM_PXP_PS_CLRKEYLOW_PIXEL)
-#endif
+#define BF_PXP_PS_CLRKEYLOW_PIXEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CLRKEYLOW_PIXEL) & BM_PXP_PS_CLRKEYLOW_PIXEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXEL field to a new value.
-#define BW_PXP_PS_CLRKEYLOW_PIXEL(v)   BF_CS1(PXP_PS_CLRKEYLOW, PIXEL, v)
+#define BW_PXP_PS_CLRKEYLOW_PIXEL(v)   (HW_PXP_PS_CLRKEYLOW_WR((HW_PXP_PS_CLRKEYLOW_RD() & ~BM_PXP_PS_CLRKEYLOW_PIXEL) | BF_PXP_PS_CLRKEYLOW_PIXEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_PS_CLRKEYHIGH - PS Color Key High
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2457,17 +2247,14 @@ typedef union _hw_pxp_ps_clrkeyhigh
  * constants & macros for entire PXP_PS_CLRKEYHIGH register
  */
 #define HW_PXP_PS_CLRKEYHIGH_ADDR      (REGS_PXP_BASE + 0x140)
-#define HW_PXP_PS_CLRKEYHIGH_SET_ADDR  (HW_PXP_PS_CLRKEYHIGH_ADDR + 0x4)
-#define HW_PXP_PS_CLRKEYHIGH_CLR_ADDR  (HW_PXP_PS_CLRKEYHIGH_ADDR + 0x8)
-#define HW_PXP_PS_CLRKEYHIGH_TOG_ADDR  (HW_PXP_PS_CLRKEYHIGH_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_PS_CLRKEYHIGH           (*(volatile hw_pxp_ps_clrkeyhigh_t *) HW_PXP_PS_CLRKEYHIGH_ADDR)
 #define HW_PXP_PS_CLRKEYHIGH_RD()      (HW_PXP_PS_CLRKEYHIGH.U)
 #define HW_PXP_PS_CLRKEYHIGH_WR(v)     (HW_PXP_PS_CLRKEYHIGH.U = (v))
-#define HW_PXP_PS_CLRKEYHIGH_SET(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYHIGH_SET_ADDR) = (v))
-#define HW_PXP_PS_CLRKEYHIGH_CLR(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYHIGH_CLR_ADDR) = (v))
-#define HW_PXP_PS_CLRKEYHIGH_TOG(v)    ((*(volatile reg32_t *) HW_PXP_PS_CLRKEYHIGH_TOG_ADDR) = (v))
+#define HW_PXP_PS_CLRKEYHIGH_SET(v)    (HW_PXP_PS_CLRKEYHIGH_WR(HW_PXP_PS_CLRKEYHIGH_RD() |  (v)))
+#define HW_PXP_PS_CLRKEYHIGH_CLR(v)    (HW_PXP_PS_CLRKEYHIGH_WR(HW_PXP_PS_CLRKEYHIGH_RD() & ~(v)))
+#define HW_PXP_PS_CLRKEYHIGH_TOG(v)    (HW_PXP_PS_CLRKEYHIGH_WR(HW_PXP_PS_CLRKEYHIGH_RD() ^  (v)))
 #endif
 
 /*
@@ -2484,20 +2271,19 @@ typedef union _hw_pxp_ps_clrkeyhigh
 #define BM_PXP_PS_CLRKEYHIGH_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_PS_CLRKEYHIGH_PIXEL.
 
 //! @brief Get value of PXP_PS_CLRKEYHIGH_PIXEL from a register value.
-#define BG_PXP_PS_CLRKEYHIGH_PIXEL(r)   (((r) & BM_PXP_PS_CLRKEYHIGH_PIXEL) >> BP_PXP_PS_CLRKEYHIGH_PIXEL)
+#define BG_PXP_PS_CLRKEYHIGH_PIXEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_PS_CLRKEYHIGH_PIXEL) >> BP_PXP_PS_CLRKEYHIGH_PIXEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_PS_CLRKEYHIGH_PIXEL.
-#define BF_PXP_PS_CLRKEYHIGH_PIXEL(v)   ((((reg32_t) v) << BP_PXP_PS_CLRKEYHIGH_PIXEL) & BM_PXP_PS_CLRKEYHIGH_PIXEL)
-#else
-//! @brief Format value for bitfield PXP_PS_CLRKEYHIGH_PIXEL.
-#define BF_PXP_PS_CLRKEYHIGH_PIXEL(v)   (((v) << BP_PXP_PS_CLRKEYHIGH_PIXEL) & BM_PXP_PS_CLRKEYHIGH_PIXEL)
-#endif
+#define BF_PXP_PS_CLRKEYHIGH_PIXEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_PS_CLRKEYHIGH_PIXEL) & BM_PXP_PS_CLRKEYHIGH_PIXEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXEL field to a new value.
-#define BW_PXP_PS_CLRKEYHIGH_PIXEL(v)   BF_CS1(PXP_PS_CLRKEYHIGH, PIXEL, v)
+#define BW_PXP_PS_CLRKEYHIGH_PIXEL(v)   (HW_PXP_PS_CLRKEYHIGH_WR((HW_PXP_PS_CLRKEYHIGH_RD() & ~BM_PXP_PS_CLRKEYHIGH_PIXEL) | BF_PXP_PS_CLRKEYHIGH_PIXEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_AS_CTRL - Alpha Surface Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2533,17 +2319,14 @@ typedef union _hw_pxp_as_ctrl
  * constants & macros for entire PXP_AS_CTRL register
  */
 #define HW_PXP_AS_CTRL_ADDR      (REGS_PXP_BASE + 0x150)
-#define HW_PXP_AS_CTRL_SET_ADDR  (HW_PXP_AS_CTRL_ADDR + 0x4)
-#define HW_PXP_AS_CTRL_CLR_ADDR  (HW_PXP_AS_CTRL_ADDR + 0x8)
-#define HW_PXP_AS_CTRL_TOG_ADDR  (HW_PXP_AS_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_AS_CTRL           (*(volatile hw_pxp_as_ctrl_t *) HW_PXP_AS_CTRL_ADDR)
 #define HW_PXP_AS_CTRL_RD()      (HW_PXP_AS_CTRL.U)
 #define HW_PXP_AS_CTRL_WR(v)     (HW_PXP_AS_CTRL.U = (v))
-#define HW_PXP_AS_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_AS_CTRL_SET_ADDR) = (v))
-#define HW_PXP_AS_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_AS_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_AS_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_AS_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_AS_CTRL_SET(v)    (HW_PXP_AS_CTRL_WR(HW_PXP_AS_CTRL_RD() |  (v)))
+#define HW_PXP_AS_CTRL_CLR(v)    (HW_PXP_AS_CTRL_WR(HW_PXP_AS_CTRL_RD() & ~(v)))
+#define HW_PXP_AS_CTRL_TOG(v)    (HW_PXP_AS_CTRL_WR(HW_PXP_AS_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -2570,19 +2353,14 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_ALPHA_CTRL      (0x00000006)  //!< Bit mask for PXP_AS_CTRL_ALPHA_CTRL.
 
 //! @brief Get value of PXP_AS_CTRL_ALPHA_CTRL from a register value.
-#define BG_PXP_AS_CTRL_ALPHA_CTRL(r)   (((r) & BM_PXP_AS_CTRL_ALPHA_CTRL) >> BP_PXP_AS_CTRL_ALPHA_CTRL)
+#define BG_PXP_AS_CTRL_ALPHA_CTRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_ALPHA_CTRL) >> BP_PXP_AS_CTRL_ALPHA_CTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_ALPHA_CTRL.
-#define BF_PXP_AS_CTRL_ALPHA_CTRL(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_ALPHA_CTRL) & BM_PXP_AS_CTRL_ALPHA_CTRL)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_ALPHA_CTRL.
-#define BF_PXP_AS_CTRL_ALPHA_CTRL(v)   (((v) << BP_PXP_AS_CTRL_ALPHA_CTRL) & BM_PXP_AS_CTRL_ALPHA_CTRL)
-#endif
+#define BF_PXP_AS_CTRL_ALPHA_CTRL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_ALPHA_CTRL) & BM_PXP_AS_CTRL_ALPHA_CTRL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPHA_CTRL field to a new value.
-#define BW_PXP_AS_CTRL_ALPHA_CTRL(v)   BF_CS1(PXP_AS_CTRL, ALPHA_CTRL, v)
+#define BW_PXP_AS_CTRL_ALPHA_CTRL(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ALPHA_CTRL) | BF_PXP_AS_CTRL_ALPHA_CTRL(v)))
 #endif
 
 #define BV_PXP_AS_CTRL_ALPHA_CTRL__EMBEDDED (0x0) //!< Indicates that the AS pixel alpha value will be used to blend the AS with PS. The ALPHA field is ignored.
@@ -2600,19 +2378,14 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_ENABLE_COLORKEY      (0x00000008)  //!< Bit mask for PXP_AS_CTRL_ENABLE_COLORKEY.
 
 //! @brief Get value of PXP_AS_CTRL_ENABLE_COLORKEY from a register value.
-#define BG_PXP_AS_CTRL_ENABLE_COLORKEY(r)   (((r) & BM_PXP_AS_CTRL_ENABLE_COLORKEY) >> BP_PXP_AS_CTRL_ENABLE_COLORKEY)
+#define BG_PXP_AS_CTRL_ENABLE_COLORKEY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_ENABLE_COLORKEY) >> BP_PXP_AS_CTRL_ENABLE_COLORKEY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_ENABLE_COLORKEY.
-#define BF_PXP_AS_CTRL_ENABLE_COLORKEY(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_ENABLE_COLORKEY) & BM_PXP_AS_CTRL_ENABLE_COLORKEY)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_ENABLE_COLORKEY.
-#define BF_PXP_AS_CTRL_ENABLE_COLORKEY(v)   (((v) << BP_PXP_AS_CTRL_ENABLE_COLORKEY) & BM_PXP_AS_CTRL_ENABLE_COLORKEY)
-#endif
+#define BF_PXP_AS_CTRL_ENABLE_COLORKEY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_ENABLE_COLORKEY) & BM_PXP_AS_CTRL_ENABLE_COLORKEY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_COLORKEY field to a new value.
-#define BW_PXP_AS_CTRL_ENABLE_COLORKEY(v)   BF_CS1(PXP_AS_CTRL, ENABLE_COLORKEY, v)
+#define BW_PXP_AS_CTRL_ENABLE_COLORKEY(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ENABLE_COLORKEY) | BF_PXP_AS_CTRL_ENABLE_COLORKEY(v)))
 #endif
 
 /* --- Register HW_PXP_AS_CTRL, field FORMAT[7:4] (RW)
@@ -2633,19 +2406,14 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_FORMAT      (0x000000f0)  //!< Bit mask for PXP_AS_CTRL_FORMAT.
 
 //! @brief Get value of PXP_AS_CTRL_FORMAT from a register value.
-#define BG_PXP_AS_CTRL_FORMAT(r)   (((r) & BM_PXP_AS_CTRL_FORMAT) >> BP_PXP_AS_CTRL_FORMAT)
+#define BG_PXP_AS_CTRL_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_FORMAT) >> BP_PXP_AS_CTRL_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_FORMAT.
-#define BF_PXP_AS_CTRL_FORMAT(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_FORMAT) & BM_PXP_AS_CTRL_FORMAT)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_FORMAT.
-#define BF_PXP_AS_CTRL_FORMAT(v)   (((v) << BP_PXP_AS_CTRL_FORMAT) & BM_PXP_AS_CTRL_FORMAT)
-#endif
+#define BF_PXP_AS_CTRL_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_FORMAT) & BM_PXP_AS_CTRL_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FORMAT field to a new value.
-#define BW_PXP_AS_CTRL_FORMAT(v)   BF_CS1(PXP_AS_CTRL, FORMAT, v)
+#define BW_PXP_AS_CTRL_FORMAT(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_FORMAT) | BF_PXP_AS_CTRL_FORMAT(v)))
 #endif
 
 #define BV_PXP_AS_CTRL_FORMAT__ARGB8888 (0x0) //!< 32-bit pixels with alpha
@@ -2667,19 +2435,14 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_ALPHA      (0x0000ff00)  //!< Bit mask for PXP_AS_CTRL_ALPHA.
 
 //! @brief Get value of PXP_AS_CTRL_ALPHA from a register value.
-#define BG_PXP_AS_CTRL_ALPHA(r)   (((r) & BM_PXP_AS_CTRL_ALPHA) >> BP_PXP_AS_CTRL_ALPHA)
+#define BG_PXP_AS_CTRL_ALPHA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_ALPHA) >> BP_PXP_AS_CTRL_ALPHA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_ALPHA.
-#define BF_PXP_AS_CTRL_ALPHA(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_ALPHA) & BM_PXP_AS_CTRL_ALPHA)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_ALPHA.
-#define BF_PXP_AS_CTRL_ALPHA(v)   (((v) << BP_PXP_AS_CTRL_ALPHA) & BM_PXP_AS_CTRL_ALPHA)
-#endif
+#define BF_PXP_AS_CTRL_ALPHA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_ALPHA) & BM_PXP_AS_CTRL_ALPHA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPHA field to a new value.
-#define BW_PXP_AS_CTRL_ALPHA(v)   BF_CS1(PXP_AS_CTRL, ALPHA, v)
+#define BW_PXP_AS_CTRL_ALPHA(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ALPHA) | BF_PXP_AS_CTRL_ALPHA(v)))
 #endif
 
 /* --- Register HW_PXP_AS_CTRL, field ROP[19:16] (RW)
@@ -2706,19 +2469,14 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_ROP      (0x000f0000)  //!< Bit mask for PXP_AS_CTRL_ROP.
 
 //! @brief Get value of PXP_AS_CTRL_ROP from a register value.
-#define BG_PXP_AS_CTRL_ROP(r)   (((r) & BM_PXP_AS_CTRL_ROP) >> BP_PXP_AS_CTRL_ROP)
+#define BG_PXP_AS_CTRL_ROP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_ROP) >> BP_PXP_AS_CTRL_ROP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_ROP.
-#define BF_PXP_AS_CTRL_ROP(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_ROP) & BM_PXP_AS_CTRL_ROP)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_ROP.
-#define BF_PXP_AS_CTRL_ROP(v)   (((v) << BP_PXP_AS_CTRL_ROP) & BM_PXP_AS_CTRL_ROP)
-#endif
+#define BF_PXP_AS_CTRL_ROP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_ROP) & BM_PXP_AS_CTRL_ROP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROP field to a new value.
-#define BW_PXP_AS_CTRL_ROP(v)   BF_CS1(PXP_AS_CTRL, ROP, v)
+#define BW_PXP_AS_CTRL_ROP(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ROP) | BF_PXP_AS_CTRL_ROP(v)))
 #endif
 
 #define BV_PXP_AS_CTRL_ROP__MASKAS (0x0) //!< AS AND PS
@@ -2744,20 +2502,19 @@ typedef union _hw_pxp_as_ctrl
 #define BM_PXP_AS_CTRL_ALPHA_INVERT      (0x00100000)  //!< Bit mask for PXP_AS_CTRL_ALPHA_INVERT.
 
 //! @brief Get value of PXP_AS_CTRL_ALPHA_INVERT from a register value.
-#define BG_PXP_AS_CTRL_ALPHA_INVERT(r)   (((r) & BM_PXP_AS_CTRL_ALPHA_INVERT) >> BP_PXP_AS_CTRL_ALPHA_INVERT)
+#define BG_PXP_AS_CTRL_ALPHA_INVERT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CTRL_ALPHA_INVERT) >> BP_PXP_AS_CTRL_ALPHA_INVERT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CTRL_ALPHA_INVERT.
-#define BF_PXP_AS_CTRL_ALPHA_INVERT(v)   ((((reg32_t) v) << BP_PXP_AS_CTRL_ALPHA_INVERT) & BM_PXP_AS_CTRL_ALPHA_INVERT)
-#else
-//! @brief Format value for bitfield PXP_AS_CTRL_ALPHA_INVERT.
-#define BF_PXP_AS_CTRL_ALPHA_INVERT(v)   (((v) << BP_PXP_AS_CTRL_ALPHA_INVERT) & BM_PXP_AS_CTRL_ALPHA_INVERT)
-#endif
+#define BF_PXP_AS_CTRL_ALPHA_INVERT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CTRL_ALPHA_INVERT) & BM_PXP_AS_CTRL_ALPHA_INVERT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPHA_INVERT field to a new value.
-#define BW_PXP_AS_CTRL_ALPHA_INVERT(v)   BF_CS1(PXP_AS_CTRL, ALPHA_INVERT, v)
+#define BW_PXP_AS_CTRL_ALPHA_INVERT(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ALPHA_INVERT) | BF_PXP_AS_CTRL_ALPHA_INVERT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_AS_BUF - Alpha Surface Buffer Pointer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2783,17 +2540,14 @@ typedef union _hw_pxp_as_buf
  * constants & macros for entire PXP_AS_BUF register
  */
 #define HW_PXP_AS_BUF_ADDR      (REGS_PXP_BASE + 0x160)
-#define HW_PXP_AS_BUF_SET_ADDR  (HW_PXP_AS_BUF_ADDR + 0x4)
-#define HW_PXP_AS_BUF_CLR_ADDR  (HW_PXP_AS_BUF_ADDR + 0x8)
-#define HW_PXP_AS_BUF_TOG_ADDR  (HW_PXP_AS_BUF_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_AS_BUF           (*(volatile hw_pxp_as_buf_t *) HW_PXP_AS_BUF_ADDR)
 #define HW_PXP_AS_BUF_RD()      (HW_PXP_AS_BUF.U)
 #define HW_PXP_AS_BUF_WR(v)     (HW_PXP_AS_BUF.U = (v))
-#define HW_PXP_AS_BUF_SET(v)    ((*(volatile reg32_t *) HW_PXP_AS_BUF_SET_ADDR) = (v))
-#define HW_PXP_AS_BUF_CLR(v)    ((*(volatile reg32_t *) HW_PXP_AS_BUF_CLR_ADDR) = (v))
-#define HW_PXP_AS_BUF_TOG(v)    ((*(volatile reg32_t *) HW_PXP_AS_BUF_TOG_ADDR) = (v))
+#define HW_PXP_AS_BUF_SET(v)    (HW_PXP_AS_BUF_WR(HW_PXP_AS_BUF_RD() |  (v)))
+#define HW_PXP_AS_BUF_CLR(v)    (HW_PXP_AS_BUF_WR(HW_PXP_AS_BUF_RD() & ~(v)))
+#define HW_PXP_AS_BUF_TOG(v)    (HW_PXP_AS_BUF_WR(HW_PXP_AS_BUF_RD() ^  (v)))
 #endif
 
 /*
@@ -2809,20 +2563,19 @@ typedef union _hw_pxp_as_buf
 #define BM_PXP_AS_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_AS_BUF_ADDR.
 
 //! @brief Get value of PXP_AS_BUF_ADDR from a register value.
-#define BG_PXP_AS_BUF_ADDR(r)   (((r) & BM_PXP_AS_BUF_ADDR) >> BP_PXP_AS_BUF_ADDR)
+#define BG_PXP_AS_BUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_BUF_ADDR) >> BP_PXP_AS_BUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_BUF_ADDR.
-#define BF_PXP_AS_BUF_ADDR(v)   ((((reg32_t) v) << BP_PXP_AS_BUF_ADDR) & BM_PXP_AS_BUF_ADDR)
-#else
-//! @brief Format value for bitfield PXP_AS_BUF_ADDR.
-#define BF_PXP_AS_BUF_ADDR(v)   (((v) << BP_PXP_AS_BUF_ADDR) & BM_PXP_AS_BUF_ADDR)
-#endif
+#define BF_PXP_AS_BUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_BUF_ADDR) & BM_PXP_AS_BUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_AS_BUF_ADDR(v)   BF_CS1(PXP_AS_BUF, ADDR, v)
+#define BW_PXP_AS_BUF_ADDR(v)   (HW_PXP_AS_BUF_WR((HW_PXP_AS_BUF_RD() & ~BM_PXP_AS_BUF_ADDR) | BF_PXP_AS_BUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_AS_PITCH - Alpha Surface Pitch
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2851,17 +2604,14 @@ typedef union _hw_pxp_as_pitch
  * constants & macros for entire PXP_AS_PITCH register
  */
 #define HW_PXP_AS_PITCH_ADDR      (REGS_PXP_BASE + 0x170)
-#define HW_PXP_AS_PITCH_SET_ADDR  (HW_PXP_AS_PITCH_ADDR + 0x4)
-#define HW_PXP_AS_PITCH_CLR_ADDR  (HW_PXP_AS_PITCH_ADDR + 0x8)
-#define HW_PXP_AS_PITCH_TOG_ADDR  (HW_PXP_AS_PITCH_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_AS_PITCH           (*(volatile hw_pxp_as_pitch_t *) HW_PXP_AS_PITCH_ADDR)
 #define HW_PXP_AS_PITCH_RD()      (HW_PXP_AS_PITCH.U)
 #define HW_PXP_AS_PITCH_WR(v)     (HW_PXP_AS_PITCH.U = (v))
-#define HW_PXP_AS_PITCH_SET(v)    ((*(volatile reg32_t *) HW_PXP_AS_PITCH_SET_ADDR) = (v))
-#define HW_PXP_AS_PITCH_CLR(v)    ((*(volatile reg32_t *) HW_PXP_AS_PITCH_CLR_ADDR) = (v))
-#define HW_PXP_AS_PITCH_TOG(v)    ((*(volatile reg32_t *) HW_PXP_AS_PITCH_TOG_ADDR) = (v))
+#define HW_PXP_AS_PITCH_SET(v)    (HW_PXP_AS_PITCH_WR(HW_PXP_AS_PITCH_RD() |  (v)))
+#define HW_PXP_AS_PITCH_CLR(v)    (HW_PXP_AS_PITCH_WR(HW_PXP_AS_PITCH_RD() & ~(v)))
+#define HW_PXP_AS_PITCH_TOG(v)    (HW_PXP_AS_PITCH_WR(HW_PXP_AS_PITCH_RD() ^  (v)))
 #endif
 
 /*
@@ -2877,20 +2627,19 @@ typedef union _hw_pxp_as_pitch
 #define BM_PXP_AS_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_AS_PITCH_PITCH.
 
 //! @brief Get value of PXP_AS_PITCH_PITCH from a register value.
-#define BG_PXP_AS_PITCH_PITCH(r)   (((r) & BM_PXP_AS_PITCH_PITCH) >> BP_PXP_AS_PITCH_PITCH)
+#define BG_PXP_AS_PITCH_PITCH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_PITCH_PITCH) >> BP_PXP_AS_PITCH_PITCH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_PITCH_PITCH.
-#define BF_PXP_AS_PITCH_PITCH(v)   ((((reg32_t) v) << BP_PXP_AS_PITCH_PITCH) & BM_PXP_AS_PITCH_PITCH)
-#else
-//! @brief Format value for bitfield PXP_AS_PITCH_PITCH.
-#define BF_PXP_AS_PITCH_PITCH(v)   (((v) << BP_PXP_AS_PITCH_PITCH) & BM_PXP_AS_PITCH_PITCH)
-#endif
+#define BF_PXP_AS_PITCH_PITCH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_PITCH_PITCH) & BM_PXP_AS_PITCH_PITCH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PITCH field to a new value.
-#define BW_PXP_AS_PITCH_PITCH(v)   BF_CS1(PXP_AS_PITCH, PITCH, v)
+#define BW_PXP_AS_PITCH_PITCH(v)   (HW_PXP_AS_PITCH_WR((HW_PXP_AS_PITCH_RD() & ~BM_PXP_AS_PITCH_PITCH) | BF_PXP_AS_PITCH_PITCH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_AS_CLRKEYLOW - Overlay Color Key Low
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2921,17 +2670,14 @@ typedef union _hw_pxp_as_clrkeylow
  * constants & macros for entire PXP_AS_CLRKEYLOW register
  */
 #define HW_PXP_AS_CLRKEYLOW_ADDR      (REGS_PXP_BASE + 0x180)
-#define HW_PXP_AS_CLRKEYLOW_SET_ADDR  (HW_PXP_AS_CLRKEYLOW_ADDR + 0x4)
-#define HW_PXP_AS_CLRKEYLOW_CLR_ADDR  (HW_PXP_AS_CLRKEYLOW_ADDR + 0x8)
-#define HW_PXP_AS_CLRKEYLOW_TOG_ADDR  (HW_PXP_AS_CLRKEYLOW_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_AS_CLRKEYLOW           (*(volatile hw_pxp_as_clrkeylow_t *) HW_PXP_AS_CLRKEYLOW_ADDR)
 #define HW_PXP_AS_CLRKEYLOW_RD()      (HW_PXP_AS_CLRKEYLOW.U)
 #define HW_PXP_AS_CLRKEYLOW_WR(v)     (HW_PXP_AS_CLRKEYLOW.U = (v))
-#define HW_PXP_AS_CLRKEYLOW_SET(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYLOW_SET_ADDR) = (v))
-#define HW_PXP_AS_CLRKEYLOW_CLR(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYLOW_CLR_ADDR) = (v))
-#define HW_PXP_AS_CLRKEYLOW_TOG(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYLOW_TOG_ADDR) = (v))
+#define HW_PXP_AS_CLRKEYLOW_SET(v)    (HW_PXP_AS_CLRKEYLOW_WR(HW_PXP_AS_CLRKEYLOW_RD() |  (v)))
+#define HW_PXP_AS_CLRKEYLOW_CLR(v)    (HW_PXP_AS_CLRKEYLOW_WR(HW_PXP_AS_CLRKEYLOW_RD() & ~(v)))
+#define HW_PXP_AS_CLRKEYLOW_TOG(v)    (HW_PXP_AS_CLRKEYLOW_WR(HW_PXP_AS_CLRKEYLOW_RD() ^  (v)))
 #endif
 
 /*
@@ -2947,20 +2693,19 @@ typedef union _hw_pxp_as_clrkeylow
 #define BM_PXP_AS_CLRKEYLOW_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_AS_CLRKEYLOW_PIXEL.
 
 //! @brief Get value of PXP_AS_CLRKEYLOW_PIXEL from a register value.
-#define BG_PXP_AS_CLRKEYLOW_PIXEL(r)   (((r) & BM_PXP_AS_CLRKEYLOW_PIXEL) >> BP_PXP_AS_CLRKEYLOW_PIXEL)
+#define BG_PXP_AS_CLRKEYLOW_PIXEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CLRKEYLOW_PIXEL) >> BP_PXP_AS_CLRKEYLOW_PIXEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CLRKEYLOW_PIXEL.
-#define BF_PXP_AS_CLRKEYLOW_PIXEL(v)   ((((reg32_t) v) << BP_PXP_AS_CLRKEYLOW_PIXEL) & BM_PXP_AS_CLRKEYLOW_PIXEL)
-#else
-//! @brief Format value for bitfield PXP_AS_CLRKEYLOW_PIXEL.
-#define BF_PXP_AS_CLRKEYLOW_PIXEL(v)   (((v) << BP_PXP_AS_CLRKEYLOW_PIXEL) & BM_PXP_AS_CLRKEYLOW_PIXEL)
-#endif
+#define BF_PXP_AS_CLRKEYLOW_PIXEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CLRKEYLOW_PIXEL) & BM_PXP_AS_CLRKEYLOW_PIXEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXEL field to a new value.
-#define BW_PXP_AS_CLRKEYLOW_PIXEL(v)   BF_CS1(PXP_AS_CLRKEYLOW, PIXEL, v)
+#define BW_PXP_AS_CLRKEYLOW_PIXEL(v)   (HW_PXP_AS_CLRKEYLOW_WR((HW_PXP_AS_CLRKEYLOW_RD() & ~BM_PXP_AS_CLRKEYLOW_PIXEL) | BF_PXP_AS_CLRKEYLOW_PIXEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_AS_CLRKEYHIGH - Overlay Color Key High
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2991,17 +2736,14 @@ typedef union _hw_pxp_as_clrkeyhigh
  * constants & macros for entire PXP_AS_CLRKEYHIGH register
  */
 #define HW_PXP_AS_CLRKEYHIGH_ADDR      (REGS_PXP_BASE + 0x190)
-#define HW_PXP_AS_CLRKEYHIGH_SET_ADDR  (HW_PXP_AS_CLRKEYHIGH_ADDR + 0x4)
-#define HW_PXP_AS_CLRKEYHIGH_CLR_ADDR  (HW_PXP_AS_CLRKEYHIGH_ADDR + 0x8)
-#define HW_PXP_AS_CLRKEYHIGH_TOG_ADDR  (HW_PXP_AS_CLRKEYHIGH_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_AS_CLRKEYHIGH           (*(volatile hw_pxp_as_clrkeyhigh_t *) HW_PXP_AS_CLRKEYHIGH_ADDR)
 #define HW_PXP_AS_CLRKEYHIGH_RD()      (HW_PXP_AS_CLRKEYHIGH.U)
 #define HW_PXP_AS_CLRKEYHIGH_WR(v)     (HW_PXP_AS_CLRKEYHIGH.U = (v))
-#define HW_PXP_AS_CLRKEYHIGH_SET(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYHIGH_SET_ADDR) = (v))
-#define HW_PXP_AS_CLRKEYHIGH_CLR(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYHIGH_CLR_ADDR) = (v))
-#define HW_PXP_AS_CLRKEYHIGH_TOG(v)    ((*(volatile reg32_t *) HW_PXP_AS_CLRKEYHIGH_TOG_ADDR) = (v))
+#define HW_PXP_AS_CLRKEYHIGH_SET(v)    (HW_PXP_AS_CLRKEYHIGH_WR(HW_PXP_AS_CLRKEYHIGH_RD() |  (v)))
+#define HW_PXP_AS_CLRKEYHIGH_CLR(v)    (HW_PXP_AS_CLRKEYHIGH_WR(HW_PXP_AS_CLRKEYHIGH_RD() & ~(v)))
+#define HW_PXP_AS_CLRKEYHIGH_TOG(v)    (HW_PXP_AS_CLRKEYHIGH_WR(HW_PXP_AS_CLRKEYHIGH_RD() ^  (v)))
 #endif
 
 /*
@@ -3018,20 +2760,19 @@ typedef union _hw_pxp_as_clrkeyhigh
 #define BM_PXP_AS_CLRKEYHIGH_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_AS_CLRKEYHIGH_PIXEL.
 
 //! @brief Get value of PXP_AS_CLRKEYHIGH_PIXEL from a register value.
-#define BG_PXP_AS_CLRKEYHIGH_PIXEL(r)   (((r) & BM_PXP_AS_CLRKEYHIGH_PIXEL) >> BP_PXP_AS_CLRKEYHIGH_PIXEL)
+#define BG_PXP_AS_CLRKEYHIGH_PIXEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_AS_CLRKEYHIGH_PIXEL) >> BP_PXP_AS_CLRKEYHIGH_PIXEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_AS_CLRKEYHIGH_PIXEL.
-#define BF_PXP_AS_CLRKEYHIGH_PIXEL(v)   ((((reg32_t) v) << BP_PXP_AS_CLRKEYHIGH_PIXEL) & BM_PXP_AS_CLRKEYHIGH_PIXEL)
-#else
-//! @brief Format value for bitfield PXP_AS_CLRKEYHIGH_PIXEL.
-#define BF_PXP_AS_CLRKEYHIGH_PIXEL(v)   (((v) << BP_PXP_AS_CLRKEYHIGH_PIXEL) & BM_PXP_AS_CLRKEYHIGH_PIXEL)
-#endif
+#define BF_PXP_AS_CLRKEYHIGH_PIXEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_AS_CLRKEYHIGH_PIXEL) & BM_PXP_AS_CLRKEYHIGH_PIXEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXEL field to a new value.
-#define BW_PXP_AS_CLRKEYHIGH_PIXEL(v)   BF_CS1(PXP_AS_CLRKEYHIGH, PIXEL, v)
+#define BW_PXP_AS_CLRKEYHIGH_PIXEL(v)   (HW_PXP_AS_CLRKEYHIGH_WR((HW_PXP_AS_CLRKEYHIGH_RD() & ~BM_PXP_AS_CLRKEYHIGH_PIXEL) | BF_PXP_AS_CLRKEYHIGH_PIXEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC1_COEF0 - Color Space Conversion Coefficient Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3068,17 +2809,14 @@ typedef union _hw_pxp_csc1_coef0
  * constants & macros for entire PXP_CSC1_COEF0 register
  */
 #define HW_PXP_CSC1_COEF0_ADDR      (REGS_PXP_BASE + 0x1a0)
-#define HW_PXP_CSC1_COEF0_SET_ADDR  (HW_PXP_CSC1_COEF0_ADDR + 0x4)
-#define HW_PXP_CSC1_COEF0_CLR_ADDR  (HW_PXP_CSC1_COEF0_ADDR + 0x8)
-#define HW_PXP_CSC1_COEF0_TOG_ADDR  (HW_PXP_CSC1_COEF0_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC1_COEF0           (*(volatile hw_pxp_csc1_coef0_t *) HW_PXP_CSC1_COEF0_ADDR)
 #define HW_PXP_CSC1_COEF0_RD()      (HW_PXP_CSC1_COEF0.U)
 #define HW_PXP_CSC1_COEF0_WR(v)     (HW_PXP_CSC1_COEF0.U = (v))
-#define HW_PXP_CSC1_COEF0_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF0_SET_ADDR) = (v))
-#define HW_PXP_CSC1_COEF0_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF0_CLR_ADDR) = (v))
-#define HW_PXP_CSC1_COEF0_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF0_TOG_ADDR) = (v))
+#define HW_PXP_CSC1_COEF0_SET(v)    (HW_PXP_CSC1_COEF0_WR(HW_PXP_CSC1_COEF0_RD() |  (v)))
+#define HW_PXP_CSC1_COEF0_CLR(v)    (HW_PXP_CSC1_COEF0_WR(HW_PXP_CSC1_COEF0_RD() & ~(v)))
+#define HW_PXP_CSC1_COEF0_TOG(v)    (HW_PXP_CSC1_COEF0_WR(HW_PXP_CSC1_COEF0_RD() ^  (v)))
 #endif
 
 /*
@@ -3095,19 +2833,14 @@ typedef union _hw_pxp_csc1_coef0
 #define BM_PXP_CSC1_COEF0_Y_OFFSET      (0x000001ff)  //!< Bit mask for PXP_CSC1_COEF0_Y_OFFSET.
 
 //! @brief Get value of PXP_CSC1_COEF0_Y_OFFSET from a register value.
-#define BG_PXP_CSC1_COEF0_Y_OFFSET(r)   (((r) & BM_PXP_CSC1_COEF0_Y_OFFSET) >> BP_PXP_CSC1_COEF0_Y_OFFSET)
+#define BG_PXP_CSC1_COEF0_Y_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF0_Y_OFFSET) >> BP_PXP_CSC1_COEF0_Y_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF0_Y_OFFSET.
-#define BF_PXP_CSC1_COEF0_Y_OFFSET(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF0_Y_OFFSET) & BM_PXP_CSC1_COEF0_Y_OFFSET)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF0_Y_OFFSET.
-#define BF_PXP_CSC1_COEF0_Y_OFFSET(v)   (((v) << BP_PXP_CSC1_COEF0_Y_OFFSET) & BM_PXP_CSC1_COEF0_Y_OFFSET)
-#endif
+#define BF_PXP_CSC1_COEF0_Y_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF0_Y_OFFSET) & BM_PXP_CSC1_COEF0_Y_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y_OFFSET field to a new value.
-#define BW_PXP_CSC1_COEF0_Y_OFFSET(v)   BF_CS1(PXP_CSC1_COEF0, Y_OFFSET, v)
+#define BW_PXP_CSC1_COEF0_Y_OFFSET(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_Y_OFFSET) | BF_PXP_CSC1_COEF0_Y_OFFSET(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF0, field UV_OFFSET[17:9] (RW)
@@ -3120,19 +2853,14 @@ typedef union _hw_pxp_csc1_coef0
 #define BM_PXP_CSC1_COEF0_UV_OFFSET      (0x0003fe00)  //!< Bit mask for PXP_CSC1_COEF0_UV_OFFSET.
 
 //! @brief Get value of PXP_CSC1_COEF0_UV_OFFSET from a register value.
-#define BG_PXP_CSC1_COEF0_UV_OFFSET(r)   (((r) & BM_PXP_CSC1_COEF0_UV_OFFSET) >> BP_PXP_CSC1_COEF0_UV_OFFSET)
+#define BG_PXP_CSC1_COEF0_UV_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF0_UV_OFFSET) >> BP_PXP_CSC1_COEF0_UV_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF0_UV_OFFSET.
-#define BF_PXP_CSC1_COEF0_UV_OFFSET(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF0_UV_OFFSET) & BM_PXP_CSC1_COEF0_UV_OFFSET)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF0_UV_OFFSET.
-#define BF_PXP_CSC1_COEF0_UV_OFFSET(v)   (((v) << BP_PXP_CSC1_COEF0_UV_OFFSET) & BM_PXP_CSC1_COEF0_UV_OFFSET)
-#endif
+#define BF_PXP_CSC1_COEF0_UV_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF0_UV_OFFSET) & BM_PXP_CSC1_COEF0_UV_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UV_OFFSET field to a new value.
-#define BW_PXP_CSC1_COEF0_UV_OFFSET(v)   BF_CS1(PXP_CSC1_COEF0, UV_OFFSET, v)
+#define BW_PXP_CSC1_COEF0_UV_OFFSET(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_UV_OFFSET) | BF_PXP_CSC1_COEF0_UV_OFFSET(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF0, field C0[28:18] (RW)
@@ -3144,19 +2872,14 @@ typedef union _hw_pxp_csc1_coef0
 #define BM_PXP_CSC1_COEF0_C0      (0x1ffc0000)  //!< Bit mask for PXP_CSC1_COEF0_C0.
 
 //! @brief Get value of PXP_CSC1_COEF0_C0 from a register value.
-#define BG_PXP_CSC1_COEF0_C0(r)   (((r) & BM_PXP_CSC1_COEF0_C0) >> BP_PXP_CSC1_COEF0_C0)
+#define BG_PXP_CSC1_COEF0_C0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF0_C0) >> BP_PXP_CSC1_COEF0_C0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF0_C0.
-#define BF_PXP_CSC1_COEF0_C0(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF0_C0) & BM_PXP_CSC1_COEF0_C0)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF0_C0.
-#define BF_PXP_CSC1_COEF0_C0(v)   (((v) << BP_PXP_CSC1_COEF0_C0) & BM_PXP_CSC1_COEF0_C0)
-#endif
+#define BF_PXP_CSC1_COEF0_C0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF0_C0) & BM_PXP_CSC1_COEF0_C0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C0 field to a new value.
-#define BW_PXP_CSC1_COEF0_C0(v)   BF_CS1(PXP_CSC1_COEF0, C0, v)
+#define BW_PXP_CSC1_COEF0_C0(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_C0) | BF_PXP_CSC1_COEF0_C0(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF0, field BYPASS[30] (RW)
@@ -3170,19 +2893,14 @@ typedef union _hw_pxp_csc1_coef0
 #define BM_PXP_CSC1_COEF0_BYPASS      (0x40000000)  //!< Bit mask for PXP_CSC1_COEF0_BYPASS.
 
 //! @brief Get value of PXP_CSC1_COEF0_BYPASS from a register value.
-#define BG_PXP_CSC1_COEF0_BYPASS(r)   (((r) & BM_PXP_CSC1_COEF0_BYPASS) >> BP_PXP_CSC1_COEF0_BYPASS)
+#define BG_PXP_CSC1_COEF0_BYPASS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF0_BYPASS) >> BP_PXP_CSC1_COEF0_BYPASS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF0_BYPASS.
-#define BF_PXP_CSC1_COEF0_BYPASS(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF0_BYPASS) & BM_PXP_CSC1_COEF0_BYPASS)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF0_BYPASS.
-#define BF_PXP_CSC1_COEF0_BYPASS(v)   (((v) << BP_PXP_CSC1_COEF0_BYPASS) & BM_PXP_CSC1_COEF0_BYPASS)
-#endif
+#define BF_PXP_CSC1_COEF0_BYPASS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF0_BYPASS) & BM_PXP_CSC1_COEF0_BYPASS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS field to a new value.
-#define BW_PXP_CSC1_COEF0_BYPASS(v)   BF_CS1(PXP_CSC1_COEF0, BYPASS, v)
+#define BW_PXP_CSC1_COEF0_BYPASS(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_BYPASS) | BF_PXP_CSC1_COEF0_BYPASS(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF0, field YCBCR_MODE[31] (RW)
@@ -3195,20 +2913,19 @@ typedef union _hw_pxp_csc1_coef0
 #define BM_PXP_CSC1_COEF0_YCBCR_MODE      (0x80000000)  //!< Bit mask for PXP_CSC1_COEF0_YCBCR_MODE.
 
 //! @brief Get value of PXP_CSC1_COEF0_YCBCR_MODE from a register value.
-#define BG_PXP_CSC1_COEF0_YCBCR_MODE(r)   (((r) & BM_PXP_CSC1_COEF0_YCBCR_MODE) >> BP_PXP_CSC1_COEF0_YCBCR_MODE)
+#define BG_PXP_CSC1_COEF0_YCBCR_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF0_YCBCR_MODE) >> BP_PXP_CSC1_COEF0_YCBCR_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF0_YCBCR_MODE.
-#define BF_PXP_CSC1_COEF0_YCBCR_MODE(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF0_YCBCR_MODE) & BM_PXP_CSC1_COEF0_YCBCR_MODE)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF0_YCBCR_MODE.
-#define BF_PXP_CSC1_COEF0_YCBCR_MODE(v)   (((v) << BP_PXP_CSC1_COEF0_YCBCR_MODE) & BM_PXP_CSC1_COEF0_YCBCR_MODE)
-#endif
+#define BF_PXP_CSC1_COEF0_YCBCR_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF0_YCBCR_MODE) & BM_PXP_CSC1_COEF0_YCBCR_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YCBCR_MODE field to a new value.
-#define BW_PXP_CSC1_COEF0_YCBCR_MODE(v)   BF_CS1(PXP_CSC1_COEF0, YCBCR_MODE, v)
+#define BW_PXP_CSC1_COEF0_YCBCR_MODE(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_YCBCR_MODE) | BF_PXP_CSC1_COEF0_YCBCR_MODE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC1_COEF1 - Color Space Conversion Coefficient Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3242,17 +2959,14 @@ typedef union _hw_pxp_csc1_coef1
  * constants & macros for entire PXP_CSC1_COEF1 register
  */
 #define HW_PXP_CSC1_COEF1_ADDR      (REGS_PXP_BASE + 0x1b0)
-#define HW_PXP_CSC1_COEF1_SET_ADDR  (HW_PXP_CSC1_COEF1_ADDR + 0x4)
-#define HW_PXP_CSC1_COEF1_CLR_ADDR  (HW_PXP_CSC1_COEF1_ADDR + 0x8)
-#define HW_PXP_CSC1_COEF1_TOG_ADDR  (HW_PXP_CSC1_COEF1_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC1_COEF1           (*(volatile hw_pxp_csc1_coef1_t *) HW_PXP_CSC1_COEF1_ADDR)
 #define HW_PXP_CSC1_COEF1_RD()      (HW_PXP_CSC1_COEF1.U)
 #define HW_PXP_CSC1_COEF1_WR(v)     (HW_PXP_CSC1_COEF1.U = (v))
-#define HW_PXP_CSC1_COEF1_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF1_SET_ADDR) = (v))
-#define HW_PXP_CSC1_COEF1_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF1_CLR_ADDR) = (v))
-#define HW_PXP_CSC1_COEF1_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF1_TOG_ADDR) = (v))
+#define HW_PXP_CSC1_COEF1_SET(v)    (HW_PXP_CSC1_COEF1_WR(HW_PXP_CSC1_COEF1_RD() |  (v)))
+#define HW_PXP_CSC1_COEF1_CLR(v)    (HW_PXP_CSC1_COEF1_WR(HW_PXP_CSC1_COEF1_RD() & ~(v)))
+#define HW_PXP_CSC1_COEF1_TOG(v)    (HW_PXP_CSC1_COEF1_WR(HW_PXP_CSC1_COEF1_RD() ^  (v)))
 #endif
 
 /*
@@ -3268,19 +2982,14 @@ typedef union _hw_pxp_csc1_coef1
 #define BM_PXP_CSC1_COEF1_C4      (0x000007ff)  //!< Bit mask for PXP_CSC1_COEF1_C4.
 
 //! @brief Get value of PXP_CSC1_COEF1_C4 from a register value.
-#define BG_PXP_CSC1_COEF1_C4(r)   (((r) & BM_PXP_CSC1_COEF1_C4) >> BP_PXP_CSC1_COEF1_C4)
+#define BG_PXP_CSC1_COEF1_C4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF1_C4) >> BP_PXP_CSC1_COEF1_C4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF1_C4.
-#define BF_PXP_CSC1_COEF1_C4(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF1_C4) & BM_PXP_CSC1_COEF1_C4)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF1_C4.
-#define BF_PXP_CSC1_COEF1_C4(v)   (((v) << BP_PXP_CSC1_COEF1_C4) & BM_PXP_CSC1_COEF1_C4)
-#endif
+#define BF_PXP_CSC1_COEF1_C4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF1_C4) & BM_PXP_CSC1_COEF1_C4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C4 field to a new value.
-#define BW_PXP_CSC1_COEF1_C4(v)   BF_CS1(PXP_CSC1_COEF1, C4, v)
+#define BW_PXP_CSC1_COEF1_C4(v)   (HW_PXP_CSC1_COEF1_WR((HW_PXP_CSC1_COEF1_RD() & ~BM_PXP_CSC1_COEF1_C4) | BF_PXP_CSC1_COEF1_C4(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF1, field C1[26:16] (RW)
@@ -3292,20 +3001,19 @@ typedef union _hw_pxp_csc1_coef1
 #define BM_PXP_CSC1_COEF1_C1      (0x07ff0000)  //!< Bit mask for PXP_CSC1_COEF1_C1.
 
 //! @brief Get value of PXP_CSC1_COEF1_C1 from a register value.
-#define BG_PXP_CSC1_COEF1_C1(r)   (((r) & BM_PXP_CSC1_COEF1_C1) >> BP_PXP_CSC1_COEF1_C1)
+#define BG_PXP_CSC1_COEF1_C1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF1_C1) >> BP_PXP_CSC1_COEF1_C1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF1_C1.
-#define BF_PXP_CSC1_COEF1_C1(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF1_C1) & BM_PXP_CSC1_COEF1_C1)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF1_C1.
-#define BF_PXP_CSC1_COEF1_C1(v)   (((v) << BP_PXP_CSC1_COEF1_C1) & BM_PXP_CSC1_COEF1_C1)
-#endif
+#define BF_PXP_CSC1_COEF1_C1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF1_C1) & BM_PXP_CSC1_COEF1_C1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C1 field to a new value.
-#define BW_PXP_CSC1_COEF1_C1(v)   BF_CS1(PXP_CSC1_COEF1, C1, v)
+#define BW_PXP_CSC1_COEF1_C1(v)   (HW_PXP_CSC1_COEF1_WR((HW_PXP_CSC1_COEF1_RD() & ~BM_PXP_CSC1_COEF1_C1) | BF_PXP_CSC1_COEF1_C1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC1_COEF2 - Color Space Conversion Coefficient Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3341,17 +3049,14 @@ typedef union _hw_pxp_csc1_coef2
  * constants & macros for entire PXP_CSC1_COEF2 register
  */
 #define HW_PXP_CSC1_COEF2_ADDR      (REGS_PXP_BASE + 0x1c0)
-#define HW_PXP_CSC1_COEF2_SET_ADDR  (HW_PXP_CSC1_COEF2_ADDR + 0x4)
-#define HW_PXP_CSC1_COEF2_CLR_ADDR  (HW_PXP_CSC1_COEF2_ADDR + 0x8)
-#define HW_PXP_CSC1_COEF2_TOG_ADDR  (HW_PXP_CSC1_COEF2_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC1_COEF2           (*(volatile hw_pxp_csc1_coef2_t *) HW_PXP_CSC1_COEF2_ADDR)
 #define HW_PXP_CSC1_COEF2_RD()      (HW_PXP_CSC1_COEF2.U)
 #define HW_PXP_CSC1_COEF2_WR(v)     (HW_PXP_CSC1_COEF2.U = (v))
-#define HW_PXP_CSC1_COEF2_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF2_SET_ADDR) = (v))
-#define HW_PXP_CSC1_COEF2_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF2_CLR_ADDR) = (v))
-#define HW_PXP_CSC1_COEF2_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC1_COEF2_TOG_ADDR) = (v))
+#define HW_PXP_CSC1_COEF2_SET(v)    (HW_PXP_CSC1_COEF2_WR(HW_PXP_CSC1_COEF2_RD() |  (v)))
+#define HW_PXP_CSC1_COEF2_CLR(v)    (HW_PXP_CSC1_COEF2_WR(HW_PXP_CSC1_COEF2_RD() & ~(v)))
+#define HW_PXP_CSC1_COEF2_TOG(v)    (HW_PXP_CSC1_COEF2_WR(HW_PXP_CSC1_COEF2_RD() ^  (v)))
 #endif
 
 /*
@@ -3367,19 +3072,14 @@ typedef union _hw_pxp_csc1_coef2
 #define BM_PXP_CSC1_COEF2_C3      (0x000007ff)  //!< Bit mask for PXP_CSC1_COEF2_C3.
 
 //! @brief Get value of PXP_CSC1_COEF2_C3 from a register value.
-#define BG_PXP_CSC1_COEF2_C3(r)   (((r) & BM_PXP_CSC1_COEF2_C3) >> BP_PXP_CSC1_COEF2_C3)
+#define BG_PXP_CSC1_COEF2_C3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF2_C3) >> BP_PXP_CSC1_COEF2_C3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF2_C3.
-#define BF_PXP_CSC1_COEF2_C3(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF2_C3) & BM_PXP_CSC1_COEF2_C3)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF2_C3.
-#define BF_PXP_CSC1_COEF2_C3(v)   (((v) << BP_PXP_CSC1_COEF2_C3) & BM_PXP_CSC1_COEF2_C3)
-#endif
+#define BF_PXP_CSC1_COEF2_C3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF2_C3) & BM_PXP_CSC1_COEF2_C3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C3 field to a new value.
-#define BW_PXP_CSC1_COEF2_C3(v)   BF_CS1(PXP_CSC1_COEF2, C3, v)
+#define BW_PXP_CSC1_COEF2_C3(v)   (HW_PXP_CSC1_COEF2_WR((HW_PXP_CSC1_COEF2_RD() & ~BM_PXP_CSC1_COEF2_C3) | BF_PXP_CSC1_COEF2_C3(v)))
 #endif
 
 /* --- Register HW_PXP_CSC1_COEF2, field C2[26:16] (RW)
@@ -3391,20 +3091,19 @@ typedef union _hw_pxp_csc1_coef2
 #define BM_PXP_CSC1_COEF2_C2      (0x07ff0000)  //!< Bit mask for PXP_CSC1_COEF2_C2.
 
 //! @brief Get value of PXP_CSC1_COEF2_C2 from a register value.
-#define BG_PXP_CSC1_COEF2_C2(r)   (((r) & BM_PXP_CSC1_COEF2_C2) >> BP_PXP_CSC1_COEF2_C2)
+#define BG_PXP_CSC1_COEF2_C2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC1_COEF2_C2) >> BP_PXP_CSC1_COEF2_C2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC1_COEF2_C2.
-#define BF_PXP_CSC1_COEF2_C2(v)   ((((reg32_t) v) << BP_PXP_CSC1_COEF2_C2) & BM_PXP_CSC1_COEF2_C2)
-#else
-//! @brief Format value for bitfield PXP_CSC1_COEF2_C2.
-#define BF_PXP_CSC1_COEF2_C2(v)   (((v) << BP_PXP_CSC1_COEF2_C2) & BM_PXP_CSC1_COEF2_C2)
-#endif
+#define BF_PXP_CSC1_COEF2_C2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC1_COEF2_C2) & BM_PXP_CSC1_COEF2_C2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C2 field to a new value.
-#define BW_PXP_CSC1_COEF2_C2(v)   BF_CS1(PXP_CSC1_COEF2, C2, v)
+#define BW_PXP_CSC1_COEF2_C2(v)   (HW_PXP_CSC1_COEF2_WR((HW_PXP_CSC1_COEF2_RD() & ~BM_PXP_CSC1_COEF2_C2) | BF_PXP_CSC1_COEF2_C2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_CTRL - Color Space Conversion Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3437,17 +3136,14 @@ typedef union _hw_pxp_csc2_ctrl
  * constants & macros for entire PXP_CSC2_CTRL register
  */
 #define HW_PXP_CSC2_CTRL_ADDR      (REGS_PXP_BASE + 0x1d0)
-#define HW_PXP_CSC2_CTRL_SET_ADDR  (HW_PXP_CSC2_CTRL_ADDR + 0x4)
-#define HW_PXP_CSC2_CTRL_CLR_ADDR  (HW_PXP_CSC2_CTRL_ADDR + 0x8)
-#define HW_PXP_CSC2_CTRL_TOG_ADDR  (HW_PXP_CSC2_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_CTRL           (*(volatile hw_pxp_csc2_ctrl_t *) HW_PXP_CSC2_CTRL_ADDR)
 #define HW_PXP_CSC2_CTRL_RD()      (HW_PXP_CSC2_CTRL.U)
 #define HW_PXP_CSC2_CTRL_WR(v)     (HW_PXP_CSC2_CTRL.U = (v))
-#define HW_PXP_CSC2_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_CTRL_SET_ADDR) = (v))
-#define HW_PXP_CSC2_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_CTRL_SET(v)    (HW_PXP_CSC2_CTRL_WR(HW_PXP_CSC2_CTRL_RD() |  (v)))
+#define HW_PXP_CSC2_CTRL_CLR(v)    (HW_PXP_CSC2_CTRL_WR(HW_PXP_CSC2_CTRL_RD() & ~(v)))
+#define HW_PXP_CSC2_CTRL_TOG(v)    (HW_PXP_CSC2_CTRL_WR(HW_PXP_CSC2_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -3465,19 +3161,14 @@ typedef union _hw_pxp_csc2_ctrl
 #define BM_PXP_CSC2_CTRL_BYPASS      (0x00000001)  //!< Bit mask for PXP_CSC2_CTRL_BYPASS.
 
 //! @brief Get value of PXP_CSC2_CTRL_BYPASS from a register value.
-#define BG_PXP_CSC2_CTRL_BYPASS(r)   (((r) & BM_PXP_CSC2_CTRL_BYPASS) >> BP_PXP_CSC2_CTRL_BYPASS)
+#define BG_PXP_CSC2_CTRL_BYPASS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_CTRL_BYPASS) >> BP_PXP_CSC2_CTRL_BYPASS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_CTRL_BYPASS.
-#define BF_PXP_CSC2_CTRL_BYPASS(v)   ((((reg32_t) v) << BP_PXP_CSC2_CTRL_BYPASS) & BM_PXP_CSC2_CTRL_BYPASS)
-#else
-//! @brief Format value for bitfield PXP_CSC2_CTRL_BYPASS.
-#define BF_PXP_CSC2_CTRL_BYPASS(v)   (((v) << BP_PXP_CSC2_CTRL_BYPASS) & BM_PXP_CSC2_CTRL_BYPASS)
-#endif
+#define BF_PXP_CSC2_CTRL_BYPASS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_CTRL_BYPASS) & BM_PXP_CSC2_CTRL_BYPASS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS field to a new value.
-#define BW_PXP_CSC2_CTRL_BYPASS(v)   BF_CS1(PXP_CSC2_CTRL, BYPASS, v)
+#define BW_PXP_CSC2_CTRL_BYPASS(v)   (HW_PXP_CSC2_CTRL_WR((HW_PXP_CSC2_CTRL_RD() & ~BM_PXP_CSC2_CTRL_BYPASS) | BF_PXP_CSC2_CTRL_BYPASS(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_CTRL, field CSC_MODE[2:1] (RW)
@@ -3495,25 +3186,24 @@ typedef union _hw_pxp_csc2_ctrl
 #define BM_PXP_CSC2_CTRL_CSC_MODE      (0x00000006)  //!< Bit mask for PXP_CSC2_CTRL_CSC_MODE.
 
 //! @brief Get value of PXP_CSC2_CTRL_CSC_MODE from a register value.
-#define BG_PXP_CSC2_CTRL_CSC_MODE(r)   (((r) & BM_PXP_CSC2_CTRL_CSC_MODE) >> BP_PXP_CSC2_CTRL_CSC_MODE)
+#define BG_PXP_CSC2_CTRL_CSC_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_CTRL_CSC_MODE) >> BP_PXP_CSC2_CTRL_CSC_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_CTRL_CSC_MODE.
-#define BF_PXP_CSC2_CTRL_CSC_MODE(v)   ((((reg32_t) v) << BP_PXP_CSC2_CTRL_CSC_MODE) & BM_PXP_CSC2_CTRL_CSC_MODE)
-#else
-//! @brief Format value for bitfield PXP_CSC2_CTRL_CSC_MODE.
-#define BF_PXP_CSC2_CTRL_CSC_MODE(v)   (((v) << BP_PXP_CSC2_CTRL_CSC_MODE) & BM_PXP_CSC2_CTRL_CSC_MODE)
-#endif
+#define BF_PXP_CSC2_CTRL_CSC_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_CTRL_CSC_MODE) & BM_PXP_CSC2_CTRL_CSC_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSC_MODE field to a new value.
-#define BW_PXP_CSC2_CTRL_CSC_MODE(v)   BF_CS1(PXP_CSC2_CTRL, CSC_MODE, v)
+#define BW_PXP_CSC2_CTRL_CSC_MODE(v)   (HW_PXP_CSC2_CTRL_WR((HW_PXP_CSC2_CTRL_RD() & ~BM_PXP_CSC2_CTRL_CSC_MODE) | BF_PXP_CSC2_CTRL_CSC_MODE(v)))
 #endif
 
 #define BV_PXP_CSC2_CTRL_CSC_MODE__YUV2RGB (0x0) //!< Convert from YUV to RGB.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__YCBCR2RGB (0x1) //!< Convert from YCbCr to RGB.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YUV (0x2) //!< Convert from RGB to YUV.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YCBCR (0x3) //!< Convert from RGB to YCbCr.
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF0 - Color Space Conversion Coefficient Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3540,17 +3230,14 @@ typedef union _hw_pxp_csc2_coef0
  * constants & macros for entire PXP_CSC2_COEF0 register
  */
 #define HW_PXP_CSC2_COEF0_ADDR      (REGS_PXP_BASE + 0x1e0)
-#define HW_PXP_CSC2_COEF0_SET_ADDR  (HW_PXP_CSC2_COEF0_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF0_CLR_ADDR  (HW_PXP_CSC2_COEF0_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF0_TOG_ADDR  (HW_PXP_CSC2_COEF0_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF0           (*(volatile hw_pxp_csc2_coef0_t *) HW_PXP_CSC2_COEF0_ADDR)
 #define HW_PXP_CSC2_COEF0_RD()      (HW_PXP_CSC2_COEF0.U)
 #define HW_PXP_CSC2_COEF0_WR(v)     (HW_PXP_CSC2_COEF0.U = (v))
-#define HW_PXP_CSC2_COEF0_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF0_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF0_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF0_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF0_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF0_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF0_SET(v)    (HW_PXP_CSC2_COEF0_WR(HW_PXP_CSC2_COEF0_RD() |  (v)))
+#define HW_PXP_CSC2_COEF0_CLR(v)    (HW_PXP_CSC2_COEF0_WR(HW_PXP_CSC2_COEF0_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF0_TOG(v)    (HW_PXP_CSC2_COEF0_WR(HW_PXP_CSC2_COEF0_RD() ^  (v)))
 #endif
 
 /*
@@ -3567,19 +3254,14 @@ typedef union _hw_pxp_csc2_coef0
 #define BM_PXP_CSC2_COEF0_A1      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF0_A1.
 
 //! @brief Get value of PXP_CSC2_COEF0_A1 from a register value.
-#define BG_PXP_CSC2_COEF0_A1(r)   (((r) & BM_PXP_CSC2_COEF0_A1) >> BP_PXP_CSC2_COEF0_A1)
+#define BG_PXP_CSC2_COEF0_A1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF0_A1) >> BP_PXP_CSC2_COEF0_A1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF0_A1.
-#define BF_PXP_CSC2_COEF0_A1(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF0_A1) & BM_PXP_CSC2_COEF0_A1)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF0_A1.
-#define BF_PXP_CSC2_COEF0_A1(v)   (((v) << BP_PXP_CSC2_COEF0_A1) & BM_PXP_CSC2_COEF0_A1)
-#endif
+#define BF_PXP_CSC2_COEF0_A1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF0_A1) & BM_PXP_CSC2_COEF0_A1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the A1 field to a new value.
-#define BW_PXP_CSC2_COEF0_A1(v)   BF_CS1(PXP_CSC2_COEF0, A1, v)
+#define BW_PXP_CSC2_COEF0_A1(v)   (HW_PXP_CSC2_COEF0_WR((HW_PXP_CSC2_COEF0_RD() & ~BM_PXP_CSC2_COEF0_A1) | BF_PXP_CSC2_COEF0_A1(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF0, field A2[26:16] (RW)
@@ -3592,20 +3274,19 @@ typedef union _hw_pxp_csc2_coef0
 #define BM_PXP_CSC2_COEF0_A2      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF0_A2.
 
 //! @brief Get value of PXP_CSC2_COEF0_A2 from a register value.
-#define BG_PXP_CSC2_COEF0_A2(r)   (((r) & BM_PXP_CSC2_COEF0_A2) >> BP_PXP_CSC2_COEF0_A2)
+#define BG_PXP_CSC2_COEF0_A2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF0_A2) >> BP_PXP_CSC2_COEF0_A2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF0_A2.
-#define BF_PXP_CSC2_COEF0_A2(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF0_A2) & BM_PXP_CSC2_COEF0_A2)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF0_A2.
-#define BF_PXP_CSC2_COEF0_A2(v)   (((v) << BP_PXP_CSC2_COEF0_A2) & BM_PXP_CSC2_COEF0_A2)
-#endif
+#define BF_PXP_CSC2_COEF0_A2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF0_A2) & BM_PXP_CSC2_COEF0_A2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the A2 field to a new value.
-#define BW_PXP_CSC2_COEF0_A2(v)   BF_CS1(PXP_CSC2_COEF0, A2, v)
+#define BW_PXP_CSC2_COEF0_A2(v)   (HW_PXP_CSC2_COEF0_WR((HW_PXP_CSC2_COEF0_RD() & ~BM_PXP_CSC2_COEF0_A2) | BF_PXP_CSC2_COEF0_A2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF1 - Color Space Conversion Coefficient Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3632,17 +3313,14 @@ typedef union _hw_pxp_csc2_coef1
  * constants & macros for entire PXP_CSC2_COEF1 register
  */
 #define HW_PXP_CSC2_COEF1_ADDR      (REGS_PXP_BASE + 0x1f0)
-#define HW_PXP_CSC2_COEF1_SET_ADDR  (HW_PXP_CSC2_COEF1_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF1_CLR_ADDR  (HW_PXP_CSC2_COEF1_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF1_TOG_ADDR  (HW_PXP_CSC2_COEF1_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF1           (*(volatile hw_pxp_csc2_coef1_t *) HW_PXP_CSC2_COEF1_ADDR)
 #define HW_PXP_CSC2_COEF1_RD()      (HW_PXP_CSC2_COEF1.U)
 #define HW_PXP_CSC2_COEF1_WR(v)     (HW_PXP_CSC2_COEF1.U = (v))
-#define HW_PXP_CSC2_COEF1_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF1_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF1_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF1_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF1_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF1_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF1_SET(v)    (HW_PXP_CSC2_COEF1_WR(HW_PXP_CSC2_COEF1_RD() |  (v)))
+#define HW_PXP_CSC2_COEF1_CLR(v)    (HW_PXP_CSC2_COEF1_WR(HW_PXP_CSC2_COEF1_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF1_TOG(v)    (HW_PXP_CSC2_COEF1_WR(HW_PXP_CSC2_COEF1_RD() ^  (v)))
 #endif
 
 /*
@@ -3659,19 +3337,14 @@ typedef union _hw_pxp_csc2_coef1
 #define BM_PXP_CSC2_COEF1_A3      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF1_A3.
 
 //! @brief Get value of PXP_CSC2_COEF1_A3 from a register value.
-#define BG_PXP_CSC2_COEF1_A3(r)   (((r) & BM_PXP_CSC2_COEF1_A3) >> BP_PXP_CSC2_COEF1_A3)
+#define BG_PXP_CSC2_COEF1_A3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF1_A3) >> BP_PXP_CSC2_COEF1_A3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF1_A3.
-#define BF_PXP_CSC2_COEF1_A3(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF1_A3) & BM_PXP_CSC2_COEF1_A3)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF1_A3.
-#define BF_PXP_CSC2_COEF1_A3(v)   (((v) << BP_PXP_CSC2_COEF1_A3) & BM_PXP_CSC2_COEF1_A3)
-#endif
+#define BF_PXP_CSC2_COEF1_A3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF1_A3) & BM_PXP_CSC2_COEF1_A3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the A3 field to a new value.
-#define BW_PXP_CSC2_COEF1_A3(v)   BF_CS1(PXP_CSC2_COEF1, A3, v)
+#define BW_PXP_CSC2_COEF1_A3(v)   (HW_PXP_CSC2_COEF1_WR((HW_PXP_CSC2_COEF1_RD() & ~BM_PXP_CSC2_COEF1_A3) | BF_PXP_CSC2_COEF1_A3(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF1, field B1[26:16] (RW)
@@ -3684,20 +3357,19 @@ typedef union _hw_pxp_csc2_coef1
 #define BM_PXP_CSC2_COEF1_B1      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF1_B1.
 
 //! @brief Get value of PXP_CSC2_COEF1_B1 from a register value.
-#define BG_PXP_CSC2_COEF1_B1(r)   (((r) & BM_PXP_CSC2_COEF1_B1) >> BP_PXP_CSC2_COEF1_B1)
+#define BG_PXP_CSC2_COEF1_B1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF1_B1) >> BP_PXP_CSC2_COEF1_B1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF1_B1.
-#define BF_PXP_CSC2_COEF1_B1(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF1_B1) & BM_PXP_CSC2_COEF1_B1)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF1_B1.
-#define BF_PXP_CSC2_COEF1_B1(v)   (((v) << BP_PXP_CSC2_COEF1_B1) & BM_PXP_CSC2_COEF1_B1)
-#endif
+#define BF_PXP_CSC2_COEF1_B1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF1_B1) & BM_PXP_CSC2_COEF1_B1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the B1 field to a new value.
-#define BW_PXP_CSC2_COEF1_B1(v)   BF_CS1(PXP_CSC2_COEF1, B1, v)
+#define BW_PXP_CSC2_COEF1_B1(v)   (HW_PXP_CSC2_COEF1_WR((HW_PXP_CSC2_COEF1_RD() & ~BM_PXP_CSC2_COEF1_B1) | BF_PXP_CSC2_COEF1_B1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF2 - Color Space Conversion Coefficient Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3724,17 +3396,14 @@ typedef union _hw_pxp_csc2_coef2
  * constants & macros for entire PXP_CSC2_COEF2 register
  */
 #define HW_PXP_CSC2_COEF2_ADDR      (REGS_PXP_BASE + 0x200)
-#define HW_PXP_CSC2_COEF2_SET_ADDR  (HW_PXP_CSC2_COEF2_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF2_CLR_ADDR  (HW_PXP_CSC2_COEF2_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF2_TOG_ADDR  (HW_PXP_CSC2_COEF2_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF2           (*(volatile hw_pxp_csc2_coef2_t *) HW_PXP_CSC2_COEF2_ADDR)
 #define HW_PXP_CSC2_COEF2_RD()      (HW_PXP_CSC2_COEF2.U)
 #define HW_PXP_CSC2_COEF2_WR(v)     (HW_PXP_CSC2_COEF2.U = (v))
-#define HW_PXP_CSC2_COEF2_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF2_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF2_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF2_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF2_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF2_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF2_SET(v)    (HW_PXP_CSC2_COEF2_WR(HW_PXP_CSC2_COEF2_RD() |  (v)))
+#define HW_PXP_CSC2_COEF2_CLR(v)    (HW_PXP_CSC2_COEF2_WR(HW_PXP_CSC2_COEF2_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF2_TOG(v)    (HW_PXP_CSC2_COEF2_WR(HW_PXP_CSC2_COEF2_RD() ^  (v)))
 #endif
 
 /*
@@ -3751,19 +3420,14 @@ typedef union _hw_pxp_csc2_coef2
 #define BM_PXP_CSC2_COEF2_B2      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF2_B2.
 
 //! @brief Get value of PXP_CSC2_COEF2_B2 from a register value.
-#define BG_PXP_CSC2_COEF2_B2(r)   (((r) & BM_PXP_CSC2_COEF2_B2) >> BP_PXP_CSC2_COEF2_B2)
+#define BG_PXP_CSC2_COEF2_B2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF2_B2) >> BP_PXP_CSC2_COEF2_B2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF2_B2.
-#define BF_PXP_CSC2_COEF2_B2(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF2_B2) & BM_PXP_CSC2_COEF2_B2)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF2_B2.
-#define BF_PXP_CSC2_COEF2_B2(v)   (((v) << BP_PXP_CSC2_COEF2_B2) & BM_PXP_CSC2_COEF2_B2)
-#endif
+#define BF_PXP_CSC2_COEF2_B2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF2_B2) & BM_PXP_CSC2_COEF2_B2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the B2 field to a new value.
-#define BW_PXP_CSC2_COEF2_B2(v)   BF_CS1(PXP_CSC2_COEF2, B2, v)
+#define BW_PXP_CSC2_COEF2_B2(v)   (HW_PXP_CSC2_COEF2_WR((HW_PXP_CSC2_COEF2_RD() & ~BM_PXP_CSC2_COEF2_B2) | BF_PXP_CSC2_COEF2_B2(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF2, field B3[26:16] (RW)
@@ -3776,20 +3440,19 @@ typedef union _hw_pxp_csc2_coef2
 #define BM_PXP_CSC2_COEF2_B3      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF2_B3.
 
 //! @brief Get value of PXP_CSC2_COEF2_B3 from a register value.
-#define BG_PXP_CSC2_COEF2_B3(r)   (((r) & BM_PXP_CSC2_COEF2_B3) >> BP_PXP_CSC2_COEF2_B3)
+#define BG_PXP_CSC2_COEF2_B3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF2_B3) >> BP_PXP_CSC2_COEF2_B3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF2_B3.
-#define BF_PXP_CSC2_COEF2_B3(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF2_B3) & BM_PXP_CSC2_COEF2_B3)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF2_B3.
-#define BF_PXP_CSC2_COEF2_B3(v)   (((v) << BP_PXP_CSC2_COEF2_B3) & BM_PXP_CSC2_COEF2_B3)
-#endif
+#define BF_PXP_CSC2_COEF2_B3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF2_B3) & BM_PXP_CSC2_COEF2_B3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the B3 field to a new value.
-#define BW_PXP_CSC2_COEF2_B3(v)   BF_CS1(PXP_CSC2_COEF2, B3, v)
+#define BW_PXP_CSC2_COEF2_B3(v)   (HW_PXP_CSC2_COEF2_WR((HW_PXP_CSC2_COEF2_RD() & ~BM_PXP_CSC2_COEF2_B3) | BF_PXP_CSC2_COEF2_B3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF3 - Color Space Conversion Coefficient Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3816,17 +3479,14 @@ typedef union _hw_pxp_csc2_coef3
  * constants & macros for entire PXP_CSC2_COEF3 register
  */
 #define HW_PXP_CSC2_COEF3_ADDR      (REGS_PXP_BASE + 0x210)
-#define HW_PXP_CSC2_COEF3_SET_ADDR  (HW_PXP_CSC2_COEF3_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF3_CLR_ADDR  (HW_PXP_CSC2_COEF3_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF3_TOG_ADDR  (HW_PXP_CSC2_COEF3_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF3           (*(volatile hw_pxp_csc2_coef3_t *) HW_PXP_CSC2_COEF3_ADDR)
 #define HW_PXP_CSC2_COEF3_RD()      (HW_PXP_CSC2_COEF3.U)
 #define HW_PXP_CSC2_COEF3_WR(v)     (HW_PXP_CSC2_COEF3.U = (v))
-#define HW_PXP_CSC2_COEF3_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF3_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF3_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF3_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF3_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF3_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF3_SET(v)    (HW_PXP_CSC2_COEF3_WR(HW_PXP_CSC2_COEF3_RD() |  (v)))
+#define HW_PXP_CSC2_COEF3_CLR(v)    (HW_PXP_CSC2_COEF3_WR(HW_PXP_CSC2_COEF3_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF3_TOG(v)    (HW_PXP_CSC2_COEF3_WR(HW_PXP_CSC2_COEF3_RD() ^  (v)))
 #endif
 
 /*
@@ -3843,19 +3503,14 @@ typedef union _hw_pxp_csc2_coef3
 #define BM_PXP_CSC2_COEF3_C1      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF3_C1.
 
 //! @brief Get value of PXP_CSC2_COEF3_C1 from a register value.
-#define BG_PXP_CSC2_COEF3_C1(r)   (((r) & BM_PXP_CSC2_COEF3_C1) >> BP_PXP_CSC2_COEF3_C1)
+#define BG_PXP_CSC2_COEF3_C1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF3_C1) >> BP_PXP_CSC2_COEF3_C1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF3_C1.
-#define BF_PXP_CSC2_COEF3_C1(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF3_C1) & BM_PXP_CSC2_COEF3_C1)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF3_C1.
-#define BF_PXP_CSC2_COEF3_C1(v)   (((v) << BP_PXP_CSC2_COEF3_C1) & BM_PXP_CSC2_COEF3_C1)
-#endif
+#define BF_PXP_CSC2_COEF3_C1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF3_C1) & BM_PXP_CSC2_COEF3_C1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C1 field to a new value.
-#define BW_PXP_CSC2_COEF3_C1(v)   BF_CS1(PXP_CSC2_COEF3, C1, v)
+#define BW_PXP_CSC2_COEF3_C1(v)   (HW_PXP_CSC2_COEF3_WR((HW_PXP_CSC2_COEF3_RD() & ~BM_PXP_CSC2_COEF3_C1) | BF_PXP_CSC2_COEF3_C1(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF3, field C2[26:16] (RW)
@@ -3868,20 +3523,19 @@ typedef union _hw_pxp_csc2_coef3
 #define BM_PXP_CSC2_COEF3_C2      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF3_C2.
 
 //! @brief Get value of PXP_CSC2_COEF3_C2 from a register value.
-#define BG_PXP_CSC2_COEF3_C2(r)   (((r) & BM_PXP_CSC2_COEF3_C2) >> BP_PXP_CSC2_COEF3_C2)
+#define BG_PXP_CSC2_COEF3_C2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF3_C2) >> BP_PXP_CSC2_COEF3_C2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF3_C2.
-#define BF_PXP_CSC2_COEF3_C2(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF3_C2) & BM_PXP_CSC2_COEF3_C2)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF3_C2.
-#define BF_PXP_CSC2_COEF3_C2(v)   (((v) << BP_PXP_CSC2_COEF3_C2) & BM_PXP_CSC2_COEF3_C2)
-#endif
+#define BF_PXP_CSC2_COEF3_C2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF3_C2) & BM_PXP_CSC2_COEF3_C2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C2 field to a new value.
-#define BW_PXP_CSC2_COEF3_C2(v)   BF_CS1(PXP_CSC2_COEF3, C2, v)
+#define BW_PXP_CSC2_COEF3_C2(v)   (HW_PXP_CSC2_COEF3_WR((HW_PXP_CSC2_COEF3_RD() & ~BM_PXP_CSC2_COEF3_C2) | BF_PXP_CSC2_COEF3_C2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF4 - Color Space Conversion Coefficient Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3908,17 +3562,14 @@ typedef union _hw_pxp_csc2_coef4
  * constants & macros for entire PXP_CSC2_COEF4 register
  */
 #define HW_PXP_CSC2_COEF4_ADDR      (REGS_PXP_BASE + 0x220)
-#define HW_PXP_CSC2_COEF4_SET_ADDR  (HW_PXP_CSC2_COEF4_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF4_CLR_ADDR  (HW_PXP_CSC2_COEF4_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF4_TOG_ADDR  (HW_PXP_CSC2_COEF4_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF4           (*(volatile hw_pxp_csc2_coef4_t *) HW_PXP_CSC2_COEF4_ADDR)
 #define HW_PXP_CSC2_COEF4_RD()      (HW_PXP_CSC2_COEF4.U)
 #define HW_PXP_CSC2_COEF4_WR(v)     (HW_PXP_CSC2_COEF4.U = (v))
-#define HW_PXP_CSC2_COEF4_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF4_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF4_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF4_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF4_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF4_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF4_SET(v)    (HW_PXP_CSC2_COEF4_WR(HW_PXP_CSC2_COEF4_RD() |  (v)))
+#define HW_PXP_CSC2_COEF4_CLR(v)    (HW_PXP_CSC2_COEF4_WR(HW_PXP_CSC2_COEF4_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF4_TOG(v)    (HW_PXP_CSC2_COEF4_WR(HW_PXP_CSC2_COEF4_RD() ^  (v)))
 #endif
 
 /*
@@ -3935,19 +3586,14 @@ typedef union _hw_pxp_csc2_coef4
 #define BM_PXP_CSC2_COEF4_C3      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF4_C3.
 
 //! @brief Get value of PXP_CSC2_COEF4_C3 from a register value.
-#define BG_PXP_CSC2_COEF4_C3(r)   (((r) & BM_PXP_CSC2_COEF4_C3) >> BP_PXP_CSC2_COEF4_C3)
+#define BG_PXP_CSC2_COEF4_C3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF4_C3) >> BP_PXP_CSC2_COEF4_C3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF4_C3.
-#define BF_PXP_CSC2_COEF4_C3(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF4_C3) & BM_PXP_CSC2_COEF4_C3)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF4_C3.
-#define BF_PXP_CSC2_COEF4_C3(v)   (((v) << BP_PXP_CSC2_COEF4_C3) & BM_PXP_CSC2_COEF4_C3)
-#endif
+#define BF_PXP_CSC2_COEF4_C3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF4_C3) & BM_PXP_CSC2_COEF4_C3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C3 field to a new value.
-#define BW_PXP_CSC2_COEF4_C3(v)   BF_CS1(PXP_CSC2_COEF4, C3, v)
+#define BW_PXP_CSC2_COEF4_C3(v)   (HW_PXP_CSC2_COEF4_WR((HW_PXP_CSC2_COEF4_RD() & ~BM_PXP_CSC2_COEF4_C3) | BF_PXP_CSC2_COEF4_C3(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF4, field D1[24:16] (RW)
@@ -3959,20 +3605,19 @@ typedef union _hw_pxp_csc2_coef4
 #define BM_PXP_CSC2_COEF4_D1      (0x01ff0000)  //!< Bit mask for PXP_CSC2_COEF4_D1.
 
 //! @brief Get value of PXP_CSC2_COEF4_D1 from a register value.
-#define BG_PXP_CSC2_COEF4_D1(r)   (((r) & BM_PXP_CSC2_COEF4_D1) >> BP_PXP_CSC2_COEF4_D1)
+#define BG_PXP_CSC2_COEF4_D1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF4_D1) >> BP_PXP_CSC2_COEF4_D1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF4_D1.
-#define BF_PXP_CSC2_COEF4_D1(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF4_D1) & BM_PXP_CSC2_COEF4_D1)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF4_D1.
-#define BF_PXP_CSC2_COEF4_D1(v)   (((v) << BP_PXP_CSC2_COEF4_D1) & BM_PXP_CSC2_COEF4_D1)
-#endif
+#define BF_PXP_CSC2_COEF4_D1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF4_D1) & BM_PXP_CSC2_COEF4_D1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the D1 field to a new value.
-#define BW_PXP_CSC2_COEF4_D1(v)   BF_CS1(PXP_CSC2_COEF4, D1, v)
+#define BW_PXP_CSC2_COEF4_D1(v)   (HW_PXP_CSC2_COEF4_WR((HW_PXP_CSC2_COEF4_RD() & ~BM_PXP_CSC2_COEF4_D1) | BF_PXP_CSC2_COEF4_D1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CSC2_COEF5 - Color Space Conversion Coefficient Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3999,17 +3644,14 @@ typedef union _hw_pxp_csc2_coef5
  * constants & macros for entire PXP_CSC2_COEF5 register
  */
 #define HW_PXP_CSC2_COEF5_ADDR      (REGS_PXP_BASE + 0x230)
-#define HW_PXP_CSC2_COEF5_SET_ADDR  (HW_PXP_CSC2_COEF5_ADDR + 0x4)
-#define HW_PXP_CSC2_COEF5_CLR_ADDR  (HW_PXP_CSC2_COEF5_ADDR + 0x8)
-#define HW_PXP_CSC2_COEF5_TOG_ADDR  (HW_PXP_CSC2_COEF5_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CSC2_COEF5           (*(volatile hw_pxp_csc2_coef5_t *) HW_PXP_CSC2_COEF5_ADDR)
 #define HW_PXP_CSC2_COEF5_RD()      (HW_PXP_CSC2_COEF5.U)
 #define HW_PXP_CSC2_COEF5_WR(v)     (HW_PXP_CSC2_COEF5.U = (v))
-#define HW_PXP_CSC2_COEF5_SET(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF5_SET_ADDR) = (v))
-#define HW_PXP_CSC2_COEF5_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF5_CLR_ADDR) = (v))
-#define HW_PXP_CSC2_COEF5_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CSC2_COEF5_TOG_ADDR) = (v))
+#define HW_PXP_CSC2_COEF5_SET(v)    (HW_PXP_CSC2_COEF5_WR(HW_PXP_CSC2_COEF5_RD() |  (v)))
+#define HW_PXP_CSC2_COEF5_CLR(v)    (HW_PXP_CSC2_COEF5_WR(HW_PXP_CSC2_COEF5_RD() & ~(v)))
+#define HW_PXP_CSC2_COEF5_TOG(v)    (HW_PXP_CSC2_COEF5_WR(HW_PXP_CSC2_COEF5_RD() ^  (v)))
 #endif
 
 /*
@@ -4025,19 +3667,14 @@ typedef union _hw_pxp_csc2_coef5
 #define BM_PXP_CSC2_COEF5_D2      (0x000001ff)  //!< Bit mask for PXP_CSC2_COEF5_D2.
 
 //! @brief Get value of PXP_CSC2_COEF5_D2 from a register value.
-#define BG_PXP_CSC2_COEF5_D2(r)   (((r) & BM_PXP_CSC2_COEF5_D2) >> BP_PXP_CSC2_COEF5_D2)
+#define BG_PXP_CSC2_COEF5_D2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF5_D2) >> BP_PXP_CSC2_COEF5_D2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF5_D2.
-#define BF_PXP_CSC2_COEF5_D2(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF5_D2) & BM_PXP_CSC2_COEF5_D2)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF5_D2.
-#define BF_PXP_CSC2_COEF5_D2(v)   (((v) << BP_PXP_CSC2_COEF5_D2) & BM_PXP_CSC2_COEF5_D2)
-#endif
+#define BF_PXP_CSC2_COEF5_D2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF5_D2) & BM_PXP_CSC2_COEF5_D2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the D2 field to a new value.
-#define BW_PXP_CSC2_COEF5_D2(v)   BF_CS1(PXP_CSC2_COEF5, D2, v)
+#define BW_PXP_CSC2_COEF5_D2(v)   (HW_PXP_CSC2_COEF5_WR((HW_PXP_CSC2_COEF5_RD() & ~BM_PXP_CSC2_COEF5_D2) | BF_PXP_CSC2_COEF5_D2(v)))
 #endif
 
 /* --- Register HW_PXP_CSC2_COEF5, field D3[24:16] (RW)
@@ -4049,20 +3686,19 @@ typedef union _hw_pxp_csc2_coef5
 #define BM_PXP_CSC2_COEF5_D3      (0x01ff0000)  //!< Bit mask for PXP_CSC2_COEF5_D3.
 
 //! @brief Get value of PXP_CSC2_COEF5_D3 from a register value.
-#define BG_PXP_CSC2_COEF5_D3(r)   (((r) & BM_PXP_CSC2_COEF5_D3) >> BP_PXP_CSC2_COEF5_D3)
+#define BG_PXP_CSC2_COEF5_D3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CSC2_COEF5_D3) >> BP_PXP_CSC2_COEF5_D3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CSC2_COEF5_D3.
-#define BF_PXP_CSC2_COEF5_D3(v)   ((((reg32_t) v) << BP_PXP_CSC2_COEF5_D3) & BM_PXP_CSC2_COEF5_D3)
-#else
-//! @brief Format value for bitfield PXP_CSC2_COEF5_D3.
-#define BF_PXP_CSC2_COEF5_D3(v)   (((v) << BP_PXP_CSC2_COEF5_D3) & BM_PXP_CSC2_COEF5_D3)
-#endif
+#define BF_PXP_CSC2_COEF5_D3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CSC2_COEF5_D3) & BM_PXP_CSC2_COEF5_D3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the D3 field to a new value.
-#define BW_PXP_CSC2_COEF5_D3(v)   BF_CS1(PXP_CSC2_COEF5, D3, v)
+#define BW_PXP_CSC2_COEF5_D3(v)   (HW_PXP_CSC2_COEF5_WR((HW_PXP_CSC2_COEF5_RD() & ~BM_PXP_CSC2_COEF5_D3) | BF_PXP_CSC2_COEF5_D3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_LUT_CTRL - Lookup Table Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4106,17 +3742,14 @@ typedef union _hw_pxp_lut_ctrl
  * constants & macros for entire PXP_LUT_CTRL register
  */
 #define HW_PXP_LUT_CTRL_ADDR      (REGS_PXP_BASE + 0x240)
-#define HW_PXP_LUT_CTRL_SET_ADDR  (HW_PXP_LUT_CTRL_ADDR + 0x4)
-#define HW_PXP_LUT_CTRL_CLR_ADDR  (HW_PXP_LUT_CTRL_ADDR + 0x8)
-#define HW_PXP_LUT_CTRL_TOG_ADDR  (HW_PXP_LUT_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_LUT_CTRL           (*(volatile hw_pxp_lut_ctrl_t *) HW_PXP_LUT_CTRL_ADDR)
 #define HW_PXP_LUT_CTRL_RD()      (HW_PXP_LUT_CTRL.U)
 #define HW_PXP_LUT_CTRL_WR(v)     (HW_PXP_LUT_CTRL.U = (v))
-#define HW_PXP_LUT_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_LUT_CTRL_SET_ADDR) = (v))
-#define HW_PXP_LUT_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_LUT_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_LUT_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_LUT_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_LUT_CTRL_SET(v)    (HW_PXP_LUT_CTRL_WR(HW_PXP_LUT_CTRL_RD() |  (v)))
+#define HW_PXP_LUT_CTRL_CLR(v)    (HW_PXP_LUT_CTRL_WR(HW_PXP_LUT_CTRL_RD() & ~(v)))
+#define HW_PXP_LUT_CTRL_TOG(v)    (HW_PXP_LUT_CTRL_WR(HW_PXP_LUT_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -4135,19 +3768,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_DMA_START      (0x00000001)  //!< Bit mask for PXP_LUT_CTRL_DMA_START.
 
 //! @brief Get value of PXP_LUT_CTRL_DMA_START from a register value.
-#define BG_PXP_LUT_CTRL_DMA_START(r)   (((r) & BM_PXP_LUT_CTRL_DMA_START) >> BP_PXP_LUT_CTRL_DMA_START)
+#define BG_PXP_LUT_CTRL_DMA_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_DMA_START) >> BP_PXP_LUT_CTRL_DMA_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_DMA_START.
-#define BF_PXP_LUT_CTRL_DMA_START(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_DMA_START) & BM_PXP_LUT_CTRL_DMA_START)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_DMA_START.
-#define BF_PXP_LUT_CTRL_DMA_START(v)   (((v) << BP_PXP_LUT_CTRL_DMA_START) & BM_PXP_LUT_CTRL_DMA_START)
-#endif
+#define BF_PXP_LUT_CTRL_DMA_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_DMA_START) & BM_PXP_LUT_CTRL_DMA_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_START field to a new value.
-#define BW_PXP_LUT_CTRL_DMA_START(v)   BF_CS1(PXP_LUT_CTRL, DMA_START, v)
+#define BW_PXP_LUT_CTRL_DMA_START(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_DMA_START) | BF_PXP_LUT_CTRL_DMA_START(v)))
 #endif
 
 /* --- Register HW_PXP_LUT_CTRL, field INVALID[8] (RW)
@@ -4159,19 +3787,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_INVALID      (0x00000100)  //!< Bit mask for PXP_LUT_CTRL_INVALID.
 
 //! @brief Get value of PXP_LUT_CTRL_INVALID from a register value.
-#define BG_PXP_LUT_CTRL_INVALID(r)   (((r) & BM_PXP_LUT_CTRL_INVALID) >> BP_PXP_LUT_CTRL_INVALID)
+#define BG_PXP_LUT_CTRL_INVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_INVALID) >> BP_PXP_LUT_CTRL_INVALID)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_INVALID.
-#define BF_PXP_LUT_CTRL_INVALID(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_INVALID) & BM_PXP_LUT_CTRL_INVALID)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_INVALID.
-#define BF_PXP_LUT_CTRL_INVALID(v)   (((v) << BP_PXP_LUT_CTRL_INVALID) & BM_PXP_LUT_CTRL_INVALID)
-#endif
+#define BF_PXP_LUT_CTRL_INVALID(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_INVALID) & BM_PXP_LUT_CTRL_INVALID)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INVALID field to a new value.
-#define BW_PXP_LUT_CTRL_INVALID(v)   BF_CS1(PXP_LUT_CTRL, INVALID, v)
+#define BW_PXP_LUT_CTRL_INVALID(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_INVALID) | BF_PXP_LUT_CTRL_INVALID(v)))
 #endif
 
 /* --- Register HW_PXP_LUT_CTRL, field LRU_UPD[9] (RW)
@@ -4184,19 +3807,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_LRU_UPD      (0x00000200)  //!< Bit mask for PXP_LUT_CTRL_LRU_UPD.
 
 //! @brief Get value of PXP_LUT_CTRL_LRU_UPD from a register value.
-#define BG_PXP_LUT_CTRL_LRU_UPD(r)   (((r) & BM_PXP_LUT_CTRL_LRU_UPD) >> BP_PXP_LUT_CTRL_LRU_UPD)
+#define BG_PXP_LUT_CTRL_LRU_UPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_LRU_UPD) >> BP_PXP_LUT_CTRL_LRU_UPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_LRU_UPD.
-#define BF_PXP_LUT_CTRL_LRU_UPD(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_LRU_UPD) & BM_PXP_LUT_CTRL_LRU_UPD)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_LRU_UPD.
-#define BF_PXP_LUT_CTRL_LRU_UPD(v)   (((v) << BP_PXP_LUT_CTRL_LRU_UPD) & BM_PXP_LUT_CTRL_LRU_UPD)
-#endif
+#define BF_PXP_LUT_CTRL_LRU_UPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_LRU_UPD) & BM_PXP_LUT_CTRL_LRU_UPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LRU_UPD field to a new value.
-#define BW_PXP_LUT_CTRL_LRU_UPD(v)   BF_CS1(PXP_LUT_CTRL, LRU_UPD, v)
+#define BW_PXP_LUT_CTRL_LRU_UPD(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_LRU_UPD) | BF_PXP_LUT_CTRL_LRU_UPD(v)))
 #endif
 
 /* --- Register HW_PXP_LUT_CTRL, field SEL_8KB[10] (RW)
@@ -4210,19 +3828,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_SEL_8KB      (0x00000400)  //!< Bit mask for PXP_LUT_CTRL_SEL_8KB.
 
 //! @brief Get value of PXP_LUT_CTRL_SEL_8KB from a register value.
-#define BG_PXP_LUT_CTRL_SEL_8KB(r)   (((r) & BM_PXP_LUT_CTRL_SEL_8KB) >> BP_PXP_LUT_CTRL_SEL_8KB)
+#define BG_PXP_LUT_CTRL_SEL_8KB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_SEL_8KB) >> BP_PXP_LUT_CTRL_SEL_8KB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_SEL_8KB.
-#define BF_PXP_LUT_CTRL_SEL_8KB(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_SEL_8KB) & BM_PXP_LUT_CTRL_SEL_8KB)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_SEL_8KB.
-#define BF_PXP_LUT_CTRL_SEL_8KB(v)   (((v) << BP_PXP_LUT_CTRL_SEL_8KB) & BM_PXP_LUT_CTRL_SEL_8KB)
-#endif
+#define BF_PXP_LUT_CTRL_SEL_8KB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_SEL_8KB) & BM_PXP_LUT_CTRL_SEL_8KB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SEL_8KB field to a new value.
-#define BW_PXP_LUT_CTRL_SEL_8KB(v)   BF_CS1(PXP_LUT_CTRL, SEL_8KB, v)
+#define BW_PXP_LUT_CTRL_SEL_8KB(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_SEL_8KB) | BF_PXP_LUT_CTRL_SEL_8KB(v)))
 #endif
 
 /* --- Register HW_PXP_LUT_CTRL, field OUT_MODE[17:16] (RW)
@@ -4243,19 +3856,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_OUT_MODE      (0x00030000)  //!< Bit mask for PXP_LUT_CTRL_OUT_MODE.
 
 //! @brief Get value of PXP_LUT_CTRL_OUT_MODE from a register value.
-#define BG_PXP_LUT_CTRL_OUT_MODE(r)   (((r) & BM_PXP_LUT_CTRL_OUT_MODE) >> BP_PXP_LUT_CTRL_OUT_MODE)
+#define BG_PXP_LUT_CTRL_OUT_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_OUT_MODE) >> BP_PXP_LUT_CTRL_OUT_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_OUT_MODE.
-#define BF_PXP_LUT_CTRL_OUT_MODE(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_OUT_MODE) & BM_PXP_LUT_CTRL_OUT_MODE)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_OUT_MODE.
-#define BF_PXP_LUT_CTRL_OUT_MODE(v)   (((v) << BP_PXP_LUT_CTRL_OUT_MODE) & BM_PXP_LUT_CTRL_OUT_MODE)
-#endif
+#define BF_PXP_LUT_CTRL_OUT_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_OUT_MODE) & BM_PXP_LUT_CTRL_OUT_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OUT_MODE field to a new value.
-#define BW_PXP_LUT_CTRL_OUT_MODE(v)   BF_CS1(PXP_LUT_CTRL, OUT_MODE, v)
+#define BW_PXP_LUT_CTRL_OUT_MODE(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_OUT_MODE) | BF_PXP_LUT_CTRL_OUT_MODE(v)))
 #endif
 
 #define BV_PXP_LUT_CTRL_OUT_MODE__RESERVED (0x0) //!< Reserved, not valid when using the LUT to transform pixels.
@@ -4281,19 +3889,14 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_LOOKUP_MODE      (0x03000000)  //!< Bit mask for PXP_LUT_CTRL_LOOKUP_MODE.
 
 //! @brief Get value of PXP_LUT_CTRL_LOOKUP_MODE from a register value.
-#define BG_PXP_LUT_CTRL_LOOKUP_MODE(r)   (((r) & BM_PXP_LUT_CTRL_LOOKUP_MODE) >> BP_PXP_LUT_CTRL_LOOKUP_MODE)
+#define BG_PXP_LUT_CTRL_LOOKUP_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_LOOKUP_MODE) >> BP_PXP_LUT_CTRL_LOOKUP_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_LOOKUP_MODE.
-#define BF_PXP_LUT_CTRL_LOOKUP_MODE(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_LOOKUP_MODE) & BM_PXP_LUT_CTRL_LOOKUP_MODE)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_LOOKUP_MODE.
-#define BF_PXP_LUT_CTRL_LOOKUP_MODE(v)   (((v) << BP_PXP_LUT_CTRL_LOOKUP_MODE) & BM_PXP_LUT_CTRL_LOOKUP_MODE)
-#endif
+#define BF_PXP_LUT_CTRL_LOOKUP_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_LOOKUP_MODE) & BM_PXP_LUT_CTRL_LOOKUP_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOKUP_MODE field to a new value.
-#define BW_PXP_LUT_CTRL_LOOKUP_MODE(v)   BF_CS1(PXP_LUT_CTRL, LOOKUP_MODE, v)
+#define BW_PXP_LUT_CTRL_LOOKUP_MODE(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_LOOKUP_MODE) | BF_PXP_LUT_CTRL_LOOKUP_MODE(v)))
 #endif
 
 #define BV_PXP_LUT_CTRL_LOOKUP_MODE__CACHE_RGB565 (0x0) //!< LUT ADDR = R[7:3],G[7:2],B[7:3]. Use all 16KB of LUT for indirect cached 128KB lookup.
@@ -4311,20 +3914,19 @@ typedef union _hw_pxp_lut_ctrl
 #define BM_PXP_LUT_CTRL_BYPASS      (0x80000000)  //!< Bit mask for PXP_LUT_CTRL_BYPASS.
 
 //! @brief Get value of PXP_LUT_CTRL_BYPASS from a register value.
-#define BG_PXP_LUT_CTRL_BYPASS(r)   (((r) & BM_PXP_LUT_CTRL_BYPASS) >> BP_PXP_LUT_CTRL_BYPASS)
+#define BG_PXP_LUT_CTRL_BYPASS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_CTRL_BYPASS) >> BP_PXP_LUT_CTRL_BYPASS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_CTRL_BYPASS.
-#define BF_PXP_LUT_CTRL_BYPASS(v)   ((((reg32_t) v) << BP_PXP_LUT_CTRL_BYPASS) & BM_PXP_LUT_CTRL_BYPASS)
-#else
-//! @brief Format value for bitfield PXP_LUT_CTRL_BYPASS.
-#define BF_PXP_LUT_CTRL_BYPASS(v)   (((v) << BP_PXP_LUT_CTRL_BYPASS) & BM_PXP_LUT_CTRL_BYPASS)
-#endif
+#define BF_PXP_LUT_CTRL_BYPASS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_CTRL_BYPASS) & BM_PXP_LUT_CTRL_BYPASS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS field to a new value.
-#define BW_PXP_LUT_CTRL_BYPASS(v)   BF_CS1(PXP_LUT_CTRL, BYPASS, v)
+#define BW_PXP_LUT_CTRL_BYPASS(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_BYPASS) | BF_PXP_LUT_CTRL_BYPASS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_LUT_ADDR - Lookup Table Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4361,17 +3963,14 @@ typedef union _hw_pxp_lut_addr
  * constants & macros for entire PXP_LUT_ADDR register
  */
 #define HW_PXP_LUT_ADDR_ADDR      (REGS_PXP_BASE + 0x250)
-#define HW_PXP_LUT_ADDR_SET_ADDR  (HW_PXP_LUT_ADDR_ADDR + 0x4)
-#define HW_PXP_LUT_ADDR_CLR_ADDR  (HW_PXP_LUT_ADDR_ADDR + 0x8)
-#define HW_PXP_LUT_ADDR_TOG_ADDR  (HW_PXP_LUT_ADDR_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_LUT_ADDR           (*(volatile hw_pxp_lut_addr_t *) HW_PXP_LUT_ADDR_ADDR)
 #define HW_PXP_LUT_ADDR_RD()      (HW_PXP_LUT_ADDR.U)
 #define HW_PXP_LUT_ADDR_WR(v)     (HW_PXP_LUT_ADDR.U = (v))
-#define HW_PXP_LUT_ADDR_SET(v)    ((*(volatile reg32_t *) HW_PXP_LUT_ADDR_SET_ADDR) = (v))
-#define HW_PXP_LUT_ADDR_CLR(v)    ((*(volatile reg32_t *) HW_PXP_LUT_ADDR_CLR_ADDR) = (v))
-#define HW_PXP_LUT_ADDR_TOG(v)    ((*(volatile reg32_t *) HW_PXP_LUT_ADDR_TOG_ADDR) = (v))
+#define HW_PXP_LUT_ADDR_SET(v)    (HW_PXP_LUT_ADDR_WR(HW_PXP_LUT_ADDR_RD() |  (v)))
+#define HW_PXP_LUT_ADDR_CLR(v)    (HW_PXP_LUT_ADDR_WR(HW_PXP_LUT_ADDR_RD() & ~(v)))
+#define HW_PXP_LUT_ADDR_TOG(v)    (HW_PXP_LUT_ADDR_WR(HW_PXP_LUT_ADDR_RD() ^  (v)))
 #endif
 
 /*
@@ -4396,19 +3995,14 @@ typedef union _hw_pxp_lut_addr
 #define BM_PXP_LUT_ADDR_ADDR      (0x00003fff)  //!< Bit mask for PXP_LUT_ADDR_ADDR.
 
 //! @brief Get value of PXP_LUT_ADDR_ADDR from a register value.
-#define BG_PXP_LUT_ADDR_ADDR(r)   (((r) & BM_PXP_LUT_ADDR_ADDR) >> BP_PXP_LUT_ADDR_ADDR)
+#define BG_PXP_LUT_ADDR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_ADDR_ADDR) >> BP_PXP_LUT_ADDR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_ADDR_ADDR.
-#define BF_PXP_LUT_ADDR_ADDR(v)   ((((reg32_t) v) << BP_PXP_LUT_ADDR_ADDR) & BM_PXP_LUT_ADDR_ADDR)
-#else
-//! @brief Format value for bitfield PXP_LUT_ADDR_ADDR.
-#define BF_PXP_LUT_ADDR_ADDR(v)   (((v) << BP_PXP_LUT_ADDR_ADDR) & BM_PXP_LUT_ADDR_ADDR)
-#endif
+#define BF_PXP_LUT_ADDR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_ADDR_ADDR) & BM_PXP_LUT_ADDR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_LUT_ADDR_ADDR(v)   BF_CS1(PXP_LUT_ADDR, ADDR, v)
+#define BW_PXP_LUT_ADDR_ADDR(v)   (HW_PXP_LUT_ADDR_WR((HW_PXP_LUT_ADDR_RD() & ~BM_PXP_LUT_ADDR_ADDR) | BF_PXP_LUT_ADDR_ADDR(v)))
 #endif
 
 /* --- Register HW_PXP_LUT_ADDR, field NUM_BYTES[30:16] (RW)
@@ -4422,20 +4016,19 @@ typedef union _hw_pxp_lut_addr
 #define BM_PXP_LUT_ADDR_NUM_BYTES      (0x7fff0000)  //!< Bit mask for PXP_LUT_ADDR_NUM_BYTES.
 
 //! @brief Get value of PXP_LUT_ADDR_NUM_BYTES from a register value.
-#define BG_PXP_LUT_ADDR_NUM_BYTES(r)   (((r) & BM_PXP_LUT_ADDR_NUM_BYTES) >> BP_PXP_LUT_ADDR_NUM_BYTES)
+#define BG_PXP_LUT_ADDR_NUM_BYTES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_ADDR_NUM_BYTES) >> BP_PXP_LUT_ADDR_NUM_BYTES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_ADDR_NUM_BYTES.
-#define BF_PXP_LUT_ADDR_NUM_BYTES(v)   ((((reg32_t) v) << BP_PXP_LUT_ADDR_NUM_BYTES) & BM_PXP_LUT_ADDR_NUM_BYTES)
-#else
-//! @brief Format value for bitfield PXP_LUT_ADDR_NUM_BYTES.
-#define BF_PXP_LUT_ADDR_NUM_BYTES(v)   (((v) << BP_PXP_LUT_ADDR_NUM_BYTES) & BM_PXP_LUT_ADDR_NUM_BYTES)
-#endif
+#define BF_PXP_LUT_ADDR_NUM_BYTES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_ADDR_NUM_BYTES) & BM_PXP_LUT_ADDR_NUM_BYTES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM_BYTES field to a new value.
-#define BW_PXP_LUT_ADDR_NUM_BYTES(v)   BF_CS1(PXP_LUT_ADDR, NUM_BYTES, v)
+#define BW_PXP_LUT_ADDR_NUM_BYTES(v)   (HW_PXP_LUT_ADDR_WR((HW_PXP_LUT_ADDR_RD() & ~BM_PXP_LUT_ADDR_NUM_BYTES) | BF_PXP_LUT_ADDR_NUM_BYTES(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_LUT_DATA - Lookup Table Data Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4459,17 +4052,14 @@ typedef union _hw_pxp_lut_data
  * constants & macros for entire PXP_LUT_DATA register
  */
 #define HW_PXP_LUT_DATA_ADDR      (REGS_PXP_BASE + 0x260)
-#define HW_PXP_LUT_DATA_SET_ADDR  (HW_PXP_LUT_DATA_ADDR + 0x4)
-#define HW_PXP_LUT_DATA_CLR_ADDR  (HW_PXP_LUT_DATA_ADDR + 0x8)
-#define HW_PXP_LUT_DATA_TOG_ADDR  (HW_PXP_LUT_DATA_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_LUT_DATA           (*(volatile hw_pxp_lut_data_t *) HW_PXP_LUT_DATA_ADDR)
 #define HW_PXP_LUT_DATA_RD()      (HW_PXP_LUT_DATA.U)
 #define HW_PXP_LUT_DATA_WR(v)     (HW_PXP_LUT_DATA.U = (v))
-#define HW_PXP_LUT_DATA_SET(v)    ((*(volatile reg32_t *) HW_PXP_LUT_DATA_SET_ADDR) = (v))
-#define HW_PXP_LUT_DATA_CLR(v)    ((*(volatile reg32_t *) HW_PXP_LUT_DATA_CLR_ADDR) = (v))
-#define HW_PXP_LUT_DATA_TOG(v)    ((*(volatile reg32_t *) HW_PXP_LUT_DATA_TOG_ADDR) = (v))
+#define HW_PXP_LUT_DATA_SET(v)    (HW_PXP_LUT_DATA_WR(HW_PXP_LUT_DATA_RD() |  (v)))
+#define HW_PXP_LUT_DATA_CLR(v)    (HW_PXP_LUT_DATA_WR(HW_PXP_LUT_DATA_RD() & ~(v)))
+#define HW_PXP_LUT_DATA_TOG(v)    (HW_PXP_LUT_DATA_WR(HW_PXP_LUT_DATA_RD() ^  (v)))
 #endif
 
 /*
@@ -4486,20 +4076,19 @@ typedef union _hw_pxp_lut_data
 #define BM_PXP_LUT_DATA_DATA      (0xffffffff)  //!< Bit mask for PXP_LUT_DATA_DATA.
 
 //! @brief Get value of PXP_LUT_DATA_DATA from a register value.
-#define BG_PXP_LUT_DATA_DATA(r)   (((r) & BM_PXP_LUT_DATA_DATA) >> BP_PXP_LUT_DATA_DATA)
+#define BG_PXP_LUT_DATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_DATA_DATA) >> BP_PXP_LUT_DATA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_DATA_DATA.
-#define BF_PXP_LUT_DATA_DATA(v)   ((((reg32_t) v) << BP_PXP_LUT_DATA_DATA) & BM_PXP_LUT_DATA_DATA)
-#else
-//! @brief Format value for bitfield PXP_LUT_DATA_DATA.
-#define BF_PXP_LUT_DATA_DATA(v)   (((v) << BP_PXP_LUT_DATA_DATA) & BM_PXP_LUT_DATA_DATA)
-#endif
+#define BF_PXP_LUT_DATA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_DATA_DATA) & BM_PXP_LUT_DATA_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_PXP_LUT_DATA_DATA(v)   BF_CS1(PXP_LUT_DATA, DATA, v)
+#define BW_PXP_LUT_DATA_DATA(v)   (HW_PXP_LUT_DATA_WR((HW_PXP_LUT_DATA_RD() & ~BM_PXP_LUT_DATA_DATA) | BF_PXP_LUT_DATA_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_LUT_EXTMEM - Lookup Table External Memory Address Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4525,17 +4114,14 @@ typedef union _hw_pxp_lut_extmem
  * constants & macros for entire PXP_LUT_EXTMEM register
  */
 #define HW_PXP_LUT_EXTMEM_ADDR      (REGS_PXP_BASE + 0x270)
-#define HW_PXP_LUT_EXTMEM_SET_ADDR  (HW_PXP_LUT_EXTMEM_ADDR + 0x4)
-#define HW_PXP_LUT_EXTMEM_CLR_ADDR  (HW_PXP_LUT_EXTMEM_ADDR + 0x8)
-#define HW_PXP_LUT_EXTMEM_TOG_ADDR  (HW_PXP_LUT_EXTMEM_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_LUT_EXTMEM           (*(volatile hw_pxp_lut_extmem_t *) HW_PXP_LUT_EXTMEM_ADDR)
 #define HW_PXP_LUT_EXTMEM_RD()      (HW_PXP_LUT_EXTMEM.U)
 #define HW_PXP_LUT_EXTMEM_WR(v)     (HW_PXP_LUT_EXTMEM.U = (v))
-#define HW_PXP_LUT_EXTMEM_SET(v)    ((*(volatile reg32_t *) HW_PXP_LUT_EXTMEM_SET_ADDR) = (v))
-#define HW_PXP_LUT_EXTMEM_CLR(v)    ((*(volatile reg32_t *) HW_PXP_LUT_EXTMEM_CLR_ADDR) = (v))
-#define HW_PXP_LUT_EXTMEM_TOG(v)    ((*(volatile reg32_t *) HW_PXP_LUT_EXTMEM_TOG_ADDR) = (v))
+#define HW_PXP_LUT_EXTMEM_SET(v)    (HW_PXP_LUT_EXTMEM_WR(HW_PXP_LUT_EXTMEM_RD() |  (v)))
+#define HW_PXP_LUT_EXTMEM_CLR(v)    (HW_PXP_LUT_EXTMEM_WR(HW_PXP_LUT_EXTMEM_RD() & ~(v)))
+#define HW_PXP_LUT_EXTMEM_TOG(v)    (HW_PXP_LUT_EXTMEM_WR(HW_PXP_LUT_EXTMEM_RD() ^  (v)))
 #endif
 
 /*
@@ -4554,20 +4140,19 @@ typedef union _hw_pxp_lut_extmem
 #define BM_PXP_LUT_EXTMEM_ADDR      (0xffffffff)  //!< Bit mask for PXP_LUT_EXTMEM_ADDR.
 
 //! @brief Get value of PXP_LUT_EXTMEM_ADDR from a register value.
-#define BG_PXP_LUT_EXTMEM_ADDR(r)   (((r) & BM_PXP_LUT_EXTMEM_ADDR) >> BP_PXP_LUT_EXTMEM_ADDR)
+#define BG_PXP_LUT_EXTMEM_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_LUT_EXTMEM_ADDR) >> BP_PXP_LUT_EXTMEM_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_LUT_EXTMEM_ADDR.
-#define BF_PXP_LUT_EXTMEM_ADDR(v)   ((((reg32_t) v) << BP_PXP_LUT_EXTMEM_ADDR) & BM_PXP_LUT_EXTMEM_ADDR)
-#else
-//! @brief Format value for bitfield PXP_LUT_EXTMEM_ADDR.
-#define BF_PXP_LUT_EXTMEM_ADDR(v)   (((v) << BP_PXP_LUT_EXTMEM_ADDR) & BM_PXP_LUT_EXTMEM_ADDR)
-#endif
+#define BF_PXP_LUT_EXTMEM_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_LUT_EXTMEM_ADDR) & BM_PXP_LUT_EXTMEM_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
-#define BW_PXP_LUT_EXTMEM_ADDR(v)   BF_CS1(PXP_LUT_EXTMEM, ADDR, v)
+#define BW_PXP_LUT_EXTMEM_ADDR(v)   (HW_PXP_LUT_EXTMEM_WR((HW_PXP_LUT_EXTMEM_RD() & ~BM_PXP_LUT_EXTMEM_ADDR) | BF_PXP_LUT_EXTMEM_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_CFA - Color Filter Array Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4596,17 +4181,14 @@ typedef union _hw_pxp_cfa
  * constants & macros for entire PXP_CFA register
  */
 #define HW_PXP_CFA_ADDR      (REGS_PXP_BASE + 0x280)
-#define HW_PXP_CFA_SET_ADDR  (HW_PXP_CFA_ADDR + 0x4)
-#define HW_PXP_CFA_CLR_ADDR  (HW_PXP_CFA_ADDR + 0x8)
-#define HW_PXP_CFA_TOG_ADDR  (HW_PXP_CFA_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_CFA           (*(volatile hw_pxp_cfa_t *) HW_PXP_CFA_ADDR)
 #define HW_PXP_CFA_RD()      (HW_PXP_CFA.U)
 #define HW_PXP_CFA_WR(v)     (HW_PXP_CFA.U = (v))
-#define HW_PXP_CFA_SET(v)    ((*(volatile reg32_t *) HW_PXP_CFA_SET_ADDR) = (v))
-#define HW_PXP_CFA_CLR(v)    ((*(volatile reg32_t *) HW_PXP_CFA_CLR_ADDR) = (v))
-#define HW_PXP_CFA_TOG(v)    ((*(volatile reg32_t *) HW_PXP_CFA_TOG_ADDR) = (v))
+#define HW_PXP_CFA_SET(v)    (HW_PXP_CFA_WR(HW_PXP_CFA_RD() |  (v)))
+#define HW_PXP_CFA_CLR(v)    (HW_PXP_CFA_WR(HW_PXP_CFA_RD() & ~(v)))
+#define HW_PXP_CFA_TOG(v)    (HW_PXP_CFA_WR(HW_PXP_CFA_RD() ^  (v)))
 #endif
 
 /*
@@ -4624,20 +4206,19 @@ typedef union _hw_pxp_cfa
 #define BM_PXP_CFA_DATA      (0xffffffff)  //!< Bit mask for PXP_CFA_DATA.
 
 //! @brief Get value of PXP_CFA_DATA from a register value.
-#define BG_PXP_CFA_DATA(r)   (((r) & BM_PXP_CFA_DATA) >> BP_PXP_CFA_DATA)
+#define BG_PXP_CFA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_CFA_DATA) >> BP_PXP_CFA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_CFA_DATA.
-#define BF_PXP_CFA_DATA(v)   ((((reg32_t) v) << BP_PXP_CFA_DATA) & BM_PXP_CFA_DATA)
-#else
-//! @brief Format value for bitfield PXP_CFA_DATA.
-#define BF_PXP_CFA_DATA(v)   (((v) << BP_PXP_CFA_DATA) & BM_PXP_CFA_DATA)
-#endif
+#define BF_PXP_CFA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_CFA_DATA) & BM_PXP_CFA_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_PXP_CFA_DATA(v)   BF_CS1(PXP_CFA, DATA, v)
+#define BW_PXP_CFA_DATA(v)   (HW_PXP_CFA_WR((HW_PXP_CFA_RD() & ~BM_PXP_CFA_DATA) | BF_PXP_CFA_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST_CTRL - Histogram Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4663,17 +4244,14 @@ typedef union _hw_pxp_hist_ctrl
  * constants & macros for entire PXP_HIST_CTRL register
  */
 #define HW_PXP_HIST_CTRL_ADDR      (REGS_PXP_BASE + 0x290)
-#define HW_PXP_HIST_CTRL_SET_ADDR  (HW_PXP_HIST_CTRL_ADDR + 0x4)
-#define HW_PXP_HIST_CTRL_CLR_ADDR  (HW_PXP_HIST_CTRL_ADDR + 0x8)
-#define HW_PXP_HIST_CTRL_TOG_ADDR  (HW_PXP_HIST_CTRL_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST_CTRL           (*(volatile hw_pxp_hist_ctrl_t *) HW_PXP_HIST_CTRL_ADDR)
 #define HW_PXP_HIST_CTRL_RD()      (HW_PXP_HIST_CTRL.U)
 #define HW_PXP_HIST_CTRL_WR(v)     (HW_PXP_HIST_CTRL.U = (v))
-#define HW_PXP_HIST_CTRL_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST_CTRL_SET_ADDR) = (v))
-#define HW_PXP_HIST_CTRL_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST_CTRL_CLR_ADDR) = (v))
-#define HW_PXP_HIST_CTRL_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST_CTRL_TOG_ADDR) = (v))
+#define HW_PXP_HIST_CTRL_SET(v)    (HW_PXP_HIST_CTRL_WR(HW_PXP_HIST_CTRL_RD() |  (v)))
+#define HW_PXP_HIST_CTRL_CLR(v)    (HW_PXP_HIST_CTRL_WR(HW_PXP_HIST_CTRL_RD() & ~(v)))
+#define HW_PXP_HIST_CTRL_TOG(v)    (HW_PXP_HIST_CTRL_WR(HW_PXP_HIST_CTRL_RD() ^  (v)))
 #endif
 
 /*
@@ -4694,19 +4272,14 @@ typedef union _hw_pxp_hist_ctrl
 #define BM_PXP_HIST_CTRL_STATUS      (0x0000000f)  //!< Bit mask for PXP_HIST_CTRL_STATUS.
 
 //! @brief Get value of PXP_HIST_CTRL_STATUS from a register value.
-#define BG_PXP_HIST_CTRL_STATUS(r)   (((r) & BM_PXP_HIST_CTRL_STATUS) >> BP_PXP_HIST_CTRL_STATUS)
+#define BG_PXP_HIST_CTRL_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST_CTRL_STATUS) >> BP_PXP_HIST_CTRL_STATUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST_CTRL_STATUS.
-#define BF_PXP_HIST_CTRL_STATUS(v)   ((((reg32_t) v) << BP_PXP_HIST_CTRL_STATUS) & BM_PXP_HIST_CTRL_STATUS)
-#else
-//! @brief Format value for bitfield PXP_HIST_CTRL_STATUS.
-#define BF_PXP_HIST_CTRL_STATUS(v)   (((v) << BP_PXP_HIST_CTRL_STATUS) & BM_PXP_HIST_CTRL_STATUS)
-#endif
+#define BF_PXP_HIST_CTRL_STATUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST_CTRL_STATUS) & BM_PXP_HIST_CTRL_STATUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATUS field to a new value.
-#define BW_PXP_HIST_CTRL_STATUS(v)   BF_CS1(PXP_HIST_CTRL, STATUS, v)
+#define BW_PXP_HIST_CTRL_STATUS(v)   (HW_PXP_HIST_CTRL_WR((HW_PXP_HIST_CTRL_RD() & ~BM_PXP_HIST_CTRL_STATUS) | BF_PXP_HIST_CTRL_STATUS(v)))
 #endif
 
 /* --- Register HW_PXP_HIST_CTRL, field PANEL_MODE[5:4] (RW)
@@ -4727,25 +4300,24 @@ typedef union _hw_pxp_hist_ctrl
 #define BM_PXP_HIST_CTRL_PANEL_MODE      (0x00000030)  //!< Bit mask for PXP_HIST_CTRL_PANEL_MODE.
 
 //! @brief Get value of PXP_HIST_CTRL_PANEL_MODE from a register value.
-#define BG_PXP_HIST_CTRL_PANEL_MODE(r)   (((r) & BM_PXP_HIST_CTRL_PANEL_MODE) >> BP_PXP_HIST_CTRL_PANEL_MODE)
+#define BG_PXP_HIST_CTRL_PANEL_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST_CTRL_PANEL_MODE) >> BP_PXP_HIST_CTRL_PANEL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST_CTRL_PANEL_MODE.
-#define BF_PXP_HIST_CTRL_PANEL_MODE(v)   ((((reg32_t) v) << BP_PXP_HIST_CTRL_PANEL_MODE) & BM_PXP_HIST_CTRL_PANEL_MODE)
-#else
-//! @brief Format value for bitfield PXP_HIST_CTRL_PANEL_MODE.
-#define BF_PXP_HIST_CTRL_PANEL_MODE(v)   (((v) << BP_PXP_HIST_CTRL_PANEL_MODE) & BM_PXP_HIST_CTRL_PANEL_MODE)
-#endif
+#define BF_PXP_HIST_CTRL_PANEL_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST_CTRL_PANEL_MODE) & BM_PXP_HIST_CTRL_PANEL_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PANEL_MODE field to a new value.
-#define BW_PXP_HIST_CTRL_PANEL_MODE(v)   BF_CS1(PXP_HIST_CTRL, PANEL_MODE, v)
+#define BW_PXP_HIST_CTRL_PANEL_MODE(v)   (HW_PXP_HIST_CTRL_WR((HW_PXP_HIST_CTRL_RD() & ~BM_PXP_HIST_CTRL_PANEL_MODE) | BF_PXP_HIST_CTRL_PANEL_MODE(v)))
 #endif
 
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY4 (0x0) //!< 4-bit grayscale
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY8 (0x1) //!< 8-bit grayscale
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY16 (0x2) //!< 16-bit grayscale
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY32 (0x3) //!< 32-bit grayscale
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST2_PARAM - 2-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4775,17 +4347,14 @@ typedef union _hw_pxp_hist2_param
  * constants & macros for entire PXP_HIST2_PARAM register
  */
 #define HW_PXP_HIST2_PARAM_ADDR      (REGS_PXP_BASE + 0x2a0)
-#define HW_PXP_HIST2_PARAM_SET_ADDR  (HW_PXP_HIST2_PARAM_ADDR + 0x4)
-#define HW_PXP_HIST2_PARAM_CLR_ADDR  (HW_PXP_HIST2_PARAM_ADDR + 0x8)
-#define HW_PXP_HIST2_PARAM_TOG_ADDR  (HW_PXP_HIST2_PARAM_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST2_PARAM           (*(volatile hw_pxp_hist2_param_t *) HW_PXP_HIST2_PARAM_ADDR)
 #define HW_PXP_HIST2_PARAM_RD()      (HW_PXP_HIST2_PARAM.U)
 #define HW_PXP_HIST2_PARAM_WR(v)     (HW_PXP_HIST2_PARAM.U = (v))
-#define HW_PXP_HIST2_PARAM_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST2_PARAM_SET_ADDR) = (v))
-#define HW_PXP_HIST2_PARAM_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST2_PARAM_CLR_ADDR) = (v))
-#define HW_PXP_HIST2_PARAM_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST2_PARAM_TOG_ADDR) = (v))
+#define HW_PXP_HIST2_PARAM_SET(v)    (HW_PXP_HIST2_PARAM_WR(HW_PXP_HIST2_PARAM_RD() |  (v)))
+#define HW_PXP_HIST2_PARAM_CLR(v)    (HW_PXP_HIST2_PARAM_WR(HW_PXP_HIST2_PARAM_RD() & ~(v)))
+#define HW_PXP_HIST2_PARAM_TOG(v)    (HW_PXP_HIST2_PARAM_WR(HW_PXP_HIST2_PARAM_RD() ^  (v)))
 #endif
 
 /*
@@ -4801,19 +4370,14 @@ typedef union _hw_pxp_hist2_param
 #define BM_PXP_HIST2_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST2_PARAM_VALUE0.
 
 //! @brief Get value of PXP_HIST2_PARAM_VALUE0 from a register value.
-#define BG_PXP_HIST2_PARAM_VALUE0(r)   (((r) & BM_PXP_HIST2_PARAM_VALUE0) >> BP_PXP_HIST2_PARAM_VALUE0)
+#define BG_PXP_HIST2_PARAM_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST2_PARAM_VALUE0) >> BP_PXP_HIST2_PARAM_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST2_PARAM_VALUE0.
-#define BF_PXP_HIST2_PARAM_VALUE0(v)   ((((reg32_t) v) << BP_PXP_HIST2_PARAM_VALUE0) & BM_PXP_HIST2_PARAM_VALUE0)
-#else
-//! @brief Format value for bitfield PXP_HIST2_PARAM_VALUE0.
-#define BF_PXP_HIST2_PARAM_VALUE0(v)   (((v) << BP_PXP_HIST2_PARAM_VALUE0) & BM_PXP_HIST2_PARAM_VALUE0)
-#endif
+#define BF_PXP_HIST2_PARAM_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST2_PARAM_VALUE0) & BM_PXP_HIST2_PARAM_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
-#define BW_PXP_HIST2_PARAM_VALUE0(v)   BF_CS1(PXP_HIST2_PARAM, VALUE0, v)
+#define BW_PXP_HIST2_PARAM_VALUE0(v)   (HW_PXP_HIST2_PARAM_WR((HW_PXP_HIST2_PARAM_RD() & ~BM_PXP_HIST2_PARAM_VALUE0) | BF_PXP_HIST2_PARAM_VALUE0(v)))
 #endif
 
 /* --- Register HW_PXP_HIST2_PARAM, field VALUE1[12:8] (RW)
@@ -4825,20 +4389,19 @@ typedef union _hw_pxp_hist2_param
 #define BM_PXP_HIST2_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST2_PARAM_VALUE1.
 
 //! @brief Get value of PXP_HIST2_PARAM_VALUE1 from a register value.
-#define BG_PXP_HIST2_PARAM_VALUE1(r)   (((r) & BM_PXP_HIST2_PARAM_VALUE1) >> BP_PXP_HIST2_PARAM_VALUE1)
+#define BG_PXP_HIST2_PARAM_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST2_PARAM_VALUE1) >> BP_PXP_HIST2_PARAM_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST2_PARAM_VALUE1.
-#define BF_PXP_HIST2_PARAM_VALUE1(v)   ((((reg32_t) v) << BP_PXP_HIST2_PARAM_VALUE1) & BM_PXP_HIST2_PARAM_VALUE1)
-#else
-//! @brief Format value for bitfield PXP_HIST2_PARAM_VALUE1.
-#define BF_PXP_HIST2_PARAM_VALUE1(v)   (((v) << BP_PXP_HIST2_PARAM_VALUE1) & BM_PXP_HIST2_PARAM_VALUE1)
-#endif
+#define BF_PXP_HIST2_PARAM_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST2_PARAM_VALUE1) & BM_PXP_HIST2_PARAM_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
-#define BW_PXP_HIST2_PARAM_VALUE1(v)   BF_CS1(PXP_HIST2_PARAM, VALUE1, v)
+#define BW_PXP_HIST2_PARAM_VALUE1(v)   (HW_PXP_HIST2_PARAM_WR((HW_PXP_HIST2_PARAM_RD() & ~BM_PXP_HIST2_PARAM_VALUE1) | BF_PXP_HIST2_PARAM_VALUE1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST4_PARAM - 4-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4872,17 +4435,14 @@ typedef union _hw_pxp_hist4_param
  * constants & macros for entire PXP_HIST4_PARAM register
  */
 #define HW_PXP_HIST4_PARAM_ADDR      (REGS_PXP_BASE + 0x2b0)
-#define HW_PXP_HIST4_PARAM_SET_ADDR  (HW_PXP_HIST4_PARAM_ADDR + 0x4)
-#define HW_PXP_HIST4_PARAM_CLR_ADDR  (HW_PXP_HIST4_PARAM_ADDR + 0x8)
-#define HW_PXP_HIST4_PARAM_TOG_ADDR  (HW_PXP_HIST4_PARAM_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST4_PARAM           (*(volatile hw_pxp_hist4_param_t *) HW_PXP_HIST4_PARAM_ADDR)
 #define HW_PXP_HIST4_PARAM_RD()      (HW_PXP_HIST4_PARAM.U)
 #define HW_PXP_HIST4_PARAM_WR(v)     (HW_PXP_HIST4_PARAM.U = (v))
-#define HW_PXP_HIST4_PARAM_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST4_PARAM_SET_ADDR) = (v))
-#define HW_PXP_HIST4_PARAM_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST4_PARAM_CLR_ADDR) = (v))
-#define HW_PXP_HIST4_PARAM_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST4_PARAM_TOG_ADDR) = (v))
+#define HW_PXP_HIST4_PARAM_SET(v)    (HW_PXP_HIST4_PARAM_WR(HW_PXP_HIST4_PARAM_RD() |  (v)))
+#define HW_PXP_HIST4_PARAM_CLR(v)    (HW_PXP_HIST4_PARAM_WR(HW_PXP_HIST4_PARAM_RD() & ~(v)))
+#define HW_PXP_HIST4_PARAM_TOG(v)    (HW_PXP_HIST4_PARAM_WR(HW_PXP_HIST4_PARAM_RD() ^  (v)))
 #endif
 
 /*
@@ -4898,19 +4458,14 @@ typedef union _hw_pxp_hist4_param
 #define BM_PXP_HIST4_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST4_PARAM_VALUE0.
 
 //! @brief Get value of PXP_HIST4_PARAM_VALUE0 from a register value.
-#define BG_PXP_HIST4_PARAM_VALUE0(r)   (((r) & BM_PXP_HIST4_PARAM_VALUE0) >> BP_PXP_HIST4_PARAM_VALUE0)
+#define BG_PXP_HIST4_PARAM_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST4_PARAM_VALUE0) >> BP_PXP_HIST4_PARAM_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE0.
-#define BF_PXP_HIST4_PARAM_VALUE0(v)   ((((reg32_t) v) << BP_PXP_HIST4_PARAM_VALUE0) & BM_PXP_HIST4_PARAM_VALUE0)
-#else
-//! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE0.
-#define BF_PXP_HIST4_PARAM_VALUE0(v)   (((v) << BP_PXP_HIST4_PARAM_VALUE0) & BM_PXP_HIST4_PARAM_VALUE0)
-#endif
+#define BF_PXP_HIST4_PARAM_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST4_PARAM_VALUE0) & BM_PXP_HIST4_PARAM_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
-#define BW_PXP_HIST4_PARAM_VALUE0(v)   BF_CS1(PXP_HIST4_PARAM, VALUE0, v)
+#define BW_PXP_HIST4_PARAM_VALUE0(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE0) | BF_PXP_HIST4_PARAM_VALUE0(v)))
 #endif
 
 /* --- Register HW_PXP_HIST4_PARAM, field VALUE1[12:8] (RW)
@@ -4922,19 +4477,14 @@ typedef union _hw_pxp_hist4_param
 #define BM_PXP_HIST4_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST4_PARAM_VALUE1.
 
 //! @brief Get value of PXP_HIST4_PARAM_VALUE1 from a register value.
-#define BG_PXP_HIST4_PARAM_VALUE1(r)   (((r) & BM_PXP_HIST4_PARAM_VALUE1) >> BP_PXP_HIST4_PARAM_VALUE1)
+#define BG_PXP_HIST4_PARAM_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST4_PARAM_VALUE1) >> BP_PXP_HIST4_PARAM_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE1.
-#define BF_PXP_HIST4_PARAM_VALUE1(v)   ((((reg32_t) v) << BP_PXP_HIST4_PARAM_VALUE1) & BM_PXP_HIST4_PARAM_VALUE1)
-#else
-//! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE1.
-#define BF_PXP_HIST4_PARAM_VALUE1(v)   (((v) << BP_PXP_HIST4_PARAM_VALUE1) & BM_PXP_HIST4_PARAM_VALUE1)
-#endif
+#define BF_PXP_HIST4_PARAM_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST4_PARAM_VALUE1) & BM_PXP_HIST4_PARAM_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
-#define BW_PXP_HIST4_PARAM_VALUE1(v)   BF_CS1(PXP_HIST4_PARAM, VALUE1, v)
+#define BW_PXP_HIST4_PARAM_VALUE1(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE1) | BF_PXP_HIST4_PARAM_VALUE1(v)))
 #endif
 
 /* --- Register HW_PXP_HIST4_PARAM, field VALUE2[20:16] (RW)
@@ -4946,19 +4496,14 @@ typedef union _hw_pxp_hist4_param
 #define BM_PXP_HIST4_PARAM_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST4_PARAM_VALUE2.
 
 //! @brief Get value of PXP_HIST4_PARAM_VALUE2 from a register value.
-#define BG_PXP_HIST4_PARAM_VALUE2(r)   (((r) & BM_PXP_HIST4_PARAM_VALUE2) >> BP_PXP_HIST4_PARAM_VALUE2)
+#define BG_PXP_HIST4_PARAM_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST4_PARAM_VALUE2) >> BP_PXP_HIST4_PARAM_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE2.
-#define BF_PXP_HIST4_PARAM_VALUE2(v)   ((((reg32_t) v) << BP_PXP_HIST4_PARAM_VALUE2) & BM_PXP_HIST4_PARAM_VALUE2)
-#else
-//! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE2.
-#define BF_PXP_HIST4_PARAM_VALUE2(v)   (((v) << BP_PXP_HIST4_PARAM_VALUE2) & BM_PXP_HIST4_PARAM_VALUE2)
-#endif
+#define BF_PXP_HIST4_PARAM_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST4_PARAM_VALUE2) & BM_PXP_HIST4_PARAM_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
-#define BW_PXP_HIST4_PARAM_VALUE2(v)   BF_CS1(PXP_HIST4_PARAM, VALUE2, v)
+#define BW_PXP_HIST4_PARAM_VALUE2(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE2) | BF_PXP_HIST4_PARAM_VALUE2(v)))
 #endif
 
 /* --- Register HW_PXP_HIST4_PARAM, field VALUE3[28:24] (RW)
@@ -4970,20 +4515,19 @@ typedef union _hw_pxp_hist4_param
 #define BM_PXP_HIST4_PARAM_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST4_PARAM_VALUE3.
 
 //! @brief Get value of PXP_HIST4_PARAM_VALUE3 from a register value.
-#define BG_PXP_HIST4_PARAM_VALUE3(r)   (((r) & BM_PXP_HIST4_PARAM_VALUE3) >> BP_PXP_HIST4_PARAM_VALUE3)
+#define BG_PXP_HIST4_PARAM_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST4_PARAM_VALUE3) >> BP_PXP_HIST4_PARAM_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE3.
-#define BF_PXP_HIST4_PARAM_VALUE3(v)   ((((reg32_t) v) << BP_PXP_HIST4_PARAM_VALUE3) & BM_PXP_HIST4_PARAM_VALUE3)
-#else
-//! @brief Format value for bitfield PXP_HIST4_PARAM_VALUE3.
-#define BF_PXP_HIST4_PARAM_VALUE3(v)   (((v) << BP_PXP_HIST4_PARAM_VALUE3) & BM_PXP_HIST4_PARAM_VALUE3)
-#endif
+#define BF_PXP_HIST4_PARAM_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST4_PARAM_VALUE3) & BM_PXP_HIST4_PARAM_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
-#define BW_PXP_HIST4_PARAM_VALUE3(v)   BF_CS1(PXP_HIST4_PARAM, VALUE3, v)
+#define BW_PXP_HIST4_PARAM_VALUE3(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE3) | BF_PXP_HIST4_PARAM_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST8_PARAM0 - 8-level Histogram Parameter 0 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5017,17 +4561,14 @@ typedef union _hw_pxp_hist8_param0
  * constants & macros for entire PXP_HIST8_PARAM0 register
  */
 #define HW_PXP_HIST8_PARAM0_ADDR      (REGS_PXP_BASE + 0x2c0)
-#define HW_PXP_HIST8_PARAM0_SET_ADDR  (HW_PXP_HIST8_PARAM0_ADDR + 0x4)
-#define HW_PXP_HIST8_PARAM0_CLR_ADDR  (HW_PXP_HIST8_PARAM0_ADDR + 0x8)
-#define HW_PXP_HIST8_PARAM0_TOG_ADDR  (HW_PXP_HIST8_PARAM0_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST8_PARAM0           (*(volatile hw_pxp_hist8_param0_t *) HW_PXP_HIST8_PARAM0_ADDR)
 #define HW_PXP_HIST8_PARAM0_RD()      (HW_PXP_HIST8_PARAM0.U)
 #define HW_PXP_HIST8_PARAM0_WR(v)     (HW_PXP_HIST8_PARAM0.U = (v))
-#define HW_PXP_HIST8_PARAM0_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM0_SET_ADDR) = (v))
-#define HW_PXP_HIST8_PARAM0_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM0_CLR_ADDR) = (v))
-#define HW_PXP_HIST8_PARAM0_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM0_TOG_ADDR) = (v))
+#define HW_PXP_HIST8_PARAM0_SET(v)    (HW_PXP_HIST8_PARAM0_WR(HW_PXP_HIST8_PARAM0_RD() |  (v)))
+#define HW_PXP_HIST8_PARAM0_CLR(v)    (HW_PXP_HIST8_PARAM0_WR(HW_PXP_HIST8_PARAM0_RD() & ~(v)))
+#define HW_PXP_HIST8_PARAM0_TOG(v)    (HW_PXP_HIST8_PARAM0_WR(HW_PXP_HIST8_PARAM0_RD() ^  (v)))
 #endif
 
 /*
@@ -5043,19 +4584,14 @@ typedef union _hw_pxp_hist8_param0
 #define BM_PXP_HIST8_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE0.
 
 //! @brief Get value of PXP_HIST8_PARAM0_VALUE0 from a register value.
-#define BG_PXP_HIST8_PARAM0_VALUE0(r)   (((r) & BM_PXP_HIST8_PARAM0_VALUE0) >> BP_PXP_HIST8_PARAM0_VALUE0)
+#define BG_PXP_HIST8_PARAM0_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM0_VALUE0) >> BP_PXP_HIST8_PARAM0_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE0.
-#define BF_PXP_HIST8_PARAM0_VALUE0(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM0_VALUE0) & BM_PXP_HIST8_PARAM0_VALUE0)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE0.
-#define BF_PXP_HIST8_PARAM0_VALUE0(v)   (((v) << BP_PXP_HIST8_PARAM0_VALUE0) & BM_PXP_HIST8_PARAM0_VALUE0)
-#endif
+#define BF_PXP_HIST8_PARAM0_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM0_VALUE0) & BM_PXP_HIST8_PARAM0_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
-#define BW_PXP_HIST8_PARAM0_VALUE0(v)   BF_CS1(PXP_HIST8_PARAM0, VALUE0, v)
+#define BW_PXP_HIST8_PARAM0_VALUE0(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE0) | BF_PXP_HIST8_PARAM0_VALUE0(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM0, field VALUE1[12:8] (RW)
@@ -5067,19 +4603,14 @@ typedef union _hw_pxp_hist8_param0
 #define BM_PXP_HIST8_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE1.
 
 //! @brief Get value of PXP_HIST8_PARAM0_VALUE1 from a register value.
-#define BG_PXP_HIST8_PARAM0_VALUE1(r)   (((r) & BM_PXP_HIST8_PARAM0_VALUE1) >> BP_PXP_HIST8_PARAM0_VALUE1)
+#define BG_PXP_HIST8_PARAM0_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM0_VALUE1) >> BP_PXP_HIST8_PARAM0_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE1.
-#define BF_PXP_HIST8_PARAM0_VALUE1(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM0_VALUE1) & BM_PXP_HIST8_PARAM0_VALUE1)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE1.
-#define BF_PXP_HIST8_PARAM0_VALUE1(v)   (((v) << BP_PXP_HIST8_PARAM0_VALUE1) & BM_PXP_HIST8_PARAM0_VALUE1)
-#endif
+#define BF_PXP_HIST8_PARAM0_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM0_VALUE1) & BM_PXP_HIST8_PARAM0_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
-#define BW_PXP_HIST8_PARAM0_VALUE1(v)   BF_CS1(PXP_HIST8_PARAM0, VALUE1, v)
+#define BW_PXP_HIST8_PARAM0_VALUE1(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE1) | BF_PXP_HIST8_PARAM0_VALUE1(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM0, field VALUE2[20:16] (RW)
@@ -5091,19 +4622,14 @@ typedef union _hw_pxp_hist8_param0
 #define BM_PXP_HIST8_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE2.
 
 //! @brief Get value of PXP_HIST8_PARAM0_VALUE2 from a register value.
-#define BG_PXP_HIST8_PARAM0_VALUE2(r)   (((r) & BM_PXP_HIST8_PARAM0_VALUE2) >> BP_PXP_HIST8_PARAM0_VALUE2)
+#define BG_PXP_HIST8_PARAM0_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM0_VALUE2) >> BP_PXP_HIST8_PARAM0_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE2.
-#define BF_PXP_HIST8_PARAM0_VALUE2(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM0_VALUE2) & BM_PXP_HIST8_PARAM0_VALUE2)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE2.
-#define BF_PXP_HIST8_PARAM0_VALUE2(v)   (((v) << BP_PXP_HIST8_PARAM0_VALUE2) & BM_PXP_HIST8_PARAM0_VALUE2)
-#endif
+#define BF_PXP_HIST8_PARAM0_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM0_VALUE2) & BM_PXP_HIST8_PARAM0_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
-#define BW_PXP_HIST8_PARAM0_VALUE2(v)   BF_CS1(PXP_HIST8_PARAM0, VALUE2, v)
+#define BW_PXP_HIST8_PARAM0_VALUE2(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE2) | BF_PXP_HIST8_PARAM0_VALUE2(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM0, field VALUE3[28:24] (RW)
@@ -5115,20 +4641,19 @@ typedef union _hw_pxp_hist8_param0
 #define BM_PXP_HIST8_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE3.
 
 //! @brief Get value of PXP_HIST8_PARAM0_VALUE3 from a register value.
-#define BG_PXP_HIST8_PARAM0_VALUE3(r)   (((r) & BM_PXP_HIST8_PARAM0_VALUE3) >> BP_PXP_HIST8_PARAM0_VALUE3)
+#define BG_PXP_HIST8_PARAM0_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM0_VALUE3) >> BP_PXP_HIST8_PARAM0_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE3.
-#define BF_PXP_HIST8_PARAM0_VALUE3(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM0_VALUE3) & BM_PXP_HIST8_PARAM0_VALUE3)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM0_VALUE3.
-#define BF_PXP_HIST8_PARAM0_VALUE3(v)   (((v) << BP_PXP_HIST8_PARAM0_VALUE3) & BM_PXP_HIST8_PARAM0_VALUE3)
-#endif
+#define BF_PXP_HIST8_PARAM0_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM0_VALUE3) & BM_PXP_HIST8_PARAM0_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
-#define BW_PXP_HIST8_PARAM0_VALUE3(v)   BF_CS1(PXP_HIST8_PARAM0, VALUE3, v)
+#define BW_PXP_HIST8_PARAM0_VALUE3(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE3) | BF_PXP_HIST8_PARAM0_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST8_PARAM1 - 8-level Histogram Parameter 1 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5162,17 +4687,14 @@ typedef union _hw_pxp_hist8_param1
  * constants & macros for entire PXP_HIST8_PARAM1 register
  */
 #define HW_PXP_HIST8_PARAM1_ADDR      (REGS_PXP_BASE + 0x2d0)
-#define HW_PXP_HIST8_PARAM1_SET_ADDR  (HW_PXP_HIST8_PARAM1_ADDR + 0x4)
-#define HW_PXP_HIST8_PARAM1_CLR_ADDR  (HW_PXP_HIST8_PARAM1_ADDR + 0x8)
-#define HW_PXP_HIST8_PARAM1_TOG_ADDR  (HW_PXP_HIST8_PARAM1_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST8_PARAM1           (*(volatile hw_pxp_hist8_param1_t *) HW_PXP_HIST8_PARAM1_ADDR)
 #define HW_PXP_HIST8_PARAM1_RD()      (HW_PXP_HIST8_PARAM1.U)
 #define HW_PXP_HIST8_PARAM1_WR(v)     (HW_PXP_HIST8_PARAM1.U = (v))
-#define HW_PXP_HIST8_PARAM1_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM1_SET_ADDR) = (v))
-#define HW_PXP_HIST8_PARAM1_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM1_CLR_ADDR) = (v))
-#define HW_PXP_HIST8_PARAM1_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST8_PARAM1_TOG_ADDR) = (v))
+#define HW_PXP_HIST8_PARAM1_SET(v)    (HW_PXP_HIST8_PARAM1_WR(HW_PXP_HIST8_PARAM1_RD() |  (v)))
+#define HW_PXP_HIST8_PARAM1_CLR(v)    (HW_PXP_HIST8_PARAM1_WR(HW_PXP_HIST8_PARAM1_RD() & ~(v)))
+#define HW_PXP_HIST8_PARAM1_TOG(v)    (HW_PXP_HIST8_PARAM1_WR(HW_PXP_HIST8_PARAM1_RD() ^  (v)))
 #endif
 
 /*
@@ -5188,19 +4710,14 @@ typedef union _hw_pxp_hist8_param1
 #define BM_PXP_HIST8_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE4.
 
 //! @brief Get value of PXP_HIST8_PARAM1_VALUE4 from a register value.
-#define BG_PXP_HIST8_PARAM1_VALUE4(r)   (((r) & BM_PXP_HIST8_PARAM1_VALUE4) >> BP_PXP_HIST8_PARAM1_VALUE4)
+#define BG_PXP_HIST8_PARAM1_VALUE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM1_VALUE4) >> BP_PXP_HIST8_PARAM1_VALUE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE4.
-#define BF_PXP_HIST8_PARAM1_VALUE4(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM1_VALUE4) & BM_PXP_HIST8_PARAM1_VALUE4)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE4.
-#define BF_PXP_HIST8_PARAM1_VALUE4(v)   (((v) << BP_PXP_HIST8_PARAM1_VALUE4) & BM_PXP_HIST8_PARAM1_VALUE4)
-#endif
+#define BF_PXP_HIST8_PARAM1_VALUE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM1_VALUE4) & BM_PXP_HIST8_PARAM1_VALUE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE4 field to a new value.
-#define BW_PXP_HIST8_PARAM1_VALUE4(v)   BF_CS1(PXP_HIST8_PARAM1, VALUE4, v)
+#define BW_PXP_HIST8_PARAM1_VALUE4(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE4) | BF_PXP_HIST8_PARAM1_VALUE4(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM1, field VALUE5[12:8] (RW)
@@ -5212,19 +4729,14 @@ typedef union _hw_pxp_hist8_param1
 #define BM_PXP_HIST8_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE5.
 
 //! @brief Get value of PXP_HIST8_PARAM1_VALUE5 from a register value.
-#define BG_PXP_HIST8_PARAM1_VALUE5(r)   (((r) & BM_PXP_HIST8_PARAM1_VALUE5) >> BP_PXP_HIST8_PARAM1_VALUE5)
+#define BG_PXP_HIST8_PARAM1_VALUE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM1_VALUE5) >> BP_PXP_HIST8_PARAM1_VALUE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE5.
-#define BF_PXP_HIST8_PARAM1_VALUE5(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM1_VALUE5) & BM_PXP_HIST8_PARAM1_VALUE5)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE5.
-#define BF_PXP_HIST8_PARAM1_VALUE5(v)   (((v) << BP_PXP_HIST8_PARAM1_VALUE5) & BM_PXP_HIST8_PARAM1_VALUE5)
-#endif
+#define BF_PXP_HIST8_PARAM1_VALUE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM1_VALUE5) & BM_PXP_HIST8_PARAM1_VALUE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE5 field to a new value.
-#define BW_PXP_HIST8_PARAM1_VALUE5(v)   BF_CS1(PXP_HIST8_PARAM1, VALUE5, v)
+#define BW_PXP_HIST8_PARAM1_VALUE5(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE5) | BF_PXP_HIST8_PARAM1_VALUE5(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM1, field VALUE6[20:16] (RW)
@@ -5236,19 +4748,14 @@ typedef union _hw_pxp_hist8_param1
 #define BM_PXP_HIST8_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE6.
 
 //! @brief Get value of PXP_HIST8_PARAM1_VALUE6 from a register value.
-#define BG_PXP_HIST8_PARAM1_VALUE6(r)   (((r) & BM_PXP_HIST8_PARAM1_VALUE6) >> BP_PXP_HIST8_PARAM1_VALUE6)
+#define BG_PXP_HIST8_PARAM1_VALUE6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM1_VALUE6) >> BP_PXP_HIST8_PARAM1_VALUE6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE6.
-#define BF_PXP_HIST8_PARAM1_VALUE6(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM1_VALUE6) & BM_PXP_HIST8_PARAM1_VALUE6)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE6.
-#define BF_PXP_HIST8_PARAM1_VALUE6(v)   (((v) << BP_PXP_HIST8_PARAM1_VALUE6) & BM_PXP_HIST8_PARAM1_VALUE6)
-#endif
+#define BF_PXP_HIST8_PARAM1_VALUE6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM1_VALUE6) & BM_PXP_HIST8_PARAM1_VALUE6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE6 field to a new value.
-#define BW_PXP_HIST8_PARAM1_VALUE6(v)   BF_CS1(PXP_HIST8_PARAM1, VALUE6, v)
+#define BW_PXP_HIST8_PARAM1_VALUE6(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE6) | BF_PXP_HIST8_PARAM1_VALUE6(v)))
 #endif
 
 /* --- Register HW_PXP_HIST8_PARAM1, field VALUE7[28:24] (RW)
@@ -5260,20 +4767,19 @@ typedef union _hw_pxp_hist8_param1
 #define BM_PXP_HIST8_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE7.
 
 //! @brief Get value of PXP_HIST8_PARAM1_VALUE7 from a register value.
-#define BG_PXP_HIST8_PARAM1_VALUE7(r)   (((r) & BM_PXP_HIST8_PARAM1_VALUE7) >> BP_PXP_HIST8_PARAM1_VALUE7)
+#define BG_PXP_HIST8_PARAM1_VALUE7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST8_PARAM1_VALUE7) >> BP_PXP_HIST8_PARAM1_VALUE7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE7.
-#define BF_PXP_HIST8_PARAM1_VALUE7(v)   ((((reg32_t) v) << BP_PXP_HIST8_PARAM1_VALUE7) & BM_PXP_HIST8_PARAM1_VALUE7)
-#else
-//! @brief Format value for bitfield PXP_HIST8_PARAM1_VALUE7.
-#define BF_PXP_HIST8_PARAM1_VALUE7(v)   (((v) << BP_PXP_HIST8_PARAM1_VALUE7) & BM_PXP_HIST8_PARAM1_VALUE7)
-#endif
+#define BF_PXP_HIST8_PARAM1_VALUE7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST8_PARAM1_VALUE7) & BM_PXP_HIST8_PARAM1_VALUE7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE7 field to a new value.
-#define BW_PXP_HIST8_PARAM1_VALUE7(v)   BF_CS1(PXP_HIST8_PARAM1, VALUE7, v)
+#define BW_PXP_HIST8_PARAM1_VALUE7(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE7) | BF_PXP_HIST8_PARAM1_VALUE7(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST16_PARAM0 - 16-level Histogram Parameter 0 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5307,17 +4813,14 @@ typedef union _hw_pxp_hist16_param0
  * constants & macros for entire PXP_HIST16_PARAM0 register
  */
 #define HW_PXP_HIST16_PARAM0_ADDR      (REGS_PXP_BASE + 0x2e0)
-#define HW_PXP_HIST16_PARAM0_SET_ADDR  (HW_PXP_HIST16_PARAM0_ADDR + 0x4)
-#define HW_PXP_HIST16_PARAM0_CLR_ADDR  (HW_PXP_HIST16_PARAM0_ADDR + 0x8)
-#define HW_PXP_HIST16_PARAM0_TOG_ADDR  (HW_PXP_HIST16_PARAM0_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST16_PARAM0           (*(volatile hw_pxp_hist16_param0_t *) HW_PXP_HIST16_PARAM0_ADDR)
 #define HW_PXP_HIST16_PARAM0_RD()      (HW_PXP_HIST16_PARAM0.U)
 #define HW_PXP_HIST16_PARAM0_WR(v)     (HW_PXP_HIST16_PARAM0.U = (v))
-#define HW_PXP_HIST16_PARAM0_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM0_SET_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM0_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM0_CLR_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM0_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM0_TOG_ADDR) = (v))
+#define HW_PXP_HIST16_PARAM0_SET(v)    (HW_PXP_HIST16_PARAM0_WR(HW_PXP_HIST16_PARAM0_RD() |  (v)))
+#define HW_PXP_HIST16_PARAM0_CLR(v)    (HW_PXP_HIST16_PARAM0_WR(HW_PXP_HIST16_PARAM0_RD() & ~(v)))
+#define HW_PXP_HIST16_PARAM0_TOG(v)    (HW_PXP_HIST16_PARAM0_WR(HW_PXP_HIST16_PARAM0_RD() ^  (v)))
 #endif
 
 /*
@@ -5333,19 +4836,14 @@ typedef union _hw_pxp_hist16_param0
 #define BM_PXP_HIST16_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE0.
 
 //! @brief Get value of PXP_HIST16_PARAM0_VALUE0 from a register value.
-#define BG_PXP_HIST16_PARAM0_VALUE0(r)   (((r) & BM_PXP_HIST16_PARAM0_VALUE0) >> BP_PXP_HIST16_PARAM0_VALUE0)
+#define BG_PXP_HIST16_PARAM0_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM0_VALUE0) >> BP_PXP_HIST16_PARAM0_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE0.
-#define BF_PXP_HIST16_PARAM0_VALUE0(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM0_VALUE0) & BM_PXP_HIST16_PARAM0_VALUE0)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE0.
-#define BF_PXP_HIST16_PARAM0_VALUE0(v)   (((v) << BP_PXP_HIST16_PARAM0_VALUE0) & BM_PXP_HIST16_PARAM0_VALUE0)
-#endif
+#define BF_PXP_HIST16_PARAM0_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM0_VALUE0) & BM_PXP_HIST16_PARAM0_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
-#define BW_PXP_HIST16_PARAM0_VALUE0(v)   BF_CS1(PXP_HIST16_PARAM0, VALUE0, v)
+#define BW_PXP_HIST16_PARAM0_VALUE0(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE0) | BF_PXP_HIST16_PARAM0_VALUE0(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM0, field VALUE1[12:8] (RW)
@@ -5357,19 +4855,14 @@ typedef union _hw_pxp_hist16_param0
 #define BM_PXP_HIST16_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE1.
 
 //! @brief Get value of PXP_HIST16_PARAM0_VALUE1 from a register value.
-#define BG_PXP_HIST16_PARAM0_VALUE1(r)   (((r) & BM_PXP_HIST16_PARAM0_VALUE1) >> BP_PXP_HIST16_PARAM0_VALUE1)
+#define BG_PXP_HIST16_PARAM0_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM0_VALUE1) >> BP_PXP_HIST16_PARAM0_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE1.
-#define BF_PXP_HIST16_PARAM0_VALUE1(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM0_VALUE1) & BM_PXP_HIST16_PARAM0_VALUE1)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE1.
-#define BF_PXP_HIST16_PARAM0_VALUE1(v)   (((v) << BP_PXP_HIST16_PARAM0_VALUE1) & BM_PXP_HIST16_PARAM0_VALUE1)
-#endif
+#define BF_PXP_HIST16_PARAM0_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM0_VALUE1) & BM_PXP_HIST16_PARAM0_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
-#define BW_PXP_HIST16_PARAM0_VALUE1(v)   BF_CS1(PXP_HIST16_PARAM0, VALUE1, v)
+#define BW_PXP_HIST16_PARAM0_VALUE1(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE1) | BF_PXP_HIST16_PARAM0_VALUE1(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM0, field VALUE2[20:16] (RW)
@@ -5381,19 +4874,14 @@ typedef union _hw_pxp_hist16_param0
 #define BM_PXP_HIST16_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE2.
 
 //! @brief Get value of PXP_HIST16_PARAM0_VALUE2 from a register value.
-#define BG_PXP_HIST16_PARAM0_VALUE2(r)   (((r) & BM_PXP_HIST16_PARAM0_VALUE2) >> BP_PXP_HIST16_PARAM0_VALUE2)
+#define BG_PXP_HIST16_PARAM0_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM0_VALUE2) >> BP_PXP_HIST16_PARAM0_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE2.
-#define BF_PXP_HIST16_PARAM0_VALUE2(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM0_VALUE2) & BM_PXP_HIST16_PARAM0_VALUE2)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE2.
-#define BF_PXP_HIST16_PARAM0_VALUE2(v)   (((v) << BP_PXP_HIST16_PARAM0_VALUE2) & BM_PXP_HIST16_PARAM0_VALUE2)
-#endif
+#define BF_PXP_HIST16_PARAM0_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM0_VALUE2) & BM_PXP_HIST16_PARAM0_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
-#define BW_PXP_HIST16_PARAM0_VALUE2(v)   BF_CS1(PXP_HIST16_PARAM0, VALUE2, v)
+#define BW_PXP_HIST16_PARAM0_VALUE2(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE2) | BF_PXP_HIST16_PARAM0_VALUE2(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM0, field VALUE3[28:24] (RW)
@@ -5405,20 +4893,19 @@ typedef union _hw_pxp_hist16_param0
 #define BM_PXP_HIST16_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE3.
 
 //! @brief Get value of PXP_HIST16_PARAM0_VALUE3 from a register value.
-#define BG_PXP_HIST16_PARAM0_VALUE3(r)   (((r) & BM_PXP_HIST16_PARAM0_VALUE3) >> BP_PXP_HIST16_PARAM0_VALUE3)
+#define BG_PXP_HIST16_PARAM0_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM0_VALUE3) >> BP_PXP_HIST16_PARAM0_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE3.
-#define BF_PXP_HIST16_PARAM0_VALUE3(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM0_VALUE3) & BM_PXP_HIST16_PARAM0_VALUE3)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM0_VALUE3.
-#define BF_PXP_HIST16_PARAM0_VALUE3(v)   (((v) << BP_PXP_HIST16_PARAM0_VALUE3) & BM_PXP_HIST16_PARAM0_VALUE3)
-#endif
+#define BF_PXP_HIST16_PARAM0_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM0_VALUE3) & BM_PXP_HIST16_PARAM0_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
-#define BW_PXP_HIST16_PARAM0_VALUE3(v)   BF_CS1(PXP_HIST16_PARAM0, VALUE3, v)
+#define BW_PXP_HIST16_PARAM0_VALUE3(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE3) | BF_PXP_HIST16_PARAM0_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST16_PARAM1 - 16-level Histogram Parameter 1 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5452,17 +4939,14 @@ typedef union _hw_pxp_hist16_param1
  * constants & macros for entire PXP_HIST16_PARAM1 register
  */
 #define HW_PXP_HIST16_PARAM1_ADDR      (REGS_PXP_BASE + 0x2f0)
-#define HW_PXP_HIST16_PARAM1_SET_ADDR  (HW_PXP_HIST16_PARAM1_ADDR + 0x4)
-#define HW_PXP_HIST16_PARAM1_CLR_ADDR  (HW_PXP_HIST16_PARAM1_ADDR + 0x8)
-#define HW_PXP_HIST16_PARAM1_TOG_ADDR  (HW_PXP_HIST16_PARAM1_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST16_PARAM1           (*(volatile hw_pxp_hist16_param1_t *) HW_PXP_HIST16_PARAM1_ADDR)
 #define HW_PXP_HIST16_PARAM1_RD()      (HW_PXP_HIST16_PARAM1.U)
 #define HW_PXP_HIST16_PARAM1_WR(v)     (HW_PXP_HIST16_PARAM1.U = (v))
-#define HW_PXP_HIST16_PARAM1_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM1_SET_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM1_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM1_CLR_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM1_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM1_TOG_ADDR) = (v))
+#define HW_PXP_HIST16_PARAM1_SET(v)    (HW_PXP_HIST16_PARAM1_WR(HW_PXP_HIST16_PARAM1_RD() |  (v)))
+#define HW_PXP_HIST16_PARAM1_CLR(v)    (HW_PXP_HIST16_PARAM1_WR(HW_PXP_HIST16_PARAM1_RD() & ~(v)))
+#define HW_PXP_HIST16_PARAM1_TOG(v)    (HW_PXP_HIST16_PARAM1_WR(HW_PXP_HIST16_PARAM1_RD() ^  (v)))
 #endif
 
 /*
@@ -5478,19 +4962,14 @@ typedef union _hw_pxp_hist16_param1
 #define BM_PXP_HIST16_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE4.
 
 //! @brief Get value of PXP_HIST16_PARAM1_VALUE4 from a register value.
-#define BG_PXP_HIST16_PARAM1_VALUE4(r)   (((r) & BM_PXP_HIST16_PARAM1_VALUE4) >> BP_PXP_HIST16_PARAM1_VALUE4)
+#define BG_PXP_HIST16_PARAM1_VALUE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM1_VALUE4) >> BP_PXP_HIST16_PARAM1_VALUE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE4.
-#define BF_PXP_HIST16_PARAM1_VALUE4(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM1_VALUE4) & BM_PXP_HIST16_PARAM1_VALUE4)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE4.
-#define BF_PXP_HIST16_PARAM1_VALUE4(v)   (((v) << BP_PXP_HIST16_PARAM1_VALUE4) & BM_PXP_HIST16_PARAM1_VALUE4)
-#endif
+#define BF_PXP_HIST16_PARAM1_VALUE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM1_VALUE4) & BM_PXP_HIST16_PARAM1_VALUE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE4 field to a new value.
-#define BW_PXP_HIST16_PARAM1_VALUE4(v)   BF_CS1(PXP_HIST16_PARAM1, VALUE4, v)
+#define BW_PXP_HIST16_PARAM1_VALUE4(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE4) | BF_PXP_HIST16_PARAM1_VALUE4(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM1, field VALUE5[12:8] (RW)
@@ -5502,19 +4981,14 @@ typedef union _hw_pxp_hist16_param1
 #define BM_PXP_HIST16_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE5.
 
 //! @brief Get value of PXP_HIST16_PARAM1_VALUE5 from a register value.
-#define BG_PXP_HIST16_PARAM1_VALUE5(r)   (((r) & BM_PXP_HIST16_PARAM1_VALUE5) >> BP_PXP_HIST16_PARAM1_VALUE5)
+#define BG_PXP_HIST16_PARAM1_VALUE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM1_VALUE5) >> BP_PXP_HIST16_PARAM1_VALUE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE5.
-#define BF_PXP_HIST16_PARAM1_VALUE5(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM1_VALUE5) & BM_PXP_HIST16_PARAM1_VALUE5)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE5.
-#define BF_PXP_HIST16_PARAM1_VALUE5(v)   (((v) << BP_PXP_HIST16_PARAM1_VALUE5) & BM_PXP_HIST16_PARAM1_VALUE5)
-#endif
+#define BF_PXP_HIST16_PARAM1_VALUE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM1_VALUE5) & BM_PXP_HIST16_PARAM1_VALUE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE5 field to a new value.
-#define BW_PXP_HIST16_PARAM1_VALUE5(v)   BF_CS1(PXP_HIST16_PARAM1, VALUE5, v)
+#define BW_PXP_HIST16_PARAM1_VALUE5(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE5) | BF_PXP_HIST16_PARAM1_VALUE5(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM1, field VALUE6[20:16] (RW)
@@ -5526,19 +5000,14 @@ typedef union _hw_pxp_hist16_param1
 #define BM_PXP_HIST16_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE6.
 
 //! @brief Get value of PXP_HIST16_PARAM1_VALUE6 from a register value.
-#define BG_PXP_HIST16_PARAM1_VALUE6(r)   (((r) & BM_PXP_HIST16_PARAM1_VALUE6) >> BP_PXP_HIST16_PARAM1_VALUE6)
+#define BG_PXP_HIST16_PARAM1_VALUE6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM1_VALUE6) >> BP_PXP_HIST16_PARAM1_VALUE6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE6.
-#define BF_PXP_HIST16_PARAM1_VALUE6(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM1_VALUE6) & BM_PXP_HIST16_PARAM1_VALUE6)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE6.
-#define BF_PXP_HIST16_PARAM1_VALUE6(v)   (((v) << BP_PXP_HIST16_PARAM1_VALUE6) & BM_PXP_HIST16_PARAM1_VALUE6)
-#endif
+#define BF_PXP_HIST16_PARAM1_VALUE6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM1_VALUE6) & BM_PXP_HIST16_PARAM1_VALUE6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE6 field to a new value.
-#define BW_PXP_HIST16_PARAM1_VALUE6(v)   BF_CS1(PXP_HIST16_PARAM1, VALUE6, v)
+#define BW_PXP_HIST16_PARAM1_VALUE6(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE6) | BF_PXP_HIST16_PARAM1_VALUE6(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM1, field VALUE7[28:24] (RW)
@@ -5550,20 +5019,19 @@ typedef union _hw_pxp_hist16_param1
 #define BM_PXP_HIST16_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE7.
 
 //! @brief Get value of PXP_HIST16_PARAM1_VALUE7 from a register value.
-#define BG_PXP_HIST16_PARAM1_VALUE7(r)   (((r) & BM_PXP_HIST16_PARAM1_VALUE7) >> BP_PXP_HIST16_PARAM1_VALUE7)
+#define BG_PXP_HIST16_PARAM1_VALUE7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM1_VALUE7) >> BP_PXP_HIST16_PARAM1_VALUE7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE7.
-#define BF_PXP_HIST16_PARAM1_VALUE7(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM1_VALUE7) & BM_PXP_HIST16_PARAM1_VALUE7)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM1_VALUE7.
-#define BF_PXP_HIST16_PARAM1_VALUE7(v)   (((v) << BP_PXP_HIST16_PARAM1_VALUE7) & BM_PXP_HIST16_PARAM1_VALUE7)
-#endif
+#define BF_PXP_HIST16_PARAM1_VALUE7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM1_VALUE7) & BM_PXP_HIST16_PARAM1_VALUE7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE7 field to a new value.
-#define BW_PXP_HIST16_PARAM1_VALUE7(v)   BF_CS1(PXP_HIST16_PARAM1, VALUE7, v)
+#define BW_PXP_HIST16_PARAM1_VALUE7(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE7) | BF_PXP_HIST16_PARAM1_VALUE7(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST16_PARAM2 - 16-level Histogram Parameter 2 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5597,17 +5065,14 @@ typedef union _hw_pxp_hist16_param2
  * constants & macros for entire PXP_HIST16_PARAM2 register
  */
 #define HW_PXP_HIST16_PARAM2_ADDR      (REGS_PXP_BASE + 0x300)
-#define HW_PXP_HIST16_PARAM2_SET_ADDR  (HW_PXP_HIST16_PARAM2_ADDR + 0x4)
-#define HW_PXP_HIST16_PARAM2_CLR_ADDR  (HW_PXP_HIST16_PARAM2_ADDR + 0x8)
-#define HW_PXP_HIST16_PARAM2_TOG_ADDR  (HW_PXP_HIST16_PARAM2_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST16_PARAM2           (*(volatile hw_pxp_hist16_param2_t *) HW_PXP_HIST16_PARAM2_ADDR)
 #define HW_PXP_HIST16_PARAM2_RD()      (HW_PXP_HIST16_PARAM2.U)
 #define HW_PXP_HIST16_PARAM2_WR(v)     (HW_PXP_HIST16_PARAM2.U = (v))
-#define HW_PXP_HIST16_PARAM2_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM2_SET_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM2_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM2_CLR_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM2_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM2_TOG_ADDR) = (v))
+#define HW_PXP_HIST16_PARAM2_SET(v)    (HW_PXP_HIST16_PARAM2_WR(HW_PXP_HIST16_PARAM2_RD() |  (v)))
+#define HW_PXP_HIST16_PARAM2_CLR(v)    (HW_PXP_HIST16_PARAM2_WR(HW_PXP_HIST16_PARAM2_RD() & ~(v)))
+#define HW_PXP_HIST16_PARAM2_TOG(v)    (HW_PXP_HIST16_PARAM2_WR(HW_PXP_HIST16_PARAM2_RD() ^  (v)))
 #endif
 
 /*
@@ -5623,19 +5088,14 @@ typedef union _hw_pxp_hist16_param2
 #define BM_PXP_HIST16_PARAM2_VALUE8      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE8.
 
 //! @brief Get value of PXP_HIST16_PARAM2_VALUE8 from a register value.
-#define BG_PXP_HIST16_PARAM2_VALUE8(r)   (((r) & BM_PXP_HIST16_PARAM2_VALUE8) >> BP_PXP_HIST16_PARAM2_VALUE8)
+#define BG_PXP_HIST16_PARAM2_VALUE8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM2_VALUE8) >> BP_PXP_HIST16_PARAM2_VALUE8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE8.
-#define BF_PXP_HIST16_PARAM2_VALUE8(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM2_VALUE8) & BM_PXP_HIST16_PARAM2_VALUE8)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE8.
-#define BF_PXP_HIST16_PARAM2_VALUE8(v)   (((v) << BP_PXP_HIST16_PARAM2_VALUE8) & BM_PXP_HIST16_PARAM2_VALUE8)
-#endif
+#define BF_PXP_HIST16_PARAM2_VALUE8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM2_VALUE8) & BM_PXP_HIST16_PARAM2_VALUE8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE8 field to a new value.
-#define BW_PXP_HIST16_PARAM2_VALUE8(v)   BF_CS1(PXP_HIST16_PARAM2, VALUE8, v)
+#define BW_PXP_HIST16_PARAM2_VALUE8(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE8) | BF_PXP_HIST16_PARAM2_VALUE8(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM2, field VALUE9[12:8] (RW)
@@ -5647,19 +5107,14 @@ typedef union _hw_pxp_hist16_param2
 #define BM_PXP_HIST16_PARAM2_VALUE9      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE9.
 
 //! @brief Get value of PXP_HIST16_PARAM2_VALUE9 from a register value.
-#define BG_PXP_HIST16_PARAM2_VALUE9(r)   (((r) & BM_PXP_HIST16_PARAM2_VALUE9) >> BP_PXP_HIST16_PARAM2_VALUE9)
+#define BG_PXP_HIST16_PARAM2_VALUE9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM2_VALUE9) >> BP_PXP_HIST16_PARAM2_VALUE9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE9.
-#define BF_PXP_HIST16_PARAM2_VALUE9(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM2_VALUE9) & BM_PXP_HIST16_PARAM2_VALUE9)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE9.
-#define BF_PXP_HIST16_PARAM2_VALUE9(v)   (((v) << BP_PXP_HIST16_PARAM2_VALUE9) & BM_PXP_HIST16_PARAM2_VALUE9)
-#endif
+#define BF_PXP_HIST16_PARAM2_VALUE9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM2_VALUE9) & BM_PXP_HIST16_PARAM2_VALUE9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE9 field to a new value.
-#define BW_PXP_HIST16_PARAM2_VALUE9(v)   BF_CS1(PXP_HIST16_PARAM2, VALUE9, v)
+#define BW_PXP_HIST16_PARAM2_VALUE9(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE9) | BF_PXP_HIST16_PARAM2_VALUE9(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM2, field VALUE10[20:16] (RW)
@@ -5671,19 +5126,14 @@ typedef union _hw_pxp_hist16_param2
 #define BM_PXP_HIST16_PARAM2_VALUE10      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE10.
 
 //! @brief Get value of PXP_HIST16_PARAM2_VALUE10 from a register value.
-#define BG_PXP_HIST16_PARAM2_VALUE10(r)   (((r) & BM_PXP_HIST16_PARAM2_VALUE10) >> BP_PXP_HIST16_PARAM2_VALUE10)
+#define BG_PXP_HIST16_PARAM2_VALUE10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM2_VALUE10) >> BP_PXP_HIST16_PARAM2_VALUE10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE10.
-#define BF_PXP_HIST16_PARAM2_VALUE10(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM2_VALUE10) & BM_PXP_HIST16_PARAM2_VALUE10)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE10.
-#define BF_PXP_HIST16_PARAM2_VALUE10(v)   (((v) << BP_PXP_HIST16_PARAM2_VALUE10) & BM_PXP_HIST16_PARAM2_VALUE10)
-#endif
+#define BF_PXP_HIST16_PARAM2_VALUE10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM2_VALUE10) & BM_PXP_HIST16_PARAM2_VALUE10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE10 field to a new value.
-#define BW_PXP_HIST16_PARAM2_VALUE10(v)   BF_CS1(PXP_HIST16_PARAM2, VALUE10, v)
+#define BW_PXP_HIST16_PARAM2_VALUE10(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE10) | BF_PXP_HIST16_PARAM2_VALUE10(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM2, field VALUE11[28:24] (RW)
@@ -5695,20 +5145,19 @@ typedef union _hw_pxp_hist16_param2
 #define BM_PXP_HIST16_PARAM2_VALUE11      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE11.
 
 //! @brief Get value of PXP_HIST16_PARAM2_VALUE11 from a register value.
-#define BG_PXP_HIST16_PARAM2_VALUE11(r)   (((r) & BM_PXP_HIST16_PARAM2_VALUE11) >> BP_PXP_HIST16_PARAM2_VALUE11)
+#define BG_PXP_HIST16_PARAM2_VALUE11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM2_VALUE11) >> BP_PXP_HIST16_PARAM2_VALUE11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE11.
-#define BF_PXP_HIST16_PARAM2_VALUE11(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM2_VALUE11) & BM_PXP_HIST16_PARAM2_VALUE11)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM2_VALUE11.
-#define BF_PXP_HIST16_PARAM2_VALUE11(v)   (((v) << BP_PXP_HIST16_PARAM2_VALUE11) & BM_PXP_HIST16_PARAM2_VALUE11)
-#endif
+#define BF_PXP_HIST16_PARAM2_VALUE11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM2_VALUE11) & BM_PXP_HIST16_PARAM2_VALUE11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE11 field to a new value.
-#define BW_PXP_HIST16_PARAM2_VALUE11(v)   BF_CS1(PXP_HIST16_PARAM2, VALUE11, v)
+#define BW_PXP_HIST16_PARAM2_VALUE11(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE11) | BF_PXP_HIST16_PARAM2_VALUE11(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_HIST16_PARAM3 - 16-level Histogram Parameter 3 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5742,17 +5191,14 @@ typedef union _hw_pxp_hist16_param3
  * constants & macros for entire PXP_HIST16_PARAM3 register
  */
 #define HW_PXP_HIST16_PARAM3_ADDR      (REGS_PXP_BASE + 0x310)
-#define HW_PXP_HIST16_PARAM3_SET_ADDR  (HW_PXP_HIST16_PARAM3_ADDR + 0x4)
-#define HW_PXP_HIST16_PARAM3_CLR_ADDR  (HW_PXP_HIST16_PARAM3_ADDR + 0x8)
-#define HW_PXP_HIST16_PARAM3_TOG_ADDR  (HW_PXP_HIST16_PARAM3_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_HIST16_PARAM3           (*(volatile hw_pxp_hist16_param3_t *) HW_PXP_HIST16_PARAM3_ADDR)
 #define HW_PXP_HIST16_PARAM3_RD()      (HW_PXP_HIST16_PARAM3.U)
 #define HW_PXP_HIST16_PARAM3_WR(v)     (HW_PXP_HIST16_PARAM3.U = (v))
-#define HW_PXP_HIST16_PARAM3_SET(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM3_SET_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM3_CLR(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM3_CLR_ADDR) = (v))
-#define HW_PXP_HIST16_PARAM3_TOG(v)    ((*(volatile reg32_t *) HW_PXP_HIST16_PARAM3_TOG_ADDR) = (v))
+#define HW_PXP_HIST16_PARAM3_SET(v)    (HW_PXP_HIST16_PARAM3_WR(HW_PXP_HIST16_PARAM3_RD() |  (v)))
+#define HW_PXP_HIST16_PARAM3_CLR(v)    (HW_PXP_HIST16_PARAM3_WR(HW_PXP_HIST16_PARAM3_RD() & ~(v)))
+#define HW_PXP_HIST16_PARAM3_TOG(v)    (HW_PXP_HIST16_PARAM3_WR(HW_PXP_HIST16_PARAM3_RD() ^  (v)))
 #endif
 
 /*
@@ -5768,19 +5214,14 @@ typedef union _hw_pxp_hist16_param3
 #define BM_PXP_HIST16_PARAM3_VALUE12      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE12.
 
 //! @brief Get value of PXP_HIST16_PARAM3_VALUE12 from a register value.
-#define BG_PXP_HIST16_PARAM3_VALUE12(r)   (((r) & BM_PXP_HIST16_PARAM3_VALUE12) >> BP_PXP_HIST16_PARAM3_VALUE12)
+#define BG_PXP_HIST16_PARAM3_VALUE12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM3_VALUE12) >> BP_PXP_HIST16_PARAM3_VALUE12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE12.
-#define BF_PXP_HIST16_PARAM3_VALUE12(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM3_VALUE12) & BM_PXP_HIST16_PARAM3_VALUE12)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE12.
-#define BF_PXP_HIST16_PARAM3_VALUE12(v)   (((v) << BP_PXP_HIST16_PARAM3_VALUE12) & BM_PXP_HIST16_PARAM3_VALUE12)
-#endif
+#define BF_PXP_HIST16_PARAM3_VALUE12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM3_VALUE12) & BM_PXP_HIST16_PARAM3_VALUE12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE12 field to a new value.
-#define BW_PXP_HIST16_PARAM3_VALUE12(v)   BF_CS1(PXP_HIST16_PARAM3, VALUE12, v)
+#define BW_PXP_HIST16_PARAM3_VALUE12(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE12) | BF_PXP_HIST16_PARAM3_VALUE12(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM3, field VALUE13[12:8] (RW)
@@ -5792,19 +5233,14 @@ typedef union _hw_pxp_hist16_param3
 #define BM_PXP_HIST16_PARAM3_VALUE13      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE13.
 
 //! @brief Get value of PXP_HIST16_PARAM3_VALUE13 from a register value.
-#define BG_PXP_HIST16_PARAM3_VALUE13(r)   (((r) & BM_PXP_HIST16_PARAM3_VALUE13) >> BP_PXP_HIST16_PARAM3_VALUE13)
+#define BG_PXP_HIST16_PARAM3_VALUE13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM3_VALUE13) >> BP_PXP_HIST16_PARAM3_VALUE13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE13.
-#define BF_PXP_HIST16_PARAM3_VALUE13(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM3_VALUE13) & BM_PXP_HIST16_PARAM3_VALUE13)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE13.
-#define BF_PXP_HIST16_PARAM3_VALUE13(v)   (((v) << BP_PXP_HIST16_PARAM3_VALUE13) & BM_PXP_HIST16_PARAM3_VALUE13)
-#endif
+#define BF_PXP_HIST16_PARAM3_VALUE13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM3_VALUE13) & BM_PXP_HIST16_PARAM3_VALUE13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE13 field to a new value.
-#define BW_PXP_HIST16_PARAM3_VALUE13(v)   BF_CS1(PXP_HIST16_PARAM3, VALUE13, v)
+#define BW_PXP_HIST16_PARAM3_VALUE13(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE13) | BF_PXP_HIST16_PARAM3_VALUE13(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM3, field VALUE14[20:16] (RW)
@@ -5816,19 +5252,14 @@ typedef union _hw_pxp_hist16_param3
 #define BM_PXP_HIST16_PARAM3_VALUE14      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE14.
 
 //! @brief Get value of PXP_HIST16_PARAM3_VALUE14 from a register value.
-#define BG_PXP_HIST16_PARAM3_VALUE14(r)   (((r) & BM_PXP_HIST16_PARAM3_VALUE14) >> BP_PXP_HIST16_PARAM3_VALUE14)
+#define BG_PXP_HIST16_PARAM3_VALUE14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM3_VALUE14) >> BP_PXP_HIST16_PARAM3_VALUE14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE14.
-#define BF_PXP_HIST16_PARAM3_VALUE14(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM3_VALUE14) & BM_PXP_HIST16_PARAM3_VALUE14)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE14.
-#define BF_PXP_HIST16_PARAM3_VALUE14(v)   (((v) << BP_PXP_HIST16_PARAM3_VALUE14) & BM_PXP_HIST16_PARAM3_VALUE14)
-#endif
+#define BF_PXP_HIST16_PARAM3_VALUE14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM3_VALUE14) & BM_PXP_HIST16_PARAM3_VALUE14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE14 field to a new value.
-#define BW_PXP_HIST16_PARAM3_VALUE14(v)   BF_CS1(PXP_HIST16_PARAM3, VALUE14, v)
+#define BW_PXP_HIST16_PARAM3_VALUE14(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE14) | BF_PXP_HIST16_PARAM3_VALUE14(v)))
 #endif
 
 /* --- Register HW_PXP_HIST16_PARAM3, field VALUE15[28:24] (RW)
@@ -5840,20 +5271,19 @@ typedef union _hw_pxp_hist16_param3
 #define BM_PXP_HIST16_PARAM3_VALUE15      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE15.
 
 //! @brief Get value of PXP_HIST16_PARAM3_VALUE15 from a register value.
-#define BG_PXP_HIST16_PARAM3_VALUE15(r)   (((r) & BM_PXP_HIST16_PARAM3_VALUE15) >> BP_PXP_HIST16_PARAM3_VALUE15)
+#define BG_PXP_HIST16_PARAM3_VALUE15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_HIST16_PARAM3_VALUE15) >> BP_PXP_HIST16_PARAM3_VALUE15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE15.
-#define BF_PXP_HIST16_PARAM3_VALUE15(v)   ((((reg32_t) v) << BP_PXP_HIST16_PARAM3_VALUE15) & BM_PXP_HIST16_PARAM3_VALUE15)
-#else
-//! @brief Format value for bitfield PXP_HIST16_PARAM3_VALUE15.
-#define BF_PXP_HIST16_PARAM3_VALUE15(v)   (((v) << BP_PXP_HIST16_PARAM3_VALUE15) & BM_PXP_HIST16_PARAM3_VALUE15)
-#endif
+#define BF_PXP_HIST16_PARAM3_VALUE15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_HIST16_PARAM3_VALUE15) & BM_PXP_HIST16_PARAM3_VALUE15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE15 field to a new value.
-#define BW_PXP_HIST16_PARAM3_VALUE15(v)   BF_CS1(PXP_HIST16_PARAM3, VALUE15, v)
+#define BW_PXP_HIST16_PARAM3_VALUE15(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE15) | BF_PXP_HIST16_PARAM3_VALUE15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_POWER - PXP Power Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5881,17 +5311,14 @@ typedef union _hw_pxp_power
  * constants & macros for entire PXP_POWER register
  */
 #define HW_PXP_POWER_ADDR      (REGS_PXP_BASE + 0x320)
-#define HW_PXP_POWER_SET_ADDR  (HW_PXP_POWER_ADDR + 0x4)
-#define HW_PXP_POWER_CLR_ADDR  (HW_PXP_POWER_ADDR + 0x8)
-#define HW_PXP_POWER_TOG_ADDR  (HW_PXP_POWER_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_POWER           (*(volatile hw_pxp_power_t *) HW_PXP_POWER_ADDR)
 #define HW_PXP_POWER_RD()      (HW_PXP_POWER.U)
 #define HW_PXP_POWER_WR(v)     (HW_PXP_POWER.U = (v))
-#define HW_PXP_POWER_SET(v)    ((*(volatile reg32_t *) HW_PXP_POWER_SET_ADDR) = (v))
-#define HW_PXP_POWER_CLR(v)    ((*(volatile reg32_t *) HW_PXP_POWER_CLR_ADDR) = (v))
-#define HW_PXP_POWER_TOG(v)    ((*(volatile reg32_t *) HW_PXP_POWER_TOG_ADDR) = (v))
+#define HW_PXP_POWER_SET(v)    (HW_PXP_POWER_WR(HW_PXP_POWER_RD() |  (v)))
+#define HW_PXP_POWER_CLR(v)    (HW_PXP_POWER_WR(HW_PXP_POWER_RD() & ~(v)))
+#define HW_PXP_POWER_TOG(v)    (HW_PXP_POWER_WR(HW_PXP_POWER_RD() ^  (v)))
 #endif
 
 /*
@@ -5913,19 +5340,14 @@ typedef union _hw_pxp_power
 #define BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0      (0x00000007)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY0_BANK0.
 
 //! @brief Get value of PXP_POWER_LUT_LP_STATE_WAY0_BANK0 from a register value.
-#define BG_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(r)   (((r) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) >> BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0)
+#define BG_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) >> BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY0_BANK0.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)   ((((reg32_t) v) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0)
-#else
-//! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY0_BANK0.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)   (((v) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0)
-#endif
+#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_LP_STATE_WAY0_BANK0 field to a new value.
-#define BW_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)   BF_CS1(PXP_POWER, LUT_LP_STATE_WAY0_BANK0, v)
+#define BW_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0) | BF_PXP_POWER_LUT_LP_STATE_WAY0_BANK0(v)))
 #endif
 
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANK0__NONE (0x0) //!< Memory is not in low power state.
@@ -5948,19 +5370,14 @@ typedef union _hw_pxp_power
 #define BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN      (0x00000038)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY0_BANKN.
 
 //! @brief Get value of PXP_POWER_LUT_LP_STATE_WAY0_BANKN from a register value.
-#define BG_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(r)   (((r) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) >> BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN)
+#define BG_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) >> BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY0_BANKN.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)   ((((reg32_t) v) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN)
-#else
-//! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY0_BANKN.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)   (((v) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN)
-#endif
+#define BF_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_LP_STATE_WAY0_BANKN field to a new value.
-#define BW_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)   BF_CS1(PXP_POWER, LUT_LP_STATE_WAY0_BANKN, v)
+#define BW_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN) | BF_PXP_POWER_LUT_LP_STATE_WAY0_BANKN(v)))
 #endif
 
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANKN__NONE (0x0) //!< Memory is not in low power state.
@@ -5983,19 +5400,14 @@ typedef union _hw_pxp_power
 #define BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN      (0x000001c0)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY1_BANKN.
 
 //! @brief Get value of PXP_POWER_LUT_LP_STATE_WAY1_BANKN from a register value.
-#define BG_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(r)   (((r) & BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) >> BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN)
+#define BG_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) >> BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY1_BANKN.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)   ((((reg32_t) v) << BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN)
-#else
-//! @brief Format value for bitfield PXP_POWER_LUT_LP_STATE_WAY1_BANKN.
-#define BF_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)   (((v) << BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN)
-#endif
+#define BF_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) & BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_LP_STATE_WAY1_BANKN field to a new value.
-#define BW_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)   BF_CS1(PXP_POWER, LUT_LP_STATE_WAY1_BANKN, v)
+#define BW_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN) | BF_PXP_POWER_LUT_LP_STATE_WAY1_BANKN(v)))
 #endif
 
 #define BV_PXP_POWER_LUT_LP_STATE_WAY1_BANKN__NONE (0x0) //!< Memory is not in low power state.
@@ -6018,19 +5430,14 @@ typedef union _hw_pxp_power
 #define BM_PXP_POWER_ROT_MEM_LP_STATE      (0x00000e00)  //!< Bit mask for PXP_POWER_ROT_MEM_LP_STATE.
 
 //! @brief Get value of PXP_POWER_ROT_MEM_LP_STATE from a register value.
-#define BG_PXP_POWER_ROT_MEM_LP_STATE(r)   (((r) & BM_PXP_POWER_ROT_MEM_LP_STATE) >> BP_PXP_POWER_ROT_MEM_LP_STATE)
+#define BG_PXP_POWER_ROT_MEM_LP_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_POWER_ROT_MEM_LP_STATE) >> BP_PXP_POWER_ROT_MEM_LP_STATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_POWER_ROT_MEM_LP_STATE.
-#define BF_PXP_POWER_ROT_MEM_LP_STATE(v)   ((((reg32_t) v) << BP_PXP_POWER_ROT_MEM_LP_STATE) & BM_PXP_POWER_ROT_MEM_LP_STATE)
-#else
-//! @brief Format value for bitfield PXP_POWER_ROT_MEM_LP_STATE.
-#define BF_PXP_POWER_ROT_MEM_LP_STATE(v)   (((v) << BP_PXP_POWER_ROT_MEM_LP_STATE) & BM_PXP_POWER_ROT_MEM_LP_STATE)
-#endif
+#define BF_PXP_POWER_ROT_MEM_LP_STATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_POWER_ROT_MEM_LP_STATE) & BM_PXP_POWER_ROT_MEM_LP_STATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROT_MEM_LP_STATE field to a new value.
-#define BW_PXP_POWER_ROT_MEM_LP_STATE(v)   BF_CS1(PXP_POWER, ROT_MEM_LP_STATE, v)
+#define BW_PXP_POWER_ROT_MEM_LP_STATE(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_ROT_MEM_LP_STATE) | BF_PXP_POWER_ROT_MEM_LP_STATE(v)))
 #endif
 
 #define BV_PXP_POWER_ROT_MEM_LP_STATE__NONE (0x0) //!< Memory is not in low power state.
@@ -6047,20 +5454,19 @@ typedef union _hw_pxp_power
 #define BM_PXP_POWER_CTRL      (0xfffff000)  //!< Bit mask for PXP_POWER_CTRL.
 
 //! @brief Get value of PXP_POWER_CTRL from a register value.
-#define BG_PXP_POWER_CTRL(r)   (((r) & BM_PXP_POWER_CTRL) >> BP_PXP_POWER_CTRL)
+#define BG_PXP_POWER_CTRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_POWER_CTRL) >> BP_PXP_POWER_CTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_POWER_CTRL.
-#define BF_PXP_POWER_CTRL(v)   ((((reg32_t) v) << BP_PXP_POWER_CTRL) & BM_PXP_POWER_CTRL)
-#else
-//! @brief Format value for bitfield PXP_POWER_CTRL.
-#define BF_PXP_POWER_CTRL(v)   (((v) << BP_PXP_POWER_CTRL) & BM_PXP_POWER_CTRL)
-#endif
+#define BF_PXP_POWER_CTRL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_POWER_CTRL) & BM_PXP_POWER_CTRL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTRL field to a new value.
-#define BW_PXP_POWER_CTRL(v)   BF_CS1(PXP_POWER, CTRL, v)
+#define BW_PXP_POWER_CTRL(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_CTRL) | BF_PXP_POWER_CTRL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PXP_NEXT - Next Frame Pointer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6106,17 +5512,14 @@ typedef union _hw_pxp_next
  * constants & macros for entire PXP_NEXT register
  */
 #define HW_PXP_NEXT_ADDR      (REGS_PXP_BASE + 0x400)
-#define HW_PXP_NEXT_SET_ADDR  (HW_PXP_NEXT_ADDR + 0x4)
-#define HW_PXP_NEXT_CLR_ADDR  (HW_PXP_NEXT_ADDR + 0x8)
-#define HW_PXP_NEXT_TOG_ADDR  (HW_PXP_NEXT_ADDR + 0xC)
 
 #ifndef __LANGUAGE_ASM__
 #define HW_PXP_NEXT           (*(volatile hw_pxp_next_t *) HW_PXP_NEXT_ADDR)
 #define HW_PXP_NEXT_RD()      (HW_PXP_NEXT.U)
 #define HW_PXP_NEXT_WR(v)     (HW_PXP_NEXT.U = (v))
-#define HW_PXP_NEXT_SET(v)    ((*(volatile reg32_t *) HW_PXP_NEXT_SET_ADDR) = (v))
-#define HW_PXP_NEXT_CLR(v)    ((*(volatile reg32_t *) HW_PXP_NEXT_CLR_ADDR) = (v))
-#define HW_PXP_NEXT_TOG(v)    ((*(volatile reg32_t *) HW_PXP_NEXT_TOG_ADDR) = (v))
+#define HW_PXP_NEXT_SET(v)    (HW_PXP_NEXT_WR(HW_PXP_NEXT_RD() |  (v)))
+#define HW_PXP_NEXT_CLR(v)    (HW_PXP_NEXT_WR(HW_PXP_NEXT_RD() & ~(v)))
+#define HW_PXP_NEXT_TOG(v)    (HW_PXP_NEXT_WR(HW_PXP_NEXT_RD() ^  (v)))
 #endif
 
 /*
@@ -6134,7 +5537,7 @@ typedef union _hw_pxp_next
 #define BM_PXP_NEXT_ENABLED      (0x00000001)  //!< Bit mask for PXP_NEXT_ENABLED.
 
 //! @brief Get value of PXP_NEXT_ENABLED from a register value.
-#define BG_PXP_NEXT_ENABLED(r)   (((r) & BM_PXP_NEXT_ENABLED) >> BP_PXP_NEXT_ENABLED)
+#define BG_PXP_NEXT_ENABLED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_NEXT_ENABLED) >> BP_PXP_NEXT_ENABLED)
 
 /* --- Register HW_PXP_NEXT, field POINTER[31:2] (RW)
  *
@@ -6146,19 +5549,14 @@ typedef union _hw_pxp_next
 #define BM_PXP_NEXT_POINTER      (0xfffffffc)  //!< Bit mask for PXP_NEXT_POINTER.
 
 //! @brief Get value of PXP_NEXT_POINTER from a register value.
-#define BG_PXP_NEXT_POINTER(r)   (((r) & BM_PXP_NEXT_POINTER) >> BP_PXP_NEXT_POINTER)
+#define BG_PXP_NEXT_POINTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_NEXT_POINTER) >> BP_PXP_NEXT_POINTER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PXP_NEXT_POINTER.
-#define BF_PXP_NEXT_POINTER(v)   ((((reg32_t) v) << BP_PXP_NEXT_POINTER) & BM_PXP_NEXT_POINTER)
-#else
-//! @brief Format value for bitfield PXP_NEXT_POINTER.
-#define BF_PXP_NEXT_POINTER(v)   (((v) << BP_PXP_NEXT_POINTER) & BM_PXP_NEXT_POINTER)
-#endif
+#define BF_PXP_NEXT_POINTER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PXP_NEXT_POINTER) & BM_PXP_NEXT_POINTER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POINTER field to a new value.
-#define BW_PXP_NEXT_POINTER(v)   BF_CS1(PXP_NEXT, POINTER, v)
+#define BW_PXP_NEXT_POINTER(v)   (HW_PXP_NEXT_WR((HW_PXP_NEXT_RD() & ~BM_PXP_NEXT_POINTER) | BF_PXP_NEXT_POINTER(v)))
 #endif
 
 
@@ -6170,214 +5568,108 @@ typedef union _hw_pxp_next
 typedef struct _hw_pxp
 {
     volatile hw_pxp_ctrl_t CTRL; //!< Control Register 0
-    volatile reg32_t CTRL_SET; //!< Control Register 0 Set
-    volatile reg32_t CTRL_CLR; //!< Control Register 0 Clear
-    volatile reg32_t CTRL_TOG; //!< Control Register 0 Toggle
+    reg32_t _reserved0[3];
     volatile hw_pxp_stat_t STAT; //!< Status Register
-    volatile reg32_t STAT_SET; //!< Status Register Set
-    volatile reg32_t STAT_CLR; //!< Status Register Clear
-    volatile reg32_t STAT_TOG; //!< Status Register Toggle
+    reg32_t _reserved1[3];
     volatile hw_pxp_out_ctrl_t OUT_CTRL; //!< Output Buffer Control Register
-    volatile reg32_t OUT_CTRL_SET; //!< Output Buffer Control Register Set
-    volatile reg32_t OUT_CTRL_CLR; //!< Output Buffer Control Register Clear
-    volatile reg32_t OUT_CTRL_TOG; //!< Output Buffer Control Register Toggle
+    reg32_t _reserved2[3];
     volatile hw_pxp_out_buf_t OUT_BUF; //!< Output Frame Buffer Pointer
-    volatile reg32_t OUT_BUF_SET; //!< Output Frame Buffer Pointer Set
-    volatile reg32_t OUT_BUF_CLR; //!< Output Frame Buffer Pointer Clear
-    volatile reg32_t OUT_BUF_TOG; //!< Output Frame Buffer Pointer Toggle
+    reg32_t _reserved3[3];
     volatile hw_pxp_out_buf2_t OUT_BUF2; //!< Output Frame Buffer Pointer #2
-    volatile reg32_t OUT_BUF2_SET; //!< Output Frame Buffer Pointer #2 Set
-    volatile reg32_t OUT_BUF2_CLR; //!< Output Frame Buffer Pointer #2 Clear
-    volatile reg32_t OUT_BUF2_TOG; //!< Output Frame Buffer Pointer #2 Toggle
+    reg32_t _reserved4[3];
     volatile hw_pxp_out_pitch_t OUT_PITCH; //!< Output Buffer Pitch
-    volatile reg32_t OUT_PITCH_SET; //!< Output Buffer Pitch Set
-    volatile reg32_t OUT_PITCH_CLR; //!< Output Buffer Pitch Clear
-    volatile reg32_t OUT_PITCH_TOG; //!< Output Buffer Pitch Toggle
+    reg32_t _reserved5[3];
     volatile hw_pxp_out_lrc_t OUT_LRC; //!< Output Surface Lower Right Coordinate
-    volatile reg32_t OUT_LRC_SET; //!< Output Surface Lower Right Coordinate Set
-    volatile reg32_t OUT_LRC_CLR; //!< Output Surface Lower Right Coordinate Clear
-    volatile reg32_t OUT_LRC_TOG; //!< Output Surface Lower Right Coordinate Toggle
+    reg32_t _reserved6[3];
     volatile hw_pxp_out_ps_ulc_t OUT_PS_ULC; //!< Processed Surface Upper Left Coordinate
-    volatile reg32_t OUT_PS_ULC_SET; //!< Processed Surface Upper Left Coordinate Set
-    volatile reg32_t OUT_PS_ULC_CLR; //!< Processed Surface Upper Left Coordinate Clear
-    volatile reg32_t OUT_PS_ULC_TOG; //!< Processed Surface Upper Left Coordinate Toggle
+    reg32_t _reserved7[3];
     volatile hw_pxp_out_ps_lrc_t OUT_PS_LRC; //!< Processed Surface Lower Right Coordinate
-    volatile reg32_t OUT_PS_LRC_SET; //!< Processed Surface Lower Right Coordinate Set
-    volatile reg32_t OUT_PS_LRC_CLR; //!< Processed Surface Lower Right Coordinate Clear
-    volatile reg32_t OUT_PS_LRC_TOG; //!< Processed Surface Lower Right Coordinate Toggle
+    reg32_t _reserved8[3];
     volatile hw_pxp_out_as_ulc_t OUT_AS_ULC; //!< Alpha Surface Upper Left Coordinate
-    volatile reg32_t OUT_AS_ULC_SET; //!< Alpha Surface Upper Left Coordinate Set
-    volatile reg32_t OUT_AS_ULC_CLR; //!< Alpha Surface Upper Left Coordinate Clear
-    volatile reg32_t OUT_AS_ULC_TOG; //!< Alpha Surface Upper Left Coordinate Toggle
+    reg32_t _reserved9[3];
     volatile hw_pxp_out_as_lrc_t OUT_AS_LRC; //!< Alpha Surface Lower Right Coordinate
-    volatile reg32_t OUT_AS_LRC_SET; //!< Alpha Surface Lower Right Coordinate Set
-    volatile reg32_t OUT_AS_LRC_CLR; //!< Alpha Surface Lower Right Coordinate Clear
-    volatile reg32_t OUT_AS_LRC_TOG; //!< Alpha Surface Lower Right Coordinate Toggle
+    reg32_t _reserved10[3];
     volatile hw_pxp_ps_ctrl_t PS_CTRL; //!< Processed Surface (PS) Control Register
-    volatile reg32_t PS_CTRL_SET; //!< Processed Surface (PS) Control Register Set
-    volatile reg32_t PS_CTRL_CLR; //!< Processed Surface (PS) Control Register Clear
-    volatile reg32_t PS_CTRL_TOG; //!< Processed Surface (PS) Control Register Toggle
+    reg32_t _reserved11[3];
     volatile hw_pxp_ps_buf_t PS_BUF; //!< PS Input Buffer Address
-    volatile reg32_t PS_BUF_SET; //!< PS Input Buffer Address Set
-    volatile reg32_t PS_BUF_CLR; //!< PS Input Buffer Address Clear
-    volatile reg32_t PS_BUF_TOG; //!< PS Input Buffer Address Toggle
+    reg32_t _reserved12[3];
     volatile hw_pxp_ps_ubuf_t PS_UBUF; //!< PS U/Cb or 2 Plane UV Input Buffer Address
-    volatile reg32_t PS_UBUF_SET; //!< PS U/Cb or 2 Plane UV Input Buffer Address Set
-    volatile reg32_t PS_UBUF_CLR; //!< PS U/Cb or 2 Plane UV Input Buffer Address Clear
-    volatile reg32_t PS_UBUF_TOG; //!< PS U/Cb or 2 Plane UV Input Buffer Address Toggle
+    reg32_t _reserved13[3];
     volatile hw_pxp_ps_vbuf_t PS_VBUF; //!< PS V/Cr Input Buffer Address
-    volatile reg32_t PS_VBUF_SET; //!< PS V/Cr Input Buffer Address Set
-    volatile reg32_t PS_VBUF_CLR; //!< PS V/Cr Input Buffer Address Clear
-    volatile reg32_t PS_VBUF_TOG; //!< PS V/Cr Input Buffer Address Toggle
+    reg32_t _reserved14[3];
     volatile hw_pxp_ps_pitch_t PS_PITCH; //!< Processed Surface Pitch
-    volatile reg32_t PS_PITCH_SET; //!< Processed Surface Pitch Set
-    volatile reg32_t PS_PITCH_CLR; //!< Processed Surface Pitch Clear
-    volatile reg32_t PS_PITCH_TOG; //!< Processed Surface Pitch Toggle
+    reg32_t _reserved15[3];
     volatile hw_pxp_ps_background_t PS_BACKGROUND; //!< PS Background Color
-    volatile reg32_t PS_BACKGROUND_SET; //!< PS Background Color Set
-    volatile reg32_t PS_BACKGROUND_CLR; //!< PS Background Color Clear
-    volatile reg32_t PS_BACKGROUND_TOG; //!< PS Background Color Toggle
+    reg32_t _reserved16[3];
     volatile hw_pxp_ps_scale_t PS_SCALE; //!< PS Scale Factor Register
-    volatile reg32_t PS_SCALE_SET; //!< PS Scale Factor Register Set
-    volatile reg32_t PS_SCALE_CLR; //!< PS Scale Factor Register Clear
-    volatile reg32_t PS_SCALE_TOG; //!< PS Scale Factor Register Toggle
+    reg32_t _reserved17[3];
     volatile hw_pxp_ps_offset_t PS_OFFSET; //!< PS Scale Offset Register
-    volatile reg32_t PS_OFFSET_SET; //!< PS Scale Offset Register Set
-    volatile reg32_t PS_OFFSET_CLR; //!< PS Scale Offset Register Clear
-    volatile reg32_t PS_OFFSET_TOG; //!< PS Scale Offset Register Toggle
+    reg32_t _reserved18[3];
     volatile hw_pxp_ps_clrkeylow_t PS_CLRKEYLOW; //!< PS Color Key Low
-    volatile reg32_t PS_CLRKEYLOW_SET; //!< PS Color Key Low Set
-    volatile reg32_t PS_CLRKEYLOW_CLR; //!< PS Color Key Low Clear
-    volatile reg32_t PS_CLRKEYLOW_TOG; //!< PS Color Key Low Toggle
+    reg32_t _reserved19[3];
     volatile hw_pxp_ps_clrkeyhigh_t PS_CLRKEYHIGH; //!< PS Color Key High
-    volatile reg32_t PS_CLRKEYHIGH_SET; //!< PS Color Key High Set
-    volatile reg32_t PS_CLRKEYHIGH_CLR; //!< PS Color Key High Clear
-    volatile reg32_t PS_CLRKEYHIGH_TOG; //!< PS Color Key High Toggle
+    reg32_t _reserved20[3];
     volatile hw_pxp_as_ctrl_t AS_CTRL; //!< Alpha Surface Control
-    volatile reg32_t AS_CTRL_SET; //!< Alpha Surface Control Set
-    volatile reg32_t AS_CTRL_CLR; //!< Alpha Surface Control Clear
-    volatile reg32_t AS_CTRL_TOG; //!< Alpha Surface Control Toggle
+    reg32_t _reserved21[3];
     volatile hw_pxp_as_buf_t AS_BUF; //!< Alpha Surface Buffer Pointer
-    volatile reg32_t AS_BUF_SET; //!< Alpha Surface Buffer Pointer Set
-    volatile reg32_t AS_BUF_CLR; //!< Alpha Surface Buffer Pointer Clear
-    volatile reg32_t AS_BUF_TOG; //!< Alpha Surface Buffer Pointer Toggle
+    reg32_t _reserved22[3];
     volatile hw_pxp_as_pitch_t AS_PITCH; //!< Alpha Surface Pitch
-    volatile reg32_t AS_PITCH_SET; //!< Alpha Surface Pitch Set
-    volatile reg32_t AS_PITCH_CLR; //!< Alpha Surface Pitch Clear
-    volatile reg32_t AS_PITCH_TOG; //!< Alpha Surface Pitch Toggle
+    reg32_t _reserved23[3];
     volatile hw_pxp_as_clrkeylow_t AS_CLRKEYLOW; //!< Overlay Color Key Low
-    volatile reg32_t AS_CLRKEYLOW_SET; //!< Overlay Color Key Low Set
-    volatile reg32_t AS_CLRKEYLOW_CLR; //!< Overlay Color Key Low Clear
-    volatile reg32_t AS_CLRKEYLOW_TOG; //!< Overlay Color Key Low Toggle
+    reg32_t _reserved24[3];
     volatile hw_pxp_as_clrkeyhigh_t AS_CLRKEYHIGH; //!< Overlay Color Key High
-    volatile reg32_t AS_CLRKEYHIGH_SET; //!< Overlay Color Key High Set
-    volatile reg32_t AS_CLRKEYHIGH_CLR; //!< Overlay Color Key High Clear
-    volatile reg32_t AS_CLRKEYHIGH_TOG; //!< Overlay Color Key High Toggle
+    reg32_t _reserved25[3];
     volatile hw_pxp_csc1_coef0_t CSC1_COEF0; //!< Color Space Conversion Coefficient Register 0
-    volatile reg32_t CSC1_COEF0_SET; //!< Color Space Conversion Coefficient Register 0 Set
-    volatile reg32_t CSC1_COEF0_CLR; //!< Color Space Conversion Coefficient Register 0 Clear
-    volatile reg32_t CSC1_COEF0_TOG; //!< Color Space Conversion Coefficient Register 0 Toggle
+    reg32_t _reserved26[3];
     volatile hw_pxp_csc1_coef1_t CSC1_COEF1; //!< Color Space Conversion Coefficient Register 1
-    volatile reg32_t CSC1_COEF1_SET; //!< Color Space Conversion Coefficient Register 1 Set
-    volatile reg32_t CSC1_COEF1_CLR; //!< Color Space Conversion Coefficient Register 1 Clear
-    volatile reg32_t CSC1_COEF1_TOG; //!< Color Space Conversion Coefficient Register 1 Toggle
+    reg32_t _reserved27[3];
     volatile hw_pxp_csc1_coef2_t CSC1_COEF2; //!< Color Space Conversion Coefficient Register 2
-    volatile reg32_t CSC1_COEF2_SET; //!< Color Space Conversion Coefficient Register 2 Set
-    volatile reg32_t CSC1_COEF2_CLR; //!< Color Space Conversion Coefficient Register 2 Clear
-    volatile reg32_t CSC1_COEF2_TOG; //!< Color Space Conversion Coefficient Register 2 Toggle
+    reg32_t _reserved28[3];
     volatile hw_pxp_csc2_ctrl_t CSC2_CTRL; //!< Color Space Conversion Control Register.
-    volatile reg32_t CSC2_CTRL_SET; //!< Color Space Conversion Control Register. Set
-    volatile reg32_t CSC2_CTRL_CLR; //!< Color Space Conversion Control Register. Clear
-    volatile reg32_t CSC2_CTRL_TOG; //!< Color Space Conversion Control Register. Toggle
+    reg32_t _reserved29[3];
     volatile hw_pxp_csc2_coef0_t CSC2_COEF0; //!< Color Space Conversion Coefficient Register 0
-    volatile reg32_t CSC2_COEF0_SET; //!< Color Space Conversion Coefficient Register 0 Set
-    volatile reg32_t CSC2_COEF0_CLR; //!< Color Space Conversion Coefficient Register 0 Clear
-    volatile reg32_t CSC2_COEF0_TOG; //!< Color Space Conversion Coefficient Register 0 Toggle
+    reg32_t _reserved30[3];
     volatile hw_pxp_csc2_coef1_t CSC2_COEF1; //!< Color Space Conversion Coefficient Register 1
-    volatile reg32_t CSC2_COEF1_SET; //!< Color Space Conversion Coefficient Register 1 Set
-    volatile reg32_t CSC2_COEF1_CLR; //!< Color Space Conversion Coefficient Register 1 Clear
-    volatile reg32_t CSC2_COEF1_TOG; //!< Color Space Conversion Coefficient Register 1 Toggle
+    reg32_t _reserved31[3];
     volatile hw_pxp_csc2_coef2_t CSC2_COEF2; //!< Color Space Conversion Coefficient Register 2
-    volatile reg32_t CSC2_COEF2_SET; //!< Color Space Conversion Coefficient Register 2 Set
-    volatile reg32_t CSC2_COEF2_CLR; //!< Color Space Conversion Coefficient Register 2 Clear
-    volatile reg32_t CSC2_COEF2_TOG; //!< Color Space Conversion Coefficient Register 2 Toggle
+    reg32_t _reserved32[3];
     volatile hw_pxp_csc2_coef3_t CSC2_COEF3; //!< Color Space Conversion Coefficient Register 3
-    volatile reg32_t CSC2_COEF3_SET; //!< Color Space Conversion Coefficient Register 3 Set
-    volatile reg32_t CSC2_COEF3_CLR; //!< Color Space Conversion Coefficient Register 3 Clear
-    volatile reg32_t CSC2_COEF3_TOG; //!< Color Space Conversion Coefficient Register 3 Toggle
+    reg32_t _reserved33[3];
     volatile hw_pxp_csc2_coef4_t CSC2_COEF4; //!< Color Space Conversion Coefficient Register 4
-    volatile reg32_t CSC2_COEF4_SET; //!< Color Space Conversion Coefficient Register 4 Set
-    volatile reg32_t CSC2_COEF4_CLR; //!< Color Space Conversion Coefficient Register 4 Clear
-    volatile reg32_t CSC2_COEF4_TOG; //!< Color Space Conversion Coefficient Register 4 Toggle
+    reg32_t _reserved34[3];
     volatile hw_pxp_csc2_coef5_t CSC2_COEF5; //!< Color Space Conversion Coefficient Register 5
-    volatile reg32_t CSC2_COEF5_SET; //!< Color Space Conversion Coefficient Register 5 Set
-    volatile reg32_t CSC2_COEF5_CLR; //!< Color Space Conversion Coefficient Register 5 Clear
-    volatile reg32_t CSC2_COEF5_TOG; //!< Color Space Conversion Coefficient Register 5 Toggle
+    reg32_t _reserved35[3];
     volatile hw_pxp_lut_ctrl_t LUT_CTRL; //!< Lookup Table Control Register.
-    volatile reg32_t LUT_CTRL_SET; //!< Lookup Table Control Register. Set
-    volatile reg32_t LUT_CTRL_CLR; //!< Lookup Table Control Register. Clear
-    volatile reg32_t LUT_CTRL_TOG; //!< Lookup Table Control Register. Toggle
+    reg32_t _reserved36[3];
     volatile hw_pxp_lut_addr_t LUT_ADDR; //!< Lookup Table Control Register.
-    volatile reg32_t LUT_ADDR_SET; //!< Lookup Table Control Register. Set
-    volatile reg32_t LUT_ADDR_CLR; //!< Lookup Table Control Register. Clear
-    volatile reg32_t LUT_ADDR_TOG; //!< Lookup Table Control Register. Toggle
+    reg32_t _reserved37[3];
     volatile hw_pxp_lut_data_t LUT_DATA; //!< Lookup Table Data Register.
-    volatile reg32_t LUT_DATA_SET; //!< Lookup Table Data Register. Set
-    volatile reg32_t LUT_DATA_CLR; //!< Lookup Table Data Register. Clear
-    volatile reg32_t LUT_DATA_TOG; //!< Lookup Table Data Register. Toggle
+    reg32_t _reserved38[3];
     volatile hw_pxp_lut_extmem_t LUT_EXTMEM; //!< Lookup Table External Memory Address Register.
-    volatile reg32_t LUT_EXTMEM_SET; //!< Lookup Table External Memory Address Register. Set
-    volatile reg32_t LUT_EXTMEM_CLR; //!< Lookup Table External Memory Address Register. Clear
-    volatile reg32_t LUT_EXTMEM_TOG; //!< Lookup Table External Memory Address Register. Toggle
+    reg32_t _reserved39[3];
     volatile hw_pxp_cfa_t CFA; //!< Color Filter Array Register.
-    volatile reg32_t CFA_SET; //!< Color Filter Array Register. Set
-    volatile reg32_t CFA_CLR; //!< Color Filter Array Register. Clear
-    volatile reg32_t CFA_TOG; //!< Color Filter Array Register. Toggle
+    reg32_t _reserved40[3];
     volatile hw_pxp_hist_ctrl_t HIST_CTRL; //!< Histogram Control Register.
-    volatile reg32_t HIST_CTRL_SET; //!< Histogram Control Register. Set
-    volatile reg32_t HIST_CTRL_CLR; //!< Histogram Control Register. Clear
-    volatile reg32_t HIST_CTRL_TOG; //!< Histogram Control Register. Toggle
+    reg32_t _reserved41[3];
     volatile hw_pxp_hist2_param_t HIST2_PARAM; //!< 2-level Histogram Parameter Register.
-    volatile reg32_t HIST2_PARAM_SET; //!< 2-level Histogram Parameter Register. Set
-    volatile reg32_t HIST2_PARAM_CLR; //!< 2-level Histogram Parameter Register. Clear
-    volatile reg32_t HIST2_PARAM_TOG; //!< 2-level Histogram Parameter Register. Toggle
+    reg32_t _reserved42[3];
     volatile hw_pxp_hist4_param_t HIST4_PARAM; //!< 4-level Histogram Parameter Register.
-    volatile reg32_t HIST4_PARAM_SET; //!< 4-level Histogram Parameter Register. Set
-    volatile reg32_t HIST4_PARAM_CLR; //!< 4-level Histogram Parameter Register. Clear
-    volatile reg32_t HIST4_PARAM_TOG; //!< 4-level Histogram Parameter Register. Toggle
+    reg32_t _reserved43[3];
     volatile hw_pxp_hist8_param0_t HIST8_PARAM0; //!< 8-level Histogram Parameter 0 Register.
-    volatile reg32_t HIST8_PARAM0_SET; //!< 8-level Histogram Parameter 0 Register. Set
-    volatile reg32_t HIST8_PARAM0_CLR; //!< 8-level Histogram Parameter 0 Register. Clear
-    volatile reg32_t HIST8_PARAM0_TOG; //!< 8-level Histogram Parameter 0 Register. Toggle
+    reg32_t _reserved44[3];
     volatile hw_pxp_hist8_param1_t HIST8_PARAM1; //!< 8-level Histogram Parameter 1 Register.
-    volatile reg32_t HIST8_PARAM1_SET; //!< 8-level Histogram Parameter 1 Register. Set
-    volatile reg32_t HIST8_PARAM1_CLR; //!< 8-level Histogram Parameter 1 Register. Clear
-    volatile reg32_t HIST8_PARAM1_TOG; //!< 8-level Histogram Parameter 1 Register. Toggle
+    reg32_t _reserved45[3];
     volatile hw_pxp_hist16_param0_t HIST16_PARAM0; //!< 16-level Histogram Parameter 0 Register.
-    volatile reg32_t HIST16_PARAM0_SET; //!< 16-level Histogram Parameter 0 Register. Set
-    volatile reg32_t HIST16_PARAM0_CLR; //!< 16-level Histogram Parameter 0 Register. Clear
-    volatile reg32_t HIST16_PARAM0_TOG; //!< 16-level Histogram Parameter 0 Register. Toggle
+    reg32_t _reserved46[3];
     volatile hw_pxp_hist16_param1_t HIST16_PARAM1; //!< 16-level Histogram Parameter 1 Register.
-    volatile reg32_t HIST16_PARAM1_SET; //!< 16-level Histogram Parameter 1 Register. Set
-    volatile reg32_t HIST16_PARAM1_CLR; //!< 16-level Histogram Parameter 1 Register. Clear
-    volatile reg32_t HIST16_PARAM1_TOG; //!< 16-level Histogram Parameter 1 Register. Toggle
+    reg32_t _reserved47[3];
     volatile hw_pxp_hist16_param2_t HIST16_PARAM2; //!< 16-level Histogram Parameter 2 Register.
-    volatile reg32_t HIST16_PARAM2_SET; //!< 16-level Histogram Parameter 2 Register. Set
-    volatile reg32_t HIST16_PARAM2_CLR; //!< 16-level Histogram Parameter 2 Register. Clear
-    volatile reg32_t HIST16_PARAM2_TOG; //!< 16-level Histogram Parameter 2 Register. Toggle
+    reg32_t _reserved48[3];
     volatile hw_pxp_hist16_param3_t HIST16_PARAM3; //!< 16-level Histogram Parameter 3 Register.
-    volatile reg32_t HIST16_PARAM3_SET; //!< 16-level Histogram Parameter 3 Register. Set
-    volatile reg32_t HIST16_PARAM3_CLR; //!< 16-level Histogram Parameter 3 Register. Clear
-    volatile reg32_t HIST16_PARAM3_TOG; //!< 16-level Histogram Parameter 3 Register. Toggle
+    reg32_t _reserved49[3];
     volatile hw_pxp_power_t POWER; //!< PXP Power Control Register.
-    volatile reg32_t POWER_SET; //!< PXP Power Control Register. Set
-    volatile reg32_t POWER_CLR; //!< PXP Power Control Register. Clear
-    volatile reg32_t POWER_TOG; //!< PXP Power Control Register. Toggle
-    reg32_t _reserved0[52];
+    reg32_t _reserved50[55];
     volatile hw_pxp_next_t NEXT; //!< Next Frame Pointer
-    volatile reg32_t NEXT_SET; //!< Next Frame Pointer Set
-    volatile reg32_t NEXT_CLR; //!< Next Frame Pointer Clear
-    volatile reg32_t NEXT_TOG; //!< Next Frame Pointer Toggle
 } hw_pxp_t;
 #pragma pack()
 

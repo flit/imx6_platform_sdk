@@ -37,7 +37,6 @@
  * - HW_SATAPHY_LANE0_TX_ANA_ATBSEL2 - Transmit ATB 2 Control Register
  * - HW_SATAPHY_LANE0_TX_ANA_CONTROL - Transmit Analog Control Register
  *
- * - hw_sataphy_lane0_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
@@ -47,6 +46,21 @@
 #define REGS_SATAPHY_LANE0_BASE (0x00000000) //!< Base address for SATAPHY_LANE0.
 #endif
 //@}
+
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_TX_STAT - Transmit Input Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -81,7 +95,6 @@ typedef union _hw_sataphy_lane0_tx_stat
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_TX_STAT           (*(volatile hw_sataphy_lane0_tx_stat_t *) HW_SATAPHY_LANE0_TX_STAT_ADDR)
-#define HW_SATAPHY_LANE0_TX_STAT_RD()      (HW_SATAPHY_LANE0_TX_STAT.U)
 #endif
 
 /*
@@ -97,7 +110,7 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_CKO_EN      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_CKO_EN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_CKO_EN from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_CKO_EN(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_CKO_EN) >> BP_SATAPHY_LANE0_TX_STAT_TX_CKO_EN)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_CKO_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_CKO_EN) >> BP_SATAPHY_LANE0_TX_STAT_TX_CKO_EN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_STAT, field TX_EN[3:1] (RO)
  *
@@ -108,7 +121,7 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_EN      (0x0000000e)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_EN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_EN from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_EN(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_EN) >> BP_SATAPHY_LANE0_TX_STAT_TX_EN)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_EN) >> BP_SATAPHY_LANE0_TX_STAT_TX_EN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_STAT, field TX_CLK_ALIGN[4] (RO)
  *
@@ -119,7 +132,7 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN) >> BP_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN) >> BP_SATAPHY_LANE0_TX_STAT_TX_CLK_ALIGN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_STAT, field TX_BOOST[9:6] (RO)
  *
@@ -130,7 +143,7 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_BOOST      (0x000003c0)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_BOOST.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_BOOST from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_BOOST(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_BOOST) >> BP_SATAPHY_LANE0_TX_STAT_TX_BOOST)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_BOOST(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_BOOST) >> BP_SATAPHY_LANE0_TX_STAT_TX_BOOST)
 
 /* --- Register HW_SATAPHY_LANE0_TX_STAT, field TX_ATTEN[12:10] (RO)
  *
@@ -141,7 +154,7 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_ATTEN      (0x00001c00)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_ATTEN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_ATTEN from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_ATTEN(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_ATTEN) >> BP_SATAPHY_LANE0_TX_STAT_TX_ATTEN)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_ATTEN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_ATTEN) >> BP_SATAPHY_LANE0_TX_STAT_TX_ATTEN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_STAT, field TX_EDGERATE[14:13] (RO)
  *
@@ -152,7 +165,11 @@ typedef union _hw_sataphy_lane0_tx_stat
 #define BM_SATAPHY_LANE0_TX_STAT_TX_EDGERATE      (0x00006000)  //!< Bit mask for SATAPHY_LANE0_TX_STAT_TX_EDGERATE.
 
 //! @brief Get value of SATAPHY_LANE0_TX_STAT_TX_EDGERATE from a register value.
-#define BG_SATAPHY_LANE0_TX_STAT_TX_EDGERATE(r)   (((r) & BM_SATAPHY_LANE0_TX_STAT_TX_EDGERATE) >> BP_SATAPHY_LANE0_TX_STAT_TX_EDGERATE)
+#define BG_SATAPHY_LANE0_TX_STAT_TX_EDGERATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_STAT_TX_EDGERATE) >> BP_SATAPHY_LANE0_TX_STAT_TX_EDGERATE)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_STAT - Receiver Input Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -189,7 +206,6 @@ typedef union _hw_sataphy_lane0_rx_stat
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_STAT           (*(volatile hw_sataphy_lane0_rx_stat_t *) HW_SATAPHY_LANE0_RX_STAT_ADDR)
-#define HW_SATAPHY_LANE0_RX_STAT_RD()      (HW_SATAPHY_LANE0_RX_STAT.U)
 #endif
 
 /*
@@ -205,7 +221,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_HALF_RATE      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_HALF_RATE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_HALF_RATE from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_HALF_RATE(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_HALF_RATE) >> BP_SATAPHY_LANE0_RX_STAT_HALF_RATE)
+#define BG_SATAPHY_LANE0_RX_STAT_HALF_RATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_HALF_RATE) >> BP_SATAPHY_LANE0_RX_STAT_HALF_RATE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_PLL_PWRON[1] (RO)
  *
@@ -216,7 +232,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON) >> BP_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON) >> BP_SATAPHY_LANE0_RX_STAT_RX_PLL_PWRON)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_EN[2] (RO)
  *
@@ -227,7 +243,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_EN      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_EN)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_ALIGN_EN[3] (RO)
  *
@@ -238,7 +254,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_ALIGN_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_TERM_EN[4] (RO)
  *
@@ -249,7 +265,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_TERM_EN      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_TERM_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_TERM_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_TERM_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_TERM_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_TERM_EN)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_TERM_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_TERM_EN) >> BP_SATAPHY_LANE0_RX_STAT_RX_TERM_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_EQ_VAL[7:5] (RO)
  *
@@ -260,7 +276,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL      (0x000000e0)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_EQ_VAL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_EQ_VAL from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL) >> BP_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL) >> BP_SATAPHY_LANE0_RX_STAT_RX_EQ_VAL)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field RX_DPLL_MODE[10:8] (RO)
  *
@@ -271,7 +287,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE      (0x00000700)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE) >> BP_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE)
+#define BG_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE) >> BP_SATAPHY_LANE0_RX_STAT_RX_DPLL_MODE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field DPLL_RESET[11] (RO)
  *
@@ -282,7 +298,7 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_DPLL_RESET      (0x00000800)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_DPLL_RESET.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_DPLL_RESET from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_DPLL_RESET(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_DPLL_RESET) >> BP_SATAPHY_LANE0_RX_STAT_DPLL_RESET)
+#define BG_SATAPHY_LANE0_RX_STAT_DPLL_RESET(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_DPLL_RESET) >> BP_SATAPHY_LANE0_RX_STAT_DPLL_RESET)
 
 /* --- Register HW_SATAPHY_LANE0_RX_STAT, field LOS_CTL[13:12] (RO)
  *
@@ -293,7 +309,11 @@ typedef union _hw_sataphy_lane0_rx_stat
 #define BM_SATAPHY_LANE0_RX_STAT_LOS_CTL      (0x00003000)  //!< Bit mask for SATAPHY_LANE0_RX_STAT_LOS_CTL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_STAT_LOS_CTL from a register value.
-#define BG_SATAPHY_LANE0_RX_STAT_LOS_CTL(r)   (((r) & BM_SATAPHY_LANE0_RX_STAT_LOS_CTL) >> BP_SATAPHY_LANE0_RX_STAT_LOS_CTL)
+#define BG_SATAPHY_LANE0_RX_STAT_LOS_CTL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_STAT_LOS_CTL) >> BP_SATAPHY_LANE0_RX_STAT_LOS_CTL)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_OUT_STAT - Output Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -326,7 +346,6 @@ typedef union _hw_sataphy_lane0_out_stat
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_OUT_STAT           (*(volatile hw_sataphy_lane0_out_stat_t *) HW_SATAPHY_LANE0_OUT_STAT_ADDR)
-#define HW_SATAPHY_LANE0_OUT_STAT_RD()      (HW_SATAPHY_LANE0_OUT_STAT.U)
 #endif
 
 /*
@@ -342,7 +361,7 @@ typedef union _hw_sataphy_lane0_out_stat
 #define BM_SATAPHY_LANE0_OUT_STAT_RX_VALID      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_OUT_STAT_RX_VALID.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_STAT_RX_VALID from a register value.
-#define BG_SATAPHY_LANE0_OUT_STAT_RX_VALID(r)   (((r) & BM_SATAPHY_LANE0_OUT_STAT_RX_VALID) >> BP_SATAPHY_LANE0_OUT_STAT_RX_VALID)
+#define BG_SATAPHY_LANE0_OUT_STAT_RX_VALID(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_STAT_RX_VALID) >> BP_SATAPHY_LANE0_OUT_STAT_RX_VALID)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_STAT, field RX_PLL_STATE[1] (RO)
  *
@@ -353,7 +372,7 @@ typedef union _hw_sataphy_lane0_out_stat
 #define BM_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE from a register value.
-#define BG_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE(r)   (((r) & BM_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE) >> BP_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE)
+#define BG_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE) >> BP_SATAPHY_LANE0_OUT_STAT_RX_PLL_STATE)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_STAT, field LOS[2] (RO)
  *
@@ -364,7 +383,7 @@ typedef union _hw_sataphy_lane0_out_stat
 #define BM_SATAPHY_LANE0_OUT_STAT_LOS      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_OUT_STAT_LOS.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_STAT_LOS from a register value.
-#define BG_SATAPHY_LANE0_OUT_STAT_LOS(r)   (((r) & BM_SATAPHY_LANE0_OUT_STAT_LOS) >> BP_SATAPHY_LANE0_OUT_STAT_LOS)
+#define BG_SATAPHY_LANE0_OUT_STAT_LOS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_STAT_LOS) >> BP_SATAPHY_LANE0_OUT_STAT_LOS)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_STAT, field TX_DONE[3] (RO)
  *
@@ -375,7 +394,7 @@ typedef union _hw_sataphy_lane0_out_stat
 #define BM_SATAPHY_LANE0_OUT_STAT_TX_DONE      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_OUT_STAT_TX_DONE.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_STAT_TX_DONE from a register value.
-#define BG_SATAPHY_LANE0_OUT_STAT_TX_DONE(r)   (((r) & BM_SATAPHY_LANE0_OUT_STAT_TX_DONE) >> BP_SATAPHY_LANE0_OUT_STAT_TX_DONE)
+#define BG_SATAPHY_LANE0_OUT_STAT_TX_DONE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_STAT_TX_DONE) >> BP_SATAPHY_LANE0_OUT_STAT_TX_DONE)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_STAT, field TX_RXPRES[4] (RO)
  *
@@ -386,7 +405,11 @@ typedef union _hw_sataphy_lane0_out_stat
 #define BM_SATAPHY_LANE0_OUT_STAT_TX_RXPRES      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_OUT_STAT_TX_RXPRES.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_STAT_TX_RXPRES from a register value.
-#define BG_SATAPHY_LANE0_OUT_STAT_TX_RXPRES(r)   (((r) & BM_SATAPHY_LANE0_OUT_STAT_TX_RXPRES) >> BP_SATAPHY_LANE0_OUT_STAT_TX_RXPRES)
+#define BG_SATAPHY_LANE0_OUT_STAT_TX_RXPRES(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_STAT_TX_RXPRES) >> BP_SATAPHY_LANE0_OUT_STAT_TX_RXPRES)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_TX_OVRD - Transmit Input Override Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -421,11 +444,6 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_TX_OVRD           (*(volatile hw_sataphy_lane0_tx_ovrd_t *) HW_SATAPHY_LANE0_TX_OVRD_ADDR)
-#define HW_SATAPHY_LANE0_TX_OVRD_RD()      (HW_SATAPHY_LANE0_TX_OVRD.U)
-#define HW_SATAPHY_LANE0_TX_OVRD_WR(v)     (HW_SATAPHY_LANE0_TX_OVRD.U = (v))
-#define HW_SATAPHY_LANE0_TX_OVRD_SET(v)    (HW_SATAPHY_LANE0_TX_OVRD_WR(HW_SATAPHY_LANE0_TX_OVRD_RD() |  (v)))
-#define HW_SATAPHY_LANE0_TX_OVRD_CLR(v)    (HW_SATAPHY_LANE0_TX_OVRD_WR(HW_SATAPHY_LANE0_TX_OVRD_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_TX_OVRD_TOG(v)    (HW_SATAPHY_LANE0_TX_OVRD_WR(HW_SATAPHY_LANE0_TX_OVRD_RD() ^  (v)))
 #endif
 
 /*
@@ -441,20 +459,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_CKO_EN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_CKO_EN from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_CKO_EN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_CKO_EN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_CKO_EN field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) | BF_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CKO_EN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_EN[3:1] (RW)
  *
@@ -465,20 +473,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_EN      (0x0000000e)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_EN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_EN from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_EN(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_EN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_EN)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_EN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_EN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_EN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_EN(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_EN field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_EN(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_EN) | BF_SATAPHY_LANE0_TX_OVRD_TX_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_EN) & BM_SATAPHY_LANE0_TX_OVRD_TX_EN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_CLK_ALIGN[4] (RW)
  *
@@ -489,20 +487,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_CLK_ALIGN field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) | BF_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_DIS_ALIGN[5] (RW)
  *
@@ -513,20 +501,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_DIS_ALIGN field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) | BF_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN) & BM_SATAPHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_BOOST[9:6] (RW)
  *
@@ -537,20 +515,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST      (0x000003c0)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_BOOST.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_BOOST from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_BOOST(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST) >> BP_SATAPHY_LANE0_TX_OVRD_TX_BOOST)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_BOOST(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST) >> BP_SATAPHY_LANE0_TX_OVRD_TX_BOOST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_BOOST.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_BOOST(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_BOOST) & BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_BOOST.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_BOOST(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_BOOST) & BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_BOOST field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_BOOST(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST) | BF_SATAPHY_LANE0_TX_OVRD_TX_BOOST(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_BOOST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_BOOST) & BM_SATAPHY_LANE0_TX_OVRD_TX_BOOST)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_ATTEN[12:10] (RW)
  *
@@ -561,20 +529,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN      (0x00001c00)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_ATTEN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_ATTEN from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_ATTEN)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) >> BP_SATAPHY_LANE0_TX_OVRD_TX_ATTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_ATTEN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) & BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_ATTEN.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) & BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_ATTEN field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) | BF_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_ATTEN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_ATTEN) & BM_SATAPHY_LANE0_TX_OVRD_TX_ATTEN)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field TX_EDGERATE[14:13] (RW)
  *
@@ -585,20 +543,10 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE      (0x00006000)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_TX_EDGERATE.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_TX_EDGERATE from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) >> BP_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE)
+#define BG_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) >> BP_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_EDGERATE.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) & BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_TX_EDGERATE.
-#define BF_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) & BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_EDGERATE field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) | BF_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE) & BM_SATAPHY_LANE0_TX_OVRD_TX_EDGERATE)
 
 /* --- Register HW_SATAPHY_LANE0_TX_OVRD, field OVRD[15] (RW)
  *
@@ -609,20 +557,14 @@ typedef union _hw_sataphy_lane0_tx_ovrd
 #define BM_SATAPHY_LANE0_TX_OVRD_OVRD      (0x00008000)  //!< Bit mask for SATAPHY_LANE0_TX_OVRD_OVRD.
 
 //! @brief Get value of SATAPHY_LANE0_TX_OVRD_OVRD from a register value.
-#define BG_SATAPHY_LANE0_TX_OVRD_OVRD(r)   (((r) & BM_SATAPHY_LANE0_TX_OVRD_OVRD) >> BP_SATAPHY_LANE0_TX_OVRD_OVRD)
+#define BG_SATAPHY_LANE0_TX_OVRD_OVRD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_OVRD_OVRD) >> BP_SATAPHY_LANE0_TX_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_TX_OVRD_OVRD(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_OVRD_OVRD) & BM_SATAPHY_LANE0_TX_OVRD_OVRD)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_TX_OVRD_OVRD(v)   (((v) << BP_SATAPHY_LANE0_TX_OVRD_OVRD) & BM_SATAPHY_LANE0_TX_OVRD_OVRD)
-#endif
+#define BF_SATAPHY_LANE0_TX_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_OVRD_OVRD) & BM_SATAPHY_LANE0_TX_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OVRD field to a new value.
-#define BW_SATAPHY_LANE0_TX_OVRD_OVRD(v)   (HW_SATAPHY_LANE0_TX_OVRD_WR((HW_SATAPHY_LANE0_TX_OVRD_RD() & ~BM_SATAPHY_LANE0_TX_OVRD_OVRD) | BF_SATAPHY_LANE0_TX_OVRD_OVRD(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_OVRD - Receive Input Override Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -660,11 +602,6 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_OVRD           (*(volatile hw_sataphy_lane0_rx_ovrd_t *) HW_SATAPHY_LANE0_RX_OVRD_ADDR)
-#define HW_SATAPHY_LANE0_RX_OVRD_RD()      (HW_SATAPHY_LANE0_RX_OVRD.U)
-#define HW_SATAPHY_LANE0_RX_OVRD_WR(v)     (HW_SATAPHY_LANE0_RX_OVRD.U = (v))
-#define HW_SATAPHY_LANE0_RX_OVRD_SET(v)    (HW_SATAPHY_LANE0_RX_OVRD_WR(HW_SATAPHY_LANE0_RX_OVRD_RD() |  (v)))
-#define HW_SATAPHY_LANE0_RX_OVRD_CLR(v)    (HW_SATAPHY_LANE0_RX_OVRD_WR(HW_SATAPHY_LANE0_RX_OVRD_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_RX_OVRD_TOG(v)    (HW_SATAPHY_LANE0_RX_OVRD_WR(HW_SATAPHY_LANE0_RX_OVRD_RD() ^  (v)))
 #endif
 
 /*
@@ -680,20 +617,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_HALF_RATE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_HALF_RATE from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_HALF_RATE(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE) >> BP_SATAPHY_LANE0_RX_OVRD_HALF_RATE)
+#define BG_SATAPHY_LANE0_RX_OVRD_HALF_RATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE) >> BP_SATAPHY_LANE0_RX_OVRD_HALF_RATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_HALF_RATE.
-#define BF_SATAPHY_LANE0_RX_OVRD_HALF_RATE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_HALF_RATE) & BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_HALF_RATE.
-#define BF_SATAPHY_LANE0_RX_OVRD_HALF_RATE(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_HALF_RATE) & BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the HALF_RATE field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_HALF_RATE(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE) | BF_SATAPHY_LANE0_RX_OVRD_HALF_RATE(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_HALF_RATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_HALF_RATE) & BM_SATAPHY_LANE0_RX_OVRD_HALF_RATE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_PLL_PWRON[1] (RW)
  *
@@ -704,20 +631,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) >> BP_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) >> BP_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) & BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) & BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_PLL_PWRON field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) | BF_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON) & BM_SATAPHY_LANE0_RX_OVRD_RX_PLL_PWRON)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_EN[2] (RW)
  *
@@ -728,20 +645,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_EN      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_EN)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_EN(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_EN) | BF_SATAPHY_LANE0_RX_OVRD_RX_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_ALIGN_EN[3] (RW)
  *
@@ -752,20 +659,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_ALIGN_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) | BF_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_ALIGN_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_TERM_EN[4] (RW)
  *
@@ -776,20 +673,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_TERM_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_TERM_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) >> BP_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_TERM_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_TERM_EN.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_TERM_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) | BF_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN) & BM_SATAPHY_LANE0_RX_OVRD_RX_TERM_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_EQ_VAL[7:5] (RW)
  *
@@ -800,20 +687,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL      (0x000000e0)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) >> BP_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) >> BP_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) & BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) & BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_EQ_VAL field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) | BF_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL) & BM_SATAPHY_LANE0_RX_OVRD_RX_EQ_VAL)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field RX_DPLL_MODE[10:8] (RW)
  *
@@ -824,20 +701,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE      (0x00000700)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) >> BP_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE)
+#define BG_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) >> BP_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) & BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE.
-#define BF_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) & BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_DPLL_MODE field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) | BF_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE) & BM_SATAPHY_LANE0_RX_OVRD_RX_DPLL_MODE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field DPLL_RESET[11] (RW)
  *
@@ -848,20 +715,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET      (0x00000800)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_DPLL_RESET.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_DPLL_RESET from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) >> BP_SATAPHY_LANE0_RX_OVRD_DPLL_RESET)
+#define BG_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) >> BP_SATAPHY_LANE0_RX_OVRD_DPLL_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_DPLL_RESET.
-#define BF_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) & BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_DPLL_RESET.
-#define BF_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) & BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DPLL_RESET field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) | BF_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_DPLL_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_DPLL_RESET) & BM_SATAPHY_LANE0_RX_OVRD_DPLL_RESET)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field LOS_CTL[13:12] (RW)
  *
@@ -872,20 +729,10 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL      (0x00003000)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_LOS_CTL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_LOS_CTL from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_LOS_CTL(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL) >> BP_SATAPHY_LANE0_RX_OVRD_LOS_CTL)
+#define BG_SATAPHY_LANE0_RX_OVRD_LOS_CTL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL) >> BP_SATAPHY_LANE0_RX_OVRD_LOS_CTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_LOS_CTL.
-#define BF_SATAPHY_LANE0_RX_OVRD_LOS_CTL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_LOS_CTL) & BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_LOS_CTL.
-#define BF_SATAPHY_LANE0_RX_OVRD_LOS_CTL(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_LOS_CTL) & BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the LOS_CTL field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_LOS_CTL(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL) | BF_SATAPHY_LANE0_RX_OVRD_LOS_CTL(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_LOS_CTL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_LOS_CTL) & BM_SATAPHY_LANE0_RX_OVRD_LOS_CTL)
 
 /* --- Register HW_SATAPHY_LANE0_RX_OVRD, field OVRD[14] (RW)
  *
@@ -896,20 +743,14 @@ typedef union _hw_sataphy_lane0_rx_ovrd
 #define BM_SATAPHY_LANE0_RX_OVRD_OVRD      (0x00004000)  //!< Bit mask for SATAPHY_LANE0_RX_OVRD_OVRD.
 
 //! @brief Get value of SATAPHY_LANE0_RX_OVRD_OVRD from a register value.
-#define BG_SATAPHY_LANE0_RX_OVRD_OVRD(r)   (((r) & BM_SATAPHY_LANE0_RX_OVRD_OVRD) >> BP_SATAPHY_LANE0_RX_OVRD_OVRD)
+#define BG_SATAPHY_LANE0_RX_OVRD_OVRD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_OVRD_OVRD) >> BP_SATAPHY_LANE0_RX_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_RX_OVRD_OVRD(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_OVRD_OVRD) & BM_SATAPHY_LANE0_RX_OVRD_OVRD)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_RX_OVRD_OVRD(v)   (((v) << BP_SATAPHY_LANE0_RX_OVRD_OVRD) & BM_SATAPHY_LANE0_RX_OVRD_OVRD)
-#endif
+#define BF_SATAPHY_LANE0_RX_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_OVRD_OVRD) & BM_SATAPHY_LANE0_RX_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OVRD field to a new value.
-#define BW_SATAPHY_LANE0_RX_OVRD_OVRD(v)   (HW_SATAPHY_LANE0_RX_OVRD_WR((HW_SATAPHY_LANE0_RX_OVRD_RD() & ~BM_SATAPHY_LANE0_RX_OVRD_OVRD) | BF_SATAPHY_LANE0_RX_OVRD_OVRD(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_OUT_OVRD - Output Override Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -943,11 +784,6 @@ typedef union _hw_sataphy_lane0_out_ovrd
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_OUT_OVRD           (*(volatile hw_sataphy_lane0_out_ovrd_t *) HW_SATAPHY_LANE0_OUT_OVRD_ADDR)
-#define HW_SATAPHY_LANE0_OUT_OVRD_RD()      (HW_SATAPHY_LANE0_OUT_OVRD.U)
-#define HW_SATAPHY_LANE0_OUT_OVRD_WR(v)     (HW_SATAPHY_LANE0_OUT_OVRD.U = (v))
-#define HW_SATAPHY_LANE0_OUT_OVRD_SET(v)    (HW_SATAPHY_LANE0_OUT_OVRD_WR(HW_SATAPHY_LANE0_OUT_OVRD_RD() |  (v)))
-#define HW_SATAPHY_LANE0_OUT_OVRD_CLR(v)    (HW_SATAPHY_LANE0_OUT_OVRD_WR(HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_OUT_OVRD_TOG(v)    (HW_SATAPHY_LANE0_OUT_OVRD_WR(HW_SATAPHY_LANE0_OUT_OVRD_RD() ^  (v)))
 #endif
 
 /*
@@ -963,20 +799,10 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_RX_VALID.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_RX_VALID from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_RX_VALID(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID) >> BP_SATAPHY_LANE0_OUT_OVRD_RX_VALID)
+#define BG_SATAPHY_LANE0_OUT_OVRD_RX_VALID(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID) >> BP_SATAPHY_LANE0_OUT_OVRD_RX_VALID)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_RX_VALID.
-#define BF_SATAPHY_LANE0_OUT_OVRD_RX_VALID(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_RX_VALID) & BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_RX_VALID.
-#define BF_SATAPHY_LANE0_OUT_OVRD_RX_VALID(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_RX_VALID) & BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_VALID field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_RX_VALID(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID) | BF_SATAPHY_LANE0_OUT_OVRD_RX_VALID(v)))
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_RX_VALID(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_RX_VALID) & BM_SATAPHY_LANE0_OUT_OVRD_RX_VALID)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_OVRD, field RX_PLL_STATE[1] (RW)
  *
@@ -987,20 +813,10 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) >> BP_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE)
+#define BG_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) >> BP_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE.
-#define BF_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) & BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE.
-#define BF_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) & BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RX_PLL_STATE field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) | BF_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)))
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE) & BM_SATAPHY_LANE0_OUT_OVRD_RX_PLL_STATE)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_OVRD, field LOS[2] (RW)
  *
@@ -1011,20 +827,10 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_LOS      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_LOS.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_LOS from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_LOS(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_LOS) >> BP_SATAPHY_LANE0_OUT_OVRD_LOS)
+#define BG_SATAPHY_LANE0_OUT_OVRD_LOS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_LOS) >> BP_SATAPHY_LANE0_OUT_OVRD_LOS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_LOS.
-#define BF_SATAPHY_LANE0_OUT_OVRD_LOS(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_LOS) & BM_SATAPHY_LANE0_OUT_OVRD_LOS)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_LOS.
-#define BF_SATAPHY_LANE0_OUT_OVRD_LOS(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_LOS) & BM_SATAPHY_LANE0_OUT_OVRD_LOS)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the LOS field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_LOS(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_LOS) | BF_SATAPHY_LANE0_OUT_OVRD_LOS(v)))
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_LOS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_LOS) & BM_SATAPHY_LANE0_OUT_OVRD_LOS)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_OVRD, field TX_DONE[3] (RW)
  *
@@ -1035,20 +841,10 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_TX_DONE.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_TX_DONE from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_TX_DONE(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE) >> BP_SATAPHY_LANE0_OUT_OVRD_TX_DONE)
+#define BG_SATAPHY_LANE0_OUT_OVRD_TX_DONE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE) >> BP_SATAPHY_LANE0_OUT_OVRD_TX_DONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_TX_DONE.
-#define BF_SATAPHY_LANE0_OUT_OVRD_TX_DONE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_TX_DONE) & BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_TX_DONE.
-#define BF_SATAPHY_LANE0_OUT_OVRD_TX_DONE(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_TX_DONE) & BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_DONE field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_TX_DONE(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE) | BF_SATAPHY_LANE0_OUT_OVRD_TX_DONE(v)))
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_TX_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_TX_DONE) & BM_SATAPHY_LANE0_OUT_OVRD_TX_DONE)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_OVRD, field TX_RXPRES[4] (RW)
  *
@@ -1059,20 +855,10 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_TX_RXPRES.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_TX_RXPRES from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) >> BP_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES)
+#define BG_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) >> BP_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_TX_RXPRES.
-#define BF_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) & BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_TX_RXPRES.
-#define BF_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) & BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TX_RXPRES field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) | BF_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(v)))
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES) & BM_SATAPHY_LANE0_OUT_OVRD_TX_RXPRES)
 
 /* --- Register HW_SATAPHY_LANE0_OUT_OVRD, field OVRD[5] (RW)
  *
@@ -1083,20 +869,14 @@ typedef union _hw_sataphy_lane0_out_ovrd
 #define BM_SATAPHY_LANE0_OUT_OVRD_OVRD      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_OUT_OVRD_OVRD.
 
 //! @brief Get value of SATAPHY_LANE0_OUT_OVRD_OVRD from a register value.
-#define BG_SATAPHY_LANE0_OUT_OVRD_OVRD(r)   (((r) & BM_SATAPHY_LANE0_OUT_OVRD_OVRD) >> BP_SATAPHY_LANE0_OUT_OVRD_OVRD)
+#define BG_SATAPHY_LANE0_OUT_OVRD_OVRD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_OUT_OVRD_OVRD) >> BP_SATAPHY_LANE0_OUT_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_OUT_OVRD_OVRD(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_OUT_OVRD_OVRD) & BM_SATAPHY_LANE0_OUT_OVRD_OVRD)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_OUT_OVRD_OVRD.
-#define BF_SATAPHY_LANE0_OUT_OVRD_OVRD(v)   (((v) << BP_SATAPHY_LANE0_OUT_OVRD_OVRD) & BM_SATAPHY_LANE0_OUT_OVRD_OVRD)
-#endif
+#define BF_SATAPHY_LANE0_OUT_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_OUT_OVRD_OVRD) & BM_SATAPHY_LANE0_OUT_OVRD_OVRD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OVRD field to a new value.
-#define BW_SATAPHY_LANE0_OUT_OVRD_OVRD(v)   (HW_SATAPHY_LANE0_OUT_OVRD_WR((HW_SATAPHY_LANE0_OUT_OVRD_RD() & ~BM_SATAPHY_LANE0_OUT_OVRD_OVRD) | BF_SATAPHY_LANE0_OUT_OVRD_OVRD(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_DBG_CTL - Debug Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1130,11 +910,6 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_DBG_CTL           (*(volatile hw_sataphy_lane0_dbg_ctl_t *) HW_SATAPHY_LANE0_DBG_CTL_ADDR)
-#define HW_SATAPHY_LANE0_DBG_CTL_RD()      (HW_SATAPHY_LANE0_DBG_CTL.U)
-#define HW_SATAPHY_LANE0_DBG_CTL_WR(v)     (HW_SATAPHY_LANE0_DBG_CTL.U = (v))
-#define HW_SATAPHY_LANE0_DBG_CTL_SET(v)    (HW_SATAPHY_LANE0_DBG_CTL_WR(HW_SATAPHY_LANE0_DBG_CTL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_DBG_CTL_CLR(v)    (HW_SATAPHY_LANE0_DBG_CTL_WR(HW_SATAPHY_LANE0_DBG_CTL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_DBG_CTL_TOG(v)    (HW_SATAPHY_LANE0_DBG_CTL_WR(HW_SATAPHY_LANE0_DBG_CTL_RD() ^  (v)))
 #endif
 
 /*
@@ -1150,20 +925,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) >> BP_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA)
+#define BG_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) >> BP_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA.
-#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA.
-#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZERO_TX_DATA field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) | BF_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_TX_DATA)
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field ZERO_RX_DATA[1] (RW)
  *
@@ -1174,20 +939,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) >> BP_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA)
+#define BG_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) >> BP_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA.
-#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA.
-#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZERO_RX_DATA field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) | BF_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA) & BM_SATAPHY_LANE0_DBG_CTL_ZERO_RX_DATA)
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field INVERT_TX[2] (RW)
  *
@@ -1198,20 +953,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_INVERT_TX.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_INVERT_TX from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_INVERT_TX(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX) >> BP_SATAPHY_LANE0_DBG_CTL_INVERT_TX)
+#define BG_SATAPHY_LANE0_DBG_CTL_INVERT_TX(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX) >> BP_SATAPHY_LANE0_DBG_CTL_INVERT_TX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_INVERT_TX.
-#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_TX(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_TX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_INVERT_TX.
-#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_TX(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_TX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the INVERT_TX field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_INVERT_TX(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX) | BF_SATAPHY_LANE0_DBG_CTL_INVERT_TX(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_TX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_TX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_TX)
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field INVERT_RX[3] (RW)
  *
@@ -1222,20 +967,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_INVERT_RX.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_INVERT_RX from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_INVERT_RX(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX) >> BP_SATAPHY_LANE0_DBG_CTL_INVERT_RX)
+#define BG_SATAPHY_LANE0_DBG_CTL_INVERT_RX(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX) >> BP_SATAPHY_LANE0_DBG_CTL_INVERT_RX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_INVERT_RX.
-#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_RX(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_RX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_INVERT_RX.
-#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_RX(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_RX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the INVERT_RX field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_INVERT_RX(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX) | BF_SATAPHY_LANE0_DBG_CTL_INVERT_RX(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_INVERT_RX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_INVERT_RX) & BM_SATAPHY_LANE0_DBG_CTL_INVERT_RX)
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field DISABLE_RX_CK[4] (RW)
  *
@@ -1246,20 +981,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) >> BP_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK)
+#define BG_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) >> BP_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK.
-#define BF_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) & BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK.
-#define BF_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) & BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DISABLE_RX_CK field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) | BF_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK) & BM_SATAPHY_LANE0_DBG_CTL_DISABLE_RX_CK)
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field DTB_SEL0[9:5] (RW)
  *
@@ -1299,20 +1024,10 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0      (0x000003e0)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_DTB_SEL0.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_DTB_SEL0 from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) >> BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL0)
+#define BG_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) >> BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DTB_SEL0.
-#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DTB_SEL0.
-#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTB_SEL0 field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) | BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(v)))
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL0) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL0)
 
 
 /* --- Register HW_SATAPHY_LANE0_DBG_CTL, field DTB_SEL1[14:10] (RW)
@@ -1353,21 +1068,15 @@ typedef union _hw_sataphy_lane0_dbg_ctl
 #define BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1      (0x00007c00)  //!< Bit mask for SATAPHY_LANE0_DBG_CTL_DTB_SEL1.
 
 //! @brief Get value of SATAPHY_LANE0_DBG_CTL_DTB_SEL1 from a register value.
-#define BG_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(r)   (((r) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) >> BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL1)
+#define BG_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) >> BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DTB_SEL1.
-#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DBG_CTL_DTB_SEL1.
-#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(v)   (((v) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1)
-#endif
+#define BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) & BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTB_SEL1 field to a new value.
-#define BW_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(v)   (HW_SATAPHY_LANE0_DBG_CTL_WR((HW_SATAPHY_LANE0_DBG_CTL_RD() & ~BM_SATAPHY_LANE0_DBG_CTL_DTB_SEL1) | BF_SATAPHY_LANE0_DBG_CTL_DTB_SEL1(v)))
-#endif
 
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PG_CTL - Pattern Generator Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1398,11 +1107,6 @@ typedef union _hw_sataphy_lane0_pg_ctl
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PG_CTL           (*(volatile hw_sataphy_lane0_pg_ctl_t *) HW_SATAPHY_LANE0_PG_CTL_ADDR)
-#define HW_SATAPHY_LANE0_PG_CTL_RD()      (HW_SATAPHY_LANE0_PG_CTL.U)
-#define HW_SATAPHY_LANE0_PG_CTL_WR(v)     (HW_SATAPHY_LANE0_PG_CTL.U = (v))
-#define HW_SATAPHY_LANE0_PG_CTL_SET(v)    (HW_SATAPHY_LANE0_PG_CTL_WR(HW_SATAPHY_LANE0_PG_CTL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PG_CTL_CLR(v)    (HW_SATAPHY_LANE0_PG_CTL_WR(HW_SATAPHY_LANE0_PG_CTL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PG_CTL_TOG(v)    (HW_SATAPHY_LANE0_PG_CTL_WR(HW_SATAPHY_LANE0_PG_CTL_RD() ^  (v)))
 #endif
 
 /*
@@ -1428,20 +1132,10 @@ typedef union _hw_sataphy_lane0_pg_ctl
 #define BM_SATAPHY_LANE0_PG_CTL_MODE      (0x00000007)  //!< Bit mask for SATAPHY_LANE0_PG_CTL_MODE.
 
 //! @brief Get value of SATAPHY_LANE0_PG_CTL_MODE from a register value.
-#define BG_SATAPHY_LANE0_PG_CTL_MODE(r)   (((r) & BM_SATAPHY_LANE0_PG_CTL_MODE) >> BP_SATAPHY_LANE0_PG_CTL_MODE)
+#define BG_SATAPHY_LANE0_PG_CTL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PG_CTL_MODE) >> BP_SATAPHY_LANE0_PG_CTL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_MODE.
-#define BF_SATAPHY_LANE0_PG_CTL_MODE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PG_CTL_MODE) & BM_SATAPHY_LANE0_PG_CTL_MODE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_MODE.
-#define BF_SATAPHY_LANE0_PG_CTL_MODE(v)   (((v) << BP_SATAPHY_LANE0_PG_CTL_MODE) & BM_SATAPHY_LANE0_PG_CTL_MODE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MODE field to a new value.
-#define BW_SATAPHY_LANE0_PG_CTL_MODE(v)   (HW_SATAPHY_LANE0_PG_CTL_WR((HW_SATAPHY_LANE0_PG_CTL_RD() & ~BM_SATAPHY_LANE0_PG_CTL_MODE) | BF_SATAPHY_LANE0_PG_CTL_MODE(v)))
-#endif
+#define BF_SATAPHY_LANE0_PG_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PG_CTL_MODE) & BM_SATAPHY_LANE0_PG_CTL_MODE)
 
 
 /* --- Register HW_SATAPHY_LANE0_PG_CTL, field TRIGGER_ERR[3] (RW)
@@ -1453,20 +1147,10 @@ typedef union _hw_sataphy_lane0_pg_ctl
 #define BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_PG_CTL_TRIGGER_ERR.
 
 //! @brief Get value of SATAPHY_LANE0_PG_CTL_TRIGGER_ERR from a register value.
-#define BG_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(r)   (((r) & BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) >> BP_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR)
+#define BG_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) >> BP_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_TRIGGER_ERR.
-#define BF_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) & BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_TRIGGER_ERR.
-#define BF_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(v)   (((v) << BP_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) & BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRIGGER_ERR field to a new value.
-#define BW_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(v)   (HW_SATAPHY_LANE0_PG_CTL_WR((HW_SATAPHY_LANE0_PG_CTL_RD() & ~BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) | BF_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(v)))
-#endif
+#define BF_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR) & BM_SATAPHY_LANE0_PG_CTL_TRIGGER_ERR)
 
 /* --- Register HW_SATAPHY_LANE0_PG_CTL, field PAT0[13:4] (RW)
  *
@@ -1477,20 +1161,14 @@ typedef union _hw_sataphy_lane0_pg_ctl
 #define BM_SATAPHY_LANE0_PG_CTL_PAT0      (0x00003ff0)  //!< Bit mask for SATAPHY_LANE0_PG_CTL_PAT0.
 
 //! @brief Get value of SATAPHY_LANE0_PG_CTL_PAT0 from a register value.
-#define BG_SATAPHY_LANE0_PG_CTL_PAT0(r)   (((r) & BM_SATAPHY_LANE0_PG_CTL_PAT0) >> BP_SATAPHY_LANE0_PG_CTL_PAT0)
+#define BG_SATAPHY_LANE0_PG_CTL_PAT0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PG_CTL_PAT0) >> BP_SATAPHY_LANE0_PG_CTL_PAT0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_PAT0.
-#define BF_SATAPHY_LANE0_PG_CTL_PAT0(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PG_CTL_PAT0) & BM_SATAPHY_LANE0_PG_CTL_PAT0)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PG_CTL_PAT0.
-#define BF_SATAPHY_LANE0_PG_CTL_PAT0(v)   (((v) << BP_SATAPHY_LANE0_PG_CTL_PAT0) & BM_SATAPHY_LANE0_PG_CTL_PAT0)
-#endif
+#define BF_SATAPHY_LANE0_PG_CTL_PAT0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PG_CTL_PAT0) & BM_SATAPHY_LANE0_PG_CTL_PAT0)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PAT0 field to a new value.
-#define BW_SATAPHY_LANE0_PG_CTL_PAT0(v)   (HW_SATAPHY_LANE0_PG_CTL_WR((HW_SATAPHY_LANE0_PG_CTL_RD() & ~BM_SATAPHY_LANE0_PG_CTL_PAT0) | BF_SATAPHY_LANE0_PG_CTL_PAT0(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PM_CTL - Pattern Matcher Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1520,11 +1198,6 @@ typedef union _hw_sataphy_lane0_pm_ctl
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PM_CTL           (*(volatile hw_sataphy_lane0_pm_ctl_t *) HW_SATAPHY_LANE0_PM_CTL_ADDR)
-#define HW_SATAPHY_LANE0_PM_CTL_RD()      (HW_SATAPHY_LANE0_PM_CTL.U)
-#define HW_SATAPHY_LANE0_PM_CTL_WR(v)     (HW_SATAPHY_LANE0_PM_CTL.U = (v))
-#define HW_SATAPHY_LANE0_PM_CTL_SET(v)    (HW_SATAPHY_LANE0_PM_CTL_WR(HW_SATAPHY_LANE0_PM_CTL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PM_CTL_CLR(v)    (HW_SATAPHY_LANE0_PM_CTL_WR(HW_SATAPHY_LANE0_PM_CTL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PM_CTL_TOG(v)    (HW_SATAPHY_LANE0_PM_CTL_WR(HW_SATAPHY_LANE0_PM_CTL_RD() ^  (v)))
 #endif
 
 /*
@@ -1547,20 +1220,10 @@ typedef union _hw_sataphy_lane0_pm_ctl
 #define BM_SATAPHY_LANE0_PM_CTL_MODE      (0x00000007)  //!< Bit mask for SATAPHY_LANE0_PM_CTL_MODE.
 
 //! @brief Get value of SATAPHY_LANE0_PM_CTL_MODE from a register value.
-#define BG_SATAPHY_LANE0_PM_CTL_MODE(r)   (((r) & BM_SATAPHY_LANE0_PM_CTL_MODE) >> BP_SATAPHY_LANE0_PM_CTL_MODE)
+#define BG_SATAPHY_LANE0_PM_CTL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PM_CTL_MODE) >> BP_SATAPHY_LANE0_PM_CTL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PM_CTL_MODE.
-#define BF_SATAPHY_LANE0_PM_CTL_MODE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PM_CTL_MODE) & BM_SATAPHY_LANE0_PM_CTL_MODE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PM_CTL_MODE.
-#define BF_SATAPHY_LANE0_PM_CTL_MODE(v)   (((v) << BP_SATAPHY_LANE0_PM_CTL_MODE) & BM_SATAPHY_LANE0_PM_CTL_MODE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MODE field to a new value.
-#define BW_SATAPHY_LANE0_PM_CTL_MODE(v)   (HW_SATAPHY_LANE0_PM_CTL_WR((HW_SATAPHY_LANE0_PM_CTL_RD() & ~BM_SATAPHY_LANE0_PM_CTL_MODE) | BF_SATAPHY_LANE0_PM_CTL_MODE(v)))
-#endif
+#define BF_SATAPHY_LANE0_PM_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PM_CTL_MODE) & BM_SATAPHY_LANE0_PM_CTL_MODE)
 
 
 /* --- Register HW_SATAPHY_LANE0_PM_CTL, field SYNC[3] (RW)
@@ -1573,20 +1236,14 @@ typedef union _hw_sataphy_lane0_pm_ctl
 #define BM_SATAPHY_LANE0_PM_CTL_SYNC      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_PM_CTL_SYNC.
 
 //! @brief Get value of SATAPHY_LANE0_PM_CTL_SYNC from a register value.
-#define BG_SATAPHY_LANE0_PM_CTL_SYNC(r)   (((r) & BM_SATAPHY_LANE0_PM_CTL_SYNC) >> BP_SATAPHY_LANE0_PM_CTL_SYNC)
+#define BG_SATAPHY_LANE0_PM_CTL_SYNC(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PM_CTL_SYNC) >> BP_SATAPHY_LANE0_PM_CTL_SYNC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PM_CTL_SYNC.
-#define BF_SATAPHY_LANE0_PM_CTL_SYNC(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PM_CTL_SYNC) & BM_SATAPHY_LANE0_PM_CTL_SYNC)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PM_CTL_SYNC.
-#define BF_SATAPHY_LANE0_PM_CTL_SYNC(v)   (((v) << BP_SATAPHY_LANE0_PM_CTL_SYNC) & BM_SATAPHY_LANE0_PM_CTL_SYNC)
-#endif
+#define BF_SATAPHY_LANE0_PM_CTL_SYNC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PM_CTL_SYNC) & BM_SATAPHY_LANE0_PM_CTL_SYNC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SYNC field to a new value.
-#define BW_SATAPHY_LANE0_PM_CTL_SYNC(v)   (HW_SATAPHY_LANE0_PM_CTL_WR((HW_SATAPHY_LANE0_PM_CTL_RD() & ~BM_SATAPHY_LANE0_PM_CTL_SYNC) | BF_SATAPHY_LANE0_PM_CTL_SYNC(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PM_ERR - Pattern Matcher Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1616,11 +1273,6 @@ typedef union _hw_sataphy_lane0_pm_err
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PM_ERR           (*(volatile hw_sataphy_lane0_pm_err_t *) HW_SATAPHY_LANE0_PM_ERR_ADDR)
-#define HW_SATAPHY_LANE0_PM_ERR_RD()      (HW_SATAPHY_LANE0_PM_ERR.U)
-#define HW_SATAPHY_LANE0_PM_ERR_WR(v)     (HW_SATAPHY_LANE0_PM_ERR.U = (v))
-#define HW_SATAPHY_LANE0_PM_ERR_SET(v)    (HW_SATAPHY_LANE0_PM_ERR_WR(HW_SATAPHY_LANE0_PM_ERR_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PM_ERR_CLR(v)    (HW_SATAPHY_LANE0_PM_ERR_WR(HW_SATAPHY_LANE0_PM_ERR_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PM_ERR_TOG(v)    (HW_SATAPHY_LANE0_PM_ERR_WR(HW_SATAPHY_LANE0_PM_ERR_RD() ^  (v)))
 #endif
 
 /*
@@ -1636,20 +1288,10 @@ typedef union _hw_sataphy_lane0_pm_err
 #define BM_SATAPHY_LANE0_PM_ERR_COUNT      (0x00007fff)  //!< Bit mask for SATAPHY_LANE0_PM_ERR_COUNT.
 
 //! @brief Get value of SATAPHY_LANE0_PM_ERR_COUNT from a register value.
-#define BG_SATAPHY_LANE0_PM_ERR_COUNT(r)   (((r) & BM_SATAPHY_LANE0_PM_ERR_COUNT) >> BP_SATAPHY_LANE0_PM_ERR_COUNT)
+#define BG_SATAPHY_LANE0_PM_ERR_COUNT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PM_ERR_COUNT) >> BP_SATAPHY_LANE0_PM_ERR_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PM_ERR_COUNT.
-#define BF_SATAPHY_LANE0_PM_ERR_COUNT(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PM_ERR_COUNT) & BM_SATAPHY_LANE0_PM_ERR_COUNT)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PM_ERR_COUNT.
-#define BF_SATAPHY_LANE0_PM_ERR_COUNT(v)   (((v) << BP_SATAPHY_LANE0_PM_ERR_COUNT) & BM_SATAPHY_LANE0_PM_ERR_COUNT)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the COUNT field to a new value.
-#define BW_SATAPHY_LANE0_PM_ERR_COUNT(v)   (HW_SATAPHY_LANE0_PM_ERR_WR((HW_SATAPHY_LANE0_PM_ERR_RD() & ~BM_SATAPHY_LANE0_PM_ERR_COUNT) | BF_SATAPHY_LANE0_PM_ERR_COUNT(v)))
-#endif
+#define BF_SATAPHY_LANE0_PM_ERR_COUNT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PM_ERR_COUNT) & BM_SATAPHY_LANE0_PM_ERR_COUNT)
 
 /* --- Register HW_SATAPHY_LANE0_PM_ERR, field OV14[15] (RW)
  *
@@ -1661,20 +1303,14 @@ typedef union _hw_sataphy_lane0_pm_err
 #define BM_SATAPHY_LANE0_PM_ERR_OV14      (0x00008000)  //!< Bit mask for SATAPHY_LANE0_PM_ERR_OV14.
 
 //! @brief Get value of SATAPHY_LANE0_PM_ERR_OV14 from a register value.
-#define BG_SATAPHY_LANE0_PM_ERR_OV14(r)   (((r) & BM_SATAPHY_LANE0_PM_ERR_OV14) >> BP_SATAPHY_LANE0_PM_ERR_OV14)
+#define BG_SATAPHY_LANE0_PM_ERR_OV14(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PM_ERR_OV14) >> BP_SATAPHY_LANE0_PM_ERR_OV14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PM_ERR_OV14.
-#define BF_SATAPHY_LANE0_PM_ERR_OV14(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PM_ERR_OV14) & BM_SATAPHY_LANE0_PM_ERR_OV14)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PM_ERR_OV14.
-#define BF_SATAPHY_LANE0_PM_ERR_OV14(v)   (((v) << BP_SATAPHY_LANE0_PM_ERR_OV14) & BM_SATAPHY_LANE0_PM_ERR_OV14)
-#endif
+#define BF_SATAPHY_LANE0_PM_ERR_OV14(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PM_ERR_OV14) & BM_SATAPHY_LANE0_PM_ERR_OV14)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OV14 field to a new value.
-#define BW_SATAPHY_LANE0_PM_ERR_OV14(v)   (HW_SATAPHY_LANE0_PM_ERR_WR((HW_SATAPHY_LANE0_PM_ERR_RD() & ~BM_SATAPHY_LANE0_PM_ERR_OV14) | BF_SATAPHY_LANE0_PM_ERR_OV14(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_DPLL_PHASE - DPLL Phase Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1704,11 +1340,6 @@ typedef union _hw_sataphy_lane0_dpll_phase
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_DPLL_PHASE           (*(volatile hw_sataphy_lane0_dpll_phase_t *) HW_SATAPHY_LANE0_DPLL_PHASE_ADDR)
-#define HW_SATAPHY_LANE0_DPLL_PHASE_RD()      (HW_SATAPHY_LANE0_DPLL_PHASE.U)
-#define HW_SATAPHY_LANE0_DPLL_PHASE_WR(v)     (HW_SATAPHY_LANE0_DPLL_PHASE.U = (v))
-#define HW_SATAPHY_LANE0_DPLL_PHASE_SET(v)    (HW_SATAPHY_LANE0_DPLL_PHASE_WR(HW_SATAPHY_LANE0_DPLL_PHASE_RD() |  (v)))
-#define HW_SATAPHY_LANE0_DPLL_PHASE_CLR(v)    (HW_SATAPHY_LANE0_DPLL_PHASE_WR(HW_SATAPHY_LANE0_DPLL_PHASE_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_DPLL_PHASE_TOG(v)    (HW_SATAPHY_LANE0_DPLL_PHASE_WR(HW_SATAPHY_LANE0_DPLL_PHASE_RD() ^  (v)))
 #endif
 
 /*
@@ -1724,20 +1355,10 @@ typedef union _hw_sataphy_lane0_dpll_phase
 #define BM_SATAPHY_LANE0_DPLL_PHASE_DTHR      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_DPLL_PHASE_DTHR.
 
 //! @brief Get value of SATAPHY_LANE0_DPLL_PHASE_DTHR from a register value.
-#define BG_SATAPHY_LANE0_DPLL_PHASE_DTHR(r)   (((r) & BM_SATAPHY_LANE0_DPLL_PHASE_DTHR) >> BP_SATAPHY_LANE0_DPLL_PHASE_DTHR)
+#define BG_SATAPHY_LANE0_DPLL_PHASE_DTHR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DPLL_PHASE_DTHR) >> BP_SATAPHY_LANE0_DPLL_PHASE_DTHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DPLL_PHASE_DTHR.
-#define BF_SATAPHY_LANE0_DPLL_PHASE_DTHR(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DPLL_PHASE_DTHR) & BM_SATAPHY_LANE0_DPLL_PHASE_DTHR)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DPLL_PHASE_DTHR.
-#define BF_SATAPHY_LANE0_DPLL_PHASE_DTHR(v)   (((v) << BP_SATAPHY_LANE0_DPLL_PHASE_DTHR) & BM_SATAPHY_LANE0_DPLL_PHASE_DTHR)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTHR field to a new value.
-#define BW_SATAPHY_LANE0_DPLL_PHASE_DTHR(v)   (HW_SATAPHY_LANE0_DPLL_PHASE_WR((HW_SATAPHY_LANE0_DPLL_PHASE_RD() & ~BM_SATAPHY_LANE0_DPLL_PHASE_DTHR) | BF_SATAPHY_LANE0_DPLL_PHASE_DTHR(v)))
-#endif
+#define BF_SATAPHY_LANE0_DPLL_PHASE_DTHR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DPLL_PHASE_DTHR) & BM_SATAPHY_LANE0_DPLL_PHASE_DTHR)
 
 /* --- Register HW_SATAPHY_LANE0_DPLL_PHASE, field VAL[10:1] (RW)
  *
@@ -1748,20 +1369,14 @@ typedef union _hw_sataphy_lane0_dpll_phase
 #define BM_SATAPHY_LANE0_DPLL_PHASE_VAL      (0x000007fe)  //!< Bit mask for SATAPHY_LANE0_DPLL_PHASE_VAL.
 
 //! @brief Get value of SATAPHY_LANE0_DPLL_PHASE_VAL from a register value.
-#define BG_SATAPHY_LANE0_DPLL_PHASE_VAL(r)   (((r) & BM_SATAPHY_LANE0_DPLL_PHASE_VAL) >> BP_SATAPHY_LANE0_DPLL_PHASE_VAL)
+#define BG_SATAPHY_LANE0_DPLL_PHASE_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DPLL_PHASE_VAL) >> BP_SATAPHY_LANE0_DPLL_PHASE_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DPLL_PHASE_VAL.
-#define BF_SATAPHY_LANE0_DPLL_PHASE_VAL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DPLL_PHASE_VAL) & BM_SATAPHY_LANE0_DPLL_PHASE_VAL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DPLL_PHASE_VAL.
-#define BF_SATAPHY_LANE0_DPLL_PHASE_VAL(v)   (((v) << BP_SATAPHY_LANE0_DPLL_PHASE_VAL) & BM_SATAPHY_LANE0_DPLL_PHASE_VAL)
-#endif
+#define BF_SATAPHY_LANE0_DPLL_PHASE_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DPLL_PHASE_VAL) & BM_SATAPHY_LANE0_DPLL_PHASE_VAL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VAL field to a new value.
-#define BW_SATAPHY_LANE0_DPLL_PHASE_VAL(v)   (HW_SATAPHY_LANE0_DPLL_PHASE_WR((HW_SATAPHY_LANE0_DPLL_PHASE_RD() & ~BM_SATAPHY_LANE0_DPLL_PHASE_VAL) | BF_SATAPHY_LANE0_DPLL_PHASE_VAL(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_DPLL_FREQ - DPLL Frequency Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1791,11 +1406,6 @@ typedef union _hw_sataphy_lane0_dpll_freq
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_DPLL_FREQ           (*(volatile hw_sataphy_lane0_dpll_freq_t *) HW_SATAPHY_LANE0_DPLL_FREQ_ADDR)
-#define HW_SATAPHY_LANE0_DPLL_FREQ_RD()      (HW_SATAPHY_LANE0_DPLL_FREQ.U)
-#define HW_SATAPHY_LANE0_DPLL_FREQ_WR(v)     (HW_SATAPHY_LANE0_DPLL_FREQ.U = (v))
-#define HW_SATAPHY_LANE0_DPLL_FREQ_SET(v)    (HW_SATAPHY_LANE0_DPLL_FREQ_WR(HW_SATAPHY_LANE0_DPLL_FREQ_RD() |  (v)))
-#define HW_SATAPHY_LANE0_DPLL_FREQ_CLR(v)    (HW_SATAPHY_LANE0_DPLL_FREQ_WR(HW_SATAPHY_LANE0_DPLL_FREQ_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_DPLL_FREQ_TOG(v)    (HW_SATAPHY_LANE0_DPLL_FREQ_WR(HW_SATAPHY_LANE0_DPLL_FREQ_RD() ^  (v)))
 #endif
 
 /*
@@ -1811,20 +1421,10 @@ typedef union _hw_sataphy_lane0_dpll_freq
 #define BM_SATAPHY_LANE0_DPLL_FREQ_DTHR      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_DPLL_FREQ_DTHR.
 
 //! @brief Get value of SATAPHY_LANE0_DPLL_FREQ_DTHR from a register value.
-#define BG_SATAPHY_LANE0_DPLL_FREQ_DTHR(r)   (((r) & BM_SATAPHY_LANE0_DPLL_FREQ_DTHR) >> BP_SATAPHY_LANE0_DPLL_FREQ_DTHR)
+#define BG_SATAPHY_LANE0_DPLL_FREQ_DTHR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DPLL_FREQ_DTHR) >> BP_SATAPHY_LANE0_DPLL_FREQ_DTHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DPLL_FREQ_DTHR.
-#define BF_SATAPHY_LANE0_DPLL_FREQ_DTHR(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DPLL_FREQ_DTHR) & BM_SATAPHY_LANE0_DPLL_FREQ_DTHR)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DPLL_FREQ_DTHR.
-#define BF_SATAPHY_LANE0_DPLL_FREQ_DTHR(v)   (((v) << BP_SATAPHY_LANE0_DPLL_FREQ_DTHR) & BM_SATAPHY_LANE0_DPLL_FREQ_DTHR)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTHR field to a new value.
-#define BW_SATAPHY_LANE0_DPLL_FREQ_DTHR(v)   (HW_SATAPHY_LANE0_DPLL_FREQ_WR((HW_SATAPHY_LANE0_DPLL_FREQ_RD() & ~BM_SATAPHY_LANE0_DPLL_FREQ_DTHR) | BF_SATAPHY_LANE0_DPLL_FREQ_DTHR(v)))
-#endif
+#define BF_SATAPHY_LANE0_DPLL_FREQ_DTHR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DPLL_FREQ_DTHR) & BM_SATAPHY_LANE0_DPLL_FREQ_DTHR)
 
 /* --- Register HW_SATAPHY_LANE0_DPLL_FREQ, field VAL[13:1] (RW)
  *
@@ -1835,20 +1435,14 @@ typedef union _hw_sataphy_lane0_dpll_freq
 #define BM_SATAPHY_LANE0_DPLL_FREQ_VAL      (0x00003ffe)  //!< Bit mask for SATAPHY_LANE0_DPLL_FREQ_VAL.
 
 //! @brief Get value of SATAPHY_LANE0_DPLL_FREQ_VAL from a register value.
-#define BG_SATAPHY_LANE0_DPLL_FREQ_VAL(r)   (((r) & BM_SATAPHY_LANE0_DPLL_FREQ_VAL) >> BP_SATAPHY_LANE0_DPLL_FREQ_VAL)
+#define BG_SATAPHY_LANE0_DPLL_FREQ_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_DPLL_FREQ_VAL) >> BP_SATAPHY_LANE0_DPLL_FREQ_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_DPLL_FREQ_VAL.
-#define BF_SATAPHY_LANE0_DPLL_FREQ_VAL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_DPLL_FREQ_VAL) & BM_SATAPHY_LANE0_DPLL_FREQ_VAL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_DPLL_FREQ_VAL.
-#define BF_SATAPHY_LANE0_DPLL_FREQ_VAL(v)   (((v) << BP_SATAPHY_LANE0_DPLL_FREQ_VAL) & BM_SATAPHY_LANE0_DPLL_FREQ_VAL)
-#endif
+#define BF_SATAPHY_LANE0_DPLL_FREQ_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_DPLL_FREQ_VAL) & BM_SATAPHY_LANE0_DPLL_FREQ_VAL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VAL field to a new value.
-#define BW_SATAPHY_LANE0_DPLL_FREQ_VAL(v)   (HW_SATAPHY_LANE0_DPLL_FREQ_WR((HW_SATAPHY_LANE0_DPLL_FREQ_RD() & ~BM_SATAPHY_LANE0_DPLL_FREQ_VAL) | BF_SATAPHY_LANE0_DPLL_FREQ_VAL(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_SCOPE_CTL - Scope Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1879,11 +1473,6 @@ typedef union _hw_sataphy_lane0_scope_ctl
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_SCOPE_CTL           (*(volatile hw_sataphy_lane0_scope_ctl_t *) HW_SATAPHY_LANE0_SCOPE_CTL_ADDR)
-#define HW_SATAPHY_LANE0_SCOPE_CTL_RD()      (HW_SATAPHY_LANE0_SCOPE_CTL.U)
-#define HW_SATAPHY_LANE0_SCOPE_CTL_WR(v)     (HW_SATAPHY_LANE0_SCOPE_CTL.U = (v))
-#define HW_SATAPHY_LANE0_SCOPE_CTL_SET(v)    (HW_SATAPHY_LANE0_SCOPE_CTL_WR(HW_SATAPHY_LANE0_SCOPE_CTL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_SCOPE_CTL_CLR(v)    (HW_SATAPHY_LANE0_SCOPE_CTL_WR(HW_SATAPHY_LANE0_SCOPE_CTL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_SCOPE_CTL_TOG(v)    (HW_SATAPHY_LANE0_SCOPE_CTL_WR(HW_SATAPHY_LANE0_SCOPE_CTL_RD() ^  (v)))
 #endif
 
 /*
@@ -1905,20 +1494,10 @@ typedef union _hw_sataphy_lane0_scope_ctl
 #define BM_SATAPHY_LANE0_SCOPE_CTL_MODE      (0x00000003)  //!< Bit mask for SATAPHY_LANE0_SCOPE_CTL_MODE.
 
 //! @brief Get value of SATAPHY_LANE0_SCOPE_CTL_MODE from a register value.
-#define BG_SATAPHY_LANE0_SCOPE_CTL_MODE(r)   (((r) & BM_SATAPHY_LANE0_SCOPE_CTL_MODE) >> BP_SATAPHY_LANE0_SCOPE_CTL_MODE)
+#define BG_SATAPHY_LANE0_SCOPE_CTL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_SCOPE_CTL_MODE) >> BP_SATAPHY_LANE0_SCOPE_CTL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_MODE.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_MODE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_SCOPE_CTL_MODE) & BM_SATAPHY_LANE0_SCOPE_CTL_MODE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_MODE.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_MODE(v)   (((v) << BP_SATAPHY_LANE0_SCOPE_CTL_MODE) & BM_SATAPHY_LANE0_SCOPE_CTL_MODE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MODE field to a new value.
-#define BW_SATAPHY_LANE0_SCOPE_CTL_MODE(v)   (HW_SATAPHY_LANE0_SCOPE_CTL_WR((HW_SATAPHY_LANE0_SCOPE_CTL_RD() & ~BM_SATAPHY_LANE0_SCOPE_CTL_MODE) | BF_SATAPHY_LANE0_SCOPE_CTL_MODE(v)))
-#endif
+#define BF_SATAPHY_LANE0_SCOPE_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_SCOPE_CTL_MODE) & BM_SATAPHY_LANE0_SCOPE_CTL_MODE)
 
 
 /* --- Register HW_SATAPHY_LANE0_SCOPE_CTL, field DELAY[10:2] (RW)
@@ -1930,20 +1509,10 @@ typedef union _hw_sataphy_lane0_scope_ctl
 #define BM_SATAPHY_LANE0_SCOPE_CTL_DELAY      (0x000007fc)  //!< Bit mask for SATAPHY_LANE0_SCOPE_CTL_DELAY.
 
 //! @brief Get value of SATAPHY_LANE0_SCOPE_CTL_DELAY from a register value.
-#define BG_SATAPHY_LANE0_SCOPE_CTL_DELAY(r)   (((r) & BM_SATAPHY_LANE0_SCOPE_CTL_DELAY) >> BP_SATAPHY_LANE0_SCOPE_CTL_DELAY)
+#define BG_SATAPHY_LANE0_SCOPE_CTL_DELAY(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_SCOPE_CTL_DELAY) >> BP_SATAPHY_LANE0_SCOPE_CTL_DELAY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_DELAY.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_DELAY(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_SCOPE_CTL_DELAY) & BM_SATAPHY_LANE0_SCOPE_CTL_DELAY)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_DELAY.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_DELAY(v)   (((v) << BP_SATAPHY_LANE0_SCOPE_CTL_DELAY) & BM_SATAPHY_LANE0_SCOPE_CTL_DELAY)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DELAY field to a new value.
-#define BW_SATAPHY_LANE0_SCOPE_CTL_DELAY(v)   (HW_SATAPHY_LANE0_SCOPE_CTL_WR((HW_SATAPHY_LANE0_SCOPE_CTL_RD() & ~BM_SATAPHY_LANE0_SCOPE_CTL_DELAY) | BF_SATAPHY_LANE0_SCOPE_CTL_DELAY(v)))
-#endif
+#define BF_SATAPHY_LANE0_SCOPE_CTL_DELAY(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_SCOPE_CTL_DELAY) & BM_SATAPHY_LANE0_SCOPE_CTL_DELAY)
 
 /* --- Register HW_SATAPHY_LANE0_SCOPE_CTL, field BASE[14:11] (RW)
  *
@@ -1954,20 +1523,14 @@ typedef union _hw_sataphy_lane0_scope_ctl
 #define BM_SATAPHY_LANE0_SCOPE_CTL_BASE      (0x00007800)  //!< Bit mask for SATAPHY_LANE0_SCOPE_CTL_BASE.
 
 //! @brief Get value of SATAPHY_LANE0_SCOPE_CTL_BASE from a register value.
-#define BG_SATAPHY_LANE0_SCOPE_CTL_BASE(r)   (((r) & BM_SATAPHY_LANE0_SCOPE_CTL_BASE) >> BP_SATAPHY_LANE0_SCOPE_CTL_BASE)
+#define BG_SATAPHY_LANE0_SCOPE_CTL_BASE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_SCOPE_CTL_BASE) >> BP_SATAPHY_LANE0_SCOPE_CTL_BASE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_BASE.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_BASE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_SCOPE_CTL_BASE) & BM_SATAPHY_LANE0_SCOPE_CTL_BASE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_SCOPE_CTL_BASE.
-#define BF_SATAPHY_LANE0_SCOPE_CTL_BASE(v)   (((v) << BP_SATAPHY_LANE0_SCOPE_CTL_BASE) & BM_SATAPHY_LANE0_SCOPE_CTL_BASE)
-#endif
+#define BF_SATAPHY_LANE0_SCOPE_CTL_BASE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_SCOPE_CTL_BASE) & BM_SATAPHY_LANE0_SCOPE_CTL_BASE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BASE field to a new value.
-#define BW_SATAPHY_LANE0_SCOPE_CTL_BASE(v)   (HW_SATAPHY_LANE0_SCOPE_CTL_WR((HW_SATAPHY_LANE0_SCOPE_CTL_RD() & ~BM_SATAPHY_LANE0_SCOPE_CTL_BASE) | BF_SATAPHY_LANE0_SCOPE_CTL_BASE(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_CTL - Receiver Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2004,11 +1567,6 @@ typedef union _hw_sataphy_lane0_rx_ctl
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_CTL           (*(volatile hw_sataphy_lane0_rx_ctl_t *) HW_SATAPHY_LANE0_RX_CTL_ADDR)
-#define HW_SATAPHY_LANE0_RX_CTL_RD()      (HW_SATAPHY_LANE0_RX_CTL.U)
-#define HW_SATAPHY_LANE0_RX_CTL_WR(v)     (HW_SATAPHY_LANE0_RX_CTL.U = (v))
-#define HW_SATAPHY_LANE0_RX_CTL_SET(v)    (HW_SATAPHY_LANE0_RX_CTL_WR(HW_SATAPHY_LANE0_RX_CTL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_RX_CTL_CLR(v)    (HW_SATAPHY_LANE0_RX_CTL_WR(HW_SATAPHY_LANE0_RX_CTL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_RX_CTL_TOG(v)    (HW_SATAPHY_LANE0_RX_CTL_WR(HW_SATAPHY_LANE0_RX_CTL_RD() ^  (v)))
 #endif
 
 /*
@@ -2024,20 +1582,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_PHDET_EN      (0x00000003)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_PHDET_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_PHDET_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_PHDET_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EN) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_EN)
+#define BG_SATAPHY_LANE0_RX_CTL_PHDET_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EN) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_EN.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EN) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_EN.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EN) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PHDET_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_PHDET_EN(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_PHDET_EN) | BF_SATAPHY_LANE0_RX_CTL_PHDET_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EN) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field PHDET_EDGE[3:2] (RW)
  *
@@ -2048,20 +1596,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE      (0x0000000c)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_PHDET_EDGE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_PHDET_EDGE from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_EDGE)
+#define BG_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_EDGE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_EDGE.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_EDGE.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PHDET_EDGE field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) | BF_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_PHDET_EDGE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_PHDET_EDGE) & BM_SATAPHY_LANE0_RX_CTL_PHDET_EDGE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field PHDET_POL[4] (RW)
  *
@@ -2072,20 +1610,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_PHDET_POL      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_PHDET_POL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_PHDET_POL from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_PHDET_POL(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_PHDET_POL) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_POL)
+#define BG_SATAPHY_LANE0_RX_CTL_PHDET_POL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_PHDET_POL) >> BP_SATAPHY_LANE0_RX_CTL_PHDET_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_POL.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_POL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_POL) & BM_SATAPHY_LANE0_RX_CTL_PHDET_POL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHDET_POL.
-#define BF_SATAPHY_LANE0_RX_CTL_PHDET_POL(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_PHDET_POL) & BM_SATAPHY_LANE0_RX_CTL_PHDET_POL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PHDET_POL field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_PHDET_POL(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_PHDET_POL) | BF_SATAPHY_LANE0_RX_CTL_PHDET_POL(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_PHDET_POL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_PHDET_POL) & BM_SATAPHY_LANE0_RX_CTL_PHDET_POL)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field OVRD_DPLL_GAIN[5] (RW)
  *
@@ -2096,20 +1624,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) >> BP_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
+#define BG_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) >> BP_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
-#define BF_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) & BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
-#define BF_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) & BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OVRD_DPLL_GAIN field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) | BF_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) & BM_SATAPHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field PHUG_VALUE[7:6] (RW)
  *
@@ -2120,20 +1638,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE      (0x000000c0)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_PHUG_VALUE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_PHUG_VALUE from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) >> BP_SATAPHY_LANE0_RX_CTL_PHUG_VALUE)
+#define BG_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) >> BP_SATAPHY_LANE0_RX_CTL_PHUG_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHUG_VALUE.
-#define BF_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_PHUG_VALUE.
-#define BF_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PHUG_VALUE field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) | BF_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_PHUG_VALUE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_PHUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_PHUG_VALUE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field FRUG_VALUE[9:8] (RW)
  *
@@ -2144,20 +1652,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE      (0x00000300)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_FRUG_VALUE.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_FRUG_VALUE from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) >> BP_SATAPHY_LANE0_RX_CTL_FRUG_VALUE)
+#define BG_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) >> BP_SATAPHY_LANE0_RX_CTL_FRUG_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_FRUG_VALUE.
-#define BF_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_FRUG_VALUE.
-#define BF_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRUG_VALUE field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) | BF_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_FRUG_VALUE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_FRUG_VALUE) & BM_SATAPHY_LANE0_RX_CTL_FRUG_VALUE)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field MODE_BP[12:10] (RW)
  *
@@ -2173,20 +1671,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_MODE_BP      (0x00001c00)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_MODE_BP.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_MODE_BP from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_MODE_BP(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_MODE_BP) >> BP_SATAPHY_LANE0_RX_CTL_MODE_BP)
+#define BG_SATAPHY_LANE0_RX_CTL_MODE_BP(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_MODE_BP) >> BP_SATAPHY_LANE0_RX_CTL_MODE_BP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_MODE_BP.
-#define BF_SATAPHY_LANE0_RX_CTL_MODE_BP(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_MODE_BP) & BM_SATAPHY_LANE0_RX_CTL_MODE_BP)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_MODE_BP.
-#define BF_SATAPHY_LANE0_RX_CTL_MODE_BP(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_MODE_BP) & BM_SATAPHY_LANE0_RX_CTL_MODE_BP)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MODE_BP field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_MODE_BP(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_MODE_BP) | BF_SATAPHY_LANE0_RX_CTL_MODE_BP(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_MODE_BP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_MODE_BP) & BM_SATAPHY_LANE0_RX_CTL_MODE_BP)
 
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field OVRD_SWITCH[13] (RW)
@@ -2198,20 +1686,10 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH      (0x00002000)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_OVRD_SWITCH.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_OVRD_SWITCH from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) >> BP_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH)
+#define BG_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) >> BP_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_OVRD_SWITCH.
-#define BF_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) & BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_OVRD_SWITCH.
-#define BF_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) & BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OVRD_SWITCH field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) | BF_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH) & BM_SATAPHY_LANE0_RX_CTL_OVRD_SWITCH)
 
 /* --- Register HW_SATAPHY_LANE0_RX_CTL, field SWITCH_VAL[14] (RW)
  *
@@ -2222,20 +1700,14 @@ typedef union _hw_sataphy_lane0_rx_ctl
 #define BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL      (0x00004000)  //!< Bit mask for SATAPHY_LANE0_RX_CTL_SWITCH_VAL.
 
 //! @brief Get value of SATAPHY_LANE0_RX_CTL_SWITCH_VAL from a register value.
-#define BG_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(r)   (((r) & BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) >> BP_SATAPHY_LANE0_RX_CTL_SWITCH_VAL)
+#define BG_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) >> BP_SATAPHY_LANE0_RX_CTL_SWITCH_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_SWITCH_VAL.
-#define BF_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) & BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_CTL_SWITCH_VAL.
-#define BF_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(v)   (((v) << BP_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) & BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL)
-#endif
+#define BF_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) & BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SWITCH_VAL field to a new value.
-#define BW_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(v)   (HW_SATAPHY_LANE0_RX_CTL_WR((HW_SATAPHY_LANE0_RX_CTL_RD() & ~BM_SATAPHY_LANE0_RX_CTL_SWITCH_VAL) | BF_SATAPHY_LANE0_RX_CTL_SWITCH_VAL(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_DBG - Receiver Debug Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2265,11 +1737,6 @@ typedef union _hw_sataphy_lane0_rx_dbg
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_DBG           (*(volatile hw_sataphy_lane0_rx_dbg_t *) HW_SATAPHY_LANE0_RX_DBG_ADDR)
-#define HW_SATAPHY_LANE0_RX_DBG_RD()      (HW_SATAPHY_LANE0_RX_DBG.U)
-#define HW_SATAPHY_LANE0_RX_DBG_WR(v)     (HW_SATAPHY_LANE0_RX_DBG.U = (v))
-#define HW_SATAPHY_LANE0_RX_DBG_SET(v)    (HW_SATAPHY_LANE0_RX_DBG_WR(HW_SATAPHY_LANE0_RX_DBG_RD() |  (v)))
-#define HW_SATAPHY_LANE0_RX_DBG_CLR(v)    (HW_SATAPHY_LANE0_RX_DBG_WR(HW_SATAPHY_LANE0_RX_DBG_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_RX_DBG_TOG(v)    (HW_SATAPHY_LANE0_RX_DBG_WR(HW_SATAPHY_LANE0_RX_DBG_RD() ^  (v)))
 #endif
 
 /*
@@ -2303,20 +1770,10 @@ typedef union _hw_sataphy_lane0_rx_dbg
 #define BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0      (0x0000000f)  //!< Bit mask for SATAPHY_LANE0_RX_DBG_DTB_SEL0.
 
 //! @brief Get value of SATAPHY_LANE0_RX_DBG_DTB_SEL0 from a register value.
-#define BG_SATAPHY_LANE0_RX_DBG_DTB_SEL0(r)   (((r) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0) >> BP_SATAPHY_LANE0_RX_DBG_DTB_SEL0)
+#define BG_SATAPHY_LANE0_RX_DBG_DTB_SEL0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0) >> BP_SATAPHY_LANE0_RX_DBG_DTB_SEL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_DBG_DTB_SEL0.
-#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL0(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL0) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_DBG_DTB_SEL0.
-#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL0(v)   (((v) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL0) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTB_SEL0 field to a new value.
-#define BW_SATAPHY_LANE0_RX_DBG_DTB_SEL0(v)   (HW_SATAPHY_LANE0_RX_DBG_WR((HW_SATAPHY_LANE0_RX_DBG_RD() & ~BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0) | BF_SATAPHY_LANE0_RX_DBG_DTB_SEL0(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL0) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL0)
 
 
 /* --- Register HW_SATAPHY_LANE0_RX_DBG, field DTB_SEL1[7:4] (RW)
@@ -2346,21 +1803,15 @@ typedef union _hw_sataphy_lane0_rx_dbg
 #define BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1      (0x000000f0)  //!< Bit mask for SATAPHY_LANE0_RX_DBG_DTB_SEL1.
 
 //! @brief Get value of SATAPHY_LANE0_RX_DBG_DTB_SEL1 from a register value.
-#define BG_SATAPHY_LANE0_RX_DBG_DTB_SEL1(r)   (((r) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1) >> BP_SATAPHY_LANE0_RX_DBG_DTB_SEL1)
+#define BG_SATAPHY_LANE0_RX_DBG_DTB_SEL1(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1) >> BP_SATAPHY_LANE0_RX_DBG_DTB_SEL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_DBG_DTB_SEL1.
-#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL1(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL1) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_DBG_DTB_SEL1.
-#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL1(v)   (((v) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL1) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1)
-#endif
+#define BF_SATAPHY_LANE0_RX_DBG_DTB_SEL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_DBG_DTB_SEL1) & BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DTB_SEL1 field to a new value.
-#define BW_SATAPHY_LANE0_RX_DBG_DTB_SEL1(v)   (HW_SATAPHY_LANE0_RX_DBG_WR((HW_SATAPHY_LANE0_RX_DBG_RD() & ~BM_SATAPHY_LANE0_RX_DBG_DTB_SEL1) | BF_SATAPHY_LANE0_RX_DBG_DTB_SEL1(v)))
-#endif
 
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_ANA_CONTROL - Receive Analog Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2392,11 +1843,6 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_ANA_CONTROL           (*(volatile hw_sataphy_lane0_rx_ana_control_t *) HW_SATAPHY_LANE0_RX_ANA_CONTROL_ADDR)
-#define HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD()      (HW_SATAPHY_LANE0_RX_ANA_CONTROL.U)
-#define HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR(v)     (HW_SATAPHY_LANE0_RX_ANA_CONTROL.U = (v))
-#define HW_SATAPHY_LANE0_RX_ANA_CONTROL_SET(v)    (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_RX_ANA_CONTROL_CLR(v)    (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_RX_ANA_CONTROL_TOG(v)    (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() ^  (v)))
 #endif
 
 /*
@@ -2412,20 +1858,10 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 #define BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN)
+#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ATB_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)   (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) | BF_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_ATB_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_CONTROL, field MARGIN_EN[1] (RW)
  *
@@ -2437,20 +1873,10 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 #define BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
+#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MARGIN_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)   (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) | BF_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_CONTROL, field RCK625_EN[2] (RW)
  *
@@ -2461,20 +1887,10 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 #define BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
+#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RCK625_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)   (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) | BF_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_CONTROL, field RXLBE_EN[3] (RW)
  *
@@ -2486,20 +1902,10 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 #define BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
+#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RXLBE_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)   (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) | BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_CONTROL, field RXLBI_EN[4] (RW)
  *
@@ -2511,20 +1917,14 @@ typedef union _hw_sataphy_lane0_rx_ana_control
 #define BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
+#define BG_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) >> BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
-#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) & BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RXLBI_EN field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)   (HW_SATAPHY_LANE0_RX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_RX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) | BF_SATAPHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_RX_ANA_ATB - Receive ATB Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2557,11 +1957,6 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_RX_ANA_ATB           (*(volatile hw_sataphy_lane0_rx_ana_atb_t *) HW_SATAPHY_LANE0_RX_ANA_ATB_ADDR)
-#define HW_SATAPHY_LANE0_RX_ANA_ATB_RD()      (HW_SATAPHY_LANE0_RX_ANA_ATB.U)
-#define HW_SATAPHY_LANE0_RX_ANA_ATB_WR(v)     (HW_SATAPHY_LANE0_RX_ANA_ATB.U = (v))
-#define HW_SATAPHY_LANE0_RX_ANA_ATB_SET(v)    (HW_SATAPHY_LANE0_RX_ANA_ATB_WR(HW_SATAPHY_LANE0_RX_ANA_ATB_RD() |  (v)))
-#define HW_SATAPHY_LANE0_RX_ANA_ATB_CLR(v)    (HW_SATAPHY_LANE0_RX_ANA_ATB_WR(HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_RX_ANA_ATB_TOG(v)    (HW_SATAPHY_LANE0_RX_ANA_ATB_WR(HW_SATAPHY_LANE0_RX_ANA_ATB_RD() ^  (v)))
 #endif
 
 /*
@@ -2577,20 +1972,10 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) >> BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) >> BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FORCEP_RX_P field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) | BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_ATB, field FORCEP_RX_M[1] (RW)
  *
@@ -2601,20 +1986,10 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) >> BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) >> BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FORCEP_RX_M field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) | BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_ATB, field SENSEP_RX_P[2] (RW)
  *
@@ -2625,20 +2000,10 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SENSEP_RX_P field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) | BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_ATB, field SENSEM_RX_M[3] (RW)
  *
@@ -2649,20 +2014,10 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SENSEM_RX_M field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) | BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_ATB, field SENSEM_VCM[4] (RW)
  *
@@ -2673,20 +2028,10 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SENSEM_VCM field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) | BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)))
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
 
 /* --- Register HW_SATAPHY_LANE0_RX_ANA_ATB, field SENSEM_VREF_LOS[5] (RW)
  *
@@ -2697,20 +2042,14 @@ typedef union _hw_sataphy_lane0_rx_ana_atb
 #define BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
 
 //! @brief Get value of SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS from a register value.
-#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(r)   (((r) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
+#define BG_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) >> BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
-#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)   (((v) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
-#endif
+#define BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) & BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SENSEM_VREF_LOS field to a new value.
-#define BW_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)   (HW_SATAPHY_LANE0_RX_ANA_ATB_WR((HW_SATAPHY_LANE0_RX_ANA_ATB_RD() & ~BM_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) | BF_SATAPHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PLL_PRG2 - Rx PLL Programming 2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2745,11 +2084,6 @@ typedef union _hw_sataphy_lane0_pll_prg2
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PLL_PRG2           (*(volatile hw_sataphy_lane0_pll_prg2_t *) HW_SATAPHY_LANE0_PLL_PRG2_ADDR)
-#define HW_SATAPHY_LANE0_PLL_PRG2_RD()      (HW_SATAPHY_LANE0_PLL_PRG2.U)
-#define HW_SATAPHY_LANE0_PLL_PRG2_WR(v)     (HW_SATAPHY_LANE0_PLL_PRG2.U = (v))
-#define HW_SATAPHY_LANE0_PLL_PRG2_SET(v)    (HW_SATAPHY_LANE0_PLL_PRG2_WR(HW_SATAPHY_LANE0_PLL_PRG2_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PLL_PRG2_CLR(v)    (HW_SATAPHY_LANE0_PLL_PRG2_WR(HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PLL_PRG2_TOG(v)    (HW_SATAPHY_LANE0_PLL_PRG2_WR(HW_SATAPHY_LANE0_PLL_PRG2_RD() ^  (v)))
 #endif
 
 /*
@@ -2769,20 +2103,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) >> BP_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
+#define BG_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) >> BP_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
-#define BF_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) & BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
-#define BF_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) & BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE_TEST_PD field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) | BF_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) & BM_SATAPHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
 
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field RESET_LCL[1] (RW)
@@ -2798,20 +2122,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_RESET_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_RESET_LCL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_RESET_LCL)
+#define BG_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_RESET_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_RESET_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_RESET_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RESET_LCL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) | BF_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_RESET_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_RESET_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_RESET_LCL)
 
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field FRC_RESET[2] (RW)
@@ -2823,20 +2137,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_FRC_RESET.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_FRC_RESET from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_RESET)
+#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_RESET.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_RESET.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_RESET field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) | BF_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_RESET) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_RESET)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field PWRON_LCL[3] (RW)
  *
@@ -2851,20 +2155,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_PWRON_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_PWRON_LCL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL)
+#define BG_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_PWRON_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_PWRON_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PWRON_LCL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) | BF_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_PWRON_LCL)
 
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field FRC_PWRON[4] (RW)
@@ -2876,20 +2170,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_FRC_PWRON.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_FRC_PWRON from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON)
+#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_PWRON.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_PWRON.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_PWRON field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) | BF_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_PWRON)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field HCPL_LCL[5] (RW)
  *
@@ -2904,20 +2188,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_HCPL_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_HCPL_LCL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL)
+#define BG_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) >> BP_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_HCPL_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_HCPL_LCL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the HCPL_LCL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) | BF_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL) & BM_SATAPHY_LANE0_PLL_PRG2_HCPL_LCL)
 
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field FRC_HCPL[6] (RW)
@@ -2929,20 +2203,10 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL      (0x00000040)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_FRC_HCPL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_FRC_HCPL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL)
+#define BG_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) >> BP_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_HCPL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_FRC_HCPL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_HCPL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) | BF_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL) & BM_SATAPHY_LANE0_PLL_PRG2_FRC_HCPL)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG2, field ATB_SENSE_SEL[7] (RW)
  *
@@ -2957,21 +2221,15 @@ typedef union _hw_sataphy_lane0_pll_prg2
 #define BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL      (0x00000080)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) >> BP_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
+#define BG_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) >> BP_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) & BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
-#define BF_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) & BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) & BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ATB_SENSE_SEL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)   (HW_SATAPHY_LANE0_PLL_PRG2_WR((HW_SATAPHY_LANE0_PLL_PRG2_RD() & ~BM_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) | BF_SATAPHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)))
-#endif
 
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PLL_PRG1 - Rx PLL Programming 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3002,11 +2260,6 @@ typedef union _hw_sataphy_lane0_pll_prg1
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PLL_PRG1           (*(volatile hw_sataphy_lane0_pll_prg1_t *) HW_SATAPHY_LANE0_PLL_PRG1_ADDR)
-#define HW_SATAPHY_LANE0_PLL_PRG1_RD()      (HW_SATAPHY_LANE0_PLL_PRG1.U)
-#define HW_SATAPHY_LANE0_PLL_PRG1_WR(v)     (HW_SATAPHY_LANE0_PLL_PRG1.U = (v))
-#define HW_SATAPHY_LANE0_PLL_PRG1_SET(v)    (HW_SATAPHY_LANE0_PLL_PRG1_WR(HW_SATAPHY_LANE0_PLL_PRG1_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PLL_PRG1_CLR(v)    (HW_SATAPHY_LANE0_PLL_PRG1_WR(HW_SATAPHY_LANE0_PLL_PRG1_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PLL_PRG1_TOG(v)    (HW_SATAPHY_LANE0_PLL_PRG1_WR(HW_SATAPHY_LANE0_PLL_PRG1_RD() ^  (v)))
 #endif
 
 /*
@@ -3023,20 +2276,10 @@ typedef union _hw_sataphy_lane0_pll_prg1
 #define BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL      (0x0000001c)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG1_INT_CNTRL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG1_INT_CNTRL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) >> BP_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL)
+#define BG_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) >> BP_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_INT_CNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_INT_CNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the INT_CNTRL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(v)   (HW_SATAPHY_LANE0_PLL_PRG1_WR((HW_SATAPHY_LANE0_PLL_PRG1_RD() & ~BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) | BF_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_INT_CNTRL)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG1, field PROP_CNTRL[7:5] (RW)
  *
@@ -3048,20 +2291,10 @@ typedef union _hw_sataphy_lane0_pll_prg1
 #define BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL      (0x000000e0)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) >> BP_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL)
+#define BG_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) >> BP_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the PROP_CNTRL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(v)   (HW_SATAPHY_LANE0_PLL_PRG1_WR((HW_SATAPHY_LANE0_PLL_PRG1_RD() & ~BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) | BF_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL) & BM_SATAPHY_LANE0_PLL_PRG1_PROP_CNTRL)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG1, field SEL_RXCK[8] (RW)
  *
@@ -3076,21 +2309,15 @@ typedef union _hw_sataphy_lane0_pll_prg1
 #define BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK      (0x00000100)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG1_SEL_RXCK.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG1_SEL_RXCK from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) >> BP_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK)
+#define BG_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) >> BP_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_SEL_RXCK.
-#define BF_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) & BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG1_SEL_RXCK.
-#define BF_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) & BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK)
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) & BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SEL_RXCK field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(v)   (HW_SATAPHY_LANE0_PLL_PRG1_WR((HW_SATAPHY_LANE0_PLL_PRG1_RD() & ~BM_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK) | BF_SATAPHY_LANE0_PLL_PRG1_SEL_RXCK(v)))
-#endif
 
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_PLL_PRG3 - Rx PLL Measurement Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3127,11 +2354,6 @@ typedef union _hw_sataphy_lane0_pll_prg3
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_PLL_PRG3           (*(volatile hw_sataphy_lane0_pll_prg3_t *) HW_SATAPHY_LANE0_PLL_PRG3_ADDR)
-#define HW_SATAPHY_LANE0_PLL_PRG3_RD()      (HW_SATAPHY_LANE0_PLL_PRG3.U)
-#define HW_SATAPHY_LANE0_PLL_PRG3_WR(v)     (HW_SATAPHY_LANE0_PLL_PRG3.U = (v))
-#define HW_SATAPHY_LANE0_PLL_PRG3_SET(v)    (HW_SATAPHY_LANE0_PLL_PRG3_WR(HW_SATAPHY_LANE0_PLL_PRG3_RD() |  (v)))
-#define HW_SATAPHY_LANE0_PLL_PRG3_CLR(v)    (HW_SATAPHY_LANE0_PLL_PRG3_WR(HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_PLL_PRG3_TOG(v)    (HW_SATAPHY_LANE0_PLL_PRG3_WR(HW_SATAPHY_LANE0_PLL_PRG3_RD() ^  (v)))
 #endif
 
 /*
@@ -3147,20 +2369,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_CROWBAR field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_1V[2] (RW)
  *
@@ -3172,20 +2384,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_1V.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_1V from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_1V)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_1V)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_1V.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_1V.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_1V field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_1V(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_1V) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_1V)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_VP_CP[3] (RW)
  *
@@ -3197,20 +2399,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_VP_CP field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP_CP)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_VCO[4] (RW)
  *
@@ -3221,20 +2413,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_VCO.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_VCO from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VCO.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VCO.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_VCO field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCO)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_STARTUP[5] (RW)
  *
@@ -3245,20 +2427,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_STARTUP field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_STARTUP)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_VP16[6] (RW)
  *
@@ -3269,20 +2441,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16      (0x00000040)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_VP16.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_VP16 from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VP16.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VP16.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_VP16 field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VP16)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_VREF[7] (RW)
  *
@@ -3294,20 +2456,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF      (0x00000080)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_VREF.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_VREF from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VREF.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VREF.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_VREF field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VREF)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_VCNTRL[8] (RW)
  *
@@ -3318,20 +2470,10 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL      (0x00000100)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_VCNTRL field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)))
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
 
 /* --- Register HW_SATAPHY_LANE0_PLL_PRG3, field MEAS_BIAS[9] (RW)
  *
@@ -3342,20 +2484,14 @@ typedef union _hw_sataphy_lane0_pll_prg3
 #define BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS      (0x00000200)  //!< Bit mask for SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS.
 
 //! @brief Get value of SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS from a register value.
-#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(r)   (((r) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS)
+#define BG_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) >> BP_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS.
-#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(v)   (((v) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS)
-#endif
+#define BF_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) & BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MEAS_BIAS field to a new value.
-#define BW_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(v)   (HW_SATAPHY_LANE0_PLL_PRG3_WR((HW_SATAPHY_LANE0_PLL_PRG3_RD() & ~BM_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS) | BF_SATAPHY_LANE0_PLL_PRG3_MEAS_BIAS(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_TX_ANA_ATBSEL1 - Transmit ATB 1 Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3391,11 +2527,6 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1           (*(volatile hw_sataphy_lane0_tx_ana_atbsel1_t *) HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_ADDR)
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD()      (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1.U)
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR(v)     (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1.U = (v))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_SET(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() |  (v)))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_CLR(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_TOG(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() ^  (v)))
 #endif
 
 /*
@@ -3411,20 +2542,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VGR_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field VREF_S_P[1] (RW)
  *
@@ -3435,20 +2556,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VREF_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field VREG_S_M[2] (RW)
  *
@@ -3459,20 +2570,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VREG_S_M field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field TXP_F_P[3] (RW)
  *
@@ -3483,20 +2584,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TXP_F_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field TXP_S_P[4] (RW)
  *
@@ -3507,20 +2598,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TXP_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field TXM_F_P[5] (RW)
  *
@@ -3531,20 +2612,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TXM_F_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field TXM_S_M[6] (RW)
  *
@@ -3555,20 +2626,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M      (0x00000040)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TXM_S_M field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL1, field VBPF_S_P[7] (RW)
  *
@@ -3580,20 +2641,14 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel1
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P      (0x00000080)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VBPF_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL1_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_TX_ANA_ATBSEL2 - Transmit ATB 2 Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3629,11 +2684,6 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2           (*(volatile hw_sataphy_lane0_tx_ana_atbsel2_t *) HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_ADDR)
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD()      (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2.U)
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR(v)     (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2.U = (v))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_SET(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() |  (v)))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_CLR(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_TOG(v)    (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR(HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() ^  (v)))
 #endif
 
 /*
@@ -3649,20 +2699,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK      (0x00000001)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the EN_TXILPBK field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field ENLPBK[1] (RW)
  *
@@ -3673,20 +2713,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENLPBK field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field VBNF_S_M[2] (RW)
  *
@@ -3697,20 +2727,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VBNF_S_M field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field VBPS_S_P[3] (RW)
  *
@@ -3721,20 +2741,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VBPS_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field VBNS_S_M[4] (RW)
  *
@@ -3745,20 +2755,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VBNS_S_M field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field VCM_S_P[5] (RW)
  *
@@ -3769,20 +2769,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P      (0x00000020)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VCM_S_P field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field VREFRXD_S_M[6] (RW)
  *
@@ -3793,20 +2783,10 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M      (0x00000040)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VREFRXD_S_M field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_ATBSEL2, field ATB_EN[7] (RW)
  *
@@ -3817,20 +2797,14 @@ typedef union _hw_sataphy_lane0_tx_ana_atbsel2
 #define BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN      (0x00000080)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
+#define BG_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) >> BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
-#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) & BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ATB_EN field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)   (HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_WR((HW_SATAPHY_LANE0_TX_ANA_ATBSEL2_RD() & ~BM_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) | BF_SATAPHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_SATAPHY_LANE0_TX_ANA_CONTROL - Transmit Analog Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3865,11 +2839,6 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 
 #ifndef __LANGUAGE_ASM__
 #define HW_SATAPHY_LANE0_TX_ANA_CONTROL           (*(volatile hw_sataphy_lane0_tx_ana_control_t *) HW_SATAPHY_LANE0_TX_ANA_CONTROL_ADDR)
-#define HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD()      (HW_SATAPHY_LANE0_TX_ANA_CONTROL.U)
-#define HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR(v)     (HW_SATAPHY_LANE0_TX_ANA_CONTROL.U = (v))
-#define HW_SATAPHY_LANE0_TX_ANA_CONTROL_SET(v)    (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() |  (v)))
-#define HW_SATAPHY_LANE0_TX_ANA_CONTROL_CLR(v)    (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~(v)))
-#define HW_SATAPHY_LANE0_TX_ANA_CONTROL_TOG(v)    (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR(HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() ^  (v)))
 #endif
 
 /*
@@ -3885,20 +2854,10 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL      (0x00000002)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BCN_LCL field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_CONTROL, field FRC_BEACON[2] (RW)
  *
@@ -3910,20 +2869,10 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON      (0x00000004)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_BEACON field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_CONTROL, field DATAOVRD_LCL[3] (RW)
  *
@@ -3934,20 +2883,10 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL      (0x00000008)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATAOVRD_LCL field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_CONTROL, field FRC_DO[4] (RW)
  *
@@ -3958,20 +2897,10 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO      (0x00000010)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_DO field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_DO)
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_CONTROL, field EN_LCL[6:5] (RW)
  *
@@ -3988,20 +2917,10 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL      (0x00000060)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the EN_LCL field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)))
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_EN_LCL)
 
 
 /* --- Register HW_SATAPHY_LANE0_TX_ANA_CONTROL, field FRC_PWRST[7] (RW)
@@ -4014,65 +2933,11 @@ typedef union _hw_sataphy_lane0_tx_ana_control
 #define BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST      (0x00000080)  //!< Bit mask for SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
 
 //! @brief Get value of SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST from a register value.
-#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(r)   (((r) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
+#define BG_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) >> BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)   ((((reg16_t) v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
-#else
-//! @brief Format value for bitfield SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
-#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)   (((v) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
-#endif
+#define BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) & BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the FRC_PWRST field to a new value.
-#define BW_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)   (HW_SATAPHY_LANE0_TX_ANA_CONTROL_WR((HW_SATAPHY_LANE0_TX_ANA_CONTROL_RD() & ~BM_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) | BF_SATAPHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)))
-#endif
-
-
-/*!
- * @brief All SATAPHY_LANE0 module registers.
- */
-#ifndef __LANGUAGE_ASM__
-#pragma pack(1)
-typedef struct _hw_sataphy_lane0
-{
-    reg8_t _reserved0[8193];
-    volatile hw_sataphy_lane0_tx_stat_t TX_STAT; //!< Transmit Input Status Register
-    volatile hw_sataphy_lane0_rx_stat_t RX_STAT; //!< Receiver Input Status Register
-    volatile hw_sataphy_lane0_out_stat_t OUT_STAT; //!< Output Status Register
-    volatile hw_sataphy_lane0_tx_ovrd_t TX_OVRD; //!< Transmit Input Override Register
-    volatile hw_sataphy_lane0_rx_ovrd_t RX_OVRD; //!< Receive Input Override Register
-    volatile hw_sataphy_lane0_out_ovrd_t OUT_OVRD; //!< Output Override Register
-    volatile hw_sataphy_lane0_dbg_ctl_t DBG_CTL; //!< Debug Control Register
-    reg8_t _reserved1;
-    volatile hw_sataphy_lane0_pg_ctl_t PG_CTL; //!< Pattern Generator Control Register
-    reg16_t _reserved2[3];
-    volatile hw_sataphy_lane0_pm_ctl_t PM_CTL; //!< Pattern Matcher Control Register
-    volatile hw_sataphy_lane0_pm_err_t PM_ERR; //!< Pattern Matcher Error Register
-    volatile hw_sataphy_lane0_dpll_phase_t DPLL_PHASE; //!< DPLL Phase Register
-    volatile hw_sataphy_lane0_dpll_freq_t DPLL_FREQ; //!< DPLL Frequency Register
-    volatile hw_sataphy_lane0_scope_ctl_t SCOPE_CTL; //!< Scope Control Register
-    volatile hw_sataphy_lane0_rx_ctl_t RX_CTL; //!< Receiver Control Register
-    volatile hw_sataphy_lane0_rx_dbg_t RX_DBG; //!< Receiver Debug Register
-    reg16_t _reserved3[5];
-    volatile hw_sataphy_lane0_rx_ana_control_t RX_ANA_CONTROL; //!< Receive Analog Control Register
-    volatile hw_sataphy_lane0_rx_ana_atb_t RX_ANA_ATB; //!< Receive ATB Register
-    volatile hw_sataphy_lane0_pll_prg2_t PLL_PRG2; //!< Rx PLL Programming 2 Register
-    volatile hw_sataphy_lane0_pll_prg1_t PLL_PRG1; //!< Rx PLL Programming 1 Register
-    volatile hw_sataphy_lane0_pll_prg3_t PLL_PRG3; //!< Rx PLL Measurement Register
-    volatile hw_sataphy_lane0_tx_ana_atbsel1_t TX_ANA_ATBSEL1; //!< Transmit ATB 1 Control Register
-    volatile hw_sataphy_lane0_tx_ana_atbsel2_t TX_ANA_ATBSEL2; //!< Transmit ATB 2 Control Register
-    volatile hw_sataphy_lane0_tx_ana_control_t TX_ANA_CONTROL; //!< Transmit Analog Control Register
-} hw_sataphy_lane0_t;
-#pragma pack()
-
-//! @brief Macro to access all SATAPHY_LANE0 registers.
-//! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
-//!     use the '&' operator, like <code>&HW_SATAPHY_LANE0(0)</code>.
-#define HW_SATAPHY_LANE0     (*(volatile hw_sataphy_lane0_t *) REGS_SATAPHY_LANE0_BASE)
-
-#endif
 
 
 #endif // __HW_SATAPHY_LANE0_REGISTERS_H__

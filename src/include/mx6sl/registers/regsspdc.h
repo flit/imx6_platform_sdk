@@ -43,6 +43,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_DISP_TRIGGER - Display Trigger
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SPDC_EPD_DISP_TRIGGER - Display Trigger (RW)
@@ -91,15 +106,10 @@ typedef union _hw_spdc_epd_disp_trigger
 #define BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG      (0x00000001)  //!< Bit mask for SPDC_EPD_DISP_TRIGGER_DISP_TRIG.
 
 //! @brief Get value of SPDC_EPD_DISP_TRIGGER_DISP_TRIG from a register value.
-#define BG_SPDC_EPD_DISP_TRIGGER_DISP_TRIG(r)   (((r) & BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG) >> BP_SPDC_EPD_DISP_TRIGGER_DISP_TRIG)
+#define BG_SPDC_EPD_DISP_TRIGGER_DISP_TRIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG) >> BP_SPDC_EPD_DISP_TRIGGER_DISP_TRIG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_DISP_TRIG.
-#define BF_SPDC_EPD_DISP_TRIGGER_DISP_TRIG(v)   ((((reg32_t) v) << BP_SPDC_EPD_DISP_TRIGGER_DISP_TRIG) & BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG)
-#else
-//! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_DISP_TRIG.
-#define BF_SPDC_EPD_DISP_TRIGGER_DISP_TRIG(v)   (((v) << BP_SPDC_EPD_DISP_TRIGGER_DISP_TRIG) & BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG)
-#endif
+#define BF_SPDC_EPD_DISP_TRIGGER_DISP_TRIG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_DISP_TRIGGER_DISP_TRIG) & BM_SPDC_EPD_DISP_TRIGGER_DISP_TRIG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISP_TRIG field to a new value.
@@ -119,15 +129,10 @@ typedef union _hw_spdc_epd_disp_trigger
 #define BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE      (0x0000000e)  //!< Bit mask for SPDC_EPD_DISP_TRIGGER_EPD_MODE.
 
 //! @brief Get value of SPDC_EPD_DISP_TRIGGER_EPD_MODE from a register value.
-#define BG_SPDC_EPD_DISP_TRIGGER_EPD_MODE(r)   (((r) & BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE) >> BP_SPDC_EPD_DISP_TRIGGER_EPD_MODE)
+#define BG_SPDC_EPD_DISP_TRIGGER_EPD_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE) >> BP_SPDC_EPD_DISP_TRIGGER_EPD_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_EPD_MODE.
-#define BF_SPDC_EPD_DISP_TRIGGER_EPD_MODE(v)   ((((reg32_t) v) << BP_SPDC_EPD_DISP_TRIGGER_EPD_MODE) & BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE)
-#else
-//! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_EPD_MODE.
-#define BF_SPDC_EPD_DISP_TRIGGER_EPD_MODE(v)   (((v) << BP_SPDC_EPD_DISP_TRIGGER_EPD_MODE) & BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE)
-#endif
+#define BF_SPDC_EPD_DISP_TRIGGER_EPD_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_DISP_TRIGGER_EPD_MODE) & BM_SPDC_EPD_DISP_TRIGGER_EPD_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPD_MODE field to a new value.
@@ -144,20 +149,19 @@ typedef union _hw_spdc_epd_disp_trigger
 #define BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET      (0x00000010)  //!< Bit mask for SPDC_EPD_DISP_TRIGGER_FLASH_SET.
 
 //! @brief Get value of SPDC_EPD_DISP_TRIGGER_FLASH_SET from a register value.
-#define BG_SPDC_EPD_DISP_TRIGGER_FLASH_SET(r)   (((r) & BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET) >> BP_SPDC_EPD_DISP_TRIGGER_FLASH_SET)
+#define BG_SPDC_EPD_DISP_TRIGGER_FLASH_SET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET) >> BP_SPDC_EPD_DISP_TRIGGER_FLASH_SET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_FLASH_SET.
-#define BF_SPDC_EPD_DISP_TRIGGER_FLASH_SET(v)   ((((reg32_t) v) << BP_SPDC_EPD_DISP_TRIGGER_FLASH_SET) & BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET)
-#else
-//! @brief Format value for bitfield SPDC_EPD_DISP_TRIGGER_FLASH_SET.
-#define BF_SPDC_EPD_DISP_TRIGGER_FLASH_SET(v)   (((v) << BP_SPDC_EPD_DISP_TRIGGER_FLASH_SET) & BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET)
-#endif
+#define BF_SPDC_EPD_DISP_TRIGGER_FLASH_SET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_DISP_TRIGGER_FLASH_SET) & BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FLASH_SET field to a new value.
 #define BW_SPDC_EPD_DISP_TRIGGER_FLASH_SET(v)   (HW_SPDC_EPD_DISP_TRIGGER_WR((HW_SPDC_EPD_DISP_TRIGGER_RD() & ~BM_SPDC_EPD_DISP_TRIGGER_FLASH_SET) | BF_SPDC_EPD_DISP_TRIGGER_FLASH_SET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_UPDATE_X_Y - Display Coordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -208,15 +212,10 @@ typedef union _hw_spdc_epd_update_x_y
 #define BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y      (0x00000fff)  //!< Bit mask for SPDC_EPD_UPDATE_X_Y_COORDINATE_Y.
 
 //! @brief Get value of SPDC_EPD_UPDATE_X_Y_COORDINATE_Y from a register value.
-#define BG_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y(r)   (((r) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y) >> BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y)
+#define BG_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y) >> BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_UPDATE_X_Y_COORDINATE_Y.
-#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y(v)   ((((reg32_t) v) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y)
-#else
-//! @brief Format value for bitfield SPDC_EPD_UPDATE_X_Y_COORDINATE_Y.
-#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y(v)   (((v) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y)
-#endif
+#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COORDINATE_Y field to a new value.
@@ -232,20 +231,19 @@ typedef union _hw_spdc_epd_update_x_y
 #define BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X      (0x0fff0000)  //!< Bit mask for SPDC_EPD_UPDATE_X_Y_COORDINATE_X.
 
 //! @brief Get value of SPDC_EPD_UPDATE_X_Y_COORDINATE_X from a register value.
-#define BG_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(r)   (((r) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) >> BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_X)
+#define BG_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) >> BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_UPDATE_X_Y_COORDINATE_X.
-#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(v)   ((((reg32_t) v) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X)
-#else
-//! @brief Format value for bitfield SPDC_EPD_UPDATE_X_Y_COORDINATE_X.
-#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(v)   (((v) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X)
-#endif
+#define BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) & BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COORDINATE_X field to a new value.
 #define BW_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(v)   (HW_SPDC_EPD_UPDATE_X_Y_WR((HW_SPDC_EPD_UPDATE_X_Y_RD() & ~BM_SPDC_EPD_UPDATE_X_Y_COORDINATE_X) | BF_SPDC_EPD_UPDATE_X_Y_COORDINATE_X(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_UPDATE_W_H - Display Area Size
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -296,15 +294,10 @@ typedef union _hw_spdc_epd_update_w_h
 #define BM_SPDC_EPD_UPDATE_W_H_HEIGHT      (0x00000fff)  //!< Bit mask for SPDC_EPD_UPDATE_W_H_HEIGHT.
 
 //! @brief Get value of SPDC_EPD_UPDATE_W_H_HEIGHT from a register value.
-#define BG_SPDC_EPD_UPDATE_W_H_HEIGHT(r)   (((r) & BM_SPDC_EPD_UPDATE_W_H_HEIGHT) >> BP_SPDC_EPD_UPDATE_W_H_HEIGHT)
+#define BG_SPDC_EPD_UPDATE_W_H_HEIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_UPDATE_W_H_HEIGHT) >> BP_SPDC_EPD_UPDATE_W_H_HEIGHT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_UPDATE_W_H_HEIGHT.
-#define BF_SPDC_EPD_UPDATE_W_H_HEIGHT(v)   ((((reg32_t) v) << BP_SPDC_EPD_UPDATE_W_H_HEIGHT) & BM_SPDC_EPD_UPDATE_W_H_HEIGHT)
-#else
-//! @brief Format value for bitfield SPDC_EPD_UPDATE_W_H_HEIGHT.
-#define BF_SPDC_EPD_UPDATE_W_H_HEIGHT(v)   (((v) << BP_SPDC_EPD_UPDATE_W_H_HEIGHT) & BM_SPDC_EPD_UPDATE_W_H_HEIGHT)
-#endif
+#define BF_SPDC_EPD_UPDATE_W_H_HEIGHT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_UPDATE_W_H_HEIGHT) & BM_SPDC_EPD_UPDATE_W_H_HEIGHT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HEIGHT field to a new value.
@@ -320,20 +313,19 @@ typedef union _hw_spdc_epd_update_w_h
 #define BM_SPDC_EPD_UPDATE_W_H_WIDTH      (0x0fff0000)  //!< Bit mask for SPDC_EPD_UPDATE_W_H_WIDTH.
 
 //! @brief Get value of SPDC_EPD_UPDATE_W_H_WIDTH from a register value.
-#define BG_SPDC_EPD_UPDATE_W_H_WIDTH(r)   (((r) & BM_SPDC_EPD_UPDATE_W_H_WIDTH) >> BP_SPDC_EPD_UPDATE_W_H_WIDTH)
+#define BG_SPDC_EPD_UPDATE_W_H_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_UPDATE_W_H_WIDTH) >> BP_SPDC_EPD_UPDATE_W_H_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_UPDATE_W_H_WIDTH.
-#define BF_SPDC_EPD_UPDATE_W_H_WIDTH(v)   ((((reg32_t) v) << BP_SPDC_EPD_UPDATE_W_H_WIDTH) & BM_SPDC_EPD_UPDATE_W_H_WIDTH)
-#else
-//! @brief Format value for bitfield SPDC_EPD_UPDATE_W_H_WIDTH.
-#define BF_SPDC_EPD_UPDATE_W_H_WIDTH(v)   (((v) << BP_SPDC_EPD_UPDATE_W_H_WIDTH) & BM_SPDC_EPD_UPDATE_W_H_WIDTH)
-#endif
+#define BF_SPDC_EPD_UPDATE_W_H_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_UPDATE_W_H_WIDTH) & BM_SPDC_EPD_UPDATE_W_H_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIDTH field to a new value.
 #define BW_SPDC_EPD_UPDATE_W_H_WIDTH(v)   (HW_SPDC_EPD_UPDATE_W_H_WR((HW_SPDC_EPD_UPDATE_W_H_RD() & ~BM_SPDC_EPD_UPDATE_W_H_WIDTH) | BF_SPDC_EPD_UPDATE_W_H_WIDTH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_LUT_PARA_UPDATE - LUT Parameter Update
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -382,15 +374,10 @@ typedef union _hw_spdc_epd_lut_para_update
 #define BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE      (0x000000ff)  //!< Bit mask for SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE.
 
 //! @brief Get value of SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE from a register value.
-#define BG_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(r)   (((r) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) >> BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE)
+#define BG_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) >> BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE.
-#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(v)   ((((reg32_t) v) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE)
-#else
-//! @brief Format value for bitfield SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE.
-#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(v)   (((v) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE)
-#endif
+#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_PARAMETER_UPDATED_VALUE field to a new value.
@@ -406,20 +393,19 @@ typedef union _hw_spdc_epd_lut_para_update
 #define BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR      (0x0000ff00)  //!< Bit mask for SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR.
 
 //! @brief Get value of SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR from a register value.
-#define BG_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(r)   (((r) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) >> BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR)
+#define BG_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) >> BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR.
-#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR.
-#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)   (((v) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR)
-#endif
+#define BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) & BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_PARAMETER_UPDATED_ADDR field to a new value.
 #define BW_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)   (HW_SPDC_EPD_LUT_PARA_UPDATE_WR((HW_SPDC_EPD_LUT_PARA_UPDATE_RD() & ~BM_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) | BF_SPDC_EPD_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_OPERATE - Display Normal Operation
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -471,15 +457,10 @@ typedef union _hw_spdc_epd_operate
 #define BM_SPDC_EPD_OPERATE_DISP_REFRESH      (0x00000001)  //!< Bit mask for SPDC_EPD_OPERATE_DISP_REFRESH.
 
 //! @brief Get value of SPDC_EPD_OPERATE_DISP_REFRESH from a register value.
-#define BG_SPDC_EPD_OPERATE_DISP_REFRESH(r)   (((r) & BM_SPDC_EPD_OPERATE_DISP_REFRESH) >> BP_SPDC_EPD_OPERATE_DISP_REFRESH)
+#define BG_SPDC_EPD_OPERATE_DISP_REFRESH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_OPERATE_DISP_REFRESH) >> BP_SPDC_EPD_OPERATE_DISP_REFRESH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_OPERATE_DISP_REFRESH.
-#define BF_SPDC_EPD_OPERATE_DISP_REFRESH(v)   ((((reg32_t) v) << BP_SPDC_EPD_OPERATE_DISP_REFRESH) & BM_SPDC_EPD_OPERATE_DISP_REFRESH)
-#else
-//! @brief Format value for bitfield SPDC_EPD_OPERATE_DISP_REFRESH.
-#define BF_SPDC_EPD_OPERATE_DISP_REFRESH(v)   (((v) << BP_SPDC_EPD_OPERATE_DISP_REFRESH) & BM_SPDC_EPD_OPERATE_DISP_REFRESH)
-#endif
+#define BF_SPDC_EPD_OPERATE_DISP_REFRESH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_OPERATE_DISP_REFRESH) & BM_SPDC_EPD_OPERATE_DISP_REFRESH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISP_REFRESH field to a new value.
@@ -497,15 +478,10 @@ typedef union _hw_spdc_epd_operate
 #define BM_SPDC_EPD_OPERATE_DEEP_REFRESH      (0x00000002)  //!< Bit mask for SPDC_EPD_OPERATE_DEEP_REFRESH.
 
 //! @brief Get value of SPDC_EPD_OPERATE_DEEP_REFRESH from a register value.
-#define BG_SPDC_EPD_OPERATE_DEEP_REFRESH(r)   (((r) & BM_SPDC_EPD_OPERATE_DEEP_REFRESH) >> BP_SPDC_EPD_OPERATE_DEEP_REFRESH)
+#define BG_SPDC_EPD_OPERATE_DEEP_REFRESH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_OPERATE_DEEP_REFRESH) >> BP_SPDC_EPD_OPERATE_DEEP_REFRESH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_OPERATE_DEEP_REFRESH.
-#define BF_SPDC_EPD_OPERATE_DEEP_REFRESH(v)   ((((reg32_t) v) << BP_SPDC_EPD_OPERATE_DEEP_REFRESH) & BM_SPDC_EPD_OPERATE_DEEP_REFRESH)
-#else
-//! @brief Format value for bitfield SPDC_EPD_OPERATE_DEEP_REFRESH.
-#define BF_SPDC_EPD_OPERATE_DEEP_REFRESH(v)   (((v) << BP_SPDC_EPD_OPERATE_DEEP_REFRESH) & BM_SPDC_EPD_OPERATE_DEEP_REFRESH)
-#endif
+#define BF_SPDC_EPD_OPERATE_DEEP_REFRESH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_OPERATE_DEEP_REFRESH) & BM_SPDC_EPD_OPERATE_DEEP_REFRESH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEEP_REFRESH field to a new value.
@@ -522,15 +498,10 @@ typedef union _hw_spdc_epd_operate
 #define BM_SPDC_EPD_OPERATE_DISP_RESET      (0x00000004)  //!< Bit mask for SPDC_EPD_OPERATE_DISP_RESET.
 
 //! @brief Get value of SPDC_EPD_OPERATE_DISP_RESET from a register value.
-#define BG_SPDC_EPD_OPERATE_DISP_RESET(r)   (((r) & BM_SPDC_EPD_OPERATE_DISP_RESET) >> BP_SPDC_EPD_OPERATE_DISP_RESET)
+#define BG_SPDC_EPD_OPERATE_DISP_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_OPERATE_DISP_RESET) >> BP_SPDC_EPD_OPERATE_DISP_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_OPERATE_DISP_RESET.
-#define BF_SPDC_EPD_OPERATE_DISP_RESET(v)   ((((reg32_t) v) << BP_SPDC_EPD_OPERATE_DISP_RESET) & BM_SPDC_EPD_OPERATE_DISP_RESET)
-#else
-//! @brief Format value for bitfield SPDC_EPD_OPERATE_DISP_RESET.
-#define BF_SPDC_EPD_OPERATE_DISP_RESET(v)   (((v) << BP_SPDC_EPD_OPERATE_DISP_RESET) & BM_SPDC_EPD_OPERATE_DISP_RESET)
-#endif
+#define BF_SPDC_EPD_OPERATE_DISP_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_OPERATE_DISP_RESET) & BM_SPDC_EPD_OPERATE_DISP_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISP_RESET field to a new value.
@@ -547,20 +518,19 @@ typedef union _hw_spdc_epd_operate
 #define BM_SPDC_EPD_OPERATE_SW_TCON_RESET      (0x80000000)  //!< Bit mask for SPDC_EPD_OPERATE_SW_TCON_RESET.
 
 //! @brief Get value of SPDC_EPD_OPERATE_SW_TCON_RESET from a register value.
-#define BG_SPDC_EPD_OPERATE_SW_TCON_RESET(r)   (((r) & BM_SPDC_EPD_OPERATE_SW_TCON_RESET) >> BP_SPDC_EPD_OPERATE_SW_TCON_RESET)
+#define BG_SPDC_EPD_OPERATE_SW_TCON_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_OPERATE_SW_TCON_RESET) >> BP_SPDC_EPD_OPERATE_SW_TCON_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_OPERATE_SW_TCON_RESET.
-#define BF_SPDC_EPD_OPERATE_SW_TCON_RESET(v)   ((((reg32_t) v) << BP_SPDC_EPD_OPERATE_SW_TCON_RESET) & BM_SPDC_EPD_OPERATE_SW_TCON_RESET)
-#else
-//! @brief Format value for bitfield SPDC_EPD_OPERATE_SW_TCON_RESET.
-#define BF_SPDC_EPD_OPERATE_SW_TCON_RESET(v)   (((v) << BP_SPDC_EPD_OPERATE_SW_TCON_RESET) & BM_SPDC_EPD_OPERATE_SW_TCON_RESET)
-#endif
+#define BF_SPDC_EPD_OPERATE_SW_TCON_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_OPERATE_SW_TCON_RESET) & BM_SPDC_EPD_OPERATE_SW_TCON_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_TCON_RESET field to a new value.
 #define BW_SPDC_EPD_OPERATE_SW_TCON_RESET(v)   (HW_SPDC_EPD_OPERATE_WR((HW_SPDC_EPD_OPERATE_RD() & ~BM_SPDC_EPD_OPERATE_SW_TCON_RESET) | BF_SPDC_EPD_OPERATE_SW_TCON_RESET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_PANEL_INIT_SET - SPDC Initial Setting
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -646,15 +616,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL      (0x00000001)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_YOE_POL.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_YOE_POL from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_YOE_POL(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL) >> BP_SPDC_EPD_PANEL_INIT_SET_YOE_POL)
+#define BG_SPDC_EPD_PANEL_INIT_SET_YOE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL) >> BP_SPDC_EPD_PANEL_INIT_SET_YOE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_YOE_POL.
-#define BF_SPDC_EPD_PANEL_INIT_SET_YOE_POL(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_YOE_POL) & BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_YOE_POL.
-#define BF_SPDC_EPD_PANEL_INIT_SET_YOE_POL(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_YOE_POL) & BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_YOE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_YOE_POL) & BM_SPDC_EPD_PANEL_INIT_SET_YOE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YOE_POL field to a new value.
@@ -671,15 +636,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE      (0x00000002)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_DUAL_GATE.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_DUAL_GATE from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE) >> BP_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE)
+#define BG_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE) >> BP_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_DUAL_GATE.
-#define BF_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE) & BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_DUAL_GATE.
-#define BF_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE) & BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE) & BM_SPDC_EPD_PANEL_INIT_SET_DUAL_GATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DUAL_GATE field to a new value.
@@ -696,15 +656,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION      (0x0000007c)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_RESOLUTION.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_RESOLUTION from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_RESOLUTION(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION) >> BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION)
+#define BG_SPDC_EPD_PANEL_INIT_SET_RESOLUTION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION) >> BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RESOLUTION.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RESOLUTION(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION) & BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RESOLUTION.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RESOLUTION(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION) & BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_RESOLUTION(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_RESOLUTION) & BM_SPDC_EPD_PANEL_INIT_SET_RESOLUTION)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESOLUTION field to a new value.
@@ -721,15 +676,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_UD      (0x00000080)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_UD.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_UD from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_UD(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_UD) >> BP_SPDC_EPD_PANEL_INIT_SET_UD)
+#define BG_SPDC_EPD_PANEL_INIT_SET_UD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_UD) >> BP_SPDC_EPD_PANEL_INIT_SET_UD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_UD.
-#define BF_SPDC_EPD_PANEL_INIT_SET_UD(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_UD) & BM_SPDC_EPD_PANEL_INIT_SET_UD)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_UD.
-#define BF_SPDC_EPD_PANEL_INIT_SET_UD(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_UD) & BM_SPDC_EPD_PANEL_INIT_SET_UD)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_UD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_UD) & BM_SPDC_EPD_PANEL_INIT_SET_UD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UD field to a new value.
@@ -746,15 +696,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_RL      (0x00000100)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_RL.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_RL from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_RL(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_RL) >> BP_SPDC_EPD_PANEL_INIT_SET_RL)
+#define BG_SPDC_EPD_PANEL_INIT_SET_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_RL) >> BP_SPDC_EPD_PANEL_INIT_SET_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RL.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RL(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_RL) & BM_SPDC_EPD_PANEL_INIT_SET_RL)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RL.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RL(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_RL) & BM_SPDC_EPD_PANEL_INIT_SET_RL)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_RL) & BM_SPDC_EPD_PANEL_INIT_SET_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -773,15 +718,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N      (0x00000200)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N) >> BP_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N)
+#define BG_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N) >> BP_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N.
-#define BF_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N) & BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N.
-#define BF_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N) & BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N) & BM_SPDC_EPD_PANEL_INIT_SET_DATA_FILTER_N)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_FILTER_N field to a new value.
@@ -799,15 +739,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY      (0x00000400)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_POWER_READY.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_POWER_READY from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_POWER_READY(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY) >> BP_SPDC_EPD_PANEL_INIT_SET_POWER_READY)
+#define BG_SPDC_EPD_PANEL_INIT_SET_POWER_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY) >> BP_SPDC_EPD_PANEL_INIT_SET_POWER_READY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_POWER_READY.
-#define BF_SPDC_EPD_PANEL_INIT_SET_POWER_READY(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_POWER_READY) & BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_POWER_READY.
-#define BF_SPDC_EPD_PANEL_INIT_SET_POWER_READY(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_POWER_READY) & BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_POWER_READY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_POWER_READY) & BM_SPDC_EPD_PANEL_INIT_SET_POWER_READY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POWER_READY field to a new value.
@@ -824,15 +759,10 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN      (0x00000800)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN) >> BP_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN)
+#define BG_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN) >> BP_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN) & BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN.
-#define BF_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN) & BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN) & BM_SPDC_EPD_PANEL_INIT_SET_RGBW_MODE_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RGBW_MODE_EN field to a new value.
@@ -850,20 +780,19 @@ typedef union _hw_spdc_epd_panel_init_set
 #define BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN      (0x00002000)  //!< Bit mask for SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN.
 
 //! @brief Get value of SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN from a register value.
-#define BG_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(r)   (((r) & BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) >> BP_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN)
+#define BG_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) >> BP_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN.
-#define BF_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) & BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN.
-#define BF_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(v)   (((v) << BP_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) & BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN)
-#endif
+#define BF_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) & BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBURST_LEN_EN field to a new value.
 #define BW_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(v)   (HW_SPDC_EPD_PANEL_INIT_SET_WR((HW_SPDC_EPD_PANEL_INIT_SET_RD() & ~BM_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN) | BF_SPDC_EPD_PANEL_INIT_SET_HBURST_LEN_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_TEMPER_SETTING - Environment Temperature
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -916,20 +845,19 @@ typedef union _hw_spdc_epd_temper_setting
 #define BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE      (0x000001ff)  //!< Bit mask for SPDC_EPD_TEMPER_SETTING_TEMPERATURE.
 
 //! @brief Get value of SPDC_EPD_TEMPER_SETTING_TEMPERATURE from a register value.
-#define BG_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(r)   (((r) & BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) >> BP_SPDC_EPD_TEMPER_SETTING_TEMPERATURE)
+#define BG_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) >> BP_SPDC_EPD_TEMPER_SETTING_TEMPERATURE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_TEMPER_SETTING_TEMPERATURE.
-#define BF_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(v)   ((((reg32_t) v) << BP_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) & BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE)
-#else
-//! @brief Format value for bitfield SPDC_EPD_TEMPER_SETTING_TEMPERATURE.
-#define BF_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(v)   (((v) << BP_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) & BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE)
-#endif
+#define BF_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) & BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEMPERATURE field to a new value.
 #define BW_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(v)   (HW_SPDC_EPD_TEMPER_SETTING_WR((HW_SPDC_EPD_TEMPER_SETTING_RD() & ~BM_SPDC_EPD_TEMPER_SETTING_TEMPERATURE) | BF_SPDC_EPD_TEMPER_SETTING_TEMPERATURE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_NEXT_BUF - Next Frame Memory Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -977,20 +905,19 @@ typedef union _hw_spdc_epd_next_buf
 #define BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR.
 
 //! @brief Get value of SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR from a register value.
-#define BG_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(r)   (((r) & BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR)
+#define BG_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)   (((v) << BP_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR)
-#endif
+#define BF_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NEXT_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)   (HW_SPDC_EPD_NEXT_BUF_WR((HW_SPDC_EPD_NEXT_BUF_RD() & ~BM_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) | BF_SPDC_EPD_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_CURRENT_BUF - Current Frame Memory Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1038,20 +965,19 @@ typedef union _hw_spdc_epd_current_buf
 #define BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR.
 
 //! @brief Get value of SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR from a register value.
-#define BG_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(r)   (((r) & BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR)
+#define BG_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)   (((v) << BP_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR)
-#endif
+#define BF_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CURRENT_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)   (HW_SPDC_EPD_CURRENT_BUF_WR((HW_SPDC_EPD_CURRENT_BUF_RD() & ~BM_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) | BF_SPDC_EPD_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_PREVIOUS_BUFF - Previous Frame Memory Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1099,20 +1025,19 @@ typedef union _hw_spdc_epd_previous_buff
 #define BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR.
 
 //! @brief Get value of SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR from a register value.
-#define BG_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(r)   (((r) & BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR)
+#define BG_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)   (((v) << BP_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR)
-#endif
+#define BF_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREVIOUS_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)   (HW_SPDC_EPD_PREVIOUS_BUFF_WR((HW_SPDC_EPD_PREVIOUS_BUFF_RD() & ~BM_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) | BF_SPDC_EPD_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_FRM_CNT_BUFF - Counter Frame Memory Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1160,20 +1085,19 @@ typedef union _hw_spdc_epd_frm_cnt_buff
 #define BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR.
 
 //! @brief Get value of SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR from a register value.
-#define BG_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(r)   (((r) & BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR)
+#define BG_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) >> BP_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR.
-#define BF_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)   (((v) << BP_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR)
-#endif
+#define BF_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) & BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNTER_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)   (HW_SPDC_EPD_FRM_CNT_BUFF_WR((HW_SPDC_EPD_FRM_CNT_BUFF_RD() & ~BM_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) | BF_SPDC_EPD_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_LUT_BUFF - LUT Memory Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1221,20 +1145,19 @@ typedef union _hw_spdc_epd_lut_buff
 #define BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR.
 
 //! @brief Get value of SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR from a register value.
-#define BG_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(r)   (((r) & BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) >> BP_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR)
+#define BG_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) >> BP_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR.
-#define BF_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(v)   ((((reg32_t) v) << BP_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) & BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR.
-#define BF_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(v)   (((v) << BP_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) & BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR)
-#endif
+#define BF_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) & BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_MEMORY_ADDR field to a new value.
 #define BW_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(v)   (HW_SPDC_EPD_LUT_BUFF_WR((HW_SPDC_EPD_LUT_BUFF_RD() & ~BM_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR) | BF_SPDC_EPD_LUT_BUFF_LUT_MEMORY_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_INT_EN - Interrupt Enable
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1286,15 +1209,10 @@ typedef union _hw_spdc_epd_int_en
 #define BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN      (0x00000001)  //!< Bit mask for SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN.
 
 //! @brief Get value of SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN from a register value.
-#define BG_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN(r)   (((r) & BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN)
+#define BG_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN(v)   (((v) << BP_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN)
-#endif
+#define BF_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_UPDATE_FINISH_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPDATE_FINISH_INT_EN field to a new value.
@@ -1312,15 +1230,10 @@ typedef union _hw_spdc_epd_int_en
 #define BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN      (0x00000002)  //!< Bit mask for SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN.
 
 //! @brief Get value of SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN from a register value.
-#define BG_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN(r)   (((r) & BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN)
+#define BG_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN(v)   (((v) << BP_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN)
-#endif
+#define BF_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_INIT_FINISH_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCON_INIT_FINISH_INT_EN field to a new value.
@@ -1338,15 +1251,10 @@ typedef union _hw_spdc_epd_int_en
 #define BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN      (0x00000004)  //!< Bit mask for SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN.
 
 //! @brief Get value of SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN from a register value.
-#define BG_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(r)   (((r) & BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN)
+#define BG_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) >> BP_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN.
-#define BF_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(v)   (((v) << BP_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN)
-#endif
+#define BF_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) & BM_SPDC_EPD_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_DOWNLOAD_FINISH_INT_EN field to a new value.
@@ -1363,20 +1271,19 @@ typedef union _hw_spdc_epd_int_en
 #define BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN      (0x00000008)  //!< Bit mask for SPDC_EPD_INT_EN_TCON_ERROR_INT_EN.
 
 //! @brief Get value of SPDC_EPD_INT_EN_TCON_ERROR_INT_EN from a register value.
-#define BG_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(r)   (((r) & BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) >> BP_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN)
+#define BG_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) >> BP_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_EN_TCON_ERROR_INT_EN.
-#define BF_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_EN_TCON_ERROR_INT_EN.
-#define BF_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(v)   (((v) << BP_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN)
-#endif
+#define BF_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) & BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCON_ERROR_INT_EN field to a new value.
 #define BW_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(v)   (HW_SPDC_EPD_INT_EN_WR((HW_SPDC_EPD_INT_EN_RD() & ~BM_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN) | BF_SPDC_EPD_INT_EN_TCON_ERROR_INT_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_INT_ST_CLR - Interrupt Status & Clear
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1428,15 +1335,10 @@ typedef union _hw_spdc_epd_int_st_clr
 #define BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR      (0x00000001)  //!< Bit mask for SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR.
 
 //! @brief Get value of SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR from a register value.
-#define BG_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR(r)   (((r) & BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR)
+#define BG_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR(v)   (((v) << BP_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR)
-#endif
+#define BF_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_UPDATE_FINISH_INT_CLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPDATE_FINISH_INT_CLR field to a new value.
@@ -1453,15 +1355,10 @@ typedef union _hw_spdc_epd_int_st_clr
 #define BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR      (0x00000002)  //!< Bit mask for SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR.
 
 //! @brief Get value of SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR from a register value.
-#define BG_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(r)   (((r) & BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR)
+#define BG_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(v)   (((v) << BP_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR)
-#endif
+#define BF_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCON_INIT_FINISH_INT_CLR field to a new value.
@@ -1478,15 +1375,10 @@ typedef union _hw_spdc_epd_int_st_clr
 #define BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR      (0x00000004)  //!< Bit mask for SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR.
 
 //! @brief Get value of SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR from a register value.
-#define BG_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(r)   (((r) & BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR)
+#define BG_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(v)   (((v) << BP_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR)
-#endif
+#define BF_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_DOWNLOAD_FINISH_INT_CLR field to a new value.
@@ -1502,20 +1394,19 @@ typedef union _hw_spdc_epd_int_st_clr
 #define BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR      (0x00000008)  //!< Bit mask for SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR.
 
 //! @brief Get value of SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR from a register value.
-#define BG_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(r)   (((r) & BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR)
+#define BG_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) >> BP_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(v)   ((((reg32_t) v) << BP_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR)
-#else
-//! @brief Format value for bitfield SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR.
-#define BF_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(v)   (((v) << BP_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR)
-#endif
+#define BF_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) & BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCON_ERROR_INT_CLR field to a new value.
 #define BW_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(v)   (HW_SPDC_EPD_INT_ST_CLR_WR((HW_SPDC_EPD_INT_ST_CLR_RD() & ~BM_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR) | BF_SPDC_EPD_INT_ST_CLR_TCON_ERROR_INT_CLR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_STATUS - SPDC Operation Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1563,7 +1454,7 @@ typedef union _hw_spdc_epd_status
 #define BM_SPDC_EPD_STATUS_EPD_TCON_BUSY_N      (0x00000001)  //!< Bit mask for SPDC_EPD_STATUS_EPD_TCON_BUSY_N.
 
 //! @brief Get value of SPDC_EPD_STATUS_EPD_TCON_BUSY_N from a register value.
-#define BG_SPDC_EPD_STATUS_EPD_TCON_BUSY_N(r)   (((r) & BM_SPDC_EPD_STATUS_EPD_TCON_BUSY_N) >> BP_SPDC_EPD_STATUS_EPD_TCON_BUSY_N)
+#define BG_SPDC_EPD_STATUS_EPD_TCON_BUSY_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_STATUS_EPD_TCON_BUSY_N) >> BP_SPDC_EPD_STATUS_EPD_TCON_BUSY_N)
 
 /* --- Register HW_SPDC_EPD_STATUS, field LUT_CHECKSUM[3] (RO)
  *
@@ -1575,7 +1466,7 @@ typedef union _hw_spdc_epd_status
 #define BM_SPDC_EPD_STATUS_LUT_CHECKSUM      (0x00000008)  //!< Bit mask for SPDC_EPD_STATUS_LUT_CHECKSUM.
 
 //! @brief Get value of SPDC_EPD_STATUS_LUT_CHECKSUM from a register value.
-#define BG_SPDC_EPD_STATUS_LUT_CHECKSUM(r)   (((r) & BM_SPDC_EPD_STATUS_LUT_CHECKSUM) >> BP_SPDC_EPD_STATUS_LUT_CHECKSUM)
+#define BG_SPDC_EPD_STATUS_LUT_CHECKSUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_STATUS_LUT_CHECKSUM) >> BP_SPDC_EPD_STATUS_LUT_CHECKSUM)
 
 /* --- Register HW_SPDC_EPD_STATUS, field EPD_TCON_STATUS[7:4] (RO)
  *
@@ -1593,7 +1484,11 @@ typedef union _hw_spdc_epd_status
 #define BM_SPDC_EPD_STATUS_EPD_TCON_STATUS      (0x000000f0)  //!< Bit mask for SPDC_EPD_STATUS_EPD_TCON_STATUS.
 
 //! @brief Get value of SPDC_EPD_STATUS_EPD_TCON_STATUS from a register value.
-#define BG_SPDC_EPD_STATUS_EPD_TCON_STATUS(r)   (((r) & BM_SPDC_EPD_STATUS_EPD_TCON_STATUS) >> BP_SPDC_EPD_STATUS_EPD_TCON_STATUS)
+#define BG_SPDC_EPD_STATUS_EPD_TCON_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_STATUS_EPD_TCON_STATUS) >> BP_SPDC_EPD_STATUS_EPD_TCON_STATUS)
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_PANEL_TYPE_VER - Panel Type Related Information
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1639,7 +1534,7 @@ typedef union _hw_spdc_epd_panel_type_ver
 #define BM_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID      (0x0000ffff)  //!< Bit mask for SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID.
 
 //! @brief Get value of SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID from a register value.
-#define BG_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID(r)   (((r) & BM_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID) >> BP_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID)
+#define BG_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID) >> BP_SPDC_EPD_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID)
 
 /* --- Register HW_SPDC_EPD_PANEL_TYPE_VER, field LUT_VERSION[23:16] (RO)
  *
@@ -1651,7 +1546,7 @@ typedef union _hw_spdc_epd_panel_type_ver
 #define BM_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION      (0x00ff0000)  //!< Bit mask for SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION.
 
 //! @brief Get value of SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION from a register value.
-#define BG_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION(r)   (((r) & BM_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION) >> BP_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION)
+#define BG_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION) >> BP_SPDC_EPD_PANEL_TYPE_VER_LUT_VERSION)
 
 /* --- Register HW_SPDC_EPD_PANEL_TYPE_VER, field EPD_PANEL_TYPE[31:24] (RO)
  *
@@ -1664,7 +1559,11 @@ typedef union _hw_spdc_epd_panel_type_ver
 #define BM_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE      (0xff000000)  //!< Bit mask for SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE.
 
 //! @brief Get value of SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE from a register value.
-#define BG_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE(r)   (((r) & BM_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE) >> BP_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE)
+#define BG_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE) >> BP_SPDC_EPD_PANEL_TYPE_VER_EPD_PANEL_TYPE)
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_TCON_VER - SPDC IP Version
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1709,7 +1608,11 @@ typedef union _hw_spdc_epd_tcon_ver
 #define BM_SPDC_EPD_TCON_VER_EPD_TCON_VERSION      (0x000000ff)  //!< Bit mask for SPDC_EPD_TCON_VER_EPD_TCON_VERSION.
 
 //! @brief Get value of SPDC_EPD_TCON_VER_EPD_TCON_VERSION from a register value.
-#define BG_SPDC_EPD_TCON_VER_EPD_TCON_VERSION(r)   (((r) & BM_SPDC_EPD_TCON_VER_EPD_TCON_VERSION) >> BP_SPDC_EPD_TCON_VER_EPD_TCON_VERSION)
+#define BG_SPDC_EPD_TCON_VER_EPD_TCON_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_TCON_VER_EPD_TCON_VERSION) >> BP_SPDC_EPD_TCON_VER_EPD_TCON_VERSION)
+
+//-------------------------------------------------------------------------------------------
+// HW_SPDC_EPD_SW_GATE_CLK - All Clock Gating Enable
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1758,15 +1661,10 @@ typedef union _hw_spdc_epd_sw_gate_clk
 #define BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN      (0x00000001)  //!< Bit mask for SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN.
 
 //! @brief Get value of SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN from a register value.
-#define BG_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN(r)   (((r) & BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN) >> BP_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN)
+#define BG_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN) >> BP_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN.
-#define BF_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN(v)   ((((reg32_t) v) << BP_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN) & BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN)
-#else
-//! @brief Format value for bitfield SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN.
-#define BF_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN(v)   (((v) << BP_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN) & BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN)
-#endif
+#define BF_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN) & BM_SPDC_EPD_SW_GATE_CLK_GATING_ALL_CLK_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GATING_ALL_CLK_EN field to a new value.

@@ -1619,7 +1619,7 @@ typedef union _hw_pmu_misc2
         unsigned RESERVED0 : 1; //!< [4] Reserved.
         unsigned REG0_ENABLE_BO : 1; //!< [5] Enables the brownout detection.
         unsigned RESERVED1 : 1; //!< [6] Reserved
-        unsigned CONTROL0 : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
+        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
         unsigned REG1_BO_OFFSET : 3; //!< [10:8] This bit field defines the brown out voltage offset for the xPU power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET Not all steps will make sense to use either because of input supply limitations or load operation.
         unsigned REG1_BO_STATUS : 1; //!< [11] Reg1 brownout status bit.
         unsigned RESERVED2 : 1; //!< [12] Reserved.
@@ -1634,7 +1634,7 @@ typedef union _hw_pmu_misc2
         unsigned REG0_STEP_TIME : 2; //!< [25:24] Number of clock periods (24MHz clock).
         unsigned REG1_STEP_TIME : 2; //!< [27:26] Number of clock periods (24MHz clock).
         unsigned REG2_STEP_TIME : 2; //!< [29:28] Number of clock periods (24MHz clock).
-        unsigned CONTROL3 : 2; //!< [31:30] Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
     } B;
 } hw_pmu_misc2_t;
 #endif
@@ -1709,23 +1709,23 @@ typedef union _hw_pmu_misc2
 #define BW_PMU_MISC2_REG0_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG0_ENABLE_BO) | BF_PMU_MISC2_REG0_ENABLE_BO(v)))
 #endif
 
-/* --- Register HW_PMU_MISC2, field CONTROL0[7] (RW)
+/* --- Register HW_PMU_MISC2, field PLL3_DISABLE[7] (RW)
  *
  * Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
  */
 
-#define BP_PMU_MISC2_CONTROL0      (7)      //!< Bit position for PMU_MISC2_CONTROL0.
-#define BM_PMU_MISC2_CONTROL0      (0x00000080)  //!< Bit mask for PMU_MISC2_CONTROL0.
+#define BP_PMU_MISC2_PLL3_DISABLE      (7)      //!< Bit position for PMU_MISC2_PLL3_DISABLE.
+#define BM_PMU_MISC2_PLL3_DISABLE      (0x00000080)  //!< Bit mask for PMU_MISC2_PLL3_DISABLE.
 
-//! @brief Get value of PMU_MISC2_CONTROL0 from a register value.
-#define BG_PMU_MISC2_CONTROL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_CONTROL0) >> BP_PMU_MISC2_CONTROL0)
+//! @brief Get value of PMU_MISC2_PLL3_DISABLE from a register value.
+#define BG_PMU_MISC2_PLL3_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_PLL3_DISABLE) >> BP_PMU_MISC2_PLL3_DISABLE)
 
-//! @brief Format value for bitfield PMU_MISC2_CONTROL0.
-#define BF_PMU_MISC2_CONTROL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_CONTROL0) & BM_PMU_MISC2_CONTROL0)
+//! @brief Format value for bitfield PMU_MISC2_PLL3_DISABLE.
+#define BF_PMU_MISC2_PLL3_DISABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_PLL3_DISABLE) & BM_PMU_MISC2_PLL3_DISABLE)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CONTROL0 field to a new value.
-#define BW_PMU_MISC2_CONTROL0(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_CONTROL0) | BF_PMU_MISC2_CONTROL0(v)))
+//! @brief Set the PLL3_DISABLE field to a new value.
+#define BW_PMU_MISC2_PLL3_DISABLE(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_PLL3_DISABLE) | BF_PMU_MISC2_PLL3_DISABLE(v)))
 #endif
 
 /* --- Register HW_PMU_MISC2, field REG1_BO_OFFSET[10:8] (RO)
@@ -1932,7 +1932,7 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_REG2_STEP_TIME__256_CLOCKS (0x2) //!< 256
 #define BV_PMU_MISC2_REG2_STEP_TIME__512_CLOCKS (0x3) //!< 512
 
-/* --- Register HW_PMU_MISC2, field CONTROL3[31:30] (RW)
+/* --- Register HW_PMU_MISC2, field VIDEO_DIV[31:30] (RW)
  *
  * Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing
  * this divider to prevent glitches.
@@ -1944,23 +1944,23 @@ typedef union _hw_pmu_misc2
  * DIV_BY_4 = 11 - div-by-4
  */
 
-#define BP_PMU_MISC2_CONTROL3      (30)      //!< Bit position for PMU_MISC2_CONTROL3.
-#define BM_PMU_MISC2_CONTROL3      (0xc0000000)  //!< Bit mask for PMU_MISC2_CONTROL3.
+#define BP_PMU_MISC2_VIDEO_DIV      (30)      //!< Bit position for PMU_MISC2_VIDEO_DIV.
+#define BM_PMU_MISC2_VIDEO_DIV      (0xc0000000)  //!< Bit mask for PMU_MISC2_VIDEO_DIV.
 
-//! @brief Get value of PMU_MISC2_CONTROL3 from a register value.
-#define BG_PMU_MISC2_CONTROL3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_CONTROL3) >> BP_PMU_MISC2_CONTROL3)
+//! @brief Get value of PMU_MISC2_VIDEO_DIV from a register value.
+#define BG_PMU_MISC2_VIDEO_DIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_VIDEO_DIV) >> BP_PMU_MISC2_VIDEO_DIV)
 
-//! @brief Format value for bitfield PMU_MISC2_CONTROL3.
-#define BF_PMU_MISC2_CONTROL3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_CONTROL3) & BM_PMU_MISC2_CONTROL3)
+//! @brief Format value for bitfield PMU_MISC2_VIDEO_DIV.
+#define BF_PMU_MISC2_VIDEO_DIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_VIDEO_DIV) & BM_PMU_MISC2_VIDEO_DIV)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CONTROL3 field to a new value.
-#define BW_PMU_MISC2_CONTROL3(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_CONTROL3) | BF_PMU_MISC2_CONTROL3(v)))
+//! @brief Set the VIDEO_DIV field to a new value.
+#define BW_PMU_MISC2_VIDEO_DIV(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_VIDEO_DIV) | BF_PMU_MISC2_VIDEO_DIV(v)))
 #endif
 
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_1 (0x0) //!< div-by-1 (default)
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_2 (0x1) //!< div-by-2
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_4 (0x3) //!< div-by-4
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_1 (0x0) //!< div-by-1 (default)
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_2 (0x1) //!< div-by-2
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_4 (0x3) //!< div-by-4
 
 
 /*!

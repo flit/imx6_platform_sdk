@@ -55,6 +55,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_DR - GPIO data register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPIO_DR - GPIO data register (RW)
@@ -114,20 +129,19 @@ typedef union _hw_gpio_dr
 #define BM_GPIO_DR_DR      (0xffffffff)  //!< Bit mask for GPIO_DR_DR.
 
 //! @brief Get value of GPIO_DR_DR from a register value.
-#define BG_GPIO_DR_DR(r)   (((r) & BM_GPIO_DR_DR) >> BP_GPIO_DR_DR)
+#define BG_GPIO_DR_DR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_DR_DR) >> BP_GPIO_DR_DR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_DR_DR.
-#define BF_GPIO_DR_DR(v)   ((((reg32_t) v) << BP_GPIO_DR_DR) & BM_GPIO_DR_DR)
-#else
-//! @brief Format value for bitfield GPIO_DR_DR.
-#define BF_GPIO_DR_DR(v)   (((v) << BP_GPIO_DR_DR) & BM_GPIO_DR_DR)
-#endif
+#define BF_GPIO_DR_DR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_DR_DR) & BM_GPIO_DR_DR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DR field to a new value.
 #define BW_GPIO_DR_DR(x, v)   (HW_GPIO_DR_WR(x, (HW_GPIO_DR_RD(x) & ~BM_GPIO_DR_DR) | BF_GPIO_DR_DR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_GDIR - GPIO direction register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -183,21 +197,20 @@ typedef union _hw_gpio_gdir
 #define BM_GPIO_GDIR_GDIR      (0xffffffff)  //!< Bit mask for GPIO_GDIR_GDIR.
 
 //! @brief Get value of GPIO_GDIR_GDIR from a register value.
-#define BG_GPIO_GDIR_GDIR(r)   (((r) & BM_GPIO_GDIR_GDIR) >> BP_GPIO_GDIR_GDIR)
+#define BG_GPIO_GDIR_GDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_GDIR_GDIR) >> BP_GPIO_GDIR_GDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_GDIR_GDIR.
-#define BF_GPIO_GDIR_GDIR(v)   ((((reg32_t) v) << BP_GPIO_GDIR_GDIR) & BM_GPIO_GDIR_GDIR)
-#else
-//! @brief Format value for bitfield GPIO_GDIR_GDIR.
-#define BF_GPIO_GDIR_GDIR(v)   (((v) << BP_GPIO_GDIR_GDIR) & BM_GPIO_GDIR_GDIR)
-#endif
+#define BF_GPIO_GDIR_GDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_GDIR_GDIR) & BM_GPIO_GDIR_GDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDIR field to a new value.
 #define BW_GPIO_GDIR_GDIR(x, v)   (HW_GPIO_GDIR_WR(x, (HW_GPIO_GDIR_RD(x) & ~BM_GPIO_GDIR_GDIR) | BF_GPIO_GDIR_GDIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_PSR - GPIO pad status register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -246,7 +259,11 @@ typedef union _hw_gpio_psr
 #define BM_GPIO_PSR_PSR      (0xffffffff)  //!< Bit mask for GPIO_PSR_PSR.
 
 //! @brief Get value of GPIO_PSR_PSR from a register value.
-#define BG_GPIO_PSR_PSR(r)   (((r) & BM_GPIO_PSR_PSR) >> BP_GPIO_PSR_PSR)
+#define BG_GPIO_PSR_PSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_PSR_PSR) >> BP_GPIO_PSR_PSR)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_ICR1 - GPIO interrupt configuration register1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -317,15 +334,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR0      (0x00000003)  //!< Bit mask for GPIO_ICR1_ICR0.
 
 //! @brief Get value of GPIO_ICR1_ICR0 from a register value.
-#define BG_GPIO_ICR1_ICR0(r)   (((r) & BM_GPIO_ICR1_ICR0) >> BP_GPIO_ICR1_ICR0)
+#define BG_GPIO_ICR1_ICR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR0) >> BP_GPIO_ICR1_ICR0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR0.
-#define BF_GPIO_ICR1_ICR0(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR0) & BM_GPIO_ICR1_ICR0)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR0.
-#define BF_GPIO_ICR1_ICR0(v)   (((v) << BP_GPIO_ICR1_ICR0) & BM_GPIO_ICR1_ICR0)
-#endif
+#define BF_GPIO_ICR1_ICR0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR0) & BM_GPIO_ICR1_ICR0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR0 field to a new value.
@@ -350,15 +362,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR1      (0x0000000c)  //!< Bit mask for GPIO_ICR1_ICR1.
 
 //! @brief Get value of GPIO_ICR1_ICR1 from a register value.
-#define BG_GPIO_ICR1_ICR1(r)   (((r) & BM_GPIO_ICR1_ICR1) >> BP_GPIO_ICR1_ICR1)
+#define BG_GPIO_ICR1_ICR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR1) >> BP_GPIO_ICR1_ICR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR1.
-#define BF_GPIO_ICR1_ICR1(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR1) & BM_GPIO_ICR1_ICR1)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR1.
-#define BF_GPIO_ICR1_ICR1(v)   (((v) << BP_GPIO_ICR1_ICR1) & BM_GPIO_ICR1_ICR1)
-#endif
+#define BF_GPIO_ICR1_ICR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR1) & BM_GPIO_ICR1_ICR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR1 field to a new value.
@@ -383,15 +390,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR2      (0x00000030)  //!< Bit mask for GPIO_ICR1_ICR2.
 
 //! @brief Get value of GPIO_ICR1_ICR2 from a register value.
-#define BG_GPIO_ICR1_ICR2(r)   (((r) & BM_GPIO_ICR1_ICR2) >> BP_GPIO_ICR1_ICR2)
+#define BG_GPIO_ICR1_ICR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR2) >> BP_GPIO_ICR1_ICR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR2.
-#define BF_GPIO_ICR1_ICR2(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR2) & BM_GPIO_ICR1_ICR2)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR2.
-#define BF_GPIO_ICR1_ICR2(v)   (((v) << BP_GPIO_ICR1_ICR2) & BM_GPIO_ICR1_ICR2)
-#endif
+#define BF_GPIO_ICR1_ICR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR2) & BM_GPIO_ICR1_ICR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR2 field to a new value.
@@ -416,15 +418,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR3      (0x000000c0)  //!< Bit mask for GPIO_ICR1_ICR3.
 
 //! @brief Get value of GPIO_ICR1_ICR3 from a register value.
-#define BG_GPIO_ICR1_ICR3(r)   (((r) & BM_GPIO_ICR1_ICR3) >> BP_GPIO_ICR1_ICR3)
+#define BG_GPIO_ICR1_ICR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR3) >> BP_GPIO_ICR1_ICR3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR3.
-#define BF_GPIO_ICR1_ICR3(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR3) & BM_GPIO_ICR1_ICR3)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR3.
-#define BF_GPIO_ICR1_ICR3(v)   (((v) << BP_GPIO_ICR1_ICR3) & BM_GPIO_ICR1_ICR3)
-#endif
+#define BF_GPIO_ICR1_ICR3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR3) & BM_GPIO_ICR1_ICR3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR3 field to a new value.
@@ -449,15 +446,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR4      (0x00000300)  //!< Bit mask for GPIO_ICR1_ICR4.
 
 //! @brief Get value of GPIO_ICR1_ICR4 from a register value.
-#define BG_GPIO_ICR1_ICR4(r)   (((r) & BM_GPIO_ICR1_ICR4) >> BP_GPIO_ICR1_ICR4)
+#define BG_GPIO_ICR1_ICR4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR4) >> BP_GPIO_ICR1_ICR4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR4.
-#define BF_GPIO_ICR1_ICR4(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR4) & BM_GPIO_ICR1_ICR4)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR4.
-#define BF_GPIO_ICR1_ICR4(v)   (((v) << BP_GPIO_ICR1_ICR4) & BM_GPIO_ICR1_ICR4)
-#endif
+#define BF_GPIO_ICR1_ICR4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR4) & BM_GPIO_ICR1_ICR4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR4 field to a new value.
@@ -482,15 +474,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR5      (0x00000c00)  //!< Bit mask for GPIO_ICR1_ICR5.
 
 //! @brief Get value of GPIO_ICR1_ICR5 from a register value.
-#define BG_GPIO_ICR1_ICR5(r)   (((r) & BM_GPIO_ICR1_ICR5) >> BP_GPIO_ICR1_ICR5)
+#define BG_GPIO_ICR1_ICR5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR5) >> BP_GPIO_ICR1_ICR5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR5.
-#define BF_GPIO_ICR1_ICR5(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR5) & BM_GPIO_ICR1_ICR5)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR5.
-#define BF_GPIO_ICR1_ICR5(v)   (((v) << BP_GPIO_ICR1_ICR5) & BM_GPIO_ICR1_ICR5)
-#endif
+#define BF_GPIO_ICR1_ICR5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR5) & BM_GPIO_ICR1_ICR5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR5 field to a new value.
@@ -515,15 +502,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR6      (0x00003000)  //!< Bit mask for GPIO_ICR1_ICR6.
 
 //! @brief Get value of GPIO_ICR1_ICR6 from a register value.
-#define BG_GPIO_ICR1_ICR6(r)   (((r) & BM_GPIO_ICR1_ICR6) >> BP_GPIO_ICR1_ICR6)
+#define BG_GPIO_ICR1_ICR6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR6) >> BP_GPIO_ICR1_ICR6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR6.
-#define BF_GPIO_ICR1_ICR6(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR6) & BM_GPIO_ICR1_ICR6)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR6.
-#define BF_GPIO_ICR1_ICR6(v)   (((v) << BP_GPIO_ICR1_ICR6) & BM_GPIO_ICR1_ICR6)
-#endif
+#define BF_GPIO_ICR1_ICR6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR6) & BM_GPIO_ICR1_ICR6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR6 field to a new value.
@@ -548,15 +530,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR7      (0x0000c000)  //!< Bit mask for GPIO_ICR1_ICR7.
 
 //! @brief Get value of GPIO_ICR1_ICR7 from a register value.
-#define BG_GPIO_ICR1_ICR7(r)   (((r) & BM_GPIO_ICR1_ICR7) >> BP_GPIO_ICR1_ICR7)
+#define BG_GPIO_ICR1_ICR7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR7) >> BP_GPIO_ICR1_ICR7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR7.
-#define BF_GPIO_ICR1_ICR7(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR7) & BM_GPIO_ICR1_ICR7)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR7.
-#define BF_GPIO_ICR1_ICR7(v)   (((v) << BP_GPIO_ICR1_ICR7) & BM_GPIO_ICR1_ICR7)
-#endif
+#define BF_GPIO_ICR1_ICR7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR7) & BM_GPIO_ICR1_ICR7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR7 field to a new value.
@@ -581,15 +558,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR8      (0x00030000)  //!< Bit mask for GPIO_ICR1_ICR8.
 
 //! @brief Get value of GPIO_ICR1_ICR8 from a register value.
-#define BG_GPIO_ICR1_ICR8(r)   (((r) & BM_GPIO_ICR1_ICR8) >> BP_GPIO_ICR1_ICR8)
+#define BG_GPIO_ICR1_ICR8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR8) >> BP_GPIO_ICR1_ICR8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR8.
-#define BF_GPIO_ICR1_ICR8(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR8) & BM_GPIO_ICR1_ICR8)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR8.
-#define BF_GPIO_ICR1_ICR8(v)   (((v) << BP_GPIO_ICR1_ICR8) & BM_GPIO_ICR1_ICR8)
-#endif
+#define BF_GPIO_ICR1_ICR8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR8) & BM_GPIO_ICR1_ICR8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR8 field to a new value.
@@ -614,15 +586,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR9      (0x000c0000)  //!< Bit mask for GPIO_ICR1_ICR9.
 
 //! @brief Get value of GPIO_ICR1_ICR9 from a register value.
-#define BG_GPIO_ICR1_ICR9(r)   (((r) & BM_GPIO_ICR1_ICR9) >> BP_GPIO_ICR1_ICR9)
+#define BG_GPIO_ICR1_ICR9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR9) >> BP_GPIO_ICR1_ICR9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR9.
-#define BF_GPIO_ICR1_ICR9(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR9) & BM_GPIO_ICR1_ICR9)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR9.
-#define BF_GPIO_ICR1_ICR9(v)   (((v) << BP_GPIO_ICR1_ICR9) & BM_GPIO_ICR1_ICR9)
-#endif
+#define BF_GPIO_ICR1_ICR9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR9) & BM_GPIO_ICR1_ICR9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR9 field to a new value.
@@ -647,15 +614,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR10      (0x00300000)  //!< Bit mask for GPIO_ICR1_ICR10.
 
 //! @brief Get value of GPIO_ICR1_ICR10 from a register value.
-#define BG_GPIO_ICR1_ICR10(r)   (((r) & BM_GPIO_ICR1_ICR10) >> BP_GPIO_ICR1_ICR10)
+#define BG_GPIO_ICR1_ICR10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR10) >> BP_GPIO_ICR1_ICR10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR10.
-#define BF_GPIO_ICR1_ICR10(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR10) & BM_GPIO_ICR1_ICR10)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR10.
-#define BF_GPIO_ICR1_ICR10(v)   (((v) << BP_GPIO_ICR1_ICR10) & BM_GPIO_ICR1_ICR10)
-#endif
+#define BF_GPIO_ICR1_ICR10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR10) & BM_GPIO_ICR1_ICR10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR10 field to a new value.
@@ -680,15 +642,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR11      (0x00c00000)  //!< Bit mask for GPIO_ICR1_ICR11.
 
 //! @brief Get value of GPIO_ICR1_ICR11 from a register value.
-#define BG_GPIO_ICR1_ICR11(r)   (((r) & BM_GPIO_ICR1_ICR11) >> BP_GPIO_ICR1_ICR11)
+#define BG_GPIO_ICR1_ICR11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR11) >> BP_GPIO_ICR1_ICR11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR11.
-#define BF_GPIO_ICR1_ICR11(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR11) & BM_GPIO_ICR1_ICR11)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR11.
-#define BF_GPIO_ICR1_ICR11(v)   (((v) << BP_GPIO_ICR1_ICR11) & BM_GPIO_ICR1_ICR11)
-#endif
+#define BF_GPIO_ICR1_ICR11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR11) & BM_GPIO_ICR1_ICR11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR11 field to a new value.
@@ -713,15 +670,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR12      (0x03000000)  //!< Bit mask for GPIO_ICR1_ICR12.
 
 //! @brief Get value of GPIO_ICR1_ICR12 from a register value.
-#define BG_GPIO_ICR1_ICR12(r)   (((r) & BM_GPIO_ICR1_ICR12) >> BP_GPIO_ICR1_ICR12)
+#define BG_GPIO_ICR1_ICR12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR12) >> BP_GPIO_ICR1_ICR12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR12.
-#define BF_GPIO_ICR1_ICR12(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR12) & BM_GPIO_ICR1_ICR12)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR12.
-#define BF_GPIO_ICR1_ICR12(v)   (((v) << BP_GPIO_ICR1_ICR12) & BM_GPIO_ICR1_ICR12)
-#endif
+#define BF_GPIO_ICR1_ICR12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR12) & BM_GPIO_ICR1_ICR12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR12 field to a new value.
@@ -746,15 +698,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR13      (0x0c000000)  //!< Bit mask for GPIO_ICR1_ICR13.
 
 //! @brief Get value of GPIO_ICR1_ICR13 from a register value.
-#define BG_GPIO_ICR1_ICR13(r)   (((r) & BM_GPIO_ICR1_ICR13) >> BP_GPIO_ICR1_ICR13)
+#define BG_GPIO_ICR1_ICR13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR13) >> BP_GPIO_ICR1_ICR13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR13.
-#define BF_GPIO_ICR1_ICR13(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR13) & BM_GPIO_ICR1_ICR13)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR13.
-#define BF_GPIO_ICR1_ICR13(v)   (((v) << BP_GPIO_ICR1_ICR13) & BM_GPIO_ICR1_ICR13)
-#endif
+#define BF_GPIO_ICR1_ICR13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR13) & BM_GPIO_ICR1_ICR13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR13 field to a new value.
@@ -779,15 +726,10 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR14      (0x30000000)  //!< Bit mask for GPIO_ICR1_ICR14.
 
 //! @brief Get value of GPIO_ICR1_ICR14 from a register value.
-#define BG_GPIO_ICR1_ICR14(r)   (((r) & BM_GPIO_ICR1_ICR14) >> BP_GPIO_ICR1_ICR14)
+#define BG_GPIO_ICR1_ICR14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR14) >> BP_GPIO_ICR1_ICR14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR14.
-#define BF_GPIO_ICR1_ICR14(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR14) & BM_GPIO_ICR1_ICR14)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR14.
-#define BF_GPIO_ICR1_ICR14(v)   (((v) << BP_GPIO_ICR1_ICR14) & BM_GPIO_ICR1_ICR14)
-#endif
+#define BF_GPIO_ICR1_ICR14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR14) & BM_GPIO_ICR1_ICR14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR14 field to a new value.
@@ -812,21 +754,20 @@ typedef union _hw_gpio_icr1
 #define BM_GPIO_ICR1_ICR15      (0xc0000000)  //!< Bit mask for GPIO_ICR1_ICR15.
 
 //! @brief Get value of GPIO_ICR1_ICR15 from a register value.
-#define BG_GPIO_ICR1_ICR15(r)   (((r) & BM_GPIO_ICR1_ICR15) >> BP_GPIO_ICR1_ICR15)
+#define BG_GPIO_ICR1_ICR15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR1_ICR15) >> BP_GPIO_ICR1_ICR15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR1_ICR15.
-#define BF_GPIO_ICR1_ICR15(v)   ((((reg32_t) v) << BP_GPIO_ICR1_ICR15) & BM_GPIO_ICR1_ICR15)
-#else
-//! @brief Format value for bitfield GPIO_ICR1_ICR15.
-#define BF_GPIO_ICR1_ICR15(v)   (((v) << BP_GPIO_ICR1_ICR15) & BM_GPIO_ICR1_ICR15)
-#endif
+#define BF_GPIO_ICR1_ICR15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR1_ICR15) & BM_GPIO_ICR1_ICR15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR15 field to a new value.
 #define BW_GPIO_ICR1_ICR15(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR15) | BF_GPIO_ICR1_ICR15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_ICR2 - GPIO interrupt configuration register2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -897,15 +838,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR16      (0x00000003)  //!< Bit mask for GPIO_ICR2_ICR16.
 
 //! @brief Get value of GPIO_ICR2_ICR16 from a register value.
-#define BG_GPIO_ICR2_ICR16(r)   (((r) & BM_GPIO_ICR2_ICR16) >> BP_GPIO_ICR2_ICR16)
+#define BG_GPIO_ICR2_ICR16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR16) >> BP_GPIO_ICR2_ICR16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR16.
-#define BF_GPIO_ICR2_ICR16(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR16) & BM_GPIO_ICR2_ICR16)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR16.
-#define BF_GPIO_ICR2_ICR16(v)   (((v) << BP_GPIO_ICR2_ICR16) & BM_GPIO_ICR2_ICR16)
-#endif
+#define BF_GPIO_ICR2_ICR16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR16) & BM_GPIO_ICR2_ICR16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR16 field to a new value.
@@ -930,15 +866,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR17      (0x0000000c)  //!< Bit mask for GPIO_ICR2_ICR17.
 
 //! @brief Get value of GPIO_ICR2_ICR17 from a register value.
-#define BG_GPIO_ICR2_ICR17(r)   (((r) & BM_GPIO_ICR2_ICR17) >> BP_GPIO_ICR2_ICR17)
+#define BG_GPIO_ICR2_ICR17(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR17) >> BP_GPIO_ICR2_ICR17)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR17.
-#define BF_GPIO_ICR2_ICR17(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR17) & BM_GPIO_ICR2_ICR17)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR17.
-#define BF_GPIO_ICR2_ICR17(v)   (((v) << BP_GPIO_ICR2_ICR17) & BM_GPIO_ICR2_ICR17)
-#endif
+#define BF_GPIO_ICR2_ICR17(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR17) & BM_GPIO_ICR2_ICR17)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR17 field to a new value.
@@ -963,15 +894,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR18      (0x00000030)  //!< Bit mask for GPIO_ICR2_ICR18.
 
 //! @brief Get value of GPIO_ICR2_ICR18 from a register value.
-#define BG_GPIO_ICR2_ICR18(r)   (((r) & BM_GPIO_ICR2_ICR18) >> BP_GPIO_ICR2_ICR18)
+#define BG_GPIO_ICR2_ICR18(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR18) >> BP_GPIO_ICR2_ICR18)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR18.
-#define BF_GPIO_ICR2_ICR18(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR18) & BM_GPIO_ICR2_ICR18)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR18.
-#define BF_GPIO_ICR2_ICR18(v)   (((v) << BP_GPIO_ICR2_ICR18) & BM_GPIO_ICR2_ICR18)
-#endif
+#define BF_GPIO_ICR2_ICR18(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR18) & BM_GPIO_ICR2_ICR18)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR18 field to a new value.
@@ -996,15 +922,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR19      (0x000000c0)  //!< Bit mask for GPIO_ICR2_ICR19.
 
 //! @brief Get value of GPIO_ICR2_ICR19 from a register value.
-#define BG_GPIO_ICR2_ICR19(r)   (((r) & BM_GPIO_ICR2_ICR19) >> BP_GPIO_ICR2_ICR19)
+#define BG_GPIO_ICR2_ICR19(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR19) >> BP_GPIO_ICR2_ICR19)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR19.
-#define BF_GPIO_ICR2_ICR19(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR19) & BM_GPIO_ICR2_ICR19)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR19.
-#define BF_GPIO_ICR2_ICR19(v)   (((v) << BP_GPIO_ICR2_ICR19) & BM_GPIO_ICR2_ICR19)
-#endif
+#define BF_GPIO_ICR2_ICR19(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR19) & BM_GPIO_ICR2_ICR19)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR19 field to a new value.
@@ -1029,15 +950,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR20      (0x00000300)  //!< Bit mask for GPIO_ICR2_ICR20.
 
 //! @brief Get value of GPIO_ICR2_ICR20 from a register value.
-#define BG_GPIO_ICR2_ICR20(r)   (((r) & BM_GPIO_ICR2_ICR20) >> BP_GPIO_ICR2_ICR20)
+#define BG_GPIO_ICR2_ICR20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR20) >> BP_GPIO_ICR2_ICR20)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR20.
-#define BF_GPIO_ICR2_ICR20(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR20) & BM_GPIO_ICR2_ICR20)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR20.
-#define BF_GPIO_ICR2_ICR20(v)   (((v) << BP_GPIO_ICR2_ICR20) & BM_GPIO_ICR2_ICR20)
-#endif
+#define BF_GPIO_ICR2_ICR20(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR20) & BM_GPIO_ICR2_ICR20)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR20 field to a new value.
@@ -1062,15 +978,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR21      (0x00000c00)  //!< Bit mask for GPIO_ICR2_ICR21.
 
 //! @brief Get value of GPIO_ICR2_ICR21 from a register value.
-#define BG_GPIO_ICR2_ICR21(r)   (((r) & BM_GPIO_ICR2_ICR21) >> BP_GPIO_ICR2_ICR21)
+#define BG_GPIO_ICR2_ICR21(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR21) >> BP_GPIO_ICR2_ICR21)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR21.
-#define BF_GPIO_ICR2_ICR21(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR21) & BM_GPIO_ICR2_ICR21)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR21.
-#define BF_GPIO_ICR2_ICR21(v)   (((v) << BP_GPIO_ICR2_ICR21) & BM_GPIO_ICR2_ICR21)
-#endif
+#define BF_GPIO_ICR2_ICR21(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR21) & BM_GPIO_ICR2_ICR21)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR21 field to a new value.
@@ -1095,15 +1006,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR22      (0x00003000)  //!< Bit mask for GPIO_ICR2_ICR22.
 
 //! @brief Get value of GPIO_ICR2_ICR22 from a register value.
-#define BG_GPIO_ICR2_ICR22(r)   (((r) & BM_GPIO_ICR2_ICR22) >> BP_GPIO_ICR2_ICR22)
+#define BG_GPIO_ICR2_ICR22(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR22) >> BP_GPIO_ICR2_ICR22)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR22.
-#define BF_GPIO_ICR2_ICR22(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR22) & BM_GPIO_ICR2_ICR22)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR22.
-#define BF_GPIO_ICR2_ICR22(v)   (((v) << BP_GPIO_ICR2_ICR22) & BM_GPIO_ICR2_ICR22)
-#endif
+#define BF_GPIO_ICR2_ICR22(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR22) & BM_GPIO_ICR2_ICR22)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR22 field to a new value.
@@ -1128,15 +1034,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR23      (0x0000c000)  //!< Bit mask for GPIO_ICR2_ICR23.
 
 //! @brief Get value of GPIO_ICR2_ICR23 from a register value.
-#define BG_GPIO_ICR2_ICR23(r)   (((r) & BM_GPIO_ICR2_ICR23) >> BP_GPIO_ICR2_ICR23)
+#define BG_GPIO_ICR2_ICR23(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR23) >> BP_GPIO_ICR2_ICR23)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR23.
-#define BF_GPIO_ICR2_ICR23(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR23) & BM_GPIO_ICR2_ICR23)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR23.
-#define BF_GPIO_ICR2_ICR23(v)   (((v) << BP_GPIO_ICR2_ICR23) & BM_GPIO_ICR2_ICR23)
-#endif
+#define BF_GPIO_ICR2_ICR23(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR23) & BM_GPIO_ICR2_ICR23)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR23 field to a new value.
@@ -1161,15 +1062,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR24      (0x00030000)  //!< Bit mask for GPIO_ICR2_ICR24.
 
 //! @brief Get value of GPIO_ICR2_ICR24 from a register value.
-#define BG_GPIO_ICR2_ICR24(r)   (((r) & BM_GPIO_ICR2_ICR24) >> BP_GPIO_ICR2_ICR24)
+#define BG_GPIO_ICR2_ICR24(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR24) >> BP_GPIO_ICR2_ICR24)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR24.
-#define BF_GPIO_ICR2_ICR24(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR24) & BM_GPIO_ICR2_ICR24)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR24.
-#define BF_GPIO_ICR2_ICR24(v)   (((v) << BP_GPIO_ICR2_ICR24) & BM_GPIO_ICR2_ICR24)
-#endif
+#define BF_GPIO_ICR2_ICR24(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR24) & BM_GPIO_ICR2_ICR24)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR24 field to a new value.
@@ -1194,15 +1090,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR25      (0x000c0000)  //!< Bit mask for GPIO_ICR2_ICR25.
 
 //! @brief Get value of GPIO_ICR2_ICR25 from a register value.
-#define BG_GPIO_ICR2_ICR25(r)   (((r) & BM_GPIO_ICR2_ICR25) >> BP_GPIO_ICR2_ICR25)
+#define BG_GPIO_ICR2_ICR25(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR25) >> BP_GPIO_ICR2_ICR25)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR25.
-#define BF_GPIO_ICR2_ICR25(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR25) & BM_GPIO_ICR2_ICR25)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR25.
-#define BF_GPIO_ICR2_ICR25(v)   (((v) << BP_GPIO_ICR2_ICR25) & BM_GPIO_ICR2_ICR25)
-#endif
+#define BF_GPIO_ICR2_ICR25(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR25) & BM_GPIO_ICR2_ICR25)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR25 field to a new value.
@@ -1227,15 +1118,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR26      (0x00300000)  //!< Bit mask for GPIO_ICR2_ICR26.
 
 //! @brief Get value of GPIO_ICR2_ICR26 from a register value.
-#define BG_GPIO_ICR2_ICR26(r)   (((r) & BM_GPIO_ICR2_ICR26) >> BP_GPIO_ICR2_ICR26)
+#define BG_GPIO_ICR2_ICR26(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR26) >> BP_GPIO_ICR2_ICR26)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR26.
-#define BF_GPIO_ICR2_ICR26(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR26) & BM_GPIO_ICR2_ICR26)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR26.
-#define BF_GPIO_ICR2_ICR26(v)   (((v) << BP_GPIO_ICR2_ICR26) & BM_GPIO_ICR2_ICR26)
-#endif
+#define BF_GPIO_ICR2_ICR26(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR26) & BM_GPIO_ICR2_ICR26)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR26 field to a new value.
@@ -1260,15 +1146,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR27      (0x00c00000)  //!< Bit mask for GPIO_ICR2_ICR27.
 
 //! @brief Get value of GPIO_ICR2_ICR27 from a register value.
-#define BG_GPIO_ICR2_ICR27(r)   (((r) & BM_GPIO_ICR2_ICR27) >> BP_GPIO_ICR2_ICR27)
+#define BG_GPIO_ICR2_ICR27(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR27) >> BP_GPIO_ICR2_ICR27)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR27.
-#define BF_GPIO_ICR2_ICR27(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR27) & BM_GPIO_ICR2_ICR27)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR27.
-#define BF_GPIO_ICR2_ICR27(v)   (((v) << BP_GPIO_ICR2_ICR27) & BM_GPIO_ICR2_ICR27)
-#endif
+#define BF_GPIO_ICR2_ICR27(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR27) & BM_GPIO_ICR2_ICR27)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR27 field to a new value.
@@ -1293,15 +1174,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR28      (0x03000000)  //!< Bit mask for GPIO_ICR2_ICR28.
 
 //! @brief Get value of GPIO_ICR2_ICR28 from a register value.
-#define BG_GPIO_ICR2_ICR28(r)   (((r) & BM_GPIO_ICR2_ICR28) >> BP_GPIO_ICR2_ICR28)
+#define BG_GPIO_ICR2_ICR28(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR28) >> BP_GPIO_ICR2_ICR28)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR28.
-#define BF_GPIO_ICR2_ICR28(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR28) & BM_GPIO_ICR2_ICR28)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR28.
-#define BF_GPIO_ICR2_ICR28(v)   (((v) << BP_GPIO_ICR2_ICR28) & BM_GPIO_ICR2_ICR28)
-#endif
+#define BF_GPIO_ICR2_ICR28(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR28) & BM_GPIO_ICR2_ICR28)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR28 field to a new value.
@@ -1326,15 +1202,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR29      (0x0c000000)  //!< Bit mask for GPIO_ICR2_ICR29.
 
 //! @brief Get value of GPIO_ICR2_ICR29 from a register value.
-#define BG_GPIO_ICR2_ICR29(r)   (((r) & BM_GPIO_ICR2_ICR29) >> BP_GPIO_ICR2_ICR29)
+#define BG_GPIO_ICR2_ICR29(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR29) >> BP_GPIO_ICR2_ICR29)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR29.
-#define BF_GPIO_ICR2_ICR29(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR29) & BM_GPIO_ICR2_ICR29)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR29.
-#define BF_GPIO_ICR2_ICR29(v)   (((v) << BP_GPIO_ICR2_ICR29) & BM_GPIO_ICR2_ICR29)
-#endif
+#define BF_GPIO_ICR2_ICR29(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR29) & BM_GPIO_ICR2_ICR29)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR29 field to a new value.
@@ -1359,15 +1230,10 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR30      (0x30000000)  //!< Bit mask for GPIO_ICR2_ICR30.
 
 //! @brief Get value of GPIO_ICR2_ICR30 from a register value.
-#define BG_GPIO_ICR2_ICR30(r)   (((r) & BM_GPIO_ICR2_ICR30) >> BP_GPIO_ICR2_ICR30)
+#define BG_GPIO_ICR2_ICR30(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR30) >> BP_GPIO_ICR2_ICR30)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR30.
-#define BF_GPIO_ICR2_ICR30(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR30) & BM_GPIO_ICR2_ICR30)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR30.
-#define BF_GPIO_ICR2_ICR30(v)   (((v) << BP_GPIO_ICR2_ICR30) & BM_GPIO_ICR2_ICR30)
-#endif
+#define BF_GPIO_ICR2_ICR30(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR30) & BM_GPIO_ICR2_ICR30)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR30 field to a new value.
@@ -1392,21 +1258,20 @@ typedef union _hw_gpio_icr2
 #define BM_GPIO_ICR2_ICR31      (0xc0000000)  //!< Bit mask for GPIO_ICR2_ICR31.
 
 //! @brief Get value of GPIO_ICR2_ICR31 from a register value.
-#define BG_GPIO_ICR2_ICR31(r)   (((r) & BM_GPIO_ICR2_ICR31) >> BP_GPIO_ICR2_ICR31)
+#define BG_GPIO_ICR2_ICR31(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ICR2_ICR31) >> BP_GPIO_ICR2_ICR31)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ICR2_ICR31.
-#define BF_GPIO_ICR2_ICR31(v)   ((((reg32_t) v) << BP_GPIO_ICR2_ICR31) & BM_GPIO_ICR2_ICR31)
-#else
-//! @brief Format value for bitfield GPIO_ICR2_ICR31.
-#define BF_GPIO_ICR2_ICR31(v)   (((v) << BP_GPIO_ICR2_ICR31) & BM_GPIO_ICR2_ICR31)
-#endif
+#define BF_GPIO_ICR2_ICR31(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ICR2_ICR31) & BM_GPIO_ICR2_ICR31)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICR31 field to a new value.
 #define BW_GPIO_ICR2_ICR31(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR31) | BF_GPIO_ICR2_ICR31(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_IMR - GPIO interrupt mask register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1458,21 +1323,20 @@ typedef union _hw_gpio_imr
 #define BM_GPIO_IMR_IMR      (0xffffffff)  //!< Bit mask for GPIO_IMR_IMR.
 
 //! @brief Get value of GPIO_IMR_IMR from a register value.
-#define BG_GPIO_IMR_IMR(r)   (((r) & BM_GPIO_IMR_IMR) >> BP_GPIO_IMR_IMR)
+#define BG_GPIO_IMR_IMR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_IMR_IMR) >> BP_GPIO_IMR_IMR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_IMR_IMR.
-#define BF_GPIO_IMR_IMR(v)   ((((reg32_t) v) << BP_GPIO_IMR_IMR) & BM_GPIO_IMR_IMR)
-#else
-//! @brief Format value for bitfield GPIO_IMR_IMR.
-#define BF_GPIO_IMR_IMR(v)   (((v) << BP_GPIO_IMR_IMR) & BM_GPIO_IMR_IMR)
-#endif
+#define BF_GPIO_IMR_IMR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_IMR_IMR) & BM_GPIO_IMR_IMR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMR field to a new value.
 #define BW_GPIO_IMR_IMR(x, v)   (HW_GPIO_IMR_WR(x, (HW_GPIO_IMR_RD(x) & ~BM_GPIO_IMR_IMR) | BF_GPIO_IMR_IMR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_ISR - GPIO interrupt status register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1527,20 +1391,19 @@ typedef union _hw_gpio_isr
 #define BM_GPIO_ISR_ISR      (0xffffffff)  //!< Bit mask for GPIO_ISR_ISR.
 
 //! @brief Get value of GPIO_ISR_ISR from a register value.
-#define BG_GPIO_ISR_ISR(r)   (((r) & BM_GPIO_ISR_ISR) >> BP_GPIO_ISR_ISR)
+#define BG_GPIO_ISR_ISR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_ISR_ISR) >> BP_GPIO_ISR_ISR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_ISR_ISR.
-#define BF_GPIO_ISR_ISR(v)   ((((reg32_t) v) << BP_GPIO_ISR_ISR) & BM_GPIO_ISR_ISR)
-#else
-//! @brief Format value for bitfield GPIO_ISR_ISR.
-#define BF_GPIO_ISR_ISR(v)   (((v) << BP_GPIO_ISR_ISR) & BM_GPIO_ISR_ISR)
-#endif
+#define BF_GPIO_ISR_ISR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_ISR_ISR) & BM_GPIO_ISR_ISR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISR field to a new value.
 #define BW_GPIO_ISR_ISR(x, v)   (HW_GPIO_ISR_WR(x, (HW_GPIO_ISR_RD(x) & ~BM_GPIO_ISR_ISR) | BF_GPIO_ISR_ISR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPIO_EDGE_SEL - GPIO edge select register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1592,15 +1455,10 @@ typedef union _hw_gpio_edge_sel
 #define BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0xffffffff)  //!< Bit mask for GPIO_EDGE_SEL_GPIO_EDGE_SEL.
 
 //! @brief Get value of GPIO_EDGE_SEL_GPIO_EDGE_SEL from a register value.
-#define BG_GPIO_EDGE_SEL_GPIO_EDGE_SEL(r)   (((r) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL) >> BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
+#define BG_GPIO_EDGE_SEL_GPIO_EDGE_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL) >> BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPIO_EDGE_SEL_GPIO_EDGE_SEL.
-#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   ((((reg32_t) v) << BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
-#else
-//! @brief Format value for bitfield GPIO_EDGE_SEL_GPIO_EDGE_SEL.
-#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   (((v) << BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
-#endif
+#define BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL) & BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPIO_EDGE_SEL field to a new value.

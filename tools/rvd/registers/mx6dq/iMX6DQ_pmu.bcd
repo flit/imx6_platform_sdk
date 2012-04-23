@@ -198,8 +198,8 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_PMU_MISC2_REG0_ENABLE_BO={\
         gui_name="REG0_ENABLE_BO":position=5:size=1:read_only=false\
       }:\
-        bit_fields.B_PMU_MISC2_CONTROL0={\
-        gui_name="CONTROL0":position=7:size=1:read_only=false\
+        bit_fields.B_PMU_MISC2_PLL3_DISABLE={\
+        gui_name="PLL3_DISABLE":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_PMU_MISC2_REG1_BO_OFFSET={\
         gui_name="REG1_BO_OFFSET":position=8:size=3:read_only=true\
@@ -231,8 +231,8 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_PMU_MISC2_REG2_STEP_TIME={\
         gui_name="REG2_STEP_TIME":position=28:size=2:read_only=false\
       }:\
-        bit_fields.B_PMU_MISC2_CONTROL3={\
-        gui_name="CONTROL3":position=30:size=2:read_only=false\
+        bit_fields.B_PMU_MISC2_VIDEO_DIV={\
+        gui_name="VIDEO_DIV":position=30:size=2:read_only=false\
       }\
     }\
   }:Register_window.PMU={\
@@ -311,7 +311,7 @@ Advanced_Information.Cortex-A9={\
     line="B_PMU_MISC2_REG0_BO_OFFSET":\
     line="B_PMU_MISC2_REG0_BO_STATUS":\
     line="B_PMU_MISC2_REG0_ENABLE_BO":\
-    line="B_PMU_MISC2_CONTROL0":\
+    line="B_PMU_MISC2_PLL3_DISABLE":\
     line="B_PMU_MISC2_REG1_BO_OFFSET":\
     line="B_PMU_MISC2_REG1_BO_STATUS":\
     line="B_PMU_MISC2_REG1_ENABLE_BO":\
@@ -322,7 +322,7 @@ Advanced_Information.Cortex-A9={\
     line="B_PMU_MISC2_REG0_STEP_TIME":\
     line="B_PMU_MISC2_REG1_STEP_TIME":\
     line="B_PMU_MISC2_REG2_STEP_TIME":\
-    line="B_PMU_MISC2_CONTROL3":\
+    line="B_PMU_MISC2_VIDEO_DIV":\
     line="$$":\
   }:ARM_config={}\
 }

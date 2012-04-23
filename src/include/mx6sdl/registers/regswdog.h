@@ -42,6 +42,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_WDOG_WCR - Watchdog Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_WDOG_WCR - Watchdog Control Register (RW)
@@ -69,6 +84,7 @@ typedef union _hw_wdog_wcr
         unsigned short WDT : 1; //!< [3] WDOG (ipp_wdog) Time-out assertion. Determines if the WDOG (ipp_wdog) gets asserted upon a Watchdog Time-out Event. This is a write-one once only bit. There is no effect on wdog_rst (WDOG Reset) upon writing on this bit. WDOG (ipp_wdog) gets asserted along with wdog_rst if this bit is set.
         unsigned short SRS : 1; //!< [4] Software Reset Signal. Controls the software assertion of the WDOG-generated reset signal wdog_rst . This bit automatically resets to "1" after it has been asserted to "0". This bit does not generate the software reset to the block. The Peripheral Clock (ipg_clk) must be on to write to this bit.
         unsigned short WDA : 1; //!< [5] WDOG (ipp_wdog) assertion. Controls the software assertion of the WDOG ( ipp_wdog ) signal.
+        unsigned short RESERVED0 : 1; //!< [6] adopt Reserved
         unsigned short SRE : 1; //!< [6] adopt a new way to generate a more robust software reset. This bit can be set/clear with IP bus and will be reset with power-on reset .
         unsigned short WDW : 1; //!< [7] Watchdog Disable for Wait. This bit determines the operation of WDOG-1 during Low Power WAIT mode. This is a write once only bit.
         unsigned short WT : 8; //!< [15:8] Watchdog Time-out Field. This 8-bit field contains the time-out value that is loaded into the Watchdog counter after the service routine has been performed or after the Watchdog is enabled. After reset, WT[7:0] must have a value written to it before enabling the Watchdog otherwise count value of zero which is 0.5 seconds is loaded into the counter. The time-out value can be written at any point of time but it is loaded to the counter at the time when WDOG-1 is enabled or after the service routine has been performed. For more information see .
@@ -109,15 +125,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDZST      (0x00000001)  //!< Bit mask for WDOG_WCR_WDZST.
 
 //! @brief Get value of WDOG_WCR_WDZST from a register value.
-#define BG_WDOG_WCR_WDZST(r)   (((r) & BM_WDOG_WCR_WDZST) >> BP_WDOG_WCR_WDZST)
+#define BG_WDOG_WCR_WDZST(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDZST) >> BP_WDOG_WCR_WDZST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDZST.
-#define BF_WDOG_WCR_WDZST(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDZST) & BM_WDOG_WCR_WDZST)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDZST.
-#define BF_WDOG_WCR_WDZST(v)   (((v) << BP_WDOG_WCR_WDZST) & BM_WDOG_WCR_WDZST)
-#endif
+#define BF_WDOG_WCR_WDZST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDZST) & BM_WDOG_WCR_WDZST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDZST field to a new value.
@@ -139,15 +150,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDBG      (0x00000002)  //!< Bit mask for WDOG_WCR_WDBG.
 
 //! @brief Get value of WDOG_WCR_WDBG from a register value.
-#define BG_WDOG_WCR_WDBG(r)   (((r) & BM_WDOG_WCR_WDBG) >> BP_WDOG_WCR_WDBG)
+#define BG_WDOG_WCR_WDBG(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDBG) >> BP_WDOG_WCR_WDBG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDBG.
-#define BF_WDOG_WCR_WDBG(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDBG) & BM_WDOG_WCR_WDBG)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDBG.
-#define BF_WDOG_WCR_WDBG(v)   (((v) << BP_WDOG_WCR_WDBG) & BM_WDOG_WCR_WDBG)
-#endif
+#define BF_WDOG_WCR_WDBG(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDBG) & BM_WDOG_WCR_WDBG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDBG field to a new value.
@@ -170,15 +176,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDE      (0x00000004)  //!< Bit mask for WDOG_WCR_WDE.
 
 //! @brief Get value of WDOG_WCR_WDE from a register value.
-#define BG_WDOG_WCR_WDE(r)   (((r) & BM_WDOG_WCR_WDE) >> BP_WDOG_WCR_WDE)
+#define BG_WDOG_WCR_WDE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDE) >> BP_WDOG_WCR_WDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDE.
-#define BF_WDOG_WCR_WDE(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDE) & BM_WDOG_WCR_WDE)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDE.
-#define BF_WDOG_WCR_WDE(v)   (((v) << BP_WDOG_WCR_WDE) & BM_WDOG_WCR_WDE)
-#endif
+#define BF_WDOG_WCR_WDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDE) & BM_WDOG_WCR_WDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDE field to a new value.
@@ -202,15 +203,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDT      (0x00000008)  //!< Bit mask for WDOG_WCR_WDT.
 
 //! @brief Get value of WDOG_WCR_WDT from a register value.
-#define BG_WDOG_WCR_WDT(r)   (((r) & BM_WDOG_WCR_WDT) >> BP_WDOG_WCR_WDT)
+#define BG_WDOG_WCR_WDT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDT) >> BP_WDOG_WCR_WDT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDT.
-#define BF_WDOG_WCR_WDT(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDT) & BM_WDOG_WCR_WDT)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDT.
-#define BF_WDOG_WCR_WDT(v)   (((v) << BP_WDOG_WCR_WDT) & BM_WDOG_WCR_WDT)
-#endif
+#define BF_WDOG_WCR_WDT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDT) & BM_WDOG_WCR_WDT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDT field to a new value.
@@ -234,15 +230,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_SRS      (0x00000010)  //!< Bit mask for WDOG_WCR_SRS.
 
 //! @brief Get value of WDOG_WCR_SRS from a register value.
-#define BG_WDOG_WCR_SRS(r)   (((r) & BM_WDOG_WCR_SRS) >> BP_WDOG_WCR_SRS)
+#define BG_WDOG_WCR_SRS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_SRS) >> BP_WDOG_WCR_SRS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_SRS.
-#define BF_WDOG_WCR_SRS(v)   ((((reg16_t) v) << BP_WDOG_WCR_SRS) & BM_WDOG_WCR_SRS)
-#else
-//! @brief Format value for bitfield WDOG_WCR_SRS.
-#define BF_WDOG_WCR_SRS(v)   (((v) << BP_WDOG_WCR_SRS) & BM_WDOG_WCR_SRS)
-#endif
+#define BF_WDOG_WCR_SRS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_SRS) & BM_WDOG_WCR_SRS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRS field to a new value.
@@ -263,15 +254,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDA      (0x00000020)  //!< Bit mask for WDOG_WCR_WDA.
 
 //! @brief Get value of WDOG_WCR_WDA from a register value.
-#define BG_WDOG_WCR_WDA(r)   (((r) & BM_WDOG_WCR_WDA) >> BP_WDOG_WCR_WDA)
+#define BG_WDOG_WCR_WDA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDA) >> BP_WDOG_WCR_WDA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDA.
-#define BF_WDOG_WCR_WDA(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDA) & BM_WDOG_WCR_WDA)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDA.
-#define BF_WDOG_WCR_WDA(v)   (((v) << BP_WDOG_WCR_WDA) & BM_WDOG_WCR_WDA)
-#endif
+#define BF_WDOG_WCR_WDA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDA) & BM_WDOG_WCR_WDA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDA field to a new value.
@@ -293,15 +279,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_SRE      (0x00000040)  //!< Bit mask for WDOG_WCR_SRE.
 
 //! @brief Get value of WDOG_WCR_SRE from a register value.
-#define BG_WDOG_WCR_SRE(r)   (((r) & BM_WDOG_WCR_SRE) >> BP_WDOG_WCR_SRE)
+#define BG_WDOG_WCR_SRE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_SRE) >> BP_WDOG_WCR_SRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_SRE.
-#define BF_WDOG_WCR_SRE(v)   ((((reg16_t) v) << BP_WDOG_WCR_SRE) & BM_WDOG_WCR_SRE)
-#else
-//! @brief Format value for bitfield WDOG_WCR_SRE.
-#define BF_WDOG_WCR_SRE(v)   (((v) << BP_WDOG_WCR_SRE) & BM_WDOG_WCR_SRE)
-#endif
+#define BF_WDOG_WCR_SRE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_SRE) & BM_WDOG_WCR_SRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRE field to a new value.
@@ -323,15 +304,10 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WDW      (0x00000080)  //!< Bit mask for WDOG_WCR_WDW.
 
 //! @brief Get value of WDOG_WCR_WDW from a register value.
-#define BG_WDOG_WCR_WDW(r)   (((r) & BM_WDOG_WCR_WDW) >> BP_WDOG_WCR_WDW)
+#define BG_WDOG_WCR_WDW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WDW) >> BP_WDOG_WCR_WDW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WDW.
-#define BF_WDOG_WCR_WDW(v)   ((((reg16_t) v) << BP_WDOG_WCR_WDW) & BM_WDOG_WCR_WDW)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WDW.
-#define BF_WDOG_WCR_WDW(v)   (((v) << BP_WDOG_WCR_WDW) & BM_WDOG_WCR_WDW)
-#endif
+#define BF_WDOG_WCR_WDW(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WDW) & BM_WDOG_WCR_WDW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDW field to a new value.
@@ -360,21 +336,20 @@ typedef union _hw_wdog_wcr
 #define BM_WDOG_WCR_WT      (0x0000ff00)  //!< Bit mask for WDOG_WCR_WT.
 
 //! @brief Get value of WDOG_WCR_WT from a register value.
-#define BG_WDOG_WCR_WT(r)   (((r) & BM_WDOG_WCR_WT) >> BP_WDOG_WCR_WT)
+#define BG_WDOG_WCR_WT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WCR_WT) >> BP_WDOG_WCR_WT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WCR_WT.
-#define BF_WDOG_WCR_WT(v)   ((((reg16_t) v) << BP_WDOG_WCR_WT) & BM_WDOG_WCR_WT)
-#else
-//! @brief Format value for bitfield WDOG_WCR_WT.
-#define BF_WDOG_WCR_WT(v)   (((v) << BP_WDOG_WCR_WT) & BM_WDOG_WCR_WT)
-#endif
+#define BF_WDOG_WCR_WT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WCR_WT) & BM_WDOG_WCR_WT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WT field to a new value.
 #define BW_WDOG_WCR_WT(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WT) | BF_WDOG_WCR_WT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_WDOG_WSR - Watchdog Service Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -430,21 +405,20 @@ typedef union _hw_wdog_wsr
 #define BM_WDOG_WSR_WSR      (0x0000ffff)  //!< Bit mask for WDOG_WSR_WSR.
 
 //! @brief Get value of WDOG_WSR_WSR from a register value.
-#define BG_WDOG_WSR_WSR(r)   (((r) & BM_WDOG_WSR_WSR) >> BP_WDOG_WSR_WSR)
+#define BG_WDOG_WSR_WSR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WSR_WSR) >> BP_WDOG_WSR_WSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WSR_WSR.
-#define BF_WDOG_WSR_WSR(v)   ((((reg16_t) v) << BP_WDOG_WSR_WSR) & BM_WDOG_WSR_WSR)
-#else
-//! @brief Format value for bitfield WDOG_WSR_WSR.
-#define BF_WDOG_WSR_WSR(v)   (((v) << BP_WDOG_WSR_WSR) & BM_WDOG_WSR_WSR)
-#endif
+#define BF_WDOG_WSR_WSR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WSR_WSR) & BM_WDOG_WSR_WSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSR field to a new value.
 #define BW_WDOG_WSR_WSR(x, v)   (HW_WDOG_WSR_WR(x, (HW_WDOG_WSR_RD(x) & ~BM_WDOG_WSR_WSR) | BF_WDOG_WSR_WSR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_WDOG_WRSR - Watchdog Reset Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -501,7 +475,7 @@ typedef union _hw_wdog_wrsr
 #define BM_WDOG_WRSR_SFTW      (0x00000001)  //!< Bit mask for WDOG_WRSR_SFTW.
 
 //! @brief Get value of WDOG_WRSR_SFTW from a register value.
-#define BG_WDOG_WRSR_SFTW(r)   (((r) & BM_WDOG_WRSR_SFTW) >> BP_WDOG_WRSR_SFTW)
+#define BG_WDOG_WRSR_SFTW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_SFTW) >> BP_WDOG_WRSR_SFTW)
 
 
 /* --- Register HW_WDOG_WRSR, field TOUT[1] (RO)
@@ -517,7 +491,7 @@ typedef union _hw_wdog_wrsr
 #define BM_WDOG_WRSR_TOUT      (0x00000002)  //!< Bit mask for WDOG_WRSR_TOUT.
 
 //! @brief Get value of WDOG_WRSR_TOUT from a register value.
-#define BG_WDOG_WRSR_TOUT(r)   (((r) & BM_WDOG_WRSR_TOUT) >> BP_WDOG_WRSR_TOUT)
+#define BG_WDOG_WRSR_TOUT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_TOUT) >> BP_WDOG_WRSR_TOUT)
 
 
 /* --- Register HW_WDOG_WRSR, field POR[4] (RO)
@@ -533,8 +507,12 @@ typedef union _hw_wdog_wrsr
 #define BM_WDOG_WRSR_POR      (0x00000010)  //!< Bit mask for WDOG_WRSR_POR.
 
 //! @brief Get value of WDOG_WRSR_POR from a register value.
-#define BG_WDOG_WRSR_POR(r)   (((r) & BM_WDOG_WRSR_POR) >> BP_WDOG_WRSR_POR)
+#define BG_WDOG_WRSR_POR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_POR) >> BP_WDOG_WRSR_POR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_WDOG_WICR - Watchdog Interrupt Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -595,15 +573,10 @@ typedef union _hw_wdog_wicr
 #define BM_WDOG_WICR_WICT      (0x000000ff)  //!< Bit mask for WDOG_WICR_WICT.
 
 //! @brief Get value of WDOG_WICR_WICT from a register value.
-#define BG_WDOG_WICR_WICT(r)   (((r) & BM_WDOG_WICR_WICT) >> BP_WDOG_WICR_WICT)
+#define BG_WDOG_WICR_WICT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WICR_WICT) >> BP_WDOG_WICR_WICT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WICR_WICT.
-#define BF_WDOG_WICR_WICT(v)   ((((reg16_t) v) << BP_WDOG_WICR_WICT) & BM_WDOG_WICR_WICT)
-#else
-//! @brief Format value for bitfield WDOG_WICR_WICT.
-#define BF_WDOG_WICR_WICT(v)   (((v) << BP_WDOG_WICR_WICT) & BM_WDOG_WICR_WICT)
-#endif
+#define BF_WDOG_WICR_WICT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WICR_WICT) & BM_WDOG_WICR_WICT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WICT field to a new value.
@@ -626,15 +599,10 @@ typedef union _hw_wdog_wicr
 #define BM_WDOG_WICR_WTIS      (0x00004000)  //!< Bit mask for WDOG_WICR_WTIS.
 
 //! @brief Get value of WDOG_WICR_WTIS from a register value.
-#define BG_WDOG_WICR_WTIS(r)   (((r) & BM_WDOG_WICR_WTIS) >> BP_WDOG_WICR_WTIS)
+#define BG_WDOG_WICR_WTIS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WICR_WTIS) >> BP_WDOG_WICR_WTIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WICR_WTIS.
-#define BF_WDOG_WICR_WTIS(v)   ((((reg16_t) v) << BP_WDOG_WICR_WTIS) & BM_WDOG_WICR_WTIS)
-#else
-//! @brief Format value for bitfield WDOG_WICR_WTIS.
-#define BF_WDOG_WICR_WTIS(v)   (((v) << BP_WDOG_WICR_WTIS) & BM_WDOG_WICR_WTIS)
-#endif
+#define BF_WDOG_WICR_WTIS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WICR_WTIS) & BM_WDOG_WICR_WTIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WTIS field to a new value.
@@ -657,21 +625,20 @@ typedef union _hw_wdog_wicr
 #define BM_WDOG_WICR_WIE      (0x00008000)  //!< Bit mask for WDOG_WICR_WIE.
 
 //! @brief Get value of WDOG_WICR_WIE from a register value.
-#define BG_WDOG_WICR_WIE(r)   (((r) & BM_WDOG_WICR_WIE) >> BP_WDOG_WICR_WIE)
+#define BG_WDOG_WICR_WIE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WICR_WIE) >> BP_WDOG_WICR_WIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WICR_WIE.
-#define BF_WDOG_WICR_WIE(v)   ((((reg16_t) v) << BP_WDOG_WICR_WIE) & BM_WDOG_WICR_WIE)
-#else
-//! @brief Format value for bitfield WDOG_WICR_WIE.
-#define BF_WDOG_WICR_WIE(v)   (((v) << BP_WDOG_WICR_WIE) & BM_WDOG_WICR_WIE)
-#endif
+#define BF_WDOG_WICR_WIE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WICR_WIE) & BM_WDOG_WICR_WIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIE field to a new value.
 #define BW_WDOG_WICR_WIE(x, v)   (HW_WDOG_WICR_WR(x, (HW_WDOG_WICR_RD(x) & ~BM_WDOG_WICR_WIE) | BF_WDOG_WICR_WIE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_WDOG_WMCR - Watchdog Miscellaneous Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -727,15 +694,10 @@ typedef union _hw_wdog_wmcr
 #define BM_WDOG_WMCR_PDE      (0x00000001)  //!< Bit mask for WDOG_WMCR_PDE.
 
 //! @brief Get value of WDOG_WMCR_PDE from a register value.
-#define BG_WDOG_WMCR_PDE(r)   (((r) & BM_WDOG_WMCR_PDE) >> BP_WDOG_WMCR_PDE)
+#define BG_WDOG_WMCR_PDE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WMCR_PDE) >> BP_WDOG_WMCR_PDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield WDOG_WMCR_PDE.
-#define BF_WDOG_WMCR_PDE(v)   ((((reg16_t) v) << BP_WDOG_WMCR_PDE) & BM_WDOG_WMCR_PDE)
-#else
-//! @brief Format value for bitfield WDOG_WMCR_PDE.
-#define BF_WDOG_WMCR_PDE(v)   (((v) << BP_WDOG_WMCR_PDE) & BM_WDOG_WMCR_PDE)
-#endif
+#define BF_WDOG_WMCR_PDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_WDOG_WMCR_PDE) & BM_WDOG_WMCR_PDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDE field to a new value.

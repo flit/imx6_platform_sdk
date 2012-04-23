@@ -53,6 +53,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_RXDATA - Receive Data Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ECSPI_RXDATA - Receive Data Register (RO)
@@ -98,7 +113,11 @@ typedef union _hw_ecspi_rxdata
 #define BM_ECSPI_RXDATA_ECSPI_RXDATA      (0xffffffff)  //!< Bit mask for ECSPI_RXDATA_ECSPI_RXDATA.
 
 //! @brief Get value of ECSPI_RXDATA_ECSPI_RXDATA from a register value.
-#define BG_ECSPI_RXDATA_ECSPI_RXDATA(r)   (((r) & BM_ECSPI_RXDATA_ECSPI_RXDATA) >> BP_ECSPI_RXDATA_ECSPI_RXDATA)
+#define BG_ECSPI_RXDATA_ECSPI_RXDATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_RXDATA_ECSPI_RXDATA) >> BP_ECSPI_RXDATA_ECSPI_RXDATA)
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_TXDATA - Transmit Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -151,15 +170,14 @@ typedef union _hw_ecspi_txdata
 #define BM_ECSPI_TXDATA_ECSPI_TXDATA      (0xffffffff)  //!< Bit mask for ECSPI_TXDATA_ECSPI_TXDATA.
 
 //! @brief Get value of ECSPI_TXDATA_ECSPI_TXDATA from a register value.
-#define BG_ECSPI_TXDATA_ECSPI_TXDATA(r)   (((r) & BM_ECSPI_TXDATA_ECSPI_TXDATA) >> BP_ECSPI_TXDATA_ECSPI_TXDATA)
+#define BG_ECSPI_TXDATA_ECSPI_TXDATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_TXDATA_ECSPI_TXDATA) >> BP_ECSPI_TXDATA_ECSPI_TXDATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_TXDATA_ECSPI_TXDATA.
-#define BF_ECSPI_TXDATA_ECSPI_TXDATA(v)   ((((reg32_t) v) << BP_ECSPI_TXDATA_ECSPI_TXDATA) & BM_ECSPI_TXDATA_ECSPI_TXDATA)
-#else
-//! @brief Format value for bitfield ECSPI_TXDATA_ECSPI_TXDATA.
-#define BF_ECSPI_TXDATA_ECSPI_TXDATA(v)   (((v) << BP_ECSPI_TXDATA_ECSPI_TXDATA) & BM_ECSPI_TXDATA_ECSPI_TXDATA)
-#endif
+#define BF_ECSPI_TXDATA_ECSPI_TXDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_TXDATA_ECSPI_TXDATA) & BM_ECSPI_TXDATA_ECSPI_TXDATA)
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_CONREG - Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -224,15 +242,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_EN      (0x00000001)  //!< Bit mask for ECSPI_CONREG_EN.
 
 //! @brief Get value of ECSPI_CONREG_EN from a register value.
-#define BG_ECSPI_CONREG_EN(r)   (((r) & BM_ECSPI_CONREG_EN) >> BP_ECSPI_CONREG_EN)
+#define BG_ECSPI_CONREG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_EN) >> BP_ECSPI_CONREG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_EN.
-#define BF_ECSPI_CONREG_EN(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_EN) & BM_ECSPI_CONREG_EN)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_EN.
-#define BF_ECSPI_CONREG_EN(v)   (((v) << BP_ECSPI_CONREG_EN) & BM_ECSPI_CONREG_EN)
-#endif
+#define BF_ECSPI_CONREG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_EN) & BM_ECSPI_CONREG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -254,15 +267,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_HT      (0x00000002)  //!< Bit mask for ECSPI_CONREG_HT.
 
 //! @brief Get value of ECSPI_CONREG_HT from a register value.
-#define BG_ECSPI_CONREG_HT(r)   (((r) & BM_ECSPI_CONREG_HT) >> BP_ECSPI_CONREG_HT)
+#define BG_ECSPI_CONREG_HT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_HT) >> BP_ECSPI_CONREG_HT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_HT.
-#define BF_ECSPI_CONREG_HT(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_HT) & BM_ECSPI_CONREG_HT)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_HT.
-#define BF_ECSPI_CONREG_HT(v)   (((v) << BP_ECSPI_CONREG_HT) & BM_ECSPI_CONREG_HT)
-#endif
+#define BF_ECSPI_CONREG_HT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_HT) & BM_ECSPI_CONREG_HT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HT field to a new value.
@@ -289,15 +297,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_XCH      (0x00000004)  //!< Bit mask for ECSPI_CONREG_XCH.
 
 //! @brief Get value of ECSPI_CONREG_XCH from a register value.
-#define BG_ECSPI_CONREG_XCH(r)   (((r) & BM_ECSPI_CONREG_XCH) >> BP_ECSPI_CONREG_XCH)
+#define BG_ECSPI_CONREG_XCH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_XCH) >> BP_ECSPI_CONREG_XCH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_XCH.
-#define BF_ECSPI_CONREG_XCH(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_XCH) & BM_ECSPI_CONREG_XCH)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_XCH.
-#define BF_ECSPI_CONREG_XCH(v)   (((v) << BP_ECSPI_CONREG_XCH) & BM_ECSPI_CONREG_XCH)
-#endif
+#define BF_ECSPI_CONREG_XCH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_XCH) & BM_ECSPI_CONREG_XCH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the XCH field to a new value.
@@ -323,15 +326,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_SMC      (0x00000008)  //!< Bit mask for ECSPI_CONREG_SMC.
 
 //! @brief Get value of ECSPI_CONREG_SMC from a register value.
-#define BG_ECSPI_CONREG_SMC(r)   (((r) & BM_ECSPI_CONREG_SMC) >> BP_ECSPI_CONREG_SMC)
+#define BG_ECSPI_CONREG_SMC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_SMC) >> BP_ECSPI_CONREG_SMC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_SMC.
-#define BF_ECSPI_CONREG_SMC(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_SMC) & BM_ECSPI_CONREG_SMC)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_SMC.
-#define BF_ECSPI_CONREG_SMC(v)   (((v) << BP_ECSPI_CONREG_SMC) & BM_ECSPI_CONREG_SMC)
-#endif
+#define BF_ECSPI_CONREG_SMC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_SMC) & BM_ECSPI_CONREG_SMC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SMC field to a new value.
@@ -354,15 +352,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_CHANNEL_MODE      (0x000000f0)  //!< Bit mask for ECSPI_CONREG_CHANNEL_MODE.
 
 //! @brief Get value of ECSPI_CONREG_CHANNEL_MODE from a register value.
-#define BG_ECSPI_CONREG_CHANNEL_MODE(r)   (((r) & BM_ECSPI_CONREG_CHANNEL_MODE) >> BP_ECSPI_CONREG_CHANNEL_MODE)
+#define BG_ECSPI_CONREG_CHANNEL_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_CHANNEL_MODE) >> BP_ECSPI_CONREG_CHANNEL_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_CHANNEL_MODE.
-#define BF_ECSPI_CONREG_CHANNEL_MODE(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_CHANNEL_MODE) & BM_ECSPI_CONREG_CHANNEL_MODE)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_CHANNEL_MODE.
-#define BF_ECSPI_CONREG_CHANNEL_MODE(v)   (((v) << BP_ECSPI_CONREG_CHANNEL_MODE) & BM_ECSPI_CONREG_CHANNEL_MODE)
-#endif
+#define BF_ECSPI_CONREG_CHANNEL_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_CHANNEL_MODE) & BM_ECSPI_CONREG_CHANNEL_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHANNEL_MODE field to a new value.
@@ -387,15 +380,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_POST_DIVIDER      (0x00000f00)  //!< Bit mask for ECSPI_CONREG_POST_DIVIDER.
 
 //! @brief Get value of ECSPI_CONREG_POST_DIVIDER from a register value.
-#define BG_ECSPI_CONREG_POST_DIVIDER(r)   (((r) & BM_ECSPI_CONREG_POST_DIVIDER) >> BP_ECSPI_CONREG_POST_DIVIDER)
+#define BG_ECSPI_CONREG_POST_DIVIDER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_POST_DIVIDER) >> BP_ECSPI_CONREG_POST_DIVIDER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_POST_DIVIDER.
-#define BF_ECSPI_CONREG_POST_DIVIDER(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_POST_DIVIDER) & BM_ECSPI_CONREG_POST_DIVIDER)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_POST_DIVIDER.
-#define BF_ECSPI_CONREG_POST_DIVIDER(v)   (((v) << BP_ECSPI_CONREG_POST_DIVIDER) & BM_ECSPI_CONREG_POST_DIVIDER)
-#endif
+#define BF_ECSPI_CONREG_POST_DIVIDER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_POST_DIVIDER) & BM_ECSPI_CONREG_POST_DIVIDER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POST_DIVIDER field to a new value.
@@ -421,15 +409,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_PRE_DIVIDER      (0x0000f000)  //!< Bit mask for ECSPI_CONREG_PRE_DIVIDER.
 
 //! @brief Get value of ECSPI_CONREG_PRE_DIVIDER from a register value.
-#define BG_ECSPI_CONREG_PRE_DIVIDER(r)   (((r) & BM_ECSPI_CONREG_PRE_DIVIDER) >> BP_ECSPI_CONREG_PRE_DIVIDER)
+#define BG_ECSPI_CONREG_PRE_DIVIDER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_PRE_DIVIDER) >> BP_ECSPI_CONREG_PRE_DIVIDER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_PRE_DIVIDER.
-#define BF_ECSPI_CONREG_PRE_DIVIDER(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_PRE_DIVIDER) & BM_ECSPI_CONREG_PRE_DIVIDER)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_PRE_DIVIDER.
-#define BF_ECSPI_CONREG_PRE_DIVIDER(v)   (((v) << BP_ECSPI_CONREG_PRE_DIVIDER) & BM_ECSPI_CONREG_PRE_DIVIDER)
-#endif
+#define BF_ECSPI_CONREG_PRE_DIVIDER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_PRE_DIVIDER) & BM_ECSPI_CONREG_PRE_DIVIDER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRE_DIVIDER field to a new value.
@@ -453,15 +436,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_DRCTL      (0x00030000)  //!< Bit mask for ECSPI_CONREG_DRCTL.
 
 //! @brief Get value of ECSPI_CONREG_DRCTL from a register value.
-#define BG_ECSPI_CONREG_DRCTL(r)   (((r) & BM_ECSPI_CONREG_DRCTL) >> BP_ECSPI_CONREG_DRCTL)
+#define BG_ECSPI_CONREG_DRCTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_DRCTL) >> BP_ECSPI_CONREG_DRCTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_DRCTL.
-#define BF_ECSPI_CONREG_DRCTL(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_DRCTL) & BM_ECSPI_CONREG_DRCTL)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_DRCTL.
-#define BF_ECSPI_CONREG_DRCTL(v)   (((v) << BP_ECSPI_CONREG_DRCTL) & BM_ECSPI_CONREG_DRCTL)
-#endif
+#define BF_ECSPI_CONREG_DRCTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_DRCTL) & BM_ECSPI_CONREG_DRCTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRCTL field to a new value.
@@ -487,15 +465,10 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_CHANNEL_SELECT      (0x000c0000)  //!< Bit mask for ECSPI_CONREG_CHANNEL_SELECT.
 
 //! @brief Get value of ECSPI_CONREG_CHANNEL_SELECT from a register value.
-#define BG_ECSPI_CONREG_CHANNEL_SELECT(r)   (((r) & BM_ECSPI_CONREG_CHANNEL_SELECT) >> BP_ECSPI_CONREG_CHANNEL_SELECT)
+#define BG_ECSPI_CONREG_CHANNEL_SELECT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_CHANNEL_SELECT) >> BP_ECSPI_CONREG_CHANNEL_SELECT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_CHANNEL_SELECT.
-#define BF_ECSPI_CONREG_CHANNEL_SELECT(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_CHANNEL_SELECT) & BM_ECSPI_CONREG_CHANNEL_SELECT)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_CHANNEL_SELECT.
-#define BF_ECSPI_CONREG_CHANNEL_SELECT(v)   (((v) << BP_ECSPI_CONREG_CHANNEL_SELECT) & BM_ECSPI_CONREG_CHANNEL_SELECT)
-#endif
+#define BF_ECSPI_CONREG_CHANNEL_SELECT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_CHANNEL_SELECT) & BM_ECSPI_CONREG_CHANNEL_SELECT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHANNEL_SELECT field to a new value.
@@ -528,21 +501,20 @@ typedef union _hw_ecspi_conreg
 #define BM_ECSPI_CONREG_BURST_LENGTH      (0xfff00000)  //!< Bit mask for ECSPI_CONREG_BURST_LENGTH.
 
 //! @brief Get value of ECSPI_CONREG_BURST_LENGTH from a register value.
-#define BG_ECSPI_CONREG_BURST_LENGTH(r)   (((r) & BM_ECSPI_CONREG_BURST_LENGTH) >> BP_ECSPI_CONREG_BURST_LENGTH)
+#define BG_ECSPI_CONREG_BURST_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONREG_BURST_LENGTH) >> BP_ECSPI_CONREG_BURST_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONREG_BURST_LENGTH.
-#define BF_ECSPI_CONREG_BURST_LENGTH(v)   ((((reg32_t) v) << BP_ECSPI_CONREG_BURST_LENGTH) & BM_ECSPI_CONREG_BURST_LENGTH)
-#else
-//! @brief Format value for bitfield ECSPI_CONREG_BURST_LENGTH.
-#define BF_ECSPI_CONREG_BURST_LENGTH(v)   (((v) << BP_ECSPI_CONREG_BURST_LENGTH) & BM_ECSPI_CONREG_BURST_LENGTH)
-#endif
+#define BF_ECSPI_CONREG_BURST_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONREG_BURST_LENGTH) & BM_ECSPI_CONREG_BURST_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_LENGTH field to a new value.
 #define BW_ECSPI_CONREG_BURST_LENGTH(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_BURST_LENGTH) | BF_ECSPI_CONREG_BURST_LENGTH(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_CONFIGREG - Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -604,15 +576,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_SCLK_PHA      (0x0000000f)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_PHA.
 
 //! @brief Get value of ECSPI_CONFIGREG_SCLK_PHA from a register value.
-#define BG_ECSPI_CONFIGREG_SCLK_PHA(r)   (((r) & BM_ECSPI_CONFIGREG_SCLK_PHA) >> BP_ECSPI_CONFIGREG_SCLK_PHA)
+#define BG_ECSPI_CONFIGREG_SCLK_PHA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_SCLK_PHA) >> BP_ECSPI_CONFIGREG_SCLK_PHA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_PHA.
-#define BF_ECSPI_CONFIGREG_SCLK_PHA(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_SCLK_PHA) & BM_ECSPI_CONFIGREG_SCLK_PHA)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_PHA.
-#define BF_ECSPI_CONFIGREG_SCLK_PHA(v)   (((v) << BP_ECSPI_CONFIGREG_SCLK_PHA) & BM_ECSPI_CONFIGREG_SCLK_PHA)
-#endif
+#define BF_ECSPI_CONFIGREG_SCLK_PHA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_SCLK_PHA) & BM_ECSPI_CONFIGREG_SCLK_PHA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCLK_PHA field to a new value.
@@ -635,15 +602,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_SCLK_POL      (0x000000f0)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_POL.
 
 //! @brief Get value of ECSPI_CONFIGREG_SCLK_POL from a register value.
-#define BG_ECSPI_CONFIGREG_SCLK_POL(r)   (((r) & BM_ECSPI_CONFIGREG_SCLK_POL) >> BP_ECSPI_CONFIGREG_SCLK_POL)
+#define BG_ECSPI_CONFIGREG_SCLK_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_SCLK_POL) >> BP_ECSPI_CONFIGREG_SCLK_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_POL.
-#define BF_ECSPI_CONFIGREG_SCLK_POL(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_SCLK_POL) & BM_ECSPI_CONFIGREG_SCLK_POL)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_POL.
-#define BF_ECSPI_CONFIGREG_SCLK_POL(v)   (((v) << BP_ECSPI_CONFIGREG_SCLK_POL) & BM_ECSPI_CONFIGREG_SCLK_POL)
-#endif
+#define BF_ECSPI_CONFIGREG_SCLK_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_SCLK_POL) & BM_ECSPI_CONFIGREG_SCLK_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCLK_POL field to a new value.
@@ -678,15 +640,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_SS_CTL      (0x00000f00)  //!< Bit mask for ECSPI_CONFIGREG_SS_CTL.
 
 //! @brief Get value of ECSPI_CONFIGREG_SS_CTL from a register value.
-#define BG_ECSPI_CONFIGREG_SS_CTL(r)   (((r) & BM_ECSPI_CONFIGREG_SS_CTL) >> BP_ECSPI_CONFIGREG_SS_CTL)
+#define BG_ECSPI_CONFIGREG_SS_CTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_SS_CTL) >> BP_ECSPI_CONFIGREG_SS_CTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_SS_CTL.
-#define BF_ECSPI_CONFIGREG_SS_CTL(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_SS_CTL) & BM_ECSPI_CONFIGREG_SS_CTL)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_SS_CTL.
-#define BF_ECSPI_CONFIGREG_SS_CTL(v)   (((v) << BP_ECSPI_CONFIGREG_SS_CTL) & BM_ECSPI_CONFIGREG_SS_CTL)
-#endif
+#define BF_ECSPI_CONFIGREG_SS_CTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_SS_CTL) & BM_ECSPI_CONFIGREG_SS_CTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SS_CTL field to a new value.
@@ -709,15 +666,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_SS_POL      (0x0000f000)  //!< Bit mask for ECSPI_CONFIGREG_SS_POL.
 
 //! @brief Get value of ECSPI_CONFIGREG_SS_POL from a register value.
-#define BG_ECSPI_CONFIGREG_SS_POL(r)   (((r) & BM_ECSPI_CONFIGREG_SS_POL) >> BP_ECSPI_CONFIGREG_SS_POL)
+#define BG_ECSPI_CONFIGREG_SS_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_SS_POL) >> BP_ECSPI_CONFIGREG_SS_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_SS_POL.
-#define BF_ECSPI_CONFIGREG_SS_POL(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_SS_POL) & BM_ECSPI_CONFIGREG_SS_POL)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_SS_POL.
-#define BF_ECSPI_CONFIGREG_SS_POL(v)   (((v) << BP_ECSPI_CONFIGREG_SS_POL) & BM_ECSPI_CONFIGREG_SS_POL)
-#endif
+#define BF_ECSPI_CONFIGREG_SS_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_SS_POL) & BM_ECSPI_CONFIGREG_SS_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SS_POL field to a new value.
@@ -740,15 +692,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_DATA_CTL      (0x000f0000)  //!< Bit mask for ECSPI_CONFIGREG_DATA_CTL.
 
 //! @brief Get value of ECSPI_CONFIGREG_DATA_CTL from a register value.
-#define BG_ECSPI_CONFIGREG_DATA_CTL(r)   (((r) & BM_ECSPI_CONFIGREG_DATA_CTL) >> BP_ECSPI_CONFIGREG_DATA_CTL)
+#define BG_ECSPI_CONFIGREG_DATA_CTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_DATA_CTL) >> BP_ECSPI_CONFIGREG_DATA_CTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_DATA_CTL.
-#define BF_ECSPI_CONFIGREG_DATA_CTL(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_DATA_CTL) & BM_ECSPI_CONFIGREG_DATA_CTL)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_DATA_CTL.
-#define BF_ECSPI_CONFIGREG_DATA_CTL(v)   (((v) << BP_ECSPI_CONFIGREG_DATA_CTL) & BM_ECSPI_CONFIGREG_DATA_CTL)
-#endif
+#define BF_ECSPI_CONFIGREG_DATA_CTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_DATA_CTL) & BM_ECSPI_CONFIGREG_DATA_CTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_CTL field to a new value.
@@ -771,15 +718,10 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_SCLK_CTL      (0x00f00000)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_CTL.
 
 //! @brief Get value of ECSPI_CONFIGREG_SCLK_CTL from a register value.
-#define BG_ECSPI_CONFIGREG_SCLK_CTL(r)   (((r) & BM_ECSPI_CONFIGREG_SCLK_CTL) >> BP_ECSPI_CONFIGREG_SCLK_CTL)
+#define BG_ECSPI_CONFIGREG_SCLK_CTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_SCLK_CTL) >> BP_ECSPI_CONFIGREG_SCLK_CTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_CTL.
-#define BF_ECSPI_CONFIGREG_SCLK_CTL(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_SCLK_CTL) & BM_ECSPI_CONFIGREG_SCLK_CTL)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_SCLK_CTL.
-#define BF_ECSPI_CONFIGREG_SCLK_CTL(v)   (((v) << BP_ECSPI_CONFIGREG_SCLK_CTL) & BM_ECSPI_CONFIGREG_SCLK_CTL)
-#endif
+#define BF_ECSPI_CONFIGREG_SCLK_CTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_SCLK_CTL) & BM_ECSPI_CONFIGREG_SCLK_CTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCLK_CTL field to a new value.
@@ -797,20 +739,19 @@ typedef union _hw_ecspi_configreg
 #define BM_ECSPI_CONFIGREG_HT_LENGTH      (0x1f000000)  //!< Bit mask for ECSPI_CONFIGREG_HT_LENGTH.
 
 //! @brief Get value of ECSPI_CONFIGREG_HT_LENGTH from a register value.
-#define BG_ECSPI_CONFIGREG_HT_LENGTH(r)   (((r) & BM_ECSPI_CONFIGREG_HT_LENGTH) >> BP_ECSPI_CONFIGREG_HT_LENGTH)
+#define BG_ECSPI_CONFIGREG_HT_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_CONFIGREG_HT_LENGTH) >> BP_ECSPI_CONFIGREG_HT_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_CONFIGREG_HT_LENGTH.
-#define BF_ECSPI_CONFIGREG_HT_LENGTH(v)   ((((reg32_t) v) << BP_ECSPI_CONFIGREG_HT_LENGTH) & BM_ECSPI_CONFIGREG_HT_LENGTH)
-#else
-//! @brief Format value for bitfield ECSPI_CONFIGREG_HT_LENGTH.
-#define BF_ECSPI_CONFIGREG_HT_LENGTH(v)   (((v) << BP_ECSPI_CONFIGREG_HT_LENGTH) & BM_ECSPI_CONFIGREG_HT_LENGTH)
-#endif
+#define BF_ECSPI_CONFIGREG_HT_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_CONFIGREG_HT_LENGTH) & BM_ECSPI_CONFIGREG_HT_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HT_LENGTH field to a new value.
 #define BW_ECSPI_CONFIGREG_HT_LENGTH(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_HT_LENGTH) | BF_ECSPI_CONFIGREG_HT_LENGTH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_INTREG - Interrupt Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -870,15 +811,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_TEEN      (0x00000001)  //!< Bit mask for ECSPI_INTREG_TEEN.
 
 //! @brief Get value of ECSPI_INTREG_TEEN from a register value.
-#define BG_ECSPI_INTREG_TEEN(r)   (((r) & BM_ECSPI_INTREG_TEEN) >> BP_ECSPI_INTREG_TEEN)
+#define BG_ECSPI_INTREG_TEEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_TEEN) >> BP_ECSPI_INTREG_TEEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_TEEN.
-#define BF_ECSPI_INTREG_TEEN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_TEEN) & BM_ECSPI_INTREG_TEEN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_TEEN.
-#define BF_ECSPI_INTREG_TEEN(v)   (((v) << BP_ECSPI_INTREG_TEEN) & BM_ECSPI_INTREG_TEEN)
-#endif
+#define BF_ECSPI_INTREG_TEEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_TEEN) & BM_ECSPI_INTREG_TEEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEEN field to a new value.
@@ -900,15 +836,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_TDREN      (0x00000002)  //!< Bit mask for ECSPI_INTREG_TDREN.
 
 //! @brief Get value of ECSPI_INTREG_TDREN from a register value.
-#define BG_ECSPI_INTREG_TDREN(r)   (((r) & BM_ECSPI_INTREG_TDREN) >> BP_ECSPI_INTREG_TDREN)
+#define BG_ECSPI_INTREG_TDREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_TDREN) >> BP_ECSPI_INTREG_TDREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_TDREN.
-#define BF_ECSPI_INTREG_TDREN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_TDREN) & BM_ECSPI_INTREG_TDREN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_TDREN.
-#define BF_ECSPI_INTREG_TDREN(v)   (((v) << BP_ECSPI_INTREG_TDREN) & BM_ECSPI_INTREG_TDREN)
-#endif
+#define BF_ECSPI_INTREG_TDREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_TDREN) & BM_ECSPI_INTREG_TDREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDREN field to a new value.
@@ -929,15 +860,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_TFEN      (0x00000004)  //!< Bit mask for ECSPI_INTREG_TFEN.
 
 //! @brief Get value of ECSPI_INTREG_TFEN from a register value.
-#define BG_ECSPI_INTREG_TFEN(r)   (((r) & BM_ECSPI_INTREG_TFEN) >> BP_ECSPI_INTREG_TFEN)
+#define BG_ECSPI_INTREG_TFEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_TFEN) >> BP_ECSPI_INTREG_TFEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_TFEN.
-#define BF_ECSPI_INTREG_TFEN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_TFEN) & BM_ECSPI_INTREG_TFEN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_TFEN.
-#define BF_ECSPI_INTREG_TFEN(v)   (((v) << BP_ECSPI_INTREG_TFEN) & BM_ECSPI_INTREG_TFEN)
-#endif
+#define BF_ECSPI_INTREG_TFEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_TFEN) & BM_ECSPI_INTREG_TFEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFEN field to a new value.
@@ -958,15 +884,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_RREN      (0x00000008)  //!< Bit mask for ECSPI_INTREG_RREN.
 
 //! @brief Get value of ECSPI_INTREG_RREN from a register value.
-#define BG_ECSPI_INTREG_RREN(r)   (((r) & BM_ECSPI_INTREG_RREN) >> BP_ECSPI_INTREG_RREN)
+#define BG_ECSPI_INTREG_RREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_RREN) >> BP_ECSPI_INTREG_RREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_RREN.
-#define BF_ECSPI_INTREG_RREN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_RREN) & BM_ECSPI_INTREG_RREN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_RREN.
-#define BF_ECSPI_INTREG_RREN(v)   (((v) << BP_ECSPI_INTREG_RREN) & BM_ECSPI_INTREG_RREN)
-#endif
+#define BF_ECSPI_INTREG_RREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_RREN) & BM_ECSPI_INTREG_RREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RREN field to a new value.
@@ -988,15 +909,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_RDREN      (0x00000010)  //!< Bit mask for ECSPI_INTREG_RDREN.
 
 //! @brief Get value of ECSPI_INTREG_RDREN from a register value.
-#define BG_ECSPI_INTREG_RDREN(r)   (((r) & BM_ECSPI_INTREG_RDREN) >> BP_ECSPI_INTREG_RDREN)
+#define BG_ECSPI_INTREG_RDREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_RDREN) >> BP_ECSPI_INTREG_RDREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_RDREN.
-#define BF_ECSPI_INTREG_RDREN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_RDREN) & BM_ECSPI_INTREG_RDREN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_RDREN.
-#define BF_ECSPI_INTREG_RDREN(v)   (((v) << BP_ECSPI_INTREG_RDREN) & BM_ECSPI_INTREG_RDREN)
-#endif
+#define BF_ECSPI_INTREG_RDREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_RDREN) & BM_ECSPI_INTREG_RDREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDREN field to a new value.
@@ -1017,15 +933,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_RFEN      (0x00000020)  //!< Bit mask for ECSPI_INTREG_RFEN.
 
 //! @brief Get value of ECSPI_INTREG_RFEN from a register value.
-#define BG_ECSPI_INTREG_RFEN(r)   (((r) & BM_ECSPI_INTREG_RFEN) >> BP_ECSPI_INTREG_RFEN)
+#define BG_ECSPI_INTREG_RFEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_RFEN) >> BP_ECSPI_INTREG_RFEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_RFEN.
-#define BF_ECSPI_INTREG_RFEN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_RFEN) & BM_ECSPI_INTREG_RFEN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_RFEN.
-#define BF_ECSPI_INTREG_RFEN(v)   (((v) << BP_ECSPI_INTREG_RFEN) & BM_ECSPI_INTREG_RFEN)
-#endif
+#define BF_ECSPI_INTREG_RFEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_RFEN) & BM_ECSPI_INTREG_RFEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFEN field to a new value.
@@ -1046,15 +957,10 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_ROEN      (0x00000040)  //!< Bit mask for ECSPI_INTREG_ROEN.
 
 //! @brief Get value of ECSPI_INTREG_ROEN from a register value.
-#define BG_ECSPI_INTREG_ROEN(r)   (((r) & BM_ECSPI_INTREG_ROEN) >> BP_ECSPI_INTREG_ROEN)
+#define BG_ECSPI_INTREG_ROEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_ROEN) >> BP_ECSPI_INTREG_ROEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_ROEN.
-#define BF_ECSPI_INTREG_ROEN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_ROEN) & BM_ECSPI_INTREG_ROEN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_ROEN.
-#define BF_ECSPI_INTREG_ROEN(v)   (((v) << BP_ECSPI_INTREG_ROEN) & BM_ECSPI_INTREG_ROEN)
-#endif
+#define BF_ECSPI_INTREG_ROEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_ROEN) & BM_ECSPI_INTREG_ROEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROEN field to a new value.
@@ -1075,21 +981,20 @@ typedef union _hw_ecspi_intreg
 #define BM_ECSPI_INTREG_TCEN      (0x00000080)  //!< Bit mask for ECSPI_INTREG_TCEN.
 
 //! @brief Get value of ECSPI_INTREG_TCEN from a register value.
-#define BG_ECSPI_INTREG_TCEN(r)   (((r) & BM_ECSPI_INTREG_TCEN) >> BP_ECSPI_INTREG_TCEN)
+#define BG_ECSPI_INTREG_TCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_INTREG_TCEN) >> BP_ECSPI_INTREG_TCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_INTREG_TCEN.
-#define BF_ECSPI_INTREG_TCEN(v)   ((((reg32_t) v) << BP_ECSPI_INTREG_TCEN) & BM_ECSPI_INTREG_TCEN)
-#else
-//! @brief Format value for bitfield ECSPI_INTREG_TCEN.
-#define BF_ECSPI_INTREG_TCEN(v)   (((v) << BP_ECSPI_INTREG_TCEN) & BM_ECSPI_INTREG_TCEN)
-#endif
+#define BF_ECSPI_INTREG_TCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_INTREG_TCEN) & BM_ECSPI_INTREG_TCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCEN field to a new value.
 #define BW_ECSPI_INTREG_TCEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_TCEN) | BF_ECSPI_INTREG_TCEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_DMAREG - DMA Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1150,15 +1055,10 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_TX_THRESHOLD      (0x0000003f)  //!< Bit mask for ECSPI_DMAREG_TX_THRESHOLD.
 
 //! @brief Get value of ECSPI_DMAREG_TX_THRESHOLD from a register value.
-#define BG_ECSPI_DMAREG_TX_THRESHOLD(r)   (((r) & BM_ECSPI_DMAREG_TX_THRESHOLD) >> BP_ECSPI_DMAREG_TX_THRESHOLD)
+#define BG_ECSPI_DMAREG_TX_THRESHOLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_TX_THRESHOLD) >> BP_ECSPI_DMAREG_TX_THRESHOLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_TX_THRESHOLD.
-#define BF_ECSPI_DMAREG_TX_THRESHOLD(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_TX_THRESHOLD) & BM_ECSPI_DMAREG_TX_THRESHOLD)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_TX_THRESHOLD.
-#define BF_ECSPI_DMAREG_TX_THRESHOLD(v)   (((v) << BP_ECSPI_DMAREG_TX_THRESHOLD) & BM_ECSPI_DMAREG_TX_THRESHOLD)
-#endif
+#define BF_ECSPI_DMAREG_TX_THRESHOLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_TX_THRESHOLD) & BM_ECSPI_DMAREG_TX_THRESHOLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_THRESHOLD field to a new value.
@@ -1178,15 +1078,10 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_TEDEN      (0x00000080)  //!< Bit mask for ECSPI_DMAREG_TEDEN.
 
 //! @brief Get value of ECSPI_DMAREG_TEDEN from a register value.
-#define BG_ECSPI_DMAREG_TEDEN(r)   (((r) & BM_ECSPI_DMAREG_TEDEN) >> BP_ECSPI_DMAREG_TEDEN)
+#define BG_ECSPI_DMAREG_TEDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_TEDEN) >> BP_ECSPI_DMAREG_TEDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_TEDEN.
-#define BF_ECSPI_DMAREG_TEDEN(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_TEDEN) & BM_ECSPI_DMAREG_TEDEN)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_TEDEN.
-#define BF_ECSPI_DMAREG_TEDEN(v)   (((v) << BP_ECSPI_DMAREG_TEDEN) & BM_ECSPI_DMAREG_TEDEN)
-#endif
+#define BF_ECSPI_DMAREG_TEDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_TEDEN) & BM_ECSPI_DMAREG_TEDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEDEN field to a new value.
@@ -1205,15 +1100,10 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_RX_THRESHOLD      (0x003f0000)  //!< Bit mask for ECSPI_DMAREG_RX_THRESHOLD.
 
 //! @brief Get value of ECSPI_DMAREG_RX_THRESHOLD from a register value.
-#define BG_ECSPI_DMAREG_RX_THRESHOLD(r)   (((r) & BM_ECSPI_DMAREG_RX_THRESHOLD) >> BP_ECSPI_DMAREG_RX_THRESHOLD)
+#define BG_ECSPI_DMAREG_RX_THRESHOLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_RX_THRESHOLD) >> BP_ECSPI_DMAREG_RX_THRESHOLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_RX_THRESHOLD.
-#define BF_ECSPI_DMAREG_RX_THRESHOLD(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_RX_THRESHOLD) & BM_ECSPI_DMAREG_RX_THRESHOLD)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_RX_THRESHOLD.
-#define BF_ECSPI_DMAREG_RX_THRESHOLD(v)   (((v) << BP_ECSPI_DMAREG_RX_THRESHOLD) & BM_ECSPI_DMAREG_RX_THRESHOLD)
-#endif
+#define BF_ECSPI_DMAREG_RX_THRESHOLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_RX_THRESHOLD) & BM_ECSPI_DMAREG_RX_THRESHOLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_THRESHOLD field to a new value.
@@ -1233,15 +1123,10 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_RXDEN      (0x00800000)  //!< Bit mask for ECSPI_DMAREG_RXDEN.
 
 //! @brief Get value of ECSPI_DMAREG_RXDEN from a register value.
-#define BG_ECSPI_DMAREG_RXDEN(r)   (((r) & BM_ECSPI_DMAREG_RXDEN) >> BP_ECSPI_DMAREG_RXDEN)
+#define BG_ECSPI_DMAREG_RXDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_RXDEN) >> BP_ECSPI_DMAREG_RXDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_RXDEN.
-#define BF_ECSPI_DMAREG_RXDEN(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_RXDEN) & BM_ECSPI_DMAREG_RXDEN)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_RXDEN.
-#define BF_ECSPI_DMAREG_RXDEN(v)   (((v) << BP_ECSPI_DMAREG_RXDEN) & BM_ECSPI_DMAREG_RXDEN)
-#endif
+#define BF_ECSPI_DMAREG_RXDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_RXDEN) & BM_ECSPI_DMAREG_RXDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDEN field to a new value.
@@ -1259,15 +1144,10 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_RX_DMA_LENGTH      (0x3f000000)  //!< Bit mask for ECSPI_DMAREG_RX_DMA_LENGTH.
 
 //! @brief Get value of ECSPI_DMAREG_RX_DMA_LENGTH from a register value.
-#define BG_ECSPI_DMAREG_RX_DMA_LENGTH(r)   (((r) & BM_ECSPI_DMAREG_RX_DMA_LENGTH) >> BP_ECSPI_DMAREG_RX_DMA_LENGTH)
+#define BG_ECSPI_DMAREG_RX_DMA_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_RX_DMA_LENGTH) >> BP_ECSPI_DMAREG_RX_DMA_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_RX_DMA_LENGTH.
-#define BF_ECSPI_DMAREG_RX_DMA_LENGTH(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_RX_DMA_LENGTH) & BM_ECSPI_DMAREG_RX_DMA_LENGTH)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_RX_DMA_LENGTH.
-#define BF_ECSPI_DMAREG_RX_DMA_LENGTH(v)   (((v) << BP_ECSPI_DMAREG_RX_DMA_LENGTH) & BM_ECSPI_DMAREG_RX_DMA_LENGTH)
-#endif
+#define BF_ECSPI_DMAREG_RX_DMA_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_RX_DMA_LENGTH) & BM_ECSPI_DMAREG_RX_DMA_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_DMA_LENGTH field to a new value.
@@ -1290,21 +1170,20 @@ typedef union _hw_ecspi_dmareg
 #define BM_ECSPI_DMAREG_RXTDEN      (0x80000000)  //!< Bit mask for ECSPI_DMAREG_RXTDEN.
 
 //! @brief Get value of ECSPI_DMAREG_RXTDEN from a register value.
-#define BG_ECSPI_DMAREG_RXTDEN(r)   (((r) & BM_ECSPI_DMAREG_RXTDEN) >> BP_ECSPI_DMAREG_RXTDEN)
+#define BG_ECSPI_DMAREG_RXTDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_DMAREG_RXTDEN) >> BP_ECSPI_DMAREG_RXTDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_DMAREG_RXTDEN.
-#define BF_ECSPI_DMAREG_RXTDEN(v)   ((((reg32_t) v) << BP_ECSPI_DMAREG_RXTDEN) & BM_ECSPI_DMAREG_RXTDEN)
-#else
-//! @brief Format value for bitfield ECSPI_DMAREG_RXTDEN.
-#define BF_ECSPI_DMAREG_RXTDEN(v)   (((v) << BP_ECSPI_DMAREG_RXTDEN) & BM_ECSPI_DMAREG_RXTDEN)
-#endif
+#define BF_ECSPI_DMAREG_RXTDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_DMAREG_RXTDEN) & BM_ECSPI_DMAREG_RXTDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXTDEN field to a new value.
 #define BW_ECSPI_DMAREG_RXTDEN(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_RXTDEN) | BF_ECSPI_DMAREG_RXTDEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_STATREG - Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1364,7 +1243,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_TE      (0x00000001)  //!< Bit mask for ECSPI_STATREG_TE.
 
 //! @brief Get value of ECSPI_STATREG_TE from a register value.
-#define BG_ECSPI_STATREG_TE(r)   (((r) & BM_ECSPI_STATREG_TE) >> BP_ECSPI_STATREG_TE)
+#define BG_ECSPI_STATREG_TE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TE) >> BP_ECSPI_STATREG_TE)
 
 
 /* --- Register HW_ECSPI_STATREG, field TDR[1] (RO)
@@ -1380,7 +1259,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_TDR      (0x00000002)  //!< Bit mask for ECSPI_STATREG_TDR.
 
 //! @brief Get value of ECSPI_STATREG_TDR from a register value.
-#define BG_ECSPI_STATREG_TDR(r)   (((r) & BM_ECSPI_STATREG_TDR) >> BP_ECSPI_STATREG_TDR)
+#define BG_ECSPI_STATREG_TDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TDR) >> BP_ECSPI_STATREG_TDR)
 
 
 /* --- Register HW_ECSPI_STATREG, field TF[2] (RO)
@@ -1396,7 +1275,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_TF      (0x00000004)  //!< Bit mask for ECSPI_STATREG_TF.
 
 //! @brief Get value of ECSPI_STATREG_TF from a register value.
-#define BG_ECSPI_STATREG_TF(r)   (((r) & BM_ECSPI_STATREG_TF) >> BP_ECSPI_STATREG_TF)
+#define BG_ECSPI_STATREG_TF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TF) >> BP_ECSPI_STATREG_TF)
 
 
 /* --- Register HW_ECSPI_STATREG, field RR[3] (RO)
@@ -1412,7 +1291,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_RR      (0x00000008)  //!< Bit mask for ECSPI_STATREG_RR.
 
 //! @brief Get value of ECSPI_STATREG_RR from a register value.
-#define BG_ECSPI_STATREG_RR(r)   (((r) & BM_ECSPI_STATREG_RR) >> BP_ECSPI_STATREG_RR)
+#define BG_ECSPI_STATREG_RR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RR) >> BP_ECSPI_STATREG_RR)
 
 
 /* --- Register HW_ECSPI_STATREG, field RDR[4] (RO)
@@ -1431,7 +1310,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_RDR      (0x00000010)  //!< Bit mask for ECSPI_STATREG_RDR.
 
 //! @brief Get value of ECSPI_STATREG_RDR from a register value.
-#define BG_ECSPI_STATREG_RDR(r)   (((r) & BM_ECSPI_STATREG_RDR) >> BP_ECSPI_STATREG_RDR)
+#define BG_ECSPI_STATREG_RDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RDR) >> BP_ECSPI_STATREG_RDR)
 
 
 /* --- Register HW_ECSPI_STATREG, field RF[5] (RO)
@@ -1447,7 +1326,7 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_RF      (0x00000020)  //!< Bit mask for ECSPI_STATREG_RF.
 
 //! @brief Get value of ECSPI_STATREG_RF from a register value.
-#define BG_ECSPI_STATREG_RF(r)   (((r) & BM_ECSPI_STATREG_RF) >> BP_ECSPI_STATREG_RF)
+#define BG_ECSPI_STATREG_RF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RF) >> BP_ECSPI_STATREG_RF)
 
 
 /* --- Register HW_ECSPI_STATREG, field RO[6] (W1C)
@@ -1464,15 +1343,10 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_RO      (0x00000040)  //!< Bit mask for ECSPI_STATREG_RO.
 
 //! @brief Get value of ECSPI_STATREG_RO from a register value.
-#define BG_ECSPI_STATREG_RO(r)   (((r) & BM_ECSPI_STATREG_RO) >> BP_ECSPI_STATREG_RO)
+#define BG_ECSPI_STATREG_RO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RO) >> BP_ECSPI_STATREG_RO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_STATREG_RO.
-#define BF_ECSPI_STATREG_RO(v)   ((((reg32_t) v) << BP_ECSPI_STATREG_RO) & BM_ECSPI_STATREG_RO)
-#else
-//! @brief Format value for bitfield ECSPI_STATREG_RO.
-#define BF_ECSPI_STATREG_RO(v)   (((v) << BP_ECSPI_STATREG_RO) & BM_ECSPI_STATREG_RO)
-#endif
+#define BF_ECSPI_STATREG_RO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_STATREG_RO) & BM_ECSPI_STATREG_RO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RO field to a new value.
@@ -1493,21 +1367,20 @@ typedef union _hw_ecspi_statreg
 #define BM_ECSPI_STATREG_TC      (0x00000080)  //!< Bit mask for ECSPI_STATREG_TC.
 
 //! @brief Get value of ECSPI_STATREG_TC from a register value.
-#define BG_ECSPI_STATREG_TC(r)   (((r) & BM_ECSPI_STATREG_TC) >> BP_ECSPI_STATREG_TC)
+#define BG_ECSPI_STATREG_TC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TC) >> BP_ECSPI_STATREG_TC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_STATREG_TC.
-#define BF_ECSPI_STATREG_TC(v)   ((((reg32_t) v) << BP_ECSPI_STATREG_TC) & BM_ECSPI_STATREG_TC)
-#else
-//! @brief Format value for bitfield ECSPI_STATREG_TC.
-#define BF_ECSPI_STATREG_TC(v)   (((v) << BP_ECSPI_STATREG_TC) & BM_ECSPI_STATREG_TC)
-#endif
+#define BF_ECSPI_STATREG_TC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_STATREG_TC) & BM_ECSPI_STATREG_TC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TC field to a new value.
 #define BW_ECSPI_STATREG_TC(x, v)   (HW_ECSPI_STATREG_WR(x, (HW_ECSPI_STATREG_RD(x) & ~BM_ECSPI_STATREG_TC) | BF_ECSPI_STATREG_TC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_PERIODREG - Sample Period Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1573,15 +1446,10 @@ typedef union _hw_ecspi_periodreg
 #define BM_ECSPI_PERIODREG_SAMPLE_PERIOD      (0x00007fff)  //!< Bit mask for ECSPI_PERIODREG_SAMPLE_PERIOD.
 
 //! @brief Get value of ECSPI_PERIODREG_SAMPLE_PERIOD from a register value.
-#define BG_ECSPI_PERIODREG_SAMPLE_PERIOD(r)   (((r) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD) >> BP_ECSPI_PERIODREG_SAMPLE_PERIOD)
+#define BG_ECSPI_PERIODREG_SAMPLE_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD) >> BP_ECSPI_PERIODREG_SAMPLE_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_PERIODREG_SAMPLE_PERIOD.
-#define BF_ECSPI_PERIODREG_SAMPLE_PERIOD(v)   ((((reg32_t) v) << BP_ECSPI_PERIODREG_SAMPLE_PERIOD) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD)
-#else
-//! @brief Format value for bitfield ECSPI_PERIODREG_SAMPLE_PERIOD.
-#define BF_ECSPI_PERIODREG_SAMPLE_PERIOD(v)   (((v) << BP_ECSPI_PERIODREG_SAMPLE_PERIOD) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD)
-#endif
+#define BF_ECSPI_PERIODREG_SAMPLE_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_PERIODREG_SAMPLE_PERIOD) & BM_ECSPI_PERIODREG_SAMPLE_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SAMPLE_PERIOD field to a new value.
@@ -1602,15 +1470,10 @@ typedef union _hw_ecspi_periodreg
 #define BM_ECSPI_PERIODREG_CSRC      (0x00008000)  //!< Bit mask for ECSPI_PERIODREG_CSRC.
 
 //! @brief Get value of ECSPI_PERIODREG_CSRC from a register value.
-#define BG_ECSPI_PERIODREG_CSRC(r)   (((r) & BM_ECSPI_PERIODREG_CSRC) >> BP_ECSPI_PERIODREG_CSRC)
+#define BG_ECSPI_PERIODREG_CSRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_PERIODREG_CSRC) >> BP_ECSPI_PERIODREG_CSRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_PERIODREG_CSRC.
-#define BF_ECSPI_PERIODREG_CSRC(v)   ((((reg32_t) v) << BP_ECSPI_PERIODREG_CSRC) & BM_ECSPI_PERIODREG_CSRC)
-#else
-//! @brief Format value for bitfield ECSPI_PERIODREG_CSRC.
-#define BF_ECSPI_PERIODREG_CSRC(v)   (((v) << BP_ECSPI_PERIODREG_CSRC) & BM_ECSPI_PERIODREG_CSRC)
-#endif
+#define BF_ECSPI_PERIODREG_CSRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_PERIODREG_CSRC) & BM_ECSPI_PERIODREG_CSRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSRC field to a new value.
@@ -1628,20 +1491,19 @@ typedef union _hw_ecspi_periodreg
 #define BM_ECSPI_PERIODREG_CSD_CTL      (0x003f0000)  //!< Bit mask for ECSPI_PERIODREG_CSD_CTL.
 
 //! @brief Get value of ECSPI_PERIODREG_CSD_CTL from a register value.
-#define BG_ECSPI_PERIODREG_CSD_CTL(r)   (((r) & BM_ECSPI_PERIODREG_CSD_CTL) >> BP_ECSPI_PERIODREG_CSD_CTL)
+#define BG_ECSPI_PERIODREG_CSD_CTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_PERIODREG_CSD_CTL) >> BP_ECSPI_PERIODREG_CSD_CTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_PERIODREG_CSD_CTL.
-#define BF_ECSPI_PERIODREG_CSD_CTL(v)   ((((reg32_t) v) << BP_ECSPI_PERIODREG_CSD_CTL) & BM_ECSPI_PERIODREG_CSD_CTL)
-#else
-//! @brief Format value for bitfield ECSPI_PERIODREG_CSD_CTL.
-#define BF_ECSPI_PERIODREG_CSD_CTL(v)   (((v) << BP_ECSPI_PERIODREG_CSD_CTL) & BM_ECSPI_PERIODREG_CSD_CTL)
-#endif
+#define BF_ECSPI_PERIODREG_CSD_CTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_PERIODREG_CSD_CTL) & BM_ECSPI_PERIODREG_CSD_CTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSD_CTL field to a new value.
 #define BW_ECSPI_PERIODREG_CSD_CTL(x, v)   (HW_ECSPI_PERIODREG_WR(x, (HW_ECSPI_PERIODREG_RD(x) & ~BM_ECSPI_PERIODREG_CSD_CTL) | BF_ECSPI_PERIODREG_CSD_CTL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_TESTREG - Test Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1694,15 +1556,10 @@ typedef union _hw_ecspi_testreg
 #define BM_ECSPI_TESTREG_TXCNT      (0x0000007f)  //!< Bit mask for ECSPI_TESTREG_TXCNT.
 
 //! @brief Get value of ECSPI_TESTREG_TXCNT from a register value.
-#define BG_ECSPI_TESTREG_TXCNT(r)   (((r) & BM_ECSPI_TESTREG_TXCNT) >> BP_ECSPI_TESTREG_TXCNT)
+#define BG_ECSPI_TESTREG_TXCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_TESTREG_TXCNT) >> BP_ECSPI_TESTREG_TXCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_TESTREG_TXCNT.
-#define BF_ECSPI_TESTREG_TXCNT(v)   ((((reg32_t) v) << BP_ECSPI_TESTREG_TXCNT) & BM_ECSPI_TESTREG_TXCNT)
-#else
-//! @brief Format value for bitfield ECSPI_TESTREG_TXCNT.
-#define BF_ECSPI_TESTREG_TXCNT(v)   (((v) << BP_ECSPI_TESTREG_TXCNT) & BM_ECSPI_TESTREG_TXCNT)
-#endif
+#define BF_ECSPI_TESTREG_TXCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_TESTREG_TXCNT) & BM_ECSPI_TESTREG_TXCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXCNT field to a new value.
@@ -1718,15 +1575,10 @@ typedef union _hw_ecspi_testreg
 #define BM_ECSPI_TESTREG_RXCNT      (0x00007f00)  //!< Bit mask for ECSPI_TESTREG_RXCNT.
 
 //! @brief Get value of ECSPI_TESTREG_RXCNT from a register value.
-#define BG_ECSPI_TESTREG_RXCNT(r)   (((r) & BM_ECSPI_TESTREG_RXCNT) >> BP_ECSPI_TESTREG_RXCNT)
+#define BG_ECSPI_TESTREG_RXCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_TESTREG_RXCNT) >> BP_ECSPI_TESTREG_RXCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_TESTREG_RXCNT.
-#define BF_ECSPI_TESTREG_RXCNT(v)   ((((reg32_t) v) << BP_ECSPI_TESTREG_RXCNT) & BM_ECSPI_TESTREG_RXCNT)
-#else
-//! @brief Format value for bitfield ECSPI_TESTREG_RXCNT.
-#define BF_ECSPI_TESTREG_RXCNT(v)   (((v) << BP_ECSPI_TESTREG_RXCNT) & BM_ECSPI_TESTREG_RXCNT)
-#endif
+#define BF_ECSPI_TESTREG_RXCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_TESTREG_RXCNT) & BM_ECSPI_TESTREG_RXCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXCNT field to a new value.
@@ -1750,21 +1602,20 @@ typedef union _hw_ecspi_testreg
 #define BM_ECSPI_TESTREG_LBC      (0x80000000)  //!< Bit mask for ECSPI_TESTREG_LBC.
 
 //! @brief Get value of ECSPI_TESTREG_LBC from a register value.
-#define BG_ECSPI_TESTREG_LBC(r)   (((r) & BM_ECSPI_TESTREG_LBC) >> BP_ECSPI_TESTREG_LBC)
+#define BG_ECSPI_TESTREG_LBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_TESTREG_LBC) >> BP_ECSPI_TESTREG_LBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_TESTREG_LBC.
-#define BF_ECSPI_TESTREG_LBC(v)   ((((reg32_t) v) << BP_ECSPI_TESTREG_LBC) & BM_ECSPI_TESTREG_LBC)
-#else
-//! @brief Format value for bitfield ECSPI_TESTREG_LBC.
-#define BF_ECSPI_TESTREG_LBC(v)   (((v) << BP_ECSPI_TESTREG_LBC) & BM_ECSPI_TESTREG_LBC)
-#endif
+#define BF_ECSPI_TESTREG_LBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_TESTREG_LBC) & BM_ECSPI_TESTREG_LBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LBC field to a new value.
 #define BW_ECSPI_TESTREG_LBC(x, v)   (HW_ECSPI_TESTREG_WR(x, (HW_ECSPI_TESTREG_RD(x) & ~BM_ECSPI_TESTREG_LBC) | BF_ECSPI_TESTREG_LBC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ECSPI_MSGDATA - Message Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1811,15 +1662,10 @@ typedef union _hw_ecspi_msgdata
 #define BM_ECSPI_MSGDATA_ECSPI_MSGDATA      (0xffffffff)  //!< Bit mask for ECSPI_MSGDATA_ECSPI_MSGDATA.
 
 //! @brief Get value of ECSPI_MSGDATA_ECSPI_MSGDATA from a register value.
-#define BG_ECSPI_MSGDATA_ECSPI_MSGDATA(r)   (((r) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA) >> BP_ECSPI_MSGDATA_ECSPI_MSGDATA)
+#define BG_ECSPI_MSGDATA_ECSPI_MSGDATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA) >> BP_ECSPI_MSGDATA_ECSPI_MSGDATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ECSPI_MSGDATA_ECSPI_MSGDATA.
-#define BF_ECSPI_MSGDATA_ECSPI_MSGDATA(v)   ((((reg32_t) v) << BP_ECSPI_MSGDATA_ECSPI_MSGDATA) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA)
-#else
-//! @brief Format value for bitfield ECSPI_MSGDATA_ECSPI_MSGDATA.
-#define BF_ECSPI_MSGDATA_ECSPI_MSGDATA(v)   (((v) << BP_ECSPI_MSGDATA_ECSPI_MSGDATA) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA)
-#endif
+#define BF_ECSPI_MSGDATA_ECSPI_MSGDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_MSGDATA_ECSPI_MSGDATA) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA)
 
 
 /*!

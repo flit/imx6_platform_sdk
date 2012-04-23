@@ -60,6 +60,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_URXD - UART Receiver Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_UART_URXD - UART Receiver Register (RO)
@@ -111,7 +126,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_RX_DATA      (0x000000ff)  //!< Bit mask for UART_URXD_RX_DATA.
 
 //! @brief Get value of UART_URXD_RX_DATA from a register value.
-#define BG_UART_URXD_RX_DATA(r)   (((r) & BM_UART_URXD_RX_DATA) >> BP_UART_URXD_RX_DATA)
+#define BG_UART_URXD_RX_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_RX_DATA) >> BP_UART_URXD_RX_DATA)
 
 /* --- Register HW_UART_URXD, field PRERR[10] (RO)
  *
@@ -129,7 +144,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_PRERR      (0x00000400)  //!< Bit mask for UART_URXD_PRERR.
 
 //! @brief Get value of UART_URXD_PRERR from a register value.
-#define BG_UART_URXD_PRERR(r)   (((r) & BM_UART_URXD_PRERR) >> BP_UART_URXD_PRERR)
+#define BG_UART_URXD_PRERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_PRERR) >> BP_UART_URXD_PRERR)
 
 
 /* --- Register HW_UART_URXD, field BRK[11] (RO)
@@ -148,7 +163,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_BRK      (0x00000800)  //!< Bit mask for UART_URXD_BRK.
 
 //! @brief Get value of UART_URXD_BRK from a register value.
-#define BG_UART_URXD_BRK(r)   (((r) & BM_UART_URXD_BRK) >> BP_UART_URXD_BRK)
+#define BG_UART_URXD_BRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_BRK) >> BP_UART_URXD_BRK)
 
 
 /* --- Register HW_UART_URXD, field FRMERR[12] (RO)
@@ -165,7 +180,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_FRMERR      (0x00001000)  //!< Bit mask for UART_URXD_FRMERR.
 
 //! @brief Get value of UART_URXD_FRMERR from a register value.
-#define BG_UART_URXD_FRMERR(r)   (((r) & BM_UART_URXD_FRMERR) >> BP_UART_URXD_FRMERR)
+#define BG_UART_URXD_FRMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_FRMERR) >> BP_UART_URXD_FRMERR)
 
 
 /* --- Register HW_UART_URXD, field OVRRUN[13] (RO)
@@ -183,7 +198,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_OVRRUN      (0x00002000)  //!< Bit mask for UART_URXD_OVRRUN.
 
 //! @brief Get value of UART_URXD_OVRRUN from a register value.
-#define BG_UART_URXD_OVRRUN(r)   (((r) & BM_UART_URXD_OVRRUN) >> BP_UART_URXD_OVRRUN)
+#define BG_UART_URXD_OVRRUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_OVRRUN) >> BP_UART_URXD_OVRRUN)
 
 
 /* --- Register HW_UART_URXD, field ERR[14] (RO)
@@ -200,7 +215,7 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_ERR      (0x00004000)  //!< Bit mask for UART_URXD_ERR.
 
 //! @brief Get value of UART_URXD_ERR from a register value.
-#define BG_UART_URXD_ERR(r)   (((r) & BM_UART_URXD_ERR) >> BP_UART_URXD_ERR)
+#define BG_UART_URXD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_ERR) >> BP_UART_URXD_ERR)
 
 
 /* --- Register HW_UART_URXD, field CHARRDY[15] (RO)
@@ -218,8 +233,12 @@ typedef union _hw_uart_urxd
 #define BM_UART_URXD_CHARRDY      (0x00008000)  //!< Bit mask for UART_URXD_CHARRDY.
 
 //! @brief Get value of UART_URXD_CHARRDY from a register value.
-#define BG_UART_URXD_CHARRDY(r)   (((r) & BM_UART_URXD_CHARRDY) >> BP_UART_URXD_CHARRDY)
+#define BG_UART_URXD_CHARRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_CHARRDY) >> BP_UART_URXD_CHARRDY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTXD - UART Transmitter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -269,15 +288,14 @@ typedef union _hw_uart_utxd
 #define BM_UART_UTXD_TX_DATA      (0x000000ff)  //!< Bit mask for UART_UTXD_TX_DATA.
 
 //! @brief Get value of UART_UTXD_TX_DATA from a register value.
-#define BG_UART_UTXD_TX_DATA(r)   (((r) & BM_UART_UTXD_TX_DATA) >> BP_UART_UTXD_TX_DATA)
+#define BG_UART_UTXD_TX_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTXD_TX_DATA) >> BP_UART_UTXD_TX_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTXD_TX_DATA.
-#define BF_UART_UTXD_TX_DATA(v)   ((((reg32_t) v) << BP_UART_UTXD_TX_DATA) & BM_UART_UTXD_TX_DATA)
-#else
-//! @brief Format value for bitfield UART_UTXD_TX_DATA.
-#define BF_UART_UTXD_TX_DATA(v)   (((v) << BP_UART_UTXD_TX_DATA) & BM_UART_UTXD_TX_DATA)
-#endif
+#define BF_UART_UTXD_TX_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTXD_TX_DATA) & BM_UART_UTXD_TX_DATA)
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR1 - UART Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -348,15 +366,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_UARTEN      (0x00000001)  //!< Bit mask for UART_UCR1_UARTEN.
 
 //! @brief Get value of UART_UCR1_UARTEN from a register value.
-#define BG_UART_UCR1_UARTEN(r)   (((r) & BM_UART_UCR1_UARTEN) >> BP_UART_UCR1_UARTEN)
+#define BG_UART_UCR1_UARTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_UARTEN) >> BP_UART_UCR1_UARTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_UARTEN.
-#define BF_UART_UCR1_UARTEN(v)   ((((reg32_t) v) << BP_UART_UCR1_UARTEN) & BM_UART_UCR1_UARTEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_UARTEN.
-#define BF_UART_UCR1_UARTEN(v)   (((v) << BP_UART_UCR1_UARTEN) & BM_UART_UCR1_UARTEN)
-#endif
+#define BF_UART_UCR1_UARTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_UARTEN) & BM_UART_UCR1_UARTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UARTEN field to a new value.
@@ -380,15 +393,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_DOZE      (0x00000002)  //!< Bit mask for UART_UCR1_DOZE.
 
 //! @brief Get value of UART_UCR1_DOZE from a register value.
-#define BG_UART_UCR1_DOZE(r)   (((r) & BM_UART_UCR1_DOZE) >> BP_UART_UCR1_DOZE)
+#define BG_UART_UCR1_DOZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_DOZE) >> BP_UART_UCR1_DOZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_DOZE.
-#define BF_UART_UCR1_DOZE(v)   ((((reg32_t) v) << BP_UART_UCR1_DOZE) & BM_UART_UCR1_DOZE)
-#else
-//! @brief Format value for bitfield UART_UCR1_DOZE.
-#define BF_UART_UCR1_DOZE(v)   (((v) << BP_UART_UCR1_DOZE) & BM_UART_UCR1_DOZE)
-#endif
+#define BF_UART_UCR1_DOZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_DOZE) & BM_UART_UCR1_DOZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOZE field to a new value.
@@ -410,15 +418,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_ATDMAEN      (0x00000004)  //!< Bit mask for UART_UCR1_ATDMAEN.
 
 //! @brief Get value of UART_UCR1_ATDMAEN from a register value.
-#define BG_UART_UCR1_ATDMAEN(r)   (((r) & BM_UART_UCR1_ATDMAEN) >> BP_UART_UCR1_ATDMAEN)
+#define BG_UART_UCR1_ATDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ATDMAEN) >> BP_UART_UCR1_ATDMAEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_ATDMAEN.
-#define BF_UART_UCR1_ATDMAEN(v)   ((((reg32_t) v) << BP_UART_UCR1_ATDMAEN) & BM_UART_UCR1_ATDMAEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_ATDMAEN.
-#define BF_UART_UCR1_ATDMAEN(v)   (((v) << BP_UART_UCR1_ATDMAEN) & BM_UART_UCR1_ATDMAEN)
-#endif
+#define BF_UART_UCR1_ATDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ATDMAEN) & BM_UART_UCR1_ATDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATDMAEN field to a new value.
@@ -443,15 +446,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_TXDMAEN      (0x00000008)  //!< Bit mask for UART_UCR1_TXDMAEN.
 
 //! @brief Get value of UART_UCR1_TXDMAEN from a register value.
-#define BG_UART_UCR1_TXDMAEN(r)   (((r) & BM_UART_UCR1_TXDMAEN) >> BP_UART_UCR1_TXDMAEN)
+#define BG_UART_UCR1_TXDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TXDMAEN) >> BP_UART_UCR1_TXDMAEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_TXDMAEN.
-#define BF_UART_UCR1_TXDMAEN(v)   ((((reg32_t) v) << BP_UART_UCR1_TXDMAEN) & BM_UART_UCR1_TXDMAEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_TXDMAEN.
-#define BF_UART_UCR1_TXDMAEN(v)   (((v) << BP_UART_UCR1_TXDMAEN) & BM_UART_UCR1_TXDMAEN)
-#endif
+#define BF_UART_UCR1_TXDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TXDMAEN) & BM_UART_UCR1_TXDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXDMAEN field to a new value.
@@ -477,15 +475,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_SNDBRK      (0x00000010)  //!< Bit mask for UART_UCR1_SNDBRK.
 
 //! @brief Get value of UART_UCR1_SNDBRK from a register value.
-#define BG_UART_UCR1_SNDBRK(r)   (((r) & BM_UART_UCR1_SNDBRK) >> BP_UART_UCR1_SNDBRK)
+#define BG_UART_UCR1_SNDBRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_SNDBRK) >> BP_UART_UCR1_SNDBRK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_SNDBRK.
-#define BF_UART_UCR1_SNDBRK(v)   ((((reg32_t) v) << BP_UART_UCR1_SNDBRK) & BM_UART_UCR1_SNDBRK)
-#else
-//! @brief Format value for bitfield UART_UCR1_SNDBRK.
-#define BF_UART_UCR1_SNDBRK(v)   (((v) << BP_UART_UCR1_SNDBRK) & BM_UART_UCR1_SNDBRK)
-#endif
+#define BF_UART_UCR1_SNDBRK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_SNDBRK) & BM_UART_UCR1_SNDBRK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SNDBRK field to a new value.
@@ -507,15 +500,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_RTSDEN      (0x00000020)  //!< Bit mask for UART_UCR1_RTSDEN.
 
 //! @brief Get value of UART_UCR1_RTSDEN from a register value.
-#define BG_UART_UCR1_RTSDEN(r)   (((r) & BM_UART_UCR1_RTSDEN) >> BP_UART_UCR1_RTSDEN)
+#define BG_UART_UCR1_RTSDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RTSDEN) >> BP_UART_UCR1_RTSDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_RTSDEN.
-#define BF_UART_UCR1_RTSDEN(v)   ((((reg32_t) v) << BP_UART_UCR1_RTSDEN) & BM_UART_UCR1_RTSDEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_RTSDEN.
-#define BF_UART_UCR1_RTSDEN(v)   (((v) << BP_UART_UCR1_RTSDEN) & BM_UART_UCR1_RTSDEN)
-#endif
+#define BF_UART_UCR1_RTSDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RTSDEN) & BM_UART_UCR1_RTSDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSDEN field to a new value.
@@ -539,15 +527,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_TXMPTYEN      (0x00000040)  //!< Bit mask for UART_UCR1_TXMPTYEN.
 
 //! @brief Get value of UART_UCR1_TXMPTYEN from a register value.
-#define BG_UART_UCR1_TXMPTYEN(r)   (((r) & BM_UART_UCR1_TXMPTYEN) >> BP_UART_UCR1_TXMPTYEN)
+#define BG_UART_UCR1_TXMPTYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TXMPTYEN) >> BP_UART_UCR1_TXMPTYEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_TXMPTYEN.
-#define BF_UART_UCR1_TXMPTYEN(v)   ((((reg32_t) v) << BP_UART_UCR1_TXMPTYEN) & BM_UART_UCR1_TXMPTYEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_TXMPTYEN.
-#define BF_UART_UCR1_TXMPTYEN(v)   (((v) << BP_UART_UCR1_TXMPTYEN) & BM_UART_UCR1_TXMPTYEN)
-#endif
+#define BF_UART_UCR1_TXMPTYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TXMPTYEN) & BM_UART_UCR1_TXMPTYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXMPTYEN field to a new value.
@@ -570,15 +553,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_IREN      (0x00000080)  //!< Bit mask for UART_UCR1_IREN.
 
 //! @brief Get value of UART_UCR1_IREN from a register value.
-#define BG_UART_UCR1_IREN(r)   (((r) & BM_UART_UCR1_IREN) >> BP_UART_UCR1_IREN)
+#define BG_UART_UCR1_IREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_IREN) >> BP_UART_UCR1_IREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_IREN.
-#define BF_UART_UCR1_IREN(v)   ((((reg32_t) v) << BP_UART_UCR1_IREN) & BM_UART_UCR1_IREN)
-#else
-//! @brief Format value for bitfield UART_UCR1_IREN.
-#define BF_UART_UCR1_IREN(v)   (((v) << BP_UART_UCR1_IREN) & BM_UART_UCR1_IREN)
-#endif
+#define BF_UART_UCR1_IREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_IREN) & BM_UART_UCR1_IREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IREN field to a new value.
@@ -601,15 +579,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_RXDMAEN      (0x00000100)  //!< Bit mask for UART_UCR1_RXDMAEN.
 
 //! @brief Get value of UART_UCR1_RXDMAEN from a register value.
-#define BG_UART_UCR1_RXDMAEN(r)   (((r) & BM_UART_UCR1_RXDMAEN) >> BP_UART_UCR1_RXDMAEN)
+#define BG_UART_UCR1_RXDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RXDMAEN) >> BP_UART_UCR1_RXDMAEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_RXDMAEN.
-#define BF_UART_UCR1_RXDMAEN(v)   ((((reg32_t) v) << BP_UART_UCR1_RXDMAEN) & BM_UART_UCR1_RXDMAEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_RXDMAEN.
-#define BF_UART_UCR1_RXDMAEN(v)   (((v) << BP_UART_UCR1_RXDMAEN) & BM_UART_UCR1_RXDMAEN)
-#endif
+#define BF_UART_UCR1_RXDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RXDMAEN) & BM_UART_UCR1_RXDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDMAEN field to a new value.
@@ -632,15 +605,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_RRDYEN      (0x00000200)  //!< Bit mask for UART_UCR1_RRDYEN.
 
 //! @brief Get value of UART_UCR1_RRDYEN from a register value.
-#define BG_UART_UCR1_RRDYEN(r)   (((r) & BM_UART_UCR1_RRDYEN) >> BP_UART_UCR1_RRDYEN)
+#define BG_UART_UCR1_RRDYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RRDYEN) >> BP_UART_UCR1_RRDYEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_RRDYEN.
-#define BF_UART_UCR1_RRDYEN(v)   ((((reg32_t) v) << BP_UART_UCR1_RRDYEN) & BM_UART_UCR1_RRDYEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_RRDYEN.
-#define BF_UART_UCR1_RRDYEN(v)   (((v) << BP_UART_UCR1_RRDYEN) & BM_UART_UCR1_RRDYEN)
-#endif
+#define BF_UART_UCR1_RRDYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RRDYEN) & BM_UART_UCR1_RRDYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RRDYEN field to a new value.
@@ -664,15 +632,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_ICD      (0x00000c00)  //!< Bit mask for UART_UCR1_ICD.
 
 //! @brief Get value of UART_UCR1_ICD from a register value.
-#define BG_UART_UCR1_ICD(r)   (((r) & BM_UART_UCR1_ICD) >> BP_UART_UCR1_ICD)
+#define BG_UART_UCR1_ICD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ICD) >> BP_UART_UCR1_ICD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_ICD.
-#define BF_UART_UCR1_ICD(v)   ((((reg32_t) v) << BP_UART_UCR1_ICD) & BM_UART_UCR1_ICD)
-#else
-//! @brief Format value for bitfield UART_UCR1_ICD.
-#define BF_UART_UCR1_ICD(v)   (((v) << BP_UART_UCR1_ICD) & BM_UART_UCR1_ICD)
-#endif
+#define BF_UART_UCR1_ICD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ICD) & BM_UART_UCR1_ICD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICD field to a new value.
@@ -694,15 +657,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_IDEN      (0x00001000)  //!< Bit mask for UART_UCR1_IDEN.
 
 //! @brief Get value of UART_UCR1_IDEN from a register value.
-#define BG_UART_UCR1_IDEN(r)   (((r) & BM_UART_UCR1_IDEN) >> BP_UART_UCR1_IDEN)
+#define BG_UART_UCR1_IDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_IDEN) >> BP_UART_UCR1_IDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_IDEN.
-#define BF_UART_UCR1_IDEN(v)   ((((reg32_t) v) << BP_UART_UCR1_IDEN) & BM_UART_UCR1_IDEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_IDEN.
-#define BF_UART_UCR1_IDEN(v)   (((v) << BP_UART_UCR1_IDEN) & BM_UART_UCR1_IDEN)
-#endif
+#define BF_UART_UCR1_IDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_IDEN) & BM_UART_UCR1_IDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDEN field to a new value.
@@ -728,15 +686,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_TRDYEN      (0x00002000)  //!< Bit mask for UART_UCR1_TRDYEN.
 
 //! @brief Get value of UART_UCR1_TRDYEN from a register value.
-#define BG_UART_UCR1_TRDYEN(r)   (((r) & BM_UART_UCR1_TRDYEN) >> BP_UART_UCR1_TRDYEN)
+#define BG_UART_UCR1_TRDYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TRDYEN) >> BP_UART_UCR1_TRDYEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_TRDYEN.
-#define BF_UART_UCR1_TRDYEN(v)   ((((reg32_t) v) << BP_UART_UCR1_TRDYEN) & BM_UART_UCR1_TRDYEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_TRDYEN.
-#define BF_UART_UCR1_TRDYEN(v)   (((v) << BP_UART_UCR1_TRDYEN) & BM_UART_UCR1_TRDYEN)
-#endif
+#define BF_UART_UCR1_TRDYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TRDYEN) & BM_UART_UCR1_TRDYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRDYEN field to a new value.
@@ -760,15 +713,10 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_ADBR      (0x00004000)  //!< Bit mask for UART_UCR1_ADBR.
 
 //! @brief Get value of UART_UCR1_ADBR from a register value.
-#define BG_UART_UCR1_ADBR(r)   (((r) & BM_UART_UCR1_ADBR) >> BP_UART_UCR1_ADBR)
+#define BG_UART_UCR1_ADBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ADBR) >> BP_UART_UCR1_ADBR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_ADBR.
-#define BF_UART_UCR1_ADBR(v)   ((((reg32_t) v) << BP_UART_UCR1_ADBR) & BM_UART_UCR1_ADBR)
-#else
-//! @brief Format value for bitfield UART_UCR1_ADBR.
-#define BF_UART_UCR1_ADBR(v)   (((v) << BP_UART_UCR1_ADBR) & BM_UART_UCR1_ADBR)
-#endif
+#define BF_UART_UCR1_ADBR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ADBR) & BM_UART_UCR1_ADBR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADBR field to a new value.
@@ -790,21 +738,20 @@ typedef union _hw_uart_ucr1
 #define BM_UART_UCR1_ADEN      (0x00008000)  //!< Bit mask for UART_UCR1_ADEN.
 
 //! @brief Get value of UART_UCR1_ADEN from a register value.
-#define BG_UART_UCR1_ADEN(r)   (((r) & BM_UART_UCR1_ADEN) >> BP_UART_UCR1_ADEN)
+#define BG_UART_UCR1_ADEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ADEN) >> BP_UART_UCR1_ADEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR1_ADEN.
-#define BF_UART_UCR1_ADEN(v)   ((((reg32_t) v) << BP_UART_UCR1_ADEN) & BM_UART_UCR1_ADEN)
-#else
-//! @brief Format value for bitfield UART_UCR1_ADEN.
-#define BF_UART_UCR1_ADEN(v)   (((v) << BP_UART_UCR1_ADEN) & BM_UART_UCR1_ADEN)
-#endif
+#define BF_UART_UCR1_ADEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ADEN) & BM_UART_UCR1_ADEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADEN field to a new value.
 #define BW_UART_UCR1_ADEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ADEN) | BF_UART_UCR1_ADEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR2 - UART Control Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -873,15 +820,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_SRST      (0x00000001)  //!< Bit mask for UART_UCR2_SRST.
 
 //! @brief Get value of UART_UCR2_SRST from a register value.
-#define BG_UART_UCR2_SRST(r)   (((r) & BM_UART_UCR2_SRST) >> BP_UART_UCR2_SRST)
+#define BG_UART_UCR2_SRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_SRST) >> BP_UART_UCR2_SRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_SRST.
-#define BF_UART_UCR2_SRST(v)   ((((reg32_t) v) << BP_UART_UCR2_SRST) & BM_UART_UCR2_SRST)
-#else
-//! @brief Format value for bitfield UART_UCR2_SRST.
-#define BF_UART_UCR2_SRST(v)   (((v) << BP_UART_UCR2_SRST) & BM_UART_UCR2_SRST)
-#endif
+#define BF_UART_UCR2_SRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_SRST) & BM_UART_UCR2_SRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRST field to a new value.
@@ -904,15 +846,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_RXEN      (0x00000002)  //!< Bit mask for UART_UCR2_RXEN.
 
 //! @brief Get value of UART_UCR2_RXEN from a register value.
-#define BG_UART_UCR2_RXEN(r)   (((r) & BM_UART_UCR2_RXEN) >> BP_UART_UCR2_RXEN)
+#define BG_UART_UCR2_RXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RXEN) >> BP_UART_UCR2_RXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_RXEN.
-#define BF_UART_UCR2_RXEN(v)   ((((reg32_t) v) << BP_UART_UCR2_RXEN) & BM_UART_UCR2_RXEN)
-#else
-//! @brief Format value for bitfield UART_UCR2_RXEN.
-#define BF_UART_UCR2_RXEN(v)   (((v) << BP_UART_UCR2_RXEN) & BM_UART_UCR2_RXEN)
-#endif
+#define BF_UART_UCR2_RXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RXEN) & BM_UART_UCR2_RXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXEN field to a new value.
@@ -936,15 +873,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_TXEN      (0x00000004)  //!< Bit mask for UART_UCR2_TXEN.
 
 //! @brief Get value of UART_UCR2_TXEN from a register value.
-#define BG_UART_UCR2_TXEN(r)   (((r) & BM_UART_UCR2_TXEN) >> BP_UART_UCR2_TXEN)
+#define BG_UART_UCR2_TXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_TXEN) >> BP_UART_UCR2_TXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_TXEN.
-#define BF_UART_UCR2_TXEN(v)   ((((reg32_t) v) << BP_UART_UCR2_TXEN) & BM_UART_UCR2_TXEN)
-#else
-//! @brief Format value for bitfield UART_UCR2_TXEN.
-#define BF_UART_UCR2_TXEN(v)   (((v) << BP_UART_UCR2_TXEN) & BM_UART_UCR2_TXEN)
-#endif
+#define BF_UART_UCR2_TXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_TXEN) & BM_UART_UCR2_TXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXEN field to a new value.
@@ -965,15 +897,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_ATEN      (0x00000008)  //!< Bit mask for UART_UCR2_ATEN.
 
 //! @brief Get value of UART_UCR2_ATEN from a register value.
-#define BG_UART_UCR2_ATEN(r)   (((r) & BM_UART_UCR2_ATEN) >> BP_UART_UCR2_ATEN)
+#define BG_UART_UCR2_ATEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ATEN) >> BP_UART_UCR2_ATEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_ATEN.
-#define BF_UART_UCR2_ATEN(v)   ((((reg32_t) v) << BP_UART_UCR2_ATEN) & BM_UART_UCR2_ATEN)
-#else
-//! @brief Format value for bitfield UART_UCR2_ATEN.
-#define BF_UART_UCR2_ATEN(v)   (((v) << BP_UART_UCR2_ATEN) & BM_UART_UCR2_ATEN)
-#endif
+#define BF_UART_UCR2_ATEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ATEN) & BM_UART_UCR2_ATEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATEN field to a new value.
@@ -996,15 +923,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_RTSEN      (0x00000010)  //!< Bit mask for UART_UCR2_RTSEN.
 
 //! @brief Get value of UART_UCR2_RTSEN from a register value.
-#define BG_UART_UCR2_RTSEN(r)   (((r) & BM_UART_UCR2_RTSEN) >> BP_UART_UCR2_RTSEN)
+#define BG_UART_UCR2_RTSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RTSEN) >> BP_UART_UCR2_RTSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_RTSEN.
-#define BF_UART_UCR2_RTSEN(v)   ((((reg32_t) v) << BP_UART_UCR2_RTSEN) & BM_UART_UCR2_RTSEN)
-#else
-//! @brief Format value for bitfield UART_UCR2_RTSEN.
-#define BF_UART_UCR2_RTSEN(v)   (((v) << BP_UART_UCR2_RTSEN) & BM_UART_UCR2_RTSEN)
-#endif
+#define BF_UART_UCR2_RTSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RTSEN) & BM_UART_UCR2_RTSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSEN field to a new value.
@@ -1029,15 +951,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_WS      (0x00000020)  //!< Bit mask for UART_UCR2_WS.
 
 //! @brief Get value of UART_UCR2_WS from a register value.
-#define BG_UART_UCR2_WS(r)   (((r) & BM_UART_UCR2_WS) >> BP_UART_UCR2_WS)
+#define BG_UART_UCR2_WS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_WS) >> BP_UART_UCR2_WS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_WS.
-#define BF_UART_UCR2_WS(v)   ((((reg32_t) v) << BP_UART_UCR2_WS) & BM_UART_UCR2_WS)
-#else
-//! @brief Format value for bitfield UART_UCR2_WS.
-#define BF_UART_UCR2_WS(v)   (((v) << BP_UART_UCR2_WS) & BM_UART_UCR2_WS)
-#endif
+#define BF_UART_UCR2_WS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_WS) & BM_UART_UCR2_WS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WS field to a new value.
@@ -1059,15 +976,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_STPB      (0x00000040)  //!< Bit mask for UART_UCR2_STPB.
 
 //! @brief Get value of UART_UCR2_STPB from a register value.
-#define BG_UART_UCR2_STPB(r)   (((r) & BM_UART_UCR2_STPB) >> BP_UART_UCR2_STPB)
+#define BG_UART_UCR2_STPB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_STPB) >> BP_UART_UCR2_STPB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_STPB.
-#define BF_UART_UCR2_STPB(v)   ((((reg32_t) v) << BP_UART_UCR2_STPB) & BM_UART_UCR2_STPB)
-#else
-//! @brief Format value for bitfield UART_UCR2_STPB.
-#define BF_UART_UCR2_STPB(v)   (((v) << BP_UART_UCR2_STPB) & BM_UART_UCR2_STPB)
-#endif
+#define BF_UART_UCR2_STPB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_STPB) & BM_UART_UCR2_STPB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STPB field to a new value.
@@ -1090,15 +1002,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_PROE      (0x00000080)  //!< Bit mask for UART_UCR2_PROE.
 
 //! @brief Get value of UART_UCR2_PROE from a register value.
-#define BG_UART_UCR2_PROE(r)   (((r) & BM_UART_UCR2_PROE) >> BP_UART_UCR2_PROE)
+#define BG_UART_UCR2_PROE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_PROE) >> BP_UART_UCR2_PROE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_PROE.
-#define BF_UART_UCR2_PROE(v)   ((((reg32_t) v) << BP_UART_UCR2_PROE) & BM_UART_UCR2_PROE)
-#else
-//! @brief Format value for bitfield UART_UCR2_PROE.
-#define BF_UART_UCR2_PROE(v)   (((v) << BP_UART_UCR2_PROE) & BM_UART_UCR2_PROE)
-#endif
+#define BF_UART_UCR2_PROE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_PROE) & BM_UART_UCR2_PROE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PROE field to a new value.
@@ -1121,15 +1028,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_PREN      (0x00000100)  //!< Bit mask for UART_UCR2_PREN.
 
 //! @brief Get value of UART_UCR2_PREN from a register value.
-#define BG_UART_UCR2_PREN(r)   (((r) & BM_UART_UCR2_PREN) >> BP_UART_UCR2_PREN)
+#define BG_UART_UCR2_PREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_PREN) >> BP_UART_UCR2_PREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_PREN.
-#define BF_UART_UCR2_PREN(v)   ((((reg32_t) v) << BP_UART_UCR2_PREN) & BM_UART_UCR2_PREN)
-#else
-//! @brief Format value for bitfield UART_UCR2_PREN.
-#define BF_UART_UCR2_PREN(v)   (((v) << BP_UART_UCR2_PREN) & BM_UART_UCR2_PREN)
-#endif
+#define BF_UART_UCR2_PREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_PREN) & BM_UART_UCR2_PREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREN field to a new value.
@@ -1152,15 +1054,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_RTEC      (0x00000600)  //!< Bit mask for UART_UCR2_RTEC.
 
 //! @brief Get value of UART_UCR2_RTEC from a register value.
-#define BG_UART_UCR2_RTEC(r)   (((r) & BM_UART_UCR2_RTEC) >> BP_UART_UCR2_RTEC)
+#define BG_UART_UCR2_RTEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RTEC) >> BP_UART_UCR2_RTEC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_RTEC.
-#define BF_UART_UCR2_RTEC(v)   ((((reg32_t) v) << BP_UART_UCR2_RTEC) & BM_UART_UCR2_RTEC)
-#else
-//! @brief Format value for bitfield UART_UCR2_RTEC.
-#define BF_UART_UCR2_RTEC(v)   (((v) << BP_UART_UCR2_RTEC) & BM_UART_UCR2_RTEC)
-#endif
+#define BF_UART_UCR2_RTEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RTEC) & BM_UART_UCR2_RTEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTEC field to a new value.
@@ -1181,15 +1078,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_ESCEN      (0x00000800)  //!< Bit mask for UART_UCR2_ESCEN.
 
 //! @brief Get value of UART_UCR2_ESCEN from a register value.
-#define BG_UART_UCR2_ESCEN(r)   (((r) & BM_UART_UCR2_ESCEN) >> BP_UART_UCR2_ESCEN)
+#define BG_UART_UCR2_ESCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ESCEN) >> BP_UART_UCR2_ESCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_ESCEN.
-#define BF_UART_UCR2_ESCEN(v)   ((((reg32_t) v) << BP_UART_UCR2_ESCEN) & BM_UART_UCR2_ESCEN)
-#else
-//! @brief Format value for bitfield UART_UCR2_ESCEN.
-#define BF_UART_UCR2_ESCEN(v)   (((v) << BP_UART_UCR2_ESCEN) & BM_UART_UCR2_ESCEN)
-#endif
+#define BF_UART_UCR2_ESCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ESCEN) & BM_UART_UCR2_ESCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCEN field to a new value.
@@ -1211,15 +1103,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_CTS      (0x00001000)  //!< Bit mask for UART_UCR2_CTS.
 
 //! @brief Get value of UART_UCR2_CTS from a register value.
-#define BG_UART_UCR2_CTS(r)   (((r) & BM_UART_UCR2_CTS) >> BP_UART_UCR2_CTS)
+#define BG_UART_UCR2_CTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_CTS) >> BP_UART_UCR2_CTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_CTS.
-#define BF_UART_UCR2_CTS(v)   ((((reg32_t) v) << BP_UART_UCR2_CTS) & BM_UART_UCR2_CTS)
-#else
-//! @brief Format value for bitfield UART_UCR2_CTS.
-#define BF_UART_UCR2_CTS(v)   (((v) << BP_UART_UCR2_CTS) & BM_UART_UCR2_CTS)
-#endif
+#define BF_UART_UCR2_CTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_CTS) & BM_UART_UCR2_CTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTS field to a new value.
@@ -1248,15 +1135,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_CTSC      (0x00002000)  //!< Bit mask for UART_UCR2_CTSC.
 
 //! @brief Get value of UART_UCR2_CTSC from a register value.
-#define BG_UART_UCR2_CTSC(r)   (((r) & BM_UART_UCR2_CTSC) >> BP_UART_UCR2_CTSC)
+#define BG_UART_UCR2_CTSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_CTSC) >> BP_UART_UCR2_CTSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_CTSC.
-#define BF_UART_UCR2_CTSC(v)   ((((reg32_t) v) << BP_UART_UCR2_CTSC) & BM_UART_UCR2_CTSC)
-#else
-//! @brief Format value for bitfield UART_UCR2_CTSC.
-#define BF_UART_UCR2_CTSC(v)   (((v) << BP_UART_UCR2_CTSC) & BM_UART_UCR2_CTSC)
-#endif
+#define BF_UART_UCR2_CTSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_CTSC) & BM_UART_UCR2_CTSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTSC field to a new value.
@@ -1279,15 +1161,10 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_IRTS      (0x00004000)  //!< Bit mask for UART_UCR2_IRTS.
 
 //! @brief Get value of UART_UCR2_IRTS from a register value.
-#define BG_UART_UCR2_IRTS(r)   (((r) & BM_UART_UCR2_IRTS) >> BP_UART_UCR2_IRTS)
+#define BG_UART_UCR2_IRTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_IRTS) >> BP_UART_UCR2_IRTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_IRTS.
-#define BF_UART_UCR2_IRTS(v)   ((((reg32_t) v) << BP_UART_UCR2_IRTS) & BM_UART_UCR2_IRTS)
-#else
-//! @brief Format value for bitfield UART_UCR2_IRTS.
-#define BF_UART_UCR2_IRTS(v)   (((v) << BP_UART_UCR2_IRTS) & BM_UART_UCR2_IRTS)
-#endif
+#define BF_UART_UCR2_IRTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_IRTS) & BM_UART_UCR2_IRTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRTS field to a new value.
@@ -1308,21 +1185,20 @@ typedef union _hw_uart_ucr2
 #define BM_UART_UCR2_ESCI      (0x00008000)  //!< Bit mask for UART_UCR2_ESCI.
 
 //! @brief Get value of UART_UCR2_ESCI from a register value.
-#define BG_UART_UCR2_ESCI(r)   (((r) & BM_UART_UCR2_ESCI) >> BP_UART_UCR2_ESCI)
+#define BG_UART_UCR2_ESCI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ESCI) >> BP_UART_UCR2_ESCI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR2_ESCI.
-#define BF_UART_UCR2_ESCI(v)   ((((reg32_t) v) << BP_UART_UCR2_ESCI) & BM_UART_UCR2_ESCI)
-#else
-//! @brief Format value for bitfield UART_UCR2_ESCI.
-#define BF_UART_UCR2_ESCI(v)   (((v) << BP_UART_UCR2_ESCI) & BM_UART_UCR2_ESCI)
-#endif
+#define BF_UART_UCR2_ESCI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ESCI) & BM_UART_UCR2_ESCI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCI field to a new value.
 #define BW_UART_UCR2_ESCI(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ESCI) | BF_UART_UCR2_ESCI(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR3 - UART Control Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1389,15 +1265,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_ACIEN      (0x00000001)  //!< Bit mask for UART_UCR3_ACIEN.
 
 //! @brief Get value of UART_UCR3_ACIEN from a register value.
-#define BG_UART_UCR3_ACIEN(r)   (((r) & BM_UART_UCR3_ACIEN) >> BP_UART_UCR3_ACIEN)
+#define BG_UART_UCR3_ACIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_ACIEN) >> BP_UART_UCR3_ACIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_ACIEN.
-#define BF_UART_UCR3_ACIEN(v)   ((((reg32_t) v) << BP_UART_UCR3_ACIEN) & BM_UART_UCR3_ACIEN)
-#else
-//! @brief Format value for bitfield UART_UCR3_ACIEN.
-#define BF_UART_UCR3_ACIEN(v)   (((v) << BP_UART_UCR3_ACIEN) & BM_UART_UCR3_ACIEN)
-#endif
+#define BF_UART_UCR3_ACIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_ACIEN) & BM_UART_UCR3_ACIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACIEN field to a new value.
@@ -1424,15 +1295,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_INVT      (0x00000002)  //!< Bit mask for UART_UCR3_INVT.
 
 //! @brief Get value of UART_UCR3_INVT from a register value.
-#define BG_UART_UCR3_INVT(r)   (((r) & BM_UART_UCR3_INVT) >> BP_UART_UCR3_INVT)
+#define BG_UART_UCR3_INVT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_INVT) >> BP_UART_UCR3_INVT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_INVT.
-#define BF_UART_UCR3_INVT(v)   ((((reg32_t) v) << BP_UART_UCR3_INVT) & BM_UART_UCR3_INVT)
-#else
-//! @brief Format value for bitfield UART_UCR3_INVT.
-#define BF_UART_UCR3_INVT(v)   (((v) << BP_UART_UCR3_INVT) & BM_UART_UCR3_INVT)
-#endif
+#define BF_UART_UCR3_INVT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_INVT) & BM_UART_UCR3_INVT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INVT field to a new value.
@@ -1455,15 +1321,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_RXDMUXSEL      (0x00000004)  //!< Bit mask for UART_UCR3_RXDMUXSEL.
 
 //! @brief Get value of UART_UCR3_RXDMUXSEL from a register value.
-#define BG_UART_UCR3_RXDMUXSEL(r)   (((r) & BM_UART_UCR3_RXDMUXSEL) >> BP_UART_UCR3_RXDMUXSEL)
+#define BG_UART_UCR3_RXDMUXSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RXDMUXSEL) >> BP_UART_UCR3_RXDMUXSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_RXDMUXSEL.
-#define BF_UART_UCR3_RXDMUXSEL(v)   ((((reg32_t) v) << BP_UART_UCR3_RXDMUXSEL) & BM_UART_UCR3_RXDMUXSEL)
-#else
-//! @brief Format value for bitfield UART_UCR3_RXDMUXSEL.
-#define BF_UART_UCR3_RXDMUXSEL(v)   (((v) << BP_UART_UCR3_RXDMUXSEL) & BM_UART_UCR3_RXDMUXSEL)
-#endif
+#define BF_UART_UCR3_RXDMUXSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RXDMUXSEL) & BM_UART_UCR3_RXDMUXSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDMUXSEL field to a new value.
@@ -1485,15 +1346,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_DTRDEN      (0x00000008)  //!< Bit mask for UART_UCR3_DTRDEN.
 
 //! @brief Get value of UART_UCR3_DTRDEN from a register value.
-#define BG_UART_UCR3_DTRDEN(r)   (((r) & BM_UART_UCR3_DTRDEN) >> BP_UART_UCR3_DTRDEN)
+#define BG_UART_UCR3_DTRDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DTRDEN) >> BP_UART_UCR3_DTRDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_DTRDEN.
-#define BF_UART_UCR3_DTRDEN(v)   ((((reg32_t) v) << BP_UART_UCR3_DTRDEN) & BM_UART_UCR3_DTRDEN)
-#else
-//! @brief Format value for bitfield UART_UCR3_DTRDEN.
-#define BF_UART_UCR3_DTRDEN(v)   (((v) << BP_UART_UCR3_DTRDEN) & BM_UART_UCR3_DTRDEN)
-#endif
+#define BF_UART_UCR3_DTRDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DTRDEN) & BM_UART_UCR3_DTRDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRDEN field to a new value.
@@ -1515,15 +1371,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_AWAKEN      (0x00000010)  //!< Bit mask for UART_UCR3_AWAKEN.
 
 //! @brief Get value of UART_UCR3_AWAKEN from a register value.
-#define BG_UART_UCR3_AWAKEN(r)   (((r) & BM_UART_UCR3_AWAKEN) >> BP_UART_UCR3_AWAKEN)
+#define BG_UART_UCR3_AWAKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_AWAKEN) >> BP_UART_UCR3_AWAKEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_AWAKEN.
-#define BF_UART_UCR3_AWAKEN(v)   ((((reg32_t) v) << BP_UART_UCR3_AWAKEN) & BM_UART_UCR3_AWAKEN)
-#else
-//! @brief Format value for bitfield UART_UCR3_AWAKEN.
-#define BF_UART_UCR3_AWAKEN(v)   (((v) << BP_UART_UCR3_AWAKEN) & BM_UART_UCR3_AWAKEN)
-#endif
+#define BF_UART_UCR3_AWAKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_AWAKEN) & BM_UART_UCR3_AWAKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWAKEN field to a new value.
@@ -1545,15 +1396,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_AIRINTEN      (0x00000020)  //!< Bit mask for UART_UCR3_AIRINTEN.
 
 //! @brief Get value of UART_UCR3_AIRINTEN from a register value.
-#define BG_UART_UCR3_AIRINTEN(r)   (((r) & BM_UART_UCR3_AIRINTEN) >> BP_UART_UCR3_AIRINTEN)
+#define BG_UART_UCR3_AIRINTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_AIRINTEN) >> BP_UART_UCR3_AIRINTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_AIRINTEN.
-#define BF_UART_UCR3_AIRINTEN(v)   ((((reg32_t) v) << BP_UART_UCR3_AIRINTEN) & BM_UART_UCR3_AIRINTEN)
-#else
-//! @brief Format value for bitfield UART_UCR3_AIRINTEN.
-#define BF_UART_UCR3_AIRINTEN(v)   (((v) << BP_UART_UCR3_AIRINTEN) & BM_UART_UCR3_AIRINTEN)
-#endif
+#define BF_UART_UCR3_AIRINTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_AIRINTEN) & BM_UART_UCR3_AIRINTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AIRINTEN field to a new value.
@@ -1576,15 +1422,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_RXDSEN      (0x00000040)  //!< Bit mask for UART_UCR3_RXDSEN.
 
 //! @brief Get value of UART_UCR3_RXDSEN from a register value.
-#define BG_UART_UCR3_RXDSEN(r)   (((r) & BM_UART_UCR3_RXDSEN) >> BP_UART_UCR3_RXDSEN)
+#define BG_UART_UCR3_RXDSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RXDSEN) >> BP_UART_UCR3_RXDSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_RXDSEN.
-#define BF_UART_UCR3_RXDSEN(v)   ((((reg32_t) v) << BP_UART_UCR3_RXDSEN) & BM_UART_UCR3_RXDSEN)
-#else
-//! @brief Format value for bitfield UART_UCR3_RXDSEN.
-#define BF_UART_UCR3_RXDSEN(v)   (((v) << BP_UART_UCR3_RXDSEN) & BM_UART_UCR3_RXDSEN)
-#endif
+#define BF_UART_UCR3_RXDSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RXDSEN) & BM_UART_UCR3_RXDSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEN field to a new value.
@@ -1606,15 +1447,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_ADNIMP      (0x00000080)  //!< Bit mask for UART_UCR3_ADNIMP.
 
 //! @brief Get value of UART_UCR3_ADNIMP from a register value.
-#define BG_UART_UCR3_ADNIMP(r)   (((r) & BM_UART_UCR3_ADNIMP) >> BP_UART_UCR3_ADNIMP)
+#define BG_UART_UCR3_ADNIMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_ADNIMP) >> BP_UART_UCR3_ADNIMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_ADNIMP.
-#define BF_UART_UCR3_ADNIMP(v)   ((((reg32_t) v) << BP_UART_UCR3_ADNIMP) & BM_UART_UCR3_ADNIMP)
-#else
-//! @brief Format value for bitfield UART_UCR3_ADNIMP.
-#define BF_UART_UCR3_ADNIMP(v)   (((v) << BP_UART_UCR3_ADNIMP) & BM_UART_UCR3_ADNIMP)
-#endif
+#define BF_UART_UCR3_ADNIMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_ADNIMP) & BM_UART_UCR3_ADNIMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADNIMP field to a new value.
@@ -1639,15 +1475,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_RI      (0x00000100)  //!< Bit mask for UART_UCR3_RI.
 
 //! @brief Get value of UART_UCR3_RI from a register value.
-#define BG_UART_UCR3_RI(r)   (((r) & BM_UART_UCR3_RI) >> BP_UART_UCR3_RI)
+#define BG_UART_UCR3_RI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RI) >> BP_UART_UCR3_RI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_RI.
-#define BF_UART_UCR3_RI(v)   ((((reg32_t) v) << BP_UART_UCR3_RI) & BM_UART_UCR3_RI)
-#else
-//! @brief Format value for bitfield UART_UCR3_RI.
-#define BF_UART_UCR3_RI(v)   (((v) << BP_UART_UCR3_RI) & BM_UART_UCR3_RI)
-#endif
+#define BF_UART_UCR3_RI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RI) & BM_UART_UCR3_RI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RI field to a new value.
@@ -1672,15 +1503,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_DCD      (0x00000200)  //!< Bit mask for UART_UCR3_DCD.
 
 //! @brief Get value of UART_UCR3_DCD from a register value.
-#define BG_UART_UCR3_DCD(r)   (((r) & BM_UART_UCR3_DCD) >> BP_UART_UCR3_DCD)
+#define BG_UART_UCR3_DCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DCD) >> BP_UART_UCR3_DCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_DCD.
-#define BF_UART_UCR3_DCD(v)   ((((reg32_t) v) << BP_UART_UCR3_DCD) & BM_UART_UCR3_DCD)
-#else
-//! @brief Format value for bitfield UART_UCR3_DCD.
-#define BF_UART_UCR3_DCD(v)   (((v) << BP_UART_UCR3_DCD) & BM_UART_UCR3_DCD)
-#endif
+#define BF_UART_UCR3_DCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DCD) & BM_UART_UCR3_DCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCD field to a new value.
@@ -1703,15 +1529,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_DSR      (0x00000400)  //!< Bit mask for UART_UCR3_DSR.
 
 //! @brief Get value of UART_UCR3_DSR from a register value.
-#define BG_UART_UCR3_DSR(r)   (((r) & BM_UART_UCR3_DSR) >> BP_UART_UCR3_DSR)
+#define BG_UART_UCR3_DSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DSR) >> BP_UART_UCR3_DSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_DSR.
-#define BF_UART_UCR3_DSR(v)   ((((reg32_t) v) << BP_UART_UCR3_DSR) & BM_UART_UCR3_DSR)
-#else
-//! @brief Format value for bitfield UART_UCR3_DSR.
-#define BF_UART_UCR3_DSR(v)   (((v) << BP_UART_UCR3_DSR) & BM_UART_UCR3_DSR)
-#endif
+#define BF_UART_UCR3_DSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DSR) & BM_UART_UCR3_DSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSR field to a new value.
@@ -1733,15 +1554,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_FRAERREN      (0x00000800)  //!< Bit mask for UART_UCR3_FRAERREN.
 
 //! @brief Get value of UART_UCR3_FRAERREN from a register value.
-#define BG_UART_UCR3_FRAERREN(r)   (((r) & BM_UART_UCR3_FRAERREN) >> BP_UART_UCR3_FRAERREN)
+#define BG_UART_UCR3_FRAERREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_FRAERREN) >> BP_UART_UCR3_FRAERREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_FRAERREN.
-#define BF_UART_UCR3_FRAERREN(v)   ((((reg32_t) v) << BP_UART_UCR3_FRAERREN) & BM_UART_UCR3_FRAERREN)
-#else
-//! @brief Format value for bitfield UART_UCR3_FRAERREN.
-#define BF_UART_UCR3_FRAERREN(v)   (((v) << BP_UART_UCR3_FRAERREN) & BM_UART_UCR3_FRAERREN)
-#endif
+#define BF_UART_UCR3_FRAERREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_FRAERREN) & BM_UART_UCR3_FRAERREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAERREN field to a new value.
@@ -1763,15 +1579,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_PARERREN      (0x00001000)  //!< Bit mask for UART_UCR3_PARERREN.
 
 //! @brief Get value of UART_UCR3_PARERREN from a register value.
-#define BG_UART_UCR3_PARERREN(r)   (((r) & BM_UART_UCR3_PARERREN) >> BP_UART_UCR3_PARERREN)
+#define BG_UART_UCR3_PARERREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_PARERREN) >> BP_UART_UCR3_PARERREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_PARERREN.
-#define BF_UART_UCR3_PARERREN(v)   ((((reg32_t) v) << BP_UART_UCR3_PARERREN) & BM_UART_UCR3_PARERREN)
-#else
-//! @brief Format value for bitfield UART_UCR3_PARERREN.
-#define BF_UART_UCR3_PARERREN(v)   (((v) << BP_UART_UCR3_PARERREN) & BM_UART_UCR3_PARERREN)
-#endif
+#define BF_UART_UCR3_PARERREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_PARERREN) & BM_UART_UCR3_PARERREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARERREN field to a new value.
@@ -1794,15 +1605,10 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_DTREN      (0x00002000)  //!< Bit mask for UART_UCR3_DTREN.
 
 //! @brief Get value of UART_UCR3_DTREN from a register value.
-#define BG_UART_UCR3_DTREN(r)   (((r) & BM_UART_UCR3_DTREN) >> BP_UART_UCR3_DTREN)
+#define BG_UART_UCR3_DTREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DTREN) >> BP_UART_UCR3_DTREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_DTREN.
-#define BF_UART_UCR3_DTREN(v)   ((((reg32_t) v) << BP_UART_UCR3_DTREN) & BM_UART_UCR3_DTREN)
-#else
-//! @brief Format value for bitfield UART_UCR3_DTREN.
-#define BF_UART_UCR3_DTREN(v)   (((v) << BP_UART_UCR3_DTREN) & BM_UART_UCR3_DTREN)
-#endif
+#define BF_UART_UCR3_DTREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DTREN) & BM_UART_UCR3_DTREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTREN field to a new value.
@@ -1826,21 +1632,20 @@ typedef union _hw_uart_ucr3
 #define BM_UART_UCR3_DPEC      (0x0000c000)  //!< Bit mask for UART_UCR3_DPEC.
 
 //! @brief Get value of UART_UCR3_DPEC from a register value.
-#define BG_UART_UCR3_DPEC(r)   (((r) & BM_UART_UCR3_DPEC) >> BP_UART_UCR3_DPEC)
+#define BG_UART_UCR3_DPEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DPEC) >> BP_UART_UCR3_DPEC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR3_DPEC.
-#define BF_UART_UCR3_DPEC(v)   ((((reg32_t) v) << BP_UART_UCR3_DPEC) & BM_UART_UCR3_DPEC)
-#else
-//! @brief Format value for bitfield UART_UCR3_DPEC.
-#define BF_UART_UCR3_DPEC(v)   (((v) << BP_UART_UCR3_DPEC) & BM_UART_UCR3_DPEC)
-#endif
+#define BF_UART_UCR3_DPEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DPEC) & BM_UART_UCR3_DPEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DPEC field to a new value.
 #define BW_UART_UCR3_DPEC(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DPEC) | BF_UART_UCR3_DPEC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR4 - UART Control Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1902,15 +1707,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_DREN      (0x00000001)  //!< Bit mask for UART_UCR4_DREN.
 
 //! @brief Get value of UART_UCR4_DREN from a register value.
-#define BG_UART_UCR4_DREN(r)   (((r) & BM_UART_UCR4_DREN) >> BP_UART_UCR4_DREN)
+#define BG_UART_UCR4_DREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_DREN) >> BP_UART_UCR4_DREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_DREN.
-#define BF_UART_UCR4_DREN(v)   ((((reg32_t) v) << BP_UART_UCR4_DREN) & BM_UART_UCR4_DREN)
-#else
-//! @brief Format value for bitfield UART_UCR4_DREN.
-#define BF_UART_UCR4_DREN(v)   (((v) << BP_UART_UCR4_DREN) & BM_UART_UCR4_DREN)
-#endif
+#define BF_UART_UCR4_DREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_DREN) & BM_UART_UCR4_DREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DREN field to a new value.
@@ -1931,15 +1731,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_OREN      (0x00000002)  //!< Bit mask for UART_UCR4_OREN.
 
 //! @brief Get value of UART_UCR4_OREN from a register value.
-#define BG_UART_UCR4_OREN(r)   (((r) & BM_UART_UCR4_OREN) >> BP_UART_UCR4_OREN)
+#define BG_UART_UCR4_OREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_OREN) >> BP_UART_UCR4_OREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_OREN.
-#define BF_UART_UCR4_OREN(v)   ((((reg32_t) v) << BP_UART_UCR4_OREN) & BM_UART_UCR4_OREN)
-#else
-//! @brief Format value for bitfield UART_UCR4_OREN.
-#define BF_UART_UCR4_OREN(v)   (((v) << BP_UART_UCR4_OREN) & BM_UART_UCR4_OREN)
-#endif
+#define BF_UART_UCR4_OREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_OREN) & BM_UART_UCR4_OREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OREN field to a new value.
@@ -1961,15 +1756,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_BKEN      (0x00000004)  //!< Bit mask for UART_UCR4_BKEN.
 
 //! @brief Get value of UART_UCR4_BKEN from a register value.
-#define BG_UART_UCR4_BKEN(r)   (((r) & BM_UART_UCR4_BKEN) >> BP_UART_UCR4_BKEN)
+#define BG_UART_UCR4_BKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_BKEN) >> BP_UART_UCR4_BKEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_BKEN.
-#define BF_UART_UCR4_BKEN(v)   ((((reg32_t) v) << BP_UART_UCR4_BKEN) & BM_UART_UCR4_BKEN)
-#else
-//! @brief Format value for bitfield UART_UCR4_BKEN.
-#define BF_UART_UCR4_BKEN(v)   (((v) << BP_UART_UCR4_BKEN) & BM_UART_UCR4_BKEN)
-#endif
+#define BF_UART_UCR4_BKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_BKEN) & BM_UART_UCR4_BKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BKEN field to a new value.
@@ -1993,15 +1783,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_TCEN      (0x00000008)  //!< Bit mask for UART_UCR4_TCEN.
 
 //! @brief Get value of UART_UCR4_TCEN from a register value.
-#define BG_UART_UCR4_TCEN(r)   (((r) & BM_UART_UCR4_TCEN) >> BP_UART_UCR4_TCEN)
+#define BG_UART_UCR4_TCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_TCEN) >> BP_UART_UCR4_TCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_TCEN.
-#define BF_UART_UCR4_TCEN(v)   ((((reg32_t) v) << BP_UART_UCR4_TCEN) & BM_UART_UCR4_TCEN)
-#else
-//! @brief Format value for bitfield UART_UCR4_TCEN.
-#define BF_UART_UCR4_TCEN(v)   (((v) << BP_UART_UCR4_TCEN) & BM_UART_UCR4_TCEN)
-#endif
+#define BF_UART_UCR4_TCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_TCEN) & BM_UART_UCR4_TCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCEN field to a new value.
@@ -2023,15 +1808,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_LPBYP      (0x00000010)  //!< Bit mask for UART_UCR4_LPBYP.
 
 //! @brief Get value of UART_UCR4_LPBYP from a register value.
-#define BG_UART_UCR4_LPBYP(r)   (((r) & BM_UART_UCR4_LPBYP) >> BP_UART_UCR4_LPBYP)
+#define BG_UART_UCR4_LPBYP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_LPBYP) >> BP_UART_UCR4_LPBYP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_LPBYP.
-#define BF_UART_UCR4_LPBYP(v)   ((((reg32_t) v) << BP_UART_UCR4_LPBYP) & BM_UART_UCR4_LPBYP)
-#else
-//! @brief Format value for bitfield UART_UCR4_LPBYP.
-#define BF_UART_UCR4_LPBYP(v)   (((v) << BP_UART_UCR4_LPBYP) & BM_UART_UCR4_LPBYP)
-#endif
+#define BF_UART_UCR4_LPBYP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_LPBYP) & BM_UART_UCR4_LPBYP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPBYP field to a new value.
@@ -2054,15 +1834,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_IRSC      (0x00000020)  //!< Bit mask for UART_UCR4_IRSC.
 
 //! @brief Get value of UART_UCR4_IRSC from a register value.
-#define BG_UART_UCR4_IRSC(r)   (((r) & BM_UART_UCR4_IRSC) >> BP_UART_UCR4_IRSC)
+#define BG_UART_UCR4_IRSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_IRSC) >> BP_UART_UCR4_IRSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_IRSC.
-#define BF_UART_UCR4_IRSC(v)   ((((reg32_t) v) << BP_UART_UCR4_IRSC) & BM_UART_UCR4_IRSC)
-#else
-//! @brief Format value for bitfield UART_UCR4_IRSC.
-#define BF_UART_UCR4_IRSC(v)   (((v) << BP_UART_UCR4_IRSC) & BM_UART_UCR4_IRSC)
-#endif
+#define BF_UART_UCR4_IRSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_IRSC) & BM_UART_UCR4_IRSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRSC field to a new value.
@@ -2084,15 +1859,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_IDDMAEN      (0x00000040)  //!< Bit mask for UART_UCR4_IDDMAEN.
 
 //! @brief Get value of UART_UCR4_IDDMAEN from a register value.
-#define BG_UART_UCR4_IDDMAEN(r)   (((r) & BM_UART_UCR4_IDDMAEN) >> BP_UART_UCR4_IDDMAEN)
+#define BG_UART_UCR4_IDDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_IDDMAEN) >> BP_UART_UCR4_IDDMAEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_IDDMAEN.
-#define BF_UART_UCR4_IDDMAEN(v)   ((((reg32_t) v) << BP_UART_UCR4_IDDMAEN) & BM_UART_UCR4_IDDMAEN)
-#else
-//! @brief Format value for bitfield UART_UCR4_IDDMAEN.
-#define BF_UART_UCR4_IDDMAEN(v)   (((v) << BP_UART_UCR4_IDDMAEN) & BM_UART_UCR4_IDDMAEN)
-#endif
+#define BF_UART_UCR4_IDDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_IDDMAEN) & BM_UART_UCR4_IDDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDDMAEN field to a new value.
@@ -2114,15 +1884,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_WKEN      (0x00000080)  //!< Bit mask for UART_UCR4_WKEN.
 
 //! @brief Get value of UART_UCR4_WKEN from a register value.
-#define BG_UART_UCR4_WKEN(r)   (((r) & BM_UART_UCR4_WKEN) >> BP_UART_UCR4_WKEN)
+#define BG_UART_UCR4_WKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_WKEN) >> BP_UART_UCR4_WKEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_WKEN.
-#define BF_UART_UCR4_WKEN(v)   ((((reg32_t) v) << BP_UART_UCR4_WKEN) & BM_UART_UCR4_WKEN)
-#else
-//! @brief Format value for bitfield UART_UCR4_WKEN.
-#define BF_UART_UCR4_WKEN(v)   (((v) << BP_UART_UCR4_WKEN) & BM_UART_UCR4_WKEN)
-#endif
+#define BF_UART_UCR4_WKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_WKEN) & BM_UART_UCR4_WKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKEN field to a new value.
@@ -2143,15 +1908,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_ENIRI      (0x00000100)  //!< Bit mask for UART_UCR4_ENIRI.
 
 //! @brief Get value of UART_UCR4_ENIRI from a register value.
-#define BG_UART_UCR4_ENIRI(r)   (((r) & BM_UART_UCR4_ENIRI) >> BP_UART_UCR4_ENIRI)
+#define BG_UART_UCR4_ENIRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_ENIRI) >> BP_UART_UCR4_ENIRI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_ENIRI.
-#define BF_UART_UCR4_ENIRI(v)   ((((reg32_t) v) << BP_UART_UCR4_ENIRI) & BM_UART_UCR4_ENIRI)
-#else
-//! @brief Format value for bitfield UART_UCR4_ENIRI.
-#define BF_UART_UCR4_ENIRI(v)   (((v) << BP_UART_UCR4_ENIRI) & BM_UART_UCR4_ENIRI)
-#endif
+#define BF_UART_UCR4_ENIRI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_ENIRI) & BM_UART_UCR4_ENIRI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENIRI field to a new value.
@@ -2178,15 +1938,10 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_INVR      (0x00000200)  //!< Bit mask for UART_UCR4_INVR.
 
 //! @brief Get value of UART_UCR4_INVR from a register value.
-#define BG_UART_UCR4_INVR(r)   (((r) & BM_UART_UCR4_INVR) >> BP_UART_UCR4_INVR)
+#define BG_UART_UCR4_INVR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_INVR) >> BP_UART_UCR4_INVR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_INVR.
-#define BF_UART_UCR4_INVR(v)   ((((reg32_t) v) << BP_UART_UCR4_INVR) & BM_UART_UCR4_INVR)
-#else
-//! @brief Format value for bitfield UART_UCR4_INVR.
-#define BF_UART_UCR4_INVR(v)   (((v) << BP_UART_UCR4_INVR) & BM_UART_UCR4_INVR)
-#endif
+#define BF_UART_UCR4_INVR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_INVR) & BM_UART_UCR4_INVR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INVR field to a new value.
@@ -2213,21 +1968,20 @@ typedef union _hw_uart_ucr4
 #define BM_UART_UCR4_CTSTL      (0x0000fc00)  //!< Bit mask for UART_UCR4_CTSTL.
 
 //! @brief Get value of UART_UCR4_CTSTL from a register value.
-#define BG_UART_UCR4_CTSTL(r)   (((r) & BM_UART_UCR4_CTSTL) >> BP_UART_UCR4_CTSTL)
+#define BG_UART_UCR4_CTSTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_CTSTL) >> BP_UART_UCR4_CTSTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UCR4_CTSTL.
-#define BF_UART_UCR4_CTSTL(v)   ((((reg32_t) v) << BP_UART_UCR4_CTSTL) & BM_UART_UCR4_CTSTL)
-#else
-//! @brief Format value for bitfield UART_UCR4_CTSTL.
-#define BF_UART_UCR4_CTSTL(v)   (((v) << BP_UART_UCR4_CTSTL) & BM_UART_UCR4_CTSTL)
-#endif
+#define BF_UART_UCR4_CTSTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_CTSTL) & BM_UART_UCR4_CTSTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTSTL field to a new value.
 #define BW_UART_UCR4_CTSTL(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_CTSTL) | BF_UART_UCR4_CTSTL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UFCR - UART FIFO Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2289,15 +2043,10 @@ typedef union _hw_uart_ufcr
 #define BM_UART_UFCR_RXTL      (0x0000003f)  //!< Bit mask for UART_UFCR_RXTL.
 
 //! @brief Get value of UART_UFCR_RXTL from a register value.
-#define BG_UART_UFCR_RXTL(r)   (((r) & BM_UART_UFCR_RXTL) >> BP_UART_UFCR_RXTL)
+#define BG_UART_UFCR_RXTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_RXTL) >> BP_UART_UFCR_RXTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UFCR_RXTL.
-#define BF_UART_UFCR_RXTL(v)   ((((reg32_t) v) << BP_UART_UFCR_RXTL) & BM_UART_UFCR_RXTL)
-#else
-//! @brief Format value for bitfield UART_UFCR_RXTL.
-#define BF_UART_UFCR_RXTL(v)   (((v) << BP_UART_UFCR_RXTL) & BM_UART_UFCR_RXTL)
-#endif
+#define BF_UART_UFCR_RXTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_RXTL) & BM_UART_UFCR_RXTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXTL field to a new value.
@@ -2319,15 +2068,10 @@ typedef union _hw_uart_ufcr
 #define BM_UART_UFCR_DCEDTE      (0x00000040)  //!< Bit mask for UART_UFCR_DCEDTE.
 
 //! @brief Get value of UART_UFCR_DCEDTE from a register value.
-#define BG_UART_UFCR_DCEDTE(r)   (((r) & BM_UART_UFCR_DCEDTE) >> BP_UART_UFCR_DCEDTE)
+#define BG_UART_UFCR_DCEDTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_DCEDTE) >> BP_UART_UFCR_DCEDTE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UFCR_DCEDTE.
-#define BF_UART_UFCR_DCEDTE(v)   ((((reg32_t) v) << BP_UART_UFCR_DCEDTE) & BM_UART_UFCR_DCEDTE)
-#else
-//! @brief Format value for bitfield UART_UFCR_DCEDTE.
-#define BF_UART_UFCR_DCEDTE(v)   (((v) << BP_UART_UFCR_DCEDTE) & BM_UART_UFCR_DCEDTE)
-#endif
+#define BF_UART_UFCR_DCEDTE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_DCEDTE) & BM_UART_UFCR_DCEDTE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCEDTE field to a new value.
@@ -2356,15 +2100,10 @@ typedef union _hw_uart_ufcr
 #define BM_UART_UFCR_RFDIV      (0x00000380)  //!< Bit mask for UART_UFCR_RFDIV.
 
 //! @brief Get value of UART_UFCR_RFDIV from a register value.
-#define BG_UART_UFCR_RFDIV(r)   (((r) & BM_UART_UFCR_RFDIV) >> BP_UART_UFCR_RFDIV)
+#define BG_UART_UFCR_RFDIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_RFDIV) >> BP_UART_UFCR_RFDIV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UFCR_RFDIV.
-#define BF_UART_UFCR_RFDIV(v)   ((((reg32_t) v) << BP_UART_UFCR_RFDIV) & BM_UART_UFCR_RFDIV)
-#else
-//! @brief Format value for bitfield UART_UFCR_RFDIV.
-#define BF_UART_UFCR_RFDIV(v)   (((v) << BP_UART_UFCR_RFDIV) & BM_UART_UFCR_RFDIV)
-#endif
+#define BF_UART_UFCR_RFDIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_RFDIV) & BM_UART_UFCR_RFDIV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFDIV field to a new value.
@@ -2393,21 +2132,20 @@ typedef union _hw_uart_ufcr
 #define BM_UART_UFCR_TXTL      (0x0000fc00)  //!< Bit mask for UART_UFCR_TXTL.
 
 //! @brief Get value of UART_UFCR_TXTL from a register value.
-#define BG_UART_UFCR_TXTL(r)   (((r) & BM_UART_UFCR_TXTL) >> BP_UART_UFCR_TXTL)
+#define BG_UART_UFCR_TXTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_TXTL) >> BP_UART_UFCR_TXTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UFCR_TXTL.
-#define BF_UART_UFCR_TXTL(v)   ((((reg32_t) v) << BP_UART_UFCR_TXTL) & BM_UART_UFCR_TXTL)
-#else
-//! @brief Format value for bitfield UART_UFCR_TXTL.
-#define BF_UART_UFCR_TXTL(v)   (((v) << BP_UART_UFCR_TXTL) & BM_UART_UFCR_TXTL)
-#endif
+#define BF_UART_UFCR_TXTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_TXTL) & BM_UART_UFCR_TXTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXTL field to a new value.
 #define BW_UART_UFCR_TXTL(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_TXTL) | BF_UART_UFCR_TXTL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_USR1 - UART Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2475,15 +2213,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_SAD      (0x00000008)  //!< Bit mask for UART_USR1_SAD.
 
 //! @brief Get value of UART_USR1_SAD from a register value.
-#define BG_UART_USR1_SAD(r)   (((r) & BM_UART_USR1_SAD) >> BP_UART_USR1_SAD)
+#define BG_UART_USR1_SAD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_SAD) >> BP_UART_USR1_SAD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_SAD.
-#define BF_UART_USR1_SAD(v)   ((((reg32_t) v) << BP_UART_USR1_SAD) & BM_UART_USR1_SAD)
-#else
-//! @brief Format value for bitfield UART_USR1_SAD.
-#define BF_UART_USR1_SAD(v)   (((v) << BP_UART_USR1_SAD) & BM_UART_USR1_SAD)
-#endif
+#define BF_UART_USR1_SAD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_SAD) & BM_UART_USR1_SAD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SAD field to a new value.
@@ -2507,15 +2240,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_AWAKE      (0x00000010)  //!< Bit mask for UART_USR1_AWAKE.
 
 //! @brief Get value of UART_USR1_AWAKE from a register value.
-#define BG_UART_USR1_AWAKE(r)   (((r) & BM_UART_USR1_AWAKE) >> BP_UART_USR1_AWAKE)
+#define BG_UART_USR1_AWAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AWAKE) >> BP_UART_USR1_AWAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_AWAKE.
-#define BF_UART_USR1_AWAKE(v)   ((((reg32_t) v) << BP_UART_USR1_AWAKE) & BM_UART_USR1_AWAKE)
-#else
-//! @brief Format value for bitfield UART_USR1_AWAKE.
-#define BF_UART_USR1_AWAKE(v)   (((v) << BP_UART_USR1_AWAKE) & BM_UART_USR1_AWAKE)
-#endif
+#define BF_UART_USR1_AWAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AWAKE) & BM_UART_USR1_AWAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWAKE field to a new value.
@@ -2539,15 +2267,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_AIRINT      (0x00000020)  //!< Bit mask for UART_USR1_AIRINT.
 
 //! @brief Get value of UART_USR1_AIRINT from a register value.
-#define BG_UART_USR1_AIRINT(r)   (((r) & BM_UART_USR1_AIRINT) >> BP_UART_USR1_AIRINT)
+#define BG_UART_USR1_AIRINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AIRINT) >> BP_UART_USR1_AIRINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_AIRINT.
-#define BF_UART_USR1_AIRINT(v)   ((((reg32_t) v) << BP_UART_USR1_AIRINT) & BM_UART_USR1_AIRINT)
-#else
-//! @brief Format value for bitfield UART_USR1_AIRINT.
-#define BF_UART_USR1_AIRINT(v)   (((v) << BP_UART_USR1_AIRINT) & BM_UART_USR1_AIRINT)
-#endif
+#define BF_UART_USR1_AIRINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AIRINT) & BM_UART_USR1_AIRINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AIRINT field to a new value.
@@ -2570,7 +2293,7 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_RXDS      (0x00000040)  //!< Bit mask for UART_USR1_RXDS.
 
 //! @brief Get value of UART_USR1_RXDS from a register value.
-#define BG_UART_USR1_RXDS(r)   (((r) & BM_UART_USR1_RXDS) >> BP_UART_USR1_RXDS)
+#define BG_UART_USR1_RXDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RXDS) >> BP_UART_USR1_RXDS)
 
 
 /* --- Register HW_UART_USR1, field DTRD[7] (W1C)
@@ -2588,15 +2311,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_DTRD      (0x00000080)  //!< Bit mask for UART_USR1_DTRD.
 
 //! @brief Get value of UART_USR1_DTRD from a register value.
-#define BG_UART_USR1_DTRD(r)   (((r) & BM_UART_USR1_DTRD) >> BP_UART_USR1_DTRD)
+#define BG_UART_USR1_DTRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_DTRD) >> BP_UART_USR1_DTRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_DTRD.
-#define BF_UART_USR1_DTRD(v)   ((((reg32_t) v) << BP_UART_USR1_DTRD) & BM_UART_USR1_DTRD)
-#else
-//! @brief Format value for bitfield UART_USR1_DTRD.
-#define BF_UART_USR1_DTRD(v)   (((v) << BP_UART_USR1_DTRD) & BM_UART_USR1_DTRD)
-#endif
+#define BF_UART_USR1_DTRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_DTRD) & BM_UART_USR1_DTRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRD field to a new value.
@@ -2620,15 +2338,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_AGTIM      (0x00000100)  //!< Bit mask for UART_USR1_AGTIM.
 
 //! @brief Get value of UART_USR1_AGTIM from a register value.
-#define BG_UART_USR1_AGTIM(r)   (((r) & BM_UART_USR1_AGTIM) >> BP_UART_USR1_AGTIM)
+#define BG_UART_USR1_AGTIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AGTIM) >> BP_UART_USR1_AGTIM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_AGTIM.
-#define BF_UART_USR1_AGTIM(v)   ((((reg32_t) v) << BP_UART_USR1_AGTIM) & BM_UART_USR1_AGTIM)
-#else
-//! @brief Format value for bitfield UART_USR1_AGTIM.
-#define BF_UART_USR1_AGTIM(v)   (((v) << BP_UART_USR1_AGTIM) & BM_UART_USR1_AGTIM)
-#endif
+#define BF_UART_USR1_AGTIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AGTIM) & BM_UART_USR1_AGTIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AGTIM field to a new value.
@@ -2652,7 +2365,7 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_RRDY      (0x00000200)  //!< Bit mask for UART_USR1_RRDY.
 
 //! @brief Get value of UART_USR1_RRDY from a register value.
-#define BG_UART_USR1_RRDY(r)   (((r) & BM_UART_USR1_RRDY) >> BP_UART_USR1_RRDY)
+#define BG_UART_USR1_RRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RRDY) >> BP_UART_USR1_RRDY)
 
 
 /* --- Register HW_UART_USR1, field FRAMERR[10] (W1C)
@@ -2670,15 +2383,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_FRAMERR      (0x00000400)  //!< Bit mask for UART_USR1_FRAMERR.
 
 //! @brief Get value of UART_USR1_FRAMERR from a register value.
-#define BG_UART_USR1_FRAMERR(r)   (((r) & BM_UART_USR1_FRAMERR) >> BP_UART_USR1_FRAMERR)
+#define BG_UART_USR1_FRAMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_FRAMERR) >> BP_UART_USR1_FRAMERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_FRAMERR.
-#define BF_UART_USR1_FRAMERR(v)   ((((reg32_t) v) << BP_UART_USR1_FRAMERR) & BM_UART_USR1_FRAMERR)
-#else
-//! @brief Format value for bitfield UART_USR1_FRAMERR.
-#define BF_UART_USR1_FRAMERR(v)   (((v) << BP_UART_USR1_FRAMERR) & BM_UART_USR1_FRAMERR)
-#endif
+#define BF_UART_USR1_FRAMERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_FRAMERR) & BM_UART_USR1_FRAMERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAMERR field to a new value.
@@ -2701,15 +2409,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_ESCF      (0x00000800)  //!< Bit mask for UART_USR1_ESCF.
 
 //! @brief Get value of UART_USR1_ESCF from a register value.
-#define BG_UART_USR1_ESCF(r)   (((r) & BM_UART_USR1_ESCF) >> BP_UART_USR1_ESCF)
+#define BG_UART_USR1_ESCF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_ESCF) >> BP_UART_USR1_ESCF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_ESCF.
-#define BF_UART_USR1_ESCF(v)   ((((reg32_t) v) << BP_UART_USR1_ESCF) & BM_UART_USR1_ESCF)
-#else
-//! @brief Format value for bitfield UART_USR1_ESCF.
-#define BF_UART_USR1_ESCF(v)   (((v) << BP_UART_USR1_ESCF) & BM_UART_USR1_ESCF)
-#endif
+#define BF_UART_USR1_ESCF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_ESCF) & BM_UART_USR1_ESCF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCF field to a new value.
@@ -2733,15 +2436,10 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_RTSD      (0x00001000)  //!< Bit mask for UART_USR1_RTSD.
 
 //! @brief Get value of UART_USR1_RTSD from a register value.
-#define BG_UART_USR1_RTSD(r)   (((r) & BM_UART_USR1_RTSD) >> BP_UART_USR1_RTSD)
+#define BG_UART_USR1_RTSD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RTSD) >> BP_UART_USR1_RTSD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_RTSD.
-#define BF_UART_USR1_RTSD(v)   ((((reg32_t) v) << BP_UART_USR1_RTSD) & BM_UART_USR1_RTSD)
-#else
-//! @brief Format value for bitfield UART_USR1_RTSD.
-#define BF_UART_USR1_RTSD(v)   (((v) << BP_UART_USR1_RTSD) & BM_UART_USR1_RTSD)
-#endif
+#define BF_UART_USR1_RTSD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_RTSD) & BM_UART_USR1_RTSD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSD field to a new value.
@@ -2764,7 +2462,7 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_TRDY      (0x00002000)  //!< Bit mask for UART_USR1_TRDY.
 
 //! @brief Get value of UART_USR1_TRDY from a register value.
-#define BG_UART_USR1_TRDY(r)   (((r) & BM_UART_USR1_TRDY) >> BP_UART_USR1_TRDY)
+#define BG_UART_USR1_TRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_TRDY) >> BP_UART_USR1_TRDY)
 
 
 /* --- Register HW_UART_USR1, field RTSS[14] (RO)
@@ -2782,7 +2480,7 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_RTSS      (0x00004000)  //!< Bit mask for UART_USR1_RTSS.
 
 //! @brief Get value of UART_USR1_RTSS from a register value.
-#define BG_UART_USR1_RTSS(r)   (((r) & BM_UART_USR1_RTSS) >> BP_UART_USR1_RTSS)
+#define BG_UART_USR1_RTSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RTSS) >> BP_UART_USR1_RTSS)
 
 
 /* --- Register HW_UART_USR1, field PARITYERR[15] (W1C)
@@ -2800,21 +2498,20 @@ typedef union _hw_uart_usr1
 #define BM_UART_USR1_PARITYERR      (0x00008000)  //!< Bit mask for UART_USR1_PARITYERR.
 
 //! @brief Get value of UART_USR1_PARITYERR from a register value.
-#define BG_UART_USR1_PARITYERR(r)   (((r) & BM_UART_USR1_PARITYERR) >> BP_UART_USR1_PARITYERR)
+#define BG_UART_USR1_PARITYERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_PARITYERR) >> BP_UART_USR1_PARITYERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR1_PARITYERR.
-#define BF_UART_USR1_PARITYERR(v)   ((((reg32_t) v) << BP_UART_USR1_PARITYERR) & BM_UART_USR1_PARITYERR)
-#else
-//! @brief Format value for bitfield UART_USR1_PARITYERR.
-#define BF_UART_USR1_PARITYERR(v)   (((v) << BP_UART_USR1_PARITYERR) & BM_UART_USR1_PARITYERR)
-#endif
+#define BF_UART_USR1_PARITYERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_PARITYERR) & BM_UART_USR1_PARITYERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARITYERR field to a new value.
 #define BW_UART_USR1_PARITYERR(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_PARITYERR) | BF_UART_USR1_PARITYERR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_USR2 - UART Status Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2883,7 +2580,7 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_RDR      (0x00000001)  //!< Bit mask for UART_USR2_RDR.
 
 //! @brief Get value of UART_USR2_RDR from a register value.
-#define BG_UART_USR2_RDR(r)   (((r) & BM_UART_USR2_RDR) >> BP_UART_USR2_RDR)
+#define BG_UART_USR2_RDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RDR) >> BP_UART_USR2_RDR)
 
 
 /* --- Register HW_UART_USR2, field ORE[1] (W1C)
@@ -2901,15 +2598,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_ORE      (0x00000002)  //!< Bit mask for UART_USR2_ORE.
 
 //! @brief Get value of UART_USR2_ORE from a register value.
-#define BG_UART_USR2_ORE(r)   (((r) & BM_UART_USR2_ORE) >> BP_UART_USR2_ORE)
+#define BG_UART_USR2_ORE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ORE) >> BP_UART_USR2_ORE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_ORE.
-#define BF_UART_USR2_ORE(v)   ((((reg32_t) v) << BP_UART_USR2_ORE) & BM_UART_USR2_ORE)
-#else
-//! @brief Format value for bitfield UART_USR2_ORE.
-#define BF_UART_USR2_ORE(v)   (((v) << BP_UART_USR2_ORE) & BM_UART_USR2_ORE)
-#endif
+#define BF_UART_USR2_ORE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ORE) & BM_UART_USR2_ORE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ORE field to a new value.
@@ -2931,15 +2623,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_BRCD      (0x00000004)  //!< Bit mask for UART_USR2_BRCD.
 
 //! @brief Get value of UART_USR2_BRCD from a register value.
-#define BG_UART_USR2_BRCD(r)   (((r) & BM_UART_USR2_BRCD) >> BP_UART_USR2_BRCD)
+#define BG_UART_USR2_BRCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_BRCD) >> BP_UART_USR2_BRCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_BRCD.
-#define BF_UART_USR2_BRCD(v)   ((((reg32_t) v) << BP_UART_USR2_BRCD) & BM_UART_USR2_BRCD)
-#else
-//! @brief Format value for bitfield UART_USR2_BRCD.
-#define BF_UART_USR2_BRCD(v)   (((v) << BP_UART_USR2_BRCD) & BM_UART_USR2_BRCD)
-#endif
+#define BF_UART_USR2_BRCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_BRCD) & BM_UART_USR2_BRCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BRCD field to a new value.
@@ -2962,7 +2649,7 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_TXDC      (0x00000008)  //!< Bit mask for UART_USR2_TXDC.
 
 //! @brief Get value of UART_USR2_TXDC from a register value.
-#define BG_UART_USR2_TXDC(r)   (((r) & BM_UART_USR2_TXDC) >> BP_UART_USR2_TXDC)
+#define BG_UART_USR2_TXDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXDC) >> BP_UART_USR2_TXDC)
 
 
 /* --- Register HW_UART_USR2, field RTSF[4] (W1C)
@@ -2981,15 +2668,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_RTSF      (0x00000010)  //!< Bit mask for UART_USR2_RTSF.
 
 //! @brief Get value of UART_USR2_RTSF from a register value.
-#define BG_UART_USR2_RTSF(r)   (((r) & BM_UART_USR2_RTSF) >> BP_UART_USR2_RTSF)
+#define BG_UART_USR2_RTSF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RTSF) >> BP_UART_USR2_RTSF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_RTSF.
-#define BF_UART_USR2_RTSF(v)   ((((reg32_t) v) << BP_UART_USR2_RTSF) & BM_UART_USR2_RTSF)
-#else
-//! @brief Format value for bitfield UART_USR2_RTSF.
-#define BF_UART_USR2_RTSF(v)   (((v) << BP_UART_USR2_RTSF) & BM_UART_USR2_RTSF)
-#endif
+#define BF_UART_USR2_RTSF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_RTSF) & BM_UART_USR2_RTSF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSF field to a new value.
@@ -3012,7 +2694,7 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_DCDIN      (0x00000020)  //!< Bit mask for UART_USR2_DCDIN.
 
 //! @brief Get value of UART_USR2_DCDIN from a register value.
-#define BG_UART_USR2_DCDIN(r)   (((r) & BM_UART_USR2_DCDIN) >> BP_UART_USR2_DCDIN)
+#define BG_UART_USR2_DCDIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DCDIN) >> BP_UART_USR2_DCDIN)
 
 
 /* --- Register HW_UART_USR2, field DCDDELT[6] (W1C)
@@ -3031,15 +2713,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_DCDDELT      (0x00000040)  //!< Bit mask for UART_USR2_DCDDELT.
 
 //! @brief Get value of UART_USR2_DCDDELT from a register value.
-#define BG_UART_USR2_DCDDELT(r)   (((r) & BM_UART_USR2_DCDDELT) >> BP_UART_USR2_DCDDELT)
+#define BG_UART_USR2_DCDDELT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DCDDELT) >> BP_UART_USR2_DCDDELT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_DCDDELT.
-#define BF_UART_USR2_DCDDELT(v)   ((((reg32_t) v) << BP_UART_USR2_DCDDELT) & BM_UART_USR2_DCDDELT)
-#else
-//! @brief Format value for bitfield UART_USR2_DCDDELT.
-#define BF_UART_USR2_DCDDELT(v)   (((v) << BP_UART_USR2_DCDDELT) & BM_UART_USR2_DCDDELT)
-#endif
+#define BF_UART_USR2_DCDDELT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_DCDDELT) & BM_UART_USR2_DCDDELT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCDDELT field to a new value.
@@ -3061,15 +2738,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_WAKE      (0x00000080)  //!< Bit mask for UART_USR2_WAKE.
 
 //! @brief Get value of UART_USR2_WAKE from a register value.
-#define BG_UART_USR2_WAKE(r)   (((r) & BM_UART_USR2_WAKE) >> BP_UART_USR2_WAKE)
+#define BG_UART_USR2_WAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_WAKE) >> BP_UART_USR2_WAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_WAKE.
-#define BF_UART_USR2_WAKE(v)   ((((reg32_t) v) << BP_UART_USR2_WAKE) & BM_UART_USR2_WAKE)
-#else
-//! @brief Format value for bitfield UART_USR2_WAKE.
-#define BF_UART_USR2_WAKE(v)   (((v) << BP_UART_USR2_WAKE) & BM_UART_USR2_WAKE)
-#endif
+#define BF_UART_USR2_WAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_WAKE) & BM_UART_USR2_WAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKE field to a new value.
@@ -3092,15 +2764,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_IRINT      (0x00000100)  //!< Bit mask for UART_USR2_IRINT.
 
 //! @brief Get value of UART_USR2_IRINT from a register value.
-#define BG_UART_USR2_IRINT(r)   (((r) & BM_UART_USR2_IRINT) >> BP_UART_USR2_IRINT)
+#define BG_UART_USR2_IRINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_IRINT) >> BP_UART_USR2_IRINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_IRINT.
-#define BF_UART_USR2_IRINT(v)   ((((reg32_t) v) << BP_UART_USR2_IRINT) & BM_UART_USR2_IRINT)
-#else
-//! @brief Format value for bitfield UART_USR2_IRINT.
-#define BF_UART_USR2_IRINT(v)   (((v) << BP_UART_USR2_IRINT) & BM_UART_USR2_IRINT)
-#endif
+#define BF_UART_USR2_IRINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_IRINT) & BM_UART_USR2_IRINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRINT field to a new value.
@@ -3123,7 +2790,7 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_RIIN      (0x00000200)  //!< Bit mask for UART_USR2_RIIN.
 
 //! @brief Get value of UART_USR2_RIIN from a register value.
-#define BG_UART_USR2_RIIN(r)   (((r) & BM_UART_USR2_RIIN) >> BP_UART_USR2_RIIN)
+#define BG_UART_USR2_RIIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RIIN) >> BP_UART_USR2_RIIN)
 
 
 /* --- Register HW_UART_USR2, field RIDELT[10] (W1C)
@@ -3142,15 +2809,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_RIDELT      (0x00000400)  //!< Bit mask for UART_USR2_RIDELT.
 
 //! @brief Get value of UART_USR2_RIDELT from a register value.
-#define BG_UART_USR2_RIDELT(r)   (((r) & BM_UART_USR2_RIDELT) >> BP_UART_USR2_RIDELT)
+#define BG_UART_USR2_RIDELT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RIDELT) >> BP_UART_USR2_RIDELT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_RIDELT.
-#define BF_UART_USR2_RIDELT(v)   ((((reg32_t) v) << BP_UART_USR2_RIDELT) & BM_UART_USR2_RIDELT)
-#else
-//! @brief Format value for bitfield UART_USR2_RIDELT.
-#define BF_UART_USR2_RIDELT(v)   (((v) << BP_UART_USR2_RIDELT) & BM_UART_USR2_RIDELT)
-#endif
+#define BF_UART_USR2_RIDELT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_RIDELT) & BM_UART_USR2_RIDELT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RIDELT field to a new value.
@@ -3174,15 +2836,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_ACST      (0x00000800)  //!< Bit mask for UART_USR2_ACST.
 
 //! @brief Get value of UART_USR2_ACST from a register value.
-#define BG_UART_USR2_ACST(r)   (((r) & BM_UART_USR2_ACST) >> BP_UART_USR2_ACST)
+#define BG_UART_USR2_ACST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ACST) >> BP_UART_USR2_ACST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_ACST.
-#define BF_UART_USR2_ACST(v)   ((((reg32_t) v) << BP_UART_USR2_ACST) & BM_UART_USR2_ACST)
-#else
-//! @brief Format value for bitfield UART_USR2_ACST.
-#define BF_UART_USR2_ACST(v)   (((v) << BP_UART_USR2_ACST) & BM_UART_USR2_ACST)
-#endif
+#define BF_UART_USR2_ACST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ACST) & BM_UART_USR2_ACST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACST field to a new value.
@@ -3205,15 +2862,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_IDLE      (0x00001000)  //!< Bit mask for UART_USR2_IDLE.
 
 //! @brief Get value of UART_USR2_IDLE from a register value.
-#define BG_UART_USR2_IDLE(r)   (((r) & BM_UART_USR2_IDLE) >> BP_UART_USR2_IDLE)
+#define BG_UART_USR2_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_IDLE) >> BP_UART_USR2_IDLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_IDLE.
-#define BF_UART_USR2_IDLE(v)   ((((reg32_t) v) << BP_UART_USR2_IDLE) & BM_UART_USR2_IDLE)
-#else
-//! @brief Format value for bitfield UART_USR2_IDLE.
-#define BF_UART_USR2_IDLE(v)   (((v) << BP_UART_USR2_IDLE) & BM_UART_USR2_IDLE)
-#endif
+#define BF_UART_USR2_IDLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_IDLE) & BM_UART_USR2_IDLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDLE field to a new value.
@@ -3236,15 +2888,10 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_DTRF      (0x00002000)  //!< Bit mask for UART_USR2_DTRF.
 
 //! @brief Get value of UART_USR2_DTRF from a register value.
-#define BG_UART_USR2_DTRF(r)   (((r) & BM_UART_USR2_DTRF) >> BP_UART_USR2_DTRF)
+#define BG_UART_USR2_DTRF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DTRF) >> BP_UART_USR2_DTRF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_DTRF.
-#define BF_UART_USR2_DTRF(v)   ((((reg32_t) v) << BP_UART_USR2_DTRF) & BM_UART_USR2_DTRF)
-#else
-//! @brief Format value for bitfield UART_USR2_DTRF.
-#define BF_UART_USR2_DTRF(v)   (((v) << BP_UART_USR2_DTRF) & BM_UART_USR2_DTRF)
-#endif
+#define BF_UART_USR2_DTRF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_DTRF) & BM_UART_USR2_DTRF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRF field to a new value.
@@ -3267,7 +2914,7 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_TXFE      (0x00004000)  //!< Bit mask for UART_USR2_TXFE.
 
 //! @brief Get value of UART_USR2_TXFE from a register value.
-#define BG_UART_USR2_TXFE(r)   (((r) & BM_UART_USR2_TXFE) >> BP_UART_USR2_TXFE)
+#define BG_UART_USR2_TXFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXFE) >> BP_UART_USR2_TXFE)
 
 
 /* --- Register HW_UART_USR2, field ADET[15] (W1C)
@@ -3285,21 +2932,20 @@ typedef union _hw_uart_usr2
 #define BM_UART_USR2_ADET      (0x00008000)  //!< Bit mask for UART_USR2_ADET.
 
 //! @brief Get value of UART_USR2_ADET from a register value.
-#define BG_UART_USR2_ADET(r)   (((r) & BM_UART_USR2_ADET) >> BP_UART_USR2_ADET)
+#define BG_UART_USR2_ADET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ADET) >> BP_UART_USR2_ADET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_USR2_ADET.
-#define BF_UART_USR2_ADET(v)   ((((reg32_t) v) << BP_UART_USR2_ADET) & BM_UART_USR2_ADET)
-#else
-//! @brief Format value for bitfield UART_USR2_ADET.
-#define BF_UART_USR2_ADET(v)   (((v) << BP_UART_USR2_ADET) & BM_UART_USR2_ADET)
-#endif
+#define BF_UART_USR2_ADET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ADET) & BM_UART_USR2_ADET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADET field to a new value.
 #define BW_UART_USR2_ADET(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ADET) | BF_UART_USR2_ADET(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UESC - UART Escape Character Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3348,20 +2994,19 @@ typedef union _hw_uart_uesc
 #define BM_UART_UESC_ESC_CHAR      (0x000000ff)  //!< Bit mask for UART_UESC_ESC_CHAR.
 
 //! @brief Get value of UART_UESC_ESC_CHAR from a register value.
-#define BG_UART_UESC_ESC_CHAR(r)   (((r) & BM_UART_UESC_ESC_CHAR) >> BP_UART_UESC_ESC_CHAR)
+#define BG_UART_UESC_ESC_CHAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UESC_ESC_CHAR) >> BP_UART_UESC_ESC_CHAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UESC_ESC_CHAR.
-#define BF_UART_UESC_ESC_CHAR(v)   ((((reg32_t) v) << BP_UART_UESC_ESC_CHAR) & BM_UART_UESC_ESC_CHAR)
-#else
-//! @brief Format value for bitfield UART_UESC_ESC_CHAR.
-#define BF_UART_UESC_ESC_CHAR(v)   (((v) << BP_UART_UESC_ESC_CHAR) & BM_UART_UESC_ESC_CHAR)
-#endif
+#define BF_UART_UESC_ESC_CHAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UESC_ESC_CHAR) & BM_UART_UESC_ESC_CHAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESC_CHAR field to a new value.
 #define BW_UART_UESC_ESC_CHAR(x, v)   (HW_UART_UESC_WR(x, (HW_UART_UESC_RD(x) & ~BM_UART_UESC_ESC_CHAR) | BF_UART_UESC_ESC_CHAR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTIM - UART Escape Timer Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3411,20 +3056,19 @@ typedef union _hw_uart_utim
 #define BM_UART_UTIM_TIM      (0x00000fff)  //!< Bit mask for UART_UTIM_TIM.
 
 //! @brief Get value of UART_UTIM_TIM from a register value.
-#define BG_UART_UTIM_TIM(r)   (((r) & BM_UART_UTIM_TIM) >> BP_UART_UTIM_TIM)
+#define BG_UART_UTIM_TIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTIM_TIM) >> BP_UART_UTIM_TIM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTIM_TIM.
-#define BF_UART_UTIM_TIM(v)   ((((reg32_t) v) << BP_UART_UTIM_TIM) & BM_UART_UTIM_TIM)
-#else
-//! @brief Format value for bitfield UART_UTIM_TIM.
-#define BF_UART_UTIM_TIM(v)   (((v) << BP_UART_UTIM_TIM) & BM_UART_UTIM_TIM)
-#endif
+#define BF_UART_UTIM_TIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTIM_TIM) & BM_UART_UTIM_TIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIM field to a new value.
 #define BW_UART_UTIM_TIM(x, v)   (HW_UART_UTIM_WR(x, (HW_UART_UTIM_RD(x) & ~BM_UART_UTIM_TIM) | BF_UART_UTIM_TIM(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBIR - UART BRM Incremental Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3483,20 +3127,19 @@ typedef union _hw_uart_ubir
 #define BM_UART_UBIR_INC      (0x0000ffff)  //!< Bit mask for UART_UBIR_INC.
 
 //! @brief Get value of UART_UBIR_INC from a register value.
-#define BG_UART_UBIR_INC(r)   (((r) & BM_UART_UBIR_INC) >> BP_UART_UBIR_INC)
+#define BG_UART_UBIR_INC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBIR_INC) >> BP_UART_UBIR_INC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UBIR_INC.
-#define BF_UART_UBIR_INC(v)   ((((reg32_t) v) << BP_UART_UBIR_INC) & BM_UART_UBIR_INC)
-#else
-//! @brief Format value for bitfield UART_UBIR_INC.
-#define BF_UART_UBIR_INC(v)   (((v) << BP_UART_UBIR_INC) & BM_UART_UBIR_INC)
-#endif
+#define BF_UART_UBIR_INC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UBIR_INC) & BM_UART_UBIR_INC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC field to a new value.
 #define BW_UART_UBIR_INC(x, v)   (HW_UART_UBIR_WR(x, (HW_UART_UBIR_RD(x) & ~BM_UART_UBIR_INC) | BF_UART_UBIR_INC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBMR - UART BRM Modulator Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3555,20 +3198,19 @@ typedef union _hw_uart_ubmr
 #define BM_UART_UBMR_MOD      (0x0000ffff)  //!< Bit mask for UART_UBMR_MOD.
 
 //! @brief Get value of UART_UBMR_MOD from a register value.
-#define BG_UART_UBMR_MOD(r)   (((r) & BM_UART_UBMR_MOD) >> BP_UART_UBMR_MOD)
+#define BG_UART_UBMR_MOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBMR_MOD) >> BP_UART_UBMR_MOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UBMR_MOD.
-#define BF_UART_UBMR_MOD(v)   ((((reg32_t) v) << BP_UART_UBMR_MOD) & BM_UART_UBMR_MOD)
-#else
-//! @brief Format value for bitfield UART_UBMR_MOD.
-#define BF_UART_UBMR_MOD(v)   (((v) << BP_UART_UBMR_MOD) & BM_UART_UBMR_MOD)
-#endif
+#define BF_UART_UBMR_MOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UBMR_MOD) & BM_UART_UBMR_MOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD field to a new value.
 #define BW_UART_UBMR_MOD(x, v)   (HW_UART_UBMR_WR(x, (HW_UART_UBMR_RD(x) & ~BM_UART_UBMR_MOD) | BF_UART_UBMR_MOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBRC - UART Baud Rate Count Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3617,7 +3259,11 @@ typedef union _hw_uart_ubrc
 #define BM_UART_UBRC_BCNT      (0x0000ffff)  //!< Bit mask for UART_UBRC_BCNT.
 
 //! @brief Get value of UART_UBRC_BCNT from a register value.
-#define BG_UART_UBRC_BCNT(r)   (((r) & BM_UART_UBRC_BCNT) >> BP_UART_UBRC_BCNT)
+#define BG_UART_UBRC_BCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBRC_BCNT) >> BP_UART_UBRC_BCNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_ONEMS - UART One Millisecond Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3675,20 +3321,19 @@ typedef union _hw_uart_onems
 #define BM_UART_ONEMS_ONEMS      (0x00ffffff)  //!< Bit mask for UART_ONEMS_ONEMS.
 
 //! @brief Get value of UART_ONEMS_ONEMS from a register value.
-#define BG_UART_ONEMS_ONEMS(r)   (((r) & BM_UART_ONEMS_ONEMS) >> BP_UART_ONEMS_ONEMS)
+#define BG_UART_ONEMS_ONEMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_ONEMS_ONEMS) >> BP_UART_ONEMS_ONEMS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_ONEMS_ONEMS.
-#define BF_UART_ONEMS_ONEMS(v)   ((((reg32_t) v) << BP_UART_ONEMS_ONEMS) & BM_UART_ONEMS_ONEMS)
-#else
-//! @brief Format value for bitfield UART_ONEMS_ONEMS.
-#define BF_UART_ONEMS_ONEMS(v)   (((v) << BP_UART_ONEMS_ONEMS) & BM_UART_ONEMS_ONEMS)
-#endif
+#define BF_UART_ONEMS_ONEMS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_ONEMS_ONEMS) & BM_UART_ONEMS_ONEMS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ONEMS field to a new value.
 #define BW_UART_ONEMS_ONEMS(x, v)   (HW_UART_ONEMS_WR(x, (HW_UART_ONEMS_RD(x) & ~BM_UART_ONEMS_ONEMS) | BF_UART_ONEMS_ONEMS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTS - UART Test Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3751,15 +3396,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_SOFTRST      (0x00000001)  //!< Bit mask for UART_UTS_SOFTRST.
 
 //! @brief Get value of UART_UTS_SOFTRST from a register value.
-#define BG_UART_UTS_SOFTRST(r)   (((r) & BM_UART_UTS_SOFTRST) >> BP_UART_UTS_SOFTRST)
+#define BG_UART_UTS_SOFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_SOFTRST) >> BP_UART_UTS_SOFTRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_SOFTRST.
-#define BF_UART_UTS_SOFTRST(v)   ((((reg32_t) v) << BP_UART_UTS_SOFTRST) & BM_UART_UTS_SOFTRST)
-#else
-//! @brief Format value for bitfield UART_UTS_SOFTRST.
-#define BF_UART_UTS_SOFTRST(v)   (((v) << BP_UART_UTS_SOFTRST) & BM_UART_UTS_SOFTRST)
-#endif
+#define BF_UART_UTS_SOFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_SOFTRST) & BM_UART_UTS_SOFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOFTRST field to a new value.
@@ -3780,15 +3420,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_RXFULL      (0x00000008)  //!< Bit mask for UART_UTS_RXFULL.
 
 //! @brief Get value of UART_UTS_RXFULL from a register value.
-#define BG_UART_UTS_RXFULL(r)   (((r) & BM_UART_UTS_RXFULL) >> BP_UART_UTS_RXFULL)
+#define BG_UART_UTS_RXFULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXFULL) >> BP_UART_UTS_RXFULL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_RXFULL.
-#define BF_UART_UTS_RXFULL(v)   ((((reg32_t) v) << BP_UART_UTS_RXFULL) & BM_UART_UTS_RXFULL)
-#else
-//! @brief Format value for bitfield UART_UTS_RXFULL.
-#define BF_UART_UTS_RXFULL(v)   (((v) << BP_UART_UTS_RXFULL) & BM_UART_UTS_RXFULL)
-#endif
+#define BF_UART_UTS_RXFULL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXFULL) & BM_UART_UTS_RXFULL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXFULL field to a new value.
@@ -3809,15 +3444,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_TXFULL      (0x00000010)  //!< Bit mask for UART_UTS_TXFULL.
 
 //! @brief Get value of UART_UTS_TXFULL from a register value.
-#define BG_UART_UTS_TXFULL(r)   (((r) & BM_UART_UTS_TXFULL) >> BP_UART_UTS_TXFULL)
+#define BG_UART_UTS_TXFULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_TXFULL) >> BP_UART_UTS_TXFULL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_TXFULL.
-#define BF_UART_UTS_TXFULL(v)   ((((reg32_t) v) << BP_UART_UTS_TXFULL) & BM_UART_UTS_TXFULL)
-#else
-//! @brief Format value for bitfield UART_UTS_TXFULL.
-#define BF_UART_UTS_TXFULL(v)   (((v) << BP_UART_UTS_TXFULL) & BM_UART_UTS_TXFULL)
-#endif
+#define BF_UART_UTS_TXFULL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_TXFULL) & BM_UART_UTS_TXFULL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXFULL field to a new value.
@@ -3838,15 +3468,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_RXEMPTY      (0x00000020)  //!< Bit mask for UART_UTS_RXEMPTY.
 
 //! @brief Get value of UART_UTS_RXEMPTY from a register value.
-#define BG_UART_UTS_RXEMPTY(r)   (((r) & BM_UART_UTS_RXEMPTY) >> BP_UART_UTS_RXEMPTY)
+#define BG_UART_UTS_RXEMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXEMPTY) >> BP_UART_UTS_RXEMPTY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_RXEMPTY.
-#define BF_UART_UTS_RXEMPTY(v)   ((((reg32_t) v) << BP_UART_UTS_RXEMPTY) & BM_UART_UTS_RXEMPTY)
-#else
-//! @brief Format value for bitfield UART_UTS_RXEMPTY.
-#define BF_UART_UTS_RXEMPTY(v)   (((v) << BP_UART_UTS_RXEMPTY) & BM_UART_UTS_RXEMPTY)
-#endif
+#define BF_UART_UTS_RXEMPTY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXEMPTY) & BM_UART_UTS_RXEMPTY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXEMPTY field to a new value.
@@ -3867,15 +3492,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_TXEMPTY      (0x00000040)  //!< Bit mask for UART_UTS_TXEMPTY.
 
 //! @brief Get value of UART_UTS_TXEMPTY from a register value.
-#define BG_UART_UTS_TXEMPTY(r)   (((r) & BM_UART_UTS_TXEMPTY) >> BP_UART_UTS_TXEMPTY)
+#define BG_UART_UTS_TXEMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_TXEMPTY) >> BP_UART_UTS_TXEMPTY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_TXEMPTY.
-#define BF_UART_UTS_TXEMPTY(v)   ((((reg32_t) v) << BP_UART_UTS_TXEMPTY) & BM_UART_UTS_TXEMPTY)
-#else
-//! @brief Format value for bitfield UART_UTS_TXEMPTY.
-#define BF_UART_UTS_TXEMPTY(v)   (((v) << BP_UART_UTS_TXEMPTY) & BM_UART_UTS_TXEMPTY)
-#endif
+#define BF_UART_UTS_TXEMPTY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_TXEMPTY) & BM_UART_UTS_TXEMPTY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXEMPTY field to a new value.
@@ -3898,15 +3518,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_RXDBG      (0x00000200)  //!< Bit mask for UART_UTS_RXDBG.
 
 //! @brief Get value of UART_UTS_RXDBG from a register value.
-#define BG_UART_UTS_RXDBG(r)   (((r) & BM_UART_UTS_RXDBG) >> BP_UART_UTS_RXDBG)
+#define BG_UART_UTS_RXDBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXDBG) >> BP_UART_UTS_RXDBG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_RXDBG.
-#define BF_UART_UTS_RXDBG(v)   ((((reg32_t) v) << BP_UART_UTS_RXDBG) & BM_UART_UTS_RXDBG)
-#else
-//! @brief Format value for bitfield UART_UTS_RXDBG.
-#define BF_UART_UTS_RXDBG(v)   (((v) << BP_UART_UTS_RXDBG) & BM_UART_UTS_RXDBG)
-#endif
+#define BF_UART_UTS_RXDBG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXDBG) & BM_UART_UTS_RXDBG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDBG field to a new value.
@@ -3928,15 +3543,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_LOOPIR      (0x00000400)  //!< Bit mask for UART_UTS_LOOPIR.
 
 //! @brief Get value of UART_UTS_LOOPIR from a register value.
-#define BG_UART_UTS_LOOPIR(r)   (((r) & BM_UART_UTS_LOOPIR) >> BP_UART_UTS_LOOPIR)
+#define BG_UART_UTS_LOOPIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_LOOPIR) >> BP_UART_UTS_LOOPIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_LOOPIR.
-#define BF_UART_UTS_LOOPIR(v)   ((((reg32_t) v) << BP_UART_UTS_LOOPIR) & BM_UART_UTS_LOOPIR)
-#else
-//! @brief Format value for bitfield UART_UTS_LOOPIR.
-#define BF_UART_UTS_LOOPIR(v)   (((v) << BP_UART_UTS_LOOPIR) & BM_UART_UTS_LOOPIR)
-#endif
+#define BF_UART_UTS_LOOPIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_LOOPIR) & BM_UART_UTS_LOOPIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOPIR field to a new value.
@@ -3958,15 +3568,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_DBGEN      (0x00000800)  //!< Bit mask for UART_UTS_DBGEN.
 
 //! @brief Get value of UART_UTS_DBGEN from a register value.
-#define BG_UART_UTS_DBGEN(r)   (((r) & BM_UART_UTS_DBGEN) >> BP_UART_UTS_DBGEN)
+#define BG_UART_UTS_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_DBGEN) >> BP_UART_UTS_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_DBGEN.
-#define BF_UART_UTS_DBGEN(v)   ((((reg32_t) v) << BP_UART_UTS_DBGEN) & BM_UART_UTS_DBGEN)
-#else
-//! @brief Format value for bitfield UART_UTS_DBGEN.
-#define BF_UART_UTS_DBGEN(v)   (((v) << BP_UART_UTS_DBGEN) & BM_UART_UTS_DBGEN)
-#endif
+#define BF_UART_UTS_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_DBGEN) & BM_UART_UTS_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
@@ -3990,15 +3595,10 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_LOOP      (0x00001000)  //!< Bit mask for UART_UTS_LOOP.
 
 //! @brief Get value of UART_UTS_LOOP from a register value.
-#define BG_UART_UTS_LOOP(r)   (((r) & BM_UART_UTS_LOOP) >> BP_UART_UTS_LOOP)
+#define BG_UART_UTS_LOOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_LOOP) >> BP_UART_UTS_LOOP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_LOOP.
-#define BF_UART_UTS_LOOP(v)   ((((reg32_t) v) << BP_UART_UTS_LOOP) & BM_UART_UTS_LOOP)
-#else
-//! @brief Format value for bitfield UART_UTS_LOOP.
-#define BF_UART_UTS_LOOP(v)   (((v) << BP_UART_UTS_LOOP) & BM_UART_UTS_LOOP)
-#endif
+#define BF_UART_UTS_LOOP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_LOOP) & BM_UART_UTS_LOOP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOP field to a new value.
@@ -4020,21 +3620,20 @@ typedef union _hw_uart_uts
 #define BM_UART_UTS_FRCPERR      (0x00002000)  //!< Bit mask for UART_UTS_FRCPERR.
 
 //! @brief Get value of UART_UTS_FRCPERR from a register value.
-#define BG_UART_UTS_FRCPERR(r)   (((r) & BM_UART_UTS_FRCPERR) >> BP_UART_UTS_FRCPERR)
+#define BG_UART_UTS_FRCPERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_FRCPERR) >> BP_UART_UTS_FRCPERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UTS_FRCPERR.
-#define BF_UART_UTS_FRCPERR(v)   ((((reg32_t) v) << BP_UART_UTS_FRCPERR) & BM_UART_UTS_FRCPERR)
-#else
-//! @brief Format value for bitfield UART_UTS_FRCPERR.
-#define BF_UART_UTS_FRCPERR(v)   (((v) << BP_UART_UTS_FRCPERR) & BM_UART_UTS_FRCPERR)
-#endif
+#define BF_UART_UTS_FRCPERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_FRCPERR) & BM_UART_UTS_FRCPERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRCPERR field to a new value.
 #define BW_UART_UTS_FRCPERR(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_FRCPERR) | BF_UART_UTS_FRCPERR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UMCR - UART RS-485 Mode Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4091,15 +3690,10 @@ typedef union _hw_uart_umcr
 #define BM_UART_UMCR_MDEN      (0x00000001)  //!< Bit mask for UART_UMCR_MDEN.
 
 //! @brief Get value of UART_UMCR_MDEN from a register value.
-#define BG_UART_UMCR_MDEN(r)   (((r) & BM_UART_UMCR_MDEN) >> BP_UART_UMCR_MDEN)
+#define BG_UART_UMCR_MDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_MDEN) >> BP_UART_UMCR_MDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UMCR_MDEN.
-#define BF_UART_UMCR_MDEN(v)   ((((reg32_t) v) << BP_UART_UMCR_MDEN) & BM_UART_UMCR_MDEN)
-#else
-//! @brief Format value for bitfield UART_UMCR_MDEN.
-#define BF_UART_UMCR_MDEN(v)   (((v) << BP_UART_UMCR_MDEN) & BM_UART_UMCR_MDEN)
-#endif
+#define BF_UART_UMCR_MDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_MDEN) & BM_UART_UMCR_MDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MDEN field to a new value.
@@ -4120,15 +3714,10 @@ typedef union _hw_uart_umcr
 #define BM_UART_UMCR_SLAM      (0x00000002)  //!< Bit mask for UART_UMCR_SLAM.
 
 //! @brief Get value of UART_UMCR_SLAM from a register value.
-#define BG_UART_UMCR_SLAM(r)   (((r) & BM_UART_UMCR_SLAM) >> BP_UART_UMCR_SLAM)
+#define BG_UART_UMCR_SLAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SLAM) >> BP_UART_UMCR_SLAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UMCR_SLAM.
-#define BF_UART_UMCR_SLAM(v)   ((((reg32_t) v) << BP_UART_UMCR_SLAM) & BM_UART_UMCR_SLAM)
-#else
-//! @brief Format value for bitfield UART_UMCR_SLAM.
-#define BF_UART_UMCR_SLAM(v)   (((v) << BP_UART_UMCR_SLAM) & BM_UART_UMCR_SLAM)
-#endif
+#define BF_UART_UMCR_SLAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SLAM) & BM_UART_UMCR_SLAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLAM field to a new value.
@@ -4150,15 +3739,10 @@ typedef union _hw_uart_umcr
 #define BM_UART_UMCR_TXB8      (0x00000004)  //!< Bit mask for UART_UMCR_TXB8.
 
 //! @brief Get value of UART_UMCR_TXB8 from a register value.
-#define BG_UART_UMCR_TXB8(r)   (((r) & BM_UART_UMCR_TXB8) >> BP_UART_UMCR_TXB8)
+#define BG_UART_UMCR_TXB8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_TXB8) >> BP_UART_UMCR_TXB8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UMCR_TXB8.
-#define BF_UART_UMCR_TXB8(v)   ((((reg32_t) v) << BP_UART_UMCR_TXB8) & BM_UART_UMCR_TXB8)
-#else
-//! @brief Format value for bitfield UART_UMCR_TXB8.
-#define BF_UART_UMCR_TXB8(v)   (((v) << BP_UART_UMCR_TXB8) & BM_UART_UMCR_TXB8)
-#endif
+#define BF_UART_UMCR_TXB8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_TXB8) & BM_UART_UMCR_TXB8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB8 field to a new value.
@@ -4179,15 +3763,10 @@ typedef union _hw_uart_umcr
 #define BM_UART_UMCR_SADEN      (0x00000008)  //!< Bit mask for UART_UMCR_SADEN.
 
 //! @brief Get value of UART_UMCR_SADEN from a register value.
-#define BG_UART_UMCR_SADEN(r)   (((r) & BM_UART_UMCR_SADEN) >> BP_UART_UMCR_SADEN)
+#define BG_UART_UMCR_SADEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SADEN) >> BP_UART_UMCR_SADEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UMCR_SADEN.
-#define BF_UART_UMCR_SADEN(v)   ((((reg32_t) v) << BP_UART_UMCR_SADEN) & BM_UART_UMCR_SADEN)
-#else
-//! @brief Format value for bitfield UART_UMCR_SADEN.
-#define BF_UART_UMCR_SADEN(v)   (((v) << BP_UART_UMCR_SADEN) & BM_UART_UMCR_SADEN)
-#endif
+#define BF_UART_UMCR_SADEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SADEN) & BM_UART_UMCR_SADEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SADEN field to a new value.
@@ -4205,15 +3784,10 @@ typedef union _hw_uart_umcr
 #define BM_UART_UMCR_SLADDR      (0x0000ff00)  //!< Bit mask for UART_UMCR_SLADDR.
 
 //! @brief Get value of UART_UMCR_SLADDR from a register value.
-#define BG_UART_UMCR_SLADDR(r)   (((r) & BM_UART_UMCR_SLADDR) >> BP_UART_UMCR_SLADDR)
+#define BG_UART_UMCR_SLADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SLADDR) >> BP_UART_UMCR_SLADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield UART_UMCR_SLADDR.
-#define BF_UART_UMCR_SLADDR(v)   ((((reg32_t) v) << BP_UART_UMCR_SLADDR) & BM_UART_UMCR_SLADDR)
-#else
-//! @brief Format value for bitfield UART_UMCR_SLADDR.
-#define BF_UART_UMCR_SLADDR(v)   (((v) << BP_UART_UMCR_SLADDR) & BM_UART_UMCR_SLADDR)
-#endif
+#define BF_UART_UMCR_SLADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SLADDR) & BM_UART_UMCR_SLADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLADDR field to a new value.

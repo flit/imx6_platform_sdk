@@ -57,6 +57,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQH_CLK_CTRL - AQHiClockControl
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPU3D_AQH_CLK_CTRL - AQHiClockControl (RW)
@@ -116,15 +131,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS      (0x00000001)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_CLK3D_DIS.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_CLK3D_DIS from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_CLK3D_DIS(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS) >> BP_GPU3D_AQH_CLK_CTRL_CLK3D_DIS)
+#define BG_GPU3D_AQH_CLK_CTRL_CLK3D_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS) >> BP_GPU3D_AQH_CLK_CTRL_CLK3D_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_CLK3D_DIS.
-#define BF_GPU3D_AQH_CLK_CTRL_CLK3D_DIS(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_CLK3D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_CLK3D_DIS.
-#define BF_GPU3D_AQH_CLK_CTRL_CLK3D_DIS(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_CLK3D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_CLK3D_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_CLK3D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK3D_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLK3D_DIS field to a new value.
@@ -140,15 +150,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS      (0x00000002)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_CLK2D_DIS.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_CLK2D_DIS from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_CLK2D_DIS(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS) >> BP_GPU3D_AQH_CLK_CTRL_CLK2D_DIS)
+#define BG_GPU3D_AQH_CLK_CTRL_CLK2D_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS) >> BP_GPU3D_AQH_CLK_CTRL_CLK2D_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_CLK2D_DIS.
-#define BF_GPU3D_AQH_CLK_CTRL_CLK2D_DIS(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_CLK2D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_CLK2D_DIS.
-#define BF_GPU3D_AQH_CLK_CTRL_CLK2D_DIS(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_CLK2D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_CLK2D_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_CLK2D_DIS) & BM_GPU3D_AQH_CLK_CTRL_CLK2D_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLK2D_DIS field to a new value.
@@ -164,15 +169,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL      (0x000001fc)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_FSCALE_VAL.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_FSCALE_VAL from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL) >> BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL)
+#define BG_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL) >> BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_FSCALE_VAL.
-#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_FSCALE_VAL.
-#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FSCALE_VAL field to a new value.
@@ -188,15 +188,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD      (0x00000200)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD) >> BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD)
+#define BG_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD) >> BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD.
-#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD.
-#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD) & BM_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FSCALE_CMD_LOAD field to a new value.
@@ -212,15 +207,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING      (0x00000400)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING) >> BP_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING)
+#define BG_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING) >> BP_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING.
-#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING.
-#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_RAM_CLOCK_GATING)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISABLE_RAM_CLOCK_GATING field to a new value.
@@ -236,15 +226,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS      (0x00000800)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS) >> BP_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS)
+#define BG_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS) >> BP_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS.
-#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS.
-#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS) & BM_GPU3D_AQH_CLK_CTRL_DISABLE_DEBUG_REGISTERS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISABLE_DEBUG_REGISTERS field to a new value.
@@ -260,15 +245,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET      (0x00001000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_SOFT_RESET.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_SOFT_RESET from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_SOFT_RESET(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET) >> BP_GPU3D_AQH_CLK_CTRL_SOFT_RESET)
+#define BG_GPU3D_AQH_CLK_CTRL_SOFT_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET) >> BP_GPU3D_AQH_CLK_CTRL_SOFT_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_SOFT_RESET.
-#define BF_GPU3D_AQH_CLK_CTRL_SOFT_RESET(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_SOFT_RESET) & BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_SOFT_RESET.
-#define BF_GPU3D_AQH_CLK_CTRL_SOFT_RESET(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_SOFT_RESET) & BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_SOFT_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_SOFT_RESET) & BM_GPU3D_AQH_CLK_CTRL_SOFT_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOFT_RESET field to a new value.
@@ -284,15 +264,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_IDLE3_D      (0x00010000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_IDLE3_D.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_IDLE3_D from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_IDLE3_D(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_IDLE3_D) >> BP_GPU3D_AQH_CLK_CTRL_IDLE3_D)
+#define BG_GPU3D_AQH_CLK_CTRL_IDLE3_D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_IDLE3_D) >> BP_GPU3D_AQH_CLK_CTRL_IDLE3_D)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE3_D.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE3_D(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_IDLE3_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE3_D)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE3_D.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE3_D(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_IDLE3_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE3_D)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_IDLE3_D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_IDLE3_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE3_D)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDLE3_D field to a new value.
@@ -308,15 +283,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_IDLE2_D      (0x00020000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_IDLE2_D.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_IDLE2_D from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_IDLE2_D(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_IDLE2_D) >> BP_GPU3D_AQH_CLK_CTRL_IDLE2_D)
+#define BG_GPU3D_AQH_CLK_CTRL_IDLE2_D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_IDLE2_D) >> BP_GPU3D_AQH_CLK_CTRL_IDLE2_D)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE2_D.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE2_D(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_IDLE2_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE2_D)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE2_D.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE2_D(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_IDLE2_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE2_D)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_IDLE2_D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_IDLE2_D) & BM_GPU3D_AQH_CLK_CTRL_IDLE2_D)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDLE2_D field to a new value.
@@ -332,15 +302,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_IDLE_VG      (0x00040000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_IDLE_VG.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_IDLE_VG from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_IDLE_VG(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_IDLE_VG) >> BP_GPU3D_AQH_CLK_CTRL_IDLE_VG)
+#define BG_GPU3D_AQH_CLK_CTRL_IDLE_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_IDLE_VG) >> BP_GPU3D_AQH_CLK_CTRL_IDLE_VG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE_VG.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE_VG(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_IDLE_VG) & BM_GPU3D_AQH_CLK_CTRL_IDLE_VG)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_IDLE_VG.
-#define BF_GPU3D_AQH_CLK_CTRL_IDLE_VG(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_IDLE_VG) & BM_GPU3D_AQH_CLK_CTRL_IDLE_VG)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_IDLE_VG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_IDLE_VG) & BM_GPU3D_AQH_CLK_CTRL_IDLE_VG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDLE_VG field to a new value.
@@ -356,15 +321,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU      (0x00080000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_ISOLATE_GPU.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_ISOLATE_GPU from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU) >> BP_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU)
+#define BG_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU) >> BP_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_ISOLATE_GPU.
-#define BF_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU) & BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_ISOLATE_GPU.
-#define BF_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU) & BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU) & BM_GPU3D_AQH_CLK_CTRL_ISOLATE_GPU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISOLATE_GPU field to a new value.
@@ -380,15 +340,10 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT      (0x00f00000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT) >> BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT)
+#define BG_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT) >> BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT.
-#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT.
-#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_REG_SELECT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MULTI_PIPE_REG_SELECT field to a new value.
@@ -404,20 +359,19 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 #define BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI      (0x0f000000)  //!< Bit mask for GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI.
 
 //! @brief Get value of GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI from a register value.
-#define BG_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(r)   (((r) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) >> BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI)
+#define BG_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) >> BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI.
-#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(v)   ((((reg32_t) v) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI)
-#else
-//! @brief Format value for bitfield GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI.
-#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(v)   (((v) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI)
-#endif
+#define BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) & BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MULTI_PIPE_USE_SINGLE_AXI field to a new value.
 #define BW_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(v)   (HW_GPU3D_AQH_CLK_CTRL_WR((HW_GPU3D_AQH_CLK_CTRL_RD() & ~BM_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI) | BF_GPU3D_AQH_CLK_CTRL_MULTI_PIPE_USE_SINGLE_AXI(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQH_IDLE - AQHIdle
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -473,7 +427,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_FE      (0x00000001)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_FE.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_FE from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_FE(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_FE) >> BP_GPU3D_AQH_IDLE_IDLE_FE)
+#define BG_GPU3D_AQH_IDLE_IDLE_FE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_FE) >> BP_GPU3D_AQH_IDLE_IDLE_FE)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_DE[1] (RO)
  *
@@ -484,7 +438,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_DE      (0x00000002)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_DE.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_DE from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_DE(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_DE) >> BP_GPU3D_AQH_IDLE_IDLE_DE)
+#define BG_GPU3D_AQH_IDLE_IDLE_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_DE) >> BP_GPU3D_AQH_IDLE_IDLE_DE)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_PE[2] (RO)
  *
@@ -495,7 +449,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_PE      (0x00000004)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_PE.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_PE from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_PE(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_PE) >> BP_GPU3D_AQH_IDLE_IDLE_PE)
+#define BG_GPU3D_AQH_IDLE_IDLE_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_PE) >> BP_GPU3D_AQH_IDLE_IDLE_PE)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_SH[3] (RO)
  *
@@ -506,7 +460,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_SH      (0x00000008)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_SH.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_SH from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_SH(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_SH) >> BP_GPU3D_AQH_IDLE_IDLE_SH)
+#define BG_GPU3D_AQH_IDLE_IDLE_SH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_SH) >> BP_GPU3D_AQH_IDLE_IDLE_SH)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_PA[4] (RO)
  *
@@ -517,7 +471,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_PA      (0x00000010)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_PA.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_PA from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_PA(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_PA) >> BP_GPU3D_AQH_IDLE_IDLE_PA)
+#define BG_GPU3D_AQH_IDLE_IDLE_PA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_PA) >> BP_GPU3D_AQH_IDLE_IDLE_PA)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_SE[5] (RO)
  *
@@ -528,7 +482,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_SE      (0x00000020)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_SE.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_SE from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_SE(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_SE) >> BP_GPU3D_AQH_IDLE_IDLE_SE)
+#define BG_GPU3D_AQH_IDLE_IDLE_SE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_SE) >> BP_GPU3D_AQH_IDLE_IDLE_SE)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_RA[6] (RO)
  *
@@ -539,7 +493,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_RA      (0x00000040)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_RA.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_RA from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_RA(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_RA) >> BP_GPU3D_AQH_IDLE_IDLE_RA)
+#define BG_GPU3D_AQH_IDLE_IDLE_RA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_RA) >> BP_GPU3D_AQH_IDLE_IDLE_RA)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_TX[7] (RO)
  *
@@ -550,7 +504,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_TX      (0x00000080)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_TX.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_TX from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_TX(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_TX) >> BP_GPU3D_AQH_IDLE_IDLE_TX)
+#define BG_GPU3D_AQH_IDLE_IDLE_TX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_TX) >> BP_GPU3D_AQH_IDLE_IDLE_TX)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_VG[8] (RO)
  *
@@ -561,7 +515,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_VG      (0x00000100)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_VG.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_VG from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_VG(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_VG) >> BP_GPU3D_AQH_IDLE_IDLE_VG)
+#define BG_GPU3D_AQH_IDLE_IDLE_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_VG) >> BP_GPU3D_AQH_IDLE_IDLE_VG)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_IM[9] (RO)
  *
@@ -572,7 +526,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_IM      (0x00000200)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_IM.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_IM from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_IM(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_IM) >> BP_GPU3D_AQH_IDLE_IDLE_IM)
+#define BG_GPU3D_AQH_IDLE_IDLE_IM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_IM) >> BP_GPU3D_AQH_IDLE_IDLE_IM)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_FP[10] (RO)
  *
@@ -583,7 +537,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_FP      (0x00000400)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_FP.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_FP from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_FP(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_FP) >> BP_GPU3D_AQH_IDLE_IDLE_FP)
+#define BG_GPU3D_AQH_IDLE_IDLE_FP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_FP) >> BP_GPU3D_AQH_IDLE_IDLE_FP)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field IDLE_TS[11] (RO)
  *
@@ -594,7 +548,7 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_IDLE_TS      (0x00000800)  //!< Bit mask for GPU3D_AQH_IDLE_IDLE_TS.
 
 //! @brief Get value of GPU3D_AQH_IDLE_IDLE_TS from a register value.
-#define BG_GPU3D_AQH_IDLE_IDLE_TS(r)   (((r) & BM_GPU3D_AQH_IDLE_IDLE_TS) >> BP_GPU3D_AQH_IDLE_IDLE_TS)
+#define BG_GPU3D_AQH_IDLE_IDLE_TS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_IDLE_TS) >> BP_GPU3D_AQH_IDLE_IDLE_TS)
 
 /* --- Register HW_GPU3D_AQH_IDLE, field AXI_LP[31] (RO)
  *
@@ -605,7 +559,11 @@ typedef union _hw_gpu3d_aqh_idle
 #define BM_GPU3D_AQH_IDLE_AXI_LP      (0x80000000)  //!< Bit mask for GPU3D_AQH_IDLE_AXI_LP.
 
 //! @brief Get value of GPU3D_AQH_IDLE_AXI_LP from a register value.
-#define BG_GPU3D_AQH_IDLE_AXI_LP(r)   (((r) & BM_GPU3D_AQH_IDLE_AXI_LP) >> BP_GPU3D_AQH_IDLE_AXI_LP)
+#define BG_GPU3D_AQH_IDLE_AXI_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQH_IDLE_AXI_LP) >> BP_GPU3D_AQH_IDLE_AXI_LP)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQA_CFG - AQAxiConfig
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -656,15 +614,10 @@ typedef union _hw_gpu3d_aqa_cfg
 #define BM_GPU3D_AQA_CFG_AWID      (0x0000000f)  //!< Bit mask for GPU3D_AQA_CFG_AWID.
 
 //! @brief Get value of GPU3D_AQA_CFG_AWID from a register value.
-#define BG_GPU3D_AQA_CFG_AWID(r)   (((r) & BM_GPU3D_AQA_CFG_AWID) >> BP_GPU3D_AQA_CFG_AWID)
+#define BG_GPU3D_AQA_CFG_AWID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_CFG_AWID) >> BP_GPU3D_AQA_CFG_AWID)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQA_CFG_AWID.
-#define BF_GPU3D_AQA_CFG_AWID(v)   ((((reg32_t) v) << BP_GPU3D_AQA_CFG_AWID) & BM_GPU3D_AQA_CFG_AWID)
-#else
-//! @brief Format value for bitfield GPU3D_AQA_CFG_AWID.
-#define BF_GPU3D_AQA_CFG_AWID(v)   (((v) << BP_GPU3D_AQA_CFG_AWID) & BM_GPU3D_AQA_CFG_AWID)
-#endif
+#define BF_GPU3D_AQA_CFG_AWID(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQA_CFG_AWID) & BM_GPU3D_AQA_CFG_AWID)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWID field to a new value.
@@ -680,15 +633,10 @@ typedef union _hw_gpu3d_aqa_cfg
 #define BM_GPU3D_AQA_CFG_ARID      (0x000000f0)  //!< Bit mask for GPU3D_AQA_CFG_ARID.
 
 //! @brief Get value of GPU3D_AQA_CFG_ARID from a register value.
-#define BG_GPU3D_AQA_CFG_ARID(r)   (((r) & BM_GPU3D_AQA_CFG_ARID) >> BP_GPU3D_AQA_CFG_ARID)
+#define BG_GPU3D_AQA_CFG_ARID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_CFG_ARID) >> BP_GPU3D_AQA_CFG_ARID)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQA_CFG_ARID.
-#define BF_GPU3D_AQA_CFG_ARID(v)   ((((reg32_t) v) << BP_GPU3D_AQA_CFG_ARID) & BM_GPU3D_AQA_CFG_ARID)
-#else
-//! @brief Format value for bitfield GPU3D_AQA_CFG_ARID.
-#define BF_GPU3D_AQA_CFG_ARID(v)   (((v) << BP_GPU3D_AQA_CFG_ARID) & BM_GPU3D_AQA_CFG_ARID)
-#endif
+#define BF_GPU3D_AQA_CFG_ARID(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQA_CFG_ARID) & BM_GPU3D_AQA_CFG_ARID)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARID field to a new value.
@@ -704,15 +652,10 @@ typedef union _hw_gpu3d_aqa_cfg
 #define BM_GPU3D_AQA_CFG_AWCACHE      (0x00000f00)  //!< Bit mask for GPU3D_AQA_CFG_AWCACHE.
 
 //! @brief Get value of GPU3D_AQA_CFG_AWCACHE from a register value.
-#define BG_GPU3D_AQA_CFG_AWCACHE(r)   (((r) & BM_GPU3D_AQA_CFG_AWCACHE) >> BP_GPU3D_AQA_CFG_AWCACHE)
+#define BG_GPU3D_AQA_CFG_AWCACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_CFG_AWCACHE) >> BP_GPU3D_AQA_CFG_AWCACHE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQA_CFG_AWCACHE.
-#define BF_GPU3D_AQA_CFG_AWCACHE(v)   ((((reg32_t) v) << BP_GPU3D_AQA_CFG_AWCACHE) & BM_GPU3D_AQA_CFG_AWCACHE)
-#else
-//! @brief Format value for bitfield GPU3D_AQA_CFG_AWCACHE.
-#define BF_GPU3D_AQA_CFG_AWCACHE(v)   (((v) << BP_GPU3D_AQA_CFG_AWCACHE) & BM_GPU3D_AQA_CFG_AWCACHE)
-#endif
+#define BF_GPU3D_AQA_CFG_AWCACHE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQA_CFG_AWCACHE) & BM_GPU3D_AQA_CFG_AWCACHE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWCACHE field to a new value.
@@ -728,20 +671,19 @@ typedef union _hw_gpu3d_aqa_cfg
 #define BM_GPU3D_AQA_CFG_ARCACHE      (0x0000f000)  //!< Bit mask for GPU3D_AQA_CFG_ARCACHE.
 
 //! @brief Get value of GPU3D_AQA_CFG_ARCACHE from a register value.
-#define BG_GPU3D_AQA_CFG_ARCACHE(r)   (((r) & BM_GPU3D_AQA_CFG_ARCACHE) >> BP_GPU3D_AQA_CFG_ARCACHE)
+#define BG_GPU3D_AQA_CFG_ARCACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_CFG_ARCACHE) >> BP_GPU3D_AQA_CFG_ARCACHE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQA_CFG_ARCACHE.
-#define BF_GPU3D_AQA_CFG_ARCACHE(v)   ((((reg32_t) v) << BP_GPU3D_AQA_CFG_ARCACHE) & BM_GPU3D_AQA_CFG_ARCACHE)
-#else
-//! @brief Format value for bitfield GPU3D_AQA_CFG_ARCACHE.
-#define BF_GPU3D_AQA_CFG_ARCACHE(v)   (((v) << BP_GPU3D_AQA_CFG_ARCACHE) & BM_GPU3D_AQA_CFG_ARCACHE)
-#endif
+#define BF_GPU3D_AQA_CFG_ARCACHE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQA_CFG_ARCACHE) & BM_GPU3D_AQA_CFG_ARCACHE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCACHE field to a new value.
 #define BW_GPU3D_AQA_CFG_ARCACHE(v)   (HW_GPU3D_AQA_CFG_WR((HW_GPU3D_AQA_CFG_RD() & ~BM_GPU3D_AQA_CFG_ARCACHE) | BF_GPU3D_AQA_CFG_ARCACHE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQA_STATUS - AQAxiStatus
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -788,7 +730,7 @@ typedef union _hw_gpu3d_aqa_status
 #define BM_GPU3D_AQA_STATUS_WR_ERR_ID      (0x0000000f)  //!< Bit mask for GPU3D_AQA_STATUS_WR_ERR_ID.
 
 //! @brief Get value of GPU3D_AQA_STATUS_WR_ERR_ID from a register value.
-#define BG_GPU3D_AQA_STATUS_WR_ERR_ID(r)   (((r) & BM_GPU3D_AQA_STATUS_WR_ERR_ID) >> BP_GPU3D_AQA_STATUS_WR_ERR_ID)
+#define BG_GPU3D_AQA_STATUS_WR_ERR_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_STATUS_WR_ERR_ID) >> BP_GPU3D_AQA_STATUS_WR_ERR_ID)
 
 /* --- Register HW_GPU3D_AQA_STATUS, field RD_ERR_ID[7:4] (RO)
  *
@@ -799,7 +741,7 @@ typedef union _hw_gpu3d_aqa_status
 #define BM_GPU3D_AQA_STATUS_RD_ERR_ID      (0x000000f0)  //!< Bit mask for GPU3D_AQA_STATUS_RD_ERR_ID.
 
 //! @brief Get value of GPU3D_AQA_STATUS_RD_ERR_ID from a register value.
-#define BG_GPU3D_AQA_STATUS_RD_ERR_ID(r)   (((r) & BM_GPU3D_AQA_STATUS_RD_ERR_ID) >> BP_GPU3D_AQA_STATUS_RD_ERR_ID)
+#define BG_GPU3D_AQA_STATUS_RD_ERR_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_STATUS_RD_ERR_ID) >> BP_GPU3D_AQA_STATUS_RD_ERR_ID)
 
 /* --- Register HW_GPU3D_AQA_STATUS, field DET_WR_ERR[8] (RO)
  *
@@ -810,7 +752,7 @@ typedef union _hw_gpu3d_aqa_status
 #define BM_GPU3D_AQA_STATUS_DET_WR_ERR      (0x00000100)  //!< Bit mask for GPU3D_AQA_STATUS_DET_WR_ERR.
 
 //! @brief Get value of GPU3D_AQA_STATUS_DET_WR_ERR from a register value.
-#define BG_GPU3D_AQA_STATUS_DET_WR_ERR(r)   (((r) & BM_GPU3D_AQA_STATUS_DET_WR_ERR) >> BP_GPU3D_AQA_STATUS_DET_WR_ERR)
+#define BG_GPU3D_AQA_STATUS_DET_WR_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_STATUS_DET_WR_ERR) >> BP_GPU3D_AQA_STATUS_DET_WR_ERR)
 
 /* --- Register HW_GPU3D_AQA_STATUS, field DET_RD_ERR[9] (RO)
  *
@@ -821,7 +763,11 @@ typedef union _hw_gpu3d_aqa_status
 #define BM_GPU3D_AQA_STATUS_DET_RD_ERR      (0x00000200)  //!< Bit mask for GPU3D_AQA_STATUS_DET_RD_ERR.
 
 //! @brief Get value of GPU3D_AQA_STATUS_DET_RD_ERR from a register value.
-#define BG_GPU3D_AQA_STATUS_DET_RD_ERR(r)   (((r) & BM_GPU3D_AQA_STATUS_DET_RD_ERR) >> BP_GPU3D_AQA_STATUS_DET_RD_ERR)
+#define BG_GPU3D_AQA_STATUS_DET_RD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQA_STATUS_DET_RD_ERR) >> BP_GPU3D_AQA_STATUS_DET_RD_ERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQI_ACK - AQIntrAcknowledge
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -865,7 +811,11 @@ typedef union _hw_gpu3d_aqi_ack
 #define BM_GPU3D_AQI_ACK_INTR_VEC      (0xffffffff)  //!< Bit mask for GPU3D_AQI_ACK_INTR_VEC.
 
 //! @brief Get value of GPU3D_AQI_ACK_INTR_VEC from a register value.
-#define BG_GPU3D_AQI_ACK_INTR_VEC(r)   (((r) & BM_GPU3D_AQI_ACK_INTR_VEC) >> BP_GPU3D_AQI_ACK_INTR_VEC)
+#define BG_GPU3D_AQI_ACK_INTR_VEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQI_ACK_INTR_VEC) >> BP_GPU3D_AQI_ACK_INTR_VEC)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQI_ENBL - AQIntrEnbl
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -912,20 +862,19 @@ typedef union _hw_gpu3d_aqi_enbl
 #define BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC      (0xffffffff)  //!< Bit mask for GPU3D_AQI_ENBL_INTR_ENBL_VEC.
 
 //! @brief Get value of GPU3D_AQI_ENBL_INTR_ENBL_VEC from a register value.
-#define BG_GPU3D_AQI_ENBL_INTR_ENBL_VEC(r)   (((r) & BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC) >> BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC)
+#define BG_GPU3D_AQI_ENBL_INTR_ENBL_VEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC) >> BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_AQI_ENBL_INTR_ENBL_VEC.
-#define BF_GPU3D_AQI_ENBL_INTR_ENBL_VEC(v)   ((((reg32_t) v) << BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC) & BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC)
-#else
-//! @brief Format value for bitfield GPU3D_AQI_ENBL_INTR_ENBL_VEC.
-#define BF_GPU3D_AQI_ENBL_INTR_ENBL_VEC(v)   (((v) << BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC) & BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC)
-#endif
+#define BF_GPU3D_AQI_ENBL_INTR_ENBL_VEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC) & BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTR_ENBL_VEC field to a new value.
 #define BW_GPU3D_AQI_ENBL_INTR_ENBL_VEC(v)   (HW_GPU3D_AQI_ENBL_WR((HW_GPU3D_AQI_ENBL_RD() & ~BM_GPU3D_AQI_ENBL_INTR_ENBL_VEC) | BF_GPU3D_AQI_ENBL_INTR_ENBL_VEC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_AQIDENT - AQIdent
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -972,7 +921,7 @@ typedef union _hw_gpu3d_aqident
 #define BM_GPU3D_AQIDENT_CUSTOMER      (0x000000ff)  //!< Bit mask for GPU3D_AQIDENT_CUSTOMER.
 
 //! @brief Get value of GPU3D_AQIDENT_CUSTOMER from a register value.
-#define BG_GPU3D_AQIDENT_CUSTOMER(r)   (((r) & BM_GPU3D_AQIDENT_CUSTOMER) >> BP_GPU3D_AQIDENT_CUSTOMER)
+#define BG_GPU3D_AQIDENT_CUSTOMER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQIDENT_CUSTOMER) >> BP_GPU3D_AQIDENT_CUSTOMER)
 
 /* --- Register HW_GPU3D_AQIDENT, field TECHNOLOGY[11:8] (RO)
  *
@@ -983,7 +932,7 @@ typedef union _hw_gpu3d_aqident
 #define BM_GPU3D_AQIDENT_TECHNOLOGY      (0x00000f00)  //!< Bit mask for GPU3D_AQIDENT_TECHNOLOGY.
 
 //! @brief Get value of GPU3D_AQIDENT_TECHNOLOGY from a register value.
-#define BG_GPU3D_AQIDENT_TECHNOLOGY(r)   (((r) & BM_GPU3D_AQIDENT_TECHNOLOGY) >> BP_GPU3D_AQIDENT_TECHNOLOGY)
+#define BG_GPU3D_AQIDENT_TECHNOLOGY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQIDENT_TECHNOLOGY) >> BP_GPU3D_AQIDENT_TECHNOLOGY)
 
 /* --- Register HW_GPU3D_AQIDENT, field REVISION[15:12] (RO)
  *
@@ -994,7 +943,7 @@ typedef union _hw_gpu3d_aqident
 #define BM_GPU3D_AQIDENT_REVISION      (0x0000f000)  //!< Bit mask for GPU3D_AQIDENT_REVISION.
 
 //! @brief Get value of GPU3D_AQIDENT_REVISION from a register value.
-#define BG_GPU3D_AQIDENT_REVISION(r)   (((r) & BM_GPU3D_AQIDENT_REVISION) >> BP_GPU3D_AQIDENT_REVISION)
+#define BG_GPU3D_AQIDENT_REVISION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQIDENT_REVISION) >> BP_GPU3D_AQIDENT_REVISION)
 
 /* --- Register HW_GPU3D_AQIDENT, field PRODUCT[23:16] (RO)
  *
@@ -1005,7 +954,7 @@ typedef union _hw_gpu3d_aqident
 #define BM_GPU3D_AQIDENT_PRODUCT      (0x00ff0000)  //!< Bit mask for GPU3D_AQIDENT_PRODUCT.
 
 //! @brief Get value of GPU3D_AQIDENT_PRODUCT from a register value.
-#define BG_GPU3D_AQIDENT_PRODUCT(r)   (((r) & BM_GPU3D_AQIDENT_PRODUCT) >> BP_GPU3D_AQIDENT_PRODUCT)
+#define BG_GPU3D_AQIDENT_PRODUCT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQIDENT_PRODUCT) >> BP_GPU3D_AQIDENT_PRODUCT)
 
 /* --- Register HW_GPU3D_AQIDENT, field FAMILY[31:24] (RO)
  *
@@ -1020,8 +969,12 @@ typedef union _hw_gpu3d_aqident
 #define BM_GPU3D_AQIDENT_FAMILY      (0xff000000)  //!< Bit mask for GPU3D_AQIDENT_FAMILY.
 
 //! @brief Get value of GPU3D_AQIDENT_FAMILY from a register value.
-#define BG_GPU3D_AQIDENT_FAMILY(r)   (((r) & BM_GPU3D_AQIDENT_FAMILY) >> BP_GPU3D_AQIDENT_FAMILY)
+#define BG_GPU3D_AQIDENT_FAMILY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_AQIDENT_FAMILY) >> BP_GPU3D_AQIDENT_FAMILY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GC_FEAT - GCFeatures
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1100,7 +1053,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_FAST_CLEAR      (0x00000001)  //!< Bit mask for GPU3D_GC_FEAT_FAST_CLEAR.
 
 //! @brief Get value of GPU3D_GC_FEAT_FAST_CLEAR from a register value.
-#define BG_GPU3D_GC_FEAT_FAST_CLEAR(r)   (((r) & BM_GPU3D_GC_FEAT_FAST_CLEAR) >> BP_GPU3D_GC_FEAT_FAST_CLEAR)
+#define BG_GPU3D_GC_FEAT_FAST_CLEAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_FAST_CLEAR) >> BP_GPU3D_GC_FEAT_FAST_CLEAR)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field SPECIAL_ANTI_ALIASING[1] (RO)
@@ -1116,7 +1069,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING      (0x00000002)  //!< Bit mask for GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING.
 
 //! @brief Get value of GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING from a register value.
-#define BG_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING(r)   (((r) & BM_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING) >> BP_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING)
+#define BG_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING) >> BP_GPU3D_GC_FEAT_SPECIAL_ANTI_ALIASING)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field PIPE_3D[2] (RO)
@@ -1132,7 +1085,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_PIPE_3D      (0x00000004)  //!< Bit mask for GPU3D_GC_FEAT_PIPE_3D.
 
 //! @brief Get value of GPU3D_GC_FEAT_PIPE_3D from a register value.
-#define BG_GPU3D_GC_FEAT_PIPE_3D(r)   (((r) & BM_GPU3D_GC_FEAT_PIPE_3D) >> BP_GPU3D_GC_FEAT_PIPE_3D)
+#define BG_GPU3D_GC_FEAT_PIPE_3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_PIPE_3D) >> BP_GPU3D_GC_FEAT_PIPE_3D)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field DXT_TEXTURE_COMPRESSION[3] (RO)
@@ -1148,7 +1101,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION      (0x00000008)  //!< Bit mask for GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION.
 
 //! @brief Get value of GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION from a register value.
-#define BG_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION(r)   (((r) & BM_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION) >> BP_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION)
+#define BG_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION) >> BP_GPU3D_GC_FEAT_DXT_TEXTURE_COMPRESSION)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field DEBUG_MODE[4] (RO)
@@ -1164,7 +1117,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_DEBUG_MODE      (0x00000010)  //!< Bit mask for GPU3D_GC_FEAT_DEBUG_MODE.
 
 //! @brief Get value of GPU3D_GC_FEAT_DEBUG_MODE from a register value.
-#define BG_GPU3D_GC_FEAT_DEBUG_MODE(r)   (((r) & BM_GPU3D_GC_FEAT_DEBUG_MODE) >> BP_GPU3D_GC_FEAT_DEBUG_MODE)
+#define BG_GPU3D_GC_FEAT_DEBUG_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_DEBUG_MODE) >> BP_GPU3D_GC_FEAT_DEBUG_MODE)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field ZCOMPRESSION[5] (RO)
@@ -1180,7 +1133,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_ZCOMPRESSION      (0x00000020)  //!< Bit mask for GPU3D_GC_FEAT_ZCOMPRESSION.
 
 //! @brief Get value of GPU3D_GC_FEAT_ZCOMPRESSION from a register value.
-#define BG_GPU3D_GC_FEAT_ZCOMPRESSION(r)   (((r) & BM_GPU3D_GC_FEAT_ZCOMPRESSION) >> BP_GPU3D_GC_FEAT_ZCOMPRESSION)
+#define BG_GPU3D_GC_FEAT_ZCOMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_ZCOMPRESSION) >> BP_GPU3D_GC_FEAT_ZCOMPRESSION)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field YUV420_FILTER[6] (RO)
@@ -1196,7 +1149,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_YUV420_FILTER      (0x00000040)  //!< Bit mask for GPU3D_GC_FEAT_YUV420_FILTER.
 
 //! @brief Get value of GPU3D_GC_FEAT_YUV420_FILTER from a register value.
-#define BG_GPU3D_GC_FEAT_YUV420_FILTER(r)   (((r) & BM_GPU3D_GC_FEAT_YUV420_FILTER) >> BP_GPU3D_GC_FEAT_YUV420_FILTER)
+#define BG_GPU3D_GC_FEAT_YUV420_FILTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_YUV420_FILTER) >> BP_GPU3D_GC_FEAT_YUV420_FILTER)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field MSAA[7] (RO)
@@ -1212,7 +1165,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_MSAA      (0x00000080)  //!< Bit mask for GPU3D_GC_FEAT_MSAA.
 
 //! @brief Get value of GPU3D_GC_FEAT_MSAA from a register value.
-#define BG_GPU3D_GC_FEAT_MSAA(r)   (((r) & BM_GPU3D_GC_FEAT_MSAA) >> BP_GPU3D_GC_FEAT_MSAA)
+#define BG_GPU3D_GC_FEAT_MSAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_MSAA) >> BP_GPU3D_GC_FEAT_MSAA)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field DC[8] (RO)
@@ -1228,7 +1181,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_DC      (0x00000100)  //!< Bit mask for GPU3D_GC_FEAT_DC.
 
 //! @brief Get value of GPU3D_GC_FEAT_DC from a register value.
-#define BG_GPU3D_GC_FEAT_DC(r)   (((r) & BM_GPU3D_GC_FEAT_DC) >> BP_GPU3D_GC_FEAT_DC)
+#define BG_GPU3D_GC_FEAT_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_DC) >> BP_GPU3D_GC_FEAT_DC)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field PIPE_2D[9] (RO)
@@ -1244,7 +1197,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_PIPE_2D      (0x00000200)  //!< Bit mask for GPU3D_GC_FEAT_PIPE_2D.
 
 //! @brief Get value of GPU3D_GC_FEAT_PIPE_2D from a register value.
-#define BG_GPU3D_GC_FEAT_PIPE_2D(r)   (((r) & BM_GPU3D_GC_FEAT_PIPE_2D) >> BP_GPU3D_GC_FEAT_PIPE_2D)
+#define BG_GPU3D_GC_FEAT_PIPE_2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_PIPE_2D) >> BP_GPU3D_GC_FEAT_PIPE_2D)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field ETC1_TEXTURE_COMPRESSION[10] (RO)
@@ -1260,7 +1213,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION      (0x00000400)  //!< Bit mask for GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION.
 
 //! @brief Get value of GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION from a register value.
-#define BG_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION(r)   (((r) & BM_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION) >> BP_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION)
+#define BG_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION) >> BP_GPU3D_GC_FEAT_ETC1_TEXTURE_COMPRESSION)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field FAST_SCALER[11] (RO)
@@ -1276,7 +1229,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_FAST_SCALER      (0x00000800)  //!< Bit mask for GPU3D_GC_FEAT_FAST_SCALER.
 
 //! @brief Get value of GPU3D_GC_FEAT_FAST_SCALER from a register value.
-#define BG_GPU3D_GC_FEAT_FAST_SCALER(r)   (((r) & BM_GPU3D_GC_FEAT_FAST_SCALER) >> BP_GPU3D_GC_FEAT_FAST_SCALER)
+#define BG_GPU3D_GC_FEAT_FAST_SCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_FAST_SCALER) >> BP_GPU3D_GC_FEAT_FAST_SCALER)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field HIGH_DYNAMIC_RANGE[12] (RO)
@@ -1292,7 +1245,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE      (0x00001000)  //!< Bit mask for GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE.
 
 //! @brief Get value of GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE from a register value.
-#define BG_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE(r)   (((r) & BM_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE) >> BP_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE)
+#define BG_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE) >> BP_GPU3D_GC_FEAT_HIGH_DYNAMIC_RANGE)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field YUV420_TILER[13] (RO)
@@ -1308,7 +1261,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_YUV420_TILER      (0x00002000)  //!< Bit mask for GPU3D_GC_FEAT_YUV420_TILER.
 
 //! @brief Get value of GPU3D_GC_FEAT_YUV420_TILER from a register value.
-#define BG_GPU3D_GC_FEAT_YUV420_TILER(r)   (((r) & BM_GPU3D_GC_FEAT_YUV420_TILER) >> BP_GPU3D_GC_FEAT_YUV420_TILER)
+#define BG_GPU3D_GC_FEAT_YUV420_TILER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_YUV420_TILER) >> BP_GPU3D_GC_FEAT_YUV420_TILER)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field MODULE_CG[14] (RO)
@@ -1324,7 +1277,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_MODULE_CG      (0x00004000)  //!< Bit mask for GPU3D_GC_FEAT_MODULE_CG.
 
 //! @brief Get value of GPU3D_GC_FEAT_MODULE_CG from a register value.
-#define BG_GPU3D_GC_FEAT_MODULE_CG(r)   (((r) & BM_GPU3D_GC_FEAT_MODULE_CG) >> BP_GPU3D_GC_FEAT_MODULE_CG)
+#define BG_GPU3D_GC_FEAT_MODULE_CG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_MODULE_CG) >> BP_GPU3D_GC_FEAT_MODULE_CG)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field MIN_AREA[15] (RO)
@@ -1340,7 +1293,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_MIN_AREA      (0x00008000)  //!< Bit mask for GPU3D_GC_FEAT_MIN_AREA.
 
 //! @brief Get value of GPU3D_GC_FEAT_MIN_AREA from a register value.
-#define BG_GPU3D_GC_FEAT_MIN_AREA(r)   (((r) & BM_GPU3D_GC_FEAT_MIN_AREA) >> BP_GPU3D_GC_FEAT_MIN_AREA)
+#define BG_GPU3D_GC_FEAT_MIN_AREA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_MIN_AREA) >> BP_GPU3D_GC_FEAT_MIN_AREA)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field NO_EZ[16] (RO)
@@ -1356,7 +1309,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_NO_EZ      (0x00010000)  //!< Bit mask for GPU3D_GC_FEAT_NO_EZ.
 
 //! @brief Get value of GPU3D_GC_FEAT_NO_EZ from a register value.
-#define BG_GPU3D_GC_FEAT_NO_EZ(r)   (((r) & BM_GPU3D_GC_FEAT_NO_EZ) >> BP_GPU3D_GC_FEAT_NO_EZ)
+#define BG_GPU3D_GC_FEAT_NO_EZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_NO_EZ) >> BP_GPU3D_GC_FEAT_NO_EZ)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field NO422_TEXTURE[17] (RO)
@@ -1372,7 +1325,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_NO422_TEXTURE      (0x00020000)  //!< Bit mask for GPU3D_GC_FEAT_NO422_TEXTURE.
 
 //! @brief Get value of GPU3D_GC_FEAT_NO422_TEXTURE from a register value.
-#define BG_GPU3D_GC_FEAT_NO422_TEXTURE(r)   (((r) & BM_GPU3D_GC_FEAT_NO422_TEXTURE) >> BP_GPU3D_GC_FEAT_NO422_TEXTURE)
+#define BG_GPU3D_GC_FEAT_NO422_TEXTURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_NO422_TEXTURE) >> BP_GPU3D_GC_FEAT_NO422_TEXTURE)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field BUFFER_INTERLEAVING[18] (RO)
@@ -1388,7 +1341,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_BUFFER_INTERLEAVING      (0x00040000)  //!< Bit mask for GPU3D_GC_FEAT_BUFFER_INTERLEAVING.
 
 //! @brief Get value of GPU3D_GC_FEAT_BUFFER_INTERLEAVING from a register value.
-#define BG_GPU3D_GC_FEAT_BUFFER_INTERLEAVING(r)   (((r) & BM_GPU3D_GC_FEAT_BUFFER_INTERLEAVING) >> BP_GPU3D_GC_FEAT_BUFFER_INTERLEAVING)
+#define BG_GPU3D_GC_FEAT_BUFFER_INTERLEAVING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_BUFFER_INTERLEAVING) >> BP_GPU3D_GC_FEAT_BUFFER_INTERLEAVING)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field BYTE_WRITE_2D[19] (RO)
@@ -1404,7 +1357,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_BYTE_WRITE_2D      (0x00080000)  //!< Bit mask for GPU3D_GC_FEAT_BYTE_WRITE_2D.
 
 //! @brief Get value of GPU3D_GC_FEAT_BYTE_WRITE_2D from a register value.
-#define BG_GPU3D_GC_FEAT_BYTE_WRITE_2D(r)   (((r) & BM_GPU3D_GC_FEAT_BYTE_WRITE_2D) >> BP_GPU3D_GC_FEAT_BYTE_WRITE_2D)
+#define BG_GPU3D_GC_FEAT_BYTE_WRITE_2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_BYTE_WRITE_2D) >> BP_GPU3D_GC_FEAT_BYTE_WRITE_2D)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field NO_SCALER[20] (RO)
@@ -1420,7 +1373,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_NO_SCALER      (0x00100000)  //!< Bit mask for GPU3D_GC_FEAT_NO_SCALER.
 
 //! @brief Get value of GPU3D_GC_FEAT_NO_SCALER from a register value.
-#define BG_GPU3D_GC_FEAT_NO_SCALER(r)   (((r) & BM_GPU3D_GC_FEAT_NO_SCALER) >> BP_GPU3D_GC_FEAT_NO_SCALER)
+#define BG_GPU3D_GC_FEAT_NO_SCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_NO_SCALER) >> BP_GPU3D_GC_FEAT_NO_SCALER)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field YUY2_AVERAGING[21] (RO)
@@ -1436,7 +1389,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_YUY2_AVERAGING      (0x00200000)  //!< Bit mask for GPU3D_GC_FEAT_YUY2_AVERAGING.
 
 //! @brief Get value of GPU3D_GC_FEAT_YUY2_AVERAGING from a register value.
-#define BG_GPU3D_GC_FEAT_YUY2_AVERAGING(r)   (((r) & BM_GPU3D_GC_FEAT_YUY2_AVERAGING) >> BP_GPU3D_GC_FEAT_YUY2_AVERAGING)
+#define BG_GPU3D_GC_FEAT_YUY2_AVERAGING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_YUY2_AVERAGING) >> BP_GPU3D_GC_FEAT_YUY2_AVERAGING)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field HALF_PE_CACHE[22] (RO)
@@ -1452,7 +1405,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_HALF_PE_CACHE      (0x00400000)  //!< Bit mask for GPU3D_GC_FEAT_HALF_PE_CACHE.
 
 //! @brief Get value of GPU3D_GC_FEAT_HALF_PE_CACHE from a register value.
-#define BG_GPU3D_GC_FEAT_HALF_PE_CACHE(r)   (((r) & BM_GPU3D_GC_FEAT_HALF_PE_CACHE) >> BP_GPU3D_GC_FEAT_HALF_PE_CACHE)
+#define BG_GPU3D_GC_FEAT_HALF_PE_CACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_HALF_PE_CACHE) >> BP_GPU3D_GC_FEAT_HALF_PE_CACHE)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field HALF_TX_CACHE[23] (RO)
@@ -1468,7 +1421,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_HALF_TX_CACHE      (0x00800000)  //!< Bit mask for GPU3D_GC_FEAT_HALF_TX_CACHE.
 
 //! @brief Get value of GPU3D_GC_FEAT_HALF_TX_CACHE from a register value.
-#define BG_GPU3D_GC_FEAT_HALF_TX_CACHE(r)   (((r) & BM_GPU3D_GC_FEAT_HALF_TX_CACHE) >> BP_GPU3D_GC_FEAT_HALF_TX_CACHE)
+#define BG_GPU3D_GC_FEAT_HALF_TX_CACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_HALF_TX_CACHE) >> BP_GPU3D_GC_FEAT_HALF_TX_CACHE)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field YUY2_RENDER_TARGET[24] (RO)
@@ -1484,7 +1437,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_YUY2_RENDER_TARGET      (0x01000000)  //!< Bit mask for GPU3D_GC_FEAT_YUY2_RENDER_TARGET.
 
 //! @brief Get value of GPU3D_GC_FEAT_YUY2_RENDER_TARGET from a register value.
-#define BG_GPU3D_GC_FEAT_YUY2_RENDER_TARGET(r)   (((r) & BM_GPU3D_GC_FEAT_YUY2_RENDER_TARGET) >> BP_GPU3D_GC_FEAT_YUY2_RENDER_TARGET)
+#define BG_GPU3D_GC_FEAT_YUY2_RENDER_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_YUY2_RENDER_TARGET) >> BP_GPU3D_GC_FEAT_YUY2_RENDER_TARGET)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field MEM32_BIT_SUPPORT[25] (RO)
@@ -1500,7 +1453,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT      (0x02000000)  //!< Bit mask for GPU3D_GC_FEAT_MEM32_BIT_SUPPORT.
 
 //! @brief Get value of GPU3D_GC_FEAT_MEM32_BIT_SUPPORT from a register value.
-#define BG_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT(r)   (((r) & BM_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT) >> BP_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT)
+#define BG_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT) >> BP_GPU3D_GC_FEAT_MEM32_BIT_SUPPORT)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field PIPE_VG[26] (RO)
@@ -1516,7 +1469,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_PIPE_VG      (0x04000000)  //!< Bit mask for GPU3D_GC_FEAT_PIPE_VG.
 
 //! @brief Get value of GPU3D_GC_FEAT_PIPE_VG from a register value.
-#define BG_GPU3D_GC_FEAT_PIPE_VG(r)   (((r) & BM_GPU3D_GC_FEAT_PIPE_VG) >> BP_GPU3D_GC_FEAT_PIPE_VG)
+#define BG_GPU3D_GC_FEAT_PIPE_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_PIPE_VG) >> BP_GPU3D_GC_FEAT_PIPE_VG)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field VGTS[27] (RO)
@@ -1532,7 +1485,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_VGTS      (0x08000000)  //!< Bit mask for GPU3D_GC_FEAT_VGTS.
 
 //! @brief Get value of GPU3D_GC_FEAT_VGTS from a register value.
-#define BG_GPU3D_GC_FEAT_VGTS(r)   (((r) & BM_GPU3D_GC_FEAT_VGTS) >> BP_GPU3D_GC_FEAT_VGTS)
+#define BG_GPU3D_GC_FEAT_VGTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_VGTS) >> BP_GPU3D_GC_FEAT_VGTS)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field FE20[28] (RO)
@@ -1548,7 +1501,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_FE20      (0x10000000)  //!< Bit mask for GPU3D_GC_FEAT_FE20.
 
 //! @brief Get value of GPU3D_GC_FEAT_FE20 from a register value.
-#define BG_GPU3D_GC_FEAT_FE20(r)   (((r) & BM_GPU3D_GC_FEAT_FE20) >> BP_GPU3D_GC_FEAT_FE20)
+#define BG_GPU3D_GC_FEAT_FE20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_FE20) >> BP_GPU3D_GC_FEAT_FE20)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field BYTE_WRITE_3D[29] (RO)
@@ -1564,7 +1517,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_BYTE_WRITE_3D      (0x20000000)  //!< Bit mask for GPU3D_GC_FEAT_BYTE_WRITE_3D.
 
 //! @brief Get value of GPU3D_GC_FEAT_BYTE_WRITE_3D from a register value.
-#define BG_GPU3D_GC_FEAT_BYTE_WRITE_3D(r)   (((r) & BM_GPU3D_GC_FEAT_BYTE_WRITE_3D) >> BP_GPU3D_GC_FEAT_BYTE_WRITE_3D)
+#define BG_GPU3D_GC_FEAT_BYTE_WRITE_3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_BYTE_WRITE_3D) >> BP_GPU3D_GC_FEAT_BYTE_WRITE_3D)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field RS_YUV_TARGET[30] (RO)
@@ -1580,7 +1533,7 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_RS_YUV_TARGET      (0x40000000)  //!< Bit mask for GPU3D_GC_FEAT_RS_YUV_TARGET.
 
 //! @brief Get value of GPU3D_GC_FEAT_RS_YUV_TARGET from a register value.
-#define BG_GPU3D_GC_FEAT_RS_YUV_TARGET(r)   (((r) & BM_GPU3D_GC_FEAT_RS_YUV_TARGET) >> BP_GPU3D_GC_FEAT_RS_YUV_TARGET)
+#define BG_GPU3D_GC_FEAT_RS_YUV_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_RS_YUV_TARGET) >> BP_GPU3D_GC_FEAT_RS_YUV_TARGET)
 
 
 /* --- Register HW_GPU3D_GC_FEAT, field FE20_BIT_INDEX[31] (RO)
@@ -1596,8 +1549,12 @@ typedef union _hw_gpu3d_gc_feat
 #define BM_GPU3D_GC_FEAT_FE20_BIT_INDEX      (0x80000000)  //!< Bit mask for GPU3D_GC_FEAT_FE20_BIT_INDEX.
 
 //! @brief Get value of GPU3D_GC_FEAT_FE20_BIT_INDEX from a register value.
-#define BG_GPU3D_GC_FEAT_FE20_BIT_INDEX(r)   (((r) & BM_GPU3D_GC_FEAT_FE20_BIT_INDEX) >> BP_GPU3D_GC_FEAT_FE20_BIT_INDEX)
+#define BG_GPU3D_GC_FEAT_FE20_BIT_INDEX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GC_FEAT_FE20_BIT_INDEX) >> BP_GPU3D_GC_FEAT_FE20_BIT_INDEX)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_ID - GCChipId
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1641,7 +1598,11 @@ typedef union _hw_gpu3d_gcc_id
 #define BM_GPU3D_GCC_ID_ID      (0xffffffff)  //!< Bit mask for GPU3D_GCC_ID_ID.
 
 //! @brief Get value of GPU3D_GCC_ID_ID from a register value.
-#define BG_GPU3D_GCC_ID_ID(r)   (((r) & BM_GPU3D_GCC_ID_ID) >> BP_GPU3D_GCC_ID_ID)
+#define BG_GPU3D_GCC_ID_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_ID_ID) >> BP_GPU3D_GCC_ID_ID)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_REV - GCChipRev
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1685,7 +1646,11 @@ typedef union _hw_gpu3d_gcc_rev
 #define BM_GPU3D_GCC_REV_REV      (0xffffffff)  //!< Bit mask for GPU3D_GCC_REV_REV.
 
 //! @brief Get value of GPU3D_GCC_REV_REV from a register value.
-#define BG_GPU3D_GCC_REV_REV(r)   (((r) & BM_GPU3D_GCC_REV_REV) >> BP_GPU3D_GCC_REV_REV)
+#define BG_GPU3D_GCC_REV_REV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_REV_REV) >> BP_GPU3D_GCC_REV_REV)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_DATE - GCChipDate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1729,7 +1694,11 @@ typedef union _hw_gpu3d_gcc_date
 #define BM_GPU3D_GCC_DATE_DATE      (0xffffffff)  //!< Bit mask for GPU3D_GCC_DATE_DATE.
 
 //! @brief Get value of GPU3D_GCC_DATE_DATE from a register value.
-#define BG_GPU3D_GCC_DATE_DATE(r)   (((r) & BM_GPU3D_GCC_DATE_DATE) >> BP_GPU3D_GCC_DATE_DATE)
+#define BG_GPU3D_GCC_DATE_DATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_DATE_DATE) >> BP_GPU3D_GCC_DATE_DATE)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_TIME - GCChipTime
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1773,7 +1742,11 @@ typedef union _hw_gpu3d_gcc_time
 #define BM_GPU3D_GCC_TIME_TIME      (0xffffffff)  //!< Bit mask for GPU3D_GCC_TIME_TIME.
 
 //! @brief Get value of GPU3D_GCC_TIME_TIME from a register value.
-#define BG_GPU3D_GCC_TIME_TIME(r)   (((r) & BM_GPU3D_GCC_TIME_TIME) >> BP_GPU3D_GCC_TIME_TIME)
+#define BG_GPU3D_GCC_TIME_TIME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_TIME_TIME) >> BP_GPU3D_GCC_TIME_TIME)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_CUST - GCChipCustomer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1818,7 +1791,7 @@ typedef union _hw_gpu3d_gcc_cust
 #define BM_GPU3D_GCC_CUST_GROUP      (0x0000ffff)  //!< Bit mask for GPU3D_GCC_CUST_GROUP.
 
 //! @brief Get value of GPU3D_GCC_CUST_GROUP from a register value.
-#define BG_GPU3D_GCC_CUST_GROUP(r)   (((r) & BM_GPU3D_GCC_CUST_GROUP) >> BP_GPU3D_GCC_CUST_GROUP)
+#define BG_GPU3D_GCC_CUST_GROUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_CUST_GROUP) >> BP_GPU3D_GCC_CUST_GROUP)
 
 /* --- Register HW_GPU3D_GCC_CUST, field COMPANY[31:16] (RO)
  *
@@ -1829,7 +1802,11 @@ typedef union _hw_gpu3d_gcc_cust
 #define BM_GPU3D_GCC_CUST_COMPANY      (0xffff0000)  //!< Bit mask for GPU3D_GCC_CUST_COMPANY.
 
 //! @brief Get value of GPU3D_GCC_CUST_COMPANY from a register value.
-#define BG_GPU3D_GCC_CUST_COMPANY(r)   (((r) & BM_GPU3D_GCC_CUST_COMPANY) >> BP_GPU3D_GCC_CUST_COMPANY)
+#define BG_GPU3D_GCC_CUST_COMPANY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_CUST_COMPANY) >> BP_GPU3D_GCC_CUST_COMPANY)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCM_FEAT_0 - GCMinorFeatures0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1908,7 +1885,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_FLIP_Y      (0x00000001)  //!< Bit mask for GPU3D_GCM_FEAT_0_FLIP_Y.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_FLIP_Y from a register value.
-#define BG_GPU3D_GCM_FEAT_0_FLIP_Y(r)   (((r) & BM_GPU3D_GCM_FEAT_0_FLIP_Y) >> BP_GPU3D_GCM_FEAT_0_FLIP_Y)
+#define BG_GPU3D_GCM_FEAT_0_FLIP_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_FLIP_Y) >> BP_GPU3D_GCM_FEAT_0_FLIP_Y)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field DUAL_RETURN_BUS[1] (RO)
@@ -1924,7 +1901,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS      (0x00000002)  //!< Bit mask for GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS from a register value.
-#define BG_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS(r)   (((r) & BM_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS) >> BP_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS)
+#define BG_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS) >> BP_GPU3D_GCM_FEAT_0_DUAL_RETURN_BUS)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field ENDIANNESS_CONFIG[2] (RO)
@@ -1940,7 +1917,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG      (0x00000004)  //!< Bit mask for GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG from a register value.
-#define BG_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG(r)   (((r) & BM_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG) >> BP_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG)
+#define BG_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG) >> BP_GPU3D_GCM_FEAT_0_ENDIANNESS_CONFIG)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field TESTURE8_K[3] (RO)
@@ -1956,7 +1933,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_TESTURE8_K      (0x00000008)  //!< Bit mask for GPU3D_GCM_FEAT_0_TESTURE8_K.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_TESTURE8_K from a register value.
-#define BG_GPU3D_GCM_FEAT_0_TESTURE8_K(r)   (((r) & BM_GPU3D_GCM_FEAT_0_TESTURE8_K) >> BP_GPU3D_GCM_FEAT_0_TESTURE8_K)
+#define BG_GPU3D_GCM_FEAT_0_TESTURE8_K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_TESTURE8_K) >> BP_GPU3D_GCM_FEAT_0_TESTURE8_K)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field CORRECT_TEXTURE_CONVERTER[4] (RO)
@@ -1972,7 +1949,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER      (0x00000010)  //!< Bit mask for GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER from a register value.
-#define BG_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER(r)   (((r) & BM_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER) >> BP_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER)
+#define BG_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER) >> BP_GPU3D_GCM_FEAT_0_CORRECT_TEXTURE_CONVERTER)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field SPECIAL_MSAA_LOD[5] (RO)
@@ -1988,7 +1965,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD      (0x00000020)  //!< Bit mask for GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD from a register value.
-#define BG_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD(r)   (((r) & BM_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD) >> BP_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD)
+#define BG_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD) >> BP_GPU3D_GCM_FEAT_0_SPECIAL_MSAA_LOD)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field FAST_CLEAR_FLUSH[6] (RO)
@@ -2004,7 +1981,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH      (0x00000040)  //!< Bit mask for GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH from a register value.
-#define BG_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH(r)   (((r) & BM_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH) >> BP_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH)
+#define BG_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH) >> BP_GPU3D_GCM_FEAT_0_FAST_CLEAR_FLUSH)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field _2DPE20[7] (RO)
@@ -2020,7 +1997,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0__2DPE20      (0x00000080)  //!< Bit mask for GPU3D_GCM_FEAT_0__2DPE20.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0__2DPE20 from a register value.
-#define BG_GPU3D_GCM_FEAT_0__2DPE20(r)   (((r) & BM_GPU3D_GCM_FEAT_0__2DPE20) >> BP_GPU3D_GCM_FEAT_0__2DPE20)
+#define BG_GPU3D_GCM_FEAT_0__2DPE20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0__2DPE20) >> BP_GPU3D_GCM_FEAT_0__2DPE20)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field CORRECT_AUTO_DISABLE[8] (RO)
@@ -2036,7 +2013,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE      (0x00000100)  //!< Bit mask for GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE from a register value.
-#define BG_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE(r)   (((r) & BM_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE) >> BP_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE)
+#define BG_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE) >> BP_GPU3D_GCM_FEAT_0_CORRECT_AUTO_DISABLE)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field RENDER_8K[9] (RO)
@@ -2052,7 +2029,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_RENDER_8K      (0x00000200)  //!< Bit mask for GPU3D_GCM_FEAT_0_RENDER_8K.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_RENDER_8K from a register value.
-#define BG_GPU3D_GCM_FEAT_0_RENDER_8K(r)   (((r) & BM_GPU3D_GCM_FEAT_0_RENDER_8K) >> BP_GPU3D_GCM_FEAT_0_RENDER_8K)
+#define BG_GPU3D_GCM_FEAT_0_RENDER_8K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_RENDER_8K) >> BP_GPU3D_GCM_FEAT_0_RENDER_8K)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field TILE_STATUS_2BITS[10] (RO)
@@ -2068,7 +2045,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS      (0x00000400)  //!< Bit mask for GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS from a register value.
-#define BG_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS(r)   (((r) & BM_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS) >> BP_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS)
+#define BG_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS) >> BP_GPU3D_GCM_FEAT_0_TILE_STATUS_2BITS)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field SEPARATE_TILE_STATUS_WHEN_INTERLEAVED[11] (RO)
@@ -2084,7 +2061,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED      (0x00000800)  //!< Bit mask for GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED from a register value.
-#define BG_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(r)   (((r) & BM_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED) >> BP_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED)
+#define BG_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED) >> BP_GPU3D_GCM_FEAT_0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field SUPER_TILED_32X32[12] (RO)
@@ -2100,7 +2077,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32      (0x00001000)  //!< Bit mask for GPU3D_GCM_FEAT_0_SUPER_TILED_32X32.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_SUPER_TILED_32X32 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32(r)   (((r) & BM_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32) >> BP_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32)
+#define BG_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32) >> BP_GPU3D_GCM_FEAT_0_SUPER_TILED_32X32)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field VG_20[13] (RO)
@@ -2116,7 +2093,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_VG_20      (0x00002000)  //!< Bit mask for GPU3D_GCM_FEAT_0_VG_20.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_VG_20 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_VG_20(r)   (((r) & BM_GPU3D_GCM_FEAT_0_VG_20) >> BP_GPU3D_GCM_FEAT_0_VG_20)
+#define BG_GPU3D_GCM_FEAT_0_VG_20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_VG_20) >> BP_GPU3D_GCM_FEAT_0_VG_20)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field TS_EXTENDED_COMMANDS[14] (RO)
@@ -2132,7 +2109,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS      (0x00004000)  //!< Bit mask for GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS from a register value.
-#define BG_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS(r)   (((r) & BM_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS) >> BP_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS)
+#define BG_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS) >> BP_GPU3D_GCM_FEAT_0_TS_EXTENDED_COMMANDS)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field COMPRESSION_FIFO_FIXED[15] (RO)
@@ -2148,7 +2125,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED      (0x00008000)  //!< Bit mask for GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED from a register value.
-#define BG_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED(r)   (((r) & BM_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED) >> BP_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED)
+#define BG_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED) >> BP_GPU3D_GCM_FEAT_0_COMPRESSION_FIFO_FIXED)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field EXTRA_SHADER_INSTRUCTIONS0[16] (RO)
@@ -2164,7 +2141,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0      (0x00010000)  //!< Bit mask for GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0(r)   (((r) & BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0) >> BP_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0)
+#define BG_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0) >> BP_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS0)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field VG_FILTER[17] (RO)
@@ -2180,7 +2157,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_VG_FILTER      (0x00020000)  //!< Bit mask for GPU3D_GCM_FEAT_0_VG_FILTER.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_VG_FILTER from a register value.
-#define BG_GPU3D_GCM_FEAT_0_VG_FILTER(r)   (((r) & BM_GPU3D_GCM_FEAT_0_VG_FILTER) >> BP_GPU3D_GCM_FEAT_0_VG_FILTER)
+#define BG_GPU3D_GCM_FEAT_0_VG_FILTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_VG_FILTER) >> BP_GPU3D_GCM_FEAT_0_VG_FILTER)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field VG_21[18] (RO)
@@ -2196,7 +2173,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_VG_21      (0x00040000)  //!< Bit mask for GPU3D_GCM_FEAT_0_VG_21.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_VG_21 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_VG_21(r)   (((r) & BM_GPU3D_GCM_FEAT_0_VG_21) >> BP_GPU3D_GCM_FEAT_0_VG_21)
+#define BG_GPU3D_GCM_FEAT_0_VG_21(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_VG_21) >> BP_GPU3D_GCM_FEAT_0_VG_21)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field SHADER_GETS_W[19] (RO)
@@ -2212,7 +2189,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_SHADER_GETS_W      (0x00080000)  //!< Bit mask for GPU3D_GCM_FEAT_0_SHADER_GETS_W.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_SHADER_GETS_W from a register value.
-#define BG_GPU3D_GCM_FEAT_0_SHADER_GETS_W(r)   (((r) & BM_GPU3D_GCM_FEAT_0_SHADER_GETS_W) >> BP_GPU3D_GCM_FEAT_0_SHADER_GETS_W)
+#define BG_GPU3D_GCM_FEAT_0_SHADER_GETS_W(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_SHADER_GETS_W) >> BP_GPU3D_GCM_FEAT_0_SHADER_GETS_W)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field EXTRA_SHADER_INSTRUCTIONS1[20] (RO)
@@ -2228,7 +2205,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1      (0x00100000)  //!< Bit mask for GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1(r)   (((r) & BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1) >> BP_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1)
+#define BG_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1) >> BP_GPU3D_GCM_FEAT_0_EXTRA_SHADER_INSTRUCTIONS1)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field DEFAULT_REG0[21] (RO)
@@ -2244,7 +2221,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_DEFAULT_REG0      (0x00200000)  //!< Bit mask for GPU3D_GCM_FEAT_0_DEFAULT_REG0.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_DEFAULT_REG0 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_DEFAULT_REG0(r)   (((r) & BM_GPU3D_GCM_FEAT_0_DEFAULT_REG0) >> BP_GPU3D_GCM_FEAT_0_DEFAULT_REG0)
+#define BG_GPU3D_GCM_FEAT_0_DEFAULT_REG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_DEFAULT_REG0) >> BP_GPU3D_GCM_FEAT_0_DEFAULT_REG0)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field MC_20[22] (RO)
@@ -2260,7 +2237,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_MC_20      (0x00400000)  //!< Bit mask for GPU3D_GCM_FEAT_0_MC_20.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_MC_20 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_MC_20(r)   (((r) & BM_GPU3D_GCM_FEAT_0_MC_20) >> BP_GPU3D_GCM_FEAT_0_MC_20)
+#define BG_GPU3D_GCM_FEAT_0_MC_20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_MC_20) >> BP_GPU3D_GCM_FEAT_0_MC_20)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field SHADER_MSAA_SIDEBAND[23] (RO)
@@ -2276,7 +2253,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND      (0x00800000)  //!< Bit mask for GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND from a register value.
-#define BG_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND(r)   (((r) & BM_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND) >> BP_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND)
+#define BG_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND) >> BP_GPU3D_GCM_FEAT_0_SHADER_MSAA_SIDEBAND)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field BUG_FIXES0[24] (RO)
@@ -2292,7 +2269,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_BUG_FIXES0      (0x01000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_BUG_FIXES0.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_BUG_FIXES0 from a register value.
-#define BG_GPU3D_GCM_FEAT_0_BUG_FIXES0(r)   (((r) & BM_GPU3D_GCM_FEAT_0_BUG_FIXES0) >> BP_GPU3D_GCM_FEAT_0_BUG_FIXES0)
+#define BG_GPU3D_GCM_FEAT_0_BUG_FIXES0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_BUG_FIXES0) >> BP_GPU3D_GCM_FEAT_0_BUG_FIXES0)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field VAA[25] (RO)
@@ -2308,7 +2285,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_VAA      (0x02000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_VAA.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_VAA from a register value.
-#define BG_GPU3D_GCM_FEAT_0_VAA(r)   (((r) & BM_GPU3D_GCM_FEAT_0_VAA) >> BP_GPU3D_GCM_FEAT_0_VAA)
+#define BG_GPU3D_GCM_FEAT_0_VAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_VAA) >> BP_GPU3D_GCM_FEAT_0_VAA)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field BYPASS_IN_MSAA[26] (RO)
@@ -2324,7 +2301,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA      (0x04000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA from a register value.
-#define BG_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA(r)   (((r) & BM_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA) >> BP_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA)
+#define BG_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA) >> BP_GPU3D_GCM_FEAT_0_BYPASS_IN_MSAA)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field HIERARCHICAL_Z[27] (RO)
@@ -2340,7 +2317,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z      (0x08000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_HIERARCHICAL_Z.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_HIERARCHICAL_Z from a register value.
-#define BG_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z(r)   (((r) & BM_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z) >> BP_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z)
+#define BG_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z) >> BP_GPU3D_GCM_FEAT_0_HIERARCHICAL_Z)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field NEW_TEXTURE[28] (RO)
@@ -2356,7 +2333,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_NEW_TEXTURE      (0x10000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_NEW_TEXTURE.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_NEW_TEXTURE from a register value.
-#define BG_GPU3D_GCM_FEAT_0_NEW_TEXTURE(r)   (((r) & BM_GPU3D_GCM_FEAT_0_NEW_TEXTURE) >> BP_GPU3D_GCM_FEAT_0_NEW_TEXTURE)
+#define BG_GPU3D_GCM_FEAT_0_NEW_TEXTURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_NEW_TEXTURE) >> BP_GPU3D_GCM_FEAT_0_NEW_TEXTURE)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field A8_TARGET_SUPPORT[29] (RO)
@@ -2372,7 +2349,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT      (0x20000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT from a register value.
-#define BG_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT(r)   (((r) & BM_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT) >> BP_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT)
+#define BG_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT) >> BP_GPU3D_GCM_FEAT_0_A8_TARGET_SUPPORT)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field CORRECT_STENCIL[30] (RO)
@@ -2388,7 +2365,7 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_CORRECT_STENCIL      (0x40000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_CORRECT_STENCIL.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_CORRECT_STENCIL from a register value.
-#define BG_GPU3D_GCM_FEAT_0_CORRECT_STENCIL(r)   (((r) & BM_GPU3D_GCM_FEAT_0_CORRECT_STENCIL) >> BP_GPU3D_GCM_FEAT_0_CORRECT_STENCIL)
+#define BG_GPU3D_GCM_FEAT_0_CORRECT_STENCIL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_CORRECT_STENCIL) >> BP_GPU3D_GCM_FEAT_0_CORRECT_STENCIL)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_0, field ENHANCE_VR[31] (RO)
@@ -2405,8 +2382,12 @@ typedef union _hw_gpu3d_gcm_feat_0
 #define BM_GPU3D_GCM_FEAT_0_ENHANCE_VR      (0x80000000)  //!< Bit mask for GPU3D_GCM_FEAT_0_ENHANCE_VR.
 
 //! @brief Get value of GPU3D_GCM_FEAT_0_ENHANCE_VR from a register value.
-#define BG_GPU3D_GCM_FEAT_0_ENHANCE_VR(r)   (((r) & BM_GPU3D_GCM_FEAT_0_ENHANCE_VR) >> BP_GPU3D_GCM_FEAT_0_ENHANCE_VR)
+#define BG_GPU3D_GCM_FEAT_0_ENHANCE_VR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_0_ENHANCE_VR) >> BP_GPU3D_GCM_FEAT_0_ENHANCE_VR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_CRTL - GCCacheControl
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2453,20 +2434,19 @@ typedef union _hw_gpu3d_gcc_crtl
 #define BM_GPU3D_GCC_CRTL_NOT_USED      (0xffffffff)  //!< Bit mask for GPU3D_GCC_CRTL_NOT_USED.
 
 //! @brief Get value of GPU3D_GCC_CRTL_NOT_USED from a register value.
-#define BG_GPU3D_GCC_CRTL_NOT_USED(r)   (((r) & BM_GPU3D_GCC_CRTL_NOT_USED) >> BP_GPU3D_GCC_CRTL_NOT_USED)
+#define BG_GPU3D_GCC_CRTL_NOT_USED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_CRTL_NOT_USED) >> BP_GPU3D_GCC_CRTL_NOT_USED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCC_CRTL_NOT_USED.
-#define BF_GPU3D_GCC_CRTL_NOT_USED(v)   ((((reg32_t) v) << BP_GPU3D_GCC_CRTL_NOT_USED) & BM_GPU3D_GCC_CRTL_NOT_USED)
-#else
-//! @brief Format value for bitfield GPU3D_GCC_CRTL_NOT_USED.
-#define BF_GPU3D_GCC_CRTL_NOT_USED(v)   (((v) << BP_GPU3D_GCC_CRTL_NOT_USED) & BM_GPU3D_GCC_CRTL_NOT_USED)
-#endif
+#define BF_GPU3D_GCC_CRTL_NOT_USED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCC_CRTL_NOT_USED) & BM_GPU3D_GCC_CRTL_NOT_USED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NOT_USED field to a new value.
 #define BW_GPU3D_GCC_CRTL_NOT_USED(v)   (HW_GPU3D_GCC_CRTL_WR((HW_GPU3D_GCC_CRTL_RD() & ~BM_GPU3D_GCC_CRTL_NOT_USED) | BF_GPU3D_GCC_CRTL_NOT_USED(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCR_MEM_CTRS - GCResetMemCounters
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2514,20 +2494,19 @@ typedef union _hw_gpu3d_gcr_mem_ctrs
 #define BM_GPU3D_GCR_MEM_CTRS_RESET      (0xffffffff)  //!< Bit mask for GPU3D_GCR_MEM_CTRS_RESET.
 
 //! @brief Get value of GPU3D_GCR_MEM_CTRS_RESET from a register value.
-#define BG_GPU3D_GCR_MEM_CTRS_RESET(r)   (((r) & BM_GPU3D_GCR_MEM_CTRS_RESET) >> BP_GPU3D_GCR_MEM_CTRS_RESET)
+#define BG_GPU3D_GCR_MEM_CTRS_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCR_MEM_CTRS_RESET) >> BP_GPU3D_GCR_MEM_CTRS_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCR_MEM_CTRS_RESET.
-#define BF_GPU3D_GCR_MEM_CTRS_RESET(v)   ((((reg32_t) v) << BP_GPU3D_GCR_MEM_CTRS_RESET) & BM_GPU3D_GCR_MEM_CTRS_RESET)
-#else
-//! @brief Format value for bitfield GPU3D_GCR_MEM_CTRS_RESET.
-#define BF_GPU3D_GCR_MEM_CTRS_RESET(v)   (((v) << BP_GPU3D_GCR_MEM_CTRS_RESET) & BM_GPU3D_GCR_MEM_CTRS_RESET)
-#endif
+#define BF_GPU3D_GCR_MEM_CTRS_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCR_MEM_CTRS_RESET) & BM_GPU3D_GCR_MEM_CTRS_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESET field to a new value.
 #define BW_GPU3D_GCR_MEM_CTRS_RESET(v)   (HW_GPU3D_GCR_MEM_CTRS_WR((HW_GPU3D_GCR_MEM_CTRS_RD() & ~BM_GPU3D_GCR_MEM_CTRS_RESET) | BF_GPU3D_GCR_MEM_CTRS_RESET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_READS - gcTotalReads
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2570,7 +2549,11 @@ typedef union _hw_gpu3d_gct_reads
 #define BM_GPU3D_GCT_READS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_READS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_READS_COUNT from a register value.
-#define BG_GPU3D_GCT_READS_COUNT(r)   (((r) & BM_GPU3D_GCT_READS_COUNT) >> BP_GPU3D_GCT_READS_COUNT)
+#define BG_GPU3D_GCT_READS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_READS_COUNT) >> BP_GPU3D_GCT_READS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_WRITES - gcTotalWrites
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2613,7 +2596,11 @@ typedef union _hw_gpu3d_gct_writes
 #define BM_GPU3D_GCT_WRITES_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_WRITES_COUNT.
 
 //! @brief Get value of GPU3D_GCT_WRITES_COUNT from a register value.
-#define BG_GPU3D_GCT_WRITES_COUNT(r)   (((r) & BM_GPU3D_GCT_WRITES_COUNT) >> BP_GPU3D_GCT_WRITES_COUNT)
+#define BG_GPU3D_GCT_WRITES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_WRITES_COUNT) >> BP_GPU3D_GCT_WRITES_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCC_SPECS - gcChipSpecs
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2663,7 +2650,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_STREAMS      (0x0000000f)  //!< Bit mask for GPU3D_GCC_SPECS_STREAMS.
 
 //! @brief Get value of GPU3D_GCC_SPECS_STREAMS from a register value.
-#define BG_GPU3D_GCC_SPECS_STREAMS(r)   (((r) & BM_GPU3D_GCC_SPECS_STREAMS) >> BP_GPU3D_GCC_SPECS_STREAMS)
+#define BG_GPU3D_GCC_SPECS_STREAMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_STREAMS) >> BP_GPU3D_GCC_SPECS_STREAMS)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field TEAMP_REGISTERS[7:4] (RO)
  *
@@ -2674,7 +2661,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_TEAMP_REGISTERS      (0x000000f0)  //!< Bit mask for GPU3D_GCC_SPECS_TEAMP_REGISTERS.
 
 //! @brief Get value of GPU3D_GCC_SPECS_TEAMP_REGISTERS from a register value.
-#define BG_GPU3D_GCC_SPECS_TEAMP_REGISTERS(r)   (((r) & BM_GPU3D_GCC_SPECS_TEAMP_REGISTERS) >> BP_GPU3D_GCC_SPECS_TEAMP_REGISTERS)
+#define BG_GPU3D_GCC_SPECS_TEAMP_REGISTERS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_TEAMP_REGISTERS) >> BP_GPU3D_GCC_SPECS_TEAMP_REGISTERS)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field THREAD_COUNT[11:8] (RO)
  *
@@ -2685,7 +2672,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_THREAD_COUNT      (0x00000f00)  //!< Bit mask for GPU3D_GCC_SPECS_THREAD_COUNT.
 
 //! @brief Get value of GPU3D_GCC_SPECS_THREAD_COUNT from a register value.
-#define BG_GPU3D_GCC_SPECS_THREAD_COUNT(r)   (((r) & BM_GPU3D_GCC_SPECS_THREAD_COUNT) >> BP_GPU3D_GCC_SPECS_THREAD_COUNT)
+#define BG_GPU3D_GCC_SPECS_THREAD_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_THREAD_COUNT) >> BP_GPU3D_GCC_SPECS_THREAD_COUNT)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field VERTEX_CACHE_SIZE[16:12] (RO)
  *
@@ -2696,7 +2683,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE      (0x0001f000)  //!< Bit mask for GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE.
 
 //! @brief Get value of GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE from a register value.
-#define BG_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE(r)   (((r) & BM_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE) >> BP_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE)
+#define BG_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE) >> BP_GPU3D_GCC_SPECS_VERTEX_CACHE_SIZE)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field NUM_SHADER_CORES[24:20] (RO)
  *
@@ -2707,7 +2694,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_NUM_SHADER_CORES      (0x01f00000)  //!< Bit mask for GPU3D_GCC_SPECS_NUM_SHADER_CORES.
 
 //! @brief Get value of GPU3D_GCC_SPECS_NUM_SHADER_CORES from a register value.
-#define BG_GPU3D_GCC_SPECS_NUM_SHADER_CORES(r)   (((r) & BM_GPU3D_GCC_SPECS_NUM_SHADER_CORES) >> BP_GPU3D_GCC_SPECS_NUM_SHADER_CORES)
+#define BG_GPU3D_GCC_SPECS_NUM_SHADER_CORES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_NUM_SHADER_CORES) >> BP_GPU3D_GCC_SPECS_NUM_SHADER_CORES)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field NUM_PIXEL_PIPES[27:25] (RO)
  *
@@ -2718,7 +2705,7 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES      (0x0e000000)  //!< Bit mask for GPU3D_GCC_SPECS_NUM_PIXEL_PIPES.
 
 //! @brief Get value of GPU3D_GCC_SPECS_NUM_PIXEL_PIPES from a register value.
-#define BG_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES(r)   (((r) & BM_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES) >> BP_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES)
+#define BG_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES) >> BP_GPU3D_GCC_SPECS_NUM_PIXEL_PIPES)
 
 /* --- Register HW_GPU3D_GCC_SPECS, field VERTEX_OUTPUT_BUFFER_SIZE[31:28] (RO)
  *
@@ -2729,7 +2716,11 @@ typedef union _hw_gpu3d_gcc_specs
 #define BM_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE      (0xf0000000)  //!< Bit mask for GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE.
 
 //! @brief Get value of GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE from a register value.
-#define BG_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE(r)   (((r) & BM_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE) >> BP_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE)
+#define BG_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE) >> BP_GPU3D_GCC_SPECS_VERTEX_OUTPUT_BUFFER_SIZE)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_WRITE_BURSTS - gcTotalWriteBursts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2772,7 +2763,11 @@ typedef union _hw_gpu3d_gct_write_bursts
 #define BM_GPU3D_GCT_WRITE_BURSTS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_WRITE_BURSTS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_WRITE_BURSTS_COUNT from a register value.
-#define BG_GPU3D_GCT_WRITE_BURSTS_COUNT(r)   (((r) & BM_GPU3D_GCT_WRITE_BURSTS_COUNT) >> BP_GPU3D_GCT_WRITE_BURSTS_COUNT)
+#define BG_GPU3D_GCT_WRITE_BURSTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_WRITE_BURSTS_COUNT) >> BP_GPU3D_GCT_WRITE_BURSTS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_WRITE_REQS - gcTotalWriteReqs
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2815,7 +2810,11 @@ typedef union _hw_gpu3d_gct_write_reqs
 #define BM_GPU3D_GCT_WRITE_REQS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_WRITE_REQS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_WRITE_REQS_COUNT from a register value.
-#define BG_GPU3D_GCT_WRITE_REQS_COUNT(r)   (((r) & BM_GPU3D_GCT_WRITE_REQS_COUNT) >> BP_GPU3D_GCT_WRITE_REQS_COUNT)
+#define BG_GPU3D_GCT_WRITE_REQS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_WRITE_REQS_COUNT) >> BP_GPU3D_GCT_WRITE_REQS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_WRITE_LASTS - gcTotalWriteLasts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2858,7 +2857,11 @@ typedef union _hw_gpu3d_gct_write_lasts
 #define BM_GPU3D_GCT_WRITE_LASTS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_WRITE_LASTS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_WRITE_LASTS_COUNT from a register value.
-#define BG_GPU3D_GCT_WRITE_LASTS_COUNT(r)   (((r) & BM_GPU3D_GCT_WRITE_LASTS_COUNT) >> BP_GPU3D_GCT_WRITE_LASTS_COUNT)
+#define BG_GPU3D_GCT_WRITE_LASTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_WRITE_LASTS_COUNT) >> BP_GPU3D_GCT_WRITE_LASTS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_READ_BURSTS - gcTotalReadBursts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2901,7 +2904,11 @@ typedef union _hw_gpu3d_gct_read_bursts
 #define BM_GPU3D_GCT_READ_BURSTS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_READ_BURSTS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_READ_BURSTS_COUNT from a register value.
-#define BG_GPU3D_GCT_READ_BURSTS_COUNT(r)   (((r) & BM_GPU3D_GCT_READ_BURSTS_COUNT) >> BP_GPU3D_GCT_READ_BURSTS_COUNT)
+#define BG_GPU3D_GCT_READ_BURSTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_READ_BURSTS_COUNT) >> BP_GPU3D_GCT_READ_BURSTS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_READ_REQS - gcTotalReadReqs
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2944,7 +2951,11 @@ typedef union _hw_gpu3d_gct_read_reqs
 #define BM_GPU3D_GCT_READ_REQS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_READ_REQS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_READ_REQS_COUNT from a register value.
-#define BG_GPU3D_GCT_READ_REQS_COUNT(r)   (((r) & BM_GPU3D_GCT_READ_REQS_COUNT) >> BP_GPU3D_GCT_READ_REQS_COUNT)
+#define BG_GPU3D_GCT_READ_REQS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_READ_REQS_COUNT) >> BP_GPU3D_GCT_READ_REQS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_READ_LASTS - gcTotalReadLasts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2987,7 +2998,11 @@ typedef union _hw_gpu3d_gct_read_lasts
 #define BM_GPU3D_GCT_READ_LASTS_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCT_READ_LASTS_COUNT.
 
 //! @brief Get value of GPU3D_GCT_READ_LASTS_COUNT from a register value.
-#define BG_GPU3D_GCT_READ_LASTS_COUNT(r)   (((r) & BM_GPU3D_GCT_READ_LASTS_COUNT) >> BP_GPU3D_GCT_READ_LASTS_COUNT)
+#define BG_GPU3D_GCT_READ_LASTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_READ_LASTS_COUNT) >> BP_GPU3D_GCT_READ_LASTS_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCGPO_0 - gcGpOut0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3034,20 +3049,19 @@ typedef union _hw_gpu3d_gcgpo_0
 #define BM_GPU3D_GCGPO_0_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCGPO_0_COUNT.
 
 //! @brief Get value of GPU3D_GCGPO_0_COUNT from a register value.
-#define BG_GPU3D_GCGPO_0_COUNT(r)   (((r) & BM_GPU3D_GCGPO_0_COUNT) >> BP_GPU3D_GCGPO_0_COUNT)
+#define BG_GPU3D_GCGPO_0_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCGPO_0_COUNT) >> BP_GPU3D_GCGPO_0_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCGPO_0_COUNT.
-#define BF_GPU3D_GCGPO_0_COUNT(v)   ((((reg32_t) v) << BP_GPU3D_GCGPO_0_COUNT) & BM_GPU3D_GCGPO_0_COUNT)
-#else
-//! @brief Format value for bitfield GPU3D_GCGPO_0_COUNT.
-#define BF_GPU3D_GCGPO_0_COUNT(v)   (((v) << BP_GPU3D_GCGPO_0_COUNT) & BM_GPU3D_GCGPO_0_COUNT)
-#endif
+#define BF_GPU3D_GCGPO_0_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCGPO_0_COUNT) & BM_GPU3D_GCGPO_0_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU3D_GCGPO_0_COUNT(v)   (HW_GPU3D_GCGPO_0_WR((HW_GPU3D_GCGPO_0_RD() & ~BM_GPU3D_GCGPO_0_COUNT) | BF_GPU3D_GCGPO_0_COUNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCGPO_1 - gcGpOut1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3094,20 +3108,19 @@ typedef union _hw_gpu3d_gcgpo_1
 #define BM_GPU3D_GCGPO_1_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCGPO_1_COUNT.
 
 //! @brief Get value of GPU3D_GCGPO_1_COUNT from a register value.
-#define BG_GPU3D_GCGPO_1_COUNT(r)   (((r) & BM_GPU3D_GCGPO_1_COUNT) >> BP_GPU3D_GCGPO_1_COUNT)
+#define BG_GPU3D_GCGPO_1_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCGPO_1_COUNT) >> BP_GPU3D_GCGPO_1_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCGPO_1_COUNT.
-#define BF_GPU3D_GCGPO_1_COUNT(v)   ((((reg32_t) v) << BP_GPU3D_GCGPO_1_COUNT) & BM_GPU3D_GCGPO_1_COUNT)
-#else
-//! @brief Format value for bitfield GPU3D_GCGPO_1_COUNT.
-#define BF_GPU3D_GCGPO_1_COUNT(v)   (((v) << BP_GPU3D_GCGPO_1_COUNT) & BM_GPU3D_GCGPO_1_COUNT)
-#endif
+#define BF_GPU3D_GCGPO_1_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCGPO_1_COUNT) & BM_GPU3D_GCGPO_1_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU3D_GCGPO_1_COUNT(v)   (HW_GPU3D_GCGPO_1_WR((HW_GPU3D_GCGPO_1_RD() & ~BM_GPU3D_GCGPO_1_COUNT) | BF_GPU3D_GCGPO_1_COUNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCGPO_2 - gcGpOut2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3154,20 +3167,19 @@ typedef union _hw_gpu3d_gcgpo_2
 #define BM_GPU3D_GCGPO_2_COUNT      (0xffffffff)  //!< Bit mask for GPU3D_GCGPO_2_COUNT.
 
 //! @brief Get value of GPU3D_GCGPO_2_COUNT from a register value.
-#define BG_GPU3D_GCGPO_2_COUNT(r)   (((r) & BM_GPU3D_GCGPO_2_COUNT) >> BP_GPU3D_GCGPO_2_COUNT)
+#define BG_GPU3D_GCGPO_2_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCGPO_2_COUNT) >> BP_GPU3D_GCGPO_2_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCGPO_2_COUNT.
-#define BF_GPU3D_GCGPO_2_COUNT(v)   ((((reg32_t) v) << BP_GPU3D_GCGPO_2_COUNT) & BM_GPU3D_GCGPO_2_COUNT)
-#else
-//! @brief Format value for bitfield GPU3D_GCGPO_2_COUNT.
-#define BF_GPU3D_GCGPO_2_COUNT(v)   (((v) << BP_GPU3D_GCGPO_2_COUNT) & BM_GPU3D_GCGPO_2_COUNT)
-#endif
+#define BF_GPU3D_GCGPO_2_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCGPO_2_COUNT) & BM_GPU3D_GCGPO_2_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU3D_GCGPO_2_COUNT(v)   (HW_GPU3D_GCGPO_2_WR((HW_GPU3D_GCGPO_2_RD() & ~BM_GPU3D_GCGPO_2_COUNT) | BF_GPU3D_GCGPO_2_COUNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCA_CRTL - gcAxiControl
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3219,21 +3231,20 @@ typedef union _hw_gpu3d_gca_crtl
 #define BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE      (0x00000001)  //!< Bit mask for GPU3D_GCA_CRTL_WR_FULL_BURST_MODE.
 
 //! @brief Get value of GPU3D_GCA_CRTL_WR_FULL_BURST_MODE from a register value.
-#define BG_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(r)   (((r) & BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) >> BP_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE)
+#define BG_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) >> BP_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCA_CRTL_WR_FULL_BURST_MODE.
-#define BF_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(v)   ((((reg32_t) v) << BP_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) & BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE)
-#else
-//! @brief Format value for bitfield GPU3D_GCA_CRTL_WR_FULL_BURST_MODE.
-#define BF_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(v)   (((v) << BP_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) & BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE)
-#endif
+#define BF_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) & BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_FULL_BURST_MODE field to a new value.
 #define BW_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(v)   (HW_GPU3D_GCA_CRTL_WR((HW_GPU3D_GCA_CRTL_RD() & ~BM_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE) | BF_GPU3D_GCA_CRTL_WR_FULL_BURST_MODE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCM_FEAT_1 - GCMinorFeatures1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3287,7 +3298,7 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE      (0x00000001)  //!< Bit mask for GPU3D_GCM_FEAT_1_RSUV_SWIZZLE.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_RSUV_SWIZZLE from a register value.
-#define BG_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE(r)   (((r) & BM_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE) >> BP_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE)
+#define BG_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE) >> BP_GPU3D_GCM_FEAT_1_RSUV_SWIZZLE)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_1, field V2_COMPRESSION[1] (RO)
@@ -3303,7 +3314,7 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_V2_COMPRESSION      (0x00000002)  //!< Bit mask for GPU3D_GCM_FEAT_1_V2_COMPRESSION.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_V2_COMPRESSION from a register value.
-#define BG_GPU3D_GCM_FEAT_1_V2_COMPRESSION(r)   (((r) & BM_GPU3D_GCM_FEAT_1_V2_COMPRESSION) >> BP_GPU3D_GCM_FEAT_1_V2_COMPRESSION)
+#define BG_GPU3D_GCM_FEAT_1_V2_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_V2_COMPRESSION) >> BP_GPU3D_GCM_FEAT_1_V2_COMPRESSION)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_1, field VG_DOUBLE_BUFFER[2] (RO)
@@ -3319,7 +3330,7 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER      (0x00000004)  //!< Bit mask for GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER from a register value.
-#define BG_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER(r)   (((r) & BM_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER) >> BP_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER)
+#define BG_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER) >> BP_GPU3D_GCM_FEAT_1_VG_DOUBLE_BUFFER)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_1, field BUG_FIXES1[3] (RO)
@@ -3335,7 +3346,7 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_BUG_FIXES1      (0x00000008)  //!< Bit mask for GPU3D_GCM_FEAT_1_BUG_FIXES1.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_BUG_FIXES1 from a register value.
-#define BG_GPU3D_GCM_FEAT_1_BUG_FIXES1(r)   (((r) & BM_GPU3D_GCM_FEAT_1_BUG_FIXES1) >> BP_GPU3D_GCM_FEAT_1_BUG_FIXES1)
+#define BG_GPU3D_GCM_FEAT_1_BUG_FIXES1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_BUG_FIXES1) >> BP_GPU3D_GCM_FEAT_1_BUG_FIXES1)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_1, field BUG_FIXES2[4] (RO)
@@ -3351,7 +3362,7 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_BUG_FIXES2      (0x00000010)  //!< Bit mask for GPU3D_GCM_FEAT_1_BUG_FIXES2.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_BUG_FIXES2 from a register value.
-#define BG_GPU3D_GCM_FEAT_1_BUG_FIXES2(r)   (((r) & BM_GPU3D_GCM_FEAT_1_BUG_FIXES2) >> BP_GPU3D_GCM_FEAT_1_BUG_FIXES2)
+#define BG_GPU3D_GCM_FEAT_1_BUG_FIXES2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_BUG_FIXES2) >> BP_GPU3D_GCM_FEAT_1_BUG_FIXES2)
 
 
 /* --- Register HW_GPU3D_GCM_FEAT_1, field TEXTURE_STRIDE[5] (RO)
@@ -3367,8 +3378,12 @@ typedef union _hw_gpu3d_gcm_feat_1
 #define BM_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE      (0x00000020)  //!< Bit mask for GPU3D_GCM_FEAT_1_TEXTURE_STRIDE.
 
 //! @brief Get value of GPU3D_GCM_FEAT_1_TEXTURE_STRIDE from a register value.
-#define BG_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE(r)   (((r) & BM_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE) >> BP_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE)
+#define BG_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE) >> BP_GPU3D_GCM_FEAT_1_TEXTURE_STRIDE)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_CYCLES - gcTotalCycles
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3415,20 +3430,19 @@ typedef union _hw_gpu3d_gct_cycles
 #define BM_GPU3D_GCT_CYCLES_CYCLES      (0xffffffff)  //!< Bit mask for GPU3D_GCT_CYCLES_CYCLES.
 
 //! @brief Get value of GPU3D_GCT_CYCLES_CYCLES from a register value.
-#define BG_GPU3D_GCT_CYCLES_CYCLES(r)   (((r) & BM_GPU3D_GCT_CYCLES_CYCLES) >> BP_GPU3D_GCT_CYCLES_CYCLES)
+#define BG_GPU3D_GCT_CYCLES_CYCLES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_CYCLES_CYCLES) >> BP_GPU3D_GCT_CYCLES_CYCLES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCT_CYCLES_CYCLES.
-#define BF_GPU3D_GCT_CYCLES_CYCLES(v)   ((((reg32_t) v) << BP_GPU3D_GCT_CYCLES_CYCLES) & BM_GPU3D_GCT_CYCLES_CYCLES)
-#else
-//! @brief Format value for bitfield GPU3D_GCT_CYCLES_CYCLES.
-#define BF_GPU3D_GCT_CYCLES_CYCLES(v)   (((v) << BP_GPU3D_GCT_CYCLES_CYCLES) & BM_GPU3D_GCT_CYCLES_CYCLES)
-#endif
+#define BF_GPU3D_GCT_CYCLES_CYCLES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCT_CYCLES_CYCLES) & BM_GPU3D_GCT_CYCLES_CYCLES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CYCLES field to a new value.
 #define BW_GPU3D_GCT_CYCLES_CYCLES(v)   (HW_GPU3D_GCT_CYCLES_WR((HW_GPU3D_GCT_CYCLES_RD() & ~BM_GPU3D_GCT_CYCLES_CYCLES) | BF_GPU3D_GCT_CYCLES_CYCLES(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPU3D_GCT_IDLE_CYCLES - gcTotalIdleCycles
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3476,15 +3490,10 @@ typedef union _hw_gpu3d_gct_idle_cycles
 #define BM_GPU3D_GCT_IDLE_CYCLES_CYCLES      (0xffffffff)  //!< Bit mask for GPU3D_GCT_IDLE_CYCLES_CYCLES.
 
 //! @brief Get value of GPU3D_GCT_IDLE_CYCLES_CYCLES from a register value.
-#define BG_GPU3D_GCT_IDLE_CYCLES_CYCLES(r)   (((r) & BM_GPU3D_GCT_IDLE_CYCLES_CYCLES) >> BP_GPU3D_GCT_IDLE_CYCLES_CYCLES)
+#define BG_GPU3D_GCT_IDLE_CYCLES_CYCLES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU3D_GCT_IDLE_CYCLES_CYCLES) >> BP_GPU3D_GCT_IDLE_CYCLES_CYCLES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPU3D_GCT_IDLE_CYCLES_CYCLES.
-#define BF_GPU3D_GCT_IDLE_CYCLES_CYCLES(v)   ((((reg32_t) v) << BP_GPU3D_GCT_IDLE_CYCLES_CYCLES) & BM_GPU3D_GCT_IDLE_CYCLES_CYCLES)
-#else
-//! @brief Format value for bitfield GPU3D_GCT_IDLE_CYCLES_CYCLES.
-#define BF_GPU3D_GCT_IDLE_CYCLES_CYCLES(v)   (((v) << BP_GPU3D_GCT_IDLE_CYCLES_CYCLES) & BM_GPU3D_GCT_IDLE_CYCLES_CYCLES)
-#endif
+#define BF_GPU3D_GCT_IDLE_CYCLES_CYCLES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU3D_GCT_IDLE_CYCLES_CYCLES) & BM_GPU3D_GCT_IDLE_CYCLES_CYCLES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CYCLES field to a new value.

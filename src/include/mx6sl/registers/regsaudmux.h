@@ -39,6 +39,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR1 - Port Timing Control Register 1
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_AUDMUX_PTCR1 - Port Timing Control Register 1 (RW)
@@ -101,15 +116,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR1_SYN.
 
 //! @brief Get value of AUDMUX_PTCR1_SYN from a register value.
-#define BG_AUDMUX_PTCR1_SYN(r)   (((r) & BM_AUDMUX_PTCR1_SYN) >> BP_AUDMUX_PTCR1_SYN)
+#define BG_AUDMUX_PTCR1_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_SYN) >> BP_AUDMUX_PTCR1_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_SYN.
-#define BF_AUDMUX_PTCR1_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_SYN) & BM_AUDMUX_PTCR1_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_SYN.
-#define BF_AUDMUX_PTCR1_SYN(v)   (((v) << BP_AUDMUX_PTCR1_SYN) & BM_AUDMUX_PTCR1_SYN)
-#endif
+#define BF_AUDMUX_PTCR1_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_SYN) & BM_AUDMUX_PTCR1_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -136,15 +146,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR1_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR1_RCSEL from a register value.
-#define BG_AUDMUX_PTCR1_RCSEL(r)   (((r) & BM_AUDMUX_PTCR1_RCSEL) >> BP_AUDMUX_PTCR1_RCSEL)
+#define BG_AUDMUX_PTCR1_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_RCSEL) >> BP_AUDMUX_PTCR1_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_RCSEL.
-#define BF_AUDMUX_PTCR1_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_RCSEL) & BM_AUDMUX_PTCR1_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_RCSEL.
-#define BF_AUDMUX_PTCR1_RCSEL(v)   (((v) << BP_AUDMUX_PTCR1_RCSEL) & BM_AUDMUX_PTCR1_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR1_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_RCSEL) & BM_AUDMUX_PTCR1_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -167,15 +172,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR1_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR1_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR1_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR1_RCLKDIR) >> BP_AUDMUX_PTCR1_RCLKDIR)
+#define BG_AUDMUX_PTCR1_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_RCLKDIR) >> BP_AUDMUX_PTCR1_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_RCLKDIR.
-#define BF_AUDMUX_PTCR1_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_RCLKDIR) & BM_AUDMUX_PTCR1_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_RCLKDIR.
-#define BF_AUDMUX_PTCR1_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR1_RCLKDIR) & BM_AUDMUX_PTCR1_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR1_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_RCLKDIR) & BM_AUDMUX_PTCR1_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -202,15 +202,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR1_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR1_RFSEL from a register value.
-#define BG_AUDMUX_PTCR1_RFSEL(r)   (((r) & BM_AUDMUX_PTCR1_RFSEL) >> BP_AUDMUX_PTCR1_RFSEL)
+#define BG_AUDMUX_PTCR1_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_RFSEL) >> BP_AUDMUX_PTCR1_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_RFSEL.
-#define BF_AUDMUX_PTCR1_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_RFSEL) & BM_AUDMUX_PTCR1_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_RFSEL.
-#define BF_AUDMUX_PTCR1_RFSEL(v)   (((v) << BP_AUDMUX_PTCR1_RFSEL) & BM_AUDMUX_PTCR1_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR1_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_RFSEL) & BM_AUDMUX_PTCR1_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -233,15 +228,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR1_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR1_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR1_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR1_RFS_DIR) >> BP_AUDMUX_PTCR1_RFS_DIR)
+#define BG_AUDMUX_PTCR1_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_RFS_DIR) >> BP_AUDMUX_PTCR1_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_RFS_DIR.
-#define BF_AUDMUX_PTCR1_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_RFS_DIR) & BM_AUDMUX_PTCR1_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_RFS_DIR.
-#define BF_AUDMUX_PTCR1_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR1_RFS_DIR) & BM_AUDMUX_PTCR1_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR1_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_RFS_DIR) & BM_AUDMUX_PTCR1_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -267,15 +257,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR1_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR1_TCSEL from a register value.
-#define BG_AUDMUX_PTCR1_TCSEL(r)   (((r) & BM_AUDMUX_PTCR1_TCSEL) >> BP_AUDMUX_PTCR1_TCSEL)
+#define BG_AUDMUX_PTCR1_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_TCSEL) >> BP_AUDMUX_PTCR1_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_TCSEL.
-#define BF_AUDMUX_PTCR1_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_TCSEL) & BM_AUDMUX_PTCR1_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_TCSEL.
-#define BF_AUDMUX_PTCR1_TCSEL(v)   (((v) << BP_AUDMUX_PTCR1_TCSEL) & BM_AUDMUX_PTCR1_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR1_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_TCSEL) & BM_AUDMUX_PTCR1_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -298,15 +283,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR1_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR1_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR1_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR1_TCLKDIR) >> BP_AUDMUX_PTCR1_TCLKDIR)
+#define BG_AUDMUX_PTCR1_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_TCLKDIR) >> BP_AUDMUX_PTCR1_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_TCLKDIR.
-#define BF_AUDMUX_PTCR1_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_TCLKDIR) & BM_AUDMUX_PTCR1_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_TCLKDIR.
-#define BF_AUDMUX_PTCR1_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR1_TCLKDIR) & BM_AUDMUX_PTCR1_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR1_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_TCLKDIR) & BM_AUDMUX_PTCR1_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -332,15 +312,10 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR1_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR1_TFSEL from a register value.
-#define BG_AUDMUX_PTCR1_TFSEL(r)   (((r) & BM_AUDMUX_PTCR1_TFSEL) >> BP_AUDMUX_PTCR1_TFSEL)
+#define BG_AUDMUX_PTCR1_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_TFSEL) >> BP_AUDMUX_PTCR1_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_TFSEL.
-#define BF_AUDMUX_PTCR1_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_TFSEL) & BM_AUDMUX_PTCR1_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_TFSEL.
-#define BF_AUDMUX_PTCR1_TFSEL(v)   (((v) << BP_AUDMUX_PTCR1_TFSEL) & BM_AUDMUX_PTCR1_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR1_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_TFSEL) & BM_AUDMUX_PTCR1_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -363,21 +338,20 @@ typedef union _hw_audmux_ptcr1
 #define BM_AUDMUX_PTCR1_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR1_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR1_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR1_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR1_TFS_DIR) >> BP_AUDMUX_PTCR1_TFS_DIR)
+#define BG_AUDMUX_PTCR1_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR1_TFS_DIR) >> BP_AUDMUX_PTCR1_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR1_TFS_DIR.
-#define BF_AUDMUX_PTCR1_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR1_TFS_DIR) & BM_AUDMUX_PTCR1_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR1_TFS_DIR.
-#define BF_AUDMUX_PTCR1_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR1_TFS_DIR) & BM_AUDMUX_PTCR1_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR1_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR1_TFS_DIR) & BM_AUDMUX_PTCR1_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR1_TFS_DIR(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_TFS_DIR) | BF_AUDMUX_PTCR1_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR1 - Port Data Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -435,15 +409,10 @@ typedef union _hw_audmux_pdcr1
 #define BM_AUDMUX_PDCR1_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR1_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR1_INMMASK from a register value.
-#define BG_AUDMUX_PDCR1_INMMASK(r)   (((r) & BM_AUDMUX_PDCR1_INMMASK) >> BP_AUDMUX_PDCR1_INMMASK)
+#define BG_AUDMUX_PDCR1_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR1_INMMASK) >> BP_AUDMUX_PDCR1_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR1_INMMASK.
-#define BF_AUDMUX_PDCR1_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR1_INMMASK) & BM_AUDMUX_PDCR1_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR1_INMMASK.
-#define BF_AUDMUX_PDCR1_INMMASK(v)   (((v) << BP_AUDMUX_PDCR1_INMMASK) & BM_AUDMUX_PDCR1_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR1_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR1_INMMASK) & BM_AUDMUX_PDCR1_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -467,15 +436,10 @@ typedef union _hw_audmux_pdcr1
 #define BM_AUDMUX_PDCR1_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR1_MODE.
 
 //! @brief Get value of AUDMUX_PDCR1_MODE from a register value.
-#define BG_AUDMUX_PDCR1_MODE(r)   (((r) & BM_AUDMUX_PDCR1_MODE) >> BP_AUDMUX_PDCR1_MODE)
+#define BG_AUDMUX_PDCR1_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR1_MODE) >> BP_AUDMUX_PDCR1_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR1_MODE.
-#define BF_AUDMUX_PDCR1_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR1_MODE) & BM_AUDMUX_PDCR1_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR1_MODE.
-#define BF_AUDMUX_PDCR1_MODE(v)   (((v) << BP_AUDMUX_PDCR1_MODE) & BM_AUDMUX_PDCR1_MODE)
-#endif
+#define BF_AUDMUX_PDCR1_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR1_MODE) & BM_AUDMUX_PDCR1_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -496,15 +460,10 @@ typedef union _hw_audmux_pdcr1
 #define BM_AUDMUX_PDCR1_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR1_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR1_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR1_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR1_TXRXEN) >> BP_AUDMUX_PDCR1_TXRXEN)
+#define BG_AUDMUX_PDCR1_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR1_TXRXEN) >> BP_AUDMUX_PDCR1_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR1_TXRXEN.
-#define BF_AUDMUX_PDCR1_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR1_TXRXEN) & BM_AUDMUX_PDCR1_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR1_TXRXEN.
-#define BF_AUDMUX_PDCR1_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR1_TXRXEN) & BM_AUDMUX_PDCR1_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR1_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR1_TXRXEN) & BM_AUDMUX_PDCR1_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -530,21 +489,20 @@ typedef union _hw_audmux_pdcr1
 #define BM_AUDMUX_PDCR1_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR1_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR1_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR1_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR1_RXDSEL) >> BP_AUDMUX_PDCR1_RXDSEL)
+#define BG_AUDMUX_PDCR1_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR1_RXDSEL) >> BP_AUDMUX_PDCR1_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR1_RXDSEL.
-#define BF_AUDMUX_PDCR1_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR1_RXDSEL) & BM_AUDMUX_PDCR1_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR1_RXDSEL.
-#define BF_AUDMUX_PDCR1_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR1_RXDSEL) & BM_AUDMUX_PDCR1_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR1_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR1_RXDSEL) & BM_AUDMUX_PDCR1_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR1_RXDSEL(v)   (HW_AUDMUX_PDCR1_WR((HW_AUDMUX_PDCR1_RD() & ~BM_AUDMUX_PDCR1_RXDSEL) | BF_AUDMUX_PDCR1_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR2 - Port Timing Control Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -608,15 +566,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR2_SYN.
 
 //! @brief Get value of AUDMUX_PTCR2_SYN from a register value.
-#define BG_AUDMUX_PTCR2_SYN(r)   (((r) & BM_AUDMUX_PTCR2_SYN) >> BP_AUDMUX_PTCR2_SYN)
+#define BG_AUDMUX_PTCR2_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_SYN) >> BP_AUDMUX_PTCR2_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_SYN.
-#define BF_AUDMUX_PTCR2_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_SYN) & BM_AUDMUX_PTCR2_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_SYN.
-#define BF_AUDMUX_PTCR2_SYN(v)   (((v) << BP_AUDMUX_PTCR2_SYN) & BM_AUDMUX_PTCR2_SYN)
-#endif
+#define BF_AUDMUX_PTCR2_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_SYN) & BM_AUDMUX_PTCR2_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -643,15 +596,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR2_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR2_RCSEL from a register value.
-#define BG_AUDMUX_PTCR2_RCSEL(r)   (((r) & BM_AUDMUX_PTCR2_RCSEL) >> BP_AUDMUX_PTCR2_RCSEL)
+#define BG_AUDMUX_PTCR2_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_RCSEL) >> BP_AUDMUX_PTCR2_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_RCSEL.
-#define BF_AUDMUX_PTCR2_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_RCSEL) & BM_AUDMUX_PTCR2_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_RCSEL.
-#define BF_AUDMUX_PTCR2_RCSEL(v)   (((v) << BP_AUDMUX_PTCR2_RCSEL) & BM_AUDMUX_PTCR2_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR2_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_RCSEL) & BM_AUDMUX_PTCR2_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -674,15 +622,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR2_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR2_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR2_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR2_RCLKDIR) >> BP_AUDMUX_PTCR2_RCLKDIR)
+#define BG_AUDMUX_PTCR2_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_RCLKDIR) >> BP_AUDMUX_PTCR2_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_RCLKDIR.
-#define BF_AUDMUX_PTCR2_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_RCLKDIR) & BM_AUDMUX_PTCR2_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_RCLKDIR.
-#define BF_AUDMUX_PTCR2_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR2_RCLKDIR) & BM_AUDMUX_PTCR2_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR2_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_RCLKDIR) & BM_AUDMUX_PTCR2_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -709,15 +652,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR2_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR2_RFSEL from a register value.
-#define BG_AUDMUX_PTCR2_RFSEL(r)   (((r) & BM_AUDMUX_PTCR2_RFSEL) >> BP_AUDMUX_PTCR2_RFSEL)
+#define BG_AUDMUX_PTCR2_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_RFSEL) >> BP_AUDMUX_PTCR2_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_RFSEL.
-#define BF_AUDMUX_PTCR2_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_RFSEL) & BM_AUDMUX_PTCR2_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_RFSEL.
-#define BF_AUDMUX_PTCR2_RFSEL(v)   (((v) << BP_AUDMUX_PTCR2_RFSEL) & BM_AUDMUX_PTCR2_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR2_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_RFSEL) & BM_AUDMUX_PTCR2_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -740,15 +678,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR2_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR2_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR2_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR2_RFS_DIR) >> BP_AUDMUX_PTCR2_RFS_DIR)
+#define BG_AUDMUX_PTCR2_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_RFS_DIR) >> BP_AUDMUX_PTCR2_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_RFS_DIR.
-#define BF_AUDMUX_PTCR2_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_RFS_DIR) & BM_AUDMUX_PTCR2_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_RFS_DIR.
-#define BF_AUDMUX_PTCR2_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR2_RFS_DIR) & BM_AUDMUX_PTCR2_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR2_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_RFS_DIR) & BM_AUDMUX_PTCR2_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -774,15 +707,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR2_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR2_TCSEL from a register value.
-#define BG_AUDMUX_PTCR2_TCSEL(r)   (((r) & BM_AUDMUX_PTCR2_TCSEL) >> BP_AUDMUX_PTCR2_TCSEL)
+#define BG_AUDMUX_PTCR2_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_TCSEL) >> BP_AUDMUX_PTCR2_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_TCSEL.
-#define BF_AUDMUX_PTCR2_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_TCSEL) & BM_AUDMUX_PTCR2_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_TCSEL.
-#define BF_AUDMUX_PTCR2_TCSEL(v)   (((v) << BP_AUDMUX_PTCR2_TCSEL) & BM_AUDMUX_PTCR2_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR2_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_TCSEL) & BM_AUDMUX_PTCR2_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -805,15 +733,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR2_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR2_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR2_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR2_TCLKDIR) >> BP_AUDMUX_PTCR2_TCLKDIR)
+#define BG_AUDMUX_PTCR2_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_TCLKDIR) >> BP_AUDMUX_PTCR2_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_TCLKDIR.
-#define BF_AUDMUX_PTCR2_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_TCLKDIR) & BM_AUDMUX_PTCR2_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_TCLKDIR.
-#define BF_AUDMUX_PTCR2_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR2_TCLKDIR) & BM_AUDMUX_PTCR2_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR2_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_TCLKDIR) & BM_AUDMUX_PTCR2_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -839,15 +762,10 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR2_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR2_TFSEL from a register value.
-#define BG_AUDMUX_PTCR2_TFSEL(r)   (((r) & BM_AUDMUX_PTCR2_TFSEL) >> BP_AUDMUX_PTCR2_TFSEL)
+#define BG_AUDMUX_PTCR2_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_TFSEL) >> BP_AUDMUX_PTCR2_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_TFSEL.
-#define BF_AUDMUX_PTCR2_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_TFSEL) & BM_AUDMUX_PTCR2_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_TFSEL.
-#define BF_AUDMUX_PTCR2_TFSEL(v)   (((v) << BP_AUDMUX_PTCR2_TFSEL) & BM_AUDMUX_PTCR2_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR2_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_TFSEL) & BM_AUDMUX_PTCR2_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -870,21 +788,20 @@ typedef union _hw_audmux_ptcr2
 #define BM_AUDMUX_PTCR2_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR2_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR2_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR2_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR2_TFS_DIR) >> BP_AUDMUX_PTCR2_TFS_DIR)
+#define BG_AUDMUX_PTCR2_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR2_TFS_DIR) >> BP_AUDMUX_PTCR2_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR2_TFS_DIR.
-#define BF_AUDMUX_PTCR2_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR2_TFS_DIR) & BM_AUDMUX_PTCR2_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR2_TFS_DIR.
-#define BF_AUDMUX_PTCR2_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR2_TFS_DIR) & BM_AUDMUX_PTCR2_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR2_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR2_TFS_DIR) & BM_AUDMUX_PTCR2_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR2_TFS_DIR(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_TFS_DIR) | BF_AUDMUX_PTCR2_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR2 - Port Data Control Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -942,15 +859,10 @@ typedef union _hw_audmux_pdcr2
 #define BM_AUDMUX_PDCR2_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR2_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR2_INMMASK from a register value.
-#define BG_AUDMUX_PDCR2_INMMASK(r)   (((r) & BM_AUDMUX_PDCR2_INMMASK) >> BP_AUDMUX_PDCR2_INMMASK)
+#define BG_AUDMUX_PDCR2_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR2_INMMASK) >> BP_AUDMUX_PDCR2_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR2_INMMASK.
-#define BF_AUDMUX_PDCR2_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR2_INMMASK) & BM_AUDMUX_PDCR2_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR2_INMMASK.
-#define BF_AUDMUX_PDCR2_INMMASK(v)   (((v) << BP_AUDMUX_PDCR2_INMMASK) & BM_AUDMUX_PDCR2_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR2_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR2_INMMASK) & BM_AUDMUX_PDCR2_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -974,15 +886,10 @@ typedef union _hw_audmux_pdcr2
 #define BM_AUDMUX_PDCR2_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR2_MODE.
 
 //! @brief Get value of AUDMUX_PDCR2_MODE from a register value.
-#define BG_AUDMUX_PDCR2_MODE(r)   (((r) & BM_AUDMUX_PDCR2_MODE) >> BP_AUDMUX_PDCR2_MODE)
+#define BG_AUDMUX_PDCR2_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR2_MODE) >> BP_AUDMUX_PDCR2_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR2_MODE.
-#define BF_AUDMUX_PDCR2_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR2_MODE) & BM_AUDMUX_PDCR2_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR2_MODE.
-#define BF_AUDMUX_PDCR2_MODE(v)   (((v) << BP_AUDMUX_PDCR2_MODE) & BM_AUDMUX_PDCR2_MODE)
-#endif
+#define BF_AUDMUX_PDCR2_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR2_MODE) & BM_AUDMUX_PDCR2_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -1003,15 +910,10 @@ typedef union _hw_audmux_pdcr2
 #define BM_AUDMUX_PDCR2_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR2_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR2_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR2_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR2_TXRXEN) >> BP_AUDMUX_PDCR2_TXRXEN)
+#define BG_AUDMUX_PDCR2_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR2_TXRXEN) >> BP_AUDMUX_PDCR2_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR2_TXRXEN.
-#define BF_AUDMUX_PDCR2_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR2_TXRXEN) & BM_AUDMUX_PDCR2_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR2_TXRXEN.
-#define BF_AUDMUX_PDCR2_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR2_TXRXEN) & BM_AUDMUX_PDCR2_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR2_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR2_TXRXEN) & BM_AUDMUX_PDCR2_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -1037,21 +939,20 @@ typedef union _hw_audmux_pdcr2
 #define BM_AUDMUX_PDCR2_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR2_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR2_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR2_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR2_RXDSEL) >> BP_AUDMUX_PDCR2_RXDSEL)
+#define BG_AUDMUX_PDCR2_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR2_RXDSEL) >> BP_AUDMUX_PDCR2_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR2_RXDSEL.
-#define BF_AUDMUX_PDCR2_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR2_RXDSEL) & BM_AUDMUX_PDCR2_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR2_RXDSEL.
-#define BF_AUDMUX_PDCR2_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR2_RXDSEL) & BM_AUDMUX_PDCR2_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR2_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR2_RXDSEL) & BM_AUDMUX_PDCR2_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR2_RXDSEL(v)   (HW_AUDMUX_PDCR2_WR((HW_AUDMUX_PDCR2_RD() & ~BM_AUDMUX_PDCR2_RXDSEL) | BF_AUDMUX_PDCR2_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR3 - Port Timing Control Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1115,15 +1016,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR3_SYN.
 
 //! @brief Get value of AUDMUX_PTCR3_SYN from a register value.
-#define BG_AUDMUX_PTCR3_SYN(r)   (((r) & BM_AUDMUX_PTCR3_SYN) >> BP_AUDMUX_PTCR3_SYN)
+#define BG_AUDMUX_PTCR3_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_SYN) >> BP_AUDMUX_PTCR3_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_SYN.
-#define BF_AUDMUX_PTCR3_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_SYN) & BM_AUDMUX_PTCR3_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_SYN.
-#define BF_AUDMUX_PTCR3_SYN(v)   (((v) << BP_AUDMUX_PTCR3_SYN) & BM_AUDMUX_PTCR3_SYN)
-#endif
+#define BF_AUDMUX_PTCR3_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_SYN) & BM_AUDMUX_PTCR3_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -1150,15 +1046,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR3_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR3_RCSEL from a register value.
-#define BG_AUDMUX_PTCR3_RCSEL(r)   (((r) & BM_AUDMUX_PTCR3_RCSEL) >> BP_AUDMUX_PTCR3_RCSEL)
+#define BG_AUDMUX_PTCR3_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_RCSEL) >> BP_AUDMUX_PTCR3_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_RCSEL.
-#define BF_AUDMUX_PTCR3_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_RCSEL) & BM_AUDMUX_PTCR3_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_RCSEL.
-#define BF_AUDMUX_PTCR3_RCSEL(v)   (((v) << BP_AUDMUX_PTCR3_RCSEL) & BM_AUDMUX_PTCR3_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR3_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_RCSEL) & BM_AUDMUX_PTCR3_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -1181,15 +1072,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR3_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR3_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR3_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR3_RCLKDIR) >> BP_AUDMUX_PTCR3_RCLKDIR)
+#define BG_AUDMUX_PTCR3_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_RCLKDIR) >> BP_AUDMUX_PTCR3_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_RCLKDIR.
-#define BF_AUDMUX_PTCR3_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_RCLKDIR) & BM_AUDMUX_PTCR3_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_RCLKDIR.
-#define BF_AUDMUX_PTCR3_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR3_RCLKDIR) & BM_AUDMUX_PTCR3_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR3_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_RCLKDIR) & BM_AUDMUX_PTCR3_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -1216,15 +1102,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR3_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR3_RFSEL from a register value.
-#define BG_AUDMUX_PTCR3_RFSEL(r)   (((r) & BM_AUDMUX_PTCR3_RFSEL) >> BP_AUDMUX_PTCR3_RFSEL)
+#define BG_AUDMUX_PTCR3_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_RFSEL) >> BP_AUDMUX_PTCR3_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_RFSEL.
-#define BF_AUDMUX_PTCR3_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_RFSEL) & BM_AUDMUX_PTCR3_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_RFSEL.
-#define BF_AUDMUX_PTCR3_RFSEL(v)   (((v) << BP_AUDMUX_PTCR3_RFSEL) & BM_AUDMUX_PTCR3_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR3_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_RFSEL) & BM_AUDMUX_PTCR3_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -1247,15 +1128,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR3_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR3_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR3_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR3_RFS_DIR) >> BP_AUDMUX_PTCR3_RFS_DIR)
+#define BG_AUDMUX_PTCR3_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_RFS_DIR) >> BP_AUDMUX_PTCR3_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_RFS_DIR.
-#define BF_AUDMUX_PTCR3_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_RFS_DIR) & BM_AUDMUX_PTCR3_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_RFS_DIR.
-#define BF_AUDMUX_PTCR3_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR3_RFS_DIR) & BM_AUDMUX_PTCR3_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR3_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_RFS_DIR) & BM_AUDMUX_PTCR3_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -1281,15 +1157,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR3_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR3_TCSEL from a register value.
-#define BG_AUDMUX_PTCR3_TCSEL(r)   (((r) & BM_AUDMUX_PTCR3_TCSEL) >> BP_AUDMUX_PTCR3_TCSEL)
+#define BG_AUDMUX_PTCR3_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_TCSEL) >> BP_AUDMUX_PTCR3_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_TCSEL.
-#define BF_AUDMUX_PTCR3_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_TCSEL) & BM_AUDMUX_PTCR3_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_TCSEL.
-#define BF_AUDMUX_PTCR3_TCSEL(v)   (((v) << BP_AUDMUX_PTCR3_TCSEL) & BM_AUDMUX_PTCR3_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR3_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_TCSEL) & BM_AUDMUX_PTCR3_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -1312,15 +1183,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR3_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR3_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR3_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR3_TCLKDIR) >> BP_AUDMUX_PTCR3_TCLKDIR)
+#define BG_AUDMUX_PTCR3_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_TCLKDIR) >> BP_AUDMUX_PTCR3_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_TCLKDIR.
-#define BF_AUDMUX_PTCR3_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_TCLKDIR) & BM_AUDMUX_PTCR3_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_TCLKDIR.
-#define BF_AUDMUX_PTCR3_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR3_TCLKDIR) & BM_AUDMUX_PTCR3_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR3_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_TCLKDIR) & BM_AUDMUX_PTCR3_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -1346,15 +1212,10 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR3_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR3_TFSEL from a register value.
-#define BG_AUDMUX_PTCR3_TFSEL(r)   (((r) & BM_AUDMUX_PTCR3_TFSEL) >> BP_AUDMUX_PTCR3_TFSEL)
+#define BG_AUDMUX_PTCR3_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_TFSEL) >> BP_AUDMUX_PTCR3_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_TFSEL.
-#define BF_AUDMUX_PTCR3_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_TFSEL) & BM_AUDMUX_PTCR3_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_TFSEL.
-#define BF_AUDMUX_PTCR3_TFSEL(v)   (((v) << BP_AUDMUX_PTCR3_TFSEL) & BM_AUDMUX_PTCR3_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR3_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_TFSEL) & BM_AUDMUX_PTCR3_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -1377,21 +1238,20 @@ typedef union _hw_audmux_ptcr3
 #define BM_AUDMUX_PTCR3_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR3_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR3_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR3_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR3_TFS_DIR) >> BP_AUDMUX_PTCR3_TFS_DIR)
+#define BG_AUDMUX_PTCR3_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR3_TFS_DIR) >> BP_AUDMUX_PTCR3_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR3_TFS_DIR.
-#define BF_AUDMUX_PTCR3_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR3_TFS_DIR) & BM_AUDMUX_PTCR3_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR3_TFS_DIR.
-#define BF_AUDMUX_PTCR3_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR3_TFS_DIR) & BM_AUDMUX_PTCR3_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR3_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR3_TFS_DIR) & BM_AUDMUX_PTCR3_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR3_TFS_DIR(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_TFS_DIR) | BF_AUDMUX_PTCR3_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR3 - Port Data Control Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1449,15 +1309,10 @@ typedef union _hw_audmux_pdcr3
 #define BM_AUDMUX_PDCR3_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR3_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR3_INMMASK from a register value.
-#define BG_AUDMUX_PDCR3_INMMASK(r)   (((r) & BM_AUDMUX_PDCR3_INMMASK) >> BP_AUDMUX_PDCR3_INMMASK)
+#define BG_AUDMUX_PDCR3_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR3_INMMASK) >> BP_AUDMUX_PDCR3_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR3_INMMASK.
-#define BF_AUDMUX_PDCR3_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR3_INMMASK) & BM_AUDMUX_PDCR3_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR3_INMMASK.
-#define BF_AUDMUX_PDCR3_INMMASK(v)   (((v) << BP_AUDMUX_PDCR3_INMMASK) & BM_AUDMUX_PDCR3_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR3_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR3_INMMASK) & BM_AUDMUX_PDCR3_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -1481,15 +1336,10 @@ typedef union _hw_audmux_pdcr3
 #define BM_AUDMUX_PDCR3_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR3_MODE.
 
 //! @brief Get value of AUDMUX_PDCR3_MODE from a register value.
-#define BG_AUDMUX_PDCR3_MODE(r)   (((r) & BM_AUDMUX_PDCR3_MODE) >> BP_AUDMUX_PDCR3_MODE)
+#define BG_AUDMUX_PDCR3_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR3_MODE) >> BP_AUDMUX_PDCR3_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR3_MODE.
-#define BF_AUDMUX_PDCR3_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR3_MODE) & BM_AUDMUX_PDCR3_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR3_MODE.
-#define BF_AUDMUX_PDCR3_MODE(v)   (((v) << BP_AUDMUX_PDCR3_MODE) & BM_AUDMUX_PDCR3_MODE)
-#endif
+#define BF_AUDMUX_PDCR3_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR3_MODE) & BM_AUDMUX_PDCR3_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -1510,15 +1360,10 @@ typedef union _hw_audmux_pdcr3
 #define BM_AUDMUX_PDCR3_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR3_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR3_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR3_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR3_TXRXEN) >> BP_AUDMUX_PDCR3_TXRXEN)
+#define BG_AUDMUX_PDCR3_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR3_TXRXEN) >> BP_AUDMUX_PDCR3_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR3_TXRXEN.
-#define BF_AUDMUX_PDCR3_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR3_TXRXEN) & BM_AUDMUX_PDCR3_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR3_TXRXEN.
-#define BF_AUDMUX_PDCR3_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR3_TXRXEN) & BM_AUDMUX_PDCR3_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR3_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR3_TXRXEN) & BM_AUDMUX_PDCR3_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -1544,21 +1389,20 @@ typedef union _hw_audmux_pdcr3
 #define BM_AUDMUX_PDCR3_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR3_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR3_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR3_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR3_RXDSEL) >> BP_AUDMUX_PDCR3_RXDSEL)
+#define BG_AUDMUX_PDCR3_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR3_RXDSEL) >> BP_AUDMUX_PDCR3_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR3_RXDSEL.
-#define BF_AUDMUX_PDCR3_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR3_RXDSEL) & BM_AUDMUX_PDCR3_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR3_RXDSEL.
-#define BF_AUDMUX_PDCR3_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR3_RXDSEL) & BM_AUDMUX_PDCR3_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR3_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR3_RXDSEL) & BM_AUDMUX_PDCR3_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR3_RXDSEL(v)   (HW_AUDMUX_PDCR3_WR((HW_AUDMUX_PDCR3_RD() & ~BM_AUDMUX_PDCR3_RXDSEL) | BF_AUDMUX_PDCR3_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR4 - Port Timing Control Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1622,15 +1466,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR4_SYN.
 
 //! @brief Get value of AUDMUX_PTCR4_SYN from a register value.
-#define BG_AUDMUX_PTCR4_SYN(r)   (((r) & BM_AUDMUX_PTCR4_SYN) >> BP_AUDMUX_PTCR4_SYN)
+#define BG_AUDMUX_PTCR4_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_SYN) >> BP_AUDMUX_PTCR4_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_SYN.
-#define BF_AUDMUX_PTCR4_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_SYN) & BM_AUDMUX_PTCR4_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_SYN.
-#define BF_AUDMUX_PTCR4_SYN(v)   (((v) << BP_AUDMUX_PTCR4_SYN) & BM_AUDMUX_PTCR4_SYN)
-#endif
+#define BF_AUDMUX_PTCR4_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_SYN) & BM_AUDMUX_PTCR4_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -1657,15 +1496,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR4_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR4_RCSEL from a register value.
-#define BG_AUDMUX_PTCR4_RCSEL(r)   (((r) & BM_AUDMUX_PTCR4_RCSEL) >> BP_AUDMUX_PTCR4_RCSEL)
+#define BG_AUDMUX_PTCR4_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_RCSEL) >> BP_AUDMUX_PTCR4_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_RCSEL.
-#define BF_AUDMUX_PTCR4_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_RCSEL) & BM_AUDMUX_PTCR4_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_RCSEL.
-#define BF_AUDMUX_PTCR4_RCSEL(v)   (((v) << BP_AUDMUX_PTCR4_RCSEL) & BM_AUDMUX_PTCR4_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR4_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_RCSEL) & BM_AUDMUX_PTCR4_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -1688,15 +1522,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR4_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR4_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR4_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR4_RCLKDIR) >> BP_AUDMUX_PTCR4_RCLKDIR)
+#define BG_AUDMUX_PTCR4_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_RCLKDIR) >> BP_AUDMUX_PTCR4_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_RCLKDIR.
-#define BF_AUDMUX_PTCR4_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_RCLKDIR) & BM_AUDMUX_PTCR4_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_RCLKDIR.
-#define BF_AUDMUX_PTCR4_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR4_RCLKDIR) & BM_AUDMUX_PTCR4_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR4_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_RCLKDIR) & BM_AUDMUX_PTCR4_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -1723,15 +1552,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR4_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR4_RFSEL from a register value.
-#define BG_AUDMUX_PTCR4_RFSEL(r)   (((r) & BM_AUDMUX_PTCR4_RFSEL) >> BP_AUDMUX_PTCR4_RFSEL)
+#define BG_AUDMUX_PTCR4_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_RFSEL) >> BP_AUDMUX_PTCR4_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_RFSEL.
-#define BF_AUDMUX_PTCR4_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_RFSEL) & BM_AUDMUX_PTCR4_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_RFSEL.
-#define BF_AUDMUX_PTCR4_RFSEL(v)   (((v) << BP_AUDMUX_PTCR4_RFSEL) & BM_AUDMUX_PTCR4_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR4_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_RFSEL) & BM_AUDMUX_PTCR4_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -1754,15 +1578,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR4_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR4_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR4_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR4_RFS_DIR) >> BP_AUDMUX_PTCR4_RFS_DIR)
+#define BG_AUDMUX_PTCR4_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_RFS_DIR) >> BP_AUDMUX_PTCR4_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_RFS_DIR.
-#define BF_AUDMUX_PTCR4_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_RFS_DIR) & BM_AUDMUX_PTCR4_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_RFS_DIR.
-#define BF_AUDMUX_PTCR4_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR4_RFS_DIR) & BM_AUDMUX_PTCR4_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR4_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_RFS_DIR) & BM_AUDMUX_PTCR4_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -1788,15 +1607,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR4_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR4_TCSEL from a register value.
-#define BG_AUDMUX_PTCR4_TCSEL(r)   (((r) & BM_AUDMUX_PTCR4_TCSEL) >> BP_AUDMUX_PTCR4_TCSEL)
+#define BG_AUDMUX_PTCR4_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_TCSEL) >> BP_AUDMUX_PTCR4_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_TCSEL.
-#define BF_AUDMUX_PTCR4_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_TCSEL) & BM_AUDMUX_PTCR4_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_TCSEL.
-#define BF_AUDMUX_PTCR4_TCSEL(v)   (((v) << BP_AUDMUX_PTCR4_TCSEL) & BM_AUDMUX_PTCR4_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR4_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_TCSEL) & BM_AUDMUX_PTCR4_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -1819,15 +1633,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR4_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR4_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR4_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR4_TCLKDIR) >> BP_AUDMUX_PTCR4_TCLKDIR)
+#define BG_AUDMUX_PTCR4_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_TCLKDIR) >> BP_AUDMUX_PTCR4_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_TCLKDIR.
-#define BF_AUDMUX_PTCR4_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_TCLKDIR) & BM_AUDMUX_PTCR4_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_TCLKDIR.
-#define BF_AUDMUX_PTCR4_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR4_TCLKDIR) & BM_AUDMUX_PTCR4_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR4_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_TCLKDIR) & BM_AUDMUX_PTCR4_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -1853,15 +1662,10 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR4_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR4_TFSEL from a register value.
-#define BG_AUDMUX_PTCR4_TFSEL(r)   (((r) & BM_AUDMUX_PTCR4_TFSEL) >> BP_AUDMUX_PTCR4_TFSEL)
+#define BG_AUDMUX_PTCR4_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_TFSEL) >> BP_AUDMUX_PTCR4_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_TFSEL.
-#define BF_AUDMUX_PTCR4_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_TFSEL) & BM_AUDMUX_PTCR4_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_TFSEL.
-#define BF_AUDMUX_PTCR4_TFSEL(v)   (((v) << BP_AUDMUX_PTCR4_TFSEL) & BM_AUDMUX_PTCR4_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR4_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_TFSEL) & BM_AUDMUX_PTCR4_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -1884,21 +1688,20 @@ typedef union _hw_audmux_ptcr4
 #define BM_AUDMUX_PTCR4_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR4_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR4_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR4_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR4_TFS_DIR) >> BP_AUDMUX_PTCR4_TFS_DIR)
+#define BG_AUDMUX_PTCR4_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR4_TFS_DIR) >> BP_AUDMUX_PTCR4_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR4_TFS_DIR.
-#define BF_AUDMUX_PTCR4_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR4_TFS_DIR) & BM_AUDMUX_PTCR4_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR4_TFS_DIR.
-#define BF_AUDMUX_PTCR4_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR4_TFS_DIR) & BM_AUDMUX_PTCR4_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR4_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR4_TFS_DIR) & BM_AUDMUX_PTCR4_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR4_TFS_DIR(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_TFS_DIR) | BF_AUDMUX_PTCR4_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR4 - Port Data Control Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1956,15 +1759,10 @@ typedef union _hw_audmux_pdcr4
 #define BM_AUDMUX_PDCR4_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR4_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR4_INMMASK from a register value.
-#define BG_AUDMUX_PDCR4_INMMASK(r)   (((r) & BM_AUDMUX_PDCR4_INMMASK) >> BP_AUDMUX_PDCR4_INMMASK)
+#define BG_AUDMUX_PDCR4_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR4_INMMASK) >> BP_AUDMUX_PDCR4_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR4_INMMASK.
-#define BF_AUDMUX_PDCR4_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR4_INMMASK) & BM_AUDMUX_PDCR4_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR4_INMMASK.
-#define BF_AUDMUX_PDCR4_INMMASK(v)   (((v) << BP_AUDMUX_PDCR4_INMMASK) & BM_AUDMUX_PDCR4_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR4_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR4_INMMASK) & BM_AUDMUX_PDCR4_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -1988,15 +1786,10 @@ typedef union _hw_audmux_pdcr4
 #define BM_AUDMUX_PDCR4_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR4_MODE.
 
 //! @brief Get value of AUDMUX_PDCR4_MODE from a register value.
-#define BG_AUDMUX_PDCR4_MODE(r)   (((r) & BM_AUDMUX_PDCR4_MODE) >> BP_AUDMUX_PDCR4_MODE)
+#define BG_AUDMUX_PDCR4_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR4_MODE) >> BP_AUDMUX_PDCR4_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR4_MODE.
-#define BF_AUDMUX_PDCR4_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR4_MODE) & BM_AUDMUX_PDCR4_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR4_MODE.
-#define BF_AUDMUX_PDCR4_MODE(v)   (((v) << BP_AUDMUX_PDCR4_MODE) & BM_AUDMUX_PDCR4_MODE)
-#endif
+#define BF_AUDMUX_PDCR4_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR4_MODE) & BM_AUDMUX_PDCR4_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -2017,15 +1810,10 @@ typedef union _hw_audmux_pdcr4
 #define BM_AUDMUX_PDCR4_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR4_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR4_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR4_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR4_TXRXEN) >> BP_AUDMUX_PDCR4_TXRXEN)
+#define BG_AUDMUX_PDCR4_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR4_TXRXEN) >> BP_AUDMUX_PDCR4_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR4_TXRXEN.
-#define BF_AUDMUX_PDCR4_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR4_TXRXEN) & BM_AUDMUX_PDCR4_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR4_TXRXEN.
-#define BF_AUDMUX_PDCR4_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR4_TXRXEN) & BM_AUDMUX_PDCR4_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR4_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR4_TXRXEN) & BM_AUDMUX_PDCR4_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -2051,21 +1839,20 @@ typedef union _hw_audmux_pdcr4
 #define BM_AUDMUX_PDCR4_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR4_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR4_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR4_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR4_RXDSEL) >> BP_AUDMUX_PDCR4_RXDSEL)
+#define BG_AUDMUX_PDCR4_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR4_RXDSEL) >> BP_AUDMUX_PDCR4_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR4_RXDSEL.
-#define BF_AUDMUX_PDCR4_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR4_RXDSEL) & BM_AUDMUX_PDCR4_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR4_RXDSEL.
-#define BF_AUDMUX_PDCR4_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR4_RXDSEL) & BM_AUDMUX_PDCR4_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR4_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR4_RXDSEL) & BM_AUDMUX_PDCR4_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR4_RXDSEL(v)   (HW_AUDMUX_PDCR4_WR((HW_AUDMUX_PDCR4_RD() & ~BM_AUDMUX_PDCR4_RXDSEL) | BF_AUDMUX_PDCR4_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR5 - Port Timing Control Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2129,15 +1916,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR5_SYN.
 
 //! @brief Get value of AUDMUX_PTCR5_SYN from a register value.
-#define BG_AUDMUX_PTCR5_SYN(r)   (((r) & BM_AUDMUX_PTCR5_SYN) >> BP_AUDMUX_PTCR5_SYN)
+#define BG_AUDMUX_PTCR5_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_SYN) >> BP_AUDMUX_PTCR5_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_SYN.
-#define BF_AUDMUX_PTCR5_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_SYN) & BM_AUDMUX_PTCR5_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_SYN.
-#define BF_AUDMUX_PTCR5_SYN(v)   (((v) << BP_AUDMUX_PTCR5_SYN) & BM_AUDMUX_PTCR5_SYN)
-#endif
+#define BF_AUDMUX_PTCR5_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_SYN) & BM_AUDMUX_PTCR5_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -2164,15 +1946,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR5_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR5_RCSEL from a register value.
-#define BG_AUDMUX_PTCR5_RCSEL(r)   (((r) & BM_AUDMUX_PTCR5_RCSEL) >> BP_AUDMUX_PTCR5_RCSEL)
+#define BG_AUDMUX_PTCR5_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_RCSEL) >> BP_AUDMUX_PTCR5_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_RCSEL.
-#define BF_AUDMUX_PTCR5_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_RCSEL) & BM_AUDMUX_PTCR5_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_RCSEL.
-#define BF_AUDMUX_PTCR5_RCSEL(v)   (((v) << BP_AUDMUX_PTCR5_RCSEL) & BM_AUDMUX_PTCR5_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR5_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_RCSEL) & BM_AUDMUX_PTCR5_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -2195,15 +1972,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR5_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR5_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR5_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR5_RCLKDIR) >> BP_AUDMUX_PTCR5_RCLKDIR)
+#define BG_AUDMUX_PTCR5_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_RCLKDIR) >> BP_AUDMUX_PTCR5_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_RCLKDIR.
-#define BF_AUDMUX_PTCR5_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_RCLKDIR) & BM_AUDMUX_PTCR5_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_RCLKDIR.
-#define BF_AUDMUX_PTCR5_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR5_RCLKDIR) & BM_AUDMUX_PTCR5_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR5_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_RCLKDIR) & BM_AUDMUX_PTCR5_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -2230,15 +2002,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR5_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR5_RFSEL from a register value.
-#define BG_AUDMUX_PTCR5_RFSEL(r)   (((r) & BM_AUDMUX_PTCR5_RFSEL) >> BP_AUDMUX_PTCR5_RFSEL)
+#define BG_AUDMUX_PTCR5_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_RFSEL) >> BP_AUDMUX_PTCR5_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_RFSEL.
-#define BF_AUDMUX_PTCR5_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_RFSEL) & BM_AUDMUX_PTCR5_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_RFSEL.
-#define BF_AUDMUX_PTCR5_RFSEL(v)   (((v) << BP_AUDMUX_PTCR5_RFSEL) & BM_AUDMUX_PTCR5_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR5_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_RFSEL) & BM_AUDMUX_PTCR5_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -2261,15 +2028,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR5_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR5_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR5_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR5_RFS_DIR) >> BP_AUDMUX_PTCR5_RFS_DIR)
+#define BG_AUDMUX_PTCR5_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_RFS_DIR) >> BP_AUDMUX_PTCR5_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_RFS_DIR.
-#define BF_AUDMUX_PTCR5_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_RFS_DIR) & BM_AUDMUX_PTCR5_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_RFS_DIR.
-#define BF_AUDMUX_PTCR5_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR5_RFS_DIR) & BM_AUDMUX_PTCR5_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR5_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_RFS_DIR) & BM_AUDMUX_PTCR5_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -2295,15 +2057,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR5_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR5_TCSEL from a register value.
-#define BG_AUDMUX_PTCR5_TCSEL(r)   (((r) & BM_AUDMUX_PTCR5_TCSEL) >> BP_AUDMUX_PTCR5_TCSEL)
+#define BG_AUDMUX_PTCR5_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_TCSEL) >> BP_AUDMUX_PTCR5_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_TCSEL.
-#define BF_AUDMUX_PTCR5_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_TCSEL) & BM_AUDMUX_PTCR5_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_TCSEL.
-#define BF_AUDMUX_PTCR5_TCSEL(v)   (((v) << BP_AUDMUX_PTCR5_TCSEL) & BM_AUDMUX_PTCR5_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR5_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_TCSEL) & BM_AUDMUX_PTCR5_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -2326,15 +2083,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR5_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR5_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR5_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR5_TCLKDIR) >> BP_AUDMUX_PTCR5_TCLKDIR)
+#define BG_AUDMUX_PTCR5_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_TCLKDIR) >> BP_AUDMUX_PTCR5_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_TCLKDIR.
-#define BF_AUDMUX_PTCR5_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_TCLKDIR) & BM_AUDMUX_PTCR5_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_TCLKDIR.
-#define BF_AUDMUX_PTCR5_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR5_TCLKDIR) & BM_AUDMUX_PTCR5_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR5_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_TCLKDIR) & BM_AUDMUX_PTCR5_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -2360,15 +2112,10 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR5_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR5_TFSEL from a register value.
-#define BG_AUDMUX_PTCR5_TFSEL(r)   (((r) & BM_AUDMUX_PTCR5_TFSEL) >> BP_AUDMUX_PTCR5_TFSEL)
+#define BG_AUDMUX_PTCR5_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_TFSEL) >> BP_AUDMUX_PTCR5_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_TFSEL.
-#define BF_AUDMUX_PTCR5_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_TFSEL) & BM_AUDMUX_PTCR5_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_TFSEL.
-#define BF_AUDMUX_PTCR5_TFSEL(v)   (((v) << BP_AUDMUX_PTCR5_TFSEL) & BM_AUDMUX_PTCR5_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR5_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_TFSEL) & BM_AUDMUX_PTCR5_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -2391,21 +2138,20 @@ typedef union _hw_audmux_ptcr5
 #define BM_AUDMUX_PTCR5_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR5_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR5_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR5_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR5_TFS_DIR) >> BP_AUDMUX_PTCR5_TFS_DIR)
+#define BG_AUDMUX_PTCR5_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR5_TFS_DIR) >> BP_AUDMUX_PTCR5_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR5_TFS_DIR.
-#define BF_AUDMUX_PTCR5_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR5_TFS_DIR) & BM_AUDMUX_PTCR5_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR5_TFS_DIR.
-#define BF_AUDMUX_PTCR5_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR5_TFS_DIR) & BM_AUDMUX_PTCR5_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR5_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR5_TFS_DIR) & BM_AUDMUX_PTCR5_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR5_TFS_DIR(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_TFS_DIR) | BF_AUDMUX_PTCR5_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR5 - Port Data Control Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2463,15 +2209,10 @@ typedef union _hw_audmux_pdcr5
 #define BM_AUDMUX_PDCR5_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR5_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR5_INMMASK from a register value.
-#define BG_AUDMUX_PDCR5_INMMASK(r)   (((r) & BM_AUDMUX_PDCR5_INMMASK) >> BP_AUDMUX_PDCR5_INMMASK)
+#define BG_AUDMUX_PDCR5_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR5_INMMASK) >> BP_AUDMUX_PDCR5_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR5_INMMASK.
-#define BF_AUDMUX_PDCR5_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR5_INMMASK) & BM_AUDMUX_PDCR5_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR5_INMMASK.
-#define BF_AUDMUX_PDCR5_INMMASK(v)   (((v) << BP_AUDMUX_PDCR5_INMMASK) & BM_AUDMUX_PDCR5_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR5_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR5_INMMASK) & BM_AUDMUX_PDCR5_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -2495,15 +2236,10 @@ typedef union _hw_audmux_pdcr5
 #define BM_AUDMUX_PDCR5_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR5_MODE.
 
 //! @brief Get value of AUDMUX_PDCR5_MODE from a register value.
-#define BG_AUDMUX_PDCR5_MODE(r)   (((r) & BM_AUDMUX_PDCR5_MODE) >> BP_AUDMUX_PDCR5_MODE)
+#define BG_AUDMUX_PDCR5_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR5_MODE) >> BP_AUDMUX_PDCR5_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR5_MODE.
-#define BF_AUDMUX_PDCR5_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR5_MODE) & BM_AUDMUX_PDCR5_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR5_MODE.
-#define BF_AUDMUX_PDCR5_MODE(v)   (((v) << BP_AUDMUX_PDCR5_MODE) & BM_AUDMUX_PDCR5_MODE)
-#endif
+#define BF_AUDMUX_PDCR5_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR5_MODE) & BM_AUDMUX_PDCR5_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -2524,15 +2260,10 @@ typedef union _hw_audmux_pdcr5
 #define BM_AUDMUX_PDCR5_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR5_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR5_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR5_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR5_TXRXEN) >> BP_AUDMUX_PDCR5_TXRXEN)
+#define BG_AUDMUX_PDCR5_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR5_TXRXEN) >> BP_AUDMUX_PDCR5_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR5_TXRXEN.
-#define BF_AUDMUX_PDCR5_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR5_TXRXEN) & BM_AUDMUX_PDCR5_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR5_TXRXEN.
-#define BF_AUDMUX_PDCR5_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR5_TXRXEN) & BM_AUDMUX_PDCR5_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR5_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR5_TXRXEN) & BM_AUDMUX_PDCR5_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -2558,21 +2289,20 @@ typedef union _hw_audmux_pdcr5
 #define BM_AUDMUX_PDCR5_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR5_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR5_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR5_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR5_RXDSEL) >> BP_AUDMUX_PDCR5_RXDSEL)
+#define BG_AUDMUX_PDCR5_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR5_RXDSEL) >> BP_AUDMUX_PDCR5_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR5_RXDSEL.
-#define BF_AUDMUX_PDCR5_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR5_RXDSEL) & BM_AUDMUX_PDCR5_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR5_RXDSEL.
-#define BF_AUDMUX_PDCR5_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR5_RXDSEL) & BM_AUDMUX_PDCR5_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR5_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR5_RXDSEL) & BM_AUDMUX_PDCR5_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR5_RXDSEL(v)   (HW_AUDMUX_PDCR5_WR((HW_AUDMUX_PDCR5_RD() & ~BM_AUDMUX_PDCR5_RXDSEL) | BF_AUDMUX_PDCR5_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR6 - Port Timing Control Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2636,15 +2366,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR6_SYN.
 
 //! @brief Get value of AUDMUX_PTCR6_SYN from a register value.
-#define BG_AUDMUX_PTCR6_SYN(r)   (((r) & BM_AUDMUX_PTCR6_SYN) >> BP_AUDMUX_PTCR6_SYN)
+#define BG_AUDMUX_PTCR6_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_SYN) >> BP_AUDMUX_PTCR6_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_SYN.
-#define BF_AUDMUX_PTCR6_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_SYN) & BM_AUDMUX_PTCR6_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_SYN.
-#define BF_AUDMUX_PTCR6_SYN(v)   (((v) << BP_AUDMUX_PTCR6_SYN) & BM_AUDMUX_PTCR6_SYN)
-#endif
+#define BF_AUDMUX_PTCR6_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_SYN) & BM_AUDMUX_PTCR6_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -2671,15 +2396,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR6_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR6_RCSEL from a register value.
-#define BG_AUDMUX_PTCR6_RCSEL(r)   (((r) & BM_AUDMUX_PTCR6_RCSEL) >> BP_AUDMUX_PTCR6_RCSEL)
+#define BG_AUDMUX_PTCR6_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_RCSEL) >> BP_AUDMUX_PTCR6_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_RCSEL.
-#define BF_AUDMUX_PTCR6_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_RCSEL) & BM_AUDMUX_PTCR6_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_RCSEL.
-#define BF_AUDMUX_PTCR6_RCSEL(v)   (((v) << BP_AUDMUX_PTCR6_RCSEL) & BM_AUDMUX_PTCR6_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR6_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_RCSEL) & BM_AUDMUX_PTCR6_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -2702,15 +2422,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR6_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR6_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR6_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR6_RCLKDIR) >> BP_AUDMUX_PTCR6_RCLKDIR)
+#define BG_AUDMUX_PTCR6_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_RCLKDIR) >> BP_AUDMUX_PTCR6_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_RCLKDIR.
-#define BF_AUDMUX_PTCR6_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_RCLKDIR) & BM_AUDMUX_PTCR6_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_RCLKDIR.
-#define BF_AUDMUX_PTCR6_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR6_RCLKDIR) & BM_AUDMUX_PTCR6_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR6_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_RCLKDIR) & BM_AUDMUX_PTCR6_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -2737,15 +2452,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR6_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR6_RFSEL from a register value.
-#define BG_AUDMUX_PTCR6_RFSEL(r)   (((r) & BM_AUDMUX_PTCR6_RFSEL) >> BP_AUDMUX_PTCR6_RFSEL)
+#define BG_AUDMUX_PTCR6_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_RFSEL) >> BP_AUDMUX_PTCR6_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_RFSEL.
-#define BF_AUDMUX_PTCR6_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_RFSEL) & BM_AUDMUX_PTCR6_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_RFSEL.
-#define BF_AUDMUX_PTCR6_RFSEL(v)   (((v) << BP_AUDMUX_PTCR6_RFSEL) & BM_AUDMUX_PTCR6_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR6_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_RFSEL) & BM_AUDMUX_PTCR6_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -2768,15 +2478,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR6_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR6_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR6_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR6_RFS_DIR) >> BP_AUDMUX_PTCR6_RFS_DIR)
+#define BG_AUDMUX_PTCR6_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_RFS_DIR) >> BP_AUDMUX_PTCR6_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_RFS_DIR.
-#define BF_AUDMUX_PTCR6_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_RFS_DIR) & BM_AUDMUX_PTCR6_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_RFS_DIR.
-#define BF_AUDMUX_PTCR6_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR6_RFS_DIR) & BM_AUDMUX_PTCR6_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR6_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_RFS_DIR) & BM_AUDMUX_PTCR6_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -2802,15 +2507,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR6_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR6_TCSEL from a register value.
-#define BG_AUDMUX_PTCR6_TCSEL(r)   (((r) & BM_AUDMUX_PTCR6_TCSEL) >> BP_AUDMUX_PTCR6_TCSEL)
+#define BG_AUDMUX_PTCR6_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_TCSEL) >> BP_AUDMUX_PTCR6_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_TCSEL.
-#define BF_AUDMUX_PTCR6_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_TCSEL) & BM_AUDMUX_PTCR6_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_TCSEL.
-#define BF_AUDMUX_PTCR6_TCSEL(v)   (((v) << BP_AUDMUX_PTCR6_TCSEL) & BM_AUDMUX_PTCR6_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR6_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_TCSEL) & BM_AUDMUX_PTCR6_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -2833,15 +2533,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR6_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR6_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR6_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR6_TCLKDIR) >> BP_AUDMUX_PTCR6_TCLKDIR)
+#define BG_AUDMUX_PTCR6_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_TCLKDIR) >> BP_AUDMUX_PTCR6_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_TCLKDIR.
-#define BF_AUDMUX_PTCR6_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_TCLKDIR) & BM_AUDMUX_PTCR6_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_TCLKDIR.
-#define BF_AUDMUX_PTCR6_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR6_TCLKDIR) & BM_AUDMUX_PTCR6_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR6_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_TCLKDIR) & BM_AUDMUX_PTCR6_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -2867,15 +2562,10 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR6_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR6_TFSEL from a register value.
-#define BG_AUDMUX_PTCR6_TFSEL(r)   (((r) & BM_AUDMUX_PTCR6_TFSEL) >> BP_AUDMUX_PTCR6_TFSEL)
+#define BG_AUDMUX_PTCR6_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_TFSEL) >> BP_AUDMUX_PTCR6_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_TFSEL.
-#define BF_AUDMUX_PTCR6_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_TFSEL) & BM_AUDMUX_PTCR6_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_TFSEL.
-#define BF_AUDMUX_PTCR6_TFSEL(v)   (((v) << BP_AUDMUX_PTCR6_TFSEL) & BM_AUDMUX_PTCR6_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR6_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_TFSEL) & BM_AUDMUX_PTCR6_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -2898,21 +2588,20 @@ typedef union _hw_audmux_ptcr6
 #define BM_AUDMUX_PTCR6_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR6_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR6_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR6_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR6_TFS_DIR) >> BP_AUDMUX_PTCR6_TFS_DIR)
+#define BG_AUDMUX_PTCR6_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR6_TFS_DIR) >> BP_AUDMUX_PTCR6_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR6_TFS_DIR.
-#define BF_AUDMUX_PTCR6_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR6_TFS_DIR) & BM_AUDMUX_PTCR6_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR6_TFS_DIR.
-#define BF_AUDMUX_PTCR6_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR6_TFS_DIR) & BM_AUDMUX_PTCR6_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR6_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR6_TFS_DIR) & BM_AUDMUX_PTCR6_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR6_TFS_DIR(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_TFS_DIR) | BF_AUDMUX_PTCR6_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR6 - Port Data Control Register 6
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2970,15 +2659,10 @@ typedef union _hw_audmux_pdcr6
 #define BM_AUDMUX_PDCR6_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR6_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR6_INMMASK from a register value.
-#define BG_AUDMUX_PDCR6_INMMASK(r)   (((r) & BM_AUDMUX_PDCR6_INMMASK) >> BP_AUDMUX_PDCR6_INMMASK)
+#define BG_AUDMUX_PDCR6_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR6_INMMASK) >> BP_AUDMUX_PDCR6_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR6_INMMASK.
-#define BF_AUDMUX_PDCR6_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR6_INMMASK) & BM_AUDMUX_PDCR6_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR6_INMMASK.
-#define BF_AUDMUX_PDCR6_INMMASK(v)   (((v) << BP_AUDMUX_PDCR6_INMMASK) & BM_AUDMUX_PDCR6_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR6_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR6_INMMASK) & BM_AUDMUX_PDCR6_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -3002,15 +2686,10 @@ typedef union _hw_audmux_pdcr6
 #define BM_AUDMUX_PDCR6_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR6_MODE.
 
 //! @brief Get value of AUDMUX_PDCR6_MODE from a register value.
-#define BG_AUDMUX_PDCR6_MODE(r)   (((r) & BM_AUDMUX_PDCR6_MODE) >> BP_AUDMUX_PDCR6_MODE)
+#define BG_AUDMUX_PDCR6_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR6_MODE) >> BP_AUDMUX_PDCR6_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR6_MODE.
-#define BF_AUDMUX_PDCR6_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR6_MODE) & BM_AUDMUX_PDCR6_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR6_MODE.
-#define BF_AUDMUX_PDCR6_MODE(v)   (((v) << BP_AUDMUX_PDCR6_MODE) & BM_AUDMUX_PDCR6_MODE)
-#endif
+#define BF_AUDMUX_PDCR6_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR6_MODE) & BM_AUDMUX_PDCR6_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -3031,15 +2710,10 @@ typedef union _hw_audmux_pdcr6
 #define BM_AUDMUX_PDCR6_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR6_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR6_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR6_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR6_TXRXEN) >> BP_AUDMUX_PDCR6_TXRXEN)
+#define BG_AUDMUX_PDCR6_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR6_TXRXEN) >> BP_AUDMUX_PDCR6_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR6_TXRXEN.
-#define BF_AUDMUX_PDCR6_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR6_TXRXEN) & BM_AUDMUX_PDCR6_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR6_TXRXEN.
-#define BF_AUDMUX_PDCR6_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR6_TXRXEN) & BM_AUDMUX_PDCR6_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR6_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR6_TXRXEN) & BM_AUDMUX_PDCR6_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -3065,21 +2739,20 @@ typedef union _hw_audmux_pdcr6
 #define BM_AUDMUX_PDCR6_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR6_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR6_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR6_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR6_RXDSEL) >> BP_AUDMUX_PDCR6_RXDSEL)
+#define BG_AUDMUX_PDCR6_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR6_RXDSEL) >> BP_AUDMUX_PDCR6_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR6_RXDSEL.
-#define BF_AUDMUX_PDCR6_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR6_RXDSEL) & BM_AUDMUX_PDCR6_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR6_RXDSEL.
-#define BF_AUDMUX_PDCR6_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR6_RXDSEL) & BM_AUDMUX_PDCR6_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR6_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR6_RXDSEL) & BM_AUDMUX_PDCR6_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR6_RXDSEL(v)   (HW_AUDMUX_PDCR6_WR((HW_AUDMUX_PDCR6_RD() & ~BM_AUDMUX_PDCR6_RXDSEL) | BF_AUDMUX_PDCR6_RXDSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PTCR7 - Port Timing Control Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3143,15 +2816,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR7_SYN.
 
 //! @brief Get value of AUDMUX_PTCR7_SYN from a register value.
-#define BG_AUDMUX_PTCR7_SYN(r)   (((r) & BM_AUDMUX_PTCR7_SYN) >> BP_AUDMUX_PTCR7_SYN)
+#define BG_AUDMUX_PTCR7_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_SYN) >> BP_AUDMUX_PTCR7_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_SYN.
-#define BF_AUDMUX_PTCR7_SYN(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_SYN) & BM_AUDMUX_PTCR7_SYN)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_SYN.
-#define BF_AUDMUX_PTCR7_SYN(v)   (((v) << BP_AUDMUX_PTCR7_SYN) & BM_AUDMUX_PTCR7_SYN)
-#endif
+#define BF_AUDMUX_PTCR7_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_SYN) & BM_AUDMUX_PTCR7_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -3178,15 +2846,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR7_RCSEL.
 
 //! @brief Get value of AUDMUX_PTCR7_RCSEL from a register value.
-#define BG_AUDMUX_PTCR7_RCSEL(r)   (((r) & BM_AUDMUX_PTCR7_RCSEL) >> BP_AUDMUX_PTCR7_RCSEL)
+#define BG_AUDMUX_PTCR7_RCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_RCSEL) >> BP_AUDMUX_PTCR7_RCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_RCSEL.
-#define BF_AUDMUX_PTCR7_RCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_RCSEL) & BM_AUDMUX_PTCR7_RCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_RCSEL.
-#define BF_AUDMUX_PTCR7_RCSEL(v)   (((v) << BP_AUDMUX_PTCR7_RCSEL) & BM_AUDMUX_PTCR7_RCSEL)
-#endif
+#define BF_AUDMUX_PTCR7_RCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_RCSEL) & BM_AUDMUX_PTCR7_RCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSEL field to a new value.
@@ -3209,15 +2872,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR7_RCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR7_RCLKDIR from a register value.
-#define BG_AUDMUX_PTCR7_RCLKDIR(r)   (((r) & BM_AUDMUX_PTCR7_RCLKDIR) >> BP_AUDMUX_PTCR7_RCLKDIR)
+#define BG_AUDMUX_PTCR7_RCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_RCLKDIR) >> BP_AUDMUX_PTCR7_RCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_RCLKDIR.
-#define BF_AUDMUX_PTCR7_RCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_RCLKDIR) & BM_AUDMUX_PTCR7_RCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_RCLKDIR.
-#define BF_AUDMUX_PTCR7_RCLKDIR(v)   (((v) << BP_AUDMUX_PTCR7_RCLKDIR) & BM_AUDMUX_PTCR7_RCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR7_RCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_RCLKDIR) & BM_AUDMUX_PTCR7_RCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCLKDIR field to a new value.
@@ -3244,15 +2902,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR7_RFSEL.
 
 //! @brief Get value of AUDMUX_PTCR7_RFSEL from a register value.
-#define BG_AUDMUX_PTCR7_RFSEL(r)   (((r) & BM_AUDMUX_PTCR7_RFSEL) >> BP_AUDMUX_PTCR7_RFSEL)
+#define BG_AUDMUX_PTCR7_RFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_RFSEL) >> BP_AUDMUX_PTCR7_RFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_RFSEL.
-#define BF_AUDMUX_PTCR7_RFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_RFSEL) & BM_AUDMUX_PTCR7_RFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_RFSEL.
-#define BF_AUDMUX_PTCR7_RFSEL(v)   (((v) << BP_AUDMUX_PTCR7_RFSEL) & BM_AUDMUX_PTCR7_RFSEL)
-#endif
+#define BF_AUDMUX_PTCR7_RFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_RFSEL) & BM_AUDMUX_PTCR7_RFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSEL field to a new value.
@@ -3275,15 +2928,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR7_RFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR7_RFS_DIR from a register value.
-#define BG_AUDMUX_PTCR7_RFS_DIR(r)   (((r) & BM_AUDMUX_PTCR7_RFS_DIR) >> BP_AUDMUX_PTCR7_RFS_DIR)
+#define BG_AUDMUX_PTCR7_RFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_RFS_DIR) >> BP_AUDMUX_PTCR7_RFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_RFS_DIR.
-#define BF_AUDMUX_PTCR7_RFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_RFS_DIR) & BM_AUDMUX_PTCR7_RFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_RFS_DIR.
-#define BF_AUDMUX_PTCR7_RFS_DIR(v)   (((v) << BP_AUDMUX_PTCR7_RFS_DIR) & BM_AUDMUX_PTCR7_RFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR7_RFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_RFS_DIR) & BM_AUDMUX_PTCR7_RFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFS_DIR field to a new value.
@@ -3309,15 +2957,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR7_TCSEL.
 
 //! @brief Get value of AUDMUX_PTCR7_TCSEL from a register value.
-#define BG_AUDMUX_PTCR7_TCSEL(r)   (((r) & BM_AUDMUX_PTCR7_TCSEL) >> BP_AUDMUX_PTCR7_TCSEL)
+#define BG_AUDMUX_PTCR7_TCSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_TCSEL) >> BP_AUDMUX_PTCR7_TCSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_TCSEL.
-#define BF_AUDMUX_PTCR7_TCSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_TCSEL) & BM_AUDMUX_PTCR7_TCSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_TCSEL.
-#define BF_AUDMUX_PTCR7_TCSEL(v)   (((v) << BP_AUDMUX_PTCR7_TCSEL) & BM_AUDMUX_PTCR7_TCSEL)
-#endif
+#define BF_AUDMUX_PTCR7_TCSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_TCSEL) & BM_AUDMUX_PTCR7_TCSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEL field to a new value.
@@ -3340,15 +2983,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR7_TCLKDIR.
 
 //! @brief Get value of AUDMUX_PTCR7_TCLKDIR from a register value.
-#define BG_AUDMUX_PTCR7_TCLKDIR(r)   (((r) & BM_AUDMUX_PTCR7_TCLKDIR) >> BP_AUDMUX_PTCR7_TCLKDIR)
+#define BG_AUDMUX_PTCR7_TCLKDIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_TCLKDIR) >> BP_AUDMUX_PTCR7_TCLKDIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_TCLKDIR.
-#define BF_AUDMUX_PTCR7_TCLKDIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_TCLKDIR) & BM_AUDMUX_PTCR7_TCLKDIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_TCLKDIR.
-#define BF_AUDMUX_PTCR7_TCLKDIR(v)   (((v) << BP_AUDMUX_PTCR7_TCLKDIR) & BM_AUDMUX_PTCR7_TCLKDIR)
-#endif
+#define BF_AUDMUX_PTCR7_TCLKDIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_TCLKDIR) & BM_AUDMUX_PTCR7_TCLKDIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCLKDIR field to a new value.
@@ -3374,15 +3012,10 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR7_TFSEL.
 
 //! @brief Get value of AUDMUX_PTCR7_TFSEL from a register value.
-#define BG_AUDMUX_PTCR7_TFSEL(r)   (((r) & BM_AUDMUX_PTCR7_TFSEL) >> BP_AUDMUX_PTCR7_TFSEL)
+#define BG_AUDMUX_PTCR7_TFSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_TFSEL) >> BP_AUDMUX_PTCR7_TFSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_TFSEL.
-#define BF_AUDMUX_PTCR7_TFSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_TFSEL) & BM_AUDMUX_PTCR7_TFSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_TFSEL.
-#define BF_AUDMUX_PTCR7_TFSEL(v)   (((v) << BP_AUDMUX_PTCR7_TFSEL) & BM_AUDMUX_PTCR7_TFSEL)
-#endif
+#define BF_AUDMUX_PTCR7_TFSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_TFSEL) & BM_AUDMUX_PTCR7_TFSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSEL field to a new value.
@@ -3405,21 +3038,20 @@ typedef union _hw_audmux_ptcr7
 #define BM_AUDMUX_PTCR7_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR7_TFS_DIR.
 
 //! @brief Get value of AUDMUX_PTCR7_TFS_DIR from a register value.
-#define BG_AUDMUX_PTCR7_TFS_DIR(r)   (((r) & BM_AUDMUX_PTCR7_TFS_DIR) >> BP_AUDMUX_PTCR7_TFS_DIR)
+#define BG_AUDMUX_PTCR7_TFS_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PTCR7_TFS_DIR) >> BP_AUDMUX_PTCR7_TFS_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PTCR7_TFS_DIR.
-#define BF_AUDMUX_PTCR7_TFS_DIR(v)   ((((reg32_t) v) << BP_AUDMUX_PTCR7_TFS_DIR) & BM_AUDMUX_PTCR7_TFS_DIR)
-#else
-//! @brief Format value for bitfield AUDMUX_PTCR7_TFS_DIR.
-#define BF_AUDMUX_PTCR7_TFS_DIR(v)   (((v) << BP_AUDMUX_PTCR7_TFS_DIR) & BM_AUDMUX_PTCR7_TFS_DIR)
-#endif
+#define BF_AUDMUX_PTCR7_TFS_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PTCR7_TFS_DIR) & BM_AUDMUX_PTCR7_TFS_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR7_TFS_DIR(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_TFS_DIR) | BF_AUDMUX_PTCR7_TFS_DIR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_AUDMUX_PDCR7 - Port Data Control Register 7
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3477,15 +3109,10 @@ typedef union _hw_audmux_pdcr7
 #define BM_AUDMUX_PDCR7_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR7_INMMASK.
 
 //! @brief Get value of AUDMUX_PDCR7_INMMASK from a register value.
-#define BG_AUDMUX_PDCR7_INMMASK(r)   (((r) & BM_AUDMUX_PDCR7_INMMASK) >> BP_AUDMUX_PDCR7_INMMASK)
+#define BG_AUDMUX_PDCR7_INMMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR7_INMMASK) >> BP_AUDMUX_PDCR7_INMMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR7_INMMASK.
-#define BF_AUDMUX_PDCR7_INMMASK(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR7_INMMASK) & BM_AUDMUX_PDCR7_INMMASK)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR7_INMMASK.
-#define BF_AUDMUX_PDCR7_INMMASK(v)   (((v) << BP_AUDMUX_PDCR7_INMMASK) & BM_AUDMUX_PDCR7_INMMASK)
-#endif
+#define BF_AUDMUX_PDCR7_INMMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR7_INMMASK) & BM_AUDMUX_PDCR7_INMMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INMMASK field to a new value.
@@ -3509,15 +3136,10 @@ typedef union _hw_audmux_pdcr7
 #define BM_AUDMUX_PDCR7_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR7_MODE.
 
 //! @brief Get value of AUDMUX_PDCR7_MODE from a register value.
-#define BG_AUDMUX_PDCR7_MODE(r)   (((r) & BM_AUDMUX_PDCR7_MODE) >> BP_AUDMUX_PDCR7_MODE)
+#define BG_AUDMUX_PDCR7_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR7_MODE) >> BP_AUDMUX_PDCR7_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR7_MODE.
-#define BF_AUDMUX_PDCR7_MODE(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR7_MODE) & BM_AUDMUX_PDCR7_MODE)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR7_MODE.
-#define BF_AUDMUX_PDCR7_MODE(v)   (((v) << BP_AUDMUX_PDCR7_MODE) & BM_AUDMUX_PDCR7_MODE)
-#endif
+#define BF_AUDMUX_PDCR7_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR7_MODE) & BM_AUDMUX_PDCR7_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE field to a new value.
@@ -3538,15 +3160,10 @@ typedef union _hw_audmux_pdcr7
 #define BM_AUDMUX_PDCR7_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR7_TXRXEN.
 
 //! @brief Get value of AUDMUX_PDCR7_TXRXEN from a register value.
-#define BG_AUDMUX_PDCR7_TXRXEN(r)   (((r) & BM_AUDMUX_PDCR7_TXRXEN) >> BP_AUDMUX_PDCR7_TXRXEN)
+#define BG_AUDMUX_PDCR7_TXRXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR7_TXRXEN) >> BP_AUDMUX_PDCR7_TXRXEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR7_TXRXEN.
-#define BF_AUDMUX_PDCR7_TXRXEN(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR7_TXRXEN) & BM_AUDMUX_PDCR7_TXRXEN)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR7_TXRXEN.
-#define BF_AUDMUX_PDCR7_TXRXEN(v)   (((v) << BP_AUDMUX_PDCR7_TXRXEN) & BM_AUDMUX_PDCR7_TXRXEN)
-#endif
+#define BF_AUDMUX_PDCR7_TXRXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR7_TXRXEN) & BM_AUDMUX_PDCR7_TXRXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXRXEN field to a new value.
@@ -3572,15 +3189,10 @@ typedef union _hw_audmux_pdcr7
 #define BM_AUDMUX_PDCR7_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR7_RXDSEL.
 
 //! @brief Get value of AUDMUX_PDCR7_RXDSEL from a register value.
-#define BG_AUDMUX_PDCR7_RXDSEL(r)   (((r) & BM_AUDMUX_PDCR7_RXDSEL) >> BP_AUDMUX_PDCR7_RXDSEL)
+#define BG_AUDMUX_PDCR7_RXDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_AUDMUX_PDCR7_RXDSEL) >> BP_AUDMUX_PDCR7_RXDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield AUDMUX_PDCR7_RXDSEL.
-#define BF_AUDMUX_PDCR7_RXDSEL(v)   ((((reg32_t) v) << BP_AUDMUX_PDCR7_RXDSEL) & BM_AUDMUX_PDCR7_RXDSEL)
-#else
-//! @brief Format value for bitfield AUDMUX_PDCR7_RXDSEL.
-#define BF_AUDMUX_PDCR7_RXDSEL(v)   (((v) << BP_AUDMUX_PDCR7_RXDSEL) & BM_AUDMUX_PDCR7_RXDSEL)
-#endif
+#define BF_AUDMUX_PDCR7_RXDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_AUDMUX_PDCR7_RXDSEL) & BM_AUDMUX_PDCR7_RXDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEL field to a new value.

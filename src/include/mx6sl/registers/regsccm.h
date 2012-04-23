@@ -44,7 +44,6 @@
  * - HW_CCM_CCGR4 - CCM Clock Gating Register 4
  * - HW_CCM_CCGR5 - CCM Clock Gating Register 5
  * - HW_CCM_CCGR6 - CCM Clock Gating Register 6
- * - HW_CCM_CCGR7 - CCM Clock Gating Register 7
  * - HW_CCM_CMEOR - CCM Module Enable Overide Register
  *
  * - hw_ccm_t - Struct containing all module registers.
@@ -57,6 +56,21 @@
 #define REGS_CCM_BASE (0x020c4000) //!< Base address for CCM.
 #endif
 //@}
+
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCR - CCM Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -120,15 +134,10 @@ typedef union _hw_ccm_ccr
 #define BM_CCM_CCR_OSCNT      (0x000000ff)  //!< Bit mask for CCM_CCR_OSCNT.
 
 //! @brief Get value of CCM_CCR_OSCNT from a register value.
-#define BG_CCM_CCR_OSCNT(r)   (((r) & BM_CCM_CCR_OSCNT) >> BP_CCM_CCR_OSCNT)
+#define BG_CCM_CCR_OSCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCR_OSCNT) >> BP_CCM_CCR_OSCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCR_OSCNT.
-#define BF_CCM_CCR_OSCNT(v)   ((((reg32_t) v) << BP_CCM_CCR_OSCNT) & BM_CCM_CCR_OSCNT)
-#else
-//! @brief Format value for bitfield CCM_CCR_OSCNT.
-#define BF_CCM_CCR_OSCNT(v)   (((v) << BP_CCM_CCR_OSCNT) & BM_CCM_CCR_OSCNT)
-#endif
+#define BF_CCM_CCR_OSCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCR_OSCNT) & BM_CCM_CCR_OSCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OSCNT field to a new value.
@@ -155,15 +164,10 @@ typedef union _hw_ccm_ccr
 #define BM_CCM_CCR_COSC_EN      (0x00001000)  //!< Bit mask for CCM_CCR_COSC_EN.
 
 //! @brief Get value of CCM_CCR_COSC_EN from a register value.
-#define BG_CCM_CCR_COSC_EN(r)   (((r) & BM_CCM_CCR_COSC_EN) >> BP_CCM_CCR_COSC_EN)
+#define BG_CCM_CCR_COSC_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCR_COSC_EN) >> BP_CCM_CCR_COSC_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCR_COSC_EN.
-#define BF_CCM_CCR_COSC_EN(v)   ((((reg32_t) v) << BP_CCM_CCR_COSC_EN) & BM_CCM_CCR_COSC_EN)
-#else
-//! @brief Format value for bitfield CCM_CCR_COSC_EN.
-#define BF_CCM_CCR_COSC_EN(v)   (((v) << BP_CCM_CCR_COSC_EN) & BM_CCM_CCR_COSC_EN)
-#endif
+#define BF_CCM_CCR_COSC_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCR_COSC_EN) & BM_CCM_CCR_COSC_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COSC_EN field to a new value.
@@ -187,15 +191,10 @@ typedef union _hw_ccm_ccr
 #define BM_CCM_CCR_WB_COUNT      (0x00070000)  //!< Bit mask for CCM_CCR_WB_COUNT.
 
 //! @brief Get value of CCM_CCR_WB_COUNT from a register value.
-#define BG_CCM_CCR_WB_COUNT(r)   (((r) & BM_CCM_CCR_WB_COUNT) >> BP_CCM_CCR_WB_COUNT)
+#define BG_CCM_CCR_WB_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCR_WB_COUNT) >> BP_CCM_CCR_WB_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCR_WB_COUNT.
-#define BF_CCM_CCR_WB_COUNT(v)   ((((reg32_t) v) << BP_CCM_CCR_WB_COUNT) & BM_CCM_CCR_WB_COUNT)
-#else
-//! @brief Format value for bitfield CCM_CCR_WB_COUNT.
-#define BF_CCM_CCR_WB_COUNT(v)   (((v) << BP_CCM_CCR_WB_COUNT) & BM_CCM_CCR_WB_COUNT)
-#endif
+#define BF_CCM_CCR_WB_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCR_WB_COUNT) & BM_CCM_CCR_WB_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_COUNT field to a new value.
@@ -218,15 +217,10 @@ typedef union _hw_ccm_ccr
 #define BM_CCM_CCR_REG_BYPASS_COUNT      (0x07e00000)  //!< Bit mask for CCM_CCR_REG_BYPASS_COUNT.
 
 //! @brief Get value of CCM_CCR_REG_BYPASS_COUNT from a register value.
-#define BG_CCM_CCR_REG_BYPASS_COUNT(r)   (((r) & BM_CCM_CCR_REG_BYPASS_COUNT) >> BP_CCM_CCR_REG_BYPASS_COUNT)
+#define BG_CCM_CCR_REG_BYPASS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCR_REG_BYPASS_COUNT) >> BP_CCM_CCR_REG_BYPASS_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCR_REG_BYPASS_COUNT.
-#define BF_CCM_CCR_REG_BYPASS_COUNT(v)   ((((reg32_t) v) << BP_CCM_CCR_REG_BYPASS_COUNT) & BM_CCM_CCR_REG_BYPASS_COUNT)
-#else
-//! @brief Format value for bitfield CCM_CCR_REG_BYPASS_COUNT.
-#define BF_CCM_CCR_REG_BYPASS_COUNT(v)   (((v) << BP_CCM_CCR_REG_BYPASS_COUNT) & BM_CCM_CCR_REG_BYPASS_COUNT)
-#endif
+#define BF_CCM_CCR_REG_BYPASS_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCR_REG_BYPASS_COUNT) & BM_CCM_CCR_REG_BYPASS_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REG_BYPASS_COUNT field to a new value.
@@ -249,21 +243,20 @@ typedef union _hw_ccm_ccr
 #define BM_CCM_CCR_RBC_EN      (0x08000000)  //!< Bit mask for CCM_CCR_RBC_EN.
 
 //! @brief Get value of CCM_CCR_RBC_EN from a register value.
-#define BG_CCM_CCR_RBC_EN(r)   (((r) & BM_CCM_CCR_RBC_EN) >> BP_CCM_CCR_RBC_EN)
+#define BG_CCM_CCR_RBC_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCR_RBC_EN) >> BP_CCM_CCR_RBC_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCR_RBC_EN.
-#define BF_CCM_CCR_RBC_EN(v)   ((((reg32_t) v) << BP_CCM_CCR_RBC_EN) & BM_CCM_CCR_RBC_EN)
-#else
-//! @brief Format value for bitfield CCM_CCR_RBC_EN.
-#define BF_CCM_CCR_RBC_EN(v)   (((v) << BP_CCM_CCR_RBC_EN) & BM_CCM_CCR_RBC_EN)
-#endif
+#define BF_CCM_CCR_RBC_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCR_RBC_EN) & BM_CCM_CCR_RBC_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBC_EN field to a new value.
 #define BW_CCM_CCR_RBC_EN(v)   (HW_CCM_CCR_WR((HW_CCM_CCR_RD() & ~BM_CCM_CCR_RBC_EN) | BF_CCM_CCR_RBC_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCDR - CCM Control Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -320,15 +313,10 @@ typedef union _hw_ccm_ccdr
 #define BM_CCM_CCDR_MMDC_ROOT_MASK      (0x00010000)  //!< Bit mask for CCM_CCDR_MMDC_ROOT_MASK.
 
 //! @brief Get value of CCM_CCDR_MMDC_ROOT_MASK from a register value.
-#define BG_CCM_CCDR_MMDC_ROOT_MASK(r)   (((r) & BM_CCM_CCDR_MMDC_ROOT_MASK) >> BP_CCM_CCDR_MMDC_ROOT_MASK)
+#define BG_CCM_CCDR_MMDC_ROOT_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCDR_MMDC_ROOT_MASK) >> BP_CCM_CCDR_MMDC_ROOT_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCDR_MMDC_ROOT_MASK.
-#define BF_CCM_CCDR_MMDC_ROOT_MASK(v)   ((((reg32_t) v) << BP_CCM_CCDR_MMDC_ROOT_MASK) & BM_CCM_CCDR_MMDC_ROOT_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCDR_MMDC_ROOT_MASK.
-#define BF_CCM_CCDR_MMDC_ROOT_MASK(v)   (((v) << BP_CCM_CCDR_MMDC_ROOT_MASK) & BM_CCM_CCDR_MMDC_ROOT_MASK)
-#endif
+#define BF_CCM_CCDR_MMDC_ROOT_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCDR_MMDC_ROOT_MASK) & BM_CCM_CCDR_MMDC_ROOT_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_ROOT_MASK field to a new value.
@@ -350,21 +338,20 @@ typedef union _hw_ccm_ccdr
 #define BM_CCM_CCDR_MMDC_CH0_MASK      (0x00020000)  //!< Bit mask for CCM_CCDR_MMDC_CH0_MASK.
 
 //! @brief Get value of CCM_CCDR_MMDC_CH0_MASK from a register value.
-#define BG_CCM_CCDR_MMDC_CH0_MASK(r)   (((r) & BM_CCM_CCDR_MMDC_CH0_MASK) >> BP_CCM_CCDR_MMDC_CH0_MASK)
+#define BG_CCM_CCDR_MMDC_CH0_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCDR_MMDC_CH0_MASK) >> BP_CCM_CCDR_MMDC_CH0_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCDR_MMDC_CH0_MASK.
-#define BF_CCM_CCDR_MMDC_CH0_MASK(v)   ((((reg32_t) v) << BP_CCM_CCDR_MMDC_CH0_MASK) & BM_CCM_CCDR_MMDC_CH0_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCDR_MMDC_CH0_MASK.
-#define BF_CCM_CCDR_MMDC_CH0_MASK(v)   (((v) << BP_CCM_CCDR_MMDC_CH0_MASK) & BM_CCM_CCDR_MMDC_CH0_MASK)
-#endif
+#define BF_CCM_CCDR_MMDC_CH0_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCDR_MMDC_CH0_MASK) & BM_CCM_CCDR_MMDC_CH0_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_CH0_MASK field to a new value.
 #define BW_CCM_CCDR_MMDC_CH0_MASK(v)   (HW_CCM_CCDR_WR((HW_CCM_CCDR_RD() & ~BM_CCM_CCDR_MMDC_CH0_MASK) | BF_CCM_CCDR_MMDC_CH0_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSR - CCM Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -415,7 +402,7 @@ typedef union _hw_ccm_csr
 #define BM_CCM_CSR_REF_EN_B      (0x00000001)  //!< Bit mask for CCM_CSR_REF_EN_B.
 
 //! @brief Get value of CCM_CSR_REF_EN_B from a register value.
-#define BG_CCM_CSR_REF_EN_B(r)   (((r) & BM_CCM_CSR_REF_EN_B) >> BP_CCM_CSR_REF_EN_B)
+#define BG_CCM_CSR_REF_EN_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSR_REF_EN_B) >> BP_CCM_CSR_REF_EN_B)
 
 
 /* --- Register HW_CCM_CSR, field COSC_READY[5] (RO)
@@ -432,8 +419,12 @@ typedef union _hw_ccm_csr
 #define BM_CCM_CSR_COSC_READY      (0x00000020)  //!< Bit mask for CCM_CSR_COSC_READY.
 
 //! @brief Get value of CCM_CSR_COSC_READY from a register value.
-#define BG_CCM_CSR_COSC_READY(r)   (((r) & BM_CCM_CSR_COSC_READY) >> BP_CCM_CSR_COSC_READY)
+#define BG_CCM_CSR_COSC_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSR_COSC_READY) >> BP_CCM_CSR_COSC_READY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCSR - CCM Clock Swither Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -502,15 +493,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PLL3_SW_CLK_SEL      (0x00000001)  //!< Bit mask for CCM_CCSR_PLL3_SW_CLK_SEL.
 
 //! @brief Get value of CCM_CCSR_PLL3_SW_CLK_SEL from a register value.
-#define BG_CCM_CCSR_PLL3_SW_CLK_SEL(r)   (((r) & BM_CCM_CCSR_PLL3_SW_CLK_SEL) >> BP_CCM_CCSR_PLL3_SW_CLK_SEL)
+#define BG_CCM_CCSR_PLL3_SW_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PLL3_SW_CLK_SEL) >> BP_CCM_CCSR_PLL3_SW_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PLL3_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL3_SW_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CCSR_PLL3_SW_CLK_SEL) & BM_CCM_CCSR_PLL3_SW_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PLL3_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL3_SW_CLK_SEL(v)   (((v) << BP_CCM_CCSR_PLL3_SW_CLK_SEL) & BM_CCM_CCSR_PLL3_SW_CLK_SEL)
-#endif
+#define BF_CCM_CCSR_PLL3_SW_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PLL3_SW_CLK_SEL) & BM_CCM_CCSR_PLL3_SW_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PLL3_SW_CLK_SEL field to a new value.
@@ -535,15 +521,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PLL2_SW_CLK_SEL      (0x00000002)  //!< Bit mask for CCM_CCSR_PLL2_SW_CLK_SEL.
 
 //! @brief Get value of CCM_CCSR_PLL2_SW_CLK_SEL from a register value.
-#define BG_CCM_CCSR_PLL2_SW_CLK_SEL(r)   (((r) & BM_CCM_CCSR_PLL2_SW_CLK_SEL) >> BP_CCM_CCSR_PLL2_SW_CLK_SEL)
+#define BG_CCM_CCSR_PLL2_SW_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PLL2_SW_CLK_SEL) >> BP_CCM_CCSR_PLL2_SW_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PLL2_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL2_SW_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CCSR_PLL2_SW_CLK_SEL) & BM_CCM_CCSR_PLL2_SW_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PLL2_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL2_SW_CLK_SEL(v)   (((v) << BP_CCM_CCSR_PLL2_SW_CLK_SEL) & BM_CCM_CCSR_PLL2_SW_CLK_SEL)
-#endif
+#define BF_CCM_CCSR_PLL2_SW_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PLL2_SW_CLK_SEL) & BM_CCM_CCSR_PLL2_SW_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PLL2_SW_CLK_SEL field to a new value.
@@ -568,15 +549,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PLL1_SW_CLK_SEL      (0x00000004)  //!< Bit mask for CCM_CCSR_PLL1_SW_CLK_SEL.
 
 //! @brief Get value of CCM_CCSR_PLL1_SW_CLK_SEL from a register value.
-#define BG_CCM_CCSR_PLL1_SW_CLK_SEL(r)   (((r) & BM_CCM_CCSR_PLL1_SW_CLK_SEL) >> BP_CCM_CCSR_PLL1_SW_CLK_SEL)
+#define BG_CCM_CCSR_PLL1_SW_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PLL1_SW_CLK_SEL) >> BP_CCM_CCSR_PLL1_SW_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PLL1_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL1_SW_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CCSR_PLL1_SW_CLK_SEL) & BM_CCM_CCSR_PLL1_SW_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PLL1_SW_CLK_SEL.
-#define BF_CCM_CCSR_PLL1_SW_CLK_SEL(v)   (((v) << BP_CCM_CCSR_PLL1_SW_CLK_SEL) & BM_CCM_CCSR_PLL1_SW_CLK_SEL)
-#endif
+#define BF_CCM_CCSR_PLL1_SW_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PLL1_SW_CLK_SEL) & BM_CCM_CCSR_PLL1_SW_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PLL1_SW_CLK_SEL field to a new value.
@@ -599,15 +575,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_STEP_SEL      (0x00000100)  //!< Bit mask for CCM_CCSR_STEP_SEL.
 
 //! @brief Get value of CCM_CCSR_STEP_SEL from a register value.
-#define BG_CCM_CCSR_STEP_SEL(r)   (((r) & BM_CCM_CCSR_STEP_SEL) >> BP_CCM_CCSR_STEP_SEL)
+#define BG_CCM_CCSR_STEP_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_STEP_SEL) >> BP_CCM_CCSR_STEP_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_STEP_SEL.
-#define BF_CCM_CCSR_STEP_SEL(v)   ((((reg32_t) v) << BP_CCM_CCSR_STEP_SEL) & BM_CCM_CCSR_STEP_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCSR_STEP_SEL.
-#define BF_CCM_CCSR_STEP_SEL(v)   (((v) << BP_CCM_CCSR_STEP_SEL) & BM_CCM_CCSR_STEP_SEL)
-#endif
+#define BF_CCM_CCSR_STEP_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_STEP_SEL) & BM_CCM_CCSR_STEP_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STEP_SEL field to a new value.
@@ -629,15 +600,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_396M_DIS_MASK      (0x00000200)  //!< Bit mask for CCM_CCSR_PDF_396M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_396M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_396M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_396M_DIS_MASK) >> BP_CCM_CCSR_PDF_396M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_396M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_396M_DIS_MASK) >> BP_CCM_CCSR_PDF_396M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_396M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_396M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_396M_DIS_MASK) & BM_CCM_CCSR_PDF_396M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_396M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_396M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_396M_DIS_MASK) & BM_CCM_CCSR_PDF_396M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_396M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_396M_DIS_MASK) & BM_CCM_CCSR_PDF_396M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_396M_DIS_MASK field to a new value.
@@ -659,15 +625,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_352M_DIS_MASK      (0x00000400)  //!< Bit mask for CCM_CCSR_PDF_352M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_352M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_352M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_352M_DIS_MASK) >> BP_CCM_CCSR_PDF_352M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_352M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_352M_DIS_MASK) >> BP_CCM_CCSR_PDF_352M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_352M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_352M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_352M_DIS_MASK) & BM_CCM_CCSR_PDF_352M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_352M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_352M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_352M_DIS_MASK) & BM_CCM_CCSR_PDF_352M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_352M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_352M_DIS_MASK) & BM_CCM_CCSR_PDF_352M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_352M_DIS_MASK field to a new value.
@@ -689,15 +650,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_594M_DIS_MASK      (0x00000800)  //!< Bit mask for CCM_CCSR_PDF_594M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_594M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_594M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_594M_DIS_MASK) >> BP_CCM_CCSR_PDF_594M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_594M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_594M_DIS_MASK) >> BP_CCM_CCSR_PDF_594M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_594M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_594M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_594M_DIS_MASK) & BM_CCM_CCSR_PDF_594M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_594M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_594M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_594M_DIS_MASK) & BM_CCM_CCSR_PDF_594M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_594M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_594M_DIS_MASK) & BM_CCM_CCSR_PDF_594M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_594M_DIS_MASK field to a new value.
@@ -719,15 +675,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_508M_DIS_MASK      (0x00001000)  //!< Bit mask for CCM_CCSR_PDF_508M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_508M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_508M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_508M_DIS_MASK) >> BP_CCM_CCSR_PDF_508M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_508M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_508M_DIS_MASK) >> BP_CCM_CCSR_PDF_508M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_508M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_508M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_508M_DIS_MASK) & BM_CCM_CCSR_PDF_508M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_508M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_508M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_508M_DIS_MASK) & BM_CCM_CCSR_PDF_508M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_508M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_508M_DIS_MASK) & BM_CCM_CCSR_PDF_508M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_508M_DIS_MASK field to a new value.
@@ -749,15 +700,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_454M_DIS_MASK      (0x00002000)  //!< Bit mask for CCM_CCSR_PDF_454M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_454M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_454M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_454M_DIS_MASK) >> BP_CCM_CCSR_PDF_454M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_454M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_454M_DIS_MASK) >> BP_CCM_CCSR_PDF_454M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_454M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_454M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_454M_DIS_MASK) & BM_CCM_CCSR_PDF_454M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_454M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_454M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_454M_DIS_MASK) & BM_CCM_CCSR_PDF_454M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_454M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_454M_DIS_MASK) & BM_CCM_CCSR_PDF_454M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_454M_DIS_MASK field to a new value.
@@ -779,15 +725,10 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_720M_DIS_MASK      (0x00004000)  //!< Bit mask for CCM_CCSR_PDF_720M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_720M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_720M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_720M_DIS_MASK) >> BP_CCM_CCSR_PDF_720M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_720M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_720M_DIS_MASK) >> BP_CCM_CCSR_PDF_720M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_720M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_720M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_720M_DIS_MASK) & BM_CCM_CCSR_PDF_720M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_720M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_720M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_720M_DIS_MASK) & BM_CCM_CCSR_PDF_720M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_720M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_720M_DIS_MASK) & BM_CCM_CCSR_PDF_720M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_720M_DIS_MASK field to a new value.
@@ -809,21 +750,20 @@ typedef union _hw_ccm_ccsr
 #define BM_CCM_CCSR_PDF_540M_DIS_MASK      (0x00008000)  //!< Bit mask for CCM_CCSR_PDF_540M_DIS_MASK.
 
 //! @brief Get value of CCM_CCSR_PDF_540M_DIS_MASK from a register value.
-#define BG_CCM_CCSR_PDF_540M_DIS_MASK(r)   (((r) & BM_CCM_CCSR_PDF_540M_DIS_MASK) >> BP_CCM_CCSR_PDF_540M_DIS_MASK)
+#define BG_CCM_CCSR_PDF_540M_DIS_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCSR_PDF_540M_DIS_MASK) >> BP_CCM_CCSR_PDF_540M_DIS_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCSR_PDF_540M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_540M_DIS_MASK(v)   ((((reg32_t) v) << BP_CCM_CCSR_PDF_540M_DIS_MASK) & BM_CCM_CCSR_PDF_540M_DIS_MASK)
-#else
-//! @brief Format value for bitfield CCM_CCSR_PDF_540M_DIS_MASK.
-#define BF_CCM_CCSR_PDF_540M_DIS_MASK(v)   (((v) << BP_CCM_CCSR_PDF_540M_DIS_MASK) & BM_CCM_CCSR_PDF_540M_DIS_MASK)
-#endif
+#define BF_CCM_CCSR_PDF_540M_DIS_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCSR_PDF_540M_DIS_MASK) & BM_CCM_CCSR_PDF_540M_DIS_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDF_540M_DIS_MASK field to a new value.
 #define BW_CCM_CCSR_PDF_540M_DIS_MASK(v)   (HW_CCM_CCSR_WR((HW_CCM_CCSR_RD() & ~BM_CCM_CCSR_PDF_540M_DIS_MASK) | BF_CCM_CCSR_PDF_540M_DIS_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CACRR - CCM Arm Clock Root Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -883,21 +823,20 @@ typedef union _hw_ccm_cacrr
 #define BM_CCM_CACRR_ARM_PODF      (0x00000007)  //!< Bit mask for CCM_CACRR_ARM_PODF.
 
 //! @brief Get value of CCM_CACRR_ARM_PODF from a register value.
-#define BG_CCM_CACRR_ARM_PODF(r)   (((r) & BM_CCM_CACRR_ARM_PODF) >> BP_CCM_CACRR_ARM_PODF)
+#define BG_CCM_CACRR_ARM_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CACRR_ARM_PODF) >> BP_CCM_CACRR_ARM_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CACRR_ARM_PODF.
-#define BF_CCM_CACRR_ARM_PODF(v)   ((((reg32_t) v) << BP_CCM_CACRR_ARM_PODF) & BM_CCM_CACRR_ARM_PODF)
-#else
-//! @brief Format value for bitfield CCM_CACRR_ARM_PODF.
-#define BF_CCM_CACRR_ARM_PODF(v)   (((v) << BP_CCM_CACRR_ARM_PODF) & BM_CCM_CACRR_ARM_PODF)
-#endif
+#define BF_CCM_CACRR_ARM_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CACRR_ARM_PODF) & BM_CCM_CACRR_ARM_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARM_PODF field to a new value.
 #define BW_CCM_CACRR_ARM_PODF(v)   (HW_CCM_CACRR_WR((HW_CCM_CACRR_RD() & ~BM_CCM_CACRR_ARM_PODF) | BF_CCM_CACRR_ARM_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CBCDR - CCM Bus Clock Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -969,15 +908,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_PERIPH2_CLK2_PODF      (0x00000007)  //!< Bit mask for CCM_CBCDR_PERIPH2_CLK2_PODF.
 
 //! @brief Get value of CCM_CBCDR_PERIPH2_CLK2_PODF from a register value.
-#define BG_CCM_CBCDR_PERIPH2_CLK2_PODF(r)   (((r) & BM_CCM_CBCDR_PERIPH2_CLK2_PODF) >> BP_CCM_CBCDR_PERIPH2_CLK2_PODF)
+#define BG_CCM_CBCDR_PERIPH2_CLK2_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_PERIPH2_CLK2_PODF) >> BP_CCM_CBCDR_PERIPH2_CLK2_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_PERIPH2_CLK2_PODF.
-#define BF_CCM_CBCDR_PERIPH2_CLK2_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_PERIPH2_CLK2_PODF) & BM_CCM_CBCDR_PERIPH2_CLK2_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_PERIPH2_CLK2_PODF.
-#define BF_CCM_CBCDR_PERIPH2_CLK2_PODF(v)   (((v) << BP_CCM_CBCDR_PERIPH2_CLK2_PODF) & BM_CCM_CBCDR_PERIPH2_CLK2_PODF)
-#endif
+#define BF_CCM_CBCDR_PERIPH2_CLK2_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_PERIPH2_CLK2_PODF) & BM_CCM_CBCDR_PERIPH2_CLK2_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH2_CLK2_PODF field to a new value.
@@ -1005,15 +939,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF      (0x00000038)  //!< Bit mask for CCM_CBCDR_MMDC_ROOT_AXI_PODF.
 
 //! @brief Get value of CCM_CBCDR_MMDC_ROOT_AXI_PODF from a register value.
-#define BG_CCM_CBCDR_MMDC_ROOT_AXI_PODF(r)   (((r) & BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF) >> BP_CCM_CBCDR_MMDC_ROOT_AXI_PODF)
+#define BG_CCM_CBCDR_MMDC_ROOT_AXI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF) >> BP_CCM_CBCDR_MMDC_ROOT_AXI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_MMDC_ROOT_AXI_PODF.
-#define BF_CCM_CBCDR_MMDC_ROOT_AXI_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_MMDC_ROOT_AXI_PODF) & BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_MMDC_ROOT_AXI_PODF.
-#define BF_CCM_CBCDR_MMDC_ROOT_AXI_PODF(v)   (((v) << BP_CCM_CBCDR_MMDC_ROOT_AXI_PODF) & BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF)
-#endif
+#define BF_CCM_CBCDR_MMDC_ROOT_AXI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_MMDC_ROOT_AXI_PODF) & BM_CCM_CBCDR_MMDC_ROOT_AXI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_ROOT_AXI_PODF field to a new value.
@@ -1034,15 +963,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_AXI_SEL      (0x00000040)  //!< Bit mask for CCM_CBCDR_AXI_SEL.
 
 //! @brief Get value of CCM_CBCDR_AXI_SEL from a register value.
-#define BG_CCM_CBCDR_AXI_SEL(r)   (((r) & BM_CCM_CBCDR_AXI_SEL) >> BP_CCM_CBCDR_AXI_SEL)
+#define BG_CCM_CBCDR_AXI_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_AXI_SEL) >> BP_CCM_CBCDR_AXI_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_AXI_SEL.
-#define BF_CCM_CBCDR_AXI_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCDR_AXI_SEL) & BM_CCM_CBCDR_AXI_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_AXI_SEL.
-#define BF_CCM_CBCDR_AXI_SEL(v)   (((v) << BP_CCM_CBCDR_AXI_SEL) & BM_CCM_CBCDR_AXI_SEL)
-#endif
+#define BF_CCM_CBCDR_AXI_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_AXI_SEL) & BM_CCM_CBCDR_AXI_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_SEL field to a new value.
@@ -1063,15 +987,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_AXI_ALT_SEL      (0x00000080)  //!< Bit mask for CCM_CBCDR_AXI_ALT_SEL.
 
 //! @brief Get value of CCM_CBCDR_AXI_ALT_SEL from a register value.
-#define BG_CCM_CBCDR_AXI_ALT_SEL(r)   (((r) & BM_CCM_CBCDR_AXI_ALT_SEL) >> BP_CCM_CBCDR_AXI_ALT_SEL)
+#define BG_CCM_CBCDR_AXI_ALT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_AXI_ALT_SEL) >> BP_CCM_CBCDR_AXI_ALT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_AXI_ALT_SEL.
-#define BF_CCM_CBCDR_AXI_ALT_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCDR_AXI_ALT_SEL) & BM_CCM_CBCDR_AXI_ALT_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_AXI_ALT_SEL.
-#define BF_CCM_CBCDR_AXI_ALT_SEL(v)   (((v) << BP_CCM_CBCDR_AXI_ALT_SEL) & BM_CCM_CBCDR_AXI_ALT_SEL)
-#endif
+#define BF_CCM_CBCDR_AXI_ALT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_AXI_ALT_SEL) & BM_CCM_CBCDR_AXI_ALT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_ALT_SEL field to a new value.
@@ -1097,15 +1016,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_IPG_PODF      (0x00000300)  //!< Bit mask for CCM_CBCDR_IPG_PODF.
 
 //! @brief Get value of CCM_CBCDR_IPG_PODF from a register value.
-#define BG_CCM_CBCDR_IPG_PODF(r)   (((r) & BM_CCM_CBCDR_IPG_PODF) >> BP_CCM_CBCDR_IPG_PODF)
+#define BG_CCM_CBCDR_IPG_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_IPG_PODF) >> BP_CCM_CBCDR_IPG_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_IPG_PODF.
-#define BF_CCM_CBCDR_IPG_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_IPG_PODF) & BM_CCM_CBCDR_IPG_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_IPG_PODF.
-#define BF_CCM_CBCDR_IPG_PODF(v)   (((v) << BP_CCM_CBCDR_IPG_PODF) & BM_CCM_CBCDR_IPG_PODF)
-#endif
+#define BF_CCM_CBCDR_IPG_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_IPG_PODF) & BM_CCM_CBCDR_IPG_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPG_PODF field to a new value.
@@ -1133,15 +1047,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_AHB_PODF      (0x00001c00)  //!< Bit mask for CCM_CBCDR_AHB_PODF.
 
 //! @brief Get value of CCM_CBCDR_AHB_PODF from a register value.
-#define BG_CCM_CBCDR_AHB_PODF(r)   (((r) & BM_CCM_CBCDR_AHB_PODF) >> BP_CCM_CBCDR_AHB_PODF)
+#define BG_CCM_CBCDR_AHB_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_AHB_PODF) >> BP_CCM_CBCDR_AHB_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_AHB_PODF.
-#define BF_CCM_CBCDR_AHB_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_AHB_PODF) & BM_CCM_CBCDR_AHB_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_AHB_PODF.
-#define BF_CCM_CBCDR_AHB_PODF(v)   (((v) << BP_CCM_CBCDR_AHB_PODF) & BM_CCM_CBCDR_AHB_PODF)
-#endif
+#define BF_CCM_CBCDR_AHB_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_AHB_PODF) & BM_CCM_CBCDR_AHB_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AHB_PODF field to a new value.
@@ -1169,15 +1078,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_AXI_PODF      (0x00070000)  //!< Bit mask for CCM_CBCDR_AXI_PODF.
 
 //! @brief Get value of CCM_CBCDR_AXI_PODF from a register value.
-#define BG_CCM_CBCDR_AXI_PODF(r)   (((r) & BM_CCM_CBCDR_AXI_PODF) >> BP_CCM_CBCDR_AXI_PODF)
+#define BG_CCM_CBCDR_AXI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_AXI_PODF) >> BP_CCM_CBCDR_AXI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_AXI_PODF.
-#define BF_CCM_CBCDR_AXI_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_AXI_PODF) & BM_CCM_CBCDR_AXI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_AXI_PODF.
-#define BF_CCM_CBCDR_AXI_PODF(v)   (((v) << BP_CCM_CBCDR_AXI_PODF) & BM_CCM_CBCDR_AXI_PODF)
-#endif
+#define BF_CCM_CBCDR_AXI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_AXI_PODF) & BM_CCM_CBCDR_AXI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_PODF field to a new value.
@@ -1204,15 +1108,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_MMDC_CH0_AXI_PODF      (0x00380000)  //!< Bit mask for CCM_CBCDR_MMDC_CH0_AXI_PODF.
 
 //! @brief Get value of CCM_CBCDR_MMDC_CH0_AXI_PODF from a register value.
-#define BG_CCM_CBCDR_MMDC_CH0_AXI_PODF(r)   (((r) & BM_CCM_CBCDR_MMDC_CH0_AXI_PODF) >> BP_CCM_CBCDR_MMDC_CH0_AXI_PODF)
+#define BG_CCM_CBCDR_MMDC_CH0_AXI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_MMDC_CH0_AXI_PODF) >> BP_CCM_CBCDR_MMDC_CH0_AXI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_MMDC_CH0_AXI_PODF.
-#define BF_CCM_CBCDR_MMDC_CH0_AXI_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_MMDC_CH0_AXI_PODF) & BM_CCM_CBCDR_MMDC_CH0_AXI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_MMDC_CH0_AXI_PODF.
-#define BF_CCM_CBCDR_MMDC_CH0_AXI_PODF(v)   (((v) << BP_CCM_CBCDR_MMDC_CH0_AXI_PODF) & BM_CCM_CBCDR_MMDC_CH0_AXI_PODF)
-#endif
+#define BF_CCM_CBCDR_MMDC_CH0_AXI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_MMDC_CH0_AXI_PODF) & BM_CCM_CBCDR_MMDC_CH0_AXI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_CH0_AXI_PODF field to a new value.
@@ -1234,15 +1133,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_PERIPH_CLK_SEL      (0x02000000)  //!< Bit mask for CCM_CBCDR_PERIPH_CLK_SEL.
 
 //! @brief Get value of CCM_CBCDR_PERIPH_CLK_SEL from a register value.
-#define BG_CCM_CBCDR_PERIPH_CLK_SEL(r)   (((r) & BM_CCM_CBCDR_PERIPH_CLK_SEL) >> BP_CCM_CBCDR_PERIPH_CLK_SEL)
+#define BG_CCM_CBCDR_PERIPH_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_PERIPH_CLK_SEL) >> BP_CCM_CBCDR_PERIPH_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_PERIPH_CLK_SEL.
-#define BF_CCM_CBCDR_PERIPH_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCDR_PERIPH_CLK_SEL) & BM_CCM_CBCDR_PERIPH_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_PERIPH_CLK_SEL.
-#define BF_CCM_CBCDR_PERIPH_CLK_SEL(v)   (((v) << BP_CCM_CBCDR_PERIPH_CLK_SEL) & BM_CCM_CBCDR_PERIPH_CLK_SEL)
-#endif
+#define BF_CCM_CBCDR_PERIPH_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_PERIPH_CLK_SEL) & BM_CCM_CBCDR_PERIPH_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH_CLK_SEL field to a new value.
@@ -1263,15 +1157,10 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_PERIPH2_CLK_SEL      (0x04000000)  //!< Bit mask for CCM_CBCDR_PERIPH2_CLK_SEL.
 
 //! @brief Get value of CCM_CBCDR_PERIPH2_CLK_SEL from a register value.
-#define BG_CCM_CBCDR_PERIPH2_CLK_SEL(r)   (((r) & BM_CCM_CBCDR_PERIPH2_CLK_SEL) >> BP_CCM_CBCDR_PERIPH2_CLK_SEL)
+#define BG_CCM_CBCDR_PERIPH2_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_PERIPH2_CLK_SEL) >> BP_CCM_CBCDR_PERIPH2_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_PERIPH2_CLK_SEL.
-#define BF_CCM_CBCDR_PERIPH2_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCDR_PERIPH2_CLK_SEL) & BM_CCM_CBCDR_PERIPH2_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_PERIPH2_CLK_SEL.
-#define BF_CCM_CBCDR_PERIPH2_CLK_SEL(v)   (((v) << BP_CCM_CBCDR_PERIPH2_CLK_SEL) & BM_CCM_CBCDR_PERIPH2_CLK_SEL)
-#endif
+#define BF_CCM_CBCDR_PERIPH2_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_PERIPH2_CLK_SEL) & BM_CCM_CBCDR_PERIPH2_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH2_CLK_SEL field to a new value.
@@ -1298,21 +1187,20 @@ typedef union _hw_ccm_cbcdr
 #define BM_CCM_CBCDR_PERIPH_CLK2_PODF      (0x38000000)  //!< Bit mask for CCM_CBCDR_PERIPH_CLK2_PODF.
 
 //! @brief Get value of CCM_CBCDR_PERIPH_CLK2_PODF from a register value.
-#define BG_CCM_CBCDR_PERIPH_CLK2_PODF(r)   (((r) & BM_CCM_CBCDR_PERIPH_CLK2_PODF) >> BP_CCM_CBCDR_PERIPH_CLK2_PODF)
+#define BG_CCM_CBCDR_PERIPH_CLK2_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCDR_PERIPH_CLK2_PODF) >> BP_CCM_CBCDR_PERIPH_CLK2_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCDR_PERIPH_CLK2_PODF.
-#define BF_CCM_CBCDR_PERIPH_CLK2_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCDR_PERIPH_CLK2_PODF) & BM_CCM_CBCDR_PERIPH_CLK2_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCDR_PERIPH_CLK2_PODF.
-#define BF_CCM_CBCDR_PERIPH_CLK2_PODF(v)   (((v) << BP_CCM_CBCDR_PERIPH_CLK2_PODF) & BM_CCM_CBCDR_PERIPH_CLK2_PODF)
-#endif
+#define BF_CCM_CBCDR_PERIPH_CLK2_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCDR_PERIPH_CLK2_PODF) & BM_CCM_CBCDR_PERIPH_CLK2_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH_CLK2_PODF field to a new value.
 #define BW_CCM_CBCDR_PERIPH_CLK2_PODF(v)   (HW_CCM_CBCDR_WR((HW_CCM_CBCDR_RD() & ~BM_CCM_CBCDR_PERIPH_CLK2_PODF) | BF_CCM_CBCDR_PERIPH_CLK2_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CBCMR - CCM Bus Clock Multiplexer Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1383,15 +1271,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL      (0x00000002)  //!< Bit mask for CCM_CBCMR_GPU3D_AXI_CLK_SEL.
 
 //! @brief Get value of CCM_CBCMR_GPU3D_AXI_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_GPU3D_AXI_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL) >> BP_CCM_CBCMR_GPU3D_AXI_CLK_SEL)
+#define BG_CCM_CBCMR_GPU3D_AXI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL) >> BP_CCM_CBCMR_GPU3D_AXI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU3D_AXI_CLK_SEL.
-#define BF_CCM_CBCMR_GPU3D_AXI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU3D_AXI_CLK_SEL) & BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU3D_AXI_CLK_SEL.
-#define BF_CCM_CBCMR_GPU3D_AXI_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_GPU3D_AXI_CLK_SEL) & BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL)
-#endif
+#define BF_CCM_CBCMR_GPU3D_AXI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU3D_AXI_CLK_SEL) & BM_CCM_CBCMR_GPU3D_AXI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU3D_AXI_CLK_SEL field to a new value.
@@ -1414,15 +1297,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU2D_CORE_SEL      (0x00000300)  //!< Bit mask for CCM_CBCMR_GPU2D_CORE_SEL.
 
 //! @brief Get value of CCM_CBCMR_GPU2D_CORE_SEL from a register value.
-#define BG_CCM_CBCMR_GPU2D_CORE_SEL(r)   (((r) & BM_CCM_CBCMR_GPU2D_CORE_SEL) >> BP_CCM_CBCMR_GPU2D_CORE_SEL)
+#define BG_CCM_CBCMR_GPU2D_CORE_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU2D_CORE_SEL) >> BP_CCM_CBCMR_GPU2D_CORE_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_SEL.
-#define BF_CCM_CBCMR_GPU2D_CORE_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_CORE_SEL) & BM_CCM_CBCMR_GPU2D_CORE_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_SEL.
-#define BF_CCM_CBCMR_GPU2D_CORE_SEL(v)   (((v) << BP_CCM_CBCMR_GPU2D_CORE_SEL) & BM_CCM_CBCMR_GPU2D_CORE_SEL)
-#endif
+#define BF_CCM_CBCMR_GPU2D_CORE_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU2D_CORE_SEL) & BM_CCM_CBCMR_GPU2D_CORE_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU2D_CORE_SEL field to a new value.
@@ -1443,15 +1321,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_VDOAXI_CLK_SEL      (0x00000800)  //!< Bit mask for CCM_CBCMR_VDOAXI_CLK_SEL.
 
 //! @brief Get value of CCM_CBCMR_VDOAXI_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_VDOAXI_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_VDOAXI_CLK_SEL) >> BP_CCM_CBCMR_VDOAXI_CLK_SEL)
+#define BG_CCM_CBCMR_VDOAXI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_VDOAXI_CLK_SEL) >> BP_CCM_CBCMR_VDOAXI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_VDOAXI_CLK_SEL.
-#define BF_CCM_CBCMR_VDOAXI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_VDOAXI_CLK_SEL) & BM_CCM_CBCMR_VDOAXI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_VDOAXI_CLK_SEL.
-#define BF_CCM_CBCMR_VDOAXI_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_VDOAXI_CLK_SEL) & BM_CCM_CBCMR_VDOAXI_CLK_SEL)
-#endif
+#define BF_CCM_CBCMR_VDOAXI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_VDOAXI_CLK_SEL) & BM_CCM_CBCMR_VDOAXI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VDOAXI_CLK_SEL field to a new value.
@@ -1474,15 +1347,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_PERIPH_CLK2_SEL      (0x00003000)  //!< Bit mask for CCM_CBCMR_PERIPH_CLK2_SEL.
 
 //! @brief Get value of CCM_CBCMR_PERIPH_CLK2_SEL from a register value.
-#define BG_CCM_CBCMR_PERIPH_CLK2_SEL(r)   (((r) & BM_CCM_CBCMR_PERIPH_CLK2_SEL) >> BP_CCM_CBCMR_PERIPH_CLK2_SEL)
+#define BG_CCM_CBCMR_PERIPH_CLK2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_PERIPH_CLK2_SEL) >> BP_CCM_CBCMR_PERIPH_CLK2_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_PERIPH_CLK2_SEL.
-#define BF_CCM_CBCMR_PERIPH_CLK2_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_PERIPH_CLK2_SEL) & BM_CCM_CBCMR_PERIPH_CLK2_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_PERIPH_CLK2_SEL.
-#define BF_CCM_CBCMR_PERIPH_CLK2_SEL(v)   (((v) << BP_CCM_CBCMR_PERIPH_CLK2_SEL) & BM_CCM_CBCMR_PERIPH_CLK2_SEL)
-#endif
+#define BF_CCM_CBCMR_PERIPH_CLK2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_PERIPH_CLK2_SEL) & BM_CCM_CBCMR_PERIPH_CLK2_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH_CLK2_SEL field to a new value.
@@ -1505,15 +1373,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU2D_CLK_SEL      (0x00030000)  //!< Bit mask for CCM_CBCMR_GPU2D_CLK_SEL.
 
 //! @brief Get value of CCM_CBCMR_GPU2D_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_GPU2D_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_GPU2D_CLK_SEL) >> BP_CCM_CBCMR_GPU2D_CLK_SEL)
+#define BG_CCM_CBCMR_GPU2D_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU2D_CLK_SEL) >> BP_CCM_CBCMR_GPU2D_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU2D_CLK_SEL.
-#define BF_CCM_CBCMR_GPU2D_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_CLK_SEL) & BM_CCM_CBCMR_GPU2D_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CLK_SEL.
-#define BF_CCM_CBCMR_GPU2D_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_GPU2D_CLK_SEL) & BM_CCM_CBCMR_GPU2D_CLK_SEL)
-#endif
+#define BF_CCM_CBCMR_GPU2D_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU2D_CLK_SEL) & BM_CCM_CBCMR_GPU2D_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU2D_CLK_SEL field to a new value.
@@ -1536,15 +1399,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL      (0x000c0000)  //!< Bit mask for CCM_CBCMR_PRE_PERIPH_CLK_SEL.
 
 //! @brief Get value of CCM_CBCMR_PRE_PERIPH_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_PRE_PERIPH_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL) >> BP_CCM_CBCMR_PRE_PERIPH_CLK_SEL)
+#define BG_CCM_CBCMR_PRE_PERIPH_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL) >> BP_CCM_CBCMR_PRE_PERIPH_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_PRE_PERIPH_CLK_SEL.
-#define BF_CCM_CBCMR_PRE_PERIPH_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_PRE_PERIPH_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_PRE_PERIPH_CLK_SEL.
-#define BF_CCM_CBCMR_PRE_PERIPH_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_PRE_PERIPH_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL)
-#endif
+#define BF_CCM_CBCMR_PRE_PERIPH_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_PRE_PERIPH_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRE_PERIPH_CLK_SEL field to a new value.
@@ -1565,15 +1423,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_PERIPH2_CLK2_SEL      (0x00100000)  //!< Bit mask for CCM_CBCMR_PERIPH2_CLK2_SEL.
 
 //! @brief Get value of CCM_CBCMR_PERIPH2_CLK2_SEL from a register value.
-#define BG_CCM_CBCMR_PERIPH2_CLK2_SEL(r)   (((r) & BM_CCM_CBCMR_PERIPH2_CLK2_SEL) >> BP_CCM_CBCMR_PERIPH2_CLK2_SEL)
+#define BG_CCM_CBCMR_PERIPH2_CLK2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_PERIPH2_CLK2_SEL) >> BP_CCM_CBCMR_PERIPH2_CLK2_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_PERIPH2_CLK2_SEL.
-#define BF_CCM_CBCMR_PERIPH2_CLK2_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_PERIPH2_CLK2_SEL) & BM_CCM_CBCMR_PERIPH2_CLK2_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_PERIPH2_CLK2_SEL.
-#define BF_CCM_CBCMR_PERIPH2_CLK2_SEL(v)   (((v) << BP_CCM_CBCMR_PERIPH2_CLK2_SEL) & BM_CCM_CBCMR_PERIPH2_CLK2_SEL)
-#endif
+#define BF_CCM_CBCMR_PERIPH2_CLK2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_PERIPH2_CLK2_SEL) & BM_CCM_CBCMR_PERIPH2_CLK2_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH2_CLK2_SEL field to a new value.
@@ -1596,15 +1449,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL      (0x00600000)  //!< Bit mask for CCM_CBCMR_PRE_PERIPH2_CLK_SEL.
 
 //! @brief Get value of CCM_CBCMR_PRE_PERIPH2_CLK_SEL from a register value.
-#define BG_CCM_CBCMR_PRE_PERIPH2_CLK_SEL(r)   (((r) & BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL) >> BP_CCM_CBCMR_PRE_PERIPH2_CLK_SEL)
+#define BG_CCM_CBCMR_PRE_PERIPH2_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL) >> BP_CCM_CBCMR_PRE_PERIPH2_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_PRE_PERIPH2_CLK_SEL.
-#define BF_CCM_CBCMR_PRE_PERIPH2_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CBCMR_PRE_PERIPH2_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_PRE_PERIPH2_CLK_SEL.
-#define BF_CCM_CBCMR_PRE_PERIPH2_CLK_SEL(v)   (((v) << BP_CCM_CBCMR_PRE_PERIPH2_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL)
-#endif
+#define BF_CCM_CBCMR_PRE_PERIPH2_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_PRE_PERIPH2_CLK_SEL) & BM_CCM_CBCMR_PRE_PERIPH2_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRE_PERIPH2_CLK_SEL field to a new value.
@@ -1631,15 +1479,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF      (0x03800000)  //!< Bit mask for CCM_CBCMR_GPU2D_CORE_CLK_PODF.
 
 //! @brief Get value of CCM_CBCMR_GPU2D_CORE_CLK_PODF from a register value.
-#define BG_CCM_CBCMR_GPU2D_CORE_CLK_PODF(r)   (((r) & BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF) >> BP_CCM_CBCMR_GPU2D_CORE_CLK_PODF)
+#define BG_CCM_CBCMR_GPU2D_CORE_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF) >> BP_CCM_CBCMR_GPU2D_CORE_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_CLK_PODF.
-#define BF_CCM_CBCMR_GPU2D_CORE_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_CORE_CLK_PODF) & BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_CORE_CLK_PODF.
-#define BF_CCM_CBCMR_GPU2D_CORE_CLK_PODF(v)   (((v) << BP_CCM_CBCMR_GPU2D_CORE_CLK_PODF) & BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF)
-#endif
+#define BF_CCM_CBCMR_GPU2D_CORE_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU2D_CORE_CLK_PODF) & BM_CCM_CBCMR_GPU2D_CORE_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU2D_CORE_CLK_PODF field to a new value.
@@ -1666,15 +1509,10 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF      (0x1c000000)  //!< Bit mask for CCM_CBCMR_GPU2D_OVG_CORE_PODF.
 
 //! @brief Get value of CCM_CBCMR_GPU2D_OVG_CORE_PODF from a register value.
-#define BG_CCM_CBCMR_GPU2D_OVG_CORE_PODF(r)   (((r) & BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF) >> BP_CCM_CBCMR_GPU2D_OVG_CORE_PODF)
+#define BG_CCM_CBCMR_GPU2D_OVG_CORE_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF) >> BP_CCM_CBCMR_GPU2D_OVG_CORE_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU2D_OVG_CORE_PODF.
-#define BF_CCM_CBCMR_GPU2D_OVG_CORE_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU2D_OVG_CORE_PODF) & BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU2D_OVG_CORE_PODF.
-#define BF_CCM_CBCMR_GPU2D_OVG_CORE_PODF(v)   (((v) << BP_CCM_CBCMR_GPU2D_OVG_CORE_PODF) & BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF)
-#endif
+#define BF_CCM_CBCMR_GPU2D_OVG_CORE_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU2D_OVG_CORE_PODF) & BM_CCM_CBCMR_GPU2D_OVG_CORE_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU2D_OVG_CORE_PODF field to a new value.
@@ -1701,21 +1539,20 @@ typedef union _hw_ccm_cbcmr
 #define BM_CCM_CBCMR_GPU3D_SHADER_PODF      (0xe0000000)  //!< Bit mask for CCM_CBCMR_GPU3D_SHADER_PODF.
 
 //! @brief Get value of CCM_CBCMR_GPU3D_SHADER_PODF from a register value.
-#define BG_CCM_CBCMR_GPU3D_SHADER_PODF(r)   (((r) & BM_CCM_CBCMR_GPU3D_SHADER_PODF) >> BP_CCM_CBCMR_GPU3D_SHADER_PODF)
+#define BG_CCM_CBCMR_GPU3D_SHADER_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CBCMR_GPU3D_SHADER_PODF) >> BP_CCM_CBCMR_GPU3D_SHADER_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CBCMR_GPU3D_SHADER_PODF.
-#define BF_CCM_CBCMR_GPU3D_SHADER_PODF(v)   ((((reg32_t) v) << BP_CCM_CBCMR_GPU3D_SHADER_PODF) & BM_CCM_CBCMR_GPU3D_SHADER_PODF)
-#else
-//! @brief Format value for bitfield CCM_CBCMR_GPU3D_SHADER_PODF.
-#define BF_CCM_CBCMR_GPU3D_SHADER_PODF(v)   (((v) << BP_CCM_CBCMR_GPU3D_SHADER_PODF) & BM_CCM_CBCMR_GPU3D_SHADER_PODF)
-#endif
+#define BF_CCM_CBCMR_GPU3D_SHADER_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CBCMR_GPU3D_SHADER_PODF) & BM_CCM_CBCMR_GPU3D_SHADER_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPU3D_SHADER_PODF field to a new value.
 #define BW_CCM_CBCMR_GPU3D_SHADER_PODF(v)   (HW_CCM_CBCMR_WR((HW_CCM_CBCMR_RD() & ~BM_CCM_CBCMR_GPU3D_SHADER_PODF) | BF_CCM_CBCMR_GPU3D_SHADER_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSCMR1 - CCM Serial Clock Multiplexer Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1791,15 +1628,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_PERCLK_PODF      (0x0000003f)  //!< Bit mask for CCM_CSCMR1_PERCLK_PODF.
 
 //! @brief Get value of CCM_CSCMR1_PERCLK_PODF from a register value.
-#define BG_CCM_CSCMR1_PERCLK_PODF(r)   (((r) & BM_CCM_CSCMR1_PERCLK_PODF) >> BP_CCM_CSCMR1_PERCLK_PODF)
+#define BG_CCM_CSCMR1_PERCLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_PERCLK_PODF) >> BP_CCM_CSCMR1_PERCLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_PERCLK_PODF.
-#define BF_CCM_CSCMR1_PERCLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_PERCLK_PODF) & BM_CCM_CSCMR1_PERCLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_PERCLK_PODF.
-#define BF_CCM_CSCMR1_PERCLK_PODF(v)   (((v) << BP_CCM_CSCMR1_PERCLK_PODF) & BM_CCM_CSCMR1_PERCLK_PODF)
-#endif
+#define BF_CCM_CSCMR1_PERCLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_PERCLK_PODF) & BM_CCM_CSCMR1_PERCLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERCLK_PODF field to a new value.
@@ -1820,15 +1652,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_PERCLK_CLK_SEL      (0x00000040)  //!< Bit mask for CCM_CSCMR1_PERCLK_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_PERCLK_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_PERCLK_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_PERCLK_CLK_SEL) >> BP_CCM_CSCMR1_PERCLK_CLK_SEL)
+#define BG_CCM_CSCMR1_PERCLK_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_PERCLK_CLK_SEL) >> BP_CCM_CSCMR1_PERCLK_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_PERCLK_CLK_SEL.
-#define BF_CCM_CSCMR1_PERCLK_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_PERCLK_CLK_SEL) & BM_CCM_CSCMR1_PERCLK_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_PERCLK_CLK_SEL.
-#define BF_CCM_CSCMR1_PERCLK_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_PERCLK_CLK_SEL) & BM_CCM_CSCMR1_PERCLK_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_PERCLK_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_PERCLK_CLK_SEL) & BM_CCM_CSCMR1_PERCLK_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERCLK_CLK_SEL field to a new value.
@@ -1851,15 +1678,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_SSI1_CLK_SEL      (0x00000c00)  //!< Bit mask for CCM_CSCMR1_SSI1_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_SSI1_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_SSI1_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_SSI1_CLK_SEL) >> BP_CCM_CSCMR1_SSI1_CLK_SEL)
+#define BG_CCM_CSCMR1_SSI1_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_SSI1_CLK_SEL) >> BP_CCM_CSCMR1_SSI1_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_SSI1_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI1_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_SSI1_CLK_SEL) & BM_CCM_CSCMR1_SSI1_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_SSI1_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI1_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_SSI1_CLK_SEL) & BM_CCM_CSCMR1_SSI1_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_SSI1_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_SSI1_CLK_SEL) & BM_CCM_CSCMR1_SSI1_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI1_CLK_SEL field to a new value.
@@ -1882,15 +1704,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_SSI2_CLK_SEL      (0x00003000)  //!< Bit mask for CCM_CSCMR1_SSI2_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_SSI2_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_SSI2_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_SSI2_CLK_SEL) >> BP_CCM_CSCMR1_SSI2_CLK_SEL)
+#define BG_CCM_CSCMR1_SSI2_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_SSI2_CLK_SEL) >> BP_CCM_CSCMR1_SSI2_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_SSI2_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI2_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_SSI2_CLK_SEL) & BM_CCM_CSCMR1_SSI2_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_SSI2_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI2_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_SSI2_CLK_SEL) & BM_CCM_CSCMR1_SSI2_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_SSI2_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_SSI2_CLK_SEL) & BM_CCM_CSCMR1_SSI2_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI2_CLK_SEL field to a new value.
@@ -1913,15 +1730,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_SSI3_CLK_SEL      (0x0000c000)  //!< Bit mask for CCM_CSCMR1_SSI3_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_SSI3_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_SSI3_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_SSI3_CLK_SEL) >> BP_CCM_CSCMR1_SSI3_CLK_SEL)
+#define BG_CCM_CSCMR1_SSI3_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_SSI3_CLK_SEL) >> BP_CCM_CSCMR1_SSI3_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_SSI3_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI3_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_SSI3_CLK_SEL) & BM_CCM_CSCMR1_SSI3_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_SSI3_CLK_SEL.
-#define BF_CCM_CSCMR1_SSI3_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_SSI3_CLK_SEL) & BM_CCM_CSCMR1_SSI3_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_SSI3_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_SSI3_CLK_SEL) & BM_CCM_CSCMR1_SSI3_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI3_CLK_SEL field to a new value.
@@ -1942,15 +1754,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_USDHC1_CLK_SEL      (0x00010000)  //!< Bit mask for CCM_CSCMR1_USDHC1_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_USDHC1_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_USDHC1_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_USDHC1_CLK_SEL) >> BP_CCM_CSCMR1_USDHC1_CLK_SEL)
+#define BG_CCM_CSCMR1_USDHC1_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_USDHC1_CLK_SEL) >> BP_CCM_CSCMR1_USDHC1_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_USDHC1_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC1_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_USDHC1_CLK_SEL) & BM_CCM_CSCMR1_USDHC1_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_USDHC1_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC1_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_USDHC1_CLK_SEL) & BM_CCM_CSCMR1_USDHC1_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_USDHC1_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_USDHC1_CLK_SEL) & BM_CCM_CSCMR1_USDHC1_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC1_CLK_SEL field to a new value.
@@ -1971,15 +1778,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_USDHC2_CLK_SEL      (0x00020000)  //!< Bit mask for CCM_CSCMR1_USDHC2_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_USDHC2_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_USDHC2_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_USDHC2_CLK_SEL) >> BP_CCM_CSCMR1_USDHC2_CLK_SEL)
+#define BG_CCM_CSCMR1_USDHC2_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_USDHC2_CLK_SEL) >> BP_CCM_CSCMR1_USDHC2_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_USDHC2_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC2_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_USDHC2_CLK_SEL) & BM_CCM_CSCMR1_USDHC2_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_USDHC2_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC2_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_USDHC2_CLK_SEL) & BM_CCM_CSCMR1_USDHC2_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_USDHC2_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_USDHC2_CLK_SEL) & BM_CCM_CSCMR1_USDHC2_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC2_CLK_SEL field to a new value.
@@ -2000,15 +1802,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_USDHC3_CLK_SEL      (0x00040000)  //!< Bit mask for CCM_CSCMR1_USDHC3_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_USDHC3_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_USDHC3_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_USDHC3_CLK_SEL) >> BP_CCM_CSCMR1_USDHC3_CLK_SEL)
+#define BG_CCM_CSCMR1_USDHC3_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_USDHC3_CLK_SEL) >> BP_CCM_CSCMR1_USDHC3_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_USDHC3_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC3_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_USDHC3_CLK_SEL) & BM_CCM_CSCMR1_USDHC3_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_USDHC3_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC3_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_USDHC3_CLK_SEL) & BM_CCM_CSCMR1_USDHC3_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_USDHC3_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_USDHC3_CLK_SEL) & BM_CCM_CSCMR1_USDHC3_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC3_CLK_SEL field to a new value.
@@ -2029,15 +1826,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_USDHC4_CLK_SEL      (0x00080000)  //!< Bit mask for CCM_CSCMR1_USDHC4_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR1_USDHC4_CLK_SEL from a register value.
-#define BG_CCM_CSCMR1_USDHC4_CLK_SEL(r)   (((r) & BM_CCM_CSCMR1_USDHC4_CLK_SEL) >> BP_CCM_CSCMR1_USDHC4_CLK_SEL)
+#define BG_CCM_CSCMR1_USDHC4_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_USDHC4_CLK_SEL) >> BP_CCM_CSCMR1_USDHC4_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_USDHC4_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC4_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_USDHC4_CLK_SEL) & BM_CCM_CSCMR1_USDHC4_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_USDHC4_CLK_SEL.
-#define BF_CCM_CSCMR1_USDHC4_CLK_SEL(v)   (((v) << BP_CCM_CSCMR1_USDHC4_CLK_SEL) & BM_CCM_CSCMR1_USDHC4_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR1_USDHC4_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_USDHC4_CLK_SEL) & BM_CCM_CSCMR1_USDHC4_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC4_CLK_SEL field to a new value.
@@ -2059,15 +1851,10 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF      (0x03800000)  //!< Bit mask for CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
 
 //! @brief Get value of CCM_CSCMR1_ACLK_EMI_SLOW_PODF from a register value.
-#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(r)   (((r) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
+#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)   (((v) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
-#endif
+#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACLK_EMI_SLOW_PODF field to a new value.
@@ -2090,21 +1877,20 @@ typedef union _hw_ccm_cscmr1
 #define BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL      (0x60000000)  //!< Bit mask for CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
 
 //! @brief Get value of CCM_CSCMR1_ACLK_EMI_SLOW_SEL from a register value.
-#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(r)   (((r) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
+#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   (((v) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
-#endif
+#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACLK_EMI_SLOW_SEL field to a new value.
 #define BW_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   (HW_CCM_CSCMR1_WR((HW_CCM_CSCMR1_RD() & ~BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) | BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSCMR2 - CCM Serial Clock Multiplexer Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2164,21 +1950,20 @@ typedef union _hw_ccm_cscmr2
 #define BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL      (0x00180000)  //!< Bit mask for CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL.
 
 //! @brief Get value of CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL from a register value.
-#define BG_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(r)   (((r) & BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) >> BP_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL)
+#define BG_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) >> BP_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL.
-#define BF_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) & BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL.
-#define BF_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(v)   (((v) << BP_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) & BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL)
-#endif
+#define BF_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) & BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTERN_AUDIO_CLK_SEL field to a new value.
 #define BW_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(v)   (HW_CCM_CSCMR2_WR((HW_CCM_CSCMR2_RD() & ~BM_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL) | BF_CCM_CSCMR2_EXTERN_AUDIO_CLK_SEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSCDR1 - CCM Serial Clock Divider Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2242,15 +2027,10 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_UART_CLK_PODF      (0x0000003f)  //!< Bit mask for CCM_CSCDR1_UART_CLK_PODF.
 
 //! @brief Get value of CCM_CSCDR1_UART_CLK_PODF from a register value.
-#define BG_CCM_CSCDR1_UART_CLK_PODF(r)   (((r) & BM_CCM_CSCDR1_UART_CLK_PODF) >> BP_CCM_CSCDR1_UART_CLK_PODF)
+#define BG_CCM_CSCDR1_UART_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_UART_CLK_PODF) >> BP_CCM_CSCDR1_UART_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_UART_CLK_PODF.
-#define BF_CCM_CSCDR1_UART_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_UART_CLK_PODF) & BM_CCM_CSCDR1_UART_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_UART_CLK_PODF.
-#define BF_CCM_CSCDR1_UART_CLK_PODF(v)   (((v) << BP_CCM_CSCDR1_UART_CLK_PODF) & BM_CCM_CSCDR1_UART_CLK_PODF)
-#endif
+#define BF_CCM_CSCDR1_UART_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_UART_CLK_PODF) & BM_CCM_CSCDR1_UART_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UART_CLK_PODF field to a new value.
@@ -2271,15 +2051,10 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_UART_CLK      (0x00000040)  //!< Bit mask for CCM_CSCDR1_UART_CLK.
 
 //! @brief Get value of CCM_CSCDR1_UART_CLK from a register value.
-#define BG_CCM_CSCDR1_UART_CLK(r)   (((r) & BM_CCM_CSCDR1_UART_CLK) >> BP_CCM_CSCDR1_UART_CLK)
+#define BG_CCM_CSCDR1_UART_CLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_UART_CLK) >> BP_CCM_CSCDR1_UART_CLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_UART_CLK.
-#define BF_CCM_CSCDR1_UART_CLK(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_UART_CLK) & BM_CCM_CSCDR1_UART_CLK)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_UART_CLK.
-#define BF_CCM_CSCDR1_UART_CLK(v)   (((v) << BP_CCM_CSCDR1_UART_CLK) & BM_CCM_CSCDR1_UART_CLK)
-#endif
+#define BF_CCM_CSCDR1_UART_CLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_UART_CLK) & BM_CCM_CSCDR1_UART_CLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UART_CLK field to a new value.
@@ -2306,15 +2081,10 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_USDHC1_PODF      (0x00003800)  //!< Bit mask for CCM_CSCDR1_USDHC1_PODF.
 
 //! @brief Get value of CCM_CSCDR1_USDHC1_PODF from a register value.
-#define BG_CCM_CSCDR1_USDHC1_PODF(r)   (((r) & BM_CCM_CSCDR1_USDHC1_PODF) >> BP_CCM_CSCDR1_USDHC1_PODF)
+#define BG_CCM_CSCDR1_USDHC1_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_USDHC1_PODF) >> BP_CCM_CSCDR1_USDHC1_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_USDHC1_PODF.
-#define BF_CCM_CSCDR1_USDHC1_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_USDHC1_PODF) & BM_CCM_CSCDR1_USDHC1_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_USDHC1_PODF.
-#define BF_CCM_CSCDR1_USDHC1_PODF(v)   (((v) << BP_CCM_CSCDR1_USDHC1_PODF) & BM_CCM_CSCDR1_USDHC1_PODF)
-#endif
+#define BF_CCM_CSCDR1_USDHC1_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_USDHC1_PODF) & BM_CCM_CSCDR1_USDHC1_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC1_PODF field to a new value.
@@ -2341,15 +2111,10 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_USDHC2_PODF      (0x00070000)  //!< Bit mask for CCM_CSCDR1_USDHC2_PODF.
 
 //! @brief Get value of CCM_CSCDR1_USDHC2_PODF from a register value.
-#define BG_CCM_CSCDR1_USDHC2_PODF(r)   (((r) & BM_CCM_CSCDR1_USDHC2_PODF) >> BP_CCM_CSCDR1_USDHC2_PODF)
+#define BG_CCM_CSCDR1_USDHC2_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_USDHC2_PODF) >> BP_CCM_CSCDR1_USDHC2_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_USDHC2_PODF.
-#define BF_CCM_CSCDR1_USDHC2_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_USDHC2_PODF) & BM_CCM_CSCDR1_USDHC2_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_USDHC2_PODF.
-#define BF_CCM_CSCDR1_USDHC2_PODF(v)   (((v) << BP_CCM_CSCDR1_USDHC2_PODF) & BM_CCM_CSCDR1_USDHC2_PODF)
-#endif
+#define BF_CCM_CSCDR1_USDHC2_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_USDHC2_PODF) & BM_CCM_CSCDR1_USDHC2_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC2_PODF field to a new value.
@@ -2376,15 +2141,10 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_USDHC3_PODF      (0x00380000)  //!< Bit mask for CCM_CSCDR1_USDHC3_PODF.
 
 //! @brief Get value of CCM_CSCDR1_USDHC3_PODF from a register value.
-#define BG_CCM_CSCDR1_USDHC3_PODF(r)   (((r) & BM_CCM_CSCDR1_USDHC3_PODF) >> BP_CCM_CSCDR1_USDHC3_PODF)
+#define BG_CCM_CSCDR1_USDHC3_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_USDHC3_PODF) >> BP_CCM_CSCDR1_USDHC3_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_USDHC3_PODF.
-#define BF_CCM_CSCDR1_USDHC3_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_USDHC3_PODF) & BM_CCM_CSCDR1_USDHC3_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_USDHC3_PODF.
-#define BF_CCM_CSCDR1_USDHC3_PODF(v)   (((v) << BP_CCM_CSCDR1_USDHC3_PODF) & BM_CCM_CSCDR1_USDHC3_PODF)
-#endif
+#define BF_CCM_CSCDR1_USDHC3_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_USDHC3_PODF) & BM_CCM_CSCDR1_USDHC3_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC3_PODF field to a new value.
@@ -2411,21 +2171,20 @@ typedef union _hw_ccm_cscdr1
 #define BM_CCM_CSCDR1_USDHC4_PODF      (0x01c00000)  //!< Bit mask for CCM_CSCDR1_USDHC4_PODF.
 
 //! @brief Get value of CCM_CSCDR1_USDHC4_PODF from a register value.
-#define BG_CCM_CSCDR1_USDHC4_PODF(r)   (((r) & BM_CCM_CSCDR1_USDHC4_PODF) >> BP_CCM_CSCDR1_USDHC4_PODF)
+#define BG_CCM_CSCDR1_USDHC4_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR1_USDHC4_PODF) >> BP_CCM_CSCDR1_USDHC4_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR1_USDHC4_PODF.
-#define BF_CCM_CSCDR1_USDHC4_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR1_USDHC4_PODF) & BM_CCM_CSCDR1_USDHC4_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR1_USDHC4_PODF.
-#define BF_CCM_CSCDR1_USDHC4_PODF(v)   (((v) << BP_CCM_CSCDR1_USDHC4_PODF) & BM_CCM_CSCDR1_USDHC4_PODF)
-#endif
+#define BF_CCM_CSCDR1_USDHC4_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR1_USDHC4_PODF) & BM_CCM_CSCDR1_USDHC4_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USDHC4_PODF field to a new value.
 #define BW_CCM_CSCDR1_USDHC4_PODF(v)   (HW_CCM_CSCDR1_WR((HW_CCM_CSCDR1_RD() & ~BM_CCM_CSCDR1_USDHC4_PODF) | BF_CCM_CSCDR1_USDHC4_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CS1CDR - CCM SSI1 Clock Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2486,15 +2245,10 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_SSI1_CLK_PODF      (0x0000003f)  //!< Bit mask for CCM_CS1CDR_SSI1_CLK_PODF.
 
 //! @brief Get value of CCM_CS1CDR_SSI1_CLK_PODF from a register value.
-#define BG_CCM_CS1CDR_SSI1_CLK_PODF(r)   (((r) & BM_CCM_CS1CDR_SSI1_CLK_PODF) >> BP_CCM_CS1CDR_SSI1_CLK_PODF)
+#define BG_CCM_CS1CDR_SSI1_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_SSI1_CLK_PODF) >> BP_CCM_CS1CDR_SSI1_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_SSI1_CLK_PODF.
-#define BF_CCM_CS1CDR_SSI1_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_SSI1_CLK_PODF) & BM_CCM_CS1CDR_SSI1_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_SSI1_CLK_PODF.
-#define BF_CCM_CS1CDR_SSI1_CLK_PODF(v)   (((v) << BP_CCM_CS1CDR_SSI1_CLK_PODF) & BM_CCM_CS1CDR_SSI1_CLK_PODF)
-#endif
+#define BF_CCM_CS1CDR_SSI1_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_SSI1_CLK_PODF) & BM_CCM_CS1CDR_SSI1_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI1_CLK_PODF field to a new value.
@@ -2521,15 +2275,10 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_SSI1_CLK_PRED      (0x000001c0)  //!< Bit mask for CCM_CS1CDR_SSI1_CLK_PRED.
 
 //! @brief Get value of CCM_CS1CDR_SSI1_CLK_PRED from a register value.
-#define BG_CCM_CS1CDR_SSI1_CLK_PRED(r)   (((r) & BM_CCM_CS1CDR_SSI1_CLK_PRED) >> BP_CCM_CS1CDR_SSI1_CLK_PRED)
+#define BG_CCM_CS1CDR_SSI1_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_SSI1_CLK_PRED) >> BP_CCM_CS1CDR_SSI1_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_SSI1_CLK_PRED.
-#define BF_CCM_CS1CDR_SSI1_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_SSI1_CLK_PRED) & BM_CCM_CS1CDR_SSI1_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_SSI1_CLK_PRED.
-#define BF_CCM_CS1CDR_SSI1_CLK_PRED(v)   (((v) << BP_CCM_CS1CDR_SSI1_CLK_PRED) & BM_CCM_CS1CDR_SSI1_CLK_PRED)
-#endif
+#define BF_CCM_CS1CDR_SSI1_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_SSI1_CLK_PRED) & BM_CCM_CS1CDR_SSI1_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI1_CLK_PRED field to a new value.
@@ -2556,15 +2305,10 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED      (0x00000e00)  //!< Bit mask for CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED.
 
 //! @brief Get value of CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED from a register value.
-#define BG_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED(r)   (((r) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED) >> BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED)
+#define BG_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED) >> BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED.
-#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED.
-#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED(v)   (((v) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED)
-#endif
+#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTERN_AUDIO_CLK_PRED field to a new value.
@@ -2586,15 +2330,10 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_SSI3_CLK_PODF      (0x003f0000)  //!< Bit mask for CCM_CS1CDR_SSI3_CLK_PODF.
 
 //! @brief Get value of CCM_CS1CDR_SSI3_CLK_PODF from a register value.
-#define BG_CCM_CS1CDR_SSI3_CLK_PODF(r)   (((r) & BM_CCM_CS1CDR_SSI3_CLK_PODF) >> BP_CCM_CS1CDR_SSI3_CLK_PODF)
+#define BG_CCM_CS1CDR_SSI3_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_SSI3_CLK_PODF) >> BP_CCM_CS1CDR_SSI3_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_SSI3_CLK_PODF.
-#define BF_CCM_CS1CDR_SSI3_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_SSI3_CLK_PODF) & BM_CCM_CS1CDR_SSI3_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_SSI3_CLK_PODF.
-#define BF_CCM_CS1CDR_SSI3_CLK_PODF(v)   (((v) << BP_CCM_CS1CDR_SSI3_CLK_PODF) & BM_CCM_CS1CDR_SSI3_CLK_PODF)
-#endif
+#define BF_CCM_CS1CDR_SSI3_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_SSI3_CLK_PODF) & BM_CCM_CS1CDR_SSI3_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI3_CLK_PODF field to a new value.
@@ -2621,15 +2360,10 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_SSI3_CLK_PRED      (0x01c00000)  //!< Bit mask for CCM_CS1CDR_SSI3_CLK_PRED.
 
 //! @brief Get value of CCM_CS1CDR_SSI3_CLK_PRED from a register value.
-#define BG_CCM_CS1CDR_SSI3_CLK_PRED(r)   (((r) & BM_CCM_CS1CDR_SSI3_CLK_PRED) >> BP_CCM_CS1CDR_SSI3_CLK_PRED)
+#define BG_CCM_CS1CDR_SSI3_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_SSI3_CLK_PRED) >> BP_CCM_CS1CDR_SSI3_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_SSI3_CLK_PRED.
-#define BF_CCM_CS1CDR_SSI3_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_SSI3_CLK_PRED) & BM_CCM_CS1CDR_SSI3_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_SSI3_CLK_PRED.
-#define BF_CCM_CS1CDR_SSI3_CLK_PRED(v)   (((v) << BP_CCM_CS1CDR_SSI3_CLK_PRED) & BM_CCM_CS1CDR_SSI3_CLK_PRED)
-#endif
+#define BF_CCM_CS1CDR_SSI3_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_SSI3_CLK_PRED) & BM_CCM_CS1CDR_SSI3_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI3_CLK_PRED field to a new value.
@@ -2656,21 +2390,20 @@ typedef union _hw_ccm_cs1cdr
 #define BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF      (0x0e000000)  //!< Bit mask for CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF.
 
 //! @brief Get value of CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF from a register value.
-#define BG_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(r)   (((r) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) >> BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF)
+#define BG_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) >> BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF.
-#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF.
-#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(v)   (((v) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF)
-#endif
+#define BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) & BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXTERN_AUDIO_CLK_PODF field to a new value.
 #define BW_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(v)   (HW_CCM_CS1CDR_WR((HW_CCM_CS1CDR_RD() & ~BM_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF) | BF_CCM_CS1CDR_EXTERN_AUDIO_CLK_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CS2CDR - CCM SSI2 Clock Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2728,15 +2461,10 @@ typedef union _hw_ccm_cs2cdr
 #define BM_CCM_CS2CDR_SSI2_CLK_PODF      (0x0000003f)  //!< Bit mask for CCM_CS2CDR_SSI2_CLK_PODF.
 
 //! @brief Get value of CCM_CS2CDR_SSI2_CLK_PODF from a register value.
-#define BG_CCM_CS2CDR_SSI2_CLK_PODF(r)   (((r) & BM_CCM_CS2CDR_SSI2_CLK_PODF) >> BP_CCM_CS2CDR_SSI2_CLK_PODF)
+#define BG_CCM_CS2CDR_SSI2_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS2CDR_SSI2_CLK_PODF) >> BP_CCM_CS2CDR_SSI2_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS2CDR_SSI2_CLK_PODF.
-#define BF_CCM_CS2CDR_SSI2_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CS2CDR_SSI2_CLK_PODF) & BM_CCM_CS2CDR_SSI2_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CS2CDR_SSI2_CLK_PODF.
-#define BF_CCM_CS2CDR_SSI2_CLK_PODF(v)   (((v) << BP_CCM_CS2CDR_SSI2_CLK_PODF) & BM_CCM_CS2CDR_SSI2_CLK_PODF)
-#endif
+#define BF_CCM_CS2CDR_SSI2_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS2CDR_SSI2_CLK_PODF) & BM_CCM_CS2CDR_SSI2_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI2_CLK_PODF field to a new value.
@@ -2763,15 +2491,10 @@ typedef union _hw_ccm_cs2cdr
 #define BM_CCM_CS2CDR_SSI2_CLK_PRED      (0x000001c0)  //!< Bit mask for CCM_CS2CDR_SSI2_CLK_PRED.
 
 //! @brief Get value of CCM_CS2CDR_SSI2_CLK_PRED from a register value.
-#define BG_CCM_CS2CDR_SSI2_CLK_PRED(r)   (((r) & BM_CCM_CS2CDR_SSI2_CLK_PRED) >> BP_CCM_CS2CDR_SSI2_CLK_PRED)
+#define BG_CCM_CS2CDR_SSI2_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS2CDR_SSI2_CLK_PRED) >> BP_CCM_CS2CDR_SSI2_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS2CDR_SSI2_CLK_PRED.
-#define BF_CCM_CS2CDR_SSI2_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CS2CDR_SSI2_CLK_PRED) & BM_CCM_CS2CDR_SSI2_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CS2CDR_SSI2_CLK_PRED.
-#define BF_CCM_CS2CDR_SSI2_CLK_PRED(v)   (((v) << BP_CCM_CS2CDR_SSI2_CLK_PRED) & BM_CCM_CS2CDR_SSI2_CLK_PRED)
-#endif
+#define BF_CCM_CS2CDR_SSI2_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS2CDR_SSI2_CLK_PRED) & BM_CCM_CS2CDR_SSI2_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSI2_CLK_PRED field to a new value.
@@ -2796,15 +2519,10 @@ typedef union _hw_ccm_cs2cdr
 #define BM_CCM_CS2CDR_LDB_DI0_CLK_SEL      (0x00000e00)  //!< Bit mask for CCM_CS2CDR_LDB_DI0_CLK_SEL.
 
 //! @brief Get value of CCM_CS2CDR_LDB_DI0_CLK_SEL from a register value.
-#define BG_CCM_CS2CDR_LDB_DI0_CLK_SEL(r)   (((r) & BM_CCM_CS2CDR_LDB_DI0_CLK_SEL) >> BP_CCM_CS2CDR_LDB_DI0_CLK_SEL)
+#define BG_CCM_CS2CDR_LDB_DI0_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS2CDR_LDB_DI0_CLK_SEL) >> BP_CCM_CS2CDR_LDB_DI0_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS2CDR_LDB_DI0_CLK_SEL.
-#define BF_CCM_CS2CDR_LDB_DI0_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CS2CDR_LDB_DI0_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI0_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CS2CDR_LDB_DI0_CLK_SEL.
-#define BF_CCM_CS2CDR_LDB_DI0_CLK_SEL(v)   (((v) << BP_CCM_CS2CDR_LDB_DI0_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI0_CLK_SEL)
-#endif
+#define BF_CCM_CS2CDR_LDB_DI0_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS2CDR_LDB_DI0_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI0_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LDB_DI0_CLK_SEL field to a new value.
@@ -2829,21 +2547,20 @@ typedef union _hw_ccm_cs2cdr
 #define BM_CCM_CS2CDR_LDB_DI1_CLK_SEL      (0x00007000)  //!< Bit mask for CCM_CS2CDR_LDB_DI1_CLK_SEL.
 
 //! @brief Get value of CCM_CS2CDR_LDB_DI1_CLK_SEL from a register value.
-#define BG_CCM_CS2CDR_LDB_DI1_CLK_SEL(r)   (((r) & BM_CCM_CS2CDR_LDB_DI1_CLK_SEL) >> BP_CCM_CS2CDR_LDB_DI1_CLK_SEL)
+#define BG_CCM_CS2CDR_LDB_DI1_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CS2CDR_LDB_DI1_CLK_SEL) >> BP_CCM_CS2CDR_LDB_DI1_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CS2CDR_LDB_DI1_CLK_SEL.
-#define BF_CCM_CS2CDR_LDB_DI1_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CS2CDR_LDB_DI1_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI1_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CS2CDR_LDB_DI1_CLK_SEL.
-#define BF_CCM_CS2CDR_LDB_DI1_CLK_SEL(v)   (((v) << BP_CCM_CS2CDR_LDB_DI1_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI1_CLK_SEL)
-#endif
+#define BF_CCM_CS2CDR_LDB_DI1_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CS2CDR_LDB_DI1_CLK_SEL) & BM_CCM_CS2CDR_LDB_DI1_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LDB_DI1_CLK_SEL field to a new value.
 #define BW_CCM_CS2CDR_LDB_DI1_CLK_SEL(v)   (HW_CCM_CS2CDR_WR((HW_CCM_CS2CDR_RD() & ~BM_CCM_CS2CDR_LDB_DI1_CLK_SEL) | BF_CCM_CS2CDR_LDB_DI1_CLK_SEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CDCDR - CCM D1 Clock Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2906,15 +2623,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF1_CLK_SEL      (0x00000180)  //!< Bit mask for CCM_CDCDR_SPDIF1_CLK_SEL.
 
 //! @brief Get value of CCM_CDCDR_SPDIF1_CLK_SEL from a register value.
-#define BG_CCM_CDCDR_SPDIF1_CLK_SEL(r)   (((r) & BM_CCM_CDCDR_SPDIF1_CLK_SEL) >> BP_CCM_CDCDR_SPDIF1_CLK_SEL)
+#define BG_CCM_CDCDR_SPDIF1_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF1_CLK_SEL) >> BP_CCM_CDCDR_SPDIF1_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_SEL.
-#define BF_CCM_CDCDR_SPDIF1_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF1_CLK_SEL) & BM_CCM_CDCDR_SPDIF1_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_SEL.
-#define BF_CCM_CDCDR_SPDIF1_CLK_SEL(v)   (((v) << BP_CCM_CDCDR_SPDIF1_CLK_SEL) & BM_CCM_CDCDR_SPDIF1_CLK_SEL)
-#endif
+#define BF_CCM_CDCDR_SPDIF1_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF1_CLK_SEL) & BM_CCM_CDCDR_SPDIF1_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF1_CLK_SEL field to a new value.
@@ -2935,15 +2647,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF1_CLK_PODF      (0x00000e00)  //!< Bit mask for CCM_CDCDR_SPDIF1_CLK_PODF.
 
 //! @brief Get value of CCM_CDCDR_SPDIF1_CLK_PODF from a register value.
-#define BG_CCM_CDCDR_SPDIF1_CLK_PODF(r)   (((r) & BM_CCM_CDCDR_SPDIF1_CLK_PODF) >> BP_CCM_CDCDR_SPDIF1_CLK_PODF)
+#define BG_CCM_CDCDR_SPDIF1_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF1_CLK_PODF) >> BP_CCM_CDCDR_SPDIF1_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_PODF.
-#define BF_CCM_CDCDR_SPDIF1_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF1_CLK_PODF) & BM_CCM_CDCDR_SPDIF1_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_PODF.
-#define BF_CCM_CDCDR_SPDIF1_CLK_PODF(v)   (((v) << BP_CCM_CDCDR_SPDIF1_CLK_PODF) & BM_CCM_CDCDR_SPDIF1_CLK_PODF)
-#endif
+#define BF_CCM_CDCDR_SPDIF1_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF1_CLK_PODF) & BM_CCM_CDCDR_SPDIF1_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF1_CLK_PODF field to a new value.
@@ -2966,15 +2673,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF1_CLK_PRED      (0x00007000)  //!< Bit mask for CCM_CDCDR_SPDIF1_CLK_PRED.
 
 //! @brief Get value of CCM_CDCDR_SPDIF1_CLK_PRED from a register value.
-#define BG_CCM_CDCDR_SPDIF1_CLK_PRED(r)   (((r) & BM_CCM_CDCDR_SPDIF1_CLK_PRED) >> BP_CCM_CDCDR_SPDIF1_CLK_PRED)
+#define BG_CCM_CDCDR_SPDIF1_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF1_CLK_PRED) >> BP_CCM_CDCDR_SPDIF1_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_PRED.
-#define BF_CCM_CDCDR_SPDIF1_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF1_CLK_PRED) & BM_CCM_CDCDR_SPDIF1_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF1_CLK_PRED.
-#define BF_CCM_CDCDR_SPDIF1_CLK_PRED(v)   (((v) << BP_CCM_CDCDR_SPDIF1_CLK_PRED) & BM_CCM_CDCDR_SPDIF1_CLK_PRED)
-#endif
+#define BF_CCM_CDCDR_SPDIF1_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF1_CLK_PRED) & BM_CCM_CDCDR_SPDIF1_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF1_CLK_PRED field to a new value.
@@ -2997,15 +2699,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF0_CLK_SEL      (0x00300000)  //!< Bit mask for CCM_CDCDR_SPDIF0_CLK_SEL.
 
 //! @brief Get value of CCM_CDCDR_SPDIF0_CLK_SEL from a register value.
-#define BG_CCM_CDCDR_SPDIF0_CLK_SEL(r)   (((r) & BM_CCM_CDCDR_SPDIF0_CLK_SEL) >> BP_CCM_CDCDR_SPDIF0_CLK_SEL)
+#define BG_CCM_CDCDR_SPDIF0_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF0_CLK_SEL) >> BP_CCM_CDCDR_SPDIF0_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_SEL.
-#define BF_CCM_CDCDR_SPDIF0_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF0_CLK_SEL) & BM_CCM_CDCDR_SPDIF0_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_SEL.
-#define BF_CCM_CDCDR_SPDIF0_CLK_SEL(v)   (((v) << BP_CCM_CDCDR_SPDIF0_CLK_SEL) & BM_CCM_CDCDR_SPDIF0_CLK_SEL)
-#endif
+#define BF_CCM_CDCDR_SPDIF0_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF0_CLK_SEL) & BM_CCM_CDCDR_SPDIF0_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF0_CLK_SEL field to a new value.
@@ -3026,15 +2723,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF0_CLK_PODF      (0x01c00000)  //!< Bit mask for CCM_CDCDR_SPDIF0_CLK_PODF.
 
 //! @brief Get value of CCM_CDCDR_SPDIF0_CLK_PODF from a register value.
-#define BG_CCM_CDCDR_SPDIF0_CLK_PODF(r)   (((r) & BM_CCM_CDCDR_SPDIF0_CLK_PODF) >> BP_CCM_CDCDR_SPDIF0_CLK_PODF)
+#define BG_CCM_CDCDR_SPDIF0_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF0_CLK_PODF) >> BP_CCM_CDCDR_SPDIF0_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_PODF.
-#define BF_CCM_CDCDR_SPDIF0_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF0_CLK_PODF) & BM_CCM_CDCDR_SPDIF0_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_PODF.
-#define BF_CCM_CDCDR_SPDIF0_CLK_PODF(v)   (((v) << BP_CCM_CDCDR_SPDIF0_CLK_PODF) & BM_CCM_CDCDR_SPDIF0_CLK_PODF)
-#endif
+#define BF_CCM_CDCDR_SPDIF0_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF0_CLK_PODF) & BM_CCM_CDCDR_SPDIF0_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF0_CLK_PODF field to a new value.
@@ -3057,15 +2749,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_SPDIF0_CLK_PRED      (0x0e000000)  //!< Bit mask for CCM_CDCDR_SPDIF0_CLK_PRED.
 
 //! @brief Get value of CCM_CDCDR_SPDIF0_CLK_PRED from a register value.
-#define BG_CCM_CDCDR_SPDIF0_CLK_PRED(r)   (((r) & BM_CCM_CDCDR_SPDIF0_CLK_PRED) >> BP_CCM_CDCDR_SPDIF0_CLK_PRED)
+#define BG_CCM_CDCDR_SPDIF0_CLK_PRED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_SPDIF0_CLK_PRED) >> BP_CCM_CDCDR_SPDIF0_CLK_PRED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_PRED.
-#define BF_CCM_CDCDR_SPDIF0_CLK_PRED(v)   ((((reg32_t) v) << BP_CCM_CDCDR_SPDIF0_CLK_PRED) & BM_CCM_CDCDR_SPDIF0_CLK_PRED)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_SPDIF0_CLK_PRED.
-#define BF_CCM_CDCDR_SPDIF0_CLK_PRED(v)   (((v) << BP_CCM_CDCDR_SPDIF0_CLK_PRED) & BM_CCM_CDCDR_SPDIF0_CLK_PRED)
-#endif
+#define BF_CCM_CDCDR_SPDIF0_CLK_PRED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_SPDIF0_CLK_PRED) & BM_CCM_CDCDR_SPDIF0_CLK_PRED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPDIF0_CLK_PRED field to a new value.
@@ -3086,15 +2773,10 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL      (0x10000000)  //!< Bit mask for CCM_CDCDR_MSHC_XMSCKI_CLK_SEL.
 
 //! @brief Get value of CCM_CDCDR_MSHC_XMSCKI_CLK_SEL from a register value.
-#define BG_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL(r)   (((r) & BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL) >> BP_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL)
+#define BG_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL) >> BP_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_MSHC_XMSCKI_CLK_SEL.
-#define BF_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL) & BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_MSHC_XMSCKI_CLK_SEL.
-#define BF_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL(v)   (((v) << BP_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL) & BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL)
-#endif
+#define BF_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL) & BM_CCM_CDCDR_MSHC_XMSCKI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MSHC_XMSCKI_CLK_SEL field to a new value.
@@ -3121,21 +2803,20 @@ typedef union _hw_ccm_cdcdr
 #define BM_CCM_CDCDR_MSHC_XMSCKI_PODF      (0xe0000000)  //!< Bit mask for CCM_CDCDR_MSHC_XMSCKI_PODF.
 
 //! @brief Get value of CCM_CDCDR_MSHC_XMSCKI_PODF from a register value.
-#define BG_CCM_CDCDR_MSHC_XMSCKI_PODF(r)   (((r) & BM_CCM_CDCDR_MSHC_XMSCKI_PODF) >> BP_CCM_CDCDR_MSHC_XMSCKI_PODF)
+#define BG_CCM_CDCDR_MSHC_XMSCKI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDCDR_MSHC_XMSCKI_PODF) >> BP_CCM_CDCDR_MSHC_XMSCKI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CDCDR_MSHC_XMSCKI_PODF.
-#define BF_CCM_CDCDR_MSHC_XMSCKI_PODF(v)   ((((reg32_t) v) << BP_CCM_CDCDR_MSHC_XMSCKI_PODF) & BM_CCM_CDCDR_MSHC_XMSCKI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CDCDR_MSHC_XMSCKI_PODF.
-#define BF_CCM_CDCDR_MSHC_XMSCKI_PODF(v)   (((v) << BP_CCM_CDCDR_MSHC_XMSCKI_PODF) & BM_CCM_CDCDR_MSHC_XMSCKI_PODF)
-#endif
+#define BF_CCM_CDCDR_MSHC_XMSCKI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CDCDR_MSHC_XMSCKI_PODF) & BM_CCM_CDCDR_MSHC_XMSCKI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MSHC_XMSCKI_PODF field to a new value.
 #define BW_CCM_CDCDR_MSHC_XMSCKI_PODF(v)   (HW_CCM_CDCDR_WR((HW_CCM_CDCDR_RD() & ~BM_CCM_CDCDR_MSHC_XMSCKI_PODF) | BF_CCM_CDCDR_MSHC_XMSCKI_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CHSCCDR - CCM HSC Clock Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3198,15 +2879,10 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL      (0x00000007)  //!< Bit mask for CCM_CHSCCDR_PXP_AXI_CLK_SEL.
 
 //! @brief Get value of CCM_CHSCCDR_PXP_AXI_CLK_SEL from a register value.
-#define BG_CCM_CHSCCDR_PXP_AXI_CLK_SEL(r)   (((r) & BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL) >> BP_CCM_CHSCCDR_PXP_AXI_CLK_SEL)
+#define BG_CCM_CHSCCDR_PXP_AXI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL) >> BP_CCM_CHSCCDR_PXP_AXI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_CLK_SEL.
-#define BF_CCM_CHSCCDR_PXP_AXI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_PXP_AXI_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_CLK_SEL.
-#define BF_CCM_CHSCCDR_PXP_AXI_CLK_SEL(v)   (((v) << BP_CCM_CHSCCDR_PXP_AXI_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL)
-#endif
+#define BF_CCM_CHSCCDR_PXP_AXI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_PXP_AXI_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PXP_AXI_CLK_SEL field to a new value.
@@ -3233,15 +2909,10 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_PXP_AXI_PODF      (0x00000038)  //!< Bit mask for CCM_CHSCCDR_PXP_AXI_PODF.
 
 //! @brief Get value of CCM_CHSCCDR_PXP_AXI_PODF from a register value.
-#define BG_CCM_CHSCCDR_PXP_AXI_PODF(r)   (((r) & BM_CCM_CHSCCDR_PXP_AXI_PODF) >> BP_CCM_CHSCCDR_PXP_AXI_PODF)
+#define BG_CCM_CHSCCDR_PXP_AXI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_PXP_AXI_PODF) >> BP_CCM_CHSCCDR_PXP_AXI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_PODF.
-#define BF_CCM_CHSCCDR_PXP_AXI_PODF(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_PXP_AXI_PODF) & BM_CCM_CHSCCDR_PXP_AXI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_PODF.
-#define BF_CCM_CHSCCDR_PXP_AXI_PODF(v)   (((v) << BP_CCM_CHSCCDR_PXP_AXI_PODF) & BM_CCM_CHSCCDR_PXP_AXI_PODF)
-#endif
+#define BF_CCM_CHSCCDR_PXP_AXI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_PXP_AXI_PODF) & BM_CCM_CHSCCDR_PXP_AXI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PXP_AXI_PODF field to a new value.
@@ -3267,15 +2938,10 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL      (0x000001c0)  //!< Bit mask for CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL.
 
 //! @brief Get value of CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL from a register value.
-#define BG_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL(r)   (((r) & BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL) >> BP_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL)
+#define BG_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL) >> BP_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL.
-#define BF_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL.
-#define BF_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL(v)   (((v) << BP_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL)
-#endif
+#define BF_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_PXP_AXI_PRE_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PXP_AXI_PRE_CLK_SEL field to a new value.
@@ -3300,15 +2966,10 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL      (0x00000e00)  //!< Bit mask for CCM_CHSCCDR_EPDC_AXI_CLK_SEL.
 
 //! @brief Get value of CCM_CHSCCDR_EPDC_AXI_CLK_SEL from a register value.
-#define BG_CCM_CHSCCDR_EPDC_AXI_CLK_SEL(r)   (((r) & BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL) >> BP_CCM_CHSCCDR_EPDC_AXI_CLK_SEL)
+#define BG_CCM_CHSCCDR_EPDC_AXI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL) >> BP_CCM_CHSCCDR_EPDC_AXI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_CLK_SEL.
-#define BF_CCM_CHSCCDR_EPDC_AXI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_EPDC_AXI_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_CLK_SEL.
-#define BF_CCM_CHSCCDR_EPDC_AXI_CLK_SEL(v)   (((v) << BP_CCM_CHSCCDR_EPDC_AXI_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL)
-#endif
+#define BF_CCM_CHSCCDR_EPDC_AXI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_EPDC_AXI_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_AXI_CLK_SEL field to a new value.
@@ -3336,15 +2997,10 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_EPDC_AXI_PODF      (0x00007000)  //!< Bit mask for CCM_CHSCCDR_EPDC_AXI_PODF.
 
 //! @brief Get value of CCM_CHSCCDR_EPDC_AXI_PODF from a register value.
-#define BG_CCM_CHSCCDR_EPDC_AXI_PODF(r)   (((r) & BM_CCM_CHSCCDR_EPDC_AXI_PODF) >> BP_CCM_CHSCCDR_EPDC_AXI_PODF)
+#define BG_CCM_CHSCCDR_EPDC_AXI_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_EPDC_AXI_PODF) >> BP_CCM_CHSCCDR_EPDC_AXI_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_PODF.
-#define BF_CCM_CHSCCDR_EPDC_AXI_PODF(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_EPDC_AXI_PODF) & BM_CCM_CHSCCDR_EPDC_AXI_PODF)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_PODF.
-#define BF_CCM_CHSCCDR_EPDC_AXI_PODF(v)   (((v) << BP_CCM_CHSCCDR_EPDC_AXI_PODF) & BM_CCM_CHSCCDR_EPDC_AXI_PODF)
-#endif
+#define BF_CCM_CHSCCDR_EPDC_AXI_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_EPDC_AXI_PODF) & BM_CCM_CHSCCDR_EPDC_AXI_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_AXI_PODF field to a new value.
@@ -3370,21 +3026,20 @@ typedef union _hw_ccm_chsccdr
 #define BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL      (0x00038000)  //!< Bit mask for CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL.
 
 //! @brief Get value of CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL from a register value.
-#define BG_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(r)   (((r) & BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) >> BP_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL)
+#define BG_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) >> BP_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL.
-#define BF_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL.
-#define BF_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(v)   (((v) << BP_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL)
-#endif
+#define BF_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) & BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_AXI_PRE_CLK_SEL field to a new value.
 #define BW_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(v)   (HW_CCM_CHSCCDR_WR((HW_CCM_CHSCCDR_RD() & ~BM_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL) | BF_CCM_CHSCCDR_EPDC_AXI_PRE_CLK_SEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSCDR2 - CCM Serial Clock Divider Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3449,15 +3104,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL      (0x00000007)  //!< Bit mask for CCM_CSCDR2_LCDIF_PIX_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR2_LCDIF_PIX_CLK_SEL from a register value.
-#define BG_CCM_CSCDR2_LCDIF_PIX_CLK_SEL(r)   (((r) & BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL) >> BP_CCM_CSCDR2_LCDIF_PIX_CLK_SEL)
+#define BG_CCM_CSCDR2_LCDIF_PIX_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL) >> BP_CCM_CSCDR2_LCDIF_PIX_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_CLK_SEL.
-#define BF_CCM_CSCDR2_LCDIF_PIX_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_LCDIF_PIX_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_CLK_SEL.
-#define BF_CCM_CSCDR2_LCDIF_PIX_CLK_SEL(v)   (((v) << BP_CCM_CSCDR2_LCDIF_PIX_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR2_LCDIF_PIX_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_LCDIF_PIX_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LCDIF_PIX_CLK_SEL field to a new value.
@@ -3484,15 +3134,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_LCDIF_PIX_PODF      (0x00000038)  //!< Bit mask for CCM_CSCDR2_LCDIF_PIX_PODF.
 
 //! @brief Get value of CCM_CSCDR2_LCDIF_PIX_PODF from a register value.
-#define BG_CCM_CSCDR2_LCDIF_PIX_PODF(r)   (((r) & BM_CCM_CSCDR2_LCDIF_PIX_PODF) >> BP_CCM_CSCDR2_LCDIF_PIX_PODF)
+#define BG_CCM_CSCDR2_LCDIF_PIX_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_LCDIF_PIX_PODF) >> BP_CCM_CSCDR2_LCDIF_PIX_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_PODF.
-#define BF_CCM_CSCDR2_LCDIF_PIX_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_LCDIF_PIX_PODF) & BM_CCM_CSCDR2_LCDIF_PIX_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_PODF.
-#define BF_CCM_CSCDR2_LCDIF_PIX_PODF(v)   (((v) << BP_CCM_CSCDR2_LCDIF_PIX_PODF) & BM_CCM_CSCDR2_LCDIF_PIX_PODF)
-#endif
+#define BF_CCM_CSCDR2_LCDIF_PIX_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_LCDIF_PIX_PODF) & BM_CCM_CSCDR2_LCDIF_PIX_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LCDIF_PIX_PODF field to a new value.
@@ -3518,15 +3163,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL      (0x000001c0)  //!< Bit mask for CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL from a register value.
-#define BG_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL(r)   (((r) & BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL) >> BP_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL)
+#define BG_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL) >> BP_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL.
-#define BF_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL.
-#define BF_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL(v)   (((v) << BP_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_LCDIF_PIX_PRE_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LCDIF_PIX_PRE_CLK_SEL field to a new value.
@@ -3551,15 +3191,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL      (0x00000e00)  //!< Bit mask for CCM_CSCDR2_EPDC_PIX_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR2_EPDC_PIX_CLK_SEL from a register value.
-#define BG_CCM_CSCDR2_EPDC_PIX_CLK_SEL(r)   (((r) & BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL) >> BP_CCM_CSCDR2_EPDC_PIX_CLK_SEL)
+#define BG_CCM_CSCDR2_EPDC_PIX_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL) >> BP_CCM_CSCDR2_EPDC_PIX_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_CLK_SEL.
-#define BF_CCM_CSCDR2_EPDC_PIX_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_EPDC_PIX_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_CLK_SEL.
-#define BF_CCM_CSCDR2_EPDC_PIX_CLK_SEL(v)   (((v) << BP_CCM_CSCDR2_EPDC_PIX_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR2_EPDC_PIX_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_EPDC_PIX_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_PIX_CLK_SEL field to a new value.
@@ -3586,15 +3221,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_EPDC_PIX_PODF      (0x00007000)  //!< Bit mask for CCM_CSCDR2_EPDC_PIX_PODF.
 
 //! @brief Get value of CCM_CSCDR2_EPDC_PIX_PODF from a register value.
-#define BG_CCM_CSCDR2_EPDC_PIX_PODF(r)   (((r) & BM_CCM_CSCDR2_EPDC_PIX_PODF) >> BP_CCM_CSCDR2_EPDC_PIX_PODF)
+#define BG_CCM_CSCDR2_EPDC_PIX_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_EPDC_PIX_PODF) >> BP_CCM_CSCDR2_EPDC_PIX_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_PODF.
-#define BF_CCM_CSCDR2_EPDC_PIX_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_EPDC_PIX_PODF) & BM_CCM_CSCDR2_EPDC_PIX_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_PODF.
-#define BF_CCM_CSCDR2_EPDC_PIX_PODF(v)   (((v) << BP_CCM_CSCDR2_EPDC_PIX_PODF) & BM_CCM_CSCDR2_EPDC_PIX_PODF)
-#endif
+#define BF_CCM_CSCDR2_EPDC_PIX_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_EPDC_PIX_PODF) & BM_CCM_CSCDR2_EPDC_PIX_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_PIX_PODF field to a new value.
@@ -3620,15 +3250,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL      (0x00038000)  //!< Bit mask for CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL from a register value.
-#define BG_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL(r)   (((r) & BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL) >> BP_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL)
+#define BG_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL) >> BP_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL.
-#define BF_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL.
-#define BF_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL(v)   (((v) << BP_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL) & BM_CCM_CSCDR2_EPDC_PIX_PRE_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EPDC_PIX_PRE_CLK_SEL field to a new value.
@@ -3649,15 +3274,10 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_ECSPI_CLK_SEL      (0x00040000)  //!< Bit mask for CCM_CSCDR2_ECSPI_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR2_ECSPI_CLK_SEL from a register value.
-#define BG_CCM_CSCDR2_ECSPI_CLK_SEL(r)   (((r) & BM_CCM_CSCDR2_ECSPI_CLK_SEL) >> BP_CCM_CSCDR2_ECSPI_CLK_SEL)
+#define BG_CCM_CSCDR2_ECSPI_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_ECSPI_CLK_SEL) >> BP_CCM_CSCDR2_ECSPI_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_ECSPI_CLK_SEL.
-#define BF_CCM_CSCDR2_ECSPI_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_ECSPI_CLK_SEL) & BM_CCM_CSCDR2_ECSPI_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_ECSPI_CLK_SEL.
-#define BF_CCM_CSCDR2_ECSPI_CLK_SEL(v)   (((v) << BP_CCM_CSCDR2_ECSPI_CLK_SEL) & BM_CCM_CSCDR2_ECSPI_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR2_ECSPI_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_ECSPI_CLK_SEL) & BM_CCM_CSCDR2_ECSPI_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECSPI_CLK_SEL field to a new value.
@@ -3680,21 +3300,20 @@ typedef union _hw_ccm_cscdr2
 #define BM_CCM_CSCDR2_ECSPI_CLK_PODF      (0x01f80000)  //!< Bit mask for CCM_CSCDR2_ECSPI_CLK_PODF.
 
 //! @brief Get value of CCM_CSCDR2_ECSPI_CLK_PODF from a register value.
-#define BG_CCM_CSCDR2_ECSPI_CLK_PODF(r)   (((r) & BM_CCM_CSCDR2_ECSPI_CLK_PODF) >> BP_CCM_CSCDR2_ECSPI_CLK_PODF)
+#define BG_CCM_CSCDR2_ECSPI_CLK_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR2_ECSPI_CLK_PODF) >> BP_CCM_CSCDR2_ECSPI_CLK_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR2_ECSPI_CLK_PODF.
-#define BF_CCM_CSCDR2_ECSPI_CLK_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR2_ECSPI_CLK_PODF) & BM_CCM_CSCDR2_ECSPI_CLK_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR2_ECSPI_CLK_PODF.
-#define BF_CCM_CSCDR2_ECSPI_CLK_PODF(v)   (((v) << BP_CCM_CSCDR2_ECSPI_CLK_PODF) & BM_CCM_CSCDR2_ECSPI_CLK_PODF)
-#endif
+#define BF_CCM_CSCDR2_ECSPI_CLK_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR2_ECSPI_CLK_PODF) & BM_CCM_CSCDR2_ECSPI_CLK_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECSPI_CLK_PODF field to a new value.
 #define BW_CCM_CSCDR2_ECSPI_CLK_PODF(v)   (HW_CCM_CSCDR2_WR((HW_CCM_CSCDR2_RD() & ~BM_CCM_CSCDR2_ECSPI_CLK_PODF) | BF_CCM_CSCDR2_ECSPI_CLK_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CSCDR3 - CCM Serial Clock Divider Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3754,15 +3373,10 @@ typedef union _hw_ccm_cscdr3
 #define BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL      (0x00000600)  //!< Bit mask for CCM_CSCDR3_IPU1_HSP_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR3_IPU1_HSP_CLK_SEL from a register value.
-#define BG_CCM_CSCDR3_IPU1_HSP_CLK_SEL(r)   (((r) & BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL) >> BP_CCM_CSCDR3_IPU1_HSP_CLK_SEL)
+#define BG_CCM_CSCDR3_IPU1_HSP_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL) >> BP_CCM_CSCDR3_IPU1_HSP_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR3_IPU1_HSP_CLK_SEL.
-#define BF_CCM_CSCDR3_IPU1_HSP_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR3_IPU1_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR3_IPU1_HSP_CLK_SEL.
-#define BF_CCM_CSCDR3_IPU1_HSP_CLK_SEL(v)   (((v) << BP_CCM_CSCDR3_IPU1_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR3_IPU1_HSP_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR3_IPU1_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU1_HSP_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPU1_HSP_CLK_SEL field to a new value.
@@ -3789,15 +3403,10 @@ typedef union _hw_ccm_cscdr3
 #define BM_CCM_CSCDR3_IPU1_HSP_PODF      (0x00003800)  //!< Bit mask for CCM_CSCDR3_IPU1_HSP_PODF.
 
 //! @brief Get value of CCM_CSCDR3_IPU1_HSP_PODF from a register value.
-#define BG_CCM_CSCDR3_IPU1_HSP_PODF(r)   (((r) & BM_CCM_CSCDR3_IPU1_HSP_PODF) >> BP_CCM_CSCDR3_IPU1_HSP_PODF)
+#define BG_CCM_CSCDR3_IPU1_HSP_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR3_IPU1_HSP_PODF) >> BP_CCM_CSCDR3_IPU1_HSP_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR3_IPU1_HSP_PODF.
-#define BF_CCM_CSCDR3_IPU1_HSP_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR3_IPU1_HSP_PODF) & BM_CCM_CSCDR3_IPU1_HSP_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR3_IPU1_HSP_PODF.
-#define BF_CCM_CSCDR3_IPU1_HSP_PODF(v)   (((v) << BP_CCM_CSCDR3_IPU1_HSP_PODF) & BM_CCM_CSCDR3_IPU1_HSP_PODF)
-#endif
+#define BF_CCM_CSCDR3_IPU1_HSP_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR3_IPU1_HSP_PODF) & BM_CCM_CSCDR3_IPU1_HSP_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPU1_HSP_PODF field to a new value.
@@ -3820,15 +3429,10 @@ typedef union _hw_ccm_cscdr3
 #define BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL      (0x0000c000)  //!< Bit mask for CCM_CSCDR3_IPU2_HSP_CLK_SEL.
 
 //! @brief Get value of CCM_CSCDR3_IPU2_HSP_CLK_SEL from a register value.
-#define BG_CCM_CSCDR3_IPU2_HSP_CLK_SEL(r)   (((r) & BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL) >> BP_CCM_CSCDR3_IPU2_HSP_CLK_SEL)
+#define BG_CCM_CSCDR3_IPU2_HSP_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL) >> BP_CCM_CSCDR3_IPU2_HSP_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR3_IPU2_HSP_CLK_SEL.
-#define BF_CCM_CSCDR3_IPU2_HSP_CLK_SEL(v)   ((((reg32_t) v) << BP_CCM_CSCDR3_IPU2_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL)
-#else
-//! @brief Format value for bitfield CCM_CSCDR3_IPU2_HSP_CLK_SEL.
-#define BF_CCM_CSCDR3_IPU2_HSP_CLK_SEL(v)   (((v) << BP_CCM_CSCDR3_IPU2_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL)
-#endif
+#define BF_CCM_CSCDR3_IPU2_HSP_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR3_IPU2_HSP_CLK_SEL) & BM_CCM_CSCDR3_IPU2_HSP_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPU2_HSP_CLK_SEL field to a new value.
@@ -3855,21 +3459,20 @@ typedef union _hw_ccm_cscdr3
 #define BM_CCM_CSCDR3_IPU2_HSP_PODF      (0x00070000)  //!< Bit mask for CCM_CSCDR3_IPU2_HSP_PODF.
 
 //! @brief Get value of CCM_CSCDR3_IPU2_HSP_PODF from a register value.
-#define BG_CCM_CSCDR3_IPU2_HSP_PODF(r)   (((r) & BM_CCM_CSCDR3_IPU2_HSP_PODF) >> BP_CCM_CSCDR3_IPU2_HSP_PODF)
+#define BG_CCM_CSCDR3_IPU2_HSP_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCDR3_IPU2_HSP_PODF) >> BP_CCM_CSCDR3_IPU2_HSP_PODF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CSCDR3_IPU2_HSP_PODF.
-#define BF_CCM_CSCDR3_IPU2_HSP_PODF(v)   ((((reg32_t) v) << BP_CCM_CSCDR3_IPU2_HSP_PODF) & BM_CCM_CSCDR3_IPU2_HSP_PODF)
-#else
-//! @brief Format value for bitfield CCM_CSCDR3_IPU2_HSP_PODF.
-#define BF_CCM_CSCDR3_IPU2_HSP_PODF(v)   (((v) << BP_CCM_CSCDR3_IPU2_HSP_PODF) & BM_CCM_CSCDR3_IPU2_HSP_PODF)
-#endif
+#define BF_CCM_CSCDR3_IPU2_HSP_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCDR3_IPU2_HSP_PODF) & BM_CCM_CSCDR3_IPU2_HSP_PODF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPU2_HSP_PODF field to a new value.
 #define BW_CCM_CSCDR3_IPU2_HSP_PODF(v)   (HW_CCM_CSCDR3_WR((HW_CCM_CSCDR3_RD() & ~BM_CCM_CSCDR3_IPU2_HSP_PODF) | BF_CCM_CSCDR3_IPU2_HSP_PODF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CWDR - CCM Wakeup Detector Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3907,6 +3510,10 @@ typedef union _hw_ccm_cwdr
 /*
  * constants & macros for individual CCM_CWDR bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CDHIPR - CCM Divider Handshake In-Process Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3986,7 +3593,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_AXI_PODF_BUSY      (0x00000001)  //!< Bit mask for CCM_CDHIPR_AXI_PODF_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_AXI_PODF_BUSY from a register value.
-#define BG_CCM_CDHIPR_AXI_PODF_BUSY(r)   (((r) & BM_CCM_CDHIPR_AXI_PODF_BUSY) >> BP_CCM_CDHIPR_AXI_PODF_BUSY)
+#define BG_CCM_CDHIPR_AXI_PODF_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_AXI_PODF_BUSY) >> BP_CCM_CDHIPR_AXI_PODF_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field AHB_PODF_BUSY[1] (RO)
@@ -4004,7 +3611,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_AHB_PODF_BUSY      (0x00000002)  //!< Bit mask for CCM_CDHIPR_AHB_PODF_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_AHB_PODF_BUSY from a register value.
-#define BG_CCM_CDHIPR_AHB_PODF_BUSY(r)   (((r) & BM_CCM_CDHIPR_AHB_PODF_BUSY) >> BP_CCM_CDHIPR_AHB_PODF_BUSY)
+#define BG_CCM_CDHIPR_AHB_PODF_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_AHB_PODF_BUSY) >> BP_CCM_CDHIPR_AHB_PODF_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field MMDC_ROOT_PODF_BUSY[2] (RO)
@@ -4022,7 +3629,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY      (0x00000004)  //!< Bit mask for CCM_CDHIPR_MMDC_ROOT_PODF_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_MMDC_ROOT_PODF_BUSY from a register value.
-#define BG_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY(r)   (((r) & BM_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY) >> BP_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY)
+#define BG_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY) >> BP_CCM_CDHIPR_MMDC_ROOT_PODF_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field PERIPH2_CLK_SEL_BUSY[3] (RO)
@@ -4039,7 +3646,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY      (0x00000008)  //!< Bit mask for CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY from a register value.
-#define BG_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY(r)   (((r) & BM_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY) >> BP_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY)
+#define BG_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY) >> BP_CCM_CDHIPR_PERIPH2_CLK_SEL_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field MMDC_CH0_PODF_BUSY[4] (RO)
@@ -4057,7 +3664,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_MMDC_CH0_PODF_BUSY      (0x00000010)  //!< Bit mask for CCM_CDHIPR_MMDC_CH0_PODF_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_MMDC_CH0_PODF_BUSY from a register value.
-#define BG_CCM_CDHIPR_MMDC_CH0_PODF_BUSY(r)   (((r) & BM_CCM_CDHIPR_MMDC_CH0_PODF_BUSY) >> BP_CCM_CDHIPR_MMDC_CH0_PODF_BUSY)
+#define BG_CCM_CDHIPR_MMDC_CH0_PODF_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_MMDC_CH0_PODF_BUSY) >> BP_CCM_CDHIPR_MMDC_CH0_PODF_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field PERIPH_CLK_SEL_BUSY[5] (RO)
@@ -4074,7 +3681,7 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY      (0x00000020)  //!< Bit mask for CCM_CDHIPR_PERIPH_CLK_SEL_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_PERIPH_CLK_SEL_BUSY from a register value.
-#define BG_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY(r)   (((r) & BM_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY) >> BP_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY)
+#define BG_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY) >> BP_CCM_CDHIPR_PERIPH_CLK_SEL_BUSY)
 
 
 /* --- Register HW_CCM_CDHIPR, field ARM_PODF_BUSY[16] (RO)
@@ -4092,8 +3699,12 @@ typedef union _hw_ccm_cdhipr
 #define BM_CCM_CDHIPR_ARM_PODF_BUSY      (0x00010000)  //!< Bit mask for CCM_CDHIPR_ARM_PODF_BUSY.
 
 //! @brief Get value of CCM_CDHIPR_ARM_PODF_BUSY from a register value.
-#define BG_CCM_CDHIPR_ARM_PODF_BUSY(r)   (((r) & BM_CCM_CDHIPR_ARM_PODF_BUSY) >> BP_CCM_CDHIPR_ARM_PODF_BUSY)
+#define BG_CCM_CDHIPR_ARM_PODF_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CDHIPR_ARM_PODF_BUSY) >> BP_CCM_CDHIPR_ARM_PODF_BUSY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CTOR - CCM Testing Observability Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4168,15 +3779,10 @@ typedef union _hw_ccm_ctor
 #define BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL      (0x0000000f)  //!< Bit mask for CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL.
 
 //! @brief Get value of CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL from a register value.
-#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL(r)   (((r) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL)
+#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL(v)   ((((reg32_t) v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL)
-#else
-//! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL(v)   (((v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL)
-#endif
+#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_2_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OBS_SPARE_OUTPUT_2_SEL field to a new value.
@@ -4212,15 +3818,10 @@ typedef union _hw_ccm_ctor
 #define BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL      (0x000000f0)  //!< Bit mask for CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL.
 
 //! @brief Get value of CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL from a register value.
-#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL(r)   (((r) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL)
+#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL(v)   ((((reg32_t) v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL)
-#else
-//! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL(v)   (((v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL)
-#endif
+#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_1_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OBS_SPARE_OUTPUT_1_SEL field to a new value.
@@ -4272,15 +3873,10 @@ typedef union _hw_ccm_ctor
 #define BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL      (0x00001f00)  //!< Bit mask for CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL.
 
 //! @brief Get value of CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL from a register value.
-#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL(r)   (((r) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL)
+#define BG_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL) >> BP_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL(v)   ((((reg32_t) v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL)
-#else
-//! @brief Format value for bitfield CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL.
-#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL(v)   (((v) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL)
-#endif
+#define BF_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL) & BM_CCM_CTOR_OBS_SPARE_OUTPUT_0_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OBS_SPARE_OUTPUT_0_SEL field to a new value.
@@ -4301,21 +3897,20 @@ typedef union _hw_ccm_ctor
 #define BM_CCM_CTOR_OBS_EN      (0x00002000)  //!< Bit mask for CCM_CTOR_OBS_EN.
 
 //! @brief Get value of CCM_CTOR_OBS_EN from a register value.
-#define BG_CCM_CTOR_OBS_EN(r)   (((r) & BM_CCM_CTOR_OBS_EN) >> BP_CCM_CTOR_OBS_EN)
+#define BG_CCM_CTOR_OBS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CTOR_OBS_EN) >> BP_CCM_CTOR_OBS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CTOR_OBS_EN.
-#define BF_CCM_CTOR_OBS_EN(v)   ((((reg32_t) v) << BP_CCM_CTOR_OBS_EN) & BM_CCM_CTOR_OBS_EN)
-#else
-//! @brief Format value for bitfield CCM_CTOR_OBS_EN.
-#define BF_CCM_CTOR_OBS_EN(v)   (((v) << BP_CCM_CTOR_OBS_EN) & BM_CCM_CTOR_OBS_EN)
-#endif
+#define BF_CCM_CTOR_OBS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CTOR_OBS_EN) & BM_CCM_CTOR_OBS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OBS_EN field to a new value.
 #define BW_CCM_CTOR_OBS_EN(v)   (HW_CCM_CTOR_WR((HW_CCM_CTOR_RD() & ~BM_CCM_CTOR_OBS_EN) | BF_CCM_CTOR_OBS_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CLPCR - CCM Low Power Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4342,8 +3937,8 @@ typedef union _hw_ccm_clpcr
         unsigned STBY_COUNT : 2; //!< [10:9] Standby counter definition. These two bits define, in the case of stop exit (if vstby bit was set), the amount of time CCM will wait between PMIC_VSTBY_REQ negation and the check of assertion of PMIC_VFUNCIONAL_READY . *NOTE: clock cycles ratio depends on pmic_delay_scaler, defined by CGPR[0] bit.
         unsigned COSC_PWRDOWN : 1; //!< [11] In run mode, software can manually control powering down of on chip oscillator, i.e. generating '1' on cosc_pwrdown signal. If software manually powered down the on chip oscillator, then sbyos functionality for on chip oscillator will be bypassed. The manual closing of onchip oscillator should be performed only in case the reference oscilator is not the source of all the clocks generation.
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
-        unsigned WB_PER_AT_LPM : 1; //!< [16] Enable periphery charge pump for well biasign at low power mode (stop or wait)
-        unsigned WB_CORE_AT_LPM : 1; //!< [17] Enable core charge pump for well biasign at low power mode (stop or wait)
+        unsigned WB_PER_AT_LPM : 1; //!< [16] Enable periphery charge pump for well biasing at low power mode (stop or wait)
+        unsigned WB_CORE_AT_LPM : 1; //!< [17] Enable core charge pump for well biasing at low power mode (stop or wait)
         unsigned RESERVED2 : 1; //!< [18] Reserved
         unsigned BYPASS_MMDC_CH0_LPM_HS : 1; //!< [19] Bypass handshake with mmdc_ch0 on next entrance to low power mode (wait or stop mode). CCM does not wait for the module's acknowledge. Handshake also will be bypassed, if CGR3 CG10 is set to gate fast mmdc_ch0 clock.
         unsigned RESERVED3 : 1; //!< [20] Reserved
@@ -4392,15 +3987,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_LPM      (0x00000003)  //!< Bit mask for CCM_CLPCR_LPM.
 
 //! @brief Get value of CCM_CLPCR_LPM from a register value.
-#define BG_CCM_CLPCR_LPM(r)   (((r) & BM_CCM_CLPCR_LPM) >> BP_CCM_CLPCR_LPM)
+#define BG_CCM_CLPCR_LPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_LPM) >> BP_CCM_CLPCR_LPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_LPM.
-#define BF_CCM_CLPCR_LPM(v)   ((((reg32_t) v) << BP_CCM_CLPCR_LPM) & BM_CCM_CLPCR_LPM)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_LPM.
-#define BF_CCM_CLPCR_LPM(v)   (((v) << BP_CCM_CLPCR_LPM) & BM_CCM_CLPCR_LPM)
-#endif
+#define BF_CCM_CLPCR_LPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_LPM) & BM_CCM_CLPCR_LPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPM field to a new value.
@@ -4416,24 +4006,19 @@ typedef union _hw_ccm_clpcr
  *
  * Values:
  * 0 - Don't bypass the pmic_vfunctional_ready signal - CCM will wait for it's assertion during exit of low
- *     power mode if stadby voltage was enabled.
+ *     power mode if standby voltage was enabled.
  * 1 - bypass the pmic_vfunctional_ready signal - CCM will not wait for it's assertion during exit of low
- *     power mode if stadby voltage was enabled.
+ *     power mode if standby voltage was enabled.
  */
 
 #define BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY      (2)      //!< Bit position for CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY.
 #define BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY      (0x00000004)  //!< Bit mask for CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY.
 
 //! @brief Get value of CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY from a register value.
-#define BG_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY(r)   (((r) & BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY) >> BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY)
+#define BG_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY) >> BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY.
-#define BF_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY(v)   ((((reg32_t) v) << BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY) & BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY.
-#define BF_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY(v)   (((v) << BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY) & BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY)
-#endif
+#define BF_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY) & BM_CCM_CLPCR_BYPASS_PMIC_VFUNCTIONAL_READY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS_PMIC_VFUNCTIONAL_READY field to a new value.
@@ -4457,15 +4042,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM      (0x00000020)  //!< Bit mask for CCM_CLPCR_ARM_CLK_DIS_ON_LPM.
 
 //! @brief Get value of CCM_CLPCR_ARM_CLK_DIS_ON_LPM from a register value.
-#define BG_CCM_CLPCR_ARM_CLK_DIS_ON_LPM(r)   (((r) & BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM) >> BP_CCM_CLPCR_ARM_CLK_DIS_ON_LPM)
+#define BG_CCM_CLPCR_ARM_CLK_DIS_ON_LPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM) >> BP_CCM_CLPCR_ARM_CLK_DIS_ON_LPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_ARM_CLK_DIS_ON_LPM.
-#define BF_CCM_CLPCR_ARM_CLK_DIS_ON_LPM(v)   ((((reg32_t) v) << BP_CCM_CLPCR_ARM_CLK_DIS_ON_LPM) & BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_ARM_CLK_DIS_ON_LPM.
-#define BF_CCM_CLPCR_ARM_CLK_DIS_ON_LPM(v)   (((v) << BP_CCM_CLPCR_ARM_CLK_DIS_ON_LPM) & BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM)
-#endif
+#define BF_CCM_CLPCR_ARM_CLK_DIS_ON_LPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_ARM_CLK_DIS_ON_LPM) & BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARM_CLK_DIS_ON_LPM field to a new value.
@@ -4493,15 +4073,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_SBYOS      (0x00000040)  //!< Bit mask for CCM_CLPCR_SBYOS.
 
 //! @brief Get value of CCM_CLPCR_SBYOS from a register value.
-#define BG_CCM_CLPCR_SBYOS(r)   (((r) & BM_CCM_CLPCR_SBYOS) >> BP_CCM_CLPCR_SBYOS)
+#define BG_CCM_CLPCR_SBYOS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_SBYOS) >> BP_CCM_CLPCR_SBYOS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_SBYOS.
-#define BF_CCM_CLPCR_SBYOS(v)   ((((reg32_t) v) << BP_CCM_CLPCR_SBYOS) & BM_CCM_CLPCR_SBYOS)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_SBYOS.
-#define BF_CCM_CLPCR_SBYOS(v)   (((v) << BP_CCM_CLPCR_SBYOS) & BM_CCM_CLPCR_SBYOS)
-#endif
+#define BF_CCM_CLPCR_SBYOS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_SBYOS) & BM_CCM_CLPCR_SBYOS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SBYOS field to a new value.
@@ -4529,15 +4104,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_DIS_REF_OSC      (0x00000080)  //!< Bit mask for CCM_CLPCR_DIS_REF_OSC.
 
 //! @brief Get value of CCM_CLPCR_DIS_REF_OSC from a register value.
-#define BG_CCM_CLPCR_DIS_REF_OSC(r)   (((r) & BM_CCM_CLPCR_DIS_REF_OSC) >> BP_CCM_CLPCR_DIS_REF_OSC)
+#define BG_CCM_CLPCR_DIS_REF_OSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_DIS_REF_OSC) >> BP_CCM_CLPCR_DIS_REF_OSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_DIS_REF_OSC.
-#define BF_CCM_CLPCR_DIS_REF_OSC(v)   ((((reg32_t) v) << BP_CCM_CLPCR_DIS_REF_OSC) & BM_CCM_CLPCR_DIS_REF_OSC)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_DIS_REF_OSC.
-#define BF_CCM_CLPCR_DIS_REF_OSC(v)   (((v) << BP_CCM_CLPCR_DIS_REF_OSC) & BM_CCM_CLPCR_DIS_REF_OSC)
-#endif
+#define BF_CCM_CLPCR_DIS_REF_OSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_DIS_REF_OSC) & BM_CCM_CLPCR_DIS_REF_OSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIS_REF_OSC field to a new value.
@@ -4562,15 +4132,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_VSTBY      (0x00000100)  //!< Bit mask for CCM_CLPCR_VSTBY.
 
 //! @brief Get value of CCM_CLPCR_VSTBY from a register value.
-#define BG_CCM_CLPCR_VSTBY(r)   (((r) & BM_CCM_CLPCR_VSTBY) >> BP_CCM_CLPCR_VSTBY)
+#define BG_CCM_CLPCR_VSTBY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_VSTBY) >> BP_CCM_CLPCR_VSTBY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_VSTBY.
-#define BF_CCM_CLPCR_VSTBY(v)   ((((reg32_t) v) << BP_CCM_CLPCR_VSTBY) & BM_CCM_CLPCR_VSTBY)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_VSTBY.
-#define BF_CCM_CLPCR_VSTBY(v)   (((v) << BP_CCM_CLPCR_VSTBY) & BM_CCM_CLPCR_VSTBY)
-#endif
+#define BF_CCM_CLPCR_VSTBY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_VSTBY) & BM_CCM_CLPCR_VSTBY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSTBY field to a new value.
@@ -4596,15 +4161,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_STBY_COUNT      (0x00000600)  //!< Bit mask for CCM_CLPCR_STBY_COUNT.
 
 //! @brief Get value of CCM_CLPCR_STBY_COUNT from a register value.
-#define BG_CCM_CLPCR_STBY_COUNT(r)   (((r) & BM_CCM_CLPCR_STBY_COUNT) >> BP_CCM_CLPCR_STBY_COUNT)
+#define BG_CCM_CLPCR_STBY_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_STBY_COUNT) >> BP_CCM_CLPCR_STBY_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_STBY_COUNT.
-#define BF_CCM_CLPCR_STBY_COUNT(v)   ((((reg32_t) v) << BP_CCM_CLPCR_STBY_COUNT) & BM_CCM_CLPCR_STBY_COUNT)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_STBY_COUNT.
-#define BF_CCM_CLPCR_STBY_COUNT(v)   (((v) << BP_CCM_CLPCR_STBY_COUNT) & BM_CCM_CLPCR_STBY_COUNT)
-#endif
+#define BF_CCM_CLPCR_STBY_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_STBY_COUNT) & BM_CCM_CLPCR_STBY_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STBY_COUNT field to a new value.
@@ -4629,15 +4189,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_COSC_PWRDOWN      (0x00000800)  //!< Bit mask for CCM_CLPCR_COSC_PWRDOWN.
 
 //! @brief Get value of CCM_CLPCR_COSC_PWRDOWN from a register value.
-#define BG_CCM_CLPCR_COSC_PWRDOWN(r)   (((r) & BM_CCM_CLPCR_COSC_PWRDOWN) >> BP_CCM_CLPCR_COSC_PWRDOWN)
+#define BG_CCM_CLPCR_COSC_PWRDOWN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_COSC_PWRDOWN) >> BP_CCM_CLPCR_COSC_PWRDOWN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_COSC_PWRDOWN.
-#define BF_CCM_CLPCR_COSC_PWRDOWN(v)   ((((reg32_t) v) << BP_CCM_CLPCR_COSC_PWRDOWN) & BM_CCM_CLPCR_COSC_PWRDOWN)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_COSC_PWRDOWN.
-#define BF_CCM_CLPCR_COSC_PWRDOWN(v)   (((v) << BP_CCM_CLPCR_COSC_PWRDOWN) & BM_CCM_CLPCR_COSC_PWRDOWN)
-#endif
+#define BF_CCM_CLPCR_COSC_PWRDOWN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_COSC_PWRDOWN) & BM_CCM_CLPCR_COSC_PWRDOWN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COSC_PWRDOWN field to a new value.
@@ -4647,7 +4202,7 @@ typedef union _hw_ccm_clpcr
 
 /* --- Register HW_CCM_CLPCR, field WB_PER_AT_LPM[16] (RW)
  *
- * Enable periphery charge pump for well biasign at low power mode (stop or wait)
+ * Enable periphery charge pump for well biasing at low power mode (stop or wait)
  *
  * Values:
  * 0 - Periphery charge pump won't be enabled at stop or wait low power mode
@@ -4658,15 +4213,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_WB_PER_AT_LPM      (0x00010000)  //!< Bit mask for CCM_CLPCR_WB_PER_AT_LPM.
 
 //! @brief Get value of CCM_CLPCR_WB_PER_AT_LPM from a register value.
-#define BG_CCM_CLPCR_WB_PER_AT_LPM(r)   (((r) & BM_CCM_CLPCR_WB_PER_AT_LPM) >> BP_CCM_CLPCR_WB_PER_AT_LPM)
+#define BG_CCM_CLPCR_WB_PER_AT_LPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_WB_PER_AT_LPM) >> BP_CCM_CLPCR_WB_PER_AT_LPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_WB_PER_AT_LPM.
-#define BF_CCM_CLPCR_WB_PER_AT_LPM(v)   ((((reg32_t) v) << BP_CCM_CLPCR_WB_PER_AT_LPM) & BM_CCM_CLPCR_WB_PER_AT_LPM)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_WB_PER_AT_LPM.
-#define BF_CCM_CLPCR_WB_PER_AT_LPM(v)   (((v) << BP_CCM_CLPCR_WB_PER_AT_LPM) & BM_CCM_CLPCR_WB_PER_AT_LPM)
-#endif
+#define BF_CCM_CLPCR_WB_PER_AT_LPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_WB_PER_AT_LPM) & BM_CCM_CLPCR_WB_PER_AT_LPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_PER_AT_LPM field to a new value.
@@ -4676,7 +4226,7 @@ typedef union _hw_ccm_clpcr
 
 /* --- Register HW_CCM_CLPCR, field WB_CORE_AT_LPM[17] (RW)
  *
- * Enable core charge pump for well biasign at low power mode (stop or wait)
+ * Enable core charge pump for well biasing at low power mode (stop or wait)
  *
  * Values:
  * 0 - Core charge pump won't be enabled at stop or wait low power mode
@@ -4687,15 +4237,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_WB_CORE_AT_LPM      (0x00020000)  //!< Bit mask for CCM_CLPCR_WB_CORE_AT_LPM.
 
 //! @brief Get value of CCM_CLPCR_WB_CORE_AT_LPM from a register value.
-#define BG_CCM_CLPCR_WB_CORE_AT_LPM(r)   (((r) & BM_CCM_CLPCR_WB_CORE_AT_LPM) >> BP_CCM_CLPCR_WB_CORE_AT_LPM)
+#define BG_CCM_CLPCR_WB_CORE_AT_LPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_WB_CORE_AT_LPM) >> BP_CCM_CLPCR_WB_CORE_AT_LPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_WB_CORE_AT_LPM.
-#define BF_CCM_CLPCR_WB_CORE_AT_LPM(v)   ((((reg32_t) v) << BP_CCM_CLPCR_WB_CORE_AT_LPM) & BM_CCM_CLPCR_WB_CORE_AT_LPM)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_WB_CORE_AT_LPM.
-#define BF_CCM_CLPCR_WB_CORE_AT_LPM(v)   (((v) << BP_CCM_CLPCR_WB_CORE_AT_LPM) & BM_CCM_CLPCR_WB_CORE_AT_LPM)
-#endif
+#define BF_CCM_CLPCR_WB_CORE_AT_LPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_WB_CORE_AT_LPM) & BM_CCM_CLPCR_WB_CORE_AT_LPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_CORE_AT_LPM field to a new value.
@@ -4718,15 +4263,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS      (0x00080000)  //!< Bit mask for CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS.
 
 //! @brief Get value of CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS from a register value.
-#define BG_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS(r)   (((r) & BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS) >> BP_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS)
+#define BG_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS) >> BP_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS.
-#define BF_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS(v)   ((((reg32_t) v) << BP_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS.
-#define BF_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS(v)   (((v) << BP_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS)
-#endif
+#define BF_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_CH0_LPM_HS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS_MMDC_CH0_LPM_HS field to a new value.
@@ -4749,15 +4289,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS      (0x00200000)  //!< Bit mask for CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS.
 
 //! @brief Get value of CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS from a register value.
-#define BG_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS(r)   (((r) & BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS) >> BP_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS)
+#define BG_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS) >> BP_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS.
-#define BF_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS(v)   ((((reg32_t) v) << BP_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS.
-#define BF_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS(v)   (((v) << BP_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS)
-#endif
+#define BF_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS) & BM_CCM_CLPCR_BYPASS_MMDC_ROOT_LPM_HS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS_MMDC_ROOT_LPM_HS field to a new value.
@@ -4779,15 +4314,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_CORE0_WFI      (0x00400000)  //!< Bit mask for CCM_CLPCR_MASK_CORE0_WFI.
 
 //! @brief Get value of CCM_CLPCR_MASK_CORE0_WFI from a register value.
-#define BG_CCM_CLPCR_MASK_CORE0_WFI(r)   (((r) & BM_CCM_CLPCR_MASK_CORE0_WFI) >> BP_CCM_CLPCR_MASK_CORE0_WFI)
+#define BG_CCM_CLPCR_MASK_CORE0_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_CORE0_WFI) >> BP_CCM_CLPCR_MASK_CORE0_WFI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_CORE0_WFI.
-#define BF_CCM_CLPCR_MASK_CORE0_WFI(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_CORE0_WFI) & BM_CCM_CLPCR_MASK_CORE0_WFI)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_CORE0_WFI.
-#define BF_CCM_CLPCR_MASK_CORE0_WFI(v)   (((v) << BP_CCM_CLPCR_MASK_CORE0_WFI) & BM_CCM_CLPCR_MASK_CORE0_WFI)
-#endif
+#define BF_CCM_CLPCR_MASK_CORE0_WFI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_CORE0_WFI) & BM_CCM_CLPCR_MASK_CORE0_WFI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CORE0_WFI field to a new value.
@@ -4809,15 +4339,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_CORE1_WFI      (0x00800000)  //!< Bit mask for CCM_CLPCR_MASK_CORE1_WFI.
 
 //! @brief Get value of CCM_CLPCR_MASK_CORE1_WFI from a register value.
-#define BG_CCM_CLPCR_MASK_CORE1_WFI(r)   (((r) & BM_CCM_CLPCR_MASK_CORE1_WFI) >> BP_CCM_CLPCR_MASK_CORE1_WFI)
+#define BG_CCM_CLPCR_MASK_CORE1_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_CORE1_WFI) >> BP_CCM_CLPCR_MASK_CORE1_WFI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_CORE1_WFI.
-#define BF_CCM_CLPCR_MASK_CORE1_WFI(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_CORE1_WFI) & BM_CCM_CLPCR_MASK_CORE1_WFI)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_CORE1_WFI.
-#define BF_CCM_CLPCR_MASK_CORE1_WFI(v)   (((v) << BP_CCM_CLPCR_MASK_CORE1_WFI) & BM_CCM_CLPCR_MASK_CORE1_WFI)
-#endif
+#define BF_CCM_CLPCR_MASK_CORE1_WFI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_CORE1_WFI) & BM_CCM_CLPCR_MASK_CORE1_WFI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CORE1_WFI field to a new value.
@@ -4839,15 +4364,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_CORE2_WFI      (0x01000000)  //!< Bit mask for CCM_CLPCR_MASK_CORE2_WFI.
 
 //! @brief Get value of CCM_CLPCR_MASK_CORE2_WFI from a register value.
-#define BG_CCM_CLPCR_MASK_CORE2_WFI(r)   (((r) & BM_CCM_CLPCR_MASK_CORE2_WFI) >> BP_CCM_CLPCR_MASK_CORE2_WFI)
+#define BG_CCM_CLPCR_MASK_CORE2_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_CORE2_WFI) >> BP_CCM_CLPCR_MASK_CORE2_WFI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_CORE2_WFI.
-#define BF_CCM_CLPCR_MASK_CORE2_WFI(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_CORE2_WFI) & BM_CCM_CLPCR_MASK_CORE2_WFI)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_CORE2_WFI.
-#define BF_CCM_CLPCR_MASK_CORE2_WFI(v)   (((v) << BP_CCM_CLPCR_MASK_CORE2_WFI) & BM_CCM_CLPCR_MASK_CORE2_WFI)
-#endif
+#define BF_CCM_CLPCR_MASK_CORE2_WFI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_CORE2_WFI) & BM_CCM_CLPCR_MASK_CORE2_WFI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CORE2_WFI field to a new value.
@@ -4869,15 +4389,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_CORE3_WFI      (0x02000000)  //!< Bit mask for CCM_CLPCR_MASK_CORE3_WFI.
 
 //! @brief Get value of CCM_CLPCR_MASK_CORE3_WFI from a register value.
-#define BG_CCM_CLPCR_MASK_CORE3_WFI(r)   (((r) & BM_CCM_CLPCR_MASK_CORE3_WFI) >> BP_CCM_CLPCR_MASK_CORE3_WFI)
+#define BG_CCM_CLPCR_MASK_CORE3_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_CORE3_WFI) >> BP_CCM_CLPCR_MASK_CORE3_WFI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_CORE3_WFI.
-#define BF_CCM_CLPCR_MASK_CORE3_WFI(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_CORE3_WFI) & BM_CCM_CLPCR_MASK_CORE3_WFI)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_CORE3_WFI.
-#define BF_CCM_CLPCR_MASK_CORE3_WFI(v)   (((v) << BP_CCM_CLPCR_MASK_CORE3_WFI) & BM_CCM_CLPCR_MASK_CORE3_WFI)
-#endif
+#define BF_CCM_CLPCR_MASK_CORE3_WFI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_CORE3_WFI) & BM_CCM_CLPCR_MASK_CORE3_WFI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CORE3_WFI field to a new value.
@@ -4899,15 +4414,10 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_SCU_IDLE      (0x04000000)  //!< Bit mask for CCM_CLPCR_MASK_SCU_IDLE.
 
 //! @brief Get value of CCM_CLPCR_MASK_SCU_IDLE from a register value.
-#define BG_CCM_CLPCR_MASK_SCU_IDLE(r)   (((r) & BM_CCM_CLPCR_MASK_SCU_IDLE) >> BP_CCM_CLPCR_MASK_SCU_IDLE)
+#define BG_CCM_CLPCR_MASK_SCU_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_SCU_IDLE) >> BP_CCM_CLPCR_MASK_SCU_IDLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_SCU_IDLE.
-#define BF_CCM_CLPCR_MASK_SCU_IDLE(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_SCU_IDLE) & BM_CCM_CLPCR_MASK_SCU_IDLE)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_SCU_IDLE.
-#define BF_CCM_CLPCR_MASK_SCU_IDLE(v)   (((v) << BP_CCM_CLPCR_MASK_SCU_IDLE) & BM_CCM_CLPCR_MASK_SCU_IDLE)
-#endif
+#define BF_CCM_CLPCR_MASK_SCU_IDLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_SCU_IDLE) & BM_CCM_CLPCR_MASK_SCU_IDLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_SCU_IDLE field to a new value.
@@ -4929,21 +4439,20 @@ typedef union _hw_ccm_clpcr
 #define BM_CCM_CLPCR_MASK_L2CC_IDLE      (0x08000000)  //!< Bit mask for CCM_CLPCR_MASK_L2CC_IDLE.
 
 //! @brief Get value of CCM_CLPCR_MASK_L2CC_IDLE from a register value.
-#define BG_CCM_CLPCR_MASK_L2CC_IDLE(r)   (((r) & BM_CCM_CLPCR_MASK_L2CC_IDLE) >> BP_CCM_CLPCR_MASK_L2CC_IDLE)
+#define BG_CCM_CLPCR_MASK_L2CC_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CLPCR_MASK_L2CC_IDLE) >> BP_CCM_CLPCR_MASK_L2CC_IDLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CLPCR_MASK_L2CC_IDLE.
-#define BF_CCM_CLPCR_MASK_L2CC_IDLE(v)   ((((reg32_t) v) << BP_CCM_CLPCR_MASK_L2CC_IDLE) & BM_CCM_CLPCR_MASK_L2CC_IDLE)
-#else
-//! @brief Format value for bitfield CCM_CLPCR_MASK_L2CC_IDLE.
-#define BF_CCM_CLPCR_MASK_L2CC_IDLE(v)   (((v) << BP_CCM_CLPCR_MASK_L2CC_IDLE) & BM_CCM_CLPCR_MASK_L2CC_IDLE)
-#endif
+#define BF_CCM_CLPCR_MASK_L2CC_IDLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CLPCR_MASK_L2CC_IDLE) & BM_CCM_CLPCR_MASK_L2CC_IDLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_L2CC_IDLE field to a new value.
 #define BW_CCM_CLPCR_MASK_L2CC_IDLE(v)   (HW_CCM_CLPCR_WR((HW_CCM_CLPCR_RD() & ~BM_CCM_CLPCR_MASK_L2CC_IDLE) | BF_CCM_CLPCR_MASK_L2CC_IDLE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CISR - CCM Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5010,15 +4519,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_LRF_PLL      (0x00000001)  //!< Bit mask for CCM_CISR_LRF_PLL.
 
 //! @brief Get value of CCM_CISR_LRF_PLL from a register value.
-#define BG_CCM_CISR_LRF_PLL(r)   (((r) & BM_CCM_CISR_LRF_PLL) >> BP_CCM_CISR_LRF_PLL)
+#define BG_CCM_CISR_LRF_PLL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_LRF_PLL) >> BP_CCM_CISR_LRF_PLL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_LRF_PLL.
-#define BF_CCM_CISR_LRF_PLL(v)   ((((reg32_t) v) << BP_CCM_CISR_LRF_PLL) & BM_CCM_CISR_LRF_PLL)
-#else
-//! @brief Format value for bitfield CCM_CISR_LRF_PLL.
-#define BF_CCM_CISR_LRF_PLL(v)   (((v) << BP_CCM_CISR_LRF_PLL) & BM_CCM_CISR_LRF_PLL)
-#endif
+#define BF_CCM_CISR_LRF_PLL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_LRF_PLL) & BM_CCM_CISR_LRF_PLL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LRF_PLL field to a new value.
@@ -5039,15 +4543,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_COSC_READY      (0x00000040)  //!< Bit mask for CCM_CISR_COSC_READY.
 
 //! @brief Get value of CCM_CISR_COSC_READY from a register value.
-#define BG_CCM_CISR_COSC_READY(r)   (((r) & BM_CCM_CISR_COSC_READY) >> BP_CCM_CISR_COSC_READY)
+#define BG_CCM_CISR_COSC_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_COSC_READY) >> BP_CCM_CISR_COSC_READY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_COSC_READY.
-#define BF_CCM_CISR_COSC_READY(v)   ((((reg32_t) v) << BP_CCM_CISR_COSC_READY) & BM_CCM_CISR_COSC_READY)
-#else
-//! @brief Format value for bitfield CCM_CISR_COSC_READY.
-#define BF_CCM_CISR_COSC_READY(v)   (((v) << BP_CCM_CISR_COSC_READY) & BM_CCM_CISR_COSC_READY)
-#endif
+#define BF_CCM_CISR_COSC_READY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_COSC_READY) & BM_CCM_CISR_COSC_READY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COSC_READY field to a new value.
@@ -5068,15 +4567,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_AXI_PODF_LOADED      (0x00020000)  //!< Bit mask for CCM_CISR_AXI_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_AXI_PODF_LOADED from a register value.
-#define BG_CCM_CISR_AXI_PODF_LOADED(r)   (((r) & BM_CCM_CISR_AXI_PODF_LOADED) >> BP_CCM_CISR_AXI_PODF_LOADED)
+#define BG_CCM_CISR_AXI_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_AXI_PODF_LOADED) >> BP_CCM_CISR_AXI_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_AXI_PODF_LOADED.
-#define BF_CCM_CISR_AXI_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_AXI_PODF_LOADED) & BM_CCM_CISR_AXI_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_AXI_PODF_LOADED.
-#define BF_CCM_CISR_AXI_PODF_LOADED(v)   (((v) << BP_CCM_CISR_AXI_PODF_LOADED) & BM_CCM_CISR_AXI_PODF_LOADED)
-#endif
+#define BF_CCM_CISR_AXI_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_AXI_PODF_LOADED) & BM_CCM_CISR_AXI_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AXI_PODF_LOADED field to a new value.
@@ -5097,7 +4591,7 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_AXI_B_PODF_LOADED      (0x00040000)  //!< Bit mask for CCM_CISR_AXI_B_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_AXI_B_PODF_LOADED from a register value.
-#define BG_CCM_CISR_AXI_B_PODF_LOADED(r)   (((r) & BM_CCM_CISR_AXI_B_PODF_LOADED) >> BP_CCM_CISR_AXI_B_PODF_LOADED)
+#define BG_CCM_CISR_AXI_B_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_AXI_B_PODF_LOADED) >> BP_CCM_CISR_AXI_B_PODF_LOADED)
 
 
 /* --- Register HW_CCM_CISR, field PERIPH2_CLK_SEL_LOADED[19] (W1C)
@@ -5113,15 +4607,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED      (0x00080000)  //!< Bit mask for CCM_CISR_PERIPH2_CLK_SEL_LOADED.
 
 //! @brief Get value of CCM_CISR_PERIPH2_CLK_SEL_LOADED from a register value.
-#define BG_CCM_CISR_PERIPH2_CLK_SEL_LOADED(r)   (((r) & BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED) >> BP_CCM_CISR_PERIPH2_CLK_SEL_LOADED)
+#define BG_CCM_CISR_PERIPH2_CLK_SEL_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED) >> BP_CCM_CISR_PERIPH2_CLK_SEL_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_PERIPH2_CLK_SEL_LOADED.
-#define BF_CCM_CISR_PERIPH2_CLK_SEL_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_PERIPH2_CLK_SEL_LOADED.
-#define BF_CCM_CISR_PERIPH2_CLK_SEL_LOADED(v)   (((v) << BP_CCM_CISR_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED)
-#endif
+#define BF_CCM_CISR_PERIPH2_CLK_SEL_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH2_CLK_SEL_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH2_CLK_SEL_LOADED field to a new value.
@@ -5142,15 +4631,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_AHB_PODF_LOADED      (0x00100000)  //!< Bit mask for CCM_CISR_AHB_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_AHB_PODF_LOADED from a register value.
-#define BG_CCM_CISR_AHB_PODF_LOADED(r)   (((r) & BM_CCM_CISR_AHB_PODF_LOADED) >> BP_CCM_CISR_AHB_PODF_LOADED)
+#define BG_CCM_CISR_AHB_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_AHB_PODF_LOADED) >> BP_CCM_CISR_AHB_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_AHB_PODF_LOADED.
-#define BF_CCM_CISR_AHB_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_AHB_PODF_LOADED) & BM_CCM_CISR_AHB_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_AHB_PODF_LOADED.
-#define BF_CCM_CISR_AHB_PODF_LOADED(v)   (((v) << BP_CCM_CISR_AHB_PODF_LOADED) & BM_CCM_CISR_AHB_PODF_LOADED)
-#endif
+#define BF_CCM_CISR_AHB_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_AHB_PODF_LOADED) & BM_CCM_CISR_AHB_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AHB_PODF_LOADED field to a new value.
@@ -5171,15 +4655,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_MMDC_ROOT_PODF_LOADED      (0x00200000)  //!< Bit mask for CCM_CISR_MMDC_ROOT_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_MMDC_ROOT_PODF_LOADED from a register value.
-#define BG_CCM_CISR_MMDC_ROOT_PODF_LOADED(r)   (((r) & BM_CCM_CISR_MMDC_ROOT_PODF_LOADED) >> BP_CCM_CISR_MMDC_ROOT_PODF_LOADED)
+#define BG_CCM_CISR_MMDC_ROOT_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_MMDC_ROOT_PODF_LOADED) >> BP_CCM_CISR_MMDC_ROOT_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_MMDC_ROOT_PODF_LOADED.
-#define BF_CCM_CISR_MMDC_ROOT_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_MMDC_ROOT_PODF_LOADED) & BM_CCM_CISR_MMDC_ROOT_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_MMDC_ROOT_PODF_LOADED.
-#define BF_CCM_CISR_MMDC_ROOT_PODF_LOADED(v)   (((v) << BP_CCM_CISR_MMDC_ROOT_PODF_LOADED) & BM_CCM_CISR_MMDC_ROOT_PODF_LOADED)
-#endif
+#define BF_CCM_CISR_MMDC_ROOT_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_MMDC_ROOT_PODF_LOADED) & BM_CCM_CISR_MMDC_ROOT_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_ROOT_PODF_LOADED field to a new value.
@@ -5200,15 +4679,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_PERIPH_CLK_SEL_LOADED      (0x00400000)  //!< Bit mask for CCM_CISR_PERIPH_CLK_SEL_LOADED.
 
 //! @brief Get value of CCM_CISR_PERIPH_CLK_SEL_LOADED from a register value.
-#define BG_CCM_CISR_PERIPH_CLK_SEL_LOADED(r)   (((r) & BM_CCM_CISR_PERIPH_CLK_SEL_LOADED) >> BP_CCM_CISR_PERIPH_CLK_SEL_LOADED)
+#define BG_CCM_CISR_PERIPH_CLK_SEL_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_PERIPH_CLK_SEL_LOADED) >> BP_CCM_CISR_PERIPH_CLK_SEL_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_PERIPH_CLK_SEL_LOADED.
-#define BF_CCM_CISR_PERIPH_CLK_SEL_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_PERIPH_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH_CLK_SEL_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_PERIPH_CLK_SEL_LOADED.
-#define BF_CCM_CISR_PERIPH_CLK_SEL_LOADED(v)   (((v) << BP_CCM_CISR_PERIPH_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH_CLK_SEL_LOADED)
-#endif
+#define BF_CCM_CISR_PERIPH_CLK_SEL_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_PERIPH_CLK_SEL_LOADED) & BM_CCM_CISR_PERIPH_CLK_SEL_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIPH_CLK_SEL_LOADED field to a new value.
@@ -5229,15 +4703,10 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_MMDC_CH0_PODF_LOADED      (0x00800000)  //!< Bit mask for CCM_CISR_MMDC_CH0_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_MMDC_CH0_PODF_LOADED from a register value.
-#define BG_CCM_CISR_MMDC_CH0_PODF_LOADED(r)   (((r) & BM_CCM_CISR_MMDC_CH0_PODF_LOADED) >> BP_CCM_CISR_MMDC_CH0_PODF_LOADED)
+#define BG_CCM_CISR_MMDC_CH0_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_MMDC_CH0_PODF_LOADED) >> BP_CCM_CISR_MMDC_CH0_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_MMDC_CH0_PODF_LOADED.
-#define BF_CCM_CISR_MMDC_CH0_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_MMDC_CH0_PODF_LOADED) & BM_CCM_CISR_MMDC_CH0_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_MMDC_CH0_PODF_LOADED.
-#define BF_CCM_CISR_MMDC_CH0_PODF_LOADED(v)   (((v) << BP_CCM_CISR_MMDC_CH0_PODF_LOADED) & BM_CCM_CISR_MMDC_CH0_PODF_LOADED)
-#endif
+#define BF_CCM_CISR_MMDC_CH0_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_MMDC_CH0_PODF_LOADED) & BM_CCM_CISR_MMDC_CH0_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_CH0_PODF_LOADED field to a new value.
@@ -5259,21 +4728,20 @@ typedef union _hw_ccm_cisr
 #define BM_CCM_CISR_ARM_PODF_LOADED      (0x04000000)  //!< Bit mask for CCM_CISR_ARM_PODF_LOADED.
 
 //! @brief Get value of CCM_CISR_ARM_PODF_LOADED from a register value.
-#define BG_CCM_CISR_ARM_PODF_LOADED(r)   (((r) & BM_CCM_CISR_ARM_PODF_LOADED) >> BP_CCM_CISR_ARM_PODF_LOADED)
+#define BG_CCM_CISR_ARM_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CISR_ARM_PODF_LOADED) >> BP_CCM_CISR_ARM_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CISR_ARM_PODF_LOADED.
-#define BF_CCM_CISR_ARM_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CISR_ARM_PODF_LOADED) & BM_CCM_CISR_ARM_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CISR_ARM_PODF_LOADED.
-#define BF_CCM_CISR_ARM_PODF_LOADED(v)   (((v) << BP_CCM_CISR_ARM_PODF_LOADED) & BM_CCM_CISR_ARM_PODF_LOADED)
-#endif
+#define BF_CCM_CISR_ARM_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CISR_ARM_PODF_LOADED) & BM_CCM_CISR_ARM_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARM_PODF_LOADED field to a new value.
 #define BW_CCM_CISR_ARM_PODF_LOADED(v)   (HW_CCM_CISR_WR((HW_CCM_CISR_RD() & ~BM_CCM_CISR_ARM_PODF_LOADED) | BF_CCM_CISR_ARM_PODF_LOADED(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CIMR - CCM Interrupt Mask Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5338,15 +4806,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_LRF_PLL      (0x00000001)  //!< Bit mask for CCM_CIMR_MASK_LRF_PLL.
 
 //! @brief Get value of CCM_CIMR_MASK_LRF_PLL from a register value.
-#define BG_CCM_CIMR_MASK_LRF_PLL(r)   (((r) & BM_CCM_CIMR_MASK_LRF_PLL) >> BP_CCM_CIMR_MASK_LRF_PLL)
+#define BG_CCM_CIMR_MASK_LRF_PLL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_LRF_PLL) >> BP_CCM_CIMR_MASK_LRF_PLL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_LRF_PLL.
-#define BF_CCM_CIMR_MASK_LRF_PLL(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_LRF_PLL) & BM_CCM_CIMR_MASK_LRF_PLL)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_LRF_PLL.
-#define BF_CCM_CIMR_MASK_LRF_PLL(v)   (((v) << BP_CCM_CIMR_MASK_LRF_PLL) & BM_CCM_CIMR_MASK_LRF_PLL)
-#endif
+#define BF_CCM_CIMR_MASK_LRF_PLL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_LRF_PLL) & BM_CCM_CIMR_MASK_LRF_PLL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_LRF_PLL field to a new value.
@@ -5367,15 +4830,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_COSC_READY      (0x00000040)  //!< Bit mask for CCM_CIMR_MASK_COSC_READY.
 
 //! @brief Get value of CCM_CIMR_MASK_COSC_READY from a register value.
-#define BG_CCM_CIMR_MASK_COSC_READY(r)   (((r) & BM_CCM_CIMR_MASK_COSC_READY) >> BP_CCM_CIMR_MASK_COSC_READY)
+#define BG_CCM_CIMR_MASK_COSC_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_COSC_READY) >> BP_CCM_CIMR_MASK_COSC_READY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_COSC_READY.
-#define BF_CCM_CIMR_MASK_COSC_READY(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_COSC_READY) & BM_CCM_CIMR_MASK_COSC_READY)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_COSC_READY.
-#define BF_CCM_CIMR_MASK_COSC_READY(v)   (((v) << BP_CCM_CIMR_MASK_COSC_READY) & BM_CCM_CIMR_MASK_COSC_READY)
-#endif
+#define BF_CCM_CIMR_MASK_COSC_READY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_COSC_READY) & BM_CCM_CIMR_MASK_COSC_READY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_COSC_READY field to a new value.
@@ -5396,15 +4854,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_AXI_PODF_LOADED      (0x00020000)  //!< Bit mask for CCM_CIMR_MASK_AXI_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_AXI_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_AXI_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_AXI_PODF_LOADED) >> BP_CCM_CIMR_MASK_AXI_PODF_LOADED)
+#define BG_CCM_CIMR_MASK_AXI_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_AXI_PODF_LOADED) >> BP_CCM_CIMR_MASK_AXI_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_AXI_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_AXI_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_AXI_PODF_LOADED) & BM_CCM_CIMR_MASK_AXI_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_AXI_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_AXI_PODF_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_AXI_PODF_LOADED) & BM_CCM_CIMR_MASK_AXI_PODF_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_AXI_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_AXI_PODF_LOADED) & BM_CCM_CIMR_MASK_AXI_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_AXI_PODF_LOADED field to a new value.
@@ -5425,7 +4878,7 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_AXI_B_PODF_LOADED      (0x00040000)  //!< Bit mask for CCM_CIMR_MASK_AXI_B_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_AXI_B_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_AXI_B_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_AXI_B_PODF_LOADED) >> BP_CCM_CIMR_MASK_AXI_B_PODF_LOADED)
+#define BG_CCM_CIMR_MASK_AXI_B_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_AXI_B_PODF_LOADED) >> BP_CCM_CIMR_MASK_AXI_B_PODF_LOADED)
 
 
 /* --- Register HW_CCM_CIMR, field MASK_PERIPH2_CLK_SEL_LOADED[19] (RW)
@@ -5441,15 +4894,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED      (0x00080000)  //!< Bit mask for CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED) >> BP_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED)
+#define BG_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED) >> BP_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED.
-#define BF_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED.
-#define BF_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH2_CLK_SEL_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PERIPH2_CLK_SEL_LOADED field to a new value.
@@ -5470,15 +4918,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_AHB_PODF_LOADED      (0x00100000)  //!< Bit mask for CCM_CIMR_MASK_AHB_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_AHB_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_AHB_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_AHB_PODF_LOADED) >> BP_CCM_CIMR_MASK_AHB_PODF_LOADED)
+#define BG_CCM_CIMR_MASK_AHB_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_AHB_PODF_LOADED) >> BP_CCM_CIMR_MASK_AHB_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_AHB_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_AHB_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_AHB_PODF_LOADED) & BM_CCM_CIMR_MASK_AHB_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_AHB_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_AHB_PODF_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_AHB_PODF_LOADED) & BM_CCM_CIMR_MASK_AHB_PODF_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_AHB_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_AHB_PODF_LOADED) & BM_CCM_CIMR_MASK_AHB_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_AHB_PODF_LOADED field to a new value.
@@ -5499,15 +4942,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED      (0x00200000)  //!< Bit mask for CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED) >> BP_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED)
+#define BG_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED) >> BP_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_ROOT_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_MMDC_ROOT_PODF_LOADED field to a new value.
@@ -5528,15 +4966,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED      (0x00400000)  //!< Bit mask for CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED) >> BP_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED)
+#define BG_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED) >> BP_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED.
-#define BF_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED.
-#define BF_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED) & BM_CCM_CIMR_MASK_PERIPH_CLK_SEL_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_PERIPH_CLK_SEL_LOADED field to a new value.
@@ -5557,15 +4990,10 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED      (0x00800000)  //!< Bit mask for CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED) >> BP_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED)
+#define BG_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED) >> BP_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED.
-#define BF_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED(v)   (((v) << BP_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED)
-#endif
+#define BF_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED) & BM_CCM_CIMR_MASK_MMDC_CH0_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_MMDC_CH0_PODF_LOADED field to a new value.
@@ -5586,21 +5014,20 @@ typedef union _hw_ccm_cimr
 #define BM_CCM_CIMR_ARM_PODF_LOADED      (0x04000000)  //!< Bit mask for CCM_CIMR_ARM_PODF_LOADED.
 
 //! @brief Get value of CCM_CIMR_ARM_PODF_LOADED from a register value.
-#define BG_CCM_CIMR_ARM_PODF_LOADED(r)   (((r) & BM_CCM_CIMR_ARM_PODF_LOADED) >> BP_CCM_CIMR_ARM_PODF_LOADED)
+#define BG_CCM_CIMR_ARM_PODF_LOADED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CIMR_ARM_PODF_LOADED) >> BP_CCM_CIMR_ARM_PODF_LOADED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CIMR_ARM_PODF_LOADED.
-#define BF_CCM_CIMR_ARM_PODF_LOADED(v)   ((((reg32_t) v) << BP_CCM_CIMR_ARM_PODF_LOADED) & BM_CCM_CIMR_ARM_PODF_LOADED)
-#else
-//! @brief Format value for bitfield CCM_CIMR_ARM_PODF_LOADED.
-#define BF_CCM_CIMR_ARM_PODF_LOADED(v)   (((v) << BP_CCM_CIMR_ARM_PODF_LOADED) & BM_CCM_CIMR_ARM_PODF_LOADED)
-#endif
+#define BF_CCM_CIMR_ARM_PODF_LOADED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CIMR_ARM_PODF_LOADED) & BM_CCM_CIMR_ARM_PODF_LOADED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARM_PODF_LOADED field to a new value.
 #define BW_CCM_CIMR_ARM_PODF_LOADED(v)   (HW_CCM_CIMR_WR((HW_CCM_CIMR_RD() & ~BM_CCM_CIMR_ARM_PODF_LOADED) | BF_CCM_CIMR_ARM_PODF_LOADED(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCOSR - CCM Clock Output Source Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5673,15 +5100,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO1_SEL      (0x0000000f)  //!< Bit mask for CCM_CCOSR_CKO1_SEL.
 
 //! @brief Get value of CCM_CCOSR_CKO1_SEL from a register value.
-#define BG_CCM_CCOSR_CKO1_SEL(r)   (((r) & BM_CCM_CCOSR_CKO1_SEL) >> BP_CCM_CCOSR_CKO1_SEL)
+#define BG_CCM_CCOSR_CKO1_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO1_SEL) >> BP_CCM_CCOSR_CKO1_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO1_SEL.
-#define BF_CCM_CCOSR_CKO1_SEL(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO1_SEL) & BM_CCM_CCOSR_CKO1_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO1_SEL.
-#define BF_CCM_CCOSR_CKO1_SEL(v)   (((v) << BP_CCM_CCOSR_CKO1_SEL) & BM_CCM_CCOSR_CKO1_SEL)
-#endif
+#define BF_CCM_CCOSR_CKO1_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO1_SEL) & BM_CCM_CCOSR_CKO1_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO1_SEL field to a new value.
@@ -5708,15 +5130,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO1_DIV      (0x00000070)  //!< Bit mask for CCM_CCOSR_CKO1_DIV.
 
 //! @brief Get value of CCM_CCOSR_CKO1_DIV from a register value.
-#define BG_CCM_CCOSR_CKO1_DIV(r)   (((r) & BM_CCM_CCOSR_CKO1_DIV) >> BP_CCM_CCOSR_CKO1_DIV)
+#define BG_CCM_CCOSR_CKO1_DIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO1_DIV) >> BP_CCM_CCOSR_CKO1_DIV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO1_DIV.
-#define BF_CCM_CCOSR_CKO1_DIV(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO1_DIV) & BM_CCM_CCOSR_CKO1_DIV)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO1_DIV.
-#define BF_CCM_CCOSR_CKO1_DIV(v)   (((v) << BP_CCM_CCOSR_CKO1_DIV) & BM_CCM_CCOSR_CKO1_DIV)
-#endif
+#define BF_CCM_CCOSR_CKO1_DIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO1_DIV) & BM_CCM_CCOSR_CKO1_DIV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO1_DIV field to a new value.
@@ -5737,15 +5154,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO1_EN      (0x00000080)  //!< Bit mask for CCM_CCOSR_CKO1_EN.
 
 //! @brief Get value of CCM_CCOSR_CKO1_EN from a register value.
-#define BG_CCM_CCOSR_CKO1_EN(r)   (((r) & BM_CCM_CCOSR_CKO1_EN) >> BP_CCM_CCOSR_CKO1_EN)
+#define BG_CCM_CCOSR_CKO1_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO1_EN) >> BP_CCM_CCOSR_CKO1_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO1_EN.
-#define BF_CCM_CCOSR_CKO1_EN(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO1_EN) & BM_CCM_CCOSR_CKO1_EN)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO1_EN.
-#define BF_CCM_CCOSR_CKO1_EN(v)   (((v) << BP_CCM_CCOSR_CKO1_EN) & BM_CCM_CCOSR_CKO1_EN)
-#endif
+#define BF_CCM_CCOSR_CKO1_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO1_EN) & BM_CCM_CCOSR_CKO1_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO1_EN field to a new value.
@@ -5766,15 +5178,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO1_CKO2_SEL      (0x00000100)  //!< Bit mask for CCM_CCOSR_CKO1_CKO2_SEL.
 
 //! @brief Get value of CCM_CCOSR_CKO1_CKO2_SEL from a register value.
-#define BG_CCM_CCOSR_CKO1_CKO2_SEL(r)   (((r) & BM_CCM_CCOSR_CKO1_CKO2_SEL) >> BP_CCM_CCOSR_CKO1_CKO2_SEL)
+#define BG_CCM_CCOSR_CKO1_CKO2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO1_CKO2_SEL) >> BP_CCM_CCOSR_CKO1_CKO2_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO1_CKO2_SEL.
-#define BF_CCM_CCOSR_CKO1_CKO2_SEL(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO1_CKO2_SEL) & BM_CCM_CCOSR_CKO1_CKO2_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO1_CKO2_SEL.
-#define BF_CCM_CCOSR_CKO1_CKO2_SEL(v)   (((v) << BP_CCM_CCOSR_CKO1_CKO2_SEL) & BM_CCM_CCOSR_CKO1_CKO2_SEL)
-#endif
+#define BF_CCM_CCOSR_CKO1_CKO2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO1_CKO2_SEL) & BM_CCM_CCOSR_CKO1_CKO2_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO1_CKO2_SEL field to a new value.
@@ -5817,15 +5224,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO2_SEL      (0x001f0000)  //!< Bit mask for CCM_CCOSR_CKO2_SEL.
 
 //! @brief Get value of CCM_CCOSR_CKO2_SEL from a register value.
-#define BG_CCM_CCOSR_CKO2_SEL(r)   (((r) & BM_CCM_CCOSR_CKO2_SEL) >> BP_CCM_CCOSR_CKO2_SEL)
+#define BG_CCM_CCOSR_CKO2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO2_SEL) >> BP_CCM_CCOSR_CKO2_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO2_SEL.
-#define BF_CCM_CCOSR_CKO2_SEL(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO2_SEL) & BM_CCM_CCOSR_CKO2_SEL)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO2_SEL.
-#define BF_CCM_CCOSR_CKO2_SEL(v)   (((v) << BP_CCM_CCOSR_CKO2_SEL) & BM_CCM_CCOSR_CKO2_SEL)
-#endif
+#define BF_CCM_CCOSR_CKO2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO2_SEL) & BM_CCM_CCOSR_CKO2_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO2_SEL field to a new value.
@@ -5852,15 +5254,10 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO2_DIV      (0x00e00000)  //!< Bit mask for CCM_CCOSR_CKO2_DIV.
 
 //! @brief Get value of CCM_CCOSR_CKO2_DIV from a register value.
-#define BG_CCM_CCOSR_CKO2_DIV(r)   (((r) & BM_CCM_CCOSR_CKO2_DIV) >> BP_CCM_CCOSR_CKO2_DIV)
+#define BG_CCM_CCOSR_CKO2_DIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO2_DIV) >> BP_CCM_CCOSR_CKO2_DIV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO2_DIV.
-#define BF_CCM_CCOSR_CKO2_DIV(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO2_DIV) & BM_CCM_CCOSR_CKO2_DIV)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO2_DIV.
-#define BF_CCM_CCOSR_CKO2_DIV(v)   (((v) << BP_CCM_CCOSR_CKO2_DIV) & BM_CCM_CCOSR_CKO2_DIV)
-#endif
+#define BF_CCM_CCOSR_CKO2_DIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO2_DIV) & BM_CCM_CCOSR_CKO2_DIV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO2_DIV field to a new value.
@@ -5881,21 +5278,20 @@ typedef union _hw_ccm_ccosr
 #define BM_CCM_CCOSR_CKO2_EN      (0x01000000)  //!< Bit mask for CCM_CCOSR_CKO2_EN.
 
 //! @brief Get value of CCM_CCOSR_CKO2_EN from a register value.
-#define BG_CCM_CCOSR_CKO2_EN(r)   (((r) & BM_CCM_CCOSR_CKO2_EN) >> BP_CCM_CCOSR_CKO2_EN)
+#define BG_CCM_CCOSR_CKO2_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CKO2_EN) >> BP_CCM_CCOSR_CKO2_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCOSR_CKO2_EN.
-#define BF_CCM_CCOSR_CKO2_EN(v)   ((((reg32_t) v) << BP_CCM_CCOSR_CKO2_EN) & BM_CCM_CCOSR_CKO2_EN)
-#else
-//! @brief Format value for bitfield CCM_CCOSR_CKO2_EN.
-#define BF_CCM_CCOSR_CKO2_EN(v)   (((v) << BP_CCM_CCOSR_CKO2_EN) & BM_CCM_CCOSR_CKO2_EN)
-#endif
+#define BF_CCM_CCOSR_CKO2_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CKO2_EN) & BM_CCM_CCOSR_CKO2_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKO2_EN field to a new value.
 #define BW_CCM_CCOSR_CKO2_EN(v)   (HW_CCM_CCOSR_WR((HW_CCM_CCOSR_RD() & ~BM_CCM_CCOSR_CKO2_EN) | BF_CCM_CCOSR_CKO2_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CGPR - CCM General Purpose Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5953,15 +5349,10 @@ typedef union _hw_ccm_cgpr
 #define BM_CCM_CGPR_PMIC_DELAY_SCALER      (0x00000001)  //!< Bit mask for CCM_CGPR_PMIC_DELAY_SCALER.
 
 //! @brief Get value of CCM_CGPR_PMIC_DELAY_SCALER from a register value.
-#define BG_CCM_CGPR_PMIC_DELAY_SCALER(r)   (((r) & BM_CCM_CGPR_PMIC_DELAY_SCALER) >> BP_CCM_CGPR_PMIC_DELAY_SCALER)
+#define BG_CCM_CGPR_PMIC_DELAY_SCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CGPR_PMIC_DELAY_SCALER) >> BP_CCM_CGPR_PMIC_DELAY_SCALER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CGPR_PMIC_DELAY_SCALER.
-#define BF_CCM_CGPR_PMIC_DELAY_SCALER(v)   ((((reg32_t) v) << BP_CCM_CGPR_PMIC_DELAY_SCALER) & BM_CCM_CGPR_PMIC_DELAY_SCALER)
-#else
-//! @brief Format value for bitfield CCM_CGPR_PMIC_DELAY_SCALER.
-#define BF_CCM_CGPR_PMIC_DELAY_SCALER(v)   (((v) << BP_CCM_CGPR_PMIC_DELAY_SCALER) & BM_CCM_CGPR_PMIC_DELAY_SCALER)
-#endif
+#define BF_CCM_CGPR_PMIC_DELAY_SCALER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CGPR_PMIC_DELAY_SCALER) & BM_CCM_CGPR_PMIC_DELAY_SCALER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PMIC_DELAY_SCALER field to a new value.
@@ -5978,15 +5369,10 @@ typedef union _hw_ccm_cgpr
 #define BM_CCM_CGPR_MEM_IGP_STOP_MASK      (0x00000002)  //!< Bit mask for CCM_CGPR_MEM_IGP_STOP_MASK.
 
 //! @brief Get value of CCM_CGPR_MEM_IGP_STOP_MASK from a register value.
-#define BG_CCM_CGPR_MEM_IGP_STOP_MASK(r)   (((r) & BM_CCM_CGPR_MEM_IGP_STOP_MASK) >> BP_CCM_CGPR_MEM_IGP_STOP_MASK)
+#define BG_CCM_CGPR_MEM_IGP_STOP_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CGPR_MEM_IGP_STOP_MASK) >> BP_CCM_CGPR_MEM_IGP_STOP_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CGPR_MEM_IGP_STOP_MASK.
-#define BF_CCM_CGPR_MEM_IGP_STOP_MASK(v)   ((((reg32_t) v) << BP_CCM_CGPR_MEM_IGP_STOP_MASK) & BM_CCM_CGPR_MEM_IGP_STOP_MASK)
-#else
-//! @brief Format value for bitfield CCM_CGPR_MEM_IGP_STOP_MASK.
-#define BF_CCM_CGPR_MEM_IGP_STOP_MASK(v)   (((v) << BP_CCM_CGPR_MEM_IGP_STOP_MASK) & BM_CCM_CGPR_MEM_IGP_STOP_MASK)
-#endif
+#define BF_CCM_CGPR_MEM_IGP_STOP_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CGPR_MEM_IGP_STOP_MASK) & BM_CCM_CGPR_MEM_IGP_STOP_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MEM_IGP_STOP_MASK field to a new value.
@@ -6006,15 +5392,10 @@ typedef union _hw_ccm_cgpr
 #define BM_CCM_CGPR_MMDC_EXT_CLK_DIS      (0x00000004)  //!< Bit mask for CCM_CGPR_MMDC_EXT_CLK_DIS.
 
 //! @brief Get value of CCM_CGPR_MMDC_EXT_CLK_DIS from a register value.
-#define BG_CCM_CGPR_MMDC_EXT_CLK_DIS(r)   (((r) & BM_CCM_CGPR_MMDC_EXT_CLK_DIS) >> BP_CCM_CGPR_MMDC_EXT_CLK_DIS)
+#define BG_CCM_CGPR_MMDC_EXT_CLK_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CGPR_MMDC_EXT_CLK_DIS) >> BP_CCM_CGPR_MMDC_EXT_CLK_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CGPR_MMDC_EXT_CLK_DIS.
-#define BF_CCM_CGPR_MMDC_EXT_CLK_DIS(v)   ((((reg32_t) v) << BP_CCM_CGPR_MMDC_EXT_CLK_DIS) & BM_CCM_CGPR_MMDC_EXT_CLK_DIS)
-#else
-//! @brief Format value for bitfield CCM_CGPR_MMDC_EXT_CLK_DIS.
-#define BF_CCM_CGPR_MMDC_EXT_CLK_DIS(v)   (((v) << BP_CCM_CGPR_MMDC_EXT_CLK_DIS) & BM_CCM_CGPR_MMDC_EXT_CLK_DIS)
-#endif
+#define BF_CCM_CGPR_MMDC_EXT_CLK_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CGPR_MMDC_EXT_CLK_DIS) & BM_CCM_CGPR_MMDC_EXT_CLK_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MMDC_EXT_CLK_DIS field to a new value.
@@ -6035,15 +5416,10 @@ typedef union _hw_ccm_cgpr
 #define BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE      (0x00000010)  //!< Bit mask for CCM_CGPR_EFUSE_PROG_SUPPLY_GATE.
 
 //! @brief Get value of CCM_CGPR_EFUSE_PROG_SUPPLY_GATE from a register value.
-#define BG_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE(r)   (((r) & BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE) >> BP_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE)
+#define BG_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE) >> BP_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CGPR_EFUSE_PROG_SUPPLY_GATE.
-#define BF_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE(v)   ((((reg32_t) v) << BP_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE) & BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE)
-#else
-//! @brief Format value for bitfield CCM_CGPR_EFUSE_PROG_SUPPLY_GATE.
-#define BF_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE(v)   (((v) << BP_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE) & BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE)
-#endif
+#define BF_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE) & BM_CCM_CGPR_EFUSE_PROG_SUPPLY_GATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EFUSE_PROG_SUPPLY_GATE field to a new value.
@@ -6065,15 +5441,10 @@ typedef union _hw_ccm_cgpr
 #define BM_CCM_CGPR_FPL      (0x00010000)  //!< Bit mask for CCM_CGPR_FPL.
 
 //! @brief Get value of CCM_CGPR_FPL from a register value.
-#define BG_CCM_CGPR_FPL(r)   (((r) & BM_CCM_CGPR_FPL) >> BP_CCM_CGPR_FPL)
+#define BG_CCM_CGPR_FPL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CGPR_FPL) >> BP_CCM_CGPR_FPL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CGPR_FPL.
-#define BF_CCM_CGPR_FPL(v)   ((((reg32_t) v) << BP_CCM_CGPR_FPL) & BM_CCM_CGPR_FPL)
-#else
-//! @brief Format value for bitfield CCM_CGPR_FPL.
-#define BF_CCM_CGPR_FPL(v)   (((v) << BP_CCM_CGPR_FPL) & BM_CCM_CGPR_FPL)
-#endif
+#define BF_CCM_CGPR_FPL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CGPR_FPL) & BM_CCM_CGPR_FPL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FPL field to a new value.
@@ -6081,16 +5452,28 @@ typedef union _hw_ccm_cgpr
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR0 - CCM Clock Gating Register 0
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_CCM_CCGR0 - CCM Clock Gating Register 0 (RW)
  *
  * Reset value: 0xffffffff
  *
- * The figure below represents the CCM Clock Gating Register 0 (CCM_CCGR0). The clock gating
- * Registers define the clock gating for power reduction of each clock (CG(i) bits). There are 8 CGR
- * registers. The number of registers required is according to the number of peripherals in the
- * system.
+ * CG(i) bits CCGR 0-7  These bits are used to turn on/off the clock to each module
+ * independently.The following table details the possible clock activity conditions for each module
+ * CGR value    Clock Activity Description        00    clock is off during all modes. stop enter
+ * hardware handshake is disabled.      01    clock is on in run mode, but off in wait and stop
+ * modes      10    Not applicable (Reserved).      11    clock is on during all modes, except stop
+ * mode.       Module should be stopped, before set it's bits to "0", since clocks to the module
+ * will be stopped immediately.  The tables above show the register mapings for the different CGR's.
+ * The clock connectivity table should be used to match the "CCM output affected" to the actual
+ * clocks going into the modules.  The figure below represents the CCM Clock Gating Register 0
+ * (CCM_CCGR0). The clock gating Registers define the clock gating for power reduction of each clock
+ * (CG(i) bits). There are 8 CGR registers. The number of registers required is according to the
+ * number of peripherals in the system.
  */
 typedef union _hw_ccm_ccgr0
 {
@@ -6099,19 +5482,19 @@ typedef union _hw_ccm_ccgr0
     {
         unsigned CG0 : 2; //!< [1:0] aips_tz1 clocks (aips_tz1_clk_enable)
         unsigned CG1 : 2; //!< [3:2] aips_tz2 clocks (aips_tz2_clk_enable)
-        unsigned CG2 : 2; //!< [5:4] apbhdma hclk clock (apbhdma_hclk_enable)
-        unsigned CG3 : 2; //!< [7:6] asrc clock (asrc_clk_enable)
-        unsigned CG4 : 2; //!< [9:8] caam_secure_mem clock (caam_secure_mem_clk_enable)
-        unsigned CG5 : 2; //!< [11:10] caam_wrapper_aclk clock (caam_wrapper_aclk_enable)
-        unsigned CG6 : 2; //!< [13:12] caam_wrapper_ipg clock (caam_wrapper_ipg_enable)
-        unsigned CG7 : 2; //!< [15:14] can1 clock (can1_clk_enable)
-        unsigned CG8 : 2; //!< [17:16] can1_serial clock (can1_serial_clk_enable)
-        unsigned CG9 : 2; //!< [19:18] can2 clock (can2_clk_enable)
-        unsigned CG10 : 2; //!< [21:20] can2_serial clock (can2_serial_clk_enable)
+        unsigned CG2 : 2; //!< [5:4] apbhdma hclk clock (apbhdma_hclk_enable) Reserved
+        unsigned CG3 : 2; //!< [7:6] asrc clock (asrc_clk_enable) Reserved
+        unsigned CG4 : 2; //!< [9:8] caam_secure_mem clock (caam_secure_mem_clk_enable) Reserved
+        unsigned CG5 : 2; //!< [11:10] caam_wrapper_aclk clock (caam_wrapper_aclk_enable) Reserved
+        unsigned CG6 : 2; //!< [13:12] caam_wrapper_ipg clock (caam_wrapper_ipg_enable) Reserved
+        unsigned CG7 : 2; //!< [15:14] can1 clock (can1_clk_enable) Reserved
+        unsigned CG8 : 2; //!< [17:16] can1_serial clock (can1_serial_clk_enable) Reserved
+        unsigned CG9 : 2; //!< [19:18] can2 clock (can2_clk_enable) Reserved
+        unsigned CG10 : 2; //!< [21:20] can2_serial clock (can2_serial_clk_enable) Reserved
         unsigned CG11 : 2; //!< [23:22] CPU debug clocks (cheetah_dbg_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] dcic 1 clocks (dcic1_clk_enable)
-        unsigned CG13 : 2; //!< [27:26] dcic2 clocks (dcic2_clk_enable)
-        unsigned CG14 : 2; //!< [29:28] dtcp clocks (dtcp_dtcp_clk_enable)
+        unsigned CG12 : 2; //!< [25:24] dcic 1 clocks (dcic1_clk_enable) Reserved
+        unsigned CG13 : 2; //!< [27:26] dcic2 clocks (dcic2_clk_enable) Reserved
+        unsigned CG14 : 2; //!< [29:28] dtcp clocks (dtcp_dtcp_clk_enable) Reserved
         unsigned CG15 : 2; //!< [31:30] Reserved
     } B;
 } hw_ccm_ccgr0_t;
@@ -6144,15 +5527,10 @@ typedef union _hw_ccm_ccgr0
 #define BM_CCM_CCGR0_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR0_CG0.
 
 //! @brief Get value of CCM_CCGR0_CG0 from a register value.
-#define BG_CCM_CCGR0_CG0(r)   (((r) & BM_CCM_CCGR0_CG0) >> BP_CCM_CCGR0_CG0)
+#define BG_CCM_CCGR0_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG0) >> BP_CCM_CCGR0_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG0.
-#define BF_CCM_CCGR0_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG0) & BM_CCM_CCGR0_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG0.
-#define BF_CCM_CCGR0_CG0(v)   (((v) << BP_CCM_CCGR0_CG0) & BM_CCM_CCGR0_CG0)
-#endif
+#define BF_CCM_CCGR0_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG0) & BM_CCM_CCGR0_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -6168,15 +5546,10 @@ typedef union _hw_ccm_ccgr0
 #define BM_CCM_CCGR0_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR0_CG1.
 
 //! @brief Get value of CCM_CCGR0_CG1 from a register value.
-#define BG_CCM_CCGR0_CG1(r)   (((r) & BM_CCM_CCGR0_CG1) >> BP_CCM_CCGR0_CG1)
+#define BG_CCM_CCGR0_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG1) >> BP_CCM_CCGR0_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG1.
-#define BF_CCM_CCGR0_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG1) & BM_CCM_CCGR0_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG1.
-#define BF_CCM_CCGR0_CG1(v)   (((v) << BP_CCM_CCGR0_CG1) & BM_CCM_CCGR0_CG1)
-#endif
+#define BF_CCM_CCGR0_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG1) & BM_CCM_CCGR0_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -6185,22 +5558,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG2[5:4] (RW)
  *
- * apbhdma hclk clock (apbhdma_hclk_enable)
+ * apbhdma hclk clock (apbhdma_hclk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG2      (4)      //!< Bit position for CCM_CCGR0_CG2.
 #define BM_CCM_CCGR0_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR0_CG2.
 
 //! @brief Get value of CCM_CCGR0_CG2 from a register value.
-#define BG_CCM_CCGR0_CG2(r)   (((r) & BM_CCM_CCGR0_CG2) >> BP_CCM_CCGR0_CG2)
+#define BG_CCM_CCGR0_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG2) >> BP_CCM_CCGR0_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG2.
-#define BF_CCM_CCGR0_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG2) & BM_CCM_CCGR0_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG2.
-#define BF_CCM_CCGR0_CG2(v)   (((v) << BP_CCM_CCGR0_CG2) & BM_CCM_CCGR0_CG2)
-#endif
+#define BF_CCM_CCGR0_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG2) & BM_CCM_CCGR0_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -6209,22 +5577,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG3[7:6] (RW)
  *
- * asrc clock (asrc_clk_enable)
+ * asrc clock (asrc_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG3      (6)      //!< Bit position for CCM_CCGR0_CG3.
 #define BM_CCM_CCGR0_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR0_CG3.
 
 //! @brief Get value of CCM_CCGR0_CG3 from a register value.
-#define BG_CCM_CCGR0_CG3(r)   (((r) & BM_CCM_CCGR0_CG3) >> BP_CCM_CCGR0_CG3)
+#define BG_CCM_CCGR0_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG3) >> BP_CCM_CCGR0_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG3.
-#define BF_CCM_CCGR0_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG3) & BM_CCM_CCGR0_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG3.
-#define BF_CCM_CCGR0_CG3(v)   (((v) << BP_CCM_CCGR0_CG3) & BM_CCM_CCGR0_CG3)
-#endif
+#define BF_CCM_CCGR0_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG3) & BM_CCM_CCGR0_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -6233,22 +5596,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG4[9:8] (RW)
  *
- * caam_secure_mem clock (caam_secure_mem_clk_enable)
+ * caam_secure_mem clock (caam_secure_mem_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG4      (8)      //!< Bit position for CCM_CCGR0_CG4.
 #define BM_CCM_CCGR0_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR0_CG4.
 
 //! @brief Get value of CCM_CCGR0_CG4 from a register value.
-#define BG_CCM_CCGR0_CG4(r)   (((r) & BM_CCM_CCGR0_CG4) >> BP_CCM_CCGR0_CG4)
+#define BG_CCM_CCGR0_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG4) >> BP_CCM_CCGR0_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG4.
-#define BF_CCM_CCGR0_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG4) & BM_CCM_CCGR0_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG4.
-#define BF_CCM_CCGR0_CG4(v)   (((v) << BP_CCM_CCGR0_CG4) & BM_CCM_CCGR0_CG4)
-#endif
+#define BF_CCM_CCGR0_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG4) & BM_CCM_CCGR0_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -6257,22 +5615,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG5[11:10] (RW)
  *
- * caam_wrapper_aclk clock (caam_wrapper_aclk_enable)
+ * caam_wrapper_aclk clock (caam_wrapper_aclk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG5      (10)      //!< Bit position for CCM_CCGR0_CG5.
 #define BM_CCM_CCGR0_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR0_CG5.
 
 //! @brief Get value of CCM_CCGR0_CG5 from a register value.
-#define BG_CCM_CCGR0_CG5(r)   (((r) & BM_CCM_CCGR0_CG5) >> BP_CCM_CCGR0_CG5)
+#define BG_CCM_CCGR0_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG5) >> BP_CCM_CCGR0_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG5.
-#define BF_CCM_CCGR0_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG5) & BM_CCM_CCGR0_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG5.
-#define BF_CCM_CCGR0_CG5(v)   (((v) << BP_CCM_CCGR0_CG5) & BM_CCM_CCGR0_CG5)
-#endif
+#define BF_CCM_CCGR0_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG5) & BM_CCM_CCGR0_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -6281,22 +5634,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG6[13:12] (RW)
  *
- * caam_wrapper_ipg clock (caam_wrapper_ipg_enable)
+ * caam_wrapper_ipg clock (caam_wrapper_ipg_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG6      (12)      //!< Bit position for CCM_CCGR0_CG6.
 #define BM_CCM_CCGR0_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR0_CG6.
 
 //! @brief Get value of CCM_CCGR0_CG6 from a register value.
-#define BG_CCM_CCGR0_CG6(r)   (((r) & BM_CCM_CCGR0_CG6) >> BP_CCM_CCGR0_CG6)
+#define BG_CCM_CCGR0_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG6) >> BP_CCM_CCGR0_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG6.
-#define BF_CCM_CCGR0_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG6) & BM_CCM_CCGR0_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG6.
-#define BF_CCM_CCGR0_CG6(v)   (((v) << BP_CCM_CCGR0_CG6) & BM_CCM_CCGR0_CG6)
-#endif
+#define BF_CCM_CCGR0_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG6) & BM_CCM_CCGR0_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -6305,22 +5653,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG7[15:14] (RW)
  *
- * can1 clock (can1_clk_enable)
+ * can1 clock (can1_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG7      (14)      //!< Bit position for CCM_CCGR0_CG7.
 #define BM_CCM_CCGR0_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR0_CG7.
 
 //! @brief Get value of CCM_CCGR0_CG7 from a register value.
-#define BG_CCM_CCGR0_CG7(r)   (((r) & BM_CCM_CCGR0_CG7) >> BP_CCM_CCGR0_CG7)
+#define BG_CCM_CCGR0_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG7) >> BP_CCM_CCGR0_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG7.
-#define BF_CCM_CCGR0_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG7) & BM_CCM_CCGR0_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG7.
-#define BF_CCM_CCGR0_CG7(v)   (((v) << BP_CCM_CCGR0_CG7) & BM_CCM_CCGR0_CG7)
-#endif
+#define BF_CCM_CCGR0_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG7) & BM_CCM_CCGR0_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -6329,22 +5672,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG8[17:16] (RW)
  *
- * can1_serial clock (can1_serial_clk_enable)
+ * can1_serial clock (can1_serial_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG8      (16)      //!< Bit position for CCM_CCGR0_CG8.
 #define BM_CCM_CCGR0_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR0_CG8.
 
 //! @brief Get value of CCM_CCGR0_CG8 from a register value.
-#define BG_CCM_CCGR0_CG8(r)   (((r) & BM_CCM_CCGR0_CG8) >> BP_CCM_CCGR0_CG8)
+#define BG_CCM_CCGR0_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG8) >> BP_CCM_CCGR0_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG8.
-#define BF_CCM_CCGR0_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG8) & BM_CCM_CCGR0_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG8.
-#define BF_CCM_CCGR0_CG8(v)   (((v) << BP_CCM_CCGR0_CG8) & BM_CCM_CCGR0_CG8)
-#endif
+#define BF_CCM_CCGR0_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG8) & BM_CCM_CCGR0_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -6353,22 +5691,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG9[19:18] (RW)
  *
- * can2 clock (can2_clk_enable)
+ * can2 clock (can2_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG9      (18)      //!< Bit position for CCM_CCGR0_CG9.
 #define BM_CCM_CCGR0_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR0_CG9.
 
 //! @brief Get value of CCM_CCGR0_CG9 from a register value.
-#define BG_CCM_CCGR0_CG9(r)   (((r) & BM_CCM_CCGR0_CG9) >> BP_CCM_CCGR0_CG9)
+#define BG_CCM_CCGR0_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG9) >> BP_CCM_CCGR0_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG9.
-#define BF_CCM_CCGR0_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG9) & BM_CCM_CCGR0_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG9.
-#define BF_CCM_CCGR0_CG9(v)   (((v) << BP_CCM_CCGR0_CG9) & BM_CCM_CCGR0_CG9)
-#endif
+#define BF_CCM_CCGR0_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG9) & BM_CCM_CCGR0_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -6377,22 +5710,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG10[21:20] (RW)
  *
- * can2_serial clock (can2_serial_clk_enable)
+ * can2_serial clock (can2_serial_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG10      (20)      //!< Bit position for CCM_CCGR0_CG10.
 #define BM_CCM_CCGR0_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR0_CG10.
 
 //! @brief Get value of CCM_CCGR0_CG10 from a register value.
-#define BG_CCM_CCGR0_CG10(r)   (((r) & BM_CCM_CCGR0_CG10) >> BP_CCM_CCGR0_CG10)
+#define BG_CCM_CCGR0_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG10) >> BP_CCM_CCGR0_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG10.
-#define BF_CCM_CCGR0_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG10) & BM_CCM_CCGR0_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG10.
-#define BF_CCM_CCGR0_CG10(v)   (((v) << BP_CCM_CCGR0_CG10) & BM_CCM_CCGR0_CG10)
-#endif
+#define BF_CCM_CCGR0_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG10) & BM_CCM_CCGR0_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -6408,15 +5736,10 @@ typedef union _hw_ccm_ccgr0
 #define BM_CCM_CCGR0_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR0_CG11.
 
 //! @brief Get value of CCM_CCGR0_CG11 from a register value.
-#define BG_CCM_CCGR0_CG11(r)   (((r) & BM_CCM_CCGR0_CG11) >> BP_CCM_CCGR0_CG11)
+#define BG_CCM_CCGR0_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG11) >> BP_CCM_CCGR0_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG11.
-#define BF_CCM_CCGR0_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG11) & BM_CCM_CCGR0_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG11.
-#define BF_CCM_CCGR0_CG11(v)   (((v) << BP_CCM_CCGR0_CG11) & BM_CCM_CCGR0_CG11)
-#endif
+#define BF_CCM_CCGR0_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG11) & BM_CCM_CCGR0_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -6425,22 +5748,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG12[25:24] (RW)
  *
- * dcic 1 clocks (dcic1_clk_enable)
+ * dcic 1 clocks (dcic1_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG12      (24)      //!< Bit position for CCM_CCGR0_CG12.
 #define BM_CCM_CCGR0_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR0_CG12.
 
 //! @brief Get value of CCM_CCGR0_CG12 from a register value.
-#define BG_CCM_CCGR0_CG12(r)   (((r) & BM_CCM_CCGR0_CG12) >> BP_CCM_CCGR0_CG12)
+#define BG_CCM_CCGR0_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG12) >> BP_CCM_CCGR0_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG12.
-#define BF_CCM_CCGR0_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG12) & BM_CCM_CCGR0_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG12.
-#define BF_CCM_CCGR0_CG12(v)   (((v) << BP_CCM_CCGR0_CG12) & BM_CCM_CCGR0_CG12)
-#endif
+#define BF_CCM_CCGR0_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG12) & BM_CCM_CCGR0_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -6449,22 +5767,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG13[27:26] (RW)
  *
- * dcic2 clocks (dcic2_clk_enable)
+ * dcic2 clocks (dcic2_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG13      (26)      //!< Bit position for CCM_CCGR0_CG13.
 #define BM_CCM_CCGR0_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR0_CG13.
 
 //! @brief Get value of CCM_CCGR0_CG13 from a register value.
-#define BG_CCM_CCGR0_CG13(r)   (((r) & BM_CCM_CCGR0_CG13) >> BP_CCM_CCGR0_CG13)
+#define BG_CCM_CCGR0_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG13) >> BP_CCM_CCGR0_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG13.
-#define BF_CCM_CCGR0_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG13) & BM_CCM_CCGR0_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG13.
-#define BF_CCM_CCGR0_CG13(v)   (((v) << BP_CCM_CCGR0_CG13) & BM_CCM_CCGR0_CG13)
-#endif
+#define BF_CCM_CCGR0_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG13) & BM_CCM_CCGR0_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -6473,22 +5786,17 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG14[29:28] (RW)
  *
- * dtcp clocks (dtcp_dtcp_clk_enable)
+ * dtcp clocks (dtcp_dtcp_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR0_CG14      (28)      //!< Bit position for CCM_CCGR0_CG14.
 #define BM_CCM_CCGR0_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR0_CG14.
 
 //! @brief Get value of CCM_CCGR0_CG14 from a register value.
-#define BG_CCM_CCGR0_CG14(r)   (((r) & BM_CCM_CCGR0_CG14) >> BP_CCM_CCGR0_CG14)
+#define BG_CCM_CCGR0_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG14) >> BP_CCM_CCGR0_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG14.
-#define BF_CCM_CCGR0_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG14) & BM_CCM_CCGR0_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG14.
-#define BF_CCM_CCGR0_CG14(v)   (((v) << BP_CCM_CCGR0_CG14) & BM_CCM_CCGR0_CG14)
-#endif
+#define BF_CCM_CCGR0_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG14) & BM_CCM_CCGR0_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -6504,20 +5812,19 @@ typedef union _hw_ccm_ccgr0
 #define BM_CCM_CCGR0_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR0_CG15.
 
 //! @brief Get value of CCM_CCGR0_CG15 from a register value.
-#define BG_CCM_CCGR0_CG15(r)   (((r) & BM_CCM_CCGR0_CG15) >> BP_CCM_CCGR0_CG15)
+#define BG_CCM_CCGR0_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR0_CG15) >> BP_CCM_CCGR0_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR0_CG15.
-#define BF_CCM_CCGR0_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR0_CG15) & BM_CCM_CCGR0_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR0_CG15.
-#define BF_CCM_CCGR0_CG15(v)   (((v) << BP_CCM_CCGR0_CG15) & BM_CCM_CCGR0_CG15)
-#endif
+#define BF_CCM_CCGR0_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR0_CG15) & BM_CCM_CCGR0_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR0_CG15(v)   (HW_CCM_CCGR0_WR((HW_CCM_CCGR0_RD() & ~BM_CCM_CCGR0_CG15) | BF_CCM_CCGR0_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR1 - CCM Clock Gating Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6539,16 +5846,16 @@ typedef union _hw_ccm_ccgr1
         unsigned CG1 : 2; //!< [3:2] ecspi2 clocks (ecspi2_clk_enable)
         unsigned CG2 : 2; //!< [5:4] ecspi3 clocks (ecspi3_clk_enable)
         unsigned CG3 : 2; //!< [7:6] ecspi4 clocks (ecspi4_clk_enable)
-        unsigned CG4 : 2; //!< [9:8] ecspi5 clocks (ecspi5_clk_enable)
-        unsigned CG5 : 2; //!< [11:10] clock (enet_clk_enable)
+        unsigned CG4 : 2; //!< [9:8] ecspi5 clocks (ecspi5_clk_enable) Reserved
+        unsigned CG5 : 2; //!< [11:10] clock (enet_clk_enable) Reserved
         unsigned CG6 : 2; //!< [13:12] epit1 clocks (epit1_clk_enable)
         unsigned CG7 : 2; //!< [15:14] epit2 clocks (epit2_clk_enable)
         unsigned CG8 : 2; //!< [17:16] esai clocks (esai_clk_enable) (extern_audio_clk_enable)
         unsigned CG9 : 2; //!< [19:18] Reserved
         unsigned CG10 : 2; //!< [21:20] gpt bus clock (gpt_clk_enable)
         unsigned CG11 : 2; //!< [23:22] gpt serial clock (gpt_serial_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] gpu2d clock (gpu2d_clk_enable)
-        unsigned CG13 : 2; //!< [27:26] gpu3d clock (gpu3d_clk_enable)
+        unsigned CG12 : 2; //!< [25:24] gpu2d clock (gpu2d_clk_enable) mshc xmscki clock (mshc_xmscki_clk_enable)
+        unsigned CG13 : 2; //!< [27:26] gpu3d clock (gpu3d_clk_enable) gpu2d ovg clock (gpu2d_ovg_core_clk_enable)
         unsigned CG14 : 2; //!< [29:28] Reserved
         unsigned CG15 : 2; //!< [31:30] Reserved
     } B;
@@ -6582,15 +5889,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR1_CG0.
 
 //! @brief Get value of CCM_CCGR1_CG0 from a register value.
-#define BG_CCM_CCGR1_CG0(r)   (((r) & BM_CCM_CCGR1_CG0) >> BP_CCM_CCGR1_CG0)
+#define BG_CCM_CCGR1_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG0) >> BP_CCM_CCGR1_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG0.
-#define BF_CCM_CCGR1_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG0) & BM_CCM_CCGR1_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG0.
-#define BF_CCM_CCGR1_CG0(v)   (((v) << BP_CCM_CCGR1_CG0) & BM_CCM_CCGR1_CG0)
-#endif
+#define BF_CCM_CCGR1_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG0) & BM_CCM_CCGR1_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -6606,15 +5908,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR1_CG1.
 
 //! @brief Get value of CCM_CCGR1_CG1 from a register value.
-#define BG_CCM_CCGR1_CG1(r)   (((r) & BM_CCM_CCGR1_CG1) >> BP_CCM_CCGR1_CG1)
+#define BG_CCM_CCGR1_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG1) >> BP_CCM_CCGR1_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG1.
-#define BF_CCM_CCGR1_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG1) & BM_CCM_CCGR1_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG1.
-#define BF_CCM_CCGR1_CG1(v)   (((v) << BP_CCM_CCGR1_CG1) & BM_CCM_CCGR1_CG1)
-#endif
+#define BF_CCM_CCGR1_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG1) & BM_CCM_CCGR1_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -6630,15 +5927,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR1_CG2.
 
 //! @brief Get value of CCM_CCGR1_CG2 from a register value.
-#define BG_CCM_CCGR1_CG2(r)   (((r) & BM_CCM_CCGR1_CG2) >> BP_CCM_CCGR1_CG2)
+#define BG_CCM_CCGR1_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG2) >> BP_CCM_CCGR1_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG2.
-#define BF_CCM_CCGR1_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG2) & BM_CCM_CCGR1_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG2.
-#define BF_CCM_CCGR1_CG2(v)   (((v) << BP_CCM_CCGR1_CG2) & BM_CCM_CCGR1_CG2)
-#endif
+#define BF_CCM_CCGR1_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG2) & BM_CCM_CCGR1_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -6654,15 +5946,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR1_CG3.
 
 //! @brief Get value of CCM_CCGR1_CG3 from a register value.
-#define BG_CCM_CCGR1_CG3(r)   (((r) & BM_CCM_CCGR1_CG3) >> BP_CCM_CCGR1_CG3)
+#define BG_CCM_CCGR1_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG3) >> BP_CCM_CCGR1_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG3.
-#define BF_CCM_CCGR1_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG3) & BM_CCM_CCGR1_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG3.
-#define BF_CCM_CCGR1_CG3(v)   (((v) << BP_CCM_CCGR1_CG3) & BM_CCM_CCGR1_CG3)
-#endif
+#define BF_CCM_CCGR1_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG3) & BM_CCM_CCGR1_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -6671,22 +5958,17 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG4[9:8] (RW)
  *
- * ecspi5 clocks (ecspi5_clk_enable)
+ * ecspi5 clocks (ecspi5_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR1_CG4      (8)      //!< Bit position for CCM_CCGR1_CG4.
 #define BM_CCM_CCGR1_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR1_CG4.
 
 //! @brief Get value of CCM_CCGR1_CG4 from a register value.
-#define BG_CCM_CCGR1_CG4(r)   (((r) & BM_CCM_CCGR1_CG4) >> BP_CCM_CCGR1_CG4)
+#define BG_CCM_CCGR1_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG4) >> BP_CCM_CCGR1_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG4.
-#define BF_CCM_CCGR1_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG4) & BM_CCM_CCGR1_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG4.
-#define BF_CCM_CCGR1_CG4(v)   (((v) << BP_CCM_CCGR1_CG4) & BM_CCM_CCGR1_CG4)
-#endif
+#define BF_CCM_CCGR1_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG4) & BM_CCM_CCGR1_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -6695,22 +5977,17 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG5[11:10] (RW)
  *
- * clock (enet_clk_enable)
+ * clock (enet_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR1_CG5      (10)      //!< Bit position for CCM_CCGR1_CG5.
 #define BM_CCM_CCGR1_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR1_CG5.
 
 //! @brief Get value of CCM_CCGR1_CG5 from a register value.
-#define BG_CCM_CCGR1_CG5(r)   (((r) & BM_CCM_CCGR1_CG5) >> BP_CCM_CCGR1_CG5)
+#define BG_CCM_CCGR1_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG5) >> BP_CCM_CCGR1_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG5.
-#define BF_CCM_CCGR1_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG5) & BM_CCM_CCGR1_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG5.
-#define BF_CCM_CCGR1_CG5(v)   (((v) << BP_CCM_CCGR1_CG5) & BM_CCM_CCGR1_CG5)
-#endif
+#define BF_CCM_CCGR1_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG5) & BM_CCM_CCGR1_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -6726,15 +6003,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR1_CG6.
 
 //! @brief Get value of CCM_CCGR1_CG6 from a register value.
-#define BG_CCM_CCGR1_CG6(r)   (((r) & BM_CCM_CCGR1_CG6) >> BP_CCM_CCGR1_CG6)
+#define BG_CCM_CCGR1_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG6) >> BP_CCM_CCGR1_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG6.
-#define BF_CCM_CCGR1_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG6) & BM_CCM_CCGR1_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG6.
-#define BF_CCM_CCGR1_CG6(v)   (((v) << BP_CCM_CCGR1_CG6) & BM_CCM_CCGR1_CG6)
-#endif
+#define BF_CCM_CCGR1_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG6) & BM_CCM_CCGR1_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -6750,15 +6022,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR1_CG7.
 
 //! @brief Get value of CCM_CCGR1_CG7 from a register value.
-#define BG_CCM_CCGR1_CG7(r)   (((r) & BM_CCM_CCGR1_CG7) >> BP_CCM_CCGR1_CG7)
+#define BG_CCM_CCGR1_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG7) >> BP_CCM_CCGR1_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG7.
-#define BF_CCM_CCGR1_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG7) & BM_CCM_CCGR1_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG7.
-#define BF_CCM_CCGR1_CG7(v)   (((v) << BP_CCM_CCGR1_CG7) & BM_CCM_CCGR1_CG7)
-#endif
+#define BF_CCM_CCGR1_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG7) & BM_CCM_CCGR1_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -6774,15 +6041,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR1_CG8.
 
 //! @brief Get value of CCM_CCGR1_CG8 from a register value.
-#define BG_CCM_CCGR1_CG8(r)   (((r) & BM_CCM_CCGR1_CG8) >> BP_CCM_CCGR1_CG8)
+#define BG_CCM_CCGR1_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG8) >> BP_CCM_CCGR1_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG8.
-#define BF_CCM_CCGR1_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG8) & BM_CCM_CCGR1_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG8.
-#define BF_CCM_CCGR1_CG8(v)   (((v) << BP_CCM_CCGR1_CG8) & BM_CCM_CCGR1_CG8)
-#endif
+#define BF_CCM_CCGR1_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG8) & BM_CCM_CCGR1_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -6798,15 +6060,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR1_CG9.
 
 //! @brief Get value of CCM_CCGR1_CG9 from a register value.
-#define BG_CCM_CCGR1_CG9(r)   (((r) & BM_CCM_CCGR1_CG9) >> BP_CCM_CCGR1_CG9)
+#define BG_CCM_CCGR1_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG9) >> BP_CCM_CCGR1_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG9.
-#define BF_CCM_CCGR1_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG9) & BM_CCM_CCGR1_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG9.
-#define BF_CCM_CCGR1_CG9(v)   (((v) << BP_CCM_CCGR1_CG9) & BM_CCM_CCGR1_CG9)
-#endif
+#define BF_CCM_CCGR1_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG9) & BM_CCM_CCGR1_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -6822,15 +6079,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR1_CG10.
 
 //! @brief Get value of CCM_CCGR1_CG10 from a register value.
-#define BG_CCM_CCGR1_CG10(r)   (((r) & BM_CCM_CCGR1_CG10) >> BP_CCM_CCGR1_CG10)
+#define BG_CCM_CCGR1_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG10) >> BP_CCM_CCGR1_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG10.
-#define BF_CCM_CCGR1_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG10) & BM_CCM_CCGR1_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG10.
-#define BF_CCM_CCGR1_CG10(v)   (((v) << BP_CCM_CCGR1_CG10) & BM_CCM_CCGR1_CG10)
-#endif
+#define BF_CCM_CCGR1_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG10) & BM_CCM_CCGR1_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -6846,15 +6098,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR1_CG11.
 
 //! @brief Get value of CCM_CCGR1_CG11 from a register value.
-#define BG_CCM_CCGR1_CG11(r)   (((r) & BM_CCM_CCGR1_CG11) >> BP_CCM_CCGR1_CG11)
+#define BG_CCM_CCGR1_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG11) >> BP_CCM_CCGR1_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG11.
-#define BF_CCM_CCGR1_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG11) & BM_CCM_CCGR1_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG11.
-#define BF_CCM_CCGR1_CG11(v)   (((v) << BP_CCM_CCGR1_CG11) & BM_CCM_CCGR1_CG11)
-#endif
+#define BF_CCM_CCGR1_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG11) & BM_CCM_CCGR1_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -6863,22 +6110,17 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG12[25:24] (RW)
  *
- * gpu2d clock (gpu2d_clk_enable)
+ * gpu2d clock (gpu2d_clk_enable) mshc xmscki clock (mshc_xmscki_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG12      (24)      //!< Bit position for CCM_CCGR1_CG12.
 #define BM_CCM_CCGR1_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR1_CG12.
 
 //! @brief Get value of CCM_CCGR1_CG12 from a register value.
-#define BG_CCM_CCGR1_CG12(r)   (((r) & BM_CCM_CCGR1_CG12) >> BP_CCM_CCGR1_CG12)
+#define BG_CCM_CCGR1_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG12) >> BP_CCM_CCGR1_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG12.
-#define BF_CCM_CCGR1_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG12) & BM_CCM_CCGR1_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG12.
-#define BF_CCM_CCGR1_CG12(v)   (((v) << BP_CCM_CCGR1_CG12) & BM_CCM_CCGR1_CG12)
-#endif
+#define BF_CCM_CCGR1_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG12) & BM_CCM_CCGR1_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -6887,22 +6129,17 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG13[27:26] (RW)
  *
- * gpu3d clock (gpu3d_clk_enable)
+ * gpu3d clock (gpu3d_clk_enable) gpu2d ovg clock (gpu2d_ovg_core_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG13      (26)      //!< Bit position for CCM_CCGR1_CG13.
 #define BM_CCM_CCGR1_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR1_CG13.
 
 //! @brief Get value of CCM_CCGR1_CG13 from a register value.
-#define BG_CCM_CCGR1_CG13(r)   (((r) & BM_CCM_CCGR1_CG13) >> BP_CCM_CCGR1_CG13)
+#define BG_CCM_CCGR1_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG13) >> BP_CCM_CCGR1_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG13.
-#define BF_CCM_CCGR1_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG13) & BM_CCM_CCGR1_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG13.
-#define BF_CCM_CCGR1_CG13(v)   (((v) << BP_CCM_CCGR1_CG13) & BM_CCM_CCGR1_CG13)
-#endif
+#define BF_CCM_CCGR1_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG13) & BM_CCM_CCGR1_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -6918,15 +6155,10 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR1_CG14.
 
 //! @brief Get value of CCM_CCGR1_CG14 from a register value.
-#define BG_CCM_CCGR1_CG14(r)   (((r) & BM_CCM_CCGR1_CG14) >> BP_CCM_CCGR1_CG14)
+#define BG_CCM_CCGR1_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG14) >> BP_CCM_CCGR1_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG14.
-#define BF_CCM_CCGR1_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG14) & BM_CCM_CCGR1_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG14.
-#define BF_CCM_CCGR1_CG14(v)   (((v) << BP_CCM_CCGR1_CG14) & BM_CCM_CCGR1_CG14)
-#endif
+#define BF_CCM_CCGR1_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG14) & BM_CCM_CCGR1_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -6942,20 +6174,19 @@ typedef union _hw_ccm_ccgr1
 #define BM_CCM_CCGR1_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR1_CG15.
 
 //! @brief Get value of CCM_CCGR1_CG15 from a register value.
-#define BG_CCM_CCGR1_CG15(r)   (((r) & BM_CCM_CCGR1_CG15) >> BP_CCM_CCGR1_CG15)
+#define BG_CCM_CCGR1_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR1_CG15) >> BP_CCM_CCGR1_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR1_CG15.
-#define BF_CCM_CCGR1_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR1_CG15) & BM_CCM_CCGR1_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR1_CG15.
-#define BF_CCM_CCGR1_CG15(v)   (((v) << BP_CCM_CCGR1_CG15) & BM_CCM_CCGR1_CG15)
-#endif
+#define BF_CCM_CCGR1_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR1_CG15) & BM_CCM_CCGR1_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR1_CG15(v)   (HW_CCM_CCGR1_WR((HW_CCM_CCGR1_RD() & ~BM_CCM_CCGR1_CG15) | BF_CCM_CCGR1_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR2 - CCM Clock Gating Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6973,9 +6204,9 @@ typedef union _hw_ccm_ccgr2
     reg32_t U;
     struct _hw_ccm_ccgr2_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable)
+        unsigned CG0 : 2; //!< [1:0] hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable) Reserved
         unsigned CG1 : 2; //!< [3:2] Reserved
-        unsigned CG2 : 2; //!< [5:4] hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable)
+        unsigned CG2 : 2; //!< [5:4] hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable) Reserved
         unsigned CG3 : 2; //!< [7:6] i2c1_serial clock (i2c1_serial_clk_enable)
         unsigned CG4 : 2; //!< [9:8] i2c2_serial clock (i2c2_serial_clk_enable)
         unsigned CG5 : 2; //!< [11:10] i2c3_serial clock (i2c3_serial_clk_enable)
@@ -6984,8 +6215,8 @@ typedef union _hw_ccm_ccgr2
         unsigned CG8 : 2; //!< [17:16] ipmux1 clock (ipmux1_clk_enable)
         unsigned CG9 : 2; //!< [19:18] ipmux2 clock (ipmux2_clk_enable)
         unsigned CG10 : 2; //!< [21:20] ipmux3 clock (ipmux3_clk_enable)
-        unsigned CG11 : 2; //!< [23:22] ipsync_ip2apb_tzasc1_ipg clocks (ipsync_ip2apb_tzasc2_ipg_master_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks)
+        unsigned CG11 : 2; //!< [23:22] ipsync_ip2apb_tzasc1_ipg clocks (ipsync_ip2apb_tzasc1_ipg_master_clk_enable)
+        unsigned CG12 : 2; //!< [25:24] ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks) Reserved
         unsigned CG13 : 2; //!< [27:26] ipsync_vdoa_ipg clocks (ipsync_vdoa_ipg_master_clk_enable)
         unsigned CG14 : 2; //!< [29:28] Reserved
         unsigned CG15 : 2; //!< [31:30] Reserved
@@ -7013,22 +6244,17 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG0[1:0] (RW)
  *
- * hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable)
+ * hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable) Reserved
  */
 
 #define BP_CCM_CCGR2_CG0      (0)      //!< Bit position for CCM_CCGR2_CG0.
 #define BM_CCM_CCGR2_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR2_CG0.
 
 //! @brief Get value of CCM_CCGR2_CG0 from a register value.
-#define BG_CCM_CCGR2_CG0(r)   (((r) & BM_CCM_CCGR2_CG0) >> BP_CCM_CCGR2_CG0)
+#define BG_CCM_CCGR2_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG0) >> BP_CCM_CCGR2_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG0.
-#define BF_CCM_CCGR2_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG0) & BM_CCM_CCGR2_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG0.
-#define BF_CCM_CCGR2_CG0(v)   (((v) << BP_CCM_CCGR2_CG0) & BM_CCM_CCGR2_CG0)
-#endif
+#define BF_CCM_CCGR2_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG0) & BM_CCM_CCGR2_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -7044,15 +6270,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR2_CG1.
 
 //! @brief Get value of CCM_CCGR2_CG1 from a register value.
-#define BG_CCM_CCGR2_CG1(r)   (((r) & BM_CCM_CCGR2_CG1) >> BP_CCM_CCGR2_CG1)
+#define BG_CCM_CCGR2_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG1) >> BP_CCM_CCGR2_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG1.
-#define BF_CCM_CCGR2_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG1) & BM_CCM_CCGR2_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG1.
-#define BF_CCM_CCGR2_CG1(v)   (((v) << BP_CCM_CCGR2_CG1) & BM_CCM_CCGR2_CG1)
-#endif
+#define BF_CCM_CCGR2_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG1) & BM_CCM_CCGR2_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -7061,22 +6282,17 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG2[5:4] (RW)
  *
- * hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable)
+ * hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable) Reserved
  */
 
 #define BP_CCM_CCGR2_CG2      (4)      //!< Bit position for CCM_CCGR2_CG2.
 #define BM_CCM_CCGR2_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR2_CG2.
 
 //! @brief Get value of CCM_CCGR2_CG2 from a register value.
-#define BG_CCM_CCGR2_CG2(r)   (((r) & BM_CCM_CCGR2_CG2) >> BP_CCM_CCGR2_CG2)
+#define BG_CCM_CCGR2_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG2) >> BP_CCM_CCGR2_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG2.
-#define BF_CCM_CCGR2_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG2) & BM_CCM_CCGR2_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG2.
-#define BF_CCM_CCGR2_CG2(v)   (((v) << BP_CCM_CCGR2_CG2) & BM_CCM_CCGR2_CG2)
-#endif
+#define BF_CCM_CCGR2_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG2) & BM_CCM_CCGR2_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -7092,15 +6308,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR2_CG3.
 
 //! @brief Get value of CCM_CCGR2_CG3 from a register value.
-#define BG_CCM_CCGR2_CG3(r)   (((r) & BM_CCM_CCGR2_CG3) >> BP_CCM_CCGR2_CG3)
+#define BG_CCM_CCGR2_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG3) >> BP_CCM_CCGR2_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG3.
-#define BF_CCM_CCGR2_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG3) & BM_CCM_CCGR2_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG3.
-#define BF_CCM_CCGR2_CG3(v)   (((v) << BP_CCM_CCGR2_CG3) & BM_CCM_CCGR2_CG3)
-#endif
+#define BF_CCM_CCGR2_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG3) & BM_CCM_CCGR2_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -7116,15 +6327,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR2_CG4.
 
 //! @brief Get value of CCM_CCGR2_CG4 from a register value.
-#define BG_CCM_CCGR2_CG4(r)   (((r) & BM_CCM_CCGR2_CG4) >> BP_CCM_CCGR2_CG4)
+#define BG_CCM_CCGR2_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG4) >> BP_CCM_CCGR2_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG4.
-#define BF_CCM_CCGR2_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG4) & BM_CCM_CCGR2_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG4.
-#define BF_CCM_CCGR2_CG4(v)   (((v) << BP_CCM_CCGR2_CG4) & BM_CCM_CCGR2_CG4)
-#endif
+#define BF_CCM_CCGR2_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG4) & BM_CCM_CCGR2_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -7140,15 +6346,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR2_CG5.
 
 //! @brief Get value of CCM_CCGR2_CG5 from a register value.
-#define BG_CCM_CCGR2_CG5(r)   (((r) & BM_CCM_CCGR2_CG5) >> BP_CCM_CCGR2_CG5)
+#define BG_CCM_CCGR2_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG5) >> BP_CCM_CCGR2_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG5.
-#define BF_CCM_CCGR2_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG5) & BM_CCM_CCGR2_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG5.
-#define BF_CCM_CCGR2_CG5(v)   (((v) << BP_CCM_CCGR2_CG5) & BM_CCM_CCGR2_CG5)
-#endif
+#define BF_CCM_CCGR2_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG5) & BM_CCM_CCGR2_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -7164,15 +6365,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR2_CG6.
 
 //! @brief Get value of CCM_CCGR2_CG6 from a register value.
-#define BG_CCM_CCGR2_CG6(r)   (((r) & BM_CCM_CCGR2_CG6) >> BP_CCM_CCGR2_CG6)
+#define BG_CCM_CCGR2_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG6) >> BP_CCM_CCGR2_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG6.
-#define BF_CCM_CCGR2_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG6) & BM_CCM_CCGR2_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG6.
-#define BF_CCM_CCGR2_CG6(v)   (((v) << BP_CCM_CCGR2_CG6) & BM_CCM_CCGR2_CG6)
-#endif
+#define BF_CCM_CCGR2_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG6) & BM_CCM_CCGR2_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -7188,15 +6384,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR2_CG7.
 
 //! @brief Get value of CCM_CCGR2_CG7 from a register value.
-#define BG_CCM_CCGR2_CG7(r)   (((r) & BM_CCM_CCGR2_CG7) >> BP_CCM_CCGR2_CG7)
+#define BG_CCM_CCGR2_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG7) >> BP_CCM_CCGR2_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG7.
-#define BF_CCM_CCGR2_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG7) & BM_CCM_CCGR2_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG7.
-#define BF_CCM_CCGR2_CG7(v)   (((v) << BP_CCM_CCGR2_CG7) & BM_CCM_CCGR2_CG7)
-#endif
+#define BF_CCM_CCGR2_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG7) & BM_CCM_CCGR2_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -7212,15 +6403,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR2_CG8.
 
 //! @brief Get value of CCM_CCGR2_CG8 from a register value.
-#define BG_CCM_CCGR2_CG8(r)   (((r) & BM_CCM_CCGR2_CG8) >> BP_CCM_CCGR2_CG8)
+#define BG_CCM_CCGR2_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG8) >> BP_CCM_CCGR2_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG8.
-#define BF_CCM_CCGR2_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG8) & BM_CCM_CCGR2_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG8.
-#define BF_CCM_CCGR2_CG8(v)   (((v) << BP_CCM_CCGR2_CG8) & BM_CCM_CCGR2_CG8)
-#endif
+#define BF_CCM_CCGR2_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG8) & BM_CCM_CCGR2_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -7236,15 +6422,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR2_CG9.
 
 //! @brief Get value of CCM_CCGR2_CG9 from a register value.
-#define BG_CCM_CCGR2_CG9(r)   (((r) & BM_CCM_CCGR2_CG9) >> BP_CCM_CCGR2_CG9)
+#define BG_CCM_CCGR2_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG9) >> BP_CCM_CCGR2_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG9.
-#define BF_CCM_CCGR2_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG9) & BM_CCM_CCGR2_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG9.
-#define BF_CCM_CCGR2_CG9(v)   (((v) << BP_CCM_CCGR2_CG9) & BM_CCM_CCGR2_CG9)
-#endif
+#define BF_CCM_CCGR2_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG9) & BM_CCM_CCGR2_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -7260,15 +6441,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR2_CG10.
 
 //! @brief Get value of CCM_CCGR2_CG10 from a register value.
-#define BG_CCM_CCGR2_CG10(r)   (((r) & BM_CCM_CCGR2_CG10) >> BP_CCM_CCGR2_CG10)
+#define BG_CCM_CCGR2_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG10) >> BP_CCM_CCGR2_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG10.
-#define BF_CCM_CCGR2_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG10) & BM_CCM_CCGR2_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG10.
-#define BF_CCM_CCGR2_CG10(v)   (((v) << BP_CCM_CCGR2_CG10) & BM_CCM_CCGR2_CG10)
-#endif
+#define BF_CCM_CCGR2_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG10) & BM_CCM_CCGR2_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -7277,22 +6453,17 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG11[23:22] (RW)
  *
- * ipsync_ip2apb_tzasc1_ipg clocks (ipsync_ip2apb_tzasc2_ipg_master_clk_enable)
+ * ipsync_ip2apb_tzasc1_ipg clocks (ipsync_ip2apb_tzasc1_ipg_master_clk_enable)
  */
 
 #define BP_CCM_CCGR2_CG11      (22)      //!< Bit position for CCM_CCGR2_CG11.
 #define BM_CCM_CCGR2_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR2_CG11.
 
 //! @brief Get value of CCM_CCGR2_CG11 from a register value.
-#define BG_CCM_CCGR2_CG11(r)   (((r) & BM_CCM_CCGR2_CG11) >> BP_CCM_CCGR2_CG11)
+#define BG_CCM_CCGR2_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG11) >> BP_CCM_CCGR2_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG11.
-#define BF_CCM_CCGR2_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG11) & BM_CCM_CCGR2_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG11.
-#define BF_CCM_CCGR2_CG11(v)   (((v) << BP_CCM_CCGR2_CG11) & BM_CCM_CCGR2_CG11)
-#endif
+#define BF_CCM_CCGR2_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG11) & BM_CCM_CCGR2_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -7301,22 +6472,17 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG12[25:24] (RW)
  *
- * ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks)
+ * ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks) Reserved
  */
 
 #define BP_CCM_CCGR2_CG12      (24)      //!< Bit position for CCM_CCGR2_CG12.
 #define BM_CCM_CCGR2_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR2_CG12.
 
 //! @brief Get value of CCM_CCGR2_CG12 from a register value.
-#define BG_CCM_CCGR2_CG12(r)   (((r) & BM_CCM_CCGR2_CG12) >> BP_CCM_CCGR2_CG12)
+#define BG_CCM_CCGR2_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG12) >> BP_CCM_CCGR2_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG12.
-#define BF_CCM_CCGR2_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG12) & BM_CCM_CCGR2_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG12.
-#define BF_CCM_CCGR2_CG12(v)   (((v) << BP_CCM_CCGR2_CG12) & BM_CCM_CCGR2_CG12)
-#endif
+#define BF_CCM_CCGR2_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG12) & BM_CCM_CCGR2_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -7332,15 +6498,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR2_CG13.
 
 //! @brief Get value of CCM_CCGR2_CG13 from a register value.
-#define BG_CCM_CCGR2_CG13(r)   (((r) & BM_CCM_CCGR2_CG13) >> BP_CCM_CCGR2_CG13)
+#define BG_CCM_CCGR2_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG13) >> BP_CCM_CCGR2_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG13.
-#define BF_CCM_CCGR2_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG13) & BM_CCM_CCGR2_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG13.
-#define BF_CCM_CCGR2_CG13(v)   (((v) << BP_CCM_CCGR2_CG13) & BM_CCM_CCGR2_CG13)
-#endif
+#define BF_CCM_CCGR2_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG13) & BM_CCM_CCGR2_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -7356,15 +6517,10 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR2_CG14.
 
 //! @brief Get value of CCM_CCGR2_CG14 from a register value.
-#define BG_CCM_CCGR2_CG14(r)   (((r) & BM_CCM_CCGR2_CG14) >> BP_CCM_CCGR2_CG14)
+#define BG_CCM_CCGR2_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG14) >> BP_CCM_CCGR2_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG14.
-#define BF_CCM_CCGR2_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG14) & BM_CCM_CCGR2_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG14.
-#define BF_CCM_CCGR2_CG14(v)   (((v) << BP_CCM_CCGR2_CG14) & BM_CCM_CCGR2_CG14)
-#endif
+#define BF_CCM_CCGR2_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG14) & BM_CCM_CCGR2_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -7380,20 +6536,19 @@ typedef union _hw_ccm_ccgr2
 #define BM_CCM_CCGR2_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR2_CG15.
 
 //! @brief Get value of CCM_CCGR2_CG15 from a register value.
-#define BG_CCM_CCGR2_CG15(r)   (((r) & BM_CCM_CCGR2_CG15) >> BP_CCM_CCGR2_CG15)
+#define BG_CCM_CCGR2_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR2_CG15) >> BP_CCM_CCGR2_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR2_CG15.
-#define BF_CCM_CCGR2_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR2_CG15) & BM_CCM_CCGR2_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR2_CG15.
-#define BF_CCM_CCGR2_CG15(v)   (((v) << BP_CCM_CCGR2_CG15) & BM_CCM_CCGR2_CG15)
-#endif
+#define BF_CCM_CCGR2_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR2_CG15) & BM_CCM_CCGR2_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR2_CG15(v)   (HW_CCM_CCGR2_WR((HW_CCM_CCGR2_RD() & ~BM_CCM_CCGR2_CG15) | BF_CCM_CCGR2_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR3 - CCM Clock Gating Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7411,22 +6566,22 @@ typedef union _hw_ccm_ccgr3
     reg32_t U;
     struct _hw_ccm_ccgr3_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] ipu1_ipu clock (ipu1_ipu_clk_enable)
-        unsigned CG1 : 2; //!< [3:2] ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable)
-        unsigned CG2 : 2; //!< [5:4] ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable)
-        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable)
+        unsigned CG0 : 2; //!< [1:0] ipu1_ipu clock (ipu1_ipu_clk_enable) csi core clock (csi_core_clk_enable)
+        unsigned CG1 : 2; //!< [3:2] ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable) pxp axi clock (pxp_axi_clk_enable)
+        unsigned CG2 : 2; //!< [5:4] ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable) epdc axi clock (epdc_axi_clk_enable)
+        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable) lcdif axi clock (lcdif_axi_clk_enable)
         unsigned CG4 : 2; //!< [9:8] ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable) lcdif_pix clock (lcdif_pix_clk_enable)
         unsigned CG5 : 2; //!< [11:10] ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable) epdc_pix clock (epdc_pix_clk_enable)
-        unsigned CG6 : 2; //!< [13:12] ldb_di0 clock (ldb_di0_clk_enable)
-        unsigned CG7 : 2; //!< [15:14] ldb_di1 clock (ldb_di1_clk_enable)
-        unsigned CG8 : 2; //!< [17:16] mipi_core_cfg clock (mipi_core_cfg_clk_enable)
-        unsigned CG9 : 2; //!< [19:18] mlb clock (mlb_clk_enable)
+        unsigned CG6 : 2; //!< [13:12] ldb_di0 clock (ldb_di0_clk_enable) Reserved
+        unsigned CG7 : 2; //!< [15:14] ldb_di1 clock (ldb_di1_clk_enable) Reserved
+        unsigned CG8 : 2; //!< [17:16] mipi_core_cfg clock (mipi_core_cfg_clk_enable) Reserved
+        unsigned CG9 : 2; //!< [19:18] mlb clock (mlb_clk_enable) Reserved
         unsigned CG10 : 2; //!< [21:20] mmdc_core_aclk_fast_core_p0 clock (mmdc_core_aclk_fast_core_p0_enable)
-        unsigned CG11 : 2; //!< [23:22] mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable)
+        unsigned CG11 : 2; //!< [23:22] mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable) Reserved
         unsigned CG12 : 2; //!< [25:24] mmdc_core_ipg_clk_p0 clock (mmdc_core_ipg_clk_p0_enable)
         unsigned CG13 : 2; //!< [27:26] mmdc_core_ipg_clk_p1 clock (mmdc_core_ipg_clk_p1_enable)
         unsigned CG14 : 2; //!< [29:28] ocram clock (ocram_clk_enable)
-        unsigned CG15 : 2; //!< [31:30] openvgaxiclk clock (openvgaxiclk_clk_root_enable)
+        unsigned CG15 : 2; //!< [31:30] openvgaxiclk clock (openvgaxiclk_clk_root_enable) Reserved
     } B;
 } hw_ccm_ccgr3_t;
 #endif
@@ -7451,22 +6606,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG0[1:0] (RW)
  *
- * ipu1_ipu clock (ipu1_ipu_clk_enable)
+ * ipu1_ipu clock (ipu1_ipu_clk_enable) csi core clock (csi_core_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG0      (0)      //!< Bit position for CCM_CCGR3_CG0.
 #define BM_CCM_CCGR3_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR3_CG0.
 
 //! @brief Get value of CCM_CCGR3_CG0 from a register value.
-#define BG_CCM_CCGR3_CG0(r)   (((r) & BM_CCM_CCGR3_CG0) >> BP_CCM_CCGR3_CG0)
+#define BG_CCM_CCGR3_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG0) >> BP_CCM_CCGR3_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG0.
-#define BF_CCM_CCGR3_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG0) & BM_CCM_CCGR3_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG0.
-#define BF_CCM_CCGR3_CG0(v)   (((v) << BP_CCM_CCGR3_CG0) & BM_CCM_CCGR3_CG0)
-#endif
+#define BF_CCM_CCGR3_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG0) & BM_CCM_CCGR3_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -7475,22 +6625,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG1[3:2] (RW)
  *
- * ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable)
+ * ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable) pxp axi clock (pxp_axi_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG1      (2)      //!< Bit position for CCM_CCGR3_CG1.
 #define BM_CCM_CCGR3_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR3_CG1.
 
 //! @brief Get value of CCM_CCGR3_CG1 from a register value.
-#define BG_CCM_CCGR3_CG1(r)   (((r) & BM_CCM_CCGR3_CG1) >> BP_CCM_CCGR3_CG1)
+#define BG_CCM_CCGR3_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG1) >> BP_CCM_CCGR3_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG1.
-#define BF_CCM_CCGR3_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG1) & BM_CCM_CCGR3_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG1.
-#define BF_CCM_CCGR3_CG1(v)   (((v) << BP_CCM_CCGR3_CG1) & BM_CCM_CCGR3_CG1)
-#endif
+#define BF_CCM_CCGR3_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG1) & BM_CCM_CCGR3_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -7499,22 +6644,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG2[5:4] (RW)
  *
- * ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable)
+ * ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable) epdc axi clock (epdc_axi_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG2      (4)      //!< Bit position for CCM_CCGR3_CG2.
 #define BM_CCM_CCGR3_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR3_CG2.
 
 //! @brief Get value of CCM_CCGR3_CG2 from a register value.
-#define BG_CCM_CCGR3_CG2(r)   (((r) & BM_CCM_CCGR3_CG2) >> BP_CCM_CCGR3_CG2)
+#define BG_CCM_CCGR3_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG2) >> BP_CCM_CCGR3_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG2.
-#define BF_CCM_CCGR3_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG2) & BM_CCM_CCGR3_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG2.
-#define BF_CCM_CCGR3_CG2(v)   (((v) << BP_CCM_CCGR3_CG2) & BM_CCM_CCGR3_CG2)
-#endif
+#define BF_CCM_CCGR3_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG2) & BM_CCM_CCGR3_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -7523,22 +6663,18 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG3[7:6] (RW)
  *
- * ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable)
+ * ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable) lcdif axi clock
+ * (lcdif_axi_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG3      (6)      //!< Bit position for CCM_CCGR3_CG3.
 #define BM_CCM_CCGR3_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR3_CG3.
 
 //! @brief Get value of CCM_CCGR3_CG3 from a register value.
-#define BG_CCM_CCGR3_CG3(r)   (((r) & BM_CCM_CCGR3_CG3) >> BP_CCM_CCGR3_CG3)
+#define BG_CCM_CCGR3_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG3) >> BP_CCM_CCGR3_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG3.
-#define BF_CCM_CCGR3_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG3) & BM_CCM_CCGR3_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG3.
-#define BF_CCM_CCGR3_CG3(v)   (((v) << BP_CCM_CCGR3_CG3) & BM_CCM_CCGR3_CG3)
-#endif
+#define BF_CCM_CCGR3_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG3) & BM_CCM_CCGR3_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -7554,15 +6690,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR3_CG4.
 
 //! @brief Get value of CCM_CCGR3_CG4 from a register value.
-#define BG_CCM_CCGR3_CG4(r)   (((r) & BM_CCM_CCGR3_CG4) >> BP_CCM_CCGR3_CG4)
+#define BG_CCM_CCGR3_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG4) >> BP_CCM_CCGR3_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG4.
-#define BF_CCM_CCGR3_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG4) & BM_CCM_CCGR3_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG4.
-#define BF_CCM_CCGR3_CG4(v)   (((v) << BP_CCM_CCGR3_CG4) & BM_CCM_CCGR3_CG4)
-#endif
+#define BF_CCM_CCGR3_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG4) & BM_CCM_CCGR3_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -7578,15 +6709,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR3_CG5.
 
 //! @brief Get value of CCM_CCGR3_CG5 from a register value.
-#define BG_CCM_CCGR3_CG5(r)   (((r) & BM_CCM_CCGR3_CG5) >> BP_CCM_CCGR3_CG5)
+#define BG_CCM_CCGR3_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG5) >> BP_CCM_CCGR3_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG5.
-#define BF_CCM_CCGR3_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG5) & BM_CCM_CCGR3_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG5.
-#define BF_CCM_CCGR3_CG5(v)   (((v) << BP_CCM_CCGR3_CG5) & BM_CCM_CCGR3_CG5)
-#endif
+#define BF_CCM_CCGR3_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG5) & BM_CCM_CCGR3_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -7595,22 +6721,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG6[13:12] (RW)
  *
- * ldb_di0 clock (ldb_di0_clk_enable)
+ * ldb_di0 clock (ldb_di0_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG6      (12)      //!< Bit position for CCM_CCGR3_CG6.
 #define BM_CCM_CCGR3_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR3_CG6.
 
 //! @brief Get value of CCM_CCGR3_CG6 from a register value.
-#define BG_CCM_CCGR3_CG6(r)   (((r) & BM_CCM_CCGR3_CG6) >> BP_CCM_CCGR3_CG6)
+#define BG_CCM_CCGR3_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG6) >> BP_CCM_CCGR3_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG6.
-#define BF_CCM_CCGR3_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG6) & BM_CCM_CCGR3_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG6.
-#define BF_CCM_CCGR3_CG6(v)   (((v) << BP_CCM_CCGR3_CG6) & BM_CCM_CCGR3_CG6)
-#endif
+#define BF_CCM_CCGR3_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG6) & BM_CCM_CCGR3_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -7619,22 +6740,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG7[15:14] (RW)
  *
- * ldb_di1 clock (ldb_di1_clk_enable)
+ * ldb_di1 clock (ldb_di1_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG7      (14)      //!< Bit position for CCM_CCGR3_CG7.
 #define BM_CCM_CCGR3_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR3_CG7.
 
 //! @brief Get value of CCM_CCGR3_CG7 from a register value.
-#define BG_CCM_CCGR3_CG7(r)   (((r) & BM_CCM_CCGR3_CG7) >> BP_CCM_CCGR3_CG7)
+#define BG_CCM_CCGR3_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG7) >> BP_CCM_CCGR3_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG7.
-#define BF_CCM_CCGR3_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG7) & BM_CCM_CCGR3_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG7.
-#define BF_CCM_CCGR3_CG7(v)   (((v) << BP_CCM_CCGR3_CG7) & BM_CCM_CCGR3_CG7)
-#endif
+#define BF_CCM_CCGR3_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG7) & BM_CCM_CCGR3_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -7643,22 +6759,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG8[17:16] (RW)
  *
- * mipi_core_cfg clock (mipi_core_cfg_clk_enable)
+ * mipi_core_cfg clock (mipi_core_cfg_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG8      (16)      //!< Bit position for CCM_CCGR3_CG8.
 #define BM_CCM_CCGR3_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR3_CG8.
 
 //! @brief Get value of CCM_CCGR3_CG8 from a register value.
-#define BG_CCM_CCGR3_CG8(r)   (((r) & BM_CCM_CCGR3_CG8) >> BP_CCM_CCGR3_CG8)
+#define BG_CCM_CCGR3_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG8) >> BP_CCM_CCGR3_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG8.
-#define BF_CCM_CCGR3_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG8) & BM_CCM_CCGR3_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG8.
-#define BF_CCM_CCGR3_CG8(v)   (((v) << BP_CCM_CCGR3_CG8) & BM_CCM_CCGR3_CG8)
-#endif
+#define BF_CCM_CCGR3_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG8) & BM_CCM_CCGR3_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -7667,22 +6778,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG9[19:18] (RW)
  *
- * mlb clock (mlb_clk_enable)
+ * mlb clock (mlb_clk_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG9      (18)      //!< Bit position for CCM_CCGR3_CG9.
 #define BM_CCM_CCGR3_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR3_CG9.
 
 //! @brief Get value of CCM_CCGR3_CG9 from a register value.
-#define BG_CCM_CCGR3_CG9(r)   (((r) & BM_CCM_CCGR3_CG9) >> BP_CCM_CCGR3_CG9)
+#define BG_CCM_CCGR3_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG9) >> BP_CCM_CCGR3_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG9.
-#define BF_CCM_CCGR3_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG9) & BM_CCM_CCGR3_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG9.
-#define BF_CCM_CCGR3_CG9(v)   (((v) << BP_CCM_CCGR3_CG9) & BM_CCM_CCGR3_CG9)
-#endif
+#define BF_CCM_CCGR3_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG9) & BM_CCM_CCGR3_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -7698,15 +6804,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR3_CG10.
 
 //! @brief Get value of CCM_CCGR3_CG10 from a register value.
-#define BG_CCM_CCGR3_CG10(r)   (((r) & BM_CCM_CCGR3_CG10) >> BP_CCM_CCGR3_CG10)
+#define BG_CCM_CCGR3_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG10) >> BP_CCM_CCGR3_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG10.
-#define BF_CCM_CCGR3_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG10) & BM_CCM_CCGR3_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG10.
-#define BF_CCM_CCGR3_CG10(v)   (((v) << BP_CCM_CCGR3_CG10) & BM_CCM_CCGR3_CG10)
-#endif
+#define BF_CCM_CCGR3_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG10) & BM_CCM_CCGR3_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -7715,22 +6816,17 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG11[23:22] (RW)
  *
- * mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable)
+ * mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG11      (22)      //!< Bit position for CCM_CCGR3_CG11.
 #define BM_CCM_CCGR3_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR3_CG11.
 
 //! @brief Get value of CCM_CCGR3_CG11 from a register value.
-#define BG_CCM_CCGR3_CG11(r)   (((r) & BM_CCM_CCGR3_CG11) >> BP_CCM_CCGR3_CG11)
+#define BG_CCM_CCGR3_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG11) >> BP_CCM_CCGR3_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG11.
-#define BF_CCM_CCGR3_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG11) & BM_CCM_CCGR3_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG11.
-#define BF_CCM_CCGR3_CG11(v)   (((v) << BP_CCM_CCGR3_CG11) & BM_CCM_CCGR3_CG11)
-#endif
+#define BF_CCM_CCGR3_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG11) & BM_CCM_CCGR3_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -7746,15 +6842,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR3_CG12.
 
 //! @brief Get value of CCM_CCGR3_CG12 from a register value.
-#define BG_CCM_CCGR3_CG12(r)   (((r) & BM_CCM_CCGR3_CG12) >> BP_CCM_CCGR3_CG12)
+#define BG_CCM_CCGR3_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG12) >> BP_CCM_CCGR3_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG12.
-#define BF_CCM_CCGR3_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG12) & BM_CCM_CCGR3_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG12.
-#define BF_CCM_CCGR3_CG12(v)   (((v) << BP_CCM_CCGR3_CG12) & BM_CCM_CCGR3_CG12)
-#endif
+#define BF_CCM_CCGR3_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG12) & BM_CCM_CCGR3_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -7770,15 +6861,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR3_CG13.
 
 //! @brief Get value of CCM_CCGR3_CG13 from a register value.
-#define BG_CCM_CCGR3_CG13(r)   (((r) & BM_CCM_CCGR3_CG13) >> BP_CCM_CCGR3_CG13)
+#define BG_CCM_CCGR3_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG13) >> BP_CCM_CCGR3_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG13.
-#define BF_CCM_CCGR3_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG13) & BM_CCM_CCGR3_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG13.
-#define BF_CCM_CCGR3_CG13(v)   (((v) << BP_CCM_CCGR3_CG13) & BM_CCM_CCGR3_CG13)
-#endif
+#define BF_CCM_CCGR3_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG13) & BM_CCM_CCGR3_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -7794,15 +6880,10 @@ typedef union _hw_ccm_ccgr3
 #define BM_CCM_CCGR3_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR3_CG14.
 
 //! @brief Get value of CCM_CCGR3_CG14 from a register value.
-#define BG_CCM_CCGR3_CG14(r)   (((r) & BM_CCM_CCGR3_CG14) >> BP_CCM_CCGR3_CG14)
+#define BG_CCM_CCGR3_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG14) >> BP_CCM_CCGR3_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG14.
-#define BF_CCM_CCGR3_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG14) & BM_CCM_CCGR3_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG14.
-#define BF_CCM_CCGR3_CG14(v)   (((v) << BP_CCM_CCGR3_CG14) & BM_CCM_CCGR3_CG14)
-#endif
+#define BF_CCM_CCGR3_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG14) & BM_CCM_CCGR3_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -7811,27 +6892,26 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG15[31:30] (RW)
  *
- * openvgaxiclk clock (openvgaxiclk_clk_root_enable)
+ * openvgaxiclk clock (openvgaxiclk_clk_root_enable) Reserved
  */
 
 #define BP_CCM_CCGR3_CG15      (30)      //!< Bit position for CCM_CCGR3_CG15.
 #define BM_CCM_CCGR3_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR3_CG15.
 
 //! @brief Get value of CCM_CCGR3_CG15 from a register value.
-#define BG_CCM_CCGR3_CG15(r)   (((r) & BM_CCM_CCGR3_CG15) >> BP_CCM_CCGR3_CG15)
+#define BG_CCM_CCGR3_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR3_CG15) >> BP_CCM_CCGR3_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR3_CG15.
-#define BF_CCM_CCGR3_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR3_CG15) & BM_CCM_CCGR3_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR3_CG15.
-#define BF_CCM_CCGR3_CG15(v)   (((v) << BP_CCM_CCGR3_CG15) & BM_CCM_CCGR3_CG15)
-#endif
+#define BF_CCM_CCGR3_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR3_CG15) & BM_CCM_CCGR3_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR3_CG15(v)   (HW_CCM_CCGR3_WR((HW_CCM_CCGR3_RD() & ~BM_CCM_CCGR3_CG15) | BF_CCM_CCGR3_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR4 - CCM Clock Gating Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7849,13 +6929,13 @@ typedef union _hw_ccm_ccgr4
     reg32_t U;
     struct _hw_ccm_ccgr4_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] pcie clocks (pcie_root_enable)
+        unsigned CG0 : 2; //!< [1:0] 125M clocks (125M_root_enable) Reserved
         unsigned CG1 : 2; //!< [3:2] perfmon1 clocks (perfmon1_apb_clk_enable) Reserved.
         unsigned CG2 : 2; //!< [5:4] perfmon2 clock (perfmon2_apb_clk_enable) Reserved.
         unsigned CG3 : 2; //!< [7:6] perfmon3 clocks (perfmon3_apb_clk_enable) Reserved.
         unsigned CG4 : 2; //!< [9:8] pl301_mx6qfast1_s133 clock (pl301_mx6qfast1_s133clk_enable)
         unsigned CG5 : 2; //!< [11:10] Reserved
-        unsigned CG6 : 2; //!< [13:12] pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable)
+        unsigned CG6 : 2; //!< [13:12] pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable) Reserved
         unsigned CG7 : 2; //!< [15:14] pl301_mx6qper2_mainclk_enable (pl301_mx6qper2_mainclk_enable)
         unsigned CG8 : 2; //!< [17:16] pwm1 clocks (pwm1_clk_enable)
         unsigned CG9 : 2; //!< [19:18] pwm2 clocks (pwm2_clk_enable)
@@ -7889,22 +6969,17 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG0[1:0] (RW)
  *
- * pcie clocks (pcie_root_enable)
+ * 125M clocks (125M_root_enable) Reserved
  */
 
 #define BP_CCM_CCGR4_CG0      (0)      //!< Bit position for CCM_CCGR4_CG0.
 #define BM_CCM_CCGR4_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR4_CG0.
 
 //! @brief Get value of CCM_CCGR4_CG0 from a register value.
-#define BG_CCM_CCGR4_CG0(r)   (((r) & BM_CCM_CCGR4_CG0) >> BP_CCM_CCGR4_CG0)
+#define BG_CCM_CCGR4_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG0) >> BP_CCM_CCGR4_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG0.
-#define BF_CCM_CCGR4_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG0) & BM_CCM_CCGR4_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG0.
-#define BF_CCM_CCGR4_CG0(v)   (((v) << BP_CCM_CCGR4_CG0) & BM_CCM_CCGR4_CG0)
-#endif
+#define BF_CCM_CCGR4_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG0) & BM_CCM_CCGR4_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -7920,15 +6995,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR4_CG1.
 
 //! @brief Get value of CCM_CCGR4_CG1 from a register value.
-#define BG_CCM_CCGR4_CG1(r)   (((r) & BM_CCM_CCGR4_CG1) >> BP_CCM_CCGR4_CG1)
+#define BG_CCM_CCGR4_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG1) >> BP_CCM_CCGR4_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG1.
-#define BF_CCM_CCGR4_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG1) & BM_CCM_CCGR4_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG1.
-#define BF_CCM_CCGR4_CG1(v)   (((v) << BP_CCM_CCGR4_CG1) & BM_CCM_CCGR4_CG1)
-#endif
+#define BF_CCM_CCGR4_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG1) & BM_CCM_CCGR4_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -7944,15 +7014,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR4_CG2.
 
 //! @brief Get value of CCM_CCGR4_CG2 from a register value.
-#define BG_CCM_CCGR4_CG2(r)   (((r) & BM_CCM_CCGR4_CG2) >> BP_CCM_CCGR4_CG2)
+#define BG_CCM_CCGR4_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG2) >> BP_CCM_CCGR4_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG2.
-#define BF_CCM_CCGR4_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG2) & BM_CCM_CCGR4_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG2.
-#define BF_CCM_CCGR4_CG2(v)   (((v) << BP_CCM_CCGR4_CG2) & BM_CCM_CCGR4_CG2)
-#endif
+#define BF_CCM_CCGR4_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG2) & BM_CCM_CCGR4_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -7968,15 +7033,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR4_CG3.
 
 //! @brief Get value of CCM_CCGR4_CG3 from a register value.
-#define BG_CCM_CCGR4_CG3(r)   (((r) & BM_CCM_CCGR4_CG3) >> BP_CCM_CCGR4_CG3)
+#define BG_CCM_CCGR4_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG3) >> BP_CCM_CCGR4_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG3.
-#define BF_CCM_CCGR4_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG3) & BM_CCM_CCGR4_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG3.
-#define BF_CCM_CCGR4_CG3(v)   (((v) << BP_CCM_CCGR4_CG3) & BM_CCM_CCGR4_CG3)
-#endif
+#define BF_CCM_CCGR4_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG3) & BM_CCM_CCGR4_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -7992,15 +7052,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR4_CG4.
 
 //! @brief Get value of CCM_CCGR4_CG4 from a register value.
-#define BG_CCM_CCGR4_CG4(r)   (((r) & BM_CCM_CCGR4_CG4) >> BP_CCM_CCGR4_CG4)
+#define BG_CCM_CCGR4_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG4) >> BP_CCM_CCGR4_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG4.
-#define BF_CCM_CCGR4_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG4) & BM_CCM_CCGR4_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG4.
-#define BF_CCM_CCGR4_CG4(v)   (((v) << BP_CCM_CCGR4_CG4) & BM_CCM_CCGR4_CG4)
-#endif
+#define BF_CCM_CCGR4_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG4) & BM_CCM_CCGR4_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -8016,15 +7071,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR4_CG5.
 
 //! @brief Get value of CCM_CCGR4_CG5 from a register value.
-#define BG_CCM_CCGR4_CG5(r)   (((r) & BM_CCM_CCGR4_CG5) >> BP_CCM_CCGR4_CG5)
+#define BG_CCM_CCGR4_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG5) >> BP_CCM_CCGR4_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG5.
-#define BF_CCM_CCGR4_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG5) & BM_CCM_CCGR4_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG5.
-#define BF_CCM_CCGR4_CG5(v)   (((v) << BP_CCM_CCGR4_CG5) & BM_CCM_CCGR4_CG5)
-#endif
+#define BF_CCM_CCGR4_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG5) & BM_CCM_CCGR4_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -8033,22 +7083,17 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG6[13:12] (RW)
  *
- * pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable)
+ * pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable) Reserved
  */
 
 #define BP_CCM_CCGR4_CG6      (12)      //!< Bit position for CCM_CCGR4_CG6.
 #define BM_CCM_CCGR4_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR4_CG6.
 
 //! @brief Get value of CCM_CCGR4_CG6 from a register value.
-#define BG_CCM_CCGR4_CG6(r)   (((r) & BM_CCM_CCGR4_CG6) >> BP_CCM_CCGR4_CG6)
+#define BG_CCM_CCGR4_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG6) >> BP_CCM_CCGR4_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG6.
-#define BF_CCM_CCGR4_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG6) & BM_CCM_CCGR4_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG6.
-#define BF_CCM_CCGR4_CG6(v)   (((v) << BP_CCM_CCGR4_CG6) & BM_CCM_CCGR4_CG6)
-#endif
+#define BF_CCM_CCGR4_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG6) & BM_CCM_CCGR4_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -8064,15 +7109,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR4_CG7.
 
 //! @brief Get value of CCM_CCGR4_CG7 from a register value.
-#define BG_CCM_CCGR4_CG7(r)   (((r) & BM_CCM_CCGR4_CG7) >> BP_CCM_CCGR4_CG7)
+#define BG_CCM_CCGR4_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG7) >> BP_CCM_CCGR4_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG7.
-#define BF_CCM_CCGR4_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG7) & BM_CCM_CCGR4_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG7.
-#define BF_CCM_CCGR4_CG7(v)   (((v) << BP_CCM_CCGR4_CG7) & BM_CCM_CCGR4_CG7)
-#endif
+#define BF_CCM_CCGR4_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG7) & BM_CCM_CCGR4_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -8088,15 +7128,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR4_CG8.
 
 //! @brief Get value of CCM_CCGR4_CG8 from a register value.
-#define BG_CCM_CCGR4_CG8(r)   (((r) & BM_CCM_CCGR4_CG8) >> BP_CCM_CCGR4_CG8)
+#define BG_CCM_CCGR4_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG8) >> BP_CCM_CCGR4_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG8.
-#define BF_CCM_CCGR4_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG8) & BM_CCM_CCGR4_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG8.
-#define BF_CCM_CCGR4_CG8(v)   (((v) << BP_CCM_CCGR4_CG8) & BM_CCM_CCGR4_CG8)
-#endif
+#define BF_CCM_CCGR4_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG8) & BM_CCM_CCGR4_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -8112,15 +7147,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR4_CG9.
 
 //! @brief Get value of CCM_CCGR4_CG9 from a register value.
-#define BG_CCM_CCGR4_CG9(r)   (((r) & BM_CCM_CCGR4_CG9) >> BP_CCM_CCGR4_CG9)
+#define BG_CCM_CCGR4_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG9) >> BP_CCM_CCGR4_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG9.
-#define BF_CCM_CCGR4_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG9) & BM_CCM_CCGR4_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG9.
-#define BF_CCM_CCGR4_CG9(v)   (((v) << BP_CCM_CCGR4_CG9) & BM_CCM_CCGR4_CG9)
-#endif
+#define BF_CCM_CCGR4_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG9) & BM_CCM_CCGR4_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -8136,15 +7166,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR4_CG10.
 
 //! @brief Get value of CCM_CCGR4_CG10 from a register value.
-#define BG_CCM_CCGR4_CG10(r)   (((r) & BM_CCM_CCGR4_CG10) >> BP_CCM_CCGR4_CG10)
+#define BG_CCM_CCGR4_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG10) >> BP_CCM_CCGR4_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG10.
-#define BF_CCM_CCGR4_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG10) & BM_CCM_CCGR4_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG10.
-#define BF_CCM_CCGR4_CG10(v)   (((v) << BP_CCM_CCGR4_CG10) & BM_CCM_CCGR4_CG10)
-#endif
+#define BF_CCM_CCGR4_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG10) & BM_CCM_CCGR4_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -8160,15 +7185,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR4_CG11.
 
 //! @brief Get value of CCM_CCGR4_CG11 from a register value.
-#define BG_CCM_CCGR4_CG11(r)   (((r) & BM_CCM_CCGR4_CG11) >> BP_CCM_CCGR4_CG11)
+#define BG_CCM_CCGR4_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG11) >> BP_CCM_CCGR4_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG11.
-#define BF_CCM_CCGR4_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG11) & BM_CCM_CCGR4_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG11.
-#define BF_CCM_CCGR4_CG11(v)   (((v) << BP_CCM_CCGR4_CG11) & BM_CCM_CCGR4_CG11)
-#endif
+#define BF_CCM_CCGR4_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG11) & BM_CCM_CCGR4_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -8184,15 +7204,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR4_CG12.
 
 //! @brief Get value of CCM_CCGR4_CG12 from a register value.
-#define BG_CCM_CCGR4_CG12(r)   (((r) & BM_CCM_CCGR4_CG12) >> BP_CCM_CCGR4_CG12)
+#define BG_CCM_CCGR4_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG12) >> BP_CCM_CCGR4_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG12.
-#define BF_CCM_CCGR4_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG12) & BM_CCM_CCGR4_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG12.
-#define BF_CCM_CCGR4_CG12(v)   (((v) << BP_CCM_CCGR4_CG12) & BM_CCM_CCGR4_CG12)
-#endif
+#define BF_CCM_CCGR4_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG12) & BM_CCM_CCGR4_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -8208,15 +7223,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR4_CG13.
 
 //! @brief Get value of CCM_CCGR4_CG13 from a register value.
-#define BG_CCM_CCGR4_CG13(r)   (((r) & BM_CCM_CCGR4_CG13) >> BP_CCM_CCGR4_CG13)
+#define BG_CCM_CCGR4_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG13) >> BP_CCM_CCGR4_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG13.
-#define BF_CCM_CCGR4_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG13) & BM_CCM_CCGR4_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG13.
-#define BF_CCM_CCGR4_CG13(v)   (((v) << BP_CCM_CCGR4_CG13) & BM_CCM_CCGR4_CG13)
-#endif
+#define BF_CCM_CCGR4_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG13) & BM_CCM_CCGR4_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -8232,15 +7242,10 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR4_CG14.
 
 //! @brief Get value of CCM_CCGR4_CG14 from a register value.
-#define BG_CCM_CCGR4_CG14(r)   (((r) & BM_CCM_CCGR4_CG14) >> BP_CCM_CCGR4_CG14)
+#define BG_CCM_CCGR4_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG14) >> BP_CCM_CCGR4_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG14.
-#define BF_CCM_CCGR4_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG14) & BM_CCM_CCGR4_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG14.
-#define BF_CCM_CCGR4_CG14(v)   (((v) << BP_CCM_CCGR4_CG14) & BM_CCM_CCGR4_CG14)
-#endif
+#define BF_CCM_CCGR4_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG14) & BM_CCM_CCGR4_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -8256,20 +7261,19 @@ typedef union _hw_ccm_ccgr4
 #define BM_CCM_CCGR4_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR4_CG15.
 
 //! @brief Get value of CCM_CCGR4_CG15 from a register value.
-#define BG_CCM_CCGR4_CG15(r)   (((r) & BM_CCM_CCGR4_CG15) >> BP_CCM_CCGR4_CG15)
+#define BG_CCM_CCGR4_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR4_CG15) >> BP_CCM_CCGR4_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR4_CG15.
-#define BF_CCM_CCGR4_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR4_CG15) & BM_CCM_CCGR4_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR4_CG15.
-#define BF_CCM_CCGR4_CG15(v)   (((v) << BP_CCM_CCGR4_CG15) & BM_CCM_CCGR4_CG15)
-#endif
+#define BF_CCM_CCGR4_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR4_CG15) & BM_CCM_CCGR4_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR4_CG15(v)   (HW_CCM_CCGR4_WR((HW_CCM_CCGR4_RD() & ~BM_CCM_CCGR4_CG15) | BF_CCM_CCGR4_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR5 - CCM Clock Gating Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8289,7 +7293,7 @@ typedef union _hw_ccm_ccgr5
     {
         unsigned CG0 : 2; //!< [1:0] rom clock (rom_clk_enable)
         unsigned CG1 : 2; //!< [3:2] Reserved
-        unsigned CG2 : 2; //!< [5:4] sata clock (sata_clk_enable)
+        unsigned CG2 : 2; //!< [5:4] 100M clock (100M_clk_enable)
         unsigned CG3 : 2; //!< [7:6] sdma clock (sdma_clk_enable)
         unsigned CG4 : 2; //!< [9:8] Reserved
         unsigned CG5 : 2; //!< [11:10] Reserved
@@ -8334,15 +7338,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR5_CG0.
 
 //! @brief Get value of CCM_CCGR5_CG0 from a register value.
-#define BG_CCM_CCGR5_CG0(r)   (((r) & BM_CCM_CCGR5_CG0) >> BP_CCM_CCGR5_CG0)
+#define BG_CCM_CCGR5_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG0) >> BP_CCM_CCGR5_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG0.
-#define BF_CCM_CCGR5_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG0) & BM_CCM_CCGR5_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG0.
-#define BF_CCM_CCGR5_CG0(v)   (((v) << BP_CCM_CCGR5_CG0) & BM_CCM_CCGR5_CG0)
-#endif
+#define BF_CCM_CCGR5_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG0) & BM_CCM_CCGR5_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -8358,15 +7357,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR5_CG1.
 
 //! @brief Get value of CCM_CCGR5_CG1 from a register value.
-#define BG_CCM_CCGR5_CG1(r)   (((r) & BM_CCM_CCGR5_CG1) >> BP_CCM_CCGR5_CG1)
+#define BG_CCM_CCGR5_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG1) >> BP_CCM_CCGR5_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG1.
-#define BF_CCM_CCGR5_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG1) & BM_CCM_CCGR5_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG1.
-#define BF_CCM_CCGR5_CG1(v)   (((v) << BP_CCM_CCGR5_CG1) & BM_CCM_CCGR5_CG1)
-#endif
+#define BF_CCM_CCGR5_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG1) & BM_CCM_CCGR5_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -8375,22 +7369,17 @@ typedef union _hw_ccm_ccgr5
 
 /* --- Register HW_CCM_CCGR5, field CG2[5:4] (RW)
  *
- * sata clock (sata_clk_enable)
+ * 100M clock (100M_clk_enable)
  */
 
 #define BP_CCM_CCGR5_CG2      (4)      //!< Bit position for CCM_CCGR5_CG2.
 #define BM_CCM_CCGR5_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR5_CG2.
 
 //! @brief Get value of CCM_CCGR5_CG2 from a register value.
-#define BG_CCM_CCGR5_CG2(r)   (((r) & BM_CCM_CCGR5_CG2) >> BP_CCM_CCGR5_CG2)
+#define BG_CCM_CCGR5_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG2) >> BP_CCM_CCGR5_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG2.
-#define BF_CCM_CCGR5_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG2) & BM_CCM_CCGR5_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG2.
-#define BF_CCM_CCGR5_CG2(v)   (((v) << BP_CCM_CCGR5_CG2) & BM_CCM_CCGR5_CG2)
-#endif
+#define BF_CCM_CCGR5_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG2) & BM_CCM_CCGR5_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -8406,15 +7395,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR5_CG3.
 
 //! @brief Get value of CCM_CCGR5_CG3 from a register value.
-#define BG_CCM_CCGR5_CG3(r)   (((r) & BM_CCM_CCGR5_CG3) >> BP_CCM_CCGR5_CG3)
+#define BG_CCM_CCGR5_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG3) >> BP_CCM_CCGR5_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG3.
-#define BF_CCM_CCGR5_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG3) & BM_CCM_CCGR5_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG3.
-#define BF_CCM_CCGR5_CG3(v)   (((v) << BP_CCM_CCGR5_CG3) & BM_CCM_CCGR5_CG3)
-#endif
+#define BF_CCM_CCGR5_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG3) & BM_CCM_CCGR5_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -8430,15 +7414,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR5_CG4.
 
 //! @brief Get value of CCM_CCGR5_CG4 from a register value.
-#define BG_CCM_CCGR5_CG4(r)   (((r) & BM_CCM_CCGR5_CG4) >> BP_CCM_CCGR5_CG4)
+#define BG_CCM_CCGR5_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG4) >> BP_CCM_CCGR5_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG4.
-#define BF_CCM_CCGR5_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG4) & BM_CCM_CCGR5_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG4.
-#define BF_CCM_CCGR5_CG4(v)   (((v) << BP_CCM_CCGR5_CG4) & BM_CCM_CCGR5_CG4)
-#endif
+#define BF_CCM_CCGR5_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG4) & BM_CCM_CCGR5_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -8454,15 +7433,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR5_CG5.
 
 //! @brief Get value of CCM_CCGR5_CG5 from a register value.
-#define BG_CCM_CCGR5_CG5(r)   (((r) & BM_CCM_CCGR5_CG5) >> BP_CCM_CCGR5_CG5)
+#define BG_CCM_CCGR5_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG5) >> BP_CCM_CCGR5_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG5.
-#define BF_CCM_CCGR5_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG5) & BM_CCM_CCGR5_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG5.
-#define BF_CCM_CCGR5_CG5(v)   (((v) << BP_CCM_CCGR5_CG5) & BM_CCM_CCGR5_CG5)
-#endif
+#define BF_CCM_CCGR5_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG5) & BM_CCM_CCGR5_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -8478,15 +7452,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR5_CG6.
 
 //! @brief Get value of CCM_CCGR5_CG6 from a register value.
-#define BG_CCM_CCGR5_CG6(r)   (((r) & BM_CCM_CCGR5_CG6) >> BP_CCM_CCGR5_CG6)
+#define BG_CCM_CCGR5_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG6) >> BP_CCM_CCGR5_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG6.
-#define BF_CCM_CCGR5_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG6) & BM_CCM_CCGR5_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG6.
-#define BF_CCM_CCGR5_CG6(v)   (((v) << BP_CCM_CCGR5_CG6) & BM_CCM_CCGR5_CG6)
-#endif
+#define BF_CCM_CCGR5_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG6) & BM_CCM_CCGR5_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -8502,15 +7471,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR5_CG7.
 
 //! @brief Get value of CCM_CCGR5_CG7 from a register value.
-#define BG_CCM_CCGR5_CG7(r)   (((r) & BM_CCM_CCGR5_CG7) >> BP_CCM_CCGR5_CG7)
+#define BG_CCM_CCGR5_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG7) >> BP_CCM_CCGR5_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG7.
-#define BF_CCM_CCGR5_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG7) & BM_CCM_CCGR5_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG7.
-#define BF_CCM_CCGR5_CG7(v)   (((v) << BP_CCM_CCGR5_CG7) & BM_CCM_CCGR5_CG7)
-#endif
+#define BF_CCM_CCGR5_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG7) & BM_CCM_CCGR5_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -8526,15 +7490,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR5_CG8.
 
 //! @brief Get value of CCM_CCGR5_CG8 from a register value.
-#define BG_CCM_CCGR5_CG8(r)   (((r) & BM_CCM_CCGR5_CG8) >> BP_CCM_CCGR5_CG8)
+#define BG_CCM_CCGR5_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG8) >> BP_CCM_CCGR5_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG8.
-#define BF_CCM_CCGR5_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG8) & BM_CCM_CCGR5_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG8.
-#define BF_CCM_CCGR5_CG8(v)   (((v) << BP_CCM_CCGR5_CG8) & BM_CCM_CCGR5_CG8)
-#endif
+#define BF_CCM_CCGR5_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG8) & BM_CCM_CCGR5_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -8550,15 +7509,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR5_CG9.
 
 //! @brief Get value of CCM_CCGR5_CG9 from a register value.
-#define BG_CCM_CCGR5_CG9(r)   (((r) & BM_CCM_CCGR5_CG9) >> BP_CCM_CCGR5_CG9)
+#define BG_CCM_CCGR5_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG9) >> BP_CCM_CCGR5_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG9.
-#define BF_CCM_CCGR5_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG9) & BM_CCM_CCGR5_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG9.
-#define BF_CCM_CCGR5_CG9(v)   (((v) << BP_CCM_CCGR5_CG9) & BM_CCM_CCGR5_CG9)
-#endif
+#define BF_CCM_CCGR5_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG9) & BM_CCM_CCGR5_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -8574,15 +7528,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR5_CG10.
 
 //! @brief Get value of CCM_CCGR5_CG10 from a register value.
-#define BG_CCM_CCGR5_CG10(r)   (((r) & BM_CCM_CCGR5_CG10) >> BP_CCM_CCGR5_CG10)
+#define BG_CCM_CCGR5_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG10) >> BP_CCM_CCGR5_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG10.
-#define BF_CCM_CCGR5_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG10) & BM_CCM_CCGR5_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG10.
-#define BF_CCM_CCGR5_CG10(v)   (((v) << BP_CCM_CCGR5_CG10) & BM_CCM_CCGR5_CG10)
-#endif
+#define BF_CCM_CCGR5_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG10) & BM_CCM_CCGR5_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -8598,15 +7547,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR5_CG11.
 
 //! @brief Get value of CCM_CCGR5_CG11 from a register value.
-#define BG_CCM_CCGR5_CG11(r)   (((r) & BM_CCM_CCGR5_CG11) >> BP_CCM_CCGR5_CG11)
+#define BG_CCM_CCGR5_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG11) >> BP_CCM_CCGR5_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG11.
-#define BF_CCM_CCGR5_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG11) & BM_CCM_CCGR5_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG11.
-#define BF_CCM_CCGR5_CG11(v)   (((v) << BP_CCM_CCGR5_CG11) & BM_CCM_CCGR5_CG11)
-#endif
+#define BF_CCM_CCGR5_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG11) & BM_CCM_CCGR5_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -8622,15 +7566,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR5_CG12.
 
 //! @brief Get value of CCM_CCGR5_CG12 from a register value.
-#define BG_CCM_CCGR5_CG12(r)   (((r) & BM_CCM_CCGR5_CG12) >> BP_CCM_CCGR5_CG12)
+#define BG_CCM_CCGR5_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG12) >> BP_CCM_CCGR5_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG12.
-#define BF_CCM_CCGR5_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG12) & BM_CCM_CCGR5_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG12.
-#define BF_CCM_CCGR5_CG12(v)   (((v) << BP_CCM_CCGR5_CG12) & BM_CCM_CCGR5_CG12)
-#endif
+#define BF_CCM_CCGR5_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG12) & BM_CCM_CCGR5_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -8646,15 +7585,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR5_CG13.
 
 //! @brief Get value of CCM_CCGR5_CG13 from a register value.
-#define BG_CCM_CCGR5_CG13(r)   (((r) & BM_CCM_CCGR5_CG13) >> BP_CCM_CCGR5_CG13)
+#define BG_CCM_CCGR5_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG13) >> BP_CCM_CCGR5_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG13.
-#define BF_CCM_CCGR5_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG13) & BM_CCM_CCGR5_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG13.
-#define BF_CCM_CCGR5_CG13(v)   (((v) << BP_CCM_CCGR5_CG13) & BM_CCM_CCGR5_CG13)
-#endif
+#define BF_CCM_CCGR5_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG13) & BM_CCM_CCGR5_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -8670,15 +7604,10 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR5_CG14.
 
 //! @brief Get value of CCM_CCGR5_CG14 from a register value.
-#define BG_CCM_CCGR5_CG14(r)   (((r) & BM_CCM_CCGR5_CG14) >> BP_CCM_CCGR5_CG14)
+#define BG_CCM_CCGR5_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG14) >> BP_CCM_CCGR5_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG14.
-#define BF_CCM_CCGR5_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG14) & BM_CCM_CCGR5_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG14.
-#define BF_CCM_CCGR5_CG14(v)   (((v) << BP_CCM_CCGR5_CG14) & BM_CCM_CCGR5_CG14)
-#endif
+#define BF_CCM_CCGR5_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG14) & BM_CCM_CCGR5_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -8694,20 +7623,19 @@ typedef union _hw_ccm_ccgr5
 #define BM_CCM_CCGR5_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR5_CG15.
 
 //! @brief Get value of CCM_CCGR5_CG15 from a register value.
-#define BG_CCM_CCGR5_CG15(r)   (((r) & BM_CCM_CCGR5_CG15) >> BP_CCM_CCGR5_CG15)
+#define BG_CCM_CCGR5_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR5_CG15) >> BP_CCM_CCGR5_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR5_CG15.
-#define BF_CCM_CCGR5_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR5_CG15) & BM_CCM_CCGR5_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR5_CG15.
-#define BF_CCM_CCGR5_CG15(v)   (((v) << BP_CCM_CCGR5_CG15) & BM_CCM_CCGR5_CG15)
-#endif
+#define BF_CCM_CCGR5_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR5_CG15) & BM_CCM_CCGR5_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR5_CG15(v)   (HW_CCM_CCGR5_WR((HW_CCM_CCGR5_RD() & ~BM_CCM_CCGR5_CG15) | BF_CCM_CCGR5_CG15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CCGR6 - CCM Clock Gating Register 6
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8772,15 +7700,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR6_CG0.
 
 //! @brief Get value of CCM_CCGR6_CG0 from a register value.
-#define BG_CCM_CCGR6_CG0(r)   (((r) & BM_CCM_CCGR6_CG0) >> BP_CCM_CCGR6_CG0)
+#define BG_CCM_CCGR6_CG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG0) >> BP_CCM_CCGR6_CG0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG0.
-#define BF_CCM_CCGR6_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG0) & BM_CCM_CCGR6_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG0.
-#define BF_CCM_CCGR6_CG0(v)   (((v) << BP_CCM_CCGR6_CG0) & BM_CCM_CCGR6_CG0)
-#endif
+#define BF_CCM_CCGR6_CG0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG0) & BM_CCM_CCGR6_CG0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG0 field to a new value.
@@ -8796,15 +7719,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR6_CG1.
 
 //! @brief Get value of CCM_CCGR6_CG1 from a register value.
-#define BG_CCM_CCGR6_CG1(r)   (((r) & BM_CCM_CCGR6_CG1) >> BP_CCM_CCGR6_CG1)
+#define BG_CCM_CCGR6_CG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG1) >> BP_CCM_CCGR6_CG1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG1.
-#define BF_CCM_CCGR6_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG1) & BM_CCM_CCGR6_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG1.
-#define BF_CCM_CCGR6_CG1(v)   (((v) << BP_CCM_CCGR6_CG1) & BM_CCM_CCGR6_CG1)
-#endif
+#define BF_CCM_CCGR6_CG1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG1) & BM_CCM_CCGR6_CG1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG1 field to a new value.
@@ -8820,15 +7738,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR6_CG2.
 
 //! @brief Get value of CCM_CCGR6_CG2 from a register value.
-#define BG_CCM_CCGR6_CG2(r)   (((r) & BM_CCM_CCGR6_CG2) >> BP_CCM_CCGR6_CG2)
+#define BG_CCM_CCGR6_CG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG2) >> BP_CCM_CCGR6_CG2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG2.
-#define BF_CCM_CCGR6_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG2) & BM_CCM_CCGR6_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG2.
-#define BF_CCM_CCGR6_CG2(v)   (((v) << BP_CCM_CCGR6_CG2) & BM_CCM_CCGR6_CG2)
-#endif
+#define BF_CCM_CCGR6_CG2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG2) & BM_CCM_CCGR6_CG2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG2 field to a new value.
@@ -8844,15 +7757,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR6_CG3.
 
 //! @brief Get value of CCM_CCGR6_CG3 from a register value.
-#define BG_CCM_CCGR6_CG3(r)   (((r) & BM_CCM_CCGR6_CG3) >> BP_CCM_CCGR6_CG3)
+#define BG_CCM_CCGR6_CG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG3) >> BP_CCM_CCGR6_CG3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG3.
-#define BF_CCM_CCGR6_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG3) & BM_CCM_CCGR6_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG3.
-#define BF_CCM_CCGR6_CG3(v)   (((v) << BP_CCM_CCGR6_CG3) & BM_CCM_CCGR6_CG3)
-#endif
+#define BF_CCM_CCGR6_CG3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG3) & BM_CCM_CCGR6_CG3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG3 field to a new value.
@@ -8868,15 +7776,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR6_CG4.
 
 //! @brief Get value of CCM_CCGR6_CG4 from a register value.
-#define BG_CCM_CCGR6_CG4(r)   (((r) & BM_CCM_CCGR6_CG4) >> BP_CCM_CCGR6_CG4)
+#define BG_CCM_CCGR6_CG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG4) >> BP_CCM_CCGR6_CG4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG4.
-#define BF_CCM_CCGR6_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG4) & BM_CCM_CCGR6_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG4.
-#define BF_CCM_CCGR6_CG4(v)   (((v) << BP_CCM_CCGR6_CG4) & BM_CCM_CCGR6_CG4)
-#endif
+#define BF_CCM_CCGR6_CG4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG4) & BM_CCM_CCGR6_CG4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG4 field to a new value.
@@ -8892,15 +7795,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR6_CG5.
 
 //! @brief Get value of CCM_CCGR6_CG5 from a register value.
-#define BG_CCM_CCGR6_CG5(r)   (((r) & BM_CCM_CCGR6_CG5) >> BP_CCM_CCGR6_CG5)
+#define BG_CCM_CCGR6_CG5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG5) >> BP_CCM_CCGR6_CG5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG5.
-#define BF_CCM_CCGR6_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG5) & BM_CCM_CCGR6_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG5.
-#define BF_CCM_CCGR6_CG5(v)   (((v) << BP_CCM_CCGR6_CG5) & BM_CCM_CCGR6_CG5)
-#endif
+#define BF_CCM_CCGR6_CG5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG5) & BM_CCM_CCGR6_CG5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG5 field to a new value.
@@ -8916,15 +7814,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR6_CG6.
 
 //! @brief Get value of CCM_CCGR6_CG6 from a register value.
-#define BG_CCM_CCGR6_CG6(r)   (((r) & BM_CCM_CCGR6_CG6) >> BP_CCM_CCGR6_CG6)
+#define BG_CCM_CCGR6_CG6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG6) >> BP_CCM_CCGR6_CG6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG6.
-#define BF_CCM_CCGR6_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG6) & BM_CCM_CCGR6_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG6.
-#define BF_CCM_CCGR6_CG6(v)   (((v) << BP_CCM_CCGR6_CG6) & BM_CCM_CCGR6_CG6)
-#endif
+#define BF_CCM_CCGR6_CG6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG6) & BM_CCM_CCGR6_CG6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG6 field to a new value.
@@ -8940,15 +7833,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR6_CG7.
 
 //! @brief Get value of CCM_CCGR6_CG7 from a register value.
-#define BG_CCM_CCGR6_CG7(r)   (((r) & BM_CCM_CCGR6_CG7) >> BP_CCM_CCGR6_CG7)
+#define BG_CCM_CCGR6_CG7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG7) >> BP_CCM_CCGR6_CG7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG7.
-#define BF_CCM_CCGR6_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG7) & BM_CCM_CCGR6_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG7.
-#define BF_CCM_CCGR6_CG7(v)   (((v) << BP_CCM_CCGR6_CG7) & BM_CCM_CCGR6_CG7)
-#endif
+#define BF_CCM_CCGR6_CG7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG7) & BM_CCM_CCGR6_CG7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG7 field to a new value.
@@ -8964,15 +7852,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR6_CG8.
 
 //! @brief Get value of CCM_CCGR6_CG8 from a register value.
-#define BG_CCM_CCGR6_CG8(r)   (((r) & BM_CCM_CCGR6_CG8) >> BP_CCM_CCGR6_CG8)
+#define BG_CCM_CCGR6_CG8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG8) >> BP_CCM_CCGR6_CG8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG8.
-#define BF_CCM_CCGR6_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG8) & BM_CCM_CCGR6_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG8.
-#define BF_CCM_CCGR6_CG8(v)   (((v) << BP_CCM_CCGR6_CG8) & BM_CCM_CCGR6_CG8)
-#endif
+#define BF_CCM_CCGR6_CG8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG8) & BM_CCM_CCGR6_CG8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG8 field to a new value.
@@ -8988,15 +7871,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR6_CG9.
 
 //! @brief Get value of CCM_CCGR6_CG9 from a register value.
-#define BG_CCM_CCGR6_CG9(r)   (((r) & BM_CCM_CCGR6_CG9) >> BP_CCM_CCGR6_CG9)
+#define BG_CCM_CCGR6_CG9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG9) >> BP_CCM_CCGR6_CG9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG9.
-#define BF_CCM_CCGR6_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG9) & BM_CCM_CCGR6_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG9.
-#define BF_CCM_CCGR6_CG9(v)   (((v) << BP_CCM_CCGR6_CG9) & BM_CCM_CCGR6_CG9)
-#endif
+#define BF_CCM_CCGR6_CG9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG9) & BM_CCM_CCGR6_CG9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG9 field to a new value.
@@ -9012,15 +7890,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR6_CG10.
 
 //! @brief Get value of CCM_CCGR6_CG10 from a register value.
-#define BG_CCM_CCGR6_CG10(r)   (((r) & BM_CCM_CCGR6_CG10) >> BP_CCM_CCGR6_CG10)
+#define BG_CCM_CCGR6_CG10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG10) >> BP_CCM_CCGR6_CG10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG10.
-#define BF_CCM_CCGR6_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG10) & BM_CCM_CCGR6_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG10.
-#define BF_CCM_CCGR6_CG10(v)   (((v) << BP_CCM_CCGR6_CG10) & BM_CCM_CCGR6_CG10)
-#endif
+#define BF_CCM_CCGR6_CG10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG10) & BM_CCM_CCGR6_CG10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG10 field to a new value.
@@ -9036,15 +7909,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR6_CG11.
 
 //! @brief Get value of CCM_CCGR6_CG11 from a register value.
-#define BG_CCM_CCGR6_CG11(r)   (((r) & BM_CCM_CCGR6_CG11) >> BP_CCM_CCGR6_CG11)
+#define BG_CCM_CCGR6_CG11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG11) >> BP_CCM_CCGR6_CG11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG11.
-#define BF_CCM_CCGR6_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG11) & BM_CCM_CCGR6_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG11.
-#define BF_CCM_CCGR6_CG11(v)   (((v) << BP_CCM_CCGR6_CG11) & BM_CCM_CCGR6_CG11)
-#endif
+#define BF_CCM_CCGR6_CG11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG11) & BM_CCM_CCGR6_CG11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG11 field to a new value.
@@ -9060,15 +7928,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR6_CG12.
 
 //! @brief Get value of CCM_CCGR6_CG12 from a register value.
-#define BG_CCM_CCGR6_CG12(r)   (((r) & BM_CCM_CCGR6_CG12) >> BP_CCM_CCGR6_CG12)
+#define BG_CCM_CCGR6_CG12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG12) >> BP_CCM_CCGR6_CG12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG12.
-#define BF_CCM_CCGR6_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG12) & BM_CCM_CCGR6_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG12.
-#define BF_CCM_CCGR6_CG12(v)   (((v) << BP_CCM_CCGR6_CG12) & BM_CCM_CCGR6_CG12)
-#endif
+#define BF_CCM_CCGR6_CG12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG12) & BM_CCM_CCGR6_CG12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG12 field to a new value.
@@ -9084,15 +7947,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR6_CG13.
 
 //! @brief Get value of CCM_CCGR6_CG13 from a register value.
-#define BG_CCM_CCGR6_CG13(r)   (((r) & BM_CCM_CCGR6_CG13) >> BP_CCM_CCGR6_CG13)
+#define BG_CCM_CCGR6_CG13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG13) >> BP_CCM_CCGR6_CG13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG13.
-#define BF_CCM_CCGR6_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG13) & BM_CCM_CCGR6_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG13.
-#define BF_CCM_CCGR6_CG13(v)   (((v) << BP_CCM_CCGR6_CG13) & BM_CCM_CCGR6_CG13)
-#endif
+#define BF_CCM_CCGR6_CG13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG13) & BM_CCM_CCGR6_CG13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG13 field to a new value.
@@ -9108,15 +7966,10 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR6_CG14.
 
 //! @brief Get value of CCM_CCGR6_CG14 from a register value.
-#define BG_CCM_CCGR6_CG14(r)   (((r) & BM_CCM_CCGR6_CG14) >> BP_CCM_CCGR6_CG14)
+#define BG_CCM_CCGR6_CG14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG14) >> BP_CCM_CCGR6_CG14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG14.
-#define BF_CCM_CCGR6_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG14) & BM_CCM_CCGR6_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG14.
-#define BF_CCM_CCGR6_CG14(v)   (((v) << BP_CCM_CCGR6_CG14) & BM_CCM_CCGR6_CG14)
-#endif
+#define BF_CCM_CCGR6_CG14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG14) & BM_CCM_CCGR6_CG14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG14 field to a new value.
@@ -9132,466 +7985,19 @@ typedef union _hw_ccm_ccgr6
 #define BM_CCM_CCGR6_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR6_CG15.
 
 //! @brief Get value of CCM_CCGR6_CG15 from a register value.
-#define BG_CCM_CCGR6_CG15(r)   (((r) & BM_CCM_CCGR6_CG15) >> BP_CCM_CCGR6_CG15)
+#define BG_CCM_CCGR6_CG15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCGR6_CG15) >> BP_CCM_CCGR6_CG15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CCGR6_CG15.
-#define BF_CCM_CCGR6_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR6_CG15) & BM_CCM_CCGR6_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR6_CG15.
-#define BF_CCM_CCGR6_CG15(v)   (((v) << BP_CCM_CCGR6_CG15) & BM_CCM_CCGR6_CG15)
-#endif
+#define BF_CCM_CCGR6_CG15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCGR6_CG15) & BM_CCM_CCGR6_CG15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CG15 field to a new value.
 #define BW_CCM_CCGR6_CG15(v)   (HW_CCM_CCGR6_WR((HW_CCM_CCGR6_RD() & ~BM_CCM_CCGR6_CG15) | BF_CCM_CCGR6_CG15(v)))
 #endif
 
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_CCM_CCGR7 - CCM Clock Gating Register 7 (RW)
- *
- * Reset value: 0xffffffff
- *
- * The figure below represents the CCM Clock Gating Register 7 (CCM_CCGR7). The clock gating
- * Registers define the clock gating for power reduction of each clock (CG(i) bits). There are 8 CGR
- * registers. The number of registers required is according to the number of peripherals in the
- * system.  CG(i) bits CCGR 0-7  This bits are used to turn on/off the clock to each module
- * independently.The following table details the possible clock activity conditions for each module
- * CGR value    Clock Activity Description        00    clock is off during all modes. stop enter
- * hardware handshake is disabled.      01    clock is on in run mode, but off in wait and stop
- * modes      10    Not applicable (Reserved).      11    clock is on during all modes, except stop
- * mode.       : Module should be stopped, before set it's bits to "0", since clocks to the module
- * will be stopped immediately.  The tables above show the register mapings for the different CGR's.
- * The clock connectivity table should be used to match the "CCM output affected" to the actual
- * clocks going into the modules.
- */
-typedef union _hw_ccm_ccgr7
-{
-    reg32_t U;
-    struct _hw_ccm_ccgr7_bitfields
-    {
-        unsigned CG0 : 2; //!< [1:0] CG0
-        unsigned CG1 : 2; //!< [3:2] CG1
-        unsigned CG2 : 2; //!< [5:4] CG2
-        unsigned CG3 : 2; //!< [7:6] CG3
-        unsigned CG4 : 2; //!< [9:8] CG4
-        unsigned CG5 : 2; //!< [11:10] CG5
-        unsigned CG6 : 2; //!< [13:12] CG6
-        unsigned CG7 : 2; //!< [15:14] CG7
-        unsigned CG8 : 2; //!< [17:16] CG8
-        unsigned CG9 : 2; //!< [19:18] CG9
-        unsigned CG10 : 2; //!< [21:20] CG10
-        unsigned CG11 : 2; //!< [23:22] CG11
-        unsigned CG12 : 2; //!< [25:24] CG12
-        unsigned CG13 : 2; //!< [27:26] CG13
-        unsigned CG14 : 2; //!< [29:28] CG14
-        unsigned CG15 : 2; //!< [31:30] CG15
-    } B;
-} hw_ccm_ccgr7_t;
-#endif
-
-/*
- * constants & macros for entire CCM_CCGR7 register
- */
-#define HW_CCM_CCGR7_ADDR      (REGS_CCM_BASE + 0x84)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_CCM_CCGR7           (*(volatile hw_ccm_ccgr7_t *) HW_CCM_CCGR7_ADDR)
-#define HW_CCM_CCGR7_RD()      (HW_CCM_CCGR7.U)
-#define HW_CCM_CCGR7_WR(v)     (HW_CCM_CCGR7.U = (v))
-#define HW_CCM_CCGR7_SET(v)    (HW_CCM_CCGR7_WR(HW_CCM_CCGR7_RD() |  (v)))
-#define HW_CCM_CCGR7_CLR(v)    (HW_CCM_CCGR7_WR(HW_CCM_CCGR7_RD() & ~(v)))
-#define HW_CCM_CCGR7_TOG(v)    (HW_CCM_CCGR7_WR(HW_CCM_CCGR7_RD() ^  (v)))
-#endif
-
-/*
- * constants & macros for individual CCM_CCGR7 bitfields
- */
-
-/* --- Register HW_CCM_CCGR7, field CG0[1:0] (RW)
- *
- * CG0
- */
-
-#define BP_CCM_CCGR7_CG0      (0)      //!< Bit position for CCM_CCGR7_CG0.
-#define BM_CCM_CCGR7_CG0      (0x00000003)  //!< Bit mask for CCM_CCGR7_CG0.
-
-//! @brief Get value of CCM_CCGR7_CG0 from a register value.
-#define BG_CCM_CCGR7_CG0(r)   (((r) & BM_CCM_CCGR7_CG0) >> BP_CCM_CCGR7_CG0)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG0.
-#define BF_CCM_CCGR7_CG0(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG0) & BM_CCM_CCGR7_CG0)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG0.
-#define BF_CCM_CCGR7_CG0(v)   (((v) << BP_CCM_CCGR7_CG0) & BM_CCM_CCGR7_CG0)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG0 field to a new value.
-#define BW_CCM_CCGR7_CG0(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG0) | BF_CCM_CCGR7_CG0(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG1[3:2] (RW)
- *
- * CG1
- */
-
-#define BP_CCM_CCGR7_CG1      (2)      //!< Bit position for CCM_CCGR7_CG1.
-#define BM_CCM_CCGR7_CG1      (0x0000000c)  //!< Bit mask for CCM_CCGR7_CG1.
-
-//! @brief Get value of CCM_CCGR7_CG1 from a register value.
-#define BG_CCM_CCGR7_CG1(r)   (((r) & BM_CCM_CCGR7_CG1) >> BP_CCM_CCGR7_CG1)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG1.
-#define BF_CCM_CCGR7_CG1(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG1) & BM_CCM_CCGR7_CG1)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG1.
-#define BF_CCM_CCGR7_CG1(v)   (((v) << BP_CCM_CCGR7_CG1) & BM_CCM_CCGR7_CG1)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG1 field to a new value.
-#define BW_CCM_CCGR7_CG1(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG1) | BF_CCM_CCGR7_CG1(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG2[5:4] (RW)
- *
- * CG2
- */
-
-#define BP_CCM_CCGR7_CG2      (4)      //!< Bit position for CCM_CCGR7_CG2.
-#define BM_CCM_CCGR7_CG2      (0x00000030)  //!< Bit mask for CCM_CCGR7_CG2.
-
-//! @brief Get value of CCM_CCGR7_CG2 from a register value.
-#define BG_CCM_CCGR7_CG2(r)   (((r) & BM_CCM_CCGR7_CG2) >> BP_CCM_CCGR7_CG2)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG2.
-#define BF_CCM_CCGR7_CG2(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG2) & BM_CCM_CCGR7_CG2)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG2.
-#define BF_CCM_CCGR7_CG2(v)   (((v) << BP_CCM_CCGR7_CG2) & BM_CCM_CCGR7_CG2)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG2 field to a new value.
-#define BW_CCM_CCGR7_CG2(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG2) | BF_CCM_CCGR7_CG2(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG3[7:6] (RW)
- *
- * CG3
- */
-
-#define BP_CCM_CCGR7_CG3      (6)      //!< Bit position for CCM_CCGR7_CG3.
-#define BM_CCM_CCGR7_CG3      (0x000000c0)  //!< Bit mask for CCM_CCGR7_CG3.
-
-//! @brief Get value of CCM_CCGR7_CG3 from a register value.
-#define BG_CCM_CCGR7_CG3(r)   (((r) & BM_CCM_CCGR7_CG3) >> BP_CCM_CCGR7_CG3)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG3.
-#define BF_CCM_CCGR7_CG3(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG3) & BM_CCM_CCGR7_CG3)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG3.
-#define BF_CCM_CCGR7_CG3(v)   (((v) << BP_CCM_CCGR7_CG3) & BM_CCM_CCGR7_CG3)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG3 field to a new value.
-#define BW_CCM_CCGR7_CG3(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG3) | BF_CCM_CCGR7_CG3(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG4[9:8] (RW)
- *
- * CG4
- */
-
-#define BP_CCM_CCGR7_CG4      (8)      //!< Bit position for CCM_CCGR7_CG4.
-#define BM_CCM_CCGR7_CG4      (0x00000300)  //!< Bit mask for CCM_CCGR7_CG4.
-
-//! @brief Get value of CCM_CCGR7_CG4 from a register value.
-#define BG_CCM_CCGR7_CG4(r)   (((r) & BM_CCM_CCGR7_CG4) >> BP_CCM_CCGR7_CG4)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG4.
-#define BF_CCM_CCGR7_CG4(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG4) & BM_CCM_CCGR7_CG4)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG4.
-#define BF_CCM_CCGR7_CG4(v)   (((v) << BP_CCM_CCGR7_CG4) & BM_CCM_CCGR7_CG4)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG4 field to a new value.
-#define BW_CCM_CCGR7_CG4(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG4) | BF_CCM_CCGR7_CG4(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG5[11:10] (RW)
- *
- * CG5
- */
-
-#define BP_CCM_CCGR7_CG5      (10)      //!< Bit position for CCM_CCGR7_CG5.
-#define BM_CCM_CCGR7_CG5      (0x00000c00)  //!< Bit mask for CCM_CCGR7_CG5.
-
-//! @brief Get value of CCM_CCGR7_CG5 from a register value.
-#define BG_CCM_CCGR7_CG5(r)   (((r) & BM_CCM_CCGR7_CG5) >> BP_CCM_CCGR7_CG5)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG5.
-#define BF_CCM_CCGR7_CG5(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG5) & BM_CCM_CCGR7_CG5)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG5.
-#define BF_CCM_CCGR7_CG5(v)   (((v) << BP_CCM_CCGR7_CG5) & BM_CCM_CCGR7_CG5)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG5 field to a new value.
-#define BW_CCM_CCGR7_CG5(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG5) | BF_CCM_CCGR7_CG5(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG6[13:12] (RW)
- *
- * CG6
- */
-
-#define BP_CCM_CCGR7_CG6      (12)      //!< Bit position for CCM_CCGR7_CG6.
-#define BM_CCM_CCGR7_CG6      (0x00003000)  //!< Bit mask for CCM_CCGR7_CG6.
-
-//! @brief Get value of CCM_CCGR7_CG6 from a register value.
-#define BG_CCM_CCGR7_CG6(r)   (((r) & BM_CCM_CCGR7_CG6) >> BP_CCM_CCGR7_CG6)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG6.
-#define BF_CCM_CCGR7_CG6(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG6) & BM_CCM_CCGR7_CG6)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG6.
-#define BF_CCM_CCGR7_CG6(v)   (((v) << BP_CCM_CCGR7_CG6) & BM_CCM_CCGR7_CG6)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG6 field to a new value.
-#define BW_CCM_CCGR7_CG6(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG6) | BF_CCM_CCGR7_CG6(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG7[15:14] (RW)
- *
- * CG7
- */
-
-#define BP_CCM_CCGR7_CG7      (14)      //!< Bit position for CCM_CCGR7_CG7.
-#define BM_CCM_CCGR7_CG7      (0x0000c000)  //!< Bit mask for CCM_CCGR7_CG7.
-
-//! @brief Get value of CCM_CCGR7_CG7 from a register value.
-#define BG_CCM_CCGR7_CG7(r)   (((r) & BM_CCM_CCGR7_CG7) >> BP_CCM_CCGR7_CG7)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG7.
-#define BF_CCM_CCGR7_CG7(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG7) & BM_CCM_CCGR7_CG7)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG7.
-#define BF_CCM_CCGR7_CG7(v)   (((v) << BP_CCM_CCGR7_CG7) & BM_CCM_CCGR7_CG7)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG7 field to a new value.
-#define BW_CCM_CCGR7_CG7(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG7) | BF_CCM_CCGR7_CG7(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG8[17:16] (RW)
- *
- * CG8
- */
-
-#define BP_CCM_CCGR7_CG8      (16)      //!< Bit position for CCM_CCGR7_CG8.
-#define BM_CCM_CCGR7_CG8      (0x00030000)  //!< Bit mask for CCM_CCGR7_CG8.
-
-//! @brief Get value of CCM_CCGR7_CG8 from a register value.
-#define BG_CCM_CCGR7_CG8(r)   (((r) & BM_CCM_CCGR7_CG8) >> BP_CCM_CCGR7_CG8)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG8.
-#define BF_CCM_CCGR7_CG8(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG8) & BM_CCM_CCGR7_CG8)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG8.
-#define BF_CCM_CCGR7_CG8(v)   (((v) << BP_CCM_CCGR7_CG8) & BM_CCM_CCGR7_CG8)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG8 field to a new value.
-#define BW_CCM_CCGR7_CG8(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG8) | BF_CCM_CCGR7_CG8(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG9[19:18] (RW)
- *
- * CG9
- */
-
-#define BP_CCM_CCGR7_CG9      (18)      //!< Bit position for CCM_CCGR7_CG9.
-#define BM_CCM_CCGR7_CG9      (0x000c0000)  //!< Bit mask for CCM_CCGR7_CG9.
-
-//! @brief Get value of CCM_CCGR7_CG9 from a register value.
-#define BG_CCM_CCGR7_CG9(r)   (((r) & BM_CCM_CCGR7_CG9) >> BP_CCM_CCGR7_CG9)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG9.
-#define BF_CCM_CCGR7_CG9(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG9) & BM_CCM_CCGR7_CG9)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG9.
-#define BF_CCM_CCGR7_CG9(v)   (((v) << BP_CCM_CCGR7_CG9) & BM_CCM_CCGR7_CG9)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG9 field to a new value.
-#define BW_CCM_CCGR7_CG9(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG9) | BF_CCM_CCGR7_CG9(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG10[21:20] (RW)
- *
- * CG10
- */
-
-#define BP_CCM_CCGR7_CG10      (20)      //!< Bit position for CCM_CCGR7_CG10.
-#define BM_CCM_CCGR7_CG10      (0x00300000)  //!< Bit mask for CCM_CCGR7_CG10.
-
-//! @brief Get value of CCM_CCGR7_CG10 from a register value.
-#define BG_CCM_CCGR7_CG10(r)   (((r) & BM_CCM_CCGR7_CG10) >> BP_CCM_CCGR7_CG10)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG10.
-#define BF_CCM_CCGR7_CG10(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG10) & BM_CCM_CCGR7_CG10)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG10.
-#define BF_CCM_CCGR7_CG10(v)   (((v) << BP_CCM_CCGR7_CG10) & BM_CCM_CCGR7_CG10)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG10 field to a new value.
-#define BW_CCM_CCGR7_CG10(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG10) | BF_CCM_CCGR7_CG10(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG11[23:22] (RW)
- *
- * CG11
- */
-
-#define BP_CCM_CCGR7_CG11      (22)      //!< Bit position for CCM_CCGR7_CG11.
-#define BM_CCM_CCGR7_CG11      (0x00c00000)  //!< Bit mask for CCM_CCGR7_CG11.
-
-//! @brief Get value of CCM_CCGR7_CG11 from a register value.
-#define BG_CCM_CCGR7_CG11(r)   (((r) & BM_CCM_CCGR7_CG11) >> BP_CCM_CCGR7_CG11)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG11.
-#define BF_CCM_CCGR7_CG11(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG11) & BM_CCM_CCGR7_CG11)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG11.
-#define BF_CCM_CCGR7_CG11(v)   (((v) << BP_CCM_CCGR7_CG11) & BM_CCM_CCGR7_CG11)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG11 field to a new value.
-#define BW_CCM_CCGR7_CG11(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG11) | BF_CCM_CCGR7_CG11(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG12[25:24] (RW)
- *
- * CG12
- */
-
-#define BP_CCM_CCGR7_CG12      (24)      //!< Bit position for CCM_CCGR7_CG12.
-#define BM_CCM_CCGR7_CG12      (0x03000000)  //!< Bit mask for CCM_CCGR7_CG12.
-
-//! @brief Get value of CCM_CCGR7_CG12 from a register value.
-#define BG_CCM_CCGR7_CG12(r)   (((r) & BM_CCM_CCGR7_CG12) >> BP_CCM_CCGR7_CG12)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG12.
-#define BF_CCM_CCGR7_CG12(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG12) & BM_CCM_CCGR7_CG12)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG12.
-#define BF_CCM_CCGR7_CG12(v)   (((v) << BP_CCM_CCGR7_CG12) & BM_CCM_CCGR7_CG12)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG12 field to a new value.
-#define BW_CCM_CCGR7_CG12(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG12) | BF_CCM_CCGR7_CG12(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG13[27:26] (RW)
- *
- * CG13
- */
-
-#define BP_CCM_CCGR7_CG13      (26)      //!< Bit position for CCM_CCGR7_CG13.
-#define BM_CCM_CCGR7_CG13      (0x0c000000)  //!< Bit mask for CCM_CCGR7_CG13.
-
-//! @brief Get value of CCM_CCGR7_CG13 from a register value.
-#define BG_CCM_CCGR7_CG13(r)   (((r) & BM_CCM_CCGR7_CG13) >> BP_CCM_CCGR7_CG13)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG13.
-#define BF_CCM_CCGR7_CG13(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG13) & BM_CCM_CCGR7_CG13)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG13.
-#define BF_CCM_CCGR7_CG13(v)   (((v) << BP_CCM_CCGR7_CG13) & BM_CCM_CCGR7_CG13)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG13 field to a new value.
-#define BW_CCM_CCGR7_CG13(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG13) | BF_CCM_CCGR7_CG13(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG14[29:28] (RW)
- *
- * CG14
- */
-
-#define BP_CCM_CCGR7_CG14      (28)      //!< Bit position for CCM_CCGR7_CG14.
-#define BM_CCM_CCGR7_CG14      (0x30000000)  //!< Bit mask for CCM_CCGR7_CG14.
-
-//! @brief Get value of CCM_CCGR7_CG14 from a register value.
-#define BG_CCM_CCGR7_CG14(r)   (((r) & BM_CCM_CCGR7_CG14) >> BP_CCM_CCGR7_CG14)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG14.
-#define BF_CCM_CCGR7_CG14(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG14) & BM_CCM_CCGR7_CG14)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG14.
-#define BF_CCM_CCGR7_CG14(v)   (((v) << BP_CCM_CCGR7_CG14) & BM_CCM_CCGR7_CG14)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG14 field to a new value.
-#define BW_CCM_CCGR7_CG14(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG14) | BF_CCM_CCGR7_CG14(v)))
-#endif
-
-/* --- Register HW_CCM_CCGR7, field CG15[31:30] (RW)
- *
- * CG15
- */
-
-#define BP_CCM_CCGR7_CG15      (30)      //!< Bit position for CCM_CCGR7_CG15.
-#define BM_CCM_CCGR7_CG15      (0xc0000000)  //!< Bit mask for CCM_CCGR7_CG15.
-
-//! @brief Get value of CCM_CCGR7_CG15 from a register value.
-#define BG_CCM_CCGR7_CG15(r)   (((r) & BM_CCM_CCGR7_CG15) >> BP_CCM_CCGR7_CG15)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CCM_CCGR7_CG15.
-#define BF_CCM_CCGR7_CG15(v)   ((((reg32_t) v) << BP_CCM_CCGR7_CG15) & BM_CCM_CCGR7_CG15)
-#else
-//! @brief Format value for bitfield CCM_CCGR7_CG15.
-#define BF_CCM_CCGR7_CG15(v)   (((v) << BP_CCM_CCGR7_CG15) & BM_CCM_CCGR7_CG15)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CG15 field to a new value.
-#define BW_CCM_CCGR7_CG15(v)   (HW_CCM_CCGR7_WR((HW_CCM_CCGR7_RD() & ~BM_CCM_CCGR7_CG15) | BF_CCM_CCGR7_CG15(v)))
-#endif
+//-------------------------------------------------------------------------------------------
+// HW_CCM_CMEOR - CCM Module Enable Overide Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9659,15 +8065,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_VDOA      (0x00000010)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_VDOA.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_VDOA from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_VDOA(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_VDOA) >> BP_CCM_CMEOR_MOD_EN_OV_VDOA)
+#define BG_CCM_CMEOR_MOD_EN_OV_VDOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_VDOA) >> BP_CCM_CMEOR_MOD_EN_OV_VDOA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VDOA.
-#define BF_CCM_CMEOR_MOD_EN_OV_VDOA(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_VDOA) & BM_CCM_CMEOR_MOD_EN_OV_VDOA)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VDOA.
-#define BF_CCM_CMEOR_MOD_EN_OV_VDOA(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_VDOA) & BM_CCM_CMEOR_MOD_EN_OV_VDOA)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_VDOA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_VDOA) & BM_CCM_CMEOR_MOD_EN_OV_VDOA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_VDOA field to a new value.
@@ -9689,15 +8090,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_GPT      (0x00000020)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_GPT.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_GPT from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_GPT(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_GPT) >> BP_CCM_CMEOR_MOD_EN_OV_GPT)
+#define BG_CCM_CMEOR_MOD_EN_OV_GPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_GPT) >> BP_CCM_CMEOR_MOD_EN_OV_GPT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPT.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPT(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_GPT) & BM_CCM_CMEOR_MOD_EN_OV_GPT)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPT.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPT(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_GPT) & BM_CCM_CMEOR_MOD_EN_OV_GPT)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_GPT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_GPT) & BM_CCM_CMEOR_MOD_EN_OV_GPT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_GPT field to a new value.
@@ -9719,15 +8115,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_EPIT      (0x00000040)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_EPIT.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_EPIT from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_EPIT(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_EPIT) >> BP_CCM_CMEOR_MOD_EN_OV_EPIT)
+#define BG_CCM_CMEOR_MOD_EN_OV_EPIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_EPIT) >> BP_CCM_CMEOR_MOD_EN_OV_EPIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_EPIT.
-#define BF_CCM_CMEOR_MOD_EN_OV_EPIT(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_EPIT) & BM_CCM_CMEOR_MOD_EN_OV_EPIT)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_EPIT.
-#define BF_CCM_CMEOR_MOD_EN_OV_EPIT(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_EPIT) & BM_CCM_CMEOR_MOD_EN_OV_EPIT)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_EPIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_EPIT) & BM_CCM_CMEOR_MOD_EN_OV_EPIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_EPIT field to a new value.
@@ -9748,15 +8139,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_USDHC      (0x00000080)  //!< Bit mask for CCM_CMEOR_MOD_EN_USDHC.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_USDHC from a register value.
-#define BG_CCM_CMEOR_MOD_EN_USDHC(r)   (((r) & BM_CCM_CMEOR_MOD_EN_USDHC) >> BP_CCM_CMEOR_MOD_EN_USDHC)
+#define BG_CCM_CMEOR_MOD_EN_USDHC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_USDHC) >> BP_CCM_CMEOR_MOD_EN_USDHC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_USDHC.
-#define BF_CCM_CMEOR_MOD_EN_USDHC(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_USDHC) & BM_CCM_CMEOR_MOD_EN_USDHC)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_USDHC.
-#define BF_CCM_CMEOR_MOD_EN_USDHC(v)   (((v) << BP_CCM_CMEOR_MOD_EN_USDHC) & BM_CCM_CMEOR_MOD_EN_USDHC)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_USDHC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_USDHC) & BM_CCM_CMEOR_MOD_EN_USDHC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_USDHC field to a new value.
@@ -9777,15 +8163,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_DAP      (0x00000100)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_DAP.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_DAP from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_DAP(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_DAP) >> BP_CCM_CMEOR_MOD_EN_OV_DAP)
+#define BG_CCM_CMEOR_MOD_EN_OV_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_DAP) >> BP_CCM_CMEOR_MOD_EN_OV_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_DAP.
-#define BF_CCM_CMEOR_MOD_EN_OV_DAP(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_DAP) & BM_CCM_CMEOR_MOD_EN_OV_DAP)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_DAP.
-#define BF_CCM_CMEOR_MOD_EN_OV_DAP(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_DAP) & BM_CCM_CMEOR_MOD_EN_OV_DAP)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_DAP) & BM_CCM_CMEOR_MOD_EN_OV_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_DAP field to a new value.
@@ -9806,15 +8187,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_VPU      (0x00000200)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_VPU.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_VPU from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_VPU(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_VPU) >> BP_CCM_CMEOR_MOD_EN_OV_VPU)
+#define BG_CCM_CMEOR_MOD_EN_OV_VPU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_VPU) >> BP_CCM_CMEOR_MOD_EN_OV_VPU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VPU.
-#define BF_CCM_CMEOR_MOD_EN_OV_VPU(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_VPU) & BM_CCM_CMEOR_MOD_EN_OV_VPU)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VPU.
-#define BF_CCM_CMEOR_MOD_EN_OV_VPU(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_VPU) & BM_CCM_CMEOR_MOD_EN_OV_VPU)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_VPU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_VPU) & BM_CCM_CMEOR_MOD_EN_OV_VPU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_VPU field to a new value.
@@ -9836,15 +8212,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_GPU2D      (0x00000400)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_GPU2D.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_GPU2D from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_GPU2D(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_GPU2D) >> BP_CCM_CMEOR_MOD_EN_OV_GPU2D)
+#define BG_CCM_CMEOR_MOD_EN_OV_GPU2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_GPU2D) >> BP_CCM_CMEOR_MOD_EN_OV_GPU2D)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPU2D.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPU2D(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_GPU2D) & BM_CCM_CMEOR_MOD_EN_OV_GPU2D)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPU2D.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPU2D(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_GPU2D) & BM_CCM_CMEOR_MOD_EN_OV_GPU2D)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_GPU2D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_GPU2D) & BM_CCM_CMEOR_MOD_EN_OV_GPU2D)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_GPU2D field to a new value.
@@ -9865,15 +8236,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_GPU3D      (0x00000800)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_GPU3D.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_GPU3D from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_GPU3D(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D) >> BP_CCM_CMEOR_MOD_EN_OV_GPU3D)
+#define BG_CCM_CMEOR_MOD_EN_OV_GPU3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D) >> BP_CCM_CMEOR_MOD_EN_OV_GPU3D)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPU3D.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPU3D(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_GPU3D) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPU3D.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPU3D(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_GPU3D) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_GPU3D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_GPU3D) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_GPU3D field to a new value.
@@ -9895,15 +8261,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI      (0x10000000)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_CAN2_CPI from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
+#define BG_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_CAN2_CPI field to a new value.
@@ -9925,15 +8286,10 @@ typedef union _hw_ccm_cmeor
 #define BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI      (0x40000000)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
 
 //! @brief Get value of CCM_CMEOR_MOD_EN_OV_CAN1_CPI from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(r)   (((r) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
+#define BG_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)   ((((reg32_t) v) << BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
-#else
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)   (((v) << BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
-#endif
+#define BF_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_CAN1_CPI field to a new value.
@@ -9982,7 +8338,7 @@ typedef struct _hw_ccm
     volatile hw_ccm_ccgr4_t CCGR4; //!< CCM Clock Gating Register 4
     volatile hw_ccm_ccgr5_t CCGR5; //!< CCM Clock Gating Register 5
     volatile hw_ccm_ccgr6_t CCGR6; //!< CCM Clock Gating Register 6
-    volatile hw_ccm_ccgr7_t CCGR7; //!< CCM Clock Gating Register 7
+    reg32_t _reserved2;
     volatile hw_ccm_cmeor_t CMEOR; //!< CCM Module Enable Overide Register
 } hw_ccm_t;
 #pragma pack()

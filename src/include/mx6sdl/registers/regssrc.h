@@ -41,6 +41,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SCR - SRC Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_SCR - SRC Control Register (RW)
@@ -113,15 +128,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_WARM_RESET_ENABLE      (0x00000001)  //!< Bit mask for SRC_SCR_WARM_RESET_ENABLE.
 
 //! @brief Get value of SRC_SCR_WARM_RESET_ENABLE from a register value.
-#define BG_SRC_SCR_WARM_RESET_ENABLE(r)   (((r) & BM_SRC_SCR_WARM_RESET_ENABLE) >> BP_SRC_SCR_WARM_RESET_ENABLE)
+#define BG_SRC_SCR_WARM_RESET_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_WARM_RESET_ENABLE) >> BP_SRC_SCR_WARM_RESET_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_WARM_RESET_ENABLE.
-#define BF_SRC_SCR_WARM_RESET_ENABLE(v)   ((((reg32_t) v) << BP_SRC_SCR_WARM_RESET_ENABLE) & BM_SRC_SCR_WARM_RESET_ENABLE)
-#else
-//! @brief Format value for bitfield SRC_SCR_WARM_RESET_ENABLE.
-#define BF_SRC_SCR_WARM_RESET_ENABLE(v)   (((v) << BP_SRC_SCR_WARM_RESET_ENABLE) & BM_SRC_SCR_WARM_RESET_ENABLE)
-#endif
+#define BF_SRC_SCR_WARM_RESET_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_WARM_RESET_ENABLE) & BM_SRC_SCR_WARM_RESET_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WARM_RESET_ENABLE field to a new value.
@@ -147,15 +157,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_SW_GPU_RST      (0x00000002)  //!< Bit mask for SRC_SCR_SW_GPU_RST.
 
 //! @brief Get value of SRC_SCR_SW_GPU_RST from a register value.
-#define BG_SRC_SCR_SW_GPU_RST(r)   (((r) & BM_SRC_SCR_SW_GPU_RST) >> BP_SRC_SCR_SW_GPU_RST)
+#define BG_SRC_SCR_SW_GPU_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_SW_GPU_RST) >> BP_SRC_SCR_SW_GPU_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_SW_GPU_RST.
-#define BF_SRC_SCR_SW_GPU_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_SW_GPU_RST) & BM_SRC_SCR_SW_GPU_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_SW_GPU_RST.
-#define BF_SRC_SCR_SW_GPU_RST(v)   (((v) << BP_SRC_SCR_SW_GPU_RST) & BM_SRC_SCR_SW_GPU_RST)
-#endif
+#define BF_SRC_SCR_SW_GPU_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_SW_GPU_RST) & BM_SRC_SCR_SW_GPU_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_GPU_RST field to a new value.
@@ -181,15 +186,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_SW_VPU_RST      (0x00000004)  //!< Bit mask for SRC_SCR_SW_VPU_RST.
 
 //! @brief Get value of SRC_SCR_SW_VPU_RST from a register value.
-#define BG_SRC_SCR_SW_VPU_RST(r)   (((r) & BM_SRC_SCR_SW_VPU_RST) >> BP_SRC_SCR_SW_VPU_RST)
+#define BG_SRC_SCR_SW_VPU_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_SW_VPU_RST) >> BP_SRC_SCR_SW_VPU_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_SW_VPU_RST.
-#define BF_SRC_SCR_SW_VPU_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_SW_VPU_RST) & BM_SRC_SCR_SW_VPU_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_SW_VPU_RST.
-#define BF_SRC_SCR_SW_VPU_RST(v)   (((v) << BP_SRC_SCR_SW_VPU_RST) & BM_SRC_SCR_SW_VPU_RST)
-#endif
+#define BF_SRC_SCR_SW_VPU_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_SW_VPU_RST) & BM_SRC_SCR_SW_VPU_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_VPU_RST field to a new value.
@@ -213,15 +213,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_SW_IPU1_RST      (0x00000008)  //!< Bit mask for SRC_SCR_SW_IPU1_RST.
 
 //! @brief Get value of SRC_SCR_SW_IPU1_RST from a register value.
-#define BG_SRC_SCR_SW_IPU1_RST(r)   (((r) & BM_SRC_SCR_SW_IPU1_RST) >> BP_SRC_SCR_SW_IPU1_RST)
+#define BG_SRC_SCR_SW_IPU1_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_SW_IPU1_RST) >> BP_SRC_SCR_SW_IPU1_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_SW_IPU1_RST.
-#define BF_SRC_SCR_SW_IPU1_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_SW_IPU1_RST) & BM_SRC_SCR_SW_IPU1_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_SW_IPU1_RST.
-#define BF_SRC_SCR_SW_IPU1_RST(v)   (((v) << BP_SRC_SCR_SW_IPU1_RST) & BM_SRC_SCR_SW_IPU1_RST)
-#endif
+#define BF_SRC_SCR_SW_IPU1_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_SW_IPU1_RST) & BM_SRC_SCR_SW_IPU1_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_IPU1_RST field to a new value.
@@ -247,15 +242,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_SW_OPEN_VG_RST      (0x00000010)  //!< Bit mask for SRC_SCR_SW_OPEN_VG_RST.
 
 //! @brief Get value of SRC_SCR_SW_OPEN_VG_RST from a register value.
-#define BG_SRC_SCR_SW_OPEN_VG_RST(r)   (((r) & BM_SRC_SCR_SW_OPEN_VG_RST) >> BP_SRC_SCR_SW_OPEN_VG_RST)
+#define BG_SRC_SCR_SW_OPEN_VG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_SW_OPEN_VG_RST) >> BP_SRC_SCR_SW_OPEN_VG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_SW_OPEN_VG_RST.
-#define BF_SRC_SCR_SW_OPEN_VG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_SW_OPEN_VG_RST) & BM_SRC_SCR_SW_OPEN_VG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_SW_OPEN_VG_RST.
-#define BF_SRC_SCR_SW_OPEN_VG_RST(v)   (((v) << BP_SRC_SCR_SW_OPEN_VG_RST) & BM_SRC_SCR_SW_OPEN_VG_RST)
-#endif
+#define BF_SRC_SCR_SW_OPEN_VG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_SW_OPEN_VG_RST) & BM_SRC_SCR_SW_OPEN_VG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_OPEN_VG_RST field to a new value.
@@ -280,15 +270,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_WARM_RST_BYPASS_COUNT      (0x00000060)  //!< Bit mask for SRC_SCR_WARM_RST_BYPASS_COUNT.
 
 //! @brief Get value of SRC_SCR_WARM_RST_BYPASS_COUNT from a register value.
-#define BG_SRC_SCR_WARM_RST_BYPASS_COUNT(r)   (((r) & BM_SRC_SCR_WARM_RST_BYPASS_COUNT) >> BP_SRC_SCR_WARM_RST_BYPASS_COUNT)
+#define BG_SRC_SCR_WARM_RST_BYPASS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_WARM_RST_BYPASS_COUNT) >> BP_SRC_SCR_WARM_RST_BYPASS_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_WARM_RST_BYPASS_COUNT.
-#define BF_SRC_SCR_WARM_RST_BYPASS_COUNT(v)   ((((reg32_t) v) << BP_SRC_SCR_WARM_RST_BYPASS_COUNT) & BM_SRC_SCR_WARM_RST_BYPASS_COUNT)
-#else
-//! @brief Format value for bitfield SRC_SCR_WARM_RST_BYPASS_COUNT.
-#define BF_SRC_SCR_WARM_RST_BYPASS_COUNT(v)   (((v) << BP_SRC_SCR_WARM_RST_BYPASS_COUNT) & BM_SRC_SCR_WARM_RST_BYPASS_COUNT)
-#endif
+#define BF_SRC_SCR_WARM_RST_BYPASS_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_WARM_RST_BYPASS_COUNT) & BM_SRC_SCR_WARM_RST_BYPASS_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WARM_RST_BYPASS_COUNT field to a new value.
@@ -316,15 +301,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_MASK_WDOG_RST      (0x00000780)  //!< Bit mask for SRC_SCR_MASK_WDOG_RST.
 
 //! @brief Get value of SRC_SCR_MASK_WDOG_RST from a register value.
-#define BG_SRC_SCR_MASK_WDOG_RST(r)   (((r) & BM_SRC_SCR_MASK_WDOG_RST) >> BP_SRC_SCR_MASK_WDOG_RST)
+#define BG_SRC_SCR_MASK_WDOG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_MASK_WDOG_RST) >> BP_SRC_SCR_MASK_WDOG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_MASK_WDOG_RST.
-#define BF_SRC_SCR_MASK_WDOG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_MASK_WDOG_RST) & BM_SRC_SCR_MASK_WDOG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_MASK_WDOG_RST.
-#define BF_SRC_SCR_MASK_WDOG_RST(v)   (((v) << BP_SRC_SCR_MASK_WDOG_RST) & BM_SRC_SCR_MASK_WDOG_RST)
-#endif
+#define BF_SRC_SCR_MASK_WDOG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_MASK_WDOG_RST) & BM_SRC_SCR_MASK_WDOG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_WDOG_RST field to a new value.
@@ -343,15 +323,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_WEIM_RST      (0x00000800)  //!< Bit mask for SRC_SCR_WEIM_RST.
 
 //! @brief Get value of SRC_SCR_WEIM_RST from a register value.
-#define BG_SRC_SCR_WEIM_RST(r)   (((r) & BM_SRC_SCR_WEIM_RST) >> BP_SRC_SCR_WEIM_RST)
+#define BG_SRC_SCR_WEIM_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_WEIM_RST) >> BP_SRC_SCR_WEIM_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_WEIM_RST.
-#define BF_SRC_SCR_WEIM_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_WEIM_RST) & BM_SRC_SCR_WEIM_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_WEIM_RST.
-#define BF_SRC_SCR_WEIM_RST(v)   (((v) << BP_SRC_SCR_WEIM_RST) & BM_SRC_SCR_WEIM_RST)
-#endif
+#define BF_SRC_SCR_WEIM_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_WEIM_RST) & BM_SRC_SCR_WEIM_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEIM_RST field to a new value.
@@ -374,15 +349,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_SW_IPU2_RST      (0x00001000)  //!< Bit mask for SRC_SCR_SW_IPU2_RST.
 
 //! @brief Get value of SRC_SCR_SW_IPU2_RST from a register value.
-#define BG_SRC_SCR_SW_IPU2_RST(r)   (((r) & BM_SRC_SCR_SW_IPU2_RST) >> BP_SRC_SCR_SW_IPU2_RST)
+#define BG_SRC_SCR_SW_IPU2_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_SW_IPU2_RST) >> BP_SRC_SCR_SW_IPU2_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_SW_IPU2_RST.
-#define BF_SRC_SCR_SW_IPU2_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_SW_IPU2_RST) & BM_SRC_SCR_SW_IPU2_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_SW_IPU2_RST.
-#define BF_SRC_SCR_SW_IPU2_RST(v)   (((v) << BP_SRC_SCR_SW_IPU2_RST) & BM_SRC_SCR_SW_IPU2_RST)
-#endif
+#define BF_SRC_SCR_SW_IPU2_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_SW_IPU2_RST) & BM_SRC_SCR_SW_IPU2_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_IPU2_RST field to a new value.
@@ -404,15 +374,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE0_RST      (0x00002000)  //!< Bit mask for SRC_SCR_CORE0_RST.
 
 //! @brief Get value of SRC_SCR_CORE0_RST from a register value.
-#define BG_SRC_SCR_CORE0_RST(r)   (((r) & BM_SRC_SCR_CORE0_RST) >> BP_SRC_SCR_CORE0_RST)
+#define BG_SRC_SCR_CORE0_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE0_RST) >> BP_SRC_SCR_CORE0_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE0_RST.
-#define BF_SRC_SCR_CORE0_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE0_RST) & BM_SRC_SCR_CORE0_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE0_RST.
-#define BF_SRC_SCR_CORE0_RST(v)   (((v) << BP_SRC_SCR_CORE0_RST) & BM_SRC_SCR_CORE0_RST)
-#endif
+#define BF_SRC_SCR_CORE0_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE0_RST) & BM_SRC_SCR_CORE0_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE0_RST field to a new value.
@@ -434,15 +399,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE1_RST      (0x00004000)  //!< Bit mask for SRC_SCR_CORE1_RST.
 
 //! @brief Get value of SRC_SCR_CORE1_RST from a register value.
-#define BG_SRC_SCR_CORE1_RST(r)   (((r) & BM_SRC_SCR_CORE1_RST) >> BP_SRC_SCR_CORE1_RST)
+#define BG_SRC_SCR_CORE1_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE1_RST) >> BP_SRC_SCR_CORE1_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE1_RST.
-#define BF_SRC_SCR_CORE1_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE1_RST) & BM_SRC_SCR_CORE1_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE1_RST.
-#define BF_SRC_SCR_CORE1_RST(v)   (((v) << BP_SRC_SCR_CORE1_RST) & BM_SRC_SCR_CORE1_RST)
-#endif
+#define BF_SRC_SCR_CORE1_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE1_RST) & BM_SRC_SCR_CORE1_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE1_RST field to a new value.
@@ -464,15 +424,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE2_RST      (0x00008000)  //!< Bit mask for SRC_SCR_CORE2_RST.
 
 //! @brief Get value of SRC_SCR_CORE2_RST from a register value.
-#define BG_SRC_SCR_CORE2_RST(r)   (((r) & BM_SRC_SCR_CORE2_RST) >> BP_SRC_SCR_CORE2_RST)
+#define BG_SRC_SCR_CORE2_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE2_RST) >> BP_SRC_SCR_CORE2_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE2_RST.
-#define BF_SRC_SCR_CORE2_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE2_RST) & BM_SRC_SCR_CORE2_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE2_RST.
-#define BF_SRC_SCR_CORE2_RST(v)   (((v) << BP_SRC_SCR_CORE2_RST) & BM_SRC_SCR_CORE2_RST)
-#endif
+#define BF_SRC_SCR_CORE2_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE2_RST) & BM_SRC_SCR_CORE2_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE2_RST field to a new value.
@@ -494,15 +449,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE3_RST      (0x00010000)  //!< Bit mask for SRC_SCR_CORE3_RST.
 
 //! @brief Get value of SRC_SCR_CORE3_RST from a register value.
-#define BG_SRC_SCR_CORE3_RST(r)   (((r) & BM_SRC_SCR_CORE3_RST) >> BP_SRC_SCR_CORE3_RST)
+#define BG_SRC_SCR_CORE3_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE3_RST) >> BP_SRC_SCR_CORE3_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE3_RST.
-#define BF_SRC_SCR_CORE3_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE3_RST) & BM_SRC_SCR_CORE3_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE3_RST.
-#define BF_SRC_SCR_CORE3_RST(v)   (((v) << BP_SRC_SCR_CORE3_RST) & BM_SRC_SCR_CORE3_RST)
-#endif
+#define BF_SRC_SCR_CORE3_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE3_RST) & BM_SRC_SCR_CORE3_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE3_RST field to a new value.
@@ -524,15 +474,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE0_DBG_RST      (0x00020000)  //!< Bit mask for SRC_SCR_CORE0_DBG_RST.
 
 //! @brief Get value of SRC_SCR_CORE0_DBG_RST from a register value.
-#define BG_SRC_SCR_CORE0_DBG_RST(r)   (((r) & BM_SRC_SCR_CORE0_DBG_RST) >> BP_SRC_SCR_CORE0_DBG_RST)
+#define BG_SRC_SCR_CORE0_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE0_DBG_RST) >> BP_SRC_SCR_CORE0_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE0_DBG_RST.
-#define BF_SRC_SCR_CORE0_DBG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE0_DBG_RST) & BM_SRC_SCR_CORE0_DBG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE0_DBG_RST.
-#define BF_SRC_SCR_CORE0_DBG_RST(v)   (((v) << BP_SRC_SCR_CORE0_DBG_RST) & BM_SRC_SCR_CORE0_DBG_RST)
-#endif
+#define BF_SRC_SCR_CORE0_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE0_DBG_RST) & BM_SRC_SCR_CORE0_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE0_DBG_RST field to a new value.
@@ -554,15 +499,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE1_DBG_RST      (0x00040000)  //!< Bit mask for SRC_SCR_CORE1_DBG_RST.
 
 //! @brief Get value of SRC_SCR_CORE1_DBG_RST from a register value.
-#define BG_SRC_SCR_CORE1_DBG_RST(r)   (((r) & BM_SRC_SCR_CORE1_DBG_RST) >> BP_SRC_SCR_CORE1_DBG_RST)
+#define BG_SRC_SCR_CORE1_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE1_DBG_RST) >> BP_SRC_SCR_CORE1_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE1_DBG_RST.
-#define BF_SRC_SCR_CORE1_DBG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE1_DBG_RST) & BM_SRC_SCR_CORE1_DBG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE1_DBG_RST.
-#define BF_SRC_SCR_CORE1_DBG_RST(v)   (((v) << BP_SRC_SCR_CORE1_DBG_RST) & BM_SRC_SCR_CORE1_DBG_RST)
-#endif
+#define BF_SRC_SCR_CORE1_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE1_DBG_RST) & BM_SRC_SCR_CORE1_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE1_DBG_RST field to a new value.
@@ -584,15 +524,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE2_DBG_RST      (0x00080000)  //!< Bit mask for SRC_SCR_CORE2_DBG_RST.
 
 //! @brief Get value of SRC_SCR_CORE2_DBG_RST from a register value.
-#define BG_SRC_SCR_CORE2_DBG_RST(r)   (((r) & BM_SRC_SCR_CORE2_DBG_RST) >> BP_SRC_SCR_CORE2_DBG_RST)
+#define BG_SRC_SCR_CORE2_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE2_DBG_RST) >> BP_SRC_SCR_CORE2_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE2_DBG_RST.
-#define BF_SRC_SCR_CORE2_DBG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE2_DBG_RST) & BM_SRC_SCR_CORE2_DBG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE2_DBG_RST.
-#define BF_SRC_SCR_CORE2_DBG_RST(v)   (((v) << BP_SRC_SCR_CORE2_DBG_RST) & BM_SRC_SCR_CORE2_DBG_RST)
-#endif
+#define BF_SRC_SCR_CORE2_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE2_DBG_RST) & BM_SRC_SCR_CORE2_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE2_DBG_RST field to a new value.
@@ -614,15 +549,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE3_DBG_RST      (0x00100000)  //!< Bit mask for SRC_SCR_CORE3_DBG_RST.
 
 //! @brief Get value of SRC_SCR_CORE3_DBG_RST from a register value.
-#define BG_SRC_SCR_CORE3_DBG_RST(r)   (((r) & BM_SRC_SCR_CORE3_DBG_RST) >> BP_SRC_SCR_CORE3_DBG_RST)
+#define BG_SRC_SCR_CORE3_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE3_DBG_RST) >> BP_SRC_SCR_CORE3_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE3_DBG_RST.
-#define BF_SRC_SCR_CORE3_DBG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE3_DBG_RST) & BM_SRC_SCR_CORE3_DBG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE3_DBG_RST.
-#define BF_SRC_SCR_CORE3_DBG_RST(v)   (((v) << BP_SRC_SCR_CORE3_DBG_RST) & BM_SRC_SCR_CORE3_DBG_RST)
-#endif
+#define BF_SRC_SCR_CORE3_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE3_DBG_RST) & BM_SRC_SCR_CORE3_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE3_DBG_RST field to a new value.
@@ -644,15 +574,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORES_DBG_RST      (0x00200000)  //!< Bit mask for SRC_SCR_CORES_DBG_RST.
 
 //! @brief Get value of SRC_SCR_CORES_DBG_RST from a register value.
-#define BG_SRC_SCR_CORES_DBG_RST(r)   (((r) & BM_SRC_SCR_CORES_DBG_RST) >> BP_SRC_SCR_CORES_DBG_RST)
+#define BG_SRC_SCR_CORES_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORES_DBG_RST) >> BP_SRC_SCR_CORES_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORES_DBG_RST.
-#define BF_SRC_SCR_CORES_DBG_RST(v)   ((((reg32_t) v) << BP_SRC_SCR_CORES_DBG_RST) & BM_SRC_SCR_CORES_DBG_RST)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORES_DBG_RST.
-#define BF_SRC_SCR_CORES_DBG_RST(v)   (((v) << BP_SRC_SCR_CORES_DBG_RST) & BM_SRC_SCR_CORES_DBG_RST)
-#endif
+#define BF_SRC_SCR_CORES_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORES_DBG_RST) & BM_SRC_SCR_CORES_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORES_DBG_RST field to a new value.
@@ -673,15 +598,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE1_ENABLE      (0x00400000)  //!< Bit mask for SRC_SCR_CORE1_ENABLE.
 
 //! @brief Get value of SRC_SCR_CORE1_ENABLE from a register value.
-#define BG_SRC_SCR_CORE1_ENABLE(r)   (((r) & BM_SRC_SCR_CORE1_ENABLE) >> BP_SRC_SCR_CORE1_ENABLE)
+#define BG_SRC_SCR_CORE1_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE1_ENABLE) >> BP_SRC_SCR_CORE1_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE1_ENABLE.
-#define BF_SRC_SCR_CORE1_ENABLE(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE1_ENABLE) & BM_SRC_SCR_CORE1_ENABLE)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE1_ENABLE.
-#define BF_SRC_SCR_CORE1_ENABLE(v)   (((v) << BP_SRC_SCR_CORE1_ENABLE) & BM_SRC_SCR_CORE1_ENABLE)
-#endif
+#define BF_SRC_SCR_CORE1_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE1_ENABLE) & BM_SRC_SCR_CORE1_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE1_ENABLE field to a new value.
@@ -702,15 +622,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE2_ENABLE      (0x00800000)  //!< Bit mask for SRC_SCR_CORE2_ENABLE.
 
 //! @brief Get value of SRC_SCR_CORE2_ENABLE from a register value.
-#define BG_SRC_SCR_CORE2_ENABLE(r)   (((r) & BM_SRC_SCR_CORE2_ENABLE) >> BP_SRC_SCR_CORE2_ENABLE)
+#define BG_SRC_SCR_CORE2_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE2_ENABLE) >> BP_SRC_SCR_CORE2_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE2_ENABLE.
-#define BF_SRC_SCR_CORE2_ENABLE(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE2_ENABLE) & BM_SRC_SCR_CORE2_ENABLE)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE2_ENABLE.
-#define BF_SRC_SCR_CORE2_ENABLE(v)   (((v) << BP_SRC_SCR_CORE2_ENABLE) & BM_SRC_SCR_CORE2_ENABLE)
-#endif
+#define BF_SRC_SCR_CORE2_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE2_ENABLE) & BM_SRC_SCR_CORE2_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE2_ENABLE field to a new value.
@@ -731,15 +646,10 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_CORE3_ENABLE      (0x01000000)  //!< Bit mask for SRC_SCR_CORE3_ENABLE.
 
 //! @brief Get value of SRC_SCR_CORE3_ENABLE from a register value.
-#define BG_SRC_SCR_CORE3_ENABLE(r)   (((r) & BM_SRC_SCR_CORE3_ENABLE) >> BP_SRC_SCR_CORE3_ENABLE)
+#define BG_SRC_SCR_CORE3_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_CORE3_ENABLE) >> BP_SRC_SCR_CORE3_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_CORE3_ENABLE.
-#define BF_SRC_SCR_CORE3_ENABLE(v)   ((((reg32_t) v) << BP_SRC_SCR_CORE3_ENABLE) & BM_SRC_SCR_CORE3_ENABLE)
-#else
-//! @brief Format value for bitfield SRC_SCR_CORE3_ENABLE.
-#define BF_SRC_SCR_CORE3_ENABLE(v)   (((v) << BP_SRC_SCR_CORE3_ENABLE) & BM_SRC_SCR_CORE3_ENABLE)
-#endif
+#define BF_SRC_SCR_CORE3_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_CORE3_ENABLE) & BM_SRC_SCR_CORE3_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CORE3_ENABLE field to a new value.
@@ -760,21 +670,20 @@ typedef union _hw_src_scr
 #define BM_SRC_SCR_DBG_RST_MSK_PG      (0x02000000)  //!< Bit mask for SRC_SCR_DBG_RST_MSK_PG.
 
 //! @brief Get value of SRC_SCR_DBG_RST_MSK_PG from a register value.
-#define BG_SRC_SCR_DBG_RST_MSK_PG(r)   (((r) & BM_SRC_SCR_DBG_RST_MSK_PG) >> BP_SRC_SCR_DBG_RST_MSK_PG)
+#define BG_SRC_SCR_DBG_RST_MSK_PG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SCR_DBG_RST_MSK_PG) >> BP_SRC_SCR_DBG_RST_MSK_PG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SCR_DBG_RST_MSK_PG.
-#define BF_SRC_SCR_DBG_RST_MSK_PG(v)   ((((reg32_t) v) << BP_SRC_SCR_DBG_RST_MSK_PG) & BM_SRC_SCR_DBG_RST_MSK_PG)
-#else
-//! @brief Format value for bitfield SRC_SCR_DBG_RST_MSK_PG.
-#define BF_SRC_SCR_DBG_RST_MSK_PG(v)   (((v) << BP_SRC_SCR_DBG_RST_MSK_PG) & BM_SRC_SCR_DBG_RST_MSK_PG)
-#endif
+#define BF_SRC_SCR_DBG_RST_MSK_PG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SCR_DBG_RST_MSK_PG) & BM_SRC_SCR_DBG_RST_MSK_PG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_RST_MSK_PG field to a new value.
 #define BW_SRC_SCR_DBG_RST_MSK_PG(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_DBG_RST_MSK_PG) | BF_SRC_SCR_DBG_RST_MSK_PG(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SBMR1 - SRC Boot Mode Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -822,7 +731,7 @@ typedef union _hw_src_sbmr1
 #define BM_SRC_SBMR1_BOOT_CFG1      (0x000000ff)  //!< Bit mask for SRC_SBMR1_BOOT_CFG1.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG1 from a register value.
-#define BG_SRC_SBMR1_BOOT_CFG1(r)   (((r) & BM_SRC_SBMR1_BOOT_CFG1) >> BP_SRC_SBMR1_BOOT_CFG1)
+#define BG_SRC_SBMR1_BOOT_CFG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG1) >> BP_SRC_SBMR1_BOOT_CFG1)
 
 /* --- Register HW_SRC_SBMR1, field BOOT_CFG2[15:8] (RO)
  *
@@ -833,7 +742,7 @@ typedef union _hw_src_sbmr1
 #define BM_SRC_SBMR1_BOOT_CFG2      (0x0000ff00)  //!< Bit mask for SRC_SBMR1_BOOT_CFG2.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG2 from a register value.
-#define BG_SRC_SBMR1_BOOT_CFG2(r)   (((r) & BM_SRC_SBMR1_BOOT_CFG2) >> BP_SRC_SBMR1_BOOT_CFG2)
+#define BG_SRC_SBMR1_BOOT_CFG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG2) >> BP_SRC_SBMR1_BOOT_CFG2)
 
 /* --- Register HW_SRC_SBMR1, field BOOT_CFG3[23:16] (RO)
  *
@@ -844,7 +753,7 @@ typedef union _hw_src_sbmr1
 #define BM_SRC_SBMR1_BOOT_CFG3      (0x00ff0000)  //!< Bit mask for SRC_SBMR1_BOOT_CFG3.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG3 from a register value.
-#define BG_SRC_SBMR1_BOOT_CFG3(r)   (((r) & BM_SRC_SBMR1_BOOT_CFG3) >> BP_SRC_SBMR1_BOOT_CFG3)
+#define BG_SRC_SBMR1_BOOT_CFG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG3) >> BP_SRC_SBMR1_BOOT_CFG3)
 
 /* --- Register HW_SRC_SBMR1, field BOOT_CFG4[31:24] (RO)
  *
@@ -855,7 +764,11 @@ typedef union _hw_src_sbmr1
 #define BM_SRC_SBMR1_BOOT_CFG4      (0xff000000)  //!< Bit mask for SRC_SBMR1_BOOT_CFG4.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG4 from a register value.
-#define BG_SRC_SBMR1_BOOT_CFG4(r)   (((r) & BM_SRC_SBMR1_BOOT_CFG4) >> BP_SRC_SBMR1_BOOT_CFG4)
+#define BG_SRC_SBMR1_BOOT_CFG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG4) >> BP_SRC_SBMR1_BOOT_CFG4)
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SRSR - SRC Reset Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -922,15 +835,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_IPP_RESET_B      (0x00000001)  //!< Bit mask for SRC_SRSR_IPP_RESET_B.
 
 //! @brief Get value of SRC_SRSR_IPP_RESET_B from a register value.
-#define BG_SRC_SRSR_IPP_RESET_B(r)   (((r) & BM_SRC_SRSR_IPP_RESET_B) >> BP_SRC_SRSR_IPP_RESET_B)
+#define BG_SRC_SRSR_IPP_RESET_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_IPP_RESET_B) >> BP_SRC_SRSR_IPP_RESET_B)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_IPP_RESET_B.
-#define BF_SRC_SRSR_IPP_RESET_B(v)   ((((reg32_t) v) << BP_SRC_SRSR_IPP_RESET_B) & BM_SRC_SRSR_IPP_RESET_B)
-#else
-//! @brief Format value for bitfield SRC_SRSR_IPP_RESET_B.
-#define BF_SRC_SRSR_IPP_RESET_B(v)   (((v) << BP_SRC_SRSR_IPP_RESET_B) & BM_SRC_SRSR_IPP_RESET_B)
-#endif
+#define BF_SRC_SRSR_IPP_RESET_B(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_IPP_RESET_B) & BM_SRC_SRSR_IPP_RESET_B)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPP_RESET_B field to a new value.
@@ -953,15 +861,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_CSU_RESET_B      (0x00000004)  //!< Bit mask for SRC_SRSR_CSU_RESET_B.
 
 //! @brief Get value of SRC_SRSR_CSU_RESET_B from a register value.
-#define BG_SRC_SRSR_CSU_RESET_B(r)   (((r) & BM_SRC_SRSR_CSU_RESET_B) >> BP_SRC_SRSR_CSU_RESET_B)
+#define BG_SRC_SRSR_CSU_RESET_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_CSU_RESET_B) >> BP_SRC_SRSR_CSU_RESET_B)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_CSU_RESET_B.
-#define BF_SRC_SRSR_CSU_RESET_B(v)   ((((reg32_t) v) << BP_SRC_SRSR_CSU_RESET_B) & BM_SRC_SRSR_CSU_RESET_B)
-#else
-//! @brief Format value for bitfield SRC_SRSR_CSU_RESET_B.
-#define BF_SRC_SRSR_CSU_RESET_B(v)   (((v) << BP_SRC_SRSR_CSU_RESET_B) & BM_SRC_SRSR_CSU_RESET_B)
-#endif
+#define BF_SRC_SRSR_CSU_RESET_B(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_CSU_RESET_B) & BM_SRC_SRSR_CSU_RESET_B)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSU_RESET_B field to a new value.
@@ -982,15 +885,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_IPP_USER_RESET_B      (0x00000008)  //!< Bit mask for SRC_SRSR_IPP_USER_RESET_B.
 
 //! @brief Get value of SRC_SRSR_IPP_USER_RESET_B from a register value.
-#define BG_SRC_SRSR_IPP_USER_RESET_B(r)   (((r) & BM_SRC_SRSR_IPP_USER_RESET_B) >> BP_SRC_SRSR_IPP_USER_RESET_B)
+#define BG_SRC_SRSR_IPP_USER_RESET_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_IPP_USER_RESET_B) >> BP_SRC_SRSR_IPP_USER_RESET_B)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_IPP_USER_RESET_B.
-#define BF_SRC_SRSR_IPP_USER_RESET_B(v)   ((((reg32_t) v) << BP_SRC_SRSR_IPP_USER_RESET_B) & BM_SRC_SRSR_IPP_USER_RESET_B)
-#else
-//! @brief Format value for bitfield SRC_SRSR_IPP_USER_RESET_B.
-#define BF_SRC_SRSR_IPP_USER_RESET_B(v)   (((v) << BP_SRC_SRSR_IPP_USER_RESET_B) & BM_SRC_SRSR_IPP_USER_RESET_B)
-#endif
+#define BF_SRC_SRSR_IPP_USER_RESET_B(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_IPP_USER_RESET_B) & BM_SRC_SRSR_IPP_USER_RESET_B)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPP_USER_RESET_B field to a new value.
@@ -1012,15 +910,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_WDOG_RST_B      (0x00000010)  //!< Bit mask for SRC_SRSR_WDOG_RST_B.
 
 //! @brief Get value of SRC_SRSR_WDOG_RST_B from a register value.
-#define BG_SRC_SRSR_WDOG_RST_B(r)   (((r) & BM_SRC_SRSR_WDOG_RST_B) >> BP_SRC_SRSR_WDOG_RST_B)
+#define BG_SRC_SRSR_WDOG_RST_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_WDOG_RST_B) >> BP_SRC_SRSR_WDOG_RST_B)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_WDOG_RST_B.
-#define BF_SRC_SRSR_WDOG_RST_B(v)   ((((reg32_t) v) << BP_SRC_SRSR_WDOG_RST_B) & BM_SRC_SRSR_WDOG_RST_B)
-#else
-//! @brief Format value for bitfield SRC_SRSR_WDOG_RST_B.
-#define BF_SRC_SRSR_WDOG_RST_B(v)   (((v) << BP_SRC_SRSR_WDOG_RST_B) & BM_SRC_SRSR_WDOG_RST_B)
-#endif
+#define BF_SRC_SRSR_WDOG_RST_B(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_WDOG_RST_B) & BM_SRC_SRSR_WDOG_RST_B)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDOG_RST_B field to a new value.
@@ -1042,15 +935,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_JTAG_RST_B      (0x00000020)  //!< Bit mask for SRC_SRSR_JTAG_RST_B.
 
 //! @brief Get value of SRC_SRSR_JTAG_RST_B from a register value.
-#define BG_SRC_SRSR_JTAG_RST_B(r)   (((r) & BM_SRC_SRSR_JTAG_RST_B) >> BP_SRC_SRSR_JTAG_RST_B)
+#define BG_SRC_SRSR_JTAG_RST_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_JTAG_RST_B) >> BP_SRC_SRSR_JTAG_RST_B)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_JTAG_RST_B.
-#define BF_SRC_SRSR_JTAG_RST_B(v)   ((((reg32_t) v) << BP_SRC_SRSR_JTAG_RST_B) & BM_SRC_SRSR_JTAG_RST_B)
-#else
-//! @brief Format value for bitfield SRC_SRSR_JTAG_RST_B.
-#define BF_SRC_SRSR_JTAG_RST_B(v)   (((v) << BP_SRC_SRSR_JTAG_RST_B) & BM_SRC_SRSR_JTAG_RST_B)
-#endif
+#define BF_SRC_SRSR_JTAG_RST_B(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_JTAG_RST_B) & BM_SRC_SRSR_JTAG_RST_B)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the JTAG_RST_B field to a new value.
@@ -1072,15 +960,10 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_JTAG_SW_RST      (0x00000040)  //!< Bit mask for SRC_SRSR_JTAG_SW_RST.
 
 //! @brief Get value of SRC_SRSR_JTAG_SW_RST from a register value.
-#define BG_SRC_SRSR_JTAG_SW_RST(r)   (((r) & BM_SRC_SRSR_JTAG_SW_RST) >> BP_SRC_SRSR_JTAG_SW_RST)
+#define BG_SRC_SRSR_JTAG_SW_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_JTAG_SW_RST) >> BP_SRC_SRSR_JTAG_SW_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_JTAG_SW_RST.
-#define BF_SRC_SRSR_JTAG_SW_RST(v)   ((((reg32_t) v) << BP_SRC_SRSR_JTAG_SW_RST) & BM_SRC_SRSR_JTAG_SW_RST)
-#else
-//! @brief Format value for bitfield SRC_SRSR_JTAG_SW_RST.
-#define BF_SRC_SRSR_JTAG_SW_RST(v)   (((v) << BP_SRC_SRSR_JTAG_SW_RST) & BM_SRC_SRSR_JTAG_SW_RST)
-#endif
+#define BF_SRC_SRSR_JTAG_SW_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_JTAG_SW_RST) & BM_SRC_SRSR_JTAG_SW_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the JTAG_SW_RST field to a new value.
@@ -1106,21 +989,20 @@ typedef union _hw_src_srsr
 #define BM_SRC_SRSR_WARM_BOOT      (0x00010000)  //!< Bit mask for SRC_SRSR_WARM_BOOT.
 
 //! @brief Get value of SRC_SRSR_WARM_BOOT from a register value.
-#define BG_SRC_SRSR_WARM_BOOT(r)   (((r) & BM_SRC_SRSR_WARM_BOOT) >> BP_SRC_SRSR_WARM_BOOT)
+#define BG_SRC_SRSR_WARM_BOOT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SRSR_WARM_BOOT) >> BP_SRC_SRSR_WARM_BOOT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SRSR_WARM_BOOT.
-#define BF_SRC_SRSR_WARM_BOOT(v)   ((((reg32_t) v) << BP_SRC_SRSR_WARM_BOOT) & BM_SRC_SRSR_WARM_BOOT)
-#else
-//! @brief Format value for bitfield SRC_SRSR_WARM_BOOT.
-#define BF_SRC_SRSR_WARM_BOOT(v)   (((v) << BP_SRC_SRSR_WARM_BOOT) & BM_SRC_SRSR_WARM_BOOT)
-#endif
+#define BF_SRC_SRSR_WARM_BOOT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SRSR_WARM_BOOT) & BM_SRC_SRSR_WARM_BOOT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WARM_BOOT field to a new value.
 #define BW_SRC_SRSR_WARM_BOOT(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_WARM_BOOT) | BF_SRC_SRSR_WARM_BOOT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SISR - SRC Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1176,7 +1058,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_GPU_PASSED_RESET      (0x00000001)  //!< Bit mask for SRC_SISR_GPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_GPU_PASSED_RESET from a register value.
-#define BG_SRC_SISR_GPU_PASSED_RESET(r)   (((r) & BM_SRC_SISR_GPU_PASSED_RESET) >> BP_SRC_SISR_GPU_PASSED_RESET)
+#define BG_SRC_SISR_GPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_GPU_PASSED_RESET) >> BP_SRC_SISR_GPU_PASSED_RESET)
 
 
 /* --- Register HW_SRC_SISR, field VPU_PASSED_RESET[1] (RO)
@@ -1192,7 +1074,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_VPU_PASSED_RESET      (0x00000002)  //!< Bit mask for SRC_SISR_VPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_VPU_PASSED_RESET from a register value.
-#define BG_SRC_SISR_VPU_PASSED_RESET(r)   (((r) & BM_SRC_SISR_VPU_PASSED_RESET) >> BP_SRC_SISR_VPU_PASSED_RESET)
+#define BG_SRC_SISR_VPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_VPU_PASSED_RESET) >> BP_SRC_SISR_VPU_PASSED_RESET)
 
 
 /* --- Register HW_SRC_SISR, field IPU1_PASSED_RESET[2] (RO)
@@ -1208,7 +1090,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_IPU1_PASSED_RESET      (0x00000004)  //!< Bit mask for SRC_SISR_IPU1_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_IPU1_PASSED_RESET from a register value.
-#define BG_SRC_SISR_IPU1_PASSED_RESET(r)   (((r) & BM_SRC_SISR_IPU1_PASSED_RESET) >> BP_SRC_SISR_IPU1_PASSED_RESET)
+#define BG_SRC_SISR_IPU1_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_IPU1_PASSED_RESET) >> BP_SRC_SISR_IPU1_PASSED_RESET)
 
 
 /* --- Register HW_SRC_SISR, field OPEN_VG_PASSED_RESET[3] (RO)
@@ -1224,7 +1106,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_OPEN_VG_PASSED_RESET      (0x00000008)  //!< Bit mask for SRC_SISR_OPEN_VG_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_OPEN_VG_PASSED_RESET from a register value.
-#define BG_SRC_SISR_OPEN_VG_PASSED_RESET(r)   (((r) & BM_SRC_SISR_OPEN_VG_PASSED_RESET) >> BP_SRC_SISR_OPEN_VG_PASSED_RESET)
+#define BG_SRC_SISR_OPEN_VG_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_OPEN_VG_PASSED_RESET) >> BP_SRC_SISR_OPEN_VG_PASSED_RESET)
 
 
 /* --- Register HW_SRC_SISR, field IPU2_PASSED_RESET[4] (RO)
@@ -1240,7 +1122,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_IPU2_PASSED_RESET      (0x00000010)  //!< Bit mask for SRC_SISR_IPU2_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_IPU2_PASSED_RESET from a register value.
-#define BG_SRC_SISR_IPU2_PASSED_RESET(r)   (((r) & BM_SRC_SISR_IPU2_PASSED_RESET) >> BP_SRC_SISR_IPU2_PASSED_RESET)
+#define BG_SRC_SISR_IPU2_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_IPU2_PASSED_RESET) >> BP_SRC_SISR_IPU2_PASSED_RESET)
 
 
 /* --- Register HW_SRC_SISR, field CORE0_WDOG_RST_REQ[5] (RO)
@@ -1252,7 +1134,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_CORE0_WDOG_RST_REQ      (0x00000020)  //!< Bit mask for SRC_SISR_CORE0_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE0_WDOG_RST_REQ from a register value.
-#define BG_SRC_SISR_CORE0_WDOG_RST_REQ(r)   (((r) & BM_SRC_SISR_CORE0_WDOG_RST_REQ) >> BP_SRC_SISR_CORE0_WDOG_RST_REQ)
+#define BG_SRC_SISR_CORE0_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE0_WDOG_RST_REQ) >> BP_SRC_SISR_CORE0_WDOG_RST_REQ)
 
 /* --- Register HW_SRC_SISR, field CORE1_WDOG_RST_REQ[6] (RO)
  *
@@ -1263,7 +1145,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_CORE1_WDOG_RST_REQ      (0x00000040)  //!< Bit mask for SRC_SISR_CORE1_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE1_WDOG_RST_REQ from a register value.
-#define BG_SRC_SISR_CORE1_WDOG_RST_REQ(r)   (((r) & BM_SRC_SISR_CORE1_WDOG_RST_REQ) >> BP_SRC_SISR_CORE1_WDOG_RST_REQ)
+#define BG_SRC_SISR_CORE1_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE1_WDOG_RST_REQ) >> BP_SRC_SISR_CORE1_WDOG_RST_REQ)
 
 /* --- Register HW_SRC_SISR, field CORE2_WDOG_RST_REQ[7] (RO)
  *
@@ -1274,7 +1156,7 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_CORE2_WDOG_RST_REQ      (0x00000080)  //!< Bit mask for SRC_SISR_CORE2_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE2_WDOG_RST_REQ from a register value.
-#define BG_SRC_SISR_CORE2_WDOG_RST_REQ(r)   (((r) & BM_SRC_SISR_CORE2_WDOG_RST_REQ) >> BP_SRC_SISR_CORE2_WDOG_RST_REQ)
+#define BG_SRC_SISR_CORE2_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE2_WDOG_RST_REQ) >> BP_SRC_SISR_CORE2_WDOG_RST_REQ)
 
 /* --- Register HW_SRC_SISR, field CORE3_WDOG_RST_REQ[8] (RO)
  *
@@ -1285,7 +1167,11 @@ typedef union _hw_src_sisr
 #define BM_SRC_SISR_CORE3_WDOG_RST_REQ      (0x00000100)  //!< Bit mask for SRC_SISR_CORE3_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE3_WDOG_RST_REQ from a register value.
-#define BG_SRC_SISR_CORE3_WDOG_RST_REQ(r)   (((r) & BM_SRC_SISR_CORE3_WDOG_RST_REQ) >> BP_SRC_SISR_CORE3_WDOG_RST_REQ)
+#define BG_SRC_SISR_CORE3_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE3_WDOG_RST_REQ) >> BP_SRC_SISR_CORE3_WDOG_RST_REQ)
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SIMR - SRC Interrupt Mask Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1341,15 +1227,10 @@ typedef union _hw_src_simr
 #define BM_SRC_SIMR_MASK_GPU_PASSED_RESET      (0x00000001)  //!< Bit mask for SRC_SIMR_MASK_GPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SIMR_MASK_GPU_PASSED_RESET from a register value.
-#define BG_SRC_SIMR_MASK_GPU_PASSED_RESET(r)   (((r) & BM_SRC_SIMR_MASK_GPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_GPU_PASSED_RESET)
+#define BG_SRC_SIMR_MASK_GPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SIMR_MASK_GPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_GPU_PASSED_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SIMR_MASK_GPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_GPU_PASSED_RESET(v)   ((((reg32_t) v) << BP_SRC_SIMR_MASK_GPU_PASSED_RESET) & BM_SRC_SIMR_MASK_GPU_PASSED_RESET)
-#else
-//! @brief Format value for bitfield SRC_SIMR_MASK_GPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_GPU_PASSED_RESET(v)   (((v) << BP_SRC_SIMR_MASK_GPU_PASSED_RESET) & BM_SRC_SIMR_MASK_GPU_PASSED_RESET)
-#endif
+#define BF_SRC_SIMR_MASK_GPU_PASSED_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SIMR_MASK_GPU_PASSED_RESET) & BM_SRC_SIMR_MASK_GPU_PASSED_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_GPU_PASSED_RESET field to a new value.
@@ -1370,15 +1251,10 @@ typedef union _hw_src_simr
 #define BM_SRC_SIMR_MASK_VPU_PASSED_RESET      (0x00000002)  //!< Bit mask for SRC_SIMR_MASK_VPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SIMR_MASK_VPU_PASSED_RESET from a register value.
-#define BG_SRC_SIMR_MASK_VPU_PASSED_RESET(r)   (((r) & BM_SRC_SIMR_MASK_VPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_VPU_PASSED_RESET)
+#define BG_SRC_SIMR_MASK_VPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SIMR_MASK_VPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_VPU_PASSED_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SIMR_MASK_VPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_VPU_PASSED_RESET(v)   ((((reg32_t) v) << BP_SRC_SIMR_MASK_VPU_PASSED_RESET) & BM_SRC_SIMR_MASK_VPU_PASSED_RESET)
-#else
-//! @brief Format value for bitfield SRC_SIMR_MASK_VPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_VPU_PASSED_RESET(v)   (((v) << BP_SRC_SIMR_MASK_VPU_PASSED_RESET) & BM_SRC_SIMR_MASK_VPU_PASSED_RESET)
-#endif
+#define BF_SRC_SIMR_MASK_VPU_PASSED_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SIMR_MASK_VPU_PASSED_RESET) & BM_SRC_SIMR_MASK_VPU_PASSED_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_VPU_PASSED_RESET field to a new value.
@@ -1399,15 +1275,10 @@ typedef union _hw_src_simr
 #define BM_SRC_SIMR_MASK_IPU_PASSED_RESET      (0x00000004)  //!< Bit mask for SRC_SIMR_MASK_IPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SIMR_MASK_IPU_PASSED_RESET from a register value.
-#define BG_SRC_SIMR_MASK_IPU_PASSED_RESET(r)   (((r) & BM_SRC_SIMR_MASK_IPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_IPU_PASSED_RESET)
+#define BG_SRC_SIMR_MASK_IPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SIMR_MASK_IPU_PASSED_RESET) >> BP_SRC_SIMR_MASK_IPU_PASSED_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SIMR_MASK_IPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_IPU_PASSED_RESET(v)   ((((reg32_t) v) << BP_SRC_SIMR_MASK_IPU_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU_PASSED_RESET)
-#else
-//! @brief Format value for bitfield SRC_SIMR_MASK_IPU_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_IPU_PASSED_RESET(v)   (((v) << BP_SRC_SIMR_MASK_IPU_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU_PASSED_RESET)
-#endif
+#define BF_SRC_SIMR_MASK_IPU_PASSED_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SIMR_MASK_IPU_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU_PASSED_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_IPU_PASSED_RESET field to a new value.
@@ -1428,15 +1299,10 @@ typedef union _hw_src_simr
 #define BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET      (0x00000008)  //!< Bit mask for SRC_SIMR_MASK_OPEN_VG_PASSED_RESET.
 
 //! @brief Get value of SRC_SIMR_MASK_OPEN_VG_PASSED_RESET from a register value.
-#define BG_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(r)   (((r) & BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) >> BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET)
+#define BG_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) >> BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SIMR_MASK_OPEN_VG_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(v)   ((((reg32_t) v) << BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) & BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET)
-#else
-//! @brief Format value for bitfield SRC_SIMR_MASK_OPEN_VG_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(v)   (((v) << BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) & BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET)
-#endif
+#define BF_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) & BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_OPEN_VG_PASSED_RESET field to a new value.
@@ -1457,21 +1323,20 @@ typedef union _hw_src_simr
 #define BM_SRC_SIMR_MASK_IPU2_PASSED_RESET      (0x00000010)  //!< Bit mask for SRC_SIMR_MASK_IPU2_PASSED_RESET.
 
 //! @brief Get value of SRC_SIMR_MASK_IPU2_PASSED_RESET from a register value.
-#define BG_SRC_SIMR_MASK_IPU2_PASSED_RESET(r)   (((r) & BM_SRC_SIMR_MASK_IPU2_PASSED_RESET) >> BP_SRC_SIMR_MASK_IPU2_PASSED_RESET)
+#define BG_SRC_SIMR_MASK_IPU2_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SIMR_MASK_IPU2_PASSED_RESET) >> BP_SRC_SIMR_MASK_IPU2_PASSED_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SRC_SIMR_MASK_IPU2_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_IPU2_PASSED_RESET(v)   ((((reg32_t) v) << BP_SRC_SIMR_MASK_IPU2_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU2_PASSED_RESET)
-#else
-//! @brief Format value for bitfield SRC_SIMR_MASK_IPU2_PASSED_RESET.
-#define BF_SRC_SIMR_MASK_IPU2_PASSED_RESET(v)   (((v) << BP_SRC_SIMR_MASK_IPU2_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU2_PASSED_RESET)
-#endif
+#define BF_SRC_SIMR_MASK_IPU2_PASSED_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SRC_SIMR_MASK_IPU2_PASSED_RESET) & BM_SRC_SIMR_MASK_IPU2_PASSED_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_IPU2_PASSED_RESET field to a new value.
 #define BW_SRC_SIMR_MASK_IPU2_PASSED_RESET(v)   (HW_SRC_SIMR_WR((HW_SRC_SIMR_RD() & ~BM_SRC_SIMR_MASK_IPU2_PASSED_RESET) | BF_SRC_SIMR_MASK_IPU2_PASSED_RESET(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_SBMR2 - SRC Boot Mode Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1524,7 +1389,7 @@ typedef union _hw_src_sbmr2
 #define BM_SRC_SBMR2_SEC_CONFIG      (0x00000003)  //!< Bit mask for SRC_SBMR2_SEC_CONFIG.
 
 //! @brief Get value of SRC_SBMR2_SEC_CONFIG from a register value.
-#define BG_SRC_SBMR2_SEC_CONFIG(r)   (((r) & BM_SRC_SBMR2_SEC_CONFIG) >> BP_SRC_SBMR2_SEC_CONFIG)
+#define BG_SRC_SBMR2_SEC_CONFIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_SEC_CONFIG) >> BP_SRC_SBMR2_SEC_CONFIG)
 
 /* --- Register HW_SRC_SBMR2, field DIR_BT_DIS[3] (RO)
  *
@@ -1535,7 +1400,7 @@ typedef union _hw_src_sbmr2
 #define BM_SRC_SBMR2_DIR_BT_DIS      (0x00000008)  //!< Bit mask for SRC_SBMR2_DIR_BT_DIS.
 
 //! @brief Get value of SRC_SBMR2_DIR_BT_DIS from a register value.
-#define BG_SRC_SBMR2_DIR_BT_DIS(r)   (((r) & BM_SRC_SBMR2_DIR_BT_DIS) >> BP_SRC_SBMR2_DIR_BT_DIS)
+#define BG_SRC_SBMR2_DIR_BT_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_DIR_BT_DIS) >> BP_SRC_SBMR2_DIR_BT_DIS)
 
 /* --- Register HW_SRC_SBMR2, field BT_FUSE_SEL[4] (RO)
  *
@@ -1546,7 +1411,7 @@ typedef union _hw_src_sbmr2
 #define BM_SRC_SBMR2_BT_FUSE_SEL      (0x00000010)  //!< Bit mask for SRC_SBMR2_BT_FUSE_SEL.
 
 //! @brief Get value of SRC_SBMR2_BT_FUSE_SEL from a register value.
-#define BG_SRC_SBMR2_BT_FUSE_SEL(r)   (((r) & BM_SRC_SBMR2_BT_FUSE_SEL) >> BP_SRC_SBMR2_BT_FUSE_SEL)
+#define BG_SRC_SBMR2_BT_FUSE_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_BT_FUSE_SEL) >> BP_SRC_SBMR2_BT_FUSE_SEL)
 
 /* --- Register HW_SRC_SBMR2, field BMOD[25:24] (RO)
  *
@@ -1557,7 +1422,7 @@ typedef union _hw_src_sbmr2
 #define BM_SRC_SBMR2_BMOD      (0x03000000)  //!< Bit mask for SRC_SBMR2_BMOD.
 
 //! @brief Get value of SRC_SBMR2_BMOD from a register value.
-#define BG_SRC_SBMR2_BMOD(r)   (((r) & BM_SRC_SBMR2_BMOD) >> BP_SRC_SBMR2_BMOD)
+#define BG_SRC_SBMR2_BMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_BMOD) >> BP_SRC_SBMR2_BMOD)
 
 /* --- Register HW_SRC_SBMR2, field TEST_MODE[29:27] (RO)
  *
@@ -1568,7 +1433,11 @@ typedef union _hw_src_sbmr2
 #define BM_SRC_SBMR2_TEST_MODE      (0x38000000)  //!< Bit mask for SRC_SBMR2_TEST_MODE.
 
 //! @brief Get value of SRC_SBMR2_TEST_MODE from a register value.
-#define BG_SRC_SBMR2_TEST_MODE(r)   (((r) & BM_SRC_SBMR2_TEST_MODE) >> BP_SRC_SBMR2_TEST_MODE)
+#define BG_SRC_SBMR2_TEST_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_TEST_MODE) >> BP_SRC_SBMR2_TEST_MODE)
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR1 - SRC General Purpose Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1606,6 +1475,10 @@ typedef union _hw_src_gpr1
  * constants & macros for individual SRC_GPR1 bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR2 - SRC General Purpose Register 2
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_GPR2 - SRC General Purpose Register 2 (RW)
@@ -1641,6 +1514,10 @@ typedef union _hw_src_gpr2
 /*
  * constants & macros for individual SRC_GPR2 bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR3 - SRC General Purpose Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1678,6 +1555,10 @@ typedef union _hw_src_gpr3
  * constants & macros for individual SRC_GPR3 bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR4 - SRC General Purpose Register 4
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_GPR4 - SRC General Purpose Register 4 (RW)
@@ -1713,6 +1594,10 @@ typedef union _hw_src_gpr4
 /*
  * constants & macros for individual SRC_GPR4 bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR5 - SRC General Purpose Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1750,6 +1635,10 @@ typedef union _hw_src_gpr5
  * constants & macros for individual SRC_GPR5 bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR6 - SRC General Purpose Register 6
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_GPR6 - SRC General Purpose Register 6 (RW)
@@ -1785,6 +1674,10 @@ typedef union _hw_src_gpr6
 /*
  * constants & macros for individual SRC_GPR6 bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR7 - SRC General Purpose Register 7
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1822,6 +1715,10 @@ typedef union _hw_src_gpr7
  * constants & macros for individual SRC_GPR7 bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR8 - SRC General Purpose Register 8
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_GPR8 - SRC General Purpose Register 8 (RW)
@@ -1858,6 +1755,10 @@ typedef union _hw_src_gpr8
  * constants & macros for individual SRC_GPR8 bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR9 - SRC General Purpose Register 9
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SRC_GPR9 - SRC General Purpose Register 9 (RW)
@@ -1893,6 +1794,10 @@ typedef union _hw_src_gpr9
 /*
  * constants & macros for individual SRC_GPR9 bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SRC_GPR10 - SRC General Purpose Register 10
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!

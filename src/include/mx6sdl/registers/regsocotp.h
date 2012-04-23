@@ -163,6 +163,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CTRL - OTP Controller Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_OCOTP_CTRL - OTP Controller Control Register (RW)
@@ -227,15 +242,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_ADDR      (0x0000007f)  //!< Bit mask for OCOTP_CTRL_ADDR.
 
 //! @brief Get value of OCOTP_CTRL_ADDR from a register value.
-#define BG_OCOTP_CTRL_ADDR(r)   (((r) & BM_OCOTP_CTRL_ADDR) >> BP_OCOTP_CTRL_ADDR)
+#define BG_OCOTP_CTRL_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_ADDR) >> BP_OCOTP_CTRL_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_ADDR.
-#define BF_OCOTP_CTRL_ADDR(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_ADDR) & BM_OCOTP_CTRL_ADDR)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_ADDR.
-#define BF_OCOTP_CTRL_ADDR(v)   (((v) << BP_OCOTP_CTRL_ADDR) & BM_OCOTP_CTRL_ADDR)
-#endif
+#define BF_OCOTP_CTRL_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_ADDR) & BM_OCOTP_CTRL_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
@@ -255,7 +265,7 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_BUSY      (0x00000100)  //!< Bit mask for OCOTP_CTRL_BUSY.
 
 //! @brief Get value of OCOTP_CTRL_BUSY from a register value.
-#define BG_OCOTP_CTRL_BUSY(r)   (((r) & BM_OCOTP_CTRL_BUSY) >> BP_OCOTP_CTRL_BUSY)
+#define BG_OCOTP_CTRL_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_BUSY) >> BP_OCOTP_CTRL_BUSY)
 
 /* --- Register HW_OCOTP_CTRL, field ERROR[9] (RW)
  *
@@ -271,15 +281,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_ERROR      (0x00000200)  //!< Bit mask for OCOTP_CTRL_ERROR.
 
 //! @brief Get value of OCOTP_CTRL_ERROR from a register value.
-#define BG_OCOTP_CTRL_ERROR(r)   (((r) & BM_OCOTP_CTRL_ERROR) >> BP_OCOTP_CTRL_ERROR)
+#define BG_OCOTP_CTRL_ERROR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_ERROR) >> BP_OCOTP_CTRL_ERROR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_ERROR.
-#define BF_OCOTP_CTRL_ERROR(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_ERROR) & BM_OCOTP_CTRL_ERROR)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_ERROR.
-#define BF_OCOTP_CTRL_ERROR(v)   (((v) << BP_OCOTP_CTRL_ERROR) & BM_OCOTP_CTRL_ERROR)
-#endif
+#define BF_OCOTP_CTRL_ERROR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_ERROR) & BM_OCOTP_CTRL_ERROR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERROR field to a new value.
@@ -297,15 +302,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_RELOAD_SHADOWS      (0x00000400)  //!< Bit mask for OCOTP_CTRL_RELOAD_SHADOWS.
 
 //! @brief Get value of OCOTP_CTRL_RELOAD_SHADOWS from a register value.
-#define BG_OCOTP_CTRL_RELOAD_SHADOWS(r)   (((r) & BM_OCOTP_CTRL_RELOAD_SHADOWS) >> BP_OCOTP_CTRL_RELOAD_SHADOWS)
+#define BG_OCOTP_CTRL_RELOAD_SHADOWS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_RELOAD_SHADOWS) >> BP_OCOTP_CTRL_RELOAD_SHADOWS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_RELOAD_SHADOWS.
-#define BF_OCOTP_CTRL_RELOAD_SHADOWS(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_RELOAD_SHADOWS) & BM_OCOTP_CTRL_RELOAD_SHADOWS)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_RELOAD_SHADOWS.
-#define BF_OCOTP_CTRL_RELOAD_SHADOWS(v)   (((v) << BP_OCOTP_CTRL_RELOAD_SHADOWS) & BM_OCOTP_CTRL_RELOAD_SHADOWS)
-#endif
+#define BF_OCOTP_CTRL_RELOAD_SHADOWS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_RELOAD_SHADOWS) & BM_OCOTP_CTRL_RELOAD_SHADOWS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RELOAD_SHADOWS field to a new value.
@@ -322,15 +322,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_CRC_TEST      (0x00000800)  //!< Bit mask for OCOTP_CTRL_CRC_TEST.
 
 //! @brief Get value of OCOTP_CTRL_CRC_TEST from a register value.
-#define BG_OCOTP_CTRL_CRC_TEST(r)   (((r) & BM_OCOTP_CTRL_CRC_TEST) >> BP_OCOTP_CTRL_CRC_TEST)
+#define BG_OCOTP_CTRL_CRC_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_CRC_TEST) >> BP_OCOTP_CTRL_CRC_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_CRC_TEST.
-#define BF_OCOTP_CTRL_CRC_TEST(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_CRC_TEST) & BM_OCOTP_CTRL_CRC_TEST)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_CRC_TEST.
-#define BF_OCOTP_CTRL_CRC_TEST(v)   (((v) << BP_OCOTP_CTRL_CRC_TEST) & BM_OCOTP_CTRL_CRC_TEST)
-#endif
+#define BF_OCOTP_CTRL_CRC_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_CRC_TEST) & BM_OCOTP_CTRL_CRC_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRC_TEST field to a new value.
@@ -346,15 +341,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_CRC_FAIL      (0x00001000)  //!< Bit mask for OCOTP_CTRL_CRC_FAIL.
 
 //! @brief Get value of OCOTP_CTRL_CRC_FAIL from a register value.
-#define BG_OCOTP_CTRL_CRC_FAIL(r)   (((r) & BM_OCOTP_CTRL_CRC_FAIL) >> BP_OCOTP_CTRL_CRC_FAIL)
+#define BG_OCOTP_CTRL_CRC_FAIL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_CRC_FAIL) >> BP_OCOTP_CTRL_CRC_FAIL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_CRC_FAIL.
-#define BF_OCOTP_CTRL_CRC_FAIL(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_CRC_FAIL) & BM_OCOTP_CTRL_CRC_FAIL)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_CRC_FAIL.
-#define BF_OCOTP_CTRL_CRC_FAIL(v)   (((v) << BP_OCOTP_CTRL_CRC_FAIL) & BM_OCOTP_CTRL_CRC_FAIL)
-#endif
+#define BF_OCOTP_CTRL_CRC_FAIL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_CRC_FAIL) & BM_OCOTP_CTRL_CRC_FAIL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRC_FAIL field to a new value.
@@ -377,15 +367,10 @@ typedef union _hw_ocotp_ctrl
 #define BM_OCOTP_CTRL_WR_UNLOCK      (0xffff0000)  //!< Bit mask for OCOTP_CTRL_WR_UNLOCK.
 
 //! @brief Get value of OCOTP_CTRL_WR_UNLOCK from a register value.
-#define BG_OCOTP_CTRL_WR_UNLOCK(r)   (((r) & BM_OCOTP_CTRL_WR_UNLOCK) >> BP_OCOTP_CTRL_WR_UNLOCK)
+#define BG_OCOTP_CTRL_WR_UNLOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_WR_UNLOCK) >> BP_OCOTP_CTRL_WR_UNLOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CTRL_WR_UNLOCK.
-#define BF_OCOTP_CTRL_WR_UNLOCK(v)   ((((reg32_t) v) << BP_OCOTP_CTRL_WR_UNLOCK) & BM_OCOTP_CTRL_WR_UNLOCK)
-#else
-//! @brief Format value for bitfield OCOTP_CTRL_WR_UNLOCK.
-#define BF_OCOTP_CTRL_WR_UNLOCK(v)   (((v) << BP_OCOTP_CTRL_WR_UNLOCK) & BM_OCOTP_CTRL_WR_UNLOCK)
-#endif
+#define BF_OCOTP_CTRL_WR_UNLOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CTRL_WR_UNLOCK) & BM_OCOTP_CTRL_WR_UNLOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_UNLOCK field to a new value.
@@ -393,6 +378,10 @@ typedef union _hw_ocotp_ctrl
 #endif
 
 #define BV_OCOTP_CTRL_WR_UNLOCK__KEY (0x3e77) //!< Key needed to unlock HW_OCOTP_DATA register.
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_TIMING - OTP Controller Timing Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -445,15 +434,10 @@ typedef union _hw_ocotp_timing
 #define BM_OCOTP_TIMING_STROBE_PROG      (0x00000fff)  //!< Bit mask for OCOTP_TIMING_STROBE_PROG.
 
 //! @brief Get value of OCOTP_TIMING_STROBE_PROG from a register value.
-#define BG_OCOTP_TIMING_STROBE_PROG(r)   (((r) & BM_OCOTP_TIMING_STROBE_PROG) >> BP_OCOTP_TIMING_STROBE_PROG)
+#define BG_OCOTP_TIMING_STROBE_PROG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_TIMING_STROBE_PROG) >> BP_OCOTP_TIMING_STROBE_PROG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_TIMING_STROBE_PROG.
-#define BF_OCOTP_TIMING_STROBE_PROG(v)   ((((reg32_t) v) << BP_OCOTP_TIMING_STROBE_PROG) & BM_OCOTP_TIMING_STROBE_PROG)
-#else
-//! @brief Format value for bitfield OCOTP_TIMING_STROBE_PROG.
-#define BF_OCOTP_TIMING_STROBE_PROG(v)   (((v) << BP_OCOTP_TIMING_STROBE_PROG) & BM_OCOTP_TIMING_STROBE_PROG)
-#endif
+#define BF_OCOTP_TIMING_STROBE_PROG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_TIMING_STROBE_PROG) & BM_OCOTP_TIMING_STROBE_PROG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STROBE_PROG field to a new value.
@@ -470,15 +454,10 @@ typedef union _hw_ocotp_timing
 #define BM_OCOTP_TIMING_RELAX      (0x0000f000)  //!< Bit mask for OCOTP_TIMING_RELAX.
 
 //! @brief Get value of OCOTP_TIMING_RELAX from a register value.
-#define BG_OCOTP_TIMING_RELAX(r)   (((r) & BM_OCOTP_TIMING_RELAX) >> BP_OCOTP_TIMING_RELAX)
+#define BG_OCOTP_TIMING_RELAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_TIMING_RELAX) >> BP_OCOTP_TIMING_RELAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_TIMING_RELAX.
-#define BF_OCOTP_TIMING_RELAX(v)   ((((reg32_t) v) << BP_OCOTP_TIMING_RELAX) & BM_OCOTP_TIMING_RELAX)
-#else
-//! @brief Format value for bitfield OCOTP_TIMING_RELAX.
-#define BF_OCOTP_TIMING_RELAX(v)   (((v) << BP_OCOTP_TIMING_RELAX) & BM_OCOTP_TIMING_RELAX)
-#endif
+#define BF_OCOTP_TIMING_RELAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_TIMING_RELAX) & BM_OCOTP_TIMING_RELAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RELAX field to a new value.
@@ -495,15 +474,10 @@ typedef union _hw_ocotp_timing
 #define BM_OCOTP_TIMING_STROBE_READ      (0x003f0000)  //!< Bit mask for OCOTP_TIMING_STROBE_READ.
 
 //! @brief Get value of OCOTP_TIMING_STROBE_READ from a register value.
-#define BG_OCOTP_TIMING_STROBE_READ(r)   (((r) & BM_OCOTP_TIMING_STROBE_READ) >> BP_OCOTP_TIMING_STROBE_READ)
+#define BG_OCOTP_TIMING_STROBE_READ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_TIMING_STROBE_READ) >> BP_OCOTP_TIMING_STROBE_READ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_TIMING_STROBE_READ.
-#define BF_OCOTP_TIMING_STROBE_READ(v)   ((((reg32_t) v) << BP_OCOTP_TIMING_STROBE_READ) & BM_OCOTP_TIMING_STROBE_READ)
-#else
-//! @brief Format value for bitfield OCOTP_TIMING_STROBE_READ.
-#define BF_OCOTP_TIMING_STROBE_READ(v)   (((v) << BP_OCOTP_TIMING_STROBE_READ) & BM_OCOTP_TIMING_STROBE_READ)
-#endif
+#define BF_OCOTP_TIMING_STROBE_READ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_TIMING_STROBE_READ) & BM_OCOTP_TIMING_STROBE_READ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STROBE_READ field to a new value.
@@ -520,20 +494,19 @@ typedef union _hw_ocotp_timing
 #define BM_OCOTP_TIMING_WAIT      (0x0fc00000)  //!< Bit mask for OCOTP_TIMING_WAIT.
 
 //! @brief Get value of OCOTP_TIMING_WAIT from a register value.
-#define BG_OCOTP_TIMING_WAIT(r)   (((r) & BM_OCOTP_TIMING_WAIT) >> BP_OCOTP_TIMING_WAIT)
+#define BG_OCOTP_TIMING_WAIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_TIMING_WAIT) >> BP_OCOTP_TIMING_WAIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_TIMING_WAIT.
-#define BF_OCOTP_TIMING_WAIT(v)   ((((reg32_t) v) << BP_OCOTP_TIMING_WAIT) & BM_OCOTP_TIMING_WAIT)
-#else
-//! @brief Format value for bitfield OCOTP_TIMING_WAIT.
-#define BF_OCOTP_TIMING_WAIT(v)   (((v) << BP_OCOTP_TIMING_WAIT) & BM_OCOTP_TIMING_WAIT)
-#endif
+#define BF_OCOTP_TIMING_WAIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_TIMING_WAIT) & BM_OCOTP_TIMING_WAIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAIT field to a new value.
 #define BW_OCOTP_TIMING_WAIT(v)   (HW_OCOTP_TIMING_WR((HW_OCOTP_TIMING_RD() & ~BM_OCOTP_TIMING_WAIT) | BF_OCOTP_TIMING_WAIT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DATA - OTP Controller Write Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -583,20 +556,19 @@ typedef union _hw_ocotp_data
 #define BM_OCOTP_DATA_DATA      (0xffffffff)  //!< Bit mask for OCOTP_DATA_DATA.
 
 //! @brief Get value of OCOTP_DATA_DATA from a register value.
-#define BG_OCOTP_DATA_DATA(r)   (((r) & BM_OCOTP_DATA_DATA) >> BP_OCOTP_DATA_DATA)
+#define BG_OCOTP_DATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DATA_DATA) >> BP_OCOTP_DATA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DATA_DATA.
-#define BF_OCOTP_DATA_DATA(v)   ((((reg32_t) v) << BP_OCOTP_DATA_DATA) & BM_OCOTP_DATA_DATA)
-#else
-//! @brief Format value for bitfield OCOTP_DATA_DATA.
-#define BF_OCOTP_DATA_DATA(v)   (((v) << BP_OCOTP_DATA_DATA) & BM_OCOTP_DATA_DATA)
-#endif
+#define BF_OCOTP_DATA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DATA_DATA) & BM_OCOTP_DATA_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_DATA_DATA(v)   (HW_OCOTP_DATA_WR((HW_OCOTP_DATA_RD() & ~BM_OCOTP_DATA_DATA) | BF_OCOTP_DATA_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_READ_CTRL - OTP Controller Write Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -647,20 +619,19 @@ typedef union _hw_ocotp_read_ctrl
 #define BM_OCOTP_READ_CTRL_READ_FUSE      (0x00000001)  //!< Bit mask for OCOTP_READ_CTRL_READ_FUSE.
 
 //! @brief Get value of OCOTP_READ_CTRL_READ_FUSE from a register value.
-#define BG_OCOTP_READ_CTRL_READ_FUSE(r)   (((r) & BM_OCOTP_READ_CTRL_READ_FUSE) >> BP_OCOTP_READ_CTRL_READ_FUSE)
+#define BG_OCOTP_READ_CTRL_READ_FUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_READ_CTRL_READ_FUSE) >> BP_OCOTP_READ_CTRL_READ_FUSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_READ_CTRL_READ_FUSE.
-#define BF_OCOTP_READ_CTRL_READ_FUSE(v)   ((((reg32_t) v) << BP_OCOTP_READ_CTRL_READ_FUSE) & BM_OCOTP_READ_CTRL_READ_FUSE)
-#else
-//! @brief Format value for bitfield OCOTP_READ_CTRL_READ_FUSE.
-#define BF_OCOTP_READ_CTRL_READ_FUSE(v)   (((v) << BP_OCOTP_READ_CTRL_READ_FUSE) & BM_OCOTP_READ_CTRL_READ_FUSE)
-#endif
+#define BF_OCOTP_READ_CTRL_READ_FUSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_READ_CTRL_READ_FUSE) & BM_OCOTP_READ_CTRL_READ_FUSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_FUSE field to a new value.
 #define BW_OCOTP_READ_CTRL_READ_FUSE(v)   (HW_OCOTP_READ_CTRL_WR((HW_OCOTP_READ_CTRL_RD() & ~BM_OCOTP_READ_CTRL_READ_FUSE) | BF_OCOTP_READ_CTRL_READ_FUSE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_READ_FUSE_DATA - OTP Controller Read Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -707,20 +678,19 @@ typedef union _hw_ocotp_read_fuse_data
 #define BM_OCOTP_READ_FUSE_DATA_DATA      (0xffffffff)  //!< Bit mask for OCOTP_READ_FUSE_DATA_DATA.
 
 //! @brief Get value of OCOTP_READ_FUSE_DATA_DATA from a register value.
-#define BG_OCOTP_READ_FUSE_DATA_DATA(r)   (((r) & BM_OCOTP_READ_FUSE_DATA_DATA) >> BP_OCOTP_READ_FUSE_DATA_DATA)
+#define BG_OCOTP_READ_FUSE_DATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_READ_FUSE_DATA_DATA) >> BP_OCOTP_READ_FUSE_DATA_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_READ_FUSE_DATA_DATA.
-#define BF_OCOTP_READ_FUSE_DATA_DATA(v)   ((((reg32_t) v) << BP_OCOTP_READ_FUSE_DATA_DATA) & BM_OCOTP_READ_FUSE_DATA_DATA)
-#else
-//! @brief Format value for bitfield OCOTP_READ_FUSE_DATA_DATA.
-#define BF_OCOTP_READ_FUSE_DATA_DATA(v)   (((v) << BP_OCOTP_READ_FUSE_DATA_DATA) & BM_OCOTP_READ_FUSE_DATA_DATA)
-#endif
+#define BF_OCOTP_READ_FUSE_DATA_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_READ_FUSE_DATA_DATA) & BM_OCOTP_READ_FUSE_DATA_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_READ_FUSE_DATA_DATA(v)   (HW_OCOTP_READ_FUSE_DATA_WR((HW_OCOTP_READ_FUSE_DATA_RD() & ~BM_OCOTP_READ_FUSE_DATA_DATA) | BF_OCOTP_READ_FUSE_DATA_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SW_STICKY - Sticky bit Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -773,15 +743,10 @@ typedef union _hw_ocotp_sw_sticky
 #define BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK      (0x00000002)  //!< Bit mask for OCOTP_SW_STICKY_SRK_REVOKE_LOCK.
 
 //! @brief Get value of OCOTP_SW_STICKY_SRK_REVOKE_LOCK from a register value.
-#define BG_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(r)   (((r) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) >> BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
+#define BG_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) >> BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SW_STICKY_SRK_REVOKE_LOCK.
-#define BF_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   ((((reg32_t) v) << BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
-#else
-//! @brief Format value for bitfield OCOTP_SW_STICKY_SRK_REVOKE_LOCK.
-#define BF_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   (((v) << BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
-#endif
+#define BF_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) & BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRK_REVOKE_LOCK field to a new value.
@@ -799,20 +764,19 @@ typedef union _hw_ocotp_sw_sticky
 #define BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK      (0x00000004)  //!< Bit mask for OCOTP_SW_STICKY_FIELD_RETURN_LOCK.
 
 //! @brief Get value of OCOTP_SW_STICKY_FIELD_RETURN_LOCK from a register value.
-#define BG_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(r)   (((r) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) >> BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
+#define BG_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) >> BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SW_STICKY_FIELD_RETURN_LOCK.
-#define BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   ((((reg32_t) v) << BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
-#else
-//! @brief Format value for bitfield OCOTP_SW_STICKY_FIELD_RETURN_LOCK.
-#define BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   (((v) << BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
-#endif
+#define BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) & BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIELD_RETURN_LOCK field to a new value.
 #define BW_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   (HW_OCOTP_SW_STICKY_WR((HW_OCOTP_SW_STICKY_RD() & ~BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) | BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SCS - Software Controllable Signals Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -874,15 +838,10 @@ typedef union _hw_ocotp_scs
 #define BM_OCOTP_SCS_HAB_JDE      (0x00000001)  //!< Bit mask for OCOTP_SCS_HAB_JDE.
 
 //! @brief Get value of OCOTP_SCS_HAB_JDE from a register value.
-#define BG_OCOTP_SCS_HAB_JDE(r)   (((r) & BM_OCOTP_SCS_HAB_JDE) >> BP_OCOTP_SCS_HAB_JDE)
+#define BG_OCOTP_SCS_HAB_JDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SCS_HAB_JDE) >> BP_OCOTP_SCS_HAB_JDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SCS_HAB_JDE.
-#define BF_OCOTP_SCS_HAB_JDE(v)   ((((reg32_t) v) << BP_OCOTP_SCS_HAB_JDE) & BM_OCOTP_SCS_HAB_JDE)
-#else
-//! @brief Format value for bitfield OCOTP_SCS_HAB_JDE.
-#define BF_OCOTP_SCS_HAB_JDE(v)   (((v) << BP_OCOTP_SCS_HAB_JDE) & BM_OCOTP_SCS_HAB_JDE)
-#endif
+#define BF_OCOTP_SCS_HAB_JDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SCS_HAB_JDE) & BM_OCOTP_SCS_HAB_JDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HAB_JDE field to a new value.
@@ -899,15 +858,10 @@ typedef union _hw_ocotp_scs
 #define BM_OCOTP_SCS_SPARE      (0x7ffffffe)  //!< Bit mask for OCOTP_SCS_SPARE.
 
 //! @brief Get value of OCOTP_SCS_SPARE from a register value.
-#define BG_OCOTP_SCS_SPARE(r)   (((r) & BM_OCOTP_SCS_SPARE) >> BP_OCOTP_SCS_SPARE)
+#define BG_OCOTP_SCS_SPARE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SCS_SPARE) >> BP_OCOTP_SCS_SPARE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SCS_SPARE.
-#define BF_OCOTP_SCS_SPARE(v)   ((((reg32_t) v) << BP_OCOTP_SCS_SPARE) & BM_OCOTP_SCS_SPARE)
-#else
-//! @brief Format value for bitfield OCOTP_SCS_SPARE.
-#define BF_OCOTP_SCS_SPARE(v)   (((v) << BP_OCOTP_SCS_SPARE) & BM_OCOTP_SCS_SPARE)
-#endif
+#define BF_OCOTP_SCS_SPARE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SCS_SPARE) & BM_OCOTP_SCS_SPARE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPARE field to a new value.
@@ -924,20 +878,19 @@ typedef union _hw_ocotp_scs
 #define BM_OCOTP_SCS_LOCK      (0x80000000)  //!< Bit mask for OCOTP_SCS_LOCK.
 
 //! @brief Get value of OCOTP_SCS_LOCK from a register value.
-#define BG_OCOTP_SCS_LOCK(r)   (((r) & BM_OCOTP_SCS_LOCK) >> BP_OCOTP_SCS_LOCK)
+#define BG_OCOTP_SCS_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SCS_LOCK) >> BP_OCOTP_SCS_LOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SCS_LOCK.
-#define BF_OCOTP_SCS_LOCK(v)   ((((reg32_t) v) << BP_OCOTP_SCS_LOCK) & BM_OCOTP_SCS_LOCK)
-#else
-//! @brief Format value for bitfield OCOTP_SCS_LOCK.
-#define BF_OCOTP_SCS_LOCK(v)   (((v) << BP_OCOTP_SCS_LOCK) & BM_OCOTP_SCS_LOCK)
-#endif
+#define BF_OCOTP_SCS_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SCS_LOCK) & BM_OCOTP_SCS_LOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK field to a new value.
 #define BW_OCOTP_SCS_LOCK(v)   BF_CS1(OCOTP_SCS, LOCK, v)
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC_ADDR - OTP Controller CRC test address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -988,15 +941,10 @@ typedef union _hw_ocotp_crc_addr
 #define BM_OCOTP_CRC_ADDR_DATA_START_ADDR      (0x000000ff)  //!< Bit mask for OCOTP_CRC_ADDR_DATA_START_ADDR.
 
 //! @brief Get value of OCOTP_CRC_ADDR_DATA_START_ADDR from a register value.
-#define BG_OCOTP_CRC_ADDR_DATA_START_ADDR(r)   (((r) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR) >> BP_OCOTP_CRC_ADDR_DATA_START_ADDR)
+#define BG_OCOTP_CRC_ADDR_DATA_START_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR) >> BP_OCOTP_CRC_ADDR_DATA_START_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC_ADDR_DATA_START_ADDR.
-#define BF_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   ((((reg32_t) v) << BP_OCOTP_CRC_ADDR_DATA_START_ADDR) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR)
-#else
-//! @brief Format value for bitfield OCOTP_CRC_ADDR_DATA_START_ADDR.
-#define BF_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   (((v) << BP_OCOTP_CRC_ADDR_DATA_START_ADDR) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR)
-#endif
+#define BF_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC_ADDR_DATA_START_ADDR) & BM_OCOTP_CRC_ADDR_DATA_START_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_START_ADDR field to a new value.
@@ -1012,15 +960,10 @@ typedef union _hw_ocotp_crc_addr
 #define BM_OCOTP_CRC_ADDR_DATA_END_ADDR      (0x0000ff00)  //!< Bit mask for OCOTP_CRC_ADDR_DATA_END_ADDR.
 
 //! @brief Get value of OCOTP_CRC_ADDR_DATA_END_ADDR from a register value.
-#define BG_OCOTP_CRC_ADDR_DATA_END_ADDR(r)   (((r) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR) >> BP_OCOTP_CRC_ADDR_DATA_END_ADDR)
+#define BG_OCOTP_CRC_ADDR_DATA_END_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR) >> BP_OCOTP_CRC_ADDR_DATA_END_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC_ADDR_DATA_END_ADDR.
-#define BF_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   ((((reg32_t) v) << BP_OCOTP_CRC_ADDR_DATA_END_ADDR) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR)
-#else
-//! @brief Format value for bitfield OCOTP_CRC_ADDR_DATA_END_ADDR.
-#define BF_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   (((v) << BP_OCOTP_CRC_ADDR_DATA_END_ADDR) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR)
-#endif
+#define BF_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC_ADDR_DATA_END_ADDR) & BM_OCOTP_CRC_ADDR_DATA_END_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_END_ADDR field to a new value.
@@ -1036,20 +979,19 @@ typedef union _hw_ocotp_crc_addr
 #define BM_OCOTP_CRC_ADDR_CRC_ADDR      (0x00070000)  //!< Bit mask for OCOTP_CRC_ADDR_CRC_ADDR.
 
 //! @brief Get value of OCOTP_CRC_ADDR_CRC_ADDR from a register value.
-#define BG_OCOTP_CRC_ADDR_CRC_ADDR(r)   (((r) & BM_OCOTP_CRC_ADDR_CRC_ADDR) >> BP_OCOTP_CRC_ADDR_CRC_ADDR)
+#define BG_OCOTP_CRC_ADDR_CRC_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC_ADDR_CRC_ADDR) >> BP_OCOTP_CRC_ADDR_CRC_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC_ADDR_CRC_ADDR.
-#define BF_OCOTP_CRC_ADDR_CRC_ADDR(v)   ((((reg32_t) v) << BP_OCOTP_CRC_ADDR_CRC_ADDR) & BM_OCOTP_CRC_ADDR_CRC_ADDR)
-#else
-//! @brief Format value for bitfield OCOTP_CRC_ADDR_CRC_ADDR.
-#define BF_OCOTP_CRC_ADDR_CRC_ADDR(v)   (((v) << BP_OCOTP_CRC_ADDR_CRC_ADDR) & BM_OCOTP_CRC_ADDR_CRC_ADDR)
-#endif
+#define BF_OCOTP_CRC_ADDR_CRC_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC_ADDR_CRC_ADDR) & BM_OCOTP_CRC_ADDR_CRC_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRC_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_CRC_ADDR(v)   (HW_OCOTP_CRC_ADDR_WR((HW_OCOTP_CRC_ADDR_RD() & ~BM_OCOTP_CRC_ADDR_CRC_ADDR) | BF_OCOTP_CRC_ADDR_CRC_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC_VALUE - OTP Controller CRC Value Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1097,20 +1039,19 @@ typedef union _hw_ocotp_crc_value
 #define BM_OCOTP_CRC_VALUE_DATA      (0xffffffff)  //!< Bit mask for OCOTP_CRC_VALUE_DATA.
 
 //! @brief Get value of OCOTP_CRC_VALUE_DATA from a register value.
-#define BG_OCOTP_CRC_VALUE_DATA(r)   (((r) & BM_OCOTP_CRC_VALUE_DATA) >> BP_OCOTP_CRC_VALUE_DATA)
+#define BG_OCOTP_CRC_VALUE_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC_VALUE_DATA) >> BP_OCOTP_CRC_VALUE_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC_VALUE_DATA.
-#define BF_OCOTP_CRC_VALUE_DATA(v)   ((((reg32_t) v) << BP_OCOTP_CRC_VALUE_DATA) & BM_OCOTP_CRC_VALUE_DATA)
-#else
-//! @brief Format value for bitfield OCOTP_CRC_VALUE_DATA.
-#define BF_OCOTP_CRC_VALUE_DATA(v)   (((v) << BP_OCOTP_CRC_VALUE_DATA) & BM_OCOTP_CRC_VALUE_DATA)
-#endif
+#define BF_OCOTP_CRC_VALUE_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC_VALUE_DATA) & BM_OCOTP_CRC_VALUE_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_CRC_VALUE_DATA(v)   (HW_OCOTP_CRC_VALUE_WR((HW_OCOTP_CRC_VALUE_RD() & ~BM_OCOTP_CRC_VALUE_DATA) | BF_OCOTP_CRC_VALUE_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_VERSION - OTP Controller Version Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1156,7 +1097,7 @@ typedef union _hw_ocotp_version
 #define BM_OCOTP_VERSION_STEP      (0x0000ffff)  //!< Bit mask for OCOTP_VERSION_STEP.
 
 //! @brief Get value of OCOTP_VERSION_STEP from a register value.
-#define BG_OCOTP_VERSION_STEP(r)   (((r) & BM_OCOTP_VERSION_STEP) >> BP_OCOTP_VERSION_STEP)
+#define BG_OCOTP_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_STEP) >> BP_OCOTP_VERSION_STEP)
 
 /* --- Register HW_OCOTP_VERSION, field MINOR[23:16] (RO)
  *
@@ -1167,7 +1108,7 @@ typedef union _hw_ocotp_version
 #define BM_OCOTP_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for OCOTP_VERSION_MINOR.
 
 //! @brief Get value of OCOTP_VERSION_MINOR from a register value.
-#define BG_OCOTP_VERSION_MINOR(r)   (((r) & BM_OCOTP_VERSION_MINOR) >> BP_OCOTP_VERSION_MINOR)
+#define BG_OCOTP_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_MINOR) >> BP_OCOTP_VERSION_MINOR)
 
 /* --- Register HW_OCOTP_VERSION, field MAJOR[31:24] (RO)
  *
@@ -1178,7 +1119,11 @@ typedef union _hw_ocotp_version
 #define BM_OCOTP_VERSION_MAJOR      (0xff000000)  //!< Bit mask for OCOTP_VERSION_MAJOR.
 
 //! @brief Get value of OCOTP_VERSION_MAJOR from a register value.
-#define BG_OCOTP_VERSION_MAJOR(r)   (((r) & BM_OCOTP_VERSION_MAJOR) >> BP_OCOTP_VERSION_MAJOR)
+#define BG_OCOTP_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_MAJOR) >> BP_OCOTP_VERSION_MAJOR)
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_LOCK - Value of OTP Bank0 Word0 (Lock controls)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1205,7 +1150,7 @@ typedef union _hw_ocotp_lock
         unsigned GP2 : 2; //!< [13:12] Status of shadow register and OTP write lock for gp2 region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
         unsigned SRK : 1; //!< [14] Status of shadow register and OTP write lock for srk region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned DTCP_KEY : 1; //!< [16] Status of shadow register lock for the region contained in the SRK registers. When set, the over-riding (writing) of this region's shadow bits is blocked. These shadow registers are always readable.
+        unsigned DTCP_KEY : 1; //!< [16] Status of shadow register read and write, OTP read and write lock for dtcp_key region. When set, the writing of this region's shadow register and OTP fuse word are blocked. The read of this region's shadow register and OTP fuse word are also blocked.
         unsigned OTPMK : 1; //!< [17] Status of shadow register read and write, OTP read and write lock for otpmk region. When set, the writing of this region's shadow register and OTP fuse word are blocked. The read of this region's shadow register and OTP fuse word are also blocked.
         unsigned ANALOG : 2; //!< [19:18] Status of shadow register and OTP write lock for analog region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
         unsigned HDCP_KSV : 1; //!< [20] Status of shadow register and OTP write lock for hdcp_ksv region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
@@ -1246,7 +1191,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_TESTER      (0x00000003)  //!< Bit mask for OCOTP_LOCK_TESTER.
 
 //! @brief Get value of OCOTP_LOCK_TESTER from a register value.
-#define BG_OCOTP_LOCK_TESTER(r)   (((r) & BM_OCOTP_LOCK_TESTER) >> BP_OCOTP_LOCK_TESTER)
+#define BG_OCOTP_LOCK_TESTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_TESTER) >> BP_OCOTP_LOCK_TESTER)
 
 /* --- Register HW_OCOTP_LOCK, field BOOT_CFG[3:2] (RO)
  *
@@ -1259,7 +1204,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_BOOT_CFG      (0x0000000c)  //!< Bit mask for OCOTP_LOCK_BOOT_CFG.
 
 //! @brief Get value of OCOTP_LOCK_BOOT_CFG from a register value.
-#define BG_OCOTP_LOCK_BOOT_CFG(r)   (((r) & BM_OCOTP_LOCK_BOOT_CFG) >> BP_OCOTP_LOCK_BOOT_CFG)
+#define BG_OCOTP_LOCK_BOOT_CFG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_BOOT_CFG) >> BP_OCOTP_LOCK_BOOT_CFG)
 
 /* --- Register HW_OCOTP_LOCK, field MEM_TRIM[5:4] (RO)
  *
@@ -1272,7 +1217,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_MEM_TRIM      (0x00000030)  //!< Bit mask for OCOTP_LOCK_MEM_TRIM.
 
 //! @brief Get value of OCOTP_LOCK_MEM_TRIM from a register value.
-#define BG_OCOTP_LOCK_MEM_TRIM(r)   (((r) & BM_OCOTP_LOCK_MEM_TRIM) >> BP_OCOTP_LOCK_MEM_TRIM)
+#define BG_OCOTP_LOCK_MEM_TRIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MEM_TRIM) >> BP_OCOTP_LOCK_MEM_TRIM)
 
 /* --- Register HW_OCOTP_LOCK, field SJC_RESP[6] (RO)
  *
@@ -1285,7 +1230,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_SJC_RESP      (0x00000040)  //!< Bit mask for OCOTP_LOCK_SJC_RESP.
 
 //! @brief Get value of OCOTP_LOCK_SJC_RESP from a register value.
-#define BG_OCOTP_LOCK_SJC_RESP(r)   (((r) & BM_OCOTP_LOCK_SJC_RESP) >> BP_OCOTP_LOCK_SJC_RESP)
+#define BG_OCOTP_LOCK_SJC_RESP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_SJC_RESP) >> BP_OCOTP_LOCK_SJC_RESP)
 
 /* --- Register HW_OCOTP_LOCK, field MAC_ADDR[9:8] (RO)
  *
@@ -1298,7 +1243,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_MAC_ADDR      (0x00000300)  //!< Bit mask for OCOTP_LOCK_MAC_ADDR.
 
 //! @brief Get value of OCOTP_LOCK_MAC_ADDR from a register value.
-#define BG_OCOTP_LOCK_MAC_ADDR(r)   (((r) & BM_OCOTP_LOCK_MAC_ADDR) >> BP_OCOTP_LOCK_MAC_ADDR)
+#define BG_OCOTP_LOCK_MAC_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MAC_ADDR) >> BP_OCOTP_LOCK_MAC_ADDR)
 
 /* --- Register HW_OCOTP_LOCK, field GP1[11:10] (RO)
  *
@@ -1311,7 +1256,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_GP1      (0x00000c00)  //!< Bit mask for OCOTP_LOCK_GP1.
 
 //! @brief Get value of OCOTP_LOCK_GP1 from a register value.
-#define BG_OCOTP_LOCK_GP1(r)   (((r) & BM_OCOTP_LOCK_GP1) >> BP_OCOTP_LOCK_GP1)
+#define BG_OCOTP_LOCK_GP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP1) >> BP_OCOTP_LOCK_GP1)
 
 /* --- Register HW_OCOTP_LOCK, field GP2[13:12] (RO)
  *
@@ -1324,7 +1269,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_GP2      (0x00003000)  //!< Bit mask for OCOTP_LOCK_GP2.
 
 //! @brief Get value of OCOTP_LOCK_GP2 from a register value.
-#define BG_OCOTP_LOCK_GP2(r)   (((r) & BM_OCOTP_LOCK_GP2) >> BP_OCOTP_LOCK_GP2)
+#define BG_OCOTP_LOCK_GP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP2) >> BP_OCOTP_LOCK_GP2)
 
 /* --- Register HW_OCOTP_LOCK, field SRK[14] (RO)
  *
@@ -1336,20 +1281,20 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_SRK      (0x00004000)  //!< Bit mask for OCOTP_LOCK_SRK.
 
 //! @brief Get value of OCOTP_LOCK_SRK from a register value.
-#define BG_OCOTP_LOCK_SRK(r)   (((r) & BM_OCOTP_LOCK_SRK) >> BP_OCOTP_LOCK_SRK)
+#define BG_OCOTP_LOCK_SRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_SRK) >> BP_OCOTP_LOCK_SRK)
 
 /* --- Register HW_OCOTP_LOCK, field DTCP_KEY[16] (RO)
  *
- * Status of shadow register lock for the region contained in the SRK registers. When set, the over-
- * riding (writing) of this region's shadow bits is blocked. These shadow registers are always
- * readable.
+ * Status of shadow register read and write, OTP read and write lock for dtcp_key region. When set,
+ * the writing of this region's shadow register and OTP fuse word are blocked. The read of this
+ * region's shadow register and OTP fuse word are also blocked.
  */
 
 #define BP_OCOTP_LOCK_DTCP_KEY      (16)      //!< Bit position for OCOTP_LOCK_DTCP_KEY.
 #define BM_OCOTP_LOCK_DTCP_KEY      (0x00010000)  //!< Bit mask for OCOTP_LOCK_DTCP_KEY.
 
 //! @brief Get value of OCOTP_LOCK_DTCP_KEY from a register value.
-#define BG_OCOTP_LOCK_DTCP_KEY(r)   (((r) & BM_OCOTP_LOCK_DTCP_KEY) >> BP_OCOTP_LOCK_DTCP_KEY)
+#define BG_OCOTP_LOCK_DTCP_KEY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_DTCP_KEY) >> BP_OCOTP_LOCK_DTCP_KEY)
 
 /* --- Register HW_OCOTP_LOCK, field OTPMK[17] (RO)
  *
@@ -1362,7 +1307,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_OTPMK      (0x00020000)  //!< Bit mask for OCOTP_LOCK_OTPMK.
 
 //! @brief Get value of OCOTP_LOCK_OTPMK from a register value.
-#define BG_OCOTP_LOCK_OTPMK(r)   (((r) & BM_OCOTP_LOCK_OTPMK) >> BP_OCOTP_LOCK_OTPMK)
+#define BG_OCOTP_LOCK_OTPMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_OTPMK) >> BP_OCOTP_LOCK_OTPMK)
 
 /* --- Register HW_OCOTP_LOCK, field ANALOG[19:18] (RO)
  *
@@ -1375,7 +1320,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_ANALOG      (0x000c0000)  //!< Bit mask for OCOTP_LOCK_ANALOG.
 
 //! @brief Get value of OCOTP_LOCK_ANALOG from a register value.
-#define BG_OCOTP_LOCK_ANALOG(r)   (((r) & BM_OCOTP_LOCK_ANALOG) >> BP_OCOTP_LOCK_ANALOG)
+#define BG_OCOTP_LOCK_ANALOG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_ANALOG) >> BP_OCOTP_LOCK_ANALOG)
 
 /* --- Register HW_OCOTP_LOCK, field HDCP_KSV[20] (RO)
  *
@@ -1387,7 +1332,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_HDCP_KSV      (0x00100000)  //!< Bit mask for OCOTP_LOCK_HDCP_KSV.
 
 //! @brief Get value of OCOTP_LOCK_HDCP_KSV from a register value.
-#define BG_OCOTP_LOCK_HDCP_KSV(r)   (((r) & BM_OCOTP_LOCK_HDCP_KSV) >> BP_OCOTP_LOCK_HDCP_KSV)
+#define BG_OCOTP_LOCK_HDCP_KSV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_HDCP_KSV) >> BP_OCOTP_LOCK_HDCP_KSV)
 
 /* --- Register HW_OCOTP_LOCK, field HDCP_KEYS[21] (RO)
  *
@@ -1400,7 +1345,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_HDCP_KEYS      (0x00200000)  //!< Bit mask for OCOTP_LOCK_HDCP_KEYS.
 
 //! @brief Get value of OCOTP_LOCK_HDCP_KEYS from a register value.
-#define BG_OCOTP_LOCK_HDCP_KEYS(r)   (((r) & BM_OCOTP_LOCK_HDCP_KEYS) >> BP_OCOTP_LOCK_HDCP_KEYS)
+#define BG_OCOTP_LOCK_HDCP_KEYS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_HDCP_KEYS) >> BP_OCOTP_LOCK_HDCP_KEYS)
 
 /* --- Register HW_OCOTP_LOCK, field MISC_CONF[22] (RO)
  *
@@ -1412,7 +1357,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_MISC_CONF      (0x00400000)  //!< Bit mask for OCOTP_LOCK_MISC_CONF.
 
 //! @brief Get value of OCOTP_LOCK_MISC_CONF from a register value.
-#define BG_OCOTP_LOCK_MISC_CONF(r)   (((r) & BM_OCOTP_LOCK_MISC_CONF) >> BP_OCOTP_LOCK_MISC_CONF)
+#define BG_OCOTP_LOCK_MISC_CONF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MISC_CONF) >> BP_OCOTP_LOCK_MISC_CONF)
 
 /* --- Register HW_OCOTP_LOCK, field DTCP_DEV_CERT[23] (RO)
  *
@@ -1424,7 +1369,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_DTCP_DEV_CERT      (0x00800000)  //!< Bit mask for OCOTP_LOCK_DTCP_DEV_CERT.
 
 //! @brief Get value of OCOTP_LOCK_DTCP_DEV_CERT from a register value.
-#define BG_OCOTP_LOCK_DTCP_DEV_CERT(r)   (((r) & BM_OCOTP_LOCK_DTCP_DEV_CERT) >> BP_OCOTP_LOCK_DTCP_DEV_CERT)
+#define BG_OCOTP_LOCK_DTCP_DEV_CERT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_DTCP_DEV_CERT) >> BP_OCOTP_LOCK_DTCP_DEV_CERT)
 
 /* --- Register HW_OCOTP_LOCK, field PIN[25] (RO)
  *
@@ -1435,7 +1380,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_PIN      (0x02000000)  //!< Bit mask for OCOTP_LOCK_PIN.
 
 //! @brief Get value of OCOTP_LOCK_PIN from a register value.
-#define BG_OCOTP_LOCK_PIN(r)   (((r) & BM_OCOTP_LOCK_PIN) >> BP_OCOTP_LOCK_PIN)
+#define BG_OCOTP_LOCK_PIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_PIN) >> BP_OCOTP_LOCK_PIN)
 
 /* --- Register HW_OCOTP_LOCK, field CRC_GP_LO_LOCK[27:26] (RO)
  *
@@ -1449,7 +1394,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_CRC_GP_LO_LOCK      (0x0c000000)  //!< Bit mask for OCOTP_LOCK_CRC_GP_LO_LOCK.
 
 //! @brief Get value of OCOTP_LOCK_CRC_GP_LO_LOCK from a register value.
-#define BG_OCOTP_LOCK_CRC_GP_LO_LOCK(r)   (((r) & BM_OCOTP_LOCK_CRC_GP_LO_LOCK) >> BP_OCOTP_LOCK_CRC_GP_LO_LOCK)
+#define BG_OCOTP_LOCK_CRC_GP_LO_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_CRC_GP_LO_LOCK) >> BP_OCOTP_LOCK_CRC_GP_LO_LOCK)
 
 /* --- Register HW_OCOTP_LOCK, field CRC_GP_HI_LOCK[29:28] (RO)
  *
@@ -1463,7 +1408,7 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_CRC_GP_HI_LOCK      (0x30000000)  //!< Bit mask for OCOTP_LOCK_CRC_GP_HI_LOCK.
 
 //! @brief Get value of OCOTP_LOCK_CRC_GP_HI_LOCK from a register value.
-#define BG_OCOTP_LOCK_CRC_GP_HI_LOCK(r)   (((r) & BM_OCOTP_LOCK_CRC_GP_HI_LOCK) >> BP_OCOTP_LOCK_CRC_GP_HI_LOCK)
+#define BG_OCOTP_LOCK_CRC_GP_HI_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_CRC_GP_HI_LOCK) >> BP_OCOTP_LOCK_CRC_GP_HI_LOCK)
 
 /* --- Register HW_OCOTP_LOCK, field UNALLOCATED[31:30] (RO)
  *
@@ -1474,7 +1419,11 @@ typedef union _hw_ocotp_lock
 #define BM_OCOTP_LOCK_UNALLOCATED      (0xc0000000)  //!< Bit mask for OCOTP_LOCK_UNALLOCATED.
 
 //! @brief Get value of OCOTP_LOCK_UNALLOCATED from a register value.
-#define BG_OCOTP_LOCK_UNALLOCATED(r)   (((r) & BM_OCOTP_LOCK_UNALLOCATED) >> BP_OCOTP_LOCK_UNALLOCATED)
+#define BG_OCOTP_LOCK_UNALLOCATED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_UNALLOCATED) >> BP_OCOTP_LOCK_UNALLOCATED)
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG0 - Value of OTP Bank0 Word1 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1525,20 +1474,19 @@ typedef union _hw_ocotp_cfg0
 #define BM_OCOTP_CFG0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG0_BITS.
 
 //! @brief Get value of OCOTP_CFG0_BITS from a register value.
-#define BG_OCOTP_CFG0_BITS(r)   (((r) & BM_OCOTP_CFG0_BITS) >> BP_OCOTP_CFG0_BITS)
+#define BG_OCOTP_CFG0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG0_BITS) >> BP_OCOTP_CFG0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG0_BITS.
-#define BF_OCOTP_CFG0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG0_BITS) & BM_OCOTP_CFG0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG0_BITS.
-#define BF_OCOTP_CFG0_BITS(v)   (((v) << BP_OCOTP_CFG0_BITS) & BM_OCOTP_CFG0_BITS)
-#endif
+#define BF_OCOTP_CFG0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG0_BITS) & BM_OCOTP_CFG0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG0_BITS(v)   (HW_OCOTP_CFG0_WR((HW_OCOTP_CFG0_RD() & ~BM_OCOTP_CFG0_BITS) | BF_OCOTP_CFG0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG1 - Value of OTP Bank0 Word2 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1589,20 +1537,19 @@ typedef union _hw_ocotp_cfg1
 #define BM_OCOTP_CFG1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG1_BITS.
 
 //! @brief Get value of OCOTP_CFG1_BITS from a register value.
-#define BG_OCOTP_CFG1_BITS(r)   (((r) & BM_OCOTP_CFG1_BITS) >> BP_OCOTP_CFG1_BITS)
+#define BG_OCOTP_CFG1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG1_BITS) >> BP_OCOTP_CFG1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG1_BITS.
-#define BF_OCOTP_CFG1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG1_BITS) & BM_OCOTP_CFG1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG1_BITS.
-#define BF_OCOTP_CFG1_BITS(v)   (((v) << BP_OCOTP_CFG1_BITS) & BM_OCOTP_CFG1_BITS)
-#endif
+#define BF_OCOTP_CFG1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG1_BITS) & BM_OCOTP_CFG1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG1_BITS(v)   (HW_OCOTP_CFG1_WR((HW_OCOTP_CFG1_RD() & ~BM_OCOTP_CFG1_BITS) | BF_OCOTP_CFG1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG2 - Value of OTP Bank0 Word3 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1652,20 +1599,19 @@ typedef union _hw_ocotp_cfg2
 #define BM_OCOTP_CFG2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG2_BITS.
 
 //! @brief Get value of OCOTP_CFG2_BITS from a register value.
-#define BG_OCOTP_CFG2_BITS(r)   (((r) & BM_OCOTP_CFG2_BITS) >> BP_OCOTP_CFG2_BITS)
+#define BG_OCOTP_CFG2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG2_BITS) >> BP_OCOTP_CFG2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG2_BITS.
-#define BF_OCOTP_CFG2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG2_BITS) & BM_OCOTP_CFG2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG2_BITS.
-#define BF_OCOTP_CFG2_BITS(v)   (((v) << BP_OCOTP_CFG2_BITS) & BM_OCOTP_CFG2_BITS)
-#endif
+#define BF_OCOTP_CFG2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG2_BITS) & BM_OCOTP_CFG2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG2_BITS(v)   (HW_OCOTP_CFG2_WR((HW_OCOTP_CFG2_RD() & ~BM_OCOTP_CFG2_BITS) | BF_OCOTP_CFG2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG3 - Value of OTP Bank0 Word4 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1715,20 +1661,19 @@ typedef union _hw_ocotp_cfg3
 #define BM_OCOTP_CFG3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG3_BITS.
 
 //! @brief Get value of OCOTP_CFG3_BITS from a register value.
-#define BG_OCOTP_CFG3_BITS(r)   (((r) & BM_OCOTP_CFG3_BITS) >> BP_OCOTP_CFG3_BITS)
+#define BG_OCOTP_CFG3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG3_BITS) >> BP_OCOTP_CFG3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG3_BITS.
-#define BF_OCOTP_CFG3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG3_BITS) & BM_OCOTP_CFG3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG3_BITS.
-#define BF_OCOTP_CFG3_BITS(v)   (((v) << BP_OCOTP_CFG3_BITS) & BM_OCOTP_CFG3_BITS)
-#endif
+#define BF_OCOTP_CFG3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG3_BITS) & BM_OCOTP_CFG3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG3_BITS(v)   (HW_OCOTP_CFG3_WR((HW_OCOTP_CFG3_RD() & ~BM_OCOTP_CFG3_BITS) | BF_OCOTP_CFG3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG4 - Value of OTP Bank0 Word5 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1778,20 +1723,19 @@ typedef union _hw_ocotp_cfg4
 #define BM_OCOTP_CFG4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG4_BITS.
 
 //! @brief Get value of OCOTP_CFG4_BITS from a register value.
-#define BG_OCOTP_CFG4_BITS(r)   (((r) & BM_OCOTP_CFG4_BITS) >> BP_OCOTP_CFG4_BITS)
+#define BG_OCOTP_CFG4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG4_BITS) >> BP_OCOTP_CFG4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG4_BITS.
-#define BF_OCOTP_CFG4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG4_BITS) & BM_OCOTP_CFG4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG4_BITS.
-#define BF_OCOTP_CFG4_BITS(v)   (((v) << BP_OCOTP_CFG4_BITS) & BM_OCOTP_CFG4_BITS)
-#endif
+#define BF_OCOTP_CFG4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG4_BITS) & BM_OCOTP_CFG4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG4_BITS(v)   (HW_OCOTP_CFG4_WR((HW_OCOTP_CFG4_RD() & ~BM_OCOTP_CFG4_BITS) | BF_OCOTP_CFG4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG5 - Value of OTP Bank0 Word6 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1841,20 +1785,19 @@ typedef union _hw_ocotp_cfg5
 #define BM_OCOTP_CFG5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG5_BITS.
 
 //! @brief Get value of OCOTP_CFG5_BITS from a register value.
-#define BG_OCOTP_CFG5_BITS(r)   (((r) & BM_OCOTP_CFG5_BITS) >> BP_OCOTP_CFG5_BITS)
+#define BG_OCOTP_CFG5_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG5_BITS) >> BP_OCOTP_CFG5_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG5_BITS.
-#define BF_OCOTP_CFG5_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG5_BITS) & BM_OCOTP_CFG5_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG5_BITS.
-#define BF_OCOTP_CFG5_BITS(v)   (((v) << BP_OCOTP_CFG5_BITS) & BM_OCOTP_CFG5_BITS)
-#endif
+#define BF_OCOTP_CFG5_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG5_BITS) & BM_OCOTP_CFG5_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG5_BITS(v)   (HW_OCOTP_CFG5_WR((HW_OCOTP_CFG5_RD() & ~BM_OCOTP_CFG5_BITS) | BF_OCOTP_CFG5_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CFG6 - Value of OTP Bank0 Word7 (Configuration and Manufacturing Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1904,20 +1847,19 @@ typedef union _hw_ocotp_cfg6
 #define BM_OCOTP_CFG6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG6_BITS.
 
 //! @brief Get value of OCOTP_CFG6_BITS from a register value.
-#define BG_OCOTP_CFG6_BITS(r)   (((r) & BM_OCOTP_CFG6_BITS) >> BP_OCOTP_CFG6_BITS)
+#define BG_OCOTP_CFG6_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CFG6_BITS) >> BP_OCOTP_CFG6_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CFG6_BITS.
-#define BF_OCOTP_CFG6_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CFG6_BITS) & BM_OCOTP_CFG6_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CFG6_BITS.
-#define BF_OCOTP_CFG6_BITS(v)   (((v) << BP_OCOTP_CFG6_BITS) & BM_OCOTP_CFG6_BITS)
-#endif
+#define BF_OCOTP_CFG6_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CFG6_BITS) & BM_OCOTP_CFG6_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG6_BITS(v)   (HW_OCOTP_CFG6_WR((HW_OCOTP_CFG6_RD() & ~BM_OCOTP_CFG6_BITS) | BF_OCOTP_CFG6_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MEM0 - Value of OTP Bank1 Word0 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1967,20 +1909,19 @@ typedef union _hw_ocotp_mem0
 #define BM_OCOTP_MEM0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM0_BITS.
 
 //! @brief Get value of OCOTP_MEM0_BITS from a register value.
-#define BG_OCOTP_MEM0_BITS(r)   (((r) & BM_OCOTP_MEM0_BITS) >> BP_OCOTP_MEM0_BITS)
+#define BG_OCOTP_MEM0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MEM0_BITS) >> BP_OCOTP_MEM0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MEM0_BITS.
-#define BF_OCOTP_MEM0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MEM0_BITS) & BM_OCOTP_MEM0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MEM0_BITS.
-#define BF_OCOTP_MEM0_BITS(v)   (((v) << BP_OCOTP_MEM0_BITS) & BM_OCOTP_MEM0_BITS)
-#endif
+#define BF_OCOTP_MEM0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MEM0_BITS) & BM_OCOTP_MEM0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM0_BITS(v)   (HW_OCOTP_MEM0_WR((HW_OCOTP_MEM0_RD() & ~BM_OCOTP_MEM0_BITS) | BF_OCOTP_MEM0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MEM1 - Value of OTP Bank1 Word1 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2030,20 +1971,19 @@ typedef union _hw_ocotp_mem1
 #define BM_OCOTP_MEM1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM1_BITS.
 
 //! @brief Get value of OCOTP_MEM1_BITS from a register value.
-#define BG_OCOTP_MEM1_BITS(r)   (((r) & BM_OCOTP_MEM1_BITS) >> BP_OCOTP_MEM1_BITS)
+#define BG_OCOTP_MEM1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MEM1_BITS) >> BP_OCOTP_MEM1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MEM1_BITS.
-#define BF_OCOTP_MEM1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MEM1_BITS) & BM_OCOTP_MEM1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MEM1_BITS.
-#define BF_OCOTP_MEM1_BITS(v)   (((v) << BP_OCOTP_MEM1_BITS) & BM_OCOTP_MEM1_BITS)
-#endif
+#define BF_OCOTP_MEM1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MEM1_BITS) & BM_OCOTP_MEM1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM1_BITS(v)   (HW_OCOTP_MEM1_WR((HW_OCOTP_MEM1_RD() & ~BM_OCOTP_MEM1_BITS) | BF_OCOTP_MEM1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MEM2 - Value of OTP Bank1 Word2 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2093,20 +2033,19 @@ typedef union _hw_ocotp_mem2
 #define BM_OCOTP_MEM2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM2_BITS.
 
 //! @brief Get value of OCOTP_MEM2_BITS from a register value.
-#define BG_OCOTP_MEM2_BITS(r)   (((r) & BM_OCOTP_MEM2_BITS) >> BP_OCOTP_MEM2_BITS)
+#define BG_OCOTP_MEM2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MEM2_BITS) >> BP_OCOTP_MEM2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MEM2_BITS.
-#define BF_OCOTP_MEM2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MEM2_BITS) & BM_OCOTP_MEM2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MEM2_BITS.
-#define BF_OCOTP_MEM2_BITS(v)   (((v) << BP_OCOTP_MEM2_BITS) & BM_OCOTP_MEM2_BITS)
-#endif
+#define BF_OCOTP_MEM2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MEM2_BITS) & BM_OCOTP_MEM2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM2_BITS(v)   (HW_OCOTP_MEM2_WR((HW_OCOTP_MEM2_RD() & ~BM_OCOTP_MEM2_BITS) | BF_OCOTP_MEM2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MEM3 - Value of OTP Bank1 Word3 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2156,20 +2095,19 @@ typedef union _hw_ocotp_mem3
 #define BM_OCOTP_MEM3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM3_BITS.
 
 //! @brief Get value of OCOTP_MEM3_BITS from a register value.
-#define BG_OCOTP_MEM3_BITS(r)   (((r) & BM_OCOTP_MEM3_BITS) >> BP_OCOTP_MEM3_BITS)
+#define BG_OCOTP_MEM3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MEM3_BITS) >> BP_OCOTP_MEM3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MEM3_BITS.
-#define BF_OCOTP_MEM3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MEM3_BITS) & BM_OCOTP_MEM3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MEM3_BITS.
-#define BF_OCOTP_MEM3_BITS(v)   (((v) << BP_OCOTP_MEM3_BITS) & BM_OCOTP_MEM3_BITS)
-#endif
+#define BF_OCOTP_MEM3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MEM3_BITS) & BM_OCOTP_MEM3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM3_BITS(v)   (HW_OCOTP_MEM3_WR((HW_OCOTP_MEM3_RD() & ~BM_OCOTP_MEM3_BITS) | BF_OCOTP_MEM3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MEM4 - Value of OTP Bank1 Word4 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2219,20 +2157,19 @@ typedef union _hw_ocotp_mem4
 #define BM_OCOTP_MEM4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM4_BITS.
 
 //! @brief Get value of OCOTP_MEM4_BITS from a register value.
-#define BG_OCOTP_MEM4_BITS(r)   (((r) & BM_OCOTP_MEM4_BITS) >> BP_OCOTP_MEM4_BITS)
+#define BG_OCOTP_MEM4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MEM4_BITS) >> BP_OCOTP_MEM4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MEM4_BITS.
-#define BF_OCOTP_MEM4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MEM4_BITS) & BM_OCOTP_MEM4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MEM4_BITS.
-#define BF_OCOTP_MEM4_BITS(v)   (((v) << BP_OCOTP_MEM4_BITS) & BM_OCOTP_MEM4_BITS)
-#endif
+#define BF_OCOTP_MEM4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MEM4_BITS) & BM_OCOTP_MEM4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM4_BITS(v)   (HW_OCOTP_MEM4_WR((HW_OCOTP_MEM4_RD() & ~BM_OCOTP_MEM4_BITS) | BF_OCOTP_MEM4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_ANA0 - Value of OTP Bank1 Word5 (Memory Related Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2282,20 +2219,19 @@ typedef union _hw_ocotp_ana0
 #define BM_OCOTP_ANA0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA0_BITS.
 
 //! @brief Get value of OCOTP_ANA0_BITS from a register value.
-#define BG_OCOTP_ANA0_BITS(r)   (((r) & BM_OCOTP_ANA0_BITS) >> BP_OCOTP_ANA0_BITS)
+#define BG_OCOTP_ANA0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_ANA0_BITS) >> BP_OCOTP_ANA0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_ANA0_BITS.
-#define BF_OCOTP_ANA0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_ANA0_BITS) & BM_OCOTP_ANA0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_ANA0_BITS.
-#define BF_OCOTP_ANA0_BITS(v)   (((v) << BP_OCOTP_ANA0_BITS) & BM_OCOTP_ANA0_BITS)
-#endif
+#define BF_OCOTP_ANA0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_ANA0_BITS) & BM_OCOTP_ANA0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA0_BITS(v)   (HW_OCOTP_ANA0_WR((HW_OCOTP_ANA0_RD() & ~BM_OCOTP_ANA0_BITS) | BF_OCOTP_ANA0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_ANA1 - Value of OTP Bank1 Word6 (General Purpose Customer Defined Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2345,20 +2281,19 @@ typedef union _hw_ocotp_ana1
 #define BM_OCOTP_ANA1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA1_BITS.
 
 //! @brief Get value of OCOTP_ANA1_BITS from a register value.
-#define BG_OCOTP_ANA1_BITS(r)   (((r) & BM_OCOTP_ANA1_BITS) >> BP_OCOTP_ANA1_BITS)
+#define BG_OCOTP_ANA1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_ANA1_BITS) >> BP_OCOTP_ANA1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_ANA1_BITS.
-#define BF_OCOTP_ANA1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_ANA1_BITS) & BM_OCOTP_ANA1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_ANA1_BITS.
-#define BF_OCOTP_ANA1_BITS(v)   (((v) << BP_OCOTP_ANA1_BITS) & BM_OCOTP_ANA1_BITS)
-#endif
+#define BF_OCOTP_ANA1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_ANA1_BITS) & BM_OCOTP_ANA1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA1_BITS(v)   (HW_OCOTP_ANA1_WR((HW_OCOTP_ANA1_RD() & ~BM_OCOTP_ANA1_BITS) | BF_OCOTP_ANA1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_ANA2 - Value of OTP Bank1 Word7 (General Purpose Customer Defined Info.)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2408,20 +2343,19 @@ typedef union _hw_ocotp_ana2
 #define BM_OCOTP_ANA2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA2_BITS.
 
 //! @brief Get value of OCOTP_ANA2_BITS from a register value.
-#define BG_OCOTP_ANA2_BITS(r)   (((r) & BM_OCOTP_ANA2_BITS) >> BP_OCOTP_ANA2_BITS)
+#define BG_OCOTP_ANA2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_ANA2_BITS) >> BP_OCOTP_ANA2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_ANA2_BITS.
-#define BF_OCOTP_ANA2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_ANA2_BITS) & BM_OCOTP_ANA2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_ANA2_BITS.
-#define BF_OCOTP_ANA2_BITS(v)   (((v) << BP_OCOTP_ANA2_BITS) & BM_OCOTP_ANA2_BITS)
-#endif
+#define BF_OCOTP_ANA2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_ANA2_BITS) & BM_OCOTP_ANA2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA2_BITS(v)   (HW_OCOTP_ANA2_WR((HW_OCOTP_ANA2_RD() & ~BM_OCOTP_ANA2_BITS) | BF_OCOTP_ANA2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK0 - Shadow Register for OTP Bank2 Word0 (OTPMK and CRYPTO Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2472,20 +2406,19 @@ typedef union _hw_ocotp_otpmk0
 #define BM_OCOTP_OTPMK0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK0_BITS.
 
 //! @brief Get value of OCOTP_OTPMK0_BITS from a register value.
-#define BG_OCOTP_OTPMK0_BITS(r)   (((r) & BM_OCOTP_OTPMK0_BITS) >> BP_OCOTP_OTPMK0_BITS)
+#define BG_OCOTP_OTPMK0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK0_BITS) >> BP_OCOTP_OTPMK0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK0_BITS.
-#define BF_OCOTP_OTPMK0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK0_BITS) & BM_OCOTP_OTPMK0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK0_BITS.
-#define BF_OCOTP_OTPMK0_BITS(v)   (((v) << BP_OCOTP_OTPMK0_BITS) & BM_OCOTP_OTPMK0_BITS)
-#endif
+#define BF_OCOTP_OTPMK0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK0_BITS) & BM_OCOTP_OTPMK0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK0_BITS(v)   (HW_OCOTP_OTPMK0_WR((HW_OCOTP_OTPMK0_RD() & ~BM_OCOTP_OTPMK0_BITS) | BF_OCOTP_OTPMK0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK1 - Shadow Register for OTP Bank2 Word1 (OTPMK and CRYPTO Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2536,20 +2469,19 @@ typedef union _hw_ocotp_otpmk1
 #define BM_OCOTP_OTPMK1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK1_BITS.
 
 //! @brief Get value of OCOTP_OTPMK1_BITS from a register value.
-#define BG_OCOTP_OTPMK1_BITS(r)   (((r) & BM_OCOTP_OTPMK1_BITS) >> BP_OCOTP_OTPMK1_BITS)
+#define BG_OCOTP_OTPMK1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK1_BITS) >> BP_OCOTP_OTPMK1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK1_BITS.
-#define BF_OCOTP_OTPMK1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK1_BITS) & BM_OCOTP_OTPMK1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK1_BITS.
-#define BF_OCOTP_OTPMK1_BITS(v)   (((v) << BP_OCOTP_OTPMK1_BITS) & BM_OCOTP_OTPMK1_BITS)
-#endif
+#define BF_OCOTP_OTPMK1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK1_BITS) & BM_OCOTP_OTPMK1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK1_BITS(v)   (HW_OCOTP_OTPMK1_WR((HW_OCOTP_OTPMK1_RD() & ~BM_OCOTP_OTPMK1_BITS) | BF_OCOTP_OTPMK1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK2 - Shadow Register for OTP Bank2 Word2 (OTPMK and CRYPTO Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2600,20 +2532,19 @@ typedef union _hw_ocotp_otpmk2
 #define BM_OCOTP_OTPMK2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK2_BITS.
 
 //! @brief Get value of OCOTP_OTPMK2_BITS from a register value.
-#define BG_OCOTP_OTPMK2_BITS(r)   (((r) & BM_OCOTP_OTPMK2_BITS) >> BP_OCOTP_OTPMK2_BITS)
+#define BG_OCOTP_OTPMK2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK2_BITS) >> BP_OCOTP_OTPMK2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK2_BITS.
-#define BF_OCOTP_OTPMK2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK2_BITS) & BM_OCOTP_OTPMK2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK2_BITS.
-#define BF_OCOTP_OTPMK2_BITS(v)   (((v) << BP_OCOTP_OTPMK2_BITS) & BM_OCOTP_OTPMK2_BITS)
-#endif
+#define BF_OCOTP_OTPMK2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK2_BITS) & BM_OCOTP_OTPMK2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK2_BITS(v)   (HW_OCOTP_OTPMK2_WR((HW_OCOTP_OTPMK2_RD() & ~BM_OCOTP_OTPMK2_BITS) | BF_OCOTP_OTPMK2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK3 - Shadow Register for OTP Bank2 Word3 (OTPMK and CRYPTO Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2664,20 +2595,19 @@ typedef union _hw_ocotp_otpmk3
 #define BM_OCOTP_OTPMK3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK3_BITS.
 
 //! @brief Get value of OCOTP_OTPMK3_BITS from a register value.
-#define BG_OCOTP_OTPMK3_BITS(r)   (((r) & BM_OCOTP_OTPMK3_BITS) >> BP_OCOTP_OTPMK3_BITS)
+#define BG_OCOTP_OTPMK3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK3_BITS) >> BP_OCOTP_OTPMK3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK3_BITS.
-#define BF_OCOTP_OTPMK3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK3_BITS) & BM_OCOTP_OTPMK3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK3_BITS.
-#define BF_OCOTP_OTPMK3_BITS(v)   (((v) << BP_OCOTP_OTPMK3_BITS) & BM_OCOTP_OTPMK3_BITS)
-#endif
+#define BF_OCOTP_OTPMK3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK3_BITS) & BM_OCOTP_OTPMK3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK3_BITS(v)   (HW_OCOTP_OTPMK3_WR((HW_OCOTP_OTPMK3_RD() & ~BM_OCOTP_OTPMK3_BITS) | BF_OCOTP_OTPMK3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK4 - Shadow Register for OTP Bank2 Word4 (OTPMK Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2728,20 +2658,19 @@ typedef union _hw_ocotp_otpmk4
 #define BM_OCOTP_OTPMK4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK4_BITS.
 
 //! @brief Get value of OCOTP_OTPMK4_BITS from a register value.
-#define BG_OCOTP_OTPMK4_BITS(r)   (((r) & BM_OCOTP_OTPMK4_BITS) >> BP_OCOTP_OTPMK4_BITS)
+#define BG_OCOTP_OTPMK4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK4_BITS) >> BP_OCOTP_OTPMK4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK4_BITS.
-#define BF_OCOTP_OTPMK4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK4_BITS) & BM_OCOTP_OTPMK4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK4_BITS.
-#define BF_OCOTP_OTPMK4_BITS(v)   (((v) << BP_OCOTP_OTPMK4_BITS) & BM_OCOTP_OTPMK4_BITS)
-#endif
+#define BF_OCOTP_OTPMK4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK4_BITS) & BM_OCOTP_OTPMK4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK4_BITS(v)   (HW_OCOTP_OTPMK4_WR((HW_OCOTP_OTPMK4_RD() & ~BM_OCOTP_OTPMK4_BITS) | BF_OCOTP_OTPMK4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK5 - Shadow Register for OTP Bank2 Word5 (OTPMK Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2792,20 +2721,19 @@ typedef union _hw_ocotp_otpmk5
 #define BM_OCOTP_OTPMK5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK5_BITS.
 
 //! @brief Get value of OCOTP_OTPMK5_BITS from a register value.
-#define BG_OCOTP_OTPMK5_BITS(r)   (((r) & BM_OCOTP_OTPMK5_BITS) >> BP_OCOTP_OTPMK5_BITS)
+#define BG_OCOTP_OTPMK5_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK5_BITS) >> BP_OCOTP_OTPMK5_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK5_BITS.
-#define BF_OCOTP_OTPMK5_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK5_BITS) & BM_OCOTP_OTPMK5_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK5_BITS.
-#define BF_OCOTP_OTPMK5_BITS(v)   (((v) << BP_OCOTP_OTPMK5_BITS) & BM_OCOTP_OTPMK5_BITS)
-#endif
+#define BF_OCOTP_OTPMK5_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK5_BITS) & BM_OCOTP_OTPMK5_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK5_BITS(v)   (HW_OCOTP_OTPMK5_WR((HW_OCOTP_OTPMK5_RD() & ~BM_OCOTP_OTPMK5_BITS) | BF_OCOTP_OTPMK5_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK6 - Shadow Register for OTP Bank2 Word6 (OTPMK Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2856,20 +2784,19 @@ typedef union _hw_ocotp_otpmk6
 #define BM_OCOTP_OTPMK6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK6_BITS.
 
 //! @brief Get value of OCOTP_OTPMK6_BITS from a register value.
-#define BG_OCOTP_OTPMK6_BITS(r)   (((r) & BM_OCOTP_OTPMK6_BITS) >> BP_OCOTP_OTPMK6_BITS)
+#define BG_OCOTP_OTPMK6_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK6_BITS) >> BP_OCOTP_OTPMK6_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK6_BITS.
-#define BF_OCOTP_OTPMK6_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK6_BITS) & BM_OCOTP_OTPMK6_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK6_BITS.
-#define BF_OCOTP_OTPMK6_BITS(v)   (((v) << BP_OCOTP_OTPMK6_BITS) & BM_OCOTP_OTPMK6_BITS)
-#endif
+#define BF_OCOTP_OTPMK6_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK6_BITS) & BM_OCOTP_OTPMK6_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK6_BITS(v)   (HW_OCOTP_OTPMK6_WR((HW_OCOTP_OTPMK6_RD() & ~BM_OCOTP_OTPMK6_BITS) | BF_OCOTP_OTPMK6_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_OTPMK7 - Shadow Register for OTP Bank2 Word7 (OTPMK Key)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2920,20 +2847,19 @@ typedef union _hw_ocotp_otpmk7
 #define BM_OCOTP_OTPMK7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_OTPMK7_BITS.
 
 //! @brief Get value of OCOTP_OTPMK7_BITS from a register value.
-#define BG_OCOTP_OTPMK7_BITS(r)   (((r) & BM_OCOTP_OTPMK7_BITS) >> BP_OCOTP_OTPMK7_BITS)
+#define BG_OCOTP_OTPMK7_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_OTPMK7_BITS) >> BP_OCOTP_OTPMK7_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_OTPMK7_BITS.
-#define BF_OCOTP_OTPMK7_BITS(v)   ((((reg32_t) v) << BP_OCOTP_OTPMK7_BITS) & BM_OCOTP_OTPMK7_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_OTPMK7_BITS.
-#define BF_OCOTP_OTPMK7_BITS(v)   (((v) << BP_OCOTP_OTPMK7_BITS) & BM_OCOTP_OTPMK7_BITS)
-#endif
+#define BF_OCOTP_OTPMK7_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_OTPMK7_BITS) & BM_OCOTP_OTPMK7_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_OTPMK7_BITS(v)   (HW_OCOTP_OTPMK7_WR((HW_OCOTP_OTPMK7_RD() & ~BM_OCOTP_OTPMK7_BITS) | BF_OCOTP_OTPMK7_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK0 - Shadow Register for OTP Bank3 Word0 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2983,20 +2909,19 @@ typedef union _hw_ocotp_srk0
 #define BM_OCOTP_SRK0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK0_BITS.
 
 //! @brief Get value of OCOTP_SRK0_BITS from a register value.
-#define BG_OCOTP_SRK0_BITS(r)   (((r) & BM_OCOTP_SRK0_BITS) >> BP_OCOTP_SRK0_BITS)
+#define BG_OCOTP_SRK0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK0_BITS) >> BP_OCOTP_SRK0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK0_BITS.
-#define BF_OCOTP_SRK0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK0_BITS) & BM_OCOTP_SRK0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK0_BITS.
-#define BF_OCOTP_SRK0_BITS(v)   (((v) << BP_OCOTP_SRK0_BITS) & BM_OCOTP_SRK0_BITS)
-#endif
+#define BF_OCOTP_SRK0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK0_BITS) & BM_OCOTP_SRK0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK0_BITS(v)   (HW_OCOTP_SRK0_WR((HW_OCOTP_SRK0_RD() & ~BM_OCOTP_SRK0_BITS) | BF_OCOTP_SRK0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK1 - Shadow Register for OTP Bank3 Word1 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3046,20 +2971,19 @@ typedef union _hw_ocotp_srk1
 #define BM_OCOTP_SRK1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK1_BITS.
 
 //! @brief Get value of OCOTP_SRK1_BITS from a register value.
-#define BG_OCOTP_SRK1_BITS(r)   (((r) & BM_OCOTP_SRK1_BITS) >> BP_OCOTP_SRK1_BITS)
+#define BG_OCOTP_SRK1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK1_BITS) >> BP_OCOTP_SRK1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK1_BITS.
-#define BF_OCOTP_SRK1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK1_BITS) & BM_OCOTP_SRK1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK1_BITS.
-#define BF_OCOTP_SRK1_BITS(v)   (((v) << BP_OCOTP_SRK1_BITS) & BM_OCOTP_SRK1_BITS)
-#endif
+#define BF_OCOTP_SRK1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK1_BITS) & BM_OCOTP_SRK1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK1_BITS(v)   (HW_OCOTP_SRK1_WR((HW_OCOTP_SRK1_RD() & ~BM_OCOTP_SRK1_BITS) | BF_OCOTP_SRK1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK2 - Shadow Register for OTP Bank3 Word2 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3109,20 +3033,19 @@ typedef union _hw_ocotp_srk2
 #define BM_OCOTP_SRK2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK2_BITS.
 
 //! @brief Get value of OCOTP_SRK2_BITS from a register value.
-#define BG_OCOTP_SRK2_BITS(r)   (((r) & BM_OCOTP_SRK2_BITS) >> BP_OCOTP_SRK2_BITS)
+#define BG_OCOTP_SRK2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK2_BITS) >> BP_OCOTP_SRK2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK2_BITS.
-#define BF_OCOTP_SRK2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK2_BITS) & BM_OCOTP_SRK2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK2_BITS.
-#define BF_OCOTP_SRK2_BITS(v)   (((v) << BP_OCOTP_SRK2_BITS) & BM_OCOTP_SRK2_BITS)
-#endif
+#define BF_OCOTP_SRK2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK2_BITS) & BM_OCOTP_SRK2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK2_BITS(v)   (HW_OCOTP_SRK2_WR((HW_OCOTP_SRK2_RD() & ~BM_OCOTP_SRK2_BITS) | BF_OCOTP_SRK2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK3 - Shadow Register for OTP Bank3 Word3 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3172,20 +3095,19 @@ typedef union _hw_ocotp_srk3
 #define BM_OCOTP_SRK3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK3_BITS.
 
 //! @brief Get value of OCOTP_SRK3_BITS from a register value.
-#define BG_OCOTP_SRK3_BITS(r)   (((r) & BM_OCOTP_SRK3_BITS) >> BP_OCOTP_SRK3_BITS)
+#define BG_OCOTP_SRK3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK3_BITS) >> BP_OCOTP_SRK3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK3_BITS.
-#define BF_OCOTP_SRK3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK3_BITS) & BM_OCOTP_SRK3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK3_BITS.
-#define BF_OCOTP_SRK3_BITS(v)   (((v) << BP_OCOTP_SRK3_BITS) & BM_OCOTP_SRK3_BITS)
-#endif
+#define BF_OCOTP_SRK3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK3_BITS) & BM_OCOTP_SRK3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK3_BITS(v)   (HW_OCOTP_SRK3_WR((HW_OCOTP_SRK3_RD() & ~BM_OCOTP_SRK3_BITS) | BF_OCOTP_SRK3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK4 - Shadow Register for OTP Bank3 Word4 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3235,20 +3157,19 @@ typedef union _hw_ocotp_srk4
 #define BM_OCOTP_SRK4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK4_BITS.
 
 //! @brief Get value of OCOTP_SRK4_BITS from a register value.
-#define BG_OCOTP_SRK4_BITS(r)   (((r) & BM_OCOTP_SRK4_BITS) >> BP_OCOTP_SRK4_BITS)
+#define BG_OCOTP_SRK4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK4_BITS) >> BP_OCOTP_SRK4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK4_BITS.
-#define BF_OCOTP_SRK4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK4_BITS) & BM_OCOTP_SRK4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK4_BITS.
-#define BF_OCOTP_SRK4_BITS(v)   (((v) << BP_OCOTP_SRK4_BITS) & BM_OCOTP_SRK4_BITS)
-#endif
+#define BF_OCOTP_SRK4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK4_BITS) & BM_OCOTP_SRK4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK4_BITS(v)   (HW_OCOTP_SRK4_WR((HW_OCOTP_SRK4_RD() & ~BM_OCOTP_SRK4_BITS) | BF_OCOTP_SRK4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK5 - Shadow Register for OTP Bank3 Word5 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3298,20 +3219,19 @@ typedef union _hw_ocotp_srk5
 #define BM_OCOTP_SRK5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK5_BITS.
 
 //! @brief Get value of OCOTP_SRK5_BITS from a register value.
-#define BG_OCOTP_SRK5_BITS(r)   (((r) & BM_OCOTP_SRK5_BITS) >> BP_OCOTP_SRK5_BITS)
+#define BG_OCOTP_SRK5_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK5_BITS) >> BP_OCOTP_SRK5_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK5_BITS.
-#define BF_OCOTP_SRK5_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK5_BITS) & BM_OCOTP_SRK5_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK5_BITS.
-#define BF_OCOTP_SRK5_BITS(v)   (((v) << BP_OCOTP_SRK5_BITS) & BM_OCOTP_SRK5_BITS)
-#endif
+#define BF_OCOTP_SRK5_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK5_BITS) & BM_OCOTP_SRK5_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK5_BITS(v)   (HW_OCOTP_SRK5_WR((HW_OCOTP_SRK5_RD() & ~BM_OCOTP_SRK5_BITS) | BF_OCOTP_SRK5_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK6 - Shadow Register for OTP Bank3 Word6 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3361,20 +3281,19 @@ typedef union _hw_ocotp_srk6
 #define BM_OCOTP_SRK6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK6_BITS.
 
 //! @brief Get value of OCOTP_SRK6_BITS from a register value.
-#define BG_OCOTP_SRK6_BITS(r)   (((r) & BM_OCOTP_SRK6_BITS) >> BP_OCOTP_SRK6_BITS)
+#define BG_OCOTP_SRK6_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK6_BITS) >> BP_OCOTP_SRK6_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK6_BITS.
-#define BF_OCOTP_SRK6_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK6_BITS) & BM_OCOTP_SRK6_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK6_BITS.
-#define BF_OCOTP_SRK6_BITS(v)   (((v) << BP_OCOTP_SRK6_BITS) & BM_OCOTP_SRK6_BITS)
-#endif
+#define BF_OCOTP_SRK6_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK6_BITS) & BM_OCOTP_SRK6_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK6_BITS(v)   (HW_OCOTP_SRK6_WR((HW_OCOTP_SRK6_RD() & ~BM_OCOTP_SRK6_BITS) | BF_OCOTP_SRK6_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK7 - Shadow Register for OTP Bank3 Word7 (SRK Hash)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3424,20 +3343,19 @@ typedef union _hw_ocotp_srk7
 #define BM_OCOTP_SRK7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK7_BITS.
 
 //! @brief Get value of OCOTP_SRK7_BITS from a register value.
-#define BG_OCOTP_SRK7_BITS(r)   (((r) & BM_OCOTP_SRK7_BITS) >> BP_OCOTP_SRK7_BITS)
+#define BG_OCOTP_SRK7_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK7_BITS) >> BP_OCOTP_SRK7_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK7_BITS.
-#define BF_OCOTP_SRK7_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK7_BITS) & BM_OCOTP_SRK7_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK7_BITS.
-#define BF_OCOTP_SRK7_BITS(v)   (((v) << BP_OCOTP_SRK7_BITS) & BM_OCOTP_SRK7_BITS)
-#endif
+#define BF_OCOTP_SRK7_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK7_BITS) & BM_OCOTP_SRK7_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK7_BITS(v)   (HW_OCOTP_SRK7_WR((HW_OCOTP_SRK7_RD() & ~BM_OCOTP_SRK7_BITS) | BF_OCOTP_SRK7_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_RESP0 - Value of OTP Bank4 Word0 (Secure JTAG Response Field)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3488,20 +3406,19 @@ typedef union _hw_ocotp_resp0
 #define BM_OCOTP_RESP0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_RESP0_BITS.
 
 //! @brief Get value of OCOTP_RESP0_BITS from a register value.
-#define BG_OCOTP_RESP0_BITS(r)   (((r) & BM_OCOTP_RESP0_BITS) >> BP_OCOTP_RESP0_BITS)
+#define BG_OCOTP_RESP0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_RESP0_BITS) >> BP_OCOTP_RESP0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_RESP0_BITS.
-#define BF_OCOTP_RESP0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_RESP0_BITS) & BM_OCOTP_RESP0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_RESP0_BITS.
-#define BF_OCOTP_RESP0_BITS(v)   (((v) << BP_OCOTP_RESP0_BITS) & BM_OCOTP_RESP0_BITS)
-#endif
+#define BF_OCOTP_RESP0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_RESP0_BITS) & BM_OCOTP_RESP0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_RESP0_BITS(v)   (HW_OCOTP_RESP0_WR((HW_OCOTP_RESP0_RD() & ~BM_OCOTP_RESP0_BITS) | BF_OCOTP_RESP0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HSJC_RESP1 - Value of OTP Bank4 Word1 (Secure JTAG Response Field)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3552,20 +3469,19 @@ typedef union _hw_ocotp_hsjc_resp1
 #define BM_OCOTP_HSJC_RESP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HSJC_RESP1_BITS.
 
 //! @brief Get value of OCOTP_HSJC_RESP1_BITS from a register value.
-#define BG_OCOTP_HSJC_RESP1_BITS(r)   (((r) & BM_OCOTP_HSJC_RESP1_BITS) >> BP_OCOTP_HSJC_RESP1_BITS)
+#define BG_OCOTP_HSJC_RESP1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HSJC_RESP1_BITS) >> BP_OCOTP_HSJC_RESP1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HSJC_RESP1_BITS.
-#define BF_OCOTP_HSJC_RESP1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HSJC_RESP1_BITS) & BM_OCOTP_HSJC_RESP1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HSJC_RESP1_BITS.
-#define BF_OCOTP_HSJC_RESP1_BITS(v)   (((v) << BP_OCOTP_HSJC_RESP1_BITS) & BM_OCOTP_HSJC_RESP1_BITS)
-#endif
+#define BF_OCOTP_HSJC_RESP1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HSJC_RESP1_BITS) & BM_OCOTP_HSJC_RESP1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HSJC_RESP1_BITS(v)   (HW_OCOTP_HSJC_RESP1_WR((HW_OCOTP_HSJC_RESP1_RD() & ~BM_OCOTP_HSJC_RESP1_BITS) | BF_OCOTP_HSJC_RESP1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MAC0 - Value of OTP Bank4 Word2 (MAC Address)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3614,20 +3530,19 @@ typedef union _hw_ocotp_mac0
 #define BM_OCOTP_MAC0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MAC0_BITS.
 
 //! @brief Get value of OCOTP_MAC0_BITS from a register value.
-#define BG_OCOTP_MAC0_BITS(r)   (((r) & BM_OCOTP_MAC0_BITS) >> BP_OCOTP_MAC0_BITS)
+#define BG_OCOTP_MAC0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MAC0_BITS) >> BP_OCOTP_MAC0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MAC0_BITS.
-#define BF_OCOTP_MAC0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MAC0_BITS) & BM_OCOTP_MAC0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MAC0_BITS.
-#define BF_OCOTP_MAC0_BITS(v)   (((v) << BP_OCOTP_MAC0_BITS) & BM_OCOTP_MAC0_BITS)
-#endif
+#define BF_OCOTP_MAC0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MAC0_BITS) & BM_OCOTP_MAC0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC0_BITS(v)   (HW_OCOTP_MAC0_WR((HW_OCOTP_MAC0_RD() & ~BM_OCOTP_MAC0_BITS) | BF_OCOTP_MAC0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MAC1 - Value of OTP Bank4 Word3 (MAC Address)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3676,20 +3591,19 @@ typedef union _hw_ocotp_mac1
 #define BM_OCOTP_MAC1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MAC1_BITS.
 
 //! @brief Get value of OCOTP_MAC1_BITS from a register value.
-#define BG_OCOTP_MAC1_BITS(r)   (((r) & BM_OCOTP_MAC1_BITS) >> BP_OCOTP_MAC1_BITS)
+#define BG_OCOTP_MAC1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MAC1_BITS) >> BP_OCOTP_MAC1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MAC1_BITS.
-#define BF_OCOTP_MAC1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MAC1_BITS) & BM_OCOTP_MAC1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MAC1_BITS.
-#define BF_OCOTP_MAC1_BITS(v)   (((v) << BP_OCOTP_MAC1_BITS) & BM_OCOTP_MAC1_BITS)
-#endif
+#define BF_OCOTP_MAC1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MAC1_BITS) & BM_OCOTP_MAC1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC1_BITS(v)   (HW_OCOTP_MAC1_WR((HW_OCOTP_MAC1_RD() & ~BM_OCOTP_MAC1_BITS) | BF_OCOTP_MAC1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KSV0 - Value of OTP Bank4 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3738,20 +3652,19 @@ typedef union _hw_ocotp_hdcp_ksv0
 #define BM_OCOTP_HDCP_KSV0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KSV0_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KSV0_BITS from a register value.
-#define BG_OCOTP_HDCP_KSV0_BITS(r)   (((r) & BM_OCOTP_HDCP_KSV0_BITS) >> BP_OCOTP_HDCP_KSV0_BITS)
+#define BG_OCOTP_HDCP_KSV0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KSV0_BITS) >> BP_OCOTP_HDCP_KSV0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KSV0_BITS.
-#define BF_OCOTP_HDCP_KSV0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KSV0_BITS) & BM_OCOTP_HDCP_KSV0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KSV0_BITS.
-#define BF_OCOTP_HDCP_KSV0_BITS(v)   (((v) << BP_OCOTP_HDCP_KSV0_BITS) & BM_OCOTP_HDCP_KSV0_BITS)
-#endif
+#define BF_OCOTP_HDCP_KSV0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KSV0_BITS) & BM_OCOTP_HDCP_KSV0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KSV0_BITS(v)   (HW_OCOTP_HDCP_KSV0_WR((HW_OCOTP_HDCP_KSV0_RD() & ~BM_OCOTP_HDCP_KSV0_BITS) | BF_OCOTP_HDCP_KSV0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KSV1 - Value of OTP Bank4 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3800,20 +3713,19 @@ typedef union _hw_ocotp_hdcp_ksv1
 #define BM_OCOTP_HDCP_KSV1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KSV1_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KSV1_BITS from a register value.
-#define BG_OCOTP_HDCP_KSV1_BITS(r)   (((r) & BM_OCOTP_HDCP_KSV1_BITS) >> BP_OCOTP_HDCP_KSV1_BITS)
+#define BG_OCOTP_HDCP_KSV1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KSV1_BITS) >> BP_OCOTP_HDCP_KSV1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KSV1_BITS.
-#define BF_OCOTP_HDCP_KSV1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KSV1_BITS) & BM_OCOTP_HDCP_KSV1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KSV1_BITS.
-#define BF_OCOTP_HDCP_KSV1_BITS(v)   (((v) << BP_OCOTP_HDCP_KSV1_BITS) & BM_OCOTP_HDCP_KSV1_BITS)
-#endif
+#define BF_OCOTP_HDCP_KSV1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KSV1_BITS) & BM_OCOTP_HDCP_KSV1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KSV1_BITS(v)   (HW_OCOTP_HDCP_KSV1_WR((HW_OCOTP_HDCP_KSV1_RD() & ~BM_OCOTP_HDCP_KSV1_BITS) | BF_OCOTP_HDCP_KSV1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_GP1 - Value of OTP Bank4 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3862,20 +3774,19 @@ typedef union _hw_ocotp_gp1
 #define BM_OCOTP_GP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP1_BITS.
 
 //! @brief Get value of OCOTP_GP1_BITS from a register value.
-#define BG_OCOTP_GP1_BITS(r)   (((r) & BM_OCOTP_GP1_BITS) >> BP_OCOTP_GP1_BITS)
+#define BG_OCOTP_GP1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_GP1_BITS) >> BP_OCOTP_GP1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_GP1_BITS.
-#define BF_OCOTP_GP1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_GP1_BITS) & BM_OCOTP_GP1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_GP1_BITS.
-#define BF_OCOTP_GP1_BITS(v)   (((v) << BP_OCOTP_GP1_BITS) & BM_OCOTP_GP1_BITS)
-#endif
+#define BF_OCOTP_GP1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_GP1_BITS) & BM_OCOTP_GP1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP1_BITS(v)   (HW_OCOTP_GP1_WR((HW_OCOTP_GP1_RD() & ~BM_OCOTP_GP1_BITS) | BF_OCOTP_GP1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_GP2 - Value of OTP Bank4 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3924,20 +3835,19 @@ typedef union _hw_ocotp_gp2
 #define BM_OCOTP_GP2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP2_BITS.
 
 //! @brief Get value of OCOTP_GP2_BITS from a register value.
-#define BG_OCOTP_GP2_BITS(r)   (((r) & BM_OCOTP_GP2_BITS) >> BP_OCOTP_GP2_BITS)
+#define BG_OCOTP_GP2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_GP2_BITS) >> BP_OCOTP_GP2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_GP2_BITS.
-#define BF_OCOTP_GP2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_GP2_BITS) & BM_OCOTP_GP2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_GP2_BITS.
-#define BF_OCOTP_GP2_BITS(v)   (((v) << BP_OCOTP_GP2_BITS) & BM_OCOTP_GP2_BITS)
-#endif
+#define BF_OCOTP_GP2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_GP2_BITS) & BM_OCOTP_GP2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP2_BITS(v)   (HW_OCOTP_GP2_WR((HW_OCOTP_GP2_RD() & ~BM_OCOTP_GP2_BITS) | BF_OCOTP_GP2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DTCP_KEY0 - Value of OTP Bank5 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3986,20 +3896,19 @@ typedef union _hw_ocotp_dtcp_key0
 #define BM_OCOTP_DTCP_KEY0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DTCP_KEY0_BITS.
 
 //! @brief Get value of OCOTP_DTCP_KEY0_BITS from a register value.
-#define BG_OCOTP_DTCP_KEY0_BITS(r)   (((r) & BM_OCOTP_DTCP_KEY0_BITS) >> BP_OCOTP_DTCP_KEY0_BITS)
+#define BG_OCOTP_DTCP_KEY0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DTCP_KEY0_BITS) >> BP_OCOTP_DTCP_KEY0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DTCP_KEY0_BITS.
-#define BF_OCOTP_DTCP_KEY0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_DTCP_KEY0_BITS) & BM_OCOTP_DTCP_KEY0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_DTCP_KEY0_BITS.
-#define BF_OCOTP_DTCP_KEY0_BITS(v)   (((v) << BP_OCOTP_DTCP_KEY0_BITS) & BM_OCOTP_DTCP_KEY0_BITS)
-#endif
+#define BF_OCOTP_DTCP_KEY0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DTCP_KEY0_BITS) & BM_OCOTP_DTCP_KEY0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY0_BITS(v)   (HW_OCOTP_DTCP_KEY0_WR((HW_OCOTP_DTCP_KEY0_RD() & ~BM_OCOTP_DTCP_KEY0_BITS) | BF_OCOTP_DTCP_KEY0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DTCP_KEY1 - Value of OTP Bank5 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4048,20 +3957,19 @@ typedef union _hw_ocotp_dtcp_key1
 #define BM_OCOTP_DTCP_KEY1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DTCP_KEY1_BITS.
 
 //! @brief Get value of OCOTP_DTCP_KEY1_BITS from a register value.
-#define BG_OCOTP_DTCP_KEY1_BITS(r)   (((r) & BM_OCOTP_DTCP_KEY1_BITS) >> BP_OCOTP_DTCP_KEY1_BITS)
+#define BG_OCOTP_DTCP_KEY1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DTCP_KEY1_BITS) >> BP_OCOTP_DTCP_KEY1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DTCP_KEY1_BITS.
-#define BF_OCOTP_DTCP_KEY1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_DTCP_KEY1_BITS) & BM_OCOTP_DTCP_KEY1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_DTCP_KEY1_BITS.
-#define BF_OCOTP_DTCP_KEY1_BITS(v)   (((v) << BP_OCOTP_DTCP_KEY1_BITS) & BM_OCOTP_DTCP_KEY1_BITS)
-#endif
+#define BF_OCOTP_DTCP_KEY1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DTCP_KEY1_BITS) & BM_OCOTP_DTCP_KEY1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY1_BITS(v)   (HW_OCOTP_DTCP_KEY1_WR((HW_OCOTP_DTCP_KEY1_RD() & ~BM_OCOTP_DTCP_KEY1_BITS) | BF_OCOTP_DTCP_KEY1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DTCP_KEY2 - Value of OTP Bank5 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4110,20 +4018,19 @@ typedef union _hw_ocotp_dtcp_key2
 #define BM_OCOTP_DTCP_KEY2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DTCP_KEY2_BITS.
 
 //! @brief Get value of OCOTP_DTCP_KEY2_BITS from a register value.
-#define BG_OCOTP_DTCP_KEY2_BITS(r)   (((r) & BM_OCOTP_DTCP_KEY2_BITS) >> BP_OCOTP_DTCP_KEY2_BITS)
+#define BG_OCOTP_DTCP_KEY2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DTCP_KEY2_BITS) >> BP_OCOTP_DTCP_KEY2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DTCP_KEY2_BITS.
-#define BF_OCOTP_DTCP_KEY2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_DTCP_KEY2_BITS) & BM_OCOTP_DTCP_KEY2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_DTCP_KEY2_BITS.
-#define BF_OCOTP_DTCP_KEY2_BITS(v)   (((v) << BP_OCOTP_DTCP_KEY2_BITS) & BM_OCOTP_DTCP_KEY2_BITS)
-#endif
+#define BF_OCOTP_DTCP_KEY2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DTCP_KEY2_BITS) & BM_OCOTP_DTCP_KEY2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY2_BITS(v)   (HW_OCOTP_DTCP_KEY2_WR((HW_OCOTP_DTCP_KEY2_RD() & ~BM_OCOTP_DTCP_KEY2_BITS) | BF_OCOTP_DTCP_KEY2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DTCP_KEY3 - Value of OTP Bank5 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4172,20 +4079,19 @@ typedef union _hw_ocotp_dtcp_key3
 #define BM_OCOTP_DTCP_KEY3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DTCP_KEY3_BITS.
 
 //! @brief Get value of OCOTP_DTCP_KEY3_BITS from a register value.
-#define BG_OCOTP_DTCP_KEY3_BITS(r)   (((r) & BM_OCOTP_DTCP_KEY3_BITS) >> BP_OCOTP_DTCP_KEY3_BITS)
+#define BG_OCOTP_DTCP_KEY3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DTCP_KEY3_BITS) >> BP_OCOTP_DTCP_KEY3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DTCP_KEY3_BITS.
-#define BF_OCOTP_DTCP_KEY3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_DTCP_KEY3_BITS) & BM_OCOTP_DTCP_KEY3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_DTCP_KEY3_BITS.
-#define BF_OCOTP_DTCP_KEY3_BITS(v)   (((v) << BP_OCOTP_DTCP_KEY3_BITS) & BM_OCOTP_DTCP_KEY3_BITS)
-#endif
+#define BF_OCOTP_DTCP_KEY3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DTCP_KEY3_BITS) & BM_OCOTP_DTCP_KEY3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY3_BITS(v)   (HW_OCOTP_DTCP_KEY3_WR((HW_OCOTP_DTCP_KEY3_RD() & ~BM_OCOTP_DTCP_KEY3_BITS) | BF_OCOTP_DTCP_KEY3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_DTCP_KEY4 - Value of OTP Bank5 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4234,20 +4140,19 @@ typedef union _hw_ocotp_dtcp_key4
 #define BM_OCOTP_DTCP_KEY4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DTCP_KEY4_BITS.
 
 //! @brief Get value of OCOTP_DTCP_KEY4_BITS from a register value.
-#define BG_OCOTP_DTCP_KEY4_BITS(r)   (((r) & BM_OCOTP_DTCP_KEY4_BITS) >> BP_OCOTP_DTCP_KEY4_BITS)
+#define BG_OCOTP_DTCP_KEY4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_DTCP_KEY4_BITS) >> BP_OCOTP_DTCP_KEY4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_DTCP_KEY4_BITS.
-#define BF_OCOTP_DTCP_KEY4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_DTCP_KEY4_BITS) & BM_OCOTP_DTCP_KEY4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_DTCP_KEY4_BITS.
-#define BF_OCOTP_DTCP_KEY4_BITS(v)   (((v) << BP_OCOTP_DTCP_KEY4_BITS) & BM_OCOTP_DTCP_KEY4_BITS)
-#endif
+#define BF_OCOTP_DTCP_KEY4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_DTCP_KEY4_BITS) & BM_OCOTP_DTCP_KEY4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DTCP_KEY4_BITS(v)   (HW_OCOTP_DTCP_KEY4_WR((HW_OCOTP_DTCP_KEY4_RD() & ~BM_OCOTP_DTCP_KEY4_BITS) | BF_OCOTP_DTCP_KEY4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_MISC_CONF - Value of OTP Bank5 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4296,20 +4201,19 @@ typedef union _hw_ocotp_misc_conf
 #define BM_OCOTP_MISC_CONF_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MISC_CONF_BITS.
 
 //! @brief Get value of OCOTP_MISC_CONF_BITS from a register value.
-#define BG_OCOTP_MISC_CONF_BITS(r)   (((r) & BM_OCOTP_MISC_CONF_BITS) >> BP_OCOTP_MISC_CONF_BITS)
+#define BG_OCOTP_MISC_CONF_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_MISC_CONF_BITS) >> BP_OCOTP_MISC_CONF_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_MISC_CONF_BITS.
-#define BF_OCOTP_MISC_CONF_BITS(v)   ((((reg32_t) v) << BP_OCOTP_MISC_CONF_BITS) & BM_OCOTP_MISC_CONF_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_MISC_CONF_BITS.
-#define BF_OCOTP_MISC_CONF_BITS(v)   (((v) << BP_OCOTP_MISC_CONF_BITS) & BM_OCOTP_MISC_CONF_BITS)
-#endif
+#define BF_OCOTP_MISC_CONF_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_MISC_CONF_BITS) & BM_OCOTP_MISC_CONF_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MISC_CONF_BITS(v)   (HW_OCOTP_MISC_CONF_WR((HW_OCOTP_MISC_CONF_RD() & ~BM_OCOTP_MISC_CONF_BITS) | BF_OCOTP_MISC_CONF_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_FIELD_RETURN - Value of OTP Bank5 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4358,20 +4262,19 @@ typedef union _hw_ocotp_field_return
 #define BM_OCOTP_FIELD_RETURN_BITS      (0xffffffff)  //!< Bit mask for OCOTP_FIELD_RETURN_BITS.
 
 //! @brief Get value of OCOTP_FIELD_RETURN_BITS from a register value.
-#define BG_OCOTP_FIELD_RETURN_BITS(r)   (((r) & BM_OCOTP_FIELD_RETURN_BITS) >> BP_OCOTP_FIELD_RETURN_BITS)
+#define BG_OCOTP_FIELD_RETURN_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_FIELD_RETURN_BITS) >> BP_OCOTP_FIELD_RETURN_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_FIELD_RETURN_BITS.
-#define BF_OCOTP_FIELD_RETURN_BITS(v)   ((((reg32_t) v) << BP_OCOTP_FIELD_RETURN_BITS) & BM_OCOTP_FIELD_RETURN_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_FIELD_RETURN_BITS.
-#define BF_OCOTP_FIELD_RETURN_BITS(v)   (((v) << BP_OCOTP_FIELD_RETURN_BITS) & BM_OCOTP_FIELD_RETURN_BITS)
-#endif
+#define BF_OCOTP_FIELD_RETURN_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_FIELD_RETURN_BITS) & BM_OCOTP_FIELD_RETURN_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_FIELD_RETURN_BITS(v)   (HW_OCOTP_FIELD_RETURN_WR((HW_OCOTP_FIELD_RETURN_RD() & ~BM_OCOTP_FIELD_RETURN_BITS) | BF_OCOTP_FIELD_RETURN_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_SRK_REVOKE - Value of OTP Bank5 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4420,20 +4323,19 @@ typedef union _hw_ocotp_srk_revoke
 #define BM_OCOTP_SRK_REVOKE_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK_REVOKE_BITS.
 
 //! @brief Get value of OCOTP_SRK_REVOKE_BITS from a register value.
-#define BG_OCOTP_SRK_REVOKE_BITS(r)   (((r) & BM_OCOTP_SRK_REVOKE_BITS) >> BP_OCOTP_SRK_REVOKE_BITS)
+#define BG_OCOTP_SRK_REVOKE_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_SRK_REVOKE_BITS) >> BP_OCOTP_SRK_REVOKE_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_SRK_REVOKE_BITS.
-#define BF_OCOTP_SRK_REVOKE_BITS(v)   ((((reg32_t) v) << BP_OCOTP_SRK_REVOKE_BITS) & BM_OCOTP_SRK_REVOKE_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_SRK_REVOKE_BITS.
-#define BF_OCOTP_SRK_REVOKE_BITS(v)   (((v) << BP_OCOTP_SRK_REVOKE_BITS) & BM_OCOTP_SRK_REVOKE_BITS)
-#endif
+#define BF_OCOTP_SRK_REVOKE_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_SRK_REVOKE_BITS) & BM_OCOTP_SRK_REVOKE_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK_REVOKE_BITS(v)   (HW_OCOTP_SRK_REVOKE_WR((HW_OCOTP_SRK_REVOKE_RD() & ~BM_OCOTP_SRK_REVOKE_BITS) | BF_OCOTP_SRK_REVOKE_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY0 - Value of OTP Bank6 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4482,20 +4384,19 @@ typedef union _hw_ocotp_hdcp_key0
 #define BM_OCOTP_HDCP_KEY0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY0_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY0_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY0_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY0_BITS) >> BP_OCOTP_HDCP_KEY0_BITS)
+#define BG_OCOTP_HDCP_KEY0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY0_BITS) >> BP_OCOTP_HDCP_KEY0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY0_BITS.
-#define BF_OCOTP_HDCP_KEY0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY0_BITS) & BM_OCOTP_HDCP_KEY0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY0_BITS.
-#define BF_OCOTP_HDCP_KEY0_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY0_BITS) & BM_OCOTP_HDCP_KEY0_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY0_BITS) & BM_OCOTP_HDCP_KEY0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY0_BITS(v)   (HW_OCOTP_HDCP_KEY0_WR((HW_OCOTP_HDCP_KEY0_RD() & ~BM_OCOTP_HDCP_KEY0_BITS) | BF_OCOTP_HDCP_KEY0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY1 - Value of OTP Bank6 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4544,20 +4445,19 @@ typedef union _hw_ocotp_hdcp_key1
 #define BM_OCOTP_HDCP_KEY1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY1_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY1_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY1_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY1_BITS) >> BP_OCOTP_HDCP_KEY1_BITS)
+#define BG_OCOTP_HDCP_KEY1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY1_BITS) >> BP_OCOTP_HDCP_KEY1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY1_BITS.
-#define BF_OCOTP_HDCP_KEY1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY1_BITS) & BM_OCOTP_HDCP_KEY1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY1_BITS.
-#define BF_OCOTP_HDCP_KEY1_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY1_BITS) & BM_OCOTP_HDCP_KEY1_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY1_BITS) & BM_OCOTP_HDCP_KEY1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY1_BITS(v)   (HW_OCOTP_HDCP_KEY1_WR((HW_OCOTP_HDCP_KEY1_RD() & ~BM_OCOTP_HDCP_KEY1_BITS) | BF_OCOTP_HDCP_KEY1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY2 - Value of OTP Bank6 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4606,20 +4506,19 @@ typedef union _hw_ocotp_hdcp_key2
 #define BM_OCOTP_HDCP_KEY2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY2_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY2_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY2_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY2_BITS) >> BP_OCOTP_HDCP_KEY2_BITS)
+#define BG_OCOTP_HDCP_KEY2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY2_BITS) >> BP_OCOTP_HDCP_KEY2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY2_BITS.
-#define BF_OCOTP_HDCP_KEY2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY2_BITS) & BM_OCOTP_HDCP_KEY2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY2_BITS.
-#define BF_OCOTP_HDCP_KEY2_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY2_BITS) & BM_OCOTP_HDCP_KEY2_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY2_BITS) & BM_OCOTP_HDCP_KEY2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY2_BITS(v)   (HW_OCOTP_HDCP_KEY2_WR((HW_OCOTP_HDCP_KEY2_RD() & ~BM_OCOTP_HDCP_KEY2_BITS) | BF_OCOTP_HDCP_KEY2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY3 - Value of OTP Bank6 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4668,20 +4567,19 @@ typedef union _hw_ocotp_hdcp_key3
 #define BM_OCOTP_HDCP_KEY3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY3_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY3_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY3_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY3_BITS) >> BP_OCOTP_HDCP_KEY3_BITS)
+#define BG_OCOTP_HDCP_KEY3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY3_BITS) >> BP_OCOTP_HDCP_KEY3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY3_BITS.
-#define BF_OCOTP_HDCP_KEY3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY3_BITS) & BM_OCOTP_HDCP_KEY3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY3_BITS.
-#define BF_OCOTP_HDCP_KEY3_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY3_BITS) & BM_OCOTP_HDCP_KEY3_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY3_BITS) & BM_OCOTP_HDCP_KEY3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY3_BITS(v)   (HW_OCOTP_HDCP_KEY3_WR((HW_OCOTP_HDCP_KEY3_RD() & ~BM_OCOTP_HDCP_KEY3_BITS) | BF_OCOTP_HDCP_KEY3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY4 - Value of OTP Bank6 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4730,20 +4628,19 @@ typedef union _hw_ocotp_hdcp_key4
 #define BM_OCOTP_HDCP_KEY4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY4_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY4_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY4_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY4_BITS) >> BP_OCOTP_HDCP_KEY4_BITS)
+#define BG_OCOTP_HDCP_KEY4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY4_BITS) >> BP_OCOTP_HDCP_KEY4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY4_BITS.
-#define BF_OCOTP_HDCP_KEY4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY4_BITS) & BM_OCOTP_HDCP_KEY4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY4_BITS.
-#define BF_OCOTP_HDCP_KEY4_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY4_BITS) & BM_OCOTP_HDCP_KEY4_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY4_BITS) & BM_OCOTP_HDCP_KEY4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY4_BITS(v)   (HW_OCOTP_HDCP_KEY4_WR((HW_OCOTP_HDCP_KEY4_RD() & ~BM_OCOTP_HDCP_KEY4_BITS) | BF_OCOTP_HDCP_KEY4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY5 - Value of OTP Bank6 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4792,20 +4689,19 @@ typedef union _hw_ocotp_hdcp_key5
 #define BM_OCOTP_HDCP_KEY5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY5_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY5_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY5_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY5_BITS) >> BP_OCOTP_HDCP_KEY5_BITS)
+#define BG_OCOTP_HDCP_KEY5_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY5_BITS) >> BP_OCOTP_HDCP_KEY5_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY5_BITS.
-#define BF_OCOTP_HDCP_KEY5_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY5_BITS) & BM_OCOTP_HDCP_KEY5_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY5_BITS.
-#define BF_OCOTP_HDCP_KEY5_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY5_BITS) & BM_OCOTP_HDCP_KEY5_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY5_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY5_BITS) & BM_OCOTP_HDCP_KEY5_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY5_BITS(v)   (HW_OCOTP_HDCP_KEY5_WR((HW_OCOTP_HDCP_KEY5_RD() & ~BM_OCOTP_HDCP_KEY5_BITS) | BF_OCOTP_HDCP_KEY5_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY6 - Value of OTP Bank6 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4854,20 +4750,19 @@ typedef union _hw_ocotp_hdcp_key6
 #define BM_OCOTP_HDCP_KEY6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY6_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY6_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY6_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY6_BITS) >> BP_OCOTP_HDCP_KEY6_BITS)
+#define BG_OCOTP_HDCP_KEY6_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY6_BITS) >> BP_OCOTP_HDCP_KEY6_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY6_BITS.
-#define BF_OCOTP_HDCP_KEY6_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY6_BITS) & BM_OCOTP_HDCP_KEY6_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY6_BITS.
-#define BF_OCOTP_HDCP_KEY6_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY6_BITS) & BM_OCOTP_HDCP_KEY6_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY6_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY6_BITS) & BM_OCOTP_HDCP_KEY6_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY6_BITS(v)   (HW_OCOTP_HDCP_KEY6_WR((HW_OCOTP_HDCP_KEY6_RD() & ~BM_OCOTP_HDCP_KEY6_BITS) | BF_OCOTP_HDCP_KEY6_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY7 - Value of OTP Bank6 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4916,20 +4811,19 @@ typedef union _hw_ocotp_hdcp_key7
 #define BM_OCOTP_HDCP_KEY7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY7_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY7_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY7_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY7_BITS) >> BP_OCOTP_HDCP_KEY7_BITS)
+#define BG_OCOTP_HDCP_KEY7_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY7_BITS) >> BP_OCOTP_HDCP_KEY7_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY7_BITS.
-#define BF_OCOTP_HDCP_KEY7_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY7_BITS) & BM_OCOTP_HDCP_KEY7_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY7_BITS.
-#define BF_OCOTP_HDCP_KEY7_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY7_BITS) & BM_OCOTP_HDCP_KEY7_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY7_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY7_BITS) & BM_OCOTP_HDCP_KEY7_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY7_BITS(v)   (HW_OCOTP_HDCP_KEY7_WR((HW_OCOTP_HDCP_KEY7_RD() & ~BM_OCOTP_HDCP_KEY7_BITS) | BF_OCOTP_HDCP_KEY7_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY8 - Value of OTP Bank7 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4978,20 +4872,19 @@ typedef union _hw_ocotp_hdcp_key8
 #define BM_OCOTP_HDCP_KEY8_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY8_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY8_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY8_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY8_BITS) >> BP_OCOTP_HDCP_KEY8_BITS)
+#define BG_OCOTP_HDCP_KEY8_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY8_BITS) >> BP_OCOTP_HDCP_KEY8_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY8_BITS.
-#define BF_OCOTP_HDCP_KEY8_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY8_BITS) & BM_OCOTP_HDCP_KEY8_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY8_BITS.
-#define BF_OCOTP_HDCP_KEY8_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY8_BITS) & BM_OCOTP_HDCP_KEY8_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY8_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY8_BITS) & BM_OCOTP_HDCP_KEY8_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY8_BITS(v)   (HW_OCOTP_HDCP_KEY8_WR((HW_OCOTP_HDCP_KEY8_RD() & ~BM_OCOTP_HDCP_KEY8_BITS) | BF_OCOTP_HDCP_KEY8_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY9 - Value of OTP Bank7 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5040,20 +4933,19 @@ typedef union _hw_ocotp_hdcp_key9
 #define BM_OCOTP_HDCP_KEY9_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY9_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY9_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY9_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY9_BITS) >> BP_OCOTP_HDCP_KEY9_BITS)
+#define BG_OCOTP_HDCP_KEY9_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY9_BITS) >> BP_OCOTP_HDCP_KEY9_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY9_BITS.
-#define BF_OCOTP_HDCP_KEY9_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY9_BITS) & BM_OCOTP_HDCP_KEY9_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY9_BITS.
-#define BF_OCOTP_HDCP_KEY9_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY9_BITS) & BM_OCOTP_HDCP_KEY9_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY9_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY9_BITS) & BM_OCOTP_HDCP_KEY9_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY9_BITS(v)   (HW_OCOTP_HDCP_KEY9_WR((HW_OCOTP_HDCP_KEY9_RD() & ~BM_OCOTP_HDCP_KEY9_BITS) | BF_OCOTP_HDCP_KEY9_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY10 - Value of OTP Bank7 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5102,20 +4994,19 @@ typedef union _hw_ocotp_hdcp_key10
 #define BM_OCOTP_HDCP_KEY10_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY10_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY10_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY10_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY10_BITS) >> BP_OCOTP_HDCP_KEY10_BITS)
+#define BG_OCOTP_HDCP_KEY10_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY10_BITS) >> BP_OCOTP_HDCP_KEY10_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY10_BITS.
-#define BF_OCOTP_HDCP_KEY10_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY10_BITS) & BM_OCOTP_HDCP_KEY10_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY10_BITS.
-#define BF_OCOTP_HDCP_KEY10_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY10_BITS) & BM_OCOTP_HDCP_KEY10_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY10_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY10_BITS) & BM_OCOTP_HDCP_KEY10_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY10_BITS(v)   (HW_OCOTP_HDCP_KEY10_WR((HW_OCOTP_HDCP_KEY10_RD() & ~BM_OCOTP_HDCP_KEY10_BITS) | BF_OCOTP_HDCP_KEY10_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY11 - Value of OTP Bank7 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5164,20 +5055,19 @@ typedef union _hw_ocotp_hdcp_key11
 #define BM_OCOTP_HDCP_KEY11_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY11_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY11_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY11_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY11_BITS) >> BP_OCOTP_HDCP_KEY11_BITS)
+#define BG_OCOTP_HDCP_KEY11_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY11_BITS) >> BP_OCOTP_HDCP_KEY11_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY11_BITS.
-#define BF_OCOTP_HDCP_KEY11_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY11_BITS) & BM_OCOTP_HDCP_KEY11_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY11_BITS.
-#define BF_OCOTP_HDCP_KEY11_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY11_BITS) & BM_OCOTP_HDCP_KEY11_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY11_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY11_BITS) & BM_OCOTP_HDCP_KEY11_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY11_BITS(v)   (HW_OCOTP_HDCP_KEY11_WR((HW_OCOTP_HDCP_KEY11_RD() & ~BM_OCOTP_HDCP_KEY11_BITS) | BF_OCOTP_HDCP_KEY11_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY12 - Value of OTP Bank7 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5226,20 +5116,19 @@ typedef union _hw_ocotp_hdcp_key12
 #define BM_OCOTP_HDCP_KEY12_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY12_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY12_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY12_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY12_BITS) >> BP_OCOTP_HDCP_KEY12_BITS)
+#define BG_OCOTP_HDCP_KEY12_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY12_BITS) >> BP_OCOTP_HDCP_KEY12_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY12_BITS.
-#define BF_OCOTP_HDCP_KEY12_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY12_BITS) & BM_OCOTP_HDCP_KEY12_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY12_BITS.
-#define BF_OCOTP_HDCP_KEY12_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY12_BITS) & BM_OCOTP_HDCP_KEY12_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY12_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY12_BITS) & BM_OCOTP_HDCP_KEY12_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY12_BITS(v)   (HW_OCOTP_HDCP_KEY12_WR((HW_OCOTP_HDCP_KEY12_RD() & ~BM_OCOTP_HDCP_KEY12_BITS) | BF_OCOTP_HDCP_KEY12_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY13 - Value of OTP Bank7 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5288,20 +5177,19 @@ typedef union _hw_ocotp_hdcp_key13
 #define BM_OCOTP_HDCP_KEY13_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY13_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY13_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY13_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY13_BITS) >> BP_OCOTP_HDCP_KEY13_BITS)
+#define BG_OCOTP_HDCP_KEY13_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY13_BITS) >> BP_OCOTP_HDCP_KEY13_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY13_BITS.
-#define BF_OCOTP_HDCP_KEY13_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY13_BITS) & BM_OCOTP_HDCP_KEY13_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY13_BITS.
-#define BF_OCOTP_HDCP_KEY13_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY13_BITS) & BM_OCOTP_HDCP_KEY13_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY13_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY13_BITS) & BM_OCOTP_HDCP_KEY13_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY13_BITS(v)   (HW_OCOTP_HDCP_KEY13_WR((HW_OCOTP_HDCP_KEY13_RD() & ~BM_OCOTP_HDCP_KEY13_BITS) | BF_OCOTP_HDCP_KEY13_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY14 - Value of OTP Bank7 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5350,20 +5238,19 @@ typedef union _hw_ocotp_hdcp_key14
 #define BM_OCOTP_HDCP_KEY14_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY14_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY14_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY14_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY14_BITS) >> BP_OCOTP_HDCP_KEY14_BITS)
+#define BG_OCOTP_HDCP_KEY14_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY14_BITS) >> BP_OCOTP_HDCP_KEY14_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY14_BITS.
-#define BF_OCOTP_HDCP_KEY14_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY14_BITS) & BM_OCOTP_HDCP_KEY14_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY14_BITS.
-#define BF_OCOTP_HDCP_KEY14_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY14_BITS) & BM_OCOTP_HDCP_KEY14_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY14_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY14_BITS) & BM_OCOTP_HDCP_KEY14_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY14_BITS(v)   (HW_OCOTP_HDCP_KEY14_WR((HW_OCOTP_HDCP_KEY14_RD() & ~BM_OCOTP_HDCP_KEY14_BITS) | BF_OCOTP_HDCP_KEY14_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY15 - Value of OTP Bank7 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5412,20 +5299,19 @@ typedef union _hw_ocotp_hdcp_key15
 #define BM_OCOTP_HDCP_KEY15_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY15_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY15_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY15_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY15_BITS) >> BP_OCOTP_HDCP_KEY15_BITS)
+#define BG_OCOTP_HDCP_KEY15_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY15_BITS) >> BP_OCOTP_HDCP_KEY15_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY15_BITS.
-#define BF_OCOTP_HDCP_KEY15_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY15_BITS) & BM_OCOTP_HDCP_KEY15_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY15_BITS.
-#define BF_OCOTP_HDCP_KEY15_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY15_BITS) & BM_OCOTP_HDCP_KEY15_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY15_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY15_BITS) & BM_OCOTP_HDCP_KEY15_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY15_BITS(v)   (HW_OCOTP_HDCP_KEY15_WR((HW_OCOTP_HDCP_KEY15_RD() & ~BM_OCOTP_HDCP_KEY15_BITS) | BF_OCOTP_HDCP_KEY15_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY16 - Value of OTP Bank8 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5474,20 +5360,19 @@ typedef union _hw_ocotp_hdcp_key16
 #define BM_OCOTP_HDCP_KEY16_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY16_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY16_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY16_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY16_BITS) >> BP_OCOTP_HDCP_KEY16_BITS)
+#define BG_OCOTP_HDCP_KEY16_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY16_BITS) >> BP_OCOTP_HDCP_KEY16_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY16_BITS.
-#define BF_OCOTP_HDCP_KEY16_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY16_BITS) & BM_OCOTP_HDCP_KEY16_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY16_BITS.
-#define BF_OCOTP_HDCP_KEY16_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY16_BITS) & BM_OCOTP_HDCP_KEY16_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY16_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY16_BITS) & BM_OCOTP_HDCP_KEY16_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY16_BITS(v)   (HW_OCOTP_HDCP_KEY16_WR((HW_OCOTP_HDCP_KEY16_RD() & ~BM_OCOTP_HDCP_KEY16_BITS) | BF_OCOTP_HDCP_KEY16_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY17 - Value of OTP Bank8 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5536,20 +5421,19 @@ typedef union _hw_ocotp_hdcp_key17
 #define BM_OCOTP_HDCP_KEY17_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY17_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY17_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY17_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY17_BITS) >> BP_OCOTP_HDCP_KEY17_BITS)
+#define BG_OCOTP_HDCP_KEY17_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY17_BITS) >> BP_OCOTP_HDCP_KEY17_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY17_BITS.
-#define BF_OCOTP_HDCP_KEY17_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY17_BITS) & BM_OCOTP_HDCP_KEY17_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY17_BITS.
-#define BF_OCOTP_HDCP_KEY17_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY17_BITS) & BM_OCOTP_HDCP_KEY17_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY17_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY17_BITS) & BM_OCOTP_HDCP_KEY17_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY17_BITS(v)   (HW_OCOTP_HDCP_KEY17_WR((HW_OCOTP_HDCP_KEY17_RD() & ~BM_OCOTP_HDCP_KEY17_BITS) | BF_OCOTP_HDCP_KEY17_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY18 - Value of OTP Bank8 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5598,20 +5482,19 @@ typedef union _hw_ocotp_hdcp_key18
 #define BM_OCOTP_HDCP_KEY18_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY18_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY18_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY18_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY18_BITS) >> BP_OCOTP_HDCP_KEY18_BITS)
+#define BG_OCOTP_HDCP_KEY18_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY18_BITS) >> BP_OCOTP_HDCP_KEY18_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY18_BITS.
-#define BF_OCOTP_HDCP_KEY18_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY18_BITS) & BM_OCOTP_HDCP_KEY18_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY18_BITS.
-#define BF_OCOTP_HDCP_KEY18_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY18_BITS) & BM_OCOTP_HDCP_KEY18_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY18_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY18_BITS) & BM_OCOTP_HDCP_KEY18_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY18_BITS(v)   (HW_OCOTP_HDCP_KEY18_WR((HW_OCOTP_HDCP_KEY18_RD() & ~BM_OCOTP_HDCP_KEY18_BITS) | BF_OCOTP_HDCP_KEY18_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY19 - Value of OTP Bank8 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5660,20 +5543,19 @@ typedef union _hw_ocotp_hdcp_key19
 #define BM_OCOTP_HDCP_KEY19_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY19_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY19_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY19_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY19_BITS) >> BP_OCOTP_HDCP_KEY19_BITS)
+#define BG_OCOTP_HDCP_KEY19_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY19_BITS) >> BP_OCOTP_HDCP_KEY19_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY19_BITS.
-#define BF_OCOTP_HDCP_KEY19_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY19_BITS) & BM_OCOTP_HDCP_KEY19_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY19_BITS.
-#define BF_OCOTP_HDCP_KEY19_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY19_BITS) & BM_OCOTP_HDCP_KEY19_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY19_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY19_BITS) & BM_OCOTP_HDCP_KEY19_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY19_BITS(v)   (HW_OCOTP_HDCP_KEY19_WR((HW_OCOTP_HDCP_KEY19_RD() & ~BM_OCOTP_HDCP_KEY19_BITS) | BF_OCOTP_HDCP_KEY19_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY20 - Value of OTP Bank8 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5722,20 +5604,19 @@ typedef union _hw_ocotp_hdcp_key20
 #define BM_OCOTP_HDCP_KEY20_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY20_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY20_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY20_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY20_BITS) >> BP_OCOTP_HDCP_KEY20_BITS)
+#define BG_OCOTP_HDCP_KEY20_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY20_BITS) >> BP_OCOTP_HDCP_KEY20_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY20_BITS.
-#define BF_OCOTP_HDCP_KEY20_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY20_BITS) & BM_OCOTP_HDCP_KEY20_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY20_BITS.
-#define BF_OCOTP_HDCP_KEY20_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY20_BITS) & BM_OCOTP_HDCP_KEY20_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY20_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY20_BITS) & BM_OCOTP_HDCP_KEY20_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY20_BITS(v)   (HW_OCOTP_HDCP_KEY20_WR((HW_OCOTP_HDCP_KEY20_RD() & ~BM_OCOTP_HDCP_KEY20_BITS) | BF_OCOTP_HDCP_KEY20_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY21 - Value of OTP Bank8 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5784,20 +5665,19 @@ typedef union _hw_ocotp_hdcp_key21
 #define BM_OCOTP_HDCP_KEY21_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY21_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY21_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY21_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY21_BITS) >> BP_OCOTP_HDCP_KEY21_BITS)
+#define BG_OCOTP_HDCP_KEY21_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY21_BITS) >> BP_OCOTP_HDCP_KEY21_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY21_BITS.
-#define BF_OCOTP_HDCP_KEY21_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY21_BITS) & BM_OCOTP_HDCP_KEY21_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY21_BITS.
-#define BF_OCOTP_HDCP_KEY21_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY21_BITS) & BM_OCOTP_HDCP_KEY21_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY21_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY21_BITS) & BM_OCOTP_HDCP_KEY21_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY21_BITS(v)   (HW_OCOTP_HDCP_KEY21_WR((HW_OCOTP_HDCP_KEY21_RD() & ~BM_OCOTP_HDCP_KEY21_BITS) | BF_OCOTP_HDCP_KEY21_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY22 - Value of OTP Bank8 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5846,20 +5726,19 @@ typedef union _hw_ocotp_hdcp_key22
 #define BM_OCOTP_HDCP_KEY22_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY22_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY22_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY22_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY22_BITS) >> BP_OCOTP_HDCP_KEY22_BITS)
+#define BG_OCOTP_HDCP_KEY22_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY22_BITS) >> BP_OCOTP_HDCP_KEY22_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY22_BITS.
-#define BF_OCOTP_HDCP_KEY22_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY22_BITS) & BM_OCOTP_HDCP_KEY22_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY22_BITS.
-#define BF_OCOTP_HDCP_KEY22_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY22_BITS) & BM_OCOTP_HDCP_KEY22_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY22_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY22_BITS) & BM_OCOTP_HDCP_KEY22_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY22_BITS(v)   (HW_OCOTP_HDCP_KEY22_WR((HW_OCOTP_HDCP_KEY22_RD() & ~BM_OCOTP_HDCP_KEY22_BITS) | BF_OCOTP_HDCP_KEY22_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY23 - Value of OTP Bank8 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5908,20 +5787,19 @@ typedef union _hw_ocotp_hdcp_key23
 #define BM_OCOTP_HDCP_KEY23_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY23_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY23_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY23_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY23_BITS) >> BP_OCOTP_HDCP_KEY23_BITS)
+#define BG_OCOTP_HDCP_KEY23_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY23_BITS) >> BP_OCOTP_HDCP_KEY23_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY23_BITS.
-#define BF_OCOTP_HDCP_KEY23_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY23_BITS) & BM_OCOTP_HDCP_KEY23_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY23_BITS.
-#define BF_OCOTP_HDCP_KEY23_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY23_BITS) & BM_OCOTP_HDCP_KEY23_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY23_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY23_BITS) & BM_OCOTP_HDCP_KEY23_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY23_BITS(v)   (HW_OCOTP_HDCP_KEY23_WR((HW_OCOTP_HDCP_KEY23_RD() & ~BM_OCOTP_HDCP_KEY23_BITS) | BF_OCOTP_HDCP_KEY23_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY24 - Value of OTP Bank9 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5970,20 +5848,19 @@ typedef union _hw_ocotp_hdcp_key24
 #define BM_OCOTP_HDCP_KEY24_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY24_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY24_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY24_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY24_BITS) >> BP_OCOTP_HDCP_KEY24_BITS)
+#define BG_OCOTP_HDCP_KEY24_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY24_BITS) >> BP_OCOTP_HDCP_KEY24_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY24_BITS.
-#define BF_OCOTP_HDCP_KEY24_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY24_BITS) & BM_OCOTP_HDCP_KEY24_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY24_BITS.
-#define BF_OCOTP_HDCP_KEY24_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY24_BITS) & BM_OCOTP_HDCP_KEY24_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY24_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY24_BITS) & BM_OCOTP_HDCP_KEY24_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY24_BITS(v)   (HW_OCOTP_HDCP_KEY24_WR((HW_OCOTP_HDCP_KEY24_RD() & ~BM_OCOTP_HDCP_KEY24_BITS) | BF_OCOTP_HDCP_KEY24_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY25 - Value of OTP Bank9 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6032,20 +5909,19 @@ typedef union _hw_ocotp_hdcp_key25
 #define BM_OCOTP_HDCP_KEY25_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY25_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY25_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY25_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY25_BITS) >> BP_OCOTP_HDCP_KEY25_BITS)
+#define BG_OCOTP_HDCP_KEY25_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY25_BITS) >> BP_OCOTP_HDCP_KEY25_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY25_BITS.
-#define BF_OCOTP_HDCP_KEY25_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY25_BITS) & BM_OCOTP_HDCP_KEY25_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY25_BITS.
-#define BF_OCOTP_HDCP_KEY25_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY25_BITS) & BM_OCOTP_HDCP_KEY25_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY25_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY25_BITS) & BM_OCOTP_HDCP_KEY25_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY25_BITS(v)   (HW_OCOTP_HDCP_KEY25_WR((HW_OCOTP_HDCP_KEY25_RD() & ~BM_OCOTP_HDCP_KEY25_BITS) | BF_OCOTP_HDCP_KEY25_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY26 - Value of OTP Bank9 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6094,20 +5970,19 @@ typedef union _hw_ocotp_hdcp_key26
 #define BM_OCOTP_HDCP_KEY26_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY26_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY26_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY26_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY26_BITS) >> BP_OCOTP_HDCP_KEY26_BITS)
+#define BG_OCOTP_HDCP_KEY26_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY26_BITS) >> BP_OCOTP_HDCP_KEY26_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY26_BITS.
-#define BF_OCOTP_HDCP_KEY26_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY26_BITS) & BM_OCOTP_HDCP_KEY26_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY26_BITS.
-#define BF_OCOTP_HDCP_KEY26_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY26_BITS) & BM_OCOTP_HDCP_KEY26_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY26_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY26_BITS) & BM_OCOTP_HDCP_KEY26_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY26_BITS(v)   (HW_OCOTP_HDCP_KEY26_WR((HW_OCOTP_HDCP_KEY26_RD() & ~BM_OCOTP_HDCP_KEY26_BITS) | BF_OCOTP_HDCP_KEY26_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY27 - Value of OTP Bank9 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6156,20 +6031,19 @@ typedef union _hw_ocotp_hdcp_key27
 #define BM_OCOTP_HDCP_KEY27_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY27_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY27_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY27_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY27_BITS) >> BP_OCOTP_HDCP_KEY27_BITS)
+#define BG_OCOTP_HDCP_KEY27_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY27_BITS) >> BP_OCOTP_HDCP_KEY27_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY27_BITS.
-#define BF_OCOTP_HDCP_KEY27_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY27_BITS) & BM_OCOTP_HDCP_KEY27_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY27_BITS.
-#define BF_OCOTP_HDCP_KEY27_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY27_BITS) & BM_OCOTP_HDCP_KEY27_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY27_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY27_BITS) & BM_OCOTP_HDCP_KEY27_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY27_BITS(v)   (HW_OCOTP_HDCP_KEY27_WR((HW_OCOTP_HDCP_KEY27_RD() & ~BM_OCOTP_HDCP_KEY27_BITS) | BF_OCOTP_HDCP_KEY27_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY28 - Value of OTP Bank9 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6218,20 +6092,19 @@ typedef union _hw_ocotp_hdcp_key28
 #define BM_OCOTP_HDCP_KEY28_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY28_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY28_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY28_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY28_BITS) >> BP_OCOTP_HDCP_KEY28_BITS)
+#define BG_OCOTP_HDCP_KEY28_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY28_BITS) >> BP_OCOTP_HDCP_KEY28_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY28_BITS.
-#define BF_OCOTP_HDCP_KEY28_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY28_BITS) & BM_OCOTP_HDCP_KEY28_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY28_BITS.
-#define BF_OCOTP_HDCP_KEY28_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY28_BITS) & BM_OCOTP_HDCP_KEY28_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY28_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY28_BITS) & BM_OCOTP_HDCP_KEY28_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY28_BITS(v)   (HW_OCOTP_HDCP_KEY28_WR((HW_OCOTP_HDCP_KEY28_RD() & ~BM_OCOTP_HDCP_KEY28_BITS) | BF_OCOTP_HDCP_KEY28_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY29 - Value of OTP Bank9 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6280,20 +6153,19 @@ typedef union _hw_ocotp_hdcp_key29
 #define BM_OCOTP_HDCP_KEY29_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY29_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY29_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY29_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY29_BITS) >> BP_OCOTP_HDCP_KEY29_BITS)
+#define BG_OCOTP_HDCP_KEY29_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY29_BITS) >> BP_OCOTP_HDCP_KEY29_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY29_BITS.
-#define BF_OCOTP_HDCP_KEY29_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY29_BITS) & BM_OCOTP_HDCP_KEY29_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY29_BITS.
-#define BF_OCOTP_HDCP_KEY29_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY29_BITS) & BM_OCOTP_HDCP_KEY29_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY29_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY29_BITS) & BM_OCOTP_HDCP_KEY29_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY29_BITS(v)   (HW_OCOTP_HDCP_KEY29_WR((HW_OCOTP_HDCP_KEY29_RD() & ~BM_OCOTP_HDCP_KEY29_BITS) | BF_OCOTP_HDCP_KEY29_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY30 - Value of OTP Bank9 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6342,20 +6214,19 @@ typedef union _hw_ocotp_hdcp_key30
 #define BM_OCOTP_HDCP_KEY30_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY30_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY30_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY30_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY30_BITS) >> BP_OCOTP_HDCP_KEY30_BITS)
+#define BG_OCOTP_HDCP_KEY30_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY30_BITS) >> BP_OCOTP_HDCP_KEY30_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY30_BITS.
-#define BF_OCOTP_HDCP_KEY30_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY30_BITS) & BM_OCOTP_HDCP_KEY30_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY30_BITS.
-#define BF_OCOTP_HDCP_KEY30_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY30_BITS) & BM_OCOTP_HDCP_KEY30_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY30_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY30_BITS) & BM_OCOTP_HDCP_KEY30_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY30_BITS(v)   (HW_OCOTP_HDCP_KEY30_WR((HW_OCOTP_HDCP_KEY30_RD() & ~BM_OCOTP_HDCP_KEY30_BITS) | BF_OCOTP_HDCP_KEY30_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY31 - Value of OTP Bank9 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6404,20 +6275,19 @@ typedef union _hw_ocotp_hdcp_key31
 #define BM_OCOTP_HDCP_KEY31_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY31_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY31_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY31_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY31_BITS) >> BP_OCOTP_HDCP_KEY31_BITS)
+#define BG_OCOTP_HDCP_KEY31_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY31_BITS) >> BP_OCOTP_HDCP_KEY31_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY31_BITS.
-#define BF_OCOTP_HDCP_KEY31_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY31_BITS) & BM_OCOTP_HDCP_KEY31_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY31_BITS.
-#define BF_OCOTP_HDCP_KEY31_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY31_BITS) & BM_OCOTP_HDCP_KEY31_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY31_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY31_BITS) & BM_OCOTP_HDCP_KEY31_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY31_BITS(v)   (HW_OCOTP_HDCP_KEY31_WR((HW_OCOTP_HDCP_KEY31_RD() & ~BM_OCOTP_HDCP_KEY31_BITS) | BF_OCOTP_HDCP_KEY31_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY32 - Value of OTP Bank10 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6466,20 +6336,19 @@ typedef union _hw_ocotp_hdcp_key32
 #define BM_OCOTP_HDCP_KEY32_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY32_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY32_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY32_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY32_BITS) >> BP_OCOTP_HDCP_KEY32_BITS)
+#define BG_OCOTP_HDCP_KEY32_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY32_BITS) >> BP_OCOTP_HDCP_KEY32_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY32_BITS.
-#define BF_OCOTP_HDCP_KEY32_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY32_BITS) & BM_OCOTP_HDCP_KEY32_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY32_BITS.
-#define BF_OCOTP_HDCP_KEY32_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY32_BITS) & BM_OCOTP_HDCP_KEY32_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY32_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY32_BITS) & BM_OCOTP_HDCP_KEY32_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY32_BITS(v)   (HW_OCOTP_HDCP_KEY32_WR((HW_OCOTP_HDCP_KEY32_RD() & ~BM_OCOTP_HDCP_KEY32_BITS) | BF_OCOTP_HDCP_KEY32_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY33 - Value of OTP Bank10 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6528,20 +6397,19 @@ typedef union _hw_ocotp_hdcp_key33
 #define BM_OCOTP_HDCP_KEY33_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY33_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY33_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY33_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY33_BITS) >> BP_OCOTP_HDCP_KEY33_BITS)
+#define BG_OCOTP_HDCP_KEY33_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY33_BITS) >> BP_OCOTP_HDCP_KEY33_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY33_BITS.
-#define BF_OCOTP_HDCP_KEY33_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY33_BITS) & BM_OCOTP_HDCP_KEY33_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY33_BITS.
-#define BF_OCOTP_HDCP_KEY33_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY33_BITS) & BM_OCOTP_HDCP_KEY33_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY33_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY33_BITS) & BM_OCOTP_HDCP_KEY33_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY33_BITS(v)   (HW_OCOTP_HDCP_KEY33_WR((HW_OCOTP_HDCP_KEY33_RD() & ~BM_OCOTP_HDCP_KEY33_BITS) | BF_OCOTP_HDCP_KEY33_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY34 - Value of OTP Bank10 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6590,20 +6458,19 @@ typedef union _hw_ocotp_hdcp_key34
 #define BM_OCOTP_HDCP_KEY34_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY34_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY34_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY34_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY34_BITS) >> BP_OCOTP_HDCP_KEY34_BITS)
+#define BG_OCOTP_HDCP_KEY34_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY34_BITS) >> BP_OCOTP_HDCP_KEY34_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY34_BITS.
-#define BF_OCOTP_HDCP_KEY34_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY34_BITS) & BM_OCOTP_HDCP_KEY34_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY34_BITS.
-#define BF_OCOTP_HDCP_KEY34_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY34_BITS) & BM_OCOTP_HDCP_KEY34_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY34_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY34_BITS) & BM_OCOTP_HDCP_KEY34_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY34_BITS(v)   (HW_OCOTP_HDCP_KEY34_WR((HW_OCOTP_HDCP_KEY34_RD() & ~BM_OCOTP_HDCP_KEY34_BITS) | BF_OCOTP_HDCP_KEY34_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY35 - Value of OTP Bank10 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6652,20 +6519,19 @@ typedef union _hw_ocotp_hdcp_key35
 #define BM_OCOTP_HDCP_KEY35_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY35_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY35_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY35_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY35_BITS) >> BP_OCOTP_HDCP_KEY35_BITS)
+#define BG_OCOTP_HDCP_KEY35_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY35_BITS) >> BP_OCOTP_HDCP_KEY35_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY35_BITS.
-#define BF_OCOTP_HDCP_KEY35_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY35_BITS) & BM_OCOTP_HDCP_KEY35_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY35_BITS.
-#define BF_OCOTP_HDCP_KEY35_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY35_BITS) & BM_OCOTP_HDCP_KEY35_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY35_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY35_BITS) & BM_OCOTP_HDCP_KEY35_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY35_BITS(v)   (HW_OCOTP_HDCP_KEY35_WR((HW_OCOTP_HDCP_KEY35_RD() & ~BM_OCOTP_HDCP_KEY35_BITS) | BF_OCOTP_HDCP_KEY35_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY36 - Value of OTP Bank10 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6714,20 +6580,19 @@ typedef union _hw_ocotp_hdcp_key36
 #define BM_OCOTP_HDCP_KEY36_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY36_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY36_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY36_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY36_BITS) >> BP_OCOTP_HDCP_KEY36_BITS)
+#define BG_OCOTP_HDCP_KEY36_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY36_BITS) >> BP_OCOTP_HDCP_KEY36_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY36_BITS.
-#define BF_OCOTP_HDCP_KEY36_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY36_BITS) & BM_OCOTP_HDCP_KEY36_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY36_BITS.
-#define BF_OCOTP_HDCP_KEY36_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY36_BITS) & BM_OCOTP_HDCP_KEY36_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY36_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY36_BITS) & BM_OCOTP_HDCP_KEY36_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY36_BITS(v)   (HW_OCOTP_HDCP_KEY36_WR((HW_OCOTP_HDCP_KEY36_RD() & ~BM_OCOTP_HDCP_KEY36_BITS) | BF_OCOTP_HDCP_KEY36_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY37 - Value of OTP Bank10 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6776,20 +6641,19 @@ typedef union _hw_ocotp_hdcp_key37
 #define BM_OCOTP_HDCP_KEY37_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY37_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY37_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY37_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY37_BITS) >> BP_OCOTP_HDCP_KEY37_BITS)
+#define BG_OCOTP_HDCP_KEY37_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY37_BITS) >> BP_OCOTP_HDCP_KEY37_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY37_BITS.
-#define BF_OCOTP_HDCP_KEY37_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY37_BITS) & BM_OCOTP_HDCP_KEY37_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY37_BITS.
-#define BF_OCOTP_HDCP_KEY37_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY37_BITS) & BM_OCOTP_HDCP_KEY37_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY37_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY37_BITS) & BM_OCOTP_HDCP_KEY37_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY37_BITS(v)   (HW_OCOTP_HDCP_KEY37_WR((HW_OCOTP_HDCP_KEY37_RD() & ~BM_OCOTP_HDCP_KEY37_BITS) | BF_OCOTP_HDCP_KEY37_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY38 - Value of OTP Bank10 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6838,20 +6702,19 @@ typedef union _hw_ocotp_hdcp_key38
 #define BM_OCOTP_HDCP_KEY38_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY38_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY38_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY38_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY38_BITS) >> BP_OCOTP_HDCP_KEY38_BITS)
+#define BG_OCOTP_HDCP_KEY38_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY38_BITS) >> BP_OCOTP_HDCP_KEY38_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY38_BITS.
-#define BF_OCOTP_HDCP_KEY38_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY38_BITS) & BM_OCOTP_HDCP_KEY38_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY38_BITS.
-#define BF_OCOTP_HDCP_KEY38_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY38_BITS) & BM_OCOTP_HDCP_KEY38_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY38_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY38_BITS) & BM_OCOTP_HDCP_KEY38_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY38_BITS(v)   (HW_OCOTP_HDCP_KEY38_WR((HW_OCOTP_HDCP_KEY38_RD() & ~BM_OCOTP_HDCP_KEY38_BITS) | BF_OCOTP_HDCP_KEY38_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY39 - Value of OTP Bank10 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6900,20 +6763,19 @@ typedef union _hw_ocotp_hdcp_key39
 #define BM_OCOTP_HDCP_KEY39_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY39_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY39_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY39_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY39_BITS) >> BP_OCOTP_HDCP_KEY39_BITS)
+#define BG_OCOTP_HDCP_KEY39_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY39_BITS) >> BP_OCOTP_HDCP_KEY39_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY39_BITS.
-#define BF_OCOTP_HDCP_KEY39_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY39_BITS) & BM_OCOTP_HDCP_KEY39_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY39_BITS.
-#define BF_OCOTP_HDCP_KEY39_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY39_BITS) & BM_OCOTP_HDCP_KEY39_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY39_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY39_BITS) & BM_OCOTP_HDCP_KEY39_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY39_BITS(v)   (HW_OCOTP_HDCP_KEY39_WR((HW_OCOTP_HDCP_KEY39_RD() & ~BM_OCOTP_HDCP_KEY39_BITS) | BF_OCOTP_HDCP_KEY39_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY40 - Value of OTP Bank11 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6962,20 +6824,19 @@ typedef union _hw_ocotp_hdcp_key40
 #define BM_OCOTP_HDCP_KEY40_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY40_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY40_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY40_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY40_BITS) >> BP_OCOTP_HDCP_KEY40_BITS)
+#define BG_OCOTP_HDCP_KEY40_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY40_BITS) >> BP_OCOTP_HDCP_KEY40_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY40_BITS.
-#define BF_OCOTP_HDCP_KEY40_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY40_BITS) & BM_OCOTP_HDCP_KEY40_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY40_BITS.
-#define BF_OCOTP_HDCP_KEY40_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY40_BITS) & BM_OCOTP_HDCP_KEY40_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY40_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY40_BITS) & BM_OCOTP_HDCP_KEY40_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY40_BITS(v)   (HW_OCOTP_HDCP_KEY40_WR((HW_OCOTP_HDCP_KEY40_RD() & ~BM_OCOTP_HDCP_KEY40_BITS) | BF_OCOTP_HDCP_KEY40_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY41 - Value of OTP Bank11 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7024,20 +6885,19 @@ typedef union _hw_ocotp_hdcp_key41
 #define BM_OCOTP_HDCP_KEY41_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY41_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY41_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY41_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY41_BITS) >> BP_OCOTP_HDCP_KEY41_BITS)
+#define BG_OCOTP_HDCP_KEY41_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY41_BITS) >> BP_OCOTP_HDCP_KEY41_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY41_BITS.
-#define BF_OCOTP_HDCP_KEY41_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY41_BITS) & BM_OCOTP_HDCP_KEY41_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY41_BITS.
-#define BF_OCOTP_HDCP_KEY41_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY41_BITS) & BM_OCOTP_HDCP_KEY41_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY41_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY41_BITS) & BM_OCOTP_HDCP_KEY41_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY41_BITS(v)   (HW_OCOTP_HDCP_KEY41_WR((HW_OCOTP_HDCP_KEY41_RD() & ~BM_OCOTP_HDCP_KEY41_BITS) | BF_OCOTP_HDCP_KEY41_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY42 - Value of OTP Bank11 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7086,20 +6946,19 @@ typedef union _hw_ocotp_hdcp_key42
 #define BM_OCOTP_HDCP_KEY42_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY42_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY42_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY42_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY42_BITS) >> BP_OCOTP_HDCP_KEY42_BITS)
+#define BG_OCOTP_HDCP_KEY42_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY42_BITS) >> BP_OCOTP_HDCP_KEY42_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY42_BITS.
-#define BF_OCOTP_HDCP_KEY42_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY42_BITS) & BM_OCOTP_HDCP_KEY42_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY42_BITS.
-#define BF_OCOTP_HDCP_KEY42_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY42_BITS) & BM_OCOTP_HDCP_KEY42_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY42_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY42_BITS) & BM_OCOTP_HDCP_KEY42_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY42_BITS(v)   (HW_OCOTP_HDCP_KEY42_WR((HW_OCOTP_HDCP_KEY42_RD() & ~BM_OCOTP_HDCP_KEY42_BITS) | BF_OCOTP_HDCP_KEY42_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY43 - Value of OTP Bank11 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7148,20 +7007,19 @@ typedef union _hw_ocotp_hdcp_key43
 #define BM_OCOTP_HDCP_KEY43_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY43_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY43_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY43_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY43_BITS) >> BP_OCOTP_HDCP_KEY43_BITS)
+#define BG_OCOTP_HDCP_KEY43_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY43_BITS) >> BP_OCOTP_HDCP_KEY43_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY43_BITS.
-#define BF_OCOTP_HDCP_KEY43_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY43_BITS) & BM_OCOTP_HDCP_KEY43_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY43_BITS.
-#define BF_OCOTP_HDCP_KEY43_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY43_BITS) & BM_OCOTP_HDCP_KEY43_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY43_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY43_BITS) & BM_OCOTP_HDCP_KEY43_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY43_BITS(v)   (HW_OCOTP_HDCP_KEY43_WR((HW_OCOTP_HDCP_KEY43_RD() & ~BM_OCOTP_HDCP_KEY43_BITS) | BF_OCOTP_HDCP_KEY43_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY44 - Value of OTP Bank11 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7210,20 +7068,19 @@ typedef union _hw_ocotp_hdcp_key44
 #define BM_OCOTP_HDCP_KEY44_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY44_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY44_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY44_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY44_BITS) >> BP_OCOTP_HDCP_KEY44_BITS)
+#define BG_OCOTP_HDCP_KEY44_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY44_BITS) >> BP_OCOTP_HDCP_KEY44_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY44_BITS.
-#define BF_OCOTP_HDCP_KEY44_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY44_BITS) & BM_OCOTP_HDCP_KEY44_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY44_BITS.
-#define BF_OCOTP_HDCP_KEY44_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY44_BITS) & BM_OCOTP_HDCP_KEY44_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY44_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY44_BITS) & BM_OCOTP_HDCP_KEY44_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY44_BITS(v)   (HW_OCOTP_HDCP_KEY44_WR((HW_OCOTP_HDCP_KEY44_RD() & ~BM_OCOTP_HDCP_KEY44_BITS) | BF_OCOTP_HDCP_KEY44_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY45 - Value of OTP Bank11 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7272,20 +7129,19 @@ typedef union _hw_ocotp_hdcp_key45
 #define BM_OCOTP_HDCP_KEY45_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY45_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY45_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY45_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY45_BITS) >> BP_OCOTP_HDCP_KEY45_BITS)
+#define BG_OCOTP_HDCP_KEY45_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY45_BITS) >> BP_OCOTP_HDCP_KEY45_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY45_BITS.
-#define BF_OCOTP_HDCP_KEY45_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY45_BITS) & BM_OCOTP_HDCP_KEY45_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY45_BITS.
-#define BF_OCOTP_HDCP_KEY45_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY45_BITS) & BM_OCOTP_HDCP_KEY45_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY45_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY45_BITS) & BM_OCOTP_HDCP_KEY45_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY45_BITS(v)   (HW_OCOTP_HDCP_KEY45_WR((HW_OCOTP_HDCP_KEY45_RD() & ~BM_OCOTP_HDCP_KEY45_BITS) | BF_OCOTP_HDCP_KEY45_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY46 - Value of OTP Bank11 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7334,20 +7190,19 @@ typedef union _hw_ocotp_hdcp_key46
 #define BM_OCOTP_HDCP_KEY46_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY46_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY46_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY46_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY46_BITS) >> BP_OCOTP_HDCP_KEY46_BITS)
+#define BG_OCOTP_HDCP_KEY46_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY46_BITS) >> BP_OCOTP_HDCP_KEY46_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY46_BITS.
-#define BF_OCOTP_HDCP_KEY46_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY46_BITS) & BM_OCOTP_HDCP_KEY46_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY46_BITS.
-#define BF_OCOTP_HDCP_KEY46_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY46_BITS) & BM_OCOTP_HDCP_KEY46_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY46_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY46_BITS) & BM_OCOTP_HDCP_KEY46_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY46_BITS(v)   (HW_OCOTP_HDCP_KEY46_WR((HW_OCOTP_HDCP_KEY46_RD() & ~BM_OCOTP_HDCP_KEY46_BITS) | BF_OCOTP_HDCP_KEY46_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY47 - Value of OTP Bank11 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7396,20 +7251,19 @@ typedef union _hw_ocotp_hdcp_key47
 #define BM_OCOTP_HDCP_KEY47_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY47_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY47_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY47_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY47_BITS) >> BP_OCOTP_HDCP_KEY47_BITS)
+#define BG_OCOTP_HDCP_KEY47_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY47_BITS) >> BP_OCOTP_HDCP_KEY47_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY47_BITS.
-#define BF_OCOTP_HDCP_KEY47_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY47_BITS) & BM_OCOTP_HDCP_KEY47_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY47_BITS.
-#define BF_OCOTP_HDCP_KEY47_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY47_BITS) & BM_OCOTP_HDCP_KEY47_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY47_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY47_BITS) & BM_OCOTP_HDCP_KEY47_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY47_BITS(v)   (HW_OCOTP_HDCP_KEY47_WR((HW_OCOTP_HDCP_KEY47_RD() & ~BM_OCOTP_HDCP_KEY47_BITS) | BF_OCOTP_HDCP_KEY47_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY48 - Value of OTP Bank12 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7458,20 +7312,19 @@ typedef union _hw_ocotp_hdcp_key48
 #define BM_OCOTP_HDCP_KEY48_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY48_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY48_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY48_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY48_BITS) >> BP_OCOTP_HDCP_KEY48_BITS)
+#define BG_OCOTP_HDCP_KEY48_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY48_BITS) >> BP_OCOTP_HDCP_KEY48_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY48_BITS.
-#define BF_OCOTP_HDCP_KEY48_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY48_BITS) & BM_OCOTP_HDCP_KEY48_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY48_BITS.
-#define BF_OCOTP_HDCP_KEY48_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY48_BITS) & BM_OCOTP_HDCP_KEY48_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY48_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY48_BITS) & BM_OCOTP_HDCP_KEY48_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY48_BITS(v)   (HW_OCOTP_HDCP_KEY48_WR((HW_OCOTP_HDCP_KEY48_RD() & ~BM_OCOTP_HDCP_KEY48_BITS) | BF_OCOTP_HDCP_KEY48_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY49 - Value of OTP Bank12 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7520,20 +7373,19 @@ typedef union _hw_ocotp_hdcp_key49
 #define BM_OCOTP_HDCP_KEY49_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY49_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY49_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY49_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY49_BITS) >> BP_OCOTP_HDCP_KEY49_BITS)
+#define BG_OCOTP_HDCP_KEY49_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY49_BITS) >> BP_OCOTP_HDCP_KEY49_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY49_BITS.
-#define BF_OCOTP_HDCP_KEY49_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY49_BITS) & BM_OCOTP_HDCP_KEY49_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY49_BITS.
-#define BF_OCOTP_HDCP_KEY49_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY49_BITS) & BM_OCOTP_HDCP_KEY49_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY49_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY49_BITS) & BM_OCOTP_HDCP_KEY49_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY49_BITS(v)   (HW_OCOTP_HDCP_KEY49_WR((HW_OCOTP_HDCP_KEY49_RD() & ~BM_OCOTP_HDCP_KEY49_BITS) | BF_OCOTP_HDCP_KEY49_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY50 - Value of OTP Bank12 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7582,20 +7434,19 @@ typedef union _hw_ocotp_hdcp_key50
 #define BM_OCOTP_HDCP_KEY50_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY50_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY50_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY50_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY50_BITS) >> BP_OCOTP_HDCP_KEY50_BITS)
+#define BG_OCOTP_HDCP_KEY50_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY50_BITS) >> BP_OCOTP_HDCP_KEY50_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY50_BITS.
-#define BF_OCOTP_HDCP_KEY50_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY50_BITS) & BM_OCOTP_HDCP_KEY50_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY50_BITS.
-#define BF_OCOTP_HDCP_KEY50_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY50_BITS) & BM_OCOTP_HDCP_KEY50_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY50_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY50_BITS) & BM_OCOTP_HDCP_KEY50_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY50_BITS(v)   (HW_OCOTP_HDCP_KEY50_WR((HW_OCOTP_HDCP_KEY50_RD() & ~BM_OCOTP_HDCP_KEY50_BITS) | BF_OCOTP_HDCP_KEY50_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY51 - Value of OTP Bank12 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7644,20 +7495,19 @@ typedef union _hw_ocotp_hdcp_key51
 #define BM_OCOTP_HDCP_KEY51_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY51_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY51_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY51_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY51_BITS) >> BP_OCOTP_HDCP_KEY51_BITS)
+#define BG_OCOTP_HDCP_KEY51_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY51_BITS) >> BP_OCOTP_HDCP_KEY51_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY51_BITS.
-#define BF_OCOTP_HDCP_KEY51_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY51_BITS) & BM_OCOTP_HDCP_KEY51_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY51_BITS.
-#define BF_OCOTP_HDCP_KEY51_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY51_BITS) & BM_OCOTP_HDCP_KEY51_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY51_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY51_BITS) & BM_OCOTP_HDCP_KEY51_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY51_BITS(v)   (HW_OCOTP_HDCP_KEY51_WR((HW_OCOTP_HDCP_KEY51_RD() & ~BM_OCOTP_HDCP_KEY51_BITS) | BF_OCOTP_HDCP_KEY51_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY52 - Value of OTP Bank12 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7706,20 +7556,19 @@ typedef union _hw_ocotp_hdcp_key52
 #define BM_OCOTP_HDCP_KEY52_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY52_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY52_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY52_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY52_BITS) >> BP_OCOTP_HDCP_KEY52_BITS)
+#define BG_OCOTP_HDCP_KEY52_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY52_BITS) >> BP_OCOTP_HDCP_KEY52_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY52_BITS.
-#define BF_OCOTP_HDCP_KEY52_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY52_BITS) & BM_OCOTP_HDCP_KEY52_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY52_BITS.
-#define BF_OCOTP_HDCP_KEY52_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY52_BITS) & BM_OCOTP_HDCP_KEY52_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY52_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY52_BITS) & BM_OCOTP_HDCP_KEY52_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY52_BITS(v)   (HW_OCOTP_HDCP_KEY52_WR((HW_OCOTP_HDCP_KEY52_RD() & ~BM_OCOTP_HDCP_KEY52_BITS) | BF_OCOTP_HDCP_KEY52_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY53 - Value of OTP Bank12 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7768,20 +7617,19 @@ typedef union _hw_ocotp_hdcp_key53
 #define BM_OCOTP_HDCP_KEY53_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY53_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY53_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY53_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY53_BITS) >> BP_OCOTP_HDCP_KEY53_BITS)
+#define BG_OCOTP_HDCP_KEY53_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY53_BITS) >> BP_OCOTP_HDCP_KEY53_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY53_BITS.
-#define BF_OCOTP_HDCP_KEY53_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY53_BITS) & BM_OCOTP_HDCP_KEY53_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY53_BITS.
-#define BF_OCOTP_HDCP_KEY53_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY53_BITS) & BM_OCOTP_HDCP_KEY53_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY53_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY53_BITS) & BM_OCOTP_HDCP_KEY53_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY53_BITS(v)   (HW_OCOTP_HDCP_KEY53_WR((HW_OCOTP_HDCP_KEY53_RD() & ~BM_OCOTP_HDCP_KEY53_BITS) | BF_OCOTP_HDCP_KEY53_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY54 - Value of OTP Bank12 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7830,20 +7678,19 @@ typedef union _hw_ocotp_hdcp_key54
 #define BM_OCOTP_HDCP_KEY54_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY54_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY54_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY54_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY54_BITS) >> BP_OCOTP_HDCP_KEY54_BITS)
+#define BG_OCOTP_HDCP_KEY54_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY54_BITS) >> BP_OCOTP_HDCP_KEY54_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY54_BITS.
-#define BF_OCOTP_HDCP_KEY54_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY54_BITS) & BM_OCOTP_HDCP_KEY54_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY54_BITS.
-#define BF_OCOTP_HDCP_KEY54_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY54_BITS) & BM_OCOTP_HDCP_KEY54_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY54_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY54_BITS) & BM_OCOTP_HDCP_KEY54_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY54_BITS(v)   (HW_OCOTP_HDCP_KEY54_WR((HW_OCOTP_HDCP_KEY54_RD() & ~BM_OCOTP_HDCP_KEY54_BITS) | BF_OCOTP_HDCP_KEY54_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY55 - Value of OTP Bank12 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7892,20 +7739,19 @@ typedef union _hw_ocotp_hdcp_key55
 #define BM_OCOTP_HDCP_KEY55_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY55_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY55_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY55_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY55_BITS) >> BP_OCOTP_HDCP_KEY55_BITS)
+#define BG_OCOTP_HDCP_KEY55_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY55_BITS) >> BP_OCOTP_HDCP_KEY55_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY55_BITS.
-#define BF_OCOTP_HDCP_KEY55_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY55_BITS) & BM_OCOTP_HDCP_KEY55_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY55_BITS.
-#define BF_OCOTP_HDCP_KEY55_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY55_BITS) & BM_OCOTP_HDCP_KEY55_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY55_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY55_BITS) & BM_OCOTP_HDCP_KEY55_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY55_BITS(v)   (HW_OCOTP_HDCP_KEY55_WR((HW_OCOTP_HDCP_KEY55_RD() & ~BM_OCOTP_HDCP_KEY55_BITS) | BF_OCOTP_HDCP_KEY55_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY56 - Value of OTP Bank13 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7954,20 +7800,19 @@ typedef union _hw_ocotp_hdcp_key56
 #define BM_OCOTP_HDCP_KEY56_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY56_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY56_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY56_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY56_BITS) >> BP_OCOTP_HDCP_KEY56_BITS)
+#define BG_OCOTP_HDCP_KEY56_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY56_BITS) >> BP_OCOTP_HDCP_KEY56_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY56_BITS.
-#define BF_OCOTP_HDCP_KEY56_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY56_BITS) & BM_OCOTP_HDCP_KEY56_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY56_BITS.
-#define BF_OCOTP_HDCP_KEY56_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY56_BITS) & BM_OCOTP_HDCP_KEY56_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY56_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY56_BITS) & BM_OCOTP_HDCP_KEY56_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY56_BITS(v)   (HW_OCOTP_HDCP_KEY56_WR((HW_OCOTP_HDCP_KEY56_RD() & ~BM_OCOTP_HDCP_KEY56_BITS) | BF_OCOTP_HDCP_KEY56_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY57 - Value of OTP Bank13 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8016,20 +7861,19 @@ typedef union _hw_ocotp_hdcp_key57
 #define BM_OCOTP_HDCP_KEY57_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY57_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY57_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY57_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY57_BITS) >> BP_OCOTP_HDCP_KEY57_BITS)
+#define BG_OCOTP_HDCP_KEY57_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY57_BITS) >> BP_OCOTP_HDCP_KEY57_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY57_BITS.
-#define BF_OCOTP_HDCP_KEY57_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY57_BITS) & BM_OCOTP_HDCP_KEY57_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY57_BITS.
-#define BF_OCOTP_HDCP_KEY57_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY57_BITS) & BM_OCOTP_HDCP_KEY57_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY57_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY57_BITS) & BM_OCOTP_HDCP_KEY57_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY57_BITS(v)   (HW_OCOTP_HDCP_KEY57_WR((HW_OCOTP_HDCP_KEY57_RD() & ~BM_OCOTP_HDCP_KEY57_BITS) | BF_OCOTP_HDCP_KEY57_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY58 - Value of OTP Bank13 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8078,20 +7922,19 @@ typedef union _hw_ocotp_hdcp_key58
 #define BM_OCOTP_HDCP_KEY58_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY58_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY58_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY58_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY58_BITS) >> BP_OCOTP_HDCP_KEY58_BITS)
+#define BG_OCOTP_HDCP_KEY58_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY58_BITS) >> BP_OCOTP_HDCP_KEY58_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY58_BITS.
-#define BF_OCOTP_HDCP_KEY58_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY58_BITS) & BM_OCOTP_HDCP_KEY58_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY58_BITS.
-#define BF_OCOTP_HDCP_KEY58_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY58_BITS) & BM_OCOTP_HDCP_KEY58_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY58_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY58_BITS) & BM_OCOTP_HDCP_KEY58_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY58_BITS(v)   (HW_OCOTP_HDCP_KEY58_WR((HW_OCOTP_HDCP_KEY58_RD() & ~BM_OCOTP_HDCP_KEY58_BITS) | BF_OCOTP_HDCP_KEY58_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY59 - Value of OTP Bank13 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8140,20 +7983,19 @@ typedef union _hw_ocotp_hdcp_key59
 #define BM_OCOTP_HDCP_KEY59_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY59_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY59_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY59_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY59_BITS) >> BP_OCOTP_HDCP_KEY59_BITS)
+#define BG_OCOTP_HDCP_KEY59_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY59_BITS) >> BP_OCOTP_HDCP_KEY59_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY59_BITS.
-#define BF_OCOTP_HDCP_KEY59_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY59_BITS) & BM_OCOTP_HDCP_KEY59_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY59_BITS.
-#define BF_OCOTP_HDCP_KEY59_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY59_BITS) & BM_OCOTP_HDCP_KEY59_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY59_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY59_BITS) & BM_OCOTP_HDCP_KEY59_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY59_BITS(v)   (HW_OCOTP_HDCP_KEY59_WR((HW_OCOTP_HDCP_KEY59_RD() & ~BM_OCOTP_HDCP_KEY59_BITS) | BF_OCOTP_HDCP_KEY59_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY60 - Value of OTP Bank13 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8202,20 +8044,19 @@ typedef union _hw_ocotp_hdcp_key60
 #define BM_OCOTP_HDCP_KEY60_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY60_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY60_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY60_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY60_BITS) >> BP_OCOTP_HDCP_KEY60_BITS)
+#define BG_OCOTP_HDCP_KEY60_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY60_BITS) >> BP_OCOTP_HDCP_KEY60_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY60_BITS.
-#define BF_OCOTP_HDCP_KEY60_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY60_BITS) & BM_OCOTP_HDCP_KEY60_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY60_BITS.
-#define BF_OCOTP_HDCP_KEY60_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY60_BITS) & BM_OCOTP_HDCP_KEY60_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY60_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY60_BITS) & BM_OCOTP_HDCP_KEY60_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY60_BITS(v)   (HW_OCOTP_HDCP_KEY60_WR((HW_OCOTP_HDCP_KEY60_RD() & ~BM_OCOTP_HDCP_KEY60_BITS) | BF_OCOTP_HDCP_KEY60_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY61 - Value of OTP Bank13 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8264,20 +8105,19 @@ typedef union _hw_ocotp_hdcp_key61
 #define BM_OCOTP_HDCP_KEY61_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY61_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY61_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY61_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY61_BITS) >> BP_OCOTP_HDCP_KEY61_BITS)
+#define BG_OCOTP_HDCP_KEY61_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY61_BITS) >> BP_OCOTP_HDCP_KEY61_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY61_BITS.
-#define BF_OCOTP_HDCP_KEY61_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY61_BITS) & BM_OCOTP_HDCP_KEY61_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY61_BITS.
-#define BF_OCOTP_HDCP_KEY61_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY61_BITS) & BM_OCOTP_HDCP_KEY61_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY61_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY61_BITS) & BM_OCOTP_HDCP_KEY61_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY61_BITS(v)   (HW_OCOTP_HDCP_KEY61_WR((HW_OCOTP_HDCP_KEY61_RD() & ~BM_OCOTP_HDCP_KEY61_BITS) | BF_OCOTP_HDCP_KEY61_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY62 - Value of OTP Bank13 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8326,20 +8166,19 @@ typedef union _hw_ocotp_hdcp_key62
 #define BM_OCOTP_HDCP_KEY62_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY62_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY62_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY62_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY62_BITS) >> BP_OCOTP_HDCP_KEY62_BITS)
+#define BG_OCOTP_HDCP_KEY62_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY62_BITS) >> BP_OCOTP_HDCP_KEY62_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY62_BITS.
-#define BF_OCOTP_HDCP_KEY62_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY62_BITS) & BM_OCOTP_HDCP_KEY62_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY62_BITS.
-#define BF_OCOTP_HDCP_KEY62_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY62_BITS) & BM_OCOTP_HDCP_KEY62_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY62_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY62_BITS) & BM_OCOTP_HDCP_KEY62_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY62_BITS(v)   (HW_OCOTP_HDCP_KEY62_WR((HW_OCOTP_HDCP_KEY62_RD() & ~BM_OCOTP_HDCP_KEY62_BITS) | BF_OCOTP_HDCP_KEY62_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY63 - Value of OTP Bank13 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8388,20 +8227,19 @@ typedef union _hw_ocotp_hdcp_key63
 #define BM_OCOTP_HDCP_KEY63_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY63_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY63_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY63_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY63_BITS) >> BP_OCOTP_HDCP_KEY63_BITS)
+#define BG_OCOTP_HDCP_KEY63_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY63_BITS) >> BP_OCOTP_HDCP_KEY63_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY63_BITS.
-#define BF_OCOTP_HDCP_KEY63_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY63_BITS) & BM_OCOTP_HDCP_KEY63_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY63_BITS.
-#define BF_OCOTP_HDCP_KEY63_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY63_BITS) & BM_OCOTP_HDCP_KEY63_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY63_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY63_BITS) & BM_OCOTP_HDCP_KEY63_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY63_BITS(v)   (HW_OCOTP_HDCP_KEY63_WR((HW_OCOTP_HDCP_KEY63_RD() & ~BM_OCOTP_HDCP_KEY63_BITS) | BF_OCOTP_HDCP_KEY63_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY64 - Value of OTP Bank14 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8450,20 +8288,19 @@ typedef union _hw_ocotp_hdcp_key64
 #define BM_OCOTP_HDCP_KEY64_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY64_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY64_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY64_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY64_BITS) >> BP_OCOTP_HDCP_KEY64_BITS)
+#define BG_OCOTP_HDCP_KEY64_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY64_BITS) >> BP_OCOTP_HDCP_KEY64_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY64_BITS.
-#define BF_OCOTP_HDCP_KEY64_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY64_BITS) & BM_OCOTP_HDCP_KEY64_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY64_BITS.
-#define BF_OCOTP_HDCP_KEY64_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY64_BITS) & BM_OCOTP_HDCP_KEY64_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY64_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY64_BITS) & BM_OCOTP_HDCP_KEY64_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY64_BITS(v)   (HW_OCOTP_HDCP_KEY64_WR((HW_OCOTP_HDCP_KEY64_RD() & ~BM_OCOTP_HDCP_KEY64_BITS) | BF_OCOTP_HDCP_KEY64_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY65 - Value of OTP Bank14 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8512,20 +8349,19 @@ typedef union _hw_ocotp_hdcp_key65
 #define BM_OCOTP_HDCP_KEY65_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY65_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY65_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY65_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY65_BITS) >> BP_OCOTP_HDCP_KEY65_BITS)
+#define BG_OCOTP_HDCP_KEY65_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY65_BITS) >> BP_OCOTP_HDCP_KEY65_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY65_BITS.
-#define BF_OCOTP_HDCP_KEY65_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY65_BITS) & BM_OCOTP_HDCP_KEY65_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY65_BITS.
-#define BF_OCOTP_HDCP_KEY65_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY65_BITS) & BM_OCOTP_HDCP_KEY65_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY65_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY65_BITS) & BM_OCOTP_HDCP_KEY65_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY65_BITS(v)   (HW_OCOTP_HDCP_KEY65_WR((HW_OCOTP_HDCP_KEY65_RD() & ~BM_OCOTP_HDCP_KEY65_BITS) | BF_OCOTP_HDCP_KEY65_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY66 - Value of OTP Bank14 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8574,20 +8410,19 @@ typedef union _hw_ocotp_hdcp_key66
 #define BM_OCOTP_HDCP_KEY66_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY66_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY66_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY66_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY66_BITS) >> BP_OCOTP_HDCP_KEY66_BITS)
+#define BG_OCOTP_HDCP_KEY66_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY66_BITS) >> BP_OCOTP_HDCP_KEY66_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY66_BITS.
-#define BF_OCOTP_HDCP_KEY66_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY66_BITS) & BM_OCOTP_HDCP_KEY66_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY66_BITS.
-#define BF_OCOTP_HDCP_KEY66_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY66_BITS) & BM_OCOTP_HDCP_KEY66_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY66_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY66_BITS) & BM_OCOTP_HDCP_KEY66_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY66_BITS(v)   (HW_OCOTP_HDCP_KEY66_WR((HW_OCOTP_HDCP_KEY66_RD() & ~BM_OCOTP_HDCP_KEY66_BITS) | BF_OCOTP_HDCP_KEY66_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY67 - Value of OTP Bank14 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8636,20 +8471,19 @@ typedef union _hw_ocotp_hdcp_key67
 #define BM_OCOTP_HDCP_KEY67_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY67_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY67_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY67_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY67_BITS) >> BP_OCOTP_HDCP_KEY67_BITS)
+#define BG_OCOTP_HDCP_KEY67_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY67_BITS) >> BP_OCOTP_HDCP_KEY67_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY67_BITS.
-#define BF_OCOTP_HDCP_KEY67_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY67_BITS) & BM_OCOTP_HDCP_KEY67_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY67_BITS.
-#define BF_OCOTP_HDCP_KEY67_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY67_BITS) & BM_OCOTP_HDCP_KEY67_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY67_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY67_BITS) & BM_OCOTP_HDCP_KEY67_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY67_BITS(v)   (HW_OCOTP_HDCP_KEY67_WR((HW_OCOTP_HDCP_KEY67_RD() & ~BM_OCOTP_HDCP_KEY67_BITS) | BF_OCOTP_HDCP_KEY67_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY68 - Value of OTP Bank14 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8698,20 +8532,19 @@ typedef union _hw_ocotp_hdcp_key68
 #define BM_OCOTP_HDCP_KEY68_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY68_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY68_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY68_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY68_BITS) >> BP_OCOTP_HDCP_KEY68_BITS)
+#define BG_OCOTP_HDCP_KEY68_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY68_BITS) >> BP_OCOTP_HDCP_KEY68_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY68_BITS.
-#define BF_OCOTP_HDCP_KEY68_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY68_BITS) & BM_OCOTP_HDCP_KEY68_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY68_BITS.
-#define BF_OCOTP_HDCP_KEY68_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY68_BITS) & BM_OCOTP_HDCP_KEY68_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY68_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY68_BITS) & BM_OCOTP_HDCP_KEY68_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY68_BITS(v)   (HW_OCOTP_HDCP_KEY68_WR((HW_OCOTP_HDCP_KEY68_RD() & ~BM_OCOTP_HDCP_KEY68_BITS) | BF_OCOTP_HDCP_KEY68_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY69 - Value of OTP Bank14 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8760,20 +8593,19 @@ typedef union _hw_ocotp_hdcp_key69
 #define BM_OCOTP_HDCP_KEY69_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY69_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY69_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY69_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY69_BITS) >> BP_OCOTP_HDCP_KEY69_BITS)
+#define BG_OCOTP_HDCP_KEY69_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY69_BITS) >> BP_OCOTP_HDCP_KEY69_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY69_BITS.
-#define BF_OCOTP_HDCP_KEY69_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY69_BITS) & BM_OCOTP_HDCP_KEY69_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY69_BITS.
-#define BF_OCOTP_HDCP_KEY69_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY69_BITS) & BM_OCOTP_HDCP_KEY69_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY69_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY69_BITS) & BM_OCOTP_HDCP_KEY69_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY69_BITS(v)   (HW_OCOTP_HDCP_KEY69_WR((HW_OCOTP_HDCP_KEY69_RD() & ~BM_OCOTP_HDCP_KEY69_BITS) | BF_OCOTP_HDCP_KEY69_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY70 - Value of OTP Bank14 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8822,20 +8654,19 @@ typedef union _hw_ocotp_hdcp_key70
 #define BM_OCOTP_HDCP_KEY70_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY70_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY70_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY70_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY70_BITS) >> BP_OCOTP_HDCP_KEY70_BITS)
+#define BG_OCOTP_HDCP_KEY70_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY70_BITS) >> BP_OCOTP_HDCP_KEY70_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY70_BITS.
-#define BF_OCOTP_HDCP_KEY70_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY70_BITS) & BM_OCOTP_HDCP_KEY70_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY70_BITS.
-#define BF_OCOTP_HDCP_KEY70_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY70_BITS) & BM_OCOTP_HDCP_KEY70_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY70_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY70_BITS) & BM_OCOTP_HDCP_KEY70_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY70_BITS(v)   (HW_OCOTP_HDCP_KEY70_WR((HW_OCOTP_HDCP_KEY70_RD() & ~BM_OCOTP_HDCP_KEY70_BITS) | BF_OCOTP_HDCP_KEY70_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_HDCP_KEY71 - Value of OTP Bank14 Word7 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8884,20 +8715,19 @@ typedef union _hw_ocotp_hdcp_key71
 #define BM_OCOTP_HDCP_KEY71_BITS      (0xffffffff)  //!< Bit mask for OCOTP_HDCP_KEY71_BITS.
 
 //! @brief Get value of OCOTP_HDCP_KEY71_BITS from a register value.
-#define BG_OCOTP_HDCP_KEY71_BITS(r)   (((r) & BM_OCOTP_HDCP_KEY71_BITS) >> BP_OCOTP_HDCP_KEY71_BITS)
+#define BG_OCOTP_HDCP_KEY71_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_HDCP_KEY71_BITS) >> BP_OCOTP_HDCP_KEY71_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_HDCP_KEY71_BITS.
-#define BF_OCOTP_HDCP_KEY71_BITS(v)   ((((reg32_t) v) << BP_OCOTP_HDCP_KEY71_BITS) & BM_OCOTP_HDCP_KEY71_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_HDCP_KEY71_BITS.
-#define BF_OCOTP_HDCP_KEY71_BITS(v)   (((v) << BP_OCOTP_HDCP_KEY71_BITS) & BM_OCOTP_HDCP_KEY71_BITS)
-#endif
+#define BF_OCOTP_HDCP_KEY71_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_HDCP_KEY71_BITS) & BM_OCOTP_HDCP_KEY71_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_HDCP_KEY71_BITS(v)   (HW_OCOTP_HDCP_KEY71_WR((HW_OCOTP_HDCP_KEY71_RD() & ~BM_OCOTP_HDCP_KEY71_BITS) | BF_OCOTP_HDCP_KEY71_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC0 - Value of OTP Bank15 Word0 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8946,20 +8776,19 @@ typedef union _hw_ocotp_crc0
 #define BM_OCOTP_CRC0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC0_BITS.
 
 //! @brief Get value of OCOTP_CRC0_BITS from a register value.
-#define BG_OCOTP_CRC0_BITS(r)   (((r) & BM_OCOTP_CRC0_BITS) >> BP_OCOTP_CRC0_BITS)
+#define BG_OCOTP_CRC0_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC0_BITS) >> BP_OCOTP_CRC0_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC0_BITS.
-#define BF_OCOTP_CRC0_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC0_BITS) & BM_OCOTP_CRC0_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC0_BITS.
-#define BF_OCOTP_CRC0_BITS(v)   (((v) << BP_OCOTP_CRC0_BITS) & BM_OCOTP_CRC0_BITS)
-#endif
+#define BF_OCOTP_CRC0_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC0_BITS) & BM_OCOTP_CRC0_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC0_BITS(v)   (HW_OCOTP_CRC0_WR((HW_OCOTP_CRC0_RD() & ~BM_OCOTP_CRC0_BITS) | BF_OCOTP_CRC0_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC1 - Value of OTP Bank15 Word1 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9008,20 +8837,19 @@ typedef union _hw_ocotp_crc1
 #define BM_OCOTP_CRC1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC1_BITS.
 
 //! @brief Get value of OCOTP_CRC1_BITS from a register value.
-#define BG_OCOTP_CRC1_BITS(r)   (((r) & BM_OCOTP_CRC1_BITS) >> BP_OCOTP_CRC1_BITS)
+#define BG_OCOTP_CRC1_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC1_BITS) >> BP_OCOTP_CRC1_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC1_BITS.
-#define BF_OCOTP_CRC1_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC1_BITS) & BM_OCOTP_CRC1_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC1_BITS.
-#define BF_OCOTP_CRC1_BITS(v)   (((v) << BP_OCOTP_CRC1_BITS) & BM_OCOTP_CRC1_BITS)
-#endif
+#define BF_OCOTP_CRC1_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC1_BITS) & BM_OCOTP_CRC1_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC1_BITS(v)   (HW_OCOTP_CRC1_WR((HW_OCOTP_CRC1_RD() & ~BM_OCOTP_CRC1_BITS) | BF_OCOTP_CRC1_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC2 - Value of OTP Bank15 Word2 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9070,20 +8898,19 @@ typedef union _hw_ocotp_crc2
 #define BM_OCOTP_CRC2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC2_BITS.
 
 //! @brief Get value of OCOTP_CRC2_BITS from a register value.
-#define BG_OCOTP_CRC2_BITS(r)   (((r) & BM_OCOTP_CRC2_BITS) >> BP_OCOTP_CRC2_BITS)
+#define BG_OCOTP_CRC2_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC2_BITS) >> BP_OCOTP_CRC2_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC2_BITS.
-#define BF_OCOTP_CRC2_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC2_BITS) & BM_OCOTP_CRC2_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC2_BITS.
-#define BF_OCOTP_CRC2_BITS(v)   (((v) << BP_OCOTP_CRC2_BITS) & BM_OCOTP_CRC2_BITS)
-#endif
+#define BF_OCOTP_CRC2_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC2_BITS) & BM_OCOTP_CRC2_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC2_BITS(v)   (HW_OCOTP_CRC2_WR((HW_OCOTP_CRC2_RD() & ~BM_OCOTP_CRC2_BITS) | BF_OCOTP_CRC2_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC3 - Value of OTP Bank15 Word3 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9132,20 +8959,19 @@ typedef union _hw_ocotp_crc3
 #define BM_OCOTP_CRC3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC3_BITS.
 
 //! @brief Get value of OCOTP_CRC3_BITS from a register value.
-#define BG_OCOTP_CRC3_BITS(r)   (((r) & BM_OCOTP_CRC3_BITS) >> BP_OCOTP_CRC3_BITS)
+#define BG_OCOTP_CRC3_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC3_BITS) >> BP_OCOTP_CRC3_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC3_BITS.
-#define BF_OCOTP_CRC3_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC3_BITS) & BM_OCOTP_CRC3_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC3_BITS.
-#define BF_OCOTP_CRC3_BITS(v)   (((v) << BP_OCOTP_CRC3_BITS) & BM_OCOTP_CRC3_BITS)
-#endif
+#define BF_OCOTP_CRC3_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC3_BITS) & BM_OCOTP_CRC3_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC3_BITS(v)   (HW_OCOTP_CRC3_WR((HW_OCOTP_CRC3_RD() & ~BM_OCOTP_CRC3_BITS) | BF_OCOTP_CRC3_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC4 - Value of OTP Bank15 Word4 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9194,20 +9020,19 @@ typedef union _hw_ocotp_crc4
 #define BM_OCOTP_CRC4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC4_BITS.
 
 //! @brief Get value of OCOTP_CRC4_BITS from a register value.
-#define BG_OCOTP_CRC4_BITS(r)   (((r) & BM_OCOTP_CRC4_BITS) >> BP_OCOTP_CRC4_BITS)
+#define BG_OCOTP_CRC4_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC4_BITS) >> BP_OCOTP_CRC4_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC4_BITS.
-#define BF_OCOTP_CRC4_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC4_BITS) & BM_OCOTP_CRC4_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC4_BITS.
-#define BF_OCOTP_CRC4_BITS(v)   (((v) << BP_OCOTP_CRC4_BITS) & BM_OCOTP_CRC4_BITS)
-#endif
+#define BF_OCOTP_CRC4_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC4_BITS) & BM_OCOTP_CRC4_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC4_BITS(v)   (HW_OCOTP_CRC4_WR((HW_OCOTP_CRC4_RD() & ~BM_OCOTP_CRC4_BITS) | BF_OCOTP_CRC4_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC5 - Value of OTP Bank15 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9256,20 +9081,19 @@ typedef union _hw_ocotp_crc5
 #define BM_OCOTP_CRC5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC5_BITS.
 
 //! @brief Get value of OCOTP_CRC5_BITS from a register value.
-#define BG_OCOTP_CRC5_BITS(r)   (((r) & BM_OCOTP_CRC5_BITS) >> BP_OCOTP_CRC5_BITS)
+#define BG_OCOTP_CRC5_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC5_BITS) >> BP_OCOTP_CRC5_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC5_BITS.
-#define BF_OCOTP_CRC5_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC5_BITS) & BM_OCOTP_CRC5_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC5_BITS.
-#define BF_OCOTP_CRC5_BITS(v)   (((v) << BP_OCOTP_CRC5_BITS) & BM_OCOTP_CRC5_BITS)
-#endif
+#define BF_OCOTP_CRC5_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC5_BITS) & BM_OCOTP_CRC5_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC5_BITS(v)   (HW_OCOTP_CRC5_WR((HW_OCOTP_CRC5_RD() & ~BM_OCOTP_CRC5_BITS) | BF_OCOTP_CRC5_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC6 - Value of OTP Bank15 Word6 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9318,20 +9142,19 @@ typedef union _hw_ocotp_crc6
 #define BM_OCOTP_CRC6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC6_BITS.
 
 //! @brief Get value of OCOTP_CRC6_BITS from a register value.
-#define BG_OCOTP_CRC6_BITS(r)   (((r) & BM_OCOTP_CRC6_BITS) >> BP_OCOTP_CRC6_BITS)
+#define BG_OCOTP_CRC6_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC6_BITS) >> BP_OCOTP_CRC6_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC6_BITS.
-#define BF_OCOTP_CRC6_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC6_BITS) & BM_OCOTP_CRC6_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC6_BITS.
-#define BF_OCOTP_CRC6_BITS(v)   (((v) << BP_OCOTP_CRC6_BITS) & BM_OCOTP_CRC6_BITS)
-#endif
+#define BF_OCOTP_CRC6_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC6_BITS) & BM_OCOTP_CRC6_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC6_BITS(v)   (HW_OCOTP_CRC6_WR((HW_OCOTP_CRC6_RD() & ~BM_OCOTP_CRC6_BITS) | BF_OCOTP_CRC6_BITS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_OCOTP_CRC7 - Value of OTP Bank15 Word5 (HW Capabilities)
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9380,15 +9203,10 @@ typedef union _hw_ocotp_crc7
 #define BM_OCOTP_CRC7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC7_BITS.
 
 //! @brief Get value of OCOTP_CRC7_BITS from a register value.
-#define BG_OCOTP_CRC7_BITS(r)   (((r) & BM_OCOTP_CRC7_BITS) >> BP_OCOTP_CRC7_BITS)
+#define BG_OCOTP_CRC7_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CRC7_BITS) >> BP_OCOTP_CRC7_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield OCOTP_CRC7_BITS.
-#define BF_OCOTP_CRC7_BITS(v)   ((((reg32_t) v) << BP_OCOTP_CRC7_BITS) & BM_OCOTP_CRC7_BITS)
-#else
-//! @brief Format value for bitfield OCOTP_CRC7_BITS.
-#define BF_OCOTP_CRC7_BITS(v)   (((v) << BP_OCOTP_CRC7_BITS) & BM_OCOTP_CRC7_BITS)
-#endif
+#define BF_OCOTP_CRC7_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_OCOTP_CRC7_BITS) & BM_OCOTP_CRC7_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BITS field to a new value.

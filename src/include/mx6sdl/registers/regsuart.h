@@ -5,74 +5,89 @@
  * Freescale Semiconductor, Inc.
  */
 
-#ifndef __HW_UARTV2_REGISTERS_H__
-#define __HW_UARTV2_REGISTERS_H__
+#ifndef __HW_UART_REGISTERS_H__
+#define __HW_UART_REGISTERS_H__
 
 #include "regs.h"
 
 /*
- * i.MX6SDL UARTV2 registers defined in this header file.
+ * i.MX6SDL UART registers defined in this header file.
  *
- * - HW_UARTV2_URXD - UART Receiver Register
- * - HW_UARTV2_UTXD - UART Transmitter Register
- * - HW_UARTV2_UCR1 - UART Control Register 1
- * - HW_UARTV2_UCR2 - UART Control Register 2
- * - HW_UARTV2_UCR3 - UART Control Register 3
- * - HW_UARTV2_UCR4 - UART Control Register 4
- * - HW_UARTV2_UFCR - UART FIFO Control Register
- * - HW_UARTV2_USR1 - UART Status Register 1
- * - HW_UARTV2_USR2 - UART Status Register 2
- * - HW_UARTV2_UESC - UART Escape Character Register
- * - HW_UARTV2_UTIM - UART Escape Timer Register
- * - HW_UARTV2_UBIR - UART BRM Incremental Register
- * - HW_UARTV2_UBMR - UART BRM Modulator Register
- * - HW_UARTV2_UBRC - UART Baud Rate Count Register
- * - HW_UARTV2_ONEMS - UART One Millisecond Register
- * - HW_UARTV2_UTS - UART Test Register
- * - HW_UARTV2_UMCR - UART RS-485 Mode Control Register
+ * - HW_UART_URXD - UART Receiver Register
+ * - HW_UART_UTXD - UART Transmitter Register
+ * - HW_UART_UCR1 - UART Control Register 1
+ * - HW_UART_UCR2 - UART Control Register 2
+ * - HW_UART_UCR3 - UART Control Register 3
+ * - HW_UART_UCR4 - UART Control Register 4
+ * - HW_UART_UFCR - UART FIFO Control Register
+ * - HW_UART_USR1 - UART Status Register 1
+ * - HW_UART_USR2 - UART Status Register 2
+ * - HW_UART_UESC - UART Escape Character Register
+ * - HW_UART_UTIM - UART Escape Timer Register
+ * - HW_UART_UBIR - UART BRM Incremental Register
+ * - HW_UART_UBMR - UART BRM Modulator Register
+ * - HW_UART_UBRC - UART Baud Rate Count Register
+ * - HW_UART_ONEMS - UART One Millisecond Register
+ * - HW_UART_UTS - UART Test Register
+ * - HW_UART_UMCR - UART RS-485 Mode Control Register
  *
- * - hw_uartv2_t - Struct containing all module registers.
+ * - hw_uart_t - Struct containing all module registers.
  */
 
 //! @name Module base addresses
 //@{
-#ifndef REGS_UARTV2_BASE
-#define HW_UARTV2_INSTANCE_COUNT (5) //!< Number of instances of the UARTV2 module.
-#define HW_UARTV21 (1) //!< Instance number for UARTV21.
-#define HW_UARTV22 (2) //!< Instance number for UARTV22.
-#define HW_UARTV23 (3) //!< Instance number for UARTV23.
-#define HW_UARTV24 (4) //!< Instance number for UARTV24.
-#define HW_UARTV25 (5) //!< Instance number for UARTV25.
+#ifndef REGS_UART_BASE
+#define HW_UART_INSTANCE_COUNT (5) //!< Number of instances of the UART module.
+#define HW_UART1 (1) //!< Instance number for UART1.
+#define HW_UART2 (2) //!< Instance number for UART2.
+#define HW_UART3 (3) //!< Instance number for UART3.
+#define HW_UART4 (4) //!< Instance number for UART4.
+#define HW_UART5 (5) //!< Instance number for UART5.
 
-#define REGS_UARTV21_BASE (0x02020000) //!< Base address for UARTV2 instance number 1.
-#define REGS_UARTV22_BASE (0x021e8000) //!< Base address for UARTV2 instance number 2.
-#define REGS_UARTV23_BASE (0x021ec000) //!< Base address for UARTV2 instance number 3.
-#define REGS_UARTV24_BASE (0x021f0000) //!< Base address for UARTV2 instance number 4.
-#define REGS_UARTV25_BASE (0x021f4000) //!< Base address for UARTV2 instance number 5.
+#define REGS_UART1_BASE (0x02020000) //!< Base address for UART instance number 1.
+#define REGS_UART2_BASE (0x021e8000) //!< Base address for UART instance number 2.
+#define REGS_UART3_BASE (0x021ec000) //!< Base address for UART instance number 3.
+#define REGS_UART4_BASE (0x021f0000) //!< Base address for UART instance number 4.
+#define REGS_UART5_BASE (0x021f4000) //!< Base address for UART instance number 5.
 
-//! @brief Get the base address of UARTV2 by instance number.
-//! @param x UARTV2 instance number, from 1 through 5.
-#define REGS_UARTV2_BASE(x) ( (x) == HW_UARTV21 ? REGS_UARTV21_BASE : (x) == HW_UARTV22 ? REGS_UARTV22_BASE : (x) == HW_UARTV23 ? REGS_UARTV23_BASE : (x) == HW_UARTV24 ? REGS_UARTV24_BASE : (x) == HW_UARTV25 ? REGS_UARTV25_BASE : 0x00d00000)
+//! @brief Get the base address of UART by instance number.
+//! @param x UART instance number, from 1 through 5.
+#define REGS_UART_BASE(x) ( (x) == HW_UART1 ? REGS_UART1_BASE : (x) == HW_UART2 ? REGS_UART2_BASE : (x) == HW_UART3 ? REGS_UART3_BASE : (x) == HW_UART4 ? REGS_UART4_BASE : (x) == HW_UART5 ? REGS_UART5_BASE : 0x00d00000)
 
 //! @brief Get the instance number given a base address.
-//! @param b Base address for an instance of UARTV2.
-#define REGS_UARTV2_INSTANCE(b) ( (b) == REGS_UARTV21_BASE ? HW_UARTV21 : (b) == REGS_UARTV22_BASE ? HW_UARTV22 : (b) == REGS_UARTV23_BASE ? HW_UARTV23 : (b) == REGS_UARTV24_BASE ? HW_UARTV24 : (b) == REGS_UARTV25_BASE ? HW_UARTV25 : 0)
+//! @param b Base address for an instance of UART.
+#define REGS_UART_INSTANCE(b) ( (b) == REGS_UART1_BASE ? HW_UART1 : (b) == REGS_UART2_BASE ? HW_UART2 : (b) == REGS_UART3_BASE ? HW_UART3 : (b) == REGS_UART4_BASE ? HW_UART4 : (b) == REGS_UART5_BASE ? HW_UART5 : 0)
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_URXD - UART Receiver Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_URXD - UART Receiver Register (RO)
+ * @brief HW_UART_URXD - UART Receiver Register (RO)
  *
  * Reset value: 0x00000000
  *
  * The UART will yield a transfer error on the peripheral bus when core is reading URXD register
  * with receive interface disabled (RXEN=0 or UARTEN=0).
  */
-typedef union _hw_uartv2_urxd
+typedef union _hw_uart_urxd
 {
     reg32_t U;
-    struct _hw_uartv2_urxd_bitfields
+    struct _hw_uart_urxd_bitfields
     {
         unsigned RX_DATA : 8; //!< [7:0] Received Data . Holds the received character. In 7-bit mode, the most significant bit (MSB) is forced to 0. In 8-bit mode, all bits are active.
         unsigned RESERVED0 : 2; //!< [9:8] Reserved
@@ -84,36 +99,36 @@ typedef union _hw_uartv2_urxd
         unsigned CHARRDY : 1; //!< [15] Character Ready. This read-only bit indicates an invalid read when the FIFO becomes empty and software tries to read the same old data. This bit should not be used for polling for data written to the RX FIFO.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_urxd_t;
+} hw_uart_urxd_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_URXD register
+ * constants & macros for entire multi-block UART_URXD register
  */
-#define HW_UARTV2_URXD_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x0)
+#define HW_UART_URXD_ADDR(x)      (REGS_UART_BASE(x) + 0x0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_URXD(x)           (*(volatile hw_uartv2_urxd_t *) HW_UARTV2_URXD_ADDR(x))
-#define HW_UARTV2_URXD_RD(x)        (HW_UARTV2_URXD(x).U)
+#define HW_UART_URXD(x)           (*(volatile hw_uart_urxd_t *) HW_UART_URXD_ADDR(x))
+#define HW_UART_URXD_RD(x)        (HW_UART_URXD(x).U)
 #endif
 
 /*
- * constants & macros for individual UARTV2_URXD bitfields
+ * constants & macros for individual UART_URXD bitfields
  */
 
-/* --- Register HW_UARTV2_URXD, field RX_DATA[7:0] (RO)
+/* --- Register HW_UART_URXD, field RX_DATA[7:0] (RO)
  *
  * Received Data . Holds the received character. In 7-bit mode, the most significant bit (MSB) is
  * forced to 0. In 8-bit mode, all bits are active.
  */
 
-#define BP_UARTV2_URXD_RX_DATA      (0)      //!< Bit position for UARTV2_URXD_RX_DATA.
-#define BM_UARTV2_URXD_RX_DATA      (0x000000ff)  //!< Bit mask for UARTV2_URXD_RX_DATA.
+#define BP_UART_URXD_RX_DATA      (0)      //!< Bit position for UART_URXD_RX_DATA.
+#define BM_UART_URXD_RX_DATA      (0x000000ff)  //!< Bit mask for UART_URXD_RX_DATA.
 
-//! @brief Get value of UARTV2_URXD_RX_DATA from a register value.
-#define BG_UARTV2_URXD_RX_DATA(r)   (((r) & BM_UARTV2_URXD_RX_DATA) >> BP_UARTV2_URXD_RX_DATA)
+//! @brief Get value of UART_URXD_RX_DATA from a register value.
+#define BG_UART_URXD_RX_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_RX_DATA) >> BP_UART_URXD_RX_DATA)
 
-/* --- Register HW_UARTV2_URXD, field PRERR[10] (RO)
+/* --- Register HW_UART_URXD, field PRERR[10] (RO)
  *
  * In RS-485 mode, it holds the ninth data bit (bit [8]) of received 9-bit RS-485 data In RS232/IrDA
  * mode, it is the Parity Error flag . Indicates whether the current character was detected with a
@@ -125,14 +140,14 @@ typedef union _hw_uartv2_urxd
  * 1 - = A parity error was detected for data in the RX_DATA field
  */
 
-#define BP_UARTV2_URXD_PRERR      (10)      //!< Bit position for UARTV2_URXD_PRERR.
-#define BM_UARTV2_URXD_PRERR      (0x00000400)  //!< Bit mask for UARTV2_URXD_PRERR.
+#define BP_UART_URXD_PRERR      (10)      //!< Bit position for UART_URXD_PRERR.
+#define BM_UART_URXD_PRERR      (0x00000400)  //!< Bit mask for UART_URXD_PRERR.
 
-//! @brief Get value of UARTV2_URXD_PRERR from a register value.
-#define BG_UARTV2_URXD_PRERR(r)   (((r) & BM_UARTV2_URXD_PRERR) >> BP_UARTV2_URXD_PRERR)
+//! @brief Get value of UART_URXD_PRERR from a register value.
+#define BG_UART_URXD_PRERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_PRERR) >> BP_UART_URXD_PRERR)
 
 
-/* --- Register HW_UARTV2_URXD, field BRK[11] (RO)
+/* --- Register HW_UART_URXD, field BRK[11] (RO)
  *
  * BREAK Detect. Indicates whether the current character was detected as a BREAK character. The data
  * bits and the stop bit are all 0. The FRMERR bit is set when BRK is set. When odd parity is
@@ -144,14 +159,14 @@ typedef union _hw_uartv2_urxd
  * 1 - The current character is a BREAK character
  */
 
-#define BP_UARTV2_URXD_BRK      (11)      //!< Bit position for UARTV2_URXD_BRK.
-#define BM_UARTV2_URXD_BRK      (0x00000800)  //!< Bit mask for UARTV2_URXD_BRK.
+#define BP_UART_URXD_BRK      (11)      //!< Bit position for UART_URXD_BRK.
+#define BM_UART_URXD_BRK      (0x00000800)  //!< Bit mask for UART_URXD_BRK.
 
-//! @brief Get value of UARTV2_URXD_BRK from a register value.
-#define BG_UARTV2_URXD_BRK(r)   (((r) & BM_UARTV2_URXD_BRK) >> BP_UARTV2_URXD_BRK)
+//! @brief Get value of UART_URXD_BRK from a register value.
+#define BG_UART_URXD_BRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_BRK) >> BP_UART_URXD_BRK)
 
 
-/* --- Register HW_UARTV2_URXD, field FRMERR[12] (RO)
+/* --- Register HW_UART_URXD, field FRMERR[12] (RO)
  *
  * Frame Error. Indicates whether the current character had a framing error (a missing stop bit) and
  * is possibly corrupted. FRMERR is updated for each character read from the RxFIFO.
@@ -161,14 +176,14 @@ typedef union _hw_uartv2_urxd
  * 1 - The current character has a framing error
  */
 
-#define BP_UARTV2_URXD_FRMERR      (12)      //!< Bit position for UARTV2_URXD_FRMERR.
-#define BM_UARTV2_URXD_FRMERR      (0x00001000)  //!< Bit mask for UARTV2_URXD_FRMERR.
+#define BP_UART_URXD_FRMERR      (12)      //!< Bit position for UART_URXD_FRMERR.
+#define BM_UART_URXD_FRMERR      (0x00001000)  //!< Bit mask for UART_URXD_FRMERR.
 
-//! @brief Get value of UARTV2_URXD_FRMERR from a register value.
-#define BG_UARTV2_URXD_FRMERR(r)   (((r) & BM_UARTV2_URXD_FRMERR) >> BP_UARTV2_URXD_FRMERR)
+//! @brief Get value of UART_URXD_FRMERR from a register value.
+#define BG_UART_URXD_FRMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_FRMERR) >> BP_UART_URXD_FRMERR)
 
 
-/* --- Register HW_UARTV2_URXD, field OVRRUN[13] (RO)
+/* --- Register HW_UART_URXD, field OVRRUN[13] (RO)
  *
  * Receiver Overrun. This read-only bit, when HIGH, indicates that the corresponding character was
  * stored in the last position (32nd) of the Rx FIFO. Even if a 33rd character has not been
@@ -179,14 +194,14 @@ typedef union _hw_uartv2_urxd
  * 1 - A RxFIFO overrun was detected
  */
 
-#define BP_UARTV2_URXD_OVRRUN      (13)      //!< Bit position for UARTV2_URXD_OVRRUN.
-#define BM_UARTV2_URXD_OVRRUN      (0x00002000)  //!< Bit mask for UARTV2_URXD_OVRRUN.
+#define BP_UART_URXD_OVRRUN      (13)      //!< Bit position for UART_URXD_OVRRUN.
+#define BM_UART_URXD_OVRRUN      (0x00002000)  //!< Bit mask for UART_URXD_OVRRUN.
 
-//! @brief Get value of UARTV2_URXD_OVRRUN from a register value.
-#define BG_UARTV2_URXD_OVRRUN(r)   (((r) & BM_UARTV2_URXD_OVRRUN) >> BP_UARTV2_URXD_OVRRUN)
+//! @brief Get value of UART_URXD_OVRRUN from a register value.
+#define BG_UART_URXD_OVRRUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_OVRRUN) >> BP_UART_URXD_OVRRUN)
 
 
-/* --- Register HW_UARTV2_URXD, field ERR[14] (RO)
+/* --- Register HW_UART_URXD, field ERR[14] (RO)
  *
  * Error Detect. Indicates whether the character present in the RX_DATA field has an error (OVRRUN,
  * FRMERR, BRK or PRERR) status. The ERR bit is updated and valid for each received character.
@@ -196,14 +211,14 @@ typedef union _hw_uartv2_urxd
  * 1 - An error status was detected
  */
 
-#define BP_UARTV2_URXD_ERR      (14)      //!< Bit position for UARTV2_URXD_ERR.
-#define BM_UARTV2_URXD_ERR      (0x00004000)  //!< Bit mask for UARTV2_URXD_ERR.
+#define BP_UART_URXD_ERR      (14)      //!< Bit position for UART_URXD_ERR.
+#define BM_UART_URXD_ERR      (0x00004000)  //!< Bit mask for UART_URXD_ERR.
 
-//! @brief Get value of UARTV2_URXD_ERR from a register value.
-#define BG_UARTV2_URXD_ERR(r)   (((r) & BM_UARTV2_URXD_ERR) >> BP_UARTV2_URXD_ERR)
+//! @brief Get value of UART_URXD_ERR from a register value.
+#define BG_UART_URXD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_ERR) >> BP_UART_URXD_ERR)
 
 
-/* --- Register HW_UARTV2_URXD, field CHARRDY[15] (RO)
+/* --- Register HW_UART_URXD, field CHARRDY[15] (RO)
  *
  * Character Ready. This read-only bit indicates an invalid read when the FIFO becomes empty and
  * software tries to read the same old data. This bit should not be used for polling for data
@@ -214,16 +229,20 @@ typedef union _hw_uartv2_urxd
  * 1 - Character in RX_DATA field and associated flags valid and ready for reading.
  */
 
-#define BP_UARTV2_URXD_CHARRDY      (15)      //!< Bit position for UARTV2_URXD_CHARRDY.
-#define BM_UARTV2_URXD_CHARRDY      (0x00008000)  //!< Bit mask for UARTV2_URXD_CHARRDY.
+#define BP_UART_URXD_CHARRDY      (15)      //!< Bit position for UART_URXD_CHARRDY.
+#define BM_UART_URXD_CHARRDY      (0x00008000)  //!< Bit mask for UART_URXD_CHARRDY.
 
-//! @brief Get value of UARTV2_URXD_CHARRDY from a register value.
-#define BG_UARTV2_URXD_CHARRDY(r)   (((r) & BM_UARTV2_URXD_CHARRDY) >> BP_UARTV2_URXD_CHARRDY)
+//! @brief Get value of UART_URXD_CHARRDY from a register value.
+#define BG_UART_URXD_CHARRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_CHARRDY) >> BP_UART_URXD_CHARRDY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTXD - UART Transmitter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UTXD - UART Transmitter Register (WO)
+ * @brief HW_UART_UTXD - UART Transmitter Register (WO)
  *
  * Reset value: 0x00000000
  *
@@ -232,32 +251,32 @@ typedef union _hw_uartv2_urxd
  * and UART_UTXD registers is reserved. Any read or write access to this space will be considered as
  * an invalid access and yield a transfer error .
  */
-typedef union _hw_uartv2_utxd
+typedef union _hw_uart_utxd
 {
     reg32_t U;
-    struct _hw_uartv2_utxd_bitfields
+    struct _hw_uart_utxd_bitfields
     {
         unsigned TX_DATA : 8; //!< [7:0] Transmit Data . Holds the parallel transmit data inputs. In 7-bit mode, D7 is ignored. In 8-bit mode, all bits are used. Data is transmitted least significant bit (LSB) first. A new character is transmitted when the TX_DATA field is written. The TX_DATA field must be written only when the TRDY bit is high to ensure that corrupted data is not sent.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved.
     } B;
-} hw_uartv2_utxd_t;
+} hw_uart_utxd_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UTXD register
+ * constants & macros for entire multi-block UART_UTXD register
  */
-#define HW_UARTV2_UTXD_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x40)
+#define HW_UART_UTXD_ADDR(x)      (REGS_UART_BASE(x) + 0x40)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UTXD(x)           (*(volatile hw_uartv2_utxd_t *) HW_UARTV2_UTXD_ADDR(x))
-#define HW_UARTV2_UTXD_WR(x, v)     (HW_UARTV2_UTXD(x).U = (v))
+#define HW_UART_UTXD(x)           (*(volatile hw_uart_utxd_t *) HW_UART_UTXD_ADDR(x))
+#define HW_UART_UTXD_WR(x, v)     (HW_UART_UTXD(x).U = (v))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UTXD bitfields
+ * constants & macros for individual UART_UTXD bitfields
  */
 
-/* --- Register HW_UARTV2_UTXD, field TX_DATA[7:0] (WO)
+/* --- Register HW_UART_UTXD, field TX_DATA[7:0] (WO)
  *
  * Transmit Data . Holds the parallel transmit data inputs. In 7-bit mode, D7 is ignored. In 8-bit
  * mode, all bits are used. Data is transmitted least significant bit (LSB) first. A new character
@@ -265,32 +284,31 @@ typedef union _hw_uartv2_utxd
  * TRDY bit is high to ensure that corrupted data is not sent.
  */
 
-#define BP_UARTV2_UTXD_TX_DATA      (0)      //!< Bit position for UARTV2_UTXD_TX_DATA.
-#define BM_UARTV2_UTXD_TX_DATA      (0x000000ff)  //!< Bit mask for UARTV2_UTXD_TX_DATA.
+#define BP_UART_UTXD_TX_DATA      (0)      //!< Bit position for UART_UTXD_TX_DATA.
+#define BM_UART_UTXD_TX_DATA      (0x000000ff)  //!< Bit mask for UART_UTXD_TX_DATA.
 
-//! @brief Get value of UARTV2_UTXD_TX_DATA from a register value.
-#define BG_UARTV2_UTXD_TX_DATA(r)   (((r) & BM_UARTV2_UTXD_TX_DATA) >> BP_UARTV2_UTXD_TX_DATA)
+//! @brief Get value of UART_UTXD_TX_DATA from a register value.
+#define BG_UART_UTXD_TX_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTXD_TX_DATA) >> BP_UART_UTXD_TX_DATA)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTXD_TX_DATA.
-#define BF_UARTV2_UTXD_TX_DATA(v)   ((((reg32_t) v) << BP_UARTV2_UTXD_TX_DATA) & BM_UARTV2_UTXD_TX_DATA)
-#else
-//! @brief Format value for bitfield UARTV2_UTXD_TX_DATA.
-#define BF_UARTV2_UTXD_TX_DATA(v)   (((v) << BP_UARTV2_UTXD_TX_DATA) & BM_UARTV2_UTXD_TX_DATA)
-#endif
+//! @brief Format value for bitfield UART_UTXD_TX_DATA.
+#define BF_UART_UTXD_TX_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTXD_TX_DATA) & BM_UART_UTXD_TX_DATA)
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR1 - UART Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UCR1 - UART Control Register 1 (RW)
+ * @brief HW_UART_UCR1 - UART Control Register 1 (RW)
  *
  * Reset value: 0x00000000
  *
 
  */
-typedef union _hw_uartv2_ucr1
+typedef union _hw_uart_ucr1
 {
     reg32_t U;
-    struct _hw_uartv2_ucr1_bitfields
+    struct _hw_uart_ucr1_bitfields
     {
         unsigned UARTEN : 1; //!< [0] UART Enable . Enables/Disables the UART. If UARTEN is negated in the middle of a transmission, the transmitter stops and pulls the TXD line to a logic 1. UARTEN must be set to 1 before any access to UTXD and URXD registers, otherwise a transfer error is returned. Output ipg_uart_clk_en is internally connected to UARTEN and can be used for software controlled clock gating purpose. This bit can be set to 1 along with other bits in this register. There is no restriction to the sequence of programing this bit and other control registers.
         unsigned DOZE : 1; //!< [1] DOZE . Determines the UART enable condition in the DOZE state. When doze_req input pin is at '1', (the ARM Platform executes a doze instruction and the system is placed in the Doze State), the DOZE bit affects operation of the UART. While in the Doze State, if this bit is asserted, the UART is disabled. See the description in .
@@ -309,28 +327,28 @@ typedef union _hw_uartv2_ucr1
         unsigned ADEN : 1; //!< [15] Automatic Baud Rate Detection Interrupt Enable . Enables/Disables the automatic baud rate detect complete (ADET) bit to generate an interrupt ( interrupt_mint interrupt_uart = 0).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ucr1_t;
+} hw_uart_ucr1_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UCR1 register
+ * constants & macros for entire multi-block UART_UCR1 register
  */
-#define HW_UARTV2_UCR1_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x80)
+#define HW_UART_UCR1_ADDR(x)      (REGS_UART_BASE(x) + 0x80)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UCR1(x)           (*(volatile hw_uartv2_ucr1_t *) HW_UARTV2_UCR1_ADDR(x))
-#define HW_UARTV2_UCR1_RD(x)        (HW_UARTV2_UCR1(x).U)
-#define HW_UARTV2_UCR1_WR(x, v)     (HW_UARTV2_UCR1(x).U = (v))
-#define HW_UARTV2_UCR1_SET(x, v)    (HW_UARTV2_UCR1_WR(x, HW_UARTV2_UCR1_RD(x) |  (v)))
-#define HW_UARTV2_UCR1_CLR(x, v)    (HW_UARTV2_UCR1_WR(x, HW_UARTV2_UCR1_RD(x) & ~(v)))
-#define HW_UARTV2_UCR1_TOG(x, v)    (HW_UARTV2_UCR1_WR(x, HW_UARTV2_UCR1_RD(x) ^  (v)))
+#define HW_UART_UCR1(x)           (*(volatile hw_uart_ucr1_t *) HW_UART_UCR1_ADDR(x))
+#define HW_UART_UCR1_RD(x)        (HW_UART_UCR1(x).U)
+#define HW_UART_UCR1_WR(x, v)     (HW_UART_UCR1(x).U = (v))
+#define HW_UART_UCR1_SET(x, v)    (HW_UART_UCR1_WR(x, HW_UART_UCR1_RD(x) |  (v)))
+#define HW_UART_UCR1_CLR(x, v)    (HW_UART_UCR1_WR(x, HW_UART_UCR1_RD(x) & ~(v)))
+#define HW_UART_UCR1_TOG(x, v)    (HW_UART_UCR1_WR(x, HW_UART_UCR1_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UCR1 bitfields
+ * constants & macros for individual UART_UCR1 bitfields
  */
 
-/* --- Register HW_UARTV2_UCR1, field UARTEN[0] (RW)
+/* --- Register HW_UART_UCR1, field UARTEN[0] (RW)
  *
  * UART Enable . Enables/Disables the UART. If UARTEN is negated in the middle of a transmission,
  * the transmitter stops and pulls the TXD line to a logic 1. UARTEN must be set to 1 before any
@@ -344,27 +362,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the UART
  */
 
-#define BP_UARTV2_UCR1_UARTEN      (0)      //!< Bit position for UARTV2_UCR1_UARTEN.
-#define BM_UARTV2_UCR1_UARTEN      (0x00000001)  //!< Bit mask for UARTV2_UCR1_UARTEN.
+#define BP_UART_UCR1_UARTEN      (0)      //!< Bit position for UART_UCR1_UARTEN.
+#define BM_UART_UCR1_UARTEN      (0x00000001)  //!< Bit mask for UART_UCR1_UARTEN.
 
-//! @brief Get value of UARTV2_UCR1_UARTEN from a register value.
-#define BG_UARTV2_UCR1_UARTEN(r)   (((r) & BM_UARTV2_UCR1_UARTEN) >> BP_UARTV2_UCR1_UARTEN)
+//! @brief Get value of UART_UCR1_UARTEN from a register value.
+#define BG_UART_UCR1_UARTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_UARTEN) >> BP_UART_UCR1_UARTEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_UARTEN.
-#define BF_UARTV2_UCR1_UARTEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_UARTEN) & BM_UARTV2_UCR1_UARTEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_UARTEN.
-#define BF_UARTV2_UCR1_UARTEN(v)   (((v) << BP_UARTV2_UCR1_UARTEN) & BM_UARTV2_UCR1_UARTEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_UARTEN.
+#define BF_UART_UCR1_UARTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_UARTEN) & BM_UART_UCR1_UARTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UARTEN field to a new value.
-#define BW_UARTV2_UCR1_UARTEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_UARTEN) | BF_UARTV2_UCR1_UARTEN(v)))
+#define BW_UART_UCR1_UARTEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_UARTEN) | BF_UART_UCR1_UARTEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field DOZE[1] (RW)
+/* --- Register HW_UART_UCR1, field DOZE[1] (RW)
  *
  * DOZE . Determines the UART enable condition in the DOZE state. When doze_req input pin is at '1',
  * (the ARM Platform executes a doze instruction and the system is placed in the Doze State), the
@@ -376,27 +389,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - The UART is disabled when in DOZE state
  */
 
-#define BP_UARTV2_UCR1_DOZE      (1)      //!< Bit position for UARTV2_UCR1_DOZE.
-#define BM_UARTV2_UCR1_DOZE      (0x00000002)  //!< Bit mask for UARTV2_UCR1_DOZE.
+#define BP_UART_UCR1_DOZE      (1)      //!< Bit position for UART_UCR1_DOZE.
+#define BM_UART_UCR1_DOZE      (0x00000002)  //!< Bit mask for UART_UCR1_DOZE.
 
-//! @brief Get value of UARTV2_UCR1_DOZE from a register value.
-#define BG_UARTV2_UCR1_DOZE(r)   (((r) & BM_UARTV2_UCR1_DOZE) >> BP_UARTV2_UCR1_DOZE)
+//! @brief Get value of UART_UCR1_DOZE from a register value.
+#define BG_UART_UCR1_DOZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_DOZE) >> BP_UART_UCR1_DOZE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_DOZE.
-#define BF_UARTV2_UCR1_DOZE(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_DOZE) & BM_UARTV2_UCR1_DOZE)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_DOZE.
-#define BF_UARTV2_UCR1_DOZE(v)   (((v) << BP_UARTV2_UCR1_DOZE) & BM_UARTV2_UCR1_DOZE)
-#endif
+//! @brief Format value for bitfield UART_UCR1_DOZE.
+#define BF_UART_UCR1_DOZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_DOZE) & BM_UART_UCR1_DOZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOZE field to a new value.
-#define BW_UARTV2_UCR1_DOZE(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_DOZE) | BF_UARTV2_UCR1_DOZE(v)))
+#define BW_UART_UCR1_DOZE(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_DOZE) | BF_UART_UCR1_DOZE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field ATDMAEN[2] (RW)
+/* --- Register HW_UART_UCR1, field ATDMAEN[2] (RW)
  *
  * Aging DMA Timer Enable . Enables/Disables the receive DMA request dma_req_rx for the aging timer
  * interrupt (triggered with AGTIM flag in USR1[8]).
@@ -406,27 +414,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable AGTIM DMA request
  */
 
-#define BP_UARTV2_UCR1_ATDMAEN      (2)      //!< Bit position for UARTV2_UCR1_ATDMAEN.
-#define BM_UARTV2_UCR1_ATDMAEN      (0x00000004)  //!< Bit mask for UARTV2_UCR1_ATDMAEN.
+#define BP_UART_UCR1_ATDMAEN      (2)      //!< Bit position for UART_UCR1_ATDMAEN.
+#define BM_UART_UCR1_ATDMAEN      (0x00000004)  //!< Bit mask for UART_UCR1_ATDMAEN.
 
-//! @brief Get value of UARTV2_UCR1_ATDMAEN from a register value.
-#define BG_UARTV2_UCR1_ATDMAEN(r)   (((r) & BM_UARTV2_UCR1_ATDMAEN) >> BP_UARTV2_UCR1_ATDMAEN)
+//! @brief Get value of UART_UCR1_ATDMAEN from a register value.
+#define BG_UART_UCR1_ATDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ATDMAEN) >> BP_UART_UCR1_ATDMAEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_ATDMAEN.
-#define BF_UARTV2_UCR1_ATDMAEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_ATDMAEN) & BM_UARTV2_UCR1_ATDMAEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_ATDMAEN.
-#define BF_UARTV2_UCR1_ATDMAEN(v)   (((v) << BP_UARTV2_UCR1_ATDMAEN) & BM_UARTV2_UCR1_ATDMAEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_ATDMAEN.
+#define BF_UART_UCR1_ATDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ATDMAEN) & BM_UART_UCR1_ATDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATDMAEN field to a new value.
-#define BW_UARTV2_UCR1_ATDMAEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_ATDMAEN) | BF_UARTV2_UCR1_ATDMAEN(v)))
+#define BW_UART_UCR1_ATDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ATDMAEN) | BF_UART_UCR1_ATDMAEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field TXDMAEN[3] (RW)
+/* --- Register HW_UART_UCR1, field TXDMAEN[3] (RW)
  *
  * Transmitter Ready DMA Enable . Enables/Disables the transmit DMA request dma_req_tx when the
  * transmitter has one or more slots available in the TxFIFO. The fill level in the TxFIFO that
@@ -439,27 +442,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable transmit DMA request
  */
 
-#define BP_UARTV2_UCR1_TXDMAEN      (3)      //!< Bit position for UARTV2_UCR1_TXDMAEN.
-#define BM_UARTV2_UCR1_TXDMAEN      (0x00000008)  //!< Bit mask for UARTV2_UCR1_TXDMAEN.
+#define BP_UART_UCR1_TXDMAEN      (3)      //!< Bit position for UART_UCR1_TXDMAEN.
+#define BM_UART_UCR1_TXDMAEN      (0x00000008)  //!< Bit mask for UART_UCR1_TXDMAEN.
 
-//! @brief Get value of UARTV2_UCR1_TXDMAEN from a register value.
-#define BG_UARTV2_UCR1_TXDMAEN(r)   (((r) & BM_UARTV2_UCR1_TXDMAEN) >> BP_UARTV2_UCR1_TXDMAEN)
+//! @brief Get value of UART_UCR1_TXDMAEN from a register value.
+#define BG_UART_UCR1_TXDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TXDMAEN) >> BP_UART_UCR1_TXDMAEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_TXDMAEN.
-#define BF_UARTV2_UCR1_TXDMAEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_TXDMAEN) & BM_UARTV2_UCR1_TXDMAEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_TXDMAEN.
-#define BF_UARTV2_UCR1_TXDMAEN(v)   (((v) << BP_UARTV2_UCR1_TXDMAEN) & BM_UARTV2_UCR1_TXDMAEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_TXDMAEN.
+#define BF_UART_UCR1_TXDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TXDMAEN) & BM_UART_UCR1_TXDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXDMAEN field to a new value.
-#define BW_UARTV2_UCR1_TXDMAEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_TXDMAEN) | BF_UARTV2_UCR1_TXDMAEN(v)))
+#define BW_UART_UCR1_TXDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TXDMAEN) | BF_UART_UCR1_TXDMAEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field SNDBRK[4] (RW)
+/* --- Register HW_UART_UCR1, field SNDBRK[4] (RW)
  *
  * Send BREAK . Forces the transmitter to send a BREAK character. The transmitter finishes sending
  * the character in progress (if any) and sends BREAK characters until SNDBRK is reset. Because the
@@ -473,27 +471,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Send a BREAK character (continuous 0s)
  */
 
-#define BP_UARTV2_UCR1_SNDBRK      (4)      //!< Bit position for UARTV2_UCR1_SNDBRK.
-#define BM_UARTV2_UCR1_SNDBRK      (0x00000010)  //!< Bit mask for UARTV2_UCR1_SNDBRK.
+#define BP_UART_UCR1_SNDBRK      (4)      //!< Bit position for UART_UCR1_SNDBRK.
+#define BM_UART_UCR1_SNDBRK      (0x00000010)  //!< Bit mask for UART_UCR1_SNDBRK.
 
-//! @brief Get value of UARTV2_UCR1_SNDBRK from a register value.
-#define BG_UARTV2_UCR1_SNDBRK(r)   (((r) & BM_UARTV2_UCR1_SNDBRK) >> BP_UARTV2_UCR1_SNDBRK)
+//! @brief Get value of UART_UCR1_SNDBRK from a register value.
+#define BG_UART_UCR1_SNDBRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_SNDBRK) >> BP_UART_UCR1_SNDBRK)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_SNDBRK.
-#define BF_UARTV2_UCR1_SNDBRK(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_SNDBRK) & BM_UARTV2_UCR1_SNDBRK)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_SNDBRK.
-#define BF_UARTV2_UCR1_SNDBRK(v)   (((v) << BP_UARTV2_UCR1_SNDBRK) & BM_UARTV2_UCR1_SNDBRK)
-#endif
+//! @brief Format value for bitfield UART_UCR1_SNDBRK.
+#define BF_UART_UCR1_SNDBRK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_SNDBRK) & BM_UART_UCR1_SNDBRK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SNDBRK field to a new value.
-#define BW_UARTV2_UCR1_SNDBRK(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_SNDBRK) | BF_UARTV2_UCR1_SNDBRK(v)))
+#define BW_UART_UCR1_SNDBRK(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_SNDBRK) | BF_UART_UCR1_SNDBRK(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field RTSDEN[5] (RW)
+/* --- Register HW_UART_UCR1, field RTSDEN[5] (RW)
  *
  * RTS Delta Interrupt Enable . Enables/Disables the RTSD interrupt. The current status of the RTS
  * pin is read in the RTSS bit.
@@ -503,27 +496,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable RTSD interrupt
  */
 
-#define BP_UARTV2_UCR1_RTSDEN      (5)      //!< Bit position for UARTV2_UCR1_RTSDEN.
-#define BM_UARTV2_UCR1_RTSDEN      (0x00000020)  //!< Bit mask for UARTV2_UCR1_RTSDEN.
+#define BP_UART_UCR1_RTSDEN      (5)      //!< Bit position for UART_UCR1_RTSDEN.
+#define BM_UART_UCR1_RTSDEN      (0x00000020)  //!< Bit mask for UART_UCR1_RTSDEN.
 
-//! @brief Get value of UARTV2_UCR1_RTSDEN from a register value.
-#define BG_UARTV2_UCR1_RTSDEN(r)   (((r) & BM_UARTV2_UCR1_RTSDEN) >> BP_UARTV2_UCR1_RTSDEN)
+//! @brief Get value of UART_UCR1_RTSDEN from a register value.
+#define BG_UART_UCR1_RTSDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RTSDEN) >> BP_UART_UCR1_RTSDEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_RTSDEN.
-#define BF_UARTV2_UCR1_RTSDEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_RTSDEN) & BM_UARTV2_UCR1_RTSDEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_RTSDEN.
-#define BF_UARTV2_UCR1_RTSDEN(v)   (((v) << BP_UARTV2_UCR1_RTSDEN) & BM_UARTV2_UCR1_RTSDEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_RTSDEN.
+#define BF_UART_UCR1_RTSDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RTSDEN) & BM_UART_UCR1_RTSDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSDEN field to a new value.
-#define BW_UARTV2_UCR1_RTSDEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_RTSDEN) | BF_UARTV2_UCR1_RTSDEN(v)))
+#define BW_UART_UCR1_RTSDEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RTSDEN) | BF_UART_UCR1_RTSDEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field TXMPTYEN[6] (RW)
+/* --- Register HW_UART_UCR1, field TXMPTYEN[6] (RW)
  *
  * Transmitter Empty Interrupt Enable . Enables/Disables the transmitter FIFO empty (TXFE)
  * interrupt. interrupt_tx interrupt_uart . When negated, the TXFE interrupt is disabled. An
@@ -535,27 +523,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the transmitter FIFO empty interrupt
  */
 
-#define BP_UARTV2_UCR1_TXMPTYEN      (6)      //!< Bit position for UARTV2_UCR1_TXMPTYEN.
-#define BM_UARTV2_UCR1_TXMPTYEN      (0x00000040)  //!< Bit mask for UARTV2_UCR1_TXMPTYEN.
+#define BP_UART_UCR1_TXMPTYEN      (6)      //!< Bit position for UART_UCR1_TXMPTYEN.
+#define BM_UART_UCR1_TXMPTYEN      (0x00000040)  //!< Bit mask for UART_UCR1_TXMPTYEN.
 
-//! @brief Get value of UARTV2_UCR1_TXMPTYEN from a register value.
-#define BG_UARTV2_UCR1_TXMPTYEN(r)   (((r) & BM_UARTV2_UCR1_TXMPTYEN) >> BP_UARTV2_UCR1_TXMPTYEN)
+//! @brief Get value of UART_UCR1_TXMPTYEN from a register value.
+#define BG_UART_UCR1_TXMPTYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TXMPTYEN) >> BP_UART_UCR1_TXMPTYEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_TXMPTYEN.
-#define BF_UARTV2_UCR1_TXMPTYEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_TXMPTYEN) & BM_UARTV2_UCR1_TXMPTYEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_TXMPTYEN.
-#define BF_UARTV2_UCR1_TXMPTYEN(v)   (((v) << BP_UARTV2_UCR1_TXMPTYEN) & BM_UARTV2_UCR1_TXMPTYEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_TXMPTYEN.
+#define BF_UART_UCR1_TXMPTYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TXMPTYEN) & BM_UART_UCR1_TXMPTYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXMPTYEN field to a new value.
-#define BW_UARTV2_UCR1_TXMPTYEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_TXMPTYEN) | BF_UARTV2_UCR1_TXMPTYEN(v)))
+#define BW_UART_UCR1_TXMPTYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TXMPTYEN) | BF_UART_UCR1_TXMPTYEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field IREN[7] (RW)
+/* --- Register HW_UART_UCR1, field IREN[7] (RW)
  *
  * Infrared Interface Enable . Enables/Disables the IR interface. See the IR interface description
  * in , for more information. Note: MDEN(UMCR[0]) must be cleared to 0 when using IrDA interface.
@@ -566,27 +549,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the IR interface
  */
 
-#define BP_UARTV2_UCR1_IREN      (7)      //!< Bit position for UARTV2_UCR1_IREN.
-#define BM_UARTV2_UCR1_IREN      (0x00000080)  //!< Bit mask for UARTV2_UCR1_IREN.
+#define BP_UART_UCR1_IREN      (7)      //!< Bit position for UART_UCR1_IREN.
+#define BM_UART_UCR1_IREN      (0x00000080)  //!< Bit mask for UART_UCR1_IREN.
 
-//! @brief Get value of UARTV2_UCR1_IREN from a register value.
-#define BG_UARTV2_UCR1_IREN(r)   (((r) & BM_UARTV2_UCR1_IREN) >> BP_UARTV2_UCR1_IREN)
+//! @brief Get value of UART_UCR1_IREN from a register value.
+#define BG_UART_UCR1_IREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_IREN) >> BP_UART_UCR1_IREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_IREN.
-#define BF_UARTV2_UCR1_IREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_IREN) & BM_UARTV2_UCR1_IREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_IREN.
-#define BF_UARTV2_UCR1_IREN(v)   (((v) << BP_UARTV2_UCR1_IREN) & BM_UARTV2_UCR1_IREN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_IREN.
+#define BF_UART_UCR1_IREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_IREN) & BM_UART_UCR1_IREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IREN field to a new value.
-#define BW_UARTV2_UCR1_IREN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_IREN) | BF_UARTV2_UCR1_IREN(v)))
+#define BW_UART_UCR1_IREN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_IREN) | BF_UART_UCR1_IREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field RXDMAEN[8] (RW)
+/* --- Register HW_UART_UCR1, field RXDMAEN[8] (RW)
  *
  * Receive Ready DMA Enable . Enables/Disables the receive DMA request dma_req_rx when the receiver
  * has data in the RxFIFO. The fill level in the RxFIFO at which a DMA request is generated is
@@ -597,27 +575,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable DMA request
  */
 
-#define BP_UARTV2_UCR1_RXDMAEN      (8)      //!< Bit position for UARTV2_UCR1_RXDMAEN.
-#define BM_UARTV2_UCR1_RXDMAEN      (0x00000100)  //!< Bit mask for UARTV2_UCR1_RXDMAEN.
+#define BP_UART_UCR1_RXDMAEN      (8)      //!< Bit position for UART_UCR1_RXDMAEN.
+#define BM_UART_UCR1_RXDMAEN      (0x00000100)  //!< Bit mask for UART_UCR1_RXDMAEN.
 
-//! @brief Get value of UARTV2_UCR1_RXDMAEN from a register value.
-#define BG_UARTV2_UCR1_RXDMAEN(r)   (((r) & BM_UARTV2_UCR1_RXDMAEN) >> BP_UARTV2_UCR1_RXDMAEN)
+//! @brief Get value of UART_UCR1_RXDMAEN from a register value.
+#define BG_UART_UCR1_RXDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RXDMAEN) >> BP_UART_UCR1_RXDMAEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_RXDMAEN.
-#define BF_UARTV2_UCR1_RXDMAEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_RXDMAEN) & BM_UARTV2_UCR1_RXDMAEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_RXDMAEN.
-#define BF_UARTV2_UCR1_RXDMAEN(v)   (((v) << BP_UARTV2_UCR1_RXDMAEN) & BM_UARTV2_UCR1_RXDMAEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_RXDMAEN.
+#define BF_UART_UCR1_RXDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RXDMAEN) & BM_UART_UCR1_RXDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDMAEN field to a new value.
-#define BW_UARTV2_UCR1_RXDMAEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_RXDMAEN) | BF_UARTV2_UCR1_RXDMAEN(v)))
+#define BW_UART_UCR1_RXDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RXDMAEN) | BF_UART_UCR1_RXDMAEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field RRDYEN[9] (RW)
+/* --- Register HW_UART_UCR1, field RRDYEN[9] (RW)
  *
  * Receiver Ready Interrupt Enable . Enables/Disables the RRDY interrupt when the RxFIFO contains
  * data. The fill level in the RxFIFO at which an interrupt is generated is controlled by the RXTL
@@ -628,27 +601,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enables the RRDY interrupt
  */
 
-#define BP_UARTV2_UCR1_RRDYEN      (9)      //!< Bit position for UARTV2_UCR1_RRDYEN.
-#define BM_UARTV2_UCR1_RRDYEN      (0x00000200)  //!< Bit mask for UARTV2_UCR1_RRDYEN.
+#define BP_UART_UCR1_RRDYEN      (9)      //!< Bit position for UART_UCR1_RRDYEN.
+#define BM_UART_UCR1_RRDYEN      (0x00000200)  //!< Bit mask for UART_UCR1_RRDYEN.
 
-//! @brief Get value of UARTV2_UCR1_RRDYEN from a register value.
-#define BG_UARTV2_UCR1_RRDYEN(r)   (((r) & BM_UARTV2_UCR1_RRDYEN) >> BP_UARTV2_UCR1_RRDYEN)
+//! @brief Get value of UART_UCR1_RRDYEN from a register value.
+#define BG_UART_UCR1_RRDYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_RRDYEN) >> BP_UART_UCR1_RRDYEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_RRDYEN.
-#define BF_UARTV2_UCR1_RRDYEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_RRDYEN) & BM_UARTV2_UCR1_RRDYEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_RRDYEN.
-#define BF_UARTV2_UCR1_RRDYEN(v)   (((v) << BP_UARTV2_UCR1_RRDYEN) & BM_UARTV2_UCR1_RRDYEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_RRDYEN.
+#define BF_UART_UCR1_RRDYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_RRDYEN) & BM_UART_UCR1_RRDYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RRDYEN field to a new value.
-#define BW_UARTV2_UCR1_RRDYEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_RRDYEN) | BF_UARTV2_UCR1_RRDYEN(v)))
+#define BW_UART_UCR1_RRDYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RRDYEN) | BF_UART_UCR1_RRDYEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field ICD[11:10] (RW)
+/* --- Register HW_UART_UCR1, field ICD[11:10] (RW)
  *
  * Idle Condition Detect . Controls the number of frames RXD is allowed to be idle before an idle
  * condition is reported.
@@ -660,27 +628,22 @@ typedef union _hw_uartv2_ucr1
  * 11 - Idle for more than 32 frames
  */
 
-#define BP_UARTV2_UCR1_ICD      (10)      //!< Bit position for UARTV2_UCR1_ICD.
-#define BM_UARTV2_UCR1_ICD      (0x00000c00)  //!< Bit mask for UARTV2_UCR1_ICD.
+#define BP_UART_UCR1_ICD      (10)      //!< Bit position for UART_UCR1_ICD.
+#define BM_UART_UCR1_ICD      (0x00000c00)  //!< Bit mask for UART_UCR1_ICD.
 
-//! @brief Get value of UARTV2_UCR1_ICD from a register value.
-#define BG_UARTV2_UCR1_ICD(r)   (((r) & BM_UARTV2_UCR1_ICD) >> BP_UARTV2_UCR1_ICD)
+//! @brief Get value of UART_UCR1_ICD from a register value.
+#define BG_UART_UCR1_ICD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ICD) >> BP_UART_UCR1_ICD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_ICD.
-#define BF_UARTV2_UCR1_ICD(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_ICD) & BM_UARTV2_UCR1_ICD)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_ICD.
-#define BF_UARTV2_UCR1_ICD(v)   (((v) << BP_UARTV2_UCR1_ICD) & BM_UARTV2_UCR1_ICD)
-#endif
+//! @brief Format value for bitfield UART_UCR1_ICD.
+#define BF_UART_UCR1_ICD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ICD) & BM_UART_UCR1_ICD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICD field to a new value.
-#define BW_UARTV2_UCR1_ICD(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_ICD) | BF_UARTV2_UCR1_ICD(v)))
+#define BW_UART_UCR1_ICD(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ICD) | BF_UART_UCR1_ICD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field IDEN[12] (RW)
+/* --- Register HW_UART_UCR1, field IDEN[12] (RW)
  *
  * Idle Condition Detected Interrupt Enable . Enables/Disables the IDLE bit to generate an interrupt
  * ( interrupt_rx interrupt_uart = 0).
@@ -690,27 +653,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the IDLE interrupt
  */
 
-#define BP_UARTV2_UCR1_IDEN      (12)      //!< Bit position for UARTV2_UCR1_IDEN.
-#define BM_UARTV2_UCR1_IDEN      (0x00001000)  //!< Bit mask for UARTV2_UCR1_IDEN.
+#define BP_UART_UCR1_IDEN      (12)      //!< Bit position for UART_UCR1_IDEN.
+#define BM_UART_UCR1_IDEN      (0x00001000)  //!< Bit mask for UART_UCR1_IDEN.
 
-//! @brief Get value of UARTV2_UCR1_IDEN from a register value.
-#define BG_UARTV2_UCR1_IDEN(r)   (((r) & BM_UARTV2_UCR1_IDEN) >> BP_UARTV2_UCR1_IDEN)
+//! @brief Get value of UART_UCR1_IDEN from a register value.
+#define BG_UART_UCR1_IDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_IDEN) >> BP_UART_UCR1_IDEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_IDEN.
-#define BF_UARTV2_UCR1_IDEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_IDEN) & BM_UARTV2_UCR1_IDEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_IDEN.
-#define BF_UARTV2_UCR1_IDEN(v)   (((v) << BP_UARTV2_UCR1_IDEN) & BM_UARTV2_UCR1_IDEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_IDEN.
+#define BF_UART_UCR1_IDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_IDEN) & BM_UART_UCR1_IDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDEN field to a new value.
-#define BW_UARTV2_UCR1_IDEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_IDEN) | BF_UARTV2_UCR1_IDEN(v)))
+#define BW_UART_UCR1_IDEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_IDEN) | BF_UART_UCR1_IDEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field TRDYEN[13] (RW)
+/* --- Register HW_UART_UCR1, field TRDYEN[13] (RW)
  *
  * Transmitter Ready Interrupt Enable . Enables/Disables the transmitter Ready Interrupt (TRDY) when
  * the transmitter has one or more slots available in the TxFIFO. The fill level in the TXFIFO at
@@ -724,27 +682,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the transmitter ready interrupt
  */
 
-#define BP_UARTV2_UCR1_TRDYEN      (13)      //!< Bit position for UARTV2_UCR1_TRDYEN.
-#define BM_UARTV2_UCR1_TRDYEN      (0x00002000)  //!< Bit mask for UARTV2_UCR1_TRDYEN.
+#define BP_UART_UCR1_TRDYEN      (13)      //!< Bit position for UART_UCR1_TRDYEN.
+#define BM_UART_UCR1_TRDYEN      (0x00002000)  //!< Bit mask for UART_UCR1_TRDYEN.
 
-//! @brief Get value of UARTV2_UCR1_TRDYEN from a register value.
-#define BG_UARTV2_UCR1_TRDYEN(r)   (((r) & BM_UARTV2_UCR1_TRDYEN) >> BP_UARTV2_UCR1_TRDYEN)
+//! @brief Get value of UART_UCR1_TRDYEN from a register value.
+#define BG_UART_UCR1_TRDYEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_TRDYEN) >> BP_UART_UCR1_TRDYEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_TRDYEN.
-#define BF_UARTV2_UCR1_TRDYEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_TRDYEN) & BM_UARTV2_UCR1_TRDYEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_TRDYEN.
-#define BF_UARTV2_UCR1_TRDYEN(v)   (((v) << BP_UARTV2_UCR1_TRDYEN) & BM_UARTV2_UCR1_TRDYEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_TRDYEN.
+#define BF_UART_UCR1_TRDYEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_TRDYEN) & BM_UART_UCR1_TRDYEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRDYEN field to a new value.
-#define BW_UARTV2_UCR1_TRDYEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_TRDYEN) | BF_UARTV2_UCR1_TRDYEN(v)))
+#define BW_UART_UCR1_TRDYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TRDYEN) | BF_UART_UCR1_TRDYEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field ADBR[14] (RW)
+/* --- Register HW_UART_UCR1, field ADBR[14] (RW)
  *
  * Automatic Detection of Baud Rate . Enables/Disables automatic baud rate detection. When the ADBR
  * bit is set and the ADET bit is cleared, the receiver detects the incoming baud rate
@@ -756,27 +709,22 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable automatic detection of baud rate
  */
 
-#define BP_UARTV2_UCR1_ADBR      (14)      //!< Bit position for UARTV2_UCR1_ADBR.
-#define BM_UARTV2_UCR1_ADBR      (0x00004000)  //!< Bit mask for UARTV2_UCR1_ADBR.
+#define BP_UART_UCR1_ADBR      (14)      //!< Bit position for UART_UCR1_ADBR.
+#define BM_UART_UCR1_ADBR      (0x00004000)  //!< Bit mask for UART_UCR1_ADBR.
 
-//! @brief Get value of UARTV2_UCR1_ADBR from a register value.
-#define BG_UARTV2_UCR1_ADBR(r)   (((r) & BM_UARTV2_UCR1_ADBR) >> BP_UARTV2_UCR1_ADBR)
+//! @brief Get value of UART_UCR1_ADBR from a register value.
+#define BG_UART_UCR1_ADBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ADBR) >> BP_UART_UCR1_ADBR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_ADBR.
-#define BF_UARTV2_UCR1_ADBR(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_ADBR) & BM_UARTV2_UCR1_ADBR)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_ADBR.
-#define BF_UARTV2_UCR1_ADBR(v)   (((v) << BP_UARTV2_UCR1_ADBR) & BM_UARTV2_UCR1_ADBR)
-#endif
+//! @brief Format value for bitfield UART_UCR1_ADBR.
+#define BF_UART_UCR1_ADBR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ADBR) & BM_UART_UCR1_ADBR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADBR field to a new value.
-#define BW_UARTV2_UCR1_ADBR(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_ADBR) | BF_UARTV2_UCR1_ADBR(v)))
+#define BW_UART_UCR1_ADBR(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ADBR) | BF_UART_UCR1_ADBR(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR1, field ADEN[15] (RW)
+/* --- Register HW_UART_UCR1, field ADEN[15] (RW)
  *
  * Automatic Baud Rate Detection Interrupt Enable . Enables/Disables the automatic baud rate detect
  * complete (ADET) bit to generate an interrupt ( interrupt_mint interrupt_uart = 0).
@@ -786,38 +734,37 @@ typedef union _hw_uartv2_ucr1
  * 1 - Enable the automatic baud rate detection interrupt
  */
 
-#define BP_UARTV2_UCR1_ADEN      (15)      //!< Bit position for UARTV2_UCR1_ADEN.
-#define BM_UARTV2_UCR1_ADEN      (0x00008000)  //!< Bit mask for UARTV2_UCR1_ADEN.
+#define BP_UART_UCR1_ADEN      (15)      //!< Bit position for UART_UCR1_ADEN.
+#define BM_UART_UCR1_ADEN      (0x00008000)  //!< Bit mask for UART_UCR1_ADEN.
 
-//! @brief Get value of UARTV2_UCR1_ADEN from a register value.
-#define BG_UARTV2_UCR1_ADEN(r)   (((r) & BM_UARTV2_UCR1_ADEN) >> BP_UARTV2_UCR1_ADEN)
+//! @brief Get value of UART_UCR1_ADEN from a register value.
+#define BG_UART_UCR1_ADEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR1_ADEN) >> BP_UART_UCR1_ADEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR1_ADEN.
-#define BF_UARTV2_UCR1_ADEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR1_ADEN) & BM_UARTV2_UCR1_ADEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR1_ADEN.
-#define BF_UARTV2_UCR1_ADEN(v)   (((v) << BP_UARTV2_UCR1_ADEN) & BM_UARTV2_UCR1_ADEN)
-#endif
+//! @brief Format value for bitfield UART_UCR1_ADEN.
+#define BF_UART_UCR1_ADEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR1_ADEN) & BM_UART_UCR1_ADEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADEN field to a new value.
-#define BW_UARTV2_UCR1_ADEN(x, v)   (HW_UARTV2_UCR1_WR(x, (HW_UARTV2_UCR1_RD(x) & ~BM_UARTV2_UCR1_ADEN) | BF_UARTV2_UCR1_ADEN(v)))
+#define BW_UART_UCR1_ADEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ADEN) | BF_UART_UCR1_ADEN(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR2 - UART Control Register 2
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UCR2 - UART Control Register 2 (RW)
+ * @brief HW_UART_UCR2 - UART Control Register 2 (RW)
  *
  * Reset value: 0x00000001
  *
 
  */
-typedef union _hw_uartv2_ucr2
+typedef union _hw_uart_ucr2
 {
     reg32_t U;
-    struct _hw_uartv2_ucr2_bitfields
+    struct _hw_uart_ucr2_bitfields
     {
         unsigned SRST : 1; //!< [0] Software Reset . Once the software writes 0 to SRST , the software reset remains active for 4 module_clock (ipg_perclk) cycles before the hardware deasserts SRST . The software can only write 0 to SRST . Writing 1 to SRST is ignored.
         unsigned RXEN : 1; //!< [1] Receiver Enable . Enables/Disables the receiver. When the receiver is enabled, if the RXD input is already low, the receiver does not recognize BREAK characters, because it requires a valid 1-to-0 transition before it can accept any character.
@@ -836,28 +783,28 @@ typedef union _hw_uartv2_ucr2
         unsigned ESCI : 1; //!< [15] Escape Sequence Interrupt Enable . Enables/Disables the ESCF bit to generate an interrupt.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ucr2_t;
+} hw_uart_ucr2_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UCR2 register
+ * constants & macros for entire multi-block UART_UCR2 register
  */
-#define HW_UARTV2_UCR2_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x84)
+#define HW_UART_UCR2_ADDR(x)      (REGS_UART_BASE(x) + 0x84)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UCR2(x)           (*(volatile hw_uartv2_ucr2_t *) HW_UARTV2_UCR2_ADDR(x))
-#define HW_UARTV2_UCR2_RD(x)        (HW_UARTV2_UCR2(x).U)
-#define HW_UARTV2_UCR2_WR(x, v)     (HW_UARTV2_UCR2(x).U = (v))
-#define HW_UARTV2_UCR2_SET(x, v)    (HW_UARTV2_UCR2_WR(x, HW_UARTV2_UCR2_RD(x) |  (v)))
-#define HW_UARTV2_UCR2_CLR(x, v)    (HW_UARTV2_UCR2_WR(x, HW_UARTV2_UCR2_RD(x) & ~(v)))
-#define HW_UARTV2_UCR2_TOG(x, v)    (HW_UARTV2_UCR2_WR(x, HW_UARTV2_UCR2_RD(x) ^  (v)))
+#define HW_UART_UCR2(x)           (*(volatile hw_uart_ucr2_t *) HW_UART_UCR2_ADDR(x))
+#define HW_UART_UCR2_RD(x)        (HW_UART_UCR2(x).U)
+#define HW_UART_UCR2_WR(x, v)     (HW_UART_UCR2(x).U = (v))
+#define HW_UART_UCR2_SET(x, v)    (HW_UART_UCR2_WR(x, HW_UART_UCR2_RD(x) |  (v)))
+#define HW_UART_UCR2_CLR(x, v)    (HW_UART_UCR2_WR(x, HW_UART_UCR2_RD(x) & ~(v)))
+#define HW_UART_UCR2_TOG(x, v)    (HW_UART_UCR2_WR(x, HW_UART_UCR2_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UCR2 bitfields
+ * constants & macros for individual UART_UCR2 bitfields
  */
 
-/* --- Register HW_UARTV2_UCR2, field SRST[0] (RW)
+/* --- Register HW_UART_UCR2, field SRST[0] (RW)
  *
  * Software Reset . Once the software writes 0 to SRST , the software reset remains active for 4
  * module_clock (ipg_perclk) cycles before the hardware deasserts SRST . The software can only write
@@ -869,27 +816,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - No reset
  */
 
-#define BP_UARTV2_UCR2_SRST      (0)      //!< Bit position for UARTV2_UCR2_SRST.
-#define BM_UARTV2_UCR2_SRST      (0x00000001)  //!< Bit mask for UARTV2_UCR2_SRST.
+#define BP_UART_UCR2_SRST      (0)      //!< Bit position for UART_UCR2_SRST.
+#define BM_UART_UCR2_SRST      (0x00000001)  //!< Bit mask for UART_UCR2_SRST.
 
-//! @brief Get value of UARTV2_UCR2_SRST from a register value.
-#define BG_UARTV2_UCR2_SRST(r)   (((r) & BM_UARTV2_UCR2_SRST) >> BP_UARTV2_UCR2_SRST)
+//! @brief Get value of UART_UCR2_SRST from a register value.
+#define BG_UART_UCR2_SRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_SRST) >> BP_UART_UCR2_SRST)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_SRST.
-#define BF_UARTV2_UCR2_SRST(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_SRST) & BM_UARTV2_UCR2_SRST)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_SRST.
-#define BF_UARTV2_UCR2_SRST(v)   (((v) << BP_UARTV2_UCR2_SRST) & BM_UARTV2_UCR2_SRST)
-#endif
+//! @brief Format value for bitfield UART_UCR2_SRST.
+#define BF_UART_UCR2_SRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_SRST) & BM_UART_UCR2_SRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRST field to a new value.
-#define BW_UARTV2_UCR2_SRST(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_SRST) | BF_UARTV2_UCR2_SRST(v)))
+#define BW_UART_UCR2_SRST(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_SRST) | BF_UART_UCR2_SRST(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field RXEN[1] (RW)
+/* --- Register HW_UART_UCR2, field RXEN[1] (RW)
  *
  * Receiver Enable . Enables/Disables the receiver. When the receiver is enabled, if the RXD input
  * is already low, the receiver does not recognize BREAK characters, because it requires a valid
@@ -900,27 +842,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable the receiver
  */
 
-#define BP_UARTV2_UCR2_RXEN      (1)      //!< Bit position for UARTV2_UCR2_RXEN.
-#define BM_UARTV2_UCR2_RXEN      (0x00000002)  //!< Bit mask for UARTV2_UCR2_RXEN.
+#define BP_UART_UCR2_RXEN      (1)      //!< Bit position for UART_UCR2_RXEN.
+#define BM_UART_UCR2_RXEN      (0x00000002)  //!< Bit mask for UART_UCR2_RXEN.
 
-//! @brief Get value of UARTV2_UCR2_RXEN from a register value.
-#define BG_UARTV2_UCR2_RXEN(r)   (((r) & BM_UARTV2_UCR2_RXEN) >> BP_UARTV2_UCR2_RXEN)
+//! @brief Get value of UART_UCR2_RXEN from a register value.
+#define BG_UART_UCR2_RXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RXEN) >> BP_UART_UCR2_RXEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_RXEN.
-#define BF_UARTV2_UCR2_RXEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_RXEN) & BM_UARTV2_UCR2_RXEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_RXEN.
-#define BF_UARTV2_UCR2_RXEN(v)   (((v) << BP_UARTV2_UCR2_RXEN) & BM_UARTV2_UCR2_RXEN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_RXEN.
+#define BF_UART_UCR2_RXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RXEN) & BM_UART_UCR2_RXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXEN field to a new value.
-#define BW_UARTV2_UCR2_RXEN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_RXEN) | BF_UARTV2_UCR2_RXEN(v)))
+#define BW_UART_UCR2_RXEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RXEN) | BF_UART_UCR2_RXEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field TXEN[2] (RW)
+/* --- Register HW_UART_UCR2, field TXEN[2] (RW)
  *
  * Transmitter Enable . Enables/Disables the transmitter. When TXEN is negated the transmitter is
  * disabled and idle. When the UARTEN and TXEN bits are set the transmitter is enabled. If TXEN is
@@ -932,27 +869,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable the transmitter
  */
 
-#define BP_UARTV2_UCR2_TXEN      (2)      //!< Bit position for UARTV2_UCR2_TXEN.
-#define BM_UARTV2_UCR2_TXEN      (0x00000004)  //!< Bit mask for UARTV2_UCR2_TXEN.
+#define BP_UART_UCR2_TXEN      (2)      //!< Bit position for UART_UCR2_TXEN.
+#define BM_UART_UCR2_TXEN      (0x00000004)  //!< Bit mask for UART_UCR2_TXEN.
 
-//! @brief Get value of UARTV2_UCR2_TXEN from a register value.
-#define BG_UARTV2_UCR2_TXEN(r)   (((r) & BM_UARTV2_UCR2_TXEN) >> BP_UARTV2_UCR2_TXEN)
+//! @brief Get value of UART_UCR2_TXEN from a register value.
+#define BG_UART_UCR2_TXEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_TXEN) >> BP_UART_UCR2_TXEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_TXEN.
-#define BF_UARTV2_UCR2_TXEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_TXEN) & BM_UARTV2_UCR2_TXEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_TXEN.
-#define BF_UARTV2_UCR2_TXEN(v)   (((v) << BP_UARTV2_UCR2_TXEN) & BM_UARTV2_UCR2_TXEN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_TXEN.
+#define BF_UART_UCR2_TXEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_TXEN) & BM_UART_UCR2_TXEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXEN field to a new value.
-#define BW_UARTV2_UCR2_TXEN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_TXEN) | BF_UARTV2_UCR2_TXEN(v)))
+#define BW_UART_UCR2_TXEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_TXEN) | BF_UART_UCR2_TXEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field ATEN[3] (RW)
+/* --- Register HW_UART_UCR2, field ATEN[3] (RW)
  *
  * Aging Timer Enable . This bit is used to enable the aging timer interrupt (triggered with AGTIM)
  *
@@ -961,27 +893,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - AGTIM interrupt enabled
  */
 
-#define BP_UARTV2_UCR2_ATEN      (3)      //!< Bit position for UARTV2_UCR2_ATEN.
-#define BM_UARTV2_UCR2_ATEN      (0x00000008)  //!< Bit mask for UARTV2_UCR2_ATEN.
+#define BP_UART_UCR2_ATEN      (3)      //!< Bit position for UART_UCR2_ATEN.
+#define BM_UART_UCR2_ATEN      (0x00000008)  //!< Bit mask for UART_UCR2_ATEN.
 
-//! @brief Get value of UARTV2_UCR2_ATEN from a register value.
-#define BG_UARTV2_UCR2_ATEN(r)   (((r) & BM_UARTV2_UCR2_ATEN) >> BP_UARTV2_UCR2_ATEN)
+//! @brief Get value of UART_UCR2_ATEN from a register value.
+#define BG_UART_UCR2_ATEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ATEN) >> BP_UART_UCR2_ATEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_ATEN.
-#define BF_UARTV2_UCR2_ATEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_ATEN) & BM_UARTV2_UCR2_ATEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_ATEN.
-#define BF_UARTV2_UCR2_ATEN(v)   (((v) << BP_UARTV2_UCR2_ATEN) & BM_UARTV2_UCR2_ATEN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_ATEN.
+#define BF_UART_UCR2_ATEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ATEN) & BM_UART_UCR2_ATEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATEN field to a new value.
-#define BW_UARTV2_UCR2_ATEN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_ATEN) | BF_UARTV2_UCR2_ATEN(v)))
+#define BW_UART_UCR2_ATEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ATEN) | BF_UART_UCR2_ATEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field RTSEN[4] (RW)
+/* --- Register HW_UART_UCR2, field RTSEN[4] (RW)
  *
  * Request to Send Interrupt Enable. Controls the RTS edge sensitive interrupt. When RTSEN is
  * asserted and the programmed edge is detected on the RTS pin (the RTSF bit is asserted), an
@@ -992,27 +919,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable request to send interrupt
  */
 
-#define BP_UARTV2_UCR2_RTSEN      (4)      //!< Bit position for UARTV2_UCR2_RTSEN.
-#define BM_UARTV2_UCR2_RTSEN      (0x00000010)  //!< Bit mask for UARTV2_UCR2_RTSEN.
+#define BP_UART_UCR2_RTSEN      (4)      //!< Bit position for UART_UCR2_RTSEN.
+#define BM_UART_UCR2_RTSEN      (0x00000010)  //!< Bit mask for UART_UCR2_RTSEN.
 
-//! @brief Get value of UARTV2_UCR2_RTSEN from a register value.
-#define BG_UARTV2_UCR2_RTSEN(r)   (((r) & BM_UARTV2_UCR2_RTSEN) >> BP_UARTV2_UCR2_RTSEN)
+//! @brief Get value of UART_UCR2_RTSEN from a register value.
+#define BG_UART_UCR2_RTSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RTSEN) >> BP_UART_UCR2_RTSEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_RTSEN.
-#define BF_UARTV2_UCR2_RTSEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_RTSEN) & BM_UARTV2_UCR2_RTSEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_RTSEN.
-#define BF_UARTV2_UCR2_RTSEN(v)   (((v) << BP_UARTV2_UCR2_RTSEN) & BM_UARTV2_UCR2_RTSEN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_RTSEN.
+#define BF_UART_UCR2_RTSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RTSEN) & BM_UART_UCR2_RTSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSEN field to a new value.
-#define BW_UARTV2_UCR2_RTSEN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_RTSEN) | BF_UARTV2_UCR2_RTSEN(v)))
+#define BW_UART_UCR2_RTSEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RTSEN) | BF_UART_UCR2_RTSEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field WS[5] (RW)
+/* --- Register HW_UART_UCR2, field WS[5] (RW)
  *
  * Word Size . Controls the character length. When WS is high, the transmitter and receiver are in
  * 8-bit mode. When WS is low, they are in 7-bit mode. The transmitter ignores bit 7 and the
@@ -1025,27 +947,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - 8-bit transmit and receive character length (not including START, STOP or PARITY bits)
  */
 
-#define BP_UARTV2_UCR2_WS      (5)      //!< Bit position for UARTV2_UCR2_WS.
-#define BM_UARTV2_UCR2_WS      (0x00000020)  //!< Bit mask for UARTV2_UCR2_WS.
+#define BP_UART_UCR2_WS      (5)      //!< Bit position for UART_UCR2_WS.
+#define BM_UART_UCR2_WS      (0x00000020)  //!< Bit mask for UART_UCR2_WS.
 
-//! @brief Get value of UARTV2_UCR2_WS from a register value.
-#define BG_UARTV2_UCR2_WS(r)   (((r) & BM_UARTV2_UCR2_WS) >> BP_UARTV2_UCR2_WS)
+//! @brief Get value of UART_UCR2_WS from a register value.
+#define BG_UART_UCR2_WS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_WS) >> BP_UART_UCR2_WS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_WS.
-#define BF_UARTV2_UCR2_WS(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_WS) & BM_UARTV2_UCR2_WS)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_WS.
-#define BF_UARTV2_UCR2_WS(v)   (((v) << BP_UARTV2_UCR2_WS) & BM_UARTV2_UCR2_WS)
-#endif
+//! @brief Format value for bitfield UART_UCR2_WS.
+#define BF_UART_UCR2_WS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_WS) & BM_UART_UCR2_WS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WS field to a new value.
-#define BW_UARTV2_UCR2_WS(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_WS) | BF_UARTV2_UCR2_WS(v)))
+#define BW_UART_UCR2_WS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_WS) | BF_UART_UCR2_WS(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field STPB[6] (RW)
+/* --- Register HW_UART_UCR2, field STPB[6] (RW)
  *
  * Stop . Controls the number of stop bits after a character. When STPB is low, 1 stop bit is sent.
  * When STPB is high, 2 stop bits are sent. STPB also affects the receiver.
@@ -1055,27 +972,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - The transmitter sends 2 stop bits. The receiver expects 2 or more stop bits.
  */
 
-#define BP_UARTV2_UCR2_STPB      (6)      //!< Bit position for UARTV2_UCR2_STPB.
-#define BM_UARTV2_UCR2_STPB      (0x00000040)  //!< Bit mask for UARTV2_UCR2_STPB.
+#define BP_UART_UCR2_STPB      (6)      //!< Bit position for UART_UCR2_STPB.
+#define BM_UART_UCR2_STPB      (0x00000040)  //!< Bit mask for UART_UCR2_STPB.
 
-//! @brief Get value of UARTV2_UCR2_STPB from a register value.
-#define BG_UARTV2_UCR2_STPB(r)   (((r) & BM_UARTV2_UCR2_STPB) >> BP_UARTV2_UCR2_STPB)
+//! @brief Get value of UART_UCR2_STPB from a register value.
+#define BG_UART_UCR2_STPB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_STPB) >> BP_UART_UCR2_STPB)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_STPB.
-#define BF_UARTV2_UCR2_STPB(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_STPB) & BM_UARTV2_UCR2_STPB)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_STPB.
-#define BF_UARTV2_UCR2_STPB(v)   (((v) << BP_UARTV2_UCR2_STPB) & BM_UARTV2_UCR2_STPB)
-#endif
+//! @brief Format value for bitfield UART_UCR2_STPB.
+#define BF_UART_UCR2_STPB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_STPB) & BM_UART_UCR2_STPB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STPB field to a new value.
-#define BW_UARTV2_UCR2_STPB(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_STPB) | BF_UARTV2_UCR2_STPB(v)))
+#define BW_UART_UCR2_STPB(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_STPB) | BF_UART_UCR2_STPB(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field PROE[7] (RW)
+/* --- Register HW_UART_UCR2, field PROE[7] (RW)
  *
  * Parity Odd/Even . Controls the sense of the parity generator and checker. When PROE is high, odd
  * parity is generated and expected. When PROE is low, even parity is generated and expected. PROE
@@ -1086,27 +998,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Odd parity
  */
 
-#define BP_UARTV2_UCR2_PROE      (7)      //!< Bit position for UARTV2_UCR2_PROE.
-#define BM_UARTV2_UCR2_PROE      (0x00000080)  //!< Bit mask for UARTV2_UCR2_PROE.
+#define BP_UART_UCR2_PROE      (7)      //!< Bit position for UART_UCR2_PROE.
+#define BM_UART_UCR2_PROE      (0x00000080)  //!< Bit mask for UART_UCR2_PROE.
 
-//! @brief Get value of UARTV2_UCR2_PROE from a register value.
-#define BG_UARTV2_UCR2_PROE(r)   (((r) & BM_UARTV2_UCR2_PROE) >> BP_UARTV2_UCR2_PROE)
+//! @brief Get value of UART_UCR2_PROE from a register value.
+#define BG_UART_UCR2_PROE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_PROE) >> BP_UART_UCR2_PROE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_PROE.
-#define BF_UARTV2_UCR2_PROE(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_PROE) & BM_UARTV2_UCR2_PROE)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_PROE.
-#define BF_UARTV2_UCR2_PROE(v)   (((v) << BP_UARTV2_UCR2_PROE) & BM_UARTV2_UCR2_PROE)
-#endif
+//! @brief Format value for bitfield UART_UCR2_PROE.
+#define BF_UART_UCR2_PROE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_PROE) & BM_UART_UCR2_PROE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PROE field to a new value.
-#define BW_UARTV2_UCR2_PROE(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_PROE) | BF_UARTV2_UCR2_PROE(v)))
+#define BW_UART_UCR2_PROE(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_PROE) | BF_UART_UCR2_PROE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field PREN[8] (RW)
+/* --- Register HW_UART_UCR2, field PREN[8] (RW)
  *
  * Parity Enable . Enables/Disables the parity generator in the transmitter and parity checker in
  * the receiver. When PREN is asserted, the parity generator and checker are enabled, and disabled
@@ -1117,27 +1024,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable parity generator and checker
  */
 
-#define BP_UARTV2_UCR2_PREN      (8)      //!< Bit position for UARTV2_UCR2_PREN.
-#define BM_UARTV2_UCR2_PREN      (0x00000100)  //!< Bit mask for UARTV2_UCR2_PREN.
+#define BP_UART_UCR2_PREN      (8)      //!< Bit position for UART_UCR2_PREN.
+#define BM_UART_UCR2_PREN      (0x00000100)  //!< Bit mask for UART_UCR2_PREN.
 
-//! @brief Get value of UARTV2_UCR2_PREN from a register value.
-#define BG_UARTV2_UCR2_PREN(r)   (((r) & BM_UARTV2_UCR2_PREN) >> BP_UARTV2_UCR2_PREN)
+//! @brief Get value of UART_UCR2_PREN from a register value.
+#define BG_UART_UCR2_PREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_PREN) >> BP_UART_UCR2_PREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_PREN.
-#define BF_UARTV2_UCR2_PREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_PREN) & BM_UARTV2_UCR2_PREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_PREN.
-#define BF_UARTV2_UCR2_PREN(v)   (((v) << BP_UARTV2_UCR2_PREN) & BM_UARTV2_UCR2_PREN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_PREN.
+#define BF_UART_UCR2_PREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_PREN) & BM_UART_UCR2_PREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PREN field to a new value.
-#define BW_UARTV2_UCR2_PREN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_PREN) | BF_UARTV2_UCR2_PREN(v)))
+#define BW_UART_UCR2_PREN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_PREN) | BF_UART_UCR2_PREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field RTEC[10:9] (RW)
+/* --- Register HW_UART_UCR2, field RTEC[10:9] (RW)
  *
  * Request to Send Edge Control . Selects the edge that triggers the RTS interrupt. This has no
  * effect on the RTS delta interrupt. RTEC has an effect only when RTSEN = 1 (see ).
@@ -1148,27 +1050,22 @@ typedef union _hw_uartv2_ucr2
  * 1X - Trigger interrupt on any edge
  */
 
-#define BP_UARTV2_UCR2_RTEC      (9)      //!< Bit position for UARTV2_UCR2_RTEC.
-#define BM_UARTV2_UCR2_RTEC      (0x00000600)  //!< Bit mask for UARTV2_UCR2_RTEC.
+#define BP_UART_UCR2_RTEC      (9)      //!< Bit position for UART_UCR2_RTEC.
+#define BM_UART_UCR2_RTEC      (0x00000600)  //!< Bit mask for UART_UCR2_RTEC.
 
-//! @brief Get value of UARTV2_UCR2_RTEC from a register value.
-#define BG_UARTV2_UCR2_RTEC(r)   (((r) & BM_UARTV2_UCR2_RTEC) >> BP_UARTV2_UCR2_RTEC)
+//! @brief Get value of UART_UCR2_RTEC from a register value.
+#define BG_UART_UCR2_RTEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_RTEC) >> BP_UART_UCR2_RTEC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_RTEC.
-#define BF_UARTV2_UCR2_RTEC(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_RTEC) & BM_UARTV2_UCR2_RTEC)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_RTEC.
-#define BF_UARTV2_UCR2_RTEC(v)   (((v) << BP_UARTV2_UCR2_RTEC) & BM_UARTV2_UCR2_RTEC)
-#endif
+//! @brief Format value for bitfield UART_UCR2_RTEC.
+#define BF_UART_UCR2_RTEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_RTEC) & BM_UART_UCR2_RTEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTEC field to a new value.
-#define BW_UARTV2_UCR2_RTEC(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_RTEC) | BF_UARTV2_UCR2_RTEC(v)))
+#define BW_UART_UCR2_RTEC(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RTEC) | BF_UART_UCR2_RTEC(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field ESCEN[11] (RW)
+/* --- Register HW_UART_UCR2, field ESCEN[11] (RW)
  *
  * Escape Enable . Enables/Disables the escape sequence detection logic.
  *
@@ -1177,27 +1074,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable escape sequence detection
  */
 
-#define BP_UARTV2_UCR2_ESCEN      (11)      //!< Bit position for UARTV2_UCR2_ESCEN.
-#define BM_UARTV2_UCR2_ESCEN      (0x00000800)  //!< Bit mask for UARTV2_UCR2_ESCEN.
+#define BP_UART_UCR2_ESCEN      (11)      //!< Bit position for UART_UCR2_ESCEN.
+#define BM_UART_UCR2_ESCEN      (0x00000800)  //!< Bit mask for UART_UCR2_ESCEN.
 
-//! @brief Get value of UARTV2_UCR2_ESCEN from a register value.
-#define BG_UARTV2_UCR2_ESCEN(r)   (((r) & BM_UARTV2_UCR2_ESCEN) >> BP_UARTV2_UCR2_ESCEN)
+//! @brief Get value of UART_UCR2_ESCEN from a register value.
+#define BG_UART_UCR2_ESCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ESCEN) >> BP_UART_UCR2_ESCEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_ESCEN.
-#define BF_UARTV2_UCR2_ESCEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_ESCEN) & BM_UARTV2_UCR2_ESCEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_ESCEN.
-#define BF_UARTV2_UCR2_ESCEN(v)   (((v) << BP_UARTV2_UCR2_ESCEN) & BM_UARTV2_UCR2_ESCEN)
-#endif
+//! @brief Format value for bitfield UART_UCR2_ESCEN.
+#define BF_UART_UCR2_ESCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ESCEN) & BM_UART_UCR2_ESCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCEN field to a new value.
-#define BW_UARTV2_UCR2_ESCEN(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_ESCEN) | BF_UARTV2_UCR2_ESCEN(v)))
+#define BW_UART_UCR2_ESCEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ESCEN) | BF_UART_UCR2_ESCEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field CTS[12] (RW)
+/* --- Register HW_UART_UCR2, field CTS[12] (RW)
  *
  * Clear to Send . Controls the CTS pin when the CTSC bit is negated. CTS has no function when CTSC
  * is asserted.
@@ -1207,27 +1099,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - The CTS pin is low (active)
  */
 
-#define BP_UARTV2_UCR2_CTS      (12)      //!< Bit position for UARTV2_UCR2_CTS.
-#define BM_UARTV2_UCR2_CTS      (0x00001000)  //!< Bit mask for UARTV2_UCR2_CTS.
+#define BP_UART_UCR2_CTS      (12)      //!< Bit position for UART_UCR2_CTS.
+#define BM_UART_UCR2_CTS      (0x00001000)  //!< Bit mask for UART_UCR2_CTS.
 
-//! @brief Get value of UARTV2_UCR2_CTS from a register value.
-#define BG_UARTV2_UCR2_CTS(r)   (((r) & BM_UARTV2_UCR2_CTS) >> BP_UARTV2_UCR2_CTS)
+//! @brief Get value of UART_UCR2_CTS from a register value.
+#define BG_UART_UCR2_CTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_CTS) >> BP_UART_UCR2_CTS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_CTS.
-#define BF_UARTV2_UCR2_CTS(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_CTS) & BM_UARTV2_UCR2_CTS)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_CTS.
-#define BF_UARTV2_UCR2_CTS(v)   (((v) << BP_UARTV2_UCR2_CTS) & BM_UARTV2_UCR2_CTS)
-#endif
+//! @brief Format value for bitfield UART_UCR2_CTS.
+#define BF_UART_UCR2_CTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_CTS) & BM_UART_UCR2_CTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTS field to a new value.
-#define BW_UARTV2_UCR2_CTS(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_CTS) | BF_UARTV2_UCR2_CTS(v)))
+#define BW_UART_UCR2_CTS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_CTS) | BF_UART_UCR2_CTS(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field CTSC[13] (RW)
+/* --- Register HW_UART_UCR2, field CTSC[13] (RW)
  *
  * CTS Pin Control . Controls the operation of the CTS output pin. When CTSC is asserted, the CTS
  * output pin is controlled by the receiver. When the RxFIFO is filled to the level of the
@@ -1244,27 +1131,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - The CTS pin is controlled by the receiver
  */
 
-#define BP_UARTV2_UCR2_CTSC      (13)      //!< Bit position for UARTV2_UCR2_CTSC.
-#define BM_UARTV2_UCR2_CTSC      (0x00002000)  //!< Bit mask for UARTV2_UCR2_CTSC.
+#define BP_UART_UCR2_CTSC      (13)      //!< Bit position for UART_UCR2_CTSC.
+#define BM_UART_UCR2_CTSC      (0x00002000)  //!< Bit mask for UART_UCR2_CTSC.
 
-//! @brief Get value of UARTV2_UCR2_CTSC from a register value.
-#define BG_UARTV2_UCR2_CTSC(r)   (((r) & BM_UARTV2_UCR2_CTSC) >> BP_UARTV2_UCR2_CTSC)
+//! @brief Get value of UART_UCR2_CTSC from a register value.
+#define BG_UART_UCR2_CTSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_CTSC) >> BP_UART_UCR2_CTSC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_CTSC.
-#define BF_UARTV2_UCR2_CTSC(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_CTSC) & BM_UARTV2_UCR2_CTSC)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_CTSC.
-#define BF_UARTV2_UCR2_CTSC(v)   (((v) << BP_UARTV2_UCR2_CTSC) & BM_UARTV2_UCR2_CTSC)
-#endif
+//! @brief Format value for bitfield UART_UCR2_CTSC.
+#define BF_UART_UCR2_CTSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_CTSC) & BM_UART_UCR2_CTSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTSC field to a new value.
-#define BW_UARTV2_UCR2_CTSC(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_CTSC) | BF_UARTV2_UCR2_CTSC(v)))
+#define BW_UART_UCR2_CTSC(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_CTSC) | BF_UART_UCR2_CTSC(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field IRTS[14] (RW)
+/* --- Register HW_UART_UCR2, field IRTS[14] (RW)
  *
  * Ignore RTS Pin . Forces the RTS input signal presented to the transmitter to always be asserted
  * (set to low), effectively ignoring the external pin. When in this mode, the RTS pin serves as a
@@ -1275,27 +1157,22 @@ typedef union _hw_uartv2_ucr2
  * 1 - Ignore the RTS pin
  */
 
-#define BP_UARTV2_UCR2_IRTS      (14)      //!< Bit position for UARTV2_UCR2_IRTS.
-#define BM_UARTV2_UCR2_IRTS      (0x00004000)  //!< Bit mask for UARTV2_UCR2_IRTS.
+#define BP_UART_UCR2_IRTS      (14)      //!< Bit position for UART_UCR2_IRTS.
+#define BM_UART_UCR2_IRTS      (0x00004000)  //!< Bit mask for UART_UCR2_IRTS.
 
-//! @brief Get value of UARTV2_UCR2_IRTS from a register value.
-#define BG_UARTV2_UCR2_IRTS(r)   (((r) & BM_UARTV2_UCR2_IRTS) >> BP_UARTV2_UCR2_IRTS)
+//! @brief Get value of UART_UCR2_IRTS from a register value.
+#define BG_UART_UCR2_IRTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_IRTS) >> BP_UART_UCR2_IRTS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_IRTS.
-#define BF_UARTV2_UCR2_IRTS(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_IRTS) & BM_UARTV2_UCR2_IRTS)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_IRTS.
-#define BF_UARTV2_UCR2_IRTS(v)   (((v) << BP_UARTV2_UCR2_IRTS) & BM_UARTV2_UCR2_IRTS)
-#endif
+//! @brief Format value for bitfield UART_UCR2_IRTS.
+#define BF_UART_UCR2_IRTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_IRTS) & BM_UART_UCR2_IRTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRTS field to a new value.
-#define BW_UARTV2_UCR2_IRTS(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_IRTS) | BF_UARTV2_UCR2_IRTS(v)))
+#define BW_UART_UCR2_IRTS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_IRTS) | BF_UART_UCR2_IRTS(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR2, field ESCI[15] (RW)
+/* --- Register HW_UART_UCR2, field ESCI[15] (RW)
  *
  * Escape Sequence Interrupt Enable . Enables/Disables the ESCF bit to generate an interrupt.
  *
@@ -1304,38 +1181,37 @@ typedef union _hw_uartv2_ucr2
  * 1 - Enable the escape sequence interrupt
  */
 
-#define BP_UARTV2_UCR2_ESCI      (15)      //!< Bit position for UARTV2_UCR2_ESCI.
-#define BM_UARTV2_UCR2_ESCI      (0x00008000)  //!< Bit mask for UARTV2_UCR2_ESCI.
+#define BP_UART_UCR2_ESCI      (15)      //!< Bit position for UART_UCR2_ESCI.
+#define BM_UART_UCR2_ESCI      (0x00008000)  //!< Bit mask for UART_UCR2_ESCI.
 
-//! @brief Get value of UARTV2_UCR2_ESCI from a register value.
-#define BG_UARTV2_UCR2_ESCI(r)   (((r) & BM_UARTV2_UCR2_ESCI) >> BP_UARTV2_UCR2_ESCI)
+//! @brief Get value of UART_UCR2_ESCI from a register value.
+#define BG_UART_UCR2_ESCI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR2_ESCI) >> BP_UART_UCR2_ESCI)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR2_ESCI.
-#define BF_UARTV2_UCR2_ESCI(v)   ((((reg32_t) v) << BP_UARTV2_UCR2_ESCI) & BM_UARTV2_UCR2_ESCI)
-#else
-//! @brief Format value for bitfield UARTV2_UCR2_ESCI.
-#define BF_UARTV2_UCR2_ESCI(v)   (((v) << BP_UARTV2_UCR2_ESCI) & BM_UARTV2_UCR2_ESCI)
-#endif
+//! @brief Format value for bitfield UART_UCR2_ESCI.
+#define BF_UART_UCR2_ESCI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR2_ESCI) & BM_UART_UCR2_ESCI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCI field to a new value.
-#define BW_UARTV2_UCR2_ESCI(x, v)   (HW_UARTV2_UCR2_WR(x, (HW_UARTV2_UCR2_RD(x) & ~BM_UARTV2_UCR2_ESCI) | BF_UARTV2_UCR2_ESCI(v)))
+#define BW_UART_UCR2_ESCI(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ESCI) | BF_UART_UCR2_ESCI(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR3 - UART Control Register 3
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UCR3 - UART Control Register 3 (RW)
+ * @brief HW_UART_UCR3 - UART Control Register 3 (RW)
  *
  * Reset value: 0x00000700
  *
 
  */
-typedef union _hw_uartv2_ucr3
+typedef union _hw_uart_ucr3
 {
     reg32_t U;
-    struct _hw_uartv2_ucr3_bitfields
+    struct _hw_uart_ucr3_bitfields
     {
         unsigned ACIEN : 1; //!< [0] Autobaud Counter Interrupt Enable. This bit is used to enable the autobaud counter stopped interrupt (triggered with ACST (USR2[11]).
         unsigned INVT : 1; //!< [1] Invert TXD output in RS-232/RS-485 mode, set TXD active level in IrDA mode. In RS232/RS-485 mode(UMCR[0] = 1), if this bit is set to 1, the TXD output is inverted before transmitted. In IrDA mode , when INVT is cleared, the infrared logic block transmits a positive IR 3/16 pulse for all 0s and 0s are transmitted for 1s. When INVT is set (INVT = 1), the infrared logic block transmits an active low or negative infrared 3/16 pulse for all 0s and 1s are transmitted for 1s.
@@ -1354,28 +1230,28 @@ typedef union _hw_uartv2_ucr3
         unsigned DPEC : 2; //!< [15:14] This bit is not used in this chip. DTR/DSR Interrupt Edge Control . These bits control the edge of DTR (DCE) or DSR (DTE) on which an interrupt will be generated. An interrupt will only be generated if the DTREN bit is set.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ucr3_t;
+} hw_uart_ucr3_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UCR3 register
+ * constants & macros for entire multi-block UART_UCR3 register
  */
-#define HW_UARTV2_UCR3_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x88)
+#define HW_UART_UCR3_ADDR(x)      (REGS_UART_BASE(x) + 0x88)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UCR3(x)           (*(volatile hw_uartv2_ucr3_t *) HW_UARTV2_UCR3_ADDR(x))
-#define HW_UARTV2_UCR3_RD(x)        (HW_UARTV2_UCR3(x).U)
-#define HW_UARTV2_UCR3_WR(x, v)     (HW_UARTV2_UCR3(x).U = (v))
-#define HW_UARTV2_UCR3_SET(x, v)    (HW_UARTV2_UCR3_WR(x, HW_UARTV2_UCR3_RD(x) |  (v)))
-#define HW_UARTV2_UCR3_CLR(x, v)    (HW_UARTV2_UCR3_WR(x, HW_UARTV2_UCR3_RD(x) & ~(v)))
-#define HW_UARTV2_UCR3_TOG(x, v)    (HW_UARTV2_UCR3_WR(x, HW_UARTV2_UCR3_RD(x) ^  (v)))
+#define HW_UART_UCR3(x)           (*(volatile hw_uart_ucr3_t *) HW_UART_UCR3_ADDR(x))
+#define HW_UART_UCR3_RD(x)        (HW_UART_UCR3(x).U)
+#define HW_UART_UCR3_WR(x, v)     (HW_UART_UCR3(x).U = (v))
+#define HW_UART_UCR3_SET(x, v)    (HW_UART_UCR3_WR(x, HW_UART_UCR3_RD(x) |  (v)))
+#define HW_UART_UCR3_CLR(x, v)    (HW_UART_UCR3_WR(x, HW_UART_UCR3_RD(x) & ~(v)))
+#define HW_UART_UCR3_TOG(x, v)    (HW_UART_UCR3_WR(x, HW_UART_UCR3_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UCR3 bitfields
+ * constants & macros for individual UART_UCR3 bitfields
  */
 
-/* --- Register HW_UARTV2_UCR3, field ACIEN[0] (RW)
+/* --- Register HW_UART_UCR3, field ACIEN[0] (RW)
  *
  * Autobaud Counter Interrupt Enable. This bit is used to enable the autobaud counter stopped
  * interrupt (triggered with ACST (USR2[11]).
@@ -1385,27 +1261,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - ACST interrupt enabled
  */
 
-#define BP_UARTV2_UCR3_ACIEN      (0)      //!< Bit position for UARTV2_UCR3_ACIEN.
-#define BM_UARTV2_UCR3_ACIEN      (0x00000001)  //!< Bit mask for UARTV2_UCR3_ACIEN.
+#define BP_UART_UCR3_ACIEN      (0)      //!< Bit position for UART_UCR3_ACIEN.
+#define BM_UART_UCR3_ACIEN      (0x00000001)  //!< Bit mask for UART_UCR3_ACIEN.
 
-//! @brief Get value of UARTV2_UCR3_ACIEN from a register value.
-#define BG_UARTV2_UCR3_ACIEN(r)   (((r) & BM_UARTV2_UCR3_ACIEN) >> BP_UARTV2_UCR3_ACIEN)
+//! @brief Get value of UART_UCR3_ACIEN from a register value.
+#define BG_UART_UCR3_ACIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_ACIEN) >> BP_UART_UCR3_ACIEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_ACIEN.
-#define BF_UARTV2_UCR3_ACIEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_ACIEN) & BM_UARTV2_UCR3_ACIEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_ACIEN.
-#define BF_UARTV2_UCR3_ACIEN(v)   (((v) << BP_UARTV2_UCR3_ACIEN) & BM_UARTV2_UCR3_ACIEN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_ACIEN.
+#define BF_UART_UCR3_ACIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_ACIEN) & BM_UART_UCR3_ACIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACIEN field to a new value.
-#define BW_UARTV2_UCR3_ACIEN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_ACIEN) | BF_UARTV2_UCR3_ACIEN(v)))
+#define BW_UART_UCR3_ACIEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_ACIEN) | BF_UART_UCR3_ACIEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field INVT[1] (RW)
+/* --- Register HW_UART_UCR3, field INVT[1] (RW)
  *
  * Invert TXD output in RS-232/RS-485 mode, set TXD active level in IrDA mode. In RS232/RS-485
  * mode(UMCR[0] = 1), if this bit is set to 1, the TXD output is inverted before transmitted. In
@@ -1420,27 +1291,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - TXD Active high transmission
  */
 
-#define BP_UARTV2_UCR3_INVT      (1)      //!< Bit position for UARTV2_UCR3_INVT.
-#define BM_UARTV2_UCR3_INVT      (0x00000002)  //!< Bit mask for UARTV2_UCR3_INVT.
+#define BP_UART_UCR3_INVT      (1)      //!< Bit position for UART_UCR3_INVT.
+#define BM_UART_UCR3_INVT      (0x00000002)  //!< Bit mask for UART_UCR3_INVT.
 
-//! @brief Get value of UARTV2_UCR3_INVT from a register value.
-#define BG_UARTV2_UCR3_INVT(r)   (((r) & BM_UARTV2_UCR3_INVT) >> BP_UARTV2_UCR3_INVT)
+//! @brief Get value of UART_UCR3_INVT from a register value.
+#define BG_UART_UCR3_INVT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_INVT) >> BP_UART_UCR3_INVT)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_INVT.
-#define BF_UARTV2_UCR3_INVT(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_INVT) & BM_UARTV2_UCR3_INVT)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_INVT.
-#define BF_UARTV2_UCR3_INVT(v)   (((v) << BP_UARTV2_UCR3_INVT) & BM_UARTV2_UCR3_INVT)
-#endif
+//! @brief Format value for bitfield UART_UCR3_INVT.
+#define BF_UART_UCR3_INVT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_INVT) & BM_UART_UCR3_INVT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INVT field to a new value.
-#define BW_UARTV2_UCR3_INVT(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_INVT) | BF_UARTV2_UCR3_INVT(v)))
+#define BW_UART_UCR3_INVT(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_INVT) | BF_UART_UCR3_INVT(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field RXDMUXSEL[2] (RW)
+/* --- Register HW_UART_UCR3, field RXDMUXSEL[2] (RW)
  *
  * RXD Muxed Input Selected. Selects proper input pins for serial and Infrared input signal. In this
  * chip, UARTs are used in MUXED mode, so that this bit should always be set. In this chip, UARTs
@@ -1451,26 +1317,21 @@ typedef union _hw_uartv2_ucr3
  * (ipp_uart_rxd_ir) are not used
  */
 
-#define BP_UARTV2_UCR3_RXDMUXSEL      (2)      //!< Bit position for UARTV2_UCR3_RXDMUXSEL.
-#define BM_UARTV2_UCR3_RXDMUXSEL      (0x00000004)  //!< Bit mask for UARTV2_UCR3_RXDMUXSEL.
+#define BP_UART_UCR3_RXDMUXSEL      (2)      //!< Bit position for UART_UCR3_RXDMUXSEL.
+#define BM_UART_UCR3_RXDMUXSEL      (0x00000004)  //!< Bit mask for UART_UCR3_RXDMUXSEL.
 
-//! @brief Get value of UARTV2_UCR3_RXDMUXSEL from a register value.
-#define BG_UARTV2_UCR3_RXDMUXSEL(r)   (((r) & BM_UARTV2_UCR3_RXDMUXSEL) >> BP_UARTV2_UCR3_RXDMUXSEL)
+//! @brief Get value of UART_UCR3_RXDMUXSEL from a register value.
+#define BG_UART_UCR3_RXDMUXSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RXDMUXSEL) >> BP_UART_UCR3_RXDMUXSEL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_RXDMUXSEL.
-#define BF_UARTV2_UCR3_RXDMUXSEL(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_RXDMUXSEL) & BM_UARTV2_UCR3_RXDMUXSEL)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_RXDMUXSEL.
-#define BF_UARTV2_UCR3_RXDMUXSEL(v)   (((v) << BP_UARTV2_UCR3_RXDMUXSEL) & BM_UARTV2_UCR3_RXDMUXSEL)
-#endif
+//! @brief Format value for bitfield UART_UCR3_RXDMUXSEL.
+#define BF_UART_UCR3_RXDMUXSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RXDMUXSEL) & BM_UART_UCR3_RXDMUXSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDMUXSEL field to a new value.
-#define BW_UARTV2_UCR3_RXDMUXSEL(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_RXDMUXSEL) | BF_UARTV2_UCR3_RXDMUXSEL(v)))
+#define BW_UART_UCR3_RXDMUXSEL(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RXDMUXSEL) | BF_UART_UCR3_RXDMUXSEL(v)))
 #endif
 
-/* --- Register HW_UARTV2_UCR3, field DTRDEN[3] (RW)
+/* --- Register HW_UART_UCR3, field DTRDEN[3] (RW)
  *
  * This bit is not used in this chip. Data Terminal Ready Delta Enable . Enables / Disables the
  * asynchronous DTRD interrupt. When DTRDEN is asserted and an edge (rising or falling) is detected
@@ -1481,27 +1342,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable DTRD interrupt
  */
 
-#define BP_UARTV2_UCR3_DTRDEN      (3)      //!< Bit position for UARTV2_UCR3_DTRDEN.
-#define BM_UARTV2_UCR3_DTRDEN      (0x00000008)  //!< Bit mask for UARTV2_UCR3_DTRDEN.
+#define BP_UART_UCR3_DTRDEN      (3)      //!< Bit position for UART_UCR3_DTRDEN.
+#define BM_UART_UCR3_DTRDEN      (0x00000008)  //!< Bit mask for UART_UCR3_DTRDEN.
 
-//! @brief Get value of UARTV2_UCR3_DTRDEN from a register value.
-#define BG_UARTV2_UCR3_DTRDEN(r)   (((r) & BM_UARTV2_UCR3_DTRDEN) >> BP_UARTV2_UCR3_DTRDEN)
+//! @brief Get value of UART_UCR3_DTRDEN from a register value.
+#define BG_UART_UCR3_DTRDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DTRDEN) >> BP_UART_UCR3_DTRDEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_DTRDEN.
-#define BF_UARTV2_UCR3_DTRDEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_DTRDEN) & BM_UARTV2_UCR3_DTRDEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_DTRDEN.
-#define BF_UARTV2_UCR3_DTRDEN(v)   (((v) << BP_UARTV2_UCR3_DTRDEN) & BM_UARTV2_UCR3_DTRDEN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_DTRDEN.
+#define BF_UART_UCR3_DTRDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DTRDEN) & BM_UART_UCR3_DTRDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRDEN field to a new value.
-#define BW_UARTV2_UCR3_DTRDEN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_DTRDEN) | BF_UARTV2_UCR3_DTRDEN(v)))
+#define BW_UART_UCR3_DTRDEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DTRDEN) | BF_UART_UCR3_DTRDEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field AWAKEN[4] (RW)
+/* --- Register HW_UART_UCR3, field AWAKEN[4] (RW)
  *
  * Asynchronous WAKE Interrupt Enable. Controls the asynchronous WAKE interrupt. An interrupt is
  * generated when AWAKEN is asserted and a falling edge is detected on the RXD pin.
@@ -1511,27 +1367,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable the AWAKE interrupt
  */
 
-#define BP_UARTV2_UCR3_AWAKEN      (4)      //!< Bit position for UARTV2_UCR3_AWAKEN.
-#define BM_UARTV2_UCR3_AWAKEN      (0x00000010)  //!< Bit mask for UARTV2_UCR3_AWAKEN.
+#define BP_UART_UCR3_AWAKEN      (4)      //!< Bit position for UART_UCR3_AWAKEN.
+#define BM_UART_UCR3_AWAKEN      (0x00000010)  //!< Bit mask for UART_UCR3_AWAKEN.
 
-//! @brief Get value of UARTV2_UCR3_AWAKEN from a register value.
-#define BG_UARTV2_UCR3_AWAKEN(r)   (((r) & BM_UARTV2_UCR3_AWAKEN) >> BP_UARTV2_UCR3_AWAKEN)
+//! @brief Get value of UART_UCR3_AWAKEN from a register value.
+#define BG_UART_UCR3_AWAKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_AWAKEN) >> BP_UART_UCR3_AWAKEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_AWAKEN.
-#define BF_UARTV2_UCR3_AWAKEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_AWAKEN) & BM_UARTV2_UCR3_AWAKEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_AWAKEN.
-#define BF_UARTV2_UCR3_AWAKEN(v)   (((v) << BP_UARTV2_UCR3_AWAKEN) & BM_UARTV2_UCR3_AWAKEN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_AWAKEN.
+#define BF_UART_UCR3_AWAKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_AWAKEN) & BM_UART_UCR3_AWAKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWAKEN field to a new value.
-#define BW_UARTV2_UCR3_AWAKEN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_AWAKEN) | BF_UARTV2_UCR3_AWAKEN(v)))
+#define BW_UART_UCR3_AWAKEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_AWAKEN) | BF_UART_UCR3_AWAKEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field AIRINTEN[5] (RW)
+/* --- Register HW_UART_UCR3, field AIRINTEN[5] (RW)
  *
  * Asynchronous IR WAKE Interrupt Enable. Controls the asynchronous IR WAKE interrupt. An interrupt
  * is generated when AIRINTEN is asserted and a pulse is detected on the RXD pin.
@@ -1541,27 +1392,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable the AIRINT interrupt
  */
 
-#define BP_UARTV2_UCR3_AIRINTEN      (5)      //!< Bit position for UARTV2_UCR3_AIRINTEN.
-#define BM_UARTV2_UCR3_AIRINTEN      (0x00000020)  //!< Bit mask for UARTV2_UCR3_AIRINTEN.
+#define BP_UART_UCR3_AIRINTEN      (5)      //!< Bit position for UART_UCR3_AIRINTEN.
+#define BM_UART_UCR3_AIRINTEN      (0x00000020)  //!< Bit mask for UART_UCR3_AIRINTEN.
 
-//! @brief Get value of UARTV2_UCR3_AIRINTEN from a register value.
-#define BG_UARTV2_UCR3_AIRINTEN(r)   (((r) & BM_UARTV2_UCR3_AIRINTEN) >> BP_UARTV2_UCR3_AIRINTEN)
+//! @brief Get value of UART_UCR3_AIRINTEN from a register value.
+#define BG_UART_UCR3_AIRINTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_AIRINTEN) >> BP_UART_UCR3_AIRINTEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_AIRINTEN.
-#define BF_UARTV2_UCR3_AIRINTEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_AIRINTEN) & BM_UARTV2_UCR3_AIRINTEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_AIRINTEN.
-#define BF_UARTV2_UCR3_AIRINTEN(v)   (((v) << BP_UARTV2_UCR3_AIRINTEN) & BM_UARTV2_UCR3_AIRINTEN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_AIRINTEN.
+#define BF_UART_UCR3_AIRINTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_AIRINTEN) & BM_UART_UCR3_AIRINTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AIRINTEN field to a new value.
-#define BW_UARTV2_UCR3_AIRINTEN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_AIRINTEN) | BF_UARTV2_UCR3_AIRINTEN(v)))
+#define BW_UART_UCR3_AIRINTEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_AIRINTEN) | BF_UART_UCR3_AIRINTEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field RXDSEN[6] (RW)
+/* --- Register HW_UART_UCR3, field RXDSEN[6] (RW)
  *
  * Receive Status Interrupt Enable. Controls the receive status interrupt ( interrupt_rx
  * interrupt_uart ). When this bit is enabled and RXDS status bit is set, the interrupt interrupt_rx
@@ -1572,27 +1418,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable the RXDS interrupt
  */
 
-#define BP_UARTV2_UCR3_RXDSEN      (6)      //!< Bit position for UARTV2_UCR3_RXDSEN.
-#define BM_UARTV2_UCR3_RXDSEN      (0x00000040)  //!< Bit mask for UARTV2_UCR3_RXDSEN.
+#define BP_UART_UCR3_RXDSEN      (6)      //!< Bit position for UART_UCR3_RXDSEN.
+#define BM_UART_UCR3_RXDSEN      (0x00000040)  //!< Bit mask for UART_UCR3_RXDSEN.
 
-//! @brief Get value of UARTV2_UCR3_RXDSEN from a register value.
-#define BG_UARTV2_UCR3_RXDSEN(r)   (((r) & BM_UARTV2_UCR3_RXDSEN) >> BP_UARTV2_UCR3_RXDSEN)
+//! @brief Get value of UART_UCR3_RXDSEN from a register value.
+#define BG_UART_UCR3_RXDSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RXDSEN) >> BP_UART_UCR3_RXDSEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_RXDSEN.
-#define BF_UARTV2_UCR3_RXDSEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_RXDSEN) & BM_UARTV2_UCR3_RXDSEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_RXDSEN.
-#define BF_UARTV2_UCR3_RXDSEN(v)   (((v) << BP_UARTV2_UCR3_RXDSEN) & BM_UARTV2_UCR3_RXDSEN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_RXDSEN.
+#define BF_UART_UCR3_RXDSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RXDSEN) & BM_UART_UCR3_RXDSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDSEN field to a new value.
-#define BW_UARTV2_UCR3_RXDSEN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_RXDSEN) | BF_UARTV2_UCR3_RXDSEN(v)))
+#define BW_UART_UCR3_RXDSEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RXDSEN) | BF_UART_UCR3_RXDSEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field ADNIMP[7] (RW)
+/* --- Register HW_UART_UCR3, field ADNIMP[7] (RW)
  *
  * Autobaud Detection Not Improved-. Disables new features of autobaud detection (See , for more
  * details).
@@ -1602,27 +1443,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Keep old autobaud detection mechanism
  */
 
-#define BP_UARTV2_UCR3_ADNIMP      (7)      //!< Bit position for UARTV2_UCR3_ADNIMP.
-#define BM_UARTV2_UCR3_ADNIMP      (0x00000080)  //!< Bit mask for UARTV2_UCR3_ADNIMP.
+#define BP_UART_UCR3_ADNIMP      (7)      //!< Bit position for UART_UCR3_ADNIMP.
+#define BM_UART_UCR3_ADNIMP      (0x00000080)  //!< Bit mask for UART_UCR3_ADNIMP.
 
-//! @brief Get value of UARTV2_UCR3_ADNIMP from a register value.
-#define BG_UARTV2_UCR3_ADNIMP(r)   (((r) & BM_UARTV2_UCR3_ADNIMP) >> BP_UARTV2_UCR3_ADNIMP)
+//! @brief Get value of UART_UCR3_ADNIMP from a register value.
+#define BG_UART_UCR3_ADNIMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_ADNIMP) >> BP_UART_UCR3_ADNIMP)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_ADNIMP.
-#define BF_UARTV2_UCR3_ADNIMP(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_ADNIMP) & BM_UARTV2_UCR3_ADNIMP)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_ADNIMP.
-#define BF_UARTV2_UCR3_ADNIMP(v)   (((v) << BP_UARTV2_UCR3_ADNIMP) & BM_UARTV2_UCR3_ADNIMP)
-#endif
+//! @brief Format value for bitfield UART_UCR3_ADNIMP.
+#define BF_UART_UCR3_ADNIMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_ADNIMP) & BM_UART_UCR3_ADNIMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADNIMP field to a new value.
-#define BW_UARTV2_UCR3_ADNIMP(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_ADNIMP) | BF_UARTV2_UCR3_ADNIMP(v)))
+#define BW_UART_UCR3_ADNIMP(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_ADNIMP) | BF_UART_UCR3_ADNIMP(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field RI[8] (RW)
+/* --- Register HW_UART_UCR3, field RI[8] (RW)
  *
  * This bit is not used in this chip. Ring Indicator . In DCE mode this bit is used by software to
  * control the RI output pin for the modem interface. In DTE mode, when this bit is set, it will
@@ -1635,27 +1471,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - RIDELT interrupt enabled (DTE mode)
  */
 
-#define BP_UARTV2_UCR3_RI      (8)      //!< Bit position for UARTV2_UCR3_RI.
-#define BM_UARTV2_UCR3_RI      (0x00000100)  //!< Bit mask for UARTV2_UCR3_RI.
+#define BP_UART_UCR3_RI      (8)      //!< Bit position for UART_UCR3_RI.
+#define BM_UART_UCR3_RI      (0x00000100)  //!< Bit mask for UART_UCR3_RI.
 
-//! @brief Get value of UARTV2_UCR3_RI from a register value.
-#define BG_UARTV2_UCR3_RI(r)   (((r) & BM_UARTV2_UCR3_RI) >> BP_UARTV2_UCR3_RI)
+//! @brief Get value of UART_UCR3_RI from a register value.
+#define BG_UART_UCR3_RI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_RI) >> BP_UART_UCR3_RI)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_RI.
-#define BF_UARTV2_UCR3_RI(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_RI) & BM_UARTV2_UCR3_RI)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_RI.
-#define BF_UARTV2_UCR3_RI(v)   (((v) << BP_UARTV2_UCR3_RI) & BM_UARTV2_UCR3_RI)
-#endif
+//! @brief Format value for bitfield UART_UCR3_RI.
+#define BF_UART_UCR3_RI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_RI) & BM_UART_UCR3_RI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RI field to a new value.
-#define BW_UARTV2_UCR3_RI(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_RI) | BF_UARTV2_UCR3_RI(v)))
+#define BW_UART_UCR3_RI(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RI) | BF_UART_UCR3_RI(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field DCD[9] (RW)
+/* --- Register HW_UART_UCR3, field DCD[9] (RW)
  *
  * This bit is not used in this chip. Data Carrier Detect . In DCE mode this bit is used by software
  * to control the DCD output pin for the modem interface. In DTE mode, when this bit is set, it will
@@ -1668,27 +1499,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - DCDDELT interrupt enabled (DTE mode)
  */
 
-#define BP_UARTV2_UCR3_DCD      (9)      //!< Bit position for UARTV2_UCR3_DCD.
-#define BM_UARTV2_UCR3_DCD      (0x00000200)  //!< Bit mask for UARTV2_UCR3_DCD.
+#define BP_UART_UCR3_DCD      (9)      //!< Bit position for UART_UCR3_DCD.
+#define BM_UART_UCR3_DCD      (0x00000200)  //!< Bit mask for UART_UCR3_DCD.
 
-//! @brief Get value of UARTV2_UCR3_DCD from a register value.
-#define BG_UARTV2_UCR3_DCD(r)   (((r) & BM_UARTV2_UCR3_DCD) >> BP_UARTV2_UCR3_DCD)
+//! @brief Get value of UART_UCR3_DCD from a register value.
+#define BG_UART_UCR3_DCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DCD) >> BP_UART_UCR3_DCD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_DCD.
-#define BF_UARTV2_UCR3_DCD(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_DCD) & BM_UARTV2_UCR3_DCD)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_DCD.
-#define BF_UARTV2_UCR3_DCD(v)   (((v) << BP_UARTV2_UCR3_DCD) & BM_UARTV2_UCR3_DCD)
-#endif
+//! @brief Format value for bitfield UART_UCR3_DCD.
+#define BF_UART_UCR3_DCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DCD) & BM_UART_UCR3_DCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCD field to a new value.
-#define BW_UARTV2_UCR3_DCD(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_DCD) | BF_UARTV2_UCR3_DCD(v)))
+#define BW_UART_UCR3_DCD(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DCD) | BF_UART_UCR3_DCD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field DSR[10] (RW)
+/* --- Register HW_UART_UCR3, field DSR[10] (RW)
  *
  * This bit is not used in this chip. Data Set Ready . This bit is used by software to control the
  * DSR/DTR output pin for the modem interface. In DCE mode it applies to DSR and in DTE mode it
@@ -1699,27 +1525,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - DSR/ DTR pin is logic one
  */
 
-#define BP_UARTV2_UCR3_DSR      (10)      //!< Bit position for UARTV2_UCR3_DSR.
-#define BM_UARTV2_UCR3_DSR      (0x00000400)  //!< Bit mask for UARTV2_UCR3_DSR.
+#define BP_UART_UCR3_DSR      (10)      //!< Bit position for UART_UCR3_DSR.
+#define BM_UART_UCR3_DSR      (0x00000400)  //!< Bit mask for UART_UCR3_DSR.
 
-//! @brief Get value of UARTV2_UCR3_DSR from a register value.
-#define BG_UARTV2_UCR3_DSR(r)   (((r) & BM_UARTV2_UCR3_DSR) >> BP_UARTV2_UCR3_DSR)
+//! @brief Get value of UART_UCR3_DSR from a register value.
+#define BG_UART_UCR3_DSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DSR) >> BP_UART_UCR3_DSR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_DSR.
-#define BF_UARTV2_UCR3_DSR(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_DSR) & BM_UARTV2_UCR3_DSR)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_DSR.
-#define BF_UARTV2_UCR3_DSR(v)   (((v) << BP_UARTV2_UCR3_DSR) & BM_UARTV2_UCR3_DSR)
-#endif
+//! @brief Format value for bitfield UART_UCR3_DSR.
+#define BF_UART_UCR3_DSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DSR) & BM_UART_UCR3_DSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSR field to a new value.
-#define BW_UARTV2_UCR3_DSR(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_DSR) | BF_UARTV2_UCR3_DSR(v)))
+#define BW_UART_UCR3_DSR(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DSR) | BF_UART_UCR3_DSR(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field FRAERREN[11] (RW)
+/* --- Register HW_UART_UCR3, field FRAERREN[11] (RW)
  *
  * Frame Error Interrupt Enable. Enables/Disables the interrupt. When asserted, FRAERREN causes the
  * FRAMERR bit to generate an interrupt.
@@ -1729,27 +1550,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable the frame error interrupt
  */
 
-#define BP_UARTV2_UCR3_FRAERREN      (11)      //!< Bit position for UARTV2_UCR3_FRAERREN.
-#define BM_UARTV2_UCR3_FRAERREN      (0x00000800)  //!< Bit mask for UARTV2_UCR3_FRAERREN.
+#define BP_UART_UCR3_FRAERREN      (11)      //!< Bit position for UART_UCR3_FRAERREN.
+#define BM_UART_UCR3_FRAERREN      (0x00000800)  //!< Bit mask for UART_UCR3_FRAERREN.
 
-//! @brief Get value of UARTV2_UCR3_FRAERREN from a register value.
-#define BG_UARTV2_UCR3_FRAERREN(r)   (((r) & BM_UARTV2_UCR3_FRAERREN) >> BP_UARTV2_UCR3_FRAERREN)
+//! @brief Get value of UART_UCR3_FRAERREN from a register value.
+#define BG_UART_UCR3_FRAERREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_FRAERREN) >> BP_UART_UCR3_FRAERREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_FRAERREN.
-#define BF_UARTV2_UCR3_FRAERREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_FRAERREN) & BM_UARTV2_UCR3_FRAERREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_FRAERREN.
-#define BF_UARTV2_UCR3_FRAERREN(v)   (((v) << BP_UARTV2_UCR3_FRAERREN) & BM_UARTV2_UCR3_FRAERREN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_FRAERREN.
+#define BF_UART_UCR3_FRAERREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_FRAERREN) & BM_UART_UCR3_FRAERREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAERREN field to a new value.
-#define BW_UARTV2_UCR3_FRAERREN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_FRAERREN) | BF_UARTV2_UCR3_FRAERREN(v)))
+#define BW_UART_UCR3_FRAERREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_FRAERREN) | BF_UART_UCR3_FRAERREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field PARERREN[12] (RW)
+/* --- Register HW_UART_UCR3, field PARERREN[12] (RW)
  *
  * Parity Error Interrupt Enable. Enables/Disables the interrupt. When asserted, PARERREN causes the
  * PARITYERR bit to generate an interrupt.
@@ -1759,27 +1575,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Enable the parity error interrupt
  */
 
-#define BP_UARTV2_UCR3_PARERREN      (12)      //!< Bit position for UARTV2_UCR3_PARERREN.
-#define BM_UARTV2_UCR3_PARERREN      (0x00001000)  //!< Bit mask for UARTV2_UCR3_PARERREN.
+#define BP_UART_UCR3_PARERREN      (12)      //!< Bit position for UART_UCR3_PARERREN.
+#define BM_UART_UCR3_PARERREN      (0x00001000)  //!< Bit mask for UART_UCR3_PARERREN.
 
-//! @brief Get value of UARTV2_UCR3_PARERREN from a register value.
-#define BG_UARTV2_UCR3_PARERREN(r)   (((r) & BM_UARTV2_UCR3_PARERREN) >> BP_UARTV2_UCR3_PARERREN)
+//! @brief Get value of UART_UCR3_PARERREN from a register value.
+#define BG_UART_UCR3_PARERREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_PARERREN) >> BP_UART_UCR3_PARERREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_PARERREN.
-#define BF_UARTV2_UCR3_PARERREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_PARERREN) & BM_UARTV2_UCR3_PARERREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_PARERREN.
-#define BF_UARTV2_UCR3_PARERREN(v)   (((v) << BP_UARTV2_UCR3_PARERREN) & BM_UARTV2_UCR3_PARERREN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_PARERREN.
+#define BF_UART_UCR3_PARERREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_PARERREN) & BM_UART_UCR3_PARERREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARERREN field to a new value.
-#define BW_UARTV2_UCR3_PARERREN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_PARERREN) | BF_UARTV2_UCR3_PARERREN(v)))
+#define BW_UART_UCR3_PARERREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_PARERREN) | BF_UART_UCR3_PARERREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field DTREN[13] (RW)
+/* --- Register HW_UART_UCR3, field DTREN[13] (RW)
  *
  * This bit is not used in this chip. Data Terminal Ready Interrupt Enable . When this bit is set,
  * it will enable the status bit DTRF (USR2 [13]) (DTR/DSR edge sensitive interrupt) to cause an
@@ -1790,27 +1601,22 @@ typedef union _hw_uartv2_ucr3
  * 1 - Data Terminal Ready Interrupt Enabled
  */
 
-#define BP_UARTV2_UCR3_DTREN      (13)      //!< Bit position for UARTV2_UCR3_DTREN.
-#define BM_UARTV2_UCR3_DTREN      (0x00002000)  //!< Bit mask for UARTV2_UCR3_DTREN.
+#define BP_UART_UCR3_DTREN      (13)      //!< Bit position for UART_UCR3_DTREN.
+#define BM_UART_UCR3_DTREN      (0x00002000)  //!< Bit mask for UART_UCR3_DTREN.
 
-//! @brief Get value of UARTV2_UCR3_DTREN from a register value.
-#define BG_UARTV2_UCR3_DTREN(r)   (((r) & BM_UARTV2_UCR3_DTREN) >> BP_UARTV2_UCR3_DTREN)
+//! @brief Get value of UART_UCR3_DTREN from a register value.
+#define BG_UART_UCR3_DTREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DTREN) >> BP_UART_UCR3_DTREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_DTREN.
-#define BF_UARTV2_UCR3_DTREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_DTREN) & BM_UARTV2_UCR3_DTREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_DTREN.
-#define BF_UARTV2_UCR3_DTREN(v)   (((v) << BP_UARTV2_UCR3_DTREN) & BM_UARTV2_UCR3_DTREN)
-#endif
+//! @brief Format value for bitfield UART_UCR3_DTREN.
+#define BF_UART_UCR3_DTREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DTREN) & BM_UART_UCR3_DTREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTREN field to a new value.
-#define BW_UARTV2_UCR3_DTREN(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_DTREN) | BF_UARTV2_UCR3_DTREN(v)))
+#define BW_UART_UCR3_DTREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DTREN) | BF_UART_UCR3_DTREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR3, field DPEC[15:14] (RW)
+/* --- Register HW_UART_UCR3, field DPEC[15:14] (RW)
  *
  * This bit is not used in this chip. DTR/DSR Interrupt Edge Control . These bits control the edge
  * of DTR (DCE) or DSR (DTE) on which an interrupt will be generated. An interrupt will only be
@@ -1822,38 +1628,37 @@ typedef union _hw_uartv2_ucr3
  * 1X - interrupt generated on either edge
  */
 
-#define BP_UARTV2_UCR3_DPEC      (14)      //!< Bit position for UARTV2_UCR3_DPEC.
-#define BM_UARTV2_UCR3_DPEC      (0x0000c000)  //!< Bit mask for UARTV2_UCR3_DPEC.
+#define BP_UART_UCR3_DPEC      (14)      //!< Bit position for UART_UCR3_DPEC.
+#define BM_UART_UCR3_DPEC      (0x0000c000)  //!< Bit mask for UART_UCR3_DPEC.
 
-//! @brief Get value of UARTV2_UCR3_DPEC from a register value.
-#define BG_UARTV2_UCR3_DPEC(r)   (((r) & BM_UARTV2_UCR3_DPEC) >> BP_UARTV2_UCR3_DPEC)
+//! @brief Get value of UART_UCR3_DPEC from a register value.
+#define BG_UART_UCR3_DPEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR3_DPEC) >> BP_UART_UCR3_DPEC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR3_DPEC.
-#define BF_UARTV2_UCR3_DPEC(v)   ((((reg32_t) v) << BP_UARTV2_UCR3_DPEC) & BM_UARTV2_UCR3_DPEC)
-#else
-//! @brief Format value for bitfield UARTV2_UCR3_DPEC.
-#define BF_UARTV2_UCR3_DPEC(v)   (((v) << BP_UARTV2_UCR3_DPEC) & BM_UARTV2_UCR3_DPEC)
-#endif
+//! @brief Format value for bitfield UART_UCR3_DPEC.
+#define BF_UART_UCR3_DPEC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR3_DPEC) & BM_UART_UCR3_DPEC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DPEC field to a new value.
-#define BW_UARTV2_UCR3_DPEC(x, v)   (HW_UARTV2_UCR3_WR(x, (HW_UARTV2_UCR3_RD(x) & ~BM_UARTV2_UCR3_DPEC) | BF_UARTV2_UCR3_DPEC(v)))
+#define BW_UART_UCR3_DPEC(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DPEC) | BF_UART_UCR3_DPEC(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UCR4 - UART Control Register 4
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UCR4 - UART Control Register 4 (RW)
+ * @brief HW_UART_UCR4 - UART Control Register 4 (RW)
  *
  * Reset value: 0x00008000
  *
 
  */
-typedef union _hw_uartv2_ucr4
+typedef union _hw_uart_ucr4
 {
     reg32_t U;
-    struct _hw_uartv2_ucr4_bitfields
+    struct _hw_uart_ucr4_bitfields
     {
         unsigned DREN : 1; //!< [0] Receive Data Ready Interrupt Enable . Enables/Disables the RDR bit to generate an interrupt.
         unsigned OREN : 1; //!< [1] Receiver Overrun Interrupt Enable . Enables/Disables the ORE bit to generate an interrupt.
@@ -1868,28 +1673,28 @@ typedef union _hw_uartv2_ucr4
         unsigned CTSTL : 6; //!< [15:10] CTS Trigger Level . Controls the threshold at which the CTS pin is deasserted by the RxFIFO. After the trigger level is reached and the CTS pin is deasserted, the RxFIFO continues to receive data until it is full. The CTSTL bits are encoded as shown in the Settings column. Settings 0 to 32 are in use. All other settings are Reserved.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ucr4_t;
+} hw_uart_ucr4_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UCR4 register
+ * constants & macros for entire multi-block UART_UCR4 register
  */
-#define HW_UARTV2_UCR4_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x8c)
+#define HW_UART_UCR4_ADDR(x)      (REGS_UART_BASE(x) + 0x8c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UCR4(x)           (*(volatile hw_uartv2_ucr4_t *) HW_UARTV2_UCR4_ADDR(x))
-#define HW_UARTV2_UCR4_RD(x)        (HW_UARTV2_UCR4(x).U)
-#define HW_UARTV2_UCR4_WR(x, v)     (HW_UARTV2_UCR4(x).U = (v))
-#define HW_UARTV2_UCR4_SET(x, v)    (HW_UARTV2_UCR4_WR(x, HW_UARTV2_UCR4_RD(x) |  (v)))
-#define HW_UARTV2_UCR4_CLR(x, v)    (HW_UARTV2_UCR4_WR(x, HW_UARTV2_UCR4_RD(x) & ~(v)))
-#define HW_UARTV2_UCR4_TOG(x, v)    (HW_UARTV2_UCR4_WR(x, HW_UARTV2_UCR4_RD(x) ^  (v)))
+#define HW_UART_UCR4(x)           (*(volatile hw_uart_ucr4_t *) HW_UART_UCR4_ADDR(x))
+#define HW_UART_UCR4_RD(x)        (HW_UART_UCR4(x).U)
+#define HW_UART_UCR4_WR(x, v)     (HW_UART_UCR4(x).U = (v))
+#define HW_UART_UCR4_SET(x, v)    (HW_UART_UCR4_WR(x, HW_UART_UCR4_RD(x) |  (v)))
+#define HW_UART_UCR4_CLR(x, v)    (HW_UART_UCR4_WR(x, HW_UART_UCR4_RD(x) & ~(v)))
+#define HW_UART_UCR4_TOG(x, v)    (HW_UART_UCR4_WR(x, HW_UART_UCR4_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UCR4 bitfields
+ * constants & macros for individual UART_UCR4 bitfields
  */
 
-/* --- Register HW_UARTV2_UCR4, field DREN[0] (RW)
+/* --- Register HW_UART_UCR4, field DREN[0] (RW)
  *
  * Receive Data Ready Interrupt Enable . Enables/Disables the RDR bit to generate an interrupt.
  *
@@ -1898,27 +1703,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Enable RDR interrupt
  */
 
-#define BP_UARTV2_UCR4_DREN      (0)      //!< Bit position for UARTV2_UCR4_DREN.
-#define BM_UARTV2_UCR4_DREN      (0x00000001)  //!< Bit mask for UARTV2_UCR4_DREN.
+#define BP_UART_UCR4_DREN      (0)      //!< Bit position for UART_UCR4_DREN.
+#define BM_UART_UCR4_DREN      (0x00000001)  //!< Bit mask for UART_UCR4_DREN.
 
-//! @brief Get value of UARTV2_UCR4_DREN from a register value.
-#define BG_UARTV2_UCR4_DREN(r)   (((r) & BM_UARTV2_UCR4_DREN) >> BP_UARTV2_UCR4_DREN)
+//! @brief Get value of UART_UCR4_DREN from a register value.
+#define BG_UART_UCR4_DREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_DREN) >> BP_UART_UCR4_DREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_DREN.
-#define BF_UARTV2_UCR4_DREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_DREN) & BM_UARTV2_UCR4_DREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_DREN.
-#define BF_UARTV2_UCR4_DREN(v)   (((v) << BP_UARTV2_UCR4_DREN) & BM_UARTV2_UCR4_DREN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_DREN.
+#define BF_UART_UCR4_DREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_DREN) & BM_UART_UCR4_DREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DREN field to a new value.
-#define BW_UARTV2_UCR4_DREN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_DREN) | BF_UARTV2_UCR4_DREN(v)))
+#define BW_UART_UCR4_DREN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_DREN) | BF_UART_UCR4_DREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field OREN[1] (RW)
+/* --- Register HW_UART_UCR4, field OREN[1] (RW)
  *
  * Receiver Overrun Interrupt Enable . Enables/Disables the ORE bit to generate an interrupt.
  *
@@ -1927,27 +1727,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Enable ORE interrupt
  */
 
-#define BP_UARTV2_UCR4_OREN      (1)      //!< Bit position for UARTV2_UCR4_OREN.
-#define BM_UARTV2_UCR4_OREN      (0x00000002)  //!< Bit mask for UARTV2_UCR4_OREN.
+#define BP_UART_UCR4_OREN      (1)      //!< Bit position for UART_UCR4_OREN.
+#define BM_UART_UCR4_OREN      (0x00000002)  //!< Bit mask for UART_UCR4_OREN.
 
-//! @brief Get value of UARTV2_UCR4_OREN from a register value.
-#define BG_UARTV2_UCR4_OREN(r)   (((r) & BM_UARTV2_UCR4_OREN) >> BP_UARTV2_UCR4_OREN)
+//! @brief Get value of UART_UCR4_OREN from a register value.
+#define BG_UART_UCR4_OREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_OREN) >> BP_UART_UCR4_OREN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_OREN.
-#define BF_UARTV2_UCR4_OREN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_OREN) & BM_UARTV2_UCR4_OREN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_OREN.
-#define BF_UARTV2_UCR4_OREN(v)   (((v) << BP_UARTV2_UCR4_OREN) & BM_UARTV2_UCR4_OREN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_OREN.
+#define BF_UART_UCR4_OREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_OREN) & BM_UART_UCR4_OREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OREN field to a new value.
-#define BW_UARTV2_UCR4_OREN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_OREN) | BF_UARTV2_UCR4_OREN(v)))
+#define BW_UART_UCR4_OREN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_OREN) | BF_UART_UCR4_OREN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field BKEN[2] (RW)
+/* --- Register HW_UART_UCR4, field BKEN[2] (RW)
  *
  * BREAK Condition Detected Interrupt Enable . Enables/Disables the BRCD bit to generate an
  * interrupt.
@@ -1957,27 +1752,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Enable the BRCD interrupt
  */
 
-#define BP_UARTV2_UCR4_BKEN      (2)      //!< Bit position for UARTV2_UCR4_BKEN.
-#define BM_UARTV2_UCR4_BKEN      (0x00000004)  //!< Bit mask for UARTV2_UCR4_BKEN.
+#define BP_UART_UCR4_BKEN      (2)      //!< Bit position for UART_UCR4_BKEN.
+#define BM_UART_UCR4_BKEN      (0x00000004)  //!< Bit mask for UART_UCR4_BKEN.
 
-//! @brief Get value of UARTV2_UCR4_BKEN from a register value.
-#define BG_UARTV2_UCR4_BKEN(r)   (((r) & BM_UARTV2_UCR4_BKEN) >> BP_UARTV2_UCR4_BKEN)
+//! @brief Get value of UART_UCR4_BKEN from a register value.
+#define BG_UART_UCR4_BKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_BKEN) >> BP_UART_UCR4_BKEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_BKEN.
-#define BF_UARTV2_UCR4_BKEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_BKEN) & BM_UARTV2_UCR4_BKEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_BKEN.
-#define BF_UARTV2_UCR4_BKEN(v)   (((v) << BP_UARTV2_UCR4_BKEN) & BM_UARTV2_UCR4_BKEN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_BKEN.
+#define BF_UART_UCR4_BKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_BKEN) & BM_UART_UCR4_BKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BKEN field to a new value.
-#define BW_UARTV2_UCR4_BKEN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_BKEN) | BF_UARTV2_UCR4_BKEN(v)))
+#define BW_UART_UCR4_BKEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_BKEN) | BF_UART_UCR4_BKEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field TCEN[3] (RW)
+/* --- Register HW_UART_UCR4, field TCEN[3] (RW)
  *
  * Transmit Complete Interrupt Enable . Enables/Disables the TXDC bit to generate an interrupt (
  * interrupt_tx interrupt_uart = 0) An interrupt will be issued as long as TCEN and TXDC are high
@@ -1989,27 +1779,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Enable TXDC interrupt
  */
 
-#define BP_UARTV2_UCR4_TCEN      (3)      //!< Bit position for UARTV2_UCR4_TCEN.
-#define BM_UARTV2_UCR4_TCEN      (0x00000008)  //!< Bit mask for UARTV2_UCR4_TCEN.
+#define BP_UART_UCR4_TCEN      (3)      //!< Bit position for UART_UCR4_TCEN.
+#define BM_UART_UCR4_TCEN      (0x00000008)  //!< Bit mask for UART_UCR4_TCEN.
 
-//! @brief Get value of UARTV2_UCR4_TCEN from a register value.
-#define BG_UARTV2_UCR4_TCEN(r)   (((r) & BM_UARTV2_UCR4_TCEN) >> BP_UARTV2_UCR4_TCEN)
+//! @brief Get value of UART_UCR4_TCEN from a register value.
+#define BG_UART_UCR4_TCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_TCEN) >> BP_UART_UCR4_TCEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_TCEN.
-#define BF_UARTV2_UCR4_TCEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_TCEN) & BM_UARTV2_UCR4_TCEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_TCEN.
-#define BF_UARTV2_UCR4_TCEN(v)   (((v) << BP_UARTV2_UCR4_TCEN) & BM_UARTV2_UCR4_TCEN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_TCEN.
+#define BF_UART_UCR4_TCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_TCEN) & BM_UART_UCR4_TCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCEN field to a new value.
-#define BW_UARTV2_UCR4_TCEN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_TCEN) | BF_UARTV2_UCR4_TCEN(v)))
+#define BW_UART_UCR4_TCEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_TCEN) | BF_UART_UCR4_TCEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field LPBYP[4] (RW)
+/* --- Register HW_UART_UCR4, field LPBYP[4] (RW)
  *
  * Low Power Bypass . Allows to bypass the low power new features in UART. To use during debug
  * phase.
@@ -2019,27 +1804,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Low power features disabled
  */
 
-#define BP_UARTV2_UCR4_LPBYP      (4)      //!< Bit position for UARTV2_UCR4_LPBYP.
-#define BM_UARTV2_UCR4_LPBYP      (0x00000010)  //!< Bit mask for UARTV2_UCR4_LPBYP.
+#define BP_UART_UCR4_LPBYP      (4)      //!< Bit position for UART_UCR4_LPBYP.
+#define BM_UART_UCR4_LPBYP      (0x00000010)  //!< Bit mask for UART_UCR4_LPBYP.
 
-//! @brief Get value of UARTV2_UCR4_LPBYP from a register value.
-#define BG_UARTV2_UCR4_LPBYP(r)   (((r) & BM_UARTV2_UCR4_LPBYP) >> BP_UARTV2_UCR4_LPBYP)
+//! @brief Get value of UART_UCR4_LPBYP from a register value.
+#define BG_UART_UCR4_LPBYP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_LPBYP) >> BP_UART_UCR4_LPBYP)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_LPBYP.
-#define BF_UARTV2_UCR4_LPBYP(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_LPBYP) & BM_UARTV2_UCR4_LPBYP)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_LPBYP.
-#define BF_UARTV2_UCR4_LPBYP(v)   (((v) << BP_UARTV2_UCR4_LPBYP) & BM_UARTV2_UCR4_LPBYP)
-#endif
+//! @brief Format value for bitfield UART_UCR4_LPBYP.
+#define BF_UART_UCR4_LPBYP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_LPBYP) & BM_UART_UCR4_LPBYP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPBYP field to a new value.
-#define BW_UARTV2_UCR4_LPBYP(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_LPBYP) | BF_UARTV2_UCR4_LPBYP(v)))
+#define BW_UART_UCR4_LPBYP(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_LPBYP) | BF_UART_UCR4_LPBYP(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field IRSC[5] (RW)
+/* --- Register HW_UART_UCR4, field IRSC[5] (RW)
  *
  * IR Special Case . Selects the clock for the vote logic. When set, IRSC switches the vote logic
  * clock from the sampling clock to the UART reference clock. The IR pulses are counted a
@@ -2050,27 +1830,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - The vote logic uses the UART reference clock
  */
 
-#define BP_UARTV2_UCR4_IRSC      (5)      //!< Bit position for UARTV2_UCR4_IRSC.
-#define BM_UARTV2_UCR4_IRSC      (0x00000020)  //!< Bit mask for UARTV2_UCR4_IRSC.
+#define BP_UART_UCR4_IRSC      (5)      //!< Bit position for UART_UCR4_IRSC.
+#define BM_UART_UCR4_IRSC      (0x00000020)  //!< Bit mask for UART_UCR4_IRSC.
 
-//! @brief Get value of UARTV2_UCR4_IRSC from a register value.
-#define BG_UARTV2_UCR4_IRSC(r)   (((r) & BM_UARTV2_UCR4_IRSC) >> BP_UARTV2_UCR4_IRSC)
+//! @brief Get value of UART_UCR4_IRSC from a register value.
+#define BG_UART_UCR4_IRSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_IRSC) >> BP_UART_UCR4_IRSC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_IRSC.
-#define BF_UARTV2_UCR4_IRSC(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_IRSC) & BM_UARTV2_UCR4_IRSC)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_IRSC.
-#define BF_UARTV2_UCR4_IRSC(v)   (((v) << BP_UARTV2_UCR4_IRSC) & BM_UARTV2_UCR4_IRSC)
-#endif
+//! @brief Format value for bitfield UART_UCR4_IRSC.
+#define BF_UART_UCR4_IRSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_IRSC) & BM_UART_UCR4_IRSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRSC field to a new value.
-#define BW_UARTV2_UCR4_IRSC(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_IRSC) | BF_UARTV2_UCR4_IRSC(v)))
+#define BW_UART_UCR4_IRSC(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_IRSC) | BF_UART_UCR4_IRSC(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field IDDMAEN[6] (RW)
+/* --- Register HW_UART_UCR4, field IDDMAEN[6] (RW)
  *
  * DMA IDLE Condition Detected Interrupt Enable Enables/Disables the receive DMA request dma_req_rx
  * for the IDLE interrupt (triggered with IDLE flag in USR2[12]).
@@ -2080,27 +1855,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - DMA IDLE interrupt enabled
  */
 
-#define BP_UARTV2_UCR4_IDDMAEN      (6)      //!< Bit position for UARTV2_UCR4_IDDMAEN.
-#define BM_UARTV2_UCR4_IDDMAEN      (0x00000040)  //!< Bit mask for UARTV2_UCR4_IDDMAEN.
+#define BP_UART_UCR4_IDDMAEN      (6)      //!< Bit position for UART_UCR4_IDDMAEN.
+#define BM_UART_UCR4_IDDMAEN      (0x00000040)  //!< Bit mask for UART_UCR4_IDDMAEN.
 
-//! @brief Get value of UARTV2_UCR4_IDDMAEN from a register value.
-#define BG_UARTV2_UCR4_IDDMAEN(r)   (((r) & BM_UARTV2_UCR4_IDDMAEN) >> BP_UARTV2_UCR4_IDDMAEN)
+//! @brief Get value of UART_UCR4_IDDMAEN from a register value.
+#define BG_UART_UCR4_IDDMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_IDDMAEN) >> BP_UART_UCR4_IDDMAEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_IDDMAEN.
-#define BF_UARTV2_UCR4_IDDMAEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_IDDMAEN) & BM_UARTV2_UCR4_IDDMAEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_IDDMAEN.
-#define BF_UARTV2_UCR4_IDDMAEN(v)   (((v) << BP_UARTV2_UCR4_IDDMAEN) & BM_UARTV2_UCR4_IDDMAEN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_IDDMAEN.
+#define BF_UART_UCR4_IDDMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_IDDMAEN) & BM_UART_UCR4_IDDMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDDMAEN field to a new value.
-#define BW_UARTV2_UCR4_IDDMAEN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_IDDMAEN) | BF_UARTV2_UCR4_IDDMAEN(v)))
+#define BW_UART_UCR4_IDDMAEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_IDDMAEN) | BF_UART_UCR4_IDDMAEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field WKEN[7] (RW)
+/* --- Register HW_UART_UCR4, field WKEN[7] (RW)
  *
  * WAKE Interrupt Enable . Enables/Disables the WAKE bit to generate an interrupt. The WAKE bit is
  * set at the detection of a start bit by the receiver.
@@ -2110,27 +1880,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Enable the WAKE interrupt
  */
 
-#define BP_UARTV2_UCR4_WKEN      (7)      //!< Bit position for UARTV2_UCR4_WKEN.
-#define BM_UARTV2_UCR4_WKEN      (0x00000080)  //!< Bit mask for UARTV2_UCR4_WKEN.
+#define BP_UART_UCR4_WKEN      (7)      //!< Bit position for UART_UCR4_WKEN.
+#define BM_UART_UCR4_WKEN      (0x00000080)  //!< Bit mask for UART_UCR4_WKEN.
 
-//! @brief Get value of UARTV2_UCR4_WKEN from a register value.
-#define BG_UARTV2_UCR4_WKEN(r)   (((r) & BM_UARTV2_UCR4_WKEN) >> BP_UARTV2_UCR4_WKEN)
+//! @brief Get value of UART_UCR4_WKEN from a register value.
+#define BG_UART_UCR4_WKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_WKEN) >> BP_UART_UCR4_WKEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_WKEN.
-#define BF_UARTV2_UCR4_WKEN(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_WKEN) & BM_UARTV2_UCR4_WKEN)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_WKEN.
-#define BF_UARTV2_UCR4_WKEN(v)   (((v) << BP_UARTV2_UCR4_WKEN) & BM_UARTV2_UCR4_WKEN)
-#endif
+//! @brief Format value for bitfield UART_UCR4_WKEN.
+#define BF_UART_UCR4_WKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_WKEN) & BM_UART_UCR4_WKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKEN field to a new value.
-#define BW_UARTV2_UCR4_WKEN(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_WKEN) | BF_UARTV2_UCR4_WKEN(v)))
+#define BW_UART_UCR4_WKEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_WKEN) | BF_UART_UCR4_WKEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field ENIRI[8] (RW)
+/* --- Register HW_UART_UCR4, field ENIRI[8] (RW)
  *
  * Serial Infrared Interrupt Enable . Enables/Disables the serial infrared interrupt.
  *
@@ -2139,27 +1904,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - Serial infrared Interrupt enabled
  */
 
-#define BP_UARTV2_UCR4_ENIRI      (8)      //!< Bit position for UARTV2_UCR4_ENIRI.
-#define BM_UARTV2_UCR4_ENIRI      (0x00000100)  //!< Bit mask for UARTV2_UCR4_ENIRI.
+#define BP_UART_UCR4_ENIRI      (8)      //!< Bit position for UART_UCR4_ENIRI.
+#define BM_UART_UCR4_ENIRI      (0x00000100)  //!< Bit mask for UART_UCR4_ENIRI.
 
-//! @brief Get value of UARTV2_UCR4_ENIRI from a register value.
-#define BG_UARTV2_UCR4_ENIRI(r)   (((r) & BM_UARTV2_UCR4_ENIRI) >> BP_UARTV2_UCR4_ENIRI)
+//! @brief Get value of UART_UCR4_ENIRI from a register value.
+#define BG_UART_UCR4_ENIRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_ENIRI) >> BP_UART_UCR4_ENIRI)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_ENIRI.
-#define BF_UARTV2_UCR4_ENIRI(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_ENIRI) & BM_UARTV2_UCR4_ENIRI)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_ENIRI.
-#define BF_UARTV2_UCR4_ENIRI(v)   (((v) << BP_UARTV2_UCR4_ENIRI) & BM_UARTV2_UCR4_ENIRI)
-#endif
+//! @brief Format value for bitfield UART_UCR4_ENIRI.
+#define BF_UART_UCR4_ENIRI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_ENIRI) & BM_UART_UCR4_ENIRI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENIRI field to a new value.
-#define BW_UARTV2_UCR4_ENIRI(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_ENIRI) | BF_UARTV2_UCR4_ENIRI(v)))
+#define BW_UART_UCR4_ENIRI(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_ENIRI) | BF_UART_UCR4_ENIRI(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field INVR[9] (RW)
+/* --- Register HW_UART_UCR4, field INVR[9] (RW)
  *
  * Invert RXD input in RS-232/RS-485 Mode, d etermine RXD input logic level being sampled in In IrDA
  * mode. In RS232/RS-485 Mode(UMCR[0] = 1), if this bit is set to 1, the RXD input is inverted
@@ -2174,27 +1934,22 @@ typedef union _hw_uartv2_ucr4
  * 1 - RXD active high detection
  */
 
-#define BP_UARTV2_UCR4_INVR      (9)      //!< Bit position for UARTV2_UCR4_INVR.
-#define BM_UARTV2_UCR4_INVR      (0x00000200)  //!< Bit mask for UARTV2_UCR4_INVR.
+#define BP_UART_UCR4_INVR      (9)      //!< Bit position for UART_UCR4_INVR.
+#define BM_UART_UCR4_INVR      (0x00000200)  //!< Bit mask for UART_UCR4_INVR.
 
-//! @brief Get value of UARTV2_UCR4_INVR from a register value.
-#define BG_UARTV2_UCR4_INVR(r)   (((r) & BM_UARTV2_UCR4_INVR) >> BP_UARTV2_UCR4_INVR)
+//! @brief Get value of UART_UCR4_INVR from a register value.
+#define BG_UART_UCR4_INVR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_INVR) >> BP_UART_UCR4_INVR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_INVR.
-#define BF_UARTV2_UCR4_INVR(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_INVR) & BM_UARTV2_UCR4_INVR)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_INVR.
-#define BF_UARTV2_UCR4_INVR(v)   (((v) << BP_UARTV2_UCR4_INVR) & BM_UARTV2_UCR4_INVR)
-#endif
+//! @brief Format value for bitfield UART_UCR4_INVR.
+#define BF_UART_UCR4_INVR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_INVR) & BM_UART_UCR4_INVR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INVR field to a new value.
-#define BW_UARTV2_UCR4_INVR(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_INVR) | BF_UARTV2_UCR4_INVR(v)))
+#define BW_UART_UCR4_INVR(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_INVR) | BF_UART_UCR4_INVR(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UCR4, field CTSTL[15:10] (RW)
+/* --- Register HW_UART_UCR4, field CTSTL[15:10] (RW)
  *
  * CTS Trigger Level . Controls the threshold at which the CTS pin is deasserted by the RxFIFO.
  * After the trigger level is reached and the CTS pin is deasserted, the RxFIFO continues to receive
@@ -2209,38 +1964,37 @@ typedef union _hw_uartv2_ucr4
  * 100000 - 32 characters in the RxFIFO (maximum)
  */
 
-#define BP_UARTV2_UCR4_CTSTL      (10)      //!< Bit position for UARTV2_UCR4_CTSTL.
-#define BM_UARTV2_UCR4_CTSTL      (0x0000fc00)  //!< Bit mask for UARTV2_UCR4_CTSTL.
+#define BP_UART_UCR4_CTSTL      (10)      //!< Bit position for UART_UCR4_CTSTL.
+#define BM_UART_UCR4_CTSTL      (0x0000fc00)  //!< Bit mask for UART_UCR4_CTSTL.
 
-//! @brief Get value of UARTV2_UCR4_CTSTL from a register value.
-#define BG_UARTV2_UCR4_CTSTL(r)   (((r) & BM_UARTV2_UCR4_CTSTL) >> BP_UARTV2_UCR4_CTSTL)
+//! @brief Get value of UART_UCR4_CTSTL from a register value.
+#define BG_UART_UCR4_CTSTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UCR4_CTSTL) >> BP_UART_UCR4_CTSTL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UCR4_CTSTL.
-#define BF_UARTV2_UCR4_CTSTL(v)   ((((reg32_t) v) << BP_UARTV2_UCR4_CTSTL) & BM_UARTV2_UCR4_CTSTL)
-#else
-//! @brief Format value for bitfield UARTV2_UCR4_CTSTL.
-#define BF_UARTV2_UCR4_CTSTL(v)   (((v) << BP_UARTV2_UCR4_CTSTL) & BM_UARTV2_UCR4_CTSTL)
-#endif
+//! @brief Format value for bitfield UART_UCR4_CTSTL.
+#define BF_UART_UCR4_CTSTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UCR4_CTSTL) & BM_UART_UCR4_CTSTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTSTL field to a new value.
-#define BW_UARTV2_UCR4_CTSTL(x, v)   (HW_UARTV2_UCR4_WR(x, (HW_UARTV2_UCR4_RD(x) & ~BM_UARTV2_UCR4_CTSTL) | BF_UARTV2_UCR4_CTSTL(v)))
+#define BW_UART_UCR4_CTSTL(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_CTSTL) | BF_UART_UCR4_CTSTL(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UFCR - UART FIFO Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UFCR - UART FIFO Control Register (RW)
+ * @brief HW_UART_UFCR - UART FIFO Control Register (RW)
  *
  * Reset value: 0x00000801
  *
 
  */
-typedef union _hw_uartv2_ufcr
+typedef union _hw_uart_ufcr
 {
     reg32_t U;
-    struct _hw_uartv2_ufcr_bitfields
+    struct _hw_uart_ufcr_bitfields
     {
         unsigned RXTL : 6; //!< [5:0] Receiver Trigger Level . Controls the threshold at which a maskable interrupt is generated by the RxFIFO. A maskable interrupt is generated whenever the data level in the RxFIFO reaches the selected threshold. The RXTL bits are encoded as shown in the Settings column. Setting 0 to 32 are in use. All other settings are Reserved.
         unsigned DCEDTE : 1; //!< [6] DCE/DTE mode select . Select UART as data communication equipment (DCE mode) or as data terminal equipment (DTE mode).
@@ -2248,28 +2002,28 @@ typedef union _hw_uartv2_ufcr
         unsigned TXTL : 6; //!< [15:10] Transmitter Trigger Level . Controls the threshold at which a maskable interrupt is generated by the TxFIFO. A maskable interrupt is generated whenever the data level in the TxFIFO falls below the selected threshold. The bits are encoded as shown in the Settings column. Settings 0 to 32 are in use. All other settings are Reserved.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ufcr_t;
+} hw_uart_ufcr_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UFCR register
+ * constants & macros for entire multi-block UART_UFCR register
  */
-#define HW_UARTV2_UFCR_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x90)
+#define HW_UART_UFCR_ADDR(x)      (REGS_UART_BASE(x) + 0x90)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UFCR(x)           (*(volatile hw_uartv2_ufcr_t *) HW_UARTV2_UFCR_ADDR(x))
-#define HW_UARTV2_UFCR_RD(x)        (HW_UARTV2_UFCR(x).U)
-#define HW_UARTV2_UFCR_WR(x, v)     (HW_UARTV2_UFCR(x).U = (v))
-#define HW_UARTV2_UFCR_SET(x, v)    (HW_UARTV2_UFCR_WR(x, HW_UARTV2_UFCR_RD(x) |  (v)))
-#define HW_UARTV2_UFCR_CLR(x, v)    (HW_UARTV2_UFCR_WR(x, HW_UARTV2_UFCR_RD(x) & ~(v)))
-#define HW_UARTV2_UFCR_TOG(x, v)    (HW_UARTV2_UFCR_WR(x, HW_UARTV2_UFCR_RD(x) ^  (v)))
+#define HW_UART_UFCR(x)           (*(volatile hw_uart_ufcr_t *) HW_UART_UFCR_ADDR(x))
+#define HW_UART_UFCR_RD(x)        (HW_UART_UFCR(x).U)
+#define HW_UART_UFCR_WR(x, v)     (HW_UART_UFCR(x).U = (v))
+#define HW_UART_UFCR_SET(x, v)    (HW_UART_UFCR_WR(x, HW_UART_UFCR_RD(x) |  (v)))
+#define HW_UART_UFCR_CLR(x, v)    (HW_UART_UFCR_WR(x, HW_UART_UFCR_RD(x) & ~(v)))
+#define HW_UART_UFCR_TOG(x, v)    (HW_UART_UFCR_WR(x, HW_UART_UFCR_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UFCR bitfields
+ * constants & macros for individual UART_UFCR bitfields
  */
 
-/* --- Register HW_UARTV2_UFCR, field RXTL[5:0] (RW)
+/* --- Register HW_UART_UFCR, field RXTL[5:0] (RW)
  *
  * Receiver Trigger Level . Controls the threshold at which a maskable interrupt is generated by the
  * RxFIFO. A maskable interrupt is generated whenever the data level in the RxFIFO reaches the
@@ -2285,27 +2039,22 @@ typedef union _hw_uartv2_ufcr
  * 100000 - RxFIFO has 32 characters (maximum)
  */
 
-#define BP_UARTV2_UFCR_RXTL      (0)      //!< Bit position for UARTV2_UFCR_RXTL.
-#define BM_UARTV2_UFCR_RXTL      (0x0000003f)  //!< Bit mask for UARTV2_UFCR_RXTL.
+#define BP_UART_UFCR_RXTL      (0)      //!< Bit position for UART_UFCR_RXTL.
+#define BM_UART_UFCR_RXTL      (0x0000003f)  //!< Bit mask for UART_UFCR_RXTL.
 
-//! @brief Get value of UARTV2_UFCR_RXTL from a register value.
-#define BG_UARTV2_UFCR_RXTL(r)   (((r) & BM_UARTV2_UFCR_RXTL) >> BP_UARTV2_UFCR_RXTL)
+//! @brief Get value of UART_UFCR_RXTL from a register value.
+#define BG_UART_UFCR_RXTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_RXTL) >> BP_UART_UFCR_RXTL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UFCR_RXTL.
-#define BF_UARTV2_UFCR_RXTL(v)   ((((reg32_t) v) << BP_UARTV2_UFCR_RXTL) & BM_UARTV2_UFCR_RXTL)
-#else
-//! @brief Format value for bitfield UARTV2_UFCR_RXTL.
-#define BF_UARTV2_UFCR_RXTL(v)   (((v) << BP_UARTV2_UFCR_RXTL) & BM_UARTV2_UFCR_RXTL)
-#endif
+//! @brief Format value for bitfield UART_UFCR_RXTL.
+#define BF_UART_UFCR_RXTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_RXTL) & BM_UART_UFCR_RXTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXTL field to a new value.
-#define BW_UARTV2_UFCR_RXTL(x, v)   (HW_UARTV2_UFCR_WR(x, (HW_UARTV2_UFCR_RD(x) & ~BM_UARTV2_UFCR_RXTL) | BF_UARTV2_UFCR_RXTL(v)))
+#define BW_UART_UFCR_RXTL(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_RXTL) | BF_UART_UFCR_RXTL(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UFCR, field DCEDTE[6] (RW)
+/* --- Register HW_UART_UFCR, field DCEDTE[6] (RW)
  *
  * DCE/DTE mode select . Select UART as data communication equipment (DCE mode) or as data terminal
  * equipment (DTE mode).
@@ -2315,27 +2064,22 @@ typedef union _hw_uartv2_ufcr
  * 1 - DTE mode selected
  */
 
-#define BP_UARTV2_UFCR_DCEDTE      (6)      //!< Bit position for UARTV2_UFCR_DCEDTE.
-#define BM_UARTV2_UFCR_DCEDTE      (0x00000040)  //!< Bit mask for UARTV2_UFCR_DCEDTE.
+#define BP_UART_UFCR_DCEDTE      (6)      //!< Bit position for UART_UFCR_DCEDTE.
+#define BM_UART_UFCR_DCEDTE      (0x00000040)  //!< Bit mask for UART_UFCR_DCEDTE.
 
-//! @brief Get value of UARTV2_UFCR_DCEDTE from a register value.
-#define BG_UARTV2_UFCR_DCEDTE(r)   (((r) & BM_UARTV2_UFCR_DCEDTE) >> BP_UARTV2_UFCR_DCEDTE)
+//! @brief Get value of UART_UFCR_DCEDTE from a register value.
+#define BG_UART_UFCR_DCEDTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_DCEDTE) >> BP_UART_UFCR_DCEDTE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UFCR_DCEDTE.
-#define BF_UARTV2_UFCR_DCEDTE(v)   ((((reg32_t) v) << BP_UARTV2_UFCR_DCEDTE) & BM_UARTV2_UFCR_DCEDTE)
-#else
-//! @brief Format value for bitfield UARTV2_UFCR_DCEDTE.
-#define BF_UARTV2_UFCR_DCEDTE(v)   (((v) << BP_UARTV2_UFCR_DCEDTE) & BM_UARTV2_UFCR_DCEDTE)
-#endif
+//! @brief Format value for bitfield UART_UFCR_DCEDTE.
+#define BF_UART_UFCR_DCEDTE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_DCEDTE) & BM_UART_UFCR_DCEDTE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCEDTE field to a new value.
-#define BW_UARTV2_UFCR_DCEDTE(x, v)   (HW_UARTV2_UFCR_WR(x, (HW_UARTV2_UFCR_RD(x) & ~BM_UARTV2_UFCR_DCEDTE) | BF_UARTV2_UFCR_DCEDTE(v)))
+#define BW_UART_UFCR_DCEDTE(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_DCEDTE) | BF_UART_UFCR_DCEDTE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UFCR, field RFDIV[9:7] (RW)
+/* --- Register HW_UART_UFCR, field RFDIV[9:7] (RW)
  *
  * Reference Frequency Divider. Controls the divide ratio for the reference clock. The input clock
  * is module_clock (ipg_perclk) . The output from the divider is ref_clk which is used by BRM to
@@ -2352,27 +2096,22 @@ typedef union _hw_uartv2_ufcr
  * 111 - Reserved
  */
 
-#define BP_UARTV2_UFCR_RFDIV      (7)      //!< Bit position for UARTV2_UFCR_RFDIV.
-#define BM_UARTV2_UFCR_RFDIV      (0x00000380)  //!< Bit mask for UARTV2_UFCR_RFDIV.
+#define BP_UART_UFCR_RFDIV      (7)      //!< Bit position for UART_UFCR_RFDIV.
+#define BM_UART_UFCR_RFDIV      (0x00000380)  //!< Bit mask for UART_UFCR_RFDIV.
 
-//! @brief Get value of UARTV2_UFCR_RFDIV from a register value.
-#define BG_UARTV2_UFCR_RFDIV(r)   (((r) & BM_UARTV2_UFCR_RFDIV) >> BP_UARTV2_UFCR_RFDIV)
+//! @brief Get value of UART_UFCR_RFDIV from a register value.
+#define BG_UART_UFCR_RFDIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_RFDIV) >> BP_UART_UFCR_RFDIV)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UFCR_RFDIV.
-#define BF_UARTV2_UFCR_RFDIV(v)   ((((reg32_t) v) << BP_UARTV2_UFCR_RFDIV) & BM_UARTV2_UFCR_RFDIV)
-#else
-//! @brief Format value for bitfield UARTV2_UFCR_RFDIV.
-#define BF_UARTV2_UFCR_RFDIV(v)   (((v) << BP_UARTV2_UFCR_RFDIV) & BM_UARTV2_UFCR_RFDIV)
-#endif
+//! @brief Format value for bitfield UART_UFCR_RFDIV.
+#define BF_UART_UFCR_RFDIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_RFDIV) & BM_UART_UFCR_RFDIV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFDIV field to a new value.
-#define BW_UARTV2_UFCR_RFDIV(x, v)   (HW_UARTV2_UFCR_WR(x, (HW_UARTV2_UFCR_RD(x) & ~BM_UARTV2_UFCR_RFDIV) | BF_UARTV2_UFCR_RFDIV(v)))
+#define BW_UART_UFCR_RFDIV(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_RFDIV) | BF_UART_UFCR_RFDIV(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UFCR, field TXTL[15:10] (RW)
+/* --- Register HW_UART_UFCR, field TXTL[15:10] (RW)
  *
  * Transmitter Trigger Level . Controls the threshold at which a maskable interrupt is generated by
  * the TxFIFO. A maskable interrupt is generated whenever the data level in the TxFIFO falls below
@@ -2389,38 +2128,37 @@ typedef union _hw_uartv2_ufcr
  * 100000 - TxFIFO has 32 characters (maximum)
  */
 
-#define BP_UARTV2_UFCR_TXTL      (10)      //!< Bit position for UARTV2_UFCR_TXTL.
-#define BM_UARTV2_UFCR_TXTL      (0x0000fc00)  //!< Bit mask for UARTV2_UFCR_TXTL.
+#define BP_UART_UFCR_TXTL      (10)      //!< Bit position for UART_UFCR_TXTL.
+#define BM_UART_UFCR_TXTL      (0x0000fc00)  //!< Bit mask for UART_UFCR_TXTL.
 
-//! @brief Get value of UARTV2_UFCR_TXTL from a register value.
-#define BG_UARTV2_UFCR_TXTL(r)   (((r) & BM_UARTV2_UFCR_TXTL) >> BP_UARTV2_UFCR_TXTL)
+//! @brief Get value of UART_UFCR_TXTL from a register value.
+#define BG_UART_UFCR_TXTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UFCR_TXTL) >> BP_UART_UFCR_TXTL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UFCR_TXTL.
-#define BF_UARTV2_UFCR_TXTL(v)   ((((reg32_t) v) << BP_UARTV2_UFCR_TXTL) & BM_UARTV2_UFCR_TXTL)
-#else
-//! @brief Format value for bitfield UARTV2_UFCR_TXTL.
-#define BF_UARTV2_UFCR_TXTL(v)   (((v) << BP_UARTV2_UFCR_TXTL) & BM_UARTV2_UFCR_TXTL)
-#endif
+//! @brief Format value for bitfield UART_UFCR_TXTL.
+#define BF_UART_UFCR_TXTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UFCR_TXTL) & BM_UART_UFCR_TXTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXTL field to a new value.
-#define BW_UARTV2_UFCR_TXTL(x, v)   (HW_UARTV2_UFCR_WR(x, (HW_UARTV2_UFCR_RD(x) & ~BM_UARTV2_UFCR_TXTL) | BF_UARTV2_UFCR_TXTL(v)))
+#define BW_UART_UFCR_TXTL(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_TXTL) | BF_UART_UFCR_TXTL(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_USR1 - UART Status Register 1
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_USR1 - UART Status Register 1 (RW)
+ * @brief HW_UART_USR1 - UART Status Register 1 (RW)
  *
  * Reset value: 0x00002040
  *
 
  */
-typedef union _hw_uartv2_usr1
+typedef union _hw_uart_usr1
 {
     reg32_t U;
-    struct _hw_uartv2_usr1_bitfields
+    struct _hw_uart_usr1_bitfields
     {
         unsigned RESERVED0 : 3; //!< [2:0] Reserved
         unsigned SAD : 1; //!< [3] RS-485 Slave Address Detected Interrupt Flag. Indicates if RS-485 Slave Address was detected . SAD was asserted in RS-485 mode when the SADEN bit is set and Slave Address is detected in RxFIFO (in Nomal Address Detect Mode, the 9 th data bit = 1; in Automatic Address Detect Mode, the received charater matches the programmed SLADDR).
@@ -2438,28 +2176,28 @@ typedef union _hw_uartv2_usr1
         unsigned PARITYERR : 1; //!< [15] Parity Error Interrupt Flag . Indicates a parity error is detected. PARITYERR is cleared by writing 1 to it. Writing 0 to PARITYERR has no effect. When parity is disabled, PARITYERR always reads 0. At reset, PARITYERR is set to 0.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_usr1_t;
+} hw_uart_usr1_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_USR1 register
+ * constants & macros for entire multi-block UART_USR1 register
  */
-#define HW_UARTV2_USR1_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x94)
+#define HW_UART_USR1_ADDR(x)      (REGS_UART_BASE(x) + 0x94)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_USR1(x)           (*(volatile hw_uartv2_usr1_t *) HW_UARTV2_USR1_ADDR(x))
-#define HW_UARTV2_USR1_RD(x)        (HW_UARTV2_USR1(x).U)
-#define HW_UARTV2_USR1_WR(x, v)     (HW_UARTV2_USR1(x).U = (v))
-#define HW_UARTV2_USR1_SET(x, v)    (HW_UARTV2_USR1_WR(x, HW_UARTV2_USR1_RD(x) |  (v)))
-#define HW_UARTV2_USR1_CLR(x, v)    (HW_UARTV2_USR1_WR(x, HW_UARTV2_USR1_RD(x) & ~(v)))
-#define HW_UARTV2_USR1_TOG(x, v)    (HW_UARTV2_USR1_WR(x, HW_UARTV2_USR1_RD(x) ^  (v)))
+#define HW_UART_USR1(x)           (*(volatile hw_uart_usr1_t *) HW_UART_USR1_ADDR(x))
+#define HW_UART_USR1_RD(x)        (HW_UART_USR1(x).U)
+#define HW_UART_USR1_WR(x, v)     (HW_UART_USR1(x).U = (v))
+#define HW_UART_USR1_SET(x, v)    (HW_UART_USR1_WR(x, HW_UART_USR1_RD(x) |  (v)))
+#define HW_UART_USR1_CLR(x, v)    (HW_UART_USR1_WR(x, HW_UART_USR1_RD(x) & ~(v)))
+#define HW_UART_USR1_TOG(x, v)    (HW_UART_USR1_WR(x, HW_UART_USR1_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_USR1 bitfields
+ * constants & macros for individual UART_USR1 bitfields
  */
 
-/* --- Register HW_UARTV2_USR1, field SAD[3] (W1C)
+/* --- Register HW_UART_USR1, field SAD[3] (W1C)
  *
  * RS-485 Slave Address Detected Interrupt Flag. Indicates if RS-485 Slave Address was detected .
  * SAD was asserted in RS-485 mode when the SADEN bit is set and Slave Address is detected in RxFIFO
@@ -2471,27 +2209,22 @@ typedef union _hw_uartv2_usr1
  * 1 - Slave address detected
  */
 
-#define BP_UARTV2_USR1_SAD      (3)      //!< Bit position for UARTV2_USR1_SAD.
-#define BM_UARTV2_USR1_SAD      (0x00000008)  //!< Bit mask for UARTV2_USR1_SAD.
+#define BP_UART_USR1_SAD      (3)      //!< Bit position for UART_USR1_SAD.
+#define BM_UART_USR1_SAD      (0x00000008)  //!< Bit mask for UART_USR1_SAD.
 
-//! @brief Get value of UARTV2_USR1_SAD from a register value.
-#define BG_UARTV2_USR1_SAD(r)   (((r) & BM_UARTV2_USR1_SAD) >> BP_UARTV2_USR1_SAD)
+//! @brief Get value of UART_USR1_SAD from a register value.
+#define BG_UART_USR1_SAD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_SAD) >> BP_UART_USR1_SAD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_SAD.
-#define BF_UARTV2_USR1_SAD(v)   ((((reg32_t) v) << BP_UARTV2_USR1_SAD) & BM_UARTV2_USR1_SAD)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_SAD.
-#define BF_UARTV2_USR1_SAD(v)   (((v) << BP_UARTV2_USR1_SAD) & BM_UARTV2_USR1_SAD)
-#endif
+//! @brief Format value for bitfield UART_USR1_SAD.
+#define BF_UART_USR1_SAD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_SAD) & BM_UART_USR1_SAD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SAD field to a new value.
-#define BW_UARTV2_USR1_SAD(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_SAD) | BF_UARTV2_USR1_SAD(v)))
+#define BW_UART_USR1_SAD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_SAD) | BF_UART_USR1_SAD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field AWAKE[4] (W1C)
+/* --- Register HW_UART_USR1, field AWAKE[4] (W1C)
  *
  * Asynchronous WAKE Interrupt Flag. Indicates that a falling edge was detected on the UART_RXD_IR
  * RXD pin. Clear AWAKE by writing 1 to it. Writing 0 to AWAKE has no effect. Caution: AWAKE
@@ -2503,27 +2236,22 @@ typedef union _hw_uartv2_usr1
  * 1 - A falling edge was detected on the RXD Serial pin
  */
 
-#define BP_UARTV2_USR1_AWAKE      (4)      //!< Bit position for UARTV2_USR1_AWAKE.
-#define BM_UARTV2_USR1_AWAKE      (0x00000010)  //!< Bit mask for UARTV2_USR1_AWAKE.
+#define BP_UART_USR1_AWAKE      (4)      //!< Bit position for UART_USR1_AWAKE.
+#define BM_UART_USR1_AWAKE      (0x00000010)  //!< Bit mask for UART_USR1_AWAKE.
 
-//! @brief Get value of UARTV2_USR1_AWAKE from a register value.
-#define BG_UARTV2_USR1_AWAKE(r)   (((r) & BM_UARTV2_USR1_AWAKE) >> BP_UARTV2_USR1_AWAKE)
+//! @brief Get value of UART_USR1_AWAKE from a register value.
+#define BG_UART_USR1_AWAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AWAKE) >> BP_UART_USR1_AWAKE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_AWAKE.
-#define BF_UARTV2_USR1_AWAKE(v)   ((((reg32_t) v) << BP_UARTV2_USR1_AWAKE) & BM_UARTV2_USR1_AWAKE)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_AWAKE.
-#define BF_UARTV2_USR1_AWAKE(v)   (((v) << BP_UARTV2_USR1_AWAKE) & BM_UARTV2_USR1_AWAKE)
-#endif
+//! @brief Format value for bitfield UART_USR1_AWAKE.
+#define BF_UART_USR1_AWAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AWAKE) & BM_UART_USR1_AWAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AWAKE field to a new value.
-#define BW_UARTV2_USR1_AWAKE(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_AWAKE) | BF_UARTV2_USR1_AWAKE(v)))
+#define BW_UART_USR1_AWAKE(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AWAKE) | BF_UART_USR1_AWAKE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field AIRINT[5] (W1C)
+/* --- Register HW_UART_USR1, field AIRINT[5] (W1C)
  *
  * Asynchronous IR WAKE Interrupt Flag. Indicates that the IR WAKE pulse was detected on the
  * UART_RXD_IR RXD pin. Clear AIRINT by writing 1 to it. Writing 0 to AIRINT has no effect. Caution:
@@ -2535,27 +2263,22 @@ typedef union _hw_uartv2_usr1
  * 1 - A pulse was detected on the RXD IrDA pin
  */
 
-#define BP_UARTV2_USR1_AIRINT      (5)      //!< Bit position for UARTV2_USR1_AIRINT.
-#define BM_UARTV2_USR1_AIRINT      (0x00000020)  //!< Bit mask for UARTV2_USR1_AIRINT.
+#define BP_UART_USR1_AIRINT      (5)      //!< Bit position for UART_USR1_AIRINT.
+#define BM_UART_USR1_AIRINT      (0x00000020)  //!< Bit mask for UART_USR1_AIRINT.
 
-//! @brief Get value of UARTV2_USR1_AIRINT from a register value.
-#define BG_UARTV2_USR1_AIRINT(r)   (((r) & BM_UARTV2_USR1_AIRINT) >> BP_UARTV2_USR1_AIRINT)
+//! @brief Get value of UART_USR1_AIRINT from a register value.
+#define BG_UART_USR1_AIRINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AIRINT) >> BP_UART_USR1_AIRINT)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_AIRINT.
-#define BF_UARTV2_USR1_AIRINT(v)   ((((reg32_t) v) << BP_UARTV2_USR1_AIRINT) & BM_UARTV2_USR1_AIRINT)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_AIRINT.
-#define BF_UARTV2_USR1_AIRINT(v)   (((v) << BP_UARTV2_USR1_AIRINT) & BM_UARTV2_USR1_AIRINT)
-#endif
+//! @brief Format value for bitfield UART_USR1_AIRINT.
+#define BF_UART_USR1_AIRINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AIRINT) & BM_UART_USR1_AIRINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AIRINT field to a new value.
-#define BW_UARTV2_USR1_AIRINT(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_AIRINT) | BF_UARTV2_USR1_AIRINT(v)))
+#define BW_UART_USR1_AIRINT(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AIRINT) | BF_UART_USR1_AIRINT(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field RXDS[6] (RO)
+/* --- Register HW_UART_USR1, field RXDS[6] (RO)
  *
  * Receiver IDLE Interrupt Flag. Indicates that the receiver state machine is in an IDLE state, the
  * next state is IDLE, and the receive pin is high. RXDS is automatically cleared when a character
@@ -2566,14 +2289,14 @@ typedef union _hw_uartv2_usr1
  * 1 - Receiver is IDLE
  */
 
-#define BP_UARTV2_USR1_RXDS      (6)      //!< Bit position for UARTV2_USR1_RXDS.
-#define BM_UARTV2_USR1_RXDS      (0x00000040)  //!< Bit mask for UARTV2_USR1_RXDS.
+#define BP_UART_USR1_RXDS      (6)      //!< Bit position for UART_USR1_RXDS.
+#define BM_UART_USR1_RXDS      (0x00000040)  //!< Bit mask for UART_USR1_RXDS.
 
-//! @brief Get value of UARTV2_USR1_RXDS from a register value.
-#define BG_UARTV2_USR1_RXDS(r)   (((r) & BM_UARTV2_USR1_RXDS) >> BP_UARTV2_USR1_RXDS)
+//! @brief Get value of UART_USR1_RXDS from a register value.
+#define BG_UART_USR1_RXDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RXDS) >> BP_UART_USR1_RXDS)
 
 
-/* --- Register HW_UARTV2_USR1, field DTRD[7] (W1C)
+/* --- Register HW_UART_USR1, field DTRD[7] (W1C)
  *
  * This bit is not used in this chip. DTR Delta. Indicates whether DTR (in DCE mode) or DSR (in DTE
  * mode) pins changed state. DTRD generates a maskable interrupt if DTRDEN (UCR3[3]) is set. Clear
@@ -2584,27 +2307,22 @@ typedef union _hw_uartv2_usr1
  * 1 - DTR (DCE) or DSR (DTE) pin changed state (write 1 to clear)
  */
 
-#define BP_UARTV2_USR1_DTRD      (7)      //!< Bit position for UARTV2_USR1_DTRD.
-#define BM_UARTV2_USR1_DTRD      (0x00000080)  //!< Bit mask for UARTV2_USR1_DTRD.
+#define BP_UART_USR1_DTRD      (7)      //!< Bit position for UART_USR1_DTRD.
+#define BM_UART_USR1_DTRD      (0x00000080)  //!< Bit mask for UART_USR1_DTRD.
 
-//! @brief Get value of UARTV2_USR1_DTRD from a register value.
-#define BG_UARTV2_USR1_DTRD(r)   (((r) & BM_UARTV2_USR1_DTRD) >> BP_UARTV2_USR1_DTRD)
+//! @brief Get value of UART_USR1_DTRD from a register value.
+#define BG_UART_USR1_DTRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_DTRD) >> BP_UART_USR1_DTRD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_DTRD.
-#define BF_UARTV2_USR1_DTRD(v)   ((((reg32_t) v) << BP_UARTV2_USR1_DTRD) & BM_UARTV2_USR1_DTRD)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_DTRD.
-#define BF_UARTV2_USR1_DTRD(v)   (((v) << BP_UARTV2_USR1_DTRD) & BM_UARTV2_USR1_DTRD)
-#endif
+//! @brief Format value for bitfield UART_USR1_DTRD.
+#define BF_UART_USR1_DTRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_DTRD) & BM_UART_USR1_DTRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRD field to a new value.
-#define BW_UARTV2_USR1_DTRD(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_DTRD) | BF_UARTV2_USR1_DTRD(v)))
+#define BW_UART_USR1_DTRD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_DTRD) | BF_UART_USR1_DTRD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field AGTIM[8] (W1C)
+/* --- Register HW_UART_USR1, field AGTIM[8] (W1C)
  *
  * Ageing Timer Interrupt Flag. Indicates that data in the RxFIFO has been idle for a time of 8
  * character lengths (where a character length consists of 7 or 8 bits, depending on the setting of
@@ -2616,27 +2334,22 @@ typedef union _hw_uartv2_usr1
  * 1 - AGTIM is active (write 1 to clear)
  */
 
-#define BP_UARTV2_USR1_AGTIM      (8)      //!< Bit position for UARTV2_USR1_AGTIM.
-#define BM_UARTV2_USR1_AGTIM      (0x00000100)  //!< Bit mask for UARTV2_USR1_AGTIM.
+#define BP_UART_USR1_AGTIM      (8)      //!< Bit position for UART_USR1_AGTIM.
+#define BM_UART_USR1_AGTIM      (0x00000100)  //!< Bit mask for UART_USR1_AGTIM.
 
-//! @brief Get value of UARTV2_USR1_AGTIM from a register value.
-#define BG_UARTV2_USR1_AGTIM(r)   (((r) & BM_UARTV2_USR1_AGTIM) >> BP_UARTV2_USR1_AGTIM)
+//! @brief Get value of UART_USR1_AGTIM from a register value.
+#define BG_UART_USR1_AGTIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_AGTIM) >> BP_UART_USR1_AGTIM)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_AGTIM.
-#define BF_UARTV2_USR1_AGTIM(v)   ((((reg32_t) v) << BP_UARTV2_USR1_AGTIM) & BM_UARTV2_USR1_AGTIM)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_AGTIM.
-#define BF_UARTV2_USR1_AGTIM(v)   (((v) << BP_UARTV2_USR1_AGTIM) & BM_UARTV2_USR1_AGTIM)
-#endif
+//! @brief Format value for bitfield UART_USR1_AGTIM.
+#define BF_UART_USR1_AGTIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_AGTIM) & BM_UART_USR1_AGTIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AGTIM field to a new value.
-#define BW_UARTV2_USR1_AGTIM(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_AGTIM) | BF_UARTV2_USR1_AGTIM(v)))
+#define BW_UART_USR1_AGTIM(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AGTIM) | BF_UART_USR1_AGTIM(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field RRDY[9] (RO)
+/* --- Register HW_UART_USR1, field RRDY[9] (RO)
  *
  * Receiver Ready Interrupt / DMA Flag . Indicates that the RxFIFO data level is above the threshold
  * set by the RXTL bits. (See the RXTL bits description in for setting the interrupt threshold.)
@@ -2648,14 +2361,14 @@ typedef union _hw_uartv2_usr1
  * 1 - Character(s) ready (interrupt posted)
  */
 
-#define BP_UARTV2_USR1_RRDY      (9)      //!< Bit position for UARTV2_USR1_RRDY.
-#define BM_UARTV2_USR1_RRDY      (0x00000200)  //!< Bit mask for UARTV2_USR1_RRDY.
+#define BP_UART_USR1_RRDY      (9)      //!< Bit position for UART_USR1_RRDY.
+#define BM_UART_USR1_RRDY      (0x00000200)  //!< Bit mask for UART_USR1_RRDY.
 
-//! @brief Get value of UARTV2_USR1_RRDY from a register value.
-#define BG_UARTV2_USR1_RRDY(r)   (((r) & BM_UARTV2_USR1_RRDY) >> BP_UARTV2_USR1_RRDY)
+//! @brief Get value of UART_USR1_RRDY from a register value.
+#define BG_UART_USR1_RRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RRDY) >> BP_UART_USR1_RRDY)
 
 
-/* --- Register HW_UARTV2_USR1, field FRAMERR[10] (W1C)
+/* --- Register HW_UART_USR1, field FRAMERR[10] (W1C)
  *
  * Frame Error Interrupt Flag . Indicates that a frame error is detected. The interrupt_mint
  * interrupt_uart interrupt will be generated if a frame error is detected and the interrupt is
@@ -2666,27 +2379,22 @@ typedef union _hw_uartv2_usr1
  * 1 - Frame error detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR1_FRAMERR      (10)      //!< Bit position for UARTV2_USR1_FRAMERR.
-#define BM_UARTV2_USR1_FRAMERR      (0x00000400)  //!< Bit mask for UARTV2_USR1_FRAMERR.
+#define BP_UART_USR1_FRAMERR      (10)      //!< Bit position for UART_USR1_FRAMERR.
+#define BM_UART_USR1_FRAMERR      (0x00000400)  //!< Bit mask for UART_USR1_FRAMERR.
 
-//! @brief Get value of UARTV2_USR1_FRAMERR from a register value.
-#define BG_UARTV2_USR1_FRAMERR(r)   (((r) & BM_UARTV2_USR1_FRAMERR) >> BP_UARTV2_USR1_FRAMERR)
+//! @brief Get value of UART_USR1_FRAMERR from a register value.
+#define BG_UART_USR1_FRAMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_FRAMERR) >> BP_UART_USR1_FRAMERR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_FRAMERR.
-#define BF_UARTV2_USR1_FRAMERR(v)   ((((reg32_t) v) << BP_UARTV2_USR1_FRAMERR) & BM_UARTV2_USR1_FRAMERR)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_FRAMERR.
-#define BF_UARTV2_USR1_FRAMERR(v)   (((v) << BP_UARTV2_USR1_FRAMERR) & BM_UARTV2_USR1_FRAMERR)
-#endif
+//! @brief Format value for bitfield UART_USR1_FRAMERR.
+#define BF_UART_USR1_FRAMERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_FRAMERR) & BM_UART_USR1_FRAMERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAMERR field to a new value.
-#define BW_UARTV2_USR1_FRAMERR(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_FRAMERR) | BF_UARTV2_USR1_FRAMERR(v)))
+#define BW_UART_USR1_FRAMERR(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_FRAMERR) | BF_UART_USR1_FRAMERR(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field ESCF[11] (W1C)
+/* --- Register HW_UART_USR1, field ESCF[11] (W1C)
  *
  * Escape Sequence Interrupt Flag . Indicates if an escape sequence was detected. ESCF is asserted
  * when the ESCEN bit is set and an escape sequence is detected in the RxFIFO. Clear ESCF by writing
@@ -2697,27 +2405,22 @@ typedef union _hw_uartv2_usr1
  * 1 - Escape sequence detected (write 1 to clear).
  */
 
-#define BP_UARTV2_USR1_ESCF      (11)      //!< Bit position for UARTV2_USR1_ESCF.
-#define BM_UARTV2_USR1_ESCF      (0x00000800)  //!< Bit mask for UARTV2_USR1_ESCF.
+#define BP_UART_USR1_ESCF      (11)      //!< Bit position for UART_USR1_ESCF.
+#define BM_UART_USR1_ESCF      (0x00000800)  //!< Bit mask for UART_USR1_ESCF.
 
-//! @brief Get value of UARTV2_USR1_ESCF from a register value.
-#define BG_UARTV2_USR1_ESCF(r)   (((r) & BM_UARTV2_USR1_ESCF) >> BP_UARTV2_USR1_ESCF)
+//! @brief Get value of UART_USR1_ESCF from a register value.
+#define BG_UART_USR1_ESCF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_ESCF) >> BP_UART_USR1_ESCF)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_ESCF.
-#define BF_UARTV2_USR1_ESCF(v)   ((((reg32_t) v) << BP_UARTV2_USR1_ESCF) & BM_UARTV2_USR1_ESCF)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_ESCF.
-#define BF_UARTV2_USR1_ESCF(v)   (((v) << BP_UARTV2_USR1_ESCF) & BM_UARTV2_USR1_ESCF)
-#endif
+//! @brief Format value for bitfield UART_USR1_ESCF.
+#define BF_UART_USR1_ESCF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_ESCF) & BM_UART_USR1_ESCF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESCF field to a new value.
-#define BW_UARTV2_USR1_ESCF(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_ESCF) | BF_UARTV2_USR1_ESCF(v)))
+#define BW_UART_USR1_ESCF(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_ESCF) | BF_UART_USR1_ESCF(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field RTSD[12] (W1C)
+/* --- Register HW_UART_USR1, field RTSD[12] (W1C)
  *
  * RTS Delta. Indicates whether the RTS pin changed state. It (RTSD) generates a maskable interrupt.
  * When in STOP mode, RTS assertion sets RTSD and can be used to wake the processor. The current
@@ -2729,27 +2432,22 @@ typedef union _hw_uartv2_usr1
  * 1 - RTS pin changed state (write 1 to clear)
  */
 
-#define BP_UARTV2_USR1_RTSD      (12)      //!< Bit position for UARTV2_USR1_RTSD.
-#define BM_UARTV2_USR1_RTSD      (0x00001000)  //!< Bit mask for UARTV2_USR1_RTSD.
+#define BP_UART_USR1_RTSD      (12)      //!< Bit position for UART_USR1_RTSD.
+#define BM_UART_USR1_RTSD      (0x00001000)  //!< Bit mask for UART_USR1_RTSD.
 
-//! @brief Get value of UARTV2_USR1_RTSD from a register value.
-#define BG_UARTV2_USR1_RTSD(r)   (((r) & BM_UARTV2_USR1_RTSD) >> BP_UARTV2_USR1_RTSD)
+//! @brief Get value of UART_USR1_RTSD from a register value.
+#define BG_UART_USR1_RTSD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RTSD) >> BP_UART_USR1_RTSD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_RTSD.
-#define BF_UARTV2_USR1_RTSD(v)   ((((reg32_t) v) << BP_UARTV2_USR1_RTSD) & BM_UARTV2_USR1_RTSD)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_RTSD.
-#define BF_UARTV2_USR1_RTSD(v)   (((v) << BP_UARTV2_USR1_RTSD) & BM_UARTV2_USR1_RTSD)
-#endif
+//! @brief Format value for bitfield UART_USR1_RTSD.
+#define BF_UART_USR1_RTSD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_RTSD) & BM_UART_USR1_RTSD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSD field to a new value.
-#define BW_UARTV2_USR1_RTSD(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_RTSD) | BF_UARTV2_USR1_RTSD(v)))
+#define BW_UART_USR1_RTSD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_RTSD) | BF_UART_USR1_RTSD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR1, field TRDY[13] (RO)
+/* --- Register HW_UART_USR1, field TRDY[13] (RO)
  *
  * Transmitter Ready Interrupt / DMA Flag . Indicates that the TxFIFO emptied below its target
  * threshold and requires data. TRDY is automatically cleared when the data level in the TxFIFO
@@ -2760,14 +2458,14 @@ typedef union _hw_uartv2_usr1
  * 1 - The transmitter requires data (interrupt posted)
  */
 
-#define BP_UARTV2_USR1_TRDY      (13)      //!< Bit position for UARTV2_USR1_TRDY.
-#define BM_UARTV2_USR1_TRDY      (0x00002000)  //!< Bit mask for UARTV2_USR1_TRDY.
+#define BP_UART_USR1_TRDY      (13)      //!< Bit position for UART_USR1_TRDY.
+#define BM_UART_USR1_TRDY      (0x00002000)  //!< Bit mask for UART_USR1_TRDY.
 
-//! @brief Get value of UARTV2_USR1_TRDY from a register value.
-#define BG_UARTV2_USR1_TRDY(r)   (((r) & BM_UARTV2_USR1_TRDY) >> BP_UARTV2_USR1_TRDY)
+//! @brief Get value of UART_USR1_TRDY from a register value.
+#define BG_UART_USR1_TRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_TRDY) >> BP_UART_USR1_TRDY)
 
 
-/* --- Register HW_UARTV2_USR1, field RTSS[14] (RO)
+/* --- Register HW_UART_USR1, field RTSS[14] (RO)
  *
  * RTS Pin Status . Indicates the current status of the RTS pin. A "snapshot" of the pin is taken
  * immediately before RTSS is presented to the data bus. RTSS cannot be cleared because all writes
@@ -2778,14 +2476,14 @@ typedef union _hw_uartv2_usr1
  * 1 - The RTS pin is low (active)
  */
 
-#define BP_UARTV2_USR1_RTSS      (14)      //!< Bit position for UARTV2_USR1_RTSS.
-#define BM_UARTV2_USR1_RTSS      (0x00004000)  //!< Bit mask for UARTV2_USR1_RTSS.
+#define BP_UART_USR1_RTSS      (14)      //!< Bit position for UART_USR1_RTSS.
+#define BM_UART_USR1_RTSS      (0x00004000)  //!< Bit mask for UART_USR1_RTSS.
 
-//! @brief Get value of UARTV2_USR1_RTSS from a register value.
-#define BG_UARTV2_USR1_RTSS(r)   (((r) & BM_UARTV2_USR1_RTSS) >> BP_UARTV2_USR1_RTSS)
+//! @brief Get value of UART_USR1_RTSS from a register value.
+#define BG_UART_USR1_RTSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RTSS) >> BP_UART_USR1_RTSS)
 
 
-/* --- Register HW_UARTV2_USR1, field PARITYERR[15] (W1C)
+/* --- Register HW_UART_USR1, field PARITYERR[15] (W1C)
  *
  * Parity Error Interrupt Flag . Indicates a parity error is detected. PARITYERR is cleared by
  * writing 1 to it. Writing 0 to PARITYERR has no effect. When parity is disabled, PARITYERR always
@@ -2796,38 +2494,37 @@ typedef union _hw_uartv2_usr1
  * 1 - Parity error detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR1_PARITYERR      (15)      //!< Bit position for UARTV2_USR1_PARITYERR.
-#define BM_UARTV2_USR1_PARITYERR      (0x00008000)  //!< Bit mask for UARTV2_USR1_PARITYERR.
+#define BP_UART_USR1_PARITYERR      (15)      //!< Bit position for UART_USR1_PARITYERR.
+#define BM_UART_USR1_PARITYERR      (0x00008000)  //!< Bit mask for UART_USR1_PARITYERR.
 
-//! @brief Get value of UARTV2_USR1_PARITYERR from a register value.
-#define BG_UARTV2_USR1_PARITYERR(r)   (((r) & BM_UARTV2_USR1_PARITYERR) >> BP_UARTV2_USR1_PARITYERR)
+//! @brief Get value of UART_USR1_PARITYERR from a register value.
+#define BG_UART_USR1_PARITYERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_PARITYERR) >> BP_UART_USR1_PARITYERR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR1_PARITYERR.
-#define BF_UARTV2_USR1_PARITYERR(v)   ((((reg32_t) v) << BP_UARTV2_USR1_PARITYERR) & BM_UARTV2_USR1_PARITYERR)
-#else
-//! @brief Format value for bitfield UARTV2_USR1_PARITYERR.
-#define BF_UARTV2_USR1_PARITYERR(v)   (((v) << BP_UARTV2_USR1_PARITYERR) & BM_UARTV2_USR1_PARITYERR)
-#endif
+//! @brief Format value for bitfield UART_USR1_PARITYERR.
+#define BF_UART_USR1_PARITYERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR1_PARITYERR) & BM_UART_USR1_PARITYERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PARITYERR field to a new value.
-#define BW_UARTV2_USR1_PARITYERR(x, v)   (HW_UARTV2_USR1_WR(x, (HW_UARTV2_USR1_RD(x) & ~BM_UARTV2_USR1_PARITYERR) | BF_UARTV2_USR1_PARITYERR(v)))
+#define BW_UART_USR1_PARITYERR(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_PARITYERR) | BF_UART_USR1_PARITYERR(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_USR2 - UART Status Register 2
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_USR2 - UART Status Register 2 (RW)
+ * @brief HW_UART_USR2 - UART Status Register 2 (RW)
  *
  * Reset value: 0x00004028
  *
 
  */
-typedef union _hw_uartv2_usr2
+typedef union _hw_uart_usr2
 {
     reg32_t U;
-    struct _hw_uartv2_usr2_bitfields
+    struct _hw_uart_usr2_bitfields
     {
         unsigned RDR : 1; //!< [0] Receive Data Ready -Indicates that at least 1 character is received and written to the RxFIFO. If the URXD register is read and there is only 1 character in the RxFIFO, RDR is automatically cleared.
         unsigned ORE : 1; //!< [1] Overrun Error . When set to 1, ORE indicates that the receive buffer (RxFIFO) was full (32 chars inside), and a 33rd character has been fully received. This 33rd character has been discarded. Clear ORE by writing 1 to it. Writing 0 to ORE has no effect.
@@ -2847,28 +2544,28 @@ typedef union _hw_uartv2_usr2
         unsigned ADET : 1; //!< [15] Automatic Baud Rate Detect Complete . Indicates that an "A" or "a" was received and that the receiver detected and verified the incoming baud rate. Clear ADET by writing 1 to it. Writing 0 to ADET has no effect.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_usr2_t;
+} hw_uart_usr2_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_USR2 register
+ * constants & macros for entire multi-block UART_USR2 register
  */
-#define HW_UARTV2_USR2_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x98)
+#define HW_UART_USR2_ADDR(x)      (REGS_UART_BASE(x) + 0x98)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_USR2(x)           (*(volatile hw_uartv2_usr2_t *) HW_UARTV2_USR2_ADDR(x))
-#define HW_UARTV2_USR2_RD(x)        (HW_UARTV2_USR2(x).U)
-#define HW_UARTV2_USR2_WR(x, v)     (HW_UARTV2_USR2(x).U = (v))
-#define HW_UARTV2_USR2_SET(x, v)    (HW_UARTV2_USR2_WR(x, HW_UARTV2_USR2_RD(x) |  (v)))
-#define HW_UARTV2_USR2_CLR(x, v)    (HW_UARTV2_USR2_WR(x, HW_UARTV2_USR2_RD(x) & ~(v)))
-#define HW_UARTV2_USR2_TOG(x, v)    (HW_UARTV2_USR2_WR(x, HW_UARTV2_USR2_RD(x) ^  (v)))
+#define HW_UART_USR2(x)           (*(volatile hw_uart_usr2_t *) HW_UART_USR2_ADDR(x))
+#define HW_UART_USR2_RD(x)        (HW_UART_USR2(x).U)
+#define HW_UART_USR2_WR(x, v)     (HW_UART_USR2(x).U = (v))
+#define HW_UART_USR2_SET(x, v)    (HW_UART_USR2_WR(x, HW_UART_USR2_RD(x) |  (v)))
+#define HW_UART_USR2_CLR(x, v)    (HW_UART_USR2_WR(x, HW_UART_USR2_RD(x) & ~(v)))
+#define HW_UART_USR2_TOG(x, v)    (HW_UART_USR2_WR(x, HW_UART_USR2_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_USR2 bitfields
+ * constants & macros for individual UART_USR2 bitfields
  */
 
-/* --- Register HW_UARTV2_USR2, field RDR[0] (RO)
+/* --- Register HW_UART_USR2, field RDR[0] (RO)
  *
  * Receive Data Ready -Indicates that at least 1 character is received and written to the RxFIFO. If
  * the URXD register is read and there is only 1 character in the RxFIFO, RDR is automatically
@@ -2879,14 +2576,14 @@ typedef union _hw_uartv2_usr2
  * 1 - Receive data ready
  */
 
-#define BP_UARTV2_USR2_RDR      (0)      //!< Bit position for UARTV2_USR2_RDR.
-#define BM_UARTV2_USR2_RDR      (0x00000001)  //!< Bit mask for UARTV2_USR2_RDR.
+#define BP_UART_USR2_RDR      (0)      //!< Bit position for UART_USR2_RDR.
+#define BM_UART_USR2_RDR      (0x00000001)  //!< Bit mask for UART_USR2_RDR.
 
-//! @brief Get value of UARTV2_USR2_RDR from a register value.
-#define BG_UARTV2_USR2_RDR(r)   (((r) & BM_UARTV2_USR2_RDR) >> BP_UARTV2_USR2_RDR)
+//! @brief Get value of UART_USR2_RDR from a register value.
+#define BG_UART_USR2_RDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RDR) >> BP_UART_USR2_RDR)
 
 
-/* --- Register HW_UARTV2_USR2, field ORE[1] (W1C)
+/* --- Register HW_UART_USR2, field ORE[1] (W1C)
  *
  * Overrun Error . When set to 1, ORE indicates that the receive buffer (RxFIFO) was full (32 chars
  * inside), and a 33rd character has been fully received. This 33rd character has been discarded.
@@ -2897,27 +2594,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Overrun error (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_ORE      (1)      //!< Bit position for UARTV2_USR2_ORE.
-#define BM_UARTV2_USR2_ORE      (0x00000002)  //!< Bit mask for UARTV2_USR2_ORE.
+#define BP_UART_USR2_ORE      (1)      //!< Bit position for UART_USR2_ORE.
+#define BM_UART_USR2_ORE      (0x00000002)  //!< Bit mask for UART_USR2_ORE.
 
-//! @brief Get value of UARTV2_USR2_ORE from a register value.
-#define BG_UARTV2_USR2_ORE(r)   (((r) & BM_UARTV2_USR2_ORE) >> BP_UARTV2_USR2_ORE)
+//! @brief Get value of UART_USR2_ORE from a register value.
+#define BG_UART_USR2_ORE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ORE) >> BP_UART_USR2_ORE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_ORE.
-#define BF_UARTV2_USR2_ORE(v)   ((((reg32_t) v) << BP_UARTV2_USR2_ORE) & BM_UARTV2_USR2_ORE)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_ORE.
-#define BF_UARTV2_USR2_ORE(v)   (((v) << BP_UARTV2_USR2_ORE) & BM_UARTV2_USR2_ORE)
-#endif
+//! @brief Format value for bitfield UART_USR2_ORE.
+#define BF_UART_USR2_ORE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ORE) & BM_UART_USR2_ORE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ORE field to a new value.
-#define BW_UARTV2_USR2_ORE(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_ORE) | BF_UARTV2_USR2_ORE(v)))
+#define BW_UART_USR2_ORE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ORE) | BF_UART_USR2_ORE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field BRCD[2] (W1C)
+/* --- Register HW_UART_USR2, field BRCD[2] (W1C)
  *
  * BREAK Condition Detected . Indicates that a BREAK condition was detected by the receiver. Clear
  * BRCD by writing 1 to it. Writing 0 to BRCD has no effect.
@@ -2927,27 +2619,22 @@ typedef union _hw_uartv2_usr2
  * 1 - A BREAK condition was detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_BRCD      (2)      //!< Bit position for UARTV2_USR2_BRCD.
-#define BM_UARTV2_USR2_BRCD      (0x00000004)  //!< Bit mask for UARTV2_USR2_BRCD.
+#define BP_UART_USR2_BRCD      (2)      //!< Bit position for UART_USR2_BRCD.
+#define BM_UART_USR2_BRCD      (0x00000004)  //!< Bit mask for UART_USR2_BRCD.
 
-//! @brief Get value of UARTV2_USR2_BRCD from a register value.
-#define BG_UARTV2_USR2_BRCD(r)   (((r) & BM_UARTV2_USR2_BRCD) >> BP_UARTV2_USR2_BRCD)
+//! @brief Get value of UART_USR2_BRCD from a register value.
+#define BG_UART_USR2_BRCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_BRCD) >> BP_UART_USR2_BRCD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_BRCD.
-#define BF_UARTV2_USR2_BRCD(v)   ((((reg32_t) v) << BP_UARTV2_USR2_BRCD) & BM_UARTV2_USR2_BRCD)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_BRCD.
-#define BF_UARTV2_USR2_BRCD(v)   (((v) << BP_UARTV2_USR2_BRCD) & BM_UARTV2_USR2_BRCD)
-#endif
+//! @brief Format value for bitfield UART_USR2_BRCD.
+#define BF_UART_USR2_BRCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_BRCD) & BM_UART_USR2_BRCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BRCD field to a new value.
-#define BW_UARTV2_USR2_BRCD(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_BRCD) | BF_UARTV2_USR2_BRCD(v)))
+#define BW_UART_USR2_BRCD(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_BRCD) | BF_UART_USR2_BRCD(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field TXDC[3] (RO)
+/* --- Register HW_UART_USR2, field TXDC[3] (RO)
  *
  * Transmitter Complete . Indicates that the transmit buffer (TxFIFO) and Shift Register is empty;
  * therefore the transmission is complete. TXDC is cleared automatically when data is written to the
@@ -2958,14 +2645,14 @@ typedef union _hw_uartv2_usr2
  * 1 - Transmit is complete
  */
 
-#define BP_UARTV2_USR2_TXDC      (3)      //!< Bit position for UARTV2_USR2_TXDC.
-#define BM_UARTV2_USR2_TXDC      (0x00000008)  //!< Bit mask for UARTV2_USR2_TXDC.
+#define BP_UART_USR2_TXDC      (3)      //!< Bit position for UART_USR2_TXDC.
+#define BM_UART_USR2_TXDC      (0x00000008)  //!< Bit mask for UART_USR2_TXDC.
 
-//! @brief Get value of UARTV2_USR2_TXDC from a register value.
-#define BG_UARTV2_USR2_TXDC(r)   (((r) & BM_UARTV2_USR2_TXDC) >> BP_UARTV2_USR2_TXDC)
+//! @brief Get value of UART_USR2_TXDC from a register value.
+#define BG_UART_USR2_TXDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXDC) >> BP_UART_USR2_TXDC)
 
 
-/* --- Register HW_UARTV2_USR2, field RTSF[4] (W1C)
+/* --- Register HW_UART_USR2, field RTSF[4] (W1C)
  *
  * RTS Edge Triggered Interrupt Flag. Indicates if a programmed edge is detected on the RTS pin. The
  * RTEC bits select the edge that generates an interrupt (see ). RTSF can generate an interrupt that
@@ -2977,27 +2664,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Programmed edge detected on RTS (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_RTSF      (4)      //!< Bit position for UARTV2_USR2_RTSF.
-#define BM_UARTV2_USR2_RTSF      (0x00000010)  //!< Bit mask for UARTV2_USR2_RTSF.
+#define BP_UART_USR2_RTSF      (4)      //!< Bit position for UART_USR2_RTSF.
+#define BM_UART_USR2_RTSF      (0x00000010)  //!< Bit mask for UART_USR2_RTSF.
 
-//! @brief Get value of UARTV2_USR2_RTSF from a register value.
-#define BG_UARTV2_USR2_RTSF(r)   (((r) & BM_UARTV2_USR2_RTSF) >> BP_UARTV2_USR2_RTSF)
+//! @brief Get value of UART_USR2_RTSF from a register value.
+#define BG_UART_USR2_RTSF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RTSF) >> BP_UART_USR2_RTSF)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_RTSF.
-#define BF_UARTV2_USR2_RTSF(v)   ((((reg32_t) v) << BP_UARTV2_USR2_RTSF) & BM_UARTV2_USR2_RTSF)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_RTSF.
-#define BF_UARTV2_USR2_RTSF(v)   (((v) << BP_UARTV2_USR2_RTSF) & BM_UARTV2_USR2_RTSF)
-#endif
+//! @brief Format value for bitfield UART_USR2_RTSF.
+#define BF_UART_USR2_RTSF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_RTSF) & BM_UART_USR2_RTSF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTSF field to a new value.
-#define BW_UARTV2_USR2_RTSF(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_RTSF) | BF_UARTV2_USR2_RTSF(v)))
+#define BW_UART_USR2_RTSF(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_RTSF) | BF_UART_USR2_RTSF(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field DCDIN[5] (RO)
+/* --- Register HW_UART_USR2, field DCDIN[5] (RO)
  *
  * This bit is not used in this chip. Data Carrier Detect Input . This bit is used in DTE mode
  * reflect the status of the Data Carrier Detect input ( DCD ). The Data Carrier Detect input is
@@ -3008,14 +2690,14 @@ typedef union _hw_uartv2_usr2
  * 1 - No Carrier signal Detected
  */
 
-#define BP_UARTV2_USR2_DCDIN      (5)      //!< Bit position for UARTV2_USR2_DCDIN.
-#define BM_UARTV2_USR2_DCDIN      (0x00000020)  //!< Bit mask for UARTV2_USR2_DCDIN.
+#define BP_UART_USR2_DCDIN      (5)      //!< Bit position for UART_USR2_DCDIN.
+#define BM_UART_USR2_DCDIN      (0x00000020)  //!< Bit mask for UART_USR2_DCDIN.
 
-//! @brief Get value of UARTV2_USR2_DCDIN from a register value.
-#define BG_UARTV2_USR2_DCDIN(r)   (((r) & BM_UARTV2_USR2_DCDIN) >> BP_UARTV2_USR2_DCDIN)
+//! @brief Get value of UART_USR2_DCDIN from a register value.
+#define BG_UART_USR2_DCDIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DCDIN) >> BP_UART_USR2_DCDIN)
 
 
-/* --- Register HW_UARTV2_USR2, field DCDDELT[6] (W1C)
+/* --- Register HW_UART_USR2, field DCDDELT[6] (W1C)
  *
  * This bit is not used in this chip. Data Carrier Detect Delta . This bit is used in DTE mode to
  * indicate that the Data Carrier Detect input ( DCD ) has changed state. This flag can cause an
@@ -3027,27 +2709,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Data Carrier Detect input has changed state (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_DCDDELT      (6)      //!< Bit position for UARTV2_USR2_DCDDELT.
-#define BM_UARTV2_USR2_DCDDELT      (0x00000040)  //!< Bit mask for UARTV2_USR2_DCDDELT.
+#define BP_UART_USR2_DCDDELT      (6)      //!< Bit position for UART_USR2_DCDDELT.
+#define BM_UART_USR2_DCDDELT      (0x00000040)  //!< Bit mask for UART_USR2_DCDDELT.
 
-//! @brief Get value of UARTV2_USR2_DCDDELT from a register value.
-#define BG_UARTV2_USR2_DCDDELT(r)   (((r) & BM_UARTV2_USR2_DCDDELT) >> BP_UARTV2_USR2_DCDDELT)
+//! @brief Get value of UART_USR2_DCDDELT from a register value.
+#define BG_UART_USR2_DCDDELT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DCDDELT) >> BP_UART_USR2_DCDDELT)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_DCDDELT.
-#define BF_UARTV2_USR2_DCDDELT(v)   ((((reg32_t) v) << BP_UARTV2_USR2_DCDDELT) & BM_UARTV2_USR2_DCDDELT)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_DCDDELT.
-#define BF_UARTV2_USR2_DCDDELT(v)   (((v) << BP_UARTV2_USR2_DCDDELT) & BM_UARTV2_USR2_DCDDELT)
-#endif
+//! @brief Format value for bitfield UART_USR2_DCDDELT.
+#define BF_UART_USR2_DCDDELT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_DCDDELT) & BM_UART_USR2_DCDDELT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCDDELT field to a new value.
-#define BW_UARTV2_USR2_DCDDELT(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_DCDDELT) | BF_UARTV2_USR2_DCDDELT(v)))
+#define BW_UART_USR2_DCDDELT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_DCDDELT) | BF_UART_USR2_DCDDELT(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field WAKE[7] (W1C)
+/* --- Register HW_UART_USR2, field WAKE[7] (W1C)
  *
  * Wake . Indicates the start bit is detected. WAKE can generate an interrupt that can be masked
  * using the WKEN bit. Clear WAKE by writing 1 to it. Writing 0 to WAKE has no effect.
@@ -3057,27 +2734,22 @@ typedef union _hw_uartv2_usr2
  * 1 - start bit detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_WAKE      (7)      //!< Bit position for UARTV2_USR2_WAKE.
-#define BM_UARTV2_USR2_WAKE      (0x00000080)  //!< Bit mask for UARTV2_USR2_WAKE.
+#define BP_UART_USR2_WAKE      (7)      //!< Bit position for UART_USR2_WAKE.
+#define BM_UART_USR2_WAKE      (0x00000080)  //!< Bit mask for UART_USR2_WAKE.
 
-//! @brief Get value of UARTV2_USR2_WAKE from a register value.
-#define BG_UARTV2_USR2_WAKE(r)   (((r) & BM_UARTV2_USR2_WAKE) >> BP_UARTV2_USR2_WAKE)
+//! @brief Get value of UART_USR2_WAKE from a register value.
+#define BG_UART_USR2_WAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_WAKE) >> BP_UART_USR2_WAKE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_WAKE.
-#define BF_UARTV2_USR2_WAKE(v)   ((((reg32_t) v) << BP_UARTV2_USR2_WAKE) & BM_UARTV2_USR2_WAKE)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_WAKE.
-#define BF_UARTV2_USR2_WAKE(v)   (((v) << BP_UARTV2_USR2_WAKE) & BM_UARTV2_USR2_WAKE)
-#endif
+//! @brief Format value for bitfield UART_USR2_WAKE.
+#define BF_UART_USR2_WAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_WAKE) & BM_UART_USR2_WAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKE field to a new value.
-#define BW_UARTV2_USR2_WAKE(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_WAKE) | BF_UARTV2_USR2_WAKE(v)))
+#define BW_UART_USR2_WAKE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_WAKE) | BF_UART_USR2_WAKE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field IRINT[8] (W1C)
+/* --- Register HW_UART_USR2, field IRINT[8] (W1C)
  *
  * Serial Infrared Interrupt Flag. When an edge is detected on the RXD pin during SIR Mode, this
  * flag will be asserted. This flag can cause an interrupt which can be masked using the control bit
@@ -3088,27 +2760,22 @@ typedef union _hw_uartv2_usr2
  * 1 - valid edge detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_IRINT      (8)      //!< Bit position for UARTV2_USR2_IRINT.
-#define BM_UARTV2_USR2_IRINT      (0x00000100)  //!< Bit mask for UARTV2_USR2_IRINT.
+#define BP_UART_USR2_IRINT      (8)      //!< Bit position for UART_USR2_IRINT.
+#define BM_UART_USR2_IRINT      (0x00000100)  //!< Bit mask for UART_USR2_IRINT.
 
-//! @brief Get value of UARTV2_USR2_IRINT from a register value.
-#define BG_UARTV2_USR2_IRINT(r)   (((r) & BM_UARTV2_USR2_IRINT) >> BP_UARTV2_USR2_IRINT)
+//! @brief Get value of UART_USR2_IRINT from a register value.
+#define BG_UART_USR2_IRINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_IRINT) >> BP_UART_USR2_IRINT)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_IRINT.
-#define BF_UARTV2_USR2_IRINT(v)   ((((reg32_t) v) << BP_UARTV2_USR2_IRINT) & BM_UARTV2_USR2_IRINT)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_IRINT.
-#define BF_UARTV2_USR2_IRINT(v)   (((v) << BP_UARTV2_USR2_IRINT) & BM_UARTV2_USR2_IRINT)
-#endif
+//! @brief Format value for bitfield UART_USR2_IRINT.
+#define BF_UART_USR2_IRINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_IRINT) & BM_UART_USR2_IRINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRINT field to a new value.
-#define BW_UARTV2_USR2_IRINT(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_IRINT) | BF_UARTV2_USR2_IRINT(v)))
+#define BW_UART_USR2_IRINT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_IRINT) | BF_UART_USR2_IRINT(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field RIIN[9] (RO)
+/* --- Register HW_UART_USR2, field RIIN[9] (RO)
  *
  * This bit is not used in this chip. Ring Indicator Input . This bit is used in DTE mode to reflect
  * the status if the Ring Indicator input ( RI ). The Ring Indicator input is used to indicate that
@@ -3119,14 +2786,14 @@ typedef union _hw_uartv2_usr2
  * 1 - No Ring Detected
  */
 
-#define BP_UARTV2_USR2_RIIN      (9)      //!< Bit position for UARTV2_USR2_RIIN.
-#define BM_UARTV2_USR2_RIIN      (0x00000200)  //!< Bit mask for UARTV2_USR2_RIIN.
+#define BP_UART_USR2_RIIN      (9)      //!< Bit position for UART_USR2_RIIN.
+#define BM_UART_USR2_RIIN      (0x00000200)  //!< Bit mask for UART_USR2_RIIN.
 
-//! @brief Get value of UARTV2_USR2_RIIN from a register value.
-#define BG_UARTV2_USR2_RIIN(r)   (((r) & BM_UARTV2_USR2_RIIN) >> BP_UARTV2_USR2_RIIN)
+//! @brief Get value of UART_USR2_RIIN from a register value.
+#define BG_UART_USR2_RIIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RIIN) >> BP_UART_USR2_RIIN)
 
 
-/* --- Register HW_UARTV2_USR2, field RIDELT[10] (W1C)
+/* --- Register HW_UART_USR2, field RIDELT[10] (W1C)
  *
  * This bit is not used in this chip. Ring Indicator Delta . This bit is used in DTE mode to
  * indicate that the Ring Indicator input ( RI ) has changed state. This flag can generate an
@@ -3138,27 +2805,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Ring Indicator input has changed state (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_RIDELT      (10)      //!< Bit position for UARTV2_USR2_RIDELT.
-#define BM_UARTV2_USR2_RIDELT      (0x00000400)  //!< Bit mask for UARTV2_USR2_RIDELT.
+#define BP_UART_USR2_RIDELT      (10)      //!< Bit position for UART_USR2_RIDELT.
+#define BM_UART_USR2_RIDELT      (0x00000400)  //!< Bit mask for UART_USR2_RIDELT.
 
-//! @brief Get value of UARTV2_USR2_RIDELT from a register value.
-#define BG_UARTV2_USR2_RIDELT(r)   (((r) & BM_UARTV2_USR2_RIDELT) >> BP_UARTV2_USR2_RIDELT)
+//! @brief Get value of UART_USR2_RIDELT from a register value.
+#define BG_UART_USR2_RIDELT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RIDELT) >> BP_UART_USR2_RIDELT)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_RIDELT.
-#define BF_UARTV2_USR2_RIDELT(v)   ((((reg32_t) v) << BP_UARTV2_USR2_RIDELT) & BM_UARTV2_USR2_RIDELT)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_RIDELT.
-#define BF_UARTV2_USR2_RIDELT(v)   (((v) << BP_UARTV2_USR2_RIDELT) & BM_UARTV2_USR2_RIDELT)
-#endif
+//! @brief Format value for bitfield UART_USR2_RIDELT.
+#define BF_UART_USR2_RIDELT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_RIDELT) & BM_UART_USR2_RIDELT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RIDELT field to a new value.
-#define BW_UARTV2_USR2_RIDELT(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_RIDELT) | BF_UARTV2_USR2_RIDELT(v)))
+#define BW_UART_USR2_RIDELT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_RIDELT) | BF_UART_USR2_RIDELT(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field ACST[11] (W1C)
+/* --- Register HW_UART_USR2, field ACST[11] (W1C)
  *
  * Autobaud Counter Stopped . In autobaud detection (ADBR=1), indicates the counter which determines
  * the baud rate was running and is now stopped. This means either START bit is finished (if
@@ -3170,27 +2832,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Measurement of bit length finished (in autobaud). (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_ACST      (11)      //!< Bit position for UARTV2_USR2_ACST.
-#define BM_UARTV2_USR2_ACST      (0x00000800)  //!< Bit mask for UARTV2_USR2_ACST.
+#define BP_UART_USR2_ACST      (11)      //!< Bit position for UART_USR2_ACST.
+#define BM_UART_USR2_ACST      (0x00000800)  //!< Bit mask for UART_USR2_ACST.
 
-//! @brief Get value of UARTV2_USR2_ACST from a register value.
-#define BG_UARTV2_USR2_ACST(r)   (((r) & BM_UARTV2_USR2_ACST) >> BP_UARTV2_USR2_ACST)
+//! @brief Get value of UART_USR2_ACST from a register value.
+#define BG_UART_USR2_ACST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ACST) >> BP_UART_USR2_ACST)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_ACST.
-#define BF_UARTV2_USR2_ACST(v)   ((((reg32_t) v) << BP_UARTV2_USR2_ACST) & BM_UARTV2_USR2_ACST)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_ACST.
-#define BF_UARTV2_USR2_ACST(v)   (((v) << BP_UARTV2_USR2_ACST) & BM_UARTV2_USR2_ACST)
-#endif
+//! @brief Format value for bitfield UART_USR2_ACST.
+#define BF_UART_USR2_ACST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ACST) & BM_UART_USR2_ACST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACST field to a new value.
-#define BW_UARTV2_USR2_ACST(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_ACST) | BF_UARTV2_USR2_ACST(v)))
+#define BW_UART_USR2_ACST(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ACST) | BF_UART_USR2_ACST(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field IDLE[12] (W1C)
+/* --- Register HW_UART_USR2, field IDLE[12] (W1C)
  *
  * Idle Condition . Indicates that an idle condition has existed for more than a programmed amount
  * frame (see . An interrupt can be generated by this IDLE bit if IDEN (UCR1[12]) is enabled. IDLE
@@ -3201,27 +2858,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Idle condition detected (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_IDLE      (12)      //!< Bit position for UARTV2_USR2_IDLE.
-#define BM_UARTV2_USR2_IDLE      (0x00001000)  //!< Bit mask for UARTV2_USR2_IDLE.
+#define BP_UART_USR2_IDLE      (12)      //!< Bit position for UART_USR2_IDLE.
+#define BM_UART_USR2_IDLE      (0x00001000)  //!< Bit mask for UART_USR2_IDLE.
 
-//! @brief Get value of UARTV2_USR2_IDLE from a register value.
-#define BG_UARTV2_USR2_IDLE(r)   (((r) & BM_UARTV2_USR2_IDLE) >> BP_UARTV2_USR2_IDLE)
+//! @brief Get value of UART_USR2_IDLE from a register value.
+#define BG_UART_USR2_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_IDLE) >> BP_UART_USR2_IDLE)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_IDLE.
-#define BF_UARTV2_USR2_IDLE(v)   ((((reg32_t) v) << BP_UARTV2_USR2_IDLE) & BM_UARTV2_USR2_IDLE)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_IDLE.
-#define BF_UARTV2_USR2_IDLE(v)   (((v) << BP_UARTV2_USR2_IDLE) & BM_UARTV2_USR2_IDLE)
-#endif
+//! @brief Format value for bitfield UART_USR2_IDLE.
+#define BF_UART_USR2_IDLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_IDLE) & BM_UART_USR2_IDLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IDLE field to a new value.
-#define BW_UARTV2_USR2_IDLE(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_IDLE) | BF_UARTV2_USR2_IDLE(v)))
+#define BW_UART_USR2_IDLE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_IDLE) | BF_UART_USR2_IDLE(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field DTRF[13] (W1C)
+/* --- Register HW_UART_USR2, field DTRF[13] (W1C)
  *
  * This bit is not used in this chip. DTR edge triggered interrupt flag . This bit is asserted, when
  * the programmed edge is detected on the DTR pin (DCE mode) or on DSR (DTE mode). This flag can
@@ -3232,27 +2884,22 @@ typedef union _hw_uartv2_usr2
  * 1 - Programmed edge detected on DTR/DSR (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_DTRF      (13)      //!< Bit position for UARTV2_USR2_DTRF.
-#define BM_UARTV2_USR2_DTRF      (0x00002000)  //!< Bit mask for UARTV2_USR2_DTRF.
+#define BP_UART_USR2_DTRF      (13)      //!< Bit position for UART_USR2_DTRF.
+#define BM_UART_USR2_DTRF      (0x00002000)  //!< Bit mask for UART_USR2_DTRF.
 
-//! @brief Get value of UARTV2_USR2_DTRF from a register value.
-#define BG_UARTV2_USR2_DTRF(r)   (((r) & BM_UARTV2_USR2_DTRF) >> BP_UARTV2_USR2_DTRF)
+//! @brief Get value of UART_USR2_DTRF from a register value.
+#define BG_UART_USR2_DTRF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DTRF) >> BP_UART_USR2_DTRF)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_DTRF.
-#define BF_UARTV2_USR2_DTRF(v)   ((((reg32_t) v) << BP_UARTV2_USR2_DTRF) & BM_UARTV2_USR2_DTRF)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_DTRF.
-#define BF_UARTV2_USR2_DTRF(v)   (((v) << BP_UARTV2_USR2_DTRF) & BM_UARTV2_USR2_DTRF)
-#endif
+//! @brief Format value for bitfield UART_USR2_DTRF.
+#define BF_UART_USR2_DTRF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_DTRF) & BM_UART_USR2_DTRF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTRF field to a new value.
-#define BW_UARTV2_USR2_DTRF(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_DTRF) | BF_UARTV2_USR2_DTRF(v)))
+#define BW_UART_USR2_DTRF(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_DTRF) | BF_UART_USR2_DTRF(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_USR2, field TXFE[14] (RO)
+/* --- Register HW_UART_USR2, field TXFE[14] (RO)
  *
  * Transmit Buffer FIFO Empty . Indicates that the transmit buffer (TxFIFO) is empty. TXFE is
  * cleared automatically when data is written to the TxFIFO. Even though TXFE is high, the
@@ -3263,14 +2910,14 @@ typedef union _hw_uartv2_usr2
  * 1 - The transmit buffer (TxFIFO) is empty
  */
 
-#define BP_UARTV2_USR2_TXFE      (14)      //!< Bit position for UARTV2_USR2_TXFE.
-#define BM_UARTV2_USR2_TXFE      (0x00004000)  //!< Bit mask for UARTV2_USR2_TXFE.
+#define BP_UART_USR2_TXFE      (14)      //!< Bit position for UART_USR2_TXFE.
+#define BM_UART_USR2_TXFE      (0x00004000)  //!< Bit mask for UART_USR2_TXFE.
 
-//! @brief Get value of UARTV2_USR2_TXFE from a register value.
-#define BG_UARTV2_USR2_TXFE(r)   (((r) & BM_UARTV2_USR2_TXFE) >> BP_UARTV2_USR2_TXFE)
+//! @brief Get value of UART_USR2_TXFE from a register value.
+#define BG_UART_USR2_TXFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXFE) >> BP_UART_USR2_TXFE)
 
 
-/* --- Register HW_UARTV2_USR2, field ADET[15] (W1C)
+/* --- Register HW_UART_USR2, field ADET[15] (W1C)
  *
  * Automatic Baud Rate Detect Complete . Indicates that an "A" or "a" was received and that the
  * receiver detected and verified the incoming baud rate. Clear ADET by writing 1 to it. Writing 0
@@ -3281,154 +2928,151 @@ typedef union _hw_uartv2_usr2
  * 1 - ASCII "A" or "a" was received (write 1 to clear)
  */
 
-#define BP_UARTV2_USR2_ADET      (15)      //!< Bit position for UARTV2_USR2_ADET.
-#define BM_UARTV2_USR2_ADET      (0x00008000)  //!< Bit mask for UARTV2_USR2_ADET.
+#define BP_UART_USR2_ADET      (15)      //!< Bit position for UART_USR2_ADET.
+#define BM_UART_USR2_ADET      (0x00008000)  //!< Bit mask for UART_USR2_ADET.
 
-//! @brief Get value of UARTV2_USR2_ADET from a register value.
-#define BG_UARTV2_USR2_ADET(r)   (((r) & BM_UARTV2_USR2_ADET) >> BP_UARTV2_USR2_ADET)
+//! @brief Get value of UART_USR2_ADET from a register value.
+#define BG_UART_USR2_ADET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_ADET) >> BP_UART_USR2_ADET)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_USR2_ADET.
-#define BF_UARTV2_USR2_ADET(v)   ((((reg32_t) v) << BP_UARTV2_USR2_ADET) & BM_UARTV2_USR2_ADET)
-#else
-//! @brief Format value for bitfield UARTV2_USR2_ADET.
-#define BF_UARTV2_USR2_ADET(v)   (((v) << BP_UARTV2_USR2_ADET) & BM_UARTV2_USR2_ADET)
-#endif
+//! @brief Format value for bitfield UART_USR2_ADET.
+#define BF_UART_USR2_ADET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_USR2_ADET) & BM_UART_USR2_ADET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADET field to a new value.
-#define BW_UARTV2_USR2_ADET(x, v)   (HW_UARTV2_USR2_WR(x, (HW_UARTV2_USR2_RD(x) & ~BM_UARTV2_USR2_ADET) | BF_UARTV2_USR2_ADET(v)))
+#define BW_UART_USR2_ADET(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ADET) | BF_UART_USR2_ADET(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UESC - UART Escape Character Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UESC - UART Escape Character Register (RW)
+ * @brief HW_UART_UESC - UART Escape Character Register (RW)
  *
  * Reset value: 0x0000002b
  *
 
  */
-typedef union _hw_uartv2_uesc
+typedef union _hw_uart_uesc
 {
     reg32_t U;
-    struct _hw_uartv2_uesc_bitfields
+    struct _hw_uart_uesc_bitfields
     {
         unsigned ESC_CHAR : 8; //!< [7:0] UART Escape Character . Holds the selected escape character that all received characters are compared against to detect an escape sequence.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
-} hw_uartv2_uesc_t;
+} hw_uart_uesc_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UESC register
+ * constants & macros for entire multi-block UART_UESC register
  */
-#define HW_UARTV2_UESC_ADDR(x)      (REGS_UARTV2_BASE(x) + 0x9c)
+#define HW_UART_UESC_ADDR(x)      (REGS_UART_BASE(x) + 0x9c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UESC(x)           (*(volatile hw_uartv2_uesc_t *) HW_UARTV2_UESC_ADDR(x))
-#define HW_UARTV2_UESC_RD(x)        (HW_UARTV2_UESC(x).U)
-#define HW_UARTV2_UESC_WR(x, v)     (HW_UARTV2_UESC(x).U = (v))
-#define HW_UARTV2_UESC_SET(x, v)    (HW_UARTV2_UESC_WR(x, HW_UARTV2_UESC_RD(x) |  (v)))
-#define HW_UARTV2_UESC_CLR(x, v)    (HW_UARTV2_UESC_WR(x, HW_UARTV2_UESC_RD(x) & ~(v)))
-#define HW_UARTV2_UESC_TOG(x, v)    (HW_UARTV2_UESC_WR(x, HW_UARTV2_UESC_RD(x) ^  (v)))
+#define HW_UART_UESC(x)           (*(volatile hw_uart_uesc_t *) HW_UART_UESC_ADDR(x))
+#define HW_UART_UESC_RD(x)        (HW_UART_UESC(x).U)
+#define HW_UART_UESC_WR(x, v)     (HW_UART_UESC(x).U = (v))
+#define HW_UART_UESC_SET(x, v)    (HW_UART_UESC_WR(x, HW_UART_UESC_RD(x) |  (v)))
+#define HW_UART_UESC_CLR(x, v)    (HW_UART_UESC_WR(x, HW_UART_UESC_RD(x) & ~(v)))
+#define HW_UART_UESC_TOG(x, v)    (HW_UART_UESC_WR(x, HW_UART_UESC_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UESC bitfields
+ * constants & macros for individual UART_UESC bitfields
  */
 
-/* --- Register HW_UARTV2_UESC, field ESC_CHAR[7:0] (RW)
+/* --- Register HW_UART_UESC, field ESC_CHAR[7:0] (RW)
  *
  * UART Escape Character . Holds the selected escape character that all received characters are
  * compared against to detect an escape sequence.
  */
 
-#define BP_UARTV2_UESC_ESC_CHAR      (0)      //!< Bit position for UARTV2_UESC_ESC_CHAR.
-#define BM_UARTV2_UESC_ESC_CHAR      (0x000000ff)  //!< Bit mask for UARTV2_UESC_ESC_CHAR.
+#define BP_UART_UESC_ESC_CHAR      (0)      //!< Bit position for UART_UESC_ESC_CHAR.
+#define BM_UART_UESC_ESC_CHAR      (0x000000ff)  //!< Bit mask for UART_UESC_ESC_CHAR.
 
-//! @brief Get value of UARTV2_UESC_ESC_CHAR from a register value.
-#define BG_UARTV2_UESC_ESC_CHAR(r)   (((r) & BM_UARTV2_UESC_ESC_CHAR) >> BP_UARTV2_UESC_ESC_CHAR)
+//! @brief Get value of UART_UESC_ESC_CHAR from a register value.
+#define BG_UART_UESC_ESC_CHAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UESC_ESC_CHAR) >> BP_UART_UESC_ESC_CHAR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UESC_ESC_CHAR.
-#define BF_UARTV2_UESC_ESC_CHAR(v)   ((((reg32_t) v) << BP_UARTV2_UESC_ESC_CHAR) & BM_UARTV2_UESC_ESC_CHAR)
-#else
-//! @brief Format value for bitfield UARTV2_UESC_ESC_CHAR.
-#define BF_UARTV2_UESC_ESC_CHAR(v)   (((v) << BP_UARTV2_UESC_ESC_CHAR) & BM_UARTV2_UESC_ESC_CHAR)
-#endif
+//! @brief Format value for bitfield UART_UESC_ESC_CHAR.
+#define BF_UART_UESC_ESC_CHAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UESC_ESC_CHAR) & BM_UART_UESC_ESC_CHAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESC_CHAR field to a new value.
-#define BW_UARTV2_UESC_ESC_CHAR(x, v)   (HW_UARTV2_UESC_WR(x, (HW_UARTV2_UESC_RD(x) & ~BM_UARTV2_UESC_ESC_CHAR) | BF_UARTV2_UESC_ESC_CHAR(v)))
+#define BW_UART_UESC_ESC_CHAR(x, v)   (HW_UART_UESC_WR(x, (HW_UART_UESC_RD(x) & ~BM_UART_UESC_ESC_CHAR) | BF_UART_UESC_ESC_CHAR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTIM - UART Escape Timer Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UTIM - UART Escape Timer Register (RW)
+ * @brief HW_UART_UTIM - UART Escape Timer Register (RW)
  *
  * Reset value: 0x00000000
  *
 
  */
-typedef union _hw_uartv2_utim
+typedef union _hw_uart_utim
 {
     reg32_t U;
-    struct _hw_uartv2_utim_bitfields
+    struct _hw_uart_utim_bitfields
     {
         unsigned TIM : 12; //!< [11:0] UART Escape Timer. Holds the maximum time interval (in ms) allowed between escape characters. The escape timer register is programmable in intervals of 2 ms. See and for more information on the UART escape sequence detection. Reset value 0x000 = 2 ms up to 0xFFF = 8.192 s.
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
-} hw_uartv2_utim_t;
+} hw_uart_utim_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UTIM register
+ * constants & macros for entire multi-block UART_UTIM register
  */
-#define HW_UARTV2_UTIM_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xa0)
+#define HW_UART_UTIM_ADDR(x)      (REGS_UART_BASE(x) + 0xa0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UTIM(x)           (*(volatile hw_uartv2_utim_t *) HW_UARTV2_UTIM_ADDR(x))
-#define HW_UARTV2_UTIM_RD(x)        (HW_UARTV2_UTIM(x).U)
-#define HW_UARTV2_UTIM_WR(x, v)     (HW_UARTV2_UTIM(x).U = (v))
-#define HW_UARTV2_UTIM_SET(x, v)    (HW_UARTV2_UTIM_WR(x, HW_UARTV2_UTIM_RD(x) |  (v)))
-#define HW_UARTV2_UTIM_CLR(x, v)    (HW_UARTV2_UTIM_WR(x, HW_UARTV2_UTIM_RD(x) & ~(v)))
-#define HW_UARTV2_UTIM_TOG(x, v)    (HW_UARTV2_UTIM_WR(x, HW_UARTV2_UTIM_RD(x) ^  (v)))
+#define HW_UART_UTIM(x)           (*(volatile hw_uart_utim_t *) HW_UART_UTIM_ADDR(x))
+#define HW_UART_UTIM_RD(x)        (HW_UART_UTIM(x).U)
+#define HW_UART_UTIM_WR(x, v)     (HW_UART_UTIM(x).U = (v))
+#define HW_UART_UTIM_SET(x, v)    (HW_UART_UTIM_WR(x, HW_UART_UTIM_RD(x) |  (v)))
+#define HW_UART_UTIM_CLR(x, v)    (HW_UART_UTIM_WR(x, HW_UART_UTIM_RD(x) & ~(v)))
+#define HW_UART_UTIM_TOG(x, v)    (HW_UART_UTIM_WR(x, HW_UART_UTIM_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UTIM bitfields
+ * constants & macros for individual UART_UTIM bitfields
  */
 
-/* --- Register HW_UARTV2_UTIM, field TIM[11:0] (RW)
+/* --- Register HW_UART_UTIM, field TIM[11:0] (RW)
  *
  * UART Escape Timer. Holds the maximum time interval (in ms) allowed between escape characters. The
  * escape timer register is programmable in intervals of 2 ms. See and for more information on the
  * UART escape sequence detection. Reset value 0x000 = 2 ms up to 0xFFF = 8.192 s.
  */
 
-#define BP_UARTV2_UTIM_TIM      (0)      //!< Bit position for UARTV2_UTIM_TIM.
-#define BM_UARTV2_UTIM_TIM      (0x00000fff)  //!< Bit mask for UARTV2_UTIM_TIM.
+#define BP_UART_UTIM_TIM      (0)      //!< Bit position for UART_UTIM_TIM.
+#define BM_UART_UTIM_TIM      (0x00000fff)  //!< Bit mask for UART_UTIM_TIM.
 
-//! @brief Get value of UARTV2_UTIM_TIM from a register value.
-#define BG_UARTV2_UTIM_TIM(r)   (((r) & BM_UARTV2_UTIM_TIM) >> BP_UARTV2_UTIM_TIM)
+//! @brief Get value of UART_UTIM_TIM from a register value.
+#define BG_UART_UTIM_TIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTIM_TIM) >> BP_UART_UTIM_TIM)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTIM_TIM.
-#define BF_UARTV2_UTIM_TIM(v)   ((((reg32_t) v) << BP_UARTV2_UTIM_TIM) & BM_UARTV2_UTIM_TIM)
-#else
-//! @brief Format value for bitfield UARTV2_UTIM_TIM.
-#define BF_UARTV2_UTIM_TIM(v)   (((v) << BP_UARTV2_UTIM_TIM) & BM_UARTV2_UTIM_TIM)
-#endif
+//! @brief Format value for bitfield UART_UTIM_TIM.
+#define BF_UART_UTIM_TIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTIM_TIM) & BM_UART_UTIM_TIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIM field to a new value.
-#define BW_UARTV2_UTIM_TIM(x, v)   (HW_UARTV2_UTIM_WR(x, (HW_UARTV2_UTIM_RD(x) & ~BM_UARTV2_UTIM_TIM) | BF_UARTV2_UTIM_TIM(v)))
+#define BW_UART_UTIM_TIM(x, v)   (HW_UART_UTIM_WR(x, (HW_UART_UTIM_RD(x) & ~BM_UART_UTIM_TIM) | BF_UART_UTIM_TIM(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBIR - UART BRM Incremental Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UBIR - UART BRM Incremental Register (RW)
+ * @brief HW_UART_UBIR - UART BRM Incremental Register (RW)
  *
  * Reset value: 0x00000000
  *
@@ -3441,36 +3085,36 @@ typedef union _hw_uartv2_utim
  * UBMR registers will only take effect if the UART Enable bit (UARTEN) in the Uart Control Register
  * 1 (UCR1) is set.
  */
-typedef union _hw_uartv2_ubir
+typedef union _hw_uart_ubir
 {
     reg32_t U;
-    struct _hw_uartv2_ubir_bitfields
+    struct _hw_uart_ubir_bitfields
     {
         unsigned INC : 16; //!< [15:0] Incremental Numerator. Holds the numerator value minus one of the BRM ratio (see ). The UBIR register MUST be updated before the UBMR register for the baud rate to be updated correctly. If only one register is written to by software, the BRM will ignore this data until the other register is written to by software. Updating this field using byte accesses is not recommended and is undefined.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ubir_t;
+} hw_uart_ubir_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UBIR register
+ * constants & macros for entire multi-block UART_UBIR register
  */
-#define HW_UARTV2_UBIR_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xa4)
+#define HW_UART_UBIR_ADDR(x)      (REGS_UART_BASE(x) + 0xa4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UBIR(x)           (*(volatile hw_uartv2_ubir_t *) HW_UARTV2_UBIR_ADDR(x))
-#define HW_UARTV2_UBIR_RD(x)        (HW_UARTV2_UBIR(x).U)
-#define HW_UARTV2_UBIR_WR(x, v)     (HW_UARTV2_UBIR(x).U = (v))
-#define HW_UARTV2_UBIR_SET(x, v)    (HW_UARTV2_UBIR_WR(x, HW_UARTV2_UBIR_RD(x) |  (v)))
-#define HW_UARTV2_UBIR_CLR(x, v)    (HW_UARTV2_UBIR_WR(x, HW_UARTV2_UBIR_RD(x) & ~(v)))
-#define HW_UARTV2_UBIR_TOG(x, v)    (HW_UARTV2_UBIR_WR(x, HW_UARTV2_UBIR_RD(x) ^  (v)))
+#define HW_UART_UBIR(x)           (*(volatile hw_uart_ubir_t *) HW_UART_UBIR_ADDR(x))
+#define HW_UART_UBIR_RD(x)        (HW_UART_UBIR(x).U)
+#define HW_UART_UBIR_WR(x, v)     (HW_UART_UBIR(x).U = (v))
+#define HW_UART_UBIR_SET(x, v)    (HW_UART_UBIR_WR(x, HW_UART_UBIR_RD(x) |  (v)))
+#define HW_UART_UBIR_CLR(x, v)    (HW_UART_UBIR_WR(x, HW_UART_UBIR_RD(x) & ~(v)))
+#define HW_UART_UBIR_TOG(x, v)    (HW_UART_UBIR_WR(x, HW_UART_UBIR_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UBIR bitfields
+ * constants & macros for individual UART_UBIR bitfields
  */
 
-/* --- Register HW_UARTV2_UBIR, field INC[15:0] (RW)
+/* --- Register HW_UART_UBIR, field INC[15:0] (RW)
  *
  * Incremental Numerator. Holds the numerator value minus one of the BRM ratio (see ). The UBIR
  * register MUST be updated before the UBMR register for the baud rate to be updated correctly. If
@@ -3479,28 +3123,27 @@ typedef union _hw_uartv2_ubir
  * and is undefined.
  */
 
-#define BP_UARTV2_UBIR_INC      (0)      //!< Bit position for UARTV2_UBIR_INC.
-#define BM_UARTV2_UBIR_INC      (0x0000ffff)  //!< Bit mask for UARTV2_UBIR_INC.
+#define BP_UART_UBIR_INC      (0)      //!< Bit position for UART_UBIR_INC.
+#define BM_UART_UBIR_INC      (0x0000ffff)  //!< Bit mask for UART_UBIR_INC.
 
-//! @brief Get value of UARTV2_UBIR_INC from a register value.
-#define BG_UARTV2_UBIR_INC(r)   (((r) & BM_UARTV2_UBIR_INC) >> BP_UARTV2_UBIR_INC)
+//! @brief Get value of UART_UBIR_INC from a register value.
+#define BG_UART_UBIR_INC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBIR_INC) >> BP_UART_UBIR_INC)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UBIR_INC.
-#define BF_UARTV2_UBIR_INC(v)   ((((reg32_t) v) << BP_UARTV2_UBIR_INC) & BM_UARTV2_UBIR_INC)
-#else
-//! @brief Format value for bitfield UARTV2_UBIR_INC.
-#define BF_UARTV2_UBIR_INC(v)   (((v) << BP_UARTV2_UBIR_INC) & BM_UARTV2_UBIR_INC)
-#endif
+//! @brief Format value for bitfield UART_UBIR_INC.
+#define BF_UART_UBIR_INC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UBIR_INC) & BM_UART_UBIR_INC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC field to a new value.
-#define BW_UARTV2_UBIR_INC(x, v)   (HW_UARTV2_UBIR_WR(x, (HW_UARTV2_UBIR_RD(x) & ~BM_UARTV2_UBIR_INC) | BF_UARTV2_UBIR_INC(v)))
+#define BW_UART_UBIR_INC(x, v)   (HW_UART_UBIR_WR(x, (HW_UART_UBIR_RD(x) & ~BM_UART_UBIR_INC) | BF_UART_UBIR_INC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBMR - UART BRM Modulator Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UBMR - UART BRM Modulator Register (RW)
+ * @brief HW_UART_UBMR - UART BRM Modulator Register (RW)
  *
  * Reset value: 0x00000000
  *
@@ -3513,36 +3156,36 @@ typedef union _hw_uartv2_ubir
  * UBMR registers will only take effect if the UART Enable bit (UARTEN) in the Uart Control Register
  * 1 (UCR1) is set.
  */
-typedef union _hw_uartv2_ubmr
+typedef union _hw_uart_ubmr
 {
     reg32_t U;
-    struct _hw_uartv2_ubmr_bitfields
+    struct _hw_uart_ubmr_bitfields
     {
         unsigned MOD : 16; //!< [15:0] Modulator Denominator. Holds the value of the denominator minus one of the BRM ratio (see ). The UBIR register MUST be updated before the UBMR register for the baud rate to be updated correctly. If only one register is written to by software, the BRM will ignore this data until the other register is written to by software. Updating this register using byte accesses is not recommended and undefined.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ubmr_t;
+} hw_uart_ubmr_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UBMR register
+ * constants & macros for entire multi-block UART_UBMR register
  */
-#define HW_UARTV2_UBMR_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xa8)
+#define HW_UART_UBMR_ADDR(x)      (REGS_UART_BASE(x) + 0xa8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UBMR(x)           (*(volatile hw_uartv2_ubmr_t *) HW_UARTV2_UBMR_ADDR(x))
-#define HW_UARTV2_UBMR_RD(x)        (HW_UARTV2_UBMR(x).U)
-#define HW_UARTV2_UBMR_WR(x, v)     (HW_UARTV2_UBMR(x).U = (v))
-#define HW_UARTV2_UBMR_SET(x, v)    (HW_UARTV2_UBMR_WR(x, HW_UARTV2_UBMR_RD(x) |  (v)))
-#define HW_UARTV2_UBMR_CLR(x, v)    (HW_UARTV2_UBMR_WR(x, HW_UARTV2_UBMR_RD(x) & ~(v)))
-#define HW_UARTV2_UBMR_TOG(x, v)    (HW_UARTV2_UBMR_WR(x, HW_UARTV2_UBMR_RD(x) ^  (v)))
+#define HW_UART_UBMR(x)           (*(volatile hw_uart_ubmr_t *) HW_UART_UBMR_ADDR(x))
+#define HW_UART_UBMR_RD(x)        (HW_UART_UBMR(x).U)
+#define HW_UART_UBMR_WR(x, v)     (HW_UART_UBMR(x).U = (v))
+#define HW_UART_UBMR_SET(x, v)    (HW_UART_UBMR_WR(x, HW_UART_UBMR_RD(x) |  (v)))
+#define HW_UART_UBMR_CLR(x, v)    (HW_UART_UBMR_WR(x, HW_UART_UBMR_RD(x) & ~(v)))
+#define HW_UART_UBMR_TOG(x, v)    (HW_UART_UBMR_WR(x, HW_UART_UBMR_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UBMR bitfields
+ * constants & macros for individual UART_UBMR bitfields
  */
 
-/* --- Register HW_UARTV2_UBMR, field MOD[15:0] (RW)
+/* --- Register HW_UART_UBMR, field MOD[15:0] (RW)
  *
  * Modulator Denominator. Holds the value of the denominator minus one of the BRM ratio (see ). The
  * UBIR register MUST be updated before the UBMR register for the baud rate to be updated correctly.
@@ -3551,59 +3194,58 @@ typedef union _hw_uartv2_ubmr
  * and undefined.
  */
 
-#define BP_UARTV2_UBMR_MOD      (0)      //!< Bit position for UARTV2_UBMR_MOD.
-#define BM_UARTV2_UBMR_MOD      (0x0000ffff)  //!< Bit mask for UARTV2_UBMR_MOD.
+#define BP_UART_UBMR_MOD      (0)      //!< Bit position for UART_UBMR_MOD.
+#define BM_UART_UBMR_MOD      (0x0000ffff)  //!< Bit mask for UART_UBMR_MOD.
 
-//! @brief Get value of UARTV2_UBMR_MOD from a register value.
-#define BG_UARTV2_UBMR_MOD(r)   (((r) & BM_UARTV2_UBMR_MOD) >> BP_UARTV2_UBMR_MOD)
+//! @brief Get value of UART_UBMR_MOD from a register value.
+#define BG_UART_UBMR_MOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBMR_MOD) >> BP_UART_UBMR_MOD)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UBMR_MOD.
-#define BF_UARTV2_UBMR_MOD(v)   ((((reg32_t) v) << BP_UARTV2_UBMR_MOD) & BM_UARTV2_UBMR_MOD)
-#else
-//! @brief Format value for bitfield UARTV2_UBMR_MOD.
-#define BF_UARTV2_UBMR_MOD(v)   (((v) << BP_UARTV2_UBMR_MOD) & BM_UARTV2_UBMR_MOD)
-#endif
+//! @brief Format value for bitfield UART_UBMR_MOD.
+#define BF_UART_UBMR_MOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UBMR_MOD) & BM_UART_UBMR_MOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD field to a new value.
-#define BW_UARTV2_UBMR_MOD(x, v)   (HW_UARTV2_UBMR_WR(x, (HW_UARTV2_UBMR_RD(x) & ~BM_UARTV2_UBMR_MOD) | BF_UARTV2_UBMR_MOD(v)))
+#define BW_UART_UBMR_MOD(x, v)   (HW_UART_UBMR_WR(x, (HW_UART_UBMR_RD(x) & ~BM_UART_UBMR_MOD) | BF_UART_UBMR_MOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UBRC - UART Baud Rate Count Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UBRC - UART Baud Rate Count Register (RO)
+ * @brief HW_UART_UBRC - UART Baud Rate Count Register (RO)
  *
  * Reset value: 0x00000004
  *
 
  */
-typedef union _hw_uartv2_ubrc
+typedef union _hw_uart_ubrc
 {
     reg32_t U;
-    struct _hw_uartv2_ubrc_bitfields
+    struct _hw_uart_ubrc_bitfields
     {
         unsigned BCNT : 16; //!< [15:0] Baud Rate Count Register. This read only register is used to count the start bit of the incoming baud rate (if ADNIMP=1), or start bit + bit0 (if ADNIMP=0). When the measurement is done, the Baud Rate Count Register contains the number of UART internal clock cycles (clock after divider) present in an incoming bit. BCNT retains its value until the next Automatic Baud Rate Detection sequence has been initiated. The 16 bit Baud Rate Count register is reset to 4 and stays at hex FFFF in the case of an overflow.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_ubrc_t;
+} hw_uart_ubrc_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UBRC register
+ * constants & macros for entire multi-block UART_UBRC register
  */
-#define HW_UARTV2_UBRC_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xac)
+#define HW_UART_UBRC_ADDR(x)      (REGS_UART_BASE(x) + 0xac)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UBRC(x)           (*(volatile hw_uartv2_ubrc_t *) HW_UARTV2_UBRC_ADDR(x))
-#define HW_UARTV2_UBRC_RD(x)        (HW_UARTV2_UBRC(x).U)
+#define HW_UART_UBRC(x)           (*(volatile hw_uart_ubrc_t *) HW_UART_UBRC_ADDR(x))
+#define HW_UART_UBRC_RD(x)        (HW_UART_UBRC(x).U)
 #endif
 
 /*
- * constants & macros for individual UARTV2_UBRC bitfields
+ * constants & macros for individual UART_UBRC bitfields
  */
 
-/* --- Register HW_UARTV2_UBRC, field BCNT[15:0] (RO)
+/* --- Register HW_UART_UBRC, field BCNT[15:0] (RO)
  *
  * Baud Rate Count Register. This read only register is used to count the start bit of the incoming
  * baud rate (if ADNIMP=1), or start bit + bit0 (if ADNIMP=0). When the measurement is done, the
@@ -3613,15 +3255,19 @@ typedef union _hw_uartv2_ubrc
  * FFFF in the case of an overflow.
  */
 
-#define BP_UARTV2_UBRC_BCNT      (0)      //!< Bit position for UARTV2_UBRC_BCNT.
-#define BM_UARTV2_UBRC_BCNT      (0x0000ffff)  //!< Bit mask for UARTV2_UBRC_BCNT.
+#define BP_UART_UBRC_BCNT      (0)      //!< Bit position for UART_UBRC_BCNT.
+#define BM_UART_UBRC_BCNT      (0x0000ffff)  //!< Bit mask for UART_UBRC_BCNT.
 
-//! @brief Get value of UARTV2_UBRC_BCNT from a register value.
-#define BG_UARTV2_UBRC_BCNT(r)   (((r) & BM_UARTV2_UBRC_BCNT) >> BP_UARTV2_UBRC_BCNT)
+//! @brief Get value of UART_UBRC_BCNT from a register value.
+#define BG_UART_UBRC_BCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBRC_BCNT) >> BP_UART_UBRC_BCNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_ONEMS - UART One Millisecond Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_ONEMS - UART One Millisecond Register (RW)
+ * @brief HW_UART_ONEMS - UART One Millisecond Register (RW)
  *
  * Reset value: 0x00000000
  *
@@ -3631,36 +3277,36 @@ typedef union _hw_uartv2_ubrc
  * be written into this register. In this case, the 16 bits are not enough to contain the 0x103C4.
  * So this register was expanded to 24 bits to support high frequency of the ref_clk .
  */
-typedef union _hw_uartv2_onems
+typedef union _hw_uart_onems
 {
     reg32_t U;
-    struct _hw_uartv2_onems_bitfields
+    struct _hw_uart_onems_bitfields
     {
         unsigned ONEMS : 24; //!< [23:0] One Millisecond Register. This 24-bit register must contain the value of the UART internal frequency ( ref_clk in ) divided by 1000. The internal frequency is obtained after the UART BRM internal divider (F ( ref_clk ) = F( module_clock ) / RFDIV). In fact this register contains the value corresponding to the number of UART BRM internal clock cycles present in one millisecond. The ONEMS (and UTIM) registers value are used in the escape character detection feature ( ) to count the number of clock cycles left between two escape characters. The ONEMS register is also used in infrared special case mode (IRSC = UCR4[5] = 1'b1), see .
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
-} hw_uartv2_onems_t;
+} hw_uart_onems_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_ONEMS register
+ * constants & macros for entire multi-block UART_ONEMS register
  */
-#define HW_UARTV2_ONEMS_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xb0)
+#define HW_UART_ONEMS_ADDR(x)      (REGS_UART_BASE(x) + 0xb0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_ONEMS(x)           (*(volatile hw_uartv2_onems_t *) HW_UARTV2_ONEMS_ADDR(x))
-#define HW_UARTV2_ONEMS_RD(x)        (HW_UARTV2_ONEMS(x).U)
-#define HW_UARTV2_ONEMS_WR(x, v)     (HW_UARTV2_ONEMS(x).U = (v))
-#define HW_UARTV2_ONEMS_SET(x, v)    (HW_UARTV2_ONEMS_WR(x, HW_UARTV2_ONEMS_RD(x) |  (v)))
-#define HW_UARTV2_ONEMS_CLR(x, v)    (HW_UARTV2_ONEMS_WR(x, HW_UARTV2_ONEMS_RD(x) & ~(v)))
-#define HW_UARTV2_ONEMS_TOG(x, v)    (HW_UARTV2_ONEMS_WR(x, HW_UARTV2_ONEMS_RD(x) ^  (v)))
+#define HW_UART_ONEMS(x)           (*(volatile hw_uart_onems_t *) HW_UART_ONEMS_ADDR(x))
+#define HW_UART_ONEMS_RD(x)        (HW_UART_ONEMS(x).U)
+#define HW_UART_ONEMS_WR(x, v)     (HW_UART_ONEMS(x).U = (v))
+#define HW_UART_ONEMS_SET(x, v)    (HW_UART_ONEMS_WR(x, HW_UART_ONEMS_RD(x) |  (v)))
+#define HW_UART_ONEMS_CLR(x, v)    (HW_UART_ONEMS_WR(x, HW_UART_ONEMS_RD(x) & ~(v)))
+#define HW_UART_ONEMS_TOG(x, v)    (HW_UART_ONEMS_WR(x, HW_UART_ONEMS_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_ONEMS bitfields
+ * constants & macros for individual UART_ONEMS bitfields
  */
 
-/* --- Register HW_UARTV2_ONEMS, field ONEMS[23:0] (RW)
+/* --- Register HW_UART_ONEMS, field ONEMS[23:0] (RW)
  *
  * One Millisecond Register. This 24-bit register must contain the value of the UART internal
  * frequency ( ref_clk in ) divided by 1000. The internal frequency is obtained after the UART BRM
@@ -3671,37 +3317,36 @@ typedef union _hw_uartv2_onems
  * used in infrared special case mode (IRSC = UCR4[5] = 1'b1), see .
  */
 
-#define BP_UARTV2_ONEMS_ONEMS      (0)      //!< Bit position for UARTV2_ONEMS_ONEMS.
-#define BM_UARTV2_ONEMS_ONEMS      (0x00ffffff)  //!< Bit mask for UARTV2_ONEMS_ONEMS.
+#define BP_UART_ONEMS_ONEMS      (0)      //!< Bit position for UART_ONEMS_ONEMS.
+#define BM_UART_ONEMS_ONEMS      (0x00ffffff)  //!< Bit mask for UART_ONEMS_ONEMS.
 
-//! @brief Get value of UARTV2_ONEMS_ONEMS from a register value.
-#define BG_UARTV2_ONEMS_ONEMS(r)   (((r) & BM_UARTV2_ONEMS_ONEMS) >> BP_UARTV2_ONEMS_ONEMS)
+//! @brief Get value of UART_ONEMS_ONEMS from a register value.
+#define BG_UART_ONEMS_ONEMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_ONEMS_ONEMS) >> BP_UART_ONEMS_ONEMS)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_ONEMS_ONEMS.
-#define BF_UARTV2_ONEMS_ONEMS(v)   ((((reg32_t) v) << BP_UARTV2_ONEMS_ONEMS) & BM_UARTV2_ONEMS_ONEMS)
-#else
-//! @brief Format value for bitfield UARTV2_ONEMS_ONEMS.
-#define BF_UARTV2_ONEMS_ONEMS(v)   (((v) << BP_UARTV2_ONEMS_ONEMS) & BM_UARTV2_ONEMS_ONEMS)
-#endif
+//! @brief Format value for bitfield UART_ONEMS_ONEMS.
+#define BF_UART_ONEMS_ONEMS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_ONEMS_ONEMS) & BM_UART_ONEMS_ONEMS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ONEMS field to a new value.
-#define BW_UARTV2_ONEMS_ONEMS(x, v)   (HW_UARTV2_ONEMS_WR(x, (HW_UARTV2_ONEMS_RD(x) & ~BM_UARTV2_ONEMS_ONEMS) | BF_UARTV2_ONEMS_ONEMS(v)))
+#define BW_UART_ONEMS_ONEMS(x, v)   (HW_UART_ONEMS_WR(x, (HW_UART_ONEMS_RD(x) & ~BM_UART_ONEMS_ONEMS) | BF_UART_ONEMS_ONEMS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_UART_UTS - UART Test Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UTS - UART Test Register (RW)
+ * @brief HW_UART_UTS - UART Test Register (RW)
  *
  * Reset value: 0x00000060
  *
 
  */
-typedef union _hw_uartv2_uts
+typedef union _hw_uart_uts
 {
     reg32_t U;
-    struct _hw_uartv2_uts_bitfields
+    struct _hw_uart_uts_bitfields
     {
         unsigned SOFTRST : 1; //!< [0] Software Reset. Indicates the status of the software reset ( SRST bit of UCR2).
         unsigned RESERVED0 : 2; //!< [2:1] Reserved
@@ -3717,28 +3362,28 @@ typedef union _hw_uartv2_uts
         unsigned FRCPERR : 1; //!< [13] Force Parity Error. Forces the transmitter to generate a parity error if parity is enabled. FRCPERR is provided for system debugging.
         unsigned RESERVED2 : 18; //!< [31:14] Reserved
     } B;
-} hw_uartv2_uts_t;
+} hw_uart_uts_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UTS register
+ * constants & macros for entire multi-block UART_UTS register
  */
-#define HW_UARTV2_UTS_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xb4)
+#define HW_UART_UTS_ADDR(x)      (REGS_UART_BASE(x) + 0xb4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UTS(x)           (*(volatile hw_uartv2_uts_t *) HW_UARTV2_UTS_ADDR(x))
-#define HW_UARTV2_UTS_RD(x)        (HW_UARTV2_UTS(x).U)
-#define HW_UARTV2_UTS_WR(x, v)     (HW_UARTV2_UTS(x).U = (v))
-#define HW_UARTV2_UTS_SET(x, v)    (HW_UARTV2_UTS_WR(x, HW_UARTV2_UTS_RD(x) |  (v)))
-#define HW_UARTV2_UTS_CLR(x, v)    (HW_UARTV2_UTS_WR(x, HW_UARTV2_UTS_RD(x) & ~(v)))
-#define HW_UARTV2_UTS_TOG(x, v)    (HW_UARTV2_UTS_WR(x, HW_UARTV2_UTS_RD(x) ^  (v)))
+#define HW_UART_UTS(x)           (*(volatile hw_uart_uts_t *) HW_UART_UTS_ADDR(x))
+#define HW_UART_UTS_RD(x)        (HW_UART_UTS(x).U)
+#define HW_UART_UTS_WR(x, v)     (HW_UART_UTS(x).U = (v))
+#define HW_UART_UTS_SET(x, v)    (HW_UART_UTS_WR(x, HW_UART_UTS_RD(x) |  (v)))
+#define HW_UART_UTS_CLR(x, v)    (HW_UART_UTS_WR(x, HW_UART_UTS_RD(x) & ~(v)))
+#define HW_UART_UTS_TOG(x, v)    (HW_UART_UTS_WR(x, HW_UART_UTS_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UTS bitfields
+ * constants & macros for individual UART_UTS bitfields
  */
 
-/* --- Register HW_UARTV2_UTS, field SOFTRST[0] (RW)
+/* --- Register HW_UART_UTS, field SOFTRST[0] (RW)
  *
  * Software Reset. Indicates the status of the software reset ( SRST bit of UCR2).
  *
@@ -3747,27 +3392,22 @@ typedef union _hw_uartv2_uts
  * 1 - Software reset active
  */
 
-#define BP_UARTV2_UTS_SOFTRST      (0)      //!< Bit position for UARTV2_UTS_SOFTRST.
-#define BM_UARTV2_UTS_SOFTRST      (0x00000001)  //!< Bit mask for UARTV2_UTS_SOFTRST.
+#define BP_UART_UTS_SOFTRST      (0)      //!< Bit position for UART_UTS_SOFTRST.
+#define BM_UART_UTS_SOFTRST      (0x00000001)  //!< Bit mask for UART_UTS_SOFTRST.
 
-//! @brief Get value of UARTV2_UTS_SOFTRST from a register value.
-#define BG_UARTV2_UTS_SOFTRST(r)   (((r) & BM_UARTV2_UTS_SOFTRST) >> BP_UARTV2_UTS_SOFTRST)
+//! @brief Get value of UART_UTS_SOFTRST from a register value.
+#define BG_UART_UTS_SOFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_SOFTRST) >> BP_UART_UTS_SOFTRST)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_SOFTRST.
-#define BF_UARTV2_UTS_SOFTRST(v)   ((((reg32_t) v) << BP_UARTV2_UTS_SOFTRST) & BM_UARTV2_UTS_SOFTRST)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_SOFTRST.
-#define BF_UARTV2_UTS_SOFTRST(v)   (((v) << BP_UARTV2_UTS_SOFTRST) & BM_UARTV2_UTS_SOFTRST)
-#endif
+//! @brief Format value for bitfield UART_UTS_SOFTRST.
+#define BF_UART_UTS_SOFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_SOFTRST) & BM_UART_UTS_SOFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOFTRST field to a new value.
-#define BW_UARTV2_UTS_SOFTRST(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_SOFTRST) | BF_UARTV2_UTS_SOFTRST(v)))
+#define BW_UART_UTS_SOFTRST(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_SOFTRST) | BF_UART_UTS_SOFTRST(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field RXFULL[3] (RW)
+/* --- Register HW_UART_UTS, field RXFULL[3] (RW)
  *
  * RxFIFO FULL. Indicates the RxFIFO is full.
  *
@@ -3776,27 +3416,22 @@ typedef union _hw_uartv2_uts
  * 1 - The RxFIFO is full
  */
 
-#define BP_UARTV2_UTS_RXFULL      (3)      //!< Bit position for UARTV2_UTS_RXFULL.
-#define BM_UARTV2_UTS_RXFULL      (0x00000008)  //!< Bit mask for UARTV2_UTS_RXFULL.
+#define BP_UART_UTS_RXFULL      (3)      //!< Bit position for UART_UTS_RXFULL.
+#define BM_UART_UTS_RXFULL      (0x00000008)  //!< Bit mask for UART_UTS_RXFULL.
 
-//! @brief Get value of UARTV2_UTS_RXFULL from a register value.
-#define BG_UARTV2_UTS_RXFULL(r)   (((r) & BM_UARTV2_UTS_RXFULL) >> BP_UARTV2_UTS_RXFULL)
+//! @brief Get value of UART_UTS_RXFULL from a register value.
+#define BG_UART_UTS_RXFULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXFULL) >> BP_UART_UTS_RXFULL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_RXFULL.
-#define BF_UARTV2_UTS_RXFULL(v)   ((((reg32_t) v) << BP_UARTV2_UTS_RXFULL) & BM_UARTV2_UTS_RXFULL)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_RXFULL.
-#define BF_UARTV2_UTS_RXFULL(v)   (((v) << BP_UARTV2_UTS_RXFULL) & BM_UARTV2_UTS_RXFULL)
-#endif
+//! @brief Format value for bitfield UART_UTS_RXFULL.
+#define BF_UART_UTS_RXFULL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXFULL) & BM_UART_UTS_RXFULL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXFULL field to a new value.
-#define BW_UARTV2_UTS_RXFULL(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_RXFULL) | BF_UARTV2_UTS_RXFULL(v)))
+#define BW_UART_UTS_RXFULL(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXFULL) | BF_UART_UTS_RXFULL(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field TXFULL[4] (RW)
+/* --- Register HW_UART_UTS, field TXFULL[4] (RW)
  *
  * TxFIFO FULL. Indicates the TxFIFO is full.
  *
@@ -3805,27 +3440,22 @@ typedef union _hw_uartv2_uts
  * 1 - The TxFIFO is full
  */
 
-#define BP_UARTV2_UTS_TXFULL      (4)      //!< Bit position for UARTV2_UTS_TXFULL.
-#define BM_UARTV2_UTS_TXFULL      (0x00000010)  //!< Bit mask for UARTV2_UTS_TXFULL.
+#define BP_UART_UTS_TXFULL      (4)      //!< Bit position for UART_UTS_TXFULL.
+#define BM_UART_UTS_TXFULL      (0x00000010)  //!< Bit mask for UART_UTS_TXFULL.
 
-//! @brief Get value of UARTV2_UTS_TXFULL from a register value.
-#define BG_UARTV2_UTS_TXFULL(r)   (((r) & BM_UARTV2_UTS_TXFULL) >> BP_UARTV2_UTS_TXFULL)
+//! @brief Get value of UART_UTS_TXFULL from a register value.
+#define BG_UART_UTS_TXFULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_TXFULL) >> BP_UART_UTS_TXFULL)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_TXFULL.
-#define BF_UARTV2_UTS_TXFULL(v)   ((((reg32_t) v) << BP_UARTV2_UTS_TXFULL) & BM_UARTV2_UTS_TXFULL)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_TXFULL.
-#define BF_UARTV2_UTS_TXFULL(v)   (((v) << BP_UARTV2_UTS_TXFULL) & BM_UARTV2_UTS_TXFULL)
-#endif
+//! @brief Format value for bitfield UART_UTS_TXFULL.
+#define BF_UART_UTS_TXFULL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_TXFULL) & BM_UART_UTS_TXFULL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXFULL field to a new value.
-#define BW_UARTV2_UTS_TXFULL(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_TXFULL) | BF_UARTV2_UTS_TXFULL(v)))
+#define BW_UART_UTS_TXFULL(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_TXFULL) | BF_UART_UTS_TXFULL(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field RXEMPTY[5] (RW)
+/* --- Register HW_UART_UTS, field RXEMPTY[5] (RW)
  *
  * RxFIFO Empty. Indicates the RxFIFO is empty.
  *
@@ -3834,27 +3464,22 @@ typedef union _hw_uartv2_uts
  * 1 - The RxFIFO is empty
  */
 
-#define BP_UARTV2_UTS_RXEMPTY      (5)      //!< Bit position for UARTV2_UTS_RXEMPTY.
-#define BM_UARTV2_UTS_RXEMPTY      (0x00000020)  //!< Bit mask for UARTV2_UTS_RXEMPTY.
+#define BP_UART_UTS_RXEMPTY      (5)      //!< Bit position for UART_UTS_RXEMPTY.
+#define BM_UART_UTS_RXEMPTY      (0x00000020)  //!< Bit mask for UART_UTS_RXEMPTY.
 
-//! @brief Get value of UARTV2_UTS_RXEMPTY from a register value.
-#define BG_UARTV2_UTS_RXEMPTY(r)   (((r) & BM_UARTV2_UTS_RXEMPTY) >> BP_UARTV2_UTS_RXEMPTY)
+//! @brief Get value of UART_UTS_RXEMPTY from a register value.
+#define BG_UART_UTS_RXEMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXEMPTY) >> BP_UART_UTS_RXEMPTY)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_RXEMPTY.
-#define BF_UARTV2_UTS_RXEMPTY(v)   ((((reg32_t) v) << BP_UARTV2_UTS_RXEMPTY) & BM_UARTV2_UTS_RXEMPTY)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_RXEMPTY.
-#define BF_UARTV2_UTS_RXEMPTY(v)   (((v) << BP_UARTV2_UTS_RXEMPTY) & BM_UARTV2_UTS_RXEMPTY)
-#endif
+//! @brief Format value for bitfield UART_UTS_RXEMPTY.
+#define BF_UART_UTS_RXEMPTY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXEMPTY) & BM_UART_UTS_RXEMPTY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXEMPTY field to a new value.
-#define BW_UARTV2_UTS_RXEMPTY(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_RXEMPTY) | BF_UARTV2_UTS_RXEMPTY(v)))
+#define BW_UART_UTS_RXEMPTY(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXEMPTY) | BF_UART_UTS_RXEMPTY(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field TXEMPTY[6] (RW)
+/* --- Register HW_UART_UTS, field TXEMPTY[6] (RW)
  *
  * TxFIFO Empty. Indicates that the TxFIFO is empty.
  *
@@ -3863,27 +3488,22 @@ typedef union _hw_uartv2_uts
  * 1 - The TxFIFO is empty
  */
 
-#define BP_UARTV2_UTS_TXEMPTY      (6)      //!< Bit position for UARTV2_UTS_TXEMPTY.
-#define BM_UARTV2_UTS_TXEMPTY      (0x00000040)  //!< Bit mask for UARTV2_UTS_TXEMPTY.
+#define BP_UART_UTS_TXEMPTY      (6)      //!< Bit position for UART_UTS_TXEMPTY.
+#define BM_UART_UTS_TXEMPTY      (0x00000040)  //!< Bit mask for UART_UTS_TXEMPTY.
 
-//! @brief Get value of UARTV2_UTS_TXEMPTY from a register value.
-#define BG_UARTV2_UTS_TXEMPTY(r)   (((r) & BM_UARTV2_UTS_TXEMPTY) >> BP_UARTV2_UTS_TXEMPTY)
+//! @brief Get value of UART_UTS_TXEMPTY from a register value.
+#define BG_UART_UTS_TXEMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_TXEMPTY) >> BP_UART_UTS_TXEMPTY)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_TXEMPTY.
-#define BF_UARTV2_UTS_TXEMPTY(v)   ((((reg32_t) v) << BP_UARTV2_UTS_TXEMPTY) & BM_UARTV2_UTS_TXEMPTY)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_TXEMPTY.
-#define BF_UARTV2_UTS_TXEMPTY(v)   (((v) << BP_UARTV2_UTS_TXEMPTY) & BM_UARTV2_UTS_TXEMPTY)
-#endif
+//! @brief Format value for bitfield UART_UTS_TXEMPTY.
+#define BF_UART_UTS_TXEMPTY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_TXEMPTY) & BM_UART_UTS_TXEMPTY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXEMPTY field to a new value.
-#define BW_UARTV2_UTS_TXEMPTY(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_TXEMPTY) | BF_UARTV2_UTS_TXEMPTY(v)))
+#define BW_UART_UTS_TXEMPTY(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_TXEMPTY) | BF_UART_UTS_TXEMPTY(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field RXDBG[9] (RW)
+/* --- Register HW_UART_UTS, field RXDBG[9] (RW)
  *
  * This bit is not used in this chip. The user should clear this bit for future compatibility.
  * RX_fifo_debug_mode. This bit controls the operation of the RX fifo read counter when in debug
@@ -3894,27 +3514,22 @@ typedef union _hw_uartv2_uts
  * 1 - rx_fifo read pointer increments as normal
  */
 
-#define BP_UARTV2_UTS_RXDBG      (9)      //!< Bit position for UARTV2_UTS_RXDBG.
-#define BM_UARTV2_UTS_RXDBG      (0x00000200)  //!< Bit mask for UARTV2_UTS_RXDBG.
+#define BP_UART_UTS_RXDBG      (9)      //!< Bit position for UART_UTS_RXDBG.
+#define BM_UART_UTS_RXDBG      (0x00000200)  //!< Bit mask for UART_UTS_RXDBG.
 
-//! @brief Get value of UARTV2_UTS_RXDBG from a register value.
-#define BG_UARTV2_UTS_RXDBG(r)   (((r) & BM_UARTV2_UTS_RXDBG) >> BP_UARTV2_UTS_RXDBG)
+//! @brief Get value of UART_UTS_RXDBG from a register value.
+#define BG_UART_UTS_RXDBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_RXDBG) >> BP_UART_UTS_RXDBG)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_RXDBG.
-#define BF_UARTV2_UTS_RXDBG(v)   ((((reg32_t) v) << BP_UARTV2_UTS_RXDBG) & BM_UARTV2_UTS_RXDBG)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_RXDBG.
-#define BF_UARTV2_UTS_RXDBG(v)   (((v) << BP_UARTV2_UTS_RXDBG) & BM_UARTV2_UTS_RXDBG)
-#endif
+//! @brief Format value for bitfield UART_UTS_RXDBG.
+#define BF_UART_UTS_RXDBG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_RXDBG) & BM_UART_UTS_RXDBG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXDBG field to a new value.
-#define BW_UARTV2_UTS_RXDBG(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_RXDBG) | BF_UARTV2_UTS_RXDBG(v)))
+#define BW_UART_UTS_RXDBG(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXDBG) | BF_UART_UTS_RXDBG(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field LOOPIR[10] (RW)
+/* --- Register HW_UART_UTS, field LOOPIR[10] (RW)
  *
  * Loop TX and RX for IR Test (LOOPIR) . This bit controls loopback from transmitter to receiver in
  * the InfraRed interface.
@@ -3924,27 +3539,22 @@ typedef union _hw_uartv2_uts
  * 1 - Connect IR transmitter to IR receiver
  */
 
-#define BP_UARTV2_UTS_LOOPIR      (10)      //!< Bit position for UARTV2_UTS_LOOPIR.
-#define BM_UARTV2_UTS_LOOPIR      (0x00000400)  //!< Bit mask for UARTV2_UTS_LOOPIR.
+#define BP_UART_UTS_LOOPIR      (10)      //!< Bit position for UART_UTS_LOOPIR.
+#define BM_UART_UTS_LOOPIR      (0x00000400)  //!< Bit mask for UART_UTS_LOOPIR.
 
-//! @brief Get value of UARTV2_UTS_LOOPIR from a register value.
-#define BG_UARTV2_UTS_LOOPIR(r)   (((r) & BM_UARTV2_UTS_LOOPIR) >> BP_UARTV2_UTS_LOOPIR)
+//! @brief Get value of UART_UTS_LOOPIR from a register value.
+#define BG_UART_UTS_LOOPIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_LOOPIR) >> BP_UART_UTS_LOOPIR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_LOOPIR.
-#define BF_UARTV2_UTS_LOOPIR(v)   ((((reg32_t) v) << BP_UARTV2_UTS_LOOPIR) & BM_UARTV2_UTS_LOOPIR)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_LOOPIR.
-#define BF_UARTV2_UTS_LOOPIR(v)   (((v) << BP_UARTV2_UTS_LOOPIR) & BM_UARTV2_UTS_LOOPIR)
-#endif
+//! @brief Format value for bitfield UART_UTS_LOOPIR.
+#define BF_UART_UTS_LOOPIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_LOOPIR) & BM_UART_UTS_LOOPIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOPIR field to a new value.
-#define BW_UARTV2_UTS_LOOPIR(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_LOOPIR) | BF_UARTV2_UTS_LOOPIR(v)))
+#define BW_UART_UTS_LOOPIR(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_LOOPIR) | BF_UART_UTS_LOOPIR(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field DBGEN[11] (RW)
+/* --- Register HW_UART_UTS, field DBGEN[11] (RW)
  *
  * This bit is not used in this chip. The user should clear this bit for future compatibility.
  * debug_enable . This bit controls whether to respond to the debug_req input signal.
@@ -3954,27 +3564,22 @@ typedef union _hw_uartv2_uts
  * 1 - UART will not go into debug mode even if debug_req is HIGH
  */
 
-#define BP_UARTV2_UTS_DBGEN      (11)      //!< Bit position for UARTV2_UTS_DBGEN.
-#define BM_UARTV2_UTS_DBGEN      (0x00000800)  //!< Bit mask for UARTV2_UTS_DBGEN.
+#define BP_UART_UTS_DBGEN      (11)      //!< Bit position for UART_UTS_DBGEN.
+#define BM_UART_UTS_DBGEN      (0x00000800)  //!< Bit mask for UART_UTS_DBGEN.
 
-//! @brief Get value of UARTV2_UTS_DBGEN from a register value.
-#define BG_UARTV2_UTS_DBGEN(r)   (((r) & BM_UARTV2_UTS_DBGEN) >> BP_UARTV2_UTS_DBGEN)
+//! @brief Get value of UART_UTS_DBGEN from a register value.
+#define BG_UART_UTS_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_DBGEN) >> BP_UART_UTS_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_DBGEN.
-#define BF_UARTV2_UTS_DBGEN(v)   ((((reg32_t) v) << BP_UARTV2_UTS_DBGEN) & BM_UARTV2_UTS_DBGEN)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_DBGEN.
-#define BF_UARTV2_UTS_DBGEN(v)   (((v) << BP_UARTV2_UTS_DBGEN) & BM_UARTV2_UTS_DBGEN)
-#endif
+//! @brief Format value for bitfield UART_UTS_DBGEN.
+#define BF_UART_UTS_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_DBGEN) & BM_UART_UTS_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
-#define BW_UARTV2_UTS_DBGEN(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_DBGEN) | BF_UARTV2_UTS_DBGEN(v)))
+#define BW_UART_UTS_DBGEN(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_DBGEN) | BF_UART_UTS_DBGEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field LOOP[12] (RW)
+/* --- Register HW_UART_UTS, field LOOP[12] (RW)
  *
  * Loop TX and RX for Test. Controls loopback for test purposes. When LOOP is high, the receiver
  * input is internally connected to the transmitter and ignores the RXD pin. The transmitter is
@@ -3986,27 +3591,22 @@ typedef union _hw_uartv2_uts
  * 1 - Internally connect the transmitter output to the receiver input
  */
 
-#define BP_UARTV2_UTS_LOOP      (12)      //!< Bit position for UARTV2_UTS_LOOP.
-#define BM_UARTV2_UTS_LOOP      (0x00001000)  //!< Bit mask for UARTV2_UTS_LOOP.
+#define BP_UART_UTS_LOOP      (12)      //!< Bit position for UART_UTS_LOOP.
+#define BM_UART_UTS_LOOP      (0x00001000)  //!< Bit mask for UART_UTS_LOOP.
 
-//! @brief Get value of UARTV2_UTS_LOOP from a register value.
-#define BG_UARTV2_UTS_LOOP(r)   (((r) & BM_UARTV2_UTS_LOOP) >> BP_UARTV2_UTS_LOOP)
+//! @brief Get value of UART_UTS_LOOP from a register value.
+#define BG_UART_UTS_LOOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_LOOP) >> BP_UART_UTS_LOOP)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_LOOP.
-#define BF_UARTV2_UTS_LOOP(v)   ((((reg32_t) v) << BP_UARTV2_UTS_LOOP) & BM_UARTV2_UTS_LOOP)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_LOOP.
-#define BF_UARTV2_UTS_LOOP(v)   (((v) << BP_UARTV2_UTS_LOOP) & BM_UARTV2_UTS_LOOP)
-#endif
+//! @brief Format value for bitfield UART_UTS_LOOP.
+#define BF_UART_UTS_LOOP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_LOOP) & BM_UART_UTS_LOOP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOP field to a new value.
-#define BW_UARTV2_UTS_LOOP(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_LOOP) | BF_UARTV2_UTS_LOOP(v)))
+#define BW_UART_UTS_LOOP(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_LOOP) | BF_UART_UTS_LOOP(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UTS, field FRCPERR[13] (RW)
+/* --- Register HW_UART_UTS, field FRCPERR[13] (RW)
  *
  * Force Parity Error. Forces the transmitter to generate a parity error if parity is enabled.
  * FRCPERR is provided for system debugging.
@@ -4016,38 +3616,37 @@ typedef union _hw_uartv2_uts
  * 1 - Generate inverted parity (error)
  */
 
-#define BP_UARTV2_UTS_FRCPERR      (13)      //!< Bit position for UARTV2_UTS_FRCPERR.
-#define BM_UARTV2_UTS_FRCPERR      (0x00002000)  //!< Bit mask for UARTV2_UTS_FRCPERR.
+#define BP_UART_UTS_FRCPERR      (13)      //!< Bit position for UART_UTS_FRCPERR.
+#define BM_UART_UTS_FRCPERR      (0x00002000)  //!< Bit mask for UART_UTS_FRCPERR.
 
-//! @brief Get value of UARTV2_UTS_FRCPERR from a register value.
-#define BG_UARTV2_UTS_FRCPERR(r)   (((r) & BM_UARTV2_UTS_FRCPERR) >> BP_UARTV2_UTS_FRCPERR)
+//! @brief Get value of UART_UTS_FRCPERR from a register value.
+#define BG_UART_UTS_FRCPERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UTS_FRCPERR) >> BP_UART_UTS_FRCPERR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UTS_FRCPERR.
-#define BF_UARTV2_UTS_FRCPERR(v)   ((((reg32_t) v) << BP_UARTV2_UTS_FRCPERR) & BM_UARTV2_UTS_FRCPERR)
-#else
-//! @brief Format value for bitfield UARTV2_UTS_FRCPERR.
-#define BF_UARTV2_UTS_FRCPERR(v)   (((v) << BP_UARTV2_UTS_FRCPERR) & BM_UARTV2_UTS_FRCPERR)
-#endif
+//! @brief Format value for bitfield UART_UTS_FRCPERR.
+#define BF_UART_UTS_FRCPERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTS_FRCPERR) & BM_UART_UTS_FRCPERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRCPERR field to a new value.
-#define BW_UARTV2_UTS_FRCPERR(x, v)   (HW_UARTV2_UTS_WR(x, (HW_UARTV2_UTS_RD(x) & ~BM_UARTV2_UTS_FRCPERR) | BF_UARTV2_UTS_FRCPERR(v)))
+#define BW_UART_UTS_FRCPERR(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_FRCPERR) | BF_UART_UTS_FRCPERR(v)))
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_UART_UMCR - UART RS-485 Mode Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_UARTV2_UMCR - UART RS-485 Mode Control Register (RW)
+ * @brief HW_UART_UMCR - UART RS-485 Mode Control Register (RW)
  *
  * Reset value: 0x00000000
  *
 
  */
-typedef union _hw_uartv2_umcr
+typedef union _hw_uart_umcr
 {
     reg32_t U;
-    struct _hw_uartv2_umcr_bitfields
+    struct _hw_uart_umcr_bitfields
     {
         unsigned MDEN : 1; //!< [0] 9-bit data or Multidrop Mode (RS-485) Enable.
         unsigned SLAM : 1; //!< [1] RS-485 Slave Address Detect Mode Selection.
@@ -4057,28 +3656,28 @@ typedef union _hw_uartv2_umcr
         unsigned SLADDR : 8; //!< [15:8] RS-485 Slave Address Character. Holds the selected slave adress character that the receiver wil try to detect.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
-} hw_uartv2_umcr_t;
+} hw_uart_umcr_t;
 #endif
 
 /*
- * constants & macros for entire multi-block UARTV2_UMCR register
+ * constants & macros for entire multi-block UART_UMCR register
  */
-#define HW_UARTV2_UMCR_ADDR(x)      (REGS_UARTV2_BASE(x) + 0xb8)
+#define HW_UART_UMCR_ADDR(x)      (REGS_UART_BASE(x) + 0xb8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_UARTV2_UMCR(x)           (*(volatile hw_uartv2_umcr_t *) HW_UARTV2_UMCR_ADDR(x))
-#define HW_UARTV2_UMCR_RD(x)        (HW_UARTV2_UMCR(x).U)
-#define HW_UARTV2_UMCR_WR(x, v)     (HW_UARTV2_UMCR(x).U = (v))
-#define HW_UARTV2_UMCR_SET(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) |  (v)))
-#define HW_UARTV2_UMCR_CLR(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) & ~(v)))
-#define HW_UARTV2_UMCR_TOG(x, v)    (HW_UARTV2_UMCR_WR(x, HW_UARTV2_UMCR_RD(x) ^  (v)))
+#define HW_UART_UMCR(x)           (*(volatile hw_uart_umcr_t *) HW_UART_UMCR_ADDR(x))
+#define HW_UART_UMCR_RD(x)        (HW_UART_UMCR(x).U)
+#define HW_UART_UMCR_WR(x, v)     (HW_UART_UMCR(x).U = (v))
+#define HW_UART_UMCR_SET(x, v)    (HW_UART_UMCR_WR(x, HW_UART_UMCR_RD(x) |  (v)))
+#define HW_UART_UMCR_CLR(x, v)    (HW_UART_UMCR_WR(x, HW_UART_UMCR_RD(x) & ~(v)))
+#define HW_UART_UMCR_TOG(x, v)    (HW_UART_UMCR_WR(x, HW_UART_UMCR_RD(x) ^  (v)))
 #endif
 
 /*
- * constants & macros for individual UARTV2_UMCR bitfields
+ * constants & macros for individual UART_UMCR bitfields
  */
 
-/* --- Register HW_UARTV2_UMCR, field MDEN[0] (RW)
+/* --- Register HW_UART_UMCR, field MDEN[0] (RW)
  *
  * 9-bit data or Multidrop Mode (RS-485) Enable.
  *
@@ -4087,27 +3686,22 @@ typedef union _hw_uartv2_umcr
  * 1 - Enable RS-485 mode, see for detail
  */
 
-#define BP_UARTV2_UMCR_MDEN      (0)      //!< Bit position for UARTV2_UMCR_MDEN.
-#define BM_UARTV2_UMCR_MDEN      (0x00000001)  //!< Bit mask for UARTV2_UMCR_MDEN.
+#define BP_UART_UMCR_MDEN      (0)      //!< Bit position for UART_UMCR_MDEN.
+#define BM_UART_UMCR_MDEN      (0x00000001)  //!< Bit mask for UART_UMCR_MDEN.
 
-//! @brief Get value of UARTV2_UMCR_MDEN from a register value.
-#define BG_UARTV2_UMCR_MDEN(r)   (((r) & BM_UARTV2_UMCR_MDEN) >> BP_UARTV2_UMCR_MDEN)
+//! @brief Get value of UART_UMCR_MDEN from a register value.
+#define BG_UART_UMCR_MDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_MDEN) >> BP_UART_UMCR_MDEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UMCR_MDEN.
-#define BF_UARTV2_UMCR_MDEN(v)   ((((reg32_t) v) << BP_UARTV2_UMCR_MDEN) & BM_UARTV2_UMCR_MDEN)
-#else
-//! @brief Format value for bitfield UARTV2_UMCR_MDEN.
-#define BF_UARTV2_UMCR_MDEN(v)   (((v) << BP_UARTV2_UMCR_MDEN) & BM_UARTV2_UMCR_MDEN)
-#endif
+//! @brief Format value for bitfield UART_UMCR_MDEN.
+#define BF_UART_UMCR_MDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_MDEN) & BM_UART_UMCR_MDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MDEN field to a new value.
-#define BW_UARTV2_UMCR_MDEN(x, v)   (HW_UARTV2_UMCR_WR(x, (HW_UARTV2_UMCR_RD(x) & ~BM_UARTV2_UMCR_MDEN) | BF_UARTV2_UMCR_MDEN(v)))
+#define BW_UART_UMCR_MDEN(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_MDEN) | BF_UART_UMCR_MDEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UMCR, field SLAM[1] (RW)
+/* --- Register HW_UART_UMCR, field SLAM[1] (RW)
  *
  * RS-485 Slave Address Detect Mode Selection.
  *
@@ -4116,27 +3710,22 @@ typedef union _hw_uartv2_umcr
  * 1 - Select Automatic Address Detect mode
  */
 
-#define BP_UARTV2_UMCR_SLAM      (1)      //!< Bit position for UARTV2_UMCR_SLAM.
-#define BM_UARTV2_UMCR_SLAM      (0x00000002)  //!< Bit mask for UARTV2_UMCR_SLAM.
+#define BP_UART_UMCR_SLAM      (1)      //!< Bit position for UART_UMCR_SLAM.
+#define BM_UART_UMCR_SLAM      (0x00000002)  //!< Bit mask for UART_UMCR_SLAM.
 
-//! @brief Get value of UARTV2_UMCR_SLAM from a register value.
-#define BG_UARTV2_UMCR_SLAM(r)   (((r) & BM_UARTV2_UMCR_SLAM) >> BP_UARTV2_UMCR_SLAM)
+//! @brief Get value of UART_UMCR_SLAM from a register value.
+#define BG_UART_UMCR_SLAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SLAM) >> BP_UART_UMCR_SLAM)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UMCR_SLAM.
-#define BF_UARTV2_UMCR_SLAM(v)   ((((reg32_t) v) << BP_UARTV2_UMCR_SLAM) & BM_UARTV2_UMCR_SLAM)
-#else
-//! @brief Format value for bitfield UARTV2_UMCR_SLAM.
-#define BF_UARTV2_UMCR_SLAM(v)   (((v) << BP_UARTV2_UMCR_SLAM) & BM_UARTV2_UMCR_SLAM)
-#endif
+//! @brief Format value for bitfield UART_UMCR_SLAM.
+#define BF_UART_UMCR_SLAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SLAM) & BM_UART_UMCR_SLAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLAM field to a new value.
-#define BW_UARTV2_UMCR_SLAM(x, v)   (HW_UARTV2_UMCR_WR(x, (HW_UARTV2_UMCR_RD(x) & ~BM_UARTV2_UMCR_SLAM) | BF_UARTV2_UMCR_SLAM(v)))
+#define BW_UART_UMCR_SLAM(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SLAM) | BF_UART_UMCR_SLAM(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UMCR, field TXB8[2] (RW)
+/* --- Register HW_UART_UMCR, field TXB8[2] (RW)
  *
  * Transmit RS-485 bit 8 (the ninth bit or 9 th bit). In RS-485 mode, software writes TXB8 bit as
  * the 9 th data bit to be transmitted.
@@ -4146,27 +3735,22 @@ typedef union _hw_uartv2_umcr
  * 1 - 1 will be transmitted as the RS485 9 th data bit
  */
 
-#define BP_UARTV2_UMCR_TXB8      (2)      //!< Bit position for UARTV2_UMCR_TXB8.
-#define BM_UARTV2_UMCR_TXB8      (0x00000004)  //!< Bit mask for UARTV2_UMCR_TXB8.
+#define BP_UART_UMCR_TXB8      (2)      //!< Bit position for UART_UMCR_TXB8.
+#define BM_UART_UMCR_TXB8      (0x00000004)  //!< Bit mask for UART_UMCR_TXB8.
 
-//! @brief Get value of UARTV2_UMCR_TXB8 from a register value.
-#define BG_UARTV2_UMCR_TXB8(r)   (((r) & BM_UARTV2_UMCR_TXB8) >> BP_UARTV2_UMCR_TXB8)
+//! @brief Get value of UART_UMCR_TXB8 from a register value.
+#define BG_UART_UMCR_TXB8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_TXB8) >> BP_UART_UMCR_TXB8)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UMCR_TXB8.
-#define BF_UARTV2_UMCR_TXB8(v)   ((((reg32_t) v) << BP_UARTV2_UMCR_TXB8) & BM_UARTV2_UMCR_TXB8)
-#else
-//! @brief Format value for bitfield UARTV2_UMCR_TXB8.
-#define BF_UARTV2_UMCR_TXB8(v)   (((v) << BP_UARTV2_UMCR_TXB8) & BM_UARTV2_UMCR_TXB8)
-#endif
+//! @brief Format value for bitfield UART_UMCR_TXB8.
+#define BF_UART_UMCR_TXB8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_TXB8) & BM_UART_UMCR_TXB8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB8 field to a new value.
-#define BW_UARTV2_UMCR_TXB8(x, v)   (HW_UARTV2_UMCR_WR(x, (HW_UARTV2_UMCR_RD(x) & ~BM_UARTV2_UMCR_TXB8) | BF_UARTV2_UMCR_TXB8(v)))
+#define BW_UART_UMCR_TXB8(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_TXB8) | BF_UART_UMCR_TXB8(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UMCR, field SADEN[3] (RW)
+/* --- Register HW_UART_UMCR, field SADEN[3] (RW)
  *
  * RS-485 Slave Address Detected Interrupt Enable.
  *
@@ -4175,88 +3759,78 @@ typedef union _hw_uartv2_umcr
  * 1 - Enable RS-485 Slave Address Detected Interrupt
  */
 
-#define BP_UARTV2_UMCR_SADEN      (3)      //!< Bit position for UARTV2_UMCR_SADEN.
-#define BM_UARTV2_UMCR_SADEN      (0x00000008)  //!< Bit mask for UARTV2_UMCR_SADEN.
+#define BP_UART_UMCR_SADEN      (3)      //!< Bit position for UART_UMCR_SADEN.
+#define BM_UART_UMCR_SADEN      (0x00000008)  //!< Bit mask for UART_UMCR_SADEN.
 
-//! @brief Get value of UARTV2_UMCR_SADEN from a register value.
-#define BG_UARTV2_UMCR_SADEN(r)   (((r) & BM_UARTV2_UMCR_SADEN) >> BP_UARTV2_UMCR_SADEN)
+//! @brief Get value of UART_UMCR_SADEN from a register value.
+#define BG_UART_UMCR_SADEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SADEN) >> BP_UART_UMCR_SADEN)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UMCR_SADEN.
-#define BF_UARTV2_UMCR_SADEN(v)   ((((reg32_t) v) << BP_UARTV2_UMCR_SADEN) & BM_UARTV2_UMCR_SADEN)
-#else
-//! @brief Format value for bitfield UARTV2_UMCR_SADEN.
-#define BF_UARTV2_UMCR_SADEN(v)   (((v) << BP_UARTV2_UMCR_SADEN) & BM_UARTV2_UMCR_SADEN)
-#endif
+//! @brief Format value for bitfield UART_UMCR_SADEN.
+#define BF_UART_UMCR_SADEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SADEN) & BM_UART_UMCR_SADEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SADEN field to a new value.
-#define BW_UARTV2_UMCR_SADEN(x, v)   (HW_UARTV2_UMCR_WR(x, (HW_UARTV2_UMCR_RD(x) & ~BM_UARTV2_UMCR_SADEN) | BF_UARTV2_UMCR_SADEN(v)))
+#define BW_UART_UMCR_SADEN(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SADEN) | BF_UART_UMCR_SADEN(v)))
 #endif
 
 
-/* --- Register HW_UARTV2_UMCR, field SLADDR[15:8] (RW)
+/* --- Register HW_UART_UMCR, field SLADDR[15:8] (RW)
  *
  * RS-485 Slave Address Character. Holds the selected slave adress character that the receiver wil
  * try to detect.
  */
 
-#define BP_UARTV2_UMCR_SLADDR      (8)      //!< Bit position for UARTV2_UMCR_SLADDR.
-#define BM_UARTV2_UMCR_SLADDR      (0x0000ff00)  //!< Bit mask for UARTV2_UMCR_SLADDR.
+#define BP_UART_UMCR_SLADDR      (8)      //!< Bit position for UART_UMCR_SLADDR.
+#define BM_UART_UMCR_SLADDR      (0x0000ff00)  //!< Bit mask for UART_UMCR_SLADDR.
 
-//! @brief Get value of UARTV2_UMCR_SLADDR from a register value.
-#define BG_UARTV2_UMCR_SLADDR(r)   (((r) & BM_UARTV2_UMCR_SLADDR) >> BP_UARTV2_UMCR_SLADDR)
+//! @brief Get value of UART_UMCR_SLADDR from a register value.
+#define BG_UART_UMCR_SLADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UMCR_SLADDR) >> BP_UART_UMCR_SLADDR)
 
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield UARTV2_UMCR_SLADDR.
-#define BF_UARTV2_UMCR_SLADDR(v)   ((((reg32_t) v) << BP_UARTV2_UMCR_SLADDR) & BM_UARTV2_UMCR_SLADDR)
-#else
-//! @brief Format value for bitfield UARTV2_UMCR_SLADDR.
-#define BF_UARTV2_UMCR_SLADDR(v)   (((v) << BP_UARTV2_UMCR_SLADDR) & BM_UARTV2_UMCR_SLADDR)
-#endif
+//! @brief Format value for bitfield UART_UMCR_SLADDR.
+#define BF_UART_UMCR_SLADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UMCR_SLADDR) & BM_UART_UMCR_SLADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLADDR field to a new value.
-#define BW_UARTV2_UMCR_SLADDR(x, v)   (HW_UARTV2_UMCR_WR(x, (HW_UARTV2_UMCR_RD(x) & ~BM_UARTV2_UMCR_SLADDR) | BF_UARTV2_UMCR_SLADDR(v)))
+#define BW_UART_UMCR_SLADDR(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SLADDR) | BF_UART_UMCR_SLADDR(v)))
 #endif
 
 
 /*!
- * @brief All UARTV2 module registers.
+ * @brief All UART module registers.
  */
 #ifndef __LANGUAGE_ASM__
 #pragma pack(1)
-typedef struct _hw_uartv2
+typedef struct _hw_uart
 {
-    volatile hw_uartv2_urxd_t URXD; //!< UART Receiver Register
+    volatile hw_uart_urxd_t URXD; //!< UART Receiver Register
     reg32_t _reserved0[15];
-    volatile hw_uartv2_utxd_t UTXD; //!< UART Transmitter Register
+    volatile hw_uart_utxd_t UTXD; //!< UART Transmitter Register
     reg32_t _reserved1[15];
-    volatile hw_uartv2_ucr1_t UCR1; //!< UART Control Register 1
-    volatile hw_uartv2_ucr2_t UCR2; //!< UART Control Register 2
-    volatile hw_uartv2_ucr3_t UCR3; //!< UART Control Register 3
-    volatile hw_uartv2_ucr4_t UCR4; //!< UART Control Register 4
-    volatile hw_uartv2_ufcr_t UFCR; //!< UART FIFO Control Register
-    volatile hw_uartv2_usr1_t USR1; //!< UART Status Register 1
-    volatile hw_uartv2_usr2_t USR2; //!< UART Status Register 2
-    volatile hw_uartv2_uesc_t UESC; //!< UART Escape Character Register
-    volatile hw_uartv2_utim_t UTIM; //!< UART Escape Timer Register
-    volatile hw_uartv2_ubir_t UBIR; //!< UART BRM Incremental Register
-    volatile hw_uartv2_ubmr_t UBMR; //!< UART BRM Modulator Register
-    volatile hw_uartv2_ubrc_t UBRC; //!< UART Baud Rate Count Register
-    volatile hw_uartv2_onems_t ONEMS; //!< UART One Millisecond Register
-    volatile hw_uartv2_uts_t UTS; //!< UART Test Register
-    volatile hw_uartv2_umcr_t UMCR; //!< UART RS-485 Mode Control Register
-} hw_uartv2_t;
+    volatile hw_uart_ucr1_t UCR1; //!< UART Control Register 1
+    volatile hw_uart_ucr2_t UCR2; //!< UART Control Register 2
+    volatile hw_uart_ucr3_t UCR3; //!< UART Control Register 3
+    volatile hw_uart_ucr4_t UCR4; //!< UART Control Register 4
+    volatile hw_uart_ufcr_t UFCR; //!< UART FIFO Control Register
+    volatile hw_uart_usr1_t USR1; //!< UART Status Register 1
+    volatile hw_uart_usr2_t USR2; //!< UART Status Register 2
+    volatile hw_uart_uesc_t UESC; //!< UART Escape Character Register
+    volatile hw_uart_utim_t UTIM; //!< UART Escape Timer Register
+    volatile hw_uart_ubir_t UBIR; //!< UART BRM Incremental Register
+    volatile hw_uart_ubmr_t UBMR; //!< UART BRM Modulator Register
+    volatile hw_uart_ubrc_t UBRC; //!< UART Baud Rate Count Register
+    volatile hw_uart_onems_t ONEMS; //!< UART One Millisecond Register
+    volatile hw_uart_uts_t UTS; //!< UART Test Register
+    volatile hw_uart_umcr_t UMCR; //!< UART RS-485 Mode Control Register
+} hw_uart_t;
 #pragma pack()
 
-//! @brief Macro to access all UARTV2 registers.
-//! @param x UARTV2 instance number.
+//! @brief Macro to access all UART registers.
+//! @param x UART instance number.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
-//!     use the '&' operator, like <code>&HW_UARTV2(0)</code>.
-#define HW_UARTV2(x)     (*(volatile hw_uartv2_t *) REGS_UARTV2_BASE(x))
+//!     use the '&' operator, like <code>&HW_UART(0)</code>.
+#define HW_UART(x)     (*(volatile hw_uart_t *) REGS_UART_BASE(x))
 
 #endif
 
 
-#endif // __HW_UARTV2_REGISTERS_H__
+#endif // __HW_UART_REGISTERS_H__

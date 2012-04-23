@@ -20,10 +20,6 @@
  * - HW_SJC_DCR - Debug Control Register
  * - HW_SJC_SSR - Security Status Register
  * - HW_SJC_GPCCR - General Purpose Clocks Control Register
- * - HW_SJC_GPUCR1 - General Purpose Unsecured Control Register n
- * - HW_SJC_GPUCR2 - General Purpose Unsecured Control Register n
- * - HW_SJC_GPUCR3 - General Purpose Unsecured Control Register n
- * - HW_SJC_GPSCR - General Purpose Secured Control Register
  *
  * - hw_sjc_t - Struct containing all module registers.
  */
@@ -35,6 +31,21 @@
 #define REGS_SJC_BASE (0x00000000) //!< Base address for SJC.
 #endif
 //@}
+
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_GPUSR1 - General Purpose Unsecured Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -86,7 +97,7 @@ typedef union _hw_sjc_gpusr1
 #define BM_SJC_GPUSR1_A_DBG      (0x00000001)  //!< Bit mask for SJC_GPUSR1_A_DBG.
 
 //! @brief Get value of SJC_GPUSR1_A_DBG from a register value.
-#define BG_SJC_GPUSR1_A_DBG(r)   (((r) & BM_SJC_GPUSR1_A_DBG) >> BP_SJC_GPUSR1_A_DBG)
+#define BG_SJC_GPUSR1_A_DBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_A_DBG) >> BP_SJC_GPUSR1_A_DBG)
 
 /* --- Register HW_SJC_GPUSR1, field A_WFI[1] (RO)
  *
@@ -98,7 +109,7 @@ typedef union _hw_sjc_gpusr1
 #define BM_SJC_GPUSR1_A_WFI      (0x00000002)  //!< Bit mask for SJC_GPUSR1_A_WFI.
 
 //! @brief Get value of SJC_GPUSR1_A_WFI from a register value.
-#define BG_SJC_GPUSR1_A_WFI(r)   (((r) & BM_SJC_GPUSR1_A_WFI) >> BP_SJC_GPUSR1_A_WFI)
+#define BG_SJC_GPUSR1_A_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_A_WFI) >> BP_SJC_GPUSR1_A_WFI)
 
 /* --- Register HW_SJC_GPUSR1, field S_STAT[4:2] (RO)
  *
@@ -109,7 +120,7 @@ typedef union _hw_sjc_gpusr1
 #define BM_SJC_GPUSR1_S_STAT      (0x0000001c)  //!< Bit mask for SJC_GPUSR1_S_STAT.
 
 //! @brief Get value of SJC_GPUSR1_S_STAT from a register value.
-#define BG_SJC_GPUSR1_S_STAT(r)   (((r) & BM_SJC_GPUSR1_S_STAT) >> BP_SJC_GPUSR1_S_STAT)
+#define BG_SJC_GPUSR1_S_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_S_STAT) >> BP_SJC_GPUSR1_S_STAT)
 
 /* --- Register HW_SJC_GPUSR1, field PLL_LOCK[8] (RO)
  *
@@ -120,7 +131,11 @@ typedef union _hw_sjc_gpusr1
 #define BM_SJC_GPUSR1_PLL_LOCK      (0x00000100)  //!< Bit mask for SJC_GPUSR1_PLL_LOCK.
 
 //! @brief Get value of SJC_GPUSR1_PLL_LOCK from a register value.
-#define BG_SJC_GPUSR1_PLL_LOCK(r)   (((r) & BM_SJC_GPUSR1_PLL_LOCK) >> BP_SJC_GPUSR1_PLL_LOCK)
+#define BG_SJC_GPUSR1_PLL_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_PLL_LOCK) >> BP_SJC_GPUSR1_PLL_LOCK)
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_GPUSR2 - General Purpose Unsecured Status Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -166,7 +181,7 @@ typedef union _hw_sjc_gpusr2
 #define BM_SJC_GPUSR2_STBYWFI      (0x0000000f)  //!< Bit mask for SJC_GPUSR2_STBYWFI.
 
 //! @brief Get value of SJC_GPUSR2_STBYWFI from a register value.
-#define BG_SJC_GPUSR2_STBYWFI(r)   (((r) & BM_SJC_GPUSR2_STBYWFI) >> BP_SJC_GPUSR2_STBYWFI)
+#define BG_SJC_GPUSR2_STBYWFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_STBYWFI) >> BP_SJC_GPUSR2_STBYWFI)
 
 /* --- Register HW_SJC_GPUSR2, field S_STAT[7:4] (RO)
  *
@@ -177,7 +192,7 @@ typedef union _hw_sjc_gpusr2
 #define BM_SJC_GPUSR2_S_STAT      (0x000000f0)  //!< Bit mask for SJC_GPUSR2_S_STAT.
 
 //! @brief Get value of SJC_GPUSR2_S_STAT from a register value.
-#define BG_SJC_GPUSR2_S_STAT(r)   (((r) & BM_SJC_GPUSR2_S_STAT) >> BP_SJC_GPUSR2_S_STAT)
+#define BG_SJC_GPUSR2_S_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_S_STAT) >> BP_SJC_GPUSR2_S_STAT)
 
 /* --- Register HW_SJC_GPUSR2, field STBYWFE[11:8] (RO)
  *
@@ -188,7 +203,11 @@ typedef union _hw_sjc_gpusr2
 #define BM_SJC_GPUSR2_STBYWFE      (0x00000f00)  //!< Bit mask for SJC_GPUSR2_STBYWFE.
 
 //! @brief Get value of SJC_GPUSR2_STBYWFE from a register value.
-#define BG_SJC_GPUSR2_STBYWFE(r)   (((r) & BM_SJC_GPUSR2_STBYWFE) >> BP_SJC_GPUSR2_STBYWFE)
+#define BG_SJC_GPUSR2_STBYWFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_STBYWFE) >> BP_SJC_GPUSR2_STBYWFE)
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_GPUSR3 - General Purpose Unsecured Status Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -234,7 +253,7 @@ typedef union _hw_sjc_gpusr3
 #define BM_SJC_GPUSR3_IPG_WAIT      (0x00000001)  //!< Bit mask for SJC_GPUSR3_IPG_WAIT.
 
 //! @brief Get value of SJC_GPUSR3_IPG_WAIT from a register value.
-#define BG_SJC_GPUSR3_IPG_WAIT(r)   (((r) & BM_SJC_GPUSR3_IPG_WAIT) >> BP_SJC_GPUSR3_IPG_WAIT)
+#define BG_SJC_GPUSR3_IPG_WAIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_IPG_WAIT) >> BP_SJC_GPUSR3_IPG_WAIT)
 
 /* --- Register HW_SJC_GPUSR3, field IPG_STOP[1] (RO)
  *
@@ -245,7 +264,7 @@ typedef union _hw_sjc_gpusr3
 #define BM_SJC_GPUSR3_IPG_STOP      (0x00000002)  //!< Bit mask for SJC_GPUSR3_IPG_STOP.
 
 //! @brief Get value of SJC_GPUSR3_IPG_STOP from a register value.
-#define BG_SJC_GPUSR3_IPG_STOP(r)   (((r) & BM_SJC_GPUSR3_IPG_STOP) >> BP_SJC_GPUSR3_IPG_STOP)
+#define BG_SJC_GPUSR3_IPG_STOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_IPG_STOP) >> BP_SJC_GPUSR3_IPG_STOP)
 
 /* --- Register HW_SJC_GPUSR3, field SYS_WAIT[2] (RO)
  *
@@ -256,7 +275,11 @@ typedef union _hw_sjc_gpusr3
 #define BM_SJC_GPUSR3_SYS_WAIT      (0x00000004)  //!< Bit mask for SJC_GPUSR3_SYS_WAIT.
 
 //! @brief Get value of SJC_GPUSR3_SYS_WAIT from a register value.
-#define BG_SJC_GPUSR3_SYS_WAIT(r)   (((r) & BM_SJC_GPUSR3_SYS_WAIT) >> BP_SJC_GPUSR3_SYS_WAIT)
+#define BG_SJC_GPUSR3_SYS_WAIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_SYS_WAIT) >> BP_SJC_GPUSR3_SYS_WAIT)
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_GPSSR - General Purpose Secured Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -300,7 +323,11 @@ typedef union _hw_sjc_gpssr
 #define BM_SJC_GPSSR_GPSSR      (0xffffffff)  //!< Bit mask for SJC_GPSSR_GPSSR.
 
 //! @brief Get value of SJC_GPSSR_GPSSR from a register value.
-#define BG_SJC_GPSSR_GPSSR(r)   (((r) & BM_SJC_GPSSR_GPSSR) >> BP_SJC_GPSSR_GPSSR)
+#define BG_SJC_GPSSR_GPSSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPSSR_GPSSR) >> BP_SJC_GPSSR_GPSSR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_DCR - Debug Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -360,15 +387,10 @@ typedef union _hw_sjc_dcr
 #define BM_SJC_DCR_DE_TO_ARM      (0x00000001)  //!< Bit mask for SJC_DCR_DE_TO_ARM.
 
 //! @brief Get value of SJC_DCR_DE_TO_ARM from a register value.
-#define BG_SJC_DCR_DE_TO_ARM(r)   (((r) & BM_SJC_DCR_DE_TO_ARM) >> BP_SJC_DCR_DE_TO_ARM)
+#define BG_SJC_DCR_DE_TO_ARM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_DCR_DE_TO_ARM) >> BP_SJC_DCR_DE_TO_ARM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_DCR_DE_TO_ARM.
-#define BF_SJC_DCR_DE_TO_ARM(v)   ((((reg32_t) v) << BP_SJC_DCR_DE_TO_ARM) & BM_SJC_DCR_DE_TO_ARM)
-#else
-//! @brief Format value for bitfield SJC_DCR_DE_TO_ARM.
-#define BF_SJC_DCR_DE_TO_ARM(v)   (((v) << BP_SJC_DCR_DE_TO_ARM) & BM_SJC_DCR_DE_TO_ARM)
-#endif
+#define BF_SJC_DCR_DE_TO_ARM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_DCR_DE_TO_ARM) & BM_SJC_DCR_DE_TO_ARM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DE_TO_ARM field to a new value.
@@ -390,15 +412,10 @@ typedef union _hw_sjc_dcr
 #define BM_SJC_DCR_DE_TO_SDMA      (0x00000002)  //!< Bit mask for SJC_DCR_DE_TO_SDMA.
 
 //! @brief Get value of SJC_DCR_DE_TO_SDMA from a register value.
-#define BG_SJC_DCR_DE_TO_SDMA(r)   (((r) & BM_SJC_DCR_DE_TO_SDMA) >> BP_SJC_DCR_DE_TO_SDMA)
+#define BG_SJC_DCR_DE_TO_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_DCR_DE_TO_SDMA) >> BP_SJC_DCR_DE_TO_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_DCR_DE_TO_SDMA.
-#define BF_SJC_DCR_DE_TO_SDMA(v)   ((((reg32_t) v) << BP_SJC_DCR_DE_TO_SDMA) & BM_SJC_DCR_DE_TO_SDMA)
-#else
-//! @brief Format value for bitfield SJC_DCR_DE_TO_SDMA.
-#define BF_SJC_DCR_DE_TO_SDMA(v)   (((v) << BP_SJC_DCR_DE_TO_SDMA) & BM_SJC_DCR_DE_TO_SDMA)
-#endif
+#define BF_SJC_DCR_DE_TO_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_DCR_DE_TO_SDMA) & BM_SJC_DCR_DE_TO_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DE_TO_SDMA field to a new value.
@@ -421,15 +438,10 @@ typedef union _hw_sjc_dcr
 #define BM_SJC_DCR_DEBUG_OBS      (0x00000008)  //!< Bit mask for SJC_DCR_DEBUG_OBS.
 
 //! @brief Get value of SJC_DCR_DEBUG_OBS from a register value.
-#define BG_SJC_DCR_DEBUG_OBS(r)   (((r) & BM_SJC_DCR_DEBUG_OBS) >> BP_SJC_DCR_DEBUG_OBS)
+#define BG_SJC_DCR_DEBUG_OBS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_DCR_DEBUG_OBS) >> BP_SJC_DCR_DEBUG_OBS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_DCR_DEBUG_OBS.
-#define BF_SJC_DCR_DEBUG_OBS(v)   ((((reg32_t) v) << BP_SJC_DCR_DEBUG_OBS) & BM_SJC_DCR_DEBUG_OBS)
-#else
-//! @brief Format value for bitfield SJC_DCR_DEBUG_OBS.
-#define BF_SJC_DCR_DEBUG_OBS(v)   (((v) << BP_SJC_DCR_DEBUG_OBS) & BM_SJC_DCR_DEBUG_OBS)
-#endif
+#define BF_SJC_DCR_DEBUG_OBS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_DCR_DEBUG_OBS) & BM_SJC_DCR_DEBUG_OBS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEBUG_OBS field to a new value.
@@ -451,15 +463,10 @@ typedef union _hw_sjc_dcr
 #define BM_SJC_DCR_DIRECT_SDMA_REQ_EN      (0x00000020)  //!< Bit mask for SJC_DCR_DIRECT_SDMA_REQ_EN.
 
 //! @brief Get value of SJC_DCR_DIRECT_SDMA_REQ_EN from a register value.
-#define BG_SJC_DCR_DIRECT_SDMA_REQ_EN(r)   (((r) & BM_SJC_DCR_DIRECT_SDMA_REQ_EN) >> BP_SJC_DCR_DIRECT_SDMA_REQ_EN)
+#define BG_SJC_DCR_DIRECT_SDMA_REQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_DCR_DIRECT_SDMA_REQ_EN) >> BP_SJC_DCR_DIRECT_SDMA_REQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_DCR_DIRECT_SDMA_REQ_EN.
-#define BF_SJC_DCR_DIRECT_SDMA_REQ_EN(v)   ((((reg32_t) v) << BP_SJC_DCR_DIRECT_SDMA_REQ_EN) & BM_SJC_DCR_DIRECT_SDMA_REQ_EN)
-#else
-//! @brief Format value for bitfield SJC_DCR_DIRECT_SDMA_REQ_EN.
-#define BF_SJC_DCR_DIRECT_SDMA_REQ_EN(v)   (((v) << BP_SJC_DCR_DIRECT_SDMA_REQ_EN) & BM_SJC_DCR_DIRECT_SDMA_REQ_EN)
-#endif
+#define BF_SJC_DCR_DIRECT_SDMA_REQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_DCR_DIRECT_SDMA_REQ_EN) & BM_SJC_DCR_DIRECT_SDMA_REQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIRECT_SDMA_REQ_EN field to a new value.
@@ -481,21 +488,20 @@ typedef union _hw_sjc_dcr
 #define BM_SJC_DCR_DIRECT_ARM_REQ_EN      (0x00000040)  //!< Bit mask for SJC_DCR_DIRECT_ARM_REQ_EN.
 
 //! @brief Get value of SJC_DCR_DIRECT_ARM_REQ_EN from a register value.
-#define BG_SJC_DCR_DIRECT_ARM_REQ_EN(r)   (((r) & BM_SJC_DCR_DIRECT_ARM_REQ_EN) >> BP_SJC_DCR_DIRECT_ARM_REQ_EN)
+#define BG_SJC_DCR_DIRECT_ARM_REQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_DCR_DIRECT_ARM_REQ_EN) >> BP_SJC_DCR_DIRECT_ARM_REQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_DCR_DIRECT_ARM_REQ_EN.
-#define BF_SJC_DCR_DIRECT_ARM_REQ_EN(v)   ((((reg32_t) v) << BP_SJC_DCR_DIRECT_ARM_REQ_EN) & BM_SJC_DCR_DIRECT_ARM_REQ_EN)
-#else
-//! @brief Format value for bitfield SJC_DCR_DIRECT_ARM_REQ_EN.
-#define BF_SJC_DCR_DIRECT_ARM_REQ_EN(v)   (((v) << BP_SJC_DCR_DIRECT_ARM_REQ_EN) & BM_SJC_DCR_DIRECT_ARM_REQ_EN)
-#endif
+#define BF_SJC_DCR_DIRECT_ARM_REQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_DCR_DIRECT_ARM_REQ_EN) & BM_SJC_DCR_DIRECT_ARM_REQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIRECT_ARM_REQ_EN field to a new value.
 #define BW_SJC_DCR_DIRECT_ARM_REQ_EN(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DIRECT_ARM_REQ_EN) | BF_SJC_DCR_DIRECT_ARM_REQ_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_SSR - Security Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -554,7 +560,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_KTF      (0x00000001)  //!< Bit mask for SJC_SSR_KTF.
 
 //! @brief Get value of SJC_SSR_KTF from a register value.
-#define BG_SJC_SSR_KTF(r)   (((r) & BM_SJC_SSR_KTF) >> BP_SJC_SSR_KTF)
+#define BG_SJC_SSR_KTF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_KTF) >> BP_SJC_SSR_KTF)
 
 
 /* --- Register HW_SJC_SSR, field KTA[1] (RO)
@@ -570,7 +576,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_KTA      (0x00000002)  //!< Bit mask for SJC_SSR_KTA.
 
 //! @brief Get value of SJC_SSR_KTA from a register value.
-#define BG_SJC_SSR_KTA(r)   (((r) & BM_SJC_SSR_KTA) >> BP_SJC_SSR_KTA)
+#define BG_SJC_SSR_KTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_KTA) >> BP_SJC_SSR_KTA)
 
 
 /* --- Register HW_SJC_SSR, field SWF[2] (RO)
@@ -586,7 +592,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_SWF      (0x00000004)  //!< Bit mask for SJC_SSR_SWF.
 
 //! @brief Get value of SJC_SSR_SWF from a register value.
-#define BG_SJC_SSR_SWF(r)   (((r) & BM_SJC_SSR_SWF) >> BP_SJC_SSR_SWF)
+#define BG_SJC_SSR_SWF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SWF) >> BP_SJC_SSR_SWF)
 
 
 /* --- Register HW_SJC_SSR, field SWE[3] (RO)
@@ -602,7 +608,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_SWE      (0x00000008)  //!< Bit mask for SJC_SSR_SWE.
 
 //! @brief Get value of SJC_SSR_SWE from a register value.
-#define BG_SJC_SSR_SWE(r)   (((r) & BM_SJC_SSR_SWE) >> BP_SJC_SSR_SWE)
+#define BG_SJC_SSR_SWE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SWE) >> BP_SJC_SSR_SWE)
 
 
 /* --- Register HW_SJC_SSR, field EBF[4] (RO)
@@ -618,7 +624,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_EBF      (0x00000010)  //!< Bit mask for SJC_SSR_EBF.
 
 //! @brief Get value of SJC_SSR_EBF from a register value.
-#define BG_SJC_SSR_EBF(r)   (((r) & BM_SJC_SSR_EBF) >> BP_SJC_SSR_EBF)
+#define BG_SJC_SSR_EBF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_EBF) >> BP_SJC_SSR_EBF)
 
 
 /* --- Register HW_SJC_SSR, field EBG[5] (RO)
@@ -634,7 +640,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_EBG      (0x00000020)  //!< Bit mask for SJC_SSR_EBG.
 
 //! @brief Get value of SJC_SSR_EBG from a register value.
-#define BG_SJC_SSR_EBG(r)   (((r) & BM_SJC_SSR_EBG) >> BP_SJC_SSR_EBG)
+#define BG_SJC_SSR_EBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_EBG) >> BP_SJC_SSR_EBG)
 
 
 /* --- Register HW_SJC_SSR, field FT[8] (RO)
@@ -650,7 +656,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_FT      (0x00000100)  //!< Bit mask for SJC_SSR_FT.
 
 //! @brief Get value of SJC_SSR_FT from a register value.
-#define BG_SJC_SSR_FT(r)   (((r) & BM_SJC_SSR_FT) >> BP_SJC_SSR_FT)
+#define BG_SJC_SSR_FT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_FT) >> BP_SJC_SSR_FT)
 
 
 /* --- Register HW_SJC_SSR, field SJM[10:9] (RO)
@@ -661,15 +667,15 @@ typedef union _hw_sjc_ssr
  * Values:
  * 00 - No debug (#1)
  * 01 - Secure JTAG (#2)
- * 10 - JTAG enabled (#3)
- * 11 - Reserved
+ * 10 - Reserved
+ * 11 - JTAG enabled (#3)
  */
 
 #define BP_SJC_SSR_SJM      (9)      //!< Bit position for SJC_SSR_SJM.
 #define BM_SJC_SSR_SJM      (0x00000600)  //!< Bit mask for SJC_SSR_SJM.
 
 //! @brief Get value of SJC_SSR_SJM from a register value.
-#define BG_SJC_SSR_SJM(r)   (((r) & BM_SJC_SSR_SJM) >> BP_SJC_SSR_SJM)
+#define BG_SJC_SSR_SJM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SJM) >> BP_SJC_SSR_SJM)
 
 
 /* --- Register HW_SJC_SSR, field RSSTAT[12:11] (RO)
@@ -687,7 +693,7 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_RSSTAT      (0x00001800)  //!< Bit mask for SJC_SSR_RSSTAT.
 
 //! @brief Get value of SJC_SSR_RSSTAT from a register value.
-#define BG_SJC_SSR_RSSTAT(r)   (((r) & BM_SJC_SSR_RSSTAT) >> BP_SJC_SSR_RSSTAT)
+#define BG_SJC_SSR_RSSTAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_RSSTAT) >> BP_SJC_SSR_RSSTAT)
 
 
 /* --- Register HW_SJC_SSR, field BOOTIND[14] (RO)
@@ -699,7 +705,11 @@ typedef union _hw_sjc_ssr
 #define BM_SJC_SSR_BOOTIND      (0x00004000)  //!< Bit mask for SJC_SSR_BOOTIND.
 
 //! @brief Get value of SJC_SSR_BOOTIND from a register value.
-#define BG_SJC_SSR_BOOTIND(r)   (((r) & BM_SJC_SSR_BOOTIND) >> BP_SJC_SSR_BOOTIND)
+#define BG_SJC_SSR_BOOTIND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_BOOTIND) >> BP_SJC_SSR_BOOTIND)
+
+//-------------------------------------------------------------------------------------------
+// HW_SJC_GPCCR - General Purpose Clocks Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -754,15 +764,10 @@ typedef union _hw_sjc_gpccr
 #define BM_SJC_GPCCR_SCLKR      (0x00000001)  //!< Bit mask for SJC_GPCCR_SCLKR.
 
 //! @brief Get value of SJC_GPCCR_SCLKR from a register value.
-#define BG_SJC_GPCCR_SCLKR(r)   (((r) & BM_SJC_GPCCR_SCLKR) >> BP_SJC_GPCCR_SCLKR)
+#define BG_SJC_GPCCR_SCLKR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPCCR_SCLKR) >> BP_SJC_GPCCR_SCLKR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_GPCCR_SCLKR.
-#define BF_SJC_GPCCR_SCLKR(v)   ((((reg32_t) v) << BP_SJC_GPCCR_SCLKR) & BM_SJC_GPCCR_SCLKR)
-#else
-//! @brief Format value for bitfield SJC_GPCCR_SCLKR.
-#define BF_SJC_GPCCR_SCLKR(v)   (((v) << BP_SJC_GPCCR_SCLKR) & BM_SJC_GPCCR_SCLKR)
-#endif
+#define BF_SJC_GPCCR_SCLKR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_GPCCR_SCLKR) & BM_SJC_GPCCR_SCLKR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCLKR field to a new value.
@@ -778,166 +783,15 @@ typedef union _hw_sjc_gpccr
 #define BM_SJC_GPCCR_ACLKOFFDIS      (0x00000002)  //!< Bit mask for SJC_GPCCR_ACLKOFFDIS.
 
 //! @brief Get value of SJC_GPCCR_ACLKOFFDIS from a register value.
-#define BG_SJC_GPCCR_ACLKOFFDIS(r)   (((r) & BM_SJC_GPCCR_ACLKOFFDIS) >> BP_SJC_GPCCR_ACLKOFFDIS)
+#define BG_SJC_GPCCR_ACLKOFFDIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPCCR_ACLKOFFDIS) >> BP_SJC_GPCCR_ACLKOFFDIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SJC_GPCCR_ACLKOFFDIS.
-#define BF_SJC_GPCCR_ACLKOFFDIS(v)   ((((reg32_t) v) << BP_SJC_GPCCR_ACLKOFFDIS) & BM_SJC_GPCCR_ACLKOFFDIS)
-#else
-//! @brief Format value for bitfield SJC_GPCCR_ACLKOFFDIS.
-#define BF_SJC_GPCCR_ACLKOFFDIS(v)   (((v) << BP_SJC_GPCCR_ACLKOFFDIS) & BM_SJC_GPCCR_ACLKOFFDIS)
-#endif
+#define BF_SJC_GPCCR_ACLKOFFDIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SJC_GPCCR_ACLKOFFDIS) & BM_SJC_GPCCR_ACLKOFFDIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACLKOFFDIS field to a new value.
 #define BW_SJC_GPCCR_ACLKOFFDIS(v)   (HW_SJC_GPCCR_WR((HW_SJC_GPCCR_RD() & ~BM_SJC_GPCCR_ACLKOFFDIS) | BF_SJC_GPCCR_ACLKOFFDIS(v)))
 #endif
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SJC_GPUCR1 - General Purpose Unsecured Control Register n (RW)
- *
- * Reset value: 0x00000000
- *
-
- */
-typedef union _hw_sjc_gpucr1
-{
-    reg32_t U;
-    struct _hw_sjc_gpucr1_bitfields
-    {
-        unsigned RESERVED0 : 32; //!< [31:0] Reserved.
-    } B;
-} hw_sjc_gpucr1_t;
-#endif
-
-/*
- * constants & macros for entire SJC_GPUCR1 register
- */
-#define HW_SJC_GPUCR1_ADDR      (REGS_SJC_BASE + 0x9)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_GPUCR1           (*(volatile hw_sjc_gpucr1_t *) HW_SJC_GPUCR1_ADDR)
-#define HW_SJC_GPUCR1_RD()      (HW_SJC_GPUCR1.U)
-#define HW_SJC_GPUCR1_WR(v)     (HW_SJC_GPUCR1.U = (v))
-#define HW_SJC_GPUCR1_SET(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() |  (v)))
-#define HW_SJC_GPUCR1_CLR(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() & ~(v)))
-#define HW_SJC_GPUCR1_TOG(v)    (HW_SJC_GPUCR1_WR(HW_SJC_GPUCR1_RD() ^  (v)))
-#endif
-
-/*
- * constants & macros for individual SJC_GPUCR1 bitfields
- */
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SJC_GPUCR2 - General Purpose Unsecured Control Register n (RW)
- *
- * Reset value: 0x00000000
- *
-
- */
-typedef union _hw_sjc_gpucr2
-{
-    reg32_t U;
-    struct _hw_sjc_gpucr2_bitfields
-    {
-        unsigned RESERVED0 : 32; //!< [31:0] Reserved.
-    } B;
-} hw_sjc_gpucr2_t;
-#endif
-
-/*
- * constants & macros for entire SJC_GPUCR2 register
- */
-#define HW_SJC_GPUCR2_ADDR      (REGS_SJC_BASE + 0xa)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_GPUCR2           (*(volatile hw_sjc_gpucr2_t *) HW_SJC_GPUCR2_ADDR)
-#define HW_SJC_GPUCR2_RD()      (HW_SJC_GPUCR2.U)
-#define HW_SJC_GPUCR2_WR(v)     (HW_SJC_GPUCR2.U = (v))
-#define HW_SJC_GPUCR2_SET(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() |  (v)))
-#define HW_SJC_GPUCR2_CLR(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() & ~(v)))
-#define HW_SJC_GPUCR2_TOG(v)    (HW_SJC_GPUCR2_WR(HW_SJC_GPUCR2_RD() ^  (v)))
-#endif
-
-/*
- * constants & macros for individual SJC_GPUCR2 bitfields
- */
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SJC_GPUCR3 - General Purpose Unsecured Control Register n (RW)
- *
- * Reset value: 0x00000000
- *
-
- */
-typedef union _hw_sjc_gpucr3
-{
-    reg32_t U;
-    struct _hw_sjc_gpucr3_bitfields
-    {
-        unsigned RESERVED0 : 32; //!< [31:0] Reserved.
-    } B;
-} hw_sjc_gpucr3_t;
-#endif
-
-/*
- * constants & macros for entire SJC_GPUCR3 register
- */
-#define HW_SJC_GPUCR3_ADDR      (REGS_SJC_BASE + 0xb)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_GPUCR3           (*(volatile hw_sjc_gpucr3_t *) HW_SJC_GPUCR3_ADDR)
-#define HW_SJC_GPUCR3_RD()      (HW_SJC_GPUCR3.U)
-#define HW_SJC_GPUCR3_WR(v)     (HW_SJC_GPUCR3.U = (v))
-#define HW_SJC_GPUCR3_SET(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() |  (v)))
-#define HW_SJC_GPUCR3_CLR(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() & ~(v)))
-#define HW_SJC_GPUCR3_TOG(v)    (HW_SJC_GPUCR3_WR(HW_SJC_GPUCR3_RD() ^  (v)))
-#endif
-
-/*
- * constants & macros for individual SJC_GPUCR3 bitfields
- */
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SJC_GPSCR - General Purpose Secured Control Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register is used to configure JTAG for special test or debug modes. This register is secured
- * (accessible in secure jtag mode #3, #4 and #2 with response entered). Those bits are directly
- * connected to SJC outputs.
- */
-typedef union _hw_sjc_gpscr
-{
-    reg32_t U;
-    struct _hw_sjc_gpscr_bitfields
-    {
-        unsigned RESERVED0 : 32; //!< [31:0] Reserved.
-    } B;
-} hw_sjc_gpscr_t;
-#endif
-
-/*
- * constants & macros for entire SJC_GPSCR register
- */
-#define HW_SJC_GPSCR_ADDR      (REGS_SJC_BASE + 0xc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SJC_GPSCR           (*(volatile hw_sjc_gpscr_t *) HW_SJC_GPSCR_ADDR)
-#define HW_SJC_GPSCR_RD()      (HW_SJC_GPSCR.U)
-#define HW_SJC_GPSCR_WR(v)     (HW_SJC_GPSCR.U = (v))
-#define HW_SJC_GPSCR_SET(v)    (HW_SJC_GPSCR_WR(HW_SJC_GPSCR_RD() |  (v)))
-#define HW_SJC_GPSCR_CLR(v)    (HW_SJC_GPSCR_WR(HW_SJC_GPSCR_RD() & ~(v)))
-#define HW_SJC_GPSCR_TOG(v)    (HW_SJC_GPSCR_WR(HW_SJC_GPSCR_RD() ^  (v)))
-#endif
-
-/*
- * constants & macros for individual SJC_GPSCR bitfields
- */
 
 
 /*!
@@ -954,10 +808,6 @@ typedef struct _hw_sjc
     volatile hw_sjc_dcr_t DCR; //!< Debug Control Register
     volatile hw_sjc_ssr_t SSR; //!< Security Status Register
     volatile hw_sjc_gpccr_t GPCCR; //!< General Purpose Clocks Control Register
-    volatile hw_sjc_gpucr1_t GPUCR1; //!< General Purpose Unsecured Control Register n
-    volatile hw_sjc_gpucr2_t GPUCR2; //!< General Purpose Unsecured Control Register n
-    volatile hw_sjc_gpucr3_t GPUCR3; //!< General Purpose Unsecured Control Register n
-    volatile hw_sjc_gpscr_t GPSCR; //!< General Purpose Secured Control Register
 } hw_sjc_t;
 #pragma pack()
 

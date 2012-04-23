@@ -31,6 +31,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_VER - RNGB Version ID Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_RNGB_VER - RNGB Version ID Register (RO)
@@ -76,7 +91,7 @@ typedef union _hw_rngb_ver
 #define BM_RNGB_VER_MINOR      (0x000000ff)  //!< Bit mask for RNGB_VER_MINOR.
 
 //! @brief Get value of RNGB_VER_MINOR from a register value.
-#define BG_RNGB_VER_MINOR(r)   (((r) & BM_RNGB_VER_MINOR) >> BP_RNGB_VER_MINOR)
+#define BG_RNGB_VER_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_VER_MINOR) >> BP_RNGB_VER_MINOR)
 
 /* --- Register HW_RNGB_VER, field MAJOR[15:8] (RO)
  *
@@ -87,7 +102,7 @@ typedef union _hw_rngb_ver
 #define BM_RNGB_VER_MAJOR      (0x0000ff00)  //!< Bit mask for RNGB_VER_MAJOR.
 
 //! @brief Get value of RNGB_VER_MAJOR from a register value.
-#define BG_RNGB_VER_MAJOR(r)   (((r) & BM_RNGB_VER_MAJOR) >> BP_RNGB_VER_MAJOR)
+#define BG_RNGB_VER_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_VER_MAJOR) >> BP_RNGB_VER_MAJOR)
 
 /* --- Register HW_RNGB_VER, field TYPE[31:28] (RO)
  *
@@ -104,8 +119,12 @@ typedef union _hw_rngb_ver
 #define BM_RNGB_VER_TYPE      (0xf0000000)  //!< Bit mask for RNGB_VER_TYPE.
 
 //! @brief Get value of RNGB_VER_TYPE from a register value.
-#define BG_RNGB_VER_TYPE(r)   (((r) & BM_RNGB_VER_TYPE) >> BP_RNGB_VER_TYPE)
+#define BG_RNGB_VER_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_VER_TYPE) >> BP_RNGB_VER_TYPE)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_CMD - RNGB Command Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -165,15 +184,10 @@ typedef union _hw_rngb_cmd
 #define BM_RNGB_CMD_ST      (0x00000001)  //!< Bit mask for RNGB_CMD_ST.
 
 //! @brief Get value of RNGB_CMD_ST from a register value.
-#define BG_RNGB_CMD_ST(r)   (((r) & BM_RNGB_CMD_ST) >> BP_RNGB_CMD_ST)
+#define BG_RNGB_CMD_ST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CMD_ST) >> BP_RNGB_CMD_ST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CMD_ST.
-#define BF_RNGB_CMD_ST(v)   ((((reg32_t) v) << BP_RNGB_CMD_ST) & BM_RNGB_CMD_ST)
-#else
-//! @brief Format value for bitfield RNGB_CMD_ST.
-#define BF_RNGB_CMD_ST(v)   (((v) << BP_RNGB_CMD_ST) & BM_RNGB_CMD_ST)
-#endif
+#define BF_RNGB_CMD_ST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CMD_ST) & BM_RNGB_CMD_ST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ST field to a new value.
@@ -196,15 +210,10 @@ typedef union _hw_rngb_cmd
 #define BM_RNGB_CMD_GS      (0x00000002)  //!< Bit mask for RNGB_CMD_GS.
 
 //! @brief Get value of RNGB_CMD_GS from a register value.
-#define BG_RNGB_CMD_GS(r)   (((r) & BM_RNGB_CMD_GS) >> BP_RNGB_CMD_GS)
+#define BG_RNGB_CMD_GS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CMD_GS) >> BP_RNGB_CMD_GS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CMD_GS.
-#define BF_RNGB_CMD_GS(v)   ((((reg32_t) v) << BP_RNGB_CMD_GS) & BM_RNGB_CMD_GS)
-#else
-//! @brief Format value for bitfield RNGB_CMD_GS.
-#define BF_RNGB_CMD_GS(v)   (((v) << BP_RNGB_CMD_GS) & BM_RNGB_CMD_GS)
-#endif
+#define BF_RNGB_CMD_GS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CMD_GS) & BM_RNGB_CMD_GS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GS field to a new value.
@@ -225,15 +234,10 @@ typedef union _hw_rngb_cmd
 #define BM_RNGB_CMD_CI      (0x00000010)  //!< Bit mask for RNGB_CMD_CI.
 
 //! @brief Get value of RNGB_CMD_CI from a register value.
-#define BG_RNGB_CMD_CI(r)   (((r) & BM_RNGB_CMD_CI) >> BP_RNGB_CMD_CI)
+#define BG_RNGB_CMD_CI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CMD_CI) >> BP_RNGB_CMD_CI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CMD_CI.
-#define BF_RNGB_CMD_CI(v)   ((((reg32_t) v) << BP_RNGB_CMD_CI) & BM_RNGB_CMD_CI)
-#else
-//! @brief Format value for bitfield RNGB_CMD_CI.
-#define BF_RNGB_CMD_CI(v)   (((v) << BP_RNGB_CMD_CI) & BM_RNGB_CMD_CI)
-#endif
+#define BF_RNGB_CMD_CI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CMD_CI) & BM_RNGB_CMD_CI)
 
 
 /* --- Register HW_RNGB_CMD, field CE[5] (WORZ)
@@ -249,15 +253,10 @@ typedef union _hw_rngb_cmd
 #define BM_RNGB_CMD_CE      (0x00000020)  //!< Bit mask for RNGB_CMD_CE.
 
 //! @brief Get value of RNGB_CMD_CE from a register value.
-#define BG_RNGB_CMD_CE(r)   (((r) & BM_RNGB_CMD_CE) >> BP_RNGB_CMD_CE)
+#define BG_RNGB_CMD_CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CMD_CE) >> BP_RNGB_CMD_CE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CMD_CE.
-#define BF_RNGB_CMD_CE(v)   ((((reg32_t) v) << BP_RNGB_CMD_CE) & BM_RNGB_CMD_CE)
-#else
-//! @brief Format value for bitfield RNGB_CMD_CE.
-#define BF_RNGB_CMD_CE(v)   (((v) << BP_RNGB_CMD_CE) & BM_RNGB_CMD_CE)
-#endif
+#define BF_RNGB_CMD_CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CMD_CE) & BM_RNGB_CMD_CE)
 
 
 /* --- Register HW_RNGB_CMD, field SR[6] (WORZ)
@@ -273,16 +272,15 @@ typedef union _hw_rngb_cmd
 #define BM_RNGB_CMD_SR      (0x00000040)  //!< Bit mask for RNGB_CMD_SR.
 
 //! @brief Get value of RNGB_CMD_SR from a register value.
-#define BG_RNGB_CMD_SR(r)   (((r) & BM_RNGB_CMD_SR) >> BP_RNGB_CMD_SR)
+#define BG_RNGB_CMD_SR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CMD_SR) >> BP_RNGB_CMD_SR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CMD_SR.
-#define BF_RNGB_CMD_SR(v)   ((((reg32_t) v) << BP_RNGB_CMD_SR) & BM_RNGB_CMD_SR)
-#else
-//! @brief Format value for bitfield RNGB_CMD_SR.
-#define BF_RNGB_CMD_SR(v)   (((v) << BP_RNGB_CMD_SR) & BM_RNGB_CMD_SR)
-#endif
+#define BF_RNGB_CMD_SR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CMD_SR) & BM_RNGB_CMD_SR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_CR - RNGB Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -343,15 +341,10 @@ typedef union _hw_rngb_cr
 #define BM_RNGB_CR_FUFMOD      (0x00000003)  //!< Bit mask for RNGB_CR_FUFMOD.
 
 //! @brief Get value of RNGB_CR_FUFMOD from a register value.
-#define BG_RNGB_CR_FUFMOD(r)   (((r) & BM_RNGB_CR_FUFMOD) >> BP_RNGB_CR_FUFMOD)
+#define BG_RNGB_CR_FUFMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CR_FUFMOD) >> BP_RNGB_CR_FUFMOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CR_FUFMOD.
-#define BF_RNGB_CR_FUFMOD(v)   ((((reg32_t) v) << BP_RNGB_CR_FUFMOD) & BM_RNGB_CR_FUFMOD)
-#else
-//! @brief Format value for bitfield RNGB_CR_FUFMOD.
-#define BF_RNGB_CR_FUFMOD(v)   (((v) << BP_RNGB_CR_FUFMOD) & BM_RNGB_CR_FUFMOD)
-#endif
+#define BF_RNGB_CR_FUFMOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CR_FUFMOD) & BM_RNGB_CR_FUFMOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FUFMOD field to a new value.
@@ -374,15 +367,10 @@ typedef union _hw_rngb_cr
 #define BM_RNGB_CR_AR      (0x00000010)  //!< Bit mask for RNGB_CR_AR.
 
 //! @brief Get value of RNGB_CR_AR from a register value.
-#define BG_RNGB_CR_AR(r)   (((r) & BM_RNGB_CR_AR) >> BP_RNGB_CR_AR)
+#define BG_RNGB_CR_AR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CR_AR) >> BP_RNGB_CR_AR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CR_AR.
-#define BF_RNGB_CR_AR(v)   ((((reg32_t) v) << BP_RNGB_CR_AR) & BM_RNGB_CR_AR)
-#else
-//! @brief Format value for bitfield RNGB_CR_AR.
-#define BF_RNGB_CR_AR(v)   (((v) << BP_RNGB_CR_AR) & BM_RNGB_CR_AR)
-#endif
+#define BF_RNGB_CR_AR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CR_AR) & BM_RNGB_CR_AR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AR field to a new value.
@@ -406,15 +394,10 @@ typedef union _hw_rngb_cr
 #define BM_RNGB_CR_MASKDONE      (0x00000020)  //!< Bit mask for RNGB_CR_MASKDONE.
 
 //! @brief Get value of RNGB_CR_MASKDONE from a register value.
-#define BG_RNGB_CR_MASKDONE(r)   (((r) & BM_RNGB_CR_MASKDONE) >> BP_RNGB_CR_MASKDONE)
+#define BG_RNGB_CR_MASKDONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CR_MASKDONE) >> BP_RNGB_CR_MASKDONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CR_MASKDONE.
-#define BF_RNGB_CR_MASKDONE(v)   ((((reg32_t) v) << BP_RNGB_CR_MASKDONE) & BM_RNGB_CR_MASKDONE)
-#else
-//! @brief Format value for bitfield RNGB_CR_MASKDONE.
-#define BF_RNGB_CR_MASKDONE(v)   (((v) << BP_RNGB_CR_MASKDONE) & BM_RNGB_CR_MASKDONE)
-#endif
+#define BF_RNGB_CR_MASKDONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CR_MASKDONE) & BM_RNGB_CR_MASKDONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASKDONE field to a new value.
@@ -439,21 +422,20 @@ typedef union _hw_rngb_cr
 #define BM_RNGB_CR_MASKERR      (0x00000040)  //!< Bit mask for RNGB_CR_MASKERR.
 
 //! @brief Get value of RNGB_CR_MASKERR from a register value.
-#define BG_RNGB_CR_MASKERR(r)   (((r) & BM_RNGB_CR_MASKERR) >> BP_RNGB_CR_MASKERR)
+#define BG_RNGB_CR_MASKERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_CR_MASKERR) >> BP_RNGB_CR_MASKERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield RNGB_CR_MASKERR.
-#define BF_RNGB_CR_MASKERR(v)   ((((reg32_t) v) << BP_RNGB_CR_MASKERR) & BM_RNGB_CR_MASKERR)
-#else
-//! @brief Format value for bitfield RNGB_CR_MASKERR.
-#define BF_RNGB_CR_MASKERR(v)   (((v) << BP_RNGB_CR_MASKERR) & BM_RNGB_CR_MASKERR)
-#endif
+#define BF_RNGB_CR_MASKERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNGB_CR_MASKERR) & BM_RNGB_CR_MASKERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASKERR field to a new value.
 #define BW_RNGB_CR_MASKERR(v)   (HW_RNGB_CR_WR((HW_RNGB_CR_RD() & ~BM_RNGB_CR_MASKERR) | BF_RNGB_CR_MASKERR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_SR - RNGB Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -514,7 +496,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_BUSY      (0x00000002)  //!< Bit mask for RNGB_SR_BUSY.
 
 //! @brief Get value of RNGB_SR_BUSY from a register value.
-#define BG_RNGB_SR_BUSY(r)   (((r) & BM_RNGB_SR_BUSY) >> BP_RNGB_SR_BUSY)
+#define BG_RNGB_SR_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_BUSY) >> BP_RNGB_SR_BUSY)
 
 
 /* --- Register HW_RNGB_SR, field SLP[2] (RO)
@@ -533,7 +515,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_SLP      (0x00000004)  //!< Bit mask for RNGB_SR_SLP.
 
 //! @brief Get value of RNGB_SR_SLP from a register value.
-#define BG_RNGB_SR_SLP(r)   (((r) & BM_RNGB_SR_SLP) >> BP_RNGB_SR_SLP)
+#define BG_RNGB_SR_SLP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_SLP) >> BP_RNGB_SR_SLP)
 
 
 /* --- Register HW_RNGB_SR, field RS[3] (RO)
@@ -550,7 +532,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_RS      (0x00000008)  //!< Bit mask for RNGB_SR_RS.
 
 //! @brief Get value of RNGB_SR_RS from a register value.
-#define BG_RNGB_SR_RS(r)   (((r) & BM_RNGB_SR_RS) >> BP_RNGB_SR_RS)
+#define BG_RNGB_SR_RS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_RS) >> BP_RNGB_SR_RS)
 
 
 /* --- Register HW_RNGB_SR, field STDN[4] (RO)
@@ -567,7 +549,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_STDN      (0x00000010)  //!< Bit mask for RNGB_SR_STDN.
 
 //! @brief Get value of RNGB_SR_STDN from a register value.
-#define BG_RNGB_SR_STDN(r)   (((r) & BM_RNGB_SR_STDN) >> BP_RNGB_SR_STDN)
+#define BG_RNGB_SR_STDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_STDN) >> BP_RNGB_SR_STDN)
 
 
 /* --- Register HW_RNGB_SR, field SDN[5] (RO)
@@ -583,7 +565,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_SDN      (0x00000020)  //!< Bit mask for RNGB_SR_SDN.
 
 //! @brief Get value of RNGB_SR_SDN from a register value.
-#define BG_RNGB_SR_SDN(r)   (((r) & BM_RNGB_SR_SDN) >> BP_RNGB_SR_SDN)
+#define BG_RNGB_SR_SDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_SDN) >> BP_RNGB_SR_SDN)
 
 
 /* --- Register HW_RNGB_SR, field NSDN[6] (RO)
@@ -595,7 +577,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_NSDN      (0x00000040)  //!< Bit mask for RNGB_SR_NSDN.
 
 //! @brief Get value of RNGB_SR_NSDN from a register value.
-#define BG_RNGB_SR_NSDN(r)   (((r) & BM_RNGB_SR_NSDN) >> BP_RNGB_SR_NSDN)
+#define BG_RNGB_SR_NSDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_NSDN) >> BP_RNGB_SR_NSDN)
 
 /* --- Register HW_RNGB_SR, field FIFO_LVL[11:8] (RO)
  *
@@ -607,7 +589,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_FIFO_LVL      (0x00000f00)  //!< Bit mask for RNGB_SR_FIFO_LVL.
 
 //! @brief Get value of RNGB_SR_FIFO_LVL from a register value.
-#define BG_RNGB_SR_FIFO_LVL(r)   (((r) & BM_RNGB_SR_FIFO_LVL) >> BP_RNGB_SR_FIFO_LVL)
+#define BG_RNGB_SR_FIFO_LVL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_FIFO_LVL) >> BP_RNGB_SR_FIFO_LVL)
 
 /* --- Register HW_RNGB_SR, field FIFO_SIZE[15:12] (RO)
  *
@@ -619,7 +601,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_FIFO_SIZE      (0x0000f000)  //!< Bit mask for RNGB_SR_FIFO_SIZE.
 
 //! @brief Get value of RNGB_SR_FIFO_SIZE from a register value.
-#define BG_RNGB_SR_FIFO_SIZE(r)   (((r) & BM_RNGB_SR_FIFO_SIZE) >> BP_RNGB_SR_FIFO_SIZE)
+#define BG_RNGB_SR_FIFO_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_FIFO_SIZE) >> BP_RNGB_SR_FIFO_SIZE)
 
 /* --- Register HW_RNGB_SR, field ERR[16] (RO)
  *
@@ -634,7 +616,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_ERR      (0x00010000)  //!< Bit mask for RNGB_SR_ERR.
 
 //! @brief Get value of RNGB_SR_ERR from a register value.
-#define BG_RNGB_SR_ERR(r)   (((r) & BM_RNGB_SR_ERR) >> BP_RNGB_SR_ERR)
+#define BG_RNGB_SR_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_ERR) >> BP_RNGB_SR_ERR)
 
 
 /* --- Register HW_RNGB_SR, field ST_PF[23:21] (RO)
@@ -651,7 +633,7 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_ST_PF      (0x00e00000)  //!< Bit mask for RNGB_SR_ST_PF.
 
 //! @brief Get value of RNGB_SR_ST_PF from a register value.
-#define BG_RNGB_SR_ST_PF(r)   (((r) & BM_RNGB_SR_ST_PF) >> BP_RNGB_SR_ST_PF)
+#define BG_RNGB_SR_ST_PF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_ST_PF) >> BP_RNGB_SR_ST_PF)
 
 
 /* --- Register HW_RNGB_SR, field STATPF[31:24] (RO)
@@ -670,8 +652,12 @@ typedef union _hw_rngb_sr
 #define BM_RNGB_SR_STATPF      (0xff000000)  //!< Bit mask for RNGB_SR_STATPF.
 
 //! @brief Get value of RNGB_SR_STATPF from a register value.
-#define BG_RNGB_SR_STATPF(r)   (((r) & BM_RNGB_SR_STATPF) >> BP_RNGB_SR_STATPF)
+#define BG_RNGB_SR_STATPF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_SR_STATPF) >> BP_RNGB_SR_STATPF)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_ESR - RNGB Error Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -725,7 +711,7 @@ typedef union _hw_rngb_esr
 #define BM_RNGB_ESR_LFE      (0x00000001)  //!< Bit mask for RNGB_ESR_LFE.
 
 //! @brief Get value of RNGB_ESR_LFE from a register value.
-#define BG_RNGB_ESR_LFE(r)   (((r) & BM_RNGB_ESR_LFE) >> BP_RNGB_ESR_LFE)
+#define BG_RNGB_ESR_LFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_ESR_LFE) >> BP_RNGB_ESR_LFE)
 
 
 /* --- Register HW_RNGB_ESR, field OSCE[1] (RO)
@@ -742,7 +728,7 @@ typedef union _hw_rngb_esr
 #define BM_RNGB_ESR_OSCE      (0x00000002)  //!< Bit mask for RNGB_ESR_OSCE.
 
 //! @brief Get value of RNGB_ESR_OSCE from a register value.
-#define BG_RNGB_ESR_OSCE(r)   (((r) & BM_RNGB_ESR_OSCE) >> BP_RNGB_ESR_OSCE)
+#define BG_RNGB_ESR_OSCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_ESR_OSCE) >> BP_RNGB_ESR_OSCE)
 
 
 /* --- Register HW_RNGB_ESR, field STE[2] (RO)
@@ -759,7 +745,7 @@ typedef union _hw_rngb_esr
 #define BM_RNGB_ESR_STE      (0x00000004)  //!< Bit mask for RNGB_ESR_STE.
 
 //! @brief Get value of RNGB_ESR_STE from a register value.
-#define BG_RNGB_ESR_STE(r)   (((r) & BM_RNGB_ESR_STE) >> BP_RNGB_ESR_STE)
+#define BG_RNGB_ESR_STE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_ESR_STE) >> BP_RNGB_ESR_STE)
 
 
 /* --- Register HW_RNGB_ESR, field SATE[3] (RO)
@@ -776,7 +762,7 @@ typedef union _hw_rngb_esr
 #define BM_RNGB_ESR_SATE      (0x00000008)  //!< Bit mask for RNGB_ESR_SATE.
 
 //! @brief Get value of RNGB_ESR_SATE from a register value.
-#define BG_RNGB_ESR_SATE(r)   (((r) & BM_RNGB_ESR_SATE) >> BP_RNGB_ESR_SATE)
+#define BG_RNGB_ESR_SATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_ESR_SATE) >> BP_RNGB_ESR_SATE)
 
 
 /* --- Register HW_RNGB_ESR, field FUFE[4] (RO)
@@ -794,8 +780,12 @@ typedef union _hw_rngb_esr
 #define BM_RNGB_ESR_FUFE      (0x00000010)  //!< Bit mask for RNGB_ESR_FUFE.
 
 //! @brief Get value of RNGB_ESR_FUFE from a register value.
-#define BG_RNGB_ESR_FUFE(r)   (((r) & BM_RNGB_ESR_FUFE) >> BP_RNGB_ESR_FUFE)
+#define BG_RNGB_ESR_FUFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_ESR_FUFE) >> BP_RNGB_ESR_FUFE)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_RNGB_OUT - RNGB Output FIFO
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -842,7 +832,7 @@ typedef union _hw_rngb_out
 #define BM_RNGB_OUT_RANDOUT      (0xffffffff)  //!< Bit mask for RNGB_OUT_RANDOUT.
 
 //! @brief Get value of RNGB_OUT_RANDOUT from a register value.
-#define BG_RNGB_OUT_RANDOUT(r)   (((r) & BM_RNGB_OUT_RANDOUT) >> BP_RNGB_OUT_RANDOUT)
+#define BG_RNGB_OUT_RANDOUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNGB_OUT_RANDOUT) >> BP_RNGB_OUT_RANDOUT)
 
 
 /*!

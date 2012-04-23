@@ -44,6 +44,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICC - DCIC Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_DCIC_DCICC - DCIC Control Register (RW)
@@ -99,15 +114,10 @@ typedef union _hw_dcic_dcicc
 #define BM_DCIC_DCICC_IC_EN      (0x00000001)  //!< Bit mask for DCIC_DCICC_IC_EN.
 
 //! @brief Get value of DCIC_DCICC_IC_EN from a register value.
-#define BG_DCIC_DCICC_IC_EN(r)   (((r) & BM_DCIC_DCICC_IC_EN) >> BP_DCIC_DCICC_IC_EN)
+#define BG_DCIC_DCICC_IC_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICC_IC_EN) >> BP_DCIC_DCICC_IC_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICC_IC_EN.
-#define BF_DCIC_DCICC_IC_EN(v)   ((((reg32_t) v) << BP_DCIC_DCICC_IC_EN) & BM_DCIC_DCICC_IC_EN)
-#else
-//! @brief Format value for bitfield DCIC_DCICC_IC_EN.
-#define BF_DCIC_DCICC_IC_EN(v)   (((v) << BP_DCIC_DCICC_IC_EN) & BM_DCIC_DCICC_IC_EN)
-#endif
+#define BF_DCIC_DCICC_IC_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICC_IC_EN) & BM_DCIC_DCICC_IC_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IC_EN field to a new value.
@@ -128,15 +138,10 @@ typedef union _hw_dcic_dcicc
 #define BM_DCIC_DCICC_DE_POL      (0x00000010)  //!< Bit mask for DCIC_DCICC_DE_POL.
 
 //! @brief Get value of DCIC_DCICC_DE_POL from a register value.
-#define BG_DCIC_DCICC_DE_POL(r)   (((r) & BM_DCIC_DCICC_DE_POL) >> BP_DCIC_DCICC_DE_POL)
+#define BG_DCIC_DCICC_DE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICC_DE_POL) >> BP_DCIC_DCICC_DE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICC_DE_POL.
-#define BF_DCIC_DCICC_DE_POL(v)   ((((reg32_t) v) << BP_DCIC_DCICC_DE_POL) & BM_DCIC_DCICC_DE_POL)
-#else
-//! @brief Format value for bitfield DCIC_DCICC_DE_POL.
-#define BF_DCIC_DCICC_DE_POL(v)   (((v) << BP_DCIC_DCICC_DE_POL) & BM_DCIC_DCICC_DE_POL)
-#endif
+#define BF_DCIC_DCICC_DE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICC_DE_POL) & BM_DCIC_DCICC_DE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DE_POL field to a new value.
@@ -157,15 +162,10 @@ typedef union _hw_dcic_dcicc
 #define BM_DCIC_DCICC_HSYNC_POL      (0x00000020)  //!< Bit mask for DCIC_DCICC_HSYNC_POL.
 
 //! @brief Get value of DCIC_DCICC_HSYNC_POL from a register value.
-#define BG_DCIC_DCICC_HSYNC_POL(r)   (((r) & BM_DCIC_DCICC_HSYNC_POL) >> BP_DCIC_DCICC_HSYNC_POL)
+#define BG_DCIC_DCICC_HSYNC_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICC_HSYNC_POL) >> BP_DCIC_DCICC_HSYNC_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICC_HSYNC_POL.
-#define BF_DCIC_DCICC_HSYNC_POL(v)   ((((reg32_t) v) << BP_DCIC_DCICC_HSYNC_POL) & BM_DCIC_DCICC_HSYNC_POL)
-#else
-//! @brief Format value for bitfield DCIC_DCICC_HSYNC_POL.
-#define BF_DCIC_DCICC_HSYNC_POL(v)   (((v) << BP_DCIC_DCICC_HSYNC_POL) & BM_DCIC_DCICC_HSYNC_POL)
-#endif
+#define BF_DCIC_DCICC_HSYNC_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICC_HSYNC_POL) & BM_DCIC_DCICC_HSYNC_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSYNC_POL field to a new value.
@@ -186,15 +186,10 @@ typedef union _hw_dcic_dcicc
 #define BM_DCIC_DCICC_VSYNC_POL      (0x00000040)  //!< Bit mask for DCIC_DCICC_VSYNC_POL.
 
 //! @brief Get value of DCIC_DCICC_VSYNC_POL from a register value.
-#define BG_DCIC_DCICC_VSYNC_POL(r)   (((r) & BM_DCIC_DCICC_VSYNC_POL) >> BP_DCIC_DCICC_VSYNC_POL)
+#define BG_DCIC_DCICC_VSYNC_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICC_VSYNC_POL) >> BP_DCIC_DCICC_VSYNC_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICC_VSYNC_POL.
-#define BF_DCIC_DCICC_VSYNC_POL(v)   ((((reg32_t) v) << BP_DCIC_DCICC_VSYNC_POL) & BM_DCIC_DCICC_VSYNC_POL)
-#else
-//! @brief Format value for bitfield DCIC_DCICC_VSYNC_POL.
-#define BF_DCIC_DCICC_VSYNC_POL(v)   (((v) << BP_DCIC_DCICC_VSYNC_POL) & BM_DCIC_DCICC_VSYNC_POL)
-#endif
+#define BF_DCIC_DCICC_VSYNC_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICC_VSYNC_POL) & BM_DCIC_DCICC_VSYNC_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_POL field to a new value.
@@ -215,21 +210,20 @@ typedef union _hw_dcic_dcicc
 #define BM_DCIC_DCICC_CLK_POL      (0x00000080)  //!< Bit mask for DCIC_DCICC_CLK_POL.
 
 //! @brief Get value of DCIC_DCICC_CLK_POL from a register value.
-#define BG_DCIC_DCICC_CLK_POL(r)   (((r) & BM_DCIC_DCICC_CLK_POL) >> BP_DCIC_DCICC_CLK_POL)
+#define BG_DCIC_DCICC_CLK_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICC_CLK_POL) >> BP_DCIC_DCICC_CLK_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICC_CLK_POL.
-#define BF_DCIC_DCICC_CLK_POL(v)   ((((reg32_t) v) << BP_DCIC_DCICC_CLK_POL) & BM_DCIC_DCICC_CLK_POL)
-#else
-//! @brief Format value for bitfield DCIC_DCICC_CLK_POL.
-#define BF_DCIC_DCICC_CLK_POL(v)   (((v) << BP_DCIC_DCICC_CLK_POL) & BM_DCIC_DCICC_CLK_POL)
-#endif
+#define BF_DCIC_DCICC_CLK_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICC_CLK_POL) & BM_DCIC_DCICC_CLK_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLK_POL field to a new value.
 #define BW_DCIC_DCICC_CLK_POL(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_CLK_POL) | BF_DCIC_DCICC_CLK_POL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICIC - DCIC Interrupt Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -286,15 +280,10 @@ typedef union _hw_dcic_dcicic
 #define BM_DCIC_DCICIC_EI_MASK      (0x00000001)  //!< Bit mask for DCIC_DCICIC_EI_MASK.
 
 //! @brief Get value of DCIC_DCICIC_EI_MASK from a register value.
-#define BG_DCIC_DCICIC_EI_MASK(r)   (((r) & BM_DCIC_DCICIC_EI_MASK) >> BP_DCIC_DCICIC_EI_MASK)
+#define BG_DCIC_DCICIC_EI_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICIC_EI_MASK) >> BP_DCIC_DCICIC_EI_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICIC_EI_MASK.
-#define BF_DCIC_DCICIC_EI_MASK(v)   ((((reg32_t) v) << BP_DCIC_DCICIC_EI_MASK) & BM_DCIC_DCICIC_EI_MASK)
-#else
-//! @brief Format value for bitfield DCIC_DCICIC_EI_MASK.
-#define BF_DCIC_DCICIC_EI_MASK(v)   (((v) << BP_DCIC_DCICIC_EI_MASK) & BM_DCIC_DCICIC_EI_MASK)
-#endif
+#define BF_DCIC_DCICIC_EI_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICIC_EI_MASK) & BM_DCIC_DCICIC_EI_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EI_MASK field to a new value.
@@ -315,15 +304,10 @@ typedef union _hw_dcic_dcicic
 #define BM_DCIC_DCICIC_FI_MASK      (0x00000002)  //!< Bit mask for DCIC_DCICIC_FI_MASK.
 
 //! @brief Get value of DCIC_DCICIC_FI_MASK from a register value.
-#define BG_DCIC_DCICIC_FI_MASK(r)   (((r) & BM_DCIC_DCICIC_FI_MASK) >> BP_DCIC_DCICIC_FI_MASK)
+#define BG_DCIC_DCICIC_FI_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICIC_FI_MASK) >> BP_DCIC_DCICIC_FI_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICIC_FI_MASK.
-#define BF_DCIC_DCICIC_FI_MASK(v)   ((((reg32_t) v) << BP_DCIC_DCICIC_FI_MASK) & BM_DCIC_DCICIC_FI_MASK)
-#else
-//! @brief Format value for bitfield DCIC_DCICIC_FI_MASK.
-#define BF_DCIC_DCICIC_FI_MASK(v)   (((v) << BP_DCIC_DCICIC_FI_MASK) & BM_DCIC_DCICIC_FI_MASK)
-#endif
+#define BF_DCIC_DCICIC_FI_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICIC_FI_MASK) & BM_DCIC_DCICIC_FI_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FI_MASK field to a new value.
@@ -344,15 +328,10 @@ typedef union _hw_dcic_dcicic
 #define BM_DCIC_DCICIC_FREEZE_MASK      (0x00000008)  //!< Bit mask for DCIC_DCICIC_FREEZE_MASK.
 
 //! @brief Get value of DCIC_DCICIC_FREEZE_MASK from a register value.
-#define BG_DCIC_DCICIC_FREEZE_MASK(r)   (((r) & BM_DCIC_DCICIC_FREEZE_MASK) >> BP_DCIC_DCICIC_FREEZE_MASK)
+#define BG_DCIC_DCICIC_FREEZE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICIC_FREEZE_MASK) >> BP_DCIC_DCICIC_FREEZE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICIC_FREEZE_MASK.
-#define BF_DCIC_DCICIC_FREEZE_MASK(v)   ((((reg32_t) v) << BP_DCIC_DCICIC_FREEZE_MASK) & BM_DCIC_DCICIC_FREEZE_MASK)
-#else
-//! @brief Format value for bitfield DCIC_DCICIC_FREEZE_MASK.
-#define BF_DCIC_DCICIC_FREEZE_MASK(v)   (((v) << BP_DCIC_DCICIC_FREEZE_MASK) & BM_DCIC_DCICIC_FREEZE_MASK)
-#endif
+#define BF_DCIC_DCICIC_FREEZE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICIC_FREEZE_MASK) & BM_DCIC_DCICIC_FREEZE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FREEZE_MASK field to a new value.
@@ -373,21 +352,20 @@ typedef union _hw_dcic_dcicic
 #define BM_DCIC_DCICIC_EXT_SIG_EN      (0x00010000)  //!< Bit mask for DCIC_DCICIC_EXT_SIG_EN.
 
 //! @brief Get value of DCIC_DCICIC_EXT_SIG_EN from a register value.
-#define BG_DCIC_DCICIC_EXT_SIG_EN(r)   (((r) & BM_DCIC_DCICIC_EXT_SIG_EN) >> BP_DCIC_DCICIC_EXT_SIG_EN)
+#define BG_DCIC_DCICIC_EXT_SIG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICIC_EXT_SIG_EN) >> BP_DCIC_DCICIC_EXT_SIG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICIC_EXT_SIG_EN.
-#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   ((((reg32_t) v) << BP_DCIC_DCICIC_EXT_SIG_EN) & BM_DCIC_DCICIC_EXT_SIG_EN)
-#else
-//! @brief Format value for bitfield DCIC_DCICIC_EXT_SIG_EN.
-#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   (((v) << BP_DCIC_DCICIC_EXT_SIG_EN) & BM_DCIC_DCICIC_EXT_SIG_EN)
-#endif
+#define BF_DCIC_DCICIC_EXT_SIG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICIC_EXT_SIG_EN) & BM_DCIC_DCICIC_EXT_SIG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXT_SIG_EN field to a new value.
 #define BW_DCIC_DCICIC_EXT_SIG_EN(x, v)   (HW_DCIC_DCICIC_WR(x, (HW_DCIC_DCICIC_RD(x) & ~BM_DCIC_DCICIC_EXT_SIG_EN) | BF_DCIC_DCICIC_EXT_SIG_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICS - DCIC Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -442,15 +420,10 @@ typedef union _hw_dcic_dcics
 #define BM_DCIC_DCICS_ROI_MATCH_STAT      (0x0000ffff)  //!< Bit mask for DCIC_DCICS_ROI_MATCH_STAT.
 
 //! @brief Get value of DCIC_DCICS_ROI_MATCH_STAT from a register value.
-#define BG_DCIC_DCICS_ROI_MATCH_STAT(r)   (((r) & BM_DCIC_DCICS_ROI_MATCH_STAT) >> BP_DCIC_DCICS_ROI_MATCH_STAT)
+#define BG_DCIC_DCICS_ROI_MATCH_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICS_ROI_MATCH_STAT) >> BP_DCIC_DCICS_ROI_MATCH_STAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICS_ROI_MATCH_STAT.
-#define BF_DCIC_DCICS_ROI_MATCH_STAT(v)   ((((reg32_t) v) << BP_DCIC_DCICS_ROI_MATCH_STAT) & BM_DCIC_DCICS_ROI_MATCH_STAT)
-#else
-//! @brief Format value for bitfield DCIC_DCICS_ROI_MATCH_STAT.
-#define BF_DCIC_DCICS_ROI_MATCH_STAT(v)   (((v) << BP_DCIC_DCICS_ROI_MATCH_STAT) & BM_DCIC_DCICS_ROI_MATCH_STAT)
-#endif
+#define BF_DCIC_DCICS_ROI_MATCH_STAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICS_ROI_MATCH_STAT) & BM_DCIC_DCICS_ROI_MATCH_STAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROI_MATCH_STAT field to a new value.
@@ -472,7 +445,7 @@ typedef union _hw_dcic_dcics
 #define BM_DCIC_DCICS_EI_STAT      (0x00010000)  //!< Bit mask for DCIC_DCICS_EI_STAT.
 
 //! @brief Get value of DCIC_DCICS_EI_STAT from a register value.
-#define BG_DCIC_DCICS_EI_STAT(r)   (((r) & BM_DCIC_DCICS_EI_STAT) >> BP_DCIC_DCICS_EI_STAT)
+#define BG_DCIC_DCICS_EI_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICS_EI_STAT) >> BP_DCIC_DCICS_EI_STAT)
 
 
 /* --- Register HW_DCIC_DCICS, field FI_STAT[17] (W1C)
@@ -488,21 +461,20 @@ typedef union _hw_dcic_dcics
 #define BM_DCIC_DCICS_FI_STAT      (0x00020000)  //!< Bit mask for DCIC_DCICS_FI_STAT.
 
 //! @brief Get value of DCIC_DCICS_FI_STAT from a register value.
-#define BG_DCIC_DCICS_FI_STAT(r)   (((r) & BM_DCIC_DCICS_FI_STAT) >> BP_DCIC_DCICS_FI_STAT)
+#define BG_DCIC_DCICS_FI_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICS_FI_STAT) >> BP_DCIC_DCICS_FI_STAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICS_FI_STAT.
-#define BF_DCIC_DCICS_FI_STAT(v)   ((((reg32_t) v) << BP_DCIC_DCICS_FI_STAT) & BM_DCIC_DCICS_FI_STAT)
-#else
-//! @brief Format value for bitfield DCIC_DCICS_FI_STAT.
-#define BF_DCIC_DCICS_FI_STAT(v)   (((v) << BP_DCIC_DCICS_FI_STAT) & BM_DCIC_DCICS_FI_STAT)
-#endif
+#define BF_DCIC_DCICS_FI_STAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICS_FI_STAT) & BM_DCIC_DCICS_FI_STAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FI_STAT field to a new value.
 #define BW_DCIC_DCICS_FI_STAT(x, v)   (HW_DCIC_DCICS_WR(x, (HW_DCIC_DCICS_RD(x) & ~BM_DCIC_DCICS_FI_STAT) | BF_DCIC_DCICS_FI_STAT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICRC - DCIC ROI Config Register m
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -554,15 +526,10 @@ typedef union _hw_dcic_dcicrc
 #define BM_DCIC_DCICRC_START_OFFSET_X      (0x00001fff)  //!< Bit mask for DCIC_DCICRC_START_OFFSET_X.
 
 //! @brief Get value of DCIC_DCICRC_START_OFFSET_X from a register value.
-#define BG_DCIC_DCICRC_START_OFFSET_X(r)   (((r) & BM_DCIC_DCICRC_START_OFFSET_X) >> BP_DCIC_DCICRC_START_OFFSET_X)
+#define BG_DCIC_DCICRC_START_OFFSET_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRC_START_OFFSET_X) >> BP_DCIC_DCICRC_START_OFFSET_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRC_START_OFFSET_X.
-#define BF_DCIC_DCICRC_START_OFFSET_X(v)   ((((reg32_t) v) << BP_DCIC_DCICRC_START_OFFSET_X) & BM_DCIC_DCICRC_START_OFFSET_X)
-#else
-//! @brief Format value for bitfield DCIC_DCICRC_START_OFFSET_X.
-#define BF_DCIC_DCICRC_START_OFFSET_X(v)   (((v) << BP_DCIC_DCICRC_START_OFFSET_X) & BM_DCIC_DCICRC_START_OFFSET_X)
-#endif
+#define BF_DCIC_DCICRC_START_OFFSET_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRC_START_OFFSET_X) & BM_DCIC_DCICRC_START_OFFSET_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START_OFFSET_X field to a new value.
@@ -578,15 +545,10 @@ typedef union _hw_dcic_dcicrc
 #define BM_DCIC_DCICRC_START_OFFSET_Y      (0x0fff0000)  //!< Bit mask for DCIC_DCICRC_START_OFFSET_Y.
 
 //! @brief Get value of DCIC_DCICRC_START_OFFSET_Y from a register value.
-#define BG_DCIC_DCICRC_START_OFFSET_Y(r)   (((r) & BM_DCIC_DCICRC_START_OFFSET_Y) >> BP_DCIC_DCICRC_START_OFFSET_Y)
+#define BG_DCIC_DCICRC_START_OFFSET_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRC_START_OFFSET_Y) >> BP_DCIC_DCICRC_START_OFFSET_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRC_START_OFFSET_Y.
-#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   ((((reg32_t) v) << BP_DCIC_DCICRC_START_OFFSET_Y) & BM_DCIC_DCICRC_START_OFFSET_Y)
-#else
-//! @brief Format value for bitfield DCIC_DCICRC_START_OFFSET_Y.
-#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   (((v) << BP_DCIC_DCICRC_START_OFFSET_Y) & BM_DCIC_DCICRC_START_OFFSET_Y)
-#endif
+#define BF_DCIC_DCICRC_START_OFFSET_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRC_START_OFFSET_Y) & BM_DCIC_DCICRC_START_OFFSET_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START_OFFSET_Y field to a new value.
@@ -607,15 +569,10 @@ typedef union _hw_dcic_dcicrc
 #define BM_DCIC_DCICRC_ROI_FREEZE      (0x40000000)  //!< Bit mask for DCIC_DCICRC_ROI_FREEZE.
 
 //! @brief Get value of DCIC_DCICRC_ROI_FREEZE from a register value.
-#define BG_DCIC_DCICRC_ROI_FREEZE(r)   (((r) & BM_DCIC_DCICRC_ROI_FREEZE) >> BP_DCIC_DCICRC_ROI_FREEZE)
+#define BG_DCIC_DCICRC_ROI_FREEZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRC_ROI_FREEZE) >> BP_DCIC_DCICRC_ROI_FREEZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRC_ROI_FREEZE.
-#define BF_DCIC_DCICRC_ROI_FREEZE(v)   ((((reg32_t) v) << BP_DCIC_DCICRC_ROI_FREEZE) & BM_DCIC_DCICRC_ROI_FREEZE)
-#else
-//! @brief Format value for bitfield DCIC_DCICRC_ROI_FREEZE.
-#define BF_DCIC_DCICRC_ROI_FREEZE(v)   (((v) << BP_DCIC_DCICRC_ROI_FREEZE) & BM_DCIC_DCICRC_ROI_FREEZE)
-#endif
+#define BF_DCIC_DCICRC_ROI_FREEZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRC_ROI_FREEZE) & BM_DCIC_DCICRC_ROI_FREEZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROI_FREEZE field to a new value.
@@ -636,21 +593,20 @@ typedef union _hw_dcic_dcicrc
 #define BM_DCIC_DCICRC_ROI_EN      (0x80000000)  //!< Bit mask for DCIC_DCICRC_ROI_EN.
 
 //! @brief Get value of DCIC_DCICRC_ROI_EN from a register value.
-#define BG_DCIC_DCICRC_ROI_EN(r)   (((r) & BM_DCIC_DCICRC_ROI_EN) >> BP_DCIC_DCICRC_ROI_EN)
+#define BG_DCIC_DCICRC_ROI_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRC_ROI_EN) >> BP_DCIC_DCICRC_ROI_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRC_ROI_EN.
-#define BF_DCIC_DCICRC_ROI_EN(v)   ((((reg32_t) v) << BP_DCIC_DCICRC_ROI_EN) & BM_DCIC_DCICRC_ROI_EN)
-#else
-//! @brief Format value for bitfield DCIC_DCICRC_ROI_EN.
-#define BF_DCIC_DCICRC_ROI_EN(v)   (((v) << BP_DCIC_DCICRC_ROI_EN) & BM_DCIC_DCICRC_ROI_EN)
-#endif
+#define BF_DCIC_DCICRC_ROI_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRC_ROI_EN) & BM_DCIC_DCICRC_ROI_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROI_EN field to a new value.
 #define BW_DCIC_DCICRC_ROI_EN(x, v)   (HW_DCIC_DCICRC_WR(x, (HW_DCIC_DCICRC_RD(x) & ~BM_DCIC_DCICRC_ROI_EN) | BF_DCIC_DCICRC_ROI_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICRS - DCIC ROI Size Register m
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -700,15 +656,10 @@ typedef union _hw_dcic_dcicrs
 #define BM_DCIC_DCICRS_END_OFFSET_X      (0x00001fff)  //!< Bit mask for DCIC_DCICRS_END_OFFSET_X.
 
 //! @brief Get value of DCIC_DCICRS_END_OFFSET_X from a register value.
-#define BG_DCIC_DCICRS_END_OFFSET_X(r)   (((r) & BM_DCIC_DCICRS_END_OFFSET_X) >> BP_DCIC_DCICRS_END_OFFSET_X)
+#define BG_DCIC_DCICRS_END_OFFSET_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRS_END_OFFSET_X) >> BP_DCIC_DCICRS_END_OFFSET_X)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRS_END_OFFSET_X.
-#define BF_DCIC_DCICRS_END_OFFSET_X(v)   ((((reg32_t) v) << BP_DCIC_DCICRS_END_OFFSET_X) & BM_DCIC_DCICRS_END_OFFSET_X)
-#else
-//! @brief Format value for bitfield DCIC_DCICRS_END_OFFSET_X.
-#define BF_DCIC_DCICRS_END_OFFSET_X(v)   (((v) << BP_DCIC_DCICRS_END_OFFSET_X) & BM_DCIC_DCICRS_END_OFFSET_X)
-#endif
+#define BF_DCIC_DCICRS_END_OFFSET_X(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRS_END_OFFSET_X) & BM_DCIC_DCICRS_END_OFFSET_X)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the END_OFFSET_X field to a new value.
@@ -724,20 +675,19 @@ typedef union _hw_dcic_dcicrs
 #define BM_DCIC_DCICRS_END_OFFSET_Y      (0x0fff0000)  //!< Bit mask for DCIC_DCICRS_END_OFFSET_Y.
 
 //! @brief Get value of DCIC_DCICRS_END_OFFSET_Y from a register value.
-#define BG_DCIC_DCICRS_END_OFFSET_Y(r)   (((r) & BM_DCIC_DCICRS_END_OFFSET_Y) >> BP_DCIC_DCICRS_END_OFFSET_Y)
+#define BG_DCIC_DCICRS_END_OFFSET_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRS_END_OFFSET_Y) >> BP_DCIC_DCICRS_END_OFFSET_Y)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRS_END_OFFSET_Y.
-#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   ((((reg32_t) v) << BP_DCIC_DCICRS_END_OFFSET_Y) & BM_DCIC_DCICRS_END_OFFSET_Y)
-#else
-//! @brief Format value for bitfield DCIC_DCICRS_END_OFFSET_Y.
-#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   (((v) << BP_DCIC_DCICRS_END_OFFSET_Y) & BM_DCIC_DCICRS_END_OFFSET_Y)
-#endif
+#define BF_DCIC_DCICRS_END_OFFSET_Y(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRS_END_OFFSET_Y) & BM_DCIC_DCICRS_END_OFFSET_Y)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the END_OFFSET_Y field to a new value.
 #define BW_DCIC_DCICRS_END_OFFSET_Y(x, v)   (HW_DCIC_DCICRS_WR(x, (HW_DCIC_DCICRS_RD(x) & ~BM_DCIC_DCICRS_END_OFFSET_Y) | BF_DCIC_DCICRS_END_OFFSET_Y(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICRRS - DCIC ROI Reference Signature Register m
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -784,20 +734,19 @@ typedef union _hw_dcic_dcicrrs
 #define BM_DCIC_DCICRRS_REFERENCE_SIGNATURE      (0xffffffff)  //!< Bit mask for DCIC_DCICRRS_REFERENCE_SIGNATURE.
 
 //! @brief Get value of DCIC_DCICRRS_REFERENCE_SIGNATURE from a register value.
-#define BG_DCIC_DCICRRS_REFERENCE_SIGNATURE(r)   (((r) & BM_DCIC_DCICRRS_REFERENCE_SIGNATURE) >> BP_DCIC_DCICRRS_REFERENCE_SIGNATURE)
+#define BG_DCIC_DCICRRS_REFERENCE_SIGNATURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRRS_REFERENCE_SIGNATURE) >> BP_DCIC_DCICRRS_REFERENCE_SIGNATURE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DCIC_DCICRRS_REFERENCE_SIGNATURE.
-#define BF_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)   ((((reg32_t) v) << BP_DCIC_DCICRRS_REFERENCE_SIGNATURE) & BM_DCIC_DCICRRS_REFERENCE_SIGNATURE)
-#else
-//! @brief Format value for bitfield DCIC_DCICRRS_REFERENCE_SIGNATURE.
-#define BF_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)   (((v) << BP_DCIC_DCICRRS_REFERENCE_SIGNATURE) & BM_DCIC_DCICRRS_REFERENCE_SIGNATURE)
-#endif
+#define BF_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DCIC_DCICRRS_REFERENCE_SIGNATURE) & BM_DCIC_DCICRRS_REFERENCE_SIGNATURE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REFERENCE_SIGNATURE field to a new value.
 #define BW_DCIC_DCICRRS_REFERENCE_SIGNATURE(x, v)   (HW_DCIC_DCICRRS_WR(x, (HW_DCIC_DCICRRS_RD(x) & ~BM_DCIC_DCICRRS_REFERENCE_SIGNATURE) | BF_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DCIC_DCICRCS - DCIC ROI Calculated Signature m
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -841,7 +790,7 @@ typedef union _hw_dcic_dcicrcs
 #define BM_DCIC_DCICRCS_CALCULATED_SIGNATURE      (0xffffffff)  //!< Bit mask for DCIC_DCICRCS_CALCULATED_SIGNATURE.
 
 //! @brief Get value of DCIC_DCICRCS_CALCULATED_SIGNATURE from a register value.
-#define BG_DCIC_DCICRCS_CALCULATED_SIGNATURE(r)   (((r) & BM_DCIC_DCICRCS_CALCULATED_SIGNATURE) >> BP_DCIC_DCICRCS_CALCULATED_SIGNATURE)
+#define BG_DCIC_DCICRCS_CALCULATED_SIGNATURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRCS_CALCULATED_SIGNATURE) >> BP_DCIC_DCICRCS_CALCULATED_SIGNATURE)
 
 
 /*!

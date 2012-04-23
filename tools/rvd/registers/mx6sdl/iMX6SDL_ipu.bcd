@@ -2181,6 +2181,51 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_INT_STAT_3_IDMAC_NFACK_31={\
         gui_name="IDMAC_NFACK_31":position=31:size=1:read_only=false\
       }\
+    }:Register.G_IPU_INT_STAT_4={\
+      gui_name="INT_STAT_4":start=0x0240020c:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_33={\
+        gui_name="IDMAC_NFACK_33":position=1:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_40={\
+        gui_name="IDMAC_NFACK_40":position=8:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_41={\
+        gui_name="IDMAC_NFACK_41":position=9:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_42={\
+        gui_name="IDMAC_NFACK_42":position=10:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_43={\
+        gui_name="IDMAC_NFACK_43":position=11:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_44={\
+        gui_name="IDMAC_NFACK_44":position=12:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_45={\
+        gui_name="IDMAC_NFACK_45":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_46={\
+        gui_name="IDMAC_NFACK_46":position=14:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_47={\
+        gui_name="IDMAC_NFACK_47":position=15:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_48={\
+        gui_name="IDMAC_NFACK_48":position=16:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_49={\
+        gui_name="IDMAC_NFACK_49":position=17:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_50={\
+        gui_name="IDMAC_NFACK_50":position=18:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_51={\
+        gui_name="IDMAC_NFACK_51":position=19:size=1:read_only=false\
+      }:\
+        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_52={\
+        gui_name="IDMAC_NFACK_52":position=20:size=1:read_only=false\
+      }\
     }:Register.G_IPU_INT_STAT_5={\
       gui_name="INT_STAT_5":start=0x02400210:length=4:\
       read_only=false:write_only=false:\
@@ -3329,51 +3374,6 @@ Advanced_Information.Cortex-A9={\
       read_only=false:write_only=false:\
         bit_fields.B_IPU_CH_BUF2_RDY1_DMA_CH_BUF648={\
         gui_name="DMA_CH_BUF2_RDY":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_IPU_INT_STAT_4={\
-      gui_name="INT_STAT_4":start=0x024002c0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_33={\
-        gui_name="IDMAC_NFACK_33":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_40={\
-        gui_name="IDMAC_NFACK_40":position=8:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_41={\
-        gui_name="IDMAC_NFACK_41":position=9:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_42={\
-        gui_name="IDMAC_NFACK_42":position=10:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_43={\
-        gui_name="IDMAC_NFACK_43":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_44={\
-        gui_name="IDMAC_NFACK_44":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_45={\
-        gui_name="IDMAC_NFACK_45":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_46={\
-        gui_name="IDMAC_NFACK_46":position=14:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_47={\
-        gui_name="IDMAC_NFACK_47":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_48={\
-        gui_name="IDMAC_NFACK_48":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_49={\
-        gui_name="IDMAC_NFACK_49":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_50={\
-        gui_name="IDMAC_NFACK_50":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_51={\
-        gui_name="IDMAC_NFACK_51":position=19:size=1:read_only=false\
-      }:\
-        bit_fields.B_IPU_INT_STAT_4_IDMAC_NFACK_52={\
-        gui_name="IDMAC_NFACK_52":position=20:size=1:read_only=false\
       }\
     }:Register.G_IPU_IDMAC_CONF={\
       gui_name="IDMAC_CONF":start=0x02401f40:length=4:\
@@ -6324,28 +6324,43 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_RL1_CH_0_COD_NFIELD1246={\
         gui_name="COD_NFIELD_START_CHAN_0":position=24:size=8:read_only=false\
       }\
+    }:Register.G_IPU_DC_RL2_CH_0={\
+      gui_name="DC_RL2_CH_0":start=0x02458010:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOL_PR1247={\
+        gui_name="COD_EOL_PRIORITY_CHAN_0":position=0:size=4:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOL_ST1248={\
+        gui_name="COD_EOL_START_CHAN_0":position=8:size=8:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOFIEL1249={\
+        gui_name="COD_EOFIELD_PRIORITY_CHAN_0":position=16:size=4:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOFIEL1250={\
+        gui_name="COD_EOFIELD_START_CHAN_0":position=24:size=8:read_only=false\
+      }\
     }:Register.G_IPU_DC_RL3_CH_0={\
       gui_name="DC_RL3_CH_0":start=0x02458014:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_AD1247={\
+        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_AD1251={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_0":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_AD1248={\
+        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_AD1252={\
         gui_name="COD_NEW_ADDR_START_CHAN_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_CH1249={\
+        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_CH1253={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_0":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_CH1250={\
+        bit_fields.B_IPU_DC_RL3_CH_0_COD_NEW_CH1254={\
         gui_name="COD_NEW_CHAN_START_CHAN_0":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_0={\
       gui_name="DC_RL4_CH_0":start=0x02458018:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_0_COD_NEW_DA1251={\
+        bit_fields.B_IPU_DC_RL4_CH_0_COD_NEW_DA1255={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_0":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_0_COD_NEW_DA1252={\
+        bit_fields.B_IPU_DC_RL4_CH_0_COD_NEW_DA1256={\
         gui_name="COD_NEW_DATA_START_CHAN_0":position=8:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF_1={\
@@ -6354,38 +6369,29 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_WR_CH_CONF_1_W_SIZE_1={\
         gui_name="W_SIZE_1":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_D1253={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_D1257={\
         gui_name="PROG_DI_ID_1":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_D1254={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_D1258={\
         gui_name="PROG_DISP_ID_1":position=3:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_C1255={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_C1259={\
         gui_name="PROG_CHAN_TYP_1":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_CHAN_M1256={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_CHAN_M1260={\
         gui_name="CHAN_MASK_DEFAULT_1":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_FIELD_1257={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_FIELD_1261={\
         gui_name="FIELD_MODE_1":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_S1258={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_1_PROG_S1262={\
         gui_name="PROG_START_TIME_1":position=16:size=11:read_only=false\
       }\
-    }:Register.G_IPU_DC_RL2_CH_0={\
-      gui_name="DC_RL2_CH_0":start=0x02458020:length=4:\
+    }:Register.G_IPU_DC_WR_CH_ADDR_1={\
+      gui_name="DC_WR_CH_ADDR_1":start=0x02458020:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOL_PR1259={\
-        gui_name="COD_EOL_PRIORITY_CHAN_0":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOL_ST1260={\
-        gui_name="COD_EOL_START_CHAN_0":position=8:size=8:read_only=false\
-      }:\
-        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOFIEL1261={\
-        gui_name="COD_EOFIELD_PRIORITY_CHAN_0":position=16:size=4:read_only=false\
-      }:\
-        bit_fields.B_IPU_DC_RL2_CH_0_COD_EOFIEL1262={\
-        gui_name="COD_EOFIELD_START_CHAN_0":position=24:size=8:read_only=false\
+        bit_fields.B_IPU_DC_WR_CH_ADDR_1_ST_ADDR_1={\
+        gui_name="ST_ADDR_1":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DC_RL0_CH_1={\
       gui_name="DC_RL0_CH_1":start=0x02458024:length=4:\
@@ -6513,28 +6519,43 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_RL1_CH_2_COD_NFIELD1293={\
         gui_name="COD_NFIELD_START_CHAN_2":position=24:size=8:read_only=false\
       }\
+    }:Register.G_IPU_DC_RL2_CH_2={\
+      gui_name="DC_RL2_CH_2":start=0x02458048:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_IPU_DC_RL2_CH_2_COD_EOL_PR1294={\
+        gui_name="COD_EOL_PRIORITY_CHAN_2":position=0:size=4:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_2_COD_EOL_ST1295={\
+        gui_name="COD_EOL_START_CHAN_2":position=8:size=8:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_2_COD_EOFIEL1296={\
+        gui_name="COD_EOFIELD_PRIORITY_CHAN_2":position=16:size=4:read_only=false\
+      }:\
+        bit_fields.B_IPU_DC_RL2_CH_2_COD_EOFIEL1297={\
+        gui_name="COD_EOFIELD_START_CHAN_2":position=24:size=8:read_only=false\
+      }\
     }:Register.G_IPU_DC_RL3_CH_2={\
       gui_name="DC_RL3_CH_2":start=0x0245804c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_AD1294={\
+        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_AD1298={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_2":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_AD1295={\
+        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_AD1299={\
         gui_name="COD_NEW_ADDR_START_CHAN_2":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_CH1296={\
+        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_CH1300={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_2":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_CH1297={\
+        bit_fields.B_IPU_DC_RL3_CH_2_COD_NEW_CH1301={\
         gui_name="COD_NEW_CHAN_START_CHAN_2":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_2={\
       gui_name="DC_RL4_CH_2":start=0x02458050:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_2_COD_NEW_DA1298={\
+        bit_fields.B_IPU_DC_RL4_CH_2_COD_NEW_DA1302={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_2":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_2_COD_NEW_DA1299={\
+        bit_fields.B_IPU_DC_RL4_CH_2_COD_NEW_DA1303={\
         gui_name="COD_NEW_DATA_START_CHAN_2":position=8:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_CMD_CH_CONF_3={\
@@ -6543,10 +6564,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_CMD_CH_CONF_3_W_SIZE_3={\
         gui_name="W_SIZE_3":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_CMD_CH_CONF_3_COD_C1300={\
+        bit_fields.B_IPU_DC_CMD_CH_CONF_3_COD_C1304={\
         gui_name="COD_CMND_START_CHAN_RS0_3":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_CMD_CH_CONF_3_COD_C1301={\
+        bit_fields.B_IPU_DC_CMD_CH_CONF_3_COD_C1305={\
         gui_name="COD_CMND_START_CHAN_RS1_3":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_CMD_CH_CONF_4={\
@@ -6555,10 +6576,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_CMD_CH_CONF_4_W_SIZE_4={\
         gui_name="W_SIZE_4":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_CMD_CH_CONF_4_COD_C1302={\
+        bit_fields.B_IPU_DC_CMD_CH_CONF_4_COD_C1306={\
         gui_name="COD_CMND_START_CHAN_RS0_4":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_CMD_CH_CONF_4_COD_C1303={\
+        bit_fields.B_IPU_DC_CMD_CH_CONF_4_COD_C1307={\
         gui_name="COD_CMND_START_CHAN_RS1_4":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF_5={\
@@ -6567,22 +6588,22 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_WR_CH_CONF_5_W_SIZE_5={\
         gui_name="W_SIZE_5":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_D1304={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_D1308={\
         gui_name="PROG_DI_ID_5":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_D1305={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_D1309={\
         gui_name="PROG_DISP_ID_5":position=3:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_C1306={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_C1310={\
         gui_name="PROG_CHAN_TYP_5":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_CHAN_M1307={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_CHAN_M1311={\
         gui_name="CHAN_MASK_DEFAULT_5":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_FIELD_1308={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_FIELD_1312={\
         gui_name="FIELD_MODE_5":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_S1309={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_5_PROG_S1313={\
         gui_name="PROG_START_TIME_5":position=16:size=11:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_ADDR_5={\
@@ -6594,70 +6615,70 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DC_RL0_CH_5={\
       gui_name="DC_RL0_CH_5":start=0x02458064:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL0_CH_5_COD_NF_PRI1310={\
+        bit_fields.B_IPU_DC_RL0_CH_5_COD_NF_PRI1314={\
         gui_name="COD_NF_PRIORITY_CHAN_5":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_5_COD_NF_STA1311={\
+        bit_fields.B_IPU_DC_RL0_CH_5_COD_NF_STA1315={\
         gui_name="COD_NF_START_CHAN_5":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_5_COD_NL_PRI1312={\
+        bit_fields.B_IPU_DC_RL0_CH_5_COD_NL_PRI1316={\
         gui_name="COD_NL_PRIORITY_CHAN_5":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_5_COD_NL_STA1313={\
+        bit_fields.B_IPU_DC_RL0_CH_5_COD_NL_STA1317={\
         gui_name="COD_NL_START_CHAN_5":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL1_CH_5={\
       gui_name="DC_RL1_CH_5":start=0x02458068:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL1_CH_5_COD_EOF_PR1314={\
+        bit_fields.B_IPU_DC_RL1_CH_5_COD_EOF_PR1318={\
         gui_name="COD_EOF_PRIORITY_CHAN_5":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_5_COD_EOF_ST1315={\
+        bit_fields.B_IPU_DC_RL1_CH_5_COD_EOF_ST1319={\
         gui_name="COD_EOF_START_CHAN_5":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_5_COD_NFIELD1316={\
+        bit_fields.B_IPU_DC_RL1_CH_5_COD_NFIELD1320={\
         gui_name="COD_NFIELD_PRIORITY_CHAN_5":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_5_COD_NFIELD1317={\
+        bit_fields.B_IPU_DC_RL1_CH_5_COD_NFIELD1321={\
         gui_name="COD_NFIELD_START_CHAN_5":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL2_CH_5={\
       gui_name="DC_RL2_CH_5":start=0x0245806c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOL_PR1318={\
+        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOL_PR1322={\
         gui_name="COD_EOL_PRIORITY_CHAN_5":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOL_ST1319={\
+        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOL_ST1323={\
         gui_name="COD_EOL_START_CHAN_5":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOFIEL1320={\
+        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOFIEL1324={\
         gui_name="COD_EOFIELD_PRIORITY_CHAN_5":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOFIEL1321={\
+        bit_fields.B_IPU_DC_RL2_CH_5_COD_EOFIEL1325={\
         gui_name="COD_EOFIELD_START_CHAN_5":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL3_CH_5={\
       gui_name="DC_RL3_CH_5":start=0x02458070:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_AD1322={\
+        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_AD1326={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_5":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_AD1323={\
+        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_AD1327={\
         gui_name="COD_NEW_ADDR_START_CHAN_5":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_CH1324={\
+        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_CH1328={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_5":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_CH1325={\
+        bit_fields.B_IPU_DC_RL3_CH_5_COD_NEW_CH1329={\
         gui_name="COD_NEW_CHAN_START_CHAN_5":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_5={\
       gui_name="DC_RL4_CH_5":start=0x02458074:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_5_COD_NEW_DA1326={\
+        bit_fields.B_IPU_DC_RL4_CH_5_COD_NEW_DA1330={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_5":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_5_COD_NEW_DA1327={\
+        bit_fields.B_IPU_DC_RL4_CH_5_COD_NEW_DA1331={\
         gui_name="COD_NEW_DATA_START_CHAN_5":position=8:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF_6={\
@@ -6666,19 +6687,19 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_WR_CH_CONF_6_W_SIZE_6={\
         gui_name="W_SIZE_6":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_D1328={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_D1332={\
         gui_name="PROG_DI_ID_6":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_D1329={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_D1333={\
         gui_name="PROG_DISP_ID_6":position=3:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_C1330={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_C1334={\
         gui_name="PROG_CHAN_TYP_6":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_6_CHAN_M1331={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_6_CHAN_M1335={\
         gui_name="CHAN_MASK_DEFAULT_6":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_S1332={\
+        bit_fields.B_IPU_DC_WR_CH_CONF_6_PROG_S1336={\
         gui_name="PROG_START_TIME_6":position=16:size=11:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_ADDR_6={\
@@ -6690,70 +6711,70 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DC_RL0_CH_6={\
       gui_name="DC_RL0_CH_6":start=0x02458080:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL0_CH_6_COD_NF_PRI1333={\
+        bit_fields.B_IPU_DC_RL0_CH_6_COD_NF_PRI1337={\
         gui_name="COD_NF_PRIORITY_CHAN_6":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_6_COD_NF_STA1334={\
+        bit_fields.B_IPU_DC_RL0_CH_6_COD_NF_STA1338={\
         gui_name="COD_NF_START_CHAN_6":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_6_COD_NL_PRI1335={\
+        bit_fields.B_IPU_DC_RL0_CH_6_COD_NL_PRI1339={\
         gui_name="COD_NL_PRIORITY_CHAN_6":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL0_CH_6_COD_NL_STA1336={\
+        bit_fields.B_IPU_DC_RL0_CH_6_COD_NL_STA1340={\
         gui_name="COD_NL_START_CHAN_6":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL1_CH_6={\
       gui_name="DC_RL1_CH_6":start=0x02458084:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL1_CH_6_COD_EOF_PR1337={\
+        bit_fields.B_IPU_DC_RL1_CH_6_COD_EOF_PR1341={\
         gui_name="COD_EOF_PRIORITY_CHAN_6":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_6_COD_EOF_ST1338={\
+        bit_fields.B_IPU_DC_RL1_CH_6_COD_EOF_ST1342={\
         gui_name="COD_EOF_START_CHAN_6":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_6_COD_NFIELD1339={\
+        bit_fields.B_IPU_DC_RL1_CH_6_COD_NFIELD1343={\
         gui_name="COD_NFIELD_PRIORITY_CHAN_6":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_6_COD_NFIELD1340={\
+        bit_fields.B_IPU_DC_RL1_CH_6_COD_NFIELD1344={\
         gui_name="COD_NFIELD_START_CHAN_6":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL2_CH_6={\
       gui_name="DC_RL2_CH_6":start=0x02458088:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOL_PR1341={\
+        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOL_PR1345={\
         gui_name="COD_EOL_PRIORITY_CHAN_6":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOL_ST1342={\
+        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOL_ST1346={\
         gui_name="COD_EOL_START_CHAN_6":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOFIEL1343={\
+        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOFIEL1347={\
         gui_name="COD_EOFIELD_PRIORITY_CHAN_6":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOFIEL1344={\
+        bit_fields.B_IPU_DC_RL2_CH_6_COD_EOFIEL1348={\
         gui_name="COD_EOFIELD_START_CHAN_6":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL3_CH_6={\
       gui_name="DC_RL3_CH_6":start=0x0245808c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_AD1345={\
+        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_AD1349={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_6":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_AD1346={\
+        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_AD1350={\
         gui_name="COD_NEW_ADDR_START_CHAN_6":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_CH1347={\
+        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_CH1351={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_6":position=16:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_CH1348={\
+        bit_fields.B_IPU_DC_RL3_CH_6_COD_NEW_CH1352={\
         gui_name="COD_NEW_CHAN_START_CHAN_6":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_6={\
       gui_name="DC_RL4_CH_6":start=0x02458090:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_6_COD_NEW_DA1349={\
+        bit_fields.B_IPU_DC_RL4_CH_6_COD_NEW_DA1353={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_6":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_6_COD_NEW_DA1350={\
+        bit_fields.B_IPU_DC_RL4_CH_6_COD_NEW_DA1354={\
         gui_name="COD_NEW_DATA_START_CHAN_6":position=8:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF1_8={\
@@ -6762,79 +6783,79 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_WR_CH_CONF1_8_W_SIZE_8={\
         gui_name="W_SIZE_8":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF1_8_CHAN_1351={\
+        bit_fields.B_IPU_DC_WR_CH_CONF1_8_CHAN_1355={\
         gui_name="CHAN_MASK_DEFAULT_8":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF1_8_MCU_D1352={\
+        bit_fields.B_IPU_DC_WR_CH_CONF1_8_MCU_D1356={\
         gui_name="MCU_DISP_ID_8":position=3:size=2:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF2_8={\
       gui_name="DC_WR_CH_CONF2_8":start=0x02458098:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_WR_CH_CONF2_8_NEW_A1353={\
+        bit_fields.B_IPU_DC_WR_CH_CONF2_8_NEW_A1357={\
         gui_name="NEW_ADDR_SPACE_SA_8":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DC_RL1_CH_8={\
       gui_name="DC_RL1_CH_8":start=0x0245809c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1354={\
+        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1358={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_8":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1355={\
+        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1359={\
         gui_name="COD_NEW_ADDR_START_CHAN_W_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1356={\
+        bit_fields.B_IPU_DC_RL1_CH_8_COD_NEW_AD1360={\
         gui_name="COD_NEW_ADDR_START_CHAN_W_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL2_CH_8={\
       gui_name="DC_RL2_CH_8":start=0x024580a0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1357={\
+        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1361={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_8":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1358={\
+        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1362={\
         gui_name="COD_NEW_CHAN_START_CHAN_W_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1359={\
+        bit_fields.B_IPU_DC_RL2_CH_8_COD_NEW_CH1363={\
         gui_name="COD_NEW_CHAN_START_CHAN_W_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL3_CH_8={\
       gui_name="DC_RL3_CH_8":start=0x024580a4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1360={\
+        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1364={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_8":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1361={\
+        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1365={\
         gui_name="COD_NEW_DATA_START_CHAN_W_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1362={\
+        bit_fields.B_IPU_DC_RL3_CH_8_COD_NEW_DA1366={\
         gui_name="COD_NEW_DATA_START_CHAN_W_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_8={\
       gui_name="DC_RL4_CH_8":start=0x024580a8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_8_COD_NEW_AD1363={\
+        bit_fields.B_IPU_DC_RL4_CH_8_COD_NEW_AD1367={\
         gui_name="COD_NEW_ADDR_START_CHAN_R_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_8_COD_NEW_AD1364={\
+        bit_fields.B_IPU_DC_RL4_CH_8_COD_NEW_AD1368={\
         gui_name="COD_NEW_ADDR_START_CHAN_R_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL5_CH_8={\
       gui_name="DC_RL5_CH_8":start=0x024580ac:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL5_CH_8_COD_NEW_CH1365={\
+        bit_fields.B_IPU_DC_RL5_CH_8_COD_NEW_CH1369={\
         gui_name="COD_NEW_CHAN_START_CHAN_R_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL5_CH_8_COD_NEW_CH1366={\
+        bit_fields.B_IPU_DC_RL5_CH_8_COD_NEW_CH1370={\
         gui_name="COD_NEW_CHAN_START_CHAN_R_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL6_CH_8={\
       gui_name="DC_RL6_CH_8":start=0x024580b0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL6_CH_8_COD_NEW_DA1367={\
+        bit_fields.B_IPU_DC_RL6_CH_8_COD_NEW_DA1371={\
         gui_name="COD_NEW_DATA_START_CHAN_R_8_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL6_CH_8_COD_NEW_DA1368={\
+        bit_fields.B_IPU_DC_RL6_CH_8_COD_NEW_DA1372={\
         gui_name="COD_NEW_DATA_START_CHAN_R_8_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF1_9={\
@@ -6843,79 +6864,79 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_WR_CH_CONF1_9_W_SIZE_9={\
         gui_name="W_SIZE_9":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF1_9_CHAN_1369={\
+        bit_fields.B_IPU_DC_WR_CH_CONF1_9_CHAN_1373={\
         gui_name="CHAN_MASK_DEFAULT_9":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_WR_CH_CONF1_9_MCU_D1370={\
+        bit_fields.B_IPU_DC_WR_CH_CONF1_9_MCU_D1374={\
         gui_name="MCU_DISP_ID_9":position=3:size=2:read_only=false\
       }\
     }:Register.G_IPU_DC_WR_CH_CONF2_9={\
       gui_name="DC_WR_CH_CONF2_9":start=0x024580b8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_WR_CH_CONF2_9_NEW_A1371={\
+        bit_fields.B_IPU_DC_WR_CH_CONF2_9_NEW_A1375={\
         gui_name="NEW_ADDR_SPACE_SA_9":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DC_RL1_CH_9={\
       gui_name="DC_RL1_CH_9":start=0x024580bc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1372={\
+        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1376={\
         gui_name="COD_NEW_ADDR_PRIORITY_CHAN_9":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1373={\
+        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1377={\
         gui_name="COD_NEW_ADDR_START_CHAN_W_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1374={\
+        bit_fields.B_IPU_DC_RL1_CH_9_COD_NEW_AD1378={\
         gui_name="COD_NEW_ADDR_START_CHAN_W_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL2_CH_9={\
       gui_name="DC_RL2_CH_9":start=0x024580c0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1375={\
+        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1379={\
         gui_name="COD_NEW_CHAN_PRIORITY_CHAN_9":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1376={\
+        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1380={\
         gui_name="COD_NEW_CHAN_START_CHAN_W_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1377={\
+        bit_fields.B_IPU_DC_RL2_CH_9_COD_NEW_CH1381={\
         gui_name="COD_NEW_CHAN_START_CHAN_W_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL3_CH_9={\
       gui_name="DC_RL3_CH_9":start=0x024580c4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1378={\
+        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1382={\
         gui_name="COD_NEW_DATA_PRIORITY_CHAN_9":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1379={\
+        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1383={\
         gui_name="COD_NEW_DATA_START_CHAN_W_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1380={\
+        bit_fields.B_IPU_DC_RL3_CH_9_COD_NEW_DA1384={\
         gui_name="COD_NEW_DATA_START_CHAN_W_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL4_CH_9={\
       gui_name="DC_RL4_CH_9":start=0x024580c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL4_CH_9_COD_NEW_AD1381={\
+        bit_fields.B_IPU_DC_RL4_CH_9_COD_NEW_AD1385={\
         gui_name="COD_NEW_ADDR_START_CHAN_R_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL4_CH_9_COD_NEW_AD1382={\
+        bit_fields.B_IPU_DC_RL4_CH_9_COD_NEW_AD1386={\
         gui_name="COD_NEW_ADDR_START_CHAN_R_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL5_CH_9={\
       gui_name="DC_RL5_CH_9":start=0x024580cc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL5_CH_9_COD_NEW_CH1383={\
+        bit_fields.B_IPU_DC_RL5_CH_9_COD_NEW_CH1387={\
         gui_name="COD_NEW_CHAN_START_CHAN_R_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL5_CH_9_COD_NEW_CH1384={\
+        bit_fields.B_IPU_DC_RL5_CH_9_COD_NEW_CH1388={\
         gui_name="COD_NEW_CHAN_START_CHAN_R_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_RL6_CH_9={\
       gui_name="DC_RL6_CH_9":start=0x024580d0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_RL6_CH_9_COD_NEW_DA1385={\
+        bit_fields.B_IPU_DC_RL6_CH_9_COD_NEW_DA1389={\
         gui_name="COD_NEW_DATA_START_CHAN_R_9_0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_RL6_CH_9_COD_NEW_DA1386={\
+        bit_fields.B_IPU_DC_RL6_CH_9_COD_NEW_DA1390={\
         gui_name="COD_NEW_DATA_START_CHAN_R_9_1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DC_GEN={\
@@ -6951,16 +6972,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_DISP_CONF1_0_DISP_TYP_0={\
         gui_name="DISP_TYP_0":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_0_ADDR_I1387={\
+        bit_fields.B_IPU_DC_DISP_CONF1_0_ADDR_I1391={\
         gui_name="ADDR_INCREMENT_0":position=2:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_0_ADDR_B1388={\
+        bit_fields.B_IPU_DC_DISP_CONF1_0_ADDR_B1392={\
         gui_name="ADDR_BE_L_INC_0":position=4:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_0_MCU_AC1389={\
+        bit_fields.B_IPU_DC_DISP_CONF1_0_MCU_AC1393={\
         gui_name="MCU_ACC_LB_MASK_0":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_0_DISP_R1390={\
+        bit_fields.B_IPU_DC_DISP_CONF1_0_DISP_R1394={\
         gui_name="DISP_RD_VALUE_PTR_0":position=7:size=1:read_only=false\
       }\
     }:Register.G_IPU_DC_DISP_CONF1_1={\
@@ -6969,16 +6990,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_DISP_CONF1_1_DISP_TYP_1={\
         gui_name="DISP_TYP_1":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_1_ADDR_I1391={\
+        bit_fields.B_IPU_DC_DISP_CONF1_1_ADDR_I1395={\
         gui_name="ADDR_INCREMENT_1":position=2:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_1_ADDR_B1392={\
+        bit_fields.B_IPU_DC_DISP_CONF1_1_ADDR_B1396={\
         gui_name="ADDR_BE_L_INC_1":position=4:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_1_MCU_AC1393={\
+        bit_fields.B_IPU_DC_DISP_CONF1_1_MCU_AC1397={\
         gui_name="MCU_ACC_LB_MASK_1":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_1_DISP_R1394={\
+        bit_fields.B_IPU_DC_DISP_CONF1_1_DISP_R1398={\
         gui_name="DISP_RD_VALUE_PTR_1":position=7:size=1:read_only=false\
       }\
     }:Register.G_IPU_DC_DISP_CONF1_2={\
@@ -6987,16 +7008,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_DISP_CONF1_2_DISP_TYP_2={\
         gui_name="DISP_TYP_2":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_2_ADDR_I1395={\
+        bit_fields.B_IPU_DC_DISP_CONF1_2_ADDR_I1399={\
         gui_name="ADDR_INCREMENT_2":position=2:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_2_ADDR_B1396={\
+        bit_fields.B_IPU_DC_DISP_CONF1_2_ADDR_B1400={\
         gui_name="ADDR_BE_L_INC_2":position=4:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_2_MCU_AC1397={\
+        bit_fields.B_IPU_DC_DISP_CONF1_2_MCU_AC1401={\
         gui_name="MCU_ACC_LB_MASK_2":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_2_DISP_R1398={\
+        bit_fields.B_IPU_DC_DISP_CONF1_2_DISP_R1402={\
         gui_name="DISP_RD_VALUE_PTR_2":position=7:size=1:read_only=false\
       }\
     }:Register.G_IPU_DC_DISP_CONF1_3={\
@@ -7005,16 +7026,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_DISP_CONF1_3_DISP_TYP_3={\
         gui_name="DISP_TYP_3":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_3_ADDR_I1399={\
+        bit_fields.B_IPU_DC_DISP_CONF1_3_ADDR_I1403={\
         gui_name="ADDR_INCREMENT_3":position=2:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_3_ADDR_B1400={\
+        bit_fields.B_IPU_DC_DISP_CONF1_3_ADDR_B1404={\
         gui_name="ADDR_BE_L_INC_3":position=4:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_3_MCU_AC1401={\
+        bit_fields.B_IPU_DC_DISP_CONF1_3_MCU_AC1405={\
         gui_name="MCU_ACC_LB_MASK_3":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_DISP_CONF1_3_DISP_R1402={\
+        bit_fields.B_IPU_DC_DISP_CONF1_3_DISP_R1406={\
         gui_name="DISP_RD_VALUE_PTR_3":position=7:size=1:read_only=false\
       }\
     }:Register.G_IPU_DC_DISP_CONF2_0={\
@@ -7022,6 +7043,12 @@ Advanced_Information.Cortex-A9={\
       read_only=false:write_only=false:\
         bit_fields.B_IPU_DC_DISP_CONF2_0_SL_0={\
         gui_name="SL_0":position=0:size=29:read_only=false\
+      }\
+    }:Register.G_IPU_DC_DISP_CONF2_1={\
+      gui_name="DC_DISP_CONF2_1":start=0x024580ec:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_IPU_DC_DISP_CONF2_1_SL_1={\
+        gui_name="SL_1":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DC_DISP_CONF2_2={\
       gui_name="DC_DISP_CONF2_2":start=0x024580f0:length=4:\
@@ -7038,340 +7065,340 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DC_DI0_CONF_1={\
       gui_name="DC_DI0_CONF_1":start=0x024580f8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_DI0_CONF_1_DI_READ_1403={\
+        bit_fields.B_IPU_DC_DI0_CONF_1_DI_READ_1407={\
         gui_name="DI_READ_DATA_MASK_0":position=0:size=32:read_only=false\
       }\
     }:Register.G_IPU_DC_DI0_CONF_2={\
       gui_name="DC_DI0_CONF_2":start=0x024580fc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_DI0_CONF_2_DI_READ_1404={\
+        bit_fields.B_IPU_DC_DI0_CONF_2_DI_READ_1408={\
         gui_name="DI_READ_DATA_ACK_VALUE_0":position=0:size=32:read_only=false\
       }\
     }:Register.G_IPU_DC_DI1_CONF_1={\
       gui_name="DC_DI1_CONF_1":start=0x02458100:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_DI1_CONF_1_DI_READ_1405={\
+        bit_fields.B_IPU_DC_DI1_CONF_1_DI_READ_1409={\
         gui_name="DI_READ_DATA_MASK_1":position=0:size=32:read_only=false\
       }\
     }:Register.G_IPU_DC_DI1_CONF_2={\
       gui_name="DC_DI1_CONF_2":start=0x02458104:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_DI1_CONF_2_DI_READ_1406={\
+        bit_fields.B_IPU_DC_DI1_CONF_2_DI_READ_1410={\
         gui_name="DI_READ_DATA_ACK_VALUE_1":position=0:size=32:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_0={\
       gui_name="DC_MAP_CONF_0":start=0x02458108:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1407={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1411={\
         gui_name="MAPPING_PNTR_BYTE0_0":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1408={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1412={\
         gui_name="MAPPING_PNTR_BYTE1_0":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1409={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1413={\
         gui_name="MAPPING_PNTR_BYTE2_0":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1410={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1414={\
         gui_name="MAPPING_PNTR_BYTE0_1":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1411={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1415={\
         gui_name="MAPPING_PNTR_BYTE1_1":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1412={\
+        bit_fields.B_IPU_DC_MAP_CONF_0_MAPPING_1416={\
         gui_name="MAPPING_PNTR_BYTE2_1":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_1={\
       gui_name="DC_MAP_CONF_1":start=0x0245810c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1413={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1417={\
         gui_name="MAPPING_PNTR_BYTE0_2":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1414={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1418={\
         gui_name="MAPPING_PNTR_BYTE1_2":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1415={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1419={\
         gui_name="MAPPING_PNTR_BYTE2_2":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1416={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1420={\
         gui_name="MAPPING_PNTR_BYTE0_3":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1417={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1421={\
         gui_name="MAPPING_PNTR_BYTE1_3":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1418={\
+        bit_fields.B_IPU_DC_MAP_CONF_1_MAPPING_1422={\
         gui_name="MAPPING_PNTR_BYTE2_3":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_2={\
       gui_name="DC_MAP_CONF_2":start=0x02458110:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1419={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1423={\
         gui_name="MAPPING_PNTR_BYTE0_4":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1420={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1424={\
         gui_name="MAPPING_PNTR_BYTE1_4":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1421={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1425={\
         gui_name="MAPPING_PNTR_BYTE2_4":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1422={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1426={\
         gui_name="MAPPING_PNTR_BYTE0_5":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1423={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1427={\
         gui_name="MAPPING_PNTR_BYTE1_5":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1424={\
+        bit_fields.B_IPU_DC_MAP_CONF_2_MAPPING_1428={\
         gui_name="MAPPING_PNTR_BYTE2_5":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_3={\
       gui_name="DC_MAP_CONF_3":start=0x02458114:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1425={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1429={\
         gui_name="MAPPING_PNTR_BYTE0_6":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1426={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1430={\
         gui_name="MAPPING_PNTR_BYTE1_6":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1427={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1431={\
         gui_name="MAPPING_PNTR_BYTE2_6":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1428={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1432={\
         gui_name="MAPPING_PNTR_BYTE0_7":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1429={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1433={\
         gui_name="MAPPING_PNTR_BYTE1_7":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1430={\
+        bit_fields.B_IPU_DC_MAP_CONF_3_MAPPING_1434={\
         gui_name="MAPPING_PNTR_BYTE2_7":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_4={\
       gui_name="DC_MAP_CONF_4":start=0x02458118:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1431={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1435={\
         gui_name="MAPPING_PNTR_BYTE0_8":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1432={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1436={\
         gui_name="MAPPING_PNTR_BYTE1_8":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1433={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1437={\
         gui_name="MAPPING_PNTR_BYTE2_8":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1434={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1438={\
         gui_name="MAPPING_PNTR_BYTE0_9":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1435={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1439={\
         gui_name="MAPPING_PNTR_BYTE1_1":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1436={\
+        bit_fields.B_IPU_DC_MAP_CONF_4_MAPPING_1440={\
         gui_name="MAPPING_PNTR_BYTE2_9":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_5={\
       gui_name="DC_MAP_CONF_5":start=0x0245811c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1437={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1441={\
         gui_name="MAPPING_PNTR_BYTE0_10":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1438={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1442={\
         gui_name="MAPPING_PNTR_BYTE1_10":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1439={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1443={\
         gui_name="MAPPING_PNTR_BYTE2_10":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1440={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1444={\
         gui_name="MAPPING_PNTR_BYTE0_11":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1441={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1445={\
         gui_name="MAPPING_PNTR_BYTE1_11":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1442={\
+        bit_fields.B_IPU_DC_MAP_CONF_5_MAPPING_1446={\
         gui_name="MAPPING_PNTR_BYTE2_11":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_6={\
       gui_name="DC_MAP_CONF_6":start=0x02458120:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1443={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1447={\
         gui_name="MAPPING_PNTR_BYTE0_12":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1444={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1448={\
         gui_name="MAPPING_PNTR_BYTE1_12":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1445={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1449={\
         gui_name="MAPPING_PNTR_BYTE2_12":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1446={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1450={\
         gui_name="MAPPING_PNTR_BYTE0_13":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1447={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1451={\
         gui_name="MAPPING_PNTR_BYTE1_13":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1448={\
+        bit_fields.B_IPU_DC_MAP_CONF_6_MAPPING_1452={\
         gui_name="MAPPING_PNTR_BYTE2_13":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_7={\
       gui_name="DC_MAP_CONF_7":start=0x02458124:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1449={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1453={\
         gui_name="MAPPING_PNTR_BYTE0_14":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1450={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1454={\
         gui_name="MAPPING_PNTR_BYTE1_14":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1451={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1455={\
         gui_name="MAPPING_PNTR_BYTE2_14":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1452={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1456={\
         gui_name="MAPPING_PNTR_BYTE0_15":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1453={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1457={\
         gui_name="MAPPING_PNTR_BYTE1_15":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1454={\
+        bit_fields.B_IPU_DC_MAP_CONF_7_MAPPING_1458={\
         gui_name="MAPPING_PNTR_BYTE2_15":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_8={\
       gui_name="DC_MAP_CONF_8":start=0x02458128:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1455={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1459={\
         gui_name="MAPPING_PNTR_BYTE0_16":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1456={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1460={\
         gui_name="MAPPING_PNTR_BYTE1_16":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1457={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1461={\
         gui_name="MAPPING_PNTR_BYTE2_16":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1458={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1462={\
         gui_name="MAPPING_PNTR_BYTE0_17":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1459={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1463={\
         gui_name="MAPPING_PNTR_BYTE1_17":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1460={\
+        bit_fields.B_IPU_DC_MAP_CONF_8_MAPPING_1464={\
         gui_name="MAPPING_PNTR_BYTE2_17":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_9={\
       gui_name="DC_MAP_CONF_9":start=0x0245812c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1461={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1465={\
         gui_name="MAPPING_PNTR_BYTE0_18":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1462={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1466={\
         gui_name="MAPPING_PNTR_BYTE1_18":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1463={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1467={\
         gui_name="MAPPING_PNTR_BYTE2_18":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1464={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1468={\
         gui_name="MAPPING_PNTR_BYTE0_19":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1465={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1469={\
         gui_name="MAPPING_PNTR_BYTE1_19":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1466={\
+        bit_fields.B_IPU_DC_MAP_CONF_9_MAPPING_1470={\
         gui_name="MAPPING_PNTR_BYTE2_19":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_10={\
       gui_name="DC_MAP_CONF_10":start=0x02458130:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1467={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1471={\
         gui_name="MAPPING_PNTR_BYTE0_20":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1468={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1472={\
         gui_name="MAPPING_PNTR_BYTE1_20":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1469={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1473={\
         gui_name="MAPPING_PNTR_BYTE2_20":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1470={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1474={\
         gui_name="MAPPING_PNTR_BYTE0_21":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1471={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1475={\
         gui_name="MAPPING_PNTR_BYTE1_21":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1472={\
+        bit_fields.B_IPU_DC_MAP_CONF_10_MAPPING1476={\
         gui_name="MAPPING_PNTR_BYTE2_21":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_11={\
       gui_name="DC_MAP_CONF_11":start=0x02458134:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1473={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1477={\
         gui_name="MAPPING_PNTR_BYTE0_22":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1474={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1478={\
         gui_name="MAPPING_PNTR_BYTE1_22":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1475={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1479={\
         gui_name="MAPPING_PNTR_BYTE2_22":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1476={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1480={\
         gui_name="MAPPING_PNTR_BYTE0_23":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1477={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1481={\
         gui_name="MAPPING_PNTR_BYTE1_23":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1478={\
+        bit_fields.B_IPU_DC_MAP_CONF_11_MAPPING1482={\
         gui_name="MAPPING_PNTR_BYTE2_23":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_12={\
       gui_name="DC_MAP_CONF_12":start=0x02458138:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1479={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1483={\
         gui_name="MAPPING_PNTR_BYTE0_24":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1480={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1484={\
         gui_name="MAPPING_PNTR_BYTE1_24":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1481={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1485={\
         gui_name="MAPPING_PNTR_BYTE2_24":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1482={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1486={\
         gui_name="MAPPING_PNTR_BYTE0_25":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1483={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1487={\
         gui_name="MAPPING_PNTR_BYTE1_25":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1484={\
+        bit_fields.B_IPU_DC_MAP_CONF_12_MAPPING1488={\
         gui_name="MAPPING_PNTR_BYTE2_25":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_13={\
       gui_name="DC_MAP_CONF_13":start=0x0245813c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1485={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1489={\
         gui_name="MAPPING_PNTR_BYTE0_26":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1486={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1490={\
         gui_name="MAPPING_PNTR_BYTE1_26":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1487={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1491={\
         gui_name="MAPPING_PNTR_BYTE2_26":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1488={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1492={\
         gui_name="MAPPING_PNTR_BYTE0_27":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1489={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1493={\
         gui_name="MAPPING_PNTR_BYTE1_27":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1490={\
+        bit_fields.B_IPU_DC_MAP_CONF_13_MAPPING1494={\
         gui_name="MAPPING_PNTR_BYTE2_27":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_14={\
       gui_name="DC_MAP_CONF_14":start=0x02458140:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1491={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1495={\
         gui_name="MAPPING_PNTR_BYTE2_28":position=0:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1492={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1496={\
         gui_name="MAPPING_PNTR_BYTE1_28":position=5:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1493={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1497={\
         gui_name="MAPPING_PNTR_BYTE2_28F":position=10:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1494={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1498={\
         gui_name="MAPPING_PNTR_BYTE0_29":position=16:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1495={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1499={\
         gui_name="MAPPING_PNTR_BYTE1_29":position=21:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1496={\
+        bit_fields.B_IPU_DC_MAP_CONF_14_MAPPING1500={\
         gui_name="MAPPING_PNTR_BYTE2_29":position=26:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_15={\
@@ -7455,13 +7482,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_20_MD_MASK_10={\
         gui_name="MD_MASK_10":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_20_MD_OFFS1497={\
+        bit_fields.B_IPU_DC_MAP_CONF_20_MD_OFFS1501={\
         gui_name="MD_OFFSET_10":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_20_MD_MASK_11={\
         gui_name="MD_MASK_11":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_20_MD_OFFS1498={\
+        bit_fields.B_IPU_DC_MAP_CONF_20_MD_OFFS1502={\
         gui_name="MD_OFFSET_11":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_21={\
@@ -7470,13 +7497,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_21_MD_MASK_12={\
         gui_name="MD_MASK_12":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_21_MD_OFFS1499={\
+        bit_fields.B_IPU_DC_MAP_CONF_21_MD_OFFS1503={\
         gui_name="MD_OFFSET_12":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_21_MD_MASK_13={\
         gui_name="MD_MASK_13":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_21_MD_OFFS1500={\
+        bit_fields.B_IPU_DC_MAP_CONF_21_MD_OFFS1504={\
         gui_name="MD_OFFSET_13":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_22={\
@@ -7485,13 +7512,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_22_MD_MASK_14={\
         gui_name="MD_MASK_14":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_22_MD_OFFS1501={\
+        bit_fields.B_IPU_DC_MAP_CONF_22_MD_OFFS1505={\
         gui_name="MD_OFFSET_14":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_22_MD_MASK_15={\
         gui_name="MD_MASK_15":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_22_MD_OFFS1502={\
+        bit_fields.B_IPU_DC_MAP_CONF_22_MD_OFFS1506={\
         gui_name="MD_OFFSET_15":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_23={\
@@ -7500,13 +7527,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_23_MD_MASK_16={\
         gui_name="MD_MASK_16":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_23_MD_OFFS1503={\
+        bit_fields.B_IPU_DC_MAP_CONF_23_MD_OFFS1507={\
         gui_name="MD_OFFSET_16":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_23_MD_MASK_17={\
         gui_name="MD_MASK_17":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_23_MD_OFFS1504={\
+        bit_fields.B_IPU_DC_MAP_CONF_23_MD_OFFS1508={\
         gui_name="MD_OFFSET_17":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_24={\
@@ -7515,13 +7542,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_24_MD_MASK_18={\
         gui_name="MD_MASK_18":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_24_MD_OFFS1505={\
+        bit_fields.B_IPU_DC_MAP_CONF_24_MD_OFFS1509={\
         gui_name="MD_OFFSET_18":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_24_MD_MASK_19={\
         gui_name="MD_MASK_19":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_24_MD_OFFS1506={\
+        bit_fields.B_IPU_DC_MAP_CONF_24_MD_OFFS1510={\
         gui_name="MD_OFFSET_19":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_25={\
@@ -7530,13 +7557,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_25_MD_MASK_20={\
         gui_name="MD_MASK_20":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_25_MD_OFFS1507={\
+        bit_fields.B_IPU_DC_MAP_CONF_25_MD_OFFS1511={\
         gui_name="MD_OFFSET_20":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_25_MD_MASK_21={\
         gui_name="MD_MASK_21":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_25_MD_OFFS1508={\
+        bit_fields.B_IPU_DC_MAP_CONF_25_MD_OFFS1512={\
         gui_name="MD_OFFSET_21":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_MAP_CONF_26={\
@@ -7545,13 +7572,13 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_MAP_CONF_26_MD_MASK_22={\
         gui_name="MD_MASK_22":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_26_MD_OFFS1509={\
+        bit_fields.B_IPU_DC_MAP_CONF_26_MD_OFFS1513={\
         gui_name="MD_OFFSET_22":position=8:size=5:read_only=false\
       }:\
         bit_fields.B_IPU_DC_MAP_CONF_26_MD_MASK_23={\
         gui_name="MD_MASK_23":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_MAP_CONF_26_MD_OFFS1510={\
+        bit_fields.B_IPU_DC_MAP_CONF_26_MD_OFFS1514={\
         gui_name="MD_OFFSET_23":position=24:size=5:read_only=false\
       }\
     }:Register.G_IPU_DC_UGDE0_0={\
@@ -7560,7 +7587,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_UGDE0_0_ID_CODED_0={\
         gui_name="ID_CODED_0":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_UGDE0_0_COD_EV_PRIO1511={\
+        bit_fields.B_IPU_DC_UGDE0_0_COD_EV_PRIO1515={\
         gui_name="COD_EV_PRIORITY_0":position=3:size=4:read_only=false\
       }:\
         bit_fields.B_IPU_DC_UGDE0_0_COD_EV_START_0={\
@@ -7602,7 +7629,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_UGDE1_0_ID_CODED_1={\
         gui_name="ID_CODED_1":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_UGDE1_0_COD_EV_PRIO1512={\
+        bit_fields.B_IPU_DC_UGDE1_0_COD_EV_PRIO1516={\
         gui_name="COD_EV_PRIORITY_1":position=3:size=4:read_only=false\
       }:\
         bit_fields.B_IPU_DC_UGDE1_0_COD_EV_START_1={\
@@ -7644,7 +7671,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_UGDE2_0_ID_CODED_2={\
         gui_name="ID_CODED_2":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_UGDE2_0_COD_EV_PRIO1513={\
+        bit_fields.B_IPU_DC_UGDE2_0_COD_EV_PRIO1517={\
         gui_name="COD_EV_PRIORITY_2":position=3:size=4:read_only=false\
       }:\
         bit_fields.B_IPU_DC_UGDE2_0_COD_EV_START_2={\
@@ -7686,7 +7713,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DC_UGDE3_0_ID_CODED_3={\
         gui_name="ID_CODED_3":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DC_UGDE3_0_COD_EV_PRIO1514={\
+        bit_fields.B_IPU_DC_UGDE3_0_COD_EV_PRIO1518={\
         gui_name="COD_EV_PRIORITY_3":position=3:size=4:read_only=false\
       }:\
         bit_fields.B_IPU_DC_UGDE3_0_COD_EV_START_3={\
@@ -7785,46 +7812,40 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DC_WR_CH_ADDR_5_ALT={\
       gui_name="DC_WR_CH_ADDR_5_ALT":start=0x024581c4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_WR_CH_ADDR_5_ALT_ST1515={\
+        bit_fields.B_IPU_DC_WR_CH_ADDR_5_ALT_ST1519={\
         gui_name="ST_ADDR_5_ALT":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DC_STAT={\
       gui_name="DC_STAT":start=0x024581c8:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1516={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1520={\
         gui_name="DC_TRIPLE_BUF_CNT_FULL_0":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1517={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1521={\
         gui_name="DC_TRIPLE_BUF_CNT_EMPTY_0":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1518={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1522={\
         gui_name="DC_TRIPLE_BUF_DATA_FULL_0":position=2:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1519={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1523={\
         gui_name="DC_TRIPLE_BUF_DATA_EMPTY_0":position=3:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1520={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1524={\
         gui_name="DC_TRIPLE_BUF_CNT_FULL_1":position=4:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1521={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1525={\
         gui_name="DC_TRIPLE_BUF_CNT_EMPTY_1":position=5:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1522={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1526={\
         gui_name="DC_TRIPLE_BUF_DATA_FULL_1":position=6:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1523={\
+        bit_fields.B_IPU_DC_STAT_DC_TRIPLE_BUF_1527={\
         gui_name="DC_TRIPLE_BUF_DATA_EMPTY_1":position=7:size=1:read_only=true\
-      }\
-    }:Register.G_IPU_DC_DISP_CONF2_1={\
-      gui_name="DC_DISP_CONF2_1":start=0x024590ec:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_IPU_DC_DISP_CONF2_1_SL_1={\
-        gui_name="SL_1":position=0:size=29:read_only=false\
       }\
     }:Register.G_IPU_DMFC_RD_CHAN={\
       gui_name="DMFC_RD_CHAN":start=0x02460000:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_RD_CHAN_DMFC_BURS1524={\
+        bit_fields.B_IPU_DMFC_RD_CHAN_DMFC_BURS1528={\
         gui_name="DMFC_BURST_SIZE_0":position=6:size=2:read_only=false\
       }:\
         bit_fields.B_IPU_DMFC_RD_CHAN_DMFC_WM_EN_0={\
@@ -7842,175 +7863,175 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DMFC_WR_CHAN={\
       gui_name="DMFC_WR_CHAN":start=0x02460004:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1525={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1529={\
         gui_name="DMFC_ST_ADDR_1":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1526={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1530={\
         gui_name="DMFC_FIFO_SIZE_1":position=3:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1527={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1531={\
         gui_name="DMFC_BURST_SIZE_1":position=6:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1528={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1532={\
         gui_name="DMFC_ST_ADDR_2":position=8:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1529={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1533={\
         gui_name="DMFC_FIFO_SIZE_2":position=11:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1530={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1534={\
         gui_name="DMFC_BURST_SIZE_2":position=14:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1531={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1535={\
         gui_name="DMFC_ST_ADDR_1C":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1532={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1536={\
         gui_name="DMFC_FIFO_SIZE_1C":position=19:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1533={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1537={\
         gui_name="DMFC_BURST_SIZE_1C":position=22:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1534={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_ST_A1538={\
         gui_name="DMFC_ST_ADDR_2C":position=24:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1535={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_FIFO1539={\
         gui_name="DMFC_FIFO_SIZE_2C":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1536={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DMFC_BURS1540={\
         gui_name="DMFC_BURST_SIZE_2C":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DMFC_WR_CHAN_DEF={\
       gui_name="DMFC_WR_CHAN_DEF":start=0x02460008:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1537={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1541={\
         gui_name="DMFC_WM_EN_1":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1538={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1542={\
         gui_name="DMFC_WM_SET_1":position=2:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1539={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1543={\
         gui_name="DMFC_WM_CLR_1":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1540={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1544={\
         gui_name="DMFC_WM_EN_2":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1541={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1545={\
         gui_name="DMFC_WM_SET_2":position=10:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1542={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1546={\
         gui_name="DMFC_WM_CLR_2":position=13:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1543={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1547={\
         gui_name="DMFC_WM_EN_1C":position=17:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1544={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1548={\
         gui_name="DMFC_WM_SET_1C":position=18:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1545={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1549={\
         gui_name="DMFC_WM_CLR_1C":position=21:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1546={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1550={\
         gui_name="DMFC_WM_EN_2C":position=25:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1547={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1551={\
         gui_name="DMFC_WM_SET_2C":position=26:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1548={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_DMFC_1552={\
         gui_name="DMFC_WM_CLR_2C":position=29:size=3:read_only=false\
       }\
     }:Register.G_IPU_DMFC_DP_CHAN={\
       gui_name="DMFC_DP_CHAN":start=0x0246000c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1549={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1553={\
         gui_name="DMFC_ST_ADDR_5B":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1550={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1554={\
         gui_name="DMFC_FIFO_SIZE_5B":position=3:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1551={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1555={\
         gui_name="DMFC_BURST_SIZE_5B":position=6:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1552={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1556={\
         gui_name="DMFC_ST_ADDR_5F":position=8:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1553={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1557={\
         gui_name="DMFC_FIFO_SIZE_5F":position=11:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1554={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1558={\
         gui_name="DMFC_BURST_SIZE_5F":position=14:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1555={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1559={\
         gui_name="DMFC_ST_ADDR_6B":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1556={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1560={\
         gui_name="DMFC_FIFO_SIZE_6B":position=19:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1557={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1561={\
         gui_name="DMFC_BURST_SIZE_6B":position=22:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1558={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_ST_A1562={\
         gui_name="DMFC_ST_ADDR_6F":position=24:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1559={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_FIFO1563={\
         gui_name="DMFC_FIFO_SIZE_6F":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1560={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DMFC_BURS1564={\
         gui_name="DMFC_BURST_SIZE_6F":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DMFC_DP_CHAN_DEF={\
       gui_name="DMFC_DP_CHAN_DEF":start=0x02460010:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1561={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1565={\
         gui_name="DMFC_WM_EN_5B":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1562={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1566={\
         gui_name="DMFC_WM_SET_5B":position=2:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1563={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1567={\
         gui_name="DMFC_WM_CLR_5B":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1564={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1568={\
         gui_name="DMFC_WM_EN_5F":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1565={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1569={\
         gui_name="DMFC_WM_SET_5F":position=10:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1566={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1570={\
         gui_name="DMFC_WM_CLR_5F":position=13:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1567={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1571={\
         gui_name="DMFC_WM_EN_6B":position=17:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1568={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1572={\
         gui_name="DMFC_WM_SET_6B":position=18:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1569={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1573={\
         gui_name="DMFC_WM_CLR_6B":position=21:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1570={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1574={\
         gui_name="DMFC_WM_EN_6F":position=25:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1571={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1575={\
         gui_name="DMFC_WM_SET_6F":position=26:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1572={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_DMFC_1576={\
         gui_name="DMFC_WM_CLR_6F":position=29:size=3:read_only=false\
       }\
     }:Register.G_IPU_DMFC_GENERAL_1={\
       gui_name="DMFC_GENERAL_1":start=0x02460014:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_DC1573={\
+        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_DC1577={\
         gui_name="DMFC_DCDP_SYNC_PR":position=0:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_BU1574={\
+        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_BU1578={\
         gui_name="DMFC_BURST_SIZE_9":position=5:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1575={\
+        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1579={\
         gui_name="DMFC_WM_EN_9":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1576={\
+        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1580={\
         gui_name="DMFC_WM_SET_9":position=10:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1577={\
+        bit_fields.B_IPU_DMFC_GENERAL_1_DMFC_WM1581={\
         gui_name="DMFC_WM_CLR_9":position=13:size=3:read_only=false\
       }:\
         bit_fields.B_IPU_DMFC_GENERAL_1_WAIT4EOT_1={\
@@ -8043,124 +8064,124 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_DMFC_GENERAL_2={\
       gui_name="DMFC_GENERAL_2":start=0x02460018:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_GENERAL_2_DMFC_FR1578={\
+        bit_fields.B_IPU_DMFC_GENERAL_2_DMFC_FR1582={\
         gui_name="DMFC_FRAME_WIDTH_RD":position=0:size=13:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL_2_DMFC_FR1579={\
+        bit_fields.B_IPU_DMFC_GENERAL_2_DMFC_FR1583={\
         gui_name="DMFC_FRAME_HEIGHT_RD":position=16:size=13:read_only=false\
       }\
     }:Register.G_IPU_DMFC_IC_CTRL={\
       gui_name="DMFC_IC_CTRL":start=0x0246001c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_I1580={\
+        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_I1584={\
         gui_name="DMFC_IC_IN_PORT":position=0:size=3:read_only=false\
       }:\
         bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_PPW_C={\
         gui_name="DMFC_IC_PPW_C":position=4:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_F1581={\
+        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_F1585={\
         gui_name="DMFC_IC_FRAME_WIDTH_RD":position=6:size=13:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_F1582={\
+        bit_fields.B_IPU_DMFC_IC_CTRL_DMFC_IC_F1586={\
         gui_name="DMFC_IC_FRAME_HEIGHT_RD":position=19:size=13:read_only=false\
       }\
     }:Register.G_IPU_DMFC_WR_CHAN_ALT={\
       gui_name="DMFC_WR_CHAN_ALT":start=0x02460020:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1583={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1587={\
         gui_name="DMFC_ST_ADDR_2_ALT":position=8:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1584={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1588={\
         gui_name="DMFC_FIFO_SIZE_2_ALT":position=11:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1585={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_ALT_DMFC_1589={\
         gui_name="DMFC_BURST_SIZE_2_ALT":position=14:size=2:read_only=false\
       }\
     }:Register.G_IPU_DMFC_WR_CHAN_DEF_ALT={\
       gui_name="DMFC_WR_CHAN_DEF_ALT":start=0x02460024:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1586={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1590={\
         gui_name="DMFC_WM_EN_2_ALT":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1587={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1591={\
         gui_name="DMFC_WM_SET_2_ALT":position=10:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1588={\
+        bit_fields.B_IPU_DMFC_WR_CHAN_DEF_ALT_D1592={\
         gui_name="DMFC_WM_CLR_2_ALT":position=13:size=3:read_only=false\
       }\
     }:Register.G_IPU_DMFC_DP_CHAN_ALT={\
       gui_name="DMFC_DP_CHAN_ALT":start=0x02460028:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1589={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1593={\
         gui_name="DMFC_ST_ADDR_5B_ALT":position=0:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1590={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1594={\
         gui_name="DMFC_FIFO_SIZE_5B_ALT":position=3:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1591={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1595={\
         gui_name="DMFC_BURST_SIZE_5B_ALT":position=6:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1592={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1596={\
         gui_name="DMFC_ST_ADDR_6B_ALT":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1593={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1597={\
         gui_name="DMFC_FIFO_SIZE_6B_ALT":position=19:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1594={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1598={\
         gui_name="DMFC_BURST_SIZE_6B_ALT":position=22:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1595={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1599={\
         gui_name="DMFC_ST_ADDR_6F_ALT":position=24:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1596={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1600={\
         gui_name="DMFC_FIFO_SIZE_6F_ALT":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1597={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_ALT_DMFC_1601={\
         gui_name="DMFC_BURST_SIZE_6F_ALT":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DMFC_DP_CHAN_DEF_ALT={\
       gui_name="DMFC_DP_CHAN_DEF_ALT":start=0x0246002c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1598={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1602={\
         gui_name="DMFC_WM_EN_5B_ALT":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1599={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1603={\
         gui_name="DMFC_WM_SET_5B_ALT":position=2:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1600={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1604={\
         gui_name="DMFC_WM_CLR_5B_ALT":position=5:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1601={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1605={\
         gui_name="DMFC_WM_EN_6B_ALT":position=17:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1602={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1606={\
         gui_name="DMFC_WM_SET_6B_ALT":position=18:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1603={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1607={\
         gui_name="DMFC_WM_CLR_6B_ALT":position=21:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1604={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1608={\
         gui_name="DMFC_WM_EN_6F_ALT":position=25:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1605={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1609={\
         gui_name="DMFC_WM_SET_6F_ALT":position=26:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1606={\
+        bit_fields.B_IPU_DMFC_DP_CHAN_DEF_ALT_D1610={\
         gui_name="DMFC_WM_CLR_6F_ALT":position=29:size=3:read_only=false\
       }\
     }:Register.G_IPU_DMFC_GENERAL1_ALT={\
       gui_name="DMFC_GENERAL1_ALT":start=0x02460030:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1607={\
+        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1611={\
         gui_name="WAIT4EOT_2_ALT":position=17:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1608={\
+        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1612={\
         gui_name="WAIT4EOT_5B_ALT":position=20:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1609={\
+        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1613={\
         gui_name="WAIT4EOT_6B_ALT":position=22:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1610={\
+        bit_fields.B_IPU_DMFC_GENERAL1_ALT_WAIT1614={\
         gui_name="WAIT4EOT_6F_ALT":position=23:size=1:read_only=false\
       }\
     }:Register.G_IPU_DMFC_STAT={\
@@ -8172,10 +8193,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_IPU_DMFC_STAT_DMFC_FIFO_EMPTY={\
         gui_name="DMFC_FIFO_EMPTY":position=12:size=12:read_only=true\
       }:\
-        bit_fields.B_IPU_DMFC_STAT_DMFC_IC_BUFF1611={\
+        bit_fields.B_IPU_DMFC_STAT_DMFC_IC_BUFF1615={\
         gui_name="DMFC_IC_BUFFER_FULL":position=24:size=1:read_only=true\
       }:\
-        bit_fields.B_IPU_DMFC_STAT_DMFC_IC_BUFF1612={\
+        bit_fields.B_IPU_DMFC_STAT_DMFC_IC_BUFF1616={\
         gui_name="DMFC_IC_BUFFER_EMPTY":position=25:size=1:read_only=true\
       }\
     }:Register.G_IPU_VDI_FSIZE={\
@@ -8298,496 +8319,496 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_IPU_IDMAC_SUB_ADDR_0={\
       gui_name="IDMAC_SUB_ADDR_0":start=0x0248028c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_0_IDMAC1613={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_0_IDMAC1617={\
         gui_name="IDMAC_SUB_ADDR":position=0:size=32:read_only=false\
       }\
     }:Register.G_IPU_IDMAC_SUB_ADDR_4={\
       gui_name="IDMAC_SUB_ADDR_4":start=0x0248030c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1614={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1618={\
         gui_name="IDMAC_SUB_ADDR_28":position=0:size=7:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1615={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1619={\
         gui_name="IDMAC_SUB_ADDR_8":position=8:size=7:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1616={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_4_IDMAC1620={\
         gui_name="IDMAC_SUB_ADDR_21":position=16:size=7:read_only=false\
       }\
     }:Register.G_IPU_IDMAC_SUB_ADDR_1={\
       gui_name="IDMAC_SUB_ADDR_1":start=0x02c02c30:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1617={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1621={\
         gui_name="IDMAC_SUB_ADDR":position=0:size=7:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1618={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1622={\
         gui_name="IDMAC_SUB_ADDR":position=8:size=7:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1619={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1623={\
         gui_name="IDMAC_SUB_ADDR":position=16:size=7:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1620={\
+        bit_fields.B_IPU_IDMAC_SUB_ADDR_1_IDMAC1624={\
         gui_name="IDMAC_SUB_ADDR":position=24:size=7:read_only=false\
       }\
     }:Register.G_IPU_DP_COM_CONF_SYNC={\
       gui_name="DP_COM_CONF_SYNC":start=0x03440000:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_FG1621={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_FG1625={\
         gui_name="DP_FG_EN_SYNC":position=0:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1622={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1626={\
         gui_name="DP_GWSEL_SYNC":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1623={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1627={\
         gui_name="DP_GWAM_SYNC":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1624={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GW1628={\
         gui_name="DP_GWCKE_SYNC":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CO1625={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CO1629={\
         gui_name="DP_COC_SYNC":position=4:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1626={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1630={\
         gui_name="DP_CSC_DEF_SYNC":position=8:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1627={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1631={\
         gui_name="DP_CSC_GAMUT_SAT_EN_SYNC":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1628={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_CS1632={\
         gui_name="DP_CSC_YUV_SAT_MODE_SYNC":position=11:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GA1629={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GA1633={\
         gui_name="DP_GAMMA_EN_SYNC":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GA1630={\
+        bit_fields.B_IPU_DP_COM_CONF_SYNC_DP_GA1634={\
         gui_name="DP_GAMMA_YUV_EN_SYNC":position=13:size=1:read_only=false\
       }\
     }:Register.G_IPU_DP_GRAPH_WIND_CTRL_SYNC={\
       gui_name="DP_GRAPH_WIND_CTRL_SYNC":start=0x03440004:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1631={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1635={\
         gui_name="DP_GWCKB_SYNC":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1632={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1636={\
         gui_name="DP_GWCKG_SYNC":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1633={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1637={\
         gui_name="DP_GWCKR_SYNC":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1634={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_SYN1638={\
         gui_name="DP_GWAV_SYNC":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_FG_POS_SYNC={\
       gui_name="DP_FG_POS_SYNC":start=0x03440008:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_FG_POS_SYNC_DP_FGYP1635={\
+        bit_fields.B_IPU_DP_FG_POS_SYNC_DP_FGYP1639={\
         gui_name="DP_FGYP_SYNC":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_FG_POS_SYNC_DP_FGXP1636={\
+        bit_fields.B_IPU_DP_FG_POS_SYNC_DP_FGXP1640={\
         gui_name="DP_FGXP_SYNC":position=16:size=11:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_POS_SYNC={\
       gui_name="DP_CUR_POS_SYNC":start=0x0344000c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CXW1637={\
+        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CXW1641={\
         gui_name="DP_CXW_SYNC":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CXP1638={\
+        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CXP1642={\
         gui_name="DP_CXP_SYNC":position=11:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CYH1639={\
+        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CYH1643={\
         gui_name="DP_CYH_SYNC":position=16:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CYP1640={\
+        bit_fields.B_IPU_DP_CUR_POS_SYNC_DP_CYP1644={\
         gui_name="DP_CYP_SYNC":position=27:size=5:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_MAP_SYNC={\
       gui_name="DP_CUR_MAP_SYNC":start=0x03440010:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1641={\
+        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1645={\
         gui_name="DP_CUR_COL_R_SYNC":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1642={\
+        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1646={\
         gui_name="DP_CUR_COL_G_SYNC":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1643={\
+        bit_fields.B_IPU_DP_CUR_MAP_SYNC_DP_CUR1647={\
         gui_name="DP_CUR_COL_B_SYNC":position=16:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_C_SYNC_I={\
       gui_name="DP_GAMMA_C_SYNC_I":start=0x03440014:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_C_SYNC_I_DP_G1644={\
+        bit_fields.B_IPU_DP_GAMMA_C_SYNC_I_DP_G1648={\
         gui_name="DP_GAMMA_C_SYNC":position=0:size=9:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_C_SYNC_I_DP_G1645={\
+        bit_fields.B_IPU_DP_GAMMA_C_SYNC_I_DP_G1649={\
         gui_name="DP_GAMMA_C_SYNC":position=16:size=9:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_S_SYNC_I={\
       gui_name="DP_GAMMA_S_SYNC_I":start=0x03440034:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1646={\
+        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1650={\
         gui_name="DP_GAMMA_S_SYNC":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1647={\
+        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1651={\
         gui_name="DP_GAMMA_S_SYNC":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1648={\
+        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1652={\
         gui_name="DP_GAMMA_S_SYNC":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1649={\
+        bit_fields.B_IPU_DP_GAMMA_S_SYNC_I_DP_G1653={\
         gui_name="DP_GAMMA_S_SYNC":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_CSCA_SYNC_I={\
       gui_name="DP_CSCA_SYNC_I":start=0x03440044:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSCA_SYNC_I_DP_CSC_1650={\
+        bit_fields.B_IPU_DP_CSCA_SYNC_I_DP_CSC_1654={\
         gui_name="DP_CSC_A_SYNC":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSCA_SYNC_I_DP_CSC_1651={\
+        bit_fields.B_IPU_DP_CSCA_SYNC_I_DP_CSC_1655={\
         gui_name="DP_CSC_A_SYNC":position=16:size=10:read_only=false\
       }\
     }:Register.G_IPU_DP_SCS_SYNC_0={\
       gui_name="DP_SCS_SYNC_0":start=0x03440054:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_A1652={\
+        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_A1656={\
         gui_name="DP_CSC_A8_SYNC":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_B1653={\
+        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_B1657={\
         gui_name="DP_CSC_B0_SYNC":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_S1654={\
+        bit_fields.B_IPU_DP_SCS_SYNC_0_DP_CSC_S1658={\
         gui_name="DP_CSC_S0_SYNC":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DP_SCS_SYNC_1={\
       gui_name="DP_SCS_SYNC_1":start=0x03440058:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_B1655={\
+        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_B1659={\
         gui_name="DP_CSC_B1_SYNC":position=0:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_S1656={\
+        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_S1660={\
         gui_name="DP_CSC_S1_SYNC":position=14:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_B1657={\
+        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_B1661={\
         gui_name="DP_CSC_B2_SYNC":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_S1658={\
+        bit_fields.B_IPU_DP_SCS_SYNC_1_DP_CSC_S1662={\
         gui_name="DP_CSC_S2_SYNC":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_POS_ALT={\
       gui_name="DP_CUR_POS_ALT":start=0x0344005c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CXW_1659={\
+        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CXW_1663={\
         gui_name="DP_CXW_SYNC_ALT":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CXP_1660={\
+        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CXP_1664={\
         gui_name="DP_CXP_SYNC_ALT":position=11:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CYH_1661={\
+        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CYH_1665={\
         gui_name="DP_CYH_SYNC_ALT":position=16:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CYP_1662={\
+        bit_fields.B_IPU_DP_CUR_POS_ALT_DP_CYP_1666={\
         gui_name="DP_CYP_SYNC_ALT":position=27:size=5:read_only=false\
       }\
     }:Register.G_IPU_DP_COM_CONF_ASYNC0={\
       gui_name="DP_COM_CONF_ASYNC0":start=0x03440060:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1663={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1667={\
         gui_name="DP_GWSEL_ASYNC0":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1664={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1668={\
         gui_name="DP_GWAM_ASYNC0":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1665={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1669={\
         gui_name="DP_GWCKE_ASYNC0":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1666={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1670={\
         gui_name="DP_COC_ASYNC0":position=4:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1667={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1671={\
         gui_name="DP_CSC_DEF_ASYNC0":position=8:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1668={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1672={\
         gui_name="DP_CSC_GAMUT_SAT_EN_ASYNC0":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1669={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1673={\
         gui_name="DP_CSC_YUV_SAT_MODE_ASYNC0":position=11:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1670={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1674={\
         gui_name="DP_GAMMA_EN_ASYNC0":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1671={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC0_DP_1675={\
         gui_name="DP_GAMMA_YUV_EN_ASYNC0":position=13:size=1:read_only=false\
       }\
     }:Register.G_IPU_DP_GRAPH_WIND_CTRL_ASYNC0={\
       gui_name="DP_GRAPH_WIND_CTRL_ASYNC0":start=0x03440064:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1672={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1676={\
         gui_name="DP_GWCKB_ASYNC0":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1673={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1677={\
         gui_name="DP_GWCKG_ASYNC0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1674={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1678={\
         gui_name="DP_GWCKR_ASYNC0":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1675={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1679={\
         gui_name="DP_GWAV_ASYNC0":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_FG_POS_ASYNC0={\
       gui_name="DP_FG_POS_ASYNC0":start=0x03440068:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_FG_POS_ASYNC0_DP_FG1676={\
+        bit_fields.B_IPU_DP_FG_POS_ASYNC0_DP_FG1680={\
         gui_name="DP_FGYP_ASYNC0":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_FG_POS_ASYNC0_DP_FG1677={\
+        bit_fields.B_IPU_DP_FG_POS_ASYNC0_DP_FG1681={\
         gui_name="DP_FGXP_ASYNC0":position=16:size=11:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_POS_ASYNC0={\
       gui_name="DP_CUR_POS_ASYNC0":start=0x0344006c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1678={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1682={\
         gui_name="DP_CXW_ASYNC0":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1679={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1683={\
         gui_name="DP_CXP_ASYNC0":position=11:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1680={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1684={\
         gui_name="DP_CYH_ASYNC0":position=16:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1681={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC0_DP_C1685={\
         gui_name="DP_CYP_ASYNC0":position=27:size=5:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_MAP_ASYNC0={\
       gui_name="DP_CUR_MAP_ASYNC0":start=0x03440070:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1682={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1686={\
         gui_name="DP_CUR_COL_R_ASYNC0":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1683={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1687={\
         gui_name="DP_CUR_COL_G_ASYNC0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1684={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC0_DP_C1688={\
         gui_name="DP_CUR_COL_B_ASYNC0":position=16:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_C_ASYNC0_I={\
       gui_name="DP_GAMMA_C_ASYNC0_I":start=0x03440074:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_C_ASYNC0_I_DP1685={\
+        bit_fields.B_IPU_DP_GAMMA_C_ASYNC0_I_DP1689={\
         gui_name="DP_GAMMA_C_ASYNC0":position=0:size=9:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_C_ASYNC0_I_DP1686={\
+        bit_fields.B_IPU_DP_GAMMA_C_ASYNC0_I_DP1690={\
         gui_name="DP_GAMMA_C_ASYNC0":position=16:size=12:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_S_ASYNC0_I={\
       gui_name="DP_GAMMA_S_ASYNC0_I":start=0x03440094:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1687={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1691={\
         gui_name="DP_GAMMA_S_ASYNC0":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1688={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1692={\
         gui_name="DP_GAMMA_S_ASYNC0":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1689={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1693={\
         gui_name="DP_GAMMA_S_ASYNC0":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1690={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYNC0_I_DP1694={\
         gui_name="DP_GAMMA_S_ASYNC0":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_CSCA_ASYNC0_I={\
       gui_name="DP_CSCA_ASYNC0_I":start=0x034400a4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSCA_ASYNC0_I_DP_CS1691={\
+        bit_fields.B_IPU_DP_CSCA_ASYNC0_I_DP_CS1695={\
         gui_name="DP_CSC_A_ASYNC0":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSCA_ASYNC0_I_DP_CS1692={\
+        bit_fields.B_IPU_DP_CSCA_ASYNC0_I_DP_CS1696={\
         gui_name="DP_CSC_A_ASYNC0":position=16:size=10:read_only=false\
       }\
     }:Register.G_IPU_DP_CSC_ASYNC0_0={\
       gui_name="DP_CSC_ASYNC0_0":start=0x034400b4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1693={\
+        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1697={\
         gui_name="DP_CSC_A8_ASYNC0":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1694={\
+        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1698={\
         gui_name="DP_CSC_B0_ASYNC0":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1695={\
+        bit_fields.B_IPU_DP_CSC_ASYNC0_0_DP_CSC1699={\
         gui_name="DP_CSC_S0_ASYNC0":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DP_CSC_ASYNC_1={\
       gui_name="DP_CSC_ASYNC_1":start=0x034400b8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1696={\
+        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1700={\
         gui_name="DP_CSC_B1_ASYNC0":position=0:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1697={\
+        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1701={\
         gui_name="DP_CSC_S1_ASYNC0":position=14:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1698={\
+        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1702={\
         gui_name="DP_CSC_B2_ASYNC0":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1699={\
+        bit_fields.B_IPU_DP_CSC_ASYNC_1_DP_CSC_1703={\
         gui_name="DP_CSC_S2_ASYNC0":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DP_COM_CONF_ASYNC1={\
       gui_name="DP_COM_CONF_ASYNC1":start=0x034400bc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1700={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1704={\
         gui_name="DP_GWSEL_ASYNC1":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1701={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1705={\
         gui_name="DP_GWAM_ASYNC1":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1702={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1706={\
         gui_name="DP_GWCKE_ASYNC1":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1703={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1707={\
         gui_name="DP_COC_ASYNC1":position=4:size=3:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1704={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1708={\
         gui_name="DP_CSC_DEF_ASYNC1":position=8:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1705={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1709={\
         gui_name="DP_CSC_GAMUT_SAT_EN_ASYNC1":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1706={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1710={\
         gui_name="DP_CSC_YUV_SAT_MODE_ASYNC1":position=11:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1707={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1711={\
         gui_name="DP_GAMMA_EN_ASYNC1":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1708={\
+        bit_fields.B_IPU_DP_COM_CONF_ASYNC1_DP_1712={\
         gui_name="DP_GAMMA_YUV_EN_ASYNC1":position=13:size=1:read_only=false\
       }\
     }:Register.G_IPU_DP_GRAPH_WIND_CTRL_ASYNC1={\
       gui_name="DP_GRAPH_WIND_CTRL_ASYNC1":start=0x034400c0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1709={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1713={\
         gui_name="DP_GWCKB_ASYNC1":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1710={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1714={\
         gui_name="DP_GWCKG_ASYNC1":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1711={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1715={\
         gui_name="DP_GWCKR_ASYNC1":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1712={\
+        bit_fields.B_IPU_DP_GRAPH_WIND_CTRL_ASY1716={\
         gui_name="DP_GWAV_ASYNC1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_FG_POS_ASYNC1={\
       gui_name="DP_FG_POS_ASYNC1":start=0x034400c4:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_FG_POS_ASYNC1_DP_FG1713={\
+        bit_fields.B_IPU_DP_FG_POS_ASYNC1_DP_FG1717={\
         gui_name="DP_FGYP_ASYNC1":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_FG_POS_ASYNC1_DP_FG1714={\
+        bit_fields.B_IPU_DP_FG_POS_ASYNC1_DP_FG1718={\
         gui_name="DP_FGXP_ASYNC1":position=16:size=11:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_POS_ASYNC1={\
       gui_name="DP_CUR_POS_ASYNC1":start=0x034400c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1715={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1719={\
         gui_name="DP_CXW_ASYNC1":position=0:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1716={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1720={\
         gui_name="DP_CXP_ASYNC1":position=11:size=5:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1717={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1721={\
         gui_name="DP_CYH_ASYNC1":position=16:size=11:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1718={\
+        bit_fields.B_IPU_DP_CUR_POS_ASYNC1_DP_C1722={\
         gui_name="DP_CYP_ASYNC1":position=27:size=5:read_only=false\
       }\
     }:Register.G_IPU_DP_CUR_MAP_ASYNC1={\
       gui_name="DP_CUR_MAP_ASYNC1":start=0x034400cc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1719={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1723={\
         gui_name="DP_CUR_COL_R_ASYNC1":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1720={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1724={\
         gui_name="DP_CUR_COL_G_ASYNC1":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1721={\
+        bit_fields.B_IPU_DP_CUR_MAP_ASYNC1_DP_C1725={\
         gui_name="DP_CUR_COL_B_ASYNC1":position=16:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_C_ASYNC1_I={\
       gui_name="DP_GAMMA_C_ASYNC1_I":start=0x034400d0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_C_ASYNC1_I_DP1722={\
+        bit_fields.B_IPU_DP_GAMMA_C_ASYNC1_I_DP1726={\
         gui_name="DP_GAMMA_C_ASYNC1":position=0:size=9:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_C_ASYNC1_I_DP1723={\
+        bit_fields.B_IPU_DP_GAMMA_C_ASYNC1_I_DP1727={\
         gui_name="DP_GAMMA_C_ASYNC1":position=16:size=9:read_only=false\
       }\
     }:Register.G_IPU_DP_GAMMA_S_ASYN1_I={\
       gui_name="DP_GAMMA_S_ASYN1_I":start=0x034400f0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1724={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1728={\
         gui_name="DP_GAMMA_S_ASYNC1":position=0:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1725={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1729={\
         gui_name="DP_GAMMA_S_ASYNC1":position=8:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1726={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1730={\
         gui_name="DP_GAMMA_S_ASYNC1":position=16:size=8:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1727={\
+        bit_fields.B_IPU_DP_GAMMA_S_ASYN1_I_DP_1731={\
         gui_name="DP_GAMMA_S_ASYNC1":position=24:size=8:read_only=false\
       }\
     }:Register.G_IPU_DP_CSCA_ASYNC1_I={\
       gui_name="DP_CSCA_ASYNC1_I":start=0x03440100:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSCA_ASYNC1_I_DP_CS1728={\
+        bit_fields.B_IPU_DP_CSCA_ASYNC1_I_DP_CS1732={\
         gui_name="DP_CSC_A_ASYNC1":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSCA_ASYNC1_I_DP_CS1729={\
+        bit_fields.B_IPU_DP_CSCA_ASYNC1_I_DP_CS1733={\
         gui_name="DP_CSC_A_ASYNC1":position=16:size=10:read_only=false\
       }\
     }:Register.G_IPU_DP_CSC_ASYNC1_0={\
       gui_name="DP_CSC_ASYNC1_0":start=0x03440110:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1730={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1734={\
         gui_name="DP_CSC_A8_ASYNC1":position=0:size=10:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1731={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1735={\
         gui_name="DP_CSC_B0_ASYNC1":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1732={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_0_DP_CSC1736={\
         gui_name="DP_CSC_S0_ASYNC1":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_DP_CSC_ASYNC1_1={\
       gui_name="DP_CSC_ASYNC1_1":start=0x03440114:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1733={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1737={\
         gui_name="DP_CSC_B1_ASYNC1":position=0:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1734={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1738={\
         gui_name="DP_CSC_S1_ASYNC1":position=14:size=2:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1735={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1739={\
         gui_name="DP_CSC_B2_ASYNC1":position=16:size=14:read_only=false\
       }:\
-        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1736={\
+        bit_fields.B_IPU_DP_CSC_ASYNC1_1_DP_CSC1740={\
         gui_name="DP_CSC_S2_ASYNC1":position=30:size=2:read_only=false\
       }\
     }:Register.G_IPU_IDMAC_BNDM_EN_2={\
       gui_name="IDMAC_BNDM_EN_2":start=0x070a91bc:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1737={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1741={\
         gui_name="IDMAC_BNDM_EN_45":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1738={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1742={\
         gui_name="IDMAC_BNDM_EN_46":position=14:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1739={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1743={\
         gui_name="IDMAC_BNDM_EN_47":position=15:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1740={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1744={\
         gui_name="IDMAC_BNDM_EN_48":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1741={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1745={\
         gui_name="IDMAC_BNDM_EN_49":position=17:size=1:read_only=false\
       }:\
-        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1742={\
+        bit_fields.B_IPU_IDMAC_BNDM_EN_2_IDMAC_1746={\
         gui_name="IDMAC_BNDM_EN_50":position=18:size=1:read_only=false\
       }\
     }:Register.G_IPU_IDMAC_SC_CORD={\
@@ -9639,6 +9660,23 @@ Advanced_Information.Cortex-A9={\
     line="B_IPU_INT_STAT_3_IDMAC_NFACK_31":\
     line="$$":\
     line="$+":\
+    line="=G_IPU_INT_STAT_4":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_33":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_40":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_41":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_42":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_43":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_44":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_45":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_46":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_47":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_48":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_49":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_50":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_51":\
+    line="B_IPU_INT_STAT_4_IDMAC_NFACK_52":\
+    line="$$":\
+    line="$+":\
     line="=G_IPU_INT_STAT_5":\
     line="B_IPU_INT_STAT_5_IDMAC_NFB4EO403":\
     line="B_IPU_INT_STAT_5_IDMAC_NFB4EO404":\
@@ -10084,23 +10122,6 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_CH_BUF2_RDY1":\
     line="B_IPU_CH_BUF2_RDY1_DMA_CH_BUF648":\
-    line="$$":\
-    line="$+":\
-    line="=G_IPU_INT_STAT_4":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_33":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_40":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_41":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_42":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_43":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_44":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_45":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_46":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_47":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_48":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_49":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_50":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_51":\
-    line="B_IPU_INT_STAT_4_IDMAC_NFACK_52":\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_CONF":\
@@ -11386,33 +11407,37 @@ Advanced_Information.Cortex-A9={\
     line="B_IPU_DC_RL1_CH_0_COD_NFIELD1246":\
     line="$$":\
     line="$+":\
+    line="=G_IPU_DC_RL2_CH_0":\
+    line="B_IPU_DC_RL2_CH_0_COD_EOL_PR1247":\
+    line="B_IPU_DC_RL2_CH_0_COD_EOL_ST1248":\
+    line="B_IPU_DC_RL2_CH_0_COD_EOFIEL1249":\
+    line="B_IPU_DC_RL2_CH_0_COD_EOFIEL1250":\
+    line="$$":\
+    line="$+":\
     line="=G_IPU_DC_RL3_CH_0":\
-    line="B_IPU_DC_RL3_CH_0_COD_NEW_AD1247":\
-    line="B_IPU_DC_RL3_CH_0_COD_NEW_AD1248":\
-    line="B_IPU_DC_RL3_CH_0_COD_NEW_CH1249":\
-    line="B_IPU_DC_RL3_CH_0_COD_NEW_CH1250":\
+    line="B_IPU_DC_RL3_CH_0_COD_NEW_AD1251":\
+    line="B_IPU_DC_RL3_CH_0_COD_NEW_AD1252":\
+    line="B_IPU_DC_RL3_CH_0_COD_NEW_CH1253":\
+    line="B_IPU_DC_RL3_CH_0_COD_NEW_CH1254":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_0":\
-    line="B_IPU_DC_RL4_CH_0_COD_NEW_DA1251":\
-    line="B_IPU_DC_RL4_CH_0_COD_NEW_DA1252":\
+    line="B_IPU_DC_RL4_CH_0_COD_NEW_DA1255":\
+    line="B_IPU_DC_RL4_CH_0_COD_NEW_DA1256":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF_1":\
     line="B_IPU_DC_WR_CH_CONF_1_W_SIZE_1":\
-    line="B_IPU_DC_WR_CH_CONF_1_PROG_D1253":\
-    line="B_IPU_DC_WR_CH_CONF_1_PROG_D1254":\
-    line="B_IPU_DC_WR_CH_CONF_1_PROG_C1255":\
-    line="B_IPU_DC_WR_CH_CONF_1_CHAN_M1256":\
-    line="B_IPU_DC_WR_CH_CONF_1_FIELD_1257":\
-    line="B_IPU_DC_WR_CH_CONF_1_PROG_S1258":\
+    line="B_IPU_DC_WR_CH_CONF_1_PROG_D1257":\
+    line="B_IPU_DC_WR_CH_CONF_1_PROG_D1258":\
+    line="B_IPU_DC_WR_CH_CONF_1_PROG_C1259":\
+    line="B_IPU_DC_WR_CH_CONF_1_CHAN_M1260":\
+    line="B_IPU_DC_WR_CH_CONF_1_FIELD_1261":\
+    line="B_IPU_DC_WR_CH_CONF_1_PROG_S1262":\
     line="$$":\
     line="$+":\
-    line="=G_IPU_DC_RL2_CH_0":\
-    line="B_IPU_DC_RL2_CH_0_COD_EOL_PR1259":\
-    line="B_IPU_DC_RL2_CH_0_COD_EOL_ST1260":\
-    line="B_IPU_DC_RL2_CH_0_COD_EOFIEL1261":\
-    line="B_IPU_DC_RL2_CH_0_COD_EOFIEL1262":\
+    line="=G_IPU_DC_WR_CH_ADDR_1":\
+    line="B_IPU_DC_WR_CH_ADDR_1_ST_ADDR_1":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL0_CH_1":\
@@ -11475,38 +11500,45 @@ Advanced_Information.Cortex-A9={\
     line="B_IPU_DC_RL1_CH_2_COD_NFIELD1293":\
     line="$$":\
     line="$+":\
+    line="=G_IPU_DC_RL2_CH_2":\
+    line="B_IPU_DC_RL2_CH_2_COD_EOL_PR1294":\
+    line="B_IPU_DC_RL2_CH_2_COD_EOL_ST1295":\
+    line="B_IPU_DC_RL2_CH_2_COD_EOFIEL1296":\
+    line="B_IPU_DC_RL2_CH_2_COD_EOFIEL1297":\
+    line="$$":\
+    line="$+":\
     line="=G_IPU_DC_RL3_CH_2":\
-    line="B_IPU_DC_RL3_CH_2_COD_NEW_AD1294":\
-    line="B_IPU_DC_RL3_CH_2_COD_NEW_AD1295":\
-    line="B_IPU_DC_RL3_CH_2_COD_NEW_CH1296":\
-    line="B_IPU_DC_RL3_CH_2_COD_NEW_CH1297":\
+    line="B_IPU_DC_RL3_CH_2_COD_NEW_AD1298":\
+    line="B_IPU_DC_RL3_CH_2_COD_NEW_AD1299":\
+    line="B_IPU_DC_RL3_CH_2_COD_NEW_CH1300":\
+    line="B_IPU_DC_RL3_CH_2_COD_NEW_CH1301":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_2":\
-    line="B_IPU_DC_RL4_CH_2_COD_NEW_DA1298":\
-    line="B_IPU_DC_RL4_CH_2_COD_NEW_DA1299":\
+    line="B_IPU_DC_RL4_CH_2_COD_NEW_DA1302":\
+    line="B_IPU_DC_RL4_CH_2_COD_NEW_DA1303":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_CMD_CH_CONF_3":\
     line="B_IPU_DC_CMD_CH_CONF_3_W_SIZE_3":\
-    line="B_IPU_DC_CMD_CH_CONF_3_COD_C1300":\
-    line="B_IPU_DC_CMD_CH_CONF_3_COD_C1301":\
+    line="B_IPU_DC_CMD_CH_CONF_3_COD_C1304":\
+    line="B_IPU_DC_CMD_CH_CONF_3_COD_C1305":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_CMD_CH_CONF_4":\
     line="B_IPU_DC_CMD_CH_CONF_4_W_SIZE_4":\
-    line="B_IPU_DC_CMD_CH_CONF_4_COD_C1302":\
-    line="B_IPU_DC_CMD_CH_CONF_4_COD_C1303":\
+    line="B_IPU_DC_CMD_CH_CONF_4_COD_C1306":\
+    line="B_IPU_DC_CMD_CH_CONF_4_COD_C1307":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF_5":\
     line="B_IPU_DC_WR_CH_CONF_5_W_SIZE_5":\
-    line="B_IPU_DC_WR_CH_CONF_5_PROG_D1304":\
-    line="B_IPU_DC_WR_CH_CONF_5_PROG_D1305":\
-    line="B_IPU_DC_WR_CH_CONF_5_PROG_C1306":\
-    line="B_IPU_DC_WR_CH_CONF_5_CHAN_M1307":\
-    line="B_IPU_DC_WR_CH_CONF_5_FIELD_1308":\
-    line="B_IPU_DC_WR_CH_CONF_5_PROG_S1309":\
+    line="B_IPU_DC_WR_CH_CONF_5_PROG_D1308":\
+    line="B_IPU_DC_WR_CH_CONF_5_PROG_D1309":\
+    line="B_IPU_DC_WR_CH_CONF_5_PROG_C1310":\
+    line="B_IPU_DC_WR_CH_CONF_5_CHAN_M1311":\
+    line="B_IPU_DC_WR_CH_CONF_5_FIELD_1312":\
+    line="B_IPU_DC_WR_CH_CONF_5_PROG_S1313":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_ADDR_5":\
@@ -11514,45 +11546,45 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL0_CH_5":\
-    line="B_IPU_DC_RL0_CH_5_COD_NF_PRI1310":\
-    line="B_IPU_DC_RL0_CH_5_COD_NF_STA1311":\
-    line="B_IPU_DC_RL0_CH_5_COD_NL_PRI1312":\
-    line="B_IPU_DC_RL0_CH_5_COD_NL_STA1313":\
+    line="B_IPU_DC_RL0_CH_5_COD_NF_PRI1314":\
+    line="B_IPU_DC_RL0_CH_5_COD_NF_STA1315":\
+    line="B_IPU_DC_RL0_CH_5_COD_NL_PRI1316":\
+    line="B_IPU_DC_RL0_CH_5_COD_NL_STA1317":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL1_CH_5":\
-    line="B_IPU_DC_RL1_CH_5_COD_EOF_PR1314":\
-    line="B_IPU_DC_RL1_CH_5_COD_EOF_ST1315":\
-    line="B_IPU_DC_RL1_CH_5_COD_NFIELD1316":\
-    line="B_IPU_DC_RL1_CH_5_COD_NFIELD1317":\
+    line="B_IPU_DC_RL1_CH_5_COD_EOF_PR1318":\
+    line="B_IPU_DC_RL1_CH_5_COD_EOF_ST1319":\
+    line="B_IPU_DC_RL1_CH_5_COD_NFIELD1320":\
+    line="B_IPU_DC_RL1_CH_5_COD_NFIELD1321":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL2_CH_5":\
-    line="B_IPU_DC_RL2_CH_5_COD_EOL_PR1318":\
-    line="B_IPU_DC_RL2_CH_5_COD_EOL_ST1319":\
-    line="B_IPU_DC_RL2_CH_5_COD_EOFIEL1320":\
-    line="B_IPU_DC_RL2_CH_5_COD_EOFIEL1321":\
+    line="B_IPU_DC_RL2_CH_5_COD_EOL_PR1322":\
+    line="B_IPU_DC_RL2_CH_5_COD_EOL_ST1323":\
+    line="B_IPU_DC_RL2_CH_5_COD_EOFIEL1324":\
+    line="B_IPU_DC_RL2_CH_5_COD_EOFIEL1325":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL3_CH_5":\
-    line="B_IPU_DC_RL3_CH_5_COD_NEW_AD1322":\
-    line="B_IPU_DC_RL3_CH_5_COD_NEW_AD1323":\
-    line="B_IPU_DC_RL3_CH_5_COD_NEW_CH1324":\
-    line="B_IPU_DC_RL3_CH_5_COD_NEW_CH1325":\
+    line="B_IPU_DC_RL3_CH_5_COD_NEW_AD1326":\
+    line="B_IPU_DC_RL3_CH_5_COD_NEW_AD1327":\
+    line="B_IPU_DC_RL3_CH_5_COD_NEW_CH1328":\
+    line="B_IPU_DC_RL3_CH_5_COD_NEW_CH1329":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_5":\
-    line="B_IPU_DC_RL4_CH_5_COD_NEW_DA1326":\
-    line="B_IPU_DC_RL4_CH_5_COD_NEW_DA1327":\
+    line="B_IPU_DC_RL4_CH_5_COD_NEW_DA1330":\
+    line="B_IPU_DC_RL4_CH_5_COD_NEW_DA1331":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF_6":\
     line="B_IPU_DC_WR_CH_CONF_6_W_SIZE_6":\
-    line="B_IPU_DC_WR_CH_CONF_6_PROG_D1328":\
-    line="B_IPU_DC_WR_CH_CONF_6_PROG_D1329":\
-    line="B_IPU_DC_WR_CH_CONF_6_PROG_C1330":\
-    line="B_IPU_DC_WR_CH_CONF_6_CHAN_M1331":\
-    line="B_IPU_DC_WR_CH_CONF_6_PROG_S1332":\
+    line="B_IPU_DC_WR_CH_CONF_6_PROG_D1332":\
+    line="B_IPU_DC_WR_CH_CONF_6_PROG_D1333":\
+    line="B_IPU_DC_WR_CH_CONF_6_PROG_C1334":\
+    line="B_IPU_DC_WR_CH_CONF_6_CHAN_M1335":\
+    line="B_IPU_DC_WR_CH_CONF_6_PROG_S1336":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_ADDR_6":\
@@ -11560,122 +11592,122 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL0_CH_6":\
-    line="B_IPU_DC_RL0_CH_6_COD_NF_PRI1333":\
-    line="B_IPU_DC_RL0_CH_6_COD_NF_STA1334":\
-    line="B_IPU_DC_RL0_CH_6_COD_NL_PRI1335":\
-    line="B_IPU_DC_RL0_CH_6_COD_NL_STA1336":\
+    line="B_IPU_DC_RL0_CH_6_COD_NF_PRI1337":\
+    line="B_IPU_DC_RL0_CH_6_COD_NF_STA1338":\
+    line="B_IPU_DC_RL0_CH_6_COD_NL_PRI1339":\
+    line="B_IPU_DC_RL0_CH_6_COD_NL_STA1340":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL1_CH_6":\
-    line="B_IPU_DC_RL1_CH_6_COD_EOF_PR1337":\
-    line="B_IPU_DC_RL1_CH_6_COD_EOF_ST1338":\
-    line="B_IPU_DC_RL1_CH_6_COD_NFIELD1339":\
-    line="B_IPU_DC_RL1_CH_6_COD_NFIELD1340":\
+    line="B_IPU_DC_RL1_CH_6_COD_EOF_PR1341":\
+    line="B_IPU_DC_RL1_CH_6_COD_EOF_ST1342":\
+    line="B_IPU_DC_RL1_CH_6_COD_NFIELD1343":\
+    line="B_IPU_DC_RL1_CH_6_COD_NFIELD1344":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL2_CH_6":\
-    line="B_IPU_DC_RL2_CH_6_COD_EOL_PR1341":\
-    line="B_IPU_DC_RL2_CH_6_COD_EOL_ST1342":\
-    line="B_IPU_DC_RL2_CH_6_COD_EOFIEL1343":\
-    line="B_IPU_DC_RL2_CH_6_COD_EOFIEL1344":\
+    line="B_IPU_DC_RL2_CH_6_COD_EOL_PR1345":\
+    line="B_IPU_DC_RL2_CH_6_COD_EOL_ST1346":\
+    line="B_IPU_DC_RL2_CH_6_COD_EOFIEL1347":\
+    line="B_IPU_DC_RL2_CH_6_COD_EOFIEL1348":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL3_CH_6":\
-    line="B_IPU_DC_RL3_CH_6_COD_NEW_AD1345":\
-    line="B_IPU_DC_RL3_CH_6_COD_NEW_AD1346":\
-    line="B_IPU_DC_RL3_CH_6_COD_NEW_CH1347":\
-    line="B_IPU_DC_RL3_CH_6_COD_NEW_CH1348":\
+    line="B_IPU_DC_RL3_CH_6_COD_NEW_AD1349":\
+    line="B_IPU_DC_RL3_CH_6_COD_NEW_AD1350":\
+    line="B_IPU_DC_RL3_CH_6_COD_NEW_CH1351":\
+    line="B_IPU_DC_RL3_CH_6_COD_NEW_CH1352":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_6":\
-    line="B_IPU_DC_RL4_CH_6_COD_NEW_DA1349":\
-    line="B_IPU_DC_RL4_CH_6_COD_NEW_DA1350":\
+    line="B_IPU_DC_RL4_CH_6_COD_NEW_DA1353":\
+    line="B_IPU_DC_RL4_CH_6_COD_NEW_DA1354":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF1_8":\
     line="B_IPU_DC_WR_CH_CONF1_8_W_SIZE_8":\
-    line="B_IPU_DC_WR_CH_CONF1_8_CHAN_1351":\
-    line="B_IPU_DC_WR_CH_CONF1_8_MCU_D1352":\
+    line="B_IPU_DC_WR_CH_CONF1_8_CHAN_1355":\
+    line="B_IPU_DC_WR_CH_CONF1_8_MCU_D1356":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF2_8":\
-    line="B_IPU_DC_WR_CH_CONF2_8_NEW_A1353":\
+    line="B_IPU_DC_WR_CH_CONF2_8_NEW_A1357":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL1_CH_8":\
-    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1354":\
-    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1355":\
-    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1356":\
+    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1358":\
+    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1359":\
+    line="B_IPU_DC_RL1_CH_8_COD_NEW_AD1360":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL2_CH_8":\
-    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1357":\
-    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1358":\
-    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1359":\
+    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1361":\
+    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1362":\
+    line="B_IPU_DC_RL2_CH_8_COD_NEW_CH1363":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL3_CH_8":\
-    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1360":\
-    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1361":\
-    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1362":\
+    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1364":\
+    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1365":\
+    line="B_IPU_DC_RL3_CH_8_COD_NEW_DA1366":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_8":\
-    line="B_IPU_DC_RL4_CH_8_COD_NEW_AD1363":\
-    line="B_IPU_DC_RL4_CH_8_COD_NEW_AD1364":\
+    line="B_IPU_DC_RL4_CH_8_COD_NEW_AD1367":\
+    line="B_IPU_DC_RL4_CH_8_COD_NEW_AD1368":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL5_CH_8":\
-    line="B_IPU_DC_RL5_CH_8_COD_NEW_CH1365":\
-    line="B_IPU_DC_RL5_CH_8_COD_NEW_CH1366":\
+    line="B_IPU_DC_RL5_CH_8_COD_NEW_CH1369":\
+    line="B_IPU_DC_RL5_CH_8_COD_NEW_CH1370":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL6_CH_8":\
-    line="B_IPU_DC_RL6_CH_8_COD_NEW_DA1367":\
-    line="B_IPU_DC_RL6_CH_8_COD_NEW_DA1368":\
+    line="B_IPU_DC_RL6_CH_8_COD_NEW_DA1371":\
+    line="B_IPU_DC_RL6_CH_8_COD_NEW_DA1372":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF1_9":\
     line="B_IPU_DC_WR_CH_CONF1_9_W_SIZE_9":\
-    line="B_IPU_DC_WR_CH_CONF1_9_CHAN_1369":\
-    line="B_IPU_DC_WR_CH_CONF1_9_MCU_D1370":\
+    line="B_IPU_DC_WR_CH_CONF1_9_CHAN_1373":\
+    line="B_IPU_DC_WR_CH_CONF1_9_MCU_D1374":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_CONF2_9":\
-    line="B_IPU_DC_WR_CH_CONF2_9_NEW_A1371":\
+    line="B_IPU_DC_WR_CH_CONF2_9_NEW_A1375":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL1_CH_9":\
-    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1372":\
-    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1373":\
-    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1374":\
+    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1376":\
+    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1377":\
+    line="B_IPU_DC_RL1_CH_9_COD_NEW_AD1378":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL2_CH_9":\
-    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1375":\
-    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1376":\
-    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1377":\
+    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1379":\
+    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1380":\
+    line="B_IPU_DC_RL2_CH_9_COD_NEW_CH1381":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL3_CH_9":\
-    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1378":\
-    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1379":\
-    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1380":\
+    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1382":\
+    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1383":\
+    line="B_IPU_DC_RL3_CH_9_COD_NEW_DA1384":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL4_CH_9":\
-    line="B_IPU_DC_RL4_CH_9_COD_NEW_AD1381":\
-    line="B_IPU_DC_RL4_CH_9_COD_NEW_AD1382":\
+    line="B_IPU_DC_RL4_CH_9_COD_NEW_AD1385":\
+    line="B_IPU_DC_RL4_CH_9_COD_NEW_AD1386":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL5_CH_9":\
-    line="B_IPU_DC_RL5_CH_9_COD_NEW_CH1383":\
-    line="B_IPU_DC_RL5_CH_9_COD_NEW_CH1384":\
+    line="B_IPU_DC_RL5_CH_9_COD_NEW_CH1387":\
+    line="B_IPU_DC_RL5_CH_9_COD_NEW_CH1388":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_RL6_CH_9":\
-    line="B_IPU_DC_RL6_CH_9_COD_NEW_DA1385":\
-    line="B_IPU_DC_RL6_CH_9_COD_NEW_DA1386":\
+    line="B_IPU_DC_RL6_CH_9_COD_NEW_DA1389":\
+    line="B_IPU_DC_RL6_CH_9_COD_NEW_DA1390":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_GEN":\
@@ -11691,38 +11723,42 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF1_0":\
     line="B_IPU_DC_DISP_CONF1_0_DISP_TYP_0":\
-    line="B_IPU_DC_DISP_CONF1_0_ADDR_I1387":\
-    line="B_IPU_DC_DISP_CONF1_0_ADDR_B1388":\
-    line="B_IPU_DC_DISP_CONF1_0_MCU_AC1389":\
-    line="B_IPU_DC_DISP_CONF1_0_DISP_R1390":\
+    line="B_IPU_DC_DISP_CONF1_0_ADDR_I1391":\
+    line="B_IPU_DC_DISP_CONF1_0_ADDR_B1392":\
+    line="B_IPU_DC_DISP_CONF1_0_MCU_AC1393":\
+    line="B_IPU_DC_DISP_CONF1_0_DISP_R1394":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF1_1":\
     line="B_IPU_DC_DISP_CONF1_1_DISP_TYP_1":\
-    line="B_IPU_DC_DISP_CONF1_1_ADDR_I1391":\
-    line="B_IPU_DC_DISP_CONF1_1_ADDR_B1392":\
-    line="B_IPU_DC_DISP_CONF1_1_MCU_AC1393":\
-    line="B_IPU_DC_DISP_CONF1_1_DISP_R1394":\
+    line="B_IPU_DC_DISP_CONF1_1_ADDR_I1395":\
+    line="B_IPU_DC_DISP_CONF1_1_ADDR_B1396":\
+    line="B_IPU_DC_DISP_CONF1_1_MCU_AC1397":\
+    line="B_IPU_DC_DISP_CONF1_1_DISP_R1398":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF1_2":\
     line="B_IPU_DC_DISP_CONF1_2_DISP_TYP_2":\
-    line="B_IPU_DC_DISP_CONF1_2_ADDR_I1395":\
-    line="B_IPU_DC_DISP_CONF1_2_ADDR_B1396":\
-    line="B_IPU_DC_DISP_CONF1_2_MCU_AC1397":\
-    line="B_IPU_DC_DISP_CONF1_2_DISP_R1398":\
+    line="B_IPU_DC_DISP_CONF1_2_ADDR_I1399":\
+    line="B_IPU_DC_DISP_CONF1_2_ADDR_B1400":\
+    line="B_IPU_DC_DISP_CONF1_2_MCU_AC1401":\
+    line="B_IPU_DC_DISP_CONF1_2_DISP_R1402":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF1_3":\
     line="B_IPU_DC_DISP_CONF1_3_DISP_TYP_3":\
-    line="B_IPU_DC_DISP_CONF1_3_ADDR_I1399":\
-    line="B_IPU_DC_DISP_CONF1_3_ADDR_B1400":\
-    line="B_IPU_DC_DISP_CONF1_3_MCU_AC1401":\
-    line="B_IPU_DC_DISP_CONF1_3_DISP_R1402":\
+    line="B_IPU_DC_DISP_CONF1_3_ADDR_I1403":\
+    line="B_IPU_DC_DISP_CONF1_3_ADDR_B1404":\
+    line="B_IPU_DC_DISP_CONF1_3_MCU_AC1405":\
+    line="B_IPU_DC_DISP_CONF1_3_DISP_R1406":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF2_0":\
     line="B_IPU_DC_DISP_CONF2_0_SL_0":\
+    line="$$":\
+    line="$+":\
+    line="=G_IPU_DC_DISP_CONF2_1":\
+    line="B_IPU_DC_DISP_CONF2_1_SL_1":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DISP_CONF2_2":\
@@ -11734,154 +11770,154 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DI0_CONF_1":\
-    line="B_IPU_DC_DI0_CONF_1_DI_READ_1403":\
+    line="B_IPU_DC_DI0_CONF_1_DI_READ_1407":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DI0_CONF_2":\
-    line="B_IPU_DC_DI0_CONF_2_DI_READ_1404":\
+    line="B_IPU_DC_DI0_CONF_2_DI_READ_1408":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DI1_CONF_1":\
-    line="B_IPU_DC_DI1_CONF_1_DI_READ_1405":\
+    line="B_IPU_DC_DI1_CONF_1_DI_READ_1409":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_DI1_CONF_2":\
-    line="B_IPU_DC_DI1_CONF_2_DI_READ_1406":\
+    line="B_IPU_DC_DI1_CONF_2_DI_READ_1410":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_0":\
-    line="B_IPU_DC_MAP_CONF_0_MAPPING_1407":\
-    line="B_IPU_DC_MAP_CONF_0_MAPPING_1408":\
-    line="B_IPU_DC_MAP_CONF_0_MAPPING_1409":\
-    line="B_IPU_DC_MAP_CONF_0_MAPPING_1410":\
     line="B_IPU_DC_MAP_CONF_0_MAPPING_1411":\
     line="B_IPU_DC_MAP_CONF_0_MAPPING_1412":\
+    line="B_IPU_DC_MAP_CONF_0_MAPPING_1413":\
+    line="B_IPU_DC_MAP_CONF_0_MAPPING_1414":\
+    line="B_IPU_DC_MAP_CONF_0_MAPPING_1415":\
+    line="B_IPU_DC_MAP_CONF_0_MAPPING_1416":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_1":\
-    line="B_IPU_DC_MAP_CONF_1_MAPPING_1413":\
-    line="B_IPU_DC_MAP_CONF_1_MAPPING_1414":\
-    line="B_IPU_DC_MAP_CONF_1_MAPPING_1415":\
-    line="B_IPU_DC_MAP_CONF_1_MAPPING_1416":\
     line="B_IPU_DC_MAP_CONF_1_MAPPING_1417":\
     line="B_IPU_DC_MAP_CONF_1_MAPPING_1418":\
+    line="B_IPU_DC_MAP_CONF_1_MAPPING_1419":\
+    line="B_IPU_DC_MAP_CONF_1_MAPPING_1420":\
+    line="B_IPU_DC_MAP_CONF_1_MAPPING_1421":\
+    line="B_IPU_DC_MAP_CONF_1_MAPPING_1422":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_2":\
-    line="B_IPU_DC_MAP_CONF_2_MAPPING_1419":\
-    line="B_IPU_DC_MAP_CONF_2_MAPPING_1420":\
-    line="B_IPU_DC_MAP_CONF_2_MAPPING_1421":\
-    line="B_IPU_DC_MAP_CONF_2_MAPPING_1422":\
     line="B_IPU_DC_MAP_CONF_2_MAPPING_1423":\
     line="B_IPU_DC_MAP_CONF_2_MAPPING_1424":\
+    line="B_IPU_DC_MAP_CONF_2_MAPPING_1425":\
+    line="B_IPU_DC_MAP_CONF_2_MAPPING_1426":\
+    line="B_IPU_DC_MAP_CONF_2_MAPPING_1427":\
+    line="B_IPU_DC_MAP_CONF_2_MAPPING_1428":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_3":\
-    line="B_IPU_DC_MAP_CONF_3_MAPPING_1425":\
-    line="B_IPU_DC_MAP_CONF_3_MAPPING_1426":\
-    line="B_IPU_DC_MAP_CONF_3_MAPPING_1427":\
-    line="B_IPU_DC_MAP_CONF_3_MAPPING_1428":\
     line="B_IPU_DC_MAP_CONF_3_MAPPING_1429":\
     line="B_IPU_DC_MAP_CONF_3_MAPPING_1430":\
+    line="B_IPU_DC_MAP_CONF_3_MAPPING_1431":\
+    line="B_IPU_DC_MAP_CONF_3_MAPPING_1432":\
+    line="B_IPU_DC_MAP_CONF_3_MAPPING_1433":\
+    line="B_IPU_DC_MAP_CONF_3_MAPPING_1434":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_4":\
-    line="B_IPU_DC_MAP_CONF_4_MAPPING_1431":\
-    line="B_IPU_DC_MAP_CONF_4_MAPPING_1432":\
-    line="B_IPU_DC_MAP_CONF_4_MAPPING_1433":\
-    line="B_IPU_DC_MAP_CONF_4_MAPPING_1434":\
     line="B_IPU_DC_MAP_CONF_4_MAPPING_1435":\
     line="B_IPU_DC_MAP_CONF_4_MAPPING_1436":\
+    line="B_IPU_DC_MAP_CONF_4_MAPPING_1437":\
+    line="B_IPU_DC_MAP_CONF_4_MAPPING_1438":\
+    line="B_IPU_DC_MAP_CONF_4_MAPPING_1439":\
+    line="B_IPU_DC_MAP_CONF_4_MAPPING_1440":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_5":\
-    line="B_IPU_DC_MAP_CONF_5_MAPPING_1437":\
-    line="B_IPU_DC_MAP_CONF_5_MAPPING_1438":\
-    line="B_IPU_DC_MAP_CONF_5_MAPPING_1439":\
-    line="B_IPU_DC_MAP_CONF_5_MAPPING_1440":\
     line="B_IPU_DC_MAP_CONF_5_MAPPING_1441":\
     line="B_IPU_DC_MAP_CONF_5_MAPPING_1442":\
+    line="B_IPU_DC_MAP_CONF_5_MAPPING_1443":\
+    line="B_IPU_DC_MAP_CONF_5_MAPPING_1444":\
+    line="B_IPU_DC_MAP_CONF_5_MAPPING_1445":\
+    line="B_IPU_DC_MAP_CONF_5_MAPPING_1446":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_6":\
-    line="B_IPU_DC_MAP_CONF_6_MAPPING_1443":\
-    line="B_IPU_DC_MAP_CONF_6_MAPPING_1444":\
-    line="B_IPU_DC_MAP_CONF_6_MAPPING_1445":\
-    line="B_IPU_DC_MAP_CONF_6_MAPPING_1446":\
     line="B_IPU_DC_MAP_CONF_6_MAPPING_1447":\
     line="B_IPU_DC_MAP_CONF_6_MAPPING_1448":\
+    line="B_IPU_DC_MAP_CONF_6_MAPPING_1449":\
+    line="B_IPU_DC_MAP_CONF_6_MAPPING_1450":\
+    line="B_IPU_DC_MAP_CONF_6_MAPPING_1451":\
+    line="B_IPU_DC_MAP_CONF_6_MAPPING_1452":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_7":\
-    line="B_IPU_DC_MAP_CONF_7_MAPPING_1449":\
-    line="B_IPU_DC_MAP_CONF_7_MAPPING_1450":\
-    line="B_IPU_DC_MAP_CONF_7_MAPPING_1451":\
-    line="B_IPU_DC_MAP_CONF_7_MAPPING_1452":\
     line="B_IPU_DC_MAP_CONF_7_MAPPING_1453":\
     line="B_IPU_DC_MAP_CONF_7_MAPPING_1454":\
+    line="B_IPU_DC_MAP_CONF_7_MAPPING_1455":\
+    line="B_IPU_DC_MAP_CONF_7_MAPPING_1456":\
+    line="B_IPU_DC_MAP_CONF_7_MAPPING_1457":\
+    line="B_IPU_DC_MAP_CONF_7_MAPPING_1458":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_8":\
-    line="B_IPU_DC_MAP_CONF_8_MAPPING_1455":\
-    line="B_IPU_DC_MAP_CONF_8_MAPPING_1456":\
-    line="B_IPU_DC_MAP_CONF_8_MAPPING_1457":\
-    line="B_IPU_DC_MAP_CONF_8_MAPPING_1458":\
     line="B_IPU_DC_MAP_CONF_8_MAPPING_1459":\
     line="B_IPU_DC_MAP_CONF_8_MAPPING_1460":\
+    line="B_IPU_DC_MAP_CONF_8_MAPPING_1461":\
+    line="B_IPU_DC_MAP_CONF_8_MAPPING_1462":\
+    line="B_IPU_DC_MAP_CONF_8_MAPPING_1463":\
+    line="B_IPU_DC_MAP_CONF_8_MAPPING_1464":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_9":\
-    line="B_IPU_DC_MAP_CONF_9_MAPPING_1461":\
-    line="B_IPU_DC_MAP_CONF_9_MAPPING_1462":\
-    line="B_IPU_DC_MAP_CONF_9_MAPPING_1463":\
-    line="B_IPU_DC_MAP_CONF_9_MAPPING_1464":\
     line="B_IPU_DC_MAP_CONF_9_MAPPING_1465":\
     line="B_IPU_DC_MAP_CONF_9_MAPPING_1466":\
+    line="B_IPU_DC_MAP_CONF_9_MAPPING_1467":\
+    line="B_IPU_DC_MAP_CONF_9_MAPPING_1468":\
+    line="B_IPU_DC_MAP_CONF_9_MAPPING_1469":\
+    line="B_IPU_DC_MAP_CONF_9_MAPPING_1470":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_10":\
-    line="B_IPU_DC_MAP_CONF_10_MAPPING1467":\
-    line="B_IPU_DC_MAP_CONF_10_MAPPING1468":\
-    line="B_IPU_DC_MAP_CONF_10_MAPPING1469":\
-    line="B_IPU_DC_MAP_CONF_10_MAPPING1470":\
     line="B_IPU_DC_MAP_CONF_10_MAPPING1471":\
     line="B_IPU_DC_MAP_CONF_10_MAPPING1472":\
+    line="B_IPU_DC_MAP_CONF_10_MAPPING1473":\
+    line="B_IPU_DC_MAP_CONF_10_MAPPING1474":\
+    line="B_IPU_DC_MAP_CONF_10_MAPPING1475":\
+    line="B_IPU_DC_MAP_CONF_10_MAPPING1476":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_11":\
-    line="B_IPU_DC_MAP_CONF_11_MAPPING1473":\
-    line="B_IPU_DC_MAP_CONF_11_MAPPING1474":\
-    line="B_IPU_DC_MAP_CONF_11_MAPPING1475":\
-    line="B_IPU_DC_MAP_CONF_11_MAPPING1476":\
     line="B_IPU_DC_MAP_CONF_11_MAPPING1477":\
     line="B_IPU_DC_MAP_CONF_11_MAPPING1478":\
+    line="B_IPU_DC_MAP_CONF_11_MAPPING1479":\
+    line="B_IPU_DC_MAP_CONF_11_MAPPING1480":\
+    line="B_IPU_DC_MAP_CONF_11_MAPPING1481":\
+    line="B_IPU_DC_MAP_CONF_11_MAPPING1482":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_12":\
-    line="B_IPU_DC_MAP_CONF_12_MAPPING1479":\
-    line="B_IPU_DC_MAP_CONF_12_MAPPING1480":\
-    line="B_IPU_DC_MAP_CONF_12_MAPPING1481":\
-    line="B_IPU_DC_MAP_CONF_12_MAPPING1482":\
     line="B_IPU_DC_MAP_CONF_12_MAPPING1483":\
     line="B_IPU_DC_MAP_CONF_12_MAPPING1484":\
+    line="B_IPU_DC_MAP_CONF_12_MAPPING1485":\
+    line="B_IPU_DC_MAP_CONF_12_MAPPING1486":\
+    line="B_IPU_DC_MAP_CONF_12_MAPPING1487":\
+    line="B_IPU_DC_MAP_CONF_12_MAPPING1488":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_13":\
-    line="B_IPU_DC_MAP_CONF_13_MAPPING1485":\
-    line="B_IPU_DC_MAP_CONF_13_MAPPING1486":\
-    line="B_IPU_DC_MAP_CONF_13_MAPPING1487":\
-    line="B_IPU_DC_MAP_CONF_13_MAPPING1488":\
     line="B_IPU_DC_MAP_CONF_13_MAPPING1489":\
     line="B_IPU_DC_MAP_CONF_13_MAPPING1490":\
+    line="B_IPU_DC_MAP_CONF_13_MAPPING1491":\
+    line="B_IPU_DC_MAP_CONF_13_MAPPING1492":\
+    line="B_IPU_DC_MAP_CONF_13_MAPPING1493":\
+    line="B_IPU_DC_MAP_CONF_13_MAPPING1494":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_14":\
-    line="B_IPU_DC_MAP_CONF_14_MAPPING1491":\
-    line="B_IPU_DC_MAP_CONF_14_MAPPING1492":\
-    line="B_IPU_DC_MAP_CONF_14_MAPPING1493":\
-    line="B_IPU_DC_MAP_CONF_14_MAPPING1494":\
     line="B_IPU_DC_MAP_CONF_14_MAPPING1495":\
     line="B_IPU_DC_MAP_CONF_14_MAPPING1496":\
+    line="B_IPU_DC_MAP_CONF_14_MAPPING1497":\
+    line="B_IPU_DC_MAP_CONF_14_MAPPING1498":\
+    line="B_IPU_DC_MAP_CONF_14_MAPPING1499":\
+    line="B_IPU_DC_MAP_CONF_14_MAPPING1500":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_15":\
@@ -11921,56 +11957,56 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_20":\
     line="B_IPU_DC_MAP_CONF_20_MD_MASK_10":\
-    line="B_IPU_DC_MAP_CONF_20_MD_OFFS1497":\
+    line="B_IPU_DC_MAP_CONF_20_MD_OFFS1501":\
     line="B_IPU_DC_MAP_CONF_20_MD_MASK_11":\
-    line="B_IPU_DC_MAP_CONF_20_MD_OFFS1498":\
+    line="B_IPU_DC_MAP_CONF_20_MD_OFFS1502":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_21":\
     line="B_IPU_DC_MAP_CONF_21_MD_MASK_12":\
-    line="B_IPU_DC_MAP_CONF_21_MD_OFFS1499":\
+    line="B_IPU_DC_MAP_CONF_21_MD_OFFS1503":\
     line="B_IPU_DC_MAP_CONF_21_MD_MASK_13":\
-    line="B_IPU_DC_MAP_CONF_21_MD_OFFS1500":\
+    line="B_IPU_DC_MAP_CONF_21_MD_OFFS1504":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_22":\
     line="B_IPU_DC_MAP_CONF_22_MD_MASK_14":\
-    line="B_IPU_DC_MAP_CONF_22_MD_OFFS1501":\
+    line="B_IPU_DC_MAP_CONF_22_MD_OFFS1505":\
     line="B_IPU_DC_MAP_CONF_22_MD_MASK_15":\
-    line="B_IPU_DC_MAP_CONF_22_MD_OFFS1502":\
+    line="B_IPU_DC_MAP_CONF_22_MD_OFFS1506":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_23":\
     line="B_IPU_DC_MAP_CONF_23_MD_MASK_16":\
-    line="B_IPU_DC_MAP_CONF_23_MD_OFFS1503":\
+    line="B_IPU_DC_MAP_CONF_23_MD_OFFS1507":\
     line="B_IPU_DC_MAP_CONF_23_MD_MASK_17":\
-    line="B_IPU_DC_MAP_CONF_23_MD_OFFS1504":\
+    line="B_IPU_DC_MAP_CONF_23_MD_OFFS1508":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_24":\
     line="B_IPU_DC_MAP_CONF_24_MD_MASK_18":\
-    line="B_IPU_DC_MAP_CONF_24_MD_OFFS1505":\
+    line="B_IPU_DC_MAP_CONF_24_MD_OFFS1509":\
     line="B_IPU_DC_MAP_CONF_24_MD_MASK_19":\
-    line="B_IPU_DC_MAP_CONF_24_MD_OFFS1506":\
+    line="B_IPU_DC_MAP_CONF_24_MD_OFFS1510":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_25":\
     line="B_IPU_DC_MAP_CONF_25_MD_MASK_20":\
-    line="B_IPU_DC_MAP_CONF_25_MD_OFFS1507":\
+    line="B_IPU_DC_MAP_CONF_25_MD_OFFS1511":\
     line="B_IPU_DC_MAP_CONF_25_MD_MASK_21":\
-    line="B_IPU_DC_MAP_CONF_25_MD_OFFS1508":\
+    line="B_IPU_DC_MAP_CONF_25_MD_OFFS1512":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_MAP_CONF_26":\
     line="B_IPU_DC_MAP_CONF_26_MD_MASK_22":\
-    line="B_IPU_DC_MAP_CONF_26_MD_OFFS1509":\
+    line="B_IPU_DC_MAP_CONF_26_MD_OFFS1513":\
     line="B_IPU_DC_MAP_CONF_26_MD_MASK_23":\
-    line="B_IPU_DC_MAP_CONF_26_MD_OFFS1510":\
+    line="B_IPU_DC_MAP_CONF_26_MD_OFFS1514":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_UGDE0_0":\
     line="B_IPU_DC_UGDE0_0_ID_CODED_0":\
-    line="B_IPU_DC_UGDE0_0_COD_EV_PRIO1511":\
+    line="B_IPU_DC_UGDE0_0_COD_EV_PRIO1515":\
     line="B_IPU_DC_UGDE0_0_COD_EV_START_0":\
     line="B_IPU_DC_UGDE0_0_COD_ODD_START_0":\
     line="B_IPU_DC_UGDE0_0_ODD_EN_0":\
@@ -11992,7 +12028,7 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_DC_UGDE1_0":\
     line="B_IPU_DC_UGDE1_0_ID_CODED_1":\
-    line="B_IPU_DC_UGDE1_0_COD_EV_PRIO1512":\
+    line="B_IPU_DC_UGDE1_0_COD_EV_PRIO1516":\
     line="B_IPU_DC_UGDE1_0_COD_EV_START_1":\
     line="B_IPU_DC_UGDE1_0_COD_ODD_START_1":\
     line="B_IPU_DC_UGDE1_0_ODD_EN_1":\
@@ -12014,7 +12050,7 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_DC_UGDE2_0":\
     line="B_IPU_DC_UGDE2_0_ID_CODED_2":\
-    line="B_IPU_DC_UGDE2_0_COD_EV_PRIO1513":\
+    line="B_IPU_DC_UGDE2_0_COD_EV_PRIO1517":\
     line="B_IPU_DC_UGDE2_0_COD_EV_START_2":\
     line="B_IPU_DC_UGDE2_0_COD_ODD_START_2":\
     line="B_IPU_DC_UGDE2_0_ODD_EN_2":\
@@ -12036,7 +12072,7 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_IPU_DC_UGDE3_0":\
     line="B_IPU_DC_UGDE3_0_ID_CODED_3":\
-    line="B_IPU_DC_UGDE3_0_COD_EV_PRIO1514":\
+    line="B_IPU_DC_UGDE3_0_COD_EV_PRIO1518":\
     line="B_IPU_DC_UGDE3_0_COD_EV_START_3":\
     line="B_IPU_DC_UGDE3_0_COD_ODD_START_3":\
     line="B_IPU_DC_UGDE3_0_ODD_EN_3":\
@@ -12085,26 +12121,22 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_WR_CH_ADDR_5_ALT":\
-    line="B_IPU_DC_WR_CH_ADDR_5_ALT_ST1515":\
+    line="B_IPU_DC_WR_CH_ADDR_5_ALT_ST1519":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DC_STAT":\
-    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1516":\
-    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1517":\
-    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1518":\
-    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1519":\
     line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1520":\
     line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1521":\
     line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1522":\
     line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1523":\
-    line="$$":\
-    line="$+":\
-    line="=G_IPU_DC_DISP_CONF2_1":\
-    line="B_IPU_DC_DISP_CONF2_1_SL_1":\
+    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1524":\
+    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1525":\
+    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1526":\
+    line="B_IPU_DC_STAT_DC_TRIPLE_BUF_1527":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_RD_CHAN":\
-    line="B_IPU_DMFC_RD_CHAN_DMFC_BURS1524":\
+    line="B_IPU_DMFC_RD_CHAN_DMFC_BURS1528":\
     line="B_IPU_DMFC_RD_CHAN_DMFC_WM_EN_0":\
     line="B_IPU_DMFC_RD_CHAN_DMFC_WM_SET_0":\
     line="B_IPU_DMFC_RD_CHAN_DMFC_WM_CLR_0":\
@@ -12112,25 +12144,21 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_WR_CHAN":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1525":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1526":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1527":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1528":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1529":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1530":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1531":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1532":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1533":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1534":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1535":\
-    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1536":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1529":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1530":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1531":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1532":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1533":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1534":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1535":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1536":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1537":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_ST_A1538":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_FIFO1539":\
+    line="B_IPU_DMFC_WR_CHAN_DMFC_BURS1540":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_WR_CHAN_DEF":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1537":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1538":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1539":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1540":\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1541":\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1542":\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1543":\
@@ -12139,28 +12167,28 @@ Advanced_Information.Cortex-A9={\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1546":\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1547":\
     line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1548":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1549":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1550":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1551":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_DMFC_1552":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_DP_CHAN":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1549":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1550":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1551":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1552":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1553":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1554":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1555":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1556":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1557":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1558":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1559":\
-    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1560":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1553":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1554":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1555":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1556":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1557":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1558":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1559":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1560":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1561":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_ST_A1562":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_FIFO1563":\
+    line="B_IPU_DMFC_DP_CHAN_DMFC_BURS1564":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_DP_CHAN_DEF":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1561":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1562":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1563":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1564":\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1565":\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1566":\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1567":\
@@ -12169,14 +12197,18 @@ Advanced_Information.Cortex-A9={\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1570":\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1571":\
     line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1572":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1573":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1574":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1575":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_DMFC_1576":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_GENERAL_1":\
-    line="B_IPU_DMFC_GENERAL_1_DMFC_DC1573":\
-    line="B_IPU_DMFC_GENERAL_1_DMFC_BU1574":\
-    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1575":\
-    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1576":\
-    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1577":\
+    line="B_IPU_DMFC_GENERAL_1_DMFC_DC1577":\
+    line="B_IPU_DMFC_GENERAL_1_DMFC_BU1578":\
+    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1579":\
+    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1580":\
+    line="B_IPU_DMFC_GENERAL_1_DMFC_WM1581":\
     line="B_IPU_DMFC_GENERAL_1_WAIT4EOT_1":\
     line="B_IPU_DMFC_GENERAL_1_WAIT4EOT_2":\
     line="B_IPU_DMFC_GENERAL_1_WAIT4EOT_3":\
@@ -12189,65 +12221,65 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_GENERAL_2":\
-    line="B_IPU_DMFC_GENERAL_2_DMFC_FR1578":\
-    line="B_IPU_DMFC_GENERAL_2_DMFC_FR1579":\
+    line="B_IPU_DMFC_GENERAL_2_DMFC_FR1582":\
+    line="B_IPU_DMFC_GENERAL_2_DMFC_FR1583":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_IC_CTRL":\
-    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_I1580":\
+    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_I1584":\
     line="B_IPU_DMFC_IC_CTRL_DMFC_IC_PPW_C":\
-    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_F1581":\
-    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_F1582":\
+    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_F1585":\
+    line="B_IPU_DMFC_IC_CTRL_DMFC_IC_F1586":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_WR_CHAN_ALT":\
-    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1583":\
-    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1584":\
-    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1585":\
+    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1587":\
+    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1588":\
+    line="B_IPU_DMFC_WR_CHAN_ALT_DMFC_1589":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_WR_CHAN_DEF_ALT":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1586":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1587":\
-    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1588":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1590":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1591":\
+    line="B_IPU_DMFC_WR_CHAN_DEF_ALT_D1592":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_DP_CHAN_ALT":\
-    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1589":\
-    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1590":\
-    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1591":\
-    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1592":\
     line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1593":\
     line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1594":\
     line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1595":\
     line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1596":\
     line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1597":\
+    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1598":\
+    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1599":\
+    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1600":\
+    line="B_IPU_DMFC_DP_CHAN_ALT_DMFC_1601":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_DP_CHAN_DEF_ALT":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1598":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1599":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1600":\
-    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1601":\
     line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1602":\
     line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1603":\
     line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1604":\
     line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1605":\
     line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1606":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1607":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1608":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1609":\
+    line="B_IPU_DMFC_DP_CHAN_DEF_ALT_D1610":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_GENERAL1_ALT":\
-    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1607":\
-    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1608":\
-    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1609":\
-    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1610":\
+    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1611":\
+    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1612":\
+    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1613":\
+    line="B_IPU_DMFC_GENERAL1_ALT_WAIT1614":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DMFC_STAT":\
     line="B_IPU_DMFC_STAT_DMFC_FIFO_FULL":\
     line="B_IPU_DMFC_STAT_DMFC_FIFO_EMPTY":\
-    line="B_IPU_DMFC_STAT_DMFC_IC_BUFF1611":\
-    line="B_IPU_DMFC_STAT_DMFC_IC_BUFF1612":\
+    line="B_IPU_DMFC_STAT_DMFC_IC_BUFF1615":\
+    line="B_IPU_DMFC_STAT_DMFC_IC_BUFF1616":\
     line="$$":\
     line="$+":\
     line="=G_IPU_VDI_FSIZE":\
@@ -12308,238 +12340,238 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_SUB_ADDR_0":\
-    line="B_IPU_IDMAC_SUB_ADDR_0_IDMAC1613":\
+    line="B_IPU_IDMAC_SUB_ADDR_0_IDMAC1617":\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_SUB_ADDR_4":\
-    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1614":\
-    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1615":\
-    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1616":\
+    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1618":\
+    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1619":\
+    line="B_IPU_IDMAC_SUB_ADDR_4_IDMAC1620":\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_SUB_ADDR_1":\
-    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1617":\
-    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1618":\
-    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1619":\
-    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1620":\
+    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1621":\
+    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1622":\
+    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1623":\
+    line="B_IPU_IDMAC_SUB_ADDR_1_IDMAC1624":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_COM_CONF_SYNC":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_FG1621":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1622":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1623":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1624":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_CO1625":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1626":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1627":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1628":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_GA1629":\
-    line="B_IPU_DP_COM_CONF_SYNC_DP_GA1630":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_FG1625":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1626":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1627":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_GW1628":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_CO1629":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1630":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1631":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_CS1632":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_GA1633":\
+    line="B_IPU_DP_COM_CONF_SYNC_DP_GA1634":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GRAPH_WIND_CTRL_SYNC":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1631":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1632":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1633":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1634":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1635":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1636":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1637":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_SYN1638":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_FG_POS_SYNC":\
-    line="B_IPU_DP_FG_POS_SYNC_DP_FGYP1635":\
-    line="B_IPU_DP_FG_POS_SYNC_DP_FGXP1636":\
+    line="B_IPU_DP_FG_POS_SYNC_DP_FGYP1639":\
+    line="B_IPU_DP_FG_POS_SYNC_DP_FGXP1640":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_POS_SYNC":\
-    line="B_IPU_DP_CUR_POS_SYNC_DP_CXW1637":\
-    line="B_IPU_DP_CUR_POS_SYNC_DP_CXP1638":\
-    line="B_IPU_DP_CUR_POS_SYNC_DP_CYH1639":\
-    line="B_IPU_DP_CUR_POS_SYNC_DP_CYP1640":\
+    line="B_IPU_DP_CUR_POS_SYNC_DP_CXW1641":\
+    line="B_IPU_DP_CUR_POS_SYNC_DP_CXP1642":\
+    line="B_IPU_DP_CUR_POS_SYNC_DP_CYH1643":\
+    line="B_IPU_DP_CUR_POS_SYNC_DP_CYP1644":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_MAP_SYNC":\
-    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1641":\
-    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1642":\
-    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1643":\
+    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1645":\
+    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1646":\
+    line="B_IPU_DP_CUR_MAP_SYNC_DP_CUR1647":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_C_SYNC_I":\
-    line="B_IPU_DP_GAMMA_C_SYNC_I_DP_G1644":\
-    line="B_IPU_DP_GAMMA_C_SYNC_I_DP_G1645":\
+    line="B_IPU_DP_GAMMA_C_SYNC_I_DP_G1648":\
+    line="B_IPU_DP_GAMMA_C_SYNC_I_DP_G1649":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_S_SYNC_I":\
-    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1646":\
-    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1647":\
-    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1648":\
-    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1649":\
+    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1650":\
+    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1651":\
+    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1652":\
+    line="B_IPU_DP_GAMMA_S_SYNC_I_DP_G1653":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSCA_SYNC_I":\
-    line="B_IPU_DP_CSCA_SYNC_I_DP_CSC_1650":\
-    line="B_IPU_DP_CSCA_SYNC_I_DP_CSC_1651":\
+    line="B_IPU_DP_CSCA_SYNC_I_DP_CSC_1654":\
+    line="B_IPU_DP_CSCA_SYNC_I_DP_CSC_1655":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_SCS_SYNC_0":\
-    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_A1652":\
-    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_B1653":\
-    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_S1654":\
+    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_A1656":\
+    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_B1657":\
+    line="B_IPU_DP_SCS_SYNC_0_DP_CSC_S1658":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_SCS_SYNC_1":\
-    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_B1655":\
-    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_S1656":\
-    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_B1657":\
-    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_S1658":\
+    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_B1659":\
+    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_S1660":\
+    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_B1661":\
+    line="B_IPU_DP_SCS_SYNC_1_DP_CSC_S1662":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_POS_ALT":\
-    line="B_IPU_DP_CUR_POS_ALT_DP_CXW_1659":\
-    line="B_IPU_DP_CUR_POS_ALT_DP_CXP_1660":\
-    line="B_IPU_DP_CUR_POS_ALT_DP_CYH_1661":\
-    line="B_IPU_DP_CUR_POS_ALT_DP_CYP_1662":\
+    line="B_IPU_DP_CUR_POS_ALT_DP_CXW_1663":\
+    line="B_IPU_DP_CUR_POS_ALT_DP_CXP_1664":\
+    line="B_IPU_DP_CUR_POS_ALT_DP_CYH_1665":\
+    line="B_IPU_DP_CUR_POS_ALT_DP_CYP_1666":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_COM_CONF_ASYNC0":\
-    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1663":\
-    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1664":\
-    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1665":\
-    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1666":\
     line="B_IPU_DP_COM_CONF_ASYNC0_DP_1667":\
     line="B_IPU_DP_COM_CONF_ASYNC0_DP_1668":\
     line="B_IPU_DP_COM_CONF_ASYNC0_DP_1669":\
     line="B_IPU_DP_COM_CONF_ASYNC0_DP_1670":\
     line="B_IPU_DP_COM_CONF_ASYNC0_DP_1671":\
+    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1672":\
+    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1673":\
+    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1674":\
+    line="B_IPU_DP_COM_CONF_ASYNC0_DP_1675":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GRAPH_WIND_CTRL_ASYNC0":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1672":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1673":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1674":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1675":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1676":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1677":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1678":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1679":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_FG_POS_ASYNC0":\
-    line="B_IPU_DP_FG_POS_ASYNC0_DP_FG1676":\
-    line="B_IPU_DP_FG_POS_ASYNC0_DP_FG1677":\
+    line="B_IPU_DP_FG_POS_ASYNC0_DP_FG1680":\
+    line="B_IPU_DP_FG_POS_ASYNC0_DP_FG1681":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_POS_ASYNC0":\
-    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1678":\
-    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1679":\
-    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1680":\
-    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1681":\
+    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1682":\
+    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1683":\
+    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1684":\
+    line="B_IPU_DP_CUR_POS_ASYNC0_DP_C1685":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_MAP_ASYNC0":\
-    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1682":\
-    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1683":\
-    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1684":\
+    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1686":\
+    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1687":\
+    line="B_IPU_DP_CUR_MAP_ASYNC0_DP_C1688":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_C_ASYNC0_I":\
-    line="B_IPU_DP_GAMMA_C_ASYNC0_I_DP1685":\
-    line="B_IPU_DP_GAMMA_C_ASYNC0_I_DP1686":\
+    line="B_IPU_DP_GAMMA_C_ASYNC0_I_DP1689":\
+    line="B_IPU_DP_GAMMA_C_ASYNC0_I_DP1690":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_S_ASYNC0_I":\
-    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1687":\
-    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1688":\
-    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1689":\
-    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1690":\
+    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1691":\
+    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1692":\
+    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1693":\
+    line="B_IPU_DP_GAMMA_S_ASYNC0_I_DP1694":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSCA_ASYNC0_I":\
-    line="B_IPU_DP_CSCA_ASYNC0_I_DP_CS1691":\
-    line="B_IPU_DP_CSCA_ASYNC0_I_DP_CS1692":\
+    line="B_IPU_DP_CSCA_ASYNC0_I_DP_CS1695":\
+    line="B_IPU_DP_CSCA_ASYNC0_I_DP_CS1696":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSC_ASYNC0_0":\
-    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1693":\
-    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1694":\
-    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1695":\
+    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1697":\
+    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1698":\
+    line="B_IPU_DP_CSC_ASYNC0_0_DP_CSC1699":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSC_ASYNC_1":\
-    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1696":\
-    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1697":\
-    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1698":\
-    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1699":\
+    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1700":\
+    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1701":\
+    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1702":\
+    line="B_IPU_DP_CSC_ASYNC_1_DP_CSC_1703":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_COM_CONF_ASYNC1":\
-    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1700":\
-    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1701":\
-    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1702":\
-    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1703":\
     line="B_IPU_DP_COM_CONF_ASYNC1_DP_1704":\
     line="B_IPU_DP_COM_CONF_ASYNC1_DP_1705":\
     line="B_IPU_DP_COM_CONF_ASYNC1_DP_1706":\
     line="B_IPU_DP_COM_CONF_ASYNC1_DP_1707":\
     line="B_IPU_DP_COM_CONF_ASYNC1_DP_1708":\
+    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1709":\
+    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1710":\
+    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1711":\
+    line="B_IPU_DP_COM_CONF_ASYNC1_DP_1712":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GRAPH_WIND_CTRL_ASYNC1":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1709":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1710":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1711":\
-    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1712":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1713":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1714":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1715":\
+    line="B_IPU_DP_GRAPH_WIND_CTRL_ASY1716":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_FG_POS_ASYNC1":\
-    line="B_IPU_DP_FG_POS_ASYNC1_DP_FG1713":\
-    line="B_IPU_DP_FG_POS_ASYNC1_DP_FG1714":\
+    line="B_IPU_DP_FG_POS_ASYNC1_DP_FG1717":\
+    line="B_IPU_DP_FG_POS_ASYNC1_DP_FG1718":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_POS_ASYNC1":\
-    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1715":\
-    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1716":\
-    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1717":\
-    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1718":\
+    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1719":\
+    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1720":\
+    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1721":\
+    line="B_IPU_DP_CUR_POS_ASYNC1_DP_C1722":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CUR_MAP_ASYNC1":\
-    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1719":\
-    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1720":\
-    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1721":\
+    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1723":\
+    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1724":\
+    line="B_IPU_DP_CUR_MAP_ASYNC1_DP_C1725":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_C_ASYNC1_I":\
-    line="B_IPU_DP_GAMMA_C_ASYNC1_I_DP1722":\
-    line="B_IPU_DP_GAMMA_C_ASYNC1_I_DP1723":\
+    line="B_IPU_DP_GAMMA_C_ASYNC1_I_DP1726":\
+    line="B_IPU_DP_GAMMA_C_ASYNC1_I_DP1727":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_GAMMA_S_ASYN1_I":\
-    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1724":\
-    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1725":\
-    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1726":\
-    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1727":\
+    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1728":\
+    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1729":\
+    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1730":\
+    line="B_IPU_DP_GAMMA_S_ASYN1_I_DP_1731":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSCA_ASYNC1_I":\
-    line="B_IPU_DP_CSCA_ASYNC1_I_DP_CS1728":\
-    line="B_IPU_DP_CSCA_ASYNC1_I_DP_CS1729":\
+    line="B_IPU_DP_CSCA_ASYNC1_I_DP_CS1732":\
+    line="B_IPU_DP_CSCA_ASYNC1_I_DP_CS1733":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSC_ASYNC1_0":\
-    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1730":\
-    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1731":\
-    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1732":\
+    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1734":\
+    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1735":\
+    line="B_IPU_DP_CSC_ASYNC1_0_DP_CSC1736":\
     line="$$":\
     line="$+":\
     line="=G_IPU_DP_CSC_ASYNC1_1":\
-    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1733":\
-    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1734":\
-    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1735":\
-    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1736":\
+    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1737":\
+    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1738":\
+    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1739":\
+    line="B_IPU_DP_CSC_ASYNC1_1_DP_CSC1740":\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_BNDM_EN_2":\
-    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1737":\
-    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1738":\
-    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1739":\
-    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1740":\
     line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1741":\
     line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1742":\
+    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1743":\
+    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1744":\
+    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1745":\
+    line="B_IPU_IDMAC_BNDM_EN_2_IDMAC_1746":\
     line="$$":\
     line="$+":\
     line="=G_IPU_IDMAC_SC_CORD":\

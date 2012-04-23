@@ -38,6 +38,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSICR1 - CSI Control Register 1
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_CSI_CSICR1 - CSI Control Register 1 (RW)
@@ -63,10 +78,10 @@ typedef union _hw_csi_csicr1
         unsigned CLR_STATFIFO : 1; //!< [6] Asynchronous STATFIFO Clear. This bit clears the STATFIFO and Reset STAT block. This bit works only in async FIFO clear mode-that is, FCC = 0. Otherwise this bit is ignored. Writing 1 will clear STATFIFO and reset STAT block immediately, STATFIFO and STAT block then wait and restart after the arrival of next SOF. The bit is restored to 0 automatically after finish. Normally reads 0.
         unsigned PACK_DIR : 1; //!< [7] Data Packing Direction. This bit Controls how 8-bit/10-bit image data is packed into 32-bit RX FIFO, and how 16-bit statistical data is packed into 32-bit STAT FIFO.
         unsigned FCC : 1; //!< [8] FIFO Clear Control. This bit determines how the RXFIFO and STATFIFO are cleared. When Synchronous FIFO clear is selected the RXFIFO and STATFIFO are cleared, and STAT block is reset, on every SOF. FIFOs and STAT block restarts immediately after reset. For information on the operation when Asynchronous FIFO clear is selected, refer to the descriptions for the CLR_RXFIFO and CLR_STATFIFO bits.
-        unsigned MCLKEN : 1; //!< [9] Sensor Master Clock (MCLK) Enable. This bit enables or disables the MCLK input to the sensor.
+        unsigned RESERVED0 : 1; //!< [9] This field is reserved.
         unsigned CCIR_EN : 1; //!< [10] CCIR656 Interface Enable. This bit selects the type of interface used. When the CCIR656 timing decoder is enabled, it replaces the function of timing interface logic.
         unsigned HSYNC_POL : 1; //!< [11] HSYNC Polarity Select. This bit controls the polarity of HSYNC. This bit only works in gated-clock-that is, GCLK_MODE = 1 and CCIR_EN = 0.
-        unsigned MCLKDIV : 4; //!< [15:12] Sensor Master Clock (MCLK) Divider. This field contains the divisor MCLK. The MCLK is derived from the PERCLK.
+        unsigned RESERVED1 : 4; //!< [15:12] Reserved. This field is reserved.
         unsigned SOF_INTEN : 1; //!< [16] Start Of Frame (SOF) Interrupt Enable. This bit enables the SOF interrupt.
         unsigned SOF_POL : 1; //!< [17] SOF Interrupt Polarity. This bit controls the condition that generates an SOF interrupt.
         unsigned RXFF_INTEN : 1; //!< [18] RxFIFO Full Interrupt Enable. This bit enables the RxFIFO full interrupt.
@@ -74,7 +89,7 @@ typedef union _hw_csi_csicr1
         unsigned FB2_DMA_DONE_INTEN : 1; //!< [20] Frame Buffer2 DMA Transfer Done Interrupt Enable. This bit enables the interrupt of Frame Buffer2 DMA transfer done.
         unsigned STATFF_INTEN : 1; //!< [21] STATFIFO Full Interrupt Enable. This bit enables the STAT FIFO interrupt.
         unsigned SFF_DMA_DONE_INTEN : 1; //!< [22] STATFIFO DMA Transfer Done Interrupt Enable. This bit enables the interrupt of STATFIFO DMA transfer done.
-        unsigned RESERVED0 : 1; //!< [23] Reserved. This bit is reserved and should read 0.
+        unsigned RESERVED2 : 1; //!< [23] Reserved. This bit is reserved and should read 0.
         unsigned RF_OR_INTEN : 1; //!< [24] RxFIFO Overrun Interrupt Enable. This bit enables the RX FIFO overrun interrupt.
         unsigned SF_OR_INTEN : 1; //!< [25] STAT FIFO Overrun Interrupt Enable. This bit enables the STATFIFO overrun interrupt.
         unsigned COF_INT_EN : 1; //!< [26] Change Of Image Field (COF) Interrupt Enable. This bit enables the COF interrupt. This bit works only in CCIR interlace mode which is when CCIR_EN = 1 and CCIR_MODE = 1.
@@ -119,15 +134,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_PIXEL_BIT      (0x00000001)  //!< Bit mask for CSI_CSICR1_PIXEL_BIT.
 
 //! @brief Get value of CSI_CSICR1_PIXEL_BIT from a register value.
-#define BG_CSI_CSICR1_PIXEL_BIT(r)   (((r) & BM_CSI_CSICR1_PIXEL_BIT) >> BP_CSI_CSICR1_PIXEL_BIT)
+#define BG_CSI_CSICR1_PIXEL_BIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_PIXEL_BIT) >> BP_CSI_CSICR1_PIXEL_BIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_PIXEL_BIT.
-#define BF_CSI_CSICR1_PIXEL_BIT(v)   ((((reg32_t) v) << BP_CSI_CSICR1_PIXEL_BIT) & BM_CSI_CSICR1_PIXEL_BIT)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_PIXEL_BIT.
-#define BF_CSI_CSICR1_PIXEL_BIT(v)   (((v) << BP_CSI_CSICR1_PIXEL_BIT) & BM_CSI_CSICR1_PIXEL_BIT)
-#endif
+#define BF_CSI_CSICR1_PIXEL_BIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_PIXEL_BIT) & BM_CSI_CSICR1_PIXEL_BIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXEL_BIT field to a new value.
@@ -149,15 +159,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_REDGE      (0x00000002)  //!< Bit mask for CSI_CSICR1_REDGE.
 
 //! @brief Get value of CSI_CSICR1_REDGE from a register value.
-#define BG_CSI_CSICR1_REDGE(r)   (((r) & BM_CSI_CSICR1_REDGE) >> BP_CSI_CSICR1_REDGE)
+#define BG_CSI_CSICR1_REDGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_REDGE) >> BP_CSI_CSICR1_REDGE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_REDGE.
-#define BF_CSI_CSICR1_REDGE(v)   ((((reg32_t) v) << BP_CSI_CSICR1_REDGE) & BM_CSI_CSICR1_REDGE)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_REDGE.
-#define BF_CSI_CSICR1_REDGE(v)   (((v) << BP_CSI_CSICR1_REDGE) & BM_CSI_CSICR1_REDGE)
-#endif
+#define BF_CSI_CSICR1_REDGE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_REDGE) & BM_CSI_CSICR1_REDGE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REDGE field to a new value.
@@ -179,15 +184,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_INV_PCLK      (0x00000004)  //!< Bit mask for CSI_CSICR1_INV_PCLK.
 
 //! @brief Get value of CSI_CSICR1_INV_PCLK from a register value.
-#define BG_CSI_CSICR1_INV_PCLK(r)   (((r) & BM_CSI_CSICR1_INV_PCLK) >> BP_CSI_CSICR1_INV_PCLK)
+#define BG_CSI_CSICR1_INV_PCLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_INV_PCLK) >> BP_CSI_CSICR1_INV_PCLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_INV_PCLK.
-#define BF_CSI_CSICR1_INV_PCLK(v)   ((((reg32_t) v) << BP_CSI_CSICR1_INV_PCLK) & BM_CSI_CSICR1_INV_PCLK)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_INV_PCLK.
-#define BF_CSI_CSICR1_INV_PCLK(v)   (((v) << BP_CSI_CSICR1_INV_PCLK) & BM_CSI_CSICR1_INV_PCLK)
-#endif
+#define BF_CSI_CSICR1_INV_PCLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_INV_PCLK) & BM_CSI_CSICR1_INV_PCLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INV_PCLK field to a new value.
@@ -208,15 +208,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_INV_DATA      (0x00000008)  //!< Bit mask for CSI_CSICR1_INV_DATA.
 
 //! @brief Get value of CSI_CSICR1_INV_DATA from a register value.
-#define BG_CSI_CSICR1_INV_DATA(r)   (((r) & BM_CSI_CSICR1_INV_DATA) >> BP_CSI_CSICR1_INV_DATA)
+#define BG_CSI_CSICR1_INV_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_INV_DATA) >> BP_CSI_CSICR1_INV_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_INV_DATA.
-#define BF_CSI_CSICR1_INV_DATA(v)   ((((reg32_t) v) << BP_CSI_CSICR1_INV_DATA) & BM_CSI_CSICR1_INV_DATA)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_INV_DATA.
-#define BF_CSI_CSICR1_INV_DATA(v)   (((v) << BP_CSI_CSICR1_INV_DATA) & BM_CSI_CSICR1_INV_DATA)
-#endif
+#define BF_CSI_CSICR1_INV_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_INV_DATA) & BM_CSI_CSICR1_INV_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INV_DATA field to a new value.
@@ -238,15 +233,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_GCLK_MODE      (0x00000010)  //!< Bit mask for CSI_CSICR1_GCLK_MODE.
 
 //! @brief Get value of CSI_CSICR1_GCLK_MODE from a register value.
-#define BG_CSI_CSICR1_GCLK_MODE(r)   (((r) & BM_CSI_CSICR1_GCLK_MODE) >> BP_CSI_CSICR1_GCLK_MODE)
+#define BG_CSI_CSICR1_GCLK_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_GCLK_MODE) >> BP_CSI_CSICR1_GCLK_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_GCLK_MODE.
-#define BF_CSI_CSICR1_GCLK_MODE(v)   ((((reg32_t) v) << BP_CSI_CSICR1_GCLK_MODE) & BM_CSI_CSICR1_GCLK_MODE)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_GCLK_MODE.
-#define BF_CSI_CSICR1_GCLK_MODE(v)   (((v) << BP_CSI_CSICR1_GCLK_MODE) & BM_CSI_CSICR1_GCLK_MODE)
-#endif
+#define BF_CSI_CSICR1_GCLK_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_GCLK_MODE) & BM_CSI_CSICR1_GCLK_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GCLK_MODE field to a new value.
@@ -266,15 +256,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_CLR_RXFIFO      (0x00000020)  //!< Bit mask for CSI_CSICR1_CLR_RXFIFO.
 
 //! @brief Get value of CSI_CSICR1_CLR_RXFIFO from a register value.
-#define BG_CSI_CSICR1_CLR_RXFIFO(r)   (((r) & BM_CSI_CSICR1_CLR_RXFIFO) >> BP_CSI_CSICR1_CLR_RXFIFO)
+#define BG_CSI_CSICR1_CLR_RXFIFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_CLR_RXFIFO) >> BP_CSI_CSICR1_CLR_RXFIFO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_CLR_RXFIFO.
-#define BF_CSI_CSICR1_CLR_RXFIFO(v)   ((((reg32_t) v) << BP_CSI_CSICR1_CLR_RXFIFO) & BM_CSI_CSICR1_CLR_RXFIFO)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_CLR_RXFIFO.
-#define BF_CSI_CSICR1_CLR_RXFIFO(v)   (((v) << BP_CSI_CSICR1_CLR_RXFIFO) & BM_CSI_CSICR1_CLR_RXFIFO)
-#endif
+#define BF_CSI_CSICR1_CLR_RXFIFO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_CLR_RXFIFO) & BM_CSI_CSICR1_CLR_RXFIFO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_RXFIFO field to a new value.
@@ -294,15 +279,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_CLR_STATFIFO      (0x00000040)  //!< Bit mask for CSI_CSICR1_CLR_STATFIFO.
 
 //! @brief Get value of CSI_CSICR1_CLR_STATFIFO from a register value.
-#define BG_CSI_CSICR1_CLR_STATFIFO(r)   (((r) & BM_CSI_CSICR1_CLR_STATFIFO) >> BP_CSI_CSICR1_CLR_STATFIFO)
+#define BG_CSI_CSICR1_CLR_STATFIFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_CLR_STATFIFO) >> BP_CSI_CSICR1_CLR_STATFIFO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_CLR_STATFIFO.
-#define BF_CSI_CSICR1_CLR_STATFIFO(v)   ((((reg32_t) v) << BP_CSI_CSICR1_CLR_STATFIFO) & BM_CSI_CSICR1_CLR_STATFIFO)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_CLR_STATFIFO.
-#define BF_CSI_CSICR1_CLR_STATFIFO(v)   (((v) << BP_CSI_CSICR1_CLR_STATFIFO) & BM_CSI_CSICR1_CLR_STATFIFO)
-#endif
+#define BF_CSI_CSICR1_CLR_STATFIFO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_CLR_STATFIFO) & BM_CSI_CSICR1_CLR_STATFIFO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_STATFIFO field to a new value.
@@ -325,15 +305,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_PACK_DIR      (0x00000080)  //!< Bit mask for CSI_CSICR1_PACK_DIR.
 
 //! @brief Get value of CSI_CSICR1_PACK_DIR from a register value.
-#define BG_CSI_CSICR1_PACK_DIR(r)   (((r) & BM_CSI_CSICR1_PACK_DIR) >> BP_CSI_CSICR1_PACK_DIR)
+#define BG_CSI_CSICR1_PACK_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_PACK_DIR) >> BP_CSI_CSICR1_PACK_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_PACK_DIR.
-#define BF_CSI_CSICR1_PACK_DIR(v)   ((((reg32_t) v) << BP_CSI_CSICR1_PACK_DIR) & BM_CSI_CSICR1_PACK_DIR)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_PACK_DIR.
-#define BF_CSI_CSICR1_PACK_DIR(v)   (((v) << BP_CSI_CSICR1_PACK_DIR) & BM_CSI_CSICR1_PACK_DIR)
-#endif
+#define BF_CSI_CSICR1_PACK_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_PACK_DIR) & BM_CSI_CSICR1_PACK_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PACK_DIR field to a new value.
@@ -358,48 +333,14 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_FCC      (0x00000100)  //!< Bit mask for CSI_CSICR1_FCC.
 
 //! @brief Get value of CSI_CSICR1_FCC from a register value.
-#define BG_CSI_CSICR1_FCC(r)   (((r) & BM_CSI_CSICR1_FCC) >> BP_CSI_CSICR1_FCC)
+#define BG_CSI_CSICR1_FCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_FCC) >> BP_CSI_CSICR1_FCC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_FCC.
-#define BF_CSI_CSICR1_FCC(v)   ((((reg32_t) v) << BP_CSI_CSICR1_FCC) & BM_CSI_CSICR1_FCC)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_FCC.
-#define BF_CSI_CSICR1_FCC(v)   (((v) << BP_CSI_CSICR1_FCC) & BM_CSI_CSICR1_FCC)
-#endif
+#define BF_CSI_CSICR1_FCC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_FCC) & BM_CSI_CSICR1_FCC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FCC field to a new value.
 #define BW_CSI_CSICR1_FCC(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_FCC) | BF_CSI_CSICR1_FCC(v)))
-#endif
-
-
-/* --- Register HW_CSI_CSICR1, field MCLKEN[9] (RW)
- *
- * Sensor Master Clock (MCLK) Enable. This bit enables or disables the MCLK input to the sensor.
- *
- * Values:
- * 0 - MCLK disable
- * 1 - MCLK enable
- */
-
-#define BP_CSI_CSICR1_MCLKEN      (9)      //!< Bit position for CSI_CSICR1_MCLKEN.
-#define BM_CSI_CSICR1_MCLKEN      (0x00000200)  //!< Bit mask for CSI_CSICR1_MCLKEN.
-
-//! @brief Get value of CSI_CSICR1_MCLKEN from a register value.
-#define BG_CSI_CSICR1_MCLKEN(r)   (((r) & BM_CSI_CSICR1_MCLKEN) >> BP_CSI_CSICR1_MCLKEN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CSI_CSICR1_MCLKEN.
-#define BF_CSI_CSICR1_MCLKEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_MCLKEN) & BM_CSI_CSICR1_MCLKEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_MCLKEN.
-#define BF_CSI_CSICR1_MCLKEN(v)   (((v) << BP_CSI_CSICR1_MCLKEN) & BM_CSI_CSICR1_MCLKEN)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MCLKEN field to a new value.
-#define BW_CSI_CSICR1_MCLKEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_MCLKEN) | BF_CSI_CSICR1_MCLKEN(v)))
 #endif
 
 
@@ -417,15 +358,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_CCIR_EN      (0x00000400)  //!< Bit mask for CSI_CSICR1_CCIR_EN.
 
 //! @brief Get value of CSI_CSICR1_CCIR_EN from a register value.
-#define BG_CSI_CSICR1_CCIR_EN(r)   (((r) & BM_CSI_CSICR1_CCIR_EN) >> BP_CSI_CSICR1_CCIR_EN)
+#define BG_CSI_CSICR1_CCIR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_CCIR_EN) >> BP_CSI_CSICR1_CCIR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_CCIR_EN.
-#define BF_CSI_CSICR1_CCIR_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_CCIR_EN) & BM_CSI_CSICR1_CCIR_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_CCIR_EN.
-#define BF_CSI_CSICR1_CCIR_EN(v)   (((v) << BP_CSI_CSICR1_CCIR_EN) & BM_CSI_CSICR1_CCIR_EN)
-#endif
+#define BF_CSI_CSICR1_CCIR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_CCIR_EN) & BM_CSI_CSICR1_CCIR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCIR_EN field to a new value.
@@ -447,63 +383,14 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_HSYNC_POL      (0x00000800)  //!< Bit mask for CSI_CSICR1_HSYNC_POL.
 
 //! @brief Get value of CSI_CSICR1_HSYNC_POL from a register value.
-#define BG_CSI_CSICR1_HSYNC_POL(r)   (((r) & BM_CSI_CSICR1_HSYNC_POL) >> BP_CSI_CSICR1_HSYNC_POL)
+#define BG_CSI_CSICR1_HSYNC_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_HSYNC_POL) >> BP_CSI_CSICR1_HSYNC_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_HSYNC_POL.
-#define BF_CSI_CSICR1_HSYNC_POL(v)   ((((reg32_t) v) << BP_CSI_CSICR1_HSYNC_POL) & BM_CSI_CSICR1_HSYNC_POL)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_HSYNC_POL.
-#define BF_CSI_CSICR1_HSYNC_POL(v)   (((v) << BP_CSI_CSICR1_HSYNC_POL) & BM_CSI_CSICR1_HSYNC_POL)
-#endif
+#define BF_CSI_CSICR1_HSYNC_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_HSYNC_POL) & BM_CSI_CSICR1_HSYNC_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSYNC_POL field to a new value.
 #define BW_CSI_CSICR1_HSYNC_POL(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_HSYNC_POL) | BF_CSI_CSICR1_HSYNC_POL(v)))
-#endif
-
-
-/* --- Register HW_CSI_CSICR1, field MCLKDIV[15:12] (RW)
- *
- * Sensor Master Clock (MCLK) Divider. This field contains the divisor MCLK. The MCLK is derived
- * from the PERCLK.
- *
- * Values:
- * 0000 - Divided by 1
- * 0001 - Divided by 2
- * 0010 - Divided by 4
- * 0011 - Divided by 6
- * 0100 - Divided by 8
- * 0101 - Divided by 10
- * 0110 - Divided by 12
- * 0111 - Divided by 14
- * 1000 - Divided by 16
- * 1001 - Divided by 18
- * 1010 - Divided by 20
- * 1011 - Divided by 22
- * 1100 - Divided by 24
- * 1101 - Divided by 26
- * 1110 - Divided by 28
- * 1111 - Divided by 30
- */
-
-#define BP_CSI_CSICR1_MCLKDIV      (12)      //!< Bit position for CSI_CSICR1_MCLKDIV.
-#define BM_CSI_CSICR1_MCLKDIV      (0x0000f000)  //!< Bit mask for CSI_CSICR1_MCLKDIV.
-
-//! @brief Get value of CSI_CSICR1_MCLKDIV from a register value.
-#define BG_CSI_CSICR1_MCLKDIV(r)   (((r) & BM_CSI_CSICR1_MCLKDIV) >> BP_CSI_CSICR1_MCLKDIV)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield CSI_CSICR1_MCLKDIV.
-#define BF_CSI_CSICR1_MCLKDIV(v)   ((((reg32_t) v) << BP_CSI_CSICR1_MCLKDIV) & BM_CSI_CSICR1_MCLKDIV)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_MCLKDIV.
-#define BF_CSI_CSICR1_MCLKDIV(v)   (((v) << BP_CSI_CSICR1_MCLKDIV) & BM_CSI_CSICR1_MCLKDIV)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MCLKDIV field to a new value.
-#define BW_CSI_CSICR1_MCLKDIV(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_MCLKDIV) | BF_CSI_CSICR1_MCLKDIV(v)))
 #endif
 
 
@@ -520,15 +407,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_SOF_INTEN      (0x00010000)  //!< Bit mask for CSI_CSICR1_SOF_INTEN.
 
 //! @brief Get value of CSI_CSICR1_SOF_INTEN from a register value.
-#define BG_CSI_CSICR1_SOF_INTEN(r)   (((r) & BM_CSI_CSICR1_SOF_INTEN) >> BP_CSI_CSICR1_SOF_INTEN)
+#define BG_CSI_CSICR1_SOF_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_SOF_INTEN) >> BP_CSI_CSICR1_SOF_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_SOF_INTEN.
-#define BF_CSI_CSICR1_SOF_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_SOF_INTEN) & BM_CSI_CSICR1_SOF_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_SOF_INTEN.
-#define BF_CSI_CSICR1_SOF_INTEN(v)   (((v) << BP_CSI_CSICR1_SOF_INTEN) & BM_CSI_CSICR1_SOF_INTEN)
-#endif
+#define BF_CSI_CSICR1_SOF_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_SOF_INTEN) & BM_CSI_CSICR1_SOF_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOF_INTEN field to a new value.
@@ -549,15 +431,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_SOF_POL      (0x00020000)  //!< Bit mask for CSI_CSICR1_SOF_POL.
 
 //! @brief Get value of CSI_CSICR1_SOF_POL from a register value.
-#define BG_CSI_CSICR1_SOF_POL(r)   (((r) & BM_CSI_CSICR1_SOF_POL) >> BP_CSI_CSICR1_SOF_POL)
+#define BG_CSI_CSICR1_SOF_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_SOF_POL) >> BP_CSI_CSICR1_SOF_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_SOF_POL.
-#define BF_CSI_CSICR1_SOF_POL(v)   ((((reg32_t) v) << BP_CSI_CSICR1_SOF_POL) & BM_CSI_CSICR1_SOF_POL)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_SOF_POL.
-#define BF_CSI_CSICR1_SOF_POL(v)   (((v) << BP_CSI_CSICR1_SOF_POL) & BM_CSI_CSICR1_SOF_POL)
-#endif
+#define BF_CSI_CSICR1_SOF_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_SOF_POL) & BM_CSI_CSICR1_SOF_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOF_POL field to a new value.
@@ -578,15 +455,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_RXFF_INTEN      (0x00040000)  //!< Bit mask for CSI_CSICR1_RXFF_INTEN.
 
 //! @brief Get value of CSI_CSICR1_RXFF_INTEN from a register value.
-#define BG_CSI_CSICR1_RXFF_INTEN(r)   (((r) & BM_CSI_CSICR1_RXFF_INTEN) >> BP_CSI_CSICR1_RXFF_INTEN)
+#define BG_CSI_CSICR1_RXFF_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_RXFF_INTEN) >> BP_CSI_CSICR1_RXFF_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_RXFF_INTEN.
-#define BF_CSI_CSICR1_RXFF_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_RXFF_INTEN) & BM_CSI_CSICR1_RXFF_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_RXFF_INTEN.
-#define BF_CSI_CSICR1_RXFF_INTEN(v)   (((v) << BP_CSI_CSICR1_RXFF_INTEN) & BM_CSI_CSICR1_RXFF_INTEN)
-#endif
+#define BF_CSI_CSICR1_RXFF_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_RXFF_INTEN) & BM_CSI_CSICR1_RXFF_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXFF_INTEN field to a new value.
@@ -608,15 +480,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_FB1_DMA_DONE_INTEN      (0x00080000)  //!< Bit mask for CSI_CSICR1_FB1_DMA_DONE_INTEN.
 
 //! @brief Get value of CSI_CSICR1_FB1_DMA_DONE_INTEN from a register value.
-#define BG_CSI_CSICR1_FB1_DMA_DONE_INTEN(r)   (((r) & BM_CSI_CSICR1_FB1_DMA_DONE_INTEN) >> BP_CSI_CSICR1_FB1_DMA_DONE_INTEN)
+#define BG_CSI_CSICR1_FB1_DMA_DONE_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_FB1_DMA_DONE_INTEN) >> BP_CSI_CSICR1_FB1_DMA_DONE_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_FB1_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_FB1_DMA_DONE_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_FB1_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB1_DMA_DONE_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_FB1_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_FB1_DMA_DONE_INTEN(v)   (((v) << BP_CSI_CSICR1_FB1_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB1_DMA_DONE_INTEN)
-#endif
+#define BF_CSI_CSICR1_FB1_DMA_DONE_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_FB1_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB1_DMA_DONE_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FB1_DMA_DONE_INTEN field to a new value.
@@ -638,15 +505,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_FB2_DMA_DONE_INTEN      (0x00100000)  //!< Bit mask for CSI_CSICR1_FB2_DMA_DONE_INTEN.
 
 //! @brief Get value of CSI_CSICR1_FB2_DMA_DONE_INTEN from a register value.
-#define BG_CSI_CSICR1_FB2_DMA_DONE_INTEN(r)   (((r) & BM_CSI_CSICR1_FB2_DMA_DONE_INTEN) >> BP_CSI_CSICR1_FB2_DMA_DONE_INTEN)
+#define BG_CSI_CSICR1_FB2_DMA_DONE_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_FB2_DMA_DONE_INTEN) >> BP_CSI_CSICR1_FB2_DMA_DONE_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_FB2_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_FB2_DMA_DONE_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_FB2_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB2_DMA_DONE_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_FB2_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_FB2_DMA_DONE_INTEN(v)   (((v) << BP_CSI_CSICR1_FB2_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB2_DMA_DONE_INTEN)
-#endif
+#define BF_CSI_CSICR1_FB2_DMA_DONE_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_FB2_DMA_DONE_INTEN) & BM_CSI_CSICR1_FB2_DMA_DONE_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FB2_DMA_DONE_INTEN field to a new value.
@@ -667,15 +529,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_STATFF_INTEN      (0x00200000)  //!< Bit mask for CSI_CSICR1_STATFF_INTEN.
 
 //! @brief Get value of CSI_CSICR1_STATFF_INTEN from a register value.
-#define BG_CSI_CSICR1_STATFF_INTEN(r)   (((r) & BM_CSI_CSICR1_STATFF_INTEN) >> BP_CSI_CSICR1_STATFF_INTEN)
+#define BG_CSI_CSICR1_STATFF_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_STATFF_INTEN) >> BP_CSI_CSICR1_STATFF_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_STATFF_INTEN.
-#define BF_CSI_CSICR1_STATFF_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_STATFF_INTEN) & BM_CSI_CSICR1_STATFF_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_STATFF_INTEN.
-#define BF_CSI_CSICR1_STATFF_INTEN(v)   (((v) << BP_CSI_CSICR1_STATFF_INTEN) & BM_CSI_CSICR1_STATFF_INTEN)
-#endif
+#define BF_CSI_CSICR1_STATFF_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_STATFF_INTEN) & BM_CSI_CSICR1_STATFF_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATFF_INTEN field to a new value.
@@ -697,15 +554,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_SFF_DMA_DONE_INTEN      (0x00400000)  //!< Bit mask for CSI_CSICR1_SFF_DMA_DONE_INTEN.
 
 //! @brief Get value of CSI_CSICR1_SFF_DMA_DONE_INTEN from a register value.
-#define BG_CSI_CSICR1_SFF_DMA_DONE_INTEN(r)   (((r) & BM_CSI_CSICR1_SFF_DMA_DONE_INTEN) >> BP_CSI_CSICR1_SFF_DMA_DONE_INTEN)
+#define BG_CSI_CSICR1_SFF_DMA_DONE_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_SFF_DMA_DONE_INTEN) >> BP_CSI_CSICR1_SFF_DMA_DONE_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_SFF_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_SFF_DMA_DONE_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_SFF_DMA_DONE_INTEN) & BM_CSI_CSICR1_SFF_DMA_DONE_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_SFF_DMA_DONE_INTEN.
-#define BF_CSI_CSICR1_SFF_DMA_DONE_INTEN(v)   (((v) << BP_CSI_CSICR1_SFF_DMA_DONE_INTEN) & BM_CSI_CSICR1_SFF_DMA_DONE_INTEN)
-#endif
+#define BF_CSI_CSICR1_SFF_DMA_DONE_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_SFF_DMA_DONE_INTEN) & BM_CSI_CSICR1_SFF_DMA_DONE_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SFF_DMA_DONE_INTEN field to a new value.
@@ -726,15 +578,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_RF_OR_INTEN      (0x01000000)  //!< Bit mask for CSI_CSICR1_RF_OR_INTEN.
 
 //! @brief Get value of CSI_CSICR1_RF_OR_INTEN from a register value.
-#define BG_CSI_CSICR1_RF_OR_INTEN(r)   (((r) & BM_CSI_CSICR1_RF_OR_INTEN) >> BP_CSI_CSICR1_RF_OR_INTEN)
+#define BG_CSI_CSICR1_RF_OR_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_RF_OR_INTEN) >> BP_CSI_CSICR1_RF_OR_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_RF_OR_INTEN.
-#define BF_CSI_CSICR1_RF_OR_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_RF_OR_INTEN) & BM_CSI_CSICR1_RF_OR_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_RF_OR_INTEN.
-#define BF_CSI_CSICR1_RF_OR_INTEN(v)   (((v) << BP_CSI_CSICR1_RF_OR_INTEN) & BM_CSI_CSICR1_RF_OR_INTEN)
-#endif
+#define BF_CSI_CSICR1_RF_OR_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_RF_OR_INTEN) & BM_CSI_CSICR1_RF_OR_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RF_OR_INTEN field to a new value.
@@ -755,15 +602,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_SF_OR_INTEN      (0x02000000)  //!< Bit mask for CSI_CSICR1_SF_OR_INTEN.
 
 //! @brief Get value of CSI_CSICR1_SF_OR_INTEN from a register value.
-#define BG_CSI_CSICR1_SF_OR_INTEN(r)   (((r) & BM_CSI_CSICR1_SF_OR_INTEN) >> BP_CSI_CSICR1_SF_OR_INTEN)
+#define BG_CSI_CSICR1_SF_OR_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_SF_OR_INTEN) >> BP_CSI_CSICR1_SF_OR_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_SF_OR_INTEN.
-#define BF_CSI_CSICR1_SF_OR_INTEN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_SF_OR_INTEN) & BM_CSI_CSICR1_SF_OR_INTEN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_SF_OR_INTEN.
-#define BF_CSI_CSICR1_SF_OR_INTEN(v)   (((v) << BP_CSI_CSICR1_SF_OR_INTEN) & BM_CSI_CSICR1_SF_OR_INTEN)
-#endif
+#define BF_CSI_CSICR1_SF_OR_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_SF_OR_INTEN) & BM_CSI_CSICR1_SF_OR_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SF_OR_INTEN field to a new value.
@@ -785,15 +627,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_COF_INT_EN      (0x04000000)  //!< Bit mask for CSI_CSICR1_COF_INT_EN.
 
 //! @brief Get value of CSI_CSICR1_COF_INT_EN from a register value.
-#define BG_CSI_CSICR1_COF_INT_EN(r)   (((r) & BM_CSI_CSICR1_COF_INT_EN) >> BP_CSI_CSICR1_COF_INT_EN)
+#define BG_CSI_CSICR1_COF_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_COF_INT_EN) >> BP_CSI_CSICR1_COF_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_COF_INT_EN.
-#define BF_CSI_CSICR1_COF_INT_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_COF_INT_EN) & BM_CSI_CSICR1_COF_INT_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_COF_INT_EN.
-#define BF_CSI_CSICR1_COF_INT_EN(v)   (((v) << BP_CSI_CSICR1_COF_INT_EN) & BM_CSI_CSICR1_COF_INT_EN)
-#endif
+#define BF_CSI_CSICR1_COF_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_COF_INT_EN) & BM_CSI_CSICR1_COF_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COF_INT_EN field to a new value.
@@ -815,15 +652,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_CCIR_MODE      (0x08000000)  //!< Bit mask for CSI_CSICR1_CCIR_MODE.
 
 //! @brief Get value of CSI_CSICR1_CCIR_MODE from a register value.
-#define BG_CSI_CSICR1_CCIR_MODE(r)   (((r) & BM_CSI_CSICR1_CCIR_MODE) >> BP_CSI_CSICR1_CCIR_MODE)
+#define BG_CSI_CSICR1_CCIR_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_CCIR_MODE) >> BP_CSI_CSICR1_CCIR_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_CCIR_MODE.
-#define BF_CSI_CSICR1_CCIR_MODE(v)   ((((reg32_t) v) << BP_CSI_CSICR1_CCIR_MODE) & BM_CSI_CSICR1_CCIR_MODE)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_CCIR_MODE.
-#define BF_CSI_CSICR1_CCIR_MODE(v)   (((v) << BP_CSI_CSICR1_CCIR_MODE) & BM_CSI_CSICR1_CCIR_MODE)
-#endif
+#define BF_CSI_CSICR1_CCIR_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_CCIR_MODE) & BM_CSI_CSICR1_CCIR_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCIR_MODE field to a new value.
@@ -846,15 +678,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_PRP_IF_EN      (0x10000000)  //!< Bit mask for CSI_CSICR1_PRP_IF_EN.
 
 //! @brief Get value of CSI_CSICR1_PRP_IF_EN from a register value.
-#define BG_CSI_CSICR1_PRP_IF_EN(r)   (((r) & BM_CSI_CSICR1_PRP_IF_EN) >> BP_CSI_CSICR1_PRP_IF_EN)
+#define BG_CSI_CSICR1_PRP_IF_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_PRP_IF_EN) >> BP_CSI_CSICR1_PRP_IF_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_PRP_IF_EN.
-#define BF_CSI_CSICR1_PRP_IF_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_PRP_IF_EN) & BM_CSI_CSICR1_PRP_IF_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_PRP_IF_EN.
-#define BF_CSI_CSICR1_PRP_IF_EN(v)   (((v) << BP_CSI_CSICR1_PRP_IF_EN) & BM_CSI_CSICR1_PRP_IF_EN)
-#endif
+#define BF_CSI_CSICR1_PRP_IF_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_PRP_IF_EN) & BM_CSI_CSICR1_PRP_IF_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRP_IF_EN field to a new value.
@@ -875,15 +702,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_EOF_INT_EN      (0x20000000)  //!< Bit mask for CSI_CSICR1_EOF_INT_EN.
 
 //! @brief Get value of CSI_CSICR1_EOF_INT_EN from a register value.
-#define BG_CSI_CSICR1_EOF_INT_EN(r)   (((r) & BM_CSI_CSICR1_EOF_INT_EN) >> BP_CSI_CSICR1_EOF_INT_EN)
+#define BG_CSI_CSICR1_EOF_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_EOF_INT_EN) >> BP_CSI_CSICR1_EOF_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_EOF_INT_EN.
-#define BF_CSI_CSICR1_EOF_INT_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_EOF_INT_EN) & BM_CSI_CSICR1_EOF_INT_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_EOF_INT_EN.
-#define BF_CSI_CSICR1_EOF_INT_EN(v)   (((v) << BP_CSI_CSICR1_EOF_INT_EN) & BM_CSI_CSICR1_EOF_INT_EN)
-#endif
+#define BF_CSI_CSICR1_EOF_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_EOF_INT_EN) & BM_CSI_CSICR1_EOF_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EOF_INT_EN field to a new value.
@@ -905,15 +727,10 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_EXT_VSYNC      (0x40000000)  //!< Bit mask for CSI_CSICR1_EXT_VSYNC.
 
 //! @brief Get value of CSI_CSICR1_EXT_VSYNC from a register value.
-#define BG_CSI_CSICR1_EXT_VSYNC(r)   (((r) & BM_CSI_CSICR1_EXT_VSYNC) >> BP_CSI_CSICR1_EXT_VSYNC)
+#define BG_CSI_CSICR1_EXT_VSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_EXT_VSYNC) >> BP_CSI_CSICR1_EXT_VSYNC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_EXT_VSYNC.
-#define BF_CSI_CSICR1_EXT_VSYNC(v)   ((((reg32_t) v) << BP_CSI_CSICR1_EXT_VSYNC) & BM_CSI_CSICR1_EXT_VSYNC)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_EXT_VSYNC.
-#define BF_CSI_CSICR1_EXT_VSYNC(v)   (((v) << BP_CSI_CSICR1_EXT_VSYNC) & BM_CSI_CSICR1_EXT_VSYNC)
-#endif
+#define BF_CSI_CSICR1_EXT_VSYNC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_EXT_VSYNC) & BM_CSI_CSICR1_EXT_VSYNC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXT_VSYNC field to a new value.
@@ -939,21 +756,20 @@ typedef union _hw_csi_csicr1
 #define BM_CSI_CSICR1_SWAP16_EN      (0x80000000)  //!< Bit mask for CSI_CSICR1_SWAP16_EN.
 
 //! @brief Get value of CSI_CSICR1_SWAP16_EN from a register value.
-#define BG_CSI_CSICR1_SWAP16_EN(r)   (((r) & BM_CSI_CSICR1_SWAP16_EN) >> BP_CSI_CSICR1_SWAP16_EN)
+#define BG_CSI_CSICR1_SWAP16_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR1_SWAP16_EN) >> BP_CSI_CSICR1_SWAP16_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR1_SWAP16_EN.
-#define BF_CSI_CSICR1_SWAP16_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR1_SWAP16_EN) & BM_CSI_CSICR1_SWAP16_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR1_SWAP16_EN.
-#define BF_CSI_CSICR1_SWAP16_EN(v)   (((v) << BP_CSI_CSICR1_SWAP16_EN) & BM_CSI_CSICR1_SWAP16_EN)
-#endif
+#define BF_CSI_CSICR1_SWAP16_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR1_SWAP16_EN) & BM_CSI_CSICR1_SWAP16_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWAP16_EN field to a new value.
 #define BW_CSI_CSICR1_SWAP16_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SWAP16_EN) | BF_CSI_CSICR1_SWAP16_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSICR2 - CSI Control Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1017,15 +833,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_HSC      (0x000000ff)  //!< Bit mask for CSI_CSICR2_HSC.
 
 //! @brief Get value of CSI_CSICR2_HSC from a register value.
-#define BG_CSI_CSICR2_HSC(r)   (((r) & BM_CSI_CSICR2_HSC) >> BP_CSI_CSICR2_HSC)
+#define BG_CSI_CSICR2_HSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_HSC) >> BP_CSI_CSICR2_HSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_HSC.
-#define BF_CSI_CSICR2_HSC(v)   ((((reg32_t) v) << BP_CSI_CSICR2_HSC) & BM_CSI_CSICR2_HSC)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_HSC.
-#define BF_CSI_CSICR2_HSC(v)   (((v) << BP_CSI_CSICR2_HSC) & BM_CSI_CSICR2_HSC)
-#endif
+#define BF_CSI_CSICR2_HSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_HSC) & BM_CSI_CSICR2_HSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSC field to a new value.
@@ -1046,15 +857,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_VSC      (0x0000ff00)  //!< Bit mask for CSI_CSICR2_VSC.
 
 //! @brief Get value of CSI_CSICR2_VSC from a register value.
-#define BG_CSI_CSICR2_VSC(r)   (((r) & BM_CSI_CSICR2_VSC) >> BP_CSI_CSICR2_VSC)
+#define BG_CSI_CSICR2_VSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_VSC) >> BP_CSI_CSICR2_VSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_VSC.
-#define BF_CSI_CSICR2_VSC(v)   ((((reg32_t) v) << BP_CSI_CSICR2_VSC) & BM_CSI_CSICR2_VSC)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_VSC.
-#define BF_CSI_CSICR2_VSC(v)   (((v) << BP_CSI_CSICR2_VSC) & BM_CSI_CSICR2_VSC)
-#endif
+#define BF_CSI_CSICR2_VSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_VSC) & BM_CSI_CSICR2_VSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSC field to a new value.
@@ -1080,15 +886,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_LVRM      (0x00070000)  //!< Bit mask for CSI_CSICR2_LVRM.
 
 //! @brief Get value of CSI_CSICR2_LVRM from a register value.
-#define BG_CSI_CSICR2_LVRM(r)   (((r) & BM_CSI_CSICR2_LVRM) >> BP_CSI_CSICR2_LVRM)
+#define BG_CSI_CSICR2_LVRM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_LVRM) >> BP_CSI_CSICR2_LVRM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_LVRM.
-#define BF_CSI_CSICR2_LVRM(v)   ((((reg32_t) v) << BP_CSI_CSICR2_LVRM) & BM_CSI_CSICR2_LVRM)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_LVRM.
-#define BF_CSI_CSICR2_LVRM(v)   (((v) << BP_CSI_CSICR2_LVRM) & BM_CSI_CSICR2_LVRM)
-#endif
+#define BF_CSI_CSICR2_LVRM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_LVRM) & BM_CSI_CSICR2_LVRM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LVRM field to a new value.
@@ -1111,15 +912,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_BTS      (0x00180000)  //!< Bit mask for CSI_CSICR2_BTS.
 
 //! @brief Get value of CSI_CSICR2_BTS from a register value.
-#define BG_CSI_CSICR2_BTS(r)   (((r) & BM_CSI_CSICR2_BTS) >> BP_CSI_CSICR2_BTS)
+#define BG_CSI_CSICR2_BTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_BTS) >> BP_CSI_CSICR2_BTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_BTS.
-#define BF_CSI_CSICR2_BTS(v)   ((((reg32_t) v) << BP_CSI_CSICR2_BTS) & BM_CSI_CSICR2_BTS)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_BTS.
-#define BF_CSI_CSICR2_BTS(v)   (((v) << BP_CSI_CSICR2_BTS) & BM_CSI_CSICR2_BTS)
-#endif
+#define BF_CSI_CSICR2_BTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_BTS) & BM_CSI_CSICR2_BTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BTS field to a new value.
@@ -1140,15 +936,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_SCE      (0x00800000)  //!< Bit mask for CSI_CSICR2_SCE.
 
 //! @brief Get value of CSI_CSICR2_SCE from a register value.
-#define BG_CSI_CSICR2_SCE(r)   (((r) & BM_CSI_CSICR2_SCE) >> BP_CSI_CSICR2_SCE)
+#define BG_CSI_CSICR2_SCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_SCE) >> BP_CSI_CSICR2_SCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_SCE.
-#define BF_CSI_CSICR2_SCE(v)   ((((reg32_t) v) << BP_CSI_CSICR2_SCE) & BM_CSI_CSICR2_SCE)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_SCE.
-#define BF_CSI_CSICR2_SCE(v)   (((v) << BP_CSI_CSICR2_SCE) & BM_CSI_CSICR2_SCE)
-#endif
+#define BF_CSI_CSICR2_SCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_SCE) & BM_CSI_CSICR2_SCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCE field to a new value.
@@ -1170,15 +961,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_AFS      (0x03000000)  //!< Bit mask for CSI_CSICR2_AFS.
 
 //! @brief Get value of CSI_CSICR2_AFS from a register value.
-#define BG_CSI_CSICR2_AFS(r)   (((r) & BM_CSI_CSICR2_AFS) >> BP_CSI_CSICR2_AFS)
+#define BG_CSI_CSICR2_AFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_AFS) >> BP_CSI_CSICR2_AFS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_AFS.
-#define BF_CSI_CSICR2_AFS(v)   ((((reg32_t) v) << BP_CSI_CSICR2_AFS) & BM_CSI_CSICR2_AFS)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_AFS.
-#define BF_CSI_CSICR2_AFS(v)   (((v) << BP_CSI_CSICR2_AFS) & BM_CSI_CSICR2_AFS)
-#endif
+#define BF_CSI_CSICR2_AFS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_AFS) & BM_CSI_CSICR2_AFS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AFS field to a new value.
@@ -1199,15 +985,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_DRM      (0x04000000)  //!< Bit mask for CSI_CSICR2_DRM.
 
 //! @brief Get value of CSI_CSICR2_DRM from a register value.
-#define BG_CSI_CSICR2_DRM(r)   (((r) & BM_CSI_CSICR2_DRM) >> BP_CSI_CSICR2_DRM)
+#define BG_CSI_CSICR2_DRM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_DRM) >> BP_CSI_CSICR2_DRM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_DRM.
-#define BF_CSI_CSICR2_DRM(v)   ((((reg32_t) v) << BP_CSI_CSICR2_DRM) & BM_CSI_CSICR2_DRM)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_DRM.
-#define BF_CSI_CSICR2_DRM(v)   (((v) << BP_CSI_CSICR2_DRM) & BM_CSI_CSICR2_DRM)
-#endif
+#define BF_CSI_CSICR2_DRM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_DRM) & BM_CSI_CSICR2_DRM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRM field to a new value.
@@ -1220,9 +1001,8 @@ typedef union _hw_csi_csicr2
  * Burst Type of DMA Transfer from STATFIFO. Selects the burst type of DMA transfer from STATFIFO.
  *
  * Values:
- * 00 - INCR8
+ * X0 - INCR8
  * 01 - INCR4
- * 10 - INCR8
  * 11 - INCR16
  */
 
@@ -1230,15 +1010,10 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_DMA_BURST_TYPE_SFF      (0x30000000)  //!< Bit mask for CSI_CSICR2_DMA_BURST_TYPE_SFF.
 
 //! @brief Get value of CSI_CSICR2_DMA_BURST_TYPE_SFF from a register value.
-#define BG_CSI_CSICR2_DMA_BURST_TYPE_SFF(r)   (((r) & BM_CSI_CSICR2_DMA_BURST_TYPE_SFF) >> BP_CSI_CSICR2_DMA_BURST_TYPE_SFF)
+#define BG_CSI_CSICR2_DMA_BURST_TYPE_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_DMA_BURST_TYPE_SFF) >> BP_CSI_CSICR2_DMA_BURST_TYPE_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_DMA_BURST_TYPE_SFF.
-#define BF_CSI_CSICR2_DMA_BURST_TYPE_SFF(v)   ((((reg32_t) v) << BP_CSI_CSICR2_DMA_BURST_TYPE_SFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_DMA_BURST_TYPE_SFF.
-#define BF_CSI_CSICR2_DMA_BURST_TYPE_SFF(v)   (((v) << BP_CSI_CSICR2_DMA_BURST_TYPE_SFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_SFF)
-#endif
+#define BF_CSI_CSICR2_DMA_BURST_TYPE_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_DMA_BURST_TYPE_SFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_BURST_TYPE_SFF field to a new value.
@@ -1251,9 +1026,8 @@ typedef union _hw_csi_csicr2
  * Burst Type of DMA Transfer from RxFIFO. Selects the burst type of DMA transfer from RxFIFO.
  *
  * Values:
- * 00 - INCR8
+ * X0 - INCR8
  * 01 - INCR4
- * 10 - INCR8
  * 11 - INCR16
  */
 
@@ -1261,21 +1035,20 @@ typedef union _hw_csi_csicr2
 #define BM_CSI_CSICR2_DMA_BURST_TYPE_RFF      (0xc0000000)  //!< Bit mask for CSI_CSICR2_DMA_BURST_TYPE_RFF.
 
 //! @brief Get value of CSI_CSICR2_DMA_BURST_TYPE_RFF from a register value.
-#define BG_CSI_CSICR2_DMA_BURST_TYPE_RFF(r)   (((r) & BM_CSI_CSICR2_DMA_BURST_TYPE_RFF) >> BP_CSI_CSICR2_DMA_BURST_TYPE_RFF)
+#define BG_CSI_CSICR2_DMA_BURST_TYPE_RFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR2_DMA_BURST_TYPE_RFF) >> BP_CSI_CSICR2_DMA_BURST_TYPE_RFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR2_DMA_BURST_TYPE_RFF.
-#define BF_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)   ((((reg32_t) v) << BP_CSI_CSICR2_DMA_BURST_TYPE_RFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_RFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR2_DMA_BURST_TYPE_RFF.
-#define BF_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)   (((v) << BP_CSI_CSICR2_DMA_BURST_TYPE_RFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_RFF)
-#endif
+#define BF_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR2_DMA_BURST_TYPE_RFF) & BM_CSI_CSICR2_DMA_BURST_TYPE_RFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_BURST_TYPE_RFF field to a new value.
 #define BW_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_DMA_BURST_TYPE_RFF) | BF_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSICR3 - CSI Control Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1341,15 +1114,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_ECC_AUTO_EN      (0x00000001)  //!< Bit mask for CSI_CSICR3_ECC_AUTO_EN.
 
 //! @brief Get value of CSI_CSICR3_ECC_AUTO_EN from a register value.
-#define BG_CSI_CSICR3_ECC_AUTO_EN(r)   (((r) & BM_CSI_CSICR3_ECC_AUTO_EN) >> BP_CSI_CSICR3_ECC_AUTO_EN)
+#define BG_CSI_CSICR3_ECC_AUTO_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_ECC_AUTO_EN) >> BP_CSI_CSICR3_ECC_AUTO_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_ECC_AUTO_EN.
-#define BF_CSI_CSICR3_ECC_AUTO_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR3_ECC_AUTO_EN) & BM_CSI_CSICR3_ECC_AUTO_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_ECC_AUTO_EN.
-#define BF_CSI_CSICR3_ECC_AUTO_EN(v)   (((v) << BP_CSI_CSICR3_ECC_AUTO_EN) & BM_CSI_CSICR3_ECC_AUTO_EN)
-#endif
+#define BF_CSI_CSICR3_ECC_AUTO_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_ECC_AUTO_EN) & BM_CSI_CSICR3_ECC_AUTO_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECC_AUTO_EN field to a new value.
@@ -1371,15 +1139,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_ECC_INT_EN      (0x00000002)  //!< Bit mask for CSI_CSICR3_ECC_INT_EN.
 
 //! @brief Get value of CSI_CSICR3_ECC_INT_EN from a register value.
-#define BG_CSI_CSICR3_ECC_INT_EN(r)   (((r) & BM_CSI_CSICR3_ECC_INT_EN) >> BP_CSI_CSICR3_ECC_INT_EN)
+#define BG_CSI_CSICR3_ECC_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_ECC_INT_EN) >> BP_CSI_CSICR3_ECC_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_ECC_INT_EN.
-#define BF_CSI_CSICR3_ECC_INT_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR3_ECC_INT_EN) & BM_CSI_CSICR3_ECC_INT_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_ECC_INT_EN.
-#define BF_CSI_CSICR3_ECC_INT_EN(v)   (((v) << BP_CSI_CSICR3_ECC_INT_EN) & BM_CSI_CSICR3_ECC_INT_EN)
-#endif
+#define BF_CSI_CSICR3_ECC_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_ECC_INT_EN) & BM_CSI_CSICR3_ECC_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECC_INT_EN field to a new value.
@@ -1402,15 +1165,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_ZERO_PACK_EN      (0x00000004)  //!< Bit mask for CSI_CSICR3_ZERO_PACK_EN.
 
 //! @brief Get value of CSI_CSICR3_ZERO_PACK_EN from a register value.
-#define BG_CSI_CSICR3_ZERO_PACK_EN(r)   (((r) & BM_CSI_CSICR3_ZERO_PACK_EN) >> BP_CSI_CSICR3_ZERO_PACK_EN)
+#define BG_CSI_CSICR3_ZERO_PACK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_ZERO_PACK_EN) >> BP_CSI_CSICR3_ZERO_PACK_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_ZERO_PACK_EN.
-#define BF_CSI_CSICR3_ZERO_PACK_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR3_ZERO_PACK_EN) & BM_CSI_CSICR3_ZERO_PACK_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_ZERO_PACK_EN.
-#define BF_CSI_CSICR3_ZERO_PACK_EN(v)   (((v) << BP_CSI_CSICR3_ZERO_PACK_EN) & BM_CSI_CSICR3_ZERO_PACK_EN)
-#endif
+#define BF_CSI_CSICR3_ZERO_PACK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_ZERO_PACK_EN) & BM_CSI_CSICR3_ZERO_PACK_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZERO_PACK_EN field to a new value.
@@ -1434,15 +1192,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_TWO_8BIT_SENSOR      (0x00000008)  //!< Bit mask for CSI_CSICR3_TWO_8BIT_SENSOR.
 
 //! @brief Get value of CSI_CSICR3_TWO_8BIT_SENSOR from a register value.
-#define BG_CSI_CSICR3_TWO_8BIT_SENSOR(r)   (((r) & BM_CSI_CSICR3_TWO_8BIT_SENSOR) >> BP_CSI_CSICR3_TWO_8BIT_SENSOR)
+#define BG_CSI_CSICR3_TWO_8BIT_SENSOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_TWO_8BIT_SENSOR) >> BP_CSI_CSICR3_TWO_8BIT_SENSOR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_TWO_8BIT_SENSOR.
-#define BF_CSI_CSICR3_TWO_8BIT_SENSOR(v)   ((((reg32_t) v) << BP_CSI_CSICR3_TWO_8BIT_SENSOR) & BM_CSI_CSICR3_TWO_8BIT_SENSOR)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_TWO_8BIT_SENSOR.
-#define BF_CSI_CSICR3_TWO_8BIT_SENSOR(v)   (((v) << BP_CSI_CSICR3_TWO_8BIT_SENSOR) & BM_CSI_CSICR3_TWO_8BIT_SENSOR)
-#endif
+#define BF_CSI_CSICR3_TWO_8BIT_SENSOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_TWO_8BIT_SENSOR) & BM_CSI_CSICR3_TWO_8BIT_SENSOR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWO_8BIT_SENSOR field to a new value.
@@ -1470,15 +1223,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_RXFF_LEVEL      (0x00000070)  //!< Bit mask for CSI_CSICR3_RXFF_LEVEL.
 
 //! @brief Get value of CSI_CSICR3_RXFF_LEVEL from a register value.
-#define BG_CSI_CSICR3_RXFF_LEVEL(r)   (((r) & BM_CSI_CSICR3_RXFF_LEVEL) >> BP_CSI_CSICR3_RXFF_LEVEL)
+#define BG_CSI_CSICR3_RXFF_LEVEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_RXFF_LEVEL) >> BP_CSI_CSICR3_RXFF_LEVEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_RXFF_LEVEL.
-#define BF_CSI_CSICR3_RXFF_LEVEL(v)   ((((reg32_t) v) << BP_CSI_CSICR3_RXFF_LEVEL) & BM_CSI_CSICR3_RXFF_LEVEL)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_RXFF_LEVEL.
-#define BF_CSI_CSICR3_RXFF_LEVEL(v)   (((v) << BP_CSI_CSICR3_RXFF_LEVEL) & BM_CSI_CSICR3_RXFF_LEVEL)
-#endif
+#define BF_CSI_CSICR3_RXFF_LEVEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_RXFF_LEVEL) & BM_CSI_CSICR3_RXFF_LEVEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXFF_LEVEL field to a new value.
@@ -1499,15 +1247,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_HRESP_ERR_EN      (0x00000080)  //!< Bit mask for CSI_CSICR3_HRESP_ERR_EN.
 
 //! @brief Get value of CSI_CSICR3_HRESP_ERR_EN from a register value.
-#define BG_CSI_CSICR3_HRESP_ERR_EN(r)   (((r) & BM_CSI_CSICR3_HRESP_ERR_EN) >> BP_CSI_CSICR3_HRESP_ERR_EN)
+#define BG_CSI_CSICR3_HRESP_ERR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_HRESP_ERR_EN) >> BP_CSI_CSICR3_HRESP_ERR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_HRESP_ERR_EN.
-#define BF_CSI_CSICR3_HRESP_ERR_EN(v)   ((((reg32_t) v) << BP_CSI_CSICR3_HRESP_ERR_EN) & BM_CSI_CSICR3_HRESP_ERR_EN)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_HRESP_ERR_EN.
-#define BF_CSI_CSICR3_HRESP_ERR_EN(v)   (((v) << BP_CSI_CSICR3_HRESP_ERR_EN) & BM_CSI_CSICR3_HRESP_ERR_EN)
-#endif
+#define BF_CSI_CSICR3_HRESP_ERR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_HRESP_ERR_EN) & BM_CSI_CSICR3_HRESP_ERR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HRESP_ERR_EN field to a new value.
@@ -1535,15 +1278,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_STATFF_LEVEL      (0x00000700)  //!< Bit mask for CSI_CSICR3_STATFF_LEVEL.
 
 //! @brief Get value of CSI_CSICR3_STATFF_LEVEL from a register value.
-#define BG_CSI_CSICR3_STATFF_LEVEL(r)   (((r) & BM_CSI_CSICR3_STATFF_LEVEL) >> BP_CSI_CSICR3_STATFF_LEVEL)
+#define BG_CSI_CSICR3_STATFF_LEVEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_STATFF_LEVEL) >> BP_CSI_CSICR3_STATFF_LEVEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_STATFF_LEVEL.
-#define BF_CSI_CSICR3_STATFF_LEVEL(v)   ((((reg32_t) v) << BP_CSI_CSICR3_STATFF_LEVEL) & BM_CSI_CSICR3_STATFF_LEVEL)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_STATFF_LEVEL.
-#define BF_CSI_CSICR3_STATFF_LEVEL(v)   (((v) << BP_CSI_CSICR3_STATFF_LEVEL) & BM_CSI_CSICR3_STATFF_LEVEL)
-#endif
+#define BF_CSI_CSICR3_STATFF_LEVEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_STATFF_LEVEL) & BM_CSI_CSICR3_STATFF_LEVEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATFF_LEVEL field to a new value.
@@ -1565,15 +1303,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_DMA_REQ_EN_SFF      (0x00000800)  //!< Bit mask for CSI_CSICR3_DMA_REQ_EN_SFF.
 
 //! @brief Get value of CSI_CSICR3_DMA_REQ_EN_SFF from a register value.
-#define BG_CSI_CSICR3_DMA_REQ_EN_SFF(r)   (((r) & BM_CSI_CSICR3_DMA_REQ_EN_SFF) >> BP_CSI_CSICR3_DMA_REQ_EN_SFF)
+#define BG_CSI_CSICR3_DMA_REQ_EN_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_DMA_REQ_EN_SFF) >> BP_CSI_CSICR3_DMA_REQ_EN_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_DMA_REQ_EN_SFF.
-#define BF_CSI_CSICR3_DMA_REQ_EN_SFF(v)   ((((reg32_t) v) << BP_CSI_CSICR3_DMA_REQ_EN_SFF) & BM_CSI_CSICR3_DMA_REQ_EN_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_DMA_REQ_EN_SFF.
-#define BF_CSI_CSICR3_DMA_REQ_EN_SFF(v)   (((v) << BP_CSI_CSICR3_DMA_REQ_EN_SFF) & BM_CSI_CSICR3_DMA_REQ_EN_SFF)
-#endif
+#define BF_CSI_CSICR3_DMA_REQ_EN_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_DMA_REQ_EN_SFF) & BM_CSI_CSICR3_DMA_REQ_EN_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_REQ_EN_SFF field to a new value.
@@ -1595,15 +1328,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_DMA_REQ_EN_RFF      (0x00001000)  //!< Bit mask for CSI_CSICR3_DMA_REQ_EN_RFF.
 
 //! @brief Get value of CSI_CSICR3_DMA_REQ_EN_RFF from a register value.
-#define BG_CSI_CSICR3_DMA_REQ_EN_RFF(r)   (((r) & BM_CSI_CSICR3_DMA_REQ_EN_RFF) >> BP_CSI_CSICR3_DMA_REQ_EN_RFF)
+#define BG_CSI_CSICR3_DMA_REQ_EN_RFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_DMA_REQ_EN_RFF) >> BP_CSI_CSICR3_DMA_REQ_EN_RFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_DMA_REQ_EN_RFF.
-#define BF_CSI_CSICR3_DMA_REQ_EN_RFF(v)   ((((reg32_t) v) << BP_CSI_CSICR3_DMA_REQ_EN_RFF) & BM_CSI_CSICR3_DMA_REQ_EN_RFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_DMA_REQ_EN_RFF.
-#define BF_CSI_CSICR3_DMA_REQ_EN_RFF(v)   (((v) << BP_CSI_CSICR3_DMA_REQ_EN_RFF) & BM_CSI_CSICR3_DMA_REQ_EN_RFF)
-#endif
+#define BF_CSI_CSICR3_DMA_REQ_EN_RFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_DMA_REQ_EN_RFF) & BM_CSI_CSICR3_DMA_REQ_EN_RFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_REQ_EN_RFF field to a new value.
@@ -1626,15 +1354,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_DMA_REFLASH_SFF      (0x00002000)  //!< Bit mask for CSI_CSICR3_DMA_REFLASH_SFF.
 
 //! @brief Get value of CSI_CSICR3_DMA_REFLASH_SFF from a register value.
-#define BG_CSI_CSICR3_DMA_REFLASH_SFF(r)   (((r) & BM_CSI_CSICR3_DMA_REFLASH_SFF) >> BP_CSI_CSICR3_DMA_REFLASH_SFF)
+#define BG_CSI_CSICR3_DMA_REFLASH_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_DMA_REFLASH_SFF) >> BP_CSI_CSICR3_DMA_REFLASH_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_DMA_REFLASH_SFF.
-#define BF_CSI_CSICR3_DMA_REFLASH_SFF(v)   ((((reg32_t) v) << BP_CSI_CSICR3_DMA_REFLASH_SFF) & BM_CSI_CSICR3_DMA_REFLASH_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_DMA_REFLASH_SFF.
-#define BF_CSI_CSICR3_DMA_REFLASH_SFF(v)   (((v) << BP_CSI_CSICR3_DMA_REFLASH_SFF) & BM_CSI_CSICR3_DMA_REFLASH_SFF)
-#endif
+#define BF_CSI_CSICR3_DMA_REFLASH_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_DMA_REFLASH_SFF) & BM_CSI_CSICR3_DMA_REFLASH_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_REFLASH_SFF field to a new value.
@@ -1657,15 +1380,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_DMA_REFLASH_RFF      (0x00004000)  //!< Bit mask for CSI_CSICR3_DMA_REFLASH_RFF.
 
 //! @brief Get value of CSI_CSICR3_DMA_REFLASH_RFF from a register value.
-#define BG_CSI_CSICR3_DMA_REFLASH_RFF(r)   (((r) & BM_CSI_CSICR3_DMA_REFLASH_RFF) >> BP_CSI_CSICR3_DMA_REFLASH_RFF)
+#define BG_CSI_CSICR3_DMA_REFLASH_RFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_DMA_REFLASH_RFF) >> BP_CSI_CSICR3_DMA_REFLASH_RFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_DMA_REFLASH_RFF.
-#define BF_CSI_CSICR3_DMA_REFLASH_RFF(v)   ((((reg32_t) v) << BP_CSI_CSICR3_DMA_REFLASH_RFF) & BM_CSI_CSICR3_DMA_REFLASH_RFF)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_DMA_REFLASH_RFF.
-#define BF_CSI_CSICR3_DMA_REFLASH_RFF(v)   (((v) << BP_CSI_CSICR3_DMA_REFLASH_RFF) & BM_CSI_CSICR3_DMA_REFLASH_RFF)
-#endif
+#define BF_CSI_CSICR3_DMA_REFLASH_RFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_DMA_REFLASH_RFF) & BM_CSI_CSICR3_DMA_REFLASH_RFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_REFLASH_RFF field to a new value.
@@ -1686,15 +1404,10 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_FRMCNT_RST      (0x00008000)  //!< Bit mask for CSI_CSICR3_FRMCNT_RST.
 
 //! @brief Get value of CSI_CSICR3_FRMCNT_RST from a register value.
-#define BG_CSI_CSICR3_FRMCNT_RST(r)   (((r) & BM_CSI_CSICR3_FRMCNT_RST) >> BP_CSI_CSICR3_FRMCNT_RST)
+#define BG_CSI_CSICR3_FRMCNT_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_FRMCNT_RST) >> BP_CSI_CSICR3_FRMCNT_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_FRMCNT_RST.
-#define BF_CSI_CSICR3_FRMCNT_RST(v)   ((((reg32_t) v) << BP_CSI_CSICR3_FRMCNT_RST) & BM_CSI_CSICR3_FRMCNT_RST)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_FRMCNT_RST.
-#define BF_CSI_CSICR3_FRMCNT_RST(v)   (((v) << BP_CSI_CSICR3_FRMCNT_RST) & BM_CSI_CSICR3_FRMCNT_RST)
-#endif
+#define BF_CSI_CSICR3_FRMCNT_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_FRMCNT_RST) & BM_CSI_CSICR3_FRMCNT_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRMCNT_RST field to a new value.
@@ -1712,20 +1425,19 @@ typedef union _hw_csi_csicr3
 #define BM_CSI_CSICR3_FRMCNT      (0xffff0000)  //!< Bit mask for CSI_CSICR3_FRMCNT.
 
 //! @brief Get value of CSI_CSICR3_FRMCNT from a register value.
-#define BG_CSI_CSICR3_FRMCNT(r)   (((r) & BM_CSI_CSICR3_FRMCNT) >> BP_CSI_CSICR3_FRMCNT)
+#define BG_CSI_CSICR3_FRMCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSICR3_FRMCNT) >> BP_CSI_CSICR3_FRMCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSICR3_FRMCNT.
-#define BF_CSI_CSICR3_FRMCNT(v)   ((((reg32_t) v) << BP_CSI_CSICR3_FRMCNT) & BM_CSI_CSICR3_FRMCNT)
-#else
-//! @brief Format value for bitfield CSI_CSICR3_FRMCNT.
-#define BF_CSI_CSICR3_FRMCNT(v)   (((v) << BP_CSI_CSICR3_FRMCNT) & BM_CSI_CSICR3_FRMCNT)
-#endif
+#define BF_CSI_CSICR3_FRMCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSICR3_FRMCNT) & BM_CSI_CSICR3_FRMCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRMCNT field to a new value.
 #define BW_CSI_CSICR3_FRMCNT(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_FRMCNT) | BF_CSI_CSICR3_FRMCNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSISTATFIFO - CSI Statistic FIFO Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1769,7 +1481,11 @@ typedef union _hw_csi_csistatfifo
 #define BM_CSI_CSISTATFIFO_STAT      (0xffffffff)  //!< Bit mask for CSI_CSISTATFIFO_STAT.
 
 //! @brief Get value of CSI_CSISTATFIFO_STAT from a register value.
-#define BG_CSI_CSISTATFIFO_STAT(r)   (((r) & BM_CSI_CSISTATFIFO_STAT) >> BP_CSI_CSISTATFIFO_STAT)
+#define BG_CSI_CSISTATFIFO_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISTATFIFO_STAT) >> BP_CSI_CSISTATFIFO_STAT)
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIRFIFO - CSI RX FIFO Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1812,7 +1528,11 @@ typedef union _hw_csi_csirfifo
 #define BM_CSI_CSIRFIFO_IMAGE      (0xffffffff)  //!< Bit mask for CSI_CSIRFIFO_IMAGE.
 
 //! @brief Get value of CSI_CSIRFIFO_IMAGE from a register value.
-#define BG_CSI_CSIRFIFO_IMAGE(r)   (((r) & BM_CSI_CSIRFIFO_IMAGE) >> BP_CSI_CSIRFIFO_IMAGE)
+#define BG_CSI_CSIRFIFO_IMAGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIRFIFO_IMAGE) >> BP_CSI_CSIRFIFO_IMAGE)
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIRXCNT - CSI RX Count Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1866,20 +1586,19 @@ typedef union _hw_csi_csirxcnt
 #define BM_CSI_CSIRXCNT_RXCNT      (0x003fffff)  //!< Bit mask for CSI_CSIRXCNT_RXCNT.
 
 //! @brief Get value of CSI_CSIRXCNT_RXCNT from a register value.
-#define BG_CSI_CSIRXCNT_RXCNT(r)   (((r) & BM_CSI_CSIRXCNT_RXCNT) >> BP_CSI_CSIRXCNT_RXCNT)
+#define BG_CSI_CSIRXCNT_RXCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIRXCNT_RXCNT) >> BP_CSI_CSIRXCNT_RXCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIRXCNT_RXCNT.
-#define BF_CSI_CSIRXCNT_RXCNT(v)   ((((reg32_t) v) << BP_CSI_CSIRXCNT_RXCNT) & BM_CSI_CSIRXCNT_RXCNT)
-#else
-//! @brief Format value for bitfield CSI_CSIRXCNT_RXCNT.
-#define BF_CSI_CSIRXCNT_RXCNT(v)   (((v) << BP_CSI_CSIRXCNT_RXCNT) & BM_CSI_CSIRXCNT_RXCNT)
-#endif
+#define BF_CSI_CSIRXCNT_RXCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIRXCNT_RXCNT) & BM_CSI_CSIRXCNT_RXCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXCNT field to a new value.
 #define BW_CSI_CSIRXCNT_RXCNT(v)   (HW_CSI_CSIRXCNT_WR((HW_CSI_CSIRXCNT_RD() & ~BM_CSI_CSIRXCNT_RXCNT) | BF_CSI_CSIRXCNT_RXCNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSISR - CSI Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1951,15 +1670,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_DRDY      (0x00000001)  //!< Bit mask for CSI_CSISR_DRDY.
 
 //! @brief Get value of CSI_CSISR_DRDY from a register value.
-#define BG_CSI_CSISR_DRDY(r)   (((r) & BM_CSI_CSISR_DRDY) >> BP_CSI_CSISR_DRDY)
+#define BG_CSI_CSISR_DRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_DRDY) >> BP_CSI_CSISR_DRDY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_DRDY.
-#define BF_CSI_CSISR_DRDY(v)   ((((reg32_t) v) << BP_CSI_CSISR_DRDY) & BM_CSI_CSISR_DRDY)
-#else
-//! @brief Format value for bitfield CSI_CSISR_DRDY.
-#define BF_CSI_CSISR_DRDY(v)   (((v) << BP_CSI_CSISR_DRDY) & BM_CSI_CSISR_DRDY)
-#endif
+#define BF_CSI_CSISR_DRDY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_DRDY) & BM_CSI_CSISR_DRDY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRDY field to a new value.
@@ -1981,15 +1695,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_ECC_INT      (0x00000002)  //!< Bit mask for CSI_CSISR_ECC_INT.
 
 //! @brief Get value of CSI_CSISR_ECC_INT from a register value.
-#define BG_CSI_CSISR_ECC_INT(r)   (((r) & BM_CSI_CSISR_ECC_INT) >> BP_CSI_CSISR_ECC_INT)
+#define BG_CSI_CSISR_ECC_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_ECC_INT) >> BP_CSI_CSISR_ECC_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_ECC_INT.
-#define BF_CSI_CSISR_ECC_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_ECC_INT) & BM_CSI_CSISR_ECC_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_ECC_INT.
-#define BF_CSI_CSISR_ECC_INT(v)   (((v) << BP_CSI_CSISR_ECC_INT) & BM_CSI_CSISR_ECC_INT)
-#endif
+#define BF_CSI_CSISR_ECC_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_ECC_INT) & BM_CSI_CSISR_ECC_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECC_INT field to a new value.
@@ -2011,15 +1720,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_HRESP_ERR_INT      (0x00000080)  //!< Bit mask for CSI_CSISR_HRESP_ERR_INT.
 
 //! @brief Get value of CSI_CSISR_HRESP_ERR_INT from a register value.
-#define BG_CSI_CSISR_HRESP_ERR_INT(r)   (((r) & BM_CSI_CSISR_HRESP_ERR_INT) >> BP_CSI_CSISR_HRESP_ERR_INT)
+#define BG_CSI_CSISR_HRESP_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_HRESP_ERR_INT) >> BP_CSI_CSISR_HRESP_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_HRESP_ERR_INT.
-#define BF_CSI_CSISR_HRESP_ERR_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_HRESP_ERR_INT) & BM_CSI_CSISR_HRESP_ERR_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_HRESP_ERR_INT.
-#define BF_CSI_CSISR_HRESP_ERR_INT(v)   (((v) << BP_CSI_CSISR_HRESP_ERR_INT) & BM_CSI_CSISR_HRESP_ERR_INT)
-#endif
+#define BF_CSI_CSISR_HRESP_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_HRESP_ERR_INT) & BM_CSI_CSISR_HRESP_ERR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HRESP_ERR_INT field to a new value.
@@ -2042,15 +1746,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_COF_INT      (0x00002000)  //!< Bit mask for CSI_CSISR_COF_INT.
 
 //! @brief Get value of CSI_CSISR_COF_INT from a register value.
-#define BG_CSI_CSISR_COF_INT(r)   (((r) & BM_CSI_CSISR_COF_INT) >> BP_CSI_CSISR_COF_INT)
+#define BG_CSI_CSISR_COF_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_COF_INT) >> BP_CSI_CSISR_COF_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_COF_INT.
-#define BF_CSI_CSISR_COF_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_COF_INT) & BM_CSI_CSISR_COF_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_COF_INT.
-#define BF_CSI_CSISR_COF_INT(v)   (((v) << BP_CSI_CSISR_COF_INT) & BM_CSI_CSISR_COF_INT)
-#endif
+#define BF_CSI_CSISR_COF_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_COF_INT) & BM_CSI_CSISR_COF_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COF_INT field to a new value.
@@ -2072,15 +1771,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_F1_INT      (0x00004000)  //!< Bit mask for CSI_CSISR_F1_INT.
 
 //! @brief Get value of CSI_CSISR_F1_INT from a register value.
-#define BG_CSI_CSISR_F1_INT(r)   (((r) & BM_CSI_CSISR_F1_INT) >> BP_CSI_CSISR_F1_INT)
+#define BG_CSI_CSISR_F1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_F1_INT) >> BP_CSI_CSISR_F1_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_F1_INT.
-#define BF_CSI_CSISR_F1_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_F1_INT) & BM_CSI_CSISR_F1_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_F1_INT.
-#define BF_CSI_CSISR_F1_INT(v)   (((v) << BP_CSI_CSISR_F1_INT) & BM_CSI_CSISR_F1_INT)
-#endif
+#define BF_CSI_CSISR_F1_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_F1_INT) & BM_CSI_CSISR_F1_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F1_INT field to a new value.
@@ -2102,15 +1796,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_F2_INT      (0x00008000)  //!< Bit mask for CSI_CSISR_F2_INT.
 
 //! @brief Get value of CSI_CSISR_F2_INT from a register value.
-#define BG_CSI_CSISR_F2_INT(r)   (((r) & BM_CSI_CSISR_F2_INT) >> BP_CSI_CSISR_F2_INT)
+#define BG_CSI_CSISR_F2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_F2_INT) >> BP_CSI_CSISR_F2_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_F2_INT.
-#define BF_CSI_CSISR_F2_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_F2_INT) & BM_CSI_CSISR_F2_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_F2_INT.
-#define BF_CSI_CSISR_F2_INT(v)   (((v) << BP_CSI_CSISR_F2_INT) & BM_CSI_CSISR_F2_INT)
-#endif
+#define BF_CSI_CSISR_F2_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_F2_INT) & BM_CSI_CSISR_F2_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F2_INT field to a new value.
@@ -2131,15 +1820,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_SOF_INT      (0x00010000)  //!< Bit mask for CSI_CSISR_SOF_INT.
 
 //! @brief Get value of CSI_CSISR_SOF_INT from a register value.
-#define BG_CSI_CSISR_SOF_INT(r)   (((r) & BM_CSI_CSISR_SOF_INT) >> BP_CSI_CSISR_SOF_INT)
+#define BG_CSI_CSISR_SOF_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_SOF_INT) >> BP_CSI_CSISR_SOF_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_SOF_INT.
-#define BF_CSI_CSISR_SOF_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_SOF_INT) & BM_CSI_CSISR_SOF_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_SOF_INT.
-#define BF_CSI_CSISR_SOF_INT(v)   (((v) << BP_CSI_CSISR_SOF_INT) & BM_CSI_CSISR_SOF_INT)
-#endif
+#define BF_CSI_CSISR_SOF_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_SOF_INT) & BM_CSI_CSISR_SOF_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SOF_INT field to a new value.
@@ -2160,15 +1844,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_EOF_INT      (0x00020000)  //!< Bit mask for CSI_CSISR_EOF_INT.
 
 //! @brief Get value of CSI_CSISR_EOF_INT from a register value.
-#define BG_CSI_CSISR_EOF_INT(r)   (((r) & BM_CSI_CSISR_EOF_INT) >> BP_CSI_CSISR_EOF_INT)
+#define BG_CSI_CSISR_EOF_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_EOF_INT) >> BP_CSI_CSISR_EOF_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_EOF_INT.
-#define BF_CSI_CSISR_EOF_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_EOF_INT) & BM_CSI_CSISR_EOF_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_EOF_INT.
-#define BF_CSI_CSISR_EOF_INT(v)   (((v) << BP_CSI_CSISR_EOF_INT) & BM_CSI_CSISR_EOF_INT)
-#endif
+#define BF_CSI_CSISR_EOF_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_EOF_INT) & BM_CSI_CSISR_EOF_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EOF_INT field to a new value.
@@ -2190,15 +1869,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_RXFF_INT      (0x00040000)  //!< Bit mask for CSI_CSISR_RXFF_INT.
 
 //! @brief Get value of CSI_CSISR_RXFF_INT from a register value.
-#define BG_CSI_CSISR_RXFF_INT(r)   (((r) & BM_CSI_CSISR_RXFF_INT) >> BP_CSI_CSISR_RXFF_INT)
+#define BG_CSI_CSISR_RXFF_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_RXFF_INT) >> BP_CSI_CSISR_RXFF_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_RXFF_INT.
-#define BF_CSI_CSISR_RXFF_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_RXFF_INT) & BM_CSI_CSISR_RXFF_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_RXFF_INT.
-#define BF_CSI_CSISR_RXFF_INT(v)   (((v) << BP_CSI_CSISR_RXFF_INT) & BM_CSI_CSISR_RXFF_INT)
-#endif
+#define BF_CSI_CSISR_RXFF_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_RXFF_INT) & BM_CSI_CSISR_RXFF_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXFF_INT field to a new value.
@@ -2222,15 +1896,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_DMA_TSF_DONE_FB1      (0x00080000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_FB1.
 
 //! @brief Get value of CSI_CSISR_DMA_TSF_DONE_FB1 from a register value.
-#define BG_CSI_CSISR_DMA_TSF_DONE_FB1(r)   (((r) & BM_CSI_CSISR_DMA_TSF_DONE_FB1) >> BP_CSI_CSISR_DMA_TSF_DONE_FB1)
+#define BG_CSI_CSISR_DMA_TSF_DONE_FB1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_DMA_TSF_DONE_FB1) >> BP_CSI_CSISR_DMA_TSF_DONE_FB1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_FB1.
-#define BF_CSI_CSISR_DMA_TSF_DONE_FB1(v)   ((((reg32_t) v) << BP_CSI_CSISR_DMA_TSF_DONE_FB1) & BM_CSI_CSISR_DMA_TSF_DONE_FB1)
-#else
-//! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_FB1.
-#define BF_CSI_CSISR_DMA_TSF_DONE_FB1(v)   (((v) << BP_CSI_CSISR_DMA_TSF_DONE_FB1) & BM_CSI_CSISR_DMA_TSF_DONE_FB1)
-#endif
+#define BF_CSI_CSISR_DMA_TSF_DONE_FB1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_DMA_TSF_DONE_FB1) & BM_CSI_CSISR_DMA_TSF_DONE_FB1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_TSF_DONE_FB1 field to a new value.
@@ -2254,15 +1923,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_DMA_TSF_DONE_FB2      (0x00100000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_FB2.
 
 //! @brief Get value of CSI_CSISR_DMA_TSF_DONE_FB2 from a register value.
-#define BG_CSI_CSISR_DMA_TSF_DONE_FB2(r)   (((r) & BM_CSI_CSISR_DMA_TSF_DONE_FB2) >> BP_CSI_CSISR_DMA_TSF_DONE_FB2)
+#define BG_CSI_CSISR_DMA_TSF_DONE_FB2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_DMA_TSF_DONE_FB2) >> BP_CSI_CSISR_DMA_TSF_DONE_FB2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_FB2.
-#define BF_CSI_CSISR_DMA_TSF_DONE_FB2(v)   ((((reg32_t) v) << BP_CSI_CSISR_DMA_TSF_DONE_FB2) & BM_CSI_CSISR_DMA_TSF_DONE_FB2)
-#else
-//! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_FB2.
-#define BF_CSI_CSISR_DMA_TSF_DONE_FB2(v)   (((v) << BP_CSI_CSISR_DMA_TSF_DONE_FB2) & BM_CSI_CSISR_DMA_TSF_DONE_FB2)
-#endif
+#define BF_CSI_CSISR_DMA_TSF_DONE_FB2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_DMA_TSF_DONE_FB2) & BM_CSI_CSISR_DMA_TSF_DONE_FB2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_TSF_DONE_FB2 field to a new value.
@@ -2284,15 +1948,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_STATFF_INT      (0x00200000)  //!< Bit mask for CSI_CSISR_STATFF_INT.
 
 //! @brief Get value of CSI_CSISR_STATFF_INT from a register value.
-#define BG_CSI_CSISR_STATFF_INT(r)   (((r) & BM_CSI_CSISR_STATFF_INT) >> BP_CSI_CSISR_STATFF_INT)
+#define BG_CSI_CSISR_STATFF_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_STATFF_INT) >> BP_CSI_CSISR_STATFF_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_STATFF_INT.
-#define BF_CSI_CSISR_STATFF_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_STATFF_INT) & BM_CSI_CSISR_STATFF_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_STATFF_INT.
-#define BF_CSI_CSISR_STATFF_INT(v)   (((v) << BP_CSI_CSISR_STATFF_INT) & BM_CSI_CSISR_STATFF_INT)
-#endif
+#define BF_CSI_CSISR_STATFF_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_STATFF_INT) & BM_CSI_CSISR_STATFF_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATFF_INT field to a new value.
@@ -2315,15 +1974,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_DMA_TSF_DONE_SFF      (0x00400000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_SFF.
 
 //! @brief Get value of CSI_CSISR_DMA_TSF_DONE_SFF from a register value.
-#define BG_CSI_CSISR_DMA_TSF_DONE_SFF(r)   (((r) & BM_CSI_CSISR_DMA_TSF_DONE_SFF) >> BP_CSI_CSISR_DMA_TSF_DONE_SFF)
+#define BG_CSI_CSISR_DMA_TSF_DONE_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_DMA_TSF_DONE_SFF) >> BP_CSI_CSISR_DMA_TSF_DONE_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_SFF.
-#define BF_CSI_CSISR_DMA_TSF_DONE_SFF(v)   ((((reg32_t) v) << BP_CSI_CSISR_DMA_TSF_DONE_SFF) & BM_CSI_CSISR_DMA_TSF_DONE_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSISR_DMA_TSF_DONE_SFF.
-#define BF_CSI_CSISR_DMA_TSF_DONE_SFF(v)   (((v) << BP_CSI_CSISR_DMA_TSF_DONE_SFF) & BM_CSI_CSISR_DMA_TSF_DONE_SFF)
-#endif
+#define BF_CSI_CSISR_DMA_TSF_DONE_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_DMA_TSF_DONE_SFF) & BM_CSI_CSISR_DMA_TSF_DONE_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_TSF_DONE_SFF field to a new value.
@@ -2345,15 +1999,10 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_RF_OR_INT      (0x01000000)  //!< Bit mask for CSI_CSISR_RF_OR_INT.
 
 //! @brief Get value of CSI_CSISR_RF_OR_INT from a register value.
-#define BG_CSI_CSISR_RF_OR_INT(r)   (((r) & BM_CSI_CSISR_RF_OR_INT) >> BP_CSI_CSISR_RF_OR_INT)
+#define BG_CSI_CSISR_RF_OR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_RF_OR_INT) >> BP_CSI_CSISR_RF_OR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_RF_OR_INT.
-#define BF_CSI_CSISR_RF_OR_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_RF_OR_INT) & BM_CSI_CSISR_RF_OR_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_RF_OR_INT.
-#define BF_CSI_CSISR_RF_OR_INT(v)   (((v) << BP_CSI_CSISR_RF_OR_INT) & BM_CSI_CSISR_RF_OR_INT)
-#endif
+#define BF_CSI_CSISR_RF_OR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_RF_OR_INT) & BM_CSI_CSISR_RF_OR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RF_OR_INT field to a new value.
@@ -2375,21 +2024,20 @@ typedef union _hw_csi_csisr
 #define BM_CSI_CSISR_SF_OR_INT      (0x02000000)  //!< Bit mask for CSI_CSISR_SF_OR_INT.
 
 //! @brief Get value of CSI_CSISR_SF_OR_INT from a register value.
-#define BG_CSI_CSISR_SF_OR_INT(r)   (((r) & BM_CSI_CSISR_SF_OR_INT) >> BP_CSI_CSISR_SF_OR_INT)
+#define BG_CSI_CSISR_SF_OR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISR_SF_OR_INT) >> BP_CSI_CSISR_SF_OR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSISR_SF_OR_INT.
-#define BF_CSI_CSISR_SF_OR_INT(v)   ((((reg32_t) v) << BP_CSI_CSISR_SF_OR_INT) & BM_CSI_CSISR_SF_OR_INT)
-#else
-//! @brief Format value for bitfield CSI_CSISR_SF_OR_INT.
-#define BF_CSI_CSISR_SF_OR_INT(v)   (((v) << BP_CSI_CSISR_SF_OR_INT) & BM_CSI_CSISR_SF_OR_INT)
-#endif
+#define BF_CSI_CSISR_SF_OR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSISR_SF_OR_INT) & BM_CSI_CSISR_SF_OR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SF_OR_INT field to a new value.
 #define BW_CSI_CSISR_SF_OR_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_SF_OR_INT) | BF_CSI_CSISR_SF_OR_INT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIDMASA_STATFIFO - CSI DMA Start Address Register - for STATFIFO
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2442,20 +2090,19 @@ typedef union _hw_csi_csidmasa_statfifo
 #define BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF.
 
 //! @brief Get value of CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF from a register value.
-#define BG_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(r)   (((r) & BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) >> BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF)
+#define BG_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) >> BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF.
-#define BF_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)   ((((reg32_t) v) << BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) & BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF.
-#define BF_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)   (((v) << BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) & BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF)
-#endif
+#define BF_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) & BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_START_ADDR_SFF field to a new value.
 #define BW_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)   (HW_CSI_CSIDMASA_STATFIFO_WR((HW_CSI_CSIDMASA_STATFIFO_RD() & ~BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) | BF_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIDMATS_STATFIFO - CSI DMA Transfer Size Register - for STATFIFO
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2504,20 +2151,19 @@ typedef union _hw_csi_csidmats_statfifo
 #define BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF      (0xffffffff)  //!< Bit mask for CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF.
 
 //! @brief Get value of CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF from a register value.
-#define BG_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(r)   (((r) & BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) >> BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF)
+#define BG_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) >> BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF.
-#define BF_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)   ((((reg32_t) v) << BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) & BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF)
-#else
-//! @brief Format value for bitfield CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF.
-#define BF_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)   (((v) << BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) & BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF)
-#endif
+#define BF_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) & BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_TSF_SIZE_SFF field to a new value.
 #define BW_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)   (HW_CSI_CSIDMATS_STATFIFO_WR((HW_CSI_CSIDMATS_STATFIFO_RD() & ~BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) | BF_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIDMASA_FB1 - CSI DMA Start Address Register - for Frame Buffer1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2570,20 +2216,19 @@ typedef union _hw_csi_csidmasa_fb1
 #define BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1.
 
 //! @brief Get value of CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1 from a register value.
-#define BG_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(r)   (((r) & BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) >> BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1)
+#define BG_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) >> BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1.
-#define BF_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)   ((((reg32_t) v) << BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) & BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1)
-#else
-//! @brief Format value for bitfield CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1.
-#define BF_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)   (((v) << BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) & BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1)
-#endif
+#define BF_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) & BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_START_ADDR_FB1 field to a new value.
 #define BW_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)   (HW_CSI_CSIDMASA_FB1_WR((HW_CSI_CSIDMASA_FB1_RD() & ~BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) | BF_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIDMASA_FB2 - CSI DMA Transfer Size Register - for Frame Buffer2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2636,20 +2281,19 @@ typedef union _hw_csi_csidmasa_fb2
 #define BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2.
 
 //! @brief Get value of CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2 from a register value.
-#define BG_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(r)   (((r) & BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) >> BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2)
+#define BG_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) >> BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2.
-#define BF_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)   ((((reg32_t) v) << BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) & BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2)
-#else
-//! @brief Format value for bitfield CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2.
-#define BF_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)   (((v) << BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) & BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2)
-#endif
+#define BF_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) & BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_START_ADDR_FB2 field to a new value.
 #define BW_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)   (HW_CSI_CSIDMASA_FB2_WR((HW_CSI_CSIDMASA_FB2_RD() & ~BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) | BF_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIFBUF_PARA - CSI Frame Buffer Parameter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2703,20 +2347,19 @@ typedef union _hw_csi_csifbuf_para
 #define BM_CSI_CSIFBUF_PARA_FBUF_STRIDE      (0x0000ffff)  //!< Bit mask for CSI_CSIFBUF_PARA_FBUF_STRIDE.
 
 //! @brief Get value of CSI_CSIFBUF_PARA_FBUF_STRIDE from a register value.
-#define BG_CSI_CSIFBUF_PARA_FBUF_STRIDE(r)   (((r) & BM_CSI_CSIFBUF_PARA_FBUF_STRIDE) >> BP_CSI_CSIFBUF_PARA_FBUF_STRIDE)
+#define BG_CSI_CSIFBUF_PARA_FBUF_STRIDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIFBUF_PARA_FBUF_STRIDE) >> BP_CSI_CSIFBUF_PARA_FBUF_STRIDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIFBUF_PARA_FBUF_STRIDE.
-#define BF_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)   ((((reg32_t) v) << BP_CSI_CSIFBUF_PARA_FBUF_STRIDE) & BM_CSI_CSIFBUF_PARA_FBUF_STRIDE)
-#else
-//! @brief Format value for bitfield CSI_CSIFBUF_PARA_FBUF_STRIDE.
-#define BF_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)   (((v) << BP_CSI_CSIFBUF_PARA_FBUF_STRIDE) & BM_CSI_CSIFBUF_PARA_FBUF_STRIDE)
-#endif
+#define BF_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIFBUF_PARA_FBUF_STRIDE) & BM_CSI_CSIFBUF_PARA_FBUF_STRIDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FBUF_STRIDE field to a new value.
 #define BW_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)   (HW_CSI_CSIFBUF_PARA_WR((HW_CSI_CSIFBUF_PARA_RD() & ~BM_CSI_CSIFBUF_PARA_FBUF_STRIDE) | BF_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_CSI_CSIIMAG_PARA - CSI Image Parameter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2767,15 +2410,10 @@ typedef union _hw_csi_csiimag_para
 #define BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT      (0x0000ffff)  //!< Bit mask for CSI_CSIIMAG_PARA_IMAGE_HEIGHT.
 
 //! @brief Get value of CSI_CSIIMAG_PARA_IMAGE_HEIGHT from a register value.
-#define BG_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(r)   (((r) & BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) >> BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT)
+#define BG_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) >> BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIIMAG_PARA_IMAGE_HEIGHT.
-#define BF_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(v)   ((((reg32_t) v) << BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) & BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT)
-#else
-//! @brief Format value for bitfield CSI_CSIIMAG_PARA_IMAGE_HEIGHT.
-#define BF_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(v)   (((v) << BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) & BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT)
-#endif
+#define BF_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) & BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMAGE_HEIGHT field to a new value.
@@ -2794,15 +2432,10 @@ typedef union _hw_csi_csiimag_para
 #define BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH      (0xffff0000)  //!< Bit mask for CSI_CSIIMAG_PARA_IMAGE_WIDTH.
 
 //! @brief Get value of CSI_CSIIMAG_PARA_IMAGE_WIDTH from a register value.
-#define BG_CSI_CSIIMAG_PARA_IMAGE_WIDTH(r)   (((r) & BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH) >> BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH)
+#define BG_CSI_CSIIMAG_PARA_IMAGE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH) >> BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSI_CSIIMAG_PARA_IMAGE_WIDTH.
-#define BF_CSI_CSIIMAG_PARA_IMAGE_WIDTH(v)   ((((reg32_t) v) << BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH) & BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH)
-#else
-//! @brief Format value for bitfield CSI_CSIIMAG_PARA_IMAGE_WIDTH.
-#define BF_CSI_CSIIMAG_PARA_IMAGE_WIDTH(v)   (((v) << BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH) & BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH)
-#endif
+#define BF_CSI_CSIIMAG_PARA_IMAGE_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH) & BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IMAGE_WIDTH field to a new value.

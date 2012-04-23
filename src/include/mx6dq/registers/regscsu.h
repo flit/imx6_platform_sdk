@@ -70,6 +70,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL0 - Config security level register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_CSU_CSL0 - Config security level register (RW)
@@ -83,11 +98,11 @@
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -99,7 +114,7 @@
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -181,15 +196,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL0_SUR_S2.
 
 //! @brief Get value of CSU_CSL0_SUR_S2 from a register value.
-#define BG_CSU_CSL0_SUR_S2(r)   (((r) & BM_CSU_CSL0_SUR_S2) >> BP_CSU_CSL0_SUR_S2)
+#define BG_CSU_CSL0_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SUR_S2) >> BP_CSU_CSL0_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SUR_S2.
-#define BF_CSU_CSL0_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_SUR_S2) & BM_CSU_CSL0_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SUR_S2.
-#define BF_CSU_CSL0_SUR_S2(v)   (((v) << BP_CSU_CSL0_SUR_S2) & BM_CSU_CSL0_SUR_S2)
-#endif
+#define BF_CSU_CSL0_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SUR_S2) & BM_CSU_CSL0_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -210,15 +220,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL0_SSR_S2.
 
 //! @brief Get value of CSU_CSL0_SSR_S2 from a register value.
-#define BG_CSU_CSL0_SSR_S2(r)   (((r) & BM_CSU_CSL0_SSR_S2) >> BP_CSU_CSL0_SSR_S2)
+#define BG_CSU_CSL0_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SSR_S2) >> BP_CSU_CSL0_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SSR_S2.
-#define BF_CSU_CSL0_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_SSR_S2) & BM_CSU_CSL0_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SSR_S2.
-#define BF_CSU_CSL0_SSR_S2(v)   (((v) << BP_CSU_CSL0_SSR_S2) & BM_CSU_CSL0_SSR_S2)
-#endif
+#define BF_CSU_CSL0_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SSR_S2) & BM_CSU_CSL0_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -239,15 +244,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL0_NUR_S2.
 
 //! @brief Get value of CSU_CSL0_NUR_S2 from a register value.
-#define BG_CSU_CSL0_NUR_S2(r)   (((r) & BM_CSU_CSL0_NUR_S2) >> BP_CSU_CSL0_NUR_S2)
+#define BG_CSU_CSL0_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NUR_S2) >> BP_CSU_CSL0_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NUR_S2.
-#define BF_CSU_CSL0_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_NUR_S2) & BM_CSU_CSL0_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NUR_S2.
-#define BF_CSU_CSL0_NUR_S2(v)   (((v) << BP_CSU_CSL0_NUR_S2) & BM_CSU_CSL0_NUR_S2)
-#endif
+#define BF_CSU_CSL0_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NUR_S2) & BM_CSU_CSL0_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -268,15 +268,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL0_NSR_S2.
 
 //! @brief Get value of CSU_CSL0_NSR_S2 from a register value.
-#define BG_CSU_CSL0_NSR_S2(r)   (((r) & BM_CSU_CSL0_NSR_S2) >> BP_CSU_CSL0_NSR_S2)
+#define BG_CSU_CSL0_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NSR_S2) >> BP_CSU_CSL0_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NSR_S2.
-#define BF_CSU_CSL0_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_NSR_S2) & BM_CSU_CSL0_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NSR_S2.
-#define BF_CSU_CSL0_NSR_S2(v)   (((v) << BP_CSU_CSL0_NSR_S2) & BM_CSU_CSL0_NSR_S2)
-#endif
+#define BF_CSU_CSL0_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NSR_S2) & BM_CSU_CSL0_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -297,15 +292,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL0_SUW_S2.
 
 //! @brief Get value of CSU_CSL0_SUW_S2 from a register value.
-#define BG_CSU_CSL0_SUW_S2(r)   (((r) & BM_CSU_CSL0_SUW_S2) >> BP_CSU_CSL0_SUW_S2)
+#define BG_CSU_CSL0_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SUW_S2) >> BP_CSU_CSL0_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SUW_S2.
-#define BF_CSU_CSL0_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_SUW_S2) & BM_CSU_CSL0_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SUW_S2.
-#define BF_CSU_CSL0_SUW_S2(v)   (((v) << BP_CSU_CSL0_SUW_S2) & BM_CSU_CSL0_SUW_S2)
-#endif
+#define BF_CSU_CSL0_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SUW_S2) & BM_CSU_CSL0_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -326,15 +316,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL0_SSW_S2.
 
 //! @brief Get value of CSU_CSL0_SSW_S2 from a register value.
-#define BG_CSU_CSL0_SSW_S2(r)   (((r) & BM_CSU_CSL0_SSW_S2) >> BP_CSU_CSL0_SSW_S2)
+#define BG_CSU_CSL0_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SSW_S2) >> BP_CSU_CSL0_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SSW_S2.
-#define BF_CSU_CSL0_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_SSW_S2) & BM_CSU_CSL0_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SSW_S2.
-#define BF_CSU_CSL0_SSW_S2(v)   (((v) << BP_CSU_CSL0_SSW_S2) & BM_CSU_CSL0_SSW_S2)
-#endif
+#define BF_CSU_CSL0_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SSW_S2) & BM_CSU_CSL0_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -355,15 +340,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL0_NUW_S2.
 
 //! @brief Get value of CSU_CSL0_NUW_S2 from a register value.
-#define BG_CSU_CSL0_NUW_S2(r)   (((r) & BM_CSU_CSL0_NUW_S2) >> BP_CSU_CSL0_NUW_S2)
+#define BG_CSU_CSL0_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NUW_S2) >> BP_CSU_CSL0_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NUW_S2.
-#define BF_CSU_CSL0_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_NUW_S2) & BM_CSU_CSL0_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NUW_S2.
-#define BF_CSU_CSL0_NUW_S2(v)   (((v) << BP_CSU_CSL0_NUW_S2) & BM_CSU_CSL0_NUW_S2)
-#endif
+#define BF_CSU_CSL0_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NUW_S2) & BM_CSU_CSL0_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -384,15 +364,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL0_NSW_S2.
 
 //! @brief Get value of CSU_CSL0_NSW_S2 from a register value.
-#define BG_CSU_CSL0_NSW_S2(r)   (((r) & BM_CSU_CSL0_NSW_S2) >> BP_CSU_CSL0_NSW_S2)
+#define BG_CSU_CSL0_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NSW_S2) >> BP_CSU_CSL0_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NSW_S2.
-#define BF_CSU_CSL0_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_NSW_S2) & BM_CSU_CSL0_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NSW_S2.
-#define BF_CSU_CSL0_NSW_S2(v)   (((v) << BP_CSU_CSL0_NSW_S2) & BM_CSU_CSL0_NSW_S2)
-#endif
+#define BF_CSU_CSL0_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NSW_S2) & BM_CSU_CSL0_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -413,15 +388,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL0_LOCK_S2.
 
 //! @brief Get value of CSU_CSL0_LOCK_S2 from a register value.
-#define BG_CSU_CSL0_LOCK_S2(r)   (((r) & BM_CSU_CSL0_LOCK_S2) >> BP_CSU_CSL0_LOCK_S2)
+#define BG_CSU_CSL0_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_LOCK_S2) >> BP_CSU_CSL0_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_LOCK_S2.
-#define BF_CSU_CSL0_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL0_LOCK_S2) & BM_CSU_CSL0_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL0_LOCK_S2.
-#define BF_CSU_CSL0_LOCK_S2(v)   (((v) << BP_CSU_CSL0_LOCK_S2) & BM_CSU_CSL0_LOCK_S2)
-#endif
+#define BF_CSU_CSL0_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_LOCK_S2) & BM_CSU_CSL0_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -442,15 +412,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL0_SUR_S1.
 
 //! @brief Get value of CSU_CSL0_SUR_S1 from a register value.
-#define BG_CSU_CSL0_SUR_S1(r)   (((r) & BM_CSU_CSL0_SUR_S1) >> BP_CSU_CSL0_SUR_S1)
+#define BG_CSU_CSL0_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SUR_S1) >> BP_CSU_CSL0_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SUR_S1.
-#define BF_CSU_CSL0_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_SUR_S1) & BM_CSU_CSL0_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SUR_S1.
-#define BF_CSU_CSL0_SUR_S1(v)   (((v) << BP_CSU_CSL0_SUR_S1) & BM_CSU_CSL0_SUR_S1)
-#endif
+#define BF_CSU_CSL0_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SUR_S1) & BM_CSU_CSL0_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -471,15 +436,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL0_SSR_S1.
 
 //! @brief Get value of CSU_CSL0_SSR_S1 from a register value.
-#define BG_CSU_CSL0_SSR_S1(r)   (((r) & BM_CSU_CSL0_SSR_S1) >> BP_CSU_CSL0_SSR_S1)
+#define BG_CSU_CSL0_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SSR_S1) >> BP_CSU_CSL0_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SSR_S1.
-#define BF_CSU_CSL0_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_SSR_S1) & BM_CSU_CSL0_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SSR_S1.
-#define BF_CSU_CSL0_SSR_S1(v)   (((v) << BP_CSU_CSL0_SSR_S1) & BM_CSU_CSL0_SSR_S1)
-#endif
+#define BF_CSU_CSL0_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SSR_S1) & BM_CSU_CSL0_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -500,15 +460,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL0_NUR_S1.
 
 //! @brief Get value of CSU_CSL0_NUR_S1 from a register value.
-#define BG_CSU_CSL0_NUR_S1(r)   (((r) & BM_CSU_CSL0_NUR_S1) >> BP_CSU_CSL0_NUR_S1)
+#define BG_CSU_CSL0_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NUR_S1) >> BP_CSU_CSL0_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NUR_S1.
-#define BF_CSU_CSL0_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_NUR_S1) & BM_CSU_CSL0_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NUR_S1.
-#define BF_CSU_CSL0_NUR_S1(v)   (((v) << BP_CSU_CSL0_NUR_S1) & BM_CSU_CSL0_NUR_S1)
-#endif
+#define BF_CSU_CSL0_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NUR_S1) & BM_CSU_CSL0_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -529,15 +484,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL0_NSR_S1.
 
 //! @brief Get value of CSU_CSL0_NSR_S1 from a register value.
-#define BG_CSU_CSL0_NSR_S1(r)   (((r) & BM_CSU_CSL0_NSR_S1) >> BP_CSU_CSL0_NSR_S1)
+#define BG_CSU_CSL0_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NSR_S1) >> BP_CSU_CSL0_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NSR_S1.
-#define BF_CSU_CSL0_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_NSR_S1) & BM_CSU_CSL0_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NSR_S1.
-#define BF_CSU_CSL0_NSR_S1(v)   (((v) << BP_CSU_CSL0_NSR_S1) & BM_CSU_CSL0_NSR_S1)
-#endif
+#define BF_CSU_CSL0_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NSR_S1) & BM_CSU_CSL0_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -558,15 +508,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL0_SUW_S1.
 
 //! @brief Get value of CSU_CSL0_SUW_S1 from a register value.
-#define BG_CSU_CSL0_SUW_S1(r)   (((r) & BM_CSU_CSL0_SUW_S1) >> BP_CSU_CSL0_SUW_S1)
+#define BG_CSU_CSL0_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SUW_S1) >> BP_CSU_CSL0_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SUW_S1.
-#define BF_CSU_CSL0_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_SUW_S1) & BM_CSU_CSL0_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SUW_S1.
-#define BF_CSU_CSL0_SUW_S1(v)   (((v) << BP_CSU_CSL0_SUW_S1) & BM_CSU_CSL0_SUW_S1)
-#endif
+#define BF_CSU_CSL0_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SUW_S1) & BM_CSU_CSL0_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -587,15 +532,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL0_SSW_S1.
 
 //! @brief Get value of CSU_CSL0_SSW_S1 from a register value.
-#define BG_CSU_CSL0_SSW_S1(r)   (((r) & BM_CSU_CSL0_SSW_S1) >> BP_CSU_CSL0_SSW_S1)
+#define BG_CSU_CSL0_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_SSW_S1) >> BP_CSU_CSL0_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_SSW_S1.
-#define BF_CSU_CSL0_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_SSW_S1) & BM_CSU_CSL0_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_SSW_S1.
-#define BF_CSU_CSL0_SSW_S1(v)   (((v) << BP_CSU_CSL0_SSW_S1) & BM_CSU_CSL0_SSW_S1)
-#endif
+#define BF_CSU_CSL0_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_SSW_S1) & BM_CSU_CSL0_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -616,15 +556,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL0_NUW_S1.
 
 //! @brief Get value of CSU_CSL0_NUW_S1 from a register value.
-#define BG_CSU_CSL0_NUW_S1(r)   (((r) & BM_CSU_CSL0_NUW_S1) >> BP_CSU_CSL0_NUW_S1)
+#define BG_CSU_CSL0_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NUW_S1) >> BP_CSU_CSL0_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NUW_S1.
-#define BF_CSU_CSL0_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_NUW_S1) & BM_CSU_CSL0_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NUW_S1.
-#define BF_CSU_CSL0_NUW_S1(v)   (((v) << BP_CSU_CSL0_NUW_S1) & BM_CSU_CSL0_NUW_S1)
-#endif
+#define BF_CSU_CSL0_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NUW_S1) & BM_CSU_CSL0_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -645,15 +580,10 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL0_NSW_S1.
 
 //! @brief Get value of CSU_CSL0_NSW_S1 from a register value.
-#define BG_CSU_CSL0_NSW_S1(r)   (((r) & BM_CSU_CSL0_NSW_S1) >> BP_CSU_CSL0_NSW_S1)
+#define BG_CSU_CSL0_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_NSW_S1) >> BP_CSU_CSL0_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_NSW_S1.
-#define BF_CSU_CSL0_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_NSW_S1) & BM_CSU_CSL0_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_NSW_S1.
-#define BF_CSU_CSL0_NSW_S1(v)   (((v) << BP_CSU_CSL0_NSW_S1) & BM_CSU_CSL0_NSW_S1)
-#endif
+#define BF_CSU_CSL0_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_NSW_S1) & BM_CSU_CSL0_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -674,21 +604,20 @@ typedef union _hw_csu_csl0
 #define BM_CSU_CSL0_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL0_LOCK_S1.
 
 //! @brief Get value of CSU_CSL0_LOCK_S1 from a register value.
-#define BG_CSU_CSL0_LOCK_S1(r)   (((r) & BM_CSU_CSL0_LOCK_S1) >> BP_CSU_CSL0_LOCK_S1)
+#define BG_CSU_CSL0_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL0_LOCK_S1) >> BP_CSU_CSL0_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL0_LOCK_S1.
-#define BF_CSU_CSL0_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL0_LOCK_S1) & BM_CSU_CSL0_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL0_LOCK_S1.
-#define BF_CSU_CSL0_LOCK_S1(v)   (((v) << BP_CSU_CSL0_LOCK_S1) & BM_CSU_CSL0_LOCK_S1)
-#endif
+#define BF_CSU_CSL0_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL0_LOCK_S1) & BM_CSU_CSL0_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL0_LOCK_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_LOCK_S1) | BF_CSU_CSL0_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL1 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -703,11 +632,11 @@ typedef union _hw_csu_csl0
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -719,7 +648,7 @@ typedef union _hw_csu_csl0
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -801,15 +730,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL1_SUR_S2.
 
 //! @brief Get value of CSU_CSL1_SUR_S2 from a register value.
-#define BG_CSU_CSL1_SUR_S2(r)   (((r) & BM_CSU_CSL1_SUR_S2) >> BP_CSU_CSL1_SUR_S2)
+#define BG_CSU_CSL1_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SUR_S2) >> BP_CSU_CSL1_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SUR_S2.
-#define BF_CSU_CSL1_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_SUR_S2) & BM_CSU_CSL1_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SUR_S2.
-#define BF_CSU_CSL1_SUR_S2(v)   (((v) << BP_CSU_CSL1_SUR_S2) & BM_CSU_CSL1_SUR_S2)
-#endif
+#define BF_CSU_CSL1_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SUR_S2) & BM_CSU_CSL1_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -830,15 +754,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL1_SSR_S2.
 
 //! @brief Get value of CSU_CSL1_SSR_S2 from a register value.
-#define BG_CSU_CSL1_SSR_S2(r)   (((r) & BM_CSU_CSL1_SSR_S2) >> BP_CSU_CSL1_SSR_S2)
+#define BG_CSU_CSL1_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SSR_S2) >> BP_CSU_CSL1_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SSR_S2.
-#define BF_CSU_CSL1_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_SSR_S2) & BM_CSU_CSL1_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SSR_S2.
-#define BF_CSU_CSL1_SSR_S2(v)   (((v) << BP_CSU_CSL1_SSR_S2) & BM_CSU_CSL1_SSR_S2)
-#endif
+#define BF_CSU_CSL1_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SSR_S2) & BM_CSU_CSL1_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -859,15 +778,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL1_NUR_S2.
 
 //! @brief Get value of CSU_CSL1_NUR_S2 from a register value.
-#define BG_CSU_CSL1_NUR_S2(r)   (((r) & BM_CSU_CSL1_NUR_S2) >> BP_CSU_CSL1_NUR_S2)
+#define BG_CSU_CSL1_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NUR_S2) >> BP_CSU_CSL1_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NUR_S2.
-#define BF_CSU_CSL1_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_NUR_S2) & BM_CSU_CSL1_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NUR_S2.
-#define BF_CSU_CSL1_NUR_S2(v)   (((v) << BP_CSU_CSL1_NUR_S2) & BM_CSU_CSL1_NUR_S2)
-#endif
+#define BF_CSU_CSL1_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NUR_S2) & BM_CSU_CSL1_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -888,15 +802,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL1_NSR_S2.
 
 //! @brief Get value of CSU_CSL1_NSR_S2 from a register value.
-#define BG_CSU_CSL1_NSR_S2(r)   (((r) & BM_CSU_CSL1_NSR_S2) >> BP_CSU_CSL1_NSR_S2)
+#define BG_CSU_CSL1_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NSR_S2) >> BP_CSU_CSL1_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NSR_S2.
-#define BF_CSU_CSL1_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_NSR_S2) & BM_CSU_CSL1_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NSR_S2.
-#define BF_CSU_CSL1_NSR_S2(v)   (((v) << BP_CSU_CSL1_NSR_S2) & BM_CSU_CSL1_NSR_S2)
-#endif
+#define BF_CSU_CSL1_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NSR_S2) & BM_CSU_CSL1_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -917,15 +826,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL1_SUW_S2.
 
 //! @brief Get value of CSU_CSL1_SUW_S2 from a register value.
-#define BG_CSU_CSL1_SUW_S2(r)   (((r) & BM_CSU_CSL1_SUW_S2) >> BP_CSU_CSL1_SUW_S2)
+#define BG_CSU_CSL1_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SUW_S2) >> BP_CSU_CSL1_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SUW_S2.
-#define BF_CSU_CSL1_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_SUW_S2) & BM_CSU_CSL1_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SUW_S2.
-#define BF_CSU_CSL1_SUW_S2(v)   (((v) << BP_CSU_CSL1_SUW_S2) & BM_CSU_CSL1_SUW_S2)
-#endif
+#define BF_CSU_CSL1_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SUW_S2) & BM_CSU_CSL1_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -946,15 +850,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL1_SSW_S2.
 
 //! @brief Get value of CSU_CSL1_SSW_S2 from a register value.
-#define BG_CSU_CSL1_SSW_S2(r)   (((r) & BM_CSU_CSL1_SSW_S2) >> BP_CSU_CSL1_SSW_S2)
+#define BG_CSU_CSL1_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SSW_S2) >> BP_CSU_CSL1_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SSW_S2.
-#define BF_CSU_CSL1_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_SSW_S2) & BM_CSU_CSL1_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SSW_S2.
-#define BF_CSU_CSL1_SSW_S2(v)   (((v) << BP_CSU_CSL1_SSW_S2) & BM_CSU_CSL1_SSW_S2)
-#endif
+#define BF_CSU_CSL1_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SSW_S2) & BM_CSU_CSL1_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -975,15 +874,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL1_NUW_S2.
 
 //! @brief Get value of CSU_CSL1_NUW_S2 from a register value.
-#define BG_CSU_CSL1_NUW_S2(r)   (((r) & BM_CSU_CSL1_NUW_S2) >> BP_CSU_CSL1_NUW_S2)
+#define BG_CSU_CSL1_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NUW_S2) >> BP_CSU_CSL1_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NUW_S2.
-#define BF_CSU_CSL1_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_NUW_S2) & BM_CSU_CSL1_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NUW_S2.
-#define BF_CSU_CSL1_NUW_S2(v)   (((v) << BP_CSU_CSL1_NUW_S2) & BM_CSU_CSL1_NUW_S2)
-#endif
+#define BF_CSU_CSL1_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NUW_S2) & BM_CSU_CSL1_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -1004,15 +898,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL1_NSW_S2.
 
 //! @brief Get value of CSU_CSL1_NSW_S2 from a register value.
-#define BG_CSU_CSL1_NSW_S2(r)   (((r) & BM_CSU_CSL1_NSW_S2) >> BP_CSU_CSL1_NSW_S2)
+#define BG_CSU_CSL1_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NSW_S2) >> BP_CSU_CSL1_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NSW_S2.
-#define BF_CSU_CSL1_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_NSW_S2) & BM_CSU_CSL1_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NSW_S2.
-#define BF_CSU_CSL1_NSW_S2(v)   (((v) << BP_CSU_CSL1_NSW_S2) & BM_CSU_CSL1_NSW_S2)
-#endif
+#define BF_CSU_CSL1_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NSW_S2) & BM_CSU_CSL1_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -1033,15 +922,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL1_LOCK_S2.
 
 //! @brief Get value of CSU_CSL1_LOCK_S2 from a register value.
-#define BG_CSU_CSL1_LOCK_S2(r)   (((r) & BM_CSU_CSL1_LOCK_S2) >> BP_CSU_CSL1_LOCK_S2)
+#define BG_CSU_CSL1_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_LOCK_S2) >> BP_CSU_CSL1_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_LOCK_S2.
-#define BF_CSU_CSL1_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL1_LOCK_S2) & BM_CSU_CSL1_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL1_LOCK_S2.
-#define BF_CSU_CSL1_LOCK_S2(v)   (((v) << BP_CSU_CSL1_LOCK_S2) & BM_CSU_CSL1_LOCK_S2)
-#endif
+#define BF_CSU_CSL1_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_LOCK_S2) & BM_CSU_CSL1_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -1062,15 +946,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL1_SUR_S1.
 
 //! @brief Get value of CSU_CSL1_SUR_S1 from a register value.
-#define BG_CSU_CSL1_SUR_S1(r)   (((r) & BM_CSU_CSL1_SUR_S1) >> BP_CSU_CSL1_SUR_S1)
+#define BG_CSU_CSL1_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SUR_S1) >> BP_CSU_CSL1_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SUR_S1.
-#define BF_CSU_CSL1_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_SUR_S1) & BM_CSU_CSL1_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SUR_S1.
-#define BF_CSU_CSL1_SUR_S1(v)   (((v) << BP_CSU_CSL1_SUR_S1) & BM_CSU_CSL1_SUR_S1)
-#endif
+#define BF_CSU_CSL1_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SUR_S1) & BM_CSU_CSL1_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -1091,15 +970,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL1_SSR_S1.
 
 //! @brief Get value of CSU_CSL1_SSR_S1 from a register value.
-#define BG_CSU_CSL1_SSR_S1(r)   (((r) & BM_CSU_CSL1_SSR_S1) >> BP_CSU_CSL1_SSR_S1)
+#define BG_CSU_CSL1_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SSR_S1) >> BP_CSU_CSL1_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SSR_S1.
-#define BF_CSU_CSL1_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_SSR_S1) & BM_CSU_CSL1_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SSR_S1.
-#define BF_CSU_CSL1_SSR_S1(v)   (((v) << BP_CSU_CSL1_SSR_S1) & BM_CSU_CSL1_SSR_S1)
-#endif
+#define BF_CSU_CSL1_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SSR_S1) & BM_CSU_CSL1_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -1120,15 +994,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL1_NUR_S1.
 
 //! @brief Get value of CSU_CSL1_NUR_S1 from a register value.
-#define BG_CSU_CSL1_NUR_S1(r)   (((r) & BM_CSU_CSL1_NUR_S1) >> BP_CSU_CSL1_NUR_S1)
+#define BG_CSU_CSL1_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NUR_S1) >> BP_CSU_CSL1_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NUR_S1.
-#define BF_CSU_CSL1_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_NUR_S1) & BM_CSU_CSL1_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NUR_S1.
-#define BF_CSU_CSL1_NUR_S1(v)   (((v) << BP_CSU_CSL1_NUR_S1) & BM_CSU_CSL1_NUR_S1)
-#endif
+#define BF_CSU_CSL1_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NUR_S1) & BM_CSU_CSL1_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -1149,15 +1018,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL1_NSR_S1.
 
 //! @brief Get value of CSU_CSL1_NSR_S1 from a register value.
-#define BG_CSU_CSL1_NSR_S1(r)   (((r) & BM_CSU_CSL1_NSR_S1) >> BP_CSU_CSL1_NSR_S1)
+#define BG_CSU_CSL1_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NSR_S1) >> BP_CSU_CSL1_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NSR_S1.
-#define BF_CSU_CSL1_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_NSR_S1) & BM_CSU_CSL1_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NSR_S1.
-#define BF_CSU_CSL1_NSR_S1(v)   (((v) << BP_CSU_CSL1_NSR_S1) & BM_CSU_CSL1_NSR_S1)
-#endif
+#define BF_CSU_CSL1_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NSR_S1) & BM_CSU_CSL1_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -1178,15 +1042,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL1_SUW_S1.
 
 //! @brief Get value of CSU_CSL1_SUW_S1 from a register value.
-#define BG_CSU_CSL1_SUW_S1(r)   (((r) & BM_CSU_CSL1_SUW_S1) >> BP_CSU_CSL1_SUW_S1)
+#define BG_CSU_CSL1_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SUW_S1) >> BP_CSU_CSL1_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SUW_S1.
-#define BF_CSU_CSL1_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_SUW_S1) & BM_CSU_CSL1_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SUW_S1.
-#define BF_CSU_CSL1_SUW_S1(v)   (((v) << BP_CSU_CSL1_SUW_S1) & BM_CSU_CSL1_SUW_S1)
-#endif
+#define BF_CSU_CSL1_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SUW_S1) & BM_CSU_CSL1_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -1207,15 +1066,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL1_SSW_S1.
 
 //! @brief Get value of CSU_CSL1_SSW_S1 from a register value.
-#define BG_CSU_CSL1_SSW_S1(r)   (((r) & BM_CSU_CSL1_SSW_S1) >> BP_CSU_CSL1_SSW_S1)
+#define BG_CSU_CSL1_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_SSW_S1) >> BP_CSU_CSL1_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_SSW_S1.
-#define BF_CSU_CSL1_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_SSW_S1) & BM_CSU_CSL1_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_SSW_S1.
-#define BF_CSU_CSL1_SSW_S1(v)   (((v) << BP_CSU_CSL1_SSW_S1) & BM_CSU_CSL1_SSW_S1)
-#endif
+#define BF_CSU_CSL1_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_SSW_S1) & BM_CSU_CSL1_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -1236,15 +1090,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL1_NUW_S1.
 
 //! @brief Get value of CSU_CSL1_NUW_S1 from a register value.
-#define BG_CSU_CSL1_NUW_S1(r)   (((r) & BM_CSU_CSL1_NUW_S1) >> BP_CSU_CSL1_NUW_S1)
+#define BG_CSU_CSL1_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NUW_S1) >> BP_CSU_CSL1_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NUW_S1.
-#define BF_CSU_CSL1_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_NUW_S1) & BM_CSU_CSL1_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NUW_S1.
-#define BF_CSU_CSL1_NUW_S1(v)   (((v) << BP_CSU_CSL1_NUW_S1) & BM_CSU_CSL1_NUW_S1)
-#endif
+#define BF_CSU_CSL1_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NUW_S1) & BM_CSU_CSL1_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -1265,15 +1114,10 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL1_NSW_S1.
 
 //! @brief Get value of CSU_CSL1_NSW_S1 from a register value.
-#define BG_CSU_CSL1_NSW_S1(r)   (((r) & BM_CSU_CSL1_NSW_S1) >> BP_CSU_CSL1_NSW_S1)
+#define BG_CSU_CSL1_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_NSW_S1) >> BP_CSU_CSL1_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_NSW_S1.
-#define BF_CSU_CSL1_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_NSW_S1) & BM_CSU_CSL1_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_NSW_S1.
-#define BF_CSU_CSL1_NSW_S1(v)   (((v) << BP_CSU_CSL1_NSW_S1) & BM_CSU_CSL1_NSW_S1)
-#endif
+#define BF_CSU_CSL1_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_NSW_S1) & BM_CSU_CSL1_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -1294,21 +1138,20 @@ typedef union _hw_csu_csl1
 #define BM_CSU_CSL1_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL1_LOCK_S1.
 
 //! @brief Get value of CSU_CSL1_LOCK_S1 from a register value.
-#define BG_CSU_CSL1_LOCK_S1(r)   (((r) & BM_CSU_CSL1_LOCK_S1) >> BP_CSU_CSL1_LOCK_S1)
+#define BG_CSU_CSL1_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL1_LOCK_S1) >> BP_CSU_CSL1_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL1_LOCK_S1.
-#define BF_CSU_CSL1_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL1_LOCK_S1) & BM_CSU_CSL1_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL1_LOCK_S1.
-#define BF_CSU_CSL1_LOCK_S1(v)   (((v) << BP_CSU_CSL1_LOCK_S1) & BM_CSU_CSL1_LOCK_S1)
-#endif
+#define BF_CSU_CSL1_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL1_LOCK_S1) & BM_CSU_CSL1_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL1_LOCK_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_LOCK_S1) | BF_CSU_CSL1_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL2 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1323,11 +1166,11 @@ typedef union _hw_csu_csl1
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -1339,7 +1182,7 @@ typedef union _hw_csu_csl1
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -1421,15 +1264,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL2_SUR_S2.
 
 //! @brief Get value of CSU_CSL2_SUR_S2 from a register value.
-#define BG_CSU_CSL2_SUR_S2(r)   (((r) & BM_CSU_CSL2_SUR_S2) >> BP_CSU_CSL2_SUR_S2)
+#define BG_CSU_CSL2_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SUR_S2) >> BP_CSU_CSL2_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SUR_S2.
-#define BF_CSU_CSL2_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_SUR_S2) & BM_CSU_CSL2_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SUR_S2.
-#define BF_CSU_CSL2_SUR_S2(v)   (((v) << BP_CSU_CSL2_SUR_S2) & BM_CSU_CSL2_SUR_S2)
-#endif
+#define BF_CSU_CSL2_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SUR_S2) & BM_CSU_CSL2_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -1450,15 +1288,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL2_SSR_S2.
 
 //! @brief Get value of CSU_CSL2_SSR_S2 from a register value.
-#define BG_CSU_CSL2_SSR_S2(r)   (((r) & BM_CSU_CSL2_SSR_S2) >> BP_CSU_CSL2_SSR_S2)
+#define BG_CSU_CSL2_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SSR_S2) >> BP_CSU_CSL2_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SSR_S2.
-#define BF_CSU_CSL2_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_SSR_S2) & BM_CSU_CSL2_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SSR_S2.
-#define BF_CSU_CSL2_SSR_S2(v)   (((v) << BP_CSU_CSL2_SSR_S2) & BM_CSU_CSL2_SSR_S2)
-#endif
+#define BF_CSU_CSL2_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SSR_S2) & BM_CSU_CSL2_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -1479,15 +1312,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL2_NUR_S2.
 
 //! @brief Get value of CSU_CSL2_NUR_S2 from a register value.
-#define BG_CSU_CSL2_NUR_S2(r)   (((r) & BM_CSU_CSL2_NUR_S2) >> BP_CSU_CSL2_NUR_S2)
+#define BG_CSU_CSL2_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NUR_S2) >> BP_CSU_CSL2_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NUR_S2.
-#define BF_CSU_CSL2_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_NUR_S2) & BM_CSU_CSL2_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NUR_S2.
-#define BF_CSU_CSL2_NUR_S2(v)   (((v) << BP_CSU_CSL2_NUR_S2) & BM_CSU_CSL2_NUR_S2)
-#endif
+#define BF_CSU_CSL2_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NUR_S2) & BM_CSU_CSL2_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -1508,15 +1336,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL2_NSR_S2.
 
 //! @brief Get value of CSU_CSL2_NSR_S2 from a register value.
-#define BG_CSU_CSL2_NSR_S2(r)   (((r) & BM_CSU_CSL2_NSR_S2) >> BP_CSU_CSL2_NSR_S2)
+#define BG_CSU_CSL2_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NSR_S2) >> BP_CSU_CSL2_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NSR_S2.
-#define BF_CSU_CSL2_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_NSR_S2) & BM_CSU_CSL2_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NSR_S2.
-#define BF_CSU_CSL2_NSR_S2(v)   (((v) << BP_CSU_CSL2_NSR_S2) & BM_CSU_CSL2_NSR_S2)
-#endif
+#define BF_CSU_CSL2_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NSR_S2) & BM_CSU_CSL2_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -1537,15 +1360,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL2_SUW_S2.
 
 //! @brief Get value of CSU_CSL2_SUW_S2 from a register value.
-#define BG_CSU_CSL2_SUW_S2(r)   (((r) & BM_CSU_CSL2_SUW_S2) >> BP_CSU_CSL2_SUW_S2)
+#define BG_CSU_CSL2_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SUW_S2) >> BP_CSU_CSL2_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SUW_S2.
-#define BF_CSU_CSL2_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_SUW_S2) & BM_CSU_CSL2_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SUW_S2.
-#define BF_CSU_CSL2_SUW_S2(v)   (((v) << BP_CSU_CSL2_SUW_S2) & BM_CSU_CSL2_SUW_S2)
-#endif
+#define BF_CSU_CSL2_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SUW_S2) & BM_CSU_CSL2_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -1566,15 +1384,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL2_SSW_S2.
 
 //! @brief Get value of CSU_CSL2_SSW_S2 from a register value.
-#define BG_CSU_CSL2_SSW_S2(r)   (((r) & BM_CSU_CSL2_SSW_S2) >> BP_CSU_CSL2_SSW_S2)
+#define BG_CSU_CSL2_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SSW_S2) >> BP_CSU_CSL2_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SSW_S2.
-#define BF_CSU_CSL2_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_SSW_S2) & BM_CSU_CSL2_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SSW_S2.
-#define BF_CSU_CSL2_SSW_S2(v)   (((v) << BP_CSU_CSL2_SSW_S2) & BM_CSU_CSL2_SSW_S2)
-#endif
+#define BF_CSU_CSL2_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SSW_S2) & BM_CSU_CSL2_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -1595,15 +1408,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL2_NUW_S2.
 
 //! @brief Get value of CSU_CSL2_NUW_S2 from a register value.
-#define BG_CSU_CSL2_NUW_S2(r)   (((r) & BM_CSU_CSL2_NUW_S2) >> BP_CSU_CSL2_NUW_S2)
+#define BG_CSU_CSL2_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NUW_S2) >> BP_CSU_CSL2_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NUW_S2.
-#define BF_CSU_CSL2_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_NUW_S2) & BM_CSU_CSL2_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NUW_S2.
-#define BF_CSU_CSL2_NUW_S2(v)   (((v) << BP_CSU_CSL2_NUW_S2) & BM_CSU_CSL2_NUW_S2)
-#endif
+#define BF_CSU_CSL2_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NUW_S2) & BM_CSU_CSL2_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -1624,15 +1432,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL2_NSW_S2.
 
 //! @brief Get value of CSU_CSL2_NSW_S2 from a register value.
-#define BG_CSU_CSL2_NSW_S2(r)   (((r) & BM_CSU_CSL2_NSW_S2) >> BP_CSU_CSL2_NSW_S2)
+#define BG_CSU_CSL2_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NSW_S2) >> BP_CSU_CSL2_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NSW_S2.
-#define BF_CSU_CSL2_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_NSW_S2) & BM_CSU_CSL2_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NSW_S2.
-#define BF_CSU_CSL2_NSW_S2(v)   (((v) << BP_CSU_CSL2_NSW_S2) & BM_CSU_CSL2_NSW_S2)
-#endif
+#define BF_CSU_CSL2_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NSW_S2) & BM_CSU_CSL2_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -1653,15 +1456,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL2_LOCK_S2.
 
 //! @brief Get value of CSU_CSL2_LOCK_S2 from a register value.
-#define BG_CSU_CSL2_LOCK_S2(r)   (((r) & BM_CSU_CSL2_LOCK_S2) >> BP_CSU_CSL2_LOCK_S2)
+#define BG_CSU_CSL2_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_LOCK_S2) >> BP_CSU_CSL2_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_LOCK_S2.
-#define BF_CSU_CSL2_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL2_LOCK_S2) & BM_CSU_CSL2_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL2_LOCK_S2.
-#define BF_CSU_CSL2_LOCK_S2(v)   (((v) << BP_CSU_CSL2_LOCK_S2) & BM_CSU_CSL2_LOCK_S2)
-#endif
+#define BF_CSU_CSL2_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_LOCK_S2) & BM_CSU_CSL2_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -1682,15 +1480,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL2_SUR_S1.
 
 //! @brief Get value of CSU_CSL2_SUR_S1 from a register value.
-#define BG_CSU_CSL2_SUR_S1(r)   (((r) & BM_CSU_CSL2_SUR_S1) >> BP_CSU_CSL2_SUR_S1)
+#define BG_CSU_CSL2_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SUR_S1) >> BP_CSU_CSL2_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SUR_S1.
-#define BF_CSU_CSL2_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_SUR_S1) & BM_CSU_CSL2_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SUR_S1.
-#define BF_CSU_CSL2_SUR_S1(v)   (((v) << BP_CSU_CSL2_SUR_S1) & BM_CSU_CSL2_SUR_S1)
-#endif
+#define BF_CSU_CSL2_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SUR_S1) & BM_CSU_CSL2_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -1711,15 +1504,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL2_SSR_S1.
 
 //! @brief Get value of CSU_CSL2_SSR_S1 from a register value.
-#define BG_CSU_CSL2_SSR_S1(r)   (((r) & BM_CSU_CSL2_SSR_S1) >> BP_CSU_CSL2_SSR_S1)
+#define BG_CSU_CSL2_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SSR_S1) >> BP_CSU_CSL2_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SSR_S1.
-#define BF_CSU_CSL2_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_SSR_S1) & BM_CSU_CSL2_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SSR_S1.
-#define BF_CSU_CSL2_SSR_S1(v)   (((v) << BP_CSU_CSL2_SSR_S1) & BM_CSU_CSL2_SSR_S1)
-#endif
+#define BF_CSU_CSL2_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SSR_S1) & BM_CSU_CSL2_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -1740,15 +1528,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL2_NUR_S1.
 
 //! @brief Get value of CSU_CSL2_NUR_S1 from a register value.
-#define BG_CSU_CSL2_NUR_S1(r)   (((r) & BM_CSU_CSL2_NUR_S1) >> BP_CSU_CSL2_NUR_S1)
+#define BG_CSU_CSL2_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NUR_S1) >> BP_CSU_CSL2_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NUR_S1.
-#define BF_CSU_CSL2_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_NUR_S1) & BM_CSU_CSL2_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NUR_S1.
-#define BF_CSU_CSL2_NUR_S1(v)   (((v) << BP_CSU_CSL2_NUR_S1) & BM_CSU_CSL2_NUR_S1)
-#endif
+#define BF_CSU_CSL2_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NUR_S1) & BM_CSU_CSL2_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -1769,15 +1552,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL2_NSR_S1.
 
 //! @brief Get value of CSU_CSL2_NSR_S1 from a register value.
-#define BG_CSU_CSL2_NSR_S1(r)   (((r) & BM_CSU_CSL2_NSR_S1) >> BP_CSU_CSL2_NSR_S1)
+#define BG_CSU_CSL2_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NSR_S1) >> BP_CSU_CSL2_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NSR_S1.
-#define BF_CSU_CSL2_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_NSR_S1) & BM_CSU_CSL2_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NSR_S1.
-#define BF_CSU_CSL2_NSR_S1(v)   (((v) << BP_CSU_CSL2_NSR_S1) & BM_CSU_CSL2_NSR_S1)
-#endif
+#define BF_CSU_CSL2_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NSR_S1) & BM_CSU_CSL2_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -1798,15 +1576,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL2_SUW_S1.
 
 //! @brief Get value of CSU_CSL2_SUW_S1 from a register value.
-#define BG_CSU_CSL2_SUW_S1(r)   (((r) & BM_CSU_CSL2_SUW_S1) >> BP_CSU_CSL2_SUW_S1)
+#define BG_CSU_CSL2_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SUW_S1) >> BP_CSU_CSL2_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SUW_S1.
-#define BF_CSU_CSL2_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_SUW_S1) & BM_CSU_CSL2_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SUW_S1.
-#define BF_CSU_CSL2_SUW_S1(v)   (((v) << BP_CSU_CSL2_SUW_S1) & BM_CSU_CSL2_SUW_S1)
-#endif
+#define BF_CSU_CSL2_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SUW_S1) & BM_CSU_CSL2_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -1827,15 +1600,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL2_SSW_S1.
 
 //! @brief Get value of CSU_CSL2_SSW_S1 from a register value.
-#define BG_CSU_CSL2_SSW_S1(r)   (((r) & BM_CSU_CSL2_SSW_S1) >> BP_CSU_CSL2_SSW_S1)
+#define BG_CSU_CSL2_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_SSW_S1) >> BP_CSU_CSL2_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_SSW_S1.
-#define BF_CSU_CSL2_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_SSW_S1) & BM_CSU_CSL2_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_SSW_S1.
-#define BF_CSU_CSL2_SSW_S1(v)   (((v) << BP_CSU_CSL2_SSW_S1) & BM_CSU_CSL2_SSW_S1)
-#endif
+#define BF_CSU_CSL2_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_SSW_S1) & BM_CSU_CSL2_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -1856,15 +1624,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL2_NUW_S1.
 
 //! @brief Get value of CSU_CSL2_NUW_S1 from a register value.
-#define BG_CSU_CSL2_NUW_S1(r)   (((r) & BM_CSU_CSL2_NUW_S1) >> BP_CSU_CSL2_NUW_S1)
+#define BG_CSU_CSL2_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NUW_S1) >> BP_CSU_CSL2_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NUW_S1.
-#define BF_CSU_CSL2_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_NUW_S1) & BM_CSU_CSL2_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NUW_S1.
-#define BF_CSU_CSL2_NUW_S1(v)   (((v) << BP_CSU_CSL2_NUW_S1) & BM_CSU_CSL2_NUW_S1)
-#endif
+#define BF_CSU_CSL2_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NUW_S1) & BM_CSU_CSL2_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -1885,15 +1648,10 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL2_NSW_S1.
 
 //! @brief Get value of CSU_CSL2_NSW_S1 from a register value.
-#define BG_CSU_CSL2_NSW_S1(r)   (((r) & BM_CSU_CSL2_NSW_S1) >> BP_CSU_CSL2_NSW_S1)
+#define BG_CSU_CSL2_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_NSW_S1) >> BP_CSU_CSL2_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_NSW_S1.
-#define BF_CSU_CSL2_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_NSW_S1) & BM_CSU_CSL2_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_NSW_S1.
-#define BF_CSU_CSL2_NSW_S1(v)   (((v) << BP_CSU_CSL2_NSW_S1) & BM_CSU_CSL2_NSW_S1)
-#endif
+#define BF_CSU_CSL2_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_NSW_S1) & BM_CSU_CSL2_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -1914,21 +1672,20 @@ typedef union _hw_csu_csl2
 #define BM_CSU_CSL2_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL2_LOCK_S1.
 
 //! @brief Get value of CSU_CSL2_LOCK_S1 from a register value.
-#define BG_CSU_CSL2_LOCK_S1(r)   (((r) & BM_CSU_CSL2_LOCK_S1) >> BP_CSU_CSL2_LOCK_S1)
+#define BG_CSU_CSL2_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL2_LOCK_S1) >> BP_CSU_CSL2_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL2_LOCK_S1.
-#define BF_CSU_CSL2_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL2_LOCK_S1) & BM_CSU_CSL2_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL2_LOCK_S1.
-#define BF_CSU_CSL2_LOCK_S1(v)   (((v) << BP_CSU_CSL2_LOCK_S1) & BM_CSU_CSL2_LOCK_S1)
-#endif
+#define BF_CSU_CSL2_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL2_LOCK_S1) & BM_CSU_CSL2_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL2_LOCK_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_LOCK_S1) | BF_CSU_CSL2_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL3 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1943,11 +1700,11 @@ typedef union _hw_csu_csl2
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -1959,7 +1716,7 @@ typedef union _hw_csu_csl2
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -2041,15 +1798,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL3_SUR_S2.
 
 //! @brief Get value of CSU_CSL3_SUR_S2 from a register value.
-#define BG_CSU_CSL3_SUR_S2(r)   (((r) & BM_CSU_CSL3_SUR_S2) >> BP_CSU_CSL3_SUR_S2)
+#define BG_CSU_CSL3_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SUR_S2) >> BP_CSU_CSL3_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SUR_S2.
-#define BF_CSU_CSL3_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_SUR_S2) & BM_CSU_CSL3_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SUR_S2.
-#define BF_CSU_CSL3_SUR_S2(v)   (((v) << BP_CSU_CSL3_SUR_S2) & BM_CSU_CSL3_SUR_S2)
-#endif
+#define BF_CSU_CSL3_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SUR_S2) & BM_CSU_CSL3_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -2070,15 +1822,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL3_SSR_S2.
 
 //! @brief Get value of CSU_CSL3_SSR_S2 from a register value.
-#define BG_CSU_CSL3_SSR_S2(r)   (((r) & BM_CSU_CSL3_SSR_S2) >> BP_CSU_CSL3_SSR_S2)
+#define BG_CSU_CSL3_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SSR_S2) >> BP_CSU_CSL3_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SSR_S2.
-#define BF_CSU_CSL3_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_SSR_S2) & BM_CSU_CSL3_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SSR_S2.
-#define BF_CSU_CSL3_SSR_S2(v)   (((v) << BP_CSU_CSL3_SSR_S2) & BM_CSU_CSL3_SSR_S2)
-#endif
+#define BF_CSU_CSL3_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SSR_S2) & BM_CSU_CSL3_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -2099,15 +1846,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL3_NUR_S2.
 
 //! @brief Get value of CSU_CSL3_NUR_S2 from a register value.
-#define BG_CSU_CSL3_NUR_S2(r)   (((r) & BM_CSU_CSL3_NUR_S2) >> BP_CSU_CSL3_NUR_S2)
+#define BG_CSU_CSL3_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NUR_S2) >> BP_CSU_CSL3_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NUR_S2.
-#define BF_CSU_CSL3_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_NUR_S2) & BM_CSU_CSL3_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NUR_S2.
-#define BF_CSU_CSL3_NUR_S2(v)   (((v) << BP_CSU_CSL3_NUR_S2) & BM_CSU_CSL3_NUR_S2)
-#endif
+#define BF_CSU_CSL3_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NUR_S2) & BM_CSU_CSL3_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -2128,15 +1870,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL3_NSR_S2.
 
 //! @brief Get value of CSU_CSL3_NSR_S2 from a register value.
-#define BG_CSU_CSL3_NSR_S2(r)   (((r) & BM_CSU_CSL3_NSR_S2) >> BP_CSU_CSL3_NSR_S2)
+#define BG_CSU_CSL3_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NSR_S2) >> BP_CSU_CSL3_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NSR_S2.
-#define BF_CSU_CSL3_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_NSR_S2) & BM_CSU_CSL3_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NSR_S2.
-#define BF_CSU_CSL3_NSR_S2(v)   (((v) << BP_CSU_CSL3_NSR_S2) & BM_CSU_CSL3_NSR_S2)
-#endif
+#define BF_CSU_CSL3_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NSR_S2) & BM_CSU_CSL3_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -2157,15 +1894,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL3_SUW_S2.
 
 //! @brief Get value of CSU_CSL3_SUW_S2 from a register value.
-#define BG_CSU_CSL3_SUW_S2(r)   (((r) & BM_CSU_CSL3_SUW_S2) >> BP_CSU_CSL3_SUW_S2)
+#define BG_CSU_CSL3_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SUW_S2) >> BP_CSU_CSL3_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SUW_S2.
-#define BF_CSU_CSL3_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_SUW_S2) & BM_CSU_CSL3_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SUW_S2.
-#define BF_CSU_CSL3_SUW_S2(v)   (((v) << BP_CSU_CSL3_SUW_S2) & BM_CSU_CSL3_SUW_S2)
-#endif
+#define BF_CSU_CSL3_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SUW_S2) & BM_CSU_CSL3_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -2186,15 +1918,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL3_SSW_S2.
 
 //! @brief Get value of CSU_CSL3_SSW_S2 from a register value.
-#define BG_CSU_CSL3_SSW_S2(r)   (((r) & BM_CSU_CSL3_SSW_S2) >> BP_CSU_CSL3_SSW_S2)
+#define BG_CSU_CSL3_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SSW_S2) >> BP_CSU_CSL3_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SSW_S2.
-#define BF_CSU_CSL3_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_SSW_S2) & BM_CSU_CSL3_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SSW_S2.
-#define BF_CSU_CSL3_SSW_S2(v)   (((v) << BP_CSU_CSL3_SSW_S2) & BM_CSU_CSL3_SSW_S2)
-#endif
+#define BF_CSU_CSL3_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SSW_S2) & BM_CSU_CSL3_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -2215,15 +1942,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL3_NUW_S2.
 
 //! @brief Get value of CSU_CSL3_NUW_S2 from a register value.
-#define BG_CSU_CSL3_NUW_S2(r)   (((r) & BM_CSU_CSL3_NUW_S2) >> BP_CSU_CSL3_NUW_S2)
+#define BG_CSU_CSL3_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NUW_S2) >> BP_CSU_CSL3_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NUW_S2.
-#define BF_CSU_CSL3_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_NUW_S2) & BM_CSU_CSL3_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NUW_S2.
-#define BF_CSU_CSL3_NUW_S2(v)   (((v) << BP_CSU_CSL3_NUW_S2) & BM_CSU_CSL3_NUW_S2)
-#endif
+#define BF_CSU_CSL3_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NUW_S2) & BM_CSU_CSL3_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -2244,15 +1966,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL3_NSW_S2.
 
 //! @brief Get value of CSU_CSL3_NSW_S2 from a register value.
-#define BG_CSU_CSL3_NSW_S2(r)   (((r) & BM_CSU_CSL3_NSW_S2) >> BP_CSU_CSL3_NSW_S2)
+#define BG_CSU_CSL3_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NSW_S2) >> BP_CSU_CSL3_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NSW_S2.
-#define BF_CSU_CSL3_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_NSW_S2) & BM_CSU_CSL3_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NSW_S2.
-#define BF_CSU_CSL3_NSW_S2(v)   (((v) << BP_CSU_CSL3_NSW_S2) & BM_CSU_CSL3_NSW_S2)
-#endif
+#define BF_CSU_CSL3_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NSW_S2) & BM_CSU_CSL3_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -2273,15 +1990,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL3_LOCK_S2.
 
 //! @brief Get value of CSU_CSL3_LOCK_S2 from a register value.
-#define BG_CSU_CSL3_LOCK_S2(r)   (((r) & BM_CSU_CSL3_LOCK_S2) >> BP_CSU_CSL3_LOCK_S2)
+#define BG_CSU_CSL3_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_LOCK_S2) >> BP_CSU_CSL3_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_LOCK_S2.
-#define BF_CSU_CSL3_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL3_LOCK_S2) & BM_CSU_CSL3_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL3_LOCK_S2.
-#define BF_CSU_CSL3_LOCK_S2(v)   (((v) << BP_CSU_CSL3_LOCK_S2) & BM_CSU_CSL3_LOCK_S2)
-#endif
+#define BF_CSU_CSL3_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_LOCK_S2) & BM_CSU_CSL3_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -2302,15 +2014,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL3_SUR_S1.
 
 //! @brief Get value of CSU_CSL3_SUR_S1 from a register value.
-#define BG_CSU_CSL3_SUR_S1(r)   (((r) & BM_CSU_CSL3_SUR_S1) >> BP_CSU_CSL3_SUR_S1)
+#define BG_CSU_CSL3_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SUR_S1) >> BP_CSU_CSL3_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SUR_S1.
-#define BF_CSU_CSL3_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_SUR_S1) & BM_CSU_CSL3_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SUR_S1.
-#define BF_CSU_CSL3_SUR_S1(v)   (((v) << BP_CSU_CSL3_SUR_S1) & BM_CSU_CSL3_SUR_S1)
-#endif
+#define BF_CSU_CSL3_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SUR_S1) & BM_CSU_CSL3_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -2331,15 +2038,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL3_SSR_S1.
 
 //! @brief Get value of CSU_CSL3_SSR_S1 from a register value.
-#define BG_CSU_CSL3_SSR_S1(r)   (((r) & BM_CSU_CSL3_SSR_S1) >> BP_CSU_CSL3_SSR_S1)
+#define BG_CSU_CSL3_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SSR_S1) >> BP_CSU_CSL3_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SSR_S1.
-#define BF_CSU_CSL3_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_SSR_S1) & BM_CSU_CSL3_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SSR_S1.
-#define BF_CSU_CSL3_SSR_S1(v)   (((v) << BP_CSU_CSL3_SSR_S1) & BM_CSU_CSL3_SSR_S1)
-#endif
+#define BF_CSU_CSL3_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SSR_S1) & BM_CSU_CSL3_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -2360,15 +2062,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL3_NUR_S1.
 
 //! @brief Get value of CSU_CSL3_NUR_S1 from a register value.
-#define BG_CSU_CSL3_NUR_S1(r)   (((r) & BM_CSU_CSL3_NUR_S1) >> BP_CSU_CSL3_NUR_S1)
+#define BG_CSU_CSL3_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NUR_S1) >> BP_CSU_CSL3_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NUR_S1.
-#define BF_CSU_CSL3_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_NUR_S1) & BM_CSU_CSL3_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NUR_S1.
-#define BF_CSU_CSL3_NUR_S1(v)   (((v) << BP_CSU_CSL3_NUR_S1) & BM_CSU_CSL3_NUR_S1)
-#endif
+#define BF_CSU_CSL3_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NUR_S1) & BM_CSU_CSL3_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -2389,15 +2086,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL3_NSR_S1.
 
 //! @brief Get value of CSU_CSL3_NSR_S1 from a register value.
-#define BG_CSU_CSL3_NSR_S1(r)   (((r) & BM_CSU_CSL3_NSR_S1) >> BP_CSU_CSL3_NSR_S1)
+#define BG_CSU_CSL3_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NSR_S1) >> BP_CSU_CSL3_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NSR_S1.
-#define BF_CSU_CSL3_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_NSR_S1) & BM_CSU_CSL3_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NSR_S1.
-#define BF_CSU_CSL3_NSR_S1(v)   (((v) << BP_CSU_CSL3_NSR_S1) & BM_CSU_CSL3_NSR_S1)
-#endif
+#define BF_CSU_CSL3_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NSR_S1) & BM_CSU_CSL3_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -2418,15 +2110,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL3_SUW_S1.
 
 //! @brief Get value of CSU_CSL3_SUW_S1 from a register value.
-#define BG_CSU_CSL3_SUW_S1(r)   (((r) & BM_CSU_CSL3_SUW_S1) >> BP_CSU_CSL3_SUW_S1)
+#define BG_CSU_CSL3_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SUW_S1) >> BP_CSU_CSL3_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SUW_S1.
-#define BF_CSU_CSL3_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_SUW_S1) & BM_CSU_CSL3_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SUW_S1.
-#define BF_CSU_CSL3_SUW_S1(v)   (((v) << BP_CSU_CSL3_SUW_S1) & BM_CSU_CSL3_SUW_S1)
-#endif
+#define BF_CSU_CSL3_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SUW_S1) & BM_CSU_CSL3_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -2447,15 +2134,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL3_SSW_S1.
 
 //! @brief Get value of CSU_CSL3_SSW_S1 from a register value.
-#define BG_CSU_CSL3_SSW_S1(r)   (((r) & BM_CSU_CSL3_SSW_S1) >> BP_CSU_CSL3_SSW_S1)
+#define BG_CSU_CSL3_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_SSW_S1) >> BP_CSU_CSL3_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_SSW_S1.
-#define BF_CSU_CSL3_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_SSW_S1) & BM_CSU_CSL3_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_SSW_S1.
-#define BF_CSU_CSL3_SSW_S1(v)   (((v) << BP_CSU_CSL3_SSW_S1) & BM_CSU_CSL3_SSW_S1)
-#endif
+#define BF_CSU_CSL3_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_SSW_S1) & BM_CSU_CSL3_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -2476,15 +2158,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL3_NUW_S1.
 
 //! @brief Get value of CSU_CSL3_NUW_S1 from a register value.
-#define BG_CSU_CSL3_NUW_S1(r)   (((r) & BM_CSU_CSL3_NUW_S1) >> BP_CSU_CSL3_NUW_S1)
+#define BG_CSU_CSL3_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NUW_S1) >> BP_CSU_CSL3_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NUW_S1.
-#define BF_CSU_CSL3_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_NUW_S1) & BM_CSU_CSL3_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NUW_S1.
-#define BF_CSU_CSL3_NUW_S1(v)   (((v) << BP_CSU_CSL3_NUW_S1) & BM_CSU_CSL3_NUW_S1)
-#endif
+#define BF_CSU_CSL3_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NUW_S1) & BM_CSU_CSL3_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -2505,15 +2182,10 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL3_NSW_S1.
 
 //! @brief Get value of CSU_CSL3_NSW_S1 from a register value.
-#define BG_CSU_CSL3_NSW_S1(r)   (((r) & BM_CSU_CSL3_NSW_S1) >> BP_CSU_CSL3_NSW_S1)
+#define BG_CSU_CSL3_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_NSW_S1) >> BP_CSU_CSL3_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_NSW_S1.
-#define BF_CSU_CSL3_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_NSW_S1) & BM_CSU_CSL3_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_NSW_S1.
-#define BF_CSU_CSL3_NSW_S1(v)   (((v) << BP_CSU_CSL3_NSW_S1) & BM_CSU_CSL3_NSW_S1)
-#endif
+#define BF_CSU_CSL3_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_NSW_S1) & BM_CSU_CSL3_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -2534,21 +2206,20 @@ typedef union _hw_csu_csl3
 #define BM_CSU_CSL3_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL3_LOCK_S1.
 
 //! @brief Get value of CSU_CSL3_LOCK_S1 from a register value.
-#define BG_CSU_CSL3_LOCK_S1(r)   (((r) & BM_CSU_CSL3_LOCK_S1) >> BP_CSU_CSL3_LOCK_S1)
+#define BG_CSU_CSL3_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL3_LOCK_S1) >> BP_CSU_CSL3_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL3_LOCK_S1.
-#define BF_CSU_CSL3_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL3_LOCK_S1) & BM_CSU_CSL3_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL3_LOCK_S1.
-#define BF_CSU_CSL3_LOCK_S1(v)   (((v) << BP_CSU_CSL3_LOCK_S1) & BM_CSU_CSL3_LOCK_S1)
-#endif
+#define BF_CSU_CSL3_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL3_LOCK_S1) & BM_CSU_CSL3_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL3_LOCK_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_LOCK_S1) | BF_CSU_CSL3_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL4 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2563,11 +2234,11 @@ typedef union _hw_csu_csl3
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -2579,7 +2250,7 @@ typedef union _hw_csu_csl3
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -2661,15 +2332,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL4_SUR_S2.
 
 //! @brief Get value of CSU_CSL4_SUR_S2 from a register value.
-#define BG_CSU_CSL4_SUR_S2(r)   (((r) & BM_CSU_CSL4_SUR_S2) >> BP_CSU_CSL4_SUR_S2)
+#define BG_CSU_CSL4_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SUR_S2) >> BP_CSU_CSL4_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SUR_S2.
-#define BF_CSU_CSL4_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_SUR_S2) & BM_CSU_CSL4_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SUR_S2.
-#define BF_CSU_CSL4_SUR_S2(v)   (((v) << BP_CSU_CSL4_SUR_S2) & BM_CSU_CSL4_SUR_S2)
-#endif
+#define BF_CSU_CSL4_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SUR_S2) & BM_CSU_CSL4_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -2690,15 +2356,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL4_SSR_S2.
 
 //! @brief Get value of CSU_CSL4_SSR_S2 from a register value.
-#define BG_CSU_CSL4_SSR_S2(r)   (((r) & BM_CSU_CSL4_SSR_S2) >> BP_CSU_CSL4_SSR_S2)
+#define BG_CSU_CSL4_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SSR_S2) >> BP_CSU_CSL4_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SSR_S2.
-#define BF_CSU_CSL4_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_SSR_S2) & BM_CSU_CSL4_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SSR_S2.
-#define BF_CSU_CSL4_SSR_S2(v)   (((v) << BP_CSU_CSL4_SSR_S2) & BM_CSU_CSL4_SSR_S2)
-#endif
+#define BF_CSU_CSL4_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SSR_S2) & BM_CSU_CSL4_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -2719,15 +2380,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL4_NUR_S2.
 
 //! @brief Get value of CSU_CSL4_NUR_S2 from a register value.
-#define BG_CSU_CSL4_NUR_S2(r)   (((r) & BM_CSU_CSL4_NUR_S2) >> BP_CSU_CSL4_NUR_S2)
+#define BG_CSU_CSL4_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NUR_S2) >> BP_CSU_CSL4_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NUR_S2.
-#define BF_CSU_CSL4_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_NUR_S2) & BM_CSU_CSL4_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NUR_S2.
-#define BF_CSU_CSL4_NUR_S2(v)   (((v) << BP_CSU_CSL4_NUR_S2) & BM_CSU_CSL4_NUR_S2)
-#endif
+#define BF_CSU_CSL4_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NUR_S2) & BM_CSU_CSL4_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -2748,15 +2404,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL4_NSR_S2.
 
 //! @brief Get value of CSU_CSL4_NSR_S2 from a register value.
-#define BG_CSU_CSL4_NSR_S2(r)   (((r) & BM_CSU_CSL4_NSR_S2) >> BP_CSU_CSL4_NSR_S2)
+#define BG_CSU_CSL4_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NSR_S2) >> BP_CSU_CSL4_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NSR_S2.
-#define BF_CSU_CSL4_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_NSR_S2) & BM_CSU_CSL4_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NSR_S2.
-#define BF_CSU_CSL4_NSR_S2(v)   (((v) << BP_CSU_CSL4_NSR_S2) & BM_CSU_CSL4_NSR_S2)
-#endif
+#define BF_CSU_CSL4_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NSR_S2) & BM_CSU_CSL4_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -2777,15 +2428,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL4_SUW_S2.
 
 //! @brief Get value of CSU_CSL4_SUW_S2 from a register value.
-#define BG_CSU_CSL4_SUW_S2(r)   (((r) & BM_CSU_CSL4_SUW_S2) >> BP_CSU_CSL4_SUW_S2)
+#define BG_CSU_CSL4_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SUW_S2) >> BP_CSU_CSL4_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SUW_S2.
-#define BF_CSU_CSL4_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_SUW_S2) & BM_CSU_CSL4_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SUW_S2.
-#define BF_CSU_CSL4_SUW_S2(v)   (((v) << BP_CSU_CSL4_SUW_S2) & BM_CSU_CSL4_SUW_S2)
-#endif
+#define BF_CSU_CSL4_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SUW_S2) & BM_CSU_CSL4_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -2806,15 +2452,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL4_SSW_S2.
 
 //! @brief Get value of CSU_CSL4_SSW_S2 from a register value.
-#define BG_CSU_CSL4_SSW_S2(r)   (((r) & BM_CSU_CSL4_SSW_S2) >> BP_CSU_CSL4_SSW_S2)
+#define BG_CSU_CSL4_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SSW_S2) >> BP_CSU_CSL4_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SSW_S2.
-#define BF_CSU_CSL4_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_SSW_S2) & BM_CSU_CSL4_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SSW_S2.
-#define BF_CSU_CSL4_SSW_S2(v)   (((v) << BP_CSU_CSL4_SSW_S2) & BM_CSU_CSL4_SSW_S2)
-#endif
+#define BF_CSU_CSL4_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SSW_S2) & BM_CSU_CSL4_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -2835,15 +2476,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL4_NUW_S2.
 
 //! @brief Get value of CSU_CSL4_NUW_S2 from a register value.
-#define BG_CSU_CSL4_NUW_S2(r)   (((r) & BM_CSU_CSL4_NUW_S2) >> BP_CSU_CSL4_NUW_S2)
+#define BG_CSU_CSL4_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NUW_S2) >> BP_CSU_CSL4_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NUW_S2.
-#define BF_CSU_CSL4_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_NUW_S2) & BM_CSU_CSL4_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NUW_S2.
-#define BF_CSU_CSL4_NUW_S2(v)   (((v) << BP_CSU_CSL4_NUW_S2) & BM_CSU_CSL4_NUW_S2)
-#endif
+#define BF_CSU_CSL4_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NUW_S2) & BM_CSU_CSL4_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -2864,15 +2500,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL4_NSW_S2.
 
 //! @brief Get value of CSU_CSL4_NSW_S2 from a register value.
-#define BG_CSU_CSL4_NSW_S2(r)   (((r) & BM_CSU_CSL4_NSW_S2) >> BP_CSU_CSL4_NSW_S2)
+#define BG_CSU_CSL4_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NSW_S2) >> BP_CSU_CSL4_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NSW_S2.
-#define BF_CSU_CSL4_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_NSW_S2) & BM_CSU_CSL4_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NSW_S2.
-#define BF_CSU_CSL4_NSW_S2(v)   (((v) << BP_CSU_CSL4_NSW_S2) & BM_CSU_CSL4_NSW_S2)
-#endif
+#define BF_CSU_CSL4_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NSW_S2) & BM_CSU_CSL4_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -2893,15 +2524,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL4_LOCK_S2.
 
 //! @brief Get value of CSU_CSL4_LOCK_S2 from a register value.
-#define BG_CSU_CSL4_LOCK_S2(r)   (((r) & BM_CSU_CSL4_LOCK_S2) >> BP_CSU_CSL4_LOCK_S2)
+#define BG_CSU_CSL4_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_LOCK_S2) >> BP_CSU_CSL4_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_LOCK_S2.
-#define BF_CSU_CSL4_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL4_LOCK_S2) & BM_CSU_CSL4_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL4_LOCK_S2.
-#define BF_CSU_CSL4_LOCK_S2(v)   (((v) << BP_CSU_CSL4_LOCK_S2) & BM_CSU_CSL4_LOCK_S2)
-#endif
+#define BF_CSU_CSL4_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_LOCK_S2) & BM_CSU_CSL4_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -2922,15 +2548,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL4_SUR_S1.
 
 //! @brief Get value of CSU_CSL4_SUR_S1 from a register value.
-#define BG_CSU_CSL4_SUR_S1(r)   (((r) & BM_CSU_CSL4_SUR_S1) >> BP_CSU_CSL4_SUR_S1)
+#define BG_CSU_CSL4_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SUR_S1) >> BP_CSU_CSL4_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SUR_S1.
-#define BF_CSU_CSL4_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_SUR_S1) & BM_CSU_CSL4_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SUR_S1.
-#define BF_CSU_CSL4_SUR_S1(v)   (((v) << BP_CSU_CSL4_SUR_S1) & BM_CSU_CSL4_SUR_S1)
-#endif
+#define BF_CSU_CSL4_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SUR_S1) & BM_CSU_CSL4_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -2951,15 +2572,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL4_SSR_S1.
 
 //! @brief Get value of CSU_CSL4_SSR_S1 from a register value.
-#define BG_CSU_CSL4_SSR_S1(r)   (((r) & BM_CSU_CSL4_SSR_S1) >> BP_CSU_CSL4_SSR_S1)
+#define BG_CSU_CSL4_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SSR_S1) >> BP_CSU_CSL4_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SSR_S1.
-#define BF_CSU_CSL4_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_SSR_S1) & BM_CSU_CSL4_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SSR_S1.
-#define BF_CSU_CSL4_SSR_S1(v)   (((v) << BP_CSU_CSL4_SSR_S1) & BM_CSU_CSL4_SSR_S1)
-#endif
+#define BF_CSU_CSL4_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SSR_S1) & BM_CSU_CSL4_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -2980,15 +2596,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL4_NUR_S1.
 
 //! @brief Get value of CSU_CSL4_NUR_S1 from a register value.
-#define BG_CSU_CSL4_NUR_S1(r)   (((r) & BM_CSU_CSL4_NUR_S1) >> BP_CSU_CSL4_NUR_S1)
+#define BG_CSU_CSL4_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NUR_S1) >> BP_CSU_CSL4_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NUR_S1.
-#define BF_CSU_CSL4_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_NUR_S1) & BM_CSU_CSL4_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NUR_S1.
-#define BF_CSU_CSL4_NUR_S1(v)   (((v) << BP_CSU_CSL4_NUR_S1) & BM_CSU_CSL4_NUR_S1)
-#endif
+#define BF_CSU_CSL4_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NUR_S1) & BM_CSU_CSL4_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -3009,15 +2620,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL4_NSR_S1.
 
 //! @brief Get value of CSU_CSL4_NSR_S1 from a register value.
-#define BG_CSU_CSL4_NSR_S1(r)   (((r) & BM_CSU_CSL4_NSR_S1) >> BP_CSU_CSL4_NSR_S1)
+#define BG_CSU_CSL4_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NSR_S1) >> BP_CSU_CSL4_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NSR_S1.
-#define BF_CSU_CSL4_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_NSR_S1) & BM_CSU_CSL4_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NSR_S1.
-#define BF_CSU_CSL4_NSR_S1(v)   (((v) << BP_CSU_CSL4_NSR_S1) & BM_CSU_CSL4_NSR_S1)
-#endif
+#define BF_CSU_CSL4_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NSR_S1) & BM_CSU_CSL4_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -3038,15 +2644,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL4_SUW_S1.
 
 //! @brief Get value of CSU_CSL4_SUW_S1 from a register value.
-#define BG_CSU_CSL4_SUW_S1(r)   (((r) & BM_CSU_CSL4_SUW_S1) >> BP_CSU_CSL4_SUW_S1)
+#define BG_CSU_CSL4_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SUW_S1) >> BP_CSU_CSL4_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SUW_S1.
-#define BF_CSU_CSL4_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_SUW_S1) & BM_CSU_CSL4_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SUW_S1.
-#define BF_CSU_CSL4_SUW_S1(v)   (((v) << BP_CSU_CSL4_SUW_S1) & BM_CSU_CSL4_SUW_S1)
-#endif
+#define BF_CSU_CSL4_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SUW_S1) & BM_CSU_CSL4_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -3067,15 +2668,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL4_SSW_S1.
 
 //! @brief Get value of CSU_CSL4_SSW_S1 from a register value.
-#define BG_CSU_CSL4_SSW_S1(r)   (((r) & BM_CSU_CSL4_SSW_S1) >> BP_CSU_CSL4_SSW_S1)
+#define BG_CSU_CSL4_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_SSW_S1) >> BP_CSU_CSL4_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_SSW_S1.
-#define BF_CSU_CSL4_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_SSW_S1) & BM_CSU_CSL4_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_SSW_S1.
-#define BF_CSU_CSL4_SSW_S1(v)   (((v) << BP_CSU_CSL4_SSW_S1) & BM_CSU_CSL4_SSW_S1)
-#endif
+#define BF_CSU_CSL4_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_SSW_S1) & BM_CSU_CSL4_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -3096,15 +2692,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL4_NUW_S1.
 
 //! @brief Get value of CSU_CSL4_NUW_S1 from a register value.
-#define BG_CSU_CSL4_NUW_S1(r)   (((r) & BM_CSU_CSL4_NUW_S1) >> BP_CSU_CSL4_NUW_S1)
+#define BG_CSU_CSL4_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NUW_S1) >> BP_CSU_CSL4_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NUW_S1.
-#define BF_CSU_CSL4_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_NUW_S1) & BM_CSU_CSL4_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NUW_S1.
-#define BF_CSU_CSL4_NUW_S1(v)   (((v) << BP_CSU_CSL4_NUW_S1) & BM_CSU_CSL4_NUW_S1)
-#endif
+#define BF_CSU_CSL4_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NUW_S1) & BM_CSU_CSL4_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -3125,15 +2716,10 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL4_NSW_S1.
 
 //! @brief Get value of CSU_CSL4_NSW_S1 from a register value.
-#define BG_CSU_CSL4_NSW_S1(r)   (((r) & BM_CSU_CSL4_NSW_S1) >> BP_CSU_CSL4_NSW_S1)
+#define BG_CSU_CSL4_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_NSW_S1) >> BP_CSU_CSL4_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_NSW_S1.
-#define BF_CSU_CSL4_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_NSW_S1) & BM_CSU_CSL4_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_NSW_S1.
-#define BF_CSU_CSL4_NSW_S1(v)   (((v) << BP_CSU_CSL4_NSW_S1) & BM_CSU_CSL4_NSW_S1)
-#endif
+#define BF_CSU_CSL4_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_NSW_S1) & BM_CSU_CSL4_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -3154,21 +2740,20 @@ typedef union _hw_csu_csl4
 #define BM_CSU_CSL4_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL4_LOCK_S1.
 
 //! @brief Get value of CSU_CSL4_LOCK_S1 from a register value.
-#define BG_CSU_CSL4_LOCK_S1(r)   (((r) & BM_CSU_CSL4_LOCK_S1) >> BP_CSU_CSL4_LOCK_S1)
+#define BG_CSU_CSL4_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL4_LOCK_S1) >> BP_CSU_CSL4_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL4_LOCK_S1.
-#define BF_CSU_CSL4_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL4_LOCK_S1) & BM_CSU_CSL4_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL4_LOCK_S1.
-#define BF_CSU_CSL4_LOCK_S1(v)   (((v) << BP_CSU_CSL4_LOCK_S1) & BM_CSU_CSL4_LOCK_S1)
-#endif
+#define BF_CSU_CSL4_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL4_LOCK_S1) & BM_CSU_CSL4_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL4_LOCK_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_LOCK_S1) | BF_CSU_CSL4_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL5 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3183,11 +2768,11 @@ typedef union _hw_csu_csl4
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -3199,7 +2784,7 @@ typedef union _hw_csu_csl4
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -3281,15 +2866,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL5_SUR_S2.
 
 //! @brief Get value of CSU_CSL5_SUR_S2 from a register value.
-#define BG_CSU_CSL5_SUR_S2(r)   (((r) & BM_CSU_CSL5_SUR_S2) >> BP_CSU_CSL5_SUR_S2)
+#define BG_CSU_CSL5_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SUR_S2) >> BP_CSU_CSL5_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SUR_S2.
-#define BF_CSU_CSL5_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_SUR_S2) & BM_CSU_CSL5_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SUR_S2.
-#define BF_CSU_CSL5_SUR_S2(v)   (((v) << BP_CSU_CSL5_SUR_S2) & BM_CSU_CSL5_SUR_S2)
-#endif
+#define BF_CSU_CSL5_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SUR_S2) & BM_CSU_CSL5_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -3310,15 +2890,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL5_SSR_S2.
 
 //! @brief Get value of CSU_CSL5_SSR_S2 from a register value.
-#define BG_CSU_CSL5_SSR_S2(r)   (((r) & BM_CSU_CSL5_SSR_S2) >> BP_CSU_CSL5_SSR_S2)
+#define BG_CSU_CSL5_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SSR_S2) >> BP_CSU_CSL5_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SSR_S2.
-#define BF_CSU_CSL5_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_SSR_S2) & BM_CSU_CSL5_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SSR_S2.
-#define BF_CSU_CSL5_SSR_S2(v)   (((v) << BP_CSU_CSL5_SSR_S2) & BM_CSU_CSL5_SSR_S2)
-#endif
+#define BF_CSU_CSL5_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SSR_S2) & BM_CSU_CSL5_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -3339,15 +2914,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL5_NUR_S2.
 
 //! @brief Get value of CSU_CSL5_NUR_S2 from a register value.
-#define BG_CSU_CSL5_NUR_S2(r)   (((r) & BM_CSU_CSL5_NUR_S2) >> BP_CSU_CSL5_NUR_S2)
+#define BG_CSU_CSL5_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NUR_S2) >> BP_CSU_CSL5_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NUR_S2.
-#define BF_CSU_CSL5_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_NUR_S2) & BM_CSU_CSL5_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NUR_S2.
-#define BF_CSU_CSL5_NUR_S2(v)   (((v) << BP_CSU_CSL5_NUR_S2) & BM_CSU_CSL5_NUR_S2)
-#endif
+#define BF_CSU_CSL5_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NUR_S2) & BM_CSU_CSL5_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -3368,15 +2938,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL5_NSR_S2.
 
 //! @brief Get value of CSU_CSL5_NSR_S2 from a register value.
-#define BG_CSU_CSL5_NSR_S2(r)   (((r) & BM_CSU_CSL5_NSR_S2) >> BP_CSU_CSL5_NSR_S2)
+#define BG_CSU_CSL5_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NSR_S2) >> BP_CSU_CSL5_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NSR_S2.
-#define BF_CSU_CSL5_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_NSR_S2) & BM_CSU_CSL5_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NSR_S2.
-#define BF_CSU_CSL5_NSR_S2(v)   (((v) << BP_CSU_CSL5_NSR_S2) & BM_CSU_CSL5_NSR_S2)
-#endif
+#define BF_CSU_CSL5_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NSR_S2) & BM_CSU_CSL5_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -3397,15 +2962,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL5_SUW_S2.
 
 //! @brief Get value of CSU_CSL5_SUW_S2 from a register value.
-#define BG_CSU_CSL5_SUW_S2(r)   (((r) & BM_CSU_CSL5_SUW_S2) >> BP_CSU_CSL5_SUW_S2)
+#define BG_CSU_CSL5_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SUW_S2) >> BP_CSU_CSL5_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SUW_S2.
-#define BF_CSU_CSL5_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_SUW_S2) & BM_CSU_CSL5_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SUW_S2.
-#define BF_CSU_CSL5_SUW_S2(v)   (((v) << BP_CSU_CSL5_SUW_S2) & BM_CSU_CSL5_SUW_S2)
-#endif
+#define BF_CSU_CSL5_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SUW_S2) & BM_CSU_CSL5_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -3426,15 +2986,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL5_SSW_S2.
 
 //! @brief Get value of CSU_CSL5_SSW_S2 from a register value.
-#define BG_CSU_CSL5_SSW_S2(r)   (((r) & BM_CSU_CSL5_SSW_S2) >> BP_CSU_CSL5_SSW_S2)
+#define BG_CSU_CSL5_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SSW_S2) >> BP_CSU_CSL5_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SSW_S2.
-#define BF_CSU_CSL5_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_SSW_S2) & BM_CSU_CSL5_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SSW_S2.
-#define BF_CSU_CSL5_SSW_S2(v)   (((v) << BP_CSU_CSL5_SSW_S2) & BM_CSU_CSL5_SSW_S2)
-#endif
+#define BF_CSU_CSL5_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SSW_S2) & BM_CSU_CSL5_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -3455,15 +3010,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL5_NUW_S2.
 
 //! @brief Get value of CSU_CSL5_NUW_S2 from a register value.
-#define BG_CSU_CSL5_NUW_S2(r)   (((r) & BM_CSU_CSL5_NUW_S2) >> BP_CSU_CSL5_NUW_S2)
+#define BG_CSU_CSL5_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NUW_S2) >> BP_CSU_CSL5_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NUW_S2.
-#define BF_CSU_CSL5_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_NUW_S2) & BM_CSU_CSL5_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NUW_S2.
-#define BF_CSU_CSL5_NUW_S2(v)   (((v) << BP_CSU_CSL5_NUW_S2) & BM_CSU_CSL5_NUW_S2)
-#endif
+#define BF_CSU_CSL5_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NUW_S2) & BM_CSU_CSL5_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -3484,15 +3034,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL5_NSW_S2.
 
 //! @brief Get value of CSU_CSL5_NSW_S2 from a register value.
-#define BG_CSU_CSL5_NSW_S2(r)   (((r) & BM_CSU_CSL5_NSW_S2) >> BP_CSU_CSL5_NSW_S2)
+#define BG_CSU_CSL5_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NSW_S2) >> BP_CSU_CSL5_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NSW_S2.
-#define BF_CSU_CSL5_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_NSW_S2) & BM_CSU_CSL5_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NSW_S2.
-#define BF_CSU_CSL5_NSW_S2(v)   (((v) << BP_CSU_CSL5_NSW_S2) & BM_CSU_CSL5_NSW_S2)
-#endif
+#define BF_CSU_CSL5_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NSW_S2) & BM_CSU_CSL5_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -3513,15 +3058,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL5_LOCK_S2.
 
 //! @brief Get value of CSU_CSL5_LOCK_S2 from a register value.
-#define BG_CSU_CSL5_LOCK_S2(r)   (((r) & BM_CSU_CSL5_LOCK_S2) >> BP_CSU_CSL5_LOCK_S2)
+#define BG_CSU_CSL5_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_LOCK_S2) >> BP_CSU_CSL5_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_LOCK_S2.
-#define BF_CSU_CSL5_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL5_LOCK_S2) & BM_CSU_CSL5_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL5_LOCK_S2.
-#define BF_CSU_CSL5_LOCK_S2(v)   (((v) << BP_CSU_CSL5_LOCK_S2) & BM_CSU_CSL5_LOCK_S2)
-#endif
+#define BF_CSU_CSL5_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_LOCK_S2) & BM_CSU_CSL5_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -3542,15 +3082,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL5_SUR_S1.
 
 //! @brief Get value of CSU_CSL5_SUR_S1 from a register value.
-#define BG_CSU_CSL5_SUR_S1(r)   (((r) & BM_CSU_CSL5_SUR_S1) >> BP_CSU_CSL5_SUR_S1)
+#define BG_CSU_CSL5_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SUR_S1) >> BP_CSU_CSL5_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SUR_S1.
-#define BF_CSU_CSL5_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_SUR_S1) & BM_CSU_CSL5_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SUR_S1.
-#define BF_CSU_CSL5_SUR_S1(v)   (((v) << BP_CSU_CSL5_SUR_S1) & BM_CSU_CSL5_SUR_S1)
-#endif
+#define BF_CSU_CSL5_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SUR_S1) & BM_CSU_CSL5_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -3571,15 +3106,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL5_SSR_S1.
 
 //! @brief Get value of CSU_CSL5_SSR_S1 from a register value.
-#define BG_CSU_CSL5_SSR_S1(r)   (((r) & BM_CSU_CSL5_SSR_S1) >> BP_CSU_CSL5_SSR_S1)
+#define BG_CSU_CSL5_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SSR_S1) >> BP_CSU_CSL5_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SSR_S1.
-#define BF_CSU_CSL5_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_SSR_S1) & BM_CSU_CSL5_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SSR_S1.
-#define BF_CSU_CSL5_SSR_S1(v)   (((v) << BP_CSU_CSL5_SSR_S1) & BM_CSU_CSL5_SSR_S1)
-#endif
+#define BF_CSU_CSL5_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SSR_S1) & BM_CSU_CSL5_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -3600,15 +3130,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL5_NUR_S1.
 
 //! @brief Get value of CSU_CSL5_NUR_S1 from a register value.
-#define BG_CSU_CSL5_NUR_S1(r)   (((r) & BM_CSU_CSL5_NUR_S1) >> BP_CSU_CSL5_NUR_S1)
+#define BG_CSU_CSL5_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NUR_S1) >> BP_CSU_CSL5_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NUR_S1.
-#define BF_CSU_CSL5_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_NUR_S1) & BM_CSU_CSL5_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NUR_S1.
-#define BF_CSU_CSL5_NUR_S1(v)   (((v) << BP_CSU_CSL5_NUR_S1) & BM_CSU_CSL5_NUR_S1)
-#endif
+#define BF_CSU_CSL5_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NUR_S1) & BM_CSU_CSL5_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -3629,15 +3154,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL5_NSR_S1.
 
 //! @brief Get value of CSU_CSL5_NSR_S1 from a register value.
-#define BG_CSU_CSL5_NSR_S1(r)   (((r) & BM_CSU_CSL5_NSR_S1) >> BP_CSU_CSL5_NSR_S1)
+#define BG_CSU_CSL5_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NSR_S1) >> BP_CSU_CSL5_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NSR_S1.
-#define BF_CSU_CSL5_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_NSR_S1) & BM_CSU_CSL5_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NSR_S1.
-#define BF_CSU_CSL5_NSR_S1(v)   (((v) << BP_CSU_CSL5_NSR_S1) & BM_CSU_CSL5_NSR_S1)
-#endif
+#define BF_CSU_CSL5_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NSR_S1) & BM_CSU_CSL5_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -3658,15 +3178,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL5_SUW_S1.
 
 //! @brief Get value of CSU_CSL5_SUW_S1 from a register value.
-#define BG_CSU_CSL5_SUW_S1(r)   (((r) & BM_CSU_CSL5_SUW_S1) >> BP_CSU_CSL5_SUW_S1)
+#define BG_CSU_CSL5_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SUW_S1) >> BP_CSU_CSL5_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SUW_S1.
-#define BF_CSU_CSL5_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_SUW_S1) & BM_CSU_CSL5_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SUW_S1.
-#define BF_CSU_CSL5_SUW_S1(v)   (((v) << BP_CSU_CSL5_SUW_S1) & BM_CSU_CSL5_SUW_S1)
-#endif
+#define BF_CSU_CSL5_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SUW_S1) & BM_CSU_CSL5_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -3687,15 +3202,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL5_SSW_S1.
 
 //! @brief Get value of CSU_CSL5_SSW_S1 from a register value.
-#define BG_CSU_CSL5_SSW_S1(r)   (((r) & BM_CSU_CSL5_SSW_S1) >> BP_CSU_CSL5_SSW_S1)
+#define BG_CSU_CSL5_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_SSW_S1) >> BP_CSU_CSL5_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_SSW_S1.
-#define BF_CSU_CSL5_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_SSW_S1) & BM_CSU_CSL5_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_SSW_S1.
-#define BF_CSU_CSL5_SSW_S1(v)   (((v) << BP_CSU_CSL5_SSW_S1) & BM_CSU_CSL5_SSW_S1)
-#endif
+#define BF_CSU_CSL5_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_SSW_S1) & BM_CSU_CSL5_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -3716,15 +3226,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL5_NUW_S1.
 
 //! @brief Get value of CSU_CSL5_NUW_S1 from a register value.
-#define BG_CSU_CSL5_NUW_S1(r)   (((r) & BM_CSU_CSL5_NUW_S1) >> BP_CSU_CSL5_NUW_S1)
+#define BG_CSU_CSL5_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NUW_S1) >> BP_CSU_CSL5_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NUW_S1.
-#define BF_CSU_CSL5_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_NUW_S1) & BM_CSU_CSL5_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NUW_S1.
-#define BF_CSU_CSL5_NUW_S1(v)   (((v) << BP_CSU_CSL5_NUW_S1) & BM_CSU_CSL5_NUW_S1)
-#endif
+#define BF_CSU_CSL5_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NUW_S1) & BM_CSU_CSL5_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -3745,15 +3250,10 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL5_NSW_S1.
 
 //! @brief Get value of CSU_CSL5_NSW_S1 from a register value.
-#define BG_CSU_CSL5_NSW_S1(r)   (((r) & BM_CSU_CSL5_NSW_S1) >> BP_CSU_CSL5_NSW_S1)
+#define BG_CSU_CSL5_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_NSW_S1) >> BP_CSU_CSL5_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_NSW_S1.
-#define BF_CSU_CSL5_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_NSW_S1) & BM_CSU_CSL5_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_NSW_S1.
-#define BF_CSU_CSL5_NSW_S1(v)   (((v) << BP_CSU_CSL5_NSW_S1) & BM_CSU_CSL5_NSW_S1)
-#endif
+#define BF_CSU_CSL5_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_NSW_S1) & BM_CSU_CSL5_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -3774,21 +3274,20 @@ typedef union _hw_csu_csl5
 #define BM_CSU_CSL5_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL5_LOCK_S1.
 
 //! @brief Get value of CSU_CSL5_LOCK_S1 from a register value.
-#define BG_CSU_CSL5_LOCK_S1(r)   (((r) & BM_CSU_CSL5_LOCK_S1) >> BP_CSU_CSL5_LOCK_S1)
+#define BG_CSU_CSL5_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL5_LOCK_S1) >> BP_CSU_CSL5_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL5_LOCK_S1.
-#define BF_CSU_CSL5_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL5_LOCK_S1) & BM_CSU_CSL5_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL5_LOCK_S1.
-#define BF_CSU_CSL5_LOCK_S1(v)   (((v) << BP_CSU_CSL5_LOCK_S1) & BM_CSU_CSL5_LOCK_S1)
-#endif
+#define BF_CSU_CSL5_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL5_LOCK_S1) & BM_CSU_CSL5_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL5_LOCK_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_LOCK_S1) | BF_CSU_CSL5_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL6 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3803,11 +3302,11 @@ typedef union _hw_csu_csl5
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -3819,7 +3318,7 @@ typedef union _hw_csu_csl5
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -3901,15 +3400,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL6_SUR_S2.
 
 //! @brief Get value of CSU_CSL6_SUR_S2 from a register value.
-#define BG_CSU_CSL6_SUR_S2(r)   (((r) & BM_CSU_CSL6_SUR_S2) >> BP_CSU_CSL6_SUR_S2)
+#define BG_CSU_CSL6_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SUR_S2) >> BP_CSU_CSL6_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SUR_S2.
-#define BF_CSU_CSL6_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_SUR_S2) & BM_CSU_CSL6_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SUR_S2.
-#define BF_CSU_CSL6_SUR_S2(v)   (((v) << BP_CSU_CSL6_SUR_S2) & BM_CSU_CSL6_SUR_S2)
-#endif
+#define BF_CSU_CSL6_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SUR_S2) & BM_CSU_CSL6_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -3930,15 +3424,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL6_SSR_S2.
 
 //! @brief Get value of CSU_CSL6_SSR_S2 from a register value.
-#define BG_CSU_CSL6_SSR_S2(r)   (((r) & BM_CSU_CSL6_SSR_S2) >> BP_CSU_CSL6_SSR_S2)
+#define BG_CSU_CSL6_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SSR_S2) >> BP_CSU_CSL6_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SSR_S2.
-#define BF_CSU_CSL6_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_SSR_S2) & BM_CSU_CSL6_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SSR_S2.
-#define BF_CSU_CSL6_SSR_S2(v)   (((v) << BP_CSU_CSL6_SSR_S2) & BM_CSU_CSL6_SSR_S2)
-#endif
+#define BF_CSU_CSL6_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SSR_S2) & BM_CSU_CSL6_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -3959,15 +3448,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL6_NUR_S2.
 
 //! @brief Get value of CSU_CSL6_NUR_S2 from a register value.
-#define BG_CSU_CSL6_NUR_S2(r)   (((r) & BM_CSU_CSL6_NUR_S2) >> BP_CSU_CSL6_NUR_S2)
+#define BG_CSU_CSL6_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NUR_S2) >> BP_CSU_CSL6_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NUR_S2.
-#define BF_CSU_CSL6_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_NUR_S2) & BM_CSU_CSL6_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NUR_S2.
-#define BF_CSU_CSL6_NUR_S2(v)   (((v) << BP_CSU_CSL6_NUR_S2) & BM_CSU_CSL6_NUR_S2)
-#endif
+#define BF_CSU_CSL6_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NUR_S2) & BM_CSU_CSL6_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -3988,15 +3472,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL6_NSR_S2.
 
 //! @brief Get value of CSU_CSL6_NSR_S2 from a register value.
-#define BG_CSU_CSL6_NSR_S2(r)   (((r) & BM_CSU_CSL6_NSR_S2) >> BP_CSU_CSL6_NSR_S2)
+#define BG_CSU_CSL6_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NSR_S2) >> BP_CSU_CSL6_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NSR_S2.
-#define BF_CSU_CSL6_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_NSR_S2) & BM_CSU_CSL6_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NSR_S2.
-#define BF_CSU_CSL6_NSR_S2(v)   (((v) << BP_CSU_CSL6_NSR_S2) & BM_CSU_CSL6_NSR_S2)
-#endif
+#define BF_CSU_CSL6_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NSR_S2) & BM_CSU_CSL6_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -4017,15 +3496,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL6_SUW_S2.
 
 //! @brief Get value of CSU_CSL6_SUW_S2 from a register value.
-#define BG_CSU_CSL6_SUW_S2(r)   (((r) & BM_CSU_CSL6_SUW_S2) >> BP_CSU_CSL6_SUW_S2)
+#define BG_CSU_CSL6_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SUW_S2) >> BP_CSU_CSL6_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SUW_S2.
-#define BF_CSU_CSL6_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_SUW_S2) & BM_CSU_CSL6_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SUW_S2.
-#define BF_CSU_CSL6_SUW_S2(v)   (((v) << BP_CSU_CSL6_SUW_S2) & BM_CSU_CSL6_SUW_S2)
-#endif
+#define BF_CSU_CSL6_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SUW_S2) & BM_CSU_CSL6_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -4046,15 +3520,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL6_SSW_S2.
 
 //! @brief Get value of CSU_CSL6_SSW_S2 from a register value.
-#define BG_CSU_CSL6_SSW_S2(r)   (((r) & BM_CSU_CSL6_SSW_S2) >> BP_CSU_CSL6_SSW_S2)
+#define BG_CSU_CSL6_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SSW_S2) >> BP_CSU_CSL6_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SSW_S2.
-#define BF_CSU_CSL6_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_SSW_S2) & BM_CSU_CSL6_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SSW_S2.
-#define BF_CSU_CSL6_SSW_S2(v)   (((v) << BP_CSU_CSL6_SSW_S2) & BM_CSU_CSL6_SSW_S2)
-#endif
+#define BF_CSU_CSL6_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SSW_S2) & BM_CSU_CSL6_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -4075,15 +3544,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL6_NUW_S2.
 
 //! @brief Get value of CSU_CSL6_NUW_S2 from a register value.
-#define BG_CSU_CSL6_NUW_S2(r)   (((r) & BM_CSU_CSL6_NUW_S2) >> BP_CSU_CSL6_NUW_S2)
+#define BG_CSU_CSL6_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NUW_S2) >> BP_CSU_CSL6_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NUW_S2.
-#define BF_CSU_CSL6_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_NUW_S2) & BM_CSU_CSL6_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NUW_S2.
-#define BF_CSU_CSL6_NUW_S2(v)   (((v) << BP_CSU_CSL6_NUW_S2) & BM_CSU_CSL6_NUW_S2)
-#endif
+#define BF_CSU_CSL6_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NUW_S2) & BM_CSU_CSL6_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -4104,15 +3568,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL6_NSW_S2.
 
 //! @brief Get value of CSU_CSL6_NSW_S2 from a register value.
-#define BG_CSU_CSL6_NSW_S2(r)   (((r) & BM_CSU_CSL6_NSW_S2) >> BP_CSU_CSL6_NSW_S2)
+#define BG_CSU_CSL6_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NSW_S2) >> BP_CSU_CSL6_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NSW_S2.
-#define BF_CSU_CSL6_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_NSW_S2) & BM_CSU_CSL6_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NSW_S2.
-#define BF_CSU_CSL6_NSW_S2(v)   (((v) << BP_CSU_CSL6_NSW_S2) & BM_CSU_CSL6_NSW_S2)
-#endif
+#define BF_CSU_CSL6_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NSW_S2) & BM_CSU_CSL6_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -4133,15 +3592,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL6_LOCK_S2.
 
 //! @brief Get value of CSU_CSL6_LOCK_S2 from a register value.
-#define BG_CSU_CSL6_LOCK_S2(r)   (((r) & BM_CSU_CSL6_LOCK_S2) >> BP_CSU_CSL6_LOCK_S2)
+#define BG_CSU_CSL6_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_LOCK_S2) >> BP_CSU_CSL6_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_LOCK_S2.
-#define BF_CSU_CSL6_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL6_LOCK_S2) & BM_CSU_CSL6_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL6_LOCK_S2.
-#define BF_CSU_CSL6_LOCK_S2(v)   (((v) << BP_CSU_CSL6_LOCK_S2) & BM_CSU_CSL6_LOCK_S2)
-#endif
+#define BF_CSU_CSL6_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_LOCK_S2) & BM_CSU_CSL6_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -4162,15 +3616,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL6_SUR_S1.
 
 //! @brief Get value of CSU_CSL6_SUR_S1 from a register value.
-#define BG_CSU_CSL6_SUR_S1(r)   (((r) & BM_CSU_CSL6_SUR_S1) >> BP_CSU_CSL6_SUR_S1)
+#define BG_CSU_CSL6_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SUR_S1) >> BP_CSU_CSL6_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SUR_S1.
-#define BF_CSU_CSL6_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_SUR_S1) & BM_CSU_CSL6_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SUR_S1.
-#define BF_CSU_CSL6_SUR_S1(v)   (((v) << BP_CSU_CSL6_SUR_S1) & BM_CSU_CSL6_SUR_S1)
-#endif
+#define BF_CSU_CSL6_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SUR_S1) & BM_CSU_CSL6_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -4191,15 +3640,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL6_SSR_S1.
 
 //! @brief Get value of CSU_CSL6_SSR_S1 from a register value.
-#define BG_CSU_CSL6_SSR_S1(r)   (((r) & BM_CSU_CSL6_SSR_S1) >> BP_CSU_CSL6_SSR_S1)
+#define BG_CSU_CSL6_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SSR_S1) >> BP_CSU_CSL6_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SSR_S1.
-#define BF_CSU_CSL6_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_SSR_S1) & BM_CSU_CSL6_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SSR_S1.
-#define BF_CSU_CSL6_SSR_S1(v)   (((v) << BP_CSU_CSL6_SSR_S1) & BM_CSU_CSL6_SSR_S1)
-#endif
+#define BF_CSU_CSL6_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SSR_S1) & BM_CSU_CSL6_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -4220,15 +3664,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL6_NUR_S1.
 
 //! @brief Get value of CSU_CSL6_NUR_S1 from a register value.
-#define BG_CSU_CSL6_NUR_S1(r)   (((r) & BM_CSU_CSL6_NUR_S1) >> BP_CSU_CSL6_NUR_S1)
+#define BG_CSU_CSL6_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NUR_S1) >> BP_CSU_CSL6_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NUR_S1.
-#define BF_CSU_CSL6_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_NUR_S1) & BM_CSU_CSL6_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NUR_S1.
-#define BF_CSU_CSL6_NUR_S1(v)   (((v) << BP_CSU_CSL6_NUR_S1) & BM_CSU_CSL6_NUR_S1)
-#endif
+#define BF_CSU_CSL6_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NUR_S1) & BM_CSU_CSL6_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -4249,15 +3688,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL6_NSR_S1.
 
 //! @brief Get value of CSU_CSL6_NSR_S1 from a register value.
-#define BG_CSU_CSL6_NSR_S1(r)   (((r) & BM_CSU_CSL6_NSR_S1) >> BP_CSU_CSL6_NSR_S1)
+#define BG_CSU_CSL6_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NSR_S1) >> BP_CSU_CSL6_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NSR_S1.
-#define BF_CSU_CSL6_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_NSR_S1) & BM_CSU_CSL6_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NSR_S1.
-#define BF_CSU_CSL6_NSR_S1(v)   (((v) << BP_CSU_CSL6_NSR_S1) & BM_CSU_CSL6_NSR_S1)
-#endif
+#define BF_CSU_CSL6_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NSR_S1) & BM_CSU_CSL6_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -4278,15 +3712,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL6_SUW_S1.
 
 //! @brief Get value of CSU_CSL6_SUW_S1 from a register value.
-#define BG_CSU_CSL6_SUW_S1(r)   (((r) & BM_CSU_CSL6_SUW_S1) >> BP_CSU_CSL6_SUW_S1)
+#define BG_CSU_CSL6_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SUW_S1) >> BP_CSU_CSL6_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SUW_S1.
-#define BF_CSU_CSL6_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_SUW_S1) & BM_CSU_CSL6_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SUW_S1.
-#define BF_CSU_CSL6_SUW_S1(v)   (((v) << BP_CSU_CSL6_SUW_S1) & BM_CSU_CSL6_SUW_S1)
-#endif
+#define BF_CSU_CSL6_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SUW_S1) & BM_CSU_CSL6_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -4307,15 +3736,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL6_SSW_S1.
 
 //! @brief Get value of CSU_CSL6_SSW_S1 from a register value.
-#define BG_CSU_CSL6_SSW_S1(r)   (((r) & BM_CSU_CSL6_SSW_S1) >> BP_CSU_CSL6_SSW_S1)
+#define BG_CSU_CSL6_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_SSW_S1) >> BP_CSU_CSL6_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_SSW_S1.
-#define BF_CSU_CSL6_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_SSW_S1) & BM_CSU_CSL6_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_SSW_S1.
-#define BF_CSU_CSL6_SSW_S1(v)   (((v) << BP_CSU_CSL6_SSW_S1) & BM_CSU_CSL6_SSW_S1)
-#endif
+#define BF_CSU_CSL6_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_SSW_S1) & BM_CSU_CSL6_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -4336,15 +3760,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL6_NUW_S1.
 
 //! @brief Get value of CSU_CSL6_NUW_S1 from a register value.
-#define BG_CSU_CSL6_NUW_S1(r)   (((r) & BM_CSU_CSL6_NUW_S1) >> BP_CSU_CSL6_NUW_S1)
+#define BG_CSU_CSL6_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NUW_S1) >> BP_CSU_CSL6_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NUW_S1.
-#define BF_CSU_CSL6_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_NUW_S1) & BM_CSU_CSL6_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NUW_S1.
-#define BF_CSU_CSL6_NUW_S1(v)   (((v) << BP_CSU_CSL6_NUW_S1) & BM_CSU_CSL6_NUW_S1)
-#endif
+#define BF_CSU_CSL6_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NUW_S1) & BM_CSU_CSL6_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -4365,15 +3784,10 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL6_NSW_S1.
 
 //! @brief Get value of CSU_CSL6_NSW_S1 from a register value.
-#define BG_CSU_CSL6_NSW_S1(r)   (((r) & BM_CSU_CSL6_NSW_S1) >> BP_CSU_CSL6_NSW_S1)
+#define BG_CSU_CSL6_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_NSW_S1) >> BP_CSU_CSL6_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_NSW_S1.
-#define BF_CSU_CSL6_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_NSW_S1) & BM_CSU_CSL6_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_NSW_S1.
-#define BF_CSU_CSL6_NSW_S1(v)   (((v) << BP_CSU_CSL6_NSW_S1) & BM_CSU_CSL6_NSW_S1)
-#endif
+#define BF_CSU_CSL6_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_NSW_S1) & BM_CSU_CSL6_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -4394,21 +3808,20 @@ typedef union _hw_csu_csl6
 #define BM_CSU_CSL6_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL6_LOCK_S1.
 
 //! @brief Get value of CSU_CSL6_LOCK_S1 from a register value.
-#define BG_CSU_CSL6_LOCK_S1(r)   (((r) & BM_CSU_CSL6_LOCK_S1) >> BP_CSU_CSL6_LOCK_S1)
+#define BG_CSU_CSL6_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL6_LOCK_S1) >> BP_CSU_CSL6_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL6_LOCK_S1.
-#define BF_CSU_CSL6_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL6_LOCK_S1) & BM_CSU_CSL6_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL6_LOCK_S1.
-#define BF_CSU_CSL6_LOCK_S1(v)   (((v) << BP_CSU_CSL6_LOCK_S1) & BM_CSU_CSL6_LOCK_S1)
-#endif
+#define BF_CSU_CSL6_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL6_LOCK_S1) & BM_CSU_CSL6_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL6_LOCK_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_LOCK_S1) | BF_CSU_CSL6_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL7 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4423,11 +3836,11 @@ typedef union _hw_csu_csl6
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -4439,7 +3852,7 @@ typedef union _hw_csu_csl6
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -4521,15 +3934,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL7_SUR_S2.
 
 //! @brief Get value of CSU_CSL7_SUR_S2 from a register value.
-#define BG_CSU_CSL7_SUR_S2(r)   (((r) & BM_CSU_CSL7_SUR_S2) >> BP_CSU_CSL7_SUR_S2)
+#define BG_CSU_CSL7_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SUR_S2) >> BP_CSU_CSL7_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SUR_S2.
-#define BF_CSU_CSL7_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_SUR_S2) & BM_CSU_CSL7_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SUR_S2.
-#define BF_CSU_CSL7_SUR_S2(v)   (((v) << BP_CSU_CSL7_SUR_S2) & BM_CSU_CSL7_SUR_S2)
-#endif
+#define BF_CSU_CSL7_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SUR_S2) & BM_CSU_CSL7_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -4550,15 +3958,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL7_SSR_S2.
 
 //! @brief Get value of CSU_CSL7_SSR_S2 from a register value.
-#define BG_CSU_CSL7_SSR_S2(r)   (((r) & BM_CSU_CSL7_SSR_S2) >> BP_CSU_CSL7_SSR_S2)
+#define BG_CSU_CSL7_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SSR_S2) >> BP_CSU_CSL7_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SSR_S2.
-#define BF_CSU_CSL7_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_SSR_S2) & BM_CSU_CSL7_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SSR_S2.
-#define BF_CSU_CSL7_SSR_S2(v)   (((v) << BP_CSU_CSL7_SSR_S2) & BM_CSU_CSL7_SSR_S2)
-#endif
+#define BF_CSU_CSL7_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SSR_S2) & BM_CSU_CSL7_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -4579,15 +3982,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL7_NUR_S2.
 
 //! @brief Get value of CSU_CSL7_NUR_S2 from a register value.
-#define BG_CSU_CSL7_NUR_S2(r)   (((r) & BM_CSU_CSL7_NUR_S2) >> BP_CSU_CSL7_NUR_S2)
+#define BG_CSU_CSL7_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NUR_S2) >> BP_CSU_CSL7_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NUR_S2.
-#define BF_CSU_CSL7_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_NUR_S2) & BM_CSU_CSL7_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NUR_S2.
-#define BF_CSU_CSL7_NUR_S2(v)   (((v) << BP_CSU_CSL7_NUR_S2) & BM_CSU_CSL7_NUR_S2)
-#endif
+#define BF_CSU_CSL7_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NUR_S2) & BM_CSU_CSL7_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -4608,15 +4006,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL7_NSR_S2.
 
 //! @brief Get value of CSU_CSL7_NSR_S2 from a register value.
-#define BG_CSU_CSL7_NSR_S2(r)   (((r) & BM_CSU_CSL7_NSR_S2) >> BP_CSU_CSL7_NSR_S2)
+#define BG_CSU_CSL7_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NSR_S2) >> BP_CSU_CSL7_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NSR_S2.
-#define BF_CSU_CSL7_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_NSR_S2) & BM_CSU_CSL7_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NSR_S2.
-#define BF_CSU_CSL7_NSR_S2(v)   (((v) << BP_CSU_CSL7_NSR_S2) & BM_CSU_CSL7_NSR_S2)
-#endif
+#define BF_CSU_CSL7_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NSR_S2) & BM_CSU_CSL7_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -4637,15 +4030,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL7_SUW_S2.
 
 //! @brief Get value of CSU_CSL7_SUW_S2 from a register value.
-#define BG_CSU_CSL7_SUW_S2(r)   (((r) & BM_CSU_CSL7_SUW_S2) >> BP_CSU_CSL7_SUW_S2)
+#define BG_CSU_CSL7_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SUW_S2) >> BP_CSU_CSL7_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SUW_S2.
-#define BF_CSU_CSL7_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_SUW_S2) & BM_CSU_CSL7_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SUW_S2.
-#define BF_CSU_CSL7_SUW_S2(v)   (((v) << BP_CSU_CSL7_SUW_S2) & BM_CSU_CSL7_SUW_S2)
-#endif
+#define BF_CSU_CSL7_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SUW_S2) & BM_CSU_CSL7_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -4666,15 +4054,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL7_SSW_S2.
 
 //! @brief Get value of CSU_CSL7_SSW_S2 from a register value.
-#define BG_CSU_CSL7_SSW_S2(r)   (((r) & BM_CSU_CSL7_SSW_S2) >> BP_CSU_CSL7_SSW_S2)
+#define BG_CSU_CSL7_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SSW_S2) >> BP_CSU_CSL7_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SSW_S2.
-#define BF_CSU_CSL7_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_SSW_S2) & BM_CSU_CSL7_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SSW_S2.
-#define BF_CSU_CSL7_SSW_S2(v)   (((v) << BP_CSU_CSL7_SSW_S2) & BM_CSU_CSL7_SSW_S2)
-#endif
+#define BF_CSU_CSL7_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SSW_S2) & BM_CSU_CSL7_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -4695,15 +4078,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL7_NUW_S2.
 
 //! @brief Get value of CSU_CSL7_NUW_S2 from a register value.
-#define BG_CSU_CSL7_NUW_S2(r)   (((r) & BM_CSU_CSL7_NUW_S2) >> BP_CSU_CSL7_NUW_S2)
+#define BG_CSU_CSL7_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NUW_S2) >> BP_CSU_CSL7_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NUW_S2.
-#define BF_CSU_CSL7_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_NUW_S2) & BM_CSU_CSL7_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NUW_S2.
-#define BF_CSU_CSL7_NUW_S2(v)   (((v) << BP_CSU_CSL7_NUW_S2) & BM_CSU_CSL7_NUW_S2)
-#endif
+#define BF_CSU_CSL7_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NUW_S2) & BM_CSU_CSL7_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -4724,15 +4102,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL7_NSW_S2.
 
 //! @brief Get value of CSU_CSL7_NSW_S2 from a register value.
-#define BG_CSU_CSL7_NSW_S2(r)   (((r) & BM_CSU_CSL7_NSW_S2) >> BP_CSU_CSL7_NSW_S2)
+#define BG_CSU_CSL7_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NSW_S2) >> BP_CSU_CSL7_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NSW_S2.
-#define BF_CSU_CSL7_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_NSW_S2) & BM_CSU_CSL7_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NSW_S2.
-#define BF_CSU_CSL7_NSW_S2(v)   (((v) << BP_CSU_CSL7_NSW_S2) & BM_CSU_CSL7_NSW_S2)
-#endif
+#define BF_CSU_CSL7_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NSW_S2) & BM_CSU_CSL7_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -4753,15 +4126,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL7_LOCK_S2.
 
 //! @brief Get value of CSU_CSL7_LOCK_S2 from a register value.
-#define BG_CSU_CSL7_LOCK_S2(r)   (((r) & BM_CSU_CSL7_LOCK_S2) >> BP_CSU_CSL7_LOCK_S2)
+#define BG_CSU_CSL7_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_LOCK_S2) >> BP_CSU_CSL7_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_LOCK_S2.
-#define BF_CSU_CSL7_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL7_LOCK_S2) & BM_CSU_CSL7_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL7_LOCK_S2.
-#define BF_CSU_CSL7_LOCK_S2(v)   (((v) << BP_CSU_CSL7_LOCK_S2) & BM_CSU_CSL7_LOCK_S2)
-#endif
+#define BF_CSU_CSL7_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_LOCK_S2) & BM_CSU_CSL7_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -4782,15 +4150,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL7_SUR_S1.
 
 //! @brief Get value of CSU_CSL7_SUR_S1 from a register value.
-#define BG_CSU_CSL7_SUR_S1(r)   (((r) & BM_CSU_CSL7_SUR_S1) >> BP_CSU_CSL7_SUR_S1)
+#define BG_CSU_CSL7_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SUR_S1) >> BP_CSU_CSL7_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SUR_S1.
-#define BF_CSU_CSL7_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_SUR_S1) & BM_CSU_CSL7_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SUR_S1.
-#define BF_CSU_CSL7_SUR_S1(v)   (((v) << BP_CSU_CSL7_SUR_S1) & BM_CSU_CSL7_SUR_S1)
-#endif
+#define BF_CSU_CSL7_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SUR_S1) & BM_CSU_CSL7_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -4811,15 +4174,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL7_SSR_S1.
 
 //! @brief Get value of CSU_CSL7_SSR_S1 from a register value.
-#define BG_CSU_CSL7_SSR_S1(r)   (((r) & BM_CSU_CSL7_SSR_S1) >> BP_CSU_CSL7_SSR_S1)
+#define BG_CSU_CSL7_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SSR_S1) >> BP_CSU_CSL7_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SSR_S1.
-#define BF_CSU_CSL7_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_SSR_S1) & BM_CSU_CSL7_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SSR_S1.
-#define BF_CSU_CSL7_SSR_S1(v)   (((v) << BP_CSU_CSL7_SSR_S1) & BM_CSU_CSL7_SSR_S1)
-#endif
+#define BF_CSU_CSL7_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SSR_S1) & BM_CSU_CSL7_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -4840,15 +4198,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL7_NUR_S1.
 
 //! @brief Get value of CSU_CSL7_NUR_S1 from a register value.
-#define BG_CSU_CSL7_NUR_S1(r)   (((r) & BM_CSU_CSL7_NUR_S1) >> BP_CSU_CSL7_NUR_S1)
+#define BG_CSU_CSL7_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NUR_S1) >> BP_CSU_CSL7_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NUR_S1.
-#define BF_CSU_CSL7_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_NUR_S1) & BM_CSU_CSL7_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NUR_S1.
-#define BF_CSU_CSL7_NUR_S1(v)   (((v) << BP_CSU_CSL7_NUR_S1) & BM_CSU_CSL7_NUR_S1)
-#endif
+#define BF_CSU_CSL7_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NUR_S1) & BM_CSU_CSL7_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -4869,15 +4222,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL7_NSR_S1.
 
 //! @brief Get value of CSU_CSL7_NSR_S1 from a register value.
-#define BG_CSU_CSL7_NSR_S1(r)   (((r) & BM_CSU_CSL7_NSR_S1) >> BP_CSU_CSL7_NSR_S1)
+#define BG_CSU_CSL7_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NSR_S1) >> BP_CSU_CSL7_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NSR_S1.
-#define BF_CSU_CSL7_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_NSR_S1) & BM_CSU_CSL7_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NSR_S1.
-#define BF_CSU_CSL7_NSR_S1(v)   (((v) << BP_CSU_CSL7_NSR_S1) & BM_CSU_CSL7_NSR_S1)
-#endif
+#define BF_CSU_CSL7_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NSR_S1) & BM_CSU_CSL7_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -4898,15 +4246,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL7_SUW_S1.
 
 //! @brief Get value of CSU_CSL7_SUW_S1 from a register value.
-#define BG_CSU_CSL7_SUW_S1(r)   (((r) & BM_CSU_CSL7_SUW_S1) >> BP_CSU_CSL7_SUW_S1)
+#define BG_CSU_CSL7_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SUW_S1) >> BP_CSU_CSL7_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SUW_S1.
-#define BF_CSU_CSL7_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_SUW_S1) & BM_CSU_CSL7_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SUW_S1.
-#define BF_CSU_CSL7_SUW_S1(v)   (((v) << BP_CSU_CSL7_SUW_S1) & BM_CSU_CSL7_SUW_S1)
-#endif
+#define BF_CSU_CSL7_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SUW_S1) & BM_CSU_CSL7_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -4927,15 +4270,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL7_SSW_S1.
 
 //! @brief Get value of CSU_CSL7_SSW_S1 from a register value.
-#define BG_CSU_CSL7_SSW_S1(r)   (((r) & BM_CSU_CSL7_SSW_S1) >> BP_CSU_CSL7_SSW_S1)
+#define BG_CSU_CSL7_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_SSW_S1) >> BP_CSU_CSL7_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_SSW_S1.
-#define BF_CSU_CSL7_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_SSW_S1) & BM_CSU_CSL7_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_SSW_S1.
-#define BF_CSU_CSL7_SSW_S1(v)   (((v) << BP_CSU_CSL7_SSW_S1) & BM_CSU_CSL7_SSW_S1)
-#endif
+#define BF_CSU_CSL7_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_SSW_S1) & BM_CSU_CSL7_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -4956,15 +4294,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL7_NUW_S1.
 
 //! @brief Get value of CSU_CSL7_NUW_S1 from a register value.
-#define BG_CSU_CSL7_NUW_S1(r)   (((r) & BM_CSU_CSL7_NUW_S1) >> BP_CSU_CSL7_NUW_S1)
+#define BG_CSU_CSL7_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NUW_S1) >> BP_CSU_CSL7_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NUW_S1.
-#define BF_CSU_CSL7_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_NUW_S1) & BM_CSU_CSL7_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NUW_S1.
-#define BF_CSU_CSL7_NUW_S1(v)   (((v) << BP_CSU_CSL7_NUW_S1) & BM_CSU_CSL7_NUW_S1)
-#endif
+#define BF_CSU_CSL7_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NUW_S1) & BM_CSU_CSL7_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -4985,15 +4318,10 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL7_NSW_S1.
 
 //! @brief Get value of CSU_CSL7_NSW_S1 from a register value.
-#define BG_CSU_CSL7_NSW_S1(r)   (((r) & BM_CSU_CSL7_NSW_S1) >> BP_CSU_CSL7_NSW_S1)
+#define BG_CSU_CSL7_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_NSW_S1) >> BP_CSU_CSL7_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_NSW_S1.
-#define BF_CSU_CSL7_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_NSW_S1) & BM_CSU_CSL7_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_NSW_S1.
-#define BF_CSU_CSL7_NSW_S1(v)   (((v) << BP_CSU_CSL7_NSW_S1) & BM_CSU_CSL7_NSW_S1)
-#endif
+#define BF_CSU_CSL7_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_NSW_S1) & BM_CSU_CSL7_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -5014,21 +4342,20 @@ typedef union _hw_csu_csl7
 #define BM_CSU_CSL7_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL7_LOCK_S1.
 
 //! @brief Get value of CSU_CSL7_LOCK_S1 from a register value.
-#define BG_CSU_CSL7_LOCK_S1(r)   (((r) & BM_CSU_CSL7_LOCK_S1) >> BP_CSU_CSL7_LOCK_S1)
+#define BG_CSU_CSL7_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL7_LOCK_S1) >> BP_CSU_CSL7_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL7_LOCK_S1.
-#define BF_CSU_CSL7_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL7_LOCK_S1) & BM_CSU_CSL7_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL7_LOCK_S1.
-#define BF_CSU_CSL7_LOCK_S1(v)   (((v) << BP_CSU_CSL7_LOCK_S1) & BM_CSU_CSL7_LOCK_S1)
-#endif
+#define BF_CSU_CSL7_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL7_LOCK_S1) & BM_CSU_CSL7_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL7_LOCK_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_LOCK_S1) | BF_CSU_CSL7_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL8 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5043,11 +4370,11 @@ typedef union _hw_csu_csl7
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -5059,7 +4386,7 @@ typedef union _hw_csu_csl7
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -5141,15 +4468,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL8_SUR_S2.
 
 //! @brief Get value of CSU_CSL8_SUR_S2 from a register value.
-#define BG_CSU_CSL8_SUR_S2(r)   (((r) & BM_CSU_CSL8_SUR_S2) >> BP_CSU_CSL8_SUR_S2)
+#define BG_CSU_CSL8_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SUR_S2) >> BP_CSU_CSL8_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SUR_S2.
-#define BF_CSU_CSL8_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_SUR_S2) & BM_CSU_CSL8_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SUR_S2.
-#define BF_CSU_CSL8_SUR_S2(v)   (((v) << BP_CSU_CSL8_SUR_S2) & BM_CSU_CSL8_SUR_S2)
-#endif
+#define BF_CSU_CSL8_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SUR_S2) & BM_CSU_CSL8_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -5170,15 +4492,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL8_SSR_S2.
 
 //! @brief Get value of CSU_CSL8_SSR_S2 from a register value.
-#define BG_CSU_CSL8_SSR_S2(r)   (((r) & BM_CSU_CSL8_SSR_S2) >> BP_CSU_CSL8_SSR_S2)
+#define BG_CSU_CSL8_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SSR_S2) >> BP_CSU_CSL8_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SSR_S2.
-#define BF_CSU_CSL8_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_SSR_S2) & BM_CSU_CSL8_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SSR_S2.
-#define BF_CSU_CSL8_SSR_S2(v)   (((v) << BP_CSU_CSL8_SSR_S2) & BM_CSU_CSL8_SSR_S2)
-#endif
+#define BF_CSU_CSL8_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SSR_S2) & BM_CSU_CSL8_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -5199,15 +4516,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL8_NUR_S2.
 
 //! @brief Get value of CSU_CSL8_NUR_S2 from a register value.
-#define BG_CSU_CSL8_NUR_S2(r)   (((r) & BM_CSU_CSL8_NUR_S2) >> BP_CSU_CSL8_NUR_S2)
+#define BG_CSU_CSL8_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NUR_S2) >> BP_CSU_CSL8_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NUR_S2.
-#define BF_CSU_CSL8_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_NUR_S2) & BM_CSU_CSL8_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NUR_S2.
-#define BF_CSU_CSL8_NUR_S2(v)   (((v) << BP_CSU_CSL8_NUR_S2) & BM_CSU_CSL8_NUR_S2)
-#endif
+#define BF_CSU_CSL8_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NUR_S2) & BM_CSU_CSL8_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -5228,15 +4540,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL8_NSR_S2.
 
 //! @brief Get value of CSU_CSL8_NSR_S2 from a register value.
-#define BG_CSU_CSL8_NSR_S2(r)   (((r) & BM_CSU_CSL8_NSR_S2) >> BP_CSU_CSL8_NSR_S2)
+#define BG_CSU_CSL8_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NSR_S2) >> BP_CSU_CSL8_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NSR_S2.
-#define BF_CSU_CSL8_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_NSR_S2) & BM_CSU_CSL8_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NSR_S2.
-#define BF_CSU_CSL8_NSR_S2(v)   (((v) << BP_CSU_CSL8_NSR_S2) & BM_CSU_CSL8_NSR_S2)
-#endif
+#define BF_CSU_CSL8_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NSR_S2) & BM_CSU_CSL8_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -5257,15 +4564,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL8_SUW_S2.
 
 //! @brief Get value of CSU_CSL8_SUW_S2 from a register value.
-#define BG_CSU_CSL8_SUW_S2(r)   (((r) & BM_CSU_CSL8_SUW_S2) >> BP_CSU_CSL8_SUW_S2)
+#define BG_CSU_CSL8_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SUW_S2) >> BP_CSU_CSL8_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SUW_S2.
-#define BF_CSU_CSL8_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_SUW_S2) & BM_CSU_CSL8_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SUW_S2.
-#define BF_CSU_CSL8_SUW_S2(v)   (((v) << BP_CSU_CSL8_SUW_S2) & BM_CSU_CSL8_SUW_S2)
-#endif
+#define BF_CSU_CSL8_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SUW_S2) & BM_CSU_CSL8_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -5286,15 +4588,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL8_SSW_S2.
 
 //! @brief Get value of CSU_CSL8_SSW_S2 from a register value.
-#define BG_CSU_CSL8_SSW_S2(r)   (((r) & BM_CSU_CSL8_SSW_S2) >> BP_CSU_CSL8_SSW_S2)
+#define BG_CSU_CSL8_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SSW_S2) >> BP_CSU_CSL8_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SSW_S2.
-#define BF_CSU_CSL8_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_SSW_S2) & BM_CSU_CSL8_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SSW_S2.
-#define BF_CSU_CSL8_SSW_S2(v)   (((v) << BP_CSU_CSL8_SSW_S2) & BM_CSU_CSL8_SSW_S2)
-#endif
+#define BF_CSU_CSL8_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SSW_S2) & BM_CSU_CSL8_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -5315,15 +4612,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL8_NUW_S2.
 
 //! @brief Get value of CSU_CSL8_NUW_S2 from a register value.
-#define BG_CSU_CSL8_NUW_S2(r)   (((r) & BM_CSU_CSL8_NUW_S2) >> BP_CSU_CSL8_NUW_S2)
+#define BG_CSU_CSL8_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NUW_S2) >> BP_CSU_CSL8_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NUW_S2.
-#define BF_CSU_CSL8_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_NUW_S2) & BM_CSU_CSL8_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NUW_S2.
-#define BF_CSU_CSL8_NUW_S2(v)   (((v) << BP_CSU_CSL8_NUW_S2) & BM_CSU_CSL8_NUW_S2)
-#endif
+#define BF_CSU_CSL8_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NUW_S2) & BM_CSU_CSL8_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -5344,15 +4636,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL8_NSW_S2.
 
 //! @brief Get value of CSU_CSL8_NSW_S2 from a register value.
-#define BG_CSU_CSL8_NSW_S2(r)   (((r) & BM_CSU_CSL8_NSW_S2) >> BP_CSU_CSL8_NSW_S2)
+#define BG_CSU_CSL8_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NSW_S2) >> BP_CSU_CSL8_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NSW_S2.
-#define BF_CSU_CSL8_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_NSW_S2) & BM_CSU_CSL8_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NSW_S2.
-#define BF_CSU_CSL8_NSW_S2(v)   (((v) << BP_CSU_CSL8_NSW_S2) & BM_CSU_CSL8_NSW_S2)
-#endif
+#define BF_CSU_CSL8_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NSW_S2) & BM_CSU_CSL8_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -5373,15 +4660,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL8_LOCK_S2.
 
 //! @brief Get value of CSU_CSL8_LOCK_S2 from a register value.
-#define BG_CSU_CSL8_LOCK_S2(r)   (((r) & BM_CSU_CSL8_LOCK_S2) >> BP_CSU_CSL8_LOCK_S2)
+#define BG_CSU_CSL8_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_LOCK_S2) >> BP_CSU_CSL8_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_LOCK_S2.
-#define BF_CSU_CSL8_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL8_LOCK_S2) & BM_CSU_CSL8_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL8_LOCK_S2.
-#define BF_CSU_CSL8_LOCK_S2(v)   (((v) << BP_CSU_CSL8_LOCK_S2) & BM_CSU_CSL8_LOCK_S2)
-#endif
+#define BF_CSU_CSL8_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_LOCK_S2) & BM_CSU_CSL8_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -5402,15 +4684,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL8_SUR_S1.
 
 //! @brief Get value of CSU_CSL8_SUR_S1 from a register value.
-#define BG_CSU_CSL8_SUR_S1(r)   (((r) & BM_CSU_CSL8_SUR_S1) >> BP_CSU_CSL8_SUR_S1)
+#define BG_CSU_CSL8_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SUR_S1) >> BP_CSU_CSL8_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SUR_S1.
-#define BF_CSU_CSL8_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_SUR_S1) & BM_CSU_CSL8_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SUR_S1.
-#define BF_CSU_CSL8_SUR_S1(v)   (((v) << BP_CSU_CSL8_SUR_S1) & BM_CSU_CSL8_SUR_S1)
-#endif
+#define BF_CSU_CSL8_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SUR_S1) & BM_CSU_CSL8_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -5431,15 +4708,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL8_SSR_S1.
 
 //! @brief Get value of CSU_CSL8_SSR_S1 from a register value.
-#define BG_CSU_CSL8_SSR_S1(r)   (((r) & BM_CSU_CSL8_SSR_S1) >> BP_CSU_CSL8_SSR_S1)
+#define BG_CSU_CSL8_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SSR_S1) >> BP_CSU_CSL8_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SSR_S1.
-#define BF_CSU_CSL8_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_SSR_S1) & BM_CSU_CSL8_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SSR_S1.
-#define BF_CSU_CSL8_SSR_S1(v)   (((v) << BP_CSU_CSL8_SSR_S1) & BM_CSU_CSL8_SSR_S1)
-#endif
+#define BF_CSU_CSL8_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SSR_S1) & BM_CSU_CSL8_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -5460,15 +4732,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL8_NUR_S1.
 
 //! @brief Get value of CSU_CSL8_NUR_S1 from a register value.
-#define BG_CSU_CSL8_NUR_S1(r)   (((r) & BM_CSU_CSL8_NUR_S1) >> BP_CSU_CSL8_NUR_S1)
+#define BG_CSU_CSL8_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NUR_S1) >> BP_CSU_CSL8_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NUR_S1.
-#define BF_CSU_CSL8_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_NUR_S1) & BM_CSU_CSL8_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NUR_S1.
-#define BF_CSU_CSL8_NUR_S1(v)   (((v) << BP_CSU_CSL8_NUR_S1) & BM_CSU_CSL8_NUR_S1)
-#endif
+#define BF_CSU_CSL8_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NUR_S1) & BM_CSU_CSL8_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -5489,15 +4756,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL8_NSR_S1.
 
 //! @brief Get value of CSU_CSL8_NSR_S1 from a register value.
-#define BG_CSU_CSL8_NSR_S1(r)   (((r) & BM_CSU_CSL8_NSR_S1) >> BP_CSU_CSL8_NSR_S1)
+#define BG_CSU_CSL8_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NSR_S1) >> BP_CSU_CSL8_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NSR_S1.
-#define BF_CSU_CSL8_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_NSR_S1) & BM_CSU_CSL8_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NSR_S1.
-#define BF_CSU_CSL8_NSR_S1(v)   (((v) << BP_CSU_CSL8_NSR_S1) & BM_CSU_CSL8_NSR_S1)
-#endif
+#define BF_CSU_CSL8_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NSR_S1) & BM_CSU_CSL8_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -5518,15 +4780,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL8_SUW_S1.
 
 //! @brief Get value of CSU_CSL8_SUW_S1 from a register value.
-#define BG_CSU_CSL8_SUW_S1(r)   (((r) & BM_CSU_CSL8_SUW_S1) >> BP_CSU_CSL8_SUW_S1)
+#define BG_CSU_CSL8_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SUW_S1) >> BP_CSU_CSL8_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SUW_S1.
-#define BF_CSU_CSL8_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_SUW_S1) & BM_CSU_CSL8_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SUW_S1.
-#define BF_CSU_CSL8_SUW_S1(v)   (((v) << BP_CSU_CSL8_SUW_S1) & BM_CSU_CSL8_SUW_S1)
-#endif
+#define BF_CSU_CSL8_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SUW_S1) & BM_CSU_CSL8_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -5547,15 +4804,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL8_SSW_S1.
 
 //! @brief Get value of CSU_CSL8_SSW_S1 from a register value.
-#define BG_CSU_CSL8_SSW_S1(r)   (((r) & BM_CSU_CSL8_SSW_S1) >> BP_CSU_CSL8_SSW_S1)
+#define BG_CSU_CSL8_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_SSW_S1) >> BP_CSU_CSL8_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_SSW_S1.
-#define BF_CSU_CSL8_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_SSW_S1) & BM_CSU_CSL8_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_SSW_S1.
-#define BF_CSU_CSL8_SSW_S1(v)   (((v) << BP_CSU_CSL8_SSW_S1) & BM_CSU_CSL8_SSW_S1)
-#endif
+#define BF_CSU_CSL8_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_SSW_S1) & BM_CSU_CSL8_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -5576,15 +4828,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL8_NUW_S1.
 
 //! @brief Get value of CSU_CSL8_NUW_S1 from a register value.
-#define BG_CSU_CSL8_NUW_S1(r)   (((r) & BM_CSU_CSL8_NUW_S1) >> BP_CSU_CSL8_NUW_S1)
+#define BG_CSU_CSL8_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NUW_S1) >> BP_CSU_CSL8_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NUW_S1.
-#define BF_CSU_CSL8_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_NUW_S1) & BM_CSU_CSL8_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NUW_S1.
-#define BF_CSU_CSL8_NUW_S1(v)   (((v) << BP_CSU_CSL8_NUW_S1) & BM_CSU_CSL8_NUW_S1)
-#endif
+#define BF_CSU_CSL8_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NUW_S1) & BM_CSU_CSL8_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -5605,15 +4852,10 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL8_NSW_S1.
 
 //! @brief Get value of CSU_CSL8_NSW_S1 from a register value.
-#define BG_CSU_CSL8_NSW_S1(r)   (((r) & BM_CSU_CSL8_NSW_S1) >> BP_CSU_CSL8_NSW_S1)
+#define BG_CSU_CSL8_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_NSW_S1) >> BP_CSU_CSL8_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_NSW_S1.
-#define BF_CSU_CSL8_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_NSW_S1) & BM_CSU_CSL8_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_NSW_S1.
-#define BF_CSU_CSL8_NSW_S1(v)   (((v) << BP_CSU_CSL8_NSW_S1) & BM_CSU_CSL8_NSW_S1)
-#endif
+#define BF_CSU_CSL8_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_NSW_S1) & BM_CSU_CSL8_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -5634,21 +4876,20 @@ typedef union _hw_csu_csl8
 #define BM_CSU_CSL8_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL8_LOCK_S1.
 
 //! @brief Get value of CSU_CSL8_LOCK_S1 from a register value.
-#define BG_CSU_CSL8_LOCK_S1(r)   (((r) & BM_CSU_CSL8_LOCK_S1) >> BP_CSU_CSL8_LOCK_S1)
+#define BG_CSU_CSL8_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL8_LOCK_S1) >> BP_CSU_CSL8_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL8_LOCK_S1.
-#define BF_CSU_CSL8_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL8_LOCK_S1) & BM_CSU_CSL8_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL8_LOCK_S1.
-#define BF_CSU_CSL8_LOCK_S1(v)   (((v) << BP_CSU_CSL8_LOCK_S1) & BM_CSU_CSL8_LOCK_S1)
-#endif
+#define BF_CSU_CSL8_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL8_LOCK_S1) & BM_CSU_CSL8_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL8_LOCK_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_LOCK_S1) | BF_CSU_CSL8_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL9 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5663,11 +4904,11 @@ typedef union _hw_csu_csl8
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -5679,7 +4920,7 @@ typedef union _hw_csu_csl8
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -5761,15 +5002,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL9_SUR_S2.
 
 //! @brief Get value of CSU_CSL9_SUR_S2 from a register value.
-#define BG_CSU_CSL9_SUR_S2(r)   (((r) & BM_CSU_CSL9_SUR_S2) >> BP_CSU_CSL9_SUR_S2)
+#define BG_CSU_CSL9_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SUR_S2) >> BP_CSU_CSL9_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SUR_S2.
-#define BF_CSU_CSL9_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_SUR_S2) & BM_CSU_CSL9_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SUR_S2.
-#define BF_CSU_CSL9_SUR_S2(v)   (((v) << BP_CSU_CSL9_SUR_S2) & BM_CSU_CSL9_SUR_S2)
-#endif
+#define BF_CSU_CSL9_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SUR_S2) & BM_CSU_CSL9_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -5790,15 +5026,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL9_SSR_S2.
 
 //! @brief Get value of CSU_CSL9_SSR_S2 from a register value.
-#define BG_CSU_CSL9_SSR_S2(r)   (((r) & BM_CSU_CSL9_SSR_S2) >> BP_CSU_CSL9_SSR_S2)
+#define BG_CSU_CSL9_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SSR_S2) >> BP_CSU_CSL9_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SSR_S2.
-#define BF_CSU_CSL9_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_SSR_S2) & BM_CSU_CSL9_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SSR_S2.
-#define BF_CSU_CSL9_SSR_S2(v)   (((v) << BP_CSU_CSL9_SSR_S2) & BM_CSU_CSL9_SSR_S2)
-#endif
+#define BF_CSU_CSL9_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SSR_S2) & BM_CSU_CSL9_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -5819,15 +5050,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL9_NUR_S2.
 
 //! @brief Get value of CSU_CSL9_NUR_S2 from a register value.
-#define BG_CSU_CSL9_NUR_S2(r)   (((r) & BM_CSU_CSL9_NUR_S2) >> BP_CSU_CSL9_NUR_S2)
+#define BG_CSU_CSL9_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NUR_S2) >> BP_CSU_CSL9_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NUR_S2.
-#define BF_CSU_CSL9_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_NUR_S2) & BM_CSU_CSL9_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NUR_S2.
-#define BF_CSU_CSL9_NUR_S2(v)   (((v) << BP_CSU_CSL9_NUR_S2) & BM_CSU_CSL9_NUR_S2)
-#endif
+#define BF_CSU_CSL9_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NUR_S2) & BM_CSU_CSL9_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -5848,15 +5074,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL9_NSR_S2.
 
 //! @brief Get value of CSU_CSL9_NSR_S2 from a register value.
-#define BG_CSU_CSL9_NSR_S2(r)   (((r) & BM_CSU_CSL9_NSR_S2) >> BP_CSU_CSL9_NSR_S2)
+#define BG_CSU_CSL9_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NSR_S2) >> BP_CSU_CSL9_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NSR_S2.
-#define BF_CSU_CSL9_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_NSR_S2) & BM_CSU_CSL9_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NSR_S2.
-#define BF_CSU_CSL9_NSR_S2(v)   (((v) << BP_CSU_CSL9_NSR_S2) & BM_CSU_CSL9_NSR_S2)
-#endif
+#define BF_CSU_CSL9_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NSR_S2) & BM_CSU_CSL9_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -5877,15 +5098,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL9_SUW_S2.
 
 //! @brief Get value of CSU_CSL9_SUW_S2 from a register value.
-#define BG_CSU_CSL9_SUW_S2(r)   (((r) & BM_CSU_CSL9_SUW_S2) >> BP_CSU_CSL9_SUW_S2)
+#define BG_CSU_CSL9_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SUW_S2) >> BP_CSU_CSL9_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SUW_S2.
-#define BF_CSU_CSL9_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_SUW_S2) & BM_CSU_CSL9_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SUW_S2.
-#define BF_CSU_CSL9_SUW_S2(v)   (((v) << BP_CSU_CSL9_SUW_S2) & BM_CSU_CSL9_SUW_S2)
-#endif
+#define BF_CSU_CSL9_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SUW_S2) & BM_CSU_CSL9_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -5906,15 +5122,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL9_SSW_S2.
 
 //! @brief Get value of CSU_CSL9_SSW_S2 from a register value.
-#define BG_CSU_CSL9_SSW_S2(r)   (((r) & BM_CSU_CSL9_SSW_S2) >> BP_CSU_CSL9_SSW_S2)
+#define BG_CSU_CSL9_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SSW_S2) >> BP_CSU_CSL9_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SSW_S2.
-#define BF_CSU_CSL9_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_SSW_S2) & BM_CSU_CSL9_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SSW_S2.
-#define BF_CSU_CSL9_SSW_S2(v)   (((v) << BP_CSU_CSL9_SSW_S2) & BM_CSU_CSL9_SSW_S2)
-#endif
+#define BF_CSU_CSL9_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SSW_S2) & BM_CSU_CSL9_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -5935,15 +5146,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL9_NUW_S2.
 
 //! @brief Get value of CSU_CSL9_NUW_S2 from a register value.
-#define BG_CSU_CSL9_NUW_S2(r)   (((r) & BM_CSU_CSL9_NUW_S2) >> BP_CSU_CSL9_NUW_S2)
+#define BG_CSU_CSL9_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NUW_S2) >> BP_CSU_CSL9_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NUW_S2.
-#define BF_CSU_CSL9_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_NUW_S2) & BM_CSU_CSL9_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NUW_S2.
-#define BF_CSU_CSL9_NUW_S2(v)   (((v) << BP_CSU_CSL9_NUW_S2) & BM_CSU_CSL9_NUW_S2)
-#endif
+#define BF_CSU_CSL9_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NUW_S2) & BM_CSU_CSL9_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -5964,15 +5170,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL9_NSW_S2.
 
 //! @brief Get value of CSU_CSL9_NSW_S2 from a register value.
-#define BG_CSU_CSL9_NSW_S2(r)   (((r) & BM_CSU_CSL9_NSW_S2) >> BP_CSU_CSL9_NSW_S2)
+#define BG_CSU_CSL9_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NSW_S2) >> BP_CSU_CSL9_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NSW_S2.
-#define BF_CSU_CSL9_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_NSW_S2) & BM_CSU_CSL9_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NSW_S2.
-#define BF_CSU_CSL9_NSW_S2(v)   (((v) << BP_CSU_CSL9_NSW_S2) & BM_CSU_CSL9_NSW_S2)
-#endif
+#define BF_CSU_CSL9_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NSW_S2) & BM_CSU_CSL9_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -5993,15 +5194,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL9_LOCK_S2.
 
 //! @brief Get value of CSU_CSL9_LOCK_S2 from a register value.
-#define BG_CSU_CSL9_LOCK_S2(r)   (((r) & BM_CSU_CSL9_LOCK_S2) >> BP_CSU_CSL9_LOCK_S2)
+#define BG_CSU_CSL9_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_LOCK_S2) >> BP_CSU_CSL9_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_LOCK_S2.
-#define BF_CSU_CSL9_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL9_LOCK_S2) & BM_CSU_CSL9_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL9_LOCK_S2.
-#define BF_CSU_CSL9_LOCK_S2(v)   (((v) << BP_CSU_CSL9_LOCK_S2) & BM_CSU_CSL9_LOCK_S2)
-#endif
+#define BF_CSU_CSL9_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_LOCK_S2) & BM_CSU_CSL9_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -6022,15 +5218,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL9_SUR_S1.
 
 //! @brief Get value of CSU_CSL9_SUR_S1 from a register value.
-#define BG_CSU_CSL9_SUR_S1(r)   (((r) & BM_CSU_CSL9_SUR_S1) >> BP_CSU_CSL9_SUR_S1)
+#define BG_CSU_CSL9_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SUR_S1) >> BP_CSU_CSL9_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SUR_S1.
-#define BF_CSU_CSL9_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_SUR_S1) & BM_CSU_CSL9_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SUR_S1.
-#define BF_CSU_CSL9_SUR_S1(v)   (((v) << BP_CSU_CSL9_SUR_S1) & BM_CSU_CSL9_SUR_S1)
-#endif
+#define BF_CSU_CSL9_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SUR_S1) & BM_CSU_CSL9_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -6051,15 +5242,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL9_SSR_S1.
 
 //! @brief Get value of CSU_CSL9_SSR_S1 from a register value.
-#define BG_CSU_CSL9_SSR_S1(r)   (((r) & BM_CSU_CSL9_SSR_S1) >> BP_CSU_CSL9_SSR_S1)
+#define BG_CSU_CSL9_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SSR_S1) >> BP_CSU_CSL9_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SSR_S1.
-#define BF_CSU_CSL9_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_SSR_S1) & BM_CSU_CSL9_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SSR_S1.
-#define BF_CSU_CSL9_SSR_S1(v)   (((v) << BP_CSU_CSL9_SSR_S1) & BM_CSU_CSL9_SSR_S1)
-#endif
+#define BF_CSU_CSL9_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SSR_S1) & BM_CSU_CSL9_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -6080,15 +5266,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL9_NUR_S1.
 
 //! @brief Get value of CSU_CSL9_NUR_S1 from a register value.
-#define BG_CSU_CSL9_NUR_S1(r)   (((r) & BM_CSU_CSL9_NUR_S1) >> BP_CSU_CSL9_NUR_S1)
+#define BG_CSU_CSL9_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NUR_S1) >> BP_CSU_CSL9_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NUR_S1.
-#define BF_CSU_CSL9_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_NUR_S1) & BM_CSU_CSL9_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NUR_S1.
-#define BF_CSU_CSL9_NUR_S1(v)   (((v) << BP_CSU_CSL9_NUR_S1) & BM_CSU_CSL9_NUR_S1)
-#endif
+#define BF_CSU_CSL9_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NUR_S1) & BM_CSU_CSL9_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -6109,15 +5290,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL9_NSR_S1.
 
 //! @brief Get value of CSU_CSL9_NSR_S1 from a register value.
-#define BG_CSU_CSL9_NSR_S1(r)   (((r) & BM_CSU_CSL9_NSR_S1) >> BP_CSU_CSL9_NSR_S1)
+#define BG_CSU_CSL9_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NSR_S1) >> BP_CSU_CSL9_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NSR_S1.
-#define BF_CSU_CSL9_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_NSR_S1) & BM_CSU_CSL9_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NSR_S1.
-#define BF_CSU_CSL9_NSR_S1(v)   (((v) << BP_CSU_CSL9_NSR_S1) & BM_CSU_CSL9_NSR_S1)
-#endif
+#define BF_CSU_CSL9_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NSR_S1) & BM_CSU_CSL9_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -6138,15 +5314,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL9_SUW_S1.
 
 //! @brief Get value of CSU_CSL9_SUW_S1 from a register value.
-#define BG_CSU_CSL9_SUW_S1(r)   (((r) & BM_CSU_CSL9_SUW_S1) >> BP_CSU_CSL9_SUW_S1)
+#define BG_CSU_CSL9_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SUW_S1) >> BP_CSU_CSL9_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SUW_S1.
-#define BF_CSU_CSL9_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_SUW_S1) & BM_CSU_CSL9_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SUW_S1.
-#define BF_CSU_CSL9_SUW_S1(v)   (((v) << BP_CSU_CSL9_SUW_S1) & BM_CSU_CSL9_SUW_S1)
-#endif
+#define BF_CSU_CSL9_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SUW_S1) & BM_CSU_CSL9_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -6167,15 +5338,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL9_SSW_S1.
 
 //! @brief Get value of CSU_CSL9_SSW_S1 from a register value.
-#define BG_CSU_CSL9_SSW_S1(r)   (((r) & BM_CSU_CSL9_SSW_S1) >> BP_CSU_CSL9_SSW_S1)
+#define BG_CSU_CSL9_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_SSW_S1) >> BP_CSU_CSL9_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_SSW_S1.
-#define BF_CSU_CSL9_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_SSW_S1) & BM_CSU_CSL9_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_SSW_S1.
-#define BF_CSU_CSL9_SSW_S1(v)   (((v) << BP_CSU_CSL9_SSW_S1) & BM_CSU_CSL9_SSW_S1)
-#endif
+#define BF_CSU_CSL9_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_SSW_S1) & BM_CSU_CSL9_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -6196,15 +5362,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL9_NUW_S1.
 
 //! @brief Get value of CSU_CSL9_NUW_S1 from a register value.
-#define BG_CSU_CSL9_NUW_S1(r)   (((r) & BM_CSU_CSL9_NUW_S1) >> BP_CSU_CSL9_NUW_S1)
+#define BG_CSU_CSL9_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NUW_S1) >> BP_CSU_CSL9_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NUW_S1.
-#define BF_CSU_CSL9_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_NUW_S1) & BM_CSU_CSL9_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NUW_S1.
-#define BF_CSU_CSL9_NUW_S1(v)   (((v) << BP_CSU_CSL9_NUW_S1) & BM_CSU_CSL9_NUW_S1)
-#endif
+#define BF_CSU_CSL9_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NUW_S1) & BM_CSU_CSL9_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -6225,15 +5386,10 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL9_NSW_S1.
 
 //! @brief Get value of CSU_CSL9_NSW_S1 from a register value.
-#define BG_CSU_CSL9_NSW_S1(r)   (((r) & BM_CSU_CSL9_NSW_S1) >> BP_CSU_CSL9_NSW_S1)
+#define BG_CSU_CSL9_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_NSW_S1) >> BP_CSU_CSL9_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_NSW_S1.
-#define BF_CSU_CSL9_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_NSW_S1) & BM_CSU_CSL9_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_NSW_S1.
-#define BF_CSU_CSL9_NSW_S1(v)   (((v) << BP_CSU_CSL9_NSW_S1) & BM_CSU_CSL9_NSW_S1)
-#endif
+#define BF_CSU_CSL9_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_NSW_S1) & BM_CSU_CSL9_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -6254,21 +5410,20 @@ typedef union _hw_csu_csl9
 #define BM_CSU_CSL9_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL9_LOCK_S1.
 
 //! @brief Get value of CSU_CSL9_LOCK_S1 from a register value.
-#define BG_CSU_CSL9_LOCK_S1(r)   (((r) & BM_CSU_CSL9_LOCK_S1) >> BP_CSU_CSL9_LOCK_S1)
+#define BG_CSU_CSL9_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL9_LOCK_S1) >> BP_CSU_CSL9_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL9_LOCK_S1.
-#define BF_CSU_CSL9_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL9_LOCK_S1) & BM_CSU_CSL9_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL9_LOCK_S1.
-#define BF_CSU_CSL9_LOCK_S1(v)   (((v) << BP_CSU_CSL9_LOCK_S1) & BM_CSU_CSL9_LOCK_S1)
-#endif
+#define BF_CSU_CSL9_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL9_LOCK_S1) & BM_CSU_CSL9_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL9_LOCK_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_LOCK_S1) | BF_CSU_CSL9_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL10 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6283,11 +5438,11 @@ typedef union _hw_csu_csl9
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -6299,7 +5454,7 @@ typedef union _hw_csu_csl9
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -6381,15 +5536,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL10_SUR_S2.
 
 //! @brief Get value of CSU_CSL10_SUR_S2 from a register value.
-#define BG_CSU_CSL10_SUR_S2(r)   (((r) & BM_CSU_CSL10_SUR_S2) >> BP_CSU_CSL10_SUR_S2)
+#define BG_CSU_CSL10_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SUR_S2) >> BP_CSU_CSL10_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SUR_S2.
-#define BF_CSU_CSL10_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_SUR_S2) & BM_CSU_CSL10_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SUR_S2.
-#define BF_CSU_CSL10_SUR_S2(v)   (((v) << BP_CSU_CSL10_SUR_S2) & BM_CSU_CSL10_SUR_S2)
-#endif
+#define BF_CSU_CSL10_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SUR_S2) & BM_CSU_CSL10_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -6410,15 +5560,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL10_SSR_S2.
 
 //! @brief Get value of CSU_CSL10_SSR_S2 from a register value.
-#define BG_CSU_CSL10_SSR_S2(r)   (((r) & BM_CSU_CSL10_SSR_S2) >> BP_CSU_CSL10_SSR_S2)
+#define BG_CSU_CSL10_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SSR_S2) >> BP_CSU_CSL10_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SSR_S2.
-#define BF_CSU_CSL10_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_SSR_S2) & BM_CSU_CSL10_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SSR_S2.
-#define BF_CSU_CSL10_SSR_S2(v)   (((v) << BP_CSU_CSL10_SSR_S2) & BM_CSU_CSL10_SSR_S2)
-#endif
+#define BF_CSU_CSL10_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SSR_S2) & BM_CSU_CSL10_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -6439,15 +5584,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL10_NUR_S2.
 
 //! @brief Get value of CSU_CSL10_NUR_S2 from a register value.
-#define BG_CSU_CSL10_NUR_S2(r)   (((r) & BM_CSU_CSL10_NUR_S2) >> BP_CSU_CSL10_NUR_S2)
+#define BG_CSU_CSL10_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NUR_S2) >> BP_CSU_CSL10_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NUR_S2.
-#define BF_CSU_CSL10_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_NUR_S2) & BM_CSU_CSL10_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NUR_S2.
-#define BF_CSU_CSL10_NUR_S2(v)   (((v) << BP_CSU_CSL10_NUR_S2) & BM_CSU_CSL10_NUR_S2)
-#endif
+#define BF_CSU_CSL10_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NUR_S2) & BM_CSU_CSL10_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -6468,15 +5608,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL10_NSR_S2.
 
 //! @brief Get value of CSU_CSL10_NSR_S2 from a register value.
-#define BG_CSU_CSL10_NSR_S2(r)   (((r) & BM_CSU_CSL10_NSR_S2) >> BP_CSU_CSL10_NSR_S2)
+#define BG_CSU_CSL10_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NSR_S2) >> BP_CSU_CSL10_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NSR_S2.
-#define BF_CSU_CSL10_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_NSR_S2) & BM_CSU_CSL10_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NSR_S2.
-#define BF_CSU_CSL10_NSR_S2(v)   (((v) << BP_CSU_CSL10_NSR_S2) & BM_CSU_CSL10_NSR_S2)
-#endif
+#define BF_CSU_CSL10_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NSR_S2) & BM_CSU_CSL10_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -6497,15 +5632,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL10_SUW_S2.
 
 //! @brief Get value of CSU_CSL10_SUW_S2 from a register value.
-#define BG_CSU_CSL10_SUW_S2(r)   (((r) & BM_CSU_CSL10_SUW_S2) >> BP_CSU_CSL10_SUW_S2)
+#define BG_CSU_CSL10_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SUW_S2) >> BP_CSU_CSL10_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SUW_S2.
-#define BF_CSU_CSL10_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_SUW_S2) & BM_CSU_CSL10_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SUW_S2.
-#define BF_CSU_CSL10_SUW_S2(v)   (((v) << BP_CSU_CSL10_SUW_S2) & BM_CSU_CSL10_SUW_S2)
-#endif
+#define BF_CSU_CSL10_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SUW_S2) & BM_CSU_CSL10_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -6526,15 +5656,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL10_SSW_S2.
 
 //! @brief Get value of CSU_CSL10_SSW_S2 from a register value.
-#define BG_CSU_CSL10_SSW_S2(r)   (((r) & BM_CSU_CSL10_SSW_S2) >> BP_CSU_CSL10_SSW_S2)
+#define BG_CSU_CSL10_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SSW_S2) >> BP_CSU_CSL10_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SSW_S2.
-#define BF_CSU_CSL10_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_SSW_S2) & BM_CSU_CSL10_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SSW_S2.
-#define BF_CSU_CSL10_SSW_S2(v)   (((v) << BP_CSU_CSL10_SSW_S2) & BM_CSU_CSL10_SSW_S2)
-#endif
+#define BF_CSU_CSL10_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SSW_S2) & BM_CSU_CSL10_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -6555,15 +5680,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL10_NUW_S2.
 
 //! @brief Get value of CSU_CSL10_NUW_S2 from a register value.
-#define BG_CSU_CSL10_NUW_S2(r)   (((r) & BM_CSU_CSL10_NUW_S2) >> BP_CSU_CSL10_NUW_S2)
+#define BG_CSU_CSL10_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NUW_S2) >> BP_CSU_CSL10_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NUW_S2.
-#define BF_CSU_CSL10_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_NUW_S2) & BM_CSU_CSL10_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NUW_S2.
-#define BF_CSU_CSL10_NUW_S2(v)   (((v) << BP_CSU_CSL10_NUW_S2) & BM_CSU_CSL10_NUW_S2)
-#endif
+#define BF_CSU_CSL10_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NUW_S2) & BM_CSU_CSL10_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -6584,15 +5704,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL10_NSW_S2.
 
 //! @brief Get value of CSU_CSL10_NSW_S2 from a register value.
-#define BG_CSU_CSL10_NSW_S2(r)   (((r) & BM_CSU_CSL10_NSW_S2) >> BP_CSU_CSL10_NSW_S2)
+#define BG_CSU_CSL10_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NSW_S2) >> BP_CSU_CSL10_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NSW_S2.
-#define BF_CSU_CSL10_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_NSW_S2) & BM_CSU_CSL10_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NSW_S2.
-#define BF_CSU_CSL10_NSW_S2(v)   (((v) << BP_CSU_CSL10_NSW_S2) & BM_CSU_CSL10_NSW_S2)
-#endif
+#define BF_CSU_CSL10_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NSW_S2) & BM_CSU_CSL10_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -6613,15 +5728,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL10_LOCK_S2.
 
 //! @brief Get value of CSU_CSL10_LOCK_S2 from a register value.
-#define BG_CSU_CSL10_LOCK_S2(r)   (((r) & BM_CSU_CSL10_LOCK_S2) >> BP_CSU_CSL10_LOCK_S2)
+#define BG_CSU_CSL10_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_LOCK_S2) >> BP_CSU_CSL10_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_LOCK_S2.
-#define BF_CSU_CSL10_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL10_LOCK_S2) & BM_CSU_CSL10_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL10_LOCK_S2.
-#define BF_CSU_CSL10_LOCK_S2(v)   (((v) << BP_CSU_CSL10_LOCK_S2) & BM_CSU_CSL10_LOCK_S2)
-#endif
+#define BF_CSU_CSL10_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_LOCK_S2) & BM_CSU_CSL10_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -6642,15 +5752,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL10_SUR_S1.
 
 //! @brief Get value of CSU_CSL10_SUR_S1 from a register value.
-#define BG_CSU_CSL10_SUR_S1(r)   (((r) & BM_CSU_CSL10_SUR_S1) >> BP_CSU_CSL10_SUR_S1)
+#define BG_CSU_CSL10_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SUR_S1) >> BP_CSU_CSL10_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SUR_S1.
-#define BF_CSU_CSL10_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_SUR_S1) & BM_CSU_CSL10_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SUR_S1.
-#define BF_CSU_CSL10_SUR_S1(v)   (((v) << BP_CSU_CSL10_SUR_S1) & BM_CSU_CSL10_SUR_S1)
-#endif
+#define BF_CSU_CSL10_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SUR_S1) & BM_CSU_CSL10_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -6671,15 +5776,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL10_SSR_S1.
 
 //! @brief Get value of CSU_CSL10_SSR_S1 from a register value.
-#define BG_CSU_CSL10_SSR_S1(r)   (((r) & BM_CSU_CSL10_SSR_S1) >> BP_CSU_CSL10_SSR_S1)
+#define BG_CSU_CSL10_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SSR_S1) >> BP_CSU_CSL10_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SSR_S1.
-#define BF_CSU_CSL10_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_SSR_S1) & BM_CSU_CSL10_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SSR_S1.
-#define BF_CSU_CSL10_SSR_S1(v)   (((v) << BP_CSU_CSL10_SSR_S1) & BM_CSU_CSL10_SSR_S1)
-#endif
+#define BF_CSU_CSL10_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SSR_S1) & BM_CSU_CSL10_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -6700,15 +5800,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL10_NUR_S1.
 
 //! @brief Get value of CSU_CSL10_NUR_S1 from a register value.
-#define BG_CSU_CSL10_NUR_S1(r)   (((r) & BM_CSU_CSL10_NUR_S1) >> BP_CSU_CSL10_NUR_S1)
+#define BG_CSU_CSL10_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NUR_S1) >> BP_CSU_CSL10_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NUR_S1.
-#define BF_CSU_CSL10_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_NUR_S1) & BM_CSU_CSL10_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NUR_S1.
-#define BF_CSU_CSL10_NUR_S1(v)   (((v) << BP_CSU_CSL10_NUR_S1) & BM_CSU_CSL10_NUR_S1)
-#endif
+#define BF_CSU_CSL10_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NUR_S1) & BM_CSU_CSL10_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -6729,15 +5824,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL10_NSR_S1.
 
 //! @brief Get value of CSU_CSL10_NSR_S1 from a register value.
-#define BG_CSU_CSL10_NSR_S1(r)   (((r) & BM_CSU_CSL10_NSR_S1) >> BP_CSU_CSL10_NSR_S1)
+#define BG_CSU_CSL10_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NSR_S1) >> BP_CSU_CSL10_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NSR_S1.
-#define BF_CSU_CSL10_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_NSR_S1) & BM_CSU_CSL10_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NSR_S1.
-#define BF_CSU_CSL10_NSR_S1(v)   (((v) << BP_CSU_CSL10_NSR_S1) & BM_CSU_CSL10_NSR_S1)
-#endif
+#define BF_CSU_CSL10_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NSR_S1) & BM_CSU_CSL10_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -6758,15 +5848,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL10_SUW_S1.
 
 //! @brief Get value of CSU_CSL10_SUW_S1 from a register value.
-#define BG_CSU_CSL10_SUW_S1(r)   (((r) & BM_CSU_CSL10_SUW_S1) >> BP_CSU_CSL10_SUW_S1)
+#define BG_CSU_CSL10_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SUW_S1) >> BP_CSU_CSL10_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SUW_S1.
-#define BF_CSU_CSL10_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_SUW_S1) & BM_CSU_CSL10_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SUW_S1.
-#define BF_CSU_CSL10_SUW_S1(v)   (((v) << BP_CSU_CSL10_SUW_S1) & BM_CSU_CSL10_SUW_S1)
-#endif
+#define BF_CSU_CSL10_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SUW_S1) & BM_CSU_CSL10_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -6787,15 +5872,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL10_SSW_S1.
 
 //! @brief Get value of CSU_CSL10_SSW_S1 from a register value.
-#define BG_CSU_CSL10_SSW_S1(r)   (((r) & BM_CSU_CSL10_SSW_S1) >> BP_CSU_CSL10_SSW_S1)
+#define BG_CSU_CSL10_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_SSW_S1) >> BP_CSU_CSL10_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_SSW_S1.
-#define BF_CSU_CSL10_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_SSW_S1) & BM_CSU_CSL10_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_SSW_S1.
-#define BF_CSU_CSL10_SSW_S1(v)   (((v) << BP_CSU_CSL10_SSW_S1) & BM_CSU_CSL10_SSW_S1)
-#endif
+#define BF_CSU_CSL10_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_SSW_S1) & BM_CSU_CSL10_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -6816,15 +5896,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL10_NUW_S1.
 
 //! @brief Get value of CSU_CSL10_NUW_S1 from a register value.
-#define BG_CSU_CSL10_NUW_S1(r)   (((r) & BM_CSU_CSL10_NUW_S1) >> BP_CSU_CSL10_NUW_S1)
+#define BG_CSU_CSL10_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NUW_S1) >> BP_CSU_CSL10_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NUW_S1.
-#define BF_CSU_CSL10_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_NUW_S1) & BM_CSU_CSL10_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NUW_S1.
-#define BF_CSU_CSL10_NUW_S1(v)   (((v) << BP_CSU_CSL10_NUW_S1) & BM_CSU_CSL10_NUW_S1)
-#endif
+#define BF_CSU_CSL10_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NUW_S1) & BM_CSU_CSL10_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -6845,15 +5920,10 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL10_NSW_S1.
 
 //! @brief Get value of CSU_CSL10_NSW_S1 from a register value.
-#define BG_CSU_CSL10_NSW_S1(r)   (((r) & BM_CSU_CSL10_NSW_S1) >> BP_CSU_CSL10_NSW_S1)
+#define BG_CSU_CSL10_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_NSW_S1) >> BP_CSU_CSL10_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_NSW_S1.
-#define BF_CSU_CSL10_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_NSW_S1) & BM_CSU_CSL10_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_NSW_S1.
-#define BF_CSU_CSL10_NSW_S1(v)   (((v) << BP_CSU_CSL10_NSW_S1) & BM_CSU_CSL10_NSW_S1)
-#endif
+#define BF_CSU_CSL10_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_NSW_S1) & BM_CSU_CSL10_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -6874,21 +5944,20 @@ typedef union _hw_csu_csl10
 #define BM_CSU_CSL10_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL10_LOCK_S1.
 
 //! @brief Get value of CSU_CSL10_LOCK_S1 from a register value.
-#define BG_CSU_CSL10_LOCK_S1(r)   (((r) & BM_CSU_CSL10_LOCK_S1) >> BP_CSU_CSL10_LOCK_S1)
+#define BG_CSU_CSL10_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL10_LOCK_S1) >> BP_CSU_CSL10_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL10_LOCK_S1.
-#define BF_CSU_CSL10_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL10_LOCK_S1) & BM_CSU_CSL10_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL10_LOCK_S1.
-#define BF_CSU_CSL10_LOCK_S1(v)   (((v) << BP_CSU_CSL10_LOCK_S1) & BM_CSU_CSL10_LOCK_S1)
-#endif
+#define BF_CSU_CSL10_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL10_LOCK_S1) & BM_CSU_CSL10_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL10_LOCK_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_LOCK_S1) | BF_CSU_CSL10_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL11 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6903,11 +5972,11 @@ typedef union _hw_csu_csl10
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -6919,7 +5988,7 @@ typedef union _hw_csu_csl10
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -7001,15 +6070,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL11_SUR_S2.
 
 //! @brief Get value of CSU_CSL11_SUR_S2 from a register value.
-#define BG_CSU_CSL11_SUR_S2(r)   (((r) & BM_CSU_CSL11_SUR_S2) >> BP_CSU_CSL11_SUR_S2)
+#define BG_CSU_CSL11_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SUR_S2) >> BP_CSU_CSL11_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SUR_S2.
-#define BF_CSU_CSL11_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_SUR_S2) & BM_CSU_CSL11_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SUR_S2.
-#define BF_CSU_CSL11_SUR_S2(v)   (((v) << BP_CSU_CSL11_SUR_S2) & BM_CSU_CSL11_SUR_S2)
-#endif
+#define BF_CSU_CSL11_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SUR_S2) & BM_CSU_CSL11_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -7030,15 +6094,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL11_SSR_S2.
 
 //! @brief Get value of CSU_CSL11_SSR_S2 from a register value.
-#define BG_CSU_CSL11_SSR_S2(r)   (((r) & BM_CSU_CSL11_SSR_S2) >> BP_CSU_CSL11_SSR_S2)
+#define BG_CSU_CSL11_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SSR_S2) >> BP_CSU_CSL11_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SSR_S2.
-#define BF_CSU_CSL11_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_SSR_S2) & BM_CSU_CSL11_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SSR_S2.
-#define BF_CSU_CSL11_SSR_S2(v)   (((v) << BP_CSU_CSL11_SSR_S2) & BM_CSU_CSL11_SSR_S2)
-#endif
+#define BF_CSU_CSL11_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SSR_S2) & BM_CSU_CSL11_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -7059,15 +6118,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL11_NUR_S2.
 
 //! @brief Get value of CSU_CSL11_NUR_S2 from a register value.
-#define BG_CSU_CSL11_NUR_S2(r)   (((r) & BM_CSU_CSL11_NUR_S2) >> BP_CSU_CSL11_NUR_S2)
+#define BG_CSU_CSL11_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NUR_S2) >> BP_CSU_CSL11_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NUR_S2.
-#define BF_CSU_CSL11_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_NUR_S2) & BM_CSU_CSL11_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NUR_S2.
-#define BF_CSU_CSL11_NUR_S2(v)   (((v) << BP_CSU_CSL11_NUR_S2) & BM_CSU_CSL11_NUR_S2)
-#endif
+#define BF_CSU_CSL11_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NUR_S2) & BM_CSU_CSL11_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -7088,15 +6142,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL11_NSR_S2.
 
 //! @brief Get value of CSU_CSL11_NSR_S2 from a register value.
-#define BG_CSU_CSL11_NSR_S2(r)   (((r) & BM_CSU_CSL11_NSR_S2) >> BP_CSU_CSL11_NSR_S2)
+#define BG_CSU_CSL11_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NSR_S2) >> BP_CSU_CSL11_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NSR_S2.
-#define BF_CSU_CSL11_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_NSR_S2) & BM_CSU_CSL11_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NSR_S2.
-#define BF_CSU_CSL11_NSR_S2(v)   (((v) << BP_CSU_CSL11_NSR_S2) & BM_CSU_CSL11_NSR_S2)
-#endif
+#define BF_CSU_CSL11_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NSR_S2) & BM_CSU_CSL11_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -7117,15 +6166,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL11_SUW_S2.
 
 //! @brief Get value of CSU_CSL11_SUW_S2 from a register value.
-#define BG_CSU_CSL11_SUW_S2(r)   (((r) & BM_CSU_CSL11_SUW_S2) >> BP_CSU_CSL11_SUW_S2)
+#define BG_CSU_CSL11_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SUW_S2) >> BP_CSU_CSL11_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SUW_S2.
-#define BF_CSU_CSL11_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_SUW_S2) & BM_CSU_CSL11_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SUW_S2.
-#define BF_CSU_CSL11_SUW_S2(v)   (((v) << BP_CSU_CSL11_SUW_S2) & BM_CSU_CSL11_SUW_S2)
-#endif
+#define BF_CSU_CSL11_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SUW_S2) & BM_CSU_CSL11_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -7146,15 +6190,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL11_SSW_S2.
 
 //! @brief Get value of CSU_CSL11_SSW_S2 from a register value.
-#define BG_CSU_CSL11_SSW_S2(r)   (((r) & BM_CSU_CSL11_SSW_S2) >> BP_CSU_CSL11_SSW_S2)
+#define BG_CSU_CSL11_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SSW_S2) >> BP_CSU_CSL11_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SSW_S2.
-#define BF_CSU_CSL11_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_SSW_S2) & BM_CSU_CSL11_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SSW_S2.
-#define BF_CSU_CSL11_SSW_S2(v)   (((v) << BP_CSU_CSL11_SSW_S2) & BM_CSU_CSL11_SSW_S2)
-#endif
+#define BF_CSU_CSL11_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SSW_S2) & BM_CSU_CSL11_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -7175,15 +6214,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL11_NUW_S2.
 
 //! @brief Get value of CSU_CSL11_NUW_S2 from a register value.
-#define BG_CSU_CSL11_NUW_S2(r)   (((r) & BM_CSU_CSL11_NUW_S2) >> BP_CSU_CSL11_NUW_S2)
+#define BG_CSU_CSL11_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NUW_S2) >> BP_CSU_CSL11_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NUW_S2.
-#define BF_CSU_CSL11_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_NUW_S2) & BM_CSU_CSL11_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NUW_S2.
-#define BF_CSU_CSL11_NUW_S2(v)   (((v) << BP_CSU_CSL11_NUW_S2) & BM_CSU_CSL11_NUW_S2)
-#endif
+#define BF_CSU_CSL11_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NUW_S2) & BM_CSU_CSL11_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -7204,15 +6238,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL11_NSW_S2.
 
 //! @brief Get value of CSU_CSL11_NSW_S2 from a register value.
-#define BG_CSU_CSL11_NSW_S2(r)   (((r) & BM_CSU_CSL11_NSW_S2) >> BP_CSU_CSL11_NSW_S2)
+#define BG_CSU_CSL11_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NSW_S2) >> BP_CSU_CSL11_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NSW_S2.
-#define BF_CSU_CSL11_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_NSW_S2) & BM_CSU_CSL11_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NSW_S2.
-#define BF_CSU_CSL11_NSW_S2(v)   (((v) << BP_CSU_CSL11_NSW_S2) & BM_CSU_CSL11_NSW_S2)
-#endif
+#define BF_CSU_CSL11_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NSW_S2) & BM_CSU_CSL11_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -7233,15 +6262,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL11_LOCK_S2.
 
 //! @brief Get value of CSU_CSL11_LOCK_S2 from a register value.
-#define BG_CSU_CSL11_LOCK_S2(r)   (((r) & BM_CSU_CSL11_LOCK_S2) >> BP_CSU_CSL11_LOCK_S2)
+#define BG_CSU_CSL11_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_LOCK_S2) >> BP_CSU_CSL11_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_LOCK_S2.
-#define BF_CSU_CSL11_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL11_LOCK_S2) & BM_CSU_CSL11_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL11_LOCK_S2.
-#define BF_CSU_CSL11_LOCK_S2(v)   (((v) << BP_CSU_CSL11_LOCK_S2) & BM_CSU_CSL11_LOCK_S2)
-#endif
+#define BF_CSU_CSL11_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_LOCK_S2) & BM_CSU_CSL11_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -7262,15 +6286,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL11_SUR_S1.
 
 //! @brief Get value of CSU_CSL11_SUR_S1 from a register value.
-#define BG_CSU_CSL11_SUR_S1(r)   (((r) & BM_CSU_CSL11_SUR_S1) >> BP_CSU_CSL11_SUR_S1)
+#define BG_CSU_CSL11_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SUR_S1) >> BP_CSU_CSL11_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SUR_S1.
-#define BF_CSU_CSL11_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_SUR_S1) & BM_CSU_CSL11_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SUR_S1.
-#define BF_CSU_CSL11_SUR_S1(v)   (((v) << BP_CSU_CSL11_SUR_S1) & BM_CSU_CSL11_SUR_S1)
-#endif
+#define BF_CSU_CSL11_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SUR_S1) & BM_CSU_CSL11_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -7291,15 +6310,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL11_SSR_S1.
 
 //! @brief Get value of CSU_CSL11_SSR_S1 from a register value.
-#define BG_CSU_CSL11_SSR_S1(r)   (((r) & BM_CSU_CSL11_SSR_S1) >> BP_CSU_CSL11_SSR_S1)
+#define BG_CSU_CSL11_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SSR_S1) >> BP_CSU_CSL11_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SSR_S1.
-#define BF_CSU_CSL11_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_SSR_S1) & BM_CSU_CSL11_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SSR_S1.
-#define BF_CSU_CSL11_SSR_S1(v)   (((v) << BP_CSU_CSL11_SSR_S1) & BM_CSU_CSL11_SSR_S1)
-#endif
+#define BF_CSU_CSL11_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SSR_S1) & BM_CSU_CSL11_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -7320,15 +6334,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL11_NUR_S1.
 
 //! @brief Get value of CSU_CSL11_NUR_S1 from a register value.
-#define BG_CSU_CSL11_NUR_S1(r)   (((r) & BM_CSU_CSL11_NUR_S1) >> BP_CSU_CSL11_NUR_S1)
+#define BG_CSU_CSL11_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NUR_S1) >> BP_CSU_CSL11_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NUR_S1.
-#define BF_CSU_CSL11_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_NUR_S1) & BM_CSU_CSL11_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NUR_S1.
-#define BF_CSU_CSL11_NUR_S1(v)   (((v) << BP_CSU_CSL11_NUR_S1) & BM_CSU_CSL11_NUR_S1)
-#endif
+#define BF_CSU_CSL11_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NUR_S1) & BM_CSU_CSL11_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -7349,15 +6358,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL11_NSR_S1.
 
 //! @brief Get value of CSU_CSL11_NSR_S1 from a register value.
-#define BG_CSU_CSL11_NSR_S1(r)   (((r) & BM_CSU_CSL11_NSR_S1) >> BP_CSU_CSL11_NSR_S1)
+#define BG_CSU_CSL11_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NSR_S1) >> BP_CSU_CSL11_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NSR_S1.
-#define BF_CSU_CSL11_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_NSR_S1) & BM_CSU_CSL11_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NSR_S1.
-#define BF_CSU_CSL11_NSR_S1(v)   (((v) << BP_CSU_CSL11_NSR_S1) & BM_CSU_CSL11_NSR_S1)
-#endif
+#define BF_CSU_CSL11_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NSR_S1) & BM_CSU_CSL11_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -7378,15 +6382,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL11_SUW_S1.
 
 //! @brief Get value of CSU_CSL11_SUW_S1 from a register value.
-#define BG_CSU_CSL11_SUW_S1(r)   (((r) & BM_CSU_CSL11_SUW_S1) >> BP_CSU_CSL11_SUW_S1)
+#define BG_CSU_CSL11_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SUW_S1) >> BP_CSU_CSL11_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SUW_S1.
-#define BF_CSU_CSL11_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_SUW_S1) & BM_CSU_CSL11_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SUW_S1.
-#define BF_CSU_CSL11_SUW_S1(v)   (((v) << BP_CSU_CSL11_SUW_S1) & BM_CSU_CSL11_SUW_S1)
-#endif
+#define BF_CSU_CSL11_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SUW_S1) & BM_CSU_CSL11_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -7407,15 +6406,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL11_SSW_S1.
 
 //! @brief Get value of CSU_CSL11_SSW_S1 from a register value.
-#define BG_CSU_CSL11_SSW_S1(r)   (((r) & BM_CSU_CSL11_SSW_S1) >> BP_CSU_CSL11_SSW_S1)
+#define BG_CSU_CSL11_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_SSW_S1) >> BP_CSU_CSL11_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_SSW_S1.
-#define BF_CSU_CSL11_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_SSW_S1) & BM_CSU_CSL11_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_SSW_S1.
-#define BF_CSU_CSL11_SSW_S1(v)   (((v) << BP_CSU_CSL11_SSW_S1) & BM_CSU_CSL11_SSW_S1)
-#endif
+#define BF_CSU_CSL11_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_SSW_S1) & BM_CSU_CSL11_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -7436,15 +6430,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL11_NUW_S1.
 
 //! @brief Get value of CSU_CSL11_NUW_S1 from a register value.
-#define BG_CSU_CSL11_NUW_S1(r)   (((r) & BM_CSU_CSL11_NUW_S1) >> BP_CSU_CSL11_NUW_S1)
+#define BG_CSU_CSL11_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NUW_S1) >> BP_CSU_CSL11_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NUW_S1.
-#define BF_CSU_CSL11_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_NUW_S1) & BM_CSU_CSL11_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NUW_S1.
-#define BF_CSU_CSL11_NUW_S1(v)   (((v) << BP_CSU_CSL11_NUW_S1) & BM_CSU_CSL11_NUW_S1)
-#endif
+#define BF_CSU_CSL11_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NUW_S1) & BM_CSU_CSL11_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -7465,15 +6454,10 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL11_NSW_S1.
 
 //! @brief Get value of CSU_CSL11_NSW_S1 from a register value.
-#define BG_CSU_CSL11_NSW_S1(r)   (((r) & BM_CSU_CSL11_NSW_S1) >> BP_CSU_CSL11_NSW_S1)
+#define BG_CSU_CSL11_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_NSW_S1) >> BP_CSU_CSL11_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_NSW_S1.
-#define BF_CSU_CSL11_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_NSW_S1) & BM_CSU_CSL11_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_NSW_S1.
-#define BF_CSU_CSL11_NSW_S1(v)   (((v) << BP_CSU_CSL11_NSW_S1) & BM_CSU_CSL11_NSW_S1)
-#endif
+#define BF_CSU_CSL11_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_NSW_S1) & BM_CSU_CSL11_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -7494,21 +6478,20 @@ typedef union _hw_csu_csl11
 #define BM_CSU_CSL11_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL11_LOCK_S1.
 
 //! @brief Get value of CSU_CSL11_LOCK_S1 from a register value.
-#define BG_CSU_CSL11_LOCK_S1(r)   (((r) & BM_CSU_CSL11_LOCK_S1) >> BP_CSU_CSL11_LOCK_S1)
+#define BG_CSU_CSL11_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL11_LOCK_S1) >> BP_CSU_CSL11_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL11_LOCK_S1.
-#define BF_CSU_CSL11_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL11_LOCK_S1) & BM_CSU_CSL11_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL11_LOCK_S1.
-#define BF_CSU_CSL11_LOCK_S1(v)   (((v) << BP_CSU_CSL11_LOCK_S1) & BM_CSU_CSL11_LOCK_S1)
-#endif
+#define BF_CSU_CSL11_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL11_LOCK_S1) & BM_CSU_CSL11_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL11_LOCK_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_LOCK_S1) | BF_CSU_CSL11_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL12 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7523,11 +6506,11 @@ typedef union _hw_csu_csl11
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -7539,7 +6522,7 @@ typedef union _hw_csu_csl11
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -7621,15 +6604,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL12_SUR_S2.
 
 //! @brief Get value of CSU_CSL12_SUR_S2 from a register value.
-#define BG_CSU_CSL12_SUR_S2(r)   (((r) & BM_CSU_CSL12_SUR_S2) >> BP_CSU_CSL12_SUR_S2)
+#define BG_CSU_CSL12_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SUR_S2) >> BP_CSU_CSL12_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SUR_S2.
-#define BF_CSU_CSL12_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_SUR_S2) & BM_CSU_CSL12_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SUR_S2.
-#define BF_CSU_CSL12_SUR_S2(v)   (((v) << BP_CSU_CSL12_SUR_S2) & BM_CSU_CSL12_SUR_S2)
-#endif
+#define BF_CSU_CSL12_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SUR_S2) & BM_CSU_CSL12_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -7650,15 +6628,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL12_SSR_S2.
 
 //! @brief Get value of CSU_CSL12_SSR_S2 from a register value.
-#define BG_CSU_CSL12_SSR_S2(r)   (((r) & BM_CSU_CSL12_SSR_S2) >> BP_CSU_CSL12_SSR_S2)
+#define BG_CSU_CSL12_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SSR_S2) >> BP_CSU_CSL12_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SSR_S2.
-#define BF_CSU_CSL12_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_SSR_S2) & BM_CSU_CSL12_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SSR_S2.
-#define BF_CSU_CSL12_SSR_S2(v)   (((v) << BP_CSU_CSL12_SSR_S2) & BM_CSU_CSL12_SSR_S2)
-#endif
+#define BF_CSU_CSL12_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SSR_S2) & BM_CSU_CSL12_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -7679,15 +6652,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL12_NUR_S2.
 
 //! @brief Get value of CSU_CSL12_NUR_S2 from a register value.
-#define BG_CSU_CSL12_NUR_S2(r)   (((r) & BM_CSU_CSL12_NUR_S2) >> BP_CSU_CSL12_NUR_S2)
+#define BG_CSU_CSL12_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NUR_S2) >> BP_CSU_CSL12_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NUR_S2.
-#define BF_CSU_CSL12_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_NUR_S2) & BM_CSU_CSL12_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NUR_S2.
-#define BF_CSU_CSL12_NUR_S2(v)   (((v) << BP_CSU_CSL12_NUR_S2) & BM_CSU_CSL12_NUR_S2)
-#endif
+#define BF_CSU_CSL12_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NUR_S2) & BM_CSU_CSL12_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -7708,15 +6676,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL12_NSR_S2.
 
 //! @brief Get value of CSU_CSL12_NSR_S2 from a register value.
-#define BG_CSU_CSL12_NSR_S2(r)   (((r) & BM_CSU_CSL12_NSR_S2) >> BP_CSU_CSL12_NSR_S2)
+#define BG_CSU_CSL12_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NSR_S2) >> BP_CSU_CSL12_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NSR_S2.
-#define BF_CSU_CSL12_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_NSR_S2) & BM_CSU_CSL12_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NSR_S2.
-#define BF_CSU_CSL12_NSR_S2(v)   (((v) << BP_CSU_CSL12_NSR_S2) & BM_CSU_CSL12_NSR_S2)
-#endif
+#define BF_CSU_CSL12_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NSR_S2) & BM_CSU_CSL12_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -7737,15 +6700,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL12_SUW_S2.
 
 //! @brief Get value of CSU_CSL12_SUW_S2 from a register value.
-#define BG_CSU_CSL12_SUW_S2(r)   (((r) & BM_CSU_CSL12_SUW_S2) >> BP_CSU_CSL12_SUW_S2)
+#define BG_CSU_CSL12_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SUW_S2) >> BP_CSU_CSL12_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SUW_S2.
-#define BF_CSU_CSL12_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_SUW_S2) & BM_CSU_CSL12_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SUW_S2.
-#define BF_CSU_CSL12_SUW_S2(v)   (((v) << BP_CSU_CSL12_SUW_S2) & BM_CSU_CSL12_SUW_S2)
-#endif
+#define BF_CSU_CSL12_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SUW_S2) & BM_CSU_CSL12_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -7766,15 +6724,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL12_SSW_S2.
 
 //! @brief Get value of CSU_CSL12_SSW_S2 from a register value.
-#define BG_CSU_CSL12_SSW_S2(r)   (((r) & BM_CSU_CSL12_SSW_S2) >> BP_CSU_CSL12_SSW_S2)
+#define BG_CSU_CSL12_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SSW_S2) >> BP_CSU_CSL12_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SSW_S2.
-#define BF_CSU_CSL12_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_SSW_S2) & BM_CSU_CSL12_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SSW_S2.
-#define BF_CSU_CSL12_SSW_S2(v)   (((v) << BP_CSU_CSL12_SSW_S2) & BM_CSU_CSL12_SSW_S2)
-#endif
+#define BF_CSU_CSL12_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SSW_S2) & BM_CSU_CSL12_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -7795,15 +6748,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL12_NUW_S2.
 
 //! @brief Get value of CSU_CSL12_NUW_S2 from a register value.
-#define BG_CSU_CSL12_NUW_S2(r)   (((r) & BM_CSU_CSL12_NUW_S2) >> BP_CSU_CSL12_NUW_S2)
+#define BG_CSU_CSL12_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NUW_S2) >> BP_CSU_CSL12_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NUW_S2.
-#define BF_CSU_CSL12_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_NUW_S2) & BM_CSU_CSL12_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NUW_S2.
-#define BF_CSU_CSL12_NUW_S2(v)   (((v) << BP_CSU_CSL12_NUW_S2) & BM_CSU_CSL12_NUW_S2)
-#endif
+#define BF_CSU_CSL12_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NUW_S2) & BM_CSU_CSL12_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -7824,15 +6772,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL12_NSW_S2.
 
 //! @brief Get value of CSU_CSL12_NSW_S2 from a register value.
-#define BG_CSU_CSL12_NSW_S2(r)   (((r) & BM_CSU_CSL12_NSW_S2) >> BP_CSU_CSL12_NSW_S2)
+#define BG_CSU_CSL12_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NSW_S2) >> BP_CSU_CSL12_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NSW_S2.
-#define BF_CSU_CSL12_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_NSW_S2) & BM_CSU_CSL12_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NSW_S2.
-#define BF_CSU_CSL12_NSW_S2(v)   (((v) << BP_CSU_CSL12_NSW_S2) & BM_CSU_CSL12_NSW_S2)
-#endif
+#define BF_CSU_CSL12_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NSW_S2) & BM_CSU_CSL12_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -7853,15 +6796,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL12_LOCK_S2.
 
 //! @brief Get value of CSU_CSL12_LOCK_S2 from a register value.
-#define BG_CSU_CSL12_LOCK_S2(r)   (((r) & BM_CSU_CSL12_LOCK_S2) >> BP_CSU_CSL12_LOCK_S2)
+#define BG_CSU_CSL12_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_LOCK_S2) >> BP_CSU_CSL12_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_LOCK_S2.
-#define BF_CSU_CSL12_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL12_LOCK_S2) & BM_CSU_CSL12_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL12_LOCK_S2.
-#define BF_CSU_CSL12_LOCK_S2(v)   (((v) << BP_CSU_CSL12_LOCK_S2) & BM_CSU_CSL12_LOCK_S2)
-#endif
+#define BF_CSU_CSL12_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_LOCK_S2) & BM_CSU_CSL12_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -7882,15 +6820,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL12_SUR_S1.
 
 //! @brief Get value of CSU_CSL12_SUR_S1 from a register value.
-#define BG_CSU_CSL12_SUR_S1(r)   (((r) & BM_CSU_CSL12_SUR_S1) >> BP_CSU_CSL12_SUR_S1)
+#define BG_CSU_CSL12_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SUR_S1) >> BP_CSU_CSL12_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SUR_S1.
-#define BF_CSU_CSL12_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_SUR_S1) & BM_CSU_CSL12_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SUR_S1.
-#define BF_CSU_CSL12_SUR_S1(v)   (((v) << BP_CSU_CSL12_SUR_S1) & BM_CSU_CSL12_SUR_S1)
-#endif
+#define BF_CSU_CSL12_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SUR_S1) & BM_CSU_CSL12_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -7911,15 +6844,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL12_SSR_S1.
 
 //! @brief Get value of CSU_CSL12_SSR_S1 from a register value.
-#define BG_CSU_CSL12_SSR_S1(r)   (((r) & BM_CSU_CSL12_SSR_S1) >> BP_CSU_CSL12_SSR_S1)
+#define BG_CSU_CSL12_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SSR_S1) >> BP_CSU_CSL12_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SSR_S1.
-#define BF_CSU_CSL12_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_SSR_S1) & BM_CSU_CSL12_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SSR_S1.
-#define BF_CSU_CSL12_SSR_S1(v)   (((v) << BP_CSU_CSL12_SSR_S1) & BM_CSU_CSL12_SSR_S1)
-#endif
+#define BF_CSU_CSL12_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SSR_S1) & BM_CSU_CSL12_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -7940,15 +6868,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL12_NUR_S1.
 
 //! @brief Get value of CSU_CSL12_NUR_S1 from a register value.
-#define BG_CSU_CSL12_NUR_S1(r)   (((r) & BM_CSU_CSL12_NUR_S1) >> BP_CSU_CSL12_NUR_S1)
+#define BG_CSU_CSL12_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NUR_S1) >> BP_CSU_CSL12_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NUR_S1.
-#define BF_CSU_CSL12_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_NUR_S1) & BM_CSU_CSL12_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NUR_S1.
-#define BF_CSU_CSL12_NUR_S1(v)   (((v) << BP_CSU_CSL12_NUR_S1) & BM_CSU_CSL12_NUR_S1)
-#endif
+#define BF_CSU_CSL12_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NUR_S1) & BM_CSU_CSL12_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -7969,15 +6892,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL12_NSR_S1.
 
 //! @brief Get value of CSU_CSL12_NSR_S1 from a register value.
-#define BG_CSU_CSL12_NSR_S1(r)   (((r) & BM_CSU_CSL12_NSR_S1) >> BP_CSU_CSL12_NSR_S1)
+#define BG_CSU_CSL12_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NSR_S1) >> BP_CSU_CSL12_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NSR_S1.
-#define BF_CSU_CSL12_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_NSR_S1) & BM_CSU_CSL12_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NSR_S1.
-#define BF_CSU_CSL12_NSR_S1(v)   (((v) << BP_CSU_CSL12_NSR_S1) & BM_CSU_CSL12_NSR_S1)
-#endif
+#define BF_CSU_CSL12_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NSR_S1) & BM_CSU_CSL12_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -7998,15 +6916,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL12_SUW_S1.
 
 //! @brief Get value of CSU_CSL12_SUW_S1 from a register value.
-#define BG_CSU_CSL12_SUW_S1(r)   (((r) & BM_CSU_CSL12_SUW_S1) >> BP_CSU_CSL12_SUW_S1)
+#define BG_CSU_CSL12_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SUW_S1) >> BP_CSU_CSL12_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SUW_S1.
-#define BF_CSU_CSL12_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_SUW_S1) & BM_CSU_CSL12_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SUW_S1.
-#define BF_CSU_CSL12_SUW_S1(v)   (((v) << BP_CSU_CSL12_SUW_S1) & BM_CSU_CSL12_SUW_S1)
-#endif
+#define BF_CSU_CSL12_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SUW_S1) & BM_CSU_CSL12_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -8027,15 +6940,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL12_SSW_S1.
 
 //! @brief Get value of CSU_CSL12_SSW_S1 from a register value.
-#define BG_CSU_CSL12_SSW_S1(r)   (((r) & BM_CSU_CSL12_SSW_S1) >> BP_CSU_CSL12_SSW_S1)
+#define BG_CSU_CSL12_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_SSW_S1) >> BP_CSU_CSL12_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_SSW_S1.
-#define BF_CSU_CSL12_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_SSW_S1) & BM_CSU_CSL12_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_SSW_S1.
-#define BF_CSU_CSL12_SSW_S1(v)   (((v) << BP_CSU_CSL12_SSW_S1) & BM_CSU_CSL12_SSW_S1)
-#endif
+#define BF_CSU_CSL12_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_SSW_S1) & BM_CSU_CSL12_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -8056,15 +6964,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL12_NUW_S1.
 
 //! @brief Get value of CSU_CSL12_NUW_S1 from a register value.
-#define BG_CSU_CSL12_NUW_S1(r)   (((r) & BM_CSU_CSL12_NUW_S1) >> BP_CSU_CSL12_NUW_S1)
+#define BG_CSU_CSL12_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NUW_S1) >> BP_CSU_CSL12_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NUW_S1.
-#define BF_CSU_CSL12_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_NUW_S1) & BM_CSU_CSL12_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NUW_S1.
-#define BF_CSU_CSL12_NUW_S1(v)   (((v) << BP_CSU_CSL12_NUW_S1) & BM_CSU_CSL12_NUW_S1)
-#endif
+#define BF_CSU_CSL12_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NUW_S1) & BM_CSU_CSL12_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -8085,15 +6988,10 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL12_NSW_S1.
 
 //! @brief Get value of CSU_CSL12_NSW_S1 from a register value.
-#define BG_CSU_CSL12_NSW_S1(r)   (((r) & BM_CSU_CSL12_NSW_S1) >> BP_CSU_CSL12_NSW_S1)
+#define BG_CSU_CSL12_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_NSW_S1) >> BP_CSU_CSL12_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_NSW_S1.
-#define BF_CSU_CSL12_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_NSW_S1) & BM_CSU_CSL12_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_NSW_S1.
-#define BF_CSU_CSL12_NSW_S1(v)   (((v) << BP_CSU_CSL12_NSW_S1) & BM_CSU_CSL12_NSW_S1)
-#endif
+#define BF_CSU_CSL12_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_NSW_S1) & BM_CSU_CSL12_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -8114,21 +7012,20 @@ typedef union _hw_csu_csl12
 #define BM_CSU_CSL12_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL12_LOCK_S1.
 
 //! @brief Get value of CSU_CSL12_LOCK_S1 from a register value.
-#define BG_CSU_CSL12_LOCK_S1(r)   (((r) & BM_CSU_CSL12_LOCK_S1) >> BP_CSU_CSL12_LOCK_S1)
+#define BG_CSU_CSL12_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL12_LOCK_S1) >> BP_CSU_CSL12_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL12_LOCK_S1.
-#define BF_CSU_CSL12_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL12_LOCK_S1) & BM_CSU_CSL12_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL12_LOCK_S1.
-#define BF_CSU_CSL12_LOCK_S1(v)   (((v) << BP_CSU_CSL12_LOCK_S1) & BM_CSU_CSL12_LOCK_S1)
-#endif
+#define BF_CSU_CSL12_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL12_LOCK_S1) & BM_CSU_CSL12_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL12_LOCK_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_LOCK_S1) | BF_CSU_CSL12_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL13 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8143,11 +7040,11 @@ typedef union _hw_csu_csl12
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -8159,7 +7056,7 @@ typedef union _hw_csu_csl12
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -8241,15 +7138,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL13_SUR_S2.
 
 //! @brief Get value of CSU_CSL13_SUR_S2 from a register value.
-#define BG_CSU_CSL13_SUR_S2(r)   (((r) & BM_CSU_CSL13_SUR_S2) >> BP_CSU_CSL13_SUR_S2)
+#define BG_CSU_CSL13_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SUR_S2) >> BP_CSU_CSL13_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SUR_S2.
-#define BF_CSU_CSL13_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_SUR_S2) & BM_CSU_CSL13_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SUR_S2.
-#define BF_CSU_CSL13_SUR_S2(v)   (((v) << BP_CSU_CSL13_SUR_S2) & BM_CSU_CSL13_SUR_S2)
-#endif
+#define BF_CSU_CSL13_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SUR_S2) & BM_CSU_CSL13_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -8270,15 +7162,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL13_SSR_S2.
 
 //! @brief Get value of CSU_CSL13_SSR_S2 from a register value.
-#define BG_CSU_CSL13_SSR_S2(r)   (((r) & BM_CSU_CSL13_SSR_S2) >> BP_CSU_CSL13_SSR_S2)
+#define BG_CSU_CSL13_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SSR_S2) >> BP_CSU_CSL13_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SSR_S2.
-#define BF_CSU_CSL13_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_SSR_S2) & BM_CSU_CSL13_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SSR_S2.
-#define BF_CSU_CSL13_SSR_S2(v)   (((v) << BP_CSU_CSL13_SSR_S2) & BM_CSU_CSL13_SSR_S2)
-#endif
+#define BF_CSU_CSL13_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SSR_S2) & BM_CSU_CSL13_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -8299,15 +7186,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL13_NUR_S2.
 
 //! @brief Get value of CSU_CSL13_NUR_S2 from a register value.
-#define BG_CSU_CSL13_NUR_S2(r)   (((r) & BM_CSU_CSL13_NUR_S2) >> BP_CSU_CSL13_NUR_S2)
+#define BG_CSU_CSL13_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NUR_S2) >> BP_CSU_CSL13_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NUR_S2.
-#define BF_CSU_CSL13_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_NUR_S2) & BM_CSU_CSL13_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NUR_S2.
-#define BF_CSU_CSL13_NUR_S2(v)   (((v) << BP_CSU_CSL13_NUR_S2) & BM_CSU_CSL13_NUR_S2)
-#endif
+#define BF_CSU_CSL13_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NUR_S2) & BM_CSU_CSL13_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -8328,15 +7210,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL13_NSR_S2.
 
 //! @brief Get value of CSU_CSL13_NSR_S2 from a register value.
-#define BG_CSU_CSL13_NSR_S2(r)   (((r) & BM_CSU_CSL13_NSR_S2) >> BP_CSU_CSL13_NSR_S2)
+#define BG_CSU_CSL13_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NSR_S2) >> BP_CSU_CSL13_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NSR_S2.
-#define BF_CSU_CSL13_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_NSR_S2) & BM_CSU_CSL13_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NSR_S2.
-#define BF_CSU_CSL13_NSR_S2(v)   (((v) << BP_CSU_CSL13_NSR_S2) & BM_CSU_CSL13_NSR_S2)
-#endif
+#define BF_CSU_CSL13_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NSR_S2) & BM_CSU_CSL13_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -8357,15 +7234,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL13_SUW_S2.
 
 //! @brief Get value of CSU_CSL13_SUW_S2 from a register value.
-#define BG_CSU_CSL13_SUW_S2(r)   (((r) & BM_CSU_CSL13_SUW_S2) >> BP_CSU_CSL13_SUW_S2)
+#define BG_CSU_CSL13_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SUW_S2) >> BP_CSU_CSL13_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SUW_S2.
-#define BF_CSU_CSL13_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_SUW_S2) & BM_CSU_CSL13_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SUW_S2.
-#define BF_CSU_CSL13_SUW_S2(v)   (((v) << BP_CSU_CSL13_SUW_S2) & BM_CSU_CSL13_SUW_S2)
-#endif
+#define BF_CSU_CSL13_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SUW_S2) & BM_CSU_CSL13_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -8386,15 +7258,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL13_SSW_S2.
 
 //! @brief Get value of CSU_CSL13_SSW_S2 from a register value.
-#define BG_CSU_CSL13_SSW_S2(r)   (((r) & BM_CSU_CSL13_SSW_S2) >> BP_CSU_CSL13_SSW_S2)
+#define BG_CSU_CSL13_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SSW_S2) >> BP_CSU_CSL13_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SSW_S2.
-#define BF_CSU_CSL13_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_SSW_S2) & BM_CSU_CSL13_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SSW_S2.
-#define BF_CSU_CSL13_SSW_S2(v)   (((v) << BP_CSU_CSL13_SSW_S2) & BM_CSU_CSL13_SSW_S2)
-#endif
+#define BF_CSU_CSL13_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SSW_S2) & BM_CSU_CSL13_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -8415,15 +7282,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL13_NUW_S2.
 
 //! @brief Get value of CSU_CSL13_NUW_S2 from a register value.
-#define BG_CSU_CSL13_NUW_S2(r)   (((r) & BM_CSU_CSL13_NUW_S2) >> BP_CSU_CSL13_NUW_S2)
+#define BG_CSU_CSL13_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NUW_S2) >> BP_CSU_CSL13_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NUW_S2.
-#define BF_CSU_CSL13_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_NUW_S2) & BM_CSU_CSL13_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NUW_S2.
-#define BF_CSU_CSL13_NUW_S2(v)   (((v) << BP_CSU_CSL13_NUW_S2) & BM_CSU_CSL13_NUW_S2)
-#endif
+#define BF_CSU_CSL13_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NUW_S2) & BM_CSU_CSL13_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -8444,15 +7306,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL13_NSW_S2.
 
 //! @brief Get value of CSU_CSL13_NSW_S2 from a register value.
-#define BG_CSU_CSL13_NSW_S2(r)   (((r) & BM_CSU_CSL13_NSW_S2) >> BP_CSU_CSL13_NSW_S2)
+#define BG_CSU_CSL13_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NSW_S2) >> BP_CSU_CSL13_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NSW_S2.
-#define BF_CSU_CSL13_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_NSW_S2) & BM_CSU_CSL13_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NSW_S2.
-#define BF_CSU_CSL13_NSW_S2(v)   (((v) << BP_CSU_CSL13_NSW_S2) & BM_CSU_CSL13_NSW_S2)
-#endif
+#define BF_CSU_CSL13_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NSW_S2) & BM_CSU_CSL13_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -8473,15 +7330,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL13_LOCK_S2.
 
 //! @brief Get value of CSU_CSL13_LOCK_S2 from a register value.
-#define BG_CSU_CSL13_LOCK_S2(r)   (((r) & BM_CSU_CSL13_LOCK_S2) >> BP_CSU_CSL13_LOCK_S2)
+#define BG_CSU_CSL13_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_LOCK_S2) >> BP_CSU_CSL13_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_LOCK_S2.
-#define BF_CSU_CSL13_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL13_LOCK_S2) & BM_CSU_CSL13_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL13_LOCK_S2.
-#define BF_CSU_CSL13_LOCK_S2(v)   (((v) << BP_CSU_CSL13_LOCK_S2) & BM_CSU_CSL13_LOCK_S2)
-#endif
+#define BF_CSU_CSL13_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_LOCK_S2) & BM_CSU_CSL13_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -8502,15 +7354,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL13_SUR_S1.
 
 //! @brief Get value of CSU_CSL13_SUR_S1 from a register value.
-#define BG_CSU_CSL13_SUR_S1(r)   (((r) & BM_CSU_CSL13_SUR_S1) >> BP_CSU_CSL13_SUR_S1)
+#define BG_CSU_CSL13_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SUR_S1) >> BP_CSU_CSL13_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SUR_S1.
-#define BF_CSU_CSL13_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_SUR_S1) & BM_CSU_CSL13_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SUR_S1.
-#define BF_CSU_CSL13_SUR_S1(v)   (((v) << BP_CSU_CSL13_SUR_S1) & BM_CSU_CSL13_SUR_S1)
-#endif
+#define BF_CSU_CSL13_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SUR_S1) & BM_CSU_CSL13_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -8531,15 +7378,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL13_SSR_S1.
 
 //! @brief Get value of CSU_CSL13_SSR_S1 from a register value.
-#define BG_CSU_CSL13_SSR_S1(r)   (((r) & BM_CSU_CSL13_SSR_S1) >> BP_CSU_CSL13_SSR_S1)
+#define BG_CSU_CSL13_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SSR_S1) >> BP_CSU_CSL13_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SSR_S1.
-#define BF_CSU_CSL13_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_SSR_S1) & BM_CSU_CSL13_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SSR_S1.
-#define BF_CSU_CSL13_SSR_S1(v)   (((v) << BP_CSU_CSL13_SSR_S1) & BM_CSU_CSL13_SSR_S1)
-#endif
+#define BF_CSU_CSL13_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SSR_S1) & BM_CSU_CSL13_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -8560,15 +7402,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL13_NUR_S1.
 
 //! @brief Get value of CSU_CSL13_NUR_S1 from a register value.
-#define BG_CSU_CSL13_NUR_S1(r)   (((r) & BM_CSU_CSL13_NUR_S1) >> BP_CSU_CSL13_NUR_S1)
+#define BG_CSU_CSL13_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NUR_S1) >> BP_CSU_CSL13_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NUR_S1.
-#define BF_CSU_CSL13_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_NUR_S1) & BM_CSU_CSL13_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NUR_S1.
-#define BF_CSU_CSL13_NUR_S1(v)   (((v) << BP_CSU_CSL13_NUR_S1) & BM_CSU_CSL13_NUR_S1)
-#endif
+#define BF_CSU_CSL13_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NUR_S1) & BM_CSU_CSL13_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -8589,15 +7426,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL13_NSR_S1.
 
 //! @brief Get value of CSU_CSL13_NSR_S1 from a register value.
-#define BG_CSU_CSL13_NSR_S1(r)   (((r) & BM_CSU_CSL13_NSR_S1) >> BP_CSU_CSL13_NSR_S1)
+#define BG_CSU_CSL13_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NSR_S1) >> BP_CSU_CSL13_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NSR_S1.
-#define BF_CSU_CSL13_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_NSR_S1) & BM_CSU_CSL13_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NSR_S1.
-#define BF_CSU_CSL13_NSR_S1(v)   (((v) << BP_CSU_CSL13_NSR_S1) & BM_CSU_CSL13_NSR_S1)
-#endif
+#define BF_CSU_CSL13_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NSR_S1) & BM_CSU_CSL13_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -8618,15 +7450,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL13_SUW_S1.
 
 //! @brief Get value of CSU_CSL13_SUW_S1 from a register value.
-#define BG_CSU_CSL13_SUW_S1(r)   (((r) & BM_CSU_CSL13_SUW_S1) >> BP_CSU_CSL13_SUW_S1)
+#define BG_CSU_CSL13_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SUW_S1) >> BP_CSU_CSL13_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SUW_S1.
-#define BF_CSU_CSL13_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_SUW_S1) & BM_CSU_CSL13_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SUW_S1.
-#define BF_CSU_CSL13_SUW_S1(v)   (((v) << BP_CSU_CSL13_SUW_S1) & BM_CSU_CSL13_SUW_S1)
-#endif
+#define BF_CSU_CSL13_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SUW_S1) & BM_CSU_CSL13_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -8647,15 +7474,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL13_SSW_S1.
 
 //! @brief Get value of CSU_CSL13_SSW_S1 from a register value.
-#define BG_CSU_CSL13_SSW_S1(r)   (((r) & BM_CSU_CSL13_SSW_S1) >> BP_CSU_CSL13_SSW_S1)
+#define BG_CSU_CSL13_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_SSW_S1) >> BP_CSU_CSL13_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_SSW_S1.
-#define BF_CSU_CSL13_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_SSW_S1) & BM_CSU_CSL13_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_SSW_S1.
-#define BF_CSU_CSL13_SSW_S1(v)   (((v) << BP_CSU_CSL13_SSW_S1) & BM_CSU_CSL13_SSW_S1)
-#endif
+#define BF_CSU_CSL13_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_SSW_S1) & BM_CSU_CSL13_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -8676,15 +7498,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL13_NUW_S1.
 
 //! @brief Get value of CSU_CSL13_NUW_S1 from a register value.
-#define BG_CSU_CSL13_NUW_S1(r)   (((r) & BM_CSU_CSL13_NUW_S1) >> BP_CSU_CSL13_NUW_S1)
+#define BG_CSU_CSL13_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NUW_S1) >> BP_CSU_CSL13_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NUW_S1.
-#define BF_CSU_CSL13_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_NUW_S1) & BM_CSU_CSL13_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NUW_S1.
-#define BF_CSU_CSL13_NUW_S1(v)   (((v) << BP_CSU_CSL13_NUW_S1) & BM_CSU_CSL13_NUW_S1)
-#endif
+#define BF_CSU_CSL13_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NUW_S1) & BM_CSU_CSL13_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -8705,15 +7522,10 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL13_NSW_S1.
 
 //! @brief Get value of CSU_CSL13_NSW_S1 from a register value.
-#define BG_CSU_CSL13_NSW_S1(r)   (((r) & BM_CSU_CSL13_NSW_S1) >> BP_CSU_CSL13_NSW_S1)
+#define BG_CSU_CSL13_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_NSW_S1) >> BP_CSU_CSL13_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_NSW_S1.
-#define BF_CSU_CSL13_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_NSW_S1) & BM_CSU_CSL13_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_NSW_S1.
-#define BF_CSU_CSL13_NSW_S1(v)   (((v) << BP_CSU_CSL13_NSW_S1) & BM_CSU_CSL13_NSW_S1)
-#endif
+#define BF_CSU_CSL13_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_NSW_S1) & BM_CSU_CSL13_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -8734,21 +7546,20 @@ typedef union _hw_csu_csl13
 #define BM_CSU_CSL13_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL13_LOCK_S1.
 
 //! @brief Get value of CSU_CSL13_LOCK_S1 from a register value.
-#define BG_CSU_CSL13_LOCK_S1(r)   (((r) & BM_CSU_CSL13_LOCK_S1) >> BP_CSU_CSL13_LOCK_S1)
+#define BG_CSU_CSL13_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL13_LOCK_S1) >> BP_CSU_CSL13_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL13_LOCK_S1.
-#define BF_CSU_CSL13_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL13_LOCK_S1) & BM_CSU_CSL13_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL13_LOCK_S1.
-#define BF_CSU_CSL13_LOCK_S1(v)   (((v) << BP_CSU_CSL13_LOCK_S1) & BM_CSU_CSL13_LOCK_S1)
-#endif
+#define BF_CSU_CSL13_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL13_LOCK_S1) & BM_CSU_CSL13_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL13_LOCK_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_LOCK_S1) | BF_CSU_CSL13_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL14 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8763,11 +7574,11 @@ typedef union _hw_csu_csl13
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -8779,7 +7590,7 @@ typedef union _hw_csu_csl13
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -8861,15 +7672,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL14_SUR_S2.
 
 //! @brief Get value of CSU_CSL14_SUR_S2 from a register value.
-#define BG_CSU_CSL14_SUR_S2(r)   (((r) & BM_CSU_CSL14_SUR_S2) >> BP_CSU_CSL14_SUR_S2)
+#define BG_CSU_CSL14_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SUR_S2) >> BP_CSU_CSL14_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SUR_S2.
-#define BF_CSU_CSL14_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_SUR_S2) & BM_CSU_CSL14_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SUR_S2.
-#define BF_CSU_CSL14_SUR_S2(v)   (((v) << BP_CSU_CSL14_SUR_S2) & BM_CSU_CSL14_SUR_S2)
-#endif
+#define BF_CSU_CSL14_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SUR_S2) & BM_CSU_CSL14_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -8890,15 +7696,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL14_SSR_S2.
 
 //! @brief Get value of CSU_CSL14_SSR_S2 from a register value.
-#define BG_CSU_CSL14_SSR_S2(r)   (((r) & BM_CSU_CSL14_SSR_S2) >> BP_CSU_CSL14_SSR_S2)
+#define BG_CSU_CSL14_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SSR_S2) >> BP_CSU_CSL14_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SSR_S2.
-#define BF_CSU_CSL14_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_SSR_S2) & BM_CSU_CSL14_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SSR_S2.
-#define BF_CSU_CSL14_SSR_S2(v)   (((v) << BP_CSU_CSL14_SSR_S2) & BM_CSU_CSL14_SSR_S2)
-#endif
+#define BF_CSU_CSL14_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SSR_S2) & BM_CSU_CSL14_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -8919,15 +7720,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL14_NUR_S2.
 
 //! @brief Get value of CSU_CSL14_NUR_S2 from a register value.
-#define BG_CSU_CSL14_NUR_S2(r)   (((r) & BM_CSU_CSL14_NUR_S2) >> BP_CSU_CSL14_NUR_S2)
+#define BG_CSU_CSL14_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NUR_S2) >> BP_CSU_CSL14_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NUR_S2.
-#define BF_CSU_CSL14_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_NUR_S2) & BM_CSU_CSL14_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NUR_S2.
-#define BF_CSU_CSL14_NUR_S2(v)   (((v) << BP_CSU_CSL14_NUR_S2) & BM_CSU_CSL14_NUR_S2)
-#endif
+#define BF_CSU_CSL14_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NUR_S2) & BM_CSU_CSL14_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -8948,15 +7744,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL14_NSR_S2.
 
 //! @brief Get value of CSU_CSL14_NSR_S2 from a register value.
-#define BG_CSU_CSL14_NSR_S2(r)   (((r) & BM_CSU_CSL14_NSR_S2) >> BP_CSU_CSL14_NSR_S2)
+#define BG_CSU_CSL14_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NSR_S2) >> BP_CSU_CSL14_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NSR_S2.
-#define BF_CSU_CSL14_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_NSR_S2) & BM_CSU_CSL14_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NSR_S2.
-#define BF_CSU_CSL14_NSR_S2(v)   (((v) << BP_CSU_CSL14_NSR_S2) & BM_CSU_CSL14_NSR_S2)
-#endif
+#define BF_CSU_CSL14_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NSR_S2) & BM_CSU_CSL14_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -8977,15 +7768,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL14_SUW_S2.
 
 //! @brief Get value of CSU_CSL14_SUW_S2 from a register value.
-#define BG_CSU_CSL14_SUW_S2(r)   (((r) & BM_CSU_CSL14_SUW_S2) >> BP_CSU_CSL14_SUW_S2)
+#define BG_CSU_CSL14_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SUW_S2) >> BP_CSU_CSL14_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SUW_S2.
-#define BF_CSU_CSL14_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_SUW_S2) & BM_CSU_CSL14_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SUW_S2.
-#define BF_CSU_CSL14_SUW_S2(v)   (((v) << BP_CSU_CSL14_SUW_S2) & BM_CSU_CSL14_SUW_S2)
-#endif
+#define BF_CSU_CSL14_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SUW_S2) & BM_CSU_CSL14_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -9006,15 +7792,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL14_SSW_S2.
 
 //! @brief Get value of CSU_CSL14_SSW_S2 from a register value.
-#define BG_CSU_CSL14_SSW_S2(r)   (((r) & BM_CSU_CSL14_SSW_S2) >> BP_CSU_CSL14_SSW_S2)
+#define BG_CSU_CSL14_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SSW_S2) >> BP_CSU_CSL14_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SSW_S2.
-#define BF_CSU_CSL14_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_SSW_S2) & BM_CSU_CSL14_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SSW_S2.
-#define BF_CSU_CSL14_SSW_S2(v)   (((v) << BP_CSU_CSL14_SSW_S2) & BM_CSU_CSL14_SSW_S2)
-#endif
+#define BF_CSU_CSL14_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SSW_S2) & BM_CSU_CSL14_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -9035,15 +7816,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL14_NUW_S2.
 
 //! @brief Get value of CSU_CSL14_NUW_S2 from a register value.
-#define BG_CSU_CSL14_NUW_S2(r)   (((r) & BM_CSU_CSL14_NUW_S2) >> BP_CSU_CSL14_NUW_S2)
+#define BG_CSU_CSL14_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NUW_S2) >> BP_CSU_CSL14_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NUW_S2.
-#define BF_CSU_CSL14_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_NUW_S2) & BM_CSU_CSL14_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NUW_S2.
-#define BF_CSU_CSL14_NUW_S2(v)   (((v) << BP_CSU_CSL14_NUW_S2) & BM_CSU_CSL14_NUW_S2)
-#endif
+#define BF_CSU_CSL14_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NUW_S2) & BM_CSU_CSL14_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -9064,15 +7840,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL14_NSW_S2.
 
 //! @brief Get value of CSU_CSL14_NSW_S2 from a register value.
-#define BG_CSU_CSL14_NSW_S2(r)   (((r) & BM_CSU_CSL14_NSW_S2) >> BP_CSU_CSL14_NSW_S2)
+#define BG_CSU_CSL14_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NSW_S2) >> BP_CSU_CSL14_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NSW_S2.
-#define BF_CSU_CSL14_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_NSW_S2) & BM_CSU_CSL14_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NSW_S2.
-#define BF_CSU_CSL14_NSW_S2(v)   (((v) << BP_CSU_CSL14_NSW_S2) & BM_CSU_CSL14_NSW_S2)
-#endif
+#define BF_CSU_CSL14_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NSW_S2) & BM_CSU_CSL14_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -9093,15 +7864,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL14_LOCK_S2.
 
 //! @brief Get value of CSU_CSL14_LOCK_S2 from a register value.
-#define BG_CSU_CSL14_LOCK_S2(r)   (((r) & BM_CSU_CSL14_LOCK_S2) >> BP_CSU_CSL14_LOCK_S2)
+#define BG_CSU_CSL14_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_LOCK_S2) >> BP_CSU_CSL14_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_LOCK_S2.
-#define BF_CSU_CSL14_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL14_LOCK_S2) & BM_CSU_CSL14_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL14_LOCK_S2.
-#define BF_CSU_CSL14_LOCK_S2(v)   (((v) << BP_CSU_CSL14_LOCK_S2) & BM_CSU_CSL14_LOCK_S2)
-#endif
+#define BF_CSU_CSL14_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_LOCK_S2) & BM_CSU_CSL14_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -9122,15 +7888,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL14_SUR_S1.
 
 //! @brief Get value of CSU_CSL14_SUR_S1 from a register value.
-#define BG_CSU_CSL14_SUR_S1(r)   (((r) & BM_CSU_CSL14_SUR_S1) >> BP_CSU_CSL14_SUR_S1)
+#define BG_CSU_CSL14_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SUR_S1) >> BP_CSU_CSL14_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SUR_S1.
-#define BF_CSU_CSL14_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_SUR_S1) & BM_CSU_CSL14_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SUR_S1.
-#define BF_CSU_CSL14_SUR_S1(v)   (((v) << BP_CSU_CSL14_SUR_S1) & BM_CSU_CSL14_SUR_S1)
-#endif
+#define BF_CSU_CSL14_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SUR_S1) & BM_CSU_CSL14_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -9151,15 +7912,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL14_SSR_S1.
 
 //! @brief Get value of CSU_CSL14_SSR_S1 from a register value.
-#define BG_CSU_CSL14_SSR_S1(r)   (((r) & BM_CSU_CSL14_SSR_S1) >> BP_CSU_CSL14_SSR_S1)
+#define BG_CSU_CSL14_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SSR_S1) >> BP_CSU_CSL14_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SSR_S1.
-#define BF_CSU_CSL14_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_SSR_S1) & BM_CSU_CSL14_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SSR_S1.
-#define BF_CSU_CSL14_SSR_S1(v)   (((v) << BP_CSU_CSL14_SSR_S1) & BM_CSU_CSL14_SSR_S1)
-#endif
+#define BF_CSU_CSL14_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SSR_S1) & BM_CSU_CSL14_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -9180,15 +7936,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL14_NUR_S1.
 
 //! @brief Get value of CSU_CSL14_NUR_S1 from a register value.
-#define BG_CSU_CSL14_NUR_S1(r)   (((r) & BM_CSU_CSL14_NUR_S1) >> BP_CSU_CSL14_NUR_S1)
+#define BG_CSU_CSL14_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NUR_S1) >> BP_CSU_CSL14_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NUR_S1.
-#define BF_CSU_CSL14_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_NUR_S1) & BM_CSU_CSL14_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NUR_S1.
-#define BF_CSU_CSL14_NUR_S1(v)   (((v) << BP_CSU_CSL14_NUR_S1) & BM_CSU_CSL14_NUR_S1)
-#endif
+#define BF_CSU_CSL14_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NUR_S1) & BM_CSU_CSL14_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -9209,15 +7960,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL14_NSR_S1.
 
 //! @brief Get value of CSU_CSL14_NSR_S1 from a register value.
-#define BG_CSU_CSL14_NSR_S1(r)   (((r) & BM_CSU_CSL14_NSR_S1) >> BP_CSU_CSL14_NSR_S1)
+#define BG_CSU_CSL14_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NSR_S1) >> BP_CSU_CSL14_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NSR_S1.
-#define BF_CSU_CSL14_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_NSR_S1) & BM_CSU_CSL14_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NSR_S1.
-#define BF_CSU_CSL14_NSR_S1(v)   (((v) << BP_CSU_CSL14_NSR_S1) & BM_CSU_CSL14_NSR_S1)
-#endif
+#define BF_CSU_CSL14_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NSR_S1) & BM_CSU_CSL14_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -9238,15 +7984,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL14_SUW_S1.
 
 //! @brief Get value of CSU_CSL14_SUW_S1 from a register value.
-#define BG_CSU_CSL14_SUW_S1(r)   (((r) & BM_CSU_CSL14_SUW_S1) >> BP_CSU_CSL14_SUW_S1)
+#define BG_CSU_CSL14_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SUW_S1) >> BP_CSU_CSL14_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SUW_S1.
-#define BF_CSU_CSL14_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_SUW_S1) & BM_CSU_CSL14_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SUW_S1.
-#define BF_CSU_CSL14_SUW_S1(v)   (((v) << BP_CSU_CSL14_SUW_S1) & BM_CSU_CSL14_SUW_S1)
-#endif
+#define BF_CSU_CSL14_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SUW_S1) & BM_CSU_CSL14_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -9267,15 +8008,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL14_SSW_S1.
 
 //! @brief Get value of CSU_CSL14_SSW_S1 from a register value.
-#define BG_CSU_CSL14_SSW_S1(r)   (((r) & BM_CSU_CSL14_SSW_S1) >> BP_CSU_CSL14_SSW_S1)
+#define BG_CSU_CSL14_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_SSW_S1) >> BP_CSU_CSL14_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_SSW_S1.
-#define BF_CSU_CSL14_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_SSW_S1) & BM_CSU_CSL14_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_SSW_S1.
-#define BF_CSU_CSL14_SSW_S1(v)   (((v) << BP_CSU_CSL14_SSW_S1) & BM_CSU_CSL14_SSW_S1)
-#endif
+#define BF_CSU_CSL14_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_SSW_S1) & BM_CSU_CSL14_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -9296,15 +8032,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL14_NUW_S1.
 
 //! @brief Get value of CSU_CSL14_NUW_S1 from a register value.
-#define BG_CSU_CSL14_NUW_S1(r)   (((r) & BM_CSU_CSL14_NUW_S1) >> BP_CSU_CSL14_NUW_S1)
+#define BG_CSU_CSL14_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NUW_S1) >> BP_CSU_CSL14_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NUW_S1.
-#define BF_CSU_CSL14_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_NUW_S1) & BM_CSU_CSL14_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NUW_S1.
-#define BF_CSU_CSL14_NUW_S1(v)   (((v) << BP_CSU_CSL14_NUW_S1) & BM_CSU_CSL14_NUW_S1)
-#endif
+#define BF_CSU_CSL14_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NUW_S1) & BM_CSU_CSL14_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -9325,15 +8056,10 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL14_NSW_S1.
 
 //! @brief Get value of CSU_CSL14_NSW_S1 from a register value.
-#define BG_CSU_CSL14_NSW_S1(r)   (((r) & BM_CSU_CSL14_NSW_S1) >> BP_CSU_CSL14_NSW_S1)
+#define BG_CSU_CSL14_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_NSW_S1) >> BP_CSU_CSL14_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_NSW_S1.
-#define BF_CSU_CSL14_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_NSW_S1) & BM_CSU_CSL14_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_NSW_S1.
-#define BF_CSU_CSL14_NSW_S1(v)   (((v) << BP_CSU_CSL14_NSW_S1) & BM_CSU_CSL14_NSW_S1)
-#endif
+#define BF_CSU_CSL14_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_NSW_S1) & BM_CSU_CSL14_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -9354,21 +8080,20 @@ typedef union _hw_csu_csl14
 #define BM_CSU_CSL14_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL14_LOCK_S1.
 
 //! @brief Get value of CSU_CSL14_LOCK_S1 from a register value.
-#define BG_CSU_CSL14_LOCK_S1(r)   (((r) & BM_CSU_CSL14_LOCK_S1) >> BP_CSU_CSL14_LOCK_S1)
+#define BG_CSU_CSL14_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL14_LOCK_S1) >> BP_CSU_CSL14_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL14_LOCK_S1.
-#define BF_CSU_CSL14_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL14_LOCK_S1) & BM_CSU_CSL14_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL14_LOCK_S1.
-#define BF_CSU_CSL14_LOCK_S1(v)   (((v) << BP_CSU_CSL14_LOCK_S1) & BM_CSU_CSL14_LOCK_S1)
-#endif
+#define BF_CSU_CSL14_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL14_LOCK_S1) & BM_CSU_CSL14_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL14_LOCK_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_LOCK_S1) | BF_CSU_CSL14_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL15 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9383,11 +8108,11 @@ typedef union _hw_csu_csl14
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -9399,7 +8124,7 @@ typedef union _hw_csu_csl14
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -9481,15 +8206,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL15_SUR_S2.
 
 //! @brief Get value of CSU_CSL15_SUR_S2 from a register value.
-#define BG_CSU_CSL15_SUR_S2(r)   (((r) & BM_CSU_CSL15_SUR_S2) >> BP_CSU_CSL15_SUR_S2)
+#define BG_CSU_CSL15_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SUR_S2) >> BP_CSU_CSL15_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SUR_S2.
-#define BF_CSU_CSL15_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_SUR_S2) & BM_CSU_CSL15_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SUR_S2.
-#define BF_CSU_CSL15_SUR_S2(v)   (((v) << BP_CSU_CSL15_SUR_S2) & BM_CSU_CSL15_SUR_S2)
-#endif
+#define BF_CSU_CSL15_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SUR_S2) & BM_CSU_CSL15_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -9510,15 +8230,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL15_SSR_S2.
 
 //! @brief Get value of CSU_CSL15_SSR_S2 from a register value.
-#define BG_CSU_CSL15_SSR_S2(r)   (((r) & BM_CSU_CSL15_SSR_S2) >> BP_CSU_CSL15_SSR_S2)
+#define BG_CSU_CSL15_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SSR_S2) >> BP_CSU_CSL15_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SSR_S2.
-#define BF_CSU_CSL15_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_SSR_S2) & BM_CSU_CSL15_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SSR_S2.
-#define BF_CSU_CSL15_SSR_S2(v)   (((v) << BP_CSU_CSL15_SSR_S2) & BM_CSU_CSL15_SSR_S2)
-#endif
+#define BF_CSU_CSL15_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SSR_S2) & BM_CSU_CSL15_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -9539,15 +8254,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL15_NUR_S2.
 
 //! @brief Get value of CSU_CSL15_NUR_S2 from a register value.
-#define BG_CSU_CSL15_NUR_S2(r)   (((r) & BM_CSU_CSL15_NUR_S2) >> BP_CSU_CSL15_NUR_S2)
+#define BG_CSU_CSL15_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NUR_S2) >> BP_CSU_CSL15_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NUR_S2.
-#define BF_CSU_CSL15_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_NUR_S2) & BM_CSU_CSL15_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NUR_S2.
-#define BF_CSU_CSL15_NUR_S2(v)   (((v) << BP_CSU_CSL15_NUR_S2) & BM_CSU_CSL15_NUR_S2)
-#endif
+#define BF_CSU_CSL15_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NUR_S2) & BM_CSU_CSL15_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -9568,15 +8278,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL15_NSR_S2.
 
 //! @brief Get value of CSU_CSL15_NSR_S2 from a register value.
-#define BG_CSU_CSL15_NSR_S2(r)   (((r) & BM_CSU_CSL15_NSR_S2) >> BP_CSU_CSL15_NSR_S2)
+#define BG_CSU_CSL15_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NSR_S2) >> BP_CSU_CSL15_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NSR_S2.
-#define BF_CSU_CSL15_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_NSR_S2) & BM_CSU_CSL15_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NSR_S2.
-#define BF_CSU_CSL15_NSR_S2(v)   (((v) << BP_CSU_CSL15_NSR_S2) & BM_CSU_CSL15_NSR_S2)
-#endif
+#define BF_CSU_CSL15_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NSR_S2) & BM_CSU_CSL15_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -9597,15 +8302,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL15_SUW_S2.
 
 //! @brief Get value of CSU_CSL15_SUW_S2 from a register value.
-#define BG_CSU_CSL15_SUW_S2(r)   (((r) & BM_CSU_CSL15_SUW_S2) >> BP_CSU_CSL15_SUW_S2)
+#define BG_CSU_CSL15_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SUW_S2) >> BP_CSU_CSL15_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SUW_S2.
-#define BF_CSU_CSL15_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_SUW_S2) & BM_CSU_CSL15_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SUW_S2.
-#define BF_CSU_CSL15_SUW_S2(v)   (((v) << BP_CSU_CSL15_SUW_S2) & BM_CSU_CSL15_SUW_S2)
-#endif
+#define BF_CSU_CSL15_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SUW_S2) & BM_CSU_CSL15_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -9626,15 +8326,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL15_SSW_S2.
 
 //! @brief Get value of CSU_CSL15_SSW_S2 from a register value.
-#define BG_CSU_CSL15_SSW_S2(r)   (((r) & BM_CSU_CSL15_SSW_S2) >> BP_CSU_CSL15_SSW_S2)
+#define BG_CSU_CSL15_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SSW_S2) >> BP_CSU_CSL15_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SSW_S2.
-#define BF_CSU_CSL15_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_SSW_S2) & BM_CSU_CSL15_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SSW_S2.
-#define BF_CSU_CSL15_SSW_S2(v)   (((v) << BP_CSU_CSL15_SSW_S2) & BM_CSU_CSL15_SSW_S2)
-#endif
+#define BF_CSU_CSL15_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SSW_S2) & BM_CSU_CSL15_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -9655,15 +8350,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL15_NUW_S2.
 
 //! @brief Get value of CSU_CSL15_NUW_S2 from a register value.
-#define BG_CSU_CSL15_NUW_S2(r)   (((r) & BM_CSU_CSL15_NUW_S2) >> BP_CSU_CSL15_NUW_S2)
+#define BG_CSU_CSL15_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NUW_S2) >> BP_CSU_CSL15_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NUW_S2.
-#define BF_CSU_CSL15_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_NUW_S2) & BM_CSU_CSL15_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NUW_S2.
-#define BF_CSU_CSL15_NUW_S2(v)   (((v) << BP_CSU_CSL15_NUW_S2) & BM_CSU_CSL15_NUW_S2)
-#endif
+#define BF_CSU_CSL15_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NUW_S2) & BM_CSU_CSL15_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -9684,15 +8374,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL15_NSW_S2.
 
 //! @brief Get value of CSU_CSL15_NSW_S2 from a register value.
-#define BG_CSU_CSL15_NSW_S2(r)   (((r) & BM_CSU_CSL15_NSW_S2) >> BP_CSU_CSL15_NSW_S2)
+#define BG_CSU_CSL15_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NSW_S2) >> BP_CSU_CSL15_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NSW_S2.
-#define BF_CSU_CSL15_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_NSW_S2) & BM_CSU_CSL15_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NSW_S2.
-#define BF_CSU_CSL15_NSW_S2(v)   (((v) << BP_CSU_CSL15_NSW_S2) & BM_CSU_CSL15_NSW_S2)
-#endif
+#define BF_CSU_CSL15_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NSW_S2) & BM_CSU_CSL15_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -9713,15 +8398,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL15_LOCK_S2.
 
 //! @brief Get value of CSU_CSL15_LOCK_S2 from a register value.
-#define BG_CSU_CSL15_LOCK_S2(r)   (((r) & BM_CSU_CSL15_LOCK_S2) >> BP_CSU_CSL15_LOCK_S2)
+#define BG_CSU_CSL15_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_LOCK_S2) >> BP_CSU_CSL15_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_LOCK_S2.
-#define BF_CSU_CSL15_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL15_LOCK_S2) & BM_CSU_CSL15_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL15_LOCK_S2.
-#define BF_CSU_CSL15_LOCK_S2(v)   (((v) << BP_CSU_CSL15_LOCK_S2) & BM_CSU_CSL15_LOCK_S2)
-#endif
+#define BF_CSU_CSL15_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_LOCK_S2) & BM_CSU_CSL15_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -9742,15 +8422,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL15_SUR_S1.
 
 //! @brief Get value of CSU_CSL15_SUR_S1 from a register value.
-#define BG_CSU_CSL15_SUR_S1(r)   (((r) & BM_CSU_CSL15_SUR_S1) >> BP_CSU_CSL15_SUR_S1)
+#define BG_CSU_CSL15_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SUR_S1) >> BP_CSU_CSL15_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SUR_S1.
-#define BF_CSU_CSL15_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_SUR_S1) & BM_CSU_CSL15_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SUR_S1.
-#define BF_CSU_CSL15_SUR_S1(v)   (((v) << BP_CSU_CSL15_SUR_S1) & BM_CSU_CSL15_SUR_S1)
-#endif
+#define BF_CSU_CSL15_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SUR_S1) & BM_CSU_CSL15_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -9771,15 +8446,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL15_SSR_S1.
 
 //! @brief Get value of CSU_CSL15_SSR_S1 from a register value.
-#define BG_CSU_CSL15_SSR_S1(r)   (((r) & BM_CSU_CSL15_SSR_S1) >> BP_CSU_CSL15_SSR_S1)
+#define BG_CSU_CSL15_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SSR_S1) >> BP_CSU_CSL15_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SSR_S1.
-#define BF_CSU_CSL15_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_SSR_S1) & BM_CSU_CSL15_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SSR_S1.
-#define BF_CSU_CSL15_SSR_S1(v)   (((v) << BP_CSU_CSL15_SSR_S1) & BM_CSU_CSL15_SSR_S1)
-#endif
+#define BF_CSU_CSL15_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SSR_S1) & BM_CSU_CSL15_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -9800,15 +8470,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL15_NUR_S1.
 
 //! @brief Get value of CSU_CSL15_NUR_S1 from a register value.
-#define BG_CSU_CSL15_NUR_S1(r)   (((r) & BM_CSU_CSL15_NUR_S1) >> BP_CSU_CSL15_NUR_S1)
+#define BG_CSU_CSL15_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NUR_S1) >> BP_CSU_CSL15_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NUR_S1.
-#define BF_CSU_CSL15_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_NUR_S1) & BM_CSU_CSL15_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NUR_S1.
-#define BF_CSU_CSL15_NUR_S1(v)   (((v) << BP_CSU_CSL15_NUR_S1) & BM_CSU_CSL15_NUR_S1)
-#endif
+#define BF_CSU_CSL15_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NUR_S1) & BM_CSU_CSL15_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -9829,15 +8494,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL15_NSR_S1.
 
 //! @brief Get value of CSU_CSL15_NSR_S1 from a register value.
-#define BG_CSU_CSL15_NSR_S1(r)   (((r) & BM_CSU_CSL15_NSR_S1) >> BP_CSU_CSL15_NSR_S1)
+#define BG_CSU_CSL15_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NSR_S1) >> BP_CSU_CSL15_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NSR_S1.
-#define BF_CSU_CSL15_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_NSR_S1) & BM_CSU_CSL15_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NSR_S1.
-#define BF_CSU_CSL15_NSR_S1(v)   (((v) << BP_CSU_CSL15_NSR_S1) & BM_CSU_CSL15_NSR_S1)
-#endif
+#define BF_CSU_CSL15_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NSR_S1) & BM_CSU_CSL15_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -9858,15 +8518,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL15_SUW_S1.
 
 //! @brief Get value of CSU_CSL15_SUW_S1 from a register value.
-#define BG_CSU_CSL15_SUW_S1(r)   (((r) & BM_CSU_CSL15_SUW_S1) >> BP_CSU_CSL15_SUW_S1)
+#define BG_CSU_CSL15_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SUW_S1) >> BP_CSU_CSL15_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SUW_S1.
-#define BF_CSU_CSL15_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_SUW_S1) & BM_CSU_CSL15_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SUW_S1.
-#define BF_CSU_CSL15_SUW_S1(v)   (((v) << BP_CSU_CSL15_SUW_S1) & BM_CSU_CSL15_SUW_S1)
-#endif
+#define BF_CSU_CSL15_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SUW_S1) & BM_CSU_CSL15_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -9887,15 +8542,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL15_SSW_S1.
 
 //! @brief Get value of CSU_CSL15_SSW_S1 from a register value.
-#define BG_CSU_CSL15_SSW_S1(r)   (((r) & BM_CSU_CSL15_SSW_S1) >> BP_CSU_CSL15_SSW_S1)
+#define BG_CSU_CSL15_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_SSW_S1) >> BP_CSU_CSL15_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_SSW_S1.
-#define BF_CSU_CSL15_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_SSW_S1) & BM_CSU_CSL15_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_SSW_S1.
-#define BF_CSU_CSL15_SSW_S1(v)   (((v) << BP_CSU_CSL15_SSW_S1) & BM_CSU_CSL15_SSW_S1)
-#endif
+#define BF_CSU_CSL15_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_SSW_S1) & BM_CSU_CSL15_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -9916,15 +8566,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL15_NUW_S1.
 
 //! @brief Get value of CSU_CSL15_NUW_S1 from a register value.
-#define BG_CSU_CSL15_NUW_S1(r)   (((r) & BM_CSU_CSL15_NUW_S1) >> BP_CSU_CSL15_NUW_S1)
+#define BG_CSU_CSL15_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NUW_S1) >> BP_CSU_CSL15_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NUW_S1.
-#define BF_CSU_CSL15_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_NUW_S1) & BM_CSU_CSL15_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NUW_S1.
-#define BF_CSU_CSL15_NUW_S1(v)   (((v) << BP_CSU_CSL15_NUW_S1) & BM_CSU_CSL15_NUW_S1)
-#endif
+#define BF_CSU_CSL15_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NUW_S1) & BM_CSU_CSL15_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -9945,15 +8590,10 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL15_NSW_S1.
 
 //! @brief Get value of CSU_CSL15_NSW_S1 from a register value.
-#define BG_CSU_CSL15_NSW_S1(r)   (((r) & BM_CSU_CSL15_NSW_S1) >> BP_CSU_CSL15_NSW_S1)
+#define BG_CSU_CSL15_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_NSW_S1) >> BP_CSU_CSL15_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_NSW_S1.
-#define BF_CSU_CSL15_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_NSW_S1) & BM_CSU_CSL15_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_NSW_S1.
-#define BF_CSU_CSL15_NSW_S1(v)   (((v) << BP_CSU_CSL15_NSW_S1) & BM_CSU_CSL15_NSW_S1)
-#endif
+#define BF_CSU_CSL15_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_NSW_S1) & BM_CSU_CSL15_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -9974,21 +8614,20 @@ typedef union _hw_csu_csl15
 #define BM_CSU_CSL15_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL15_LOCK_S1.
 
 //! @brief Get value of CSU_CSL15_LOCK_S1 from a register value.
-#define BG_CSU_CSL15_LOCK_S1(r)   (((r) & BM_CSU_CSL15_LOCK_S1) >> BP_CSU_CSL15_LOCK_S1)
+#define BG_CSU_CSL15_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL15_LOCK_S1) >> BP_CSU_CSL15_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL15_LOCK_S1.
-#define BF_CSU_CSL15_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL15_LOCK_S1) & BM_CSU_CSL15_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL15_LOCK_S1.
-#define BF_CSU_CSL15_LOCK_S1(v)   (((v) << BP_CSU_CSL15_LOCK_S1) & BM_CSU_CSL15_LOCK_S1)
-#endif
+#define BF_CSU_CSL15_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL15_LOCK_S1) & BM_CSU_CSL15_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL15_LOCK_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_LOCK_S1) | BF_CSU_CSL15_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL16 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10003,11 +8642,11 @@ typedef union _hw_csu_csl15
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -10019,7 +8658,7 @@ typedef union _hw_csu_csl15
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -10101,15 +8740,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL16_SUR_S2.
 
 //! @brief Get value of CSU_CSL16_SUR_S2 from a register value.
-#define BG_CSU_CSL16_SUR_S2(r)   (((r) & BM_CSU_CSL16_SUR_S2) >> BP_CSU_CSL16_SUR_S2)
+#define BG_CSU_CSL16_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SUR_S2) >> BP_CSU_CSL16_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SUR_S2.
-#define BF_CSU_CSL16_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_SUR_S2) & BM_CSU_CSL16_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SUR_S2.
-#define BF_CSU_CSL16_SUR_S2(v)   (((v) << BP_CSU_CSL16_SUR_S2) & BM_CSU_CSL16_SUR_S2)
-#endif
+#define BF_CSU_CSL16_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SUR_S2) & BM_CSU_CSL16_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -10130,15 +8764,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL16_SSR_S2.
 
 //! @brief Get value of CSU_CSL16_SSR_S2 from a register value.
-#define BG_CSU_CSL16_SSR_S2(r)   (((r) & BM_CSU_CSL16_SSR_S2) >> BP_CSU_CSL16_SSR_S2)
+#define BG_CSU_CSL16_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SSR_S2) >> BP_CSU_CSL16_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SSR_S2.
-#define BF_CSU_CSL16_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_SSR_S2) & BM_CSU_CSL16_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SSR_S2.
-#define BF_CSU_CSL16_SSR_S2(v)   (((v) << BP_CSU_CSL16_SSR_S2) & BM_CSU_CSL16_SSR_S2)
-#endif
+#define BF_CSU_CSL16_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SSR_S2) & BM_CSU_CSL16_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -10159,15 +8788,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL16_NUR_S2.
 
 //! @brief Get value of CSU_CSL16_NUR_S2 from a register value.
-#define BG_CSU_CSL16_NUR_S2(r)   (((r) & BM_CSU_CSL16_NUR_S2) >> BP_CSU_CSL16_NUR_S2)
+#define BG_CSU_CSL16_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NUR_S2) >> BP_CSU_CSL16_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NUR_S2.
-#define BF_CSU_CSL16_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_NUR_S2) & BM_CSU_CSL16_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NUR_S2.
-#define BF_CSU_CSL16_NUR_S2(v)   (((v) << BP_CSU_CSL16_NUR_S2) & BM_CSU_CSL16_NUR_S2)
-#endif
+#define BF_CSU_CSL16_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NUR_S2) & BM_CSU_CSL16_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -10188,15 +8812,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL16_NSR_S2.
 
 //! @brief Get value of CSU_CSL16_NSR_S2 from a register value.
-#define BG_CSU_CSL16_NSR_S2(r)   (((r) & BM_CSU_CSL16_NSR_S2) >> BP_CSU_CSL16_NSR_S2)
+#define BG_CSU_CSL16_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NSR_S2) >> BP_CSU_CSL16_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NSR_S2.
-#define BF_CSU_CSL16_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_NSR_S2) & BM_CSU_CSL16_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NSR_S2.
-#define BF_CSU_CSL16_NSR_S2(v)   (((v) << BP_CSU_CSL16_NSR_S2) & BM_CSU_CSL16_NSR_S2)
-#endif
+#define BF_CSU_CSL16_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NSR_S2) & BM_CSU_CSL16_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -10217,15 +8836,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL16_SUW_S2.
 
 //! @brief Get value of CSU_CSL16_SUW_S2 from a register value.
-#define BG_CSU_CSL16_SUW_S2(r)   (((r) & BM_CSU_CSL16_SUW_S2) >> BP_CSU_CSL16_SUW_S2)
+#define BG_CSU_CSL16_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SUW_S2) >> BP_CSU_CSL16_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SUW_S2.
-#define BF_CSU_CSL16_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_SUW_S2) & BM_CSU_CSL16_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SUW_S2.
-#define BF_CSU_CSL16_SUW_S2(v)   (((v) << BP_CSU_CSL16_SUW_S2) & BM_CSU_CSL16_SUW_S2)
-#endif
+#define BF_CSU_CSL16_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SUW_S2) & BM_CSU_CSL16_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -10246,15 +8860,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL16_SSW_S2.
 
 //! @brief Get value of CSU_CSL16_SSW_S2 from a register value.
-#define BG_CSU_CSL16_SSW_S2(r)   (((r) & BM_CSU_CSL16_SSW_S2) >> BP_CSU_CSL16_SSW_S2)
+#define BG_CSU_CSL16_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SSW_S2) >> BP_CSU_CSL16_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SSW_S2.
-#define BF_CSU_CSL16_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_SSW_S2) & BM_CSU_CSL16_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SSW_S2.
-#define BF_CSU_CSL16_SSW_S2(v)   (((v) << BP_CSU_CSL16_SSW_S2) & BM_CSU_CSL16_SSW_S2)
-#endif
+#define BF_CSU_CSL16_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SSW_S2) & BM_CSU_CSL16_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -10275,15 +8884,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL16_NUW_S2.
 
 //! @brief Get value of CSU_CSL16_NUW_S2 from a register value.
-#define BG_CSU_CSL16_NUW_S2(r)   (((r) & BM_CSU_CSL16_NUW_S2) >> BP_CSU_CSL16_NUW_S2)
+#define BG_CSU_CSL16_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NUW_S2) >> BP_CSU_CSL16_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NUW_S2.
-#define BF_CSU_CSL16_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_NUW_S2) & BM_CSU_CSL16_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NUW_S2.
-#define BF_CSU_CSL16_NUW_S2(v)   (((v) << BP_CSU_CSL16_NUW_S2) & BM_CSU_CSL16_NUW_S2)
-#endif
+#define BF_CSU_CSL16_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NUW_S2) & BM_CSU_CSL16_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -10304,15 +8908,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL16_NSW_S2.
 
 //! @brief Get value of CSU_CSL16_NSW_S2 from a register value.
-#define BG_CSU_CSL16_NSW_S2(r)   (((r) & BM_CSU_CSL16_NSW_S2) >> BP_CSU_CSL16_NSW_S2)
+#define BG_CSU_CSL16_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NSW_S2) >> BP_CSU_CSL16_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NSW_S2.
-#define BF_CSU_CSL16_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_NSW_S2) & BM_CSU_CSL16_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NSW_S2.
-#define BF_CSU_CSL16_NSW_S2(v)   (((v) << BP_CSU_CSL16_NSW_S2) & BM_CSU_CSL16_NSW_S2)
-#endif
+#define BF_CSU_CSL16_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NSW_S2) & BM_CSU_CSL16_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -10333,15 +8932,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL16_LOCK_S2.
 
 //! @brief Get value of CSU_CSL16_LOCK_S2 from a register value.
-#define BG_CSU_CSL16_LOCK_S2(r)   (((r) & BM_CSU_CSL16_LOCK_S2) >> BP_CSU_CSL16_LOCK_S2)
+#define BG_CSU_CSL16_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_LOCK_S2) >> BP_CSU_CSL16_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_LOCK_S2.
-#define BF_CSU_CSL16_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL16_LOCK_S2) & BM_CSU_CSL16_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL16_LOCK_S2.
-#define BF_CSU_CSL16_LOCK_S2(v)   (((v) << BP_CSU_CSL16_LOCK_S2) & BM_CSU_CSL16_LOCK_S2)
-#endif
+#define BF_CSU_CSL16_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_LOCK_S2) & BM_CSU_CSL16_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -10362,15 +8956,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL16_SUR_S1.
 
 //! @brief Get value of CSU_CSL16_SUR_S1 from a register value.
-#define BG_CSU_CSL16_SUR_S1(r)   (((r) & BM_CSU_CSL16_SUR_S1) >> BP_CSU_CSL16_SUR_S1)
+#define BG_CSU_CSL16_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SUR_S1) >> BP_CSU_CSL16_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SUR_S1.
-#define BF_CSU_CSL16_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_SUR_S1) & BM_CSU_CSL16_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SUR_S1.
-#define BF_CSU_CSL16_SUR_S1(v)   (((v) << BP_CSU_CSL16_SUR_S1) & BM_CSU_CSL16_SUR_S1)
-#endif
+#define BF_CSU_CSL16_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SUR_S1) & BM_CSU_CSL16_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -10391,15 +8980,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL16_SSR_S1.
 
 //! @brief Get value of CSU_CSL16_SSR_S1 from a register value.
-#define BG_CSU_CSL16_SSR_S1(r)   (((r) & BM_CSU_CSL16_SSR_S1) >> BP_CSU_CSL16_SSR_S1)
+#define BG_CSU_CSL16_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SSR_S1) >> BP_CSU_CSL16_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SSR_S1.
-#define BF_CSU_CSL16_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_SSR_S1) & BM_CSU_CSL16_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SSR_S1.
-#define BF_CSU_CSL16_SSR_S1(v)   (((v) << BP_CSU_CSL16_SSR_S1) & BM_CSU_CSL16_SSR_S1)
-#endif
+#define BF_CSU_CSL16_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SSR_S1) & BM_CSU_CSL16_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -10420,15 +9004,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL16_NUR_S1.
 
 //! @brief Get value of CSU_CSL16_NUR_S1 from a register value.
-#define BG_CSU_CSL16_NUR_S1(r)   (((r) & BM_CSU_CSL16_NUR_S1) >> BP_CSU_CSL16_NUR_S1)
+#define BG_CSU_CSL16_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NUR_S1) >> BP_CSU_CSL16_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NUR_S1.
-#define BF_CSU_CSL16_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_NUR_S1) & BM_CSU_CSL16_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NUR_S1.
-#define BF_CSU_CSL16_NUR_S1(v)   (((v) << BP_CSU_CSL16_NUR_S1) & BM_CSU_CSL16_NUR_S1)
-#endif
+#define BF_CSU_CSL16_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NUR_S1) & BM_CSU_CSL16_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -10449,15 +9028,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL16_NSR_S1.
 
 //! @brief Get value of CSU_CSL16_NSR_S1 from a register value.
-#define BG_CSU_CSL16_NSR_S1(r)   (((r) & BM_CSU_CSL16_NSR_S1) >> BP_CSU_CSL16_NSR_S1)
+#define BG_CSU_CSL16_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NSR_S1) >> BP_CSU_CSL16_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NSR_S1.
-#define BF_CSU_CSL16_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_NSR_S1) & BM_CSU_CSL16_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NSR_S1.
-#define BF_CSU_CSL16_NSR_S1(v)   (((v) << BP_CSU_CSL16_NSR_S1) & BM_CSU_CSL16_NSR_S1)
-#endif
+#define BF_CSU_CSL16_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NSR_S1) & BM_CSU_CSL16_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -10478,15 +9052,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL16_SUW_S1.
 
 //! @brief Get value of CSU_CSL16_SUW_S1 from a register value.
-#define BG_CSU_CSL16_SUW_S1(r)   (((r) & BM_CSU_CSL16_SUW_S1) >> BP_CSU_CSL16_SUW_S1)
+#define BG_CSU_CSL16_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SUW_S1) >> BP_CSU_CSL16_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SUW_S1.
-#define BF_CSU_CSL16_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_SUW_S1) & BM_CSU_CSL16_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SUW_S1.
-#define BF_CSU_CSL16_SUW_S1(v)   (((v) << BP_CSU_CSL16_SUW_S1) & BM_CSU_CSL16_SUW_S1)
-#endif
+#define BF_CSU_CSL16_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SUW_S1) & BM_CSU_CSL16_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -10507,15 +9076,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL16_SSW_S1.
 
 //! @brief Get value of CSU_CSL16_SSW_S1 from a register value.
-#define BG_CSU_CSL16_SSW_S1(r)   (((r) & BM_CSU_CSL16_SSW_S1) >> BP_CSU_CSL16_SSW_S1)
+#define BG_CSU_CSL16_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_SSW_S1) >> BP_CSU_CSL16_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_SSW_S1.
-#define BF_CSU_CSL16_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_SSW_S1) & BM_CSU_CSL16_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_SSW_S1.
-#define BF_CSU_CSL16_SSW_S1(v)   (((v) << BP_CSU_CSL16_SSW_S1) & BM_CSU_CSL16_SSW_S1)
-#endif
+#define BF_CSU_CSL16_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_SSW_S1) & BM_CSU_CSL16_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -10536,15 +9100,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL16_NUW_S1.
 
 //! @brief Get value of CSU_CSL16_NUW_S1 from a register value.
-#define BG_CSU_CSL16_NUW_S1(r)   (((r) & BM_CSU_CSL16_NUW_S1) >> BP_CSU_CSL16_NUW_S1)
+#define BG_CSU_CSL16_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NUW_S1) >> BP_CSU_CSL16_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NUW_S1.
-#define BF_CSU_CSL16_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_NUW_S1) & BM_CSU_CSL16_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NUW_S1.
-#define BF_CSU_CSL16_NUW_S1(v)   (((v) << BP_CSU_CSL16_NUW_S1) & BM_CSU_CSL16_NUW_S1)
-#endif
+#define BF_CSU_CSL16_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NUW_S1) & BM_CSU_CSL16_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -10565,15 +9124,10 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL16_NSW_S1.
 
 //! @brief Get value of CSU_CSL16_NSW_S1 from a register value.
-#define BG_CSU_CSL16_NSW_S1(r)   (((r) & BM_CSU_CSL16_NSW_S1) >> BP_CSU_CSL16_NSW_S1)
+#define BG_CSU_CSL16_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_NSW_S1) >> BP_CSU_CSL16_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_NSW_S1.
-#define BF_CSU_CSL16_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_NSW_S1) & BM_CSU_CSL16_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_NSW_S1.
-#define BF_CSU_CSL16_NSW_S1(v)   (((v) << BP_CSU_CSL16_NSW_S1) & BM_CSU_CSL16_NSW_S1)
-#endif
+#define BF_CSU_CSL16_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_NSW_S1) & BM_CSU_CSL16_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -10594,21 +9148,20 @@ typedef union _hw_csu_csl16
 #define BM_CSU_CSL16_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL16_LOCK_S1.
 
 //! @brief Get value of CSU_CSL16_LOCK_S1 from a register value.
-#define BG_CSU_CSL16_LOCK_S1(r)   (((r) & BM_CSU_CSL16_LOCK_S1) >> BP_CSU_CSL16_LOCK_S1)
+#define BG_CSU_CSL16_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL16_LOCK_S1) >> BP_CSU_CSL16_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL16_LOCK_S1.
-#define BF_CSU_CSL16_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL16_LOCK_S1) & BM_CSU_CSL16_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL16_LOCK_S1.
-#define BF_CSU_CSL16_LOCK_S1(v)   (((v) << BP_CSU_CSL16_LOCK_S1) & BM_CSU_CSL16_LOCK_S1)
-#endif
+#define BF_CSU_CSL16_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL16_LOCK_S1) & BM_CSU_CSL16_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL16_LOCK_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_LOCK_S1) | BF_CSU_CSL16_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL17 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10623,11 +9176,11 @@ typedef union _hw_csu_csl16
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -10639,7 +9192,7 @@ typedef union _hw_csu_csl16
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -10721,15 +9274,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL17_SUR_S2.
 
 //! @brief Get value of CSU_CSL17_SUR_S2 from a register value.
-#define BG_CSU_CSL17_SUR_S2(r)   (((r) & BM_CSU_CSL17_SUR_S2) >> BP_CSU_CSL17_SUR_S2)
+#define BG_CSU_CSL17_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SUR_S2) >> BP_CSU_CSL17_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SUR_S2.
-#define BF_CSU_CSL17_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_SUR_S2) & BM_CSU_CSL17_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SUR_S2.
-#define BF_CSU_CSL17_SUR_S2(v)   (((v) << BP_CSU_CSL17_SUR_S2) & BM_CSU_CSL17_SUR_S2)
-#endif
+#define BF_CSU_CSL17_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SUR_S2) & BM_CSU_CSL17_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -10750,15 +9298,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL17_SSR_S2.
 
 //! @brief Get value of CSU_CSL17_SSR_S2 from a register value.
-#define BG_CSU_CSL17_SSR_S2(r)   (((r) & BM_CSU_CSL17_SSR_S2) >> BP_CSU_CSL17_SSR_S2)
+#define BG_CSU_CSL17_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SSR_S2) >> BP_CSU_CSL17_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SSR_S2.
-#define BF_CSU_CSL17_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_SSR_S2) & BM_CSU_CSL17_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SSR_S2.
-#define BF_CSU_CSL17_SSR_S2(v)   (((v) << BP_CSU_CSL17_SSR_S2) & BM_CSU_CSL17_SSR_S2)
-#endif
+#define BF_CSU_CSL17_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SSR_S2) & BM_CSU_CSL17_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -10779,15 +9322,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL17_NUR_S2.
 
 //! @brief Get value of CSU_CSL17_NUR_S2 from a register value.
-#define BG_CSU_CSL17_NUR_S2(r)   (((r) & BM_CSU_CSL17_NUR_S2) >> BP_CSU_CSL17_NUR_S2)
+#define BG_CSU_CSL17_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NUR_S2) >> BP_CSU_CSL17_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NUR_S2.
-#define BF_CSU_CSL17_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_NUR_S2) & BM_CSU_CSL17_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NUR_S2.
-#define BF_CSU_CSL17_NUR_S2(v)   (((v) << BP_CSU_CSL17_NUR_S2) & BM_CSU_CSL17_NUR_S2)
-#endif
+#define BF_CSU_CSL17_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NUR_S2) & BM_CSU_CSL17_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -10808,15 +9346,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL17_NSR_S2.
 
 //! @brief Get value of CSU_CSL17_NSR_S2 from a register value.
-#define BG_CSU_CSL17_NSR_S2(r)   (((r) & BM_CSU_CSL17_NSR_S2) >> BP_CSU_CSL17_NSR_S2)
+#define BG_CSU_CSL17_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NSR_S2) >> BP_CSU_CSL17_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NSR_S2.
-#define BF_CSU_CSL17_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_NSR_S2) & BM_CSU_CSL17_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NSR_S2.
-#define BF_CSU_CSL17_NSR_S2(v)   (((v) << BP_CSU_CSL17_NSR_S2) & BM_CSU_CSL17_NSR_S2)
-#endif
+#define BF_CSU_CSL17_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NSR_S2) & BM_CSU_CSL17_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -10837,15 +9370,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL17_SUW_S2.
 
 //! @brief Get value of CSU_CSL17_SUW_S2 from a register value.
-#define BG_CSU_CSL17_SUW_S2(r)   (((r) & BM_CSU_CSL17_SUW_S2) >> BP_CSU_CSL17_SUW_S2)
+#define BG_CSU_CSL17_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SUW_S2) >> BP_CSU_CSL17_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SUW_S2.
-#define BF_CSU_CSL17_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_SUW_S2) & BM_CSU_CSL17_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SUW_S2.
-#define BF_CSU_CSL17_SUW_S2(v)   (((v) << BP_CSU_CSL17_SUW_S2) & BM_CSU_CSL17_SUW_S2)
-#endif
+#define BF_CSU_CSL17_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SUW_S2) & BM_CSU_CSL17_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -10866,15 +9394,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL17_SSW_S2.
 
 //! @brief Get value of CSU_CSL17_SSW_S2 from a register value.
-#define BG_CSU_CSL17_SSW_S2(r)   (((r) & BM_CSU_CSL17_SSW_S2) >> BP_CSU_CSL17_SSW_S2)
+#define BG_CSU_CSL17_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SSW_S2) >> BP_CSU_CSL17_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SSW_S2.
-#define BF_CSU_CSL17_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_SSW_S2) & BM_CSU_CSL17_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SSW_S2.
-#define BF_CSU_CSL17_SSW_S2(v)   (((v) << BP_CSU_CSL17_SSW_S2) & BM_CSU_CSL17_SSW_S2)
-#endif
+#define BF_CSU_CSL17_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SSW_S2) & BM_CSU_CSL17_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -10895,15 +9418,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL17_NUW_S2.
 
 //! @brief Get value of CSU_CSL17_NUW_S2 from a register value.
-#define BG_CSU_CSL17_NUW_S2(r)   (((r) & BM_CSU_CSL17_NUW_S2) >> BP_CSU_CSL17_NUW_S2)
+#define BG_CSU_CSL17_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NUW_S2) >> BP_CSU_CSL17_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NUW_S2.
-#define BF_CSU_CSL17_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_NUW_S2) & BM_CSU_CSL17_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NUW_S2.
-#define BF_CSU_CSL17_NUW_S2(v)   (((v) << BP_CSU_CSL17_NUW_S2) & BM_CSU_CSL17_NUW_S2)
-#endif
+#define BF_CSU_CSL17_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NUW_S2) & BM_CSU_CSL17_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -10924,15 +9442,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL17_NSW_S2.
 
 //! @brief Get value of CSU_CSL17_NSW_S2 from a register value.
-#define BG_CSU_CSL17_NSW_S2(r)   (((r) & BM_CSU_CSL17_NSW_S2) >> BP_CSU_CSL17_NSW_S2)
+#define BG_CSU_CSL17_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NSW_S2) >> BP_CSU_CSL17_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NSW_S2.
-#define BF_CSU_CSL17_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_NSW_S2) & BM_CSU_CSL17_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NSW_S2.
-#define BF_CSU_CSL17_NSW_S2(v)   (((v) << BP_CSU_CSL17_NSW_S2) & BM_CSU_CSL17_NSW_S2)
-#endif
+#define BF_CSU_CSL17_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NSW_S2) & BM_CSU_CSL17_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -10953,15 +9466,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL17_LOCK_S2.
 
 //! @brief Get value of CSU_CSL17_LOCK_S2 from a register value.
-#define BG_CSU_CSL17_LOCK_S2(r)   (((r) & BM_CSU_CSL17_LOCK_S2) >> BP_CSU_CSL17_LOCK_S2)
+#define BG_CSU_CSL17_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_LOCK_S2) >> BP_CSU_CSL17_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_LOCK_S2.
-#define BF_CSU_CSL17_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL17_LOCK_S2) & BM_CSU_CSL17_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL17_LOCK_S2.
-#define BF_CSU_CSL17_LOCK_S2(v)   (((v) << BP_CSU_CSL17_LOCK_S2) & BM_CSU_CSL17_LOCK_S2)
-#endif
+#define BF_CSU_CSL17_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_LOCK_S2) & BM_CSU_CSL17_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -10982,15 +9490,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL17_SUR_S1.
 
 //! @brief Get value of CSU_CSL17_SUR_S1 from a register value.
-#define BG_CSU_CSL17_SUR_S1(r)   (((r) & BM_CSU_CSL17_SUR_S1) >> BP_CSU_CSL17_SUR_S1)
+#define BG_CSU_CSL17_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SUR_S1) >> BP_CSU_CSL17_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SUR_S1.
-#define BF_CSU_CSL17_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_SUR_S1) & BM_CSU_CSL17_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SUR_S1.
-#define BF_CSU_CSL17_SUR_S1(v)   (((v) << BP_CSU_CSL17_SUR_S1) & BM_CSU_CSL17_SUR_S1)
-#endif
+#define BF_CSU_CSL17_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SUR_S1) & BM_CSU_CSL17_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -11011,15 +9514,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL17_SSR_S1.
 
 //! @brief Get value of CSU_CSL17_SSR_S1 from a register value.
-#define BG_CSU_CSL17_SSR_S1(r)   (((r) & BM_CSU_CSL17_SSR_S1) >> BP_CSU_CSL17_SSR_S1)
+#define BG_CSU_CSL17_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SSR_S1) >> BP_CSU_CSL17_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SSR_S1.
-#define BF_CSU_CSL17_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_SSR_S1) & BM_CSU_CSL17_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SSR_S1.
-#define BF_CSU_CSL17_SSR_S1(v)   (((v) << BP_CSU_CSL17_SSR_S1) & BM_CSU_CSL17_SSR_S1)
-#endif
+#define BF_CSU_CSL17_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SSR_S1) & BM_CSU_CSL17_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -11040,15 +9538,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL17_NUR_S1.
 
 //! @brief Get value of CSU_CSL17_NUR_S1 from a register value.
-#define BG_CSU_CSL17_NUR_S1(r)   (((r) & BM_CSU_CSL17_NUR_S1) >> BP_CSU_CSL17_NUR_S1)
+#define BG_CSU_CSL17_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NUR_S1) >> BP_CSU_CSL17_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NUR_S1.
-#define BF_CSU_CSL17_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_NUR_S1) & BM_CSU_CSL17_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NUR_S1.
-#define BF_CSU_CSL17_NUR_S1(v)   (((v) << BP_CSU_CSL17_NUR_S1) & BM_CSU_CSL17_NUR_S1)
-#endif
+#define BF_CSU_CSL17_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NUR_S1) & BM_CSU_CSL17_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -11069,15 +9562,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL17_NSR_S1.
 
 //! @brief Get value of CSU_CSL17_NSR_S1 from a register value.
-#define BG_CSU_CSL17_NSR_S1(r)   (((r) & BM_CSU_CSL17_NSR_S1) >> BP_CSU_CSL17_NSR_S1)
+#define BG_CSU_CSL17_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NSR_S1) >> BP_CSU_CSL17_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NSR_S1.
-#define BF_CSU_CSL17_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_NSR_S1) & BM_CSU_CSL17_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NSR_S1.
-#define BF_CSU_CSL17_NSR_S1(v)   (((v) << BP_CSU_CSL17_NSR_S1) & BM_CSU_CSL17_NSR_S1)
-#endif
+#define BF_CSU_CSL17_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NSR_S1) & BM_CSU_CSL17_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -11098,15 +9586,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL17_SUW_S1.
 
 //! @brief Get value of CSU_CSL17_SUW_S1 from a register value.
-#define BG_CSU_CSL17_SUW_S1(r)   (((r) & BM_CSU_CSL17_SUW_S1) >> BP_CSU_CSL17_SUW_S1)
+#define BG_CSU_CSL17_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SUW_S1) >> BP_CSU_CSL17_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SUW_S1.
-#define BF_CSU_CSL17_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_SUW_S1) & BM_CSU_CSL17_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SUW_S1.
-#define BF_CSU_CSL17_SUW_S1(v)   (((v) << BP_CSU_CSL17_SUW_S1) & BM_CSU_CSL17_SUW_S1)
-#endif
+#define BF_CSU_CSL17_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SUW_S1) & BM_CSU_CSL17_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -11127,15 +9610,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL17_SSW_S1.
 
 //! @brief Get value of CSU_CSL17_SSW_S1 from a register value.
-#define BG_CSU_CSL17_SSW_S1(r)   (((r) & BM_CSU_CSL17_SSW_S1) >> BP_CSU_CSL17_SSW_S1)
+#define BG_CSU_CSL17_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_SSW_S1) >> BP_CSU_CSL17_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_SSW_S1.
-#define BF_CSU_CSL17_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_SSW_S1) & BM_CSU_CSL17_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_SSW_S1.
-#define BF_CSU_CSL17_SSW_S1(v)   (((v) << BP_CSU_CSL17_SSW_S1) & BM_CSU_CSL17_SSW_S1)
-#endif
+#define BF_CSU_CSL17_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_SSW_S1) & BM_CSU_CSL17_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -11156,15 +9634,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL17_NUW_S1.
 
 //! @brief Get value of CSU_CSL17_NUW_S1 from a register value.
-#define BG_CSU_CSL17_NUW_S1(r)   (((r) & BM_CSU_CSL17_NUW_S1) >> BP_CSU_CSL17_NUW_S1)
+#define BG_CSU_CSL17_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NUW_S1) >> BP_CSU_CSL17_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NUW_S1.
-#define BF_CSU_CSL17_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_NUW_S1) & BM_CSU_CSL17_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NUW_S1.
-#define BF_CSU_CSL17_NUW_S1(v)   (((v) << BP_CSU_CSL17_NUW_S1) & BM_CSU_CSL17_NUW_S1)
-#endif
+#define BF_CSU_CSL17_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NUW_S1) & BM_CSU_CSL17_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -11185,15 +9658,10 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL17_NSW_S1.
 
 //! @brief Get value of CSU_CSL17_NSW_S1 from a register value.
-#define BG_CSU_CSL17_NSW_S1(r)   (((r) & BM_CSU_CSL17_NSW_S1) >> BP_CSU_CSL17_NSW_S1)
+#define BG_CSU_CSL17_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_NSW_S1) >> BP_CSU_CSL17_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_NSW_S1.
-#define BF_CSU_CSL17_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_NSW_S1) & BM_CSU_CSL17_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_NSW_S1.
-#define BF_CSU_CSL17_NSW_S1(v)   (((v) << BP_CSU_CSL17_NSW_S1) & BM_CSU_CSL17_NSW_S1)
-#endif
+#define BF_CSU_CSL17_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_NSW_S1) & BM_CSU_CSL17_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -11214,21 +9682,20 @@ typedef union _hw_csu_csl17
 #define BM_CSU_CSL17_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL17_LOCK_S1.
 
 //! @brief Get value of CSU_CSL17_LOCK_S1 from a register value.
-#define BG_CSU_CSL17_LOCK_S1(r)   (((r) & BM_CSU_CSL17_LOCK_S1) >> BP_CSU_CSL17_LOCK_S1)
+#define BG_CSU_CSL17_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL17_LOCK_S1) >> BP_CSU_CSL17_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL17_LOCK_S1.
-#define BF_CSU_CSL17_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL17_LOCK_S1) & BM_CSU_CSL17_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL17_LOCK_S1.
-#define BF_CSU_CSL17_LOCK_S1(v)   (((v) << BP_CSU_CSL17_LOCK_S1) & BM_CSU_CSL17_LOCK_S1)
-#endif
+#define BF_CSU_CSL17_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL17_LOCK_S1) & BM_CSU_CSL17_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL17_LOCK_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_LOCK_S1) | BF_CSU_CSL17_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL18 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11243,11 +9710,11 @@ typedef union _hw_csu_csl17
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -11259,7 +9726,7 @@ typedef union _hw_csu_csl17
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -11341,15 +9808,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL18_SUR_S2.
 
 //! @brief Get value of CSU_CSL18_SUR_S2 from a register value.
-#define BG_CSU_CSL18_SUR_S2(r)   (((r) & BM_CSU_CSL18_SUR_S2) >> BP_CSU_CSL18_SUR_S2)
+#define BG_CSU_CSL18_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SUR_S2) >> BP_CSU_CSL18_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SUR_S2.
-#define BF_CSU_CSL18_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_SUR_S2) & BM_CSU_CSL18_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SUR_S2.
-#define BF_CSU_CSL18_SUR_S2(v)   (((v) << BP_CSU_CSL18_SUR_S2) & BM_CSU_CSL18_SUR_S2)
-#endif
+#define BF_CSU_CSL18_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SUR_S2) & BM_CSU_CSL18_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -11370,15 +9832,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL18_SSR_S2.
 
 //! @brief Get value of CSU_CSL18_SSR_S2 from a register value.
-#define BG_CSU_CSL18_SSR_S2(r)   (((r) & BM_CSU_CSL18_SSR_S2) >> BP_CSU_CSL18_SSR_S2)
+#define BG_CSU_CSL18_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SSR_S2) >> BP_CSU_CSL18_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SSR_S2.
-#define BF_CSU_CSL18_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_SSR_S2) & BM_CSU_CSL18_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SSR_S2.
-#define BF_CSU_CSL18_SSR_S2(v)   (((v) << BP_CSU_CSL18_SSR_S2) & BM_CSU_CSL18_SSR_S2)
-#endif
+#define BF_CSU_CSL18_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SSR_S2) & BM_CSU_CSL18_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -11399,15 +9856,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL18_NUR_S2.
 
 //! @brief Get value of CSU_CSL18_NUR_S2 from a register value.
-#define BG_CSU_CSL18_NUR_S2(r)   (((r) & BM_CSU_CSL18_NUR_S2) >> BP_CSU_CSL18_NUR_S2)
+#define BG_CSU_CSL18_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NUR_S2) >> BP_CSU_CSL18_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NUR_S2.
-#define BF_CSU_CSL18_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_NUR_S2) & BM_CSU_CSL18_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NUR_S2.
-#define BF_CSU_CSL18_NUR_S2(v)   (((v) << BP_CSU_CSL18_NUR_S2) & BM_CSU_CSL18_NUR_S2)
-#endif
+#define BF_CSU_CSL18_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NUR_S2) & BM_CSU_CSL18_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -11428,15 +9880,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL18_NSR_S2.
 
 //! @brief Get value of CSU_CSL18_NSR_S2 from a register value.
-#define BG_CSU_CSL18_NSR_S2(r)   (((r) & BM_CSU_CSL18_NSR_S2) >> BP_CSU_CSL18_NSR_S2)
+#define BG_CSU_CSL18_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NSR_S2) >> BP_CSU_CSL18_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NSR_S2.
-#define BF_CSU_CSL18_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_NSR_S2) & BM_CSU_CSL18_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NSR_S2.
-#define BF_CSU_CSL18_NSR_S2(v)   (((v) << BP_CSU_CSL18_NSR_S2) & BM_CSU_CSL18_NSR_S2)
-#endif
+#define BF_CSU_CSL18_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NSR_S2) & BM_CSU_CSL18_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -11457,15 +9904,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL18_SUW_S2.
 
 //! @brief Get value of CSU_CSL18_SUW_S2 from a register value.
-#define BG_CSU_CSL18_SUW_S2(r)   (((r) & BM_CSU_CSL18_SUW_S2) >> BP_CSU_CSL18_SUW_S2)
+#define BG_CSU_CSL18_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SUW_S2) >> BP_CSU_CSL18_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SUW_S2.
-#define BF_CSU_CSL18_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_SUW_S2) & BM_CSU_CSL18_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SUW_S2.
-#define BF_CSU_CSL18_SUW_S2(v)   (((v) << BP_CSU_CSL18_SUW_S2) & BM_CSU_CSL18_SUW_S2)
-#endif
+#define BF_CSU_CSL18_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SUW_S2) & BM_CSU_CSL18_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -11486,15 +9928,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL18_SSW_S2.
 
 //! @brief Get value of CSU_CSL18_SSW_S2 from a register value.
-#define BG_CSU_CSL18_SSW_S2(r)   (((r) & BM_CSU_CSL18_SSW_S2) >> BP_CSU_CSL18_SSW_S2)
+#define BG_CSU_CSL18_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SSW_S2) >> BP_CSU_CSL18_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SSW_S2.
-#define BF_CSU_CSL18_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_SSW_S2) & BM_CSU_CSL18_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SSW_S2.
-#define BF_CSU_CSL18_SSW_S2(v)   (((v) << BP_CSU_CSL18_SSW_S2) & BM_CSU_CSL18_SSW_S2)
-#endif
+#define BF_CSU_CSL18_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SSW_S2) & BM_CSU_CSL18_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -11515,15 +9952,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL18_NUW_S2.
 
 //! @brief Get value of CSU_CSL18_NUW_S2 from a register value.
-#define BG_CSU_CSL18_NUW_S2(r)   (((r) & BM_CSU_CSL18_NUW_S2) >> BP_CSU_CSL18_NUW_S2)
+#define BG_CSU_CSL18_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NUW_S2) >> BP_CSU_CSL18_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NUW_S2.
-#define BF_CSU_CSL18_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_NUW_S2) & BM_CSU_CSL18_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NUW_S2.
-#define BF_CSU_CSL18_NUW_S2(v)   (((v) << BP_CSU_CSL18_NUW_S2) & BM_CSU_CSL18_NUW_S2)
-#endif
+#define BF_CSU_CSL18_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NUW_S2) & BM_CSU_CSL18_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -11544,15 +9976,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL18_NSW_S2.
 
 //! @brief Get value of CSU_CSL18_NSW_S2 from a register value.
-#define BG_CSU_CSL18_NSW_S2(r)   (((r) & BM_CSU_CSL18_NSW_S2) >> BP_CSU_CSL18_NSW_S2)
+#define BG_CSU_CSL18_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NSW_S2) >> BP_CSU_CSL18_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NSW_S2.
-#define BF_CSU_CSL18_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_NSW_S2) & BM_CSU_CSL18_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NSW_S2.
-#define BF_CSU_CSL18_NSW_S2(v)   (((v) << BP_CSU_CSL18_NSW_S2) & BM_CSU_CSL18_NSW_S2)
-#endif
+#define BF_CSU_CSL18_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NSW_S2) & BM_CSU_CSL18_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -11573,15 +10000,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL18_LOCK_S2.
 
 //! @brief Get value of CSU_CSL18_LOCK_S2 from a register value.
-#define BG_CSU_CSL18_LOCK_S2(r)   (((r) & BM_CSU_CSL18_LOCK_S2) >> BP_CSU_CSL18_LOCK_S2)
+#define BG_CSU_CSL18_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_LOCK_S2) >> BP_CSU_CSL18_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_LOCK_S2.
-#define BF_CSU_CSL18_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL18_LOCK_S2) & BM_CSU_CSL18_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL18_LOCK_S2.
-#define BF_CSU_CSL18_LOCK_S2(v)   (((v) << BP_CSU_CSL18_LOCK_S2) & BM_CSU_CSL18_LOCK_S2)
-#endif
+#define BF_CSU_CSL18_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_LOCK_S2) & BM_CSU_CSL18_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -11602,15 +10024,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL18_SUR_S1.
 
 //! @brief Get value of CSU_CSL18_SUR_S1 from a register value.
-#define BG_CSU_CSL18_SUR_S1(r)   (((r) & BM_CSU_CSL18_SUR_S1) >> BP_CSU_CSL18_SUR_S1)
+#define BG_CSU_CSL18_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SUR_S1) >> BP_CSU_CSL18_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SUR_S1.
-#define BF_CSU_CSL18_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_SUR_S1) & BM_CSU_CSL18_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SUR_S1.
-#define BF_CSU_CSL18_SUR_S1(v)   (((v) << BP_CSU_CSL18_SUR_S1) & BM_CSU_CSL18_SUR_S1)
-#endif
+#define BF_CSU_CSL18_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SUR_S1) & BM_CSU_CSL18_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -11631,15 +10048,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL18_SSR_S1.
 
 //! @brief Get value of CSU_CSL18_SSR_S1 from a register value.
-#define BG_CSU_CSL18_SSR_S1(r)   (((r) & BM_CSU_CSL18_SSR_S1) >> BP_CSU_CSL18_SSR_S1)
+#define BG_CSU_CSL18_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SSR_S1) >> BP_CSU_CSL18_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SSR_S1.
-#define BF_CSU_CSL18_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_SSR_S1) & BM_CSU_CSL18_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SSR_S1.
-#define BF_CSU_CSL18_SSR_S1(v)   (((v) << BP_CSU_CSL18_SSR_S1) & BM_CSU_CSL18_SSR_S1)
-#endif
+#define BF_CSU_CSL18_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SSR_S1) & BM_CSU_CSL18_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -11660,15 +10072,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL18_NUR_S1.
 
 //! @brief Get value of CSU_CSL18_NUR_S1 from a register value.
-#define BG_CSU_CSL18_NUR_S1(r)   (((r) & BM_CSU_CSL18_NUR_S1) >> BP_CSU_CSL18_NUR_S1)
+#define BG_CSU_CSL18_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NUR_S1) >> BP_CSU_CSL18_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NUR_S1.
-#define BF_CSU_CSL18_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_NUR_S1) & BM_CSU_CSL18_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NUR_S1.
-#define BF_CSU_CSL18_NUR_S1(v)   (((v) << BP_CSU_CSL18_NUR_S1) & BM_CSU_CSL18_NUR_S1)
-#endif
+#define BF_CSU_CSL18_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NUR_S1) & BM_CSU_CSL18_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -11689,15 +10096,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL18_NSR_S1.
 
 //! @brief Get value of CSU_CSL18_NSR_S1 from a register value.
-#define BG_CSU_CSL18_NSR_S1(r)   (((r) & BM_CSU_CSL18_NSR_S1) >> BP_CSU_CSL18_NSR_S1)
+#define BG_CSU_CSL18_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NSR_S1) >> BP_CSU_CSL18_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NSR_S1.
-#define BF_CSU_CSL18_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_NSR_S1) & BM_CSU_CSL18_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NSR_S1.
-#define BF_CSU_CSL18_NSR_S1(v)   (((v) << BP_CSU_CSL18_NSR_S1) & BM_CSU_CSL18_NSR_S1)
-#endif
+#define BF_CSU_CSL18_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NSR_S1) & BM_CSU_CSL18_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -11718,15 +10120,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL18_SUW_S1.
 
 //! @brief Get value of CSU_CSL18_SUW_S1 from a register value.
-#define BG_CSU_CSL18_SUW_S1(r)   (((r) & BM_CSU_CSL18_SUW_S1) >> BP_CSU_CSL18_SUW_S1)
+#define BG_CSU_CSL18_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SUW_S1) >> BP_CSU_CSL18_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SUW_S1.
-#define BF_CSU_CSL18_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_SUW_S1) & BM_CSU_CSL18_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SUW_S1.
-#define BF_CSU_CSL18_SUW_S1(v)   (((v) << BP_CSU_CSL18_SUW_S1) & BM_CSU_CSL18_SUW_S1)
-#endif
+#define BF_CSU_CSL18_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SUW_S1) & BM_CSU_CSL18_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -11747,15 +10144,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL18_SSW_S1.
 
 //! @brief Get value of CSU_CSL18_SSW_S1 from a register value.
-#define BG_CSU_CSL18_SSW_S1(r)   (((r) & BM_CSU_CSL18_SSW_S1) >> BP_CSU_CSL18_SSW_S1)
+#define BG_CSU_CSL18_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_SSW_S1) >> BP_CSU_CSL18_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_SSW_S1.
-#define BF_CSU_CSL18_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_SSW_S1) & BM_CSU_CSL18_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_SSW_S1.
-#define BF_CSU_CSL18_SSW_S1(v)   (((v) << BP_CSU_CSL18_SSW_S1) & BM_CSU_CSL18_SSW_S1)
-#endif
+#define BF_CSU_CSL18_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_SSW_S1) & BM_CSU_CSL18_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -11776,15 +10168,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL18_NUW_S1.
 
 //! @brief Get value of CSU_CSL18_NUW_S1 from a register value.
-#define BG_CSU_CSL18_NUW_S1(r)   (((r) & BM_CSU_CSL18_NUW_S1) >> BP_CSU_CSL18_NUW_S1)
+#define BG_CSU_CSL18_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NUW_S1) >> BP_CSU_CSL18_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NUW_S1.
-#define BF_CSU_CSL18_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_NUW_S1) & BM_CSU_CSL18_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NUW_S1.
-#define BF_CSU_CSL18_NUW_S1(v)   (((v) << BP_CSU_CSL18_NUW_S1) & BM_CSU_CSL18_NUW_S1)
-#endif
+#define BF_CSU_CSL18_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NUW_S1) & BM_CSU_CSL18_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -11805,15 +10192,10 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL18_NSW_S1.
 
 //! @brief Get value of CSU_CSL18_NSW_S1 from a register value.
-#define BG_CSU_CSL18_NSW_S1(r)   (((r) & BM_CSU_CSL18_NSW_S1) >> BP_CSU_CSL18_NSW_S1)
+#define BG_CSU_CSL18_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_NSW_S1) >> BP_CSU_CSL18_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_NSW_S1.
-#define BF_CSU_CSL18_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_NSW_S1) & BM_CSU_CSL18_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_NSW_S1.
-#define BF_CSU_CSL18_NSW_S1(v)   (((v) << BP_CSU_CSL18_NSW_S1) & BM_CSU_CSL18_NSW_S1)
-#endif
+#define BF_CSU_CSL18_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_NSW_S1) & BM_CSU_CSL18_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -11834,21 +10216,20 @@ typedef union _hw_csu_csl18
 #define BM_CSU_CSL18_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL18_LOCK_S1.
 
 //! @brief Get value of CSU_CSL18_LOCK_S1 from a register value.
-#define BG_CSU_CSL18_LOCK_S1(r)   (((r) & BM_CSU_CSL18_LOCK_S1) >> BP_CSU_CSL18_LOCK_S1)
+#define BG_CSU_CSL18_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL18_LOCK_S1) >> BP_CSU_CSL18_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL18_LOCK_S1.
-#define BF_CSU_CSL18_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL18_LOCK_S1) & BM_CSU_CSL18_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL18_LOCK_S1.
-#define BF_CSU_CSL18_LOCK_S1(v)   (((v) << BP_CSU_CSL18_LOCK_S1) & BM_CSU_CSL18_LOCK_S1)
-#endif
+#define BF_CSU_CSL18_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL18_LOCK_S1) & BM_CSU_CSL18_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL18_LOCK_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_LOCK_S1) | BF_CSU_CSL18_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL19 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11863,11 +10244,11 @@ typedef union _hw_csu_csl18
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -11879,7 +10260,7 @@ typedef union _hw_csu_csl18
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -11961,15 +10342,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL19_SUR_S2.
 
 //! @brief Get value of CSU_CSL19_SUR_S2 from a register value.
-#define BG_CSU_CSL19_SUR_S2(r)   (((r) & BM_CSU_CSL19_SUR_S2) >> BP_CSU_CSL19_SUR_S2)
+#define BG_CSU_CSL19_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SUR_S2) >> BP_CSU_CSL19_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SUR_S2.
-#define BF_CSU_CSL19_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_SUR_S2) & BM_CSU_CSL19_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SUR_S2.
-#define BF_CSU_CSL19_SUR_S2(v)   (((v) << BP_CSU_CSL19_SUR_S2) & BM_CSU_CSL19_SUR_S2)
-#endif
+#define BF_CSU_CSL19_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SUR_S2) & BM_CSU_CSL19_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -11990,15 +10366,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL19_SSR_S2.
 
 //! @brief Get value of CSU_CSL19_SSR_S2 from a register value.
-#define BG_CSU_CSL19_SSR_S2(r)   (((r) & BM_CSU_CSL19_SSR_S2) >> BP_CSU_CSL19_SSR_S2)
+#define BG_CSU_CSL19_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SSR_S2) >> BP_CSU_CSL19_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SSR_S2.
-#define BF_CSU_CSL19_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_SSR_S2) & BM_CSU_CSL19_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SSR_S2.
-#define BF_CSU_CSL19_SSR_S2(v)   (((v) << BP_CSU_CSL19_SSR_S2) & BM_CSU_CSL19_SSR_S2)
-#endif
+#define BF_CSU_CSL19_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SSR_S2) & BM_CSU_CSL19_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -12019,15 +10390,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL19_NUR_S2.
 
 //! @brief Get value of CSU_CSL19_NUR_S2 from a register value.
-#define BG_CSU_CSL19_NUR_S2(r)   (((r) & BM_CSU_CSL19_NUR_S2) >> BP_CSU_CSL19_NUR_S2)
+#define BG_CSU_CSL19_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NUR_S2) >> BP_CSU_CSL19_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NUR_S2.
-#define BF_CSU_CSL19_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_NUR_S2) & BM_CSU_CSL19_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NUR_S2.
-#define BF_CSU_CSL19_NUR_S2(v)   (((v) << BP_CSU_CSL19_NUR_S2) & BM_CSU_CSL19_NUR_S2)
-#endif
+#define BF_CSU_CSL19_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NUR_S2) & BM_CSU_CSL19_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -12048,15 +10414,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL19_NSR_S2.
 
 //! @brief Get value of CSU_CSL19_NSR_S2 from a register value.
-#define BG_CSU_CSL19_NSR_S2(r)   (((r) & BM_CSU_CSL19_NSR_S2) >> BP_CSU_CSL19_NSR_S2)
+#define BG_CSU_CSL19_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NSR_S2) >> BP_CSU_CSL19_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NSR_S2.
-#define BF_CSU_CSL19_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_NSR_S2) & BM_CSU_CSL19_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NSR_S2.
-#define BF_CSU_CSL19_NSR_S2(v)   (((v) << BP_CSU_CSL19_NSR_S2) & BM_CSU_CSL19_NSR_S2)
-#endif
+#define BF_CSU_CSL19_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NSR_S2) & BM_CSU_CSL19_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -12077,15 +10438,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL19_SUW_S2.
 
 //! @brief Get value of CSU_CSL19_SUW_S2 from a register value.
-#define BG_CSU_CSL19_SUW_S2(r)   (((r) & BM_CSU_CSL19_SUW_S2) >> BP_CSU_CSL19_SUW_S2)
+#define BG_CSU_CSL19_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SUW_S2) >> BP_CSU_CSL19_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SUW_S2.
-#define BF_CSU_CSL19_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_SUW_S2) & BM_CSU_CSL19_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SUW_S2.
-#define BF_CSU_CSL19_SUW_S2(v)   (((v) << BP_CSU_CSL19_SUW_S2) & BM_CSU_CSL19_SUW_S2)
-#endif
+#define BF_CSU_CSL19_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SUW_S2) & BM_CSU_CSL19_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -12106,15 +10462,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL19_SSW_S2.
 
 //! @brief Get value of CSU_CSL19_SSW_S2 from a register value.
-#define BG_CSU_CSL19_SSW_S2(r)   (((r) & BM_CSU_CSL19_SSW_S2) >> BP_CSU_CSL19_SSW_S2)
+#define BG_CSU_CSL19_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SSW_S2) >> BP_CSU_CSL19_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SSW_S2.
-#define BF_CSU_CSL19_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_SSW_S2) & BM_CSU_CSL19_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SSW_S2.
-#define BF_CSU_CSL19_SSW_S2(v)   (((v) << BP_CSU_CSL19_SSW_S2) & BM_CSU_CSL19_SSW_S2)
-#endif
+#define BF_CSU_CSL19_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SSW_S2) & BM_CSU_CSL19_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -12135,15 +10486,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL19_NUW_S2.
 
 //! @brief Get value of CSU_CSL19_NUW_S2 from a register value.
-#define BG_CSU_CSL19_NUW_S2(r)   (((r) & BM_CSU_CSL19_NUW_S2) >> BP_CSU_CSL19_NUW_S2)
+#define BG_CSU_CSL19_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NUW_S2) >> BP_CSU_CSL19_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NUW_S2.
-#define BF_CSU_CSL19_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_NUW_S2) & BM_CSU_CSL19_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NUW_S2.
-#define BF_CSU_CSL19_NUW_S2(v)   (((v) << BP_CSU_CSL19_NUW_S2) & BM_CSU_CSL19_NUW_S2)
-#endif
+#define BF_CSU_CSL19_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NUW_S2) & BM_CSU_CSL19_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -12164,15 +10510,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL19_NSW_S2.
 
 //! @brief Get value of CSU_CSL19_NSW_S2 from a register value.
-#define BG_CSU_CSL19_NSW_S2(r)   (((r) & BM_CSU_CSL19_NSW_S2) >> BP_CSU_CSL19_NSW_S2)
+#define BG_CSU_CSL19_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NSW_S2) >> BP_CSU_CSL19_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NSW_S2.
-#define BF_CSU_CSL19_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_NSW_S2) & BM_CSU_CSL19_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NSW_S2.
-#define BF_CSU_CSL19_NSW_S2(v)   (((v) << BP_CSU_CSL19_NSW_S2) & BM_CSU_CSL19_NSW_S2)
-#endif
+#define BF_CSU_CSL19_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NSW_S2) & BM_CSU_CSL19_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -12193,15 +10534,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL19_LOCK_S2.
 
 //! @brief Get value of CSU_CSL19_LOCK_S2 from a register value.
-#define BG_CSU_CSL19_LOCK_S2(r)   (((r) & BM_CSU_CSL19_LOCK_S2) >> BP_CSU_CSL19_LOCK_S2)
+#define BG_CSU_CSL19_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_LOCK_S2) >> BP_CSU_CSL19_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_LOCK_S2.
-#define BF_CSU_CSL19_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL19_LOCK_S2) & BM_CSU_CSL19_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL19_LOCK_S2.
-#define BF_CSU_CSL19_LOCK_S2(v)   (((v) << BP_CSU_CSL19_LOCK_S2) & BM_CSU_CSL19_LOCK_S2)
-#endif
+#define BF_CSU_CSL19_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_LOCK_S2) & BM_CSU_CSL19_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -12222,15 +10558,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL19_SUR_S1.
 
 //! @brief Get value of CSU_CSL19_SUR_S1 from a register value.
-#define BG_CSU_CSL19_SUR_S1(r)   (((r) & BM_CSU_CSL19_SUR_S1) >> BP_CSU_CSL19_SUR_S1)
+#define BG_CSU_CSL19_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SUR_S1) >> BP_CSU_CSL19_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SUR_S1.
-#define BF_CSU_CSL19_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_SUR_S1) & BM_CSU_CSL19_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SUR_S1.
-#define BF_CSU_CSL19_SUR_S1(v)   (((v) << BP_CSU_CSL19_SUR_S1) & BM_CSU_CSL19_SUR_S1)
-#endif
+#define BF_CSU_CSL19_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SUR_S1) & BM_CSU_CSL19_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -12251,15 +10582,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL19_SSR_S1.
 
 //! @brief Get value of CSU_CSL19_SSR_S1 from a register value.
-#define BG_CSU_CSL19_SSR_S1(r)   (((r) & BM_CSU_CSL19_SSR_S1) >> BP_CSU_CSL19_SSR_S1)
+#define BG_CSU_CSL19_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SSR_S1) >> BP_CSU_CSL19_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SSR_S1.
-#define BF_CSU_CSL19_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_SSR_S1) & BM_CSU_CSL19_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SSR_S1.
-#define BF_CSU_CSL19_SSR_S1(v)   (((v) << BP_CSU_CSL19_SSR_S1) & BM_CSU_CSL19_SSR_S1)
-#endif
+#define BF_CSU_CSL19_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SSR_S1) & BM_CSU_CSL19_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -12280,15 +10606,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL19_NUR_S1.
 
 //! @brief Get value of CSU_CSL19_NUR_S1 from a register value.
-#define BG_CSU_CSL19_NUR_S1(r)   (((r) & BM_CSU_CSL19_NUR_S1) >> BP_CSU_CSL19_NUR_S1)
+#define BG_CSU_CSL19_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NUR_S1) >> BP_CSU_CSL19_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NUR_S1.
-#define BF_CSU_CSL19_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_NUR_S1) & BM_CSU_CSL19_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NUR_S1.
-#define BF_CSU_CSL19_NUR_S1(v)   (((v) << BP_CSU_CSL19_NUR_S1) & BM_CSU_CSL19_NUR_S1)
-#endif
+#define BF_CSU_CSL19_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NUR_S1) & BM_CSU_CSL19_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -12309,15 +10630,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL19_NSR_S1.
 
 //! @brief Get value of CSU_CSL19_NSR_S1 from a register value.
-#define BG_CSU_CSL19_NSR_S1(r)   (((r) & BM_CSU_CSL19_NSR_S1) >> BP_CSU_CSL19_NSR_S1)
+#define BG_CSU_CSL19_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NSR_S1) >> BP_CSU_CSL19_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NSR_S1.
-#define BF_CSU_CSL19_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_NSR_S1) & BM_CSU_CSL19_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NSR_S1.
-#define BF_CSU_CSL19_NSR_S1(v)   (((v) << BP_CSU_CSL19_NSR_S1) & BM_CSU_CSL19_NSR_S1)
-#endif
+#define BF_CSU_CSL19_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NSR_S1) & BM_CSU_CSL19_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -12338,15 +10654,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL19_SUW_S1.
 
 //! @brief Get value of CSU_CSL19_SUW_S1 from a register value.
-#define BG_CSU_CSL19_SUW_S1(r)   (((r) & BM_CSU_CSL19_SUW_S1) >> BP_CSU_CSL19_SUW_S1)
+#define BG_CSU_CSL19_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SUW_S1) >> BP_CSU_CSL19_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SUW_S1.
-#define BF_CSU_CSL19_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_SUW_S1) & BM_CSU_CSL19_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SUW_S1.
-#define BF_CSU_CSL19_SUW_S1(v)   (((v) << BP_CSU_CSL19_SUW_S1) & BM_CSU_CSL19_SUW_S1)
-#endif
+#define BF_CSU_CSL19_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SUW_S1) & BM_CSU_CSL19_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -12367,15 +10678,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL19_SSW_S1.
 
 //! @brief Get value of CSU_CSL19_SSW_S1 from a register value.
-#define BG_CSU_CSL19_SSW_S1(r)   (((r) & BM_CSU_CSL19_SSW_S1) >> BP_CSU_CSL19_SSW_S1)
+#define BG_CSU_CSL19_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_SSW_S1) >> BP_CSU_CSL19_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_SSW_S1.
-#define BF_CSU_CSL19_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_SSW_S1) & BM_CSU_CSL19_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_SSW_S1.
-#define BF_CSU_CSL19_SSW_S1(v)   (((v) << BP_CSU_CSL19_SSW_S1) & BM_CSU_CSL19_SSW_S1)
-#endif
+#define BF_CSU_CSL19_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_SSW_S1) & BM_CSU_CSL19_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -12396,15 +10702,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL19_NUW_S1.
 
 //! @brief Get value of CSU_CSL19_NUW_S1 from a register value.
-#define BG_CSU_CSL19_NUW_S1(r)   (((r) & BM_CSU_CSL19_NUW_S1) >> BP_CSU_CSL19_NUW_S1)
+#define BG_CSU_CSL19_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NUW_S1) >> BP_CSU_CSL19_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NUW_S1.
-#define BF_CSU_CSL19_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_NUW_S1) & BM_CSU_CSL19_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NUW_S1.
-#define BF_CSU_CSL19_NUW_S1(v)   (((v) << BP_CSU_CSL19_NUW_S1) & BM_CSU_CSL19_NUW_S1)
-#endif
+#define BF_CSU_CSL19_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NUW_S1) & BM_CSU_CSL19_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -12425,15 +10726,10 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL19_NSW_S1.
 
 //! @brief Get value of CSU_CSL19_NSW_S1 from a register value.
-#define BG_CSU_CSL19_NSW_S1(r)   (((r) & BM_CSU_CSL19_NSW_S1) >> BP_CSU_CSL19_NSW_S1)
+#define BG_CSU_CSL19_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_NSW_S1) >> BP_CSU_CSL19_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_NSW_S1.
-#define BF_CSU_CSL19_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_NSW_S1) & BM_CSU_CSL19_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_NSW_S1.
-#define BF_CSU_CSL19_NSW_S1(v)   (((v) << BP_CSU_CSL19_NSW_S1) & BM_CSU_CSL19_NSW_S1)
-#endif
+#define BF_CSU_CSL19_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_NSW_S1) & BM_CSU_CSL19_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -12454,21 +10750,20 @@ typedef union _hw_csu_csl19
 #define BM_CSU_CSL19_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL19_LOCK_S1.
 
 //! @brief Get value of CSU_CSL19_LOCK_S1 from a register value.
-#define BG_CSU_CSL19_LOCK_S1(r)   (((r) & BM_CSU_CSL19_LOCK_S1) >> BP_CSU_CSL19_LOCK_S1)
+#define BG_CSU_CSL19_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL19_LOCK_S1) >> BP_CSU_CSL19_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL19_LOCK_S1.
-#define BF_CSU_CSL19_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL19_LOCK_S1) & BM_CSU_CSL19_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL19_LOCK_S1.
-#define BF_CSU_CSL19_LOCK_S1(v)   (((v) << BP_CSU_CSL19_LOCK_S1) & BM_CSU_CSL19_LOCK_S1)
-#endif
+#define BF_CSU_CSL19_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL19_LOCK_S1) & BM_CSU_CSL19_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL19_LOCK_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_LOCK_S1) | BF_CSU_CSL19_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL20 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12483,11 +10778,11 @@ typedef union _hw_csu_csl19
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -12499,7 +10794,7 @@ typedef union _hw_csu_csl19
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -12581,15 +10876,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL20_SUR_S2.
 
 //! @brief Get value of CSU_CSL20_SUR_S2 from a register value.
-#define BG_CSU_CSL20_SUR_S2(r)   (((r) & BM_CSU_CSL20_SUR_S2) >> BP_CSU_CSL20_SUR_S2)
+#define BG_CSU_CSL20_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SUR_S2) >> BP_CSU_CSL20_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SUR_S2.
-#define BF_CSU_CSL20_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_SUR_S2) & BM_CSU_CSL20_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SUR_S2.
-#define BF_CSU_CSL20_SUR_S2(v)   (((v) << BP_CSU_CSL20_SUR_S2) & BM_CSU_CSL20_SUR_S2)
-#endif
+#define BF_CSU_CSL20_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SUR_S2) & BM_CSU_CSL20_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -12610,15 +10900,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL20_SSR_S2.
 
 //! @brief Get value of CSU_CSL20_SSR_S2 from a register value.
-#define BG_CSU_CSL20_SSR_S2(r)   (((r) & BM_CSU_CSL20_SSR_S2) >> BP_CSU_CSL20_SSR_S2)
+#define BG_CSU_CSL20_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SSR_S2) >> BP_CSU_CSL20_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SSR_S2.
-#define BF_CSU_CSL20_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_SSR_S2) & BM_CSU_CSL20_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SSR_S2.
-#define BF_CSU_CSL20_SSR_S2(v)   (((v) << BP_CSU_CSL20_SSR_S2) & BM_CSU_CSL20_SSR_S2)
-#endif
+#define BF_CSU_CSL20_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SSR_S2) & BM_CSU_CSL20_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -12639,15 +10924,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL20_NUR_S2.
 
 //! @brief Get value of CSU_CSL20_NUR_S2 from a register value.
-#define BG_CSU_CSL20_NUR_S2(r)   (((r) & BM_CSU_CSL20_NUR_S2) >> BP_CSU_CSL20_NUR_S2)
+#define BG_CSU_CSL20_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NUR_S2) >> BP_CSU_CSL20_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NUR_S2.
-#define BF_CSU_CSL20_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_NUR_S2) & BM_CSU_CSL20_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NUR_S2.
-#define BF_CSU_CSL20_NUR_S2(v)   (((v) << BP_CSU_CSL20_NUR_S2) & BM_CSU_CSL20_NUR_S2)
-#endif
+#define BF_CSU_CSL20_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NUR_S2) & BM_CSU_CSL20_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -12668,15 +10948,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL20_NSR_S2.
 
 //! @brief Get value of CSU_CSL20_NSR_S2 from a register value.
-#define BG_CSU_CSL20_NSR_S2(r)   (((r) & BM_CSU_CSL20_NSR_S2) >> BP_CSU_CSL20_NSR_S2)
+#define BG_CSU_CSL20_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NSR_S2) >> BP_CSU_CSL20_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NSR_S2.
-#define BF_CSU_CSL20_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_NSR_S2) & BM_CSU_CSL20_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NSR_S2.
-#define BF_CSU_CSL20_NSR_S2(v)   (((v) << BP_CSU_CSL20_NSR_S2) & BM_CSU_CSL20_NSR_S2)
-#endif
+#define BF_CSU_CSL20_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NSR_S2) & BM_CSU_CSL20_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -12697,15 +10972,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL20_SUW_S2.
 
 //! @brief Get value of CSU_CSL20_SUW_S2 from a register value.
-#define BG_CSU_CSL20_SUW_S2(r)   (((r) & BM_CSU_CSL20_SUW_S2) >> BP_CSU_CSL20_SUW_S2)
+#define BG_CSU_CSL20_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SUW_S2) >> BP_CSU_CSL20_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SUW_S2.
-#define BF_CSU_CSL20_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_SUW_S2) & BM_CSU_CSL20_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SUW_S2.
-#define BF_CSU_CSL20_SUW_S2(v)   (((v) << BP_CSU_CSL20_SUW_S2) & BM_CSU_CSL20_SUW_S2)
-#endif
+#define BF_CSU_CSL20_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SUW_S2) & BM_CSU_CSL20_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -12726,15 +10996,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL20_SSW_S2.
 
 //! @brief Get value of CSU_CSL20_SSW_S2 from a register value.
-#define BG_CSU_CSL20_SSW_S2(r)   (((r) & BM_CSU_CSL20_SSW_S2) >> BP_CSU_CSL20_SSW_S2)
+#define BG_CSU_CSL20_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SSW_S2) >> BP_CSU_CSL20_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SSW_S2.
-#define BF_CSU_CSL20_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_SSW_S2) & BM_CSU_CSL20_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SSW_S2.
-#define BF_CSU_CSL20_SSW_S2(v)   (((v) << BP_CSU_CSL20_SSW_S2) & BM_CSU_CSL20_SSW_S2)
-#endif
+#define BF_CSU_CSL20_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SSW_S2) & BM_CSU_CSL20_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -12755,15 +11020,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL20_NUW_S2.
 
 //! @brief Get value of CSU_CSL20_NUW_S2 from a register value.
-#define BG_CSU_CSL20_NUW_S2(r)   (((r) & BM_CSU_CSL20_NUW_S2) >> BP_CSU_CSL20_NUW_S2)
+#define BG_CSU_CSL20_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NUW_S2) >> BP_CSU_CSL20_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NUW_S2.
-#define BF_CSU_CSL20_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_NUW_S2) & BM_CSU_CSL20_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NUW_S2.
-#define BF_CSU_CSL20_NUW_S2(v)   (((v) << BP_CSU_CSL20_NUW_S2) & BM_CSU_CSL20_NUW_S2)
-#endif
+#define BF_CSU_CSL20_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NUW_S2) & BM_CSU_CSL20_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -12784,15 +11044,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL20_NSW_S2.
 
 //! @brief Get value of CSU_CSL20_NSW_S2 from a register value.
-#define BG_CSU_CSL20_NSW_S2(r)   (((r) & BM_CSU_CSL20_NSW_S2) >> BP_CSU_CSL20_NSW_S2)
+#define BG_CSU_CSL20_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NSW_S2) >> BP_CSU_CSL20_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NSW_S2.
-#define BF_CSU_CSL20_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_NSW_S2) & BM_CSU_CSL20_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NSW_S2.
-#define BF_CSU_CSL20_NSW_S2(v)   (((v) << BP_CSU_CSL20_NSW_S2) & BM_CSU_CSL20_NSW_S2)
-#endif
+#define BF_CSU_CSL20_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NSW_S2) & BM_CSU_CSL20_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -12813,15 +11068,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL20_LOCK_S2.
 
 //! @brief Get value of CSU_CSL20_LOCK_S2 from a register value.
-#define BG_CSU_CSL20_LOCK_S2(r)   (((r) & BM_CSU_CSL20_LOCK_S2) >> BP_CSU_CSL20_LOCK_S2)
+#define BG_CSU_CSL20_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_LOCK_S2) >> BP_CSU_CSL20_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_LOCK_S2.
-#define BF_CSU_CSL20_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL20_LOCK_S2) & BM_CSU_CSL20_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL20_LOCK_S2.
-#define BF_CSU_CSL20_LOCK_S2(v)   (((v) << BP_CSU_CSL20_LOCK_S2) & BM_CSU_CSL20_LOCK_S2)
-#endif
+#define BF_CSU_CSL20_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_LOCK_S2) & BM_CSU_CSL20_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -12842,15 +11092,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL20_SUR_S1.
 
 //! @brief Get value of CSU_CSL20_SUR_S1 from a register value.
-#define BG_CSU_CSL20_SUR_S1(r)   (((r) & BM_CSU_CSL20_SUR_S1) >> BP_CSU_CSL20_SUR_S1)
+#define BG_CSU_CSL20_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SUR_S1) >> BP_CSU_CSL20_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SUR_S1.
-#define BF_CSU_CSL20_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_SUR_S1) & BM_CSU_CSL20_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SUR_S1.
-#define BF_CSU_CSL20_SUR_S1(v)   (((v) << BP_CSU_CSL20_SUR_S1) & BM_CSU_CSL20_SUR_S1)
-#endif
+#define BF_CSU_CSL20_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SUR_S1) & BM_CSU_CSL20_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -12871,15 +11116,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL20_SSR_S1.
 
 //! @brief Get value of CSU_CSL20_SSR_S1 from a register value.
-#define BG_CSU_CSL20_SSR_S1(r)   (((r) & BM_CSU_CSL20_SSR_S1) >> BP_CSU_CSL20_SSR_S1)
+#define BG_CSU_CSL20_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SSR_S1) >> BP_CSU_CSL20_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SSR_S1.
-#define BF_CSU_CSL20_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_SSR_S1) & BM_CSU_CSL20_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SSR_S1.
-#define BF_CSU_CSL20_SSR_S1(v)   (((v) << BP_CSU_CSL20_SSR_S1) & BM_CSU_CSL20_SSR_S1)
-#endif
+#define BF_CSU_CSL20_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SSR_S1) & BM_CSU_CSL20_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -12900,15 +11140,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL20_NUR_S1.
 
 //! @brief Get value of CSU_CSL20_NUR_S1 from a register value.
-#define BG_CSU_CSL20_NUR_S1(r)   (((r) & BM_CSU_CSL20_NUR_S1) >> BP_CSU_CSL20_NUR_S1)
+#define BG_CSU_CSL20_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NUR_S1) >> BP_CSU_CSL20_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NUR_S1.
-#define BF_CSU_CSL20_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_NUR_S1) & BM_CSU_CSL20_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NUR_S1.
-#define BF_CSU_CSL20_NUR_S1(v)   (((v) << BP_CSU_CSL20_NUR_S1) & BM_CSU_CSL20_NUR_S1)
-#endif
+#define BF_CSU_CSL20_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NUR_S1) & BM_CSU_CSL20_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -12929,15 +11164,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL20_NSR_S1.
 
 //! @brief Get value of CSU_CSL20_NSR_S1 from a register value.
-#define BG_CSU_CSL20_NSR_S1(r)   (((r) & BM_CSU_CSL20_NSR_S1) >> BP_CSU_CSL20_NSR_S1)
+#define BG_CSU_CSL20_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NSR_S1) >> BP_CSU_CSL20_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NSR_S1.
-#define BF_CSU_CSL20_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_NSR_S1) & BM_CSU_CSL20_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NSR_S1.
-#define BF_CSU_CSL20_NSR_S1(v)   (((v) << BP_CSU_CSL20_NSR_S1) & BM_CSU_CSL20_NSR_S1)
-#endif
+#define BF_CSU_CSL20_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NSR_S1) & BM_CSU_CSL20_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -12958,15 +11188,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL20_SUW_S1.
 
 //! @brief Get value of CSU_CSL20_SUW_S1 from a register value.
-#define BG_CSU_CSL20_SUW_S1(r)   (((r) & BM_CSU_CSL20_SUW_S1) >> BP_CSU_CSL20_SUW_S1)
+#define BG_CSU_CSL20_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SUW_S1) >> BP_CSU_CSL20_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SUW_S1.
-#define BF_CSU_CSL20_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_SUW_S1) & BM_CSU_CSL20_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SUW_S1.
-#define BF_CSU_CSL20_SUW_S1(v)   (((v) << BP_CSU_CSL20_SUW_S1) & BM_CSU_CSL20_SUW_S1)
-#endif
+#define BF_CSU_CSL20_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SUW_S1) & BM_CSU_CSL20_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -12987,15 +11212,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL20_SSW_S1.
 
 //! @brief Get value of CSU_CSL20_SSW_S1 from a register value.
-#define BG_CSU_CSL20_SSW_S1(r)   (((r) & BM_CSU_CSL20_SSW_S1) >> BP_CSU_CSL20_SSW_S1)
+#define BG_CSU_CSL20_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_SSW_S1) >> BP_CSU_CSL20_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_SSW_S1.
-#define BF_CSU_CSL20_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_SSW_S1) & BM_CSU_CSL20_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_SSW_S1.
-#define BF_CSU_CSL20_SSW_S1(v)   (((v) << BP_CSU_CSL20_SSW_S1) & BM_CSU_CSL20_SSW_S1)
-#endif
+#define BF_CSU_CSL20_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_SSW_S1) & BM_CSU_CSL20_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -13016,15 +11236,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL20_NUW_S1.
 
 //! @brief Get value of CSU_CSL20_NUW_S1 from a register value.
-#define BG_CSU_CSL20_NUW_S1(r)   (((r) & BM_CSU_CSL20_NUW_S1) >> BP_CSU_CSL20_NUW_S1)
+#define BG_CSU_CSL20_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NUW_S1) >> BP_CSU_CSL20_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NUW_S1.
-#define BF_CSU_CSL20_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_NUW_S1) & BM_CSU_CSL20_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NUW_S1.
-#define BF_CSU_CSL20_NUW_S1(v)   (((v) << BP_CSU_CSL20_NUW_S1) & BM_CSU_CSL20_NUW_S1)
-#endif
+#define BF_CSU_CSL20_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NUW_S1) & BM_CSU_CSL20_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -13045,15 +11260,10 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL20_NSW_S1.
 
 //! @brief Get value of CSU_CSL20_NSW_S1 from a register value.
-#define BG_CSU_CSL20_NSW_S1(r)   (((r) & BM_CSU_CSL20_NSW_S1) >> BP_CSU_CSL20_NSW_S1)
+#define BG_CSU_CSL20_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_NSW_S1) >> BP_CSU_CSL20_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_NSW_S1.
-#define BF_CSU_CSL20_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_NSW_S1) & BM_CSU_CSL20_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_NSW_S1.
-#define BF_CSU_CSL20_NSW_S1(v)   (((v) << BP_CSU_CSL20_NSW_S1) & BM_CSU_CSL20_NSW_S1)
-#endif
+#define BF_CSU_CSL20_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_NSW_S1) & BM_CSU_CSL20_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -13074,21 +11284,20 @@ typedef union _hw_csu_csl20
 #define BM_CSU_CSL20_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL20_LOCK_S1.
 
 //! @brief Get value of CSU_CSL20_LOCK_S1 from a register value.
-#define BG_CSU_CSL20_LOCK_S1(r)   (((r) & BM_CSU_CSL20_LOCK_S1) >> BP_CSU_CSL20_LOCK_S1)
+#define BG_CSU_CSL20_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL20_LOCK_S1) >> BP_CSU_CSL20_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL20_LOCK_S1.
-#define BF_CSU_CSL20_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL20_LOCK_S1) & BM_CSU_CSL20_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL20_LOCK_S1.
-#define BF_CSU_CSL20_LOCK_S1(v)   (((v) << BP_CSU_CSL20_LOCK_S1) & BM_CSU_CSL20_LOCK_S1)
-#endif
+#define BF_CSU_CSL20_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL20_LOCK_S1) & BM_CSU_CSL20_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL20_LOCK_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_LOCK_S1) | BF_CSU_CSL20_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL21 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13103,11 +11312,11 @@ typedef union _hw_csu_csl20
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -13119,7 +11328,7 @@ typedef union _hw_csu_csl20
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -13201,15 +11410,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL21_SUR_S2.
 
 //! @brief Get value of CSU_CSL21_SUR_S2 from a register value.
-#define BG_CSU_CSL21_SUR_S2(r)   (((r) & BM_CSU_CSL21_SUR_S2) >> BP_CSU_CSL21_SUR_S2)
+#define BG_CSU_CSL21_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SUR_S2) >> BP_CSU_CSL21_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SUR_S2.
-#define BF_CSU_CSL21_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_SUR_S2) & BM_CSU_CSL21_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SUR_S2.
-#define BF_CSU_CSL21_SUR_S2(v)   (((v) << BP_CSU_CSL21_SUR_S2) & BM_CSU_CSL21_SUR_S2)
-#endif
+#define BF_CSU_CSL21_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SUR_S2) & BM_CSU_CSL21_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -13230,15 +11434,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL21_SSR_S2.
 
 //! @brief Get value of CSU_CSL21_SSR_S2 from a register value.
-#define BG_CSU_CSL21_SSR_S2(r)   (((r) & BM_CSU_CSL21_SSR_S2) >> BP_CSU_CSL21_SSR_S2)
+#define BG_CSU_CSL21_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SSR_S2) >> BP_CSU_CSL21_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SSR_S2.
-#define BF_CSU_CSL21_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_SSR_S2) & BM_CSU_CSL21_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SSR_S2.
-#define BF_CSU_CSL21_SSR_S2(v)   (((v) << BP_CSU_CSL21_SSR_S2) & BM_CSU_CSL21_SSR_S2)
-#endif
+#define BF_CSU_CSL21_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SSR_S2) & BM_CSU_CSL21_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -13259,15 +11458,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL21_NUR_S2.
 
 //! @brief Get value of CSU_CSL21_NUR_S2 from a register value.
-#define BG_CSU_CSL21_NUR_S2(r)   (((r) & BM_CSU_CSL21_NUR_S2) >> BP_CSU_CSL21_NUR_S2)
+#define BG_CSU_CSL21_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NUR_S2) >> BP_CSU_CSL21_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NUR_S2.
-#define BF_CSU_CSL21_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_NUR_S2) & BM_CSU_CSL21_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NUR_S2.
-#define BF_CSU_CSL21_NUR_S2(v)   (((v) << BP_CSU_CSL21_NUR_S2) & BM_CSU_CSL21_NUR_S2)
-#endif
+#define BF_CSU_CSL21_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NUR_S2) & BM_CSU_CSL21_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -13288,15 +11482,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL21_NSR_S2.
 
 //! @brief Get value of CSU_CSL21_NSR_S2 from a register value.
-#define BG_CSU_CSL21_NSR_S2(r)   (((r) & BM_CSU_CSL21_NSR_S2) >> BP_CSU_CSL21_NSR_S2)
+#define BG_CSU_CSL21_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NSR_S2) >> BP_CSU_CSL21_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NSR_S2.
-#define BF_CSU_CSL21_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_NSR_S2) & BM_CSU_CSL21_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NSR_S2.
-#define BF_CSU_CSL21_NSR_S2(v)   (((v) << BP_CSU_CSL21_NSR_S2) & BM_CSU_CSL21_NSR_S2)
-#endif
+#define BF_CSU_CSL21_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NSR_S2) & BM_CSU_CSL21_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -13317,15 +11506,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL21_SUW_S2.
 
 //! @brief Get value of CSU_CSL21_SUW_S2 from a register value.
-#define BG_CSU_CSL21_SUW_S2(r)   (((r) & BM_CSU_CSL21_SUW_S2) >> BP_CSU_CSL21_SUW_S2)
+#define BG_CSU_CSL21_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SUW_S2) >> BP_CSU_CSL21_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SUW_S2.
-#define BF_CSU_CSL21_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_SUW_S2) & BM_CSU_CSL21_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SUW_S2.
-#define BF_CSU_CSL21_SUW_S2(v)   (((v) << BP_CSU_CSL21_SUW_S2) & BM_CSU_CSL21_SUW_S2)
-#endif
+#define BF_CSU_CSL21_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SUW_S2) & BM_CSU_CSL21_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -13346,15 +11530,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL21_SSW_S2.
 
 //! @brief Get value of CSU_CSL21_SSW_S2 from a register value.
-#define BG_CSU_CSL21_SSW_S2(r)   (((r) & BM_CSU_CSL21_SSW_S2) >> BP_CSU_CSL21_SSW_S2)
+#define BG_CSU_CSL21_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SSW_S2) >> BP_CSU_CSL21_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SSW_S2.
-#define BF_CSU_CSL21_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_SSW_S2) & BM_CSU_CSL21_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SSW_S2.
-#define BF_CSU_CSL21_SSW_S2(v)   (((v) << BP_CSU_CSL21_SSW_S2) & BM_CSU_CSL21_SSW_S2)
-#endif
+#define BF_CSU_CSL21_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SSW_S2) & BM_CSU_CSL21_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -13375,15 +11554,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL21_NUW_S2.
 
 //! @brief Get value of CSU_CSL21_NUW_S2 from a register value.
-#define BG_CSU_CSL21_NUW_S2(r)   (((r) & BM_CSU_CSL21_NUW_S2) >> BP_CSU_CSL21_NUW_S2)
+#define BG_CSU_CSL21_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NUW_S2) >> BP_CSU_CSL21_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NUW_S2.
-#define BF_CSU_CSL21_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_NUW_S2) & BM_CSU_CSL21_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NUW_S2.
-#define BF_CSU_CSL21_NUW_S2(v)   (((v) << BP_CSU_CSL21_NUW_S2) & BM_CSU_CSL21_NUW_S2)
-#endif
+#define BF_CSU_CSL21_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NUW_S2) & BM_CSU_CSL21_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -13404,15 +11578,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL21_NSW_S2.
 
 //! @brief Get value of CSU_CSL21_NSW_S2 from a register value.
-#define BG_CSU_CSL21_NSW_S2(r)   (((r) & BM_CSU_CSL21_NSW_S2) >> BP_CSU_CSL21_NSW_S2)
+#define BG_CSU_CSL21_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NSW_S2) >> BP_CSU_CSL21_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NSW_S2.
-#define BF_CSU_CSL21_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_NSW_S2) & BM_CSU_CSL21_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NSW_S2.
-#define BF_CSU_CSL21_NSW_S2(v)   (((v) << BP_CSU_CSL21_NSW_S2) & BM_CSU_CSL21_NSW_S2)
-#endif
+#define BF_CSU_CSL21_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NSW_S2) & BM_CSU_CSL21_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -13433,15 +11602,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL21_LOCK_S2.
 
 //! @brief Get value of CSU_CSL21_LOCK_S2 from a register value.
-#define BG_CSU_CSL21_LOCK_S2(r)   (((r) & BM_CSU_CSL21_LOCK_S2) >> BP_CSU_CSL21_LOCK_S2)
+#define BG_CSU_CSL21_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_LOCK_S2) >> BP_CSU_CSL21_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_LOCK_S2.
-#define BF_CSU_CSL21_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL21_LOCK_S2) & BM_CSU_CSL21_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL21_LOCK_S2.
-#define BF_CSU_CSL21_LOCK_S2(v)   (((v) << BP_CSU_CSL21_LOCK_S2) & BM_CSU_CSL21_LOCK_S2)
-#endif
+#define BF_CSU_CSL21_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_LOCK_S2) & BM_CSU_CSL21_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -13462,15 +11626,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL21_SUR_S1.
 
 //! @brief Get value of CSU_CSL21_SUR_S1 from a register value.
-#define BG_CSU_CSL21_SUR_S1(r)   (((r) & BM_CSU_CSL21_SUR_S1) >> BP_CSU_CSL21_SUR_S1)
+#define BG_CSU_CSL21_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SUR_S1) >> BP_CSU_CSL21_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SUR_S1.
-#define BF_CSU_CSL21_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_SUR_S1) & BM_CSU_CSL21_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SUR_S1.
-#define BF_CSU_CSL21_SUR_S1(v)   (((v) << BP_CSU_CSL21_SUR_S1) & BM_CSU_CSL21_SUR_S1)
-#endif
+#define BF_CSU_CSL21_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SUR_S1) & BM_CSU_CSL21_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -13491,15 +11650,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL21_SSR_S1.
 
 //! @brief Get value of CSU_CSL21_SSR_S1 from a register value.
-#define BG_CSU_CSL21_SSR_S1(r)   (((r) & BM_CSU_CSL21_SSR_S1) >> BP_CSU_CSL21_SSR_S1)
+#define BG_CSU_CSL21_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SSR_S1) >> BP_CSU_CSL21_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SSR_S1.
-#define BF_CSU_CSL21_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_SSR_S1) & BM_CSU_CSL21_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SSR_S1.
-#define BF_CSU_CSL21_SSR_S1(v)   (((v) << BP_CSU_CSL21_SSR_S1) & BM_CSU_CSL21_SSR_S1)
-#endif
+#define BF_CSU_CSL21_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SSR_S1) & BM_CSU_CSL21_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -13520,15 +11674,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL21_NUR_S1.
 
 //! @brief Get value of CSU_CSL21_NUR_S1 from a register value.
-#define BG_CSU_CSL21_NUR_S1(r)   (((r) & BM_CSU_CSL21_NUR_S1) >> BP_CSU_CSL21_NUR_S1)
+#define BG_CSU_CSL21_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NUR_S1) >> BP_CSU_CSL21_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NUR_S1.
-#define BF_CSU_CSL21_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_NUR_S1) & BM_CSU_CSL21_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NUR_S1.
-#define BF_CSU_CSL21_NUR_S1(v)   (((v) << BP_CSU_CSL21_NUR_S1) & BM_CSU_CSL21_NUR_S1)
-#endif
+#define BF_CSU_CSL21_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NUR_S1) & BM_CSU_CSL21_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -13549,15 +11698,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL21_NSR_S1.
 
 //! @brief Get value of CSU_CSL21_NSR_S1 from a register value.
-#define BG_CSU_CSL21_NSR_S1(r)   (((r) & BM_CSU_CSL21_NSR_S1) >> BP_CSU_CSL21_NSR_S1)
+#define BG_CSU_CSL21_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NSR_S1) >> BP_CSU_CSL21_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NSR_S1.
-#define BF_CSU_CSL21_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_NSR_S1) & BM_CSU_CSL21_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NSR_S1.
-#define BF_CSU_CSL21_NSR_S1(v)   (((v) << BP_CSU_CSL21_NSR_S1) & BM_CSU_CSL21_NSR_S1)
-#endif
+#define BF_CSU_CSL21_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NSR_S1) & BM_CSU_CSL21_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -13578,15 +11722,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL21_SUW_S1.
 
 //! @brief Get value of CSU_CSL21_SUW_S1 from a register value.
-#define BG_CSU_CSL21_SUW_S1(r)   (((r) & BM_CSU_CSL21_SUW_S1) >> BP_CSU_CSL21_SUW_S1)
+#define BG_CSU_CSL21_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SUW_S1) >> BP_CSU_CSL21_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SUW_S1.
-#define BF_CSU_CSL21_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_SUW_S1) & BM_CSU_CSL21_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SUW_S1.
-#define BF_CSU_CSL21_SUW_S1(v)   (((v) << BP_CSU_CSL21_SUW_S1) & BM_CSU_CSL21_SUW_S1)
-#endif
+#define BF_CSU_CSL21_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SUW_S1) & BM_CSU_CSL21_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -13607,15 +11746,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL21_SSW_S1.
 
 //! @brief Get value of CSU_CSL21_SSW_S1 from a register value.
-#define BG_CSU_CSL21_SSW_S1(r)   (((r) & BM_CSU_CSL21_SSW_S1) >> BP_CSU_CSL21_SSW_S1)
+#define BG_CSU_CSL21_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_SSW_S1) >> BP_CSU_CSL21_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_SSW_S1.
-#define BF_CSU_CSL21_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_SSW_S1) & BM_CSU_CSL21_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_SSW_S1.
-#define BF_CSU_CSL21_SSW_S1(v)   (((v) << BP_CSU_CSL21_SSW_S1) & BM_CSU_CSL21_SSW_S1)
-#endif
+#define BF_CSU_CSL21_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_SSW_S1) & BM_CSU_CSL21_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -13636,15 +11770,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL21_NUW_S1.
 
 //! @brief Get value of CSU_CSL21_NUW_S1 from a register value.
-#define BG_CSU_CSL21_NUW_S1(r)   (((r) & BM_CSU_CSL21_NUW_S1) >> BP_CSU_CSL21_NUW_S1)
+#define BG_CSU_CSL21_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NUW_S1) >> BP_CSU_CSL21_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NUW_S1.
-#define BF_CSU_CSL21_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_NUW_S1) & BM_CSU_CSL21_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NUW_S1.
-#define BF_CSU_CSL21_NUW_S1(v)   (((v) << BP_CSU_CSL21_NUW_S1) & BM_CSU_CSL21_NUW_S1)
-#endif
+#define BF_CSU_CSL21_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NUW_S1) & BM_CSU_CSL21_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -13665,15 +11794,10 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL21_NSW_S1.
 
 //! @brief Get value of CSU_CSL21_NSW_S1 from a register value.
-#define BG_CSU_CSL21_NSW_S1(r)   (((r) & BM_CSU_CSL21_NSW_S1) >> BP_CSU_CSL21_NSW_S1)
+#define BG_CSU_CSL21_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_NSW_S1) >> BP_CSU_CSL21_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_NSW_S1.
-#define BF_CSU_CSL21_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_NSW_S1) & BM_CSU_CSL21_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_NSW_S1.
-#define BF_CSU_CSL21_NSW_S1(v)   (((v) << BP_CSU_CSL21_NSW_S1) & BM_CSU_CSL21_NSW_S1)
-#endif
+#define BF_CSU_CSL21_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_NSW_S1) & BM_CSU_CSL21_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -13694,21 +11818,20 @@ typedef union _hw_csu_csl21
 #define BM_CSU_CSL21_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL21_LOCK_S1.
 
 //! @brief Get value of CSU_CSL21_LOCK_S1 from a register value.
-#define BG_CSU_CSL21_LOCK_S1(r)   (((r) & BM_CSU_CSL21_LOCK_S1) >> BP_CSU_CSL21_LOCK_S1)
+#define BG_CSU_CSL21_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL21_LOCK_S1) >> BP_CSU_CSL21_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL21_LOCK_S1.
-#define BF_CSU_CSL21_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL21_LOCK_S1) & BM_CSU_CSL21_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL21_LOCK_S1.
-#define BF_CSU_CSL21_LOCK_S1(v)   (((v) << BP_CSU_CSL21_LOCK_S1) & BM_CSU_CSL21_LOCK_S1)
-#endif
+#define BF_CSU_CSL21_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL21_LOCK_S1) & BM_CSU_CSL21_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL21_LOCK_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_LOCK_S1) | BF_CSU_CSL21_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL22 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13723,11 +11846,11 @@ typedef union _hw_csu_csl21
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -13739,7 +11862,7 @@ typedef union _hw_csu_csl21
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -13821,15 +11944,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL22_SUR_S2.
 
 //! @brief Get value of CSU_CSL22_SUR_S2 from a register value.
-#define BG_CSU_CSL22_SUR_S2(r)   (((r) & BM_CSU_CSL22_SUR_S2) >> BP_CSU_CSL22_SUR_S2)
+#define BG_CSU_CSL22_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SUR_S2) >> BP_CSU_CSL22_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SUR_S2.
-#define BF_CSU_CSL22_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_SUR_S2) & BM_CSU_CSL22_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SUR_S2.
-#define BF_CSU_CSL22_SUR_S2(v)   (((v) << BP_CSU_CSL22_SUR_S2) & BM_CSU_CSL22_SUR_S2)
-#endif
+#define BF_CSU_CSL22_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SUR_S2) & BM_CSU_CSL22_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -13850,15 +11968,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL22_SSR_S2.
 
 //! @brief Get value of CSU_CSL22_SSR_S2 from a register value.
-#define BG_CSU_CSL22_SSR_S2(r)   (((r) & BM_CSU_CSL22_SSR_S2) >> BP_CSU_CSL22_SSR_S2)
+#define BG_CSU_CSL22_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SSR_S2) >> BP_CSU_CSL22_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SSR_S2.
-#define BF_CSU_CSL22_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_SSR_S2) & BM_CSU_CSL22_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SSR_S2.
-#define BF_CSU_CSL22_SSR_S2(v)   (((v) << BP_CSU_CSL22_SSR_S2) & BM_CSU_CSL22_SSR_S2)
-#endif
+#define BF_CSU_CSL22_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SSR_S2) & BM_CSU_CSL22_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -13879,15 +11992,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL22_NUR_S2.
 
 //! @brief Get value of CSU_CSL22_NUR_S2 from a register value.
-#define BG_CSU_CSL22_NUR_S2(r)   (((r) & BM_CSU_CSL22_NUR_S2) >> BP_CSU_CSL22_NUR_S2)
+#define BG_CSU_CSL22_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NUR_S2) >> BP_CSU_CSL22_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NUR_S2.
-#define BF_CSU_CSL22_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_NUR_S2) & BM_CSU_CSL22_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NUR_S2.
-#define BF_CSU_CSL22_NUR_S2(v)   (((v) << BP_CSU_CSL22_NUR_S2) & BM_CSU_CSL22_NUR_S2)
-#endif
+#define BF_CSU_CSL22_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NUR_S2) & BM_CSU_CSL22_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -13908,15 +12016,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL22_NSR_S2.
 
 //! @brief Get value of CSU_CSL22_NSR_S2 from a register value.
-#define BG_CSU_CSL22_NSR_S2(r)   (((r) & BM_CSU_CSL22_NSR_S2) >> BP_CSU_CSL22_NSR_S2)
+#define BG_CSU_CSL22_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NSR_S2) >> BP_CSU_CSL22_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NSR_S2.
-#define BF_CSU_CSL22_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_NSR_S2) & BM_CSU_CSL22_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NSR_S2.
-#define BF_CSU_CSL22_NSR_S2(v)   (((v) << BP_CSU_CSL22_NSR_S2) & BM_CSU_CSL22_NSR_S2)
-#endif
+#define BF_CSU_CSL22_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NSR_S2) & BM_CSU_CSL22_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -13937,15 +12040,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL22_SUW_S2.
 
 //! @brief Get value of CSU_CSL22_SUW_S2 from a register value.
-#define BG_CSU_CSL22_SUW_S2(r)   (((r) & BM_CSU_CSL22_SUW_S2) >> BP_CSU_CSL22_SUW_S2)
+#define BG_CSU_CSL22_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SUW_S2) >> BP_CSU_CSL22_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SUW_S2.
-#define BF_CSU_CSL22_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_SUW_S2) & BM_CSU_CSL22_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SUW_S2.
-#define BF_CSU_CSL22_SUW_S2(v)   (((v) << BP_CSU_CSL22_SUW_S2) & BM_CSU_CSL22_SUW_S2)
-#endif
+#define BF_CSU_CSL22_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SUW_S2) & BM_CSU_CSL22_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -13966,15 +12064,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL22_SSW_S2.
 
 //! @brief Get value of CSU_CSL22_SSW_S2 from a register value.
-#define BG_CSU_CSL22_SSW_S2(r)   (((r) & BM_CSU_CSL22_SSW_S2) >> BP_CSU_CSL22_SSW_S2)
+#define BG_CSU_CSL22_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SSW_S2) >> BP_CSU_CSL22_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SSW_S2.
-#define BF_CSU_CSL22_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_SSW_S2) & BM_CSU_CSL22_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SSW_S2.
-#define BF_CSU_CSL22_SSW_S2(v)   (((v) << BP_CSU_CSL22_SSW_S2) & BM_CSU_CSL22_SSW_S2)
-#endif
+#define BF_CSU_CSL22_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SSW_S2) & BM_CSU_CSL22_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -13995,15 +12088,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL22_NUW_S2.
 
 //! @brief Get value of CSU_CSL22_NUW_S2 from a register value.
-#define BG_CSU_CSL22_NUW_S2(r)   (((r) & BM_CSU_CSL22_NUW_S2) >> BP_CSU_CSL22_NUW_S2)
+#define BG_CSU_CSL22_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NUW_S2) >> BP_CSU_CSL22_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NUW_S2.
-#define BF_CSU_CSL22_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_NUW_S2) & BM_CSU_CSL22_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NUW_S2.
-#define BF_CSU_CSL22_NUW_S2(v)   (((v) << BP_CSU_CSL22_NUW_S2) & BM_CSU_CSL22_NUW_S2)
-#endif
+#define BF_CSU_CSL22_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NUW_S2) & BM_CSU_CSL22_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -14024,15 +12112,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL22_NSW_S2.
 
 //! @brief Get value of CSU_CSL22_NSW_S2 from a register value.
-#define BG_CSU_CSL22_NSW_S2(r)   (((r) & BM_CSU_CSL22_NSW_S2) >> BP_CSU_CSL22_NSW_S2)
+#define BG_CSU_CSL22_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NSW_S2) >> BP_CSU_CSL22_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NSW_S2.
-#define BF_CSU_CSL22_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_NSW_S2) & BM_CSU_CSL22_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NSW_S2.
-#define BF_CSU_CSL22_NSW_S2(v)   (((v) << BP_CSU_CSL22_NSW_S2) & BM_CSU_CSL22_NSW_S2)
-#endif
+#define BF_CSU_CSL22_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NSW_S2) & BM_CSU_CSL22_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -14053,15 +12136,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL22_LOCK_S2.
 
 //! @brief Get value of CSU_CSL22_LOCK_S2 from a register value.
-#define BG_CSU_CSL22_LOCK_S2(r)   (((r) & BM_CSU_CSL22_LOCK_S2) >> BP_CSU_CSL22_LOCK_S2)
+#define BG_CSU_CSL22_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_LOCK_S2) >> BP_CSU_CSL22_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_LOCK_S2.
-#define BF_CSU_CSL22_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL22_LOCK_S2) & BM_CSU_CSL22_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL22_LOCK_S2.
-#define BF_CSU_CSL22_LOCK_S2(v)   (((v) << BP_CSU_CSL22_LOCK_S2) & BM_CSU_CSL22_LOCK_S2)
-#endif
+#define BF_CSU_CSL22_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_LOCK_S2) & BM_CSU_CSL22_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -14082,15 +12160,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL22_SUR_S1.
 
 //! @brief Get value of CSU_CSL22_SUR_S1 from a register value.
-#define BG_CSU_CSL22_SUR_S1(r)   (((r) & BM_CSU_CSL22_SUR_S1) >> BP_CSU_CSL22_SUR_S1)
+#define BG_CSU_CSL22_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SUR_S1) >> BP_CSU_CSL22_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SUR_S1.
-#define BF_CSU_CSL22_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_SUR_S1) & BM_CSU_CSL22_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SUR_S1.
-#define BF_CSU_CSL22_SUR_S1(v)   (((v) << BP_CSU_CSL22_SUR_S1) & BM_CSU_CSL22_SUR_S1)
-#endif
+#define BF_CSU_CSL22_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SUR_S1) & BM_CSU_CSL22_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -14111,15 +12184,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL22_SSR_S1.
 
 //! @brief Get value of CSU_CSL22_SSR_S1 from a register value.
-#define BG_CSU_CSL22_SSR_S1(r)   (((r) & BM_CSU_CSL22_SSR_S1) >> BP_CSU_CSL22_SSR_S1)
+#define BG_CSU_CSL22_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SSR_S1) >> BP_CSU_CSL22_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SSR_S1.
-#define BF_CSU_CSL22_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_SSR_S1) & BM_CSU_CSL22_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SSR_S1.
-#define BF_CSU_CSL22_SSR_S1(v)   (((v) << BP_CSU_CSL22_SSR_S1) & BM_CSU_CSL22_SSR_S1)
-#endif
+#define BF_CSU_CSL22_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SSR_S1) & BM_CSU_CSL22_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -14140,15 +12208,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL22_NUR_S1.
 
 //! @brief Get value of CSU_CSL22_NUR_S1 from a register value.
-#define BG_CSU_CSL22_NUR_S1(r)   (((r) & BM_CSU_CSL22_NUR_S1) >> BP_CSU_CSL22_NUR_S1)
+#define BG_CSU_CSL22_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NUR_S1) >> BP_CSU_CSL22_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NUR_S1.
-#define BF_CSU_CSL22_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_NUR_S1) & BM_CSU_CSL22_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NUR_S1.
-#define BF_CSU_CSL22_NUR_S1(v)   (((v) << BP_CSU_CSL22_NUR_S1) & BM_CSU_CSL22_NUR_S1)
-#endif
+#define BF_CSU_CSL22_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NUR_S1) & BM_CSU_CSL22_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -14169,15 +12232,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL22_NSR_S1.
 
 //! @brief Get value of CSU_CSL22_NSR_S1 from a register value.
-#define BG_CSU_CSL22_NSR_S1(r)   (((r) & BM_CSU_CSL22_NSR_S1) >> BP_CSU_CSL22_NSR_S1)
+#define BG_CSU_CSL22_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NSR_S1) >> BP_CSU_CSL22_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NSR_S1.
-#define BF_CSU_CSL22_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_NSR_S1) & BM_CSU_CSL22_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NSR_S1.
-#define BF_CSU_CSL22_NSR_S1(v)   (((v) << BP_CSU_CSL22_NSR_S1) & BM_CSU_CSL22_NSR_S1)
-#endif
+#define BF_CSU_CSL22_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NSR_S1) & BM_CSU_CSL22_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -14198,15 +12256,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL22_SUW_S1.
 
 //! @brief Get value of CSU_CSL22_SUW_S1 from a register value.
-#define BG_CSU_CSL22_SUW_S1(r)   (((r) & BM_CSU_CSL22_SUW_S1) >> BP_CSU_CSL22_SUW_S1)
+#define BG_CSU_CSL22_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SUW_S1) >> BP_CSU_CSL22_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SUW_S1.
-#define BF_CSU_CSL22_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_SUW_S1) & BM_CSU_CSL22_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SUW_S1.
-#define BF_CSU_CSL22_SUW_S1(v)   (((v) << BP_CSU_CSL22_SUW_S1) & BM_CSU_CSL22_SUW_S1)
-#endif
+#define BF_CSU_CSL22_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SUW_S1) & BM_CSU_CSL22_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -14227,15 +12280,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL22_SSW_S1.
 
 //! @brief Get value of CSU_CSL22_SSW_S1 from a register value.
-#define BG_CSU_CSL22_SSW_S1(r)   (((r) & BM_CSU_CSL22_SSW_S1) >> BP_CSU_CSL22_SSW_S1)
+#define BG_CSU_CSL22_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_SSW_S1) >> BP_CSU_CSL22_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_SSW_S1.
-#define BF_CSU_CSL22_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_SSW_S1) & BM_CSU_CSL22_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_SSW_S1.
-#define BF_CSU_CSL22_SSW_S1(v)   (((v) << BP_CSU_CSL22_SSW_S1) & BM_CSU_CSL22_SSW_S1)
-#endif
+#define BF_CSU_CSL22_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_SSW_S1) & BM_CSU_CSL22_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -14256,15 +12304,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL22_NUW_S1.
 
 //! @brief Get value of CSU_CSL22_NUW_S1 from a register value.
-#define BG_CSU_CSL22_NUW_S1(r)   (((r) & BM_CSU_CSL22_NUW_S1) >> BP_CSU_CSL22_NUW_S1)
+#define BG_CSU_CSL22_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NUW_S1) >> BP_CSU_CSL22_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NUW_S1.
-#define BF_CSU_CSL22_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_NUW_S1) & BM_CSU_CSL22_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NUW_S1.
-#define BF_CSU_CSL22_NUW_S1(v)   (((v) << BP_CSU_CSL22_NUW_S1) & BM_CSU_CSL22_NUW_S1)
-#endif
+#define BF_CSU_CSL22_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NUW_S1) & BM_CSU_CSL22_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -14285,15 +12328,10 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL22_NSW_S1.
 
 //! @brief Get value of CSU_CSL22_NSW_S1 from a register value.
-#define BG_CSU_CSL22_NSW_S1(r)   (((r) & BM_CSU_CSL22_NSW_S1) >> BP_CSU_CSL22_NSW_S1)
+#define BG_CSU_CSL22_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_NSW_S1) >> BP_CSU_CSL22_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_NSW_S1.
-#define BF_CSU_CSL22_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_NSW_S1) & BM_CSU_CSL22_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_NSW_S1.
-#define BF_CSU_CSL22_NSW_S1(v)   (((v) << BP_CSU_CSL22_NSW_S1) & BM_CSU_CSL22_NSW_S1)
-#endif
+#define BF_CSU_CSL22_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_NSW_S1) & BM_CSU_CSL22_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -14314,21 +12352,20 @@ typedef union _hw_csu_csl22
 #define BM_CSU_CSL22_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL22_LOCK_S1.
 
 //! @brief Get value of CSU_CSL22_LOCK_S1 from a register value.
-#define BG_CSU_CSL22_LOCK_S1(r)   (((r) & BM_CSU_CSL22_LOCK_S1) >> BP_CSU_CSL22_LOCK_S1)
+#define BG_CSU_CSL22_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL22_LOCK_S1) >> BP_CSU_CSL22_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL22_LOCK_S1.
-#define BF_CSU_CSL22_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL22_LOCK_S1) & BM_CSU_CSL22_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL22_LOCK_S1.
-#define BF_CSU_CSL22_LOCK_S1(v)   (((v) << BP_CSU_CSL22_LOCK_S1) & BM_CSU_CSL22_LOCK_S1)
-#endif
+#define BF_CSU_CSL22_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL22_LOCK_S1) & BM_CSU_CSL22_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL22_LOCK_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_LOCK_S1) | BF_CSU_CSL22_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL23 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14343,11 +12380,11 @@ typedef union _hw_csu_csl22
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -14359,7 +12396,7 @@ typedef union _hw_csu_csl22
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -14441,15 +12478,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL23_SUR_S2.
 
 //! @brief Get value of CSU_CSL23_SUR_S2 from a register value.
-#define BG_CSU_CSL23_SUR_S2(r)   (((r) & BM_CSU_CSL23_SUR_S2) >> BP_CSU_CSL23_SUR_S2)
+#define BG_CSU_CSL23_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SUR_S2) >> BP_CSU_CSL23_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SUR_S2.
-#define BF_CSU_CSL23_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_SUR_S2) & BM_CSU_CSL23_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SUR_S2.
-#define BF_CSU_CSL23_SUR_S2(v)   (((v) << BP_CSU_CSL23_SUR_S2) & BM_CSU_CSL23_SUR_S2)
-#endif
+#define BF_CSU_CSL23_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SUR_S2) & BM_CSU_CSL23_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -14470,15 +12502,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL23_SSR_S2.
 
 //! @brief Get value of CSU_CSL23_SSR_S2 from a register value.
-#define BG_CSU_CSL23_SSR_S2(r)   (((r) & BM_CSU_CSL23_SSR_S2) >> BP_CSU_CSL23_SSR_S2)
+#define BG_CSU_CSL23_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SSR_S2) >> BP_CSU_CSL23_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SSR_S2.
-#define BF_CSU_CSL23_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_SSR_S2) & BM_CSU_CSL23_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SSR_S2.
-#define BF_CSU_CSL23_SSR_S2(v)   (((v) << BP_CSU_CSL23_SSR_S2) & BM_CSU_CSL23_SSR_S2)
-#endif
+#define BF_CSU_CSL23_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SSR_S2) & BM_CSU_CSL23_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -14499,15 +12526,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL23_NUR_S2.
 
 //! @brief Get value of CSU_CSL23_NUR_S2 from a register value.
-#define BG_CSU_CSL23_NUR_S2(r)   (((r) & BM_CSU_CSL23_NUR_S2) >> BP_CSU_CSL23_NUR_S2)
+#define BG_CSU_CSL23_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NUR_S2) >> BP_CSU_CSL23_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NUR_S2.
-#define BF_CSU_CSL23_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_NUR_S2) & BM_CSU_CSL23_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NUR_S2.
-#define BF_CSU_CSL23_NUR_S2(v)   (((v) << BP_CSU_CSL23_NUR_S2) & BM_CSU_CSL23_NUR_S2)
-#endif
+#define BF_CSU_CSL23_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NUR_S2) & BM_CSU_CSL23_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -14528,15 +12550,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL23_NSR_S2.
 
 //! @brief Get value of CSU_CSL23_NSR_S2 from a register value.
-#define BG_CSU_CSL23_NSR_S2(r)   (((r) & BM_CSU_CSL23_NSR_S2) >> BP_CSU_CSL23_NSR_S2)
+#define BG_CSU_CSL23_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NSR_S2) >> BP_CSU_CSL23_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NSR_S2.
-#define BF_CSU_CSL23_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_NSR_S2) & BM_CSU_CSL23_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NSR_S2.
-#define BF_CSU_CSL23_NSR_S2(v)   (((v) << BP_CSU_CSL23_NSR_S2) & BM_CSU_CSL23_NSR_S2)
-#endif
+#define BF_CSU_CSL23_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NSR_S2) & BM_CSU_CSL23_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -14557,15 +12574,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL23_SUW_S2.
 
 //! @brief Get value of CSU_CSL23_SUW_S2 from a register value.
-#define BG_CSU_CSL23_SUW_S2(r)   (((r) & BM_CSU_CSL23_SUW_S2) >> BP_CSU_CSL23_SUW_S2)
+#define BG_CSU_CSL23_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SUW_S2) >> BP_CSU_CSL23_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SUW_S2.
-#define BF_CSU_CSL23_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_SUW_S2) & BM_CSU_CSL23_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SUW_S2.
-#define BF_CSU_CSL23_SUW_S2(v)   (((v) << BP_CSU_CSL23_SUW_S2) & BM_CSU_CSL23_SUW_S2)
-#endif
+#define BF_CSU_CSL23_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SUW_S2) & BM_CSU_CSL23_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -14586,15 +12598,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL23_SSW_S2.
 
 //! @brief Get value of CSU_CSL23_SSW_S2 from a register value.
-#define BG_CSU_CSL23_SSW_S2(r)   (((r) & BM_CSU_CSL23_SSW_S2) >> BP_CSU_CSL23_SSW_S2)
+#define BG_CSU_CSL23_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SSW_S2) >> BP_CSU_CSL23_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SSW_S2.
-#define BF_CSU_CSL23_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_SSW_S2) & BM_CSU_CSL23_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SSW_S2.
-#define BF_CSU_CSL23_SSW_S2(v)   (((v) << BP_CSU_CSL23_SSW_S2) & BM_CSU_CSL23_SSW_S2)
-#endif
+#define BF_CSU_CSL23_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SSW_S2) & BM_CSU_CSL23_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -14615,15 +12622,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL23_NUW_S2.
 
 //! @brief Get value of CSU_CSL23_NUW_S2 from a register value.
-#define BG_CSU_CSL23_NUW_S2(r)   (((r) & BM_CSU_CSL23_NUW_S2) >> BP_CSU_CSL23_NUW_S2)
+#define BG_CSU_CSL23_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NUW_S2) >> BP_CSU_CSL23_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NUW_S2.
-#define BF_CSU_CSL23_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_NUW_S2) & BM_CSU_CSL23_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NUW_S2.
-#define BF_CSU_CSL23_NUW_S2(v)   (((v) << BP_CSU_CSL23_NUW_S2) & BM_CSU_CSL23_NUW_S2)
-#endif
+#define BF_CSU_CSL23_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NUW_S2) & BM_CSU_CSL23_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -14644,15 +12646,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL23_NSW_S2.
 
 //! @brief Get value of CSU_CSL23_NSW_S2 from a register value.
-#define BG_CSU_CSL23_NSW_S2(r)   (((r) & BM_CSU_CSL23_NSW_S2) >> BP_CSU_CSL23_NSW_S2)
+#define BG_CSU_CSL23_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NSW_S2) >> BP_CSU_CSL23_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NSW_S2.
-#define BF_CSU_CSL23_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_NSW_S2) & BM_CSU_CSL23_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NSW_S2.
-#define BF_CSU_CSL23_NSW_S2(v)   (((v) << BP_CSU_CSL23_NSW_S2) & BM_CSU_CSL23_NSW_S2)
-#endif
+#define BF_CSU_CSL23_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NSW_S2) & BM_CSU_CSL23_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -14673,15 +12670,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL23_LOCK_S2.
 
 //! @brief Get value of CSU_CSL23_LOCK_S2 from a register value.
-#define BG_CSU_CSL23_LOCK_S2(r)   (((r) & BM_CSU_CSL23_LOCK_S2) >> BP_CSU_CSL23_LOCK_S2)
+#define BG_CSU_CSL23_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_LOCK_S2) >> BP_CSU_CSL23_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_LOCK_S2.
-#define BF_CSU_CSL23_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL23_LOCK_S2) & BM_CSU_CSL23_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL23_LOCK_S2.
-#define BF_CSU_CSL23_LOCK_S2(v)   (((v) << BP_CSU_CSL23_LOCK_S2) & BM_CSU_CSL23_LOCK_S2)
-#endif
+#define BF_CSU_CSL23_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_LOCK_S2) & BM_CSU_CSL23_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -14702,15 +12694,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL23_SUR_S1.
 
 //! @brief Get value of CSU_CSL23_SUR_S1 from a register value.
-#define BG_CSU_CSL23_SUR_S1(r)   (((r) & BM_CSU_CSL23_SUR_S1) >> BP_CSU_CSL23_SUR_S1)
+#define BG_CSU_CSL23_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SUR_S1) >> BP_CSU_CSL23_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SUR_S1.
-#define BF_CSU_CSL23_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_SUR_S1) & BM_CSU_CSL23_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SUR_S1.
-#define BF_CSU_CSL23_SUR_S1(v)   (((v) << BP_CSU_CSL23_SUR_S1) & BM_CSU_CSL23_SUR_S1)
-#endif
+#define BF_CSU_CSL23_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SUR_S1) & BM_CSU_CSL23_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -14731,15 +12718,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL23_SSR_S1.
 
 //! @brief Get value of CSU_CSL23_SSR_S1 from a register value.
-#define BG_CSU_CSL23_SSR_S1(r)   (((r) & BM_CSU_CSL23_SSR_S1) >> BP_CSU_CSL23_SSR_S1)
+#define BG_CSU_CSL23_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SSR_S1) >> BP_CSU_CSL23_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SSR_S1.
-#define BF_CSU_CSL23_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_SSR_S1) & BM_CSU_CSL23_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SSR_S1.
-#define BF_CSU_CSL23_SSR_S1(v)   (((v) << BP_CSU_CSL23_SSR_S1) & BM_CSU_CSL23_SSR_S1)
-#endif
+#define BF_CSU_CSL23_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SSR_S1) & BM_CSU_CSL23_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -14760,15 +12742,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL23_NUR_S1.
 
 //! @brief Get value of CSU_CSL23_NUR_S1 from a register value.
-#define BG_CSU_CSL23_NUR_S1(r)   (((r) & BM_CSU_CSL23_NUR_S1) >> BP_CSU_CSL23_NUR_S1)
+#define BG_CSU_CSL23_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NUR_S1) >> BP_CSU_CSL23_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NUR_S1.
-#define BF_CSU_CSL23_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_NUR_S1) & BM_CSU_CSL23_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NUR_S1.
-#define BF_CSU_CSL23_NUR_S1(v)   (((v) << BP_CSU_CSL23_NUR_S1) & BM_CSU_CSL23_NUR_S1)
-#endif
+#define BF_CSU_CSL23_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NUR_S1) & BM_CSU_CSL23_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -14789,15 +12766,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL23_NSR_S1.
 
 //! @brief Get value of CSU_CSL23_NSR_S1 from a register value.
-#define BG_CSU_CSL23_NSR_S1(r)   (((r) & BM_CSU_CSL23_NSR_S1) >> BP_CSU_CSL23_NSR_S1)
+#define BG_CSU_CSL23_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NSR_S1) >> BP_CSU_CSL23_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NSR_S1.
-#define BF_CSU_CSL23_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_NSR_S1) & BM_CSU_CSL23_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NSR_S1.
-#define BF_CSU_CSL23_NSR_S1(v)   (((v) << BP_CSU_CSL23_NSR_S1) & BM_CSU_CSL23_NSR_S1)
-#endif
+#define BF_CSU_CSL23_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NSR_S1) & BM_CSU_CSL23_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -14818,15 +12790,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL23_SUW_S1.
 
 //! @brief Get value of CSU_CSL23_SUW_S1 from a register value.
-#define BG_CSU_CSL23_SUW_S1(r)   (((r) & BM_CSU_CSL23_SUW_S1) >> BP_CSU_CSL23_SUW_S1)
+#define BG_CSU_CSL23_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SUW_S1) >> BP_CSU_CSL23_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SUW_S1.
-#define BF_CSU_CSL23_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_SUW_S1) & BM_CSU_CSL23_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SUW_S1.
-#define BF_CSU_CSL23_SUW_S1(v)   (((v) << BP_CSU_CSL23_SUW_S1) & BM_CSU_CSL23_SUW_S1)
-#endif
+#define BF_CSU_CSL23_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SUW_S1) & BM_CSU_CSL23_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -14847,15 +12814,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL23_SSW_S1.
 
 //! @brief Get value of CSU_CSL23_SSW_S1 from a register value.
-#define BG_CSU_CSL23_SSW_S1(r)   (((r) & BM_CSU_CSL23_SSW_S1) >> BP_CSU_CSL23_SSW_S1)
+#define BG_CSU_CSL23_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_SSW_S1) >> BP_CSU_CSL23_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_SSW_S1.
-#define BF_CSU_CSL23_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_SSW_S1) & BM_CSU_CSL23_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_SSW_S1.
-#define BF_CSU_CSL23_SSW_S1(v)   (((v) << BP_CSU_CSL23_SSW_S1) & BM_CSU_CSL23_SSW_S1)
-#endif
+#define BF_CSU_CSL23_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_SSW_S1) & BM_CSU_CSL23_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -14876,15 +12838,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL23_NUW_S1.
 
 //! @brief Get value of CSU_CSL23_NUW_S1 from a register value.
-#define BG_CSU_CSL23_NUW_S1(r)   (((r) & BM_CSU_CSL23_NUW_S1) >> BP_CSU_CSL23_NUW_S1)
+#define BG_CSU_CSL23_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NUW_S1) >> BP_CSU_CSL23_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NUW_S1.
-#define BF_CSU_CSL23_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_NUW_S1) & BM_CSU_CSL23_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NUW_S1.
-#define BF_CSU_CSL23_NUW_S1(v)   (((v) << BP_CSU_CSL23_NUW_S1) & BM_CSU_CSL23_NUW_S1)
-#endif
+#define BF_CSU_CSL23_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NUW_S1) & BM_CSU_CSL23_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -14905,15 +12862,10 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL23_NSW_S1.
 
 //! @brief Get value of CSU_CSL23_NSW_S1 from a register value.
-#define BG_CSU_CSL23_NSW_S1(r)   (((r) & BM_CSU_CSL23_NSW_S1) >> BP_CSU_CSL23_NSW_S1)
+#define BG_CSU_CSL23_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_NSW_S1) >> BP_CSU_CSL23_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_NSW_S1.
-#define BF_CSU_CSL23_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_NSW_S1) & BM_CSU_CSL23_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_NSW_S1.
-#define BF_CSU_CSL23_NSW_S1(v)   (((v) << BP_CSU_CSL23_NSW_S1) & BM_CSU_CSL23_NSW_S1)
-#endif
+#define BF_CSU_CSL23_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_NSW_S1) & BM_CSU_CSL23_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -14934,21 +12886,20 @@ typedef union _hw_csu_csl23
 #define BM_CSU_CSL23_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL23_LOCK_S1.
 
 //! @brief Get value of CSU_CSL23_LOCK_S1 from a register value.
-#define BG_CSU_CSL23_LOCK_S1(r)   (((r) & BM_CSU_CSL23_LOCK_S1) >> BP_CSU_CSL23_LOCK_S1)
+#define BG_CSU_CSL23_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL23_LOCK_S1) >> BP_CSU_CSL23_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL23_LOCK_S1.
-#define BF_CSU_CSL23_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL23_LOCK_S1) & BM_CSU_CSL23_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL23_LOCK_S1.
-#define BF_CSU_CSL23_LOCK_S1(v)   (((v) << BP_CSU_CSL23_LOCK_S1) & BM_CSU_CSL23_LOCK_S1)
-#endif
+#define BF_CSU_CSL23_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL23_LOCK_S1) & BM_CSU_CSL23_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL23_LOCK_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_LOCK_S1) | BF_CSU_CSL23_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL24 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14963,11 +12914,11 @@ typedef union _hw_csu_csl23
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -14979,7 +12930,7 @@ typedef union _hw_csu_csl23
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -15061,15 +13012,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL24_SUR_S2.
 
 //! @brief Get value of CSU_CSL24_SUR_S2 from a register value.
-#define BG_CSU_CSL24_SUR_S2(r)   (((r) & BM_CSU_CSL24_SUR_S2) >> BP_CSU_CSL24_SUR_S2)
+#define BG_CSU_CSL24_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SUR_S2) >> BP_CSU_CSL24_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SUR_S2.
-#define BF_CSU_CSL24_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_SUR_S2) & BM_CSU_CSL24_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SUR_S2.
-#define BF_CSU_CSL24_SUR_S2(v)   (((v) << BP_CSU_CSL24_SUR_S2) & BM_CSU_CSL24_SUR_S2)
-#endif
+#define BF_CSU_CSL24_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SUR_S2) & BM_CSU_CSL24_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -15090,15 +13036,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL24_SSR_S2.
 
 //! @brief Get value of CSU_CSL24_SSR_S2 from a register value.
-#define BG_CSU_CSL24_SSR_S2(r)   (((r) & BM_CSU_CSL24_SSR_S2) >> BP_CSU_CSL24_SSR_S2)
+#define BG_CSU_CSL24_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SSR_S2) >> BP_CSU_CSL24_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SSR_S2.
-#define BF_CSU_CSL24_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_SSR_S2) & BM_CSU_CSL24_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SSR_S2.
-#define BF_CSU_CSL24_SSR_S2(v)   (((v) << BP_CSU_CSL24_SSR_S2) & BM_CSU_CSL24_SSR_S2)
-#endif
+#define BF_CSU_CSL24_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SSR_S2) & BM_CSU_CSL24_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -15119,15 +13060,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL24_NUR_S2.
 
 //! @brief Get value of CSU_CSL24_NUR_S2 from a register value.
-#define BG_CSU_CSL24_NUR_S2(r)   (((r) & BM_CSU_CSL24_NUR_S2) >> BP_CSU_CSL24_NUR_S2)
+#define BG_CSU_CSL24_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NUR_S2) >> BP_CSU_CSL24_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NUR_S2.
-#define BF_CSU_CSL24_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_NUR_S2) & BM_CSU_CSL24_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NUR_S2.
-#define BF_CSU_CSL24_NUR_S2(v)   (((v) << BP_CSU_CSL24_NUR_S2) & BM_CSU_CSL24_NUR_S2)
-#endif
+#define BF_CSU_CSL24_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NUR_S2) & BM_CSU_CSL24_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -15148,15 +13084,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL24_NSR_S2.
 
 //! @brief Get value of CSU_CSL24_NSR_S2 from a register value.
-#define BG_CSU_CSL24_NSR_S2(r)   (((r) & BM_CSU_CSL24_NSR_S2) >> BP_CSU_CSL24_NSR_S2)
+#define BG_CSU_CSL24_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NSR_S2) >> BP_CSU_CSL24_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NSR_S2.
-#define BF_CSU_CSL24_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_NSR_S2) & BM_CSU_CSL24_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NSR_S2.
-#define BF_CSU_CSL24_NSR_S2(v)   (((v) << BP_CSU_CSL24_NSR_S2) & BM_CSU_CSL24_NSR_S2)
-#endif
+#define BF_CSU_CSL24_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NSR_S2) & BM_CSU_CSL24_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -15177,15 +13108,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL24_SUW_S2.
 
 //! @brief Get value of CSU_CSL24_SUW_S2 from a register value.
-#define BG_CSU_CSL24_SUW_S2(r)   (((r) & BM_CSU_CSL24_SUW_S2) >> BP_CSU_CSL24_SUW_S2)
+#define BG_CSU_CSL24_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SUW_S2) >> BP_CSU_CSL24_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SUW_S2.
-#define BF_CSU_CSL24_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_SUW_S2) & BM_CSU_CSL24_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SUW_S2.
-#define BF_CSU_CSL24_SUW_S2(v)   (((v) << BP_CSU_CSL24_SUW_S2) & BM_CSU_CSL24_SUW_S2)
-#endif
+#define BF_CSU_CSL24_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SUW_S2) & BM_CSU_CSL24_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -15206,15 +13132,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL24_SSW_S2.
 
 //! @brief Get value of CSU_CSL24_SSW_S2 from a register value.
-#define BG_CSU_CSL24_SSW_S2(r)   (((r) & BM_CSU_CSL24_SSW_S2) >> BP_CSU_CSL24_SSW_S2)
+#define BG_CSU_CSL24_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SSW_S2) >> BP_CSU_CSL24_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SSW_S2.
-#define BF_CSU_CSL24_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_SSW_S2) & BM_CSU_CSL24_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SSW_S2.
-#define BF_CSU_CSL24_SSW_S2(v)   (((v) << BP_CSU_CSL24_SSW_S2) & BM_CSU_CSL24_SSW_S2)
-#endif
+#define BF_CSU_CSL24_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SSW_S2) & BM_CSU_CSL24_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -15235,15 +13156,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL24_NUW_S2.
 
 //! @brief Get value of CSU_CSL24_NUW_S2 from a register value.
-#define BG_CSU_CSL24_NUW_S2(r)   (((r) & BM_CSU_CSL24_NUW_S2) >> BP_CSU_CSL24_NUW_S2)
+#define BG_CSU_CSL24_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NUW_S2) >> BP_CSU_CSL24_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NUW_S2.
-#define BF_CSU_CSL24_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_NUW_S2) & BM_CSU_CSL24_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NUW_S2.
-#define BF_CSU_CSL24_NUW_S2(v)   (((v) << BP_CSU_CSL24_NUW_S2) & BM_CSU_CSL24_NUW_S2)
-#endif
+#define BF_CSU_CSL24_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NUW_S2) & BM_CSU_CSL24_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -15264,15 +13180,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL24_NSW_S2.
 
 //! @brief Get value of CSU_CSL24_NSW_S2 from a register value.
-#define BG_CSU_CSL24_NSW_S2(r)   (((r) & BM_CSU_CSL24_NSW_S2) >> BP_CSU_CSL24_NSW_S2)
+#define BG_CSU_CSL24_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NSW_S2) >> BP_CSU_CSL24_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NSW_S2.
-#define BF_CSU_CSL24_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_NSW_S2) & BM_CSU_CSL24_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NSW_S2.
-#define BF_CSU_CSL24_NSW_S2(v)   (((v) << BP_CSU_CSL24_NSW_S2) & BM_CSU_CSL24_NSW_S2)
-#endif
+#define BF_CSU_CSL24_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NSW_S2) & BM_CSU_CSL24_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -15293,15 +13204,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL24_LOCK_S2.
 
 //! @brief Get value of CSU_CSL24_LOCK_S2 from a register value.
-#define BG_CSU_CSL24_LOCK_S2(r)   (((r) & BM_CSU_CSL24_LOCK_S2) >> BP_CSU_CSL24_LOCK_S2)
+#define BG_CSU_CSL24_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_LOCK_S2) >> BP_CSU_CSL24_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_LOCK_S2.
-#define BF_CSU_CSL24_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL24_LOCK_S2) & BM_CSU_CSL24_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL24_LOCK_S2.
-#define BF_CSU_CSL24_LOCK_S2(v)   (((v) << BP_CSU_CSL24_LOCK_S2) & BM_CSU_CSL24_LOCK_S2)
-#endif
+#define BF_CSU_CSL24_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_LOCK_S2) & BM_CSU_CSL24_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -15322,15 +13228,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL24_SUR_S1.
 
 //! @brief Get value of CSU_CSL24_SUR_S1 from a register value.
-#define BG_CSU_CSL24_SUR_S1(r)   (((r) & BM_CSU_CSL24_SUR_S1) >> BP_CSU_CSL24_SUR_S1)
+#define BG_CSU_CSL24_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SUR_S1) >> BP_CSU_CSL24_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SUR_S1.
-#define BF_CSU_CSL24_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_SUR_S1) & BM_CSU_CSL24_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SUR_S1.
-#define BF_CSU_CSL24_SUR_S1(v)   (((v) << BP_CSU_CSL24_SUR_S1) & BM_CSU_CSL24_SUR_S1)
-#endif
+#define BF_CSU_CSL24_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SUR_S1) & BM_CSU_CSL24_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -15351,15 +13252,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL24_SSR_S1.
 
 //! @brief Get value of CSU_CSL24_SSR_S1 from a register value.
-#define BG_CSU_CSL24_SSR_S1(r)   (((r) & BM_CSU_CSL24_SSR_S1) >> BP_CSU_CSL24_SSR_S1)
+#define BG_CSU_CSL24_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SSR_S1) >> BP_CSU_CSL24_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SSR_S1.
-#define BF_CSU_CSL24_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_SSR_S1) & BM_CSU_CSL24_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SSR_S1.
-#define BF_CSU_CSL24_SSR_S1(v)   (((v) << BP_CSU_CSL24_SSR_S1) & BM_CSU_CSL24_SSR_S1)
-#endif
+#define BF_CSU_CSL24_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SSR_S1) & BM_CSU_CSL24_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -15380,15 +13276,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL24_NUR_S1.
 
 //! @brief Get value of CSU_CSL24_NUR_S1 from a register value.
-#define BG_CSU_CSL24_NUR_S1(r)   (((r) & BM_CSU_CSL24_NUR_S1) >> BP_CSU_CSL24_NUR_S1)
+#define BG_CSU_CSL24_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NUR_S1) >> BP_CSU_CSL24_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NUR_S1.
-#define BF_CSU_CSL24_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_NUR_S1) & BM_CSU_CSL24_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NUR_S1.
-#define BF_CSU_CSL24_NUR_S1(v)   (((v) << BP_CSU_CSL24_NUR_S1) & BM_CSU_CSL24_NUR_S1)
-#endif
+#define BF_CSU_CSL24_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NUR_S1) & BM_CSU_CSL24_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -15409,15 +13300,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL24_NSR_S1.
 
 //! @brief Get value of CSU_CSL24_NSR_S1 from a register value.
-#define BG_CSU_CSL24_NSR_S1(r)   (((r) & BM_CSU_CSL24_NSR_S1) >> BP_CSU_CSL24_NSR_S1)
+#define BG_CSU_CSL24_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NSR_S1) >> BP_CSU_CSL24_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NSR_S1.
-#define BF_CSU_CSL24_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_NSR_S1) & BM_CSU_CSL24_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NSR_S1.
-#define BF_CSU_CSL24_NSR_S1(v)   (((v) << BP_CSU_CSL24_NSR_S1) & BM_CSU_CSL24_NSR_S1)
-#endif
+#define BF_CSU_CSL24_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NSR_S1) & BM_CSU_CSL24_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -15438,15 +13324,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL24_SUW_S1.
 
 //! @brief Get value of CSU_CSL24_SUW_S1 from a register value.
-#define BG_CSU_CSL24_SUW_S1(r)   (((r) & BM_CSU_CSL24_SUW_S1) >> BP_CSU_CSL24_SUW_S1)
+#define BG_CSU_CSL24_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SUW_S1) >> BP_CSU_CSL24_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SUW_S1.
-#define BF_CSU_CSL24_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_SUW_S1) & BM_CSU_CSL24_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SUW_S1.
-#define BF_CSU_CSL24_SUW_S1(v)   (((v) << BP_CSU_CSL24_SUW_S1) & BM_CSU_CSL24_SUW_S1)
-#endif
+#define BF_CSU_CSL24_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SUW_S1) & BM_CSU_CSL24_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -15467,15 +13348,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL24_SSW_S1.
 
 //! @brief Get value of CSU_CSL24_SSW_S1 from a register value.
-#define BG_CSU_CSL24_SSW_S1(r)   (((r) & BM_CSU_CSL24_SSW_S1) >> BP_CSU_CSL24_SSW_S1)
+#define BG_CSU_CSL24_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_SSW_S1) >> BP_CSU_CSL24_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_SSW_S1.
-#define BF_CSU_CSL24_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_SSW_S1) & BM_CSU_CSL24_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_SSW_S1.
-#define BF_CSU_CSL24_SSW_S1(v)   (((v) << BP_CSU_CSL24_SSW_S1) & BM_CSU_CSL24_SSW_S1)
-#endif
+#define BF_CSU_CSL24_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_SSW_S1) & BM_CSU_CSL24_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -15496,15 +13372,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL24_NUW_S1.
 
 //! @brief Get value of CSU_CSL24_NUW_S1 from a register value.
-#define BG_CSU_CSL24_NUW_S1(r)   (((r) & BM_CSU_CSL24_NUW_S1) >> BP_CSU_CSL24_NUW_S1)
+#define BG_CSU_CSL24_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NUW_S1) >> BP_CSU_CSL24_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NUW_S1.
-#define BF_CSU_CSL24_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_NUW_S1) & BM_CSU_CSL24_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NUW_S1.
-#define BF_CSU_CSL24_NUW_S1(v)   (((v) << BP_CSU_CSL24_NUW_S1) & BM_CSU_CSL24_NUW_S1)
-#endif
+#define BF_CSU_CSL24_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NUW_S1) & BM_CSU_CSL24_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -15525,15 +13396,10 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL24_NSW_S1.
 
 //! @brief Get value of CSU_CSL24_NSW_S1 from a register value.
-#define BG_CSU_CSL24_NSW_S1(r)   (((r) & BM_CSU_CSL24_NSW_S1) >> BP_CSU_CSL24_NSW_S1)
+#define BG_CSU_CSL24_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_NSW_S1) >> BP_CSU_CSL24_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_NSW_S1.
-#define BF_CSU_CSL24_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_NSW_S1) & BM_CSU_CSL24_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_NSW_S1.
-#define BF_CSU_CSL24_NSW_S1(v)   (((v) << BP_CSU_CSL24_NSW_S1) & BM_CSU_CSL24_NSW_S1)
-#endif
+#define BF_CSU_CSL24_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_NSW_S1) & BM_CSU_CSL24_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -15554,21 +13420,20 @@ typedef union _hw_csu_csl24
 #define BM_CSU_CSL24_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL24_LOCK_S1.
 
 //! @brief Get value of CSU_CSL24_LOCK_S1 from a register value.
-#define BG_CSU_CSL24_LOCK_S1(r)   (((r) & BM_CSU_CSL24_LOCK_S1) >> BP_CSU_CSL24_LOCK_S1)
+#define BG_CSU_CSL24_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL24_LOCK_S1) >> BP_CSU_CSL24_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL24_LOCK_S1.
-#define BF_CSU_CSL24_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL24_LOCK_S1) & BM_CSU_CSL24_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL24_LOCK_S1.
-#define BF_CSU_CSL24_LOCK_S1(v)   (((v) << BP_CSU_CSL24_LOCK_S1) & BM_CSU_CSL24_LOCK_S1)
-#endif
+#define BF_CSU_CSL24_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL24_LOCK_S1) & BM_CSU_CSL24_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL24_LOCK_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_LOCK_S1) | BF_CSU_CSL24_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL25 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15583,11 +13448,11 @@ typedef union _hw_csu_csl24
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -15599,7 +13464,7 @@ typedef union _hw_csu_csl24
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -15681,15 +13546,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL25_SUR_S2.
 
 //! @brief Get value of CSU_CSL25_SUR_S2 from a register value.
-#define BG_CSU_CSL25_SUR_S2(r)   (((r) & BM_CSU_CSL25_SUR_S2) >> BP_CSU_CSL25_SUR_S2)
+#define BG_CSU_CSL25_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SUR_S2) >> BP_CSU_CSL25_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SUR_S2.
-#define BF_CSU_CSL25_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_SUR_S2) & BM_CSU_CSL25_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SUR_S2.
-#define BF_CSU_CSL25_SUR_S2(v)   (((v) << BP_CSU_CSL25_SUR_S2) & BM_CSU_CSL25_SUR_S2)
-#endif
+#define BF_CSU_CSL25_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SUR_S2) & BM_CSU_CSL25_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -15710,15 +13570,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL25_SSR_S2.
 
 //! @brief Get value of CSU_CSL25_SSR_S2 from a register value.
-#define BG_CSU_CSL25_SSR_S2(r)   (((r) & BM_CSU_CSL25_SSR_S2) >> BP_CSU_CSL25_SSR_S2)
+#define BG_CSU_CSL25_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SSR_S2) >> BP_CSU_CSL25_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SSR_S2.
-#define BF_CSU_CSL25_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_SSR_S2) & BM_CSU_CSL25_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SSR_S2.
-#define BF_CSU_CSL25_SSR_S2(v)   (((v) << BP_CSU_CSL25_SSR_S2) & BM_CSU_CSL25_SSR_S2)
-#endif
+#define BF_CSU_CSL25_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SSR_S2) & BM_CSU_CSL25_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -15739,15 +13594,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL25_NUR_S2.
 
 //! @brief Get value of CSU_CSL25_NUR_S2 from a register value.
-#define BG_CSU_CSL25_NUR_S2(r)   (((r) & BM_CSU_CSL25_NUR_S2) >> BP_CSU_CSL25_NUR_S2)
+#define BG_CSU_CSL25_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NUR_S2) >> BP_CSU_CSL25_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NUR_S2.
-#define BF_CSU_CSL25_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_NUR_S2) & BM_CSU_CSL25_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NUR_S2.
-#define BF_CSU_CSL25_NUR_S2(v)   (((v) << BP_CSU_CSL25_NUR_S2) & BM_CSU_CSL25_NUR_S2)
-#endif
+#define BF_CSU_CSL25_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NUR_S2) & BM_CSU_CSL25_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -15768,15 +13618,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL25_NSR_S2.
 
 //! @brief Get value of CSU_CSL25_NSR_S2 from a register value.
-#define BG_CSU_CSL25_NSR_S2(r)   (((r) & BM_CSU_CSL25_NSR_S2) >> BP_CSU_CSL25_NSR_S2)
+#define BG_CSU_CSL25_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NSR_S2) >> BP_CSU_CSL25_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NSR_S2.
-#define BF_CSU_CSL25_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_NSR_S2) & BM_CSU_CSL25_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NSR_S2.
-#define BF_CSU_CSL25_NSR_S2(v)   (((v) << BP_CSU_CSL25_NSR_S2) & BM_CSU_CSL25_NSR_S2)
-#endif
+#define BF_CSU_CSL25_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NSR_S2) & BM_CSU_CSL25_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -15797,15 +13642,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL25_SUW_S2.
 
 //! @brief Get value of CSU_CSL25_SUW_S2 from a register value.
-#define BG_CSU_CSL25_SUW_S2(r)   (((r) & BM_CSU_CSL25_SUW_S2) >> BP_CSU_CSL25_SUW_S2)
+#define BG_CSU_CSL25_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SUW_S2) >> BP_CSU_CSL25_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SUW_S2.
-#define BF_CSU_CSL25_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_SUW_S2) & BM_CSU_CSL25_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SUW_S2.
-#define BF_CSU_CSL25_SUW_S2(v)   (((v) << BP_CSU_CSL25_SUW_S2) & BM_CSU_CSL25_SUW_S2)
-#endif
+#define BF_CSU_CSL25_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SUW_S2) & BM_CSU_CSL25_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -15826,15 +13666,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL25_SSW_S2.
 
 //! @brief Get value of CSU_CSL25_SSW_S2 from a register value.
-#define BG_CSU_CSL25_SSW_S2(r)   (((r) & BM_CSU_CSL25_SSW_S2) >> BP_CSU_CSL25_SSW_S2)
+#define BG_CSU_CSL25_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SSW_S2) >> BP_CSU_CSL25_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SSW_S2.
-#define BF_CSU_CSL25_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_SSW_S2) & BM_CSU_CSL25_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SSW_S2.
-#define BF_CSU_CSL25_SSW_S2(v)   (((v) << BP_CSU_CSL25_SSW_S2) & BM_CSU_CSL25_SSW_S2)
-#endif
+#define BF_CSU_CSL25_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SSW_S2) & BM_CSU_CSL25_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -15855,15 +13690,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL25_NUW_S2.
 
 //! @brief Get value of CSU_CSL25_NUW_S2 from a register value.
-#define BG_CSU_CSL25_NUW_S2(r)   (((r) & BM_CSU_CSL25_NUW_S2) >> BP_CSU_CSL25_NUW_S2)
+#define BG_CSU_CSL25_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NUW_S2) >> BP_CSU_CSL25_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NUW_S2.
-#define BF_CSU_CSL25_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_NUW_S2) & BM_CSU_CSL25_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NUW_S2.
-#define BF_CSU_CSL25_NUW_S2(v)   (((v) << BP_CSU_CSL25_NUW_S2) & BM_CSU_CSL25_NUW_S2)
-#endif
+#define BF_CSU_CSL25_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NUW_S2) & BM_CSU_CSL25_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -15884,15 +13714,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL25_NSW_S2.
 
 //! @brief Get value of CSU_CSL25_NSW_S2 from a register value.
-#define BG_CSU_CSL25_NSW_S2(r)   (((r) & BM_CSU_CSL25_NSW_S2) >> BP_CSU_CSL25_NSW_S2)
+#define BG_CSU_CSL25_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NSW_S2) >> BP_CSU_CSL25_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NSW_S2.
-#define BF_CSU_CSL25_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_NSW_S2) & BM_CSU_CSL25_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NSW_S2.
-#define BF_CSU_CSL25_NSW_S2(v)   (((v) << BP_CSU_CSL25_NSW_S2) & BM_CSU_CSL25_NSW_S2)
-#endif
+#define BF_CSU_CSL25_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NSW_S2) & BM_CSU_CSL25_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -15913,15 +13738,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL25_LOCK_S2.
 
 //! @brief Get value of CSU_CSL25_LOCK_S2 from a register value.
-#define BG_CSU_CSL25_LOCK_S2(r)   (((r) & BM_CSU_CSL25_LOCK_S2) >> BP_CSU_CSL25_LOCK_S2)
+#define BG_CSU_CSL25_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_LOCK_S2) >> BP_CSU_CSL25_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_LOCK_S2.
-#define BF_CSU_CSL25_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL25_LOCK_S2) & BM_CSU_CSL25_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL25_LOCK_S2.
-#define BF_CSU_CSL25_LOCK_S2(v)   (((v) << BP_CSU_CSL25_LOCK_S2) & BM_CSU_CSL25_LOCK_S2)
-#endif
+#define BF_CSU_CSL25_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_LOCK_S2) & BM_CSU_CSL25_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -15942,15 +13762,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL25_SUR_S1.
 
 //! @brief Get value of CSU_CSL25_SUR_S1 from a register value.
-#define BG_CSU_CSL25_SUR_S1(r)   (((r) & BM_CSU_CSL25_SUR_S1) >> BP_CSU_CSL25_SUR_S1)
+#define BG_CSU_CSL25_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SUR_S1) >> BP_CSU_CSL25_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SUR_S1.
-#define BF_CSU_CSL25_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_SUR_S1) & BM_CSU_CSL25_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SUR_S1.
-#define BF_CSU_CSL25_SUR_S1(v)   (((v) << BP_CSU_CSL25_SUR_S1) & BM_CSU_CSL25_SUR_S1)
-#endif
+#define BF_CSU_CSL25_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SUR_S1) & BM_CSU_CSL25_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -15971,15 +13786,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL25_SSR_S1.
 
 //! @brief Get value of CSU_CSL25_SSR_S1 from a register value.
-#define BG_CSU_CSL25_SSR_S1(r)   (((r) & BM_CSU_CSL25_SSR_S1) >> BP_CSU_CSL25_SSR_S1)
+#define BG_CSU_CSL25_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SSR_S1) >> BP_CSU_CSL25_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SSR_S1.
-#define BF_CSU_CSL25_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_SSR_S1) & BM_CSU_CSL25_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SSR_S1.
-#define BF_CSU_CSL25_SSR_S1(v)   (((v) << BP_CSU_CSL25_SSR_S1) & BM_CSU_CSL25_SSR_S1)
-#endif
+#define BF_CSU_CSL25_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SSR_S1) & BM_CSU_CSL25_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -16000,15 +13810,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL25_NUR_S1.
 
 //! @brief Get value of CSU_CSL25_NUR_S1 from a register value.
-#define BG_CSU_CSL25_NUR_S1(r)   (((r) & BM_CSU_CSL25_NUR_S1) >> BP_CSU_CSL25_NUR_S1)
+#define BG_CSU_CSL25_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NUR_S1) >> BP_CSU_CSL25_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NUR_S1.
-#define BF_CSU_CSL25_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_NUR_S1) & BM_CSU_CSL25_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NUR_S1.
-#define BF_CSU_CSL25_NUR_S1(v)   (((v) << BP_CSU_CSL25_NUR_S1) & BM_CSU_CSL25_NUR_S1)
-#endif
+#define BF_CSU_CSL25_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NUR_S1) & BM_CSU_CSL25_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -16029,15 +13834,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL25_NSR_S1.
 
 //! @brief Get value of CSU_CSL25_NSR_S1 from a register value.
-#define BG_CSU_CSL25_NSR_S1(r)   (((r) & BM_CSU_CSL25_NSR_S1) >> BP_CSU_CSL25_NSR_S1)
+#define BG_CSU_CSL25_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NSR_S1) >> BP_CSU_CSL25_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NSR_S1.
-#define BF_CSU_CSL25_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_NSR_S1) & BM_CSU_CSL25_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NSR_S1.
-#define BF_CSU_CSL25_NSR_S1(v)   (((v) << BP_CSU_CSL25_NSR_S1) & BM_CSU_CSL25_NSR_S1)
-#endif
+#define BF_CSU_CSL25_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NSR_S1) & BM_CSU_CSL25_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -16058,15 +13858,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL25_SUW_S1.
 
 //! @brief Get value of CSU_CSL25_SUW_S1 from a register value.
-#define BG_CSU_CSL25_SUW_S1(r)   (((r) & BM_CSU_CSL25_SUW_S1) >> BP_CSU_CSL25_SUW_S1)
+#define BG_CSU_CSL25_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SUW_S1) >> BP_CSU_CSL25_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SUW_S1.
-#define BF_CSU_CSL25_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_SUW_S1) & BM_CSU_CSL25_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SUW_S1.
-#define BF_CSU_CSL25_SUW_S1(v)   (((v) << BP_CSU_CSL25_SUW_S1) & BM_CSU_CSL25_SUW_S1)
-#endif
+#define BF_CSU_CSL25_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SUW_S1) & BM_CSU_CSL25_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -16087,15 +13882,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL25_SSW_S1.
 
 //! @brief Get value of CSU_CSL25_SSW_S1 from a register value.
-#define BG_CSU_CSL25_SSW_S1(r)   (((r) & BM_CSU_CSL25_SSW_S1) >> BP_CSU_CSL25_SSW_S1)
+#define BG_CSU_CSL25_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_SSW_S1) >> BP_CSU_CSL25_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_SSW_S1.
-#define BF_CSU_CSL25_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_SSW_S1) & BM_CSU_CSL25_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_SSW_S1.
-#define BF_CSU_CSL25_SSW_S1(v)   (((v) << BP_CSU_CSL25_SSW_S1) & BM_CSU_CSL25_SSW_S1)
-#endif
+#define BF_CSU_CSL25_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_SSW_S1) & BM_CSU_CSL25_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -16116,15 +13906,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL25_NUW_S1.
 
 //! @brief Get value of CSU_CSL25_NUW_S1 from a register value.
-#define BG_CSU_CSL25_NUW_S1(r)   (((r) & BM_CSU_CSL25_NUW_S1) >> BP_CSU_CSL25_NUW_S1)
+#define BG_CSU_CSL25_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NUW_S1) >> BP_CSU_CSL25_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NUW_S1.
-#define BF_CSU_CSL25_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_NUW_S1) & BM_CSU_CSL25_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NUW_S1.
-#define BF_CSU_CSL25_NUW_S1(v)   (((v) << BP_CSU_CSL25_NUW_S1) & BM_CSU_CSL25_NUW_S1)
-#endif
+#define BF_CSU_CSL25_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NUW_S1) & BM_CSU_CSL25_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -16145,15 +13930,10 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL25_NSW_S1.
 
 //! @brief Get value of CSU_CSL25_NSW_S1 from a register value.
-#define BG_CSU_CSL25_NSW_S1(r)   (((r) & BM_CSU_CSL25_NSW_S1) >> BP_CSU_CSL25_NSW_S1)
+#define BG_CSU_CSL25_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_NSW_S1) >> BP_CSU_CSL25_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_NSW_S1.
-#define BF_CSU_CSL25_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_NSW_S1) & BM_CSU_CSL25_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_NSW_S1.
-#define BF_CSU_CSL25_NSW_S1(v)   (((v) << BP_CSU_CSL25_NSW_S1) & BM_CSU_CSL25_NSW_S1)
-#endif
+#define BF_CSU_CSL25_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_NSW_S1) & BM_CSU_CSL25_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -16174,21 +13954,20 @@ typedef union _hw_csu_csl25
 #define BM_CSU_CSL25_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL25_LOCK_S1.
 
 //! @brief Get value of CSU_CSL25_LOCK_S1 from a register value.
-#define BG_CSU_CSL25_LOCK_S1(r)   (((r) & BM_CSU_CSL25_LOCK_S1) >> BP_CSU_CSL25_LOCK_S1)
+#define BG_CSU_CSL25_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL25_LOCK_S1) >> BP_CSU_CSL25_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL25_LOCK_S1.
-#define BF_CSU_CSL25_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL25_LOCK_S1) & BM_CSU_CSL25_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL25_LOCK_S1.
-#define BF_CSU_CSL25_LOCK_S1(v)   (((v) << BP_CSU_CSL25_LOCK_S1) & BM_CSU_CSL25_LOCK_S1)
-#endif
+#define BF_CSU_CSL25_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL25_LOCK_S1) & BM_CSU_CSL25_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL25_LOCK_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_LOCK_S1) | BF_CSU_CSL25_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL26 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16203,11 +13982,11 @@ typedef union _hw_csu_csl25
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -16219,7 +13998,7 @@ typedef union _hw_csu_csl25
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -16301,15 +14080,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL26_SUR_S2.
 
 //! @brief Get value of CSU_CSL26_SUR_S2 from a register value.
-#define BG_CSU_CSL26_SUR_S2(r)   (((r) & BM_CSU_CSL26_SUR_S2) >> BP_CSU_CSL26_SUR_S2)
+#define BG_CSU_CSL26_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SUR_S2) >> BP_CSU_CSL26_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SUR_S2.
-#define BF_CSU_CSL26_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_SUR_S2) & BM_CSU_CSL26_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SUR_S2.
-#define BF_CSU_CSL26_SUR_S2(v)   (((v) << BP_CSU_CSL26_SUR_S2) & BM_CSU_CSL26_SUR_S2)
-#endif
+#define BF_CSU_CSL26_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SUR_S2) & BM_CSU_CSL26_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -16330,15 +14104,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL26_SSR_S2.
 
 //! @brief Get value of CSU_CSL26_SSR_S2 from a register value.
-#define BG_CSU_CSL26_SSR_S2(r)   (((r) & BM_CSU_CSL26_SSR_S2) >> BP_CSU_CSL26_SSR_S2)
+#define BG_CSU_CSL26_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SSR_S2) >> BP_CSU_CSL26_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SSR_S2.
-#define BF_CSU_CSL26_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_SSR_S2) & BM_CSU_CSL26_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SSR_S2.
-#define BF_CSU_CSL26_SSR_S2(v)   (((v) << BP_CSU_CSL26_SSR_S2) & BM_CSU_CSL26_SSR_S2)
-#endif
+#define BF_CSU_CSL26_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SSR_S2) & BM_CSU_CSL26_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -16359,15 +14128,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL26_NUR_S2.
 
 //! @brief Get value of CSU_CSL26_NUR_S2 from a register value.
-#define BG_CSU_CSL26_NUR_S2(r)   (((r) & BM_CSU_CSL26_NUR_S2) >> BP_CSU_CSL26_NUR_S2)
+#define BG_CSU_CSL26_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NUR_S2) >> BP_CSU_CSL26_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NUR_S2.
-#define BF_CSU_CSL26_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_NUR_S2) & BM_CSU_CSL26_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NUR_S2.
-#define BF_CSU_CSL26_NUR_S2(v)   (((v) << BP_CSU_CSL26_NUR_S2) & BM_CSU_CSL26_NUR_S2)
-#endif
+#define BF_CSU_CSL26_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NUR_S2) & BM_CSU_CSL26_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -16388,15 +14152,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL26_NSR_S2.
 
 //! @brief Get value of CSU_CSL26_NSR_S2 from a register value.
-#define BG_CSU_CSL26_NSR_S2(r)   (((r) & BM_CSU_CSL26_NSR_S2) >> BP_CSU_CSL26_NSR_S2)
+#define BG_CSU_CSL26_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NSR_S2) >> BP_CSU_CSL26_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NSR_S2.
-#define BF_CSU_CSL26_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_NSR_S2) & BM_CSU_CSL26_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NSR_S2.
-#define BF_CSU_CSL26_NSR_S2(v)   (((v) << BP_CSU_CSL26_NSR_S2) & BM_CSU_CSL26_NSR_S2)
-#endif
+#define BF_CSU_CSL26_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NSR_S2) & BM_CSU_CSL26_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -16417,15 +14176,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL26_SUW_S2.
 
 //! @brief Get value of CSU_CSL26_SUW_S2 from a register value.
-#define BG_CSU_CSL26_SUW_S2(r)   (((r) & BM_CSU_CSL26_SUW_S2) >> BP_CSU_CSL26_SUW_S2)
+#define BG_CSU_CSL26_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SUW_S2) >> BP_CSU_CSL26_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SUW_S2.
-#define BF_CSU_CSL26_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_SUW_S2) & BM_CSU_CSL26_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SUW_S2.
-#define BF_CSU_CSL26_SUW_S2(v)   (((v) << BP_CSU_CSL26_SUW_S2) & BM_CSU_CSL26_SUW_S2)
-#endif
+#define BF_CSU_CSL26_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SUW_S2) & BM_CSU_CSL26_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -16446,15 +14200,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL26_SSW_S2.
 
 //! @brief Get value of CSU_CSL26_SSW_S2 from a register value.
-#define BG_CSU_CSL26_SSW_S2(r)   (((r) & BM_CSU_CSL26_SSW_S2) >> BP_CSU_CSL26_SSW_S2)
+#define BG_CSU_CSL26_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SSW_S2) >> BP_CSU_CSL26_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SSW_S2.
-#define BF_CSU_CSL26_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_SSW_S2) & BM_CSU_CSL26_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SSW_S2.
-#define BF_CSU_CSL26_SSW_S2(v)   (((v) << BP_CSU_CSL26_SSW_S2) & BM_CSU_CSL26_SSW_S2)
-#endif
+#define BF_CSU_CSL26_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SSW_S2) & BM_CSU_CSL26_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -16475,15 +14224,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL26_NUW_S2.
 
 //! @brief Get value of CSU_CSL26_NUW_S2 from a register value.
-#define BG_CSU_CSL26_NUW_S2(r)   (((r) & BM_CSU_CSL26_NUW_S2) >> BP_CSU_CSL26_NUW_S2)
+#define BG_CSU_CSL26_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NUW_S2) >> BP_CSU_CSL26_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NUW_S2.
-#define BF_CSU_CSL26_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_NUW_S2) & BM_CSU_CSL26_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NUW_S2.
-#define BF_CSU_CSL26_NUW_S2(v)   (((v) << BP_CSU_CSL26_NUW_S2) & BM_CSU_CSL26_NUW_S2)
-#endif
+#define BF_CSU_CSL26_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NUW_S2) & BM_CSU_CSL26_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -16504,15 +14248,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL26_NSW_S2.
 
 //! @brief Get value of CSU_CSL26_NSW_S2 from a register value.
-#define BG_CSU_CSL26_NSW_S2(r)   (((r) & BM_CSU_CSL26_NSW_S2) >> BP_CSU_CSL26_NSW_S2)
+#define BG_CSU_CSL26_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NSW_S2) >> BP_CSU_CSL26_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NSW_S2.
-#define BF_CSU_CSL26_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_NSW_S2) & BM_CSU_CSL26_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NSW_S2.
-#define BF_CSU_CSL26_NSW_S2(v)   (((v) << BP_CSU_CSL26_NSW_S2) & BM_CSU_CSL26_NSW_S2)
-#endif
+#define BF_CSU_CSL26_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NSW_S2) & BM_CSU_CSL26_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -16533,15 +14272,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL26_LOCK_S2.
 
 //! @brief Get value of CSU_CSL26_LOCK_S2 from a register value.
-#define BG_CSU_CSL26_LOCK_S2(r)   (((r) & BM_CSU_CSL26_LOCK_S2) >> BP_CSU_CSL26_LOCK_S2)
+#define BG_CSU_CSL26_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_LOCK_S2) >> BP_CSU_CSL26_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_LOCK_S2.
-#define BF_CSU_CSL26_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL26_LOCK_S2) & BM_CSU_CSL26_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL26_LOCK_S2.
-#define BF_CSU_CSL26_LOCK_S2(v)   (((v) << BP_CSU_CSL26_LOCK_S2) & BM_CSU_CSL26_LOCK_S2)
-#endif
+#define BF_CSU_CSL26_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_LOCK_S2) & BM_CSU_CSL26_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -16562,15 +14296,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL26_SUR_S1.
 
 //! @brief Get value of CSU_CSL26_SUR_S1 from a register value.
-#define BG_CSU_CSL26_SUR_S1(r)   (((r) & BM_CSU_CSL26_SUR_S1) >> BP_CSU_CSL26_SUR_S1)
+#define BG_CSU_CSL26_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SUR_S1) >> BP_CSU_CSL26_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SUR_S1.
-#define BF_CSU_CSL26_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_SUR_S1) & BM_CSU_CSL26_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SUR_S1.
-#define BF_CSU_CSL26_SUR_S1(v)   (((v) << BP_CSU_CSL26_SUR_S1) & BM_CSU_CSL26_SUR_S1)
-#endif
+#define BF_CSU_CSL26_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SUR_S1) & BM_CSU_CSL26_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -16591,15 +14320,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL26_SSR_S1.
 
 //! @brief Get value of CSU_CSL26_SSR_S1 from a register value.
-#define BG_CSU_CSL26_SSR_S1(r)   (((r) & BM_CSU_CSL26_SSR_S1) >> BP_CSU_CSL26_SSR_S1)
+#define BG_CSU_CSL26_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SSR_S1) >> BP_CSU_CSL26_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SSR_S1.
-#define BF_CSU_CSL26_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_SSR_S1) & BM_CSU_CSL26_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SSR_S1.
-#define BF_CSU_CSL26_SSR_S1(v)   (((v) << BP_CSU_CSL26_SSR_S1) & BM_CSU_CSL26_SSR_S1)
-#endif
+#define BF_CSU_CSL26_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SSR_S1) & BM_CSU_CSL26_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -16620,15 +14344,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL26_NUR_S1.
 
 //! @brief Get value of CSU_CSL26_NUR_S1 from a register value.
-#define BG_CSU_CSL26_NUR_S1(r)   (((r) & BM_CSU_CSL26_NUR_S1) >> BP_CSU_CSL26_NUR_S1)
+#define BG_CSU_CSL26_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NUR_S1) >> BP_CSU_CSL26_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NUR_S1.
-#define BF_CSU_CSL26_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_NUR_S1) & BM_CSU_CSL26_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NUR_S1.
-#define BF_CSU_CSL26_NUR_S1(v)   (((v) << BP_CSU_CSL26_NUR_S1) & BM_CSU_CSL26_NUR_S1)
-#endif
+#define BF_CSU_CSL26_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NUR_S1) & BM_CSU_CSL26_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -16649,15 +14368,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL26_NSR_S1.
 
 //! @brief Get value of CSU_CSL26_NSR_S1 from a register value.
-#define BG_CSU_CSL26_NSR_S1(r)   (((r) & BM_CSU_CSL26_NSR_S1) >> BP_CSU_CSL26_NSR_S1)
+#define BG_CSU_CSL26_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NSR_S1) >> BP_CSU_CSL26_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NSR_S1.
-#define BF_CSU_CSL26_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_NSR_S1) & BM_CSU_CSL26_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NSR_S1.
-#define BF_CSU_CSL26_NSR_S1(v)   (((v) << BP_CSU_CSL26_NSR_S1) & BM_CSU_CSL26_NSR_S1)
-#endif
+#define BF_CSU_CSL26_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NSR_S1) & BM_CSU_CSL26_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -16678,15 +14392,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL26_SUW_S1.
 
 //! @brief Get value of CSU_CSL26_SUW_S1 from a register value.
-#define BG_CSU_CSL26_SUW_S1(r)   (((r) & BM_CSU_CSL26_SUW_S1) >> BP_CSU_CSL26_SUW_S1)
+#define BG_CSU_CSL26_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SUW_S1) >> BP_CSU_CSL26_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SUW_S1.
-#define BF_CSU_CSL26_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_SUW_S1) & BM_CSU_CSL26_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SUW_S1.
-#define BF_CSU_CSL26_SUW_S1(v)   (((v) << BP_CSU_CSL26_SUW_S1) & BM_CSU_CSL26_SUW_S1)
-#endif
+#define BF_CSU_CSL26_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SUW_S1) & BM_CSU_CSL26_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -16707,15 +14416,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL26_SSW_S1.
 
 //! @brief Get value of CSU_CSL26_SSW_S1 from a register value.
-#define BG_CSU_CSL26_SSW_S1(r)   (((r) & BM_CSU_CSL26_SSW_S1) >> BP_CSU_CSL26_SSW_S1)
+#define BG_CSU_CSL26_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_SSW_S1) >> BP_CSU_CSL26_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_SSW_S1.
-#define BF_CSU_CSL26_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_SSW_S1) & BM_CSU_CSL26_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_SSW_S1.
-#define BF_CSU_CSL26_SSW_S1(v)   (((v) << BP_CSU_CSL26_SSW_S1) & BM_CSU_CSL26_SSW_S1)
-#endif
+#define BF_CSU_CSL26_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_SSW_S1) & BM_CSU_CSL26_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -16736,15 +14440,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL26_NUW_S1.
 
 //! @brief Get value of CSU_CSL26_NUW_S1 from a register value.
-#define BG_CSU_CSL26_NUW_S1(r)   (((r) & BM_CSU_CSL26_NUW_S1) >> BP_CSU_CSL26_NUW_S1)
+#define BG_CSU_CSL26_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NUW_S1) >> BP_CSU_CSL26_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NUW_S1.
-#define BF_CSU_CSL26_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_NUW_S1) & BM_CSU_CSL26_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NUW_S1.
-#define BF_CSU_CSL26_NUW_S1(v)   (((v) << BP_CSU_CSL26_NUW_S1) & BM_CSU_CSL26_NUW_S1)
-#endif
+#define BF_CSU_CSL26_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NUW_S1) & BM_CSU_CSL26_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -16765,15 +14464,10 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL26_NSW_S1.
 
 //! @brief Get value of CSU_CSL26_NSW_S1 from a register value.
-#define BG_CSU_CSL26_NSW_S1(r)   (((r) & BM_CSU_CSL26_NSW_S1) >> BP_CSU_CSL26_NSW_S1)
+#define BG_CSU_CSL26_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_NSW_S1) >> BP_CSU_CSL26_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_NSW_S1.
-#define BF_CSU_CSL26_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_NSW_S1) & BM_CSU_CSL26_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_NSW_S1.
-#define BF_CSU_CSL26_NSW_S1(v)   (((v) << BP_CSU_CSL26_NSW_S1) & BM_CSU_CSL26_NSW_S1)
-#endif
+#define BF_CSU_CSL26_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_NSW_S1) & BM_CSU_CSL26_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -16794,21 +14488,20 @@ typedef union _hw_csu_csl26
 #define BM_CSU_CSL26_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL26_LOCK_S1.
 
 //! @brief Get value of CSU_CSL26_LOCK_S1 from a register value.
-#define BG_CSU_CSL26_LOCK_S1(r)   (((r) & BM_CSU_CSL26_LOCK_S1) >> BP_CSU_CSL26_LOCK_S1)
+#define BG_CSU_CSL26_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL26_LOCK_S1) >> BP_CSU_CSL26_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL26_LOCK_S1.
-#define BF_CSU_CSL26_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL26_LOCK_S1) & BM_CSU_CSL26_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL26_LOCK_S1.
-#define BF_CSU_CSL26_LOCK_S1(v)   (((v) << BP_CSU_CSL26_LOCK_S1) & BM_CSU_CSL26_LOCK_S1)
-#endif
+#define BF_CSU_CSL26_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL26_LOCK_S1) & BM_CSU_CSL26_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL26_LOCK_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_LOCK_S1) | BF_CSU_CSL26_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL27 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16823,11 +14516,11 @@ typedef union _hw_csu_csl26
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -16839,7 +14532,7 @@ typedef union _hw_csu_csl26
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -16921,15 +14614,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL27_SUR_S2.
 
 //! @brief Get value of CSU_CSL27_SUR_S2 from a register value.
-#define BG_CSU_CSL27_SUR_S2(r)   (((r) & BM_CSU_CSL27_SUR_S2) >> BP_CSU_CSL27_SUR_S2)
+#define BG_CSU_CSL27_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SUR_S2) >> BP_CSU_CSL27_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SUR_S2.
-#define BF_CSU_CSL27_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_SUR_S2) & BM_CSU_CSL27_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SUR_S2.
-#define BF_CSU_CSL27_SUR_S2(v)   (((v) << BP_CSU_CSL27_SUR_S2) & BM_CSU_CSL27_SUR_S2)
-#endif
+#define BF_CSU_CSL27_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SUR_S2) & BM_CSU_CSL27_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -16950,15 +14638,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL27_SSR_S2.
 
 //! @brief Get value of CSU_CSL27_SSR_S2 from a register value.
-#define BG_CSU_CSL27_SSR_S2(r)   (((r) & BM_CSU_CSL27_SSR_S2) >> BP_CSU_CSL27_SSR_S2)
+#define BG_CSU_CSL27_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SSR_S2) >> BP_CSU_CSL27_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SSR_S2.
-#define BF_CSU_CSL27_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_SSR_S2) & BM_CSU_CSL27_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SSR_S2.
-#define BF_CSU_CSL27_SSR_S2(v)   (((v) << BP_CSU_CSL27_SSR_S2) & BM_CSU_CSL27_SSR_S2)
-#endif
+#define BF_CSU_CSL27_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SSR_S2) & BM_CSU_CSL27_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -16979,15 +14662,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL27_NUR_S2.
 
 //! @brief Get value of CSU_CSL27_NUR_S2 from a register value.
-#define BG_CSU_CSL27_NUR_S2(r)   (((r) & BM_CSU_CSL27_NUR_S2) >> BP_CSU_CSL27_NUR_S2)
+#define BG_CSU_CSL27_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NUR_S2) >> BP_CSU_CSL27_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NUR_S2.
-#define BF_CSU_CSL27_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_NUR_S2) & BM_CSU_CSL27_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NUR_S2.
-#define BF_CSU_CSL27_NUR_S2(v)   (((v) << BP_CSU_CSL27_NUR_S2) & BM_CSU_CSL27_NUR_S2)
-#endif
+#define BF_CSU_CSL27_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NUR_S2) & BM_CSU_CSL27_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -17008,15 +14686,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL27_NSR_S2.
 
 //! @brief Get value of CSU_CSL27_NSR_S2 from a register value.
-#define BG_CSU_CSL27_NSR_S2(r)   (((r) & BM_CSU_CSL27_NSR_S2) >> BP_CSU_CSL27_NSR_S2)
+#define BG_CSU_CSL27_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NSR_S2) >> BP_CSU_CSL27_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NSR_S2.
-#define BF_CSU_CSL27_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_NSR_S2) & BM_CSU_CSL27_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NSR_S2.
-#define BF_CSU_CSL27_NSR_S2(v)   (((v) << BP_CSU_CSL27_NSR_S2) & BM_CSU_CSL27_NSR_S2)
-#endif
+#define BF_CSU_CSL27_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NSR_S2) & BM_CSU_CSL27_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -17037,15 +14710,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL27_SUW_S2.
 
 //! @brief Get value of CSU_CSL27_SUW_S2 from a register value.
-#define BG_CSU_CSL27_SUW_S2(r)   (((r) & BM_CSU_CSL27_SUW_S2) >> BP_CSU_CSL27_SUW_S2)
+#define BG_CSU_CSL27_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SUW_S2) >> BP_CSU_CSL27_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SUW_S2.
-#define BF_CSU_CSL27_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_SUW_S2) & BM_CSU_CSL27_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SUW_S2.
-#define BF_CSU_CSL27_SUW_S2(v)   (((v) << BP_CSU_CSL27_SUW_S2) & BM_CSU_CSL27_SUW_S2)
-#endif
+#define BF_CSU_CSL27_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SUW_S2) & BM_CSU_CSL27_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -17066,15 +14734,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL27_SSW_S2.
 
 //! @brief Get value of CSU_CSL27_SSW_S2 from a register value.
-#define BG_CSU_CSL27_SSW_S2(r)   (((r) & BM_CSU_CSL27_SSW_S2) >> BP_CSU_CSL27_SSW_S2)
+#define BG_CSU_CSL27_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SSW_S2) >> BP_CSU_CSL27_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SSW_S2.
-#define BF_CSU_CSL27_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_SSW_S2) & BM_CSU_CSL27_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SSW_S2.
-#define BF_CSU_CSL27_SSW_S2(v)   (((v) << BP_CSU_CSL27_SSW_S2) & BM_CSU_CSL27_SSW_S2)
-#endif
+#define BF_CSU_CSL27_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SSW_S2) & BM_CSU_CSL27_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -17095,15 +14758,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL27_NUW_S2.
 
 //! @brief Get value of CSU_CSL27_NUW_S2 from a register value.
-#define BG_CSU_CSL27_NUW_S2(r)   (((r) & BM_CSU_CSL27_NUW_S2) >> BP_CSU_CSL27_NUW_S2)
+#define BG_CSU_CSL27_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NUW_S2) >> BP_CSU_CSL27_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NUW_S2.
-#define BF_CSU_CSL27_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_NUW_S2) & BM_CSU_CSL27_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NUW_S2.
-#define BF_CSU_CSL27_NUW_S2(v)   (((v) << BP_CSU_CSL27_NUW_S2) & BM_CSU_CSL27_NUW_S2)
-#endif
+#define BF_CSU_CSL27_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NUW_S2) & BM_CSU_CSL27_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -17124,15 +14782,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL27_NSW_S2.
 
 //! @brief Get value of CSU_CSL27_NSW_S2 from a register value.
-#define BG_CSU_CSL27_NSW_S2(r)   (((r) & BM_CSU_CSL27_NSW_S2) >> BP_CSU_CSL27_NSW_S2)
+#define BG_CSU_CSL27_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NSW_S2) >> BP_CSU_CSL27_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NSW_S2.
-#define BF_CSU_CSL27_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_NSW_S2) & BM_CSU_CSL27_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NSW_S2.
-#define BF_CSU_CSL27_NSW_S2(v)   (((v) << BP_CSU_CSL27_NSW_S2) & BM_CSU_CSL27_NSW_S2)
-#endif
+#define BF_CSU_CSL27_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NSW_S2) & BM_CSU_CSL27_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -17153,15 +14806,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL27_LOCK_S2.
 
 //! @brief Get value of CSU_CSL27_LOCK_S2 from a register value.
-#define BG_CSU_CSL27_LOCK_S2(r)   (((r) & BM_CSU_CSL27_LOCK_S2) >> BP_CSU_CSL27_LOCK_S2)
+#define BG_CSU_CSL27_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_LOCK_S2) >> BP_CSU_CSL27_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_LOCK_S2.
-#define BF_CSU_CSL27_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL27_LOCK_S2) & BM_CSU_CSL27_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL27_LOCK_S2.
-#define BF_CSU_CSL27_LOCK_S2(v)   (((v) << BP_CSU_CSL27_LOCK_S2) & BM_CSU_CSL27_LOCK_S2)
-#endif
+#define BF_CSU_CSL27_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_LOCK_S2) & BM_CSU_CSL27_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -17182,15 +14830,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL27_SUR_S1.
 
 //! @brief Get value of CSU_CSL27_SUR_S1 from a register value.
-#define BG_CSU_CSL27_SUR_S1(r)   (((r) & BM_CSU_CSL27_SUR_S1) >> BP_CSU_CSL27_SUR_S1)
+#define BG_CSU_CSL27_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SUR_S1) >> BP_CSU_CSL27_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SUR_S1.
-#define BF_CSU_CSL27_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_SUR_S1) & BM_CSU_CSL27_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SUR_S1.
-#define BF_CSU_CSL27_SUR_S1(v)   (((v) << BP_CSU_CSL27_SUR_S1) & BM_CSU_CSL27_SUR_S1)
-#endif
+#define BF_CSU_CSL27_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SUR_S1) & BM_CSU_CSL27_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -17211,15 +14854,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL27_SSR_S1.
 
 //! @brief Get value of CSU_CSL27_SSR_S1 from a register value.
-#define BG_CSU_CSL27_SSR_S1(r)   (((r) & BM_CSU_CSL27_SSR_S1) >> BP_CSU_CSL27_SSR_S1)
+#define BG_CSU_CSL27_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SSR_S1) >> BP_CSU_CSL27_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SSR_S1.
-#define BF_CSU_CSL27_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_SSR_S1) & BM_CSU_CSL27_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SSR_S1.
-#define BF_CSU_CSL27_SSR_S1(v)   (((v) << BP_CSU_CSL27_SSR_S1) & BM_CSU_CSL27_SSR_S1)
-#endif
+#define BF_CSU_CSL27_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SSR_S1) & BM_CSU_CSL27_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -17240,15 +14878,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL27_NUR_S1.
 
 //! @brief Get value of CSU_CSL27_NUR_S1 from a register value.
-#define BG_CSU_CSL27_NUR_S1(r)   (((r) & BM_CSU_CSL27_NUR_S1) >> BP_CSU_CSL27_NUR_S1)
+#define BG_CSU_CSL27_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NUR_S1) >> BP_CSU_CSL27_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NUR_S1.
-#define BF_CSU_CSL27_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_NUR_S1) & BM_CSU_CSL27_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NUR_S1.
-#define BF_CSU_CSL27_NUR_S1(v)   (((v) << BP_CSU_CSL27_NUR_S1) & BM_CSU_CSL27_NUR_S1)
-#endif
+#define BF_CSU_CSL27_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NUR_S1) & BM_CSU_CSL27_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -17269,15 +14902,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL27_NSR_S1.
 
 //! @brief Get value of CSU_CSL27_NSR_S1 from a register value.
-#define BG_CSU_CSL27_NSR_S1(r)   (((r) & BM_CSU_CSL27_NSR_S1) >> BP_CSU_CSL27_NSR_S1)
+#define BG_CSU_CSL27_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NSR_S1) >> BP_CSU_CSL27_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NSR_S1.
-#define BF_CSU_CSL27_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_NSR_S1) & BM_CSU_CSL27_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NSR_S1.
-#define BF_CSU_CSL27_NSR_S1(v)   (((v) << BP_CSU_CSL27_NSR_S1) & BM_CSU_CSL27_NSR_S1)
-#endif
+#define BF_CSU_CSL27_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NSR_S1) & BM_CSU_CSL27_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -17298,15 +14926,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL27_SUW_S1.
 
 //! @brief Get value of CSU_CSL27_SUW_S1 from a register value.
-#define BG_CSU_CSL27_SUW_S1(r)   (((r) & BM_CSU_CSL27_SUW_S1) >> BP_CSU_CSL27_SUW_S1)
+#define BG_CSU_CSL27_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SUW_S1) >> BP_CSU_CSL27_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SUW_S1.
-#define BF_CSU_CSL27_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_SUW_S1) & BM_CSU_CSL27_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SUW_S1.
-#define BF_CSU_CSL27_SUW_S1(v)   (((v) << BP_CSU_CSL27_SUW_S1) & BM_CSU_CSL27_SUW_S1)
-#endif
+#define BF_CSU_CSL27_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SUW_S1) & BM_CSU_CSL27_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -17327,15 +14950,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL27_SSW_S1.
 
 //! @brief Get value of CSU_CSL27_SSW_S1 from a register value.
-#define BG_CSU_CSL27_SSW_S1(r)   (((r) & BM_CSU_CSL27_SSW_S1) >> BP_CSU_CSL27_SSW_S1)
+#define BG_CSU_CSL27_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_SSW_S1) >> BP_CSU_CSL27_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_SSW_S1.
-#define BF_CSU_CSL27_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_SSW_S1) & BM_CSU_CSL27_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_SSW_S1.
-#define BF_CSU_CSL27_SSW_S1(v)   (((v) << BP_CSU_CSL27_SSW_S1) & BM_CSU_CSL27_SSW_S1)
-#endif
+#define BF_CSU_CSL27_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_SSW_S1) & BM_CSU_CSL27_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -17356,15 +14974,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL27_NUW_S1.
 
 //! @brief Get value of CSU_CSL27_NUW_S1 from a register value.
-#define BG_CSU_CSL27_NUW_S1(r)   (((r) & BM_CSU_CSL27_NUW_S1) >> BP_CSU_CSL27_NUW_S1)
+#define BG_CSU_CSL27_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NUW_S1) >> BP_CSU_CSL27_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NUW_S1.
-#define BF_CSU_CSL27_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_NUW_S1) & BM_CSU_CSL27_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NUW_S1.
-#define BF_CSU_CSL27_NUW_S1(v)   (((v) << BP_CSU_CSL27_NUW_S1) & BM_CSU_CSL27_NUW_S1)
-#endif
+#define BF_CSU_CSL27_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NUW_S1) & BM_CSU_CSL27_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -17385,15 +14998,10 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL27_NSW_S1.
 
 //! @brief Get value of CSU_CSL27_NSW_S1 from a register value.
-#define BG_CSU_CSL27_NSW_S1(r)   (((r) & BM_CSU_CSL27_NSW_S1) >> BP_CSU_CSL27_NSW_S1)
+#define BG_CSU_CSL27_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_NSW_S1) >> BP_CSU_CSL27_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_NSW_S1.
-#define BF_CSU_CSL27_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_NSW_S1) & BM_CSU_CSL27_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_NSW_S1.
-#define BF_CSU_CSL27_NSW_S1(v)   (((v) << BP_CSU_CSL27_NSW_S1) & BM_CSU_CSL27_NSW_S1)
-#endif
+#define BF_CSU_CSL27_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_NSW_S1) & BM_CSU_CSL27_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -17414,21 +15022,20 @@ typedef union _hw_csu_csl27
 #define BM_CSU_CSL27_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL27_LOCK_S1.
 
 //! @brief Get value of CSU_CSL27_LOCK_S1 from a register value.
-#define BG_CSU_CSL27_LOCK_S1(r)   (((r) & BM_CSU_CSL27_LOCK_S1) >> BP_CSU_CSL27_LOCK_S1)
+#define BG_CSU_CSL27_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL27_LOCK_S1) >> BP_CSU_CSL27_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL27_LOCK_S1.
-#define BF_CSU_CSL27_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL27_LOCK_S1) & BM_CSU_CSL27_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL27_LOCK_S1.
-#define BF_CSU_CSL27_LOCK_S1(v)   (((v) << BP_CSU_CSL27_LOCK_S1) & BM_CSU_CSL27_LOCK_S1)
-#endif
+#define BF_CSU_CSL27_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL27_LOCK_S1) & BM_CSU_CSL27_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL27_LOCK_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_LOCK_S1) | BF_CSU_CSL27_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL28 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17443,11 +15050,11 @@ typedef union _hw_csu_csl27
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -17459,7 +15066,7 @@ typedef union _hw_csu_csl27
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -17541,15 +15148,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL28_SUR_S2.
 
 //! @brief Get value of CSU_CSL28_SUR_S2 from a register value.
-#define BG_CSU_CSL28_SUR_S2(r)   (((r) & BM_CSU_CSL28_SUR_S2) >> BP_CSU_CSL28_SUR_S2)
+#define BG_CSU_CSL28_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SUR_S2) >> BP_CSU_CSL28_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SUR_S2.
-#define BF_CSU_CSL28_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_SUR_S2) & BM_CSU_CSL28_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SUR_S2.
-#define BF_CSU_CSL28_SUR_S2(v)   (((v) << BP_CSU_CSL28_SUR_S2) & BM_CSU_CSL28_SUR_S2)
-#endif
+#define BF_CSU_CSL28_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SUR_S2) & BM_CSU_CSL28_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -17570,15 +15172,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL28_SSR_S2.
 
 //! @brief Get value of CSU_CSL28_SSR_S2 from a register value.
-#define BG_CSU_CSL28_SSR_S2(r)   (((r) & BM_CSU_CSL28_SSR_S2) >> BP_CSU_CSL28_SSR_S2)
+#define BG_CSU_CSL28_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SSR_S2) >> BP_CSU_CSL28_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SSR_S2.
-#define BF_CSU_CSL28_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_SSR_S2) & BM_CSU_CSL28_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SSR_S2.
-#define BF_CSU_CSL28_SSR_S2(v)   (((v) << BP_CSU_CSL28_SSR_S2) & BM_CSU_CSL28_SSR_S2)
-#endif
+#define BF_CSU_CSL28_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SSR_S2) & BM_CSU_CSL28_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -17599,15 +15196,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL28_NUR_S2.
 
 //! @brief Get value of CSU_CSL28_NUR_S2 from a register value.
-#define BG_CSU_CSL28_NUR_S2(r)   (((r) & BM_CSU_CSL28_NUR_S2) >> BP_CSU_CSL28_NUR_S2)
+#define BG_CSU_CSL28_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NUR_S2) >> BP_CSU_CSL28_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NUR_S2.
-#define BF_CSU_CSL28_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_NUR_S2) & BM_CSU_CSL28_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NUR_S2.
-#define BF_CSU_CSL28_NUR_S2(v)   (((v) << BP_CSU_CSL28_NUR_S2) & BM_CSU_CSL28_NUR_S2)
-#endif
+#define BF_CSU_CSL28_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NUR_S2) & BM_CSU_CSL28_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -17628,15 +15220,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL28_NSR_S2.
 
 //! @brief Get value of CSU_CSL28_NSR_S2 from a register value.
-#define BG_CSU_CSL28_NSR_S2(r)   (((r) & BM_CSU_CSL28_NSR_S2) >> BP_CSU_CSL28_NSR_S2)
+#define BG_CSU_CSL28_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NSR_S2) >> BP_CSU_CSL28_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NSR_S2.
-#define BF_CSU_CSL28_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_NSR_S2) & BM_CSU_CSL28_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NSR_S2.
-#define BF_CSU_CSL28_NSR_S2(v)   (((v) << BP_CSU_CSL28_NSR_S2) & BM_CSU_CSL28_NSR_S2)
-#endif
+#define BF_CSU_CSL28_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NSR_S2) & BM_CSU_CSL28_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -17657,15 +15244,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL28_SUW_S2.
 
 //! @brief Get value of CSU_CSL28_SUW_S2 from a register value.
-#define BG_CSU_CSL28_SUW_S2(r)   (((r) & BM_CSU_CSL28_SUW_S2) >> BP_CSU_CSL28_SUW_S2)
+#define BG_CSU_CSL28_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SUW_S2) >> BP_CSU_CSL28_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SUW_S2.
-#define BF_CSU_CSL28_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_SUW_S2) & BM_CSU_CSL28_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SUW_S2.
-#define BF_CSU_CSL28_SUW_S2(v)   (((v) << BP_CSU_CSL28_SUW_S2) & BM_CSU_CSL28_SUW_S2)
-#endif
+#define BF_CSU_CSL28_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SUW_S2) & BM_CSU_CSL28_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -17686,15 +15268,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL28_SSW_S2.
 
 //! @brief Get value of CSU_CSL28_SSW_S2 from a register value.
-#define BG_CSU_CSL28_SSW_S2(r)   (((r) & BM_CSU_CSL28_SSW_S2) >> BP_CSU_CSL28_SSW_S2)
+#define BG_CSU_CSL28_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SSW_S2) >> BP_CSU_CSL28_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SSW_S2.
-#define BF_CSU_CSL28_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_SSW_S2) & BM_CSU_CSL28_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SSW_S2.
-#define BF_CSU_CSL28_SSW_S2(v)   (((v) << BP_CSU_CSL28_SSW_S2) & BM_CSU_CSL28_SSW_S2)
-#endif
+#define BF_CSU_CSL28_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SSW_S2) & BM_CSU_CSL28_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -17715,15 +15292,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL28_NUW_S2.
 
 //! @brief Get value of CSU_CSL28_NUW_S2 from a register value.
-#define BG_CSU_CSL28_NUW_S2(r)   (((r) & BM_CSU_CSL28_NUW_S2) >> BP_CSU_CSL28_NUW_S2)
+#define BG_CSU_CSL28_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NUW_S2) >> BP_CSU_CSL28_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NUW_S2.
-#define BF_CSU_CSL28_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_NUW_S2) & BM_CSU_CSL28_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NUW_S2.
-#define BF_CSU_CSL28_NUW_S2(v)   (((v) << BP_CSU_CSL28_NUW_S2) & BM_CSU_CSL28_NUW_S2)
-#endif
+#define BF_CSU_CSL28_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NUW_S2) & BM_CSU_CSL28_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -17744,15 +15316,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL28_NSW_S2.
 
 //! @brief Get value of CSU_CSL28_NSW_S2 from a register value.
-#define BG_CSU_CSL28_NSW_S2(r)   (((r) & BM_CSU_CSL28_NSW_S2) >> BP_CSU_CSL28_NSW_S2)
+#define BG_CSU_CSL28_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NSW_S2) >> BP_CSU_CSL28_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NSW_S2.
-#define BF_CSU_CSL28_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_NSW_S2) & BM_CSU_CSL28_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NSW_S2.
-#define BF_CSU_CSL28_NSW_S2(v)   (((v) << BP_CSU_CSL28_NSW_S2) & BM_CSU_CSL28_NSW_S2)
-#endif
+#define BF_CSU_CSL28_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NSW_S2) & BM_CSU_CSL28_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -17773,15 +15340,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL28_LOCK_S2.
 
 //! @brief Get value of CSU_CSL28_LOCK_S2 from a register value.
-#define BG_CSU_CSL28_LOCK_S2(r)   (((r) & BM_CSU_CSL28_LOCK_S2) >> BP_CSU_CSL28_LOCK_S2)
+#define BG_CSU_CSL28_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_LOCK_S2) >> BP_CSU_CSL28_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_LOCK_S2.
-#define BF_CSU_CSL28_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL28_LOCK_S2) & BM_CSU_CSL28_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL28_LOCK_S2.
-#define BF_CSU_CSL28_LOCK_S2(v)   (((v) << BP_CSU_CSL28_LOCK_S2) & BM_CSU_CSL28_LOCK_S2)
-#endif
+#define BF_CSU_CSL28_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_LOCK_S2) & BM_CSU_CSL28_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -17802,15 +15364,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL28_SUR_S1.
 
 //! @brief Get value of CSU_CSL28_SUR_S1 from a register value.
-#define BG_CSU_CSL28_SUR_S1(r)   (((r) & BM_CSU_CSL28_SUR_S1) >> BP_CSU_CSL28_SUR_S1)
+#define BG_CSU_CSL28_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SUR_S1) >> BP_CSU_CSL28_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SUR_S1.
-#define BF_CSU_CSL28_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_SUR_S1) & BM_CSU_CSL28_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SUR_S1.
-#define BF_CSU_CSL28_SUR_S1(v)   (((v) << BP_CSU_CSL28_SUR_S1) & BM_CSU_CSL28_SUR_S1)
-#endif
+#define BF_CSU_CSL28_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SUR_S1) & BM_CSU_CSL28_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -17831,15 +15388,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL28_SSR_S1.
 
 //! @brief Get value of CSU_CSL28_SSR_S1 from a register value.
-#define BG_CSU_CSL28_SSR_S1(r)   (((r) & BM_CSU_CSL28_SSR_S1) >> BP_CSU_CSL28_SSR_S1)
+#define BG_CSU_CSL28_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SSR_S1) >> BP_CSU_CSL28_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SSR_S1.
-#define BF_CSU_CSL28_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_SSR_S1) & BM_CSU_CSL28_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SSR_S1.
-#define BF_CSU_CSL28_SSR_S1(v)   (((v) << BP_CSU_CSL28_SSR_S1) & BM_CSU_CSL28_SSR_S1)
-#endif
+#define BF_CSU_CSL28_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SSR_S1) & BM_CSU_CSL28_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -17860,15 +15412,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL28_NUR_S1.
 
 //! @brief Get value of CSU_CSL28_NUR_S1 from a register value.
-#define BG_CSU_CSL28_NUR_S1(r)   (((r) & BM_CSU_CSL28_NUR_S1) >> BP_CSU_CSL28_NUR_S1)
+#define BG_CSU_CSL28_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NUR_S1) >> BP_CSU_CSL28_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NUR_S1.
-#define BF_CSU_CSL28_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_NUR_S1) & BM_CSU_CSL28_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NUR_S1.
-#define BF_CSU_CSL28_NUR_S1(v)   (((v) << BP_CSU_CSL28_NUR_S1) & BM_CSU_CSL28_NUR_S1)
-#endif
+#define BF_CSU_CSL28_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NUR_S1) & BM_CSU_CSL28_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -17889,15 +15436,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL28_NSR_S1.
 
 //! @brief Get value of CSU_CSL28_NSR_S1 from a register value.
-#define BG_CSU_CSL28_NSR_S1(r)   (((r) & BM_CSU_CSL28_NSR_S1) >> BP_CSU_CSL28_NSR_S1)
+#define BG_CSU_CSL28_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NSR_S1) >> BP_CSU_CSL28_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NSR_S1.
-#define BF_CSU_CSL28_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_NSR_S1) & BM_CSU_CSL28_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NSR_S1.
-#define BF_CSU_CSL28_NSR_S1(v)   (((v) << BP_CSU_CSL28_NSR_S1) & BM_CSU_CSL28_NSR_S1)
-#endif
+#define BF_CSU_CSL28_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NSR_S1) & BM_CSU_CSL28_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -17918,15 +15460,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL28_SUW_S1.
 
 //! @brief Get value of CSU_CSL28_SUW_S1 from a register value.
-#define BG_CSU_CSL28_SUW_S1(r)   (((r) & BM_CSU_CSL28_SUW_S1) >> BP_CSU_CSL28_SUW_S1)
+#define BG_CSU_CSL28_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SUW_S1) >> BP_CSU_CSL28_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SUW_S1.
-#define BF_CSU_CSL28_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_SUW_S1) & BM_CSU_CSL28_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SUW_S1.
-#define BF_CSU_CSL28_SUW_S1(v)   (((v) << BP_CSU_CSL28_SUW_S1) & BM_CSU_CSL28_SUW_S1)
-#endif
+#define BF_CSU_CSL28_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SUW_S1) & BM_CSU_CSL28_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -17947,15 +15484,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL28_SSW_S1.
 
 //! @brief Get value of CSU_CSL28_SSW_S1 from a register value.
-#define BG_CSU_CSL28_SSW_S1(r)   (((r) & BM_CSU_CSL28_SSW_S1) >> BP_CSU_CSL28_SSW_S1)
+#define BG_CSU_CSL28_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_SSW_S1) >> BP_CSU_CSL28_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_SSW_S1.
-#define BF_CSU_CSL28_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_SSW_S1) & BM_CSU_CSL28_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_SSW_S1.
-#define BF_CSU_CSL28_SSW_S1(v)   (((v) << BP_CSU_CSL28_SSW_S1) & BM_CSU_CSL28_SSW_S1)
-#endif
+#define BF_CSU_CSL28_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_SSW_S1) & BM_CSU_CSL28_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -17976,15 +15508,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL28_NUW_S1.
 
 //! @brief Get value of CSU_CSL28_NUW_S1 from a register value.
-#define BG_CSU_CSL28_NUW_S1(r)   (((r) & BM_CSU_CSL28_NUW_S1) >> BP_CSU_CSL28_NUW_S1)
+#define BG_CSU_CSL28_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NUW_S1) >> BP_CSU_CSL28_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NUW_S1.
-#define BF_CSU_CSL28_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_NUW_S1) & BM_CSU_CSL28_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NUW_S1.
-#define BF_CSU_CSL28_NUW_S1(v)   (((v) << BP_CSU_CSL28_NUW_S1) & BM_CSU_CSL28_NUW_S1)
-#endif
+#define BF_CSU_CSL28_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NUW_S1) & BM_CSU_CSL28_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -18005,15 +15532,10 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL28_NSW_S1.
 
 //! @brief Get value of CSU_CSL28_NSW_S1 from a register value.
-#define BG_CSU_CSL28_NSW_S1(r)   (((r) & BM_CSU_CSL28_NSW_S1) >> BP_CSU_CSL28_NSW_S1)
+#define BG_CSU_CSL28_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_NSW_S1) >> BP_CSU_CSL28_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_NSW_S1.
-#define BF_CSU_CSL28_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_NSW_S1) & BM_CSU_CSL28_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_NSW_S1.
-#define BF_CSU_CSL28_NSW_S1(v)   (((v) << BP_CSU_CSL28_NSW_S1) & BM_CSU_CSL28_NSW_S1)
-#endif
+#define BF_CSU_CSL28_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_NSW_S1) & BM_CSU_CSL28_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -18034,21 +15556,20 @@ typedef union _hw_csu_csl28
 #define BM_CSU_CSL28_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL28_LOCK_S1.
 
 //! @brief Get value of CSU_CSL28_LOCK_S1 from a register value.
-#define BG_CSU_CSL28_LOCK_S1(r)   (((r) & BM_CSU_CSL28_LOCK_S1) >> BP_CSU_CSL28_LOCK_S1)
+#define BG_CSU_CSL28_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL28_LOCK_S1) >> BP_CSU_CSL28_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL28_LOCK_S1.
-#define BF_CSU_CSL28_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL28_LOCK_S1) & BM_CSU_CSL28_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL28_LOCK_S1.
-#define BF_CSU_CSL28_LOCK_S1(v)   (((v) << BP_CSU_CSL28_LOCK_S1) & BM_CSU_CSL28_LOCK_S1)
-#endif
+#define BF_CSU_CSL28_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL28_LOCK_S1) & BM_CSU_CSL28_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL28_LOCK_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_LOCK_S1) | BF_CSU_CSL28_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL29 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18063,11 +15584,11 @@ typedef union _hw_csu_csl28
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -18079,7 +15600,7 @@ typedef union _hw_csu_csl28
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -18161,15 +15682,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL29_SUR_S2.
 
 //! @brief Get value of CSU_CSL29_SUR_S2 from a register value.
-#define BG_CSU_CSL29_SUR_S2(r)   (((r) & BM_CSU_CSL29_SUR_S2) >> BP_CSU_CSL29_SUR_S2)
+#define BG_CSU_CSL29_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SUR_S2) >> BP_CSU_CSL29_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SUR_S2.
-#define BF_CSU_CSL29_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_SUR_S2) & BM_CSU_CSL29_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SUR_S2.
-#define BF_CSU_CSL29_SUR_S2(v)   (((v) << BP_CSU_CSL29_SUR_S2) & BM_CSU_CSL29_SUR_S2)
-#endif
+#define BF_CSU_CSL29_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SUR_S2) & BM_CSU_CSL29_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -18190,15 +15706,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL29_SSR_S2.
 
 //! @brief Get value of CSU_CSL29_SSR_S2 from a register value.
-#define BG_CSU_CSL29_SSR_S2(r)   (((r) & BM_CSU_CSL29_SSR_S2) >> BP_CSU_CSL29_SSR_S2)
+#define BG_CSU_CSL29_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SSR_S2) >> BP_CSU_CSL29_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SSR_S2.
-#define BF_CSU_CSL29_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_SSR_S2) & BM_CSU_CSL29_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SSR_S2.
-#define BF_CSU_CSL29_SSR_S2(v)   (((v) << BP_CSU_CSL29_SSR_S2) & BM_CSU_CSL29_SSR_S2)
-#endif
+#define BF_CSU_CSL29_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SSR_S2) & BM_CSU_CSL29_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -18219,15 +15730,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL29_NUR_S2.
 
 //! @brief Get value of CSU_CSL29_NUR_S2 from a register value.
-#define BG_CSU_CSL29_NUR_S2(r)   (((r) & BM_CSU_CSL29_NUR_S2) >> BP_CSU_CSL29_NUR_S2)
+#define BG_CSU_CSL29_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NUR_S2) >> BP_CSU_CSL29_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NUR_S2.
-#define BF_CSU_CSL29_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_NUR_S2) & BM_CSU_CSL29_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NUR_S2.
-#define BF_CSU_CSL29_NUR_S2(v)   (((v) << BP_CSU_CSL29_NUR_S2) & BM_CSU_CSL29_NUR_S2)
-#endif
+#define BF_CSU_CSL29_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NUR_S2) & BM_CSU_CSL29_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -18248,15 +15754,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL29_NSR_S2.
 
 //! @brief Get value of CSU_CSL29_NSR_S2 from a register value.
-#define BG_CSU_CSL29_NSR_S2(r)   (((r) & BM_CSU_CSL29_NSR_S2) >> BP_CSU_CSL29_NSR_S2)
+#define BG_CSU_CSL29_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NSR_S2) >> BP_CSU_CSL29_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NSR_S2.
-#define BF_CSU_CSL29_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_NSR_S2) & BM_CSU_CSL29_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NSR_S2.
-#define BF_CSU_CSL29_NSR_S2(v)   (((v) << BP_CSU_CSL29_NSR_S2) & BM_CSU_CSL29_NSR_S2)
-#endif
+#define BF_CSU_CSL29_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NSR_S2) & BM_CSU_CSL29_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -18277,15 +15778,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL29_SUW_S2.
 
 //! @brief Get value of CSU_CSL29_SUW_S2 from a register value.
-#define BG_CSU_CSL29_SUW_S2(r)   (((r) & BM_CSU_CSL29_SUW_S2) >> BP_CSU_CSL29_SUW_S2)
+#define BG_CSU_CSL29_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SUW_S2) >> BP_CSU_CSL29_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SUW_S2.
-#define BF_CSU_CSL29_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_SUW_S2) & BM_CSU_CSL29_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SUW_S2.
-#define BF_CSU_CSL29_SUW_S2(v)   (((v) << BP_CSU_CSL29_SUW_S2) & BM_CSU_CSL29_SUW_S2)
-#endif
+#define BF_CSU_CSL29_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SUW_S2) & BM_CSU_CSL29_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -18306,15 +15802,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL29_SSW_S2.
 
 //! @brief Get value of CSU_CSL29_SSW_S2 from a register value.
-#define BG_CSU_CSL29_SSW_S2(r)   (((r) & BM_CSU_CSL29_SSW_S2) >> BP_CSU_CSL29_SSW_S2)
+#define BG_CSU_CSL29_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SSW_S2) >> BP_CSU_CSL29_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SSW_S2.
-#define BF_CSU_CSL29_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_SSW_S2) & BM_CSU_CSL29_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SSW_S2.
-#define BF_CSU_CSL29_SSW_S2(v)   (((v) << BP_CSU_CSL29_SSW_S2) & BM_CSU_CSL29_SSW_S2)
-#endif
+#define BF_CSU_CSL29_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SSW_S2) & BM_CSU_CSL29_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -18335,15 +15826,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL29_NUW_S2.
 
 //! @brief Get value of CSU_CSL29_NUW_S2 from a register value.
-#define BG_CSU_CSL29_NUW_S2(r)   (((r) & BM_CSU_CSL29_NUW_S2) >> BP_CSU_CSL29_NUW_S2)
+#define BG_CSU_CSL29_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NUW_S2) >> BP_CSU_CSL29_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NUW_S2.
-#define BF_CSU_CSL29_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_NUW_S2) & BM_CSU_CSL29_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NUW_S2.
-#define BF_CSU_CSL29_NUW_S2(v)   (((v) << BP_CSU_CSL29_NUW_S2) & BM_CSU_CSL29_NUW_S2)
-#endif
+#define BF_CSU_CSL29_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NUW_S2) & BM_CSU_CSL29_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -18364,15 +15850,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL29_NSW_S2.
 
 //! @brief Get value of CSU_CSL29_NSW_S2 from a register value.
-#define BG_CSU_CSL29_NSW_S2(r)   (((r) & BM_CSU_CSL29_NSW_S2) >> BP_CSU_CSL29_NSW_S2)
+#define BG_CSU_CSL29_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NSW_S2) >> BP_CSU_CSL29_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NSW_S2.
-#define BF_CSU_CSL29_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_NSW_S2) & BM_CSU_CSL29_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NSW_S2.
-#define BF_CSU_CSL29_NSW_S2(v)   (((v) << BP_CSU_CSL29_NSW_S2) & BM_CSU_CSL29_NSW_S2)
-#endif
+#define BF_CSU_CSL29_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NSW_S2) & BM_CSU_CSL29_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -18393,15 +15874,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL29_LOCK_S2.
 
 //! @brief Get value of CSU_CSL29_LOCK_S2 from a register value.
-#define BG_CSU_CSL29_LOCK_S2(r)   (((r) & BM_CSU_CSL29_LOCK_S2) >> BP_CSU_CSL29_LOCK_S2)
+#define BG_CSU_CSL29_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_LOCK_S2) >> BP_CSU_CSL29_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_LOCK_S2.
-#define BF_CSU_CSL29_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL29_LOCK_S2) & BM_CSU_CSL29_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL29_LOCK_S2.
-#define BF_CSU_CSL29_LOCK_S2(v)   (((v) << BP_CSU_CSL29_LOCK_S2) & BM_CSU_CSL29_LOCK_S2)
-#endif
+#define BF_CSU_CSL29_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_LOCK_S2) & BM_CSU_CSL29_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -18422,15 +15898,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL29_SUR_S1.
 
 //! @brief Get value of CSU_CSL29_SUR_S1 from a register value.
-#define BG_CSU_CSL29_SUR_S1(r)   (((r) & BM_CSU_CSL29_SUR_S1) >> BP_CSU_CSL29_SUR_S1)
+#define BG_CSU_CSL29_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SUR_S1) >> BP_CSU_CSL29_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SUR_S1.
-#define BF_CSU_CSL29_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_SUR_S1) & BM_CSU_CSL29_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SUR_S1.
-#define BF_CSU_CSL29_SUR_S1(v)   (((v) << BP_CSU_CSL29_SUR_S1) & BM_CSU_CSL29_SUR_S1)
-#endif
+#define BF_CSU_CSL29_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SUR_S1) & BM_CSU_CSL29_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -18451,15 +15922,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL29_SSR_S1.
 
 //! @brief Get value of CSU_CSL29_SSR_S1 from a register value.
-#define BG_CSU_CSL29_SSR_S1(r)   (((r) & BM_CSU_CSL29_SSR_S1) >> BP_CSU_CSL29_SSR_S1)
+#define BG_CSU_CSL29_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SSR_S1) >> BP_CSU_CSL29_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SSR_S1.
-#define BF_CSU_CSL29_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_SSR_S1) & BM_CSU_CSL29_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SSR_S1.
-#define BF_CSU_CSL29_SSR_S1(v)   (((v) << BP_CSU_CSL29_SSR_S1) & BM_CSU_CSL29_SSR_S1)
-#endif
+#define BF_CSU_CSL29_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SSR_S1) & BM_CSU_CSL29_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -18480,15 +15946,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL29_NUR_S1.
 
 //! @brief Get value of CSU_CSL29_NUR_S1 from a register value.
-#define BG_CSU_CSL29_NUR_S1(r)   (((r) & BM_CSU_CSL29_NUR_S1) >> BP_CSU_CSL29_NUR_S1)
+#define BG_CSU_CSL29_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NUR_S1) >> BP_CSU_CSL29_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NUR_S1.
-#define BF_CSU_CSL29_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_NUR_S1) & BM_CSU_CSL29_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NUR_S1.
-#define BF_CSU_CSL29_NUR_S1(v)   (((v) << BP_CSU_CSL29_NUR_S1) & BM_CSU_CSL29_NUR_S1)
-#endif
+#define BF_CSU_CSL29_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NUR_S1) & BM_CSU_CSL29_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -18509,15 +15970,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL29_NSR_S1.
 
 //! @brief Get value of CSU_CSL29_NSR_S1 from a register value.
-#define BG_CSU_CSL29_NSR_S1(r)   (((r) & BM_CSU_CSL29_NSR_S1) >> BP_CSU_CSL29_NSR_S1)
+#define BG_CSU_CSL29_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NSR_S1) >> BP_CSU_CSL29_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NSR_S1.
-#define BF_CSU_CSL29_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_NSR_S1) & BM_CSU_CSL29_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NSR_S1.
-#define BF_CSU_CSL29_NSR_S1(v)   (((v) << BP_CSU_CSL29_NSR_S1) & BM_CSU_CSL29_NSR_S1)
-#endif
+#define BF_CSU_CSL29_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NSR_S1) & BM_CSU_CSL29_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -18538,15 +15994,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL29_SUW_S1.
 
 //! @brief Get value of CSU_CSL29_SUW_S1 from a register value.
-#define BG_CSU_CSL29_SUW_S1(r)   (((r) & BM_CSU_CSL29_SUW_S1) >> BP_CSU_CSL29_SUW_S1)
+#define BG_CSU_CSL29_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SUW_S1) >> BP_CSU_CSL29_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SUW_S1.
-#define BF_CSU_CSL29_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_SUW_S1) & BM_CSU_CSL29_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SUW_S1.
-#define BF_CSU_CSL29_SUW_S1(v)   (((v) << BP_CSU_CSL29_SUW_S1) & BM_CSU_CSL29_SUW_S1)
-#endif
+#define BF_CSU_CSL29_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SUW_S1) & BM_CSU_CSL29_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -18567,15 +16018,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL29_SSW_S1.
 
 //! @brief Get value of CSU_CSL29_SSW_S1 from a register value.
-#define BG_CSU_CSL29_SSW_S1(r)   (((r) & BM_CSU_CSL29_SSW_S1) >> BP_CSU_CSL29_SSW_S1)
+#define BG_CSU_CSL29_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_SSW_S1) >> BP_CSU_CSL29_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_SSW_S1.
-#define BF_CSU_CSL29_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_SSW_S1) & BM_CSU_CSL29_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_SSW_S1.
-#define BF_CSU_CSL29_SSW_S1(v)   (((v) << BP_CSU_CSL29_SSW_S1) & BM_CSU_CSL29_SSW_S1)
-#endif
+#define BF_CSU_CSL29_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_SSW_S1) & BM_CSU_CSL29_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -18596,15 +16042,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL29_NUW_S1.
 
 //! @brief Get value of CSU_CSL29_NUW_S1 from a register value.
-#define BG_CSU_CSL29_NUW_S1(r)   (((r) & BM_CSU_CSL29_NUW_S1) >> BP_CSU_CSL29_NUW_S1)
+#define BG_CSU_CSL29_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NUW_S1) >> BP_CSU_CSL29_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NUW_S1.
-#define BF_CSU_CSL29_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_NUW_S1) & BM_CSU_CSL29_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NUW_S1.
-#define BF_CSU_CSL29_NUW_S1(v)   (((v) << BP_CSU_CSL29_NUW_S1) & BM_CSU_CSL29_NUW_S1)
-#endif
+#define BF_CSU_CSL29_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NUW_S1) & BM_CSU_CSL29_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -18625,15 +16066,10 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL29_NSW_S1.
 
 //! @brief Get value of CSU_CSL29_NSW_S1 from a register value.
-#define BG_CSU_CSL29_NSW_S1(r)   (((r) & BM_CSU_CSL29_NSW_S1) >> BP_CSU_CSL29_NSW_S1)
+#define BG_CSU_CSL29_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_NSW_S1) >> BP_CSU_CSL29_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_NSW_S1.
-#define BF_CSU_CSL29_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_NSW_S1) & BM_CSU_CSL29_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_NSW_S1.
-#define BF_CSU_CSL29_NSW_S1(v)   (((v) << BP_CSU_CSL29_NSW_S1) & BM_CSU_CSL29_NSW_S1)
-#endif
+#define BF_CSU_CSL29_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_NSW_S1) & BM_CSU_CSL29_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -18654,21 +16090,20 @@ typedef union _hw_csu_csl29
 #define BM_CSU_CSL29_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL29_LOCK_S1.
 
 //! @brief Get value of CSU_CSL29_LOCK_S1 from a register value.
-#define BG_CSU_CSL29_LOCK_S1(r)   (((r) & BM_CSU_CSL29_LOCK_S1) >> BP_CSU_CSL29_LOCK_S1)
+#define BG_CSU_CSL29_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL29_LOCK_S1) >> BP_CSU_CSL29_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL29_LOCK_S1.
-#define BF_CSU_CSL29_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL29_LOCK_S1) & BM_CSU_CSL29_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL29_LOCK_S1.
-#define BF_CSU_CSL29_LOCK_S1(v)   (((v) << BP_CSU_CSL29_LOCK_S1) & BM_CSU_CSL29_LOCK_S1)
-#endif
+#define BF_CSU_CSL29_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL29_LOCK_S1) & BM_CSU_CSL29_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL29_LOCK_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_LOCK_S1) | BF_CSU_CSL29_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL30 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18683,11 +16118,11 @@ typedef union _hw_csu_csl29
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -18699,7 +16134,7 @@ typedef union _hw_csu_csl29
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -18781,15 +16216,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL30_SUR_S2.
 
 //! @brief Get value of CSU_CSL30_SUR_S2 from a register value.
-#define BG_CSU_CSL30_SUR_S2(r)   (((r) & BM_CSU_CSL30_SUR_S2) >> BP_CSU_CSL30_SUR_S2)
+#define BG_CSU_CSL30_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SUR_S2) >> BP_CSU_CSL30_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SUR_S2.
-#define BF_CSU_CSL30_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_SUR_S2) & BM_CSU_CSL30_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SUR_S2.
-#define BF_CSU_CSL30_SUR_S2(v)   (((v) << BP_CSU_CSL30_SUR_S2) & BM_CSU_CSL30_SUR_S2)
-#endif
+#define BF_CSU_CSL30_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SUR_S2) & BM_CSU_CSL30_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -18810,15 +16240,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL30_SSR_S2.
 
 //! @brief Get value of CSU_CSL30_SSR_S2 from a register value.
-#define BG_CSU_CSL30_SSR_S2(r)   (((r) & BM_CSU_CSL30_SSR_S2) >> BP_CSU_CSL30_SSR_S2)
+#define BG_CSU_CSL30_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SSR_S2) >> BP_CSU_CSL30_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SSR_S2.
-#define BF_CSU_CSL30_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_SSR_S2) & BM_CSU_CSL30_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SSR_S2.
-#define BF_CSU_CSL30_SSR_S2(v)   (((v) << BP_CSU_CSL30_SSR_S2) & BM_CSU_CSL30_SSR_S2)
-#endif
+#define BF_CSU_CSL30_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SSR_S2) & BM_CSU_CSL30_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -18839,15 +16264,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL30_NUR_S2.
 
 //! @brief Get value of CSU_CSL30_NUR_S2 from a register value.
-#define BG_CSU_CSL30_NUR_S2(r)   (((r) & BM_CSU_CSL30_NUR_S2) >> BP_CSU_CSL30_NUR_S2)
+#define BG_CSU_CSL30_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NUR_S2) >> BP_CSU_CSL30_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NUR_S2.
-#define BF_CSU_CSL30_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_NUR_S2) & BM_CSU_CSL30_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NUR_S2.
-#define BF_CSU_CSL30_NUR_S2(v)   (((v) << BP_CSU_CSL30_NUR_S2) & BM_CSU_CSL30_NUR_S2)
-#endif
+#define BF_CSU_CSL30_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NUR_S2) & BM_CSU_CSL30_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -18868,15 +16288,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL30_NSR_S2.
 
 //! @brief Get value of CSU_CSL30_NSR_S2 from a register value.
-#define BG_CSU_CSL30_NSR_S2(r)   (((r) & BM_CSU_CSL30_NSR_S2) >> BP_CSU_CSL30_NSR_S2)
+#define BG_CSU_CSL30_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NSR_S2) >> BP_CSU_CSL30_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NSR_S2.
-#define BF_CSU_CSL30_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_NSR_S2) & BM_CSU_CSL30_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NSR_S2.
-#define BF_CSU_CSL30_NSR_S2(v)   (((v) << BP_CSU_CSL30_NSR_S2) & BM_CSU_CSL30_NSR_S2)
-#endif
+#define BF_CSU_CSL30_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NSR_S2) & BM_CSU_CSL30_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -18897,15 +16312,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL30_SUW_S2.
 
 //! @brief Get value of CSU_CSL30_SUW_S2 from a register value.
-#define BG_CSU_CSL30_SUW_S2(r)   (((r) & BM_CSU_CSL30_SUW_S2) >> BP_CSU_CSL30_SUW_S2)
+#define BG_CSU_CSL30_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SUW_S2) >> BP_CSU_CSL30_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SUW_S2.
-#define BF_CSU_CSL30_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_SUW_S2) & BM_CSU_CSL30_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SUW_S2.
-#define BF_CSU_CSL30_SUW_S2(v)   (((v) << BP_CSU_CSL30_SUW_S2) & BM_CSU_CSL30_SUW_S2)
-#endif
+#define BF_CSU_CSL30_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SUW_S2) & BM_CSU_CSL30_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -18926,15 +16336,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL30_SSW_S2.
 
 //! @brief Get value of CSU_CSL30_SSW_S2 from a register value.
-#define BG_CSU_CSL30_SSW_S2(r)   (((r) & BM_CSU_CSL30_SSW_S2) >> BP_CSU_CSL30_SSW_S2)
+#define BG_CSU_CSL30_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SSW_S2) >> BP_CSU_CSL30_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SSW_S2.
-#define BF_CSU_CSL30_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_SSW_S2) & BM_CSU_CSL30_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SSW_S2.
-#define BF_CSU_CSL30_SSW_S2(v)   (((v) << BP_CSU_CSL30_SSW_S2) & BM_CSU_CSL30_SSW_S2)
-#endif
+#define BF_CSU_CSL30_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SSW_S2) & BM_CSU_CSL30_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -18955,15 +16360,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL30_NUW_S2.
 
 //! @brief Get value of CSU_CSL30_NUW_S2 from a register value.
-#define BG_CSU_CSL30_NUW_S2(r)   (((r) & BM_CSU_CSL30_NUW_S2) >> BP_CSU_CSL30_NUW_S2)
+#define BG_CSU_CSL30_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NUW_S2) >> BP_CSU_CSL30_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NUW_S2.
-#define BF_CSU_CSL30_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_NUW_S2) & BM_CSU_CSL30_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NUW_S2.
-#define BF_CSU_CSL30_NUW_S2(v)   (((v) << BP_CSU_CSL30_NUW_S2) & BM_CSU_CSL30_NUW_S2)
-#endif
+#define BF_CSU_CSL30_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NUW_S2) & BM_CSU_CSL30_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -18984,15 +16384,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL30_NSW_S2.
 
 //! @brief Get value of CSU_CSL30_NSW_S2 from a register value.
-#define BG_CSU_CSL30_NSW_S2(r)   (((r) & BM_CSU_CSL30_NSW_S2) >> BP_CSU_CSL30_NSW_S2)
+#define BG_CSU_CSL30_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NSW_S2) >> BP_CSU_CSL30_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NSW_S2.
-#define BF_CSU_CSL30_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_NSW_S2) & BM_CSU_CSL30_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NSW_S2.
-#define BF_CSU_CSL30_NSW_S2(v)   (((v) << BP_CSU_CSL30_NSW_S2) & BM_CSU_CSL30_NSW_S2)
-#endif
+#define BF_CSU_CSL30_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NSW_S2) & BM_CSU_CSL30_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -19013,15 +16408,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL30_LOCK_S2.
 
 //! @brief Get value of CSU_CSL30_LOCK_S2 from a register value.
-#define BG_CSU_CSL30_LOCK_S2(r)   (((r) & BM_CSU_CSL30_LOCK_S2) >> BP_CSU_CSL30_LOCK_S2)
+#define BG_CSU_CSL30_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_LOCK_S2) >> BP_CSU_CSL30_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_LOCK_S2.
-#define BF_CSU_CSL30_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL30_LOCK_S2) & BM_CSU_CSL30_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL30_LOCK_S2.
-#define BF_CSU_CSL30_LOCK_S2(v)   (((v) << BP_CSU_CSL30_LOCK_S2) & BM_CSU_CSL30_LOCK_S2)
-#endif
+#define BF_CSU_CSL30_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_LOCK_S2) & BM_CSU_CSL30_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -19042,15 +16432,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL30_SUR_S1.
 
 //! @brief Get value of CSU_CSL30_SUR_S1 from a register value.
-#define BG_CSU_CSL30_SUR_S1(r)   (((r) & BM_CSU_CSL30_SUR_S1) >> BP_CSU_CSL30_SUR_S1)
+#define BG_CSU_CSL30_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SUR_S1) >> BP_CSU_CSL30_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SUR_S1.
-#define BF_CSU_CSL30_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_SUR_S1) & BM_CSU_CSL30_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SUR_S1.
-#define BF_CSU_CSL30_SUR_S1(v)   (((v) << BP_CSU_CSL30_SUR_S1) & BM_CSU_CSL30_SUR_S1)
-#endif
+#define BF_CSU_CSL30_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SUR_S1) & BM_CSU_CSL30_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -19071,15 +16456,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL30_SSR_S1.
 
 //! @brief Get value of CSU_CSL30_SSR_S1 from a register value.
-#define BG_CSU_CSL30_SSR_S1(r)   (((r) & BM_CSU_CSL30_SSR_S1) >> BP_CSU_CSL30_SSR_S1)
+#define BG_CSU_CSL30_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SSR_S1) >> BP_CSU_CSL30_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SSR_S1.
-#define BF_CSU_CSL30_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_SSR_S1) & BM_CSU_CSL30_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SSR_S1.
-#define BF_CSU_CSL30_SSR_S1(v)   (((v) << BP_CSU_CSL30_SSR_S1) & BM_CSU_CSL30_SSR_S1)
-#endif
+#define BF_CSU_CSL30_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SSR_S1) & BM_CSU_CSL30_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -19100,15 +16480,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL30_NUR_S1.
 
 //! @brief Get value of CSU_CSL30_NUR_S1 from a register value.
-#define BG_CSU_CSL30_NUR_S1(r)   (((r) & BM_CSU_CSL30_NUR_S1) >> BP_CSU_CSL30_NUR_S1)
+#define BG_CSU_CSL30_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NUR_S1) >> BP_CSU_CSL30_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NUR_S1.
-#define BF_CSU_CSL30_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_NUR_S1) & BM_CSU_CSL30_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NUR_S1.
-#define BF_CSU_CSL30_NUR_S1(v)   (((v) << BP_CSU_CSL30_NUR_S1) & BM_CSU_CSL30_NUR_S1)
-#endif
+#define BF_CSU_CSL30_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NUR_S1) & BM_CSU_CSL30_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -19129,15 +16504,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL30_NSR_S1.
 
 //! @brief Get value of CSU_CSL30_NSR_S1 from a register value.
-#define BG_CSU_CSL30_NSR_S1(r)   (((r) & BM_CSU_CSL30_NSR_S1) >> BP_CSU_CSL30_NSR_S1)
+#define BG_CSU_CSL30_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NSR_S1) >> BP_CSU_CSL30_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NSR_S1.
-#define BF_CSU_CSL30_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_NSR_S1) & BM_CSU_CSL30_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NSR_S1.
-#define BF_CSU_CSL30_NSR_S1(v)   (((v) << BP_CSU_CSL30_NSR_S1) & BM_CSU_CSL30_NSR_S1)
-#endif
+#define BF_CSU_CSL30_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NSR_S1) & BM_CSU_CSL30_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -19158,15 +16528,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL30_SUW_S1.
 
 //! @brief Get value of CSU_CSL30_SUW_S1 from a register value.
-#define BG_CSU_CSL30_SUW_S1(r)   (((r) & BM_CSU_CSL30_SUW_S1) >> BP_CSU_CSL30_SUW_S1)
+#define BG_CSU_CSL30_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SUW_S1) >> BP_CSU_CSL30_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SUW_S1.
-#define BF_CSU_CSL30_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_SUW_S1) & BM_CSU_CSL30_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SUW_S1.
-#define BF_CSU_CSL30_SUW_S1(v)   (((v) << BP_CSU_CSL30_SUW_S1) & BM_CSU_CSL30_SUW_S1)
-#endif
+#define BF_CSU_CSL30_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SUW_S1) & BM_CSU_CSL30_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -19187,15 +16552,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL30_SSW_S1.
 
 //! @brief Get value of CSU_CSL30_SSW_S1 from a register value.
-#define BG_CSU_CSL30_SSW_S1(r)   (((r) & BM_CSU_CSL30_SSW_S1) >> BP_CSU_CSL30_SSW_S1)
+#define BG_CSU_CSL30_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_SSW_S1) >> BP_CSU_CSL30_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_SSW_S1.
-#define BF_CSU_CSL30_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_SSW_S1) & BM_CSU_CSL30_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_SSW_S1.
-#define BF_CSU_CSL30_SSW_S1(v)   (((v) << BP_CSU_CSL30_SSW_S1) & BM_CSU_CSL30_SSW_S1)
-#endif
+#define BF_CSU_CSL30_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_SSW_S1) & BM_CSU_CSL30_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -19216,15 +16576,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL30_NUW_S1.
 
 //! @brief Get value of CSU_CSL30_NUW_S1 from a register value.
-#define BG_CSU_CSL30_NUW_S1(r)   (((r) & BM_CSU_CSL30_NUW_S1) >> BP_CSU_CSL30_NUW_S1)
+#define BG_CSU_CSL30_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NUW_S1) >> BP_CSU_CSL30_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NUW_S1.
-#define BF_CSU_CSL30_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_NUW_S1) & BM_CSU_CSL30_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NUW_S1.
-#define BF_CSU_CSL30_NUW_S1(v)   (((v) << BP_CSU_CSL30_NUW_S1) & BM_CSU_CSL30_NUW_S1)
-#endif
+#define BF_CSU_CSL30_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NUW_S1) & BM_CSU_CSL30_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -19245,15 +16600,10 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL30_NSW_S1.
 
 //! @brief Get value of CSU_CSL30_NSW_S1 from a register value.
-#define BG_CSU_CSL30_NSW_S1(r)   (((r) & BM_CSU_CSL30_NSW_S1) >> BP_CSU_CSL30_NSW_S1)
+#define BG_CSU_CSL30_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_NSW_S1) >> BP_CSU_CSL30_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_NSW_S1.
-#define BF_CSU_CSL30_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_NSW_S1) & BM_CSU_CSL30_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_NSW_S1.
-#define BF_CSU_CSL30_NSW_S1(v)   (((v) << BP_CSU_CSL30_NSW_S1) & BM_CSU_CSL30_NSW_S1)
-#endif
+#define BF_CSU_CSL30_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_NSW_S1) & BM_CSU_CSL30_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -19274,21 +16624,20 @@ typedef union _hw_csu_csl30
 #define BM_CSU_CSL30_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL30_LOCK_S1.
 
 //! @brief Get value of CSU_CSL30_LOCK_S1 from a register value.
-#define BG_CSU_CSL30_LOCK_S1(r)   (((r) & BM_CSU_CSL30_LOCK_S1) >> BP_CSU_CSL30_LOCK_S1)
+#define BG_CSU_CSL30_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL30_LOCK_S1) >> BP_CSU_CSL30_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL30_LOCK_S1.
-#define BF_CSU_CSL30_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL30_LOCK_S1) & BM_CSU_CSL30_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL30_LOCK_S1.
-#define BF_CSU_CSL30_LOCK_S1(v)   (((v) << BP_CSU_CSL30_LOCK_S1) & BM_CSU_CSL30_LOCK_S1)
-#endif
+#define BF_CSU_CSL30_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL30_LOCK_S1) & BM_CSU_CSL30_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL30_LOCK_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_LOCK_S1) | BF_CSU_CSL30_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL31 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19303,11 +16652,11 @@ typedef union _hw_csu_csl30
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -19319,7 +16668,7 @@ typedef union _hw_csu_csl30
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -19401,15 +16750,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL31_SUR_S2.
 
 //! @brief Get value of CSU_CSL31_SUR_S2 from a register value.
-#define BG_CSU_CSL31_SUR_S2(r)   (((r) & BM_CSU_CSL31_SUR_S2) >> BP_CSU_CSL31_SUR_S2)
+#define BG_CSU_CSL31_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SUR_S2) >> BP_CSU_CSL31_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SUR_S2.
-#define BF_CSU_CSL31_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_SUR_S2) & BM_CSU_CSL31_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SUR_S2.
-#define BF_CSU_CSL31_SUR_S2(v)   (((v) << BP_CSU_CSL31_SUR_S2) & BM_CSU_CSL31_SUR_S2)
-#endif
+#define BF_CSU_CSL31_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SUR_S2) & BM_CSU_CSL31_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -19430,15 +16774,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL31_SSR_S2.
 
 //! @brief Get value of CSU_CSL31_SSR_S2 from a register value.
-#define BG_CSU_CSL31_SSR_S2(r)   (((r) & BM_CSU_CSL31_SSR_S2) >> BP_CSU_CSL31_SSR_S2)
+#define BG_CSU_CSL31_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SSR_S2) >> BP_CSU_CSL31_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SSR_S2.
-#define BF_CSU_CSL31_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_SSR_S2) & BM_CSU_CSL31_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SSR_S2.
-#define BF_CSU_CSL31_SSR_S2(v)   (((v) << BP_CSU_CSL31_SSR_S2) & BM_CSU_CSL31_SSR_S2)
-#endif
+#define BF_CSU_CSL31_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SSR_S2) & BM_CSU_CSL31_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -19459,15 +16798,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL31_NUR_S2.
 
 //! @brief Get value of CSU_CSL31_NUR_S2 from a register value.
-#define BG_CSU_CSL31_NUR_S2(r)   (((r) & BM_CSU_CSL31_NUR_S2) >> BP_CSU_CSL31_NUR_S2)
+#define BG_CSU_CSL31_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NUR_S2) >> BP_CSU_CSL31_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NUR_S2.
-#define BF_CSU_CSL31_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_NUR_S2) & BM_CSU_CSL31_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NUR_S2.
-#define BF_CSU_CSL31_NUR_S2(v)   (((v) << BP_CSU_CSL31_NUR_S2) & BM_CSU_CSL31_NUR_S2)
-#endif
+#define BF_CSU_CSL31_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NUR_S2) & BM_CSU_CSL31_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -19488,15 +16822,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL31_NSR_S2.
 
 //! @brief Get value of CSU_CSL31_NSR_S2 from a register value.
-#define BG_CSU_CSL31_NSR_S2(r)   (((r) & BM_CSU_CSL31_NSR_S2) >> BP_CSU_CSL31_NSR_S2)
+#define BG_CSU_CSL31_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NSR_S2) >> BP_CSU_CSL31_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NSR_S2.
-#define BF_CSU_CSL31_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_NSR_S2) & BM_CSU_CSL31_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NSR_S2.
-#define BF_CSU_CSL31_NSR_S2(v)   (((v) << BP_CSU_CSL31_NSR_S2) & BM_CSU_CSL31_NSR_S2)
-#endif
+#define BF_CSU_CSL31_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NSR_S2) & BM_CSU_CSL31_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -19517,15 +16846,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL31_SUW_S2.
 
 //! @brief Get value of CSU_CSL31_SUW_S2 from a register value.
-#define BG_CSU_CSL31_SUW_S2(r)   (((r) & BM_CSU_CSL31_SUW_S2) >> BP_CSU_CSL31_SUW_S2)
+#define BG_CSU_CSL31_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SUW_S2) >> BP_CSU_CSL31_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SUW_S2.
-#define BF_CSU_CSL31_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_SUW_S2) & BM_CSU_CSL31_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SUW_S2.
-#define BF_CSU_CSL31_SUW_S2(v)   (((v) << BP_CSU_CSL31_SUW_S2) & BM_CSU_CSL31_SUW_S2)
-#endif
+#define BF_CSU_CSL31_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SUW_S2) & BM_CSU_CSL31_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -19546,15 +16870,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL31_SSW_S2.
 
 //! @brief Get value of CSU_CSL31_SSW_S2 from a register value.
-#define BG_CSU_CSL31_SSW_S2(r)   (((r) & BM_CSU_CSL31_SSW_S2) >> BP_CSU_CSL31_SSW_S2)
+#define BG_CSU_CSL31_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SSW_S2) >> BP_CSU_CSL31_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SSW_S2.
-#define BF_CSU_CSL31_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_SSW_S2) & BM_CSU_CSL31_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SSW_S2.
-#define BF_CSU_CSL31_SSW_S2(v)   (((v) << BP_CSU_CSL31_SSW_S2) & BM_CSU_CSL31_SSW_S2)
-#endif
+#define BF_CSU_CSL31_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SSW_S2) & BM_CSU_CSL31_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -19575,15 +16894,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL31_NUW_S2.
 
 //! @brief Get value of CSU_CSL31_NUW_S2 from a register value.
-#define BG_CSU_CSL31_NUW_S2(r)   (((r) & BM_CSU_CSL31_NUW_S2) >> BP_CSU_CSL31_NUW_S2)
+#define BG_CSU_CSL31_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NUW_S2) >> BP_CSU_CSL31_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NUW_S2.
-#define BF_CSU_CSL31_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_NUW_S2) & BM_CSU_CSL31_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NUW_S2.
-#define BF_CSU_CSL31_NUW_S2(v)   (((v) << BP_CSU_CSL31_NUW_S2) & BM_CSU_CSL31_NUW_S2)
-#endif
+#define BF_CSU_CSL31_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NUW_S2) & BM_CSU_CSL31_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -19604,15 +16918,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL31_NSW_S2.
 
 //! @brief Get value of CSU_CSL31_NSW_S2 from a register value.
-#define BG_CSU_CSL31_NSW_S2(r)   (((r) & BM_CSU_CSL31_NSW_S2) >> BP_CSU_CSL31_NSW_S2)
+#define BG_CSU_CSL31_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NSW_S2) >> BP_CSU_CSL31_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NSW_S2.
-#define BF_CSU_CSL31_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_NSW_S2) & BM_CSU_CSL31_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NSW_S2.
-#define BF_CSU_CSL31_NSW_S2(v)   (((v) << BP_CSU_CSL31_NSW_S2) & BM_CSU_CSL31_NSW_S2)
-#endif
+#define BF_CSU_CSL31_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NSW_S2) & BM_CSU_CSL31_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -19633,15 +16942,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL31_LOCK_S2.
 
 //! @brief Get value of CSU_CSL31_LOCK_S2 from a register value.
-#define BG_CSU_CSL31_LOCK_S2(r)   (((r) & BM_CSU_CSL31_LOCK_S2) >> BP_CSU_CSL31_LOCK_S2)
+#define BG_CSU_CSL31_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_LOCK_S2) >> BP_CSU_CSL31_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_LOCK_S2.
-#define BF_CSU_CSL31_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL31_LOCK_S2) & BM_CSU_CSL31_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL31_LOCK_S2.
-#define BF_CSU_CSL31_LOCK_S2(v)   (((v) << BP_CSU_CSL31_LOCK_S2) & BM_CSU_CSL31_LOCK_S2)
-#endif
+#define BF_CSU_CSL31_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_LOCK_S2) & BM_CSU_CSL31_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -19662,15 +16966,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL31_SUR_S1.
 
 //! @brief Get value of CSU_CSL31_SUR_S1 from a register value.
-#define BG_CSU_CSL31_SUR_S1(r)   (((r) & BM_CSU_CSL31_SUR_S1) >> BP_CSU_CSL31_SUR_S1)
+#define BG_CSU_CSL31_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SUR_S1) >> BP_CSU_CSL31_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SUR_S1.
-#define BF_CSU_CSL31_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_SUR_S1) & BM_CSU_CSL31_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SUR_S1.
-#define BF_CSU_CSL31_SUR_S1(v)   (((v) << BP_CSU_CSL31_SUR_S1) & BM_CSU_CSL31_SUR_S1)
-#endif
+#define BF_CSU_CSL31_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SUR_S1) & BM_CSU_CSL31_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -19691,15 +16990,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL31_SSR_S1.
 
 //! @brief Get value of CSU_CSL31_SSR_S1 from a register value.
-#define BG_CSU_CSL31_SSR_S1(r)   (((r) & BM_CSU_CSL31_SSR_S1) >> BP_CSU_CSL31_SSR_S1)
+#define BG_CSU_CSL31_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SSR_S1) >> BP_CSU_CSL31_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SSR_S1.
-#define BF_CSU_CSL31_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_SSR_S1) & BM_CSU_CSL31_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SSR_S1.
-#define BF_CSU_CSL31_SSR_S1(v)   (((v) << BP_CSU_CSL31_SSR_S1) & BM_CSU_CSL31_SSR_S1)
-#endif
+#define BF_CSU_CSL31_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SSR_S1) & BM_CSU_CSL31_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -19720,15 +17014,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL31_NUR_S1.
 
 //! @brief Get value of CSU_CSL31_NUR_S1 from a register value.
-#define BG_CSU_CSL31_NUR_S1(r)   (((r) & BM_CSU_CSL31_NUR_S1) >> BP_CSU_CSL31_NUR_S1)
+#define BG_CSU_CSL31_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NUR_S1) >> BP_CSU_CSL31_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NUR_S1.
-#define BF_CSU_CSL31_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_NUR_S1) & BM_CSU_CSL31_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NUR_S1.
-#define BF_CSU_CSL31_NUR_S1(v)   (((v) << BP_CSU_CSL31_NUR_S1) & BM_CSU_CSL31_NUR_S1)
-#endif
+#define BF_CSU_CSL31_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NUR_S1) & BM_CSU_CSL31_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -19749,15 +17038,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL31_NSR_S1.
 
 //! @brief Get value of CSU_CSL31_NSR_S1 from a register value.
-#define BG_CSU_CSL31_NSR_S1(r)   (((r) & BM_CSU_CSL31_NSR_S1) >> BP_CSU_CSL31_NSR_S1)
+#define BG_CSU_CSL31_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NSR_S1) >> BP_CSU_CSL31_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NSR_S1.
-#define BF_CSU_CSL31_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_NSR_S1) & BM_CSU_CSL31_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NSR_S1.
-#define BF_CSU_CSL31_NSR_S1(v)   (((v) << BP_CSU_CSL31_NSR_S1) & BM_CSU_CSL31_NSR_S1)
-#endif
+#define BF_CSU_CSL31_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NSR_S1) & BM_CSU_CSL31_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -19778,15 +17062,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL31_SUW_S1.
 
 //! @brief Get value of CSU_CSL31_SUW_S1 from a register value.
-#define BG_CSU_CSL31_SUW_S1(r)   (((r) & BM_CSU_CSL31_SUW_S1) >> BP_CSU_CSL31_SUW_S1)
+#define BG_CSU_CSL31_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SUW_S1) >> BP_CSU_CSL31_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SUW_S1.
-#define BF_CSU_CSL31_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_SUW_S1) & BM_CSU_CSL31_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SUW_S1.
-#define BF_CSU_CSL31_SUW_S1(v)   (((v) << BP_CSU_CSL31_SUW_S1) & BM_CSU_CSL31_SUW_S1)
-#endif
+#define BF_CSU_CSL31_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SUW_S1) & BM_CSU_CSL31_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -19807,15 +17086,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL31_SSW_S1.
 
 //! @brief Get value of CSU_CSL31_SSW_S1 from a register value.
-#define BG_CSU_CSL31_SSW_S1(r)   (((r) & BM_CSU_CSL31_SSW_S1) >> BP_CSU_CSL31_SSW_S1)
+#define BG_CSU_CSL31_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_SSW_S1) >> BP_CSU_CSL31_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_SSW_S1.
-#define BF_CSU_CSL31_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_SSW_S1) & BM_CSU_CSL31_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_SSW_S1.
-#define BF_CSU_CSL31_SSW_S1(v)   (((v) << BP_CSU_CSL31_SSW_S1) & BM_CSU_CSL31_SSW_S1)
-#endif
+#define BF_CSU_CSL31_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_SSW_S1) & BM_CSU_CSL31_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -19836,15 +17110,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL31_NUW_S1.
 
 //! @brief Get value of CSU_CSL31_NUW_S1 from a register value.
-#define BG_CSU_CSL31_NUW_S1(r)   (((r) & BM_CSU_CSL31_NUW_S1) >> BP_CSU_CSL31_NUW_S1)
+#define BG_CSU_CSL31_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NUW_S1) >> BP_CSU_CSL31_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NUW_S1.
-#define BF_CSU_CSL31_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_NUW_S1) & BM_CSU_CSL31_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NUW_S1.
-#define BF_CSU_CSL31_NUW_S1(v)   (((v) << BP_CSU_CSL31_NUW_S1) & BM_CSU_CSL31_NUW_S1)
-#endif
+#define BF_CSU_CSL31_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NUW_S1) & BM_CSU_CSL31_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -19865,15 +17134,10 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL31_NSW_S1.
 
 //! @brief Get value of CSU_CSL31_NSW_S1 from a register value.
-#define BG_CSU_CSL31_NSW_S1(r)   (((r) & BM_CSU_CSL31_NSW_S1) >> BP_CSU_CSL31_NSW_S1)
+#define BG_CSU_CSL31_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_NSW_S1) >> BP_CSU_CSL31_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_NSW_S1.
-#define BF_CSU_CSL31_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_NSW_S1) & BM_CSU_CSL31_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_NSW_S1.
-#define BF_CSU_CSL31_NSW_S1(v)   (((v) << BP_CSU_CSL31_NSW_S1) & BM_CSU_CSL31_NSW_S1)
-#endif
+#define BF_CSU_CSL31_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_NSW_S1) & BM_CSU_CSL31_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -19894,21 +17158,20 @@ typedef union _hw_csu_csl31
 #define BM_CSU_CSL31_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL31_LOCK_S1.
 
 //! @brief Get value of CSU_CSL31_LOCK_S1 from a register value.
-#define BG_CSU_CSL31_LOCK_S1(r)   (((r) & BM_CSU_CSL31_LOCK_S1) >> BP_CSU_CSL31_LOCK_S1)
+#define BG_CSU_CSL31_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL31_LOCK_S1) >> BP_CSU_CSL31_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL31_LOCK_S1.
-#define BF_CSU_CSL31_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL31_LOCK_S1) & BM_CSU_CSL31_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL31_LOCK_S1.
-#define BF_CSU_CSL31_LOCK_S1(v)   (((v) << BP_CSU_CSL31_LOCK_S1) & BM_CSU_CSL31_LOCK_S1)
-#endif
+#define BF_CSU_CSL31_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL31_LOCK_S1) & BM_CSU_CSL31_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL31_LOCK_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_LOCK_S1) | BF_CSU_CSL31_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL32 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19923,11 +17186,11 @@ typedef union _hw_csu_csl31
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -19939,7 +17202,7 @@ typedef union _hw_csu_csl31
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -20021,15 +17284,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL32_SUR_S2.
 
 //! @brief Get value of CSU_CSL32_SUR_S2 from a register value.
-#define BG_CSU_CSL32_SUR_S2(r)   (((r) & BM_CSU_CSL32_SUR_S2) >> BP_CSU_CSL32_SUR_S2)
+#define BG_CSU_CSL32_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SUR_S2) >> BP_CSU_CSL32_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SUR_S2.
-#define BF_CSU_CSL32_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_SUR_S2) & BM_CSU_CSL32_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SUR_S2.
-#define BF_CSU_CSL32_SUR_S2(v)   (((v) << BP_CSU_CSL32_SUR_S2) & BM_CSU_CSL32_SUR_S2)
-#endif
+#define BF_CSU_CSL32_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SUR_S2) & BM_CSU_CSL32_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -20050,15 +17308,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL32_SSR_S2.
 
 //! @brief Get value of CSU_CSL32_SSR_S2 from a register value.
-#define BG_CSU_CSL32_SSR_S2(r)   (((r) & BM_CSU_CSL32_SSR_S2) >> BP_CSU_CSL32_SSR_S2)
+#define BG_CSU_CSL32_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SSR_S2) >> BP_CSU_CSL32_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SSR_S2.
-#define BF_CSU_CSL32_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_SSR_S2) & BM_CSU_CSL32_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SSR_S2.
-#define BF_CSU_CSL32_SSR_S2(v)   (((v) << BP_CSU_CSL32_SSR_S2) & BM_CSU_CSL32_SSR_S2)
-#endif
+#define BF_CSU_CSL32_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SSR_S2) & BM_CSU_CSL32_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -20079,15 +17332,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL32_NUR_S2.
 
 //! @brief Get value of CSU_CSL32_NUR_S2 from a register value.
-#define BG_CSU_CSL32_NUR_S2(r)   (((r) & BM_CSU_CSL32_NUR_S2) >> BP_CSU_CSL32_NUR_S2)
+#define BG_CSU_CSL32_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NUR_S2) >> BP_CSU_CSL32_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NUR_S2.
-#define BF_CSU_CSL32_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_NUR_S2) & BM_CSU_CSL32_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NUR_S2.
-#define BF_CSU_CSL32_NUR_S2(v)   (((v) << BP_CSU_CSL32_NUR_S2) & BM_CSU_CSL32_NUR_S2)
-#endif
+#define BF_CSU_CSL32_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NUR_S2) & BM_CSU_CSL32_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -20108,15 +17356,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL32_NSR_S2.
 
 //! @brief Get value of CSU_CSL32_NSR_S2 from a register value.
-#define BG_CSU_CSL32_NSR_S2(r)   (((r) & BM_CSU_CSL32_NSR_S2) >> BP_CSU_CSL32_NSR_S2)
+#define BG_CSU_CSL32_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NSR_S2) >> BP_CSU_CSL32_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NSR_S2.
-#define BF_CSU_CSL32_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_NSR_S2) & BM_CSU_CSL32_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NSR_S2.
-#define BF_CSU_CSL32_NSR_S2(v)   (((v) << BP_CSU_CSL32_NSR_S2) & BM_CSU_CSL32_NSR_S2)
-#endif
+#define BF_CSU_CSL32_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NSR_S2) & BM_CSU_CSL32_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -20137,15 +17380,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL32_SUW_S2.
 
 //! @brief Get value of CSU_CSL32_SUW_S2 from a register value.
-#define BG_CSU_CSL32_SUW_S2(r)   (((r) & BM_CSU_CSL32_SUW_S2) >> BP_CSU_CSL32_SUW_S2)
+#define BG_CSU_CSL32_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SUW_S2) >> BP_CSU_CSL32_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SUW_S2.
-#define BF_CSU_CSL32_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_SUW_S2) & BM_CSU_CSL32_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SUW_S2.
-#define BF_CSU_CSL32_SUW_S2(v)   (((v) << BP_CSU_CSL32_SUW_S2) & BM_CSU_CSL32_SUW_S2)
-#endif
+#define BF_CSU_CSL32_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SUW_S2) & BM_CSU_CSL32_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -20166,15 +17404,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL32_SSW_S2.
 
 //! @brief Get value of CSU_CSL32_SSW_S2 from a register value.
-#define BG_CSU_CSL32_SSW_S2(r)   (((r) & BM_CSU_CSL32_SSW_S2) >> BP_CSU_CSL32_SSW_S2)
+#define BG_CSU_CSL32_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SSW_S2) >> BP_CSU_CSL32_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SSW_S2.
-#define BF_CSU_CSL32_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_SSW_S2) & BM_CSU_CSL32_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SSW_S2.
-#define BF_CSU_CSL32_SSW_S2(v)   (((v) << BP_CSU_CSL32_SSW_S2) & BM_CSU_CSL32_SSW_S2)
-#endif
+#define BF_CSU_CSL32_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SSW_S2) & BM_CSU_CSL32_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -20195,15 +17428,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL32_NUW_S2.
 
 //! @brief Get value of CSU_CSL32_NUW_S2 from a register value.
-#define BG_CSU_CSL32_NUW_S2(r)   (((r) & BM_CSU_CSL32_NUW_S2) >> BP_CSU_CSL32_NUW_S2)
+#define BG_CSU_CSL32_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NUW_S2) >> BP_CSU_CSL32_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NUW_S2.
-#define BF_CSU_CSL32_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_NUW_S2) & BM_CSU_CSL32_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NUW_S2.
-#define BF_CSU_CSL32_NUW_S2(v)   (((v) << BP_CSU_CSL32_NUW_S2) & BM_CSU_CSL32_NUW_S2)
-#endif
+#define BF_CSU_CSL32_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NUW_S2) & BM_CSU_CSL32_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -20224,15 +17452,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL32_NSW_S2.
 
 //! @brief Get value of CSU_CSL32_NSW_S2 from a register value.
-#define BG_CSU_CSL32_NSW_S2(r)   (((r) & BM_CSU_CSL32_NSW_S2) >> BP_CSU_CSL32_NSW_S2)
+#define BG_CSU_CSL32_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NSW_S2) >> BP_CSU_CSL32_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NSW_S2.
-#define BF_CSU_CSL32_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_NSW_S2) & BM_CSU_CSL32_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NSW_S2.
-#define BF_CSU_CSL32_NSW_S2(v)   (((v) << BP_CSU_CSL32_NSW_S2) & BM_CSU_CSL32_NSW_S2)
-#endif
+#define BF_CSU_CSL32_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NSW_S2) & BM_CSU_CSL32_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -20253,15 +17476,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL32_LOCK_S2.
 
 //! @brief Get value of CSU_CSL32_LOCK_S2 from a register value.
-#define BG_CSU_CSL32_LOCK_S2(r)   (((r) & BM_CSU_CSL32_LOCK_S2) >> BP_CSU_CSL32_LOCK_S2)
+#define BG_CSU_CSL32_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_LOCK_S2) >> BP_CSU_CSL32_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_LOCK_S2.
-#define BF_CSU_CSL32_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL32_LOCK_S2) & BM_CSU_CSL32_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL32_LOCK_S2.
-#define BF_CSU_CSL32_LOCK_S2(v)   (((v) << BP_CSU_CSL32_LOCK_S2) & BM_CSU_CSL32_LOCK_S2)
-#endif
+#define BF_CSU_CSL32_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_LOCK_S2) & BM_CSU_CSL32_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -20282,15 +17500,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL32_SUR_S1.
 
 //! @brief Get value of CSU_CSL32_SUR_S1 from a register value.
-#define BG_CSU_CSL32_SUR_S1(r)   (((r) & BM_CSU_CSL32_SUR_S1) >> BP_CSU_CSL32_SUR_S1)
+#define BG_CSU_CSL32_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SUR_S1) >> BP_CSU_CSL32_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SUR_S1.
-#define BF_CSU_CSL32_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_SUR_S1) & BM_CSU_CSL32_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SUR_S1.
-#define BF_CSU_CSL32_SUR_S1(v)   (((v) << BP_CSU_CSL32_SUR_S1) & BM_CSU_CSL32_SUR_S1)
-#endif
+#define BF_CSU_CSL32_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SUR_S1) & BM_CSU_CSL32_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -20311,15 +17524,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL32_SSR_S1.
 
 //! @brief Get value of CSU_CSL32_SSR_S1 from a register value.
-#define BG_CSU_CSL32_SSR_S1(r)   (((r) & BM_CSU_CSL32_SSR_S1) >> BP_CSU_CSL32_SSR_S1)
+#define BG_CSU_CSL32_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SSR_S1) >> BP_CSU_CSL32_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SSR_S1.
-#define BF_CSU_CSL32_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_SSR_S1) & BM_CSU_CSL32_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SSR_S1.
-#define BF_CSU_CSL32_SSR_S1(v)   (((v) << BP_CSU_CSL32_SSR_S1) & BM_CSU_CSL32_SSR_S1)
-#endif
+#define BF_CSU_CSL32_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SSR_S1) & BM_CSU_CSL32_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -20340,15 +17548,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL32_NUR_S1.
 
 //! @brief Get value of CSU_CSL32_NUR_S1 from a register value.
-#define BG_CSU_CSL32_NUR_S1(r)   (((r) & BM_CSU_CSL32_NUR_S1) >> BP_CSU_CSL32_NUR_S1)
+#define BG_CSU_CSL32_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NUR_S1) >> BP_CSU_CSL32_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NUR_S1.
-#define BF_CSU_CSL32_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_NUR_S1) & BM_CSU_CSL32_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NUR_S1.
-#define BF_CSU_CSL32_NUR_S1(v)   (((v) << BP_CSU_CSL32_NUR_S1) & BM_CSU_CSL32_NUR_S1)
-#endif
+#define BF_CSU_CSL32_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NUR_S1) & BM_CSU_CSL32_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -20369,15 +17572,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL32_NSR_S1.
 
 //! @brief Get value of CSU_CSL32_NSR_S1 from a register value.
-#define BG_CSU_CSL32_NSR_S1(r)   (((r) & BM_CSU_CSL32_NSR_S1) >> BP_CSU_CSL32_NSR_S1)
+#define BG_CSU_CSL32_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NSR_S1) >> BP_CSU_CSL32_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NSR_S1.
-#define BF_CSU_CSL32_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_NSR_S1) & BM_CSU_CSL32_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NSR_S1.
-#define BF_CSU_CSL32_NSR_S1(v)   (((v) << BP_CSU_CSL32_NSR_S1) & BM_CSU_CSL32_NSR_S1)
-#endif
+#define BF_CSU_CSL32_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NSR_S1) & BM_CSU_CSL32_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -20398,15 +17596,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL32_SUW_S1.
 
 //! @brief Get value of CSU_CSL32_SUW_S1 from a register value.
-#define BG_CSU_CSL32_SUW_S1(r)   (((r) & BM_CSU_CSL32_SUW_S1) >> BP_CSU_CSL32_SUW_S1)
+#define BG_CSU_CSL32_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SUW_S1) >> BP_CSU_CSL32_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SUW_S1.
-#define BF_CSU_CSL32_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_SUW_S1) & BM_CSU_CSL32_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SUW_S1.
-#define BF_CSU_CSL32_SUW_S1(v)   (((v) << BP_CSU_CSL32_SUW_S1) & BM_CSU_CSL32_SUW_S1)
-#endif
+#define BF_CSU_CSL32_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SUW_S1) & BM_CSU_CSL32_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -20427,15 +17620,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL32_SSW_S1.
 
 //! @brief Get value of CSU_CSL32_SSW_S1 from a register value.
-#define BG_CSU_CSL32_SSW_S1(r)   (((r) & BM_CSU_CSL32_SSW_S1) >> BP_CSU_CSL32_SSW_S1)
+#define BG_CSU_CSL32_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_SSW_S1) >> BP_CSU_CSL32_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_SSW_S1.
-#define BF_CSU_CSL32_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_SSW_S1) & BM_CSU_CSL32_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_SSW_S1.
-#define BF_CSU_CSL32_SSW_S1(v)   (((v) << BP_CSU_CSL32_SSW_S1) & BM_CSU_CSL32_SSW_S1)
-#endif
+#define BF_CSU_CSL32_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_SSW_S1) & BM_CSU_CSL32_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -20456,15 +17644,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL32_NUW_S1.
 
 //! @brief Get value of CSU_CSL32_NUW_S1 from a register value.
-#define BG_CSU_CSL32_NUW_S1(r)   (((r) & BM_CSU_CSL32_NUW_S1) >> BP_CSU_CSL32_NUW_S1)
+#define BG_CSU_CSL32_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NUW_S1) >> BP_CSU_CSL32_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NUW_S1.
-#define BF_CSU_CSL32_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_NUW_S1) & BM_CSU_CSL32_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NUW_S1.
-#define BF_CSU_CSL32_NUW_S1(v)   (((v) << BP_CSU_CSL32_NUW_S1) & BM_CSU_CSL32_NUW_S1)
-#endif
+#define BF_CSU_CSL32_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NUW_S1) & BM_CSU_CSL32_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -20485,15 +17668,10 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL32_NSW_S1.
 
 //! @brief Get value of CSU_CSL32_NSW_S1 from a register value.
-#define BG_CSU_CSL32_NSW_S1(r)   (((r) & BM_CSU_CSL32_NSW_S1) >> BP_CSU_CSL32_NSW_S1)
+#define BG_CSU_CSL32_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_NSW_S1) >> BP_CSU_CSL32_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_NSW_S1.
-#define BF_CSU_CSL32_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_NSW_S1) & BM_CSU_CSL32_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_NSW_S1.
-#define BF_CSU_CSL32_NSW_S1(v)   (((v) << BP_CSU_CSL32_NSW_S1) & BM_CSU_CSL32_NSW_S1)
-#endif
+#define BF_CSU_CSL32_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_NSW_S1) & BM_CSU_CSL32_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -20514,21 +17692,20 @@ typedef union _hw_csu_csl32
 #define BM_CSU_CSL32_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL32_LOCK_S1.
 
 //! @brief Get value of CSU_CSL32_LOCK_S1 from a register value.
-#define BG_CSU_CSL32_LOCK_S1(r)   (((r) & BM_CSU_CSL32_LOCK_S1) >> BP_CSU_CSL32_LOCK_S1)
+#define BG_CSU_CSL32_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL32_LOCK_S1) >> BP_CSU_CSL32_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL32_LOCK_S1.
-#define BF_CSU_CSL32_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL32_LOCK_S1) & BM_CSU_CSL32_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL32_LOCK_S1.
-#define BF_CSU_CSL32_LOCK_S1(v)   (((v) << BP_CSU_CSL32_LOCK_S1) & BM_CSU_CSL32_LOCK_S1)
-#endif
+#define BF_CSU_CSL32_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL32_LOCK_S1) & BM_CSU_CSL32_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL32_LOCK_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_LOCK_S1) | BF_CSU_CSL32_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL33 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -20543,11 +17720,11 @@ typedef union _hw_csu_csl32
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -20559,7 +17736,7 @@ typedef union _hw_csu_csl32
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -20641,15 +17818,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL33_SUR_S2.
 
 //! @brief Get value of CSU_CSL33_SUR_S2 from a register value.
-#define BG_CSU_CSL33_SUR_S2(r)   (((r) & BM_CSU_CSL33_SUR_S2) >> BP_CSU_CSL33_SUR_S2)
+#define BG_CSU_CSL33_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SUR_S2) >> BP_CSU_CSL33_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SUR_S2.
-#define BF_CSU_CSL33_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_SUR_S2) & BM_CSU_CSL33_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SUR_S2.
-#define BF_CSU_CSL33_SUR_S2(v)   (((v) << BP_CSU_CSL33_SUR_S2) & BM_CSU_CSL33_SUR_S2)
-#endif
+#define BF_CSU_CSL33_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SUR_S2) & BM_CSU_CSL33_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -20670,15 +17842,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL33_SSR_S2.
 
 //! @brief Get value of CSU_CSL33_SSR_S2 from a register value.
-#define BG_CSU_CSL33_SSR_S2(r)   (((r) & BM_CSU_CSL33_SSR_S2) >> BP_CSU_CSL33_SSR_S2)
+#define BG_CSU_CSL33_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SSR_S2) >> BP_CSU_CSL33_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SSR_S2.
-#define BF_CSU_CSL33_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_SSR_S2) & BM_CSU_CSL33_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SSR_S2.
-#define BF_CSU_CSL33_SSR_S2(v)   (((v) << BP_CSU_CSL33_SSR_S2) & BM_CSU_CSL33_SSR_S2)
-#endif
+#define BF_CSU_CSL33_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SSR_S2) & BM_CSU_CSL33_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -20699,15 +17866,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL33_NUR_S2.
 
 //! @brief Get value of CSU_CSL33_NUR_S2 from a register value.
-#define BG_CSU_CSL33_NUR_S2(r)   (((r) & BM_CSU_CSL33_NUR_S2) >> BP_CSU_CSL33_NUR_S2)
+#define BG_CSU_CSL33_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NUR_S2) >> BP_CSU_CSL33_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NUR_S2.
-#define BF_CSU_CSL33_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_NUR_S2) & BM_CSU_CSL33_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NUR_S2.
-#define BF_CSU_CSL33_NUR_S2(v)   (((v) << BP_CSU_CSL33_NUR_S2) & BM_CSU_CSL33_NUR_S2)
-#endif
+#define BF_CSU_CSL33_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NUR_S2) & BM_CSU_CSL33_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -20728,15 +17890,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL33_NSR_S2.
 
 //! @brief Get value of CSU_CSL33_NSR_S2 from a register value.
-#define BG_CSU_CSL33_NSR_S2(r)   (((r) & BM_CSU_CSL33_NSR_S2) >> BP_CSU_CSL33_NSR_S2)
+#define BG_CSU_CSL33_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NSR_S2) >> BP_CSU_CSL33_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NSR_S2.
-#define BF_CSU_CSL33_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_NSR_S2) & BM_CSU_CSL33_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NSR_S2.
-#define BF_CSU_CSL33_NSR_S2(v)   (((v) << BP_CSU_CSL33_NSR_S2) & BM_CSU_CSL33_NSR_S2)
-#endif
+#define BF_CSU_CSL33_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NSR_S2) & BM_CSU_CSL33_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -20757,15 +17914,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL33_SUW_S2.
 
 //! @brief Get value of CSU_CSL33_SUW_S2 from a register value.
-#define BG_CSU_CSL33_SUW_S2(r)   (((r) & BM_CSU_CSL33_SUW_S2) >> BP_CSU_CSL33_SUW_S2)
+#define BG_CSU_CSL33_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SUW_S2) >> BP_CSU_CSL33_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SUW_S2.
-#define BF_CSU_CSL33_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_SUW_S2) & BM_CSU_CSL33_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SUW_S2.
-#define BF_CSU_CSL33_SUW_S2(v)   (((v) << BP_CSU_CSL33_SUW_S2) & BM_CSU_CSL33_SUW_S2)
-#endif
+#define BF_CSU_CSL33_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SUW_S2) & BM_CSU_CSL33_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -20786,15 +17938,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL33_SSW_S2.
 
 //! @brief Get value of CSU_CSL33_SSW_S2 from a register value.
-#define BG_CSU_CSL33_SSW_S2(r)   (((r) & BM_CSU_CSL33_SSW_S2) >> BP_CSU_CSL33_SSW_S2)
+#define BG_CSU_CSL33_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SSW_S2) >> BP_CSU_CSL33_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SSW_S2.
-#define BF_CSU_CSL33_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_SSW_S2) & BM_CSU_CSL33_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SSW_S2.
-#define BF_CSU_CSL33_SSW_S2(v)   (((v) << BP_CSU_CSL33_SSW_S2) & BM_CSU_CSL33_SSW_S2)
-#endif
+#define BF_CSU_CSL33_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SSW_S2) & BM_CSU_CSL33_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -20815,15 +17962,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL33_NUW_S2.
 
 //! @brief Get value of CSU_CSL33_NUW_S2 from a register value.
-#define BG_CSU_CSL33_NUW_S2(r)   (((r) & BM_CSU_CSL33_NUW_S2) >> BP_CSU_CSL33_NUW_S2)
+#define BG_CSU_CSL33_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NUW_S2) >> BP_CSU_CSL33_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NUW_S2.
-#define BF_CSU_CSL33_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_NUW_S2) & BM_CSU_CSL33_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NUW_S2.
-#define BF_CSU_CSL33_NUW_S2(v)   (((v) << BP_CSU_CSL33_NUW_S2) & BM_CSU_CSL33_NUW_S2)
-#endif
+#define BF_CSU_CSL33_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NUW_S2) & BM_CSU_CSL33_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -20844,15 +17986,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL33_NSW_S2.
 
 //! @brief Get value of CSU_CSL33_NSW_S2 from a register value.
-#define BG_CSU_CSL33_NSW_S2(r)   (((r) & BM_CSU_CSL33_NSW_S2) >> BP_CSU_CSL33_NSW_S2)
+#define BG_CSU_CSL33_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NSW_S2) >> BP_CSU_CSL33_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NSW_S2.
-#define BF_CSU_CSL33_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_NSW_S2) & BM_CSU_CSL33_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NSW_S2.
-#define BF_CSU_CSL33_NSW_S2(v)   (((v) << BP_CSU_CSL33_NSW_S2) & BM_CSU_CSL33_NSW_S2)
-#endif
+#define BF_CSU_CSL33_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NSW_S2) & BM_CSU_CSL33_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -20873,15 +18010,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL33_LOCK_S2.
 
 //! @brief Get value of CSU_CSL33_LOCK_S2 from a register value.
-#define BG_CSU_CSL33_LOCK_S2(r)   (((r) & BM_CSU_CSL33_LOCK_S2) >> BP_CSU_CSL33_LOCK_S2)
+#define BG_CSU_CSL33_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_LOCK_S2) >> BP_CSU_CSL33_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_LOCK_S2.
-#define BF_CSU_CSL33_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL33_LOCK_S2) & BM_CSU_CSL33_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL33_LOCK_S2.
-#define BF_CSU_CSL33_LOCK_S2(v)   (((v) << BP_CSU_CSL33_LOCK_S2) & BM_CSU_CSL33_LOCK_S2)
-#endif
+#define BF_CSU_CSL33_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_LOCK_S2) & BM_CSU_CSL33_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -20902,15 +18034,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL33_SUR_S1.
 
 //! @brief Get value of CSU_CSL33_SUR_S1 from a register value.
-#define BG_CSU_CSL33_SUR_S1(r)   (((r) & BM_CSU_CSL33_SUR_S1) >> BP_CSU_CSL33_SUR_S1)
+#define BG_CSU_CSL33_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SUR_S1) >> BP_CSU_CSL33_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SUR_S1.
-#define BF_CSU_CSL33_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_SUR_S1) & BM_CSU_CSL33_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SUR_S1.
-#define BF_CSU_CSL33_SUR_S1(v)   (((v) << BP_CSU_CSL33_SUR_S1) & BM_CSU_CSL33_SUR_S1)
-#endif
+#define BF_CSU_CSL33_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SUR_S1) & BM_CSU_CSL33_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -20931,15 +18058,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL33_SSR_S1.
 
 //! @brief Get value of CSU_CSL33_SSR_S1 from a register value.
-#define BG_CSU_CSL33_SSR_S1(r)   (((r) & BM_CSU_CSL33_SSR_S1) >> BP_CSU_CSL33_SSR_S1)
+#define BG_CSU_CSL33_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SSR_S1) >> BP_CSU_CSL33_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SSR_S1.
-#define BF_CSU_CSL33_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_SSR_S1) & BM_CSU_CSL33_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SSR_S1.
-#define BF_CSU_CSL33_SSR_S1(v)   (((v) << BP_CSU_CSL33_SSR_S1) & BM_CSU_CSL33_SSR_S1)
-#endif
+#define BF_CSU_CSL33_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SSR_S1) & BM_CSU_CSL33_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -20960,15 +18082,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL33_NUR_S1.
 
 //! @brief Get value of CSU_CSL33_NUR_S1 from a register value.
-#define BG_CSU_CSL33_NUR_S1(r)   (((r) & BM_CSU_CSL33_NUR_S1) >> BP_CSU_CSL33_NUR_S1)
+#define BG_CSU_CSL33_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NUR_S1) >> BP_CSU_CSL33_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NUR_S1.
-#define BF_CSU_CSL33_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_NUR_S1) & BM_CSU_CSL33_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NUR_S1.
-#define BF_CSU_CSL33_NUR_S1(v)   (((v) << BP_CSU_CSL33_NUR_S1) & BM_CSU_CSL33_NUR_S1)
-#endif
+#define BF_CSU_CSL33_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NUR_S1) & BM_CSU_CSL33_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -20989,15 +18106,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL33_NSR_S1.
 
 //! @brief Get value of CSU_CSL33_NSR_S1 from a register value.
-#define BG_CSU_CSL33_NSR_S1(r)   (((r) & BM_CSU_CSL33_NSR_S1) >> BP_CSU_CSL33_NSR_S1)
+#define BG_CSU_CSL33_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NSR_S1) >> BP_CSU_CSL33_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NSR_S1.
-#define BF_CSU_CSL33_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_NSR_S1) & BM_CSU_CSL33_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NSR_S1.
-#define BF_CSU_CSL33_NSR_S1(v)   (((v) << BP_CSU_CSL33_NSR_S1) & BM_CSU_CSL33_NSR_S1)
-#endif
+#define BF_CSU_CSL33_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NSR_S1) & BM_CSU_CSL33_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -21018,15 +18130,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL33_SUW_S1.
 
 //! @brief Get value of CSU_CSL33_SUW_S1 from a register value.
-#define BG_CSU_CSL33_SUW_S1(r)   (((r) & BM_CSU_CSL33_SUW_S1) >> BP_CSU_CSL33_SUW_S1)
+#define BG_CSU_CSL33_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SUW_S1) >> BP_CSU_CSL33_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SUW_S1.
-#define BF_CSU_CSL33_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_SUW_S1) & BM_CSU_CSL33_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SUW_S1.
-#define BF_CSU_CSL33_SUW_S1(v)   (((v) << BP_CSU_CSL33_SUW_S1) & BM_CSU_CSL33_SUW_S1)
-#endif
+#define BF_CSU_CSL33_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SUW_S1) & BM_CSU_CSL33_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -21047,15 +18154,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL33_SSW_S1.
 
 //! @brief Get value of CSU_CSL33_SSW_S1 from a register value.
-#define BG_CSU_CSL33_SSW_S1(r)   (((r) & BM_CSU_CSL33_SSW_S1) >> BP_CSU_CSL33_SSW_S1)
+#define BG_CSU_CSL33_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_SSW_S1) >> BP_CSU_CSL33_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_SSW_S1.
-#define BF_CSU_CSL33_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_SSW_S1) & BM_CSU_CSL33_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_SSW_S1.
-#define BF_CSU_CSL33_SSW_S1(v)   (((v) << BP_CSU_CSL33_SSW_S1) & BM_CSU_CSL33_SSW_S1)
-#endif
+#define BF_CSU_CSL33_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_SSW_S1) & BM_CSU_CSL33_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -21076,15 +18178,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL33_NUW_S1.
 
 //! @brief Get value of CSU_CSL33_NUW_S1 from a register value.
-#define BG_CSU_CSL33_NUW_S1(r)   (((r) & BM_CSU_CSL33_NUW_S1) >> BP_CSU_CSL33_NUW_S1)
+#define BG_CSU_CSL33_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NUW_S1) >> BP_CSU_CSL33_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NUW_S1.
-#define BF_CSU_CSL33_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_NUW_S1) & BM_CSU_CSL33_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NUW_S1.
-#define BF_CSU_CSL33_NUW_S1(v)   (((v) << BP_CSU_CSL33_NUW_S1) & BM_CSU_CSL33_NUW_S1)
-#endif
+#define BF_CSU_CSL33_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NUW_S1) & BM_CSU_CSL33_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -21105,15 +18202,10 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL33_NSW_S1.
 
 //! @brief Get value of CSU_CSL33_NSW_S1 from a register value.
-#define BG_CSU_CSL33_NSW_S1(r)   (((r) & BM_CSU_CSL33_NSW_S1) >> BP_CSU_CSL33_NSW_S1)
+#define BG_CSU_CSL33_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_NSW_S1) >> BP_CSU_CSL33_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_NSW_S1.
-#define BF_CSU_CSL33_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_NSW_S1) & BM_CSU_CSL33_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_NSW_S1.
-#define BF_CSU_CSL33_NSW_S1(v)   (((v) << BP_CSU_CSL33_NSW_S1) & BM_CSU_CSL33_NSW_S1)
-#endif
+#define BF_CSU_CSL33_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_NSW_S1) & BM_CSU_CSL33_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -21134,21 +18226,20 @@ typedef union _hw_csu_csl33
 #define BM_CSU_CSL33_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL33_LOCK_S1.
 
 //! @brief Get value of CSU_CSL33_LOCK_S1 from a register value.
-#define BG_CSU_CSL33_LOCK_S1(r)   (((r) & BM_CSU_CSL33_LOCK_S1) >> BP_CSU_CSL33_LOCK_S1)
+#define BG_CSU_CSL33_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL33_LOCK_S1) >> BP_CSU_CSL33_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL33_LOCK_S1.
-#define BF_CSU_CSL33_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL33_LOCK_S1) & BM_CSU_CSL33_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL33_LOCK_S1.
-#define BF_CSU_CSL33_LOCK_S1(v)   (((v) << BP_CSU_CSL33_LOCK_S1) & BM_CSU_CSL33_LOCK_S1)
-#endif
+#define BF_CSU_CSL33_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL33_LOCK_S1) & BM_CSU_CSL33_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL33_LOCK_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_LOCK_S1) | BF_CSU_CSL33_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL34 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -21163,11 +18254,11 @@ typedef union _hw_csu_csl33
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -21179,7 +18270,7 @@ typedef union _hw_csu_csl33
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -21261,15 +18352,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL34_SUR_S2.
 
 //! @brief Get value of CSU_CSL34_SUR_S2 from a register value.
-#define BG_CSU_CSL34_SUR_S2(r)   (((r) & BM_CSU_CSL34_SUR_S2) >> BP_CSU_CSL34_SUR_S2)
+#define BG_CSU_CSL34_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SUR_S2) >> BP_CSU_CSL34_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SUR_S2.
-#define BF_CSU_CSL34_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_SUR_S2) & BM_CSU_CSL34_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SUR_S2.
-#define BF_CSU_CSL34_SUR_S2(v)   (((v) << BP_CSU_CSL34_SUR_S2) & BM_CSU_CSL34_SUR_S2)
-#endif
+#define BF_CSU_CSL34_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SUR_S2) & BM_CSU_CSL34_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -21290,15 +18376,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL34_SSR_S2.
 
 //! @brief Get value of CSU_CSL34_SSR_S2 from a register value.
-#define BG_CSU_CSL34_SSR_S2(r)   (((r) & BM_CSU_CSL34_SSR_S2) >> BP_CSU_CSL34_SSR_S2)
+#define BG_CSU_CSL34_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SSR_S2) >> BP_CSU_CSL34_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SSR_S2.
-#define BF_CSU_CSL34_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_SSR_S2) & BM_CSU_CSL34_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SSR_S2.
-#define BF_CSU_CSL34_SSR_S2(v)   (((v) << BP_CSU_CSL34_SSR_S2) & BM_CSU_CSL34_SSR_S2)
-#endif
+#define BF_CSU_CSL34_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SSR_S2) & BM_CSU_CSL34_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -21319,15 +18400,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL34_NUR_S2.
 
 //! @brief Get value of CSU_CSL34_NUR_S2 from a register value.
-#define BG_CSU_CSL34_NUR_S2(r)   (((r) & BM_CSU_CSL34_NUR_S2) >> BP_CSU_CSL34_NUR_S2)
+#define BG_CSU_CSL34_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NUR_S2) >> BP_CSU_CSL34_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NUR_S2.
-#define BF_CSU_CSL34_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_NUR_S2) & BM_CSU_CSL34_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NUR_S2.
-#define BF_CSU_CSL34_NUR_S2(v)   (((v) << BP_CSU_CSL34_NUR_S2) & BM_CSU_CSL34_NUR_S2)
-#endif
+#define BF_CSU_CSL34_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NUR_S2) & BM_CSU_CSL34_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -21348,15 +18424,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL34_NSR_S2.
 
 //! @brief Get value of CSU_CSL34_NSR_S2 from a register value.
-#define BG_CSU_CSL34_NSR_S2(r)   (((r) & BM_CSU_CSL34_NSR_S2) >> BP_CSU_CSL34_NSR_S2)
+#define BG_CSU_CSL34_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NSR_S2) >> BP_CSU_CSL34_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NSR_S2.
-#define BF_CSU_CSL34_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_NSR_S2) & BM_CSU_CSL34_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NSR_S2.
-#define BF_CSU_CSL34_NSR_S2(v)   (((v) << BP_CSU_CSL34_NSR_S2) & BM_CSU_CSL34_NSR_S2)
-#endif
+#define BF_CSU_CSL34_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NSR_S2) & BM_CSU_CSL34_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -21377,15 +18448,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL34_SUW_S2.
 
 //! @brief Get value of CSU_CSL34_SUW_S2 from a register value.
-#define BG_CSU_CSL34_SUW_S2(r)   (((r) & BM_CSU_CSL34_SUW_S2) >> BP_CSU_CSL34_SUW_S2)
+#define BG_CSU_CSL34_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SUW_S2) >> BP_CSU_CSL34_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SUW_S2.
-#define BF_CSU_CSL34_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_SUW_S2) & BM_CSU_CSL34_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SUW_S2.
-#define BF_CSU_CSL34_SUW_S2(v)   (((v) << BP_CSU_CSL34_SUW_S2) & BM_CSU_CSL34_SUW_S2)
-#endif
+#define BF_CSU_CSL34_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SUW_S2) & BM_CSU_CSL34_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -21406,15 +18472,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL34_SSW_S2.
 
 //! @brief Get value of CSU_CSL34_SSW_S2 from a register value.
-#define BG_CSU_CSL34_SSW_S2(r)   (((r) & BM_CSU_CSL34_SSW_S2) >> BP_CSU_CSL34_SSW_S2)
+#define BG_CSU_CSL34_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SSW_S2) >> BP_CSU_CSL34_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SSW_S2.
-#define BF_CSU_CSL34_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_SSW_S2) & BM_CSU_CSL34_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SSW_S2.
-#define BF_CSU_CSL34_SSW_S2(v)   (((v) << BP_CSU_CSL34_SSW_S2) & BM_CSU_CSL34_SSW_S2)
-#endif
+#define BF_CSU_CSL34_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SSW_S2) & BM_CSU_CSL34_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -21435,15 +18496,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL34_NUW_S2.
 
 //! @brief Get value of CSU_CSL34_NUW_S2 from a register value.
-#define BG_CSU_CSL34_NUW_S2(r)   (((r) & BM_CSU_CSL34_NUW_S2) >> BP_CSU_CSL34_NUW_S2)
+#define BG_CSU_CSL34_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NUW_S2) >> BP_CSU_CSL34_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NUW_S2.
-#define BF_CSU_CSL34_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_NUW_S2) & BM_CSU_CSL34_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NUW_S2.
-#define BF_CSU_CSL34_NUW_S2(v)   (((v) << BP_CSU_CSL34_NUW_S2) & BM_CSU_CSL34_NUW_S2)
-#endif
+#define BF_CSU_CSL34_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NUW_S2) & BM_CSU_CSL34_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -21464,15 +18520,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL34_NSW_S2.
 
 //! @brief Get value of CSU_CSL34_NSW_S2 from a register value.
-#define BG_CSU_CSL34_NSW_S2(r)   (((r) & BM_CSU_CSL34_NSW_S2) >> BP_CSU_CSL34_NSW_S2)
+#define BG_CSU_CSL34_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NSW_S2) >> BP_CSU_CSL34_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NSW_S2.
-#define BF_CSU_CSL34_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_NSW_S2) & BM_CSU_CSL34_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NSW_S2.
-#define BF_CSU_CSL34_NSW_S2(v)   (((v) << BP_CSU_CSL34_NSW_S2) & BM_CSU_CSL34_NSW_S2)
-#endif
+#define BF_CSU_CSL34_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NSW_S2) & BM_CSU_CSL34_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -21493,15 +18544,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL34_LOCK_S2.
 
 //! @brief Get value of CSU_CSL34_LOCK_S2 from a register value.
-#define BG_CSU_CSL34_LOCK_S2(r)   (((r) & BM_CSU_CSL34_LOCK_S2) >> BP_CSU_CSL34_LOCK_S2)
+#define BG_CSU_CSL34_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_LOCK_S2) >> BP_CSU_CSL34_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_LOCK_S2.
-#define BF_CSU_CSL34_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL34_LOCK_S2) & BM_CSU_CSL34_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL34_LOCK_S2.
-#define BF_CSU_CSL34_LOCK_S2(v)   (((v) << BP_CSU_CSL34_LOCK_S2) & BM_CSU_CSL34_LOCK_S2)
-#endif
+#define BF_CSU_CSL34_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_LOCK_S2) & BM_CSU_CSL34_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -21522,15 +18568,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL34_SUR_S1.
 
 //! @brief Get value of CSU_CSL34_SUR_S1 from a register value.
-#define BG_CSU_CSL34_SUR_S1(r)   (((r) & BM_CSU_CSL34_SUR_S1) >> BP_CSU_CSL34_SUR_S1)
+#define BG_CSU_CSL34_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SUR_S1) >> BP_CSU_CSL34_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SUR_S1.
-#define BF_CSU_CSL34_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_SUR_S1) & BM_CSU_CSL34_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SUR_S1.
-#define BF_CSU_CSL34_SUR_S1(v)   (((v) << BP_CSU_CSL34_SUR_S1) & BM_CSU_CSL34_SUR_S1)
-#endif
+#define BF_CSU_CSL34_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SUR_S1) & BM_CSU_CSL34_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -21551,15 +18592,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL34_SSR_S1.
 
 //! @brief Get value of CSU_CSL34_SSR_S1 from a register value.
-#define BG_CSU_CSL34_SSR_S1(r)   (((r) & BM_CSU_CSL34_SSR_S1) >> BP_CSU_CSL34_SSR_S1)
+#define BG_CSU_CSL34_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SSR_S1) >> BP_CSU_CSL34_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SSR_S1.
-#define BF_CSU_CSL34_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_SSR_S1) & BM_CSU_CSL34_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SSR_S1.
-#define BF_CSU_CSL34_SSR_S1(v)   (((v) << BP_CSU_CSL34_SSR_S1) & BM_CSU_CSL34_SSR_S1)
-#endif
+#define BF_CSU_CSL34_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SSR_S1) & BM_CSU_CSL34_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -21580,15 +18616,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL34_NUR_S1.
 
 //! @brief Get value of CSU_CSL34_NUR_S1 from a register value.
-#define BG_CSU_CSL34_NUR_S1(r)   (((r) & BM_CSU_CSL34_NUR_S1) >> BP_CSU_CSL34_NUR_S1)
+#define BG_CSU_CSL34_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NUR_S1) >> BP_CSU_CSL34_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NUR_S1.
-#define BF_CSU_CSL34_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_NUR_S1) & BM_CSU_CSL34_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NUR_S1.
-#define BF_CSU_CSL34_NUR_S1(v)   (((v) << BP_CSU_CSL34_NUR_S1) & BM_CSU_CSL34_NUR_S1)
-#endif
+#define BF_CSU_CSL34_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NUR_S1) & BM_CSU_CSL34_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -21609,15 +18640,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL34_NSR_S1.
 
 //! @brief Get value of CSU_CSL34_NSR_S1 from a register value.
-#define BG_CSU_CSL34_NSR_S1(r)   (((r) & BM_CSU_CSL34_NSR_S1) >> BP_CSU_CSL34_NSR_S1)
+#define BG_CSU_CSL34_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NSR_S1) >> BP_CSU_CSL34_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NSR_S1.
-#define BF_CSU_CSL34_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_NSR_S1) & BM_CSU_CSL34_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NSR_S1.
-#define BF_CSU_CSL34_NSR_S1(v)   (((v) << BP_CSU_CSL34_NSR_S1) & BM_CSU_CSL34_NSR_S1)
-#endif
+#define BF_CSU_CSL34_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NSR_S1) & BM_CSU_CSL34_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -21638,15 +18664,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL34_SUW_S1.
 
 //! @brief Get value of CSU_CSL34_SUW_S1 from a register value.
-#define BG_CSU_CSL34_SUW_S1(r)   (((r) & BM_CSU_CSL34_SUW_S1) >> BP_CSU_CSL34_SUW_S1)
+#define BG_CSU_CSL34_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SUW_S1) >> BP_CSU_CSL34_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SUW_S1.
-#define BF_CSU_CSL34_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_SUW_S1) & BM_CSU_CSL34_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SUW_S1.
-#define BF_CSU_CSL34_SUW_S1(v)   (((v) << BP_CSU_CSL34_SUW_S1) & BM_CSU_CSL34_SUW_S1)
-#endif
+#define BF_CSU_CSL34_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SUW_S1) & BM_CSU_CSL34_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -21667,15 +18688,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL34_SSW_S1.
 
 //! @brief Get value of CSU_CSL34_SSW_S1 from a register value.
-#define BG_CSU_CSL34_SSW_S1(r)   (((r) & BM_CSU_CSL34_SSW_S1) >> BP_CSU_CSL34_SSW_S1)
+#define BG_CSU_CSL34_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_SSW_S1) >> BP_CSU_CSL34_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_SSW_S1.
-#define BF_CSU_CSL34_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_SSW_S1) & BM_CSU_CSL34_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_SSW_S1.
-#define BF_CSU_CSL34_SSW_S1(v)   (((v) << BP_CSU_CSL34_SSW_S1) & BM_CSU_CSL34_SSW_S1)
-#endif
+#define BF_CSU_CSL34_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_SSW_S1) & BM_CSU_CSL34_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -21696,15 +18712,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL34_NUW_S1.
 
 //! @brief Get value of CSU_CSL34_NUW_S1 from a register value.
-#define BG_CSU_CSL34_NUW_S1(r)   (((r) & BM_CSU_CSL34_NUW_S1) >> BP_CSU_CSL34_NUW_S1)
+#define BG_CSU_CSL34_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NUW_S1) >> BP_CSU_CSL34_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NUW_S1.
-#define BF_CSU_CSL34_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_NUW_S1) & BM_CSU_CSL34_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NUW_S1.
-#define BF_CSU_CSL34_NUW_S1(v)   (((v) << BP_CSU_CSL34_NUW_S1) & BM_CSU_CSL34_NUW_S1)
-#endif
+#define BF_CSU_CSL34_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NUW_S1) & BM_CSU_CSL34_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -21725,15 +18736,10 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL34_NSW_S1.
 
 //! @brief Get value of CSU_CSL34_NSW_S1 from a register value.
-#define BG_CSU_CSL34_NSW_S1(r)   (((r) & BM_CSU_CSL34_NSW_S1) >> BP_CSU_CSL34_NSW_S1)
+#define BG_CSU_CSL34_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_NSW_S1) >> BP_CSU_CSL34_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_NSW_S1.
-#define BF_CSU_CSL34_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_NSW_S1) & BM_CSU_CSL34_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_NSW_S1.
-#define BF_CSU_CSL34_NSW_S1(v)   (((v) << BP_CSU_CSL34_NSW_S1) & BM_CSU_CSL34_NSW_S1)
-#endif
+#define BF_CSU_CSL34_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_NSW_S1) & BM_CSU_CSL34_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -21754,21 +18760,20 @@ typedef union _hw_csu_csl34
 #define BM_CSU_CSL34_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL34_LOCK_S1.
 
 //! @brief Get value of CSU_CSL34_LOCK_S1 from a register value.
-#define BG_CSU_CSL34_LOCK_S1(r)   (((r) & BM_CSU_CSL34_LOCK_S1) >> BP_CSU_CSL34_LOCK_S1)
+#define BG_CSU_CSL34_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL34_LOCK_S1) >> BP_CSU_CSL34_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL34_LOCK_S1.
-#define BF_CSU_CSL34_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL34_LOCK_S1) & BM_CSU_CSL34_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL34_LOCK_S1.
-#define BF_CSU_CSL34_LOCK_S1(v)   (((v) << BP_CSU_CSL34_LOCK_S1) & BM_CSU_CSL34_LOCK_S1)
-#endif
+#define BF_CSU_CSL34_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL34_LOCK_S1) & BM_CSU_CSL34_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL34_LOCK_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_LOCK_S1) | BF_CSU_CSL34_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL35 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -21783,11 +18788,11 @@ typedef union _hw_csu_csl34
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -21799,7 +18804,7 @@ typedef union _hw_csu_csl34
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -21881,15 +18886,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL35_SUR_S2.
 
 //! @brief Get value of CSU_CSL35_SUR_S2 from a register value.
-#define BG_CSU_CSL35_SUR_S2(r)   (((r) & BM_CSU_CSL35_SUR_S2) >> BP_CSU_CSL35_SUR_S2)
+#define BG_CSU_CSL35_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SUR_S2) >> BP_CSU_CSL35_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SUR_S2.
-#define BF_CSU_CSL35_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_SUR_S2) & BM_CSU_CSL35_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SUR_S2.
-#define BF_CSU_CSL35_SUR_S2(v)   (((v) << BP_CSU_CSL35_SUR_S2) & BM_CSU_CSL35_SUR_S2)
-#endif
+#define BF_CSU_CSL35_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SUR_S2) & BM_CSU_CSL35_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -21910,15 +18910,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL35_SSR_S2.
 
 //! @brief Get value of CSU_CSL35_SSR_S2 from a register value.
-#define BG_CSU_CSL35_SSR_S2(r)   (((r) & BM_CSU_CSL35_SSR_S2) >> BP_CSU_CSL35_SSR_S2)
+#define BG_CSU_CSL35_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SSR_S2) >> BP_CSU_CSL35_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SSR_S2.
-#define BF_CSU_CSL35_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_SSR_S2) & BM_CSU_CSL35_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SSR_S2.
-#define BF_CSU_CSL35_SSR_S2(v)   (((v) << BP_CSU_CSL35_SSR_S2) & BM_CSU_CSL35_SSR_S2)
-#endif
+#define BF_CSU_CSL35_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SSR_S2) & BM_CSU_CSL35_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -21939,15 +18934,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL35_NUR_S2.
 
 //! @brief Get value of CSU_CSL35_NUR_S2 from a register value.
-#define BG_CSU_CSL35_NUR_S2(r)   (((r) & BM_CSU_CSL35_NUR_S2) >> BP_CSU_CSL35_NUR_S2)
+#define BG_CSU_CSL35_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NUR_S2) >> BP_CSU_CSL35_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NUR_S2.
-#define BF_CSU_CSL35_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_NUR_S2) & BM_CSU_CSL35_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NUR_S2.
-#define BF_CSU_CSL35_NUR_S2(v)   (((v) << BP_CSU_CSL35_NUR_S2) & BM_CSU_CSL35_NUR_S2)
-#endif
+#define BF_CSU_CSL35_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NUR_S2) & BM_CSU_CSL35_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -21968,15 +18958,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL35_NSR_S2.
 
 //! @brief Get value of CSU_CSL35_NSR_S2 from a register value.
-#define BG_CSU_CSL35_NSR_S2(r)   (((r) & BM_CSU_CSL35_NSR_S2) >> BP_CSU_CSL35_NSR_S2)
+#define BG_CSU_CSL35_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NSR_S2) >> BP_CSU_CSL35_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NSR_S2.
-#define BF_CSU_CSL35_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_NSR_S2) & BM_CSU_CSL35_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NSR_S2.
-#define BF_CSU_CSL35_NSR_S2(v)   (((v) << BP_CSU_CSL35_NSR_S2) & BM_CSU_CSL35_NSR_S2)
-#endif
+#define BF_CSU_CSL35_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NSR_S2) & BM_CSU_CSL35_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -21997,15 +18982,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL35_SUW_S2.
 
 //! @brief Get value of CSU_CSL35_SUW_S2 from a register value.
-#define BG_CSU_CSL35_SUW_S2(r)   (((r) & BM_CSU_CSL35_SUW_S2) >> BP_CSU_CSL35_SUW_S2)
+#define BG_CSU_CSL35_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SUW_S2) >> BP_CSU_CSL35_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SUW_S2.
-#define BF_CSU_CSL35_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_SUW_S2) & BM_CSU_CSL35_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SUW_S2.
-#define BF_CSU_CSL35_SUW_S2(v)   (((v) << BP_CSU_CSL35_SUW_S2) & BM_CSU_CSL35_SUW_S2)
-#endif
+#define BF_CSU_CSL35_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SUW_S2) & BM_CSU_CSL35_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -22026,15 +19006,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL35_SSW_S2.
 
 //! @brief Get value of CSU_CSL35_SSW_S2 from a register value.
-#define BG_CSU_CSL35_SSW_S2(r)   (((r) & BM_CSU_CSL35_SSW_S2) >> BP_CSU_CSL35_SSW_S2)
+#define BG_CSU_CSL35_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SSW_S2) >> BP_CSU_CSL35_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SSW_S2.
-#define BF_CSU_CSL35_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_SSW_S2) & BM_CSU_CSL35_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SSW_S2.
-#define BF_CSU_CSL35_SSW_S2(v)   (((v) << BP_CSU_CSL35_SSW_S2) & BM_CSU_CSL35_SSW_S2)
-#endif
+#define BF_CSU_CSL35_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SSW_S2) & BM_CSU_CSL35_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -22055,15 +19030,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL35_NUW_S2.
 
 //! @brief Get value of CSU_CSL35_NUW_S2 from a register value.
-#define BG_CSU_CSL35_NUW_S2(r)   (((r) & BM_CSU_CSL35_NUW_S2) >> BP_CSU_CSL35_NUW_S2)
+#define BG_CSU_CSL35_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NUW_S2) >> BP_CSU_CSL35_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NUW_S2.
-#define BF_CSU_CSL35_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_NUW_S2) & BM_CSU_CSL35_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NUW_S2.
-#define BF_CSU_CSL35_NUW_S2(v)   (((v) << BP_CSU_CSL35_NUW_S2) & BM_CSU_CSL35_NUW_S2)
-#endif
+#define BF_CSU_CSL35_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NUW_S2) & BM_CSU_CSL35_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -22084,15 +19054,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL35_NSW_S2.
 
 //! @brief Get value of CSU_CSL35_NSW_S2 from a register value.
-#define BG_CSU_CSL35_NSW_S2(r)   (((r) & BM_CSU_CSL35_NSW_S2) >> BP_CSU_CSL35_NSW_S2)
+#define BG_CSU_CSL35_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NSW_S2) >> BP_CSU_CSL35_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NSW_S2.
-#define BF_CSU_CSL35_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_NSW_S2) & BM_CSU_CSL35_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NSW_S2.
-#define BF_CSU_CSL35_NSW_S2(v)   (((v) << BP_CSU_CSL35_NSW_S2) & BM_CSU_CSL35_NSW_S2)
-#endif
+#define BF_CSU_CSL35_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NSW_S2) & BM_CSU_CSL35_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -22113,15 +19078,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL35_LOCK_S2.
 
 //! @brief Get value of CSU_CSL35_LOCK_S2 from a register value.
-#define BG_CSU_CSL35_LOCK_S2(r)   (((r) & BM_CSU_CSL35_LOCK_S2) >> BP_CSU_CSL35_LOCK_S2)
+#define BG_CSU_CSL35_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_LOCK_S2) >> BP_CSU_CSL35_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_LOCK_S2.
-#define BF_CSU_CSL35_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL35_LOCK_S2) & BM_CSU_CSL35_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL35_LOCK_S2.
-#define BF_CSU_CSL35_LOCK_S2(v)   (((v) << BP_CSU_CSL35_LOCK_S2) & BM_CSU_CSL35_LOCK_S2)
-#endif
+#define BF_CSU_CSL35_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_LOCK_S2) & BM_CSU_CSL35_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -22142,15 +19102,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL35_SUR_S1.
 
 //! @brief Get value of CSU_CSL35_SUR_S1 from a register value.
-#define BG_CSU_CSL35_SUR_S1(r)   (((r) & BM_CSU_CSL35_SUR_S1) >> BP_CSU_CSL35_SUR_S1)
+#define BG_CSU_CSL35_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SUR_S1) >> BP_CSU_CSL35_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SUR_S1.
-#define BF_CSU_CSL35_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_SUR_S1) & BM_CSU_CSL35_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SUR_S1.
-#define BF_CSU_CSL35_SUR_S1(v)   (((v) << BP_CSU_CSL35_SUR_S1) & BM_CSU_CSL35_SUR_S1)
-#endif
+#define BF_CSU_CSL35_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SUR_S1) & BM_CSU_CSL35_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -22171,15 +19126,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL35_SSR_S1.
 
 //! @brief Get value of CSU_CSL35_SSR_S1 from a register value.
-#define BG_CSU_CSL35_SSR_S1(r)   (((r) & BM_CSU_CSL35_SSR_S1) >> BP_CSU_CSL35_SSR_S1)
+#define BG_CSU_CSL35_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SSR_S1) >> BP_CSU_CSL35_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SSR_S1.
-#define BF_CSU_CSL35_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_SSR_S1) & BM_CSU_CSL35_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SSR_S1.
-#define BF_CSU_CSL35_SSR_S1(v)   (((v) << BP_CSU_CSL35_SSR_S1) & BM_CSU_CSL35_SSR_S1)
-#endif
+#define BF_CSU_CSL35_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SSR_S1) & BM_CSU_CSL35_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -22200,15 +19150,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL35_NUR_S1.
 
 //! @brief Get value of CSU_CSL35_NUR_S1 from a register value.
-#define BG_CSU_CSL35_NUR_S1(r)   (((r) & BM_CSU_CSL35_NUR_S1) >> BP_CSU_CSL35_NUR_S1)
+#define BG_CSU_CSL35_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NUR_S1) >> BP_CSU_CSL35_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NUR_S1.
-#define BF_CSU_CSL35_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_NUR_S1) & BM_CSU_CSL35_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NUR_S1.
-#define BF_CSU_CSL35_NUR_S1(v)   (((v) << BP_CSU_CSL35_NUR_S1) & BM_CSU_CSL35_NUR_S1)
-#endif
+#define BF_CSU_CSL35_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NUR_S1) & BM_CSU_CSL35_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -22229,15 +19174,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL35_NSR_S1.
 
 //! @brief Get value of CSU_CSL35_NSR_S1 from a register value.
-#define BG_CSU_CSL35_NSR_S1(r)   (((r) & BM_CSU_CSL35_NSR_S1) >> BP_CSU_CSL35_NSR_S1)
+#define BG_CSU_CSL35_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NSR_S1) >> BP_CSU_CSL35_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NSR_S1.
-#define BF_CSU_CSL35_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_NSR_S1) & BM_CSU_CSL35_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NSR_S1.
-#define BF_CSU_CSL35_NSR_S1(v)   (((v) << BP_CSU_CSL35_NSR_S1) & BM_CSU_CSL35_NSR_S1)
-#endif
+#define BF_CSU_CSL35_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NSR_S1) & BM_CSU_CSL35_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -22258,15 +19198,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL35_SUW_S1.
 
 //! @brief Get value of CSU_CSL35_SUW_S1 from a register value.
-#define BG_CSU_CSL35_SUW_S1(r)   (((r) & BM_CSU_CSL35_SUW_S1) >> BP_CSU_CSL35_SUW_S1)
+#define BG_CSU_CSL35_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SUW_S1) >> BP_CSU_CSL35_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SUW_S1.
-#define BF_CSU_CSL35_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_SUW_S1) & BM_CSU_CSL35_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SUW_S1.
-#define BF_CSU_CSL35_SUW_S1(v)   (((v) << BP_CSU_CSL35_SUW_S1) & BM_CSU_CSL35_SUW_S1)
-#endif
+#define BF_CSU_CSL35_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SUW_S1) & BM_CSU_CSL35_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -22287,15 +19222,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL35_SSW_S1.
 
 //! @brief Get value of CSU_CSL35_SSW_S1 from a register value.
-#define BG_CSU_CSL35_SSW_S1(r)   (((r) & BM_CSU_CSL35_SSW_S1) >> BP_CSU_CSL35_SSW_S1)
+#define BG_CSU_CSL35_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_SSW_S1) >> BP_CSU_CSL35_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_SSW_S1.
-#define BF_CSU_CSL35_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_SSW_S1) & BM_CSU_CSL35_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_SSW_S1.
-#define BF_CSU_CSL35_SSW_S1(v)   (((v) << BP_CSU_CSL35_SSW_S1) & BM_CSU_CSL35_SSW_S1)
-#endif
+#define BF_CSU_CSL35_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_SSW_S1) & BM_CSU_CSL35_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -22316,15 +19246,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL35_NUW_S1.
 
 //! @brief Get value of CSU_CSL35_NUW_S1 from a register value.
-#define BG_CSU_CSL35_NUW_S1(r)   (((r) & BM_CSU_CSL35_NUW_S1) >> BP_CSU_CSL35_NUW_S1)
+#define BG_CSU_CSL35_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NUW_S1) >> BP_CSU_CSL35_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NUW_S1.
-#define BF_CSU_CSL35_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_NUW_S1) & BM_CSU_CSL35_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NUW_S1.
-#define BF_CSU_CSL35_NUW_S1(v)   (((v) << BP_CSU_CSL35_NUW_S1) & BM_CSU_CSL35_NUW_S1)
-#endif
+#define BF_CSU_CSL35_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NUW_S1) & BM_CSU_CSL35_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -22345,15 +19270,10 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL35_NSW_S1.
 
 //! @brief Get value of CSU_CSL35_NSW_S1 from a register value.
-#define BG_CSU_CSL35_NSW_S1(r)   (((r) & BM_CSU_CSL35_NSW_S1) >> BP_CSU_CSL35_NSW_S1)
+#define BG_CSU_CSL35_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_NSW_S1) >> BP_CSU_CSL35_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_NSW_S1.
-#define BF_CSU_CSL35_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_NSW_S1) & BM_CSU_CSL35_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_NSW_S1.
-#define BF_CSU_CSL35_NSW_S1(v)   (((v) << BP_CSU_CSL35_NSW_S1) & BM_CSU_CSL35_NSW_S1)
-#endif
+#define BF_CSU_CSL35_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_NSW_S1) & BM_CSU_CSL35_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -22374,21 +19294,20 @@ typedef union _hw_csu_csl35
 #define BM_CSU_CSL35_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL35_LOCK_S1.
 
 //! @brief Get value of CSU_CSL35_LOCK_S1 from a register value.
-#define BG_CSU_CSL35_LOCK_S1(r)   (((r) & BM_CSU_CSL35_LOCK_S1) >> BP_CSU_CSL35_LOCK_S1)
+#define BG_CSU_CSL35_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL35_LOCK_S1) >> BP_CSU_CSL35_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL35_LOCK_S1.
-#define BF_CSU_CSL35_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL35_LOCK_S1) & BM_CSU_CSL35_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL35_LOCK_S1.
-#define BF_CSU_CSL35_LOCK_S1(v)   (((v) << BP_CSU_CSL35_LOCK_S1) & BM_CSU_CSL35_LOCK_S1)
-#endif
+#define BF_CSU_CSL35_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL35_LOCK_S1) & BM_CSU_CSL35_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL35_LOCK_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_LOCK_S1) | BF_CSU_CSL35_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL36 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22403,11 +19322,11 @@ typedef union _hw_csu_csl35
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -22419,7 +19338,7 @@ typedef union _hw_csu_csl35
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -22501,15 +19420,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL36_SUR_S2.
 
 //! @brief Get value of CSU_CSL36_SUR_S2 from a register value.
-#define BG_CSU_CSL36_SUR_S2(r)   (((r) & BM_CSU_CSL36_SUR_S2) >> BP_CSU_CSL36_SUR_S2)
+#define BG_CSU_CSL36_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SUR_S2) >> BP_CSU_CSL36_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SUR_S2.
-#define BF_CSU_CSL36_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_SUR_S2) & BM_CSU_CSL36_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SUR_S2.
-#define BF_CSU_CSL36_SUR_S2(v)   (((v) << BP_CSU_CSL36_SUR_S2) & BM_CSU_CSL36_SUR_S2)
-#endif
+#define BF_CSU_CSL36_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SUR_S2) & BM_CSU_CSL36_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -22530,15 +19444,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL36_SSR_S2.
 
 //! @brief Get value of CSU_CSL36_SSR_S2 from a register value.
-#define BG_CSU_CSL36_SSR_S2(r)   (((r) & BM_CSU_CSL36_SSR_S2) >> BP_CSU_CSL36_SSR_S2)
+#define BG_CSU_CSL36_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SSR_S2) >> BP_CSU_CSL36_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SSR_S2.
-#define BF_CSU_CSL36_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_SSR_S2) & BM_CSU_CSL36_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SSR_S2.
-#define BF_CSU_CSL36_SSR_S2(v)   (((v) << BP_CSU_CSL36_SSR_S2) & BM_CSU_CSL36_SSR_S2)
-#endif
+#define BF_CSU_CSL36_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SSR_S2) & BM_CSU_CSL36_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -22559,15 +19468,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL36_NUR_S2.
 
 //! @brief Get value of CSU_CSL36_NUR_S2 from a register value.
-#define BG_CSU_CSL36_NUR_S2(r)   (((r) & BM_CSU_CSL36_NUR_S2) >> BP_CSU_CSL36_NUR_S2)
+#define BG_CSU_CSL36_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NUR_S2) >> BP_CSU_CSL36_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NUR_S2.
-#define BF_CSU_CSL36_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_NUR_S2) & BM_CSU_CSL36_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NUR_S2.
-#define BF_CSU_CSL36_NUR_S2(v)   (((v) << BP_CSU_CSL36_NUR_S2) & BM_CSU_CSL36_NUR_S2)
-#endif
+#define BF_CSU_CSL36_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NUR_S2) & BM_CSU_CSL36_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -22588,15 +19492,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL36_NSR_S2.
 
 //! @brief Get value of CSU_CSL36_NSR_S2 from a register value.
-#define BG_CSU_CSL36_NSR_S2(r)   (((r) & BM_CSU_CSL36_NSR_S2) >> BP_CSU_CSL36_NSR_S2)
+#define BG_CSU_CSL36_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NSR_S2) >> BP_CSU_CSL36_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NSR_S2.
-#define BF_CSU_CSL36_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_NSR_S2) & BM_CSU_CSL36_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NSR_S2.
-#define BF_CSU_CSL36_NSR_S2(v)   (((v) << BP_CSU_CSL36_NSR_S2) & BM_CSU_CSL36_NSR_S2)
-#endif
+#define BF_CSU_CSL36_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NSR_S2) & BM_CSU_CSL36_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -22617,15 +19516,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL36_SUW_S2.
 
 //! @brief Get value of CSU_CSL36_SUW_S2 from a register value.
-#define BG_CSU_CSL36_SUW_S2(r)   (((r) & BM_CSU_CSL36_SUW_S2) >> BP_CSU_CSL36_SUW_S2)
+#define BG_CSU_CSL36_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SUW_S2) >> BP_CSU_CSL36_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SUW_S2.
-#define BF_CSU_CSL36_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_SUW_S2) & BM_CSU_CSL36_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SUW_S2.
-#define BF_CSU_CSL36_SUW_S2(v)   (((v) << BP_CSU_CSL36_SUW_S2) & BM_CSU_CSL36_SUW_S2)
-#endif
+#define BF_CSU_CSL36_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SUW_S2) & BM_CSU_CSL36_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -22646,15 +19540,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL36_SSW_S2.
 
 //! @brief Get value of CSU_CSL36_SSW_S2 from a register value.
-#define BG_CSU_CSL36_SSW_S2(r)   (((r) & BM_CSU_CSL36_SSW_S2) >> BP_CSU_CSL36_SSW_S2)
+#define BG_CSU_CSL36_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SSW_S2) >> BP_CSU_CSL36_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SSW_S2.
-#define BF_CSU_CSL36_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_SSW_S2) & BM_CSU_CSL36_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SSW_S2.
-#define BF_CSU_CSL36_SSW_S2(v)   (((v) << BP_CSU_CSL36_SSW_S2) & BM_CSU_CSL36_SSW_S2)
-#endif
+#define BF_CSU_CSL36_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SSW_S2) & BM_CSU_CSL36_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -22675,15 +19564,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL36_NUW_S2.
 
 //! @brief Get value of CSU_CSL36_NUW_S2 from a register value.
-#define BG_CSU_CSL36_NUW_S2(r)   (((r) & BM_CSU_CSL36_NUW_S2) >> BP_CSU_CSL36_NUW_S2)
+#define BG_CSU_CSL36_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NUW_S2) >> BP_CSU_CSL36_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NUW_S2.
-#define BF_CSU_CSL36_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_NUW_S2) & BM_CSU_CSL36_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NUW_S2.
-#define BF_CSU_CSL36_NUW_S2(v)   (((v) << BP_CSU_CSL36_NUW_S2) & BM_CSU_CSL36_NUW_S2)
-#endif
+#define BF_CSU_CSL36_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NUW_S2) & BM_CSU_CSL36_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -22704,15 +19588,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL36_NSW_S2.
 
 //! @brief Get value of CSU_CSL36_NSW_S2 from a register value.
-#define BG_CSU_CSL36_NSW_S2(r)   (((r) & BM_CSU_CSL36_NSW_S2) >> BP_CSU_CSL36_NSW_S2)
+#define BG_CSU_CSL36_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NSW_S2) >> BP_CSU_CSL36_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NSW_S2.
-#define BF_CSU_CSL36_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_NSW_S2) & BM_CSU_CSL36_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NSW_S2.
-#define BF_CSU_CSL36_NSW_S2(v)   (((v) << BP_CSU_CSL36_NSW_S2) & BM_CSU_CSL36_NSW_S2)
-#endif
+#define BF_CSU_CSL36_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NSW_S2) & BM_CSU_CSL36_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -22733,15 +19612,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL36_LOCK_S2.
 
 //! @brief Get value of CSU_CSL36_LOCK_S2 from a register value.
-#define BG_CSU_CSL36_LOCK_S2(r)   (((r) & BM_CSU_CSL36_LOCK_S2) >> BP_CSU_CSL36_LOCK_S2)
+#define BG_CSU_CSL36_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_LOCK_S2) >> BP_CSU_CSL36_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_LOCK_S2.
-#define BF_CSU_CSL36_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL36_LOCK_S2) & BM_CSU_CSL36_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL36_LOCK_S2.
-#define BF_CSU_CSL36_LOCK_S2(v)   (((v) << BP_CSU_CSL36_LOCK_S2) & BM_CSU_CSL36_LOCK_S2)
-#endif
+#define BF_CSU_CSL36_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_LOCK_S2) & BM_CSU_CSL36_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -22762,15 +19636,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL36_SUR_S1.
 
 //! @brief Get value of CSU_CSL36_SUR_S1 from a register value.
-#define BG_CSU_CSL36_SUR_S1(r)   (((r) & BM_CSU_CSL36_SUR_S1) >> BP_CSU_CSL36_SUR_S1)
+#define BG_CSU_CSL36_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SUR_S1) >> BP_CSU_CSL36_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SUR_S1.
-#define BF_CSU_CSL36_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_SUR_S1) & BM_CSU_CSL36_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SUR_S1.
-#define BF_CSU_CSL36_SUR_S1(v)   (((v) << BP_CSU_CSL36_SUR_S1) & BM_CSU_CSL36_SUR_S1)
-#endif
+#define BF_CSU_CSL36_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SUR_S1) & BM_CSU_CSL36_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -22791,15 +19660,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL36_SSR_S1.
 
 //! @brief Get value of CSU_CSL36_SSR_S1 from a register value.
-#define BG_CSU_CSL36_SSR_S1(r)   (((r) & BM_CSU_CSL36_SSR_S1) >> BP_CSU_CSL36_SSR_S1)
+#define BG_CSU_CSL36_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SSR_S1) >> BP_CSU_CSL36_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SSR_S1.
-#define BF_CSU_CSL36_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_SSR_S1) & BM_CSU_CSL36_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SSR_S1.
-#define BF_CSU_CSL36_SSR_S1(v)   (((v) << BP_CSU_CSL36_SSR_S1) & BM_CSU_CSL36_SSR_S1)
-#endif
+#define BF_CSU_CSL36_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SSR_S1) & BM_CSU_CSL36_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -22820,15 +19684,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL36_NUR_S1.
 
 //! @brief Get value of CSU_CSL36_NUR_S1 from a register value.
-#define BG_CSU_CSL36_NUR_S1(r)   (((r) & BM_CSU_CSL36_NUR_S1) >> BP_CSU_CSL36_NUR_S1)
+#define BG_CSU_CSL36_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NUR_S1) >> BP_CSU_CSL36_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NUR_S1.
-#define BF_CSU_CSL36_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_NUR_S1) & BM_CSU_CSL36_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NUR_S1.
-#define BF_CSU_CSL36_NUR_S1(v)   (((v) << BP_CSU_CSL36_NUR_S1) & BM_CSU_CSL36_NUR_S1)
-#endif
+#define BF_CSU_CSL36_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NUR_S1) & BM_CSU_CSL36_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -22849,15 +19708,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL36_NSR_S1.
 
 //! @brief Get value of CSU_CSL36_NSR_S1 from a register value.
-#define BG_CSU_CSL36_NSR_S1(r)   (((r) & BM_CSU_CSL36_NSR_S1) >> BP_CSU_CSL36_NSR_S1)
+#define BG_CSU_CSL36_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NSR_S1) >> BP_CSU_CSL36_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NSR_S1.
-#define BF_CSU_CSL36_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_NSR_S1) & BM_CSU_CSL36_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NSR_S1.
-#define BF_CSU_CSL36_NSR_S1(v)   (((v) << BP_CSU_CSL36_NSR_S1) & BM_CSU_CSL36_NSR_S1)
-#endif
+#define BF_CSU_CSL36_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NSR_S1) & BM_CSU_CSL36_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -22878,15 +19732,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL36_SUW_S1.
 
 //! @brief Get value of CSU_CSL36_SUW_S1 from a register value.
-#define BG_CSU_CSL36_SUW_S1(r)   (((r) & BM_CSU_CSL36_SUW_S1) >> BP_CSU_CSL36_SUW_S1)
+#define BG_CSU_CSL36_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SUW_S1) >> BP_CSU_CSL36_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SUW_S1.
-#define BF_CSU_CSL36_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_SUW_S1) & BM_CSU_CSL36_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SUW_S1.
-#define BF_CSU_CSL36_SUW_S1(v)   (((v) << BP_CSU_CSL36_SUW_S1) & BM_CSU_CSL36_SUW_S1)
-#endif
+#define BF_CSU_CSL36_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SUW_S1) & BM_CSU_CSL36_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -22907,15 +19756,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL36_SSW_S1.
 
 //! @brief Get value of CSU_CSL36_SSW_S1 from a register value.
-#define BG_CSU_CSL36_SSW_S1(r)   (((r) & BM_CSU_CSL36_SSW_S1) >> BP_CSU_CSL36_SSW_S1)
+#define BG_CSU_CSL36_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_SSW_S1) >> BP_CSU_CSL36_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_SSW_S1.
-#define BF_CSU_CSL36_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_SSW_S1) & BM_CSU_CSL36_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_SSW_S1.
-#define BF_CSU_CSL36_SSW_S1(v)   (((v) << BP_CSU_CSL36_SSW_S1) & BM_CSU_CSL36_SSW_S1)
-#endif
+#define BF_CSU_CSL36_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_SSW_S1) & BM_CSU_CSL36_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -22936,15 +19780,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL36_NUW_S1.
 
 //! @brief Get value of CSU_CSL36_NUW_S1 from a register value.
-#define BG_CSU_CSL36_NUW_S1(r)   (((r) & BM_CSU_CSL36_NUW_S1) >> BP_CSU_CSL36_NUW_S1)
+#define BG_CSU_CSL36_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NUW_S1) >> BP_CSU_CSL36_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NUW_S1.
-#define BF_CSU_CSL36_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_NUW_S1) & BM_CSU_CSL36_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NUW_S1.
-#define BF_CSU_CSL36_NUW_S1(v)   (((v) << BP_CSU_CSL36_NUW_S1) & BM_CSU_CSL36_NUW_S1)
-#endif
+#define BF_CSU_CSL36_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NUW_S1) & BM_CSU_CSL36_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -22965,15 +19804,10 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL36_NSW_S1.
 
 //! @brief Get value of CSU_CSL36_NSW_S1 from a register value.
-#define BG_CSU_CSL36_NSW_S1(r)   (((r) & BM_CSU_CSL36_NSW_S1) >> BP_CSU_CSL36_NSW_S1)
+#define BG_CSU_CSL36_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_NSW_S1) >> BP_CSU_CSL36_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_NSW_S1.
-#define BF_CSU_CSL36_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_NSW_S1) & BM_CSU_CSL36_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_NSW_S1.
-#define BF_CSU_CSL36_NSW_S1(v)   (((v) << BP_CSU_CSL36_NSW_S1) & BM_CSU_CSL36_NSW_S1)
-#endif
+#define BF_CSU_CSL36_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_NSW_S1) & BM_CSU_CSL36_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -22994,21 +19828,20 @@ typedef union _hw_csu_csl36
 #define BM_CSU_CSL36_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL36_LOCK_S1.
 
 //! @brief Get value of CSU_CSL36_LOCK_S1 from a register value.
-#define BG_CSU_CSL36_LOCK_S1(r)   (((r) & BM_CSU_CSL36_LOCK_S1) >> BP_CSU_CSL36_LOCK_S1)
+#define BG_CSU_CSL36_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL36_LOCK_S1) >> BP_CSU_CSL36_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL36_LOCK_S1.
-#define BF_CSU_CSL36_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL36_LOCK_S1) & BM_CSU_CSL36_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL36_LOCK_S1.
-#define BF_CSU_CSL36_LOCK_S1(v)   (((v) << BP_CSU_CSL36_LOCK_S1) & BM_CSU_CSL36_LOCK_S1)
-#endif
+#define BF_CSU_CSL36_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL36_LOCK_S1) & BM_CSU_CSL36_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL36_LOCK_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_LOCK_S1) | BF_CSU_CSL36_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL37 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23023,11 +19856,11 @@ typedef union _hw_csu_csl36
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -23039,7 +19872,7 @@ typedef union _hw_csu_csl36
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -23121,15 +19954,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL37_SUR_S2.
 
 //! @brief Get value of CSU_CSL37_SUR_S2 from a register value.
-#define BG_CSU_CSL37_SUR_S2(r)   (((r) & BM_CSU_CSL37_SUR_S2) >> BP_CSU_CSL37_SUR_S2)
+#define BG_CSU_CSL37_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SUR_S2) >> BP_CSU_CSL37_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SUR_S2.
-#define BF_CSU_CSL37_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_SUR_S2) & BM_CSU_CSL37_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SUR_S2.
-#define BF_CSU_CSL37_SUR_S2(v)   (((v) << BP_CSU_CSL37_SUR_S2) & BM_CSU_CSL37_SUR_S2)
-#endif
+#define BF_CSU_CSL37_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SUR_S2) & BM_CSU_CSL37_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -23150,15 +19978,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL37_SSR_S2.
 
 //! @brief Get value of CSU_CSL37_SSR_S2 from a register value.
-#define BG_CSU_CSL37_SSR_S2(r)   (((r) & BM_CSU_CSL37_SSR_S2) >> BP_CSU_CSL37_SSR_S2)
+#define BG_CSU_CSL37_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SSR_S2) >> BP_CSU_CSL37_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SSR_S2.
-#define BF_CSU_CSL37_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_SSR_S2) & BM_CSU_CSL37_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SSR_S2.
-#define BF_CSU_CSL37_SSR_S2(v)   (((v) << BP_CSU_CSL37_SSR_S2) & BM_CSU_CSL37_SSR_S2)
-#endif
+#define BF_CSU_CSL37_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SSR_S2) & BM_CSU_CSL37_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -23179,15 +20002,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL37_NUR_S2.
 
 //! @brief Get value of CSU_CSL37_NUR_S2 from a register value.
-#define BG_CSU_CSL37_NUR_S2(r)   (((r) & BM_CSU_CSL37_NUR_S2) >> BP_CSU_CSL37_NUR_S2)
+#define BG_CSU_CSL37_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NUR_S2) >> BP_CSU_CSL37_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NUR_S2.
-#define BF_CSU_CSL37_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_NUR_S2) & BM_CSU_CSL37_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NUR_S2.
-#define BF_CSU_CSL37_NUR_S2(v)   (((v) << BP_CSU_CSL37_NUR_S2) & BM_CSU_CSL37_NUR_S2)
-#endif
+#define BF_CSU_CSL37_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NUR_S2) & BM_CSU_CSL37_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -23208,15 +20026,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL37_NSR_S2.
 
 //! @brief Get value of CSU_CSL37_NSR_S2 from a register value.
-#define BG_CSU_CSL37_NSR_S2(r)   (((r) & BM_CSU_CSL37_NSR_S2) >> BP_CSU_CSL37_NSR_S2)
+#define BG_CSU_CSL37_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NSR_S2) >> BP_CSU_CSL37_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NSR_S2.
-#define BF_CSU_CSL37_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_NSR_S2) & BM_CSU_CSL37_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NSR_S2.
-#define BF_CSU_CSL37_NSR_S2(v)   (((v) << BP_CSU_CSL37_NSR_S2) & BM_CSU_CSL37_NSR_S2)
-#endif
+#define BF_CSU_CSL37_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NSR_S2) & BM_CSU_CSL37_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -23237,15 +20050,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL37_SUW_S2.
 
 //! @brief Get value of CSU_CSL37_SUW_S2 from a register value.
-#define BG_CSU_CSL37_SUW_S2(r)   (((r) & BM_CSU_CSL37_SUW_S2) >> BP_CSU_CSL37_SUW_S2)
+#define BG_CSU_CSL37_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SUW_S2) >> BP_CSU_CSL37_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SUW_S2.
-#define BF_CSU_CSL37_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_SUW_S2) & BM_CSU_CSL37_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SUW_S2.
-#define BF_CSU_CSL37_SUW_S2(v)   (((v) << BP_CSU_CSL37_SUW_S2) & BM_CSU_CSL37_SUW_S2)
-#endif
+#define BF_CSU_CSL37_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SUW_S2) & BM_CSU_CSL37_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -23266,15 +20074,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL37_SSW_S2.
 
 //! @brief Get value of CSU_CSL37_SSW_S2 from a register value.
-#define BG_CSU_CSL37_SSW_S2(r)   (((r) & BM_CSU_CSL37_SSW_S2) >> BP_CSU_CSL37_SSW_S2)
+#define BG_CSU_CSL37_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SSW_S2) >> BP_CSU_CSL37_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SSW_S2.
-#define BF_CSU_CSL37_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_SSW_S2) & BM_CSU_CSL37_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SSW_S2.
-#define BF_CSU_CSL37_SSW_S2(v)   (((v) << BP_CSU_CSL37_SSW_S2) & BM_CSU_CSL37_SSW_S2)
-#endif
+#define BF_CSU_CSL37_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SSW_S2) & BM_CSU_CSL37_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -23295,15 +20098,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL37_NUW_S2.
 
 //! @brief Get value of CSU_CSL37_NUW_S2 from a register value.
-#define BG_CSU_CSL37_NUW_S2(r)   (((r) & BM_CSU_CSL37_NUW_S2) >> BP_CSU_CSL37_NUW_S2)
+#define BG_CSU_CSL37_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NUW_S2) >> BP_CSU_CSL37_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NUW_S2.
-#define BF_CSU_CSL37_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_NUW_S2) & BM_CSU_CSL37_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NUW_S2.
-#define BF_CSU_CSL37_NUW_S2(v)   (((v) << BP_CSU_CSL37_NUW_S2) & BM_CSU_CSL37_NUW_S2)
-#endif
+#define BF_CSU_CSL37_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NUW_S2) & BM_CSU_CSL37_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -23324,15 +20122,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL37_NSW_S2.
 
 //! @brief Get value of CSU_CSL37_NSW_S2 from a register value.
-#define BG_CSU_CSL37_NSW_S2(r)   (((r) & BM_CSU_CSL37_NSW_S2) >> BP_CSU_CSL37_NSW_S2)
+#define BG_CSU_CSL37_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NSW_S2) >> BP_CSU_CSL37_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NSW_S2.
-#define BF_CSU_CSL37_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_NSW_S2) & BM_CSU_CSL37_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NSW_S2.
-#define BF_CSU_CSL37_NSW_S2(v)   (((v) << BP_CSU_CSL37_NSW_S2) & BM_CSU_CSL37_NSW_S2)
-#endif
+#define BF_CSU_CSL37_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NSW_S2) & BM_CSU_CSL37_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -23353,15 +20146,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL37_LOCK_S2.
 
 //! @brief Get value of CSU_CSL37_LOCK_S2 from a register value.
-#define BG_CSU_CSL37_LOCK_S2(r)   (((r) & BM_CSU_CSL37_LOCK_S2) >> BP_CSU_CSL37_LOCK_S2)
+#define BG_CSU_CSL37_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_LOCK_S2) >> BP_CSU_CSL37_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_LOCK_S2.
-#define BF_CSU_CSL37_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL37_LOCK_S2) & BM_CSU_CSL37_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL37_LOCK_S2.
-#define BF_CSU_CSL37_LOCK_S2(v)   (((v) << BP_CSU_CSL37_LOCK_S2) & BM_CSU_CSL37_LOCK_S2)
-#endif
+#define BF_CSU_CSL37_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_LOCK_S2) & BM_CSU_CSL37_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -23382,15 +20170,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL37_SUR_S1.
 
 //! @brief Get value of CSU_CSL37_SUR_S1 from a register value.
-#define BG_CSU_CSL37_SUR_S1(r)   (((r) & BM_CSU_CSL37_SUR_S1) >> BP_CSU_CSL37_SUR_S1)
+#define BG_CSU_CSL37_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SUR_S1) >> BP_CSU_CSL37_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SUR_S1.
-#define BF_CSU_CSL37_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_SUR_S1) & BM_CSU_CSL37_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SUR_S1.
-#define BF_CSU_CSL37_SUR_S1(v)   (((v) << BP_CSU_CSL37_SUR_S1) & BM_CSU_CSL37_SUR_S1)
-#endif
+#define BF_CSU_CSL37_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SUR_S1) & BM_CSU_CSL37_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -23411,15 +20194,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL37_SSR_S1.
 
 //! @brief Get value of CSU_CSL37_SSR_S1 from a register value.
-#define BG_CSU_CSL37_SSR_S1(r)   (((r) & BM_CSU_CSL37_SSR_S1) >> BP_CSU_CSL37_SSR_S1)
+#define BG_CSU_CSL37_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SSR_S1) >> BP_CSU_CSL37_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SSR_S1.
-#define BF_CSU_CSL37_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_SSR_S1) & BM_CSU_CSL37_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SSR_S1.
-#define BF_CSU_CSL37_SSR_S1(v)   (((v) << BP_CSU_CSL37_SSR_S1) & BM_CSU_CSL37_SSR_S1)
-#endif
+#define BF_CSU_CSL37_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SSR_S1) & BM_CSU_CSL37_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -23440,15 +20218,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL37_NUR_S1.
 
 //! @brief Get value of CSU_CSL37_NUR_S1 from a register value.
-#define BG_CSU_CSL37_NUR_S1(r)   (((r) & BM_CSU_CSL37_NUR_S1) >> BP_CSU_CSL37_NUR_S1)
+#define BG_CSU_CSL37_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NUR_S1) >> BP_CSU_CSL37_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NUR_S1.
-#define BF_CSU_CSL37_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_NUR_S1) & BM_CSU_CSL37_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NUR_S1.
-#define BF_CSU_CSL37_NUR_S1(v)   (((v) << BP_CSU_CSL37_NUR_S1) & BM_CSU_CSL37_NUR_S1)
-#endif
+#define BF_CSU_CSL37_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NUR_S1) & BM_CSU_CSL37_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -23469,15 +20242,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL37_NSR_S1.
 
 //! @brief Get value of CSU_CSL37_NSR_S1 from a register value.
-#define BG_CSU_CSL37_NSR_S1(r)   (((r) & BM_CSU_CSL37_NSR_S1) >> BP_CSU_CSL37_NSR_S1)
+#define BG_CSU_CSL37_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NSR_S1) >> BP_CSU_CSL37_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NSR_S1.
-#define BF_CSU_CSL37_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_NSR_S1) & BM_CSU_CSL37_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NSR_S1.
-#define BF_CSU_CSL37_NSR_S1(v)   (((v) << BP_CSU_CSL37_NSR_S1) & BM_CSU_CSL37_NSR_S1)
-#endif
+#define BF_CSU_CSL37_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NSR_S1) & BM_CSU_CSL37_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -23498,15 +20266,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL37_SUW_S1.
 
 //! @brief Get value of CSU_CSL37_SUW_S1 from a register value.
-#define BG_CSU_CSL37_SUW_S1(r)   (((r) & BM_CSU_CSL37_SUW_S1) >> BP_CSU_CSL37_SUW_S1)
+#define BG_CSU_CSL37_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SUW_S1) >> BP_CSU_CSL37_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SUW_S1.
-#define BF_CSU_CSL37_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_SUW_S1) & BM_CSU_CSL37_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SUW_S1.
-#define BF_CSU_CSL37_SUW_S1(v)   (((v) << BP_CSU_CSL37_SUW_S1) & BM_CSU_CSL37_SUW_S1)
-#endif
+#define BF_CSU_CSL37_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SUW_S1) & BM_CSU_CSL37_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -23527,15 +20290,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL37_SSW_S1.
 
 //! @brief Get value of CSU_CSL37_SSW_S1 from a register value.
-#define BG_CSU_CSL37_SSW_S1(r)   (((r) & BM_CSU_CSL37_SSW_S1) >> BP_CSU_CSL37_SSW_S1)
+#define BG_CSU_CSL37_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_SSW_S1) >> BP_CSU_CSL37_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_SSW_S1.
-#define BF_CSU_CSL37_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_SSW_S1) & BM_CSU_CSL37_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_SSW_S1.
-#define BF_CSU_CSL37_SSW_S1(v)   (((v) << BP_CSU_CSL37_SSW_S1) & BM_CSU_CSL37_SSW_S1)
-#endif
+#define BF_CSU_CSL37_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_SSW_S1) & BM_CSU_CSL37_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -23556,15 +20314,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL37_NUW_S1.
 
 //! @brief Get value of CSU_CSL37_NUW_S1 from a register value.
-#define BG_CSU_CSL37_NUW_S1(r)   (((r) & BM_CSU_CSL37_NUW_S1) >> BP_CSU_CSL37_NUW_S1)
+#define BG_CSU_CSL37_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NUW_S1) >> BP_CSU_CSL37_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NUW_S1.
-#define BF_CSU_CSL37_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_NUW_S1) & BM_CSU_CSL37_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NUW_S1.
-#define BF_CSU_CSL37_NUW_S1(v)   (((v) << BP_CSU_CSL37_NUW_S1) & BM_CSU_CSL37_NUW_S1)
-#endif
+#define BF_CSU_CSL37_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NUW_S1) & BM_CSU_CSL37_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -23585,15 +20338,10 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL37_NSW_S1.
 
 //! @brief Get value of CSU_CSL37_NSW_S1 from a register value.
-#define BG_CSU_CSL37_NSW_S1(r)   (((r) & BM_CSU_CSL37_NSW_S1) >> BP_CSU_CSL37_NSW_S1)
+#define BG_CSU_CSL37_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_NSW_S1) >> BP_CSU_CSL37_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_NSW_S1.
-#define BF_CSU_CSL37_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_NSW_S1) & BM_CSU_CSL37_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_NSW_S1.
-#define BF_CSU_CSL37_NSW_S1(v)   (((v) << BP_CSU_CSL37_NSW_S1) & BM_CSU_CSL37_NSW_S1)
-#endif
+#define BF_CSU_CSL37_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_NSW_S1) & BM_CSU_CSL37_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -23614,21 +20362,20 @@ typedef union _hw_csu_csl37
 #define BM_CSU_CSL37_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL37_LOCK_S1.
 
 //! @brief Get value of CSU_CSL37_LOCK_S1 from a register value.
-#define BG_CSU_CSL37_LOCK_S1(r)   (((r) & BM_CSU_CSL37_LOCK_S1) >> BP_CSU_CSL37_LOCK_S1)
+#define BG_CSU_CSL37_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL37_LOCK_S1) >> BP_CSU_CSL37_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL37_LOCK_S1.
-#define BF_CSU_CSL37_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL37_LOCK_S1) & BM_CSU_CSL37_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL37_LOCK_S1.
-#define BF_CSU_CSL37_LOCK_S1(v)   (((v) << BP_CSU_CSL37_LOCK_S1) & BM_CSU_CSL37_LOCK_S1)
-#endif
+#define BF_CSU_CSL37_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL37_LOCK_S1) & BM_CSU_CSL37_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL37_LOCK_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_LOCK_S1) | BF_CSU_CSL37_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL38 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23643,11 +20390,11 @@ typedef union _hw_csu_csl37
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -23659,7 +20406,7 @@ typedef union _hw_csu_csl37
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -23741,15 +20488,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL38_SUR_S2.
 
 //! @brief Get value of CSU_CSL38_SUR_S2 from a register value.
-#define BG_CSU_CSL38_SUR_S2(r)   (((r) & BM_CSU_CSL38_SUR_S2) >> BP_CSU_CSL38_SUR_S2)
+#define BG_CSU_CSL38_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SUR_S2) >> BP_CSU_CSL38_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SUR_S2.
-#define BF_CSU_CSL38_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_SUR_S2) & BM_CSU_CSL38_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SUR_S2.
-#define BF_CSU_CSL38_SUR_S2(v)   (((v) << BP_CSU_CSL38_SUR_S2) & BM_CSU_CSL38_SUR_S2)
-#endif
+#define BF_CSU_CSL38_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SUR_S2) & BM_CSU_CSL38_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -23770,15 +20512,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL38_SSR_S2.
 
 //! @brief Get value of CSU_CSL38_SSR_S2 from a register value.
-#define BG_CSU_CSL38_SSR_S2(r)   (((r) & BM_CSU_CSL38_SSR_S2) >> BP_CSU_CSL38_SSR_S2)
+#define BG_CSU_CSL38_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SSR_S2) >> BP_CSU_CSL38_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SSR_S2.
-#define BF_CSU_CSL38_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_SSR_S2) & BM_CSU_CSL38_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SSR_S2.
-#define BF_CSU_CSL38_SSR_S2(v)   (((v) << BP_CSU_CSL38_SSR_S2) & BM_CSU_CSL38_SSR_S2)
-#endif
+#define BF_CSU_CSL38_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SSR_S2) & BM_CSU_CSL38_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -23799,15 +20536,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL38_NUR_S2.
 
 //! @brief Get value of CSU_CSL38_NUR_S2 from a register value.
-#define BG_CSU_CSL38_NUR_S2(r)   (((r) & BM_CSU_CSL38_NUR_S2) >> BP_CSU_CSL38_NUR_S2)
+#define BG_CSU_CSL38_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NUR_S2) >> BP_CSU_CSL38_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NUR_S2.
-#define BF_CSU_CSL38_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_NUR_S2) & BM_CSU_CSL38_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NUR_S2.
-#define BF_CSU_CSL38_NUR_S2(v)   (((v) << BP_CSU_CSL38_NUR_S2) & BM_CSU_CSL38_NUR_S2)
-#endif
+#define BF_CSU_CSL38_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NUR_S2) & BM_CSU_CSL38_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -23828,15 +20560,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL38_NSR_S2.
 
 //! @brief Get value of CSU_CSL38_NSR_S2 from a register value.
-#define BG_CSU_CSL38_NSR_S2(r)   (((r) & BM_CSU_CSL38_NSR_S2) >> BP_CSU_CSL38_NSR_S2)
+#define BG_CSU_CSL38_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NSR_S2) >> BP_CSU_CSL38_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NSR_S2.
-#define BF_CSU_CSL38_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_NSR_S2) & BM_CSU_CSL38_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NSR_S2.
-#define BF_CSU_CSL38_NSR_S2(v)   (((v) << BP_CSU_CSL38_NSR_S2) & BM_CSU_CSL38_NSR_S2)
-#endif
+#define BF_CSU_CSL38_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NSR_S2) & BM_CSU_CSL38_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -23857,15 +20584,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL38_SUW_S2.
 
 //! @brief Get value of CSU_CSL38_SUW_S2 from a register value.
-#define BG_CSU_CSL38_SUW_S2(r)   (((r) & BM_CSU_CSL38_SUW_S2) >> BP_CSU_CSL38_SUW_S2)
+#define BG_CSU_CSL38_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SUW_S2) >> BP_CSU_CSL38_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SUW_S2.
-#define BF_CSU_CSL38_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_SUW_S2) & BM_CSU_CSL38_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SUW_S2.
-#define BF_CSU_CSL38_SUW_S2(v)   (((v) << BP_CSU_CSL38_SUW_S2) & BM_CSU_CSL38_SUW_S2)
-#endif
+#define BF_CSU_CSL38_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SUW_S2) & BM_CSU_CSL38_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -23886,15 +20608,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL38_SSW_S2.
 
 //! @brief Get value of CSU_CSL38_SSW_S2 from a register value.
-#define BG_CSU_CSL38_SSW_S2(r)   (((r) & BM_CSU_CSL38_SSW_S2) >> BP_CSU_CSL38_SSW_S2)
+#define BG_CSU_CSL38_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SSW_S2) >> BP_CSU_CSL38_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SSW_S2.
-#define BF_CSU_CSL38_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_SSW_S2) & BM_CSU_CSL38_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SSW_S2.
-#define BF_CSU_CSL38_SSW_S2(v)   (((v) << BP_CSU_CSL38_SSW_S2) & BM_CSU_CSL38_SSW_S2)
-#endif
+#define BF_CSU_CSL38_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SSW_S2) & BM_CSU_CSL38_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -23915,15 +20632,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL38_NUW_S2.
 
 //! @brief Get value of CSU_CSL38_NUW_S2 from a register value.
-#define BG_CSU_CSL38_NUW_S2(r)   (((r) & BM_CSU_CSL38_NUW_S2) >> BP_CSU_CSL38_NUW_S2)
+#define BG_CSU_CSL38_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NUW_S2) >> BP_CSU_CSL38_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NUW_S2.
-#define BF_CSU_CSL38_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_NUW_S2) & BM_CSU_CSL38_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NUW_S2.
-#define BF_CSU_CSL38_NUW_S2(v)   (((v) << BP_CSU_CSL38_NUW_S2) & BM_CSU_CSL38_NUW_S2)
-#endif
+#define BF_CSU_CSL38_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NUW_S2) & BM_CSU_CSL38_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -23944,15 +20656,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL38_NSW_S2.
 
 //! @brief Get value of CSU_CSL38_NSW_S2 from a register value.
-#define BG_CSU_CSL38_NSW_S2(r)   (((r) & BM_CSU_CSL38_NSW_S2) >> BP_CSU_CSL38_NSW_S2)
+#define BG_CSU_CSL38_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NSW_S2) >> BP_CSU_CSL38_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NSW_S2.
-#define BF_CSU_CSL38_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_NSW_S2) & BM_CSU_CSL38_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NSW_S2.
-#define BF_CSU_CSL38_NSW_S2(v)   (((v) << BP_CSU_CSL38_NSW_S2) & BM_CSU_CSL38_NSW_S2)
-#endif
+#define BF_CSU_CSL38_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NSW_S2) & BM_CSU_CSL38_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -23973,15 +20680,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL38_LOCK_S2.
 
 //! @brief Get value of CSU_CSL38_LOCK_S2 from a register value.
-#define BG_CSU_CSL38_LOCK_S2(r)   (((r) & BM_CSU_CSL38_LOCK_S2) >> BP_CSU_CSL38_LOCK_S2)
+#define BG_CSU_CSL38_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_LOCK_S2) >> BP_CSU_CSL38_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_LOCK_S2.
-#define BF_CSU_CSL38_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL38_LOCK_S2) & BM_CSU_CSL38_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL38_LOCK_S2.
-#define BF_CSU_CSL38_LOCK_S2(v)   (((v) << BP_CSU_CSL38_LOCK_S2) & BM_CSU_CSL38_LOCK_S2)
-#endif
+#define BF_CSU_CSL38_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_LOCK_S2) & BM_CSU_CSL38_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -24002,15 +20704,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL38_SUR_S1.
 
 //! @brief Get value of CSU_CSL38_SUR_S1 from a register value.
-#define BG_CSU_CSL38_SUR_S1(r)   (((r) & BM_CSU_CSL38_SUR_S1) >> BP_CSU_CSL38_SUR_S1)
+#define BG_CSU_CSL38_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SUR_S1) >> BP_CSU_CSL38_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SUR_S1.
-#define BF_CSU_CSL38_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_SUR_S1) & BM_CSU_CSL38_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SUR_S1.
-#define BF_CSU_CSL38_SUR_S1(v)   (((v) << BP_CSU_CSL38_SUR_S1) & BM_CSU_CSL38_SUR_S1)
-#endif
+#define BF_CSU_CSL38_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SUR_S1) & BM_CSU_CSL38_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -24031,15 +20728,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL38_SSR_S1.
 
 //! @brief Get value of CSU_CSL38_SSR_S1 from a register value.
-#define BG_CSU_CSL38_SSR_S1(r)   (((r) & BM_CSU_CSL38_SSR_S1) >> BP_CSU_CSL38_SSR_S1)
+#define BG_CSU_CSL38_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SSR_S1) >> BP_CSU_CSL38_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SSR_S1.
-#define BF_CSU_CSL38_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_SSR_S1) & BM_CSU_CSL38_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SSR_S1.
-#define BF_CSU_CSL38_SSR_S1(v)   (((v) << BP_CSU_CSL38_SSR_S1) & BM_CSU_CSL38_SSR_S1)
-#endif
+#define BF_CSU_CSL38_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SSR_S1) & BM_CSU_CSL38_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -24060,15 +20752,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL38_NUR_S1.
 
 //! @brief Get value of CSU_CSL38_NUR_S1 from a register value.
-#define BG_CSU_CSL38_NUR_S1(r)   (((r) & BM_CSU_CSL38_NUR_S1) >> BP_CSU_CSL38_NUR_S1)
+#define BG_CSU_CSL38_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NUR_S1) >> BP_CSU_CSL38_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NUR_S1.
-#define BF_CSU_CSL38_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_NUR_S1) & BM_CSU_CSL38_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NUR_S1.
-#define BF_CSU_CSL38_NUR_S1(v)   (((v) << BP_CSU_CSL38_NUR_S1) & BM_CSU_CSL38_NUR_S1)
-#endif
+#define BF_CSU_CSL38_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NUR_S1) & BM_CSU_CSL38_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -24089,15 +20776,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL38_NSR_S1.
 
 //! @brief Get value of CSU_CSL38_NSR_S1 from a register value.
-#define BG_CSU_CSL38_NSR_S1(r)   (((r) & BM_CSU_CSL38_NSR_S1) >> BP_CSU_CSL38_NSR_S1)
+#define BG_CSU_CSL38_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NSR_S1) >> BP_CSU_CSL38_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NSR_S1.
-#define BF_CSU_CSL38_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_NSR_S1) & BM_CSU_CSL38_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NSR_S1.
-#define BF_CSU_CSL38_NSR_S1(v)   (((v) << BP_CSU_CSL38_NSR_S1) & BM_CSU_CSL38_NSR_S1)
-#endif
+#define BF_CSU_CSL38_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NSR_S1) & BM_CSU_CSL38_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -24118,15 +20800,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL38_SUW_S1.
 
 //! @brief Get value of CSU_CSL38_SUW_S1 from a register value.
-#define BG_CSU_CSL38_SUW_S1(r)   (((r) & BM_CSU_CSL38_SUW_S1) >> BP_CSU_CSL38_SUW_S1)
+#define BG_CSU_CSL38_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SUW_S1) >> BP_CSU_CSL38_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SUW_S1.
-#define BF_CSU_CSL38_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_SUW_S1) & BM_CSU_CSL38_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SUW_S1.
-#define BF_CSU_CSL38_SUW_S1(v)   (((v) << BP_CSU_CSL38_SUW_S1) & BM_CSU_CSL38_SUW_S1)
-#endif
+#define BF_CSU_CSL38_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SUW_S1) & BM_CSU_CSL38_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -24147,15 +20824,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL38_SSW_S1.
 
 //! @brief Get value of CSU_CSL38_SSW_S1 from a register value.
-#define BG_CSU_CSL38_SSW_S1(r)   (((r) & BM_CSU_CSL38_SSW_S1) >> BP_CSU_CSL38_SSW_S1)
+#define BG_CSU_CSL38_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_SSW_S1) >> BP_CSU_CSL38_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_SSW_S1.
-#define BF_CSU_CSL38_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_SSW_S1) & BM_CSU_CSL38_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_SSW_S1.
-#define BF_CSU_CSL38_SSW_S1(v)   (((v) << BP_CSU_CSL38_SSW_S1) & BM_CSU_CSL38_SSW_S1)
-#endif
+#define BF_CSU_CSL38_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_SSW_S1) & BM_CSU_CSL38_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -24176,15 +20848,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL38_NUW_S1.
 
 //! @brief Get value of CSU_CSL38_NUW_S1 from a register value.
-#define BG_CSU_CSL38_NUW_S1(r)   (((r) & BM_CSU_CSL38_NUW_S1) >> BP_CSU_CSL38_NUW_S1)
+#define BG_CSU_CSL38_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NUW_S1) >> BP_CSU_CSL38_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NUW_S1.
-#define BF_CSU_CSL38_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_NUW_S1) & BM_CSU_CSL38_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NUW_S1.
-#define BF_CSU_CSL38_NUW_S1(v)   (((v) << BP_CSU_CSL38_NUW_S1) & BM_CSU_CSL38_NUW_S1)
-#endif
+#define BF_CSU_CSL38_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NUW_S1) & BM_CSU_CSL38_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -24205,15 +20872,10 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL38_NSW_S1.
 
 //! @brief Get value of CSU_CSL38_NSW_S1 from a register value.
-#define BG_CSU_CSL38_NSW_S1(r)   (((r) & BM_CSU_CSL38_NSW_S1) >> BP_CSU_CSL38_NSW_S1)
+#define BG_CSU_CSL38_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_NSW_S1) >> BP_CSU_CSL38_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_NSW_S1.
-#define BF_CSU_CSL38_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_NSW_S1) & BM_CSU_CSL38_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_NSW_S1.
-#define BF_CSU_CSL38_NSW_S1(v)   (((v) << BP_CSU_CSL38_NSW_S1) & BM_CSU_CSL38_NSW_S1)
-#endif
+#define BF_CSU_CSL38_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_NSW_S1) & BM_CSU_CSL38_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -24234,21 +20896,20 @@ typedef union _hw_csu_csl38
 #define BM_CSU_CSL38_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL38_LOCK_S1.
 
 //! @brief Get value of CSU_CSL38_LOCK_S1 from a register value.
-#define BG_CSU_CSL38_LOCK_S1(r)   (((r) & BM_CSU_CSL38_LOCK_S1) >> BP_CSU_CSL38_LOCK_S1)
+#define BG_CSU_CSL38_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL38_LOCK_S1) >> BP_CSU_CSL38_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL38_LOCK_S1.
-#define BF_CSU_CSL38_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL38_LOCK_S1) & BM_CSU_CSL38_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL38_LOCK_S1.
-#define BF_CSU_CSL38_LOCK_S1(v)   (((v) << BP_CSU_CSL38_LOCK_S1) & BM_CSU_CSL38_LOCK_S1)
-#endif
+#define BF_CSU_CSL38_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL38_LOCK_S1) & BM_CSU_CSL38_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL38_LOCK_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_LOCK_S1) | BF_CSU_CSL38_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_CSL39 - Config security level register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24263,11 +20924,11 @@ typedef union _hw_csu_csl38
  * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
  * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
  * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves  Min. Value - 48  Max. Value -
- * 128  Possible Values - 48,64,80,96,112,128   Most slaves have unique CSL registers. Some slaves
- * are grouped together in USB, Timers, PowerUp and Audio groups. The following table shows
- * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
- * Slave Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
+ * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
+ * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
+ * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
+ * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
+ * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
  * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
  * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
  * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
@@ -24279,7 +20940,7 @@ typedef union _hw_csu_csl38
  * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
  * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
  * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0)  MMDC_CORE (port IPS_P1)    CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
+ * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
  * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
  * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
  * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
@@ -24361,15 +21022,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL39_SUR_S2.
 
 //! @brief Get value of CSU_CSL39_SUR_S2 from a register value.
-#define BG_CSU_CSL39_SUR_S2(r)   (((r) & BM_CSU_CSL39_SUR_S2) >> BP_CSU_CSL39_SUR_S2)
+#define BG_CSU_CSL39_SUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SUR_S2) >> BP_CSU_CSL39_SUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SUR_S2.
-#define BF_CSU_CSL39_SUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_SUR_S2) & BM_CSU_CSL39_SUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SUR_S2.
-#define BF_CSU_CSL39_SUR_S2(v)   (((v) << BP_CSU_CSL39_SUR_S2) & BM_CSU_CSL39_SUR_S2)
-#endif
+#define BF_CSU_CSL39_SUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SUR_S2) & BM_CSU_CSL39_SUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S2 field to a new value.
@@ -24390,15 +21046,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL39_SSR_S2.
 
 //! @brief Get value of CSU_CSL39_SSR_S2 from a register value.
-#define BG_CSU_CSL39_SSR_S2(r)   (((r) & BM_CSU_CSL39_SSR_S2) >> BP_CSU_CSL39_SSR_S2)
+#define BG_CSU_CSL39_SSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SSR_S2) >> BP_CSU_CSL39_SSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SSR_S2.
-#define BF_CSU_CSL39_SSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_SSR_S2) & BM_CSU_CSL39_SSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SSR_S2.
-#define BF_CSU_CSL39_SSR_S2(v)   (((v) << BP_CSU_CSL39_SSR_S2) & BM_CSU_CSL39_SSR_S2)
-#endif
+#define BF_CSU_CSL39_SSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SSR_S2) & BM_CSU_CSL39_SSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S2 field to a new value.
@@ -24419,15 +21070,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL39_NUR_S2.
 
 //! @brief Get value of CSU_CSL39_NUR_S2 from a register value.
-#define BG_CSU_CSL39_NUR_S2(r)   (((r) & BM_CSU_CSL39_NUR_S2) >> BP_CSU_CSL39_NUR_S2)
+#define BG_CSU_CSL39_NUR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NUR_S2) >> BP_CSU_CSL39_NUR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NUR_S2.
-#define BF_CSU_CSL39_NUR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_NUR_S2) & BM_CSU_CSL39_NUR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NUR_S2.
-#define BF_CSU_CSL39_NUR_S2(v)   (((v) << BP_CSU_CSL39_NUR_S2) & BM_CSU_CSL39_NUR_S2)
-#endif
+#define BF_CSU_CSL39_NUR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NUR_S2) & BM_CSU_CSL39_NUR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S2 field to a new value.
@@ -24448,15 +21094,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL39_NSR_S2.
 
 //! @brief Get value of CSU_CSL39_NSR_S2 from a register value.
-#define BG_CSU_CSL39_NSR_S2(r)   (((r) & BM_CSU_CSL39_NSR_S2) >> BP_CSU_CSL39_NSR_S2)
+#define BG_CSU_CSL39_NSR_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NSR_S2) >> BP_CSU_CSL39_NSR_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NSR_S2.
-#define BF_CSU_CSL39_NSR_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_NSR_S2) & BM_CSU_CSL39_NSR_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NSR_S2.
-#define BF_CSU_CSL39_NSR_S2(v)   (((v) << BP_CSU_CSL39_NSR_S2) & BM_CSU_CSL39_NSR_S2)
-#endif
+#define BF_CSU_CSL39_NSR_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NSR_S2) & BM_CSU_CSL39_NSR_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S2 field to a new value.
@@ -24477,15 +21118,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL39_SUW_S2.
 
 //! @brief Get value of CSU_CSL39_SUW_S2 from a register value.
-#define BG_CSU_CSL39_SUW_S2(r)   (((r) & BM_CSU_CSL39_SUW_S2) >> BP_CSU_CSL39_SUW_S2)
+#define BG_CSU_CSL39_SUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SUW_S2) >> BP_CSU_CSL39_SUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SUW_S2.
-#define BF_CSU_CSL39_SUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_SUW_S2) & BM_CSU_CSL39_SUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SUW_S2.
-#define BF_CSU_CSL39_SUW_S2(v)   (((v) << BP_CSU_CSL39_SUW_S2) & BM_CSU_CSL39_SUW_S2)
-#endif
+#define BF_CSU_CSL39_SUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SUW_S2) & BM_CSU_CSL39_SUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S2 field to a new value.
@@ -24506,15 +21142,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL39_SSW_S2.
 
 //! @brief Get value of CSU_CSL39_SSW_S2 from a register value.
-#define BG_CSU_CSL39_SSW_S2(r)   (((r) & BM_CSU_CSL39_SSW_S2) >> BP_CSU_CSL39_SSW_S2)
+#define BG_CSU_CSL39_SSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SSW_S2) >> BP_CSU_CSL39_SSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SSW_S2.
-#define BF_CSU_CSL39_SSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_SSW_S2) & BM_CSU_CSL39_SSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SSW_S2.
-#define BF_CSU_CSL39_SSW_S2(v)   (((v) << BP_CSU_CSL39_SSW_S2) & BM_CSU_CSL39_SSW_S2)
-#endif
+#define BF_CSU_CSL39_SSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SSW_S2) & BM_CSU_CSL39_SSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S2 field to a new value.
@@ -24535,15 +21166,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL39_NUW_S2.
 
 //! @brief Get value of CSU_CSL39_NUW_S2 from a register value.
-#define BG_CSU_CSL39_NUW_S2(r)   (((r) & BM_CSU_CSL39_NUW_S2) >> BP_CSU_CSL39_NUW_S2)
+#define BG_CSU_CSL39_NUW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NUW_S2) >> BP_CSU_CSL39_NUW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NUW_S2.
-#define BF_CSU_CSL39_NUW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_NUW_S2) & BM_CSU_CSL39_NUW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NUW_S2.
-#define BF_CSU_CSL39_NUW_S2(v)   (((v) << BP_CSU_CSL39_NUW_S2) & BM_CSU_CSL39_NUW_S2)
-#endif
+#define BF_CSU_CSL39_NUW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NUW_S2) & BM_CSU_CSL39_NUW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S2 field to a new value.
@@ -24564,15 +21190,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL39_NSW_S2.
 
 //! @brief Get value of CSU_CSL39_NSW_S2 from a register value.
-#define BG_CSU_CSL39_NSW_S2(r)   (((r) & BM_CSU_CSL39_NSW_S2) >> BP_CSU_CSL39_NSW_S2)
+#define BG_CSU_CSL39_NSW_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NSW_S2) >> BP_CSU_CSL39_NSW_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NSW_S2.
-#define BF_CSU_CSL39_NSW_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_NSW_S2) & BM_CSU_CSL39_NSW_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NSW_S2.
-#define BF_CSU_CSL39_NSW_S2(v)   (((v) << BP_CSU_CSL39_NSW_S2) & BM_CSU_CSL39_NSW_S2)
-#endif
+#define BF_CSU_CSL39_NSW_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NSW_S2) & BM_CSU_CSL39_NSW_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S2 field to a new value.
@@ -24593,15 +21214,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL39_LOCK_S2.
 
 //! @brief Get value of CSU_CSL39_LOCK_S2 from a register value.
-#define BG_CSU_CSL39_LOCK_S2(r)   (((r) & BM_CSU_CSL39_LOCK_S2) >> BP_CSU_CSL39_LOCK_S2)
+#define BG_CSU_CSL39_LOCK_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_LOCK_S2) >> BP_CSU_CSL39_LOCK_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_LOCK_S2.
-#define BF_CSU_CSL39_LOCK_S2(v)   ((((reg32_t) v) << BP_CSU_CSL39_LOCK_S2) & BM_CSU_CSL39_LOCK_S2)
-#else
-//! @brief Format value for bitfield CSU_CSL39_LOCK_S2.
-#define BF_CSU_CSL39_LOCK_S2(v)   (((v) << BP_CSU_CSL39_LOCK_S2) & BM_CSU_CSL39_LOCK_S2)
-#endif
+#define BF_CSU_CSL39_LOCK_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_LOCK_S2) & BM_CSU_CSL39_LOCK_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S2 field to a new value.
@@ -24622,15 +21238,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL39_SUR_S1.
 
 //! @brief Get value of CSU_CSL39_SUR_S1 from a register value.
-#define BG_CSU_CSL39_SUR_S1(r)   (((r) & BM_CSU_CSL39_SUR_S1) >> BP_CSU_CSL39_SUR_S1)
+#define BG_CSU_CSL39_SUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SUR_S1) >> BP_CSU_CSL39_SUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SUR_S1.
-#define BF_CSU_CSL39_SUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_SUR_S1) & BM_CSU_CSL39_SUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SUR_S1.
-#define BF_CSU_CSL39_SUR_S1(v)   (((v) << BP_CSU_CSL39_SUR_S1) & BM_CSU_CSL39_SUR_S1)
-#endif
+#define BF_CSU_CSL39_SUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SUR_S1) & BM_CSU_CSL39_SUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUR_S1 field to a new value.
@@ -24651,15 +21262,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL39_SSR_S1.
 
 //! @brief Get value of CSU_CSL39_SSR_S1 from a register value.
-#define BG_CSU_CSL39_SSR_S1(r)   (((r) & BM_CSU_CSL39_SSR_S1) >> BP_CSU_CSL39_SSR_S1)
+#define BG_CSU_CSL39_SSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SSR_S1) >> BP_CSU_CSL39_SSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SSR_S1.
-#define BF_CSU_CSL39_SSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_SSR_S1) & BM_CSU_CSL39_SSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SSR_S1.
-#define BF_CSU_CSL39_SSR_S1(v)   (((v) << BP_CSU_CSL39_SSR_S1) & BM_CSU_CSL39_SSR_S1)
-#endif
+#define BF_CSU_CSL39_SSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SSR_S1) & BM_CSU_CSL39_SSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSR_S1 field to a new value.
@@ -24680,15 +21286,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL39_NUR_S1.
 
 //! @brief Get value of CSU_CSL39_NUR_S1 from a register value.
-#define BG_CSU_CSL39_NUR_S1(r)   (((r) & BM_CSU_CSL39_NUR_S1) >> BP_CSU_CSL39_NUR_S1)
+#define BG_CSU_CSL39_NUR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NUR_S1) >> BP_CSU_CSL39_NUR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NUR_S1.
-#define BF_CSU_CSL39_NUR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_NUR_S1) & BM_CSU_CSL39_NUR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NUR_S1.
-#define BF_CSU_CSL39_NUR_S1(v)   (((v) << BP_CSU_CSL39_NUR_S1) & BM_CSU_CSL39_NUR_S1)
-#endif
+#define BF_CSU_CSL39_NUR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NUR_S1) & BM_CSU_CSL39_NUR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUR_S1 field to a new value.
@@ -24709,15 +21310,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL39_NSR_S1.
 
 //! @brief Get value of CSU_CSL39_NSR_S1 from a register value.
-#define BG_CSU_CSL39_NSR_S1(r)   (((r) & BM_CSU_CSL39_NSR_S1) >> BP_CSU_CSL39_NSR_S1)
+#define BG_CSU_CSL39_NSR_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NSR_S1) >> BP_CSU_CSL39_NSR_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NSR_S1.
-#define BF_CSU_CSL39_NSR_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_NSR_S1) & BM_CSU_CSL39_NSR_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NSR_S1.
-#define BF_CSU_CSL39_NSR_S1(v)   (((v) << BP_CSU_CSL39_NSR_S1) & BM_CSU_CSL39_NSR_S1)
-#endif
+#define BF_CSU_CSL39_NSR_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NSR_S1) & BM_CSU_CSL39_NSR_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSR_S1 field to a new value.
@@ -24738,15 +21334,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL39_SUW_S1.
 
 //! @brief Get value of CSU_CSL39_SUW_S1 from a register value.
-#define BG_CSU_CSL39_SUW_S1(r)   (((r) & BM_CSU_CSL39_SUW_S1) >> BP_CSU_CSL39_SUW_S1)
+#define BG_CSU_CSL39_SUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SUW_S1) >> BP_CSU_CSL39_SUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SUW_S1.
-#define BF_CSU_CSL39_SUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_SUW_S1) & BM_CSU_CSL39_SUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SUW_S1.
-#define BF_CSU_CSL39_SUW_S1(v)   (((v) << BP_CSU_CSL39_SUW_S1) & BM_CSU_CSL39_SUW_S1)
-#endif
+#define BF_CSU_CSL39_SUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SUW_S1) & BM_CSU_CSL39_SUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUW_S1 field to a new value.
@@ -24767,15 +21358,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL39_SSW_S1.
 
 //! @brief Get value of CSU_CSL39_SSW_S1 from a register value.
-#define BG_CSU_CSL39_SSW_S1(r)   (((r) & BM_CSU_CSL39_SSW_S1) >> BP_CSU_CSL39_SSW_S1)
+#define BG_CSU_CSL39_SSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_SSW_S1) >> BP_CSU_CSL39_SSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_SSW_S1.
-#define BF_CSU_CSL39_SSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_SSW_S1) & BM_CSU_CSL39_SSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_SSW_S1.
-#define BF_CSU_CSL39_SSW_S1(v)   (((v) << BP_CSU_CSL39_SSW_S1) & BM_CSU_CSL39_SSW_S1)
-#endif
+#define BF_CSU_CSL39_SSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_SSW_S1) & BM_CSU_CSL39_SSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SSW_S1 field to a new value.
@@ -24796,15 +21382,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL39_NUW_S1.
 
 //! @brief Get value of CSU_CSL39_NUW_S1 from a register value.
-#define BG_CSU_CSL39_NUW_S1(r)   (((r) & BM_CSU_CSL39_NUW_S1) >> BP_CSU_CSL39_NUW_S1)
+#define BG_CSU_CSL39_NUW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NUW_S1) >> BP_CSU_CSL39_NUW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NUW_S1.
-#define BF_CSU_CSL39_NUW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_NUW_S1) & BM_CSU_CSL39_NUW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NUW_S1.
-#define BF_CSU_CSL39_NUW_S1(v)   (((v) << BP_CSU_CSL39_NUW_S1) & BM_CSU_CSL39_NUW_S1)
-#endif
+#define BF_CSU_CSL39_NUW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NUW_S1) & BM_CSU_CSL39_NUW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUW_S1 field to a new value.
@@ -24825,15 +21406,10 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL39_NSW_S1.
 
 //! @brief Get value of CSU_CSL39_NSW_S1 from a register value.
-#define BG_CSU_CSL39_NSW_S1(r)   (((r) & BM_CSU_CSL39_NSW_S1) >> BP_CSU_CSL39_NSW_S1)
+#define BG_CSU_CSL39_NSW_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_NSW_S1) >> BP_CSU_CSL39_NSW_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_NSW_S1.
-#define BF_CSU_CSL39_NSW_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_NSW_S1) & BM_CSU_CSL39_NSW_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_NSW_S1.
-#define BF_CSU_CSL39_NSW_S1(v)   (((v) << BP_CSU_CSL39_NSW_S1) & BM_CSU_CSL39_NSW_S1)
-#endif
+#define BF_CSU_CSL39_NSW_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_NSW_S1) & BM_CSU_CSL39_NSW_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NSW_S1 field to a new value.
@@ -24854,21 +21430,20 @@ typedef union _hw_csu_csl39
 #define BM_CSU_CSL39_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL39_LOCK_S1.
 
 //! @brief Get value of CSU_CSL39_LOCK_S1 from a register value.
-#define BG_CSU_CSL39_LOCK_S1(r)   (((r) & BM_CSU_CSL39_LOCK_S1) >> BP_CSU_CSL39_LOCK_S1)
+#define BG_CSU_CSL39_LOCK_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_CSL39_LOCK_S1) >> BP_CSU_CSL39_LOCK_S1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_CSL39_LOCK_S1.
-#define BF_CSU_CSL39_LOCK_S1(v)   ((((reg32_t) v) << BP_CSU_CSL39_LOCK_S1) & BM_CSU_CSL39_LOCK_S1)
-#else
-//! @brief Format value for bitfield CSU_CSL39_LOCK_S1.
-#define BF_CSU_CSL39_LOCK_S1(v)   (((v) << BP_CSU_CSL39_LOCK_S1) & BM_CSU_CSL39_LOCK_S1)
-#endif
+#define BF_CSU_CSL39_LOCK_S1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_CSL39_LOCK_S1) & BM_CSU_CSL39_LOCK_S1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL39_LOCK_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_LOCK_S1) | BF_CSU_CSL39_LOCK_S1(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_HP0 - HP0 register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24885,7 +21460,7 @@ typedef union _hw_csu_csl39
  * reserved for 32 Masters. Since, one 32 bit register can accommodate HP fields corresponding to 16
  * masters, hence for 32 masters memory equivalent of 2 registers is reserved.However, actual number
  * of registers(flops) inferred in a design would depend on the following Parameter --- Name -
- * No_Of_Masters  Min. Value -1  Max. Value - 32  Possible Values - 1 to 32
+ * No_Of_Masters Min. Value -1 Max. Value - 32 Possible Values - 1 to 32
  */
 typedef union _hw_csu_hp0
 {
@@ -24958,15 +21533,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_PCIE      (0x00000001)  //!< Bit mask for CSU_HP0_HP_PCIE.
 
 //! @brief Get value of CSU_HP0_HP_PCIE from a register value.
-#define BG_CSU_HP0_HP_PCIE(r)   (((r) & BM_CSU_HP0_HP_PCIE) >> BP_CSU_HP0_HP_PCIE)
+#define BG_CSU_HP0_HP_PCIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_PCIE) >> BP_CSU_HP0_HP_PCIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_PCIE.
-#define BF_CSU_HP0_HP_PCIE(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_PCIE) & BM_CSU_HP0_HP_PCIE)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_PCIE.
-#define BF_CSU_HP0_HP_PCIE(v)   (((v) << BP_CSU_HP0_HP_PCIE) & BM_CSU_HP0_HP_PCIE)
-#endif
+#define BF_CSU_HP0_HP_PCIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_PCIE) & BM_CSU_HP0_HP_PCIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_PCIE field to a new value.
@@ -24987,15 +21557,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_PCIE      (0x00000002)  //!< Bit mask for CSU_HP0_L_PCIE.
 
 //! @brief Get value of CSU_HP0_L_PCIE from a register value.
-#define BG_CSU_HP0_L_PCIE(r)   (((r) & BM_CSU_HP0_L_PCIE) >> BP_CSU_HP0_L_PCIE)
+#define BG_CSU_HP0_L_PCIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_PCIE) >> BP_CSU_HP0_L_PCIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_PCIE.
-#define BF_CSU_HP0_L_PCIE(v)   ((((reg32_t) v) << BP_CSU_HP0_L_PCIE) & BM_CSU_HP0_L_PCIE)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_PCIE.
-#define BF_CSU_HP0_L_PCIE(v)   (((v) << BP_CSU_HP0_L_PCIE) & BM_CSU_HP0_L_PCIE)
-#endif
+#define BF_CSU_HP0_L_PCIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_PCIE) & BM_CSU_HP0_L_PCIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PCIE field to a new value.
@@ -25016,15 +21581,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_SDMA      (0x00000010)  //!< Bit mask for CSU_HP0_HP_SDMA.
 
 //! @brief Get value of CSU_HP0_HP_SDMA from a register value.
-#define BG_CSU_HP0_HP_SDMA(r)   (((r) & BM_CSU_HP0_HP_SDMA) >> BP_CSU_HP0_HP_SDMA)
+#define BG_CSU_HP0_HP_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_SDMA) >> BP_CSU_HP0_HP_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_SDMA.
-#define BF_CSU_HP0_HP_SDMA(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_SDMA) & BM_CSU_HP0_HP_SDMA)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_SDMA.
-#define BF_CSU_HP0_HP_SDMA(v)   (((v) << BP_CSU_HP0_HP_SDMA) & BM_CSU_HP0_HP_SDMA)
-#endif
+#define BF_CSU_HP0_HP_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_SDMA) & BM_CSU_HP0_HP_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_SDMA field to a new value.
@@ -25045,15 +21605,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_SDMA      (0x00000020)  //!< Bit mask for CSU_HP0_L_SDMA.
 
 //! @brief Get value of CSU_HP0_L_SDMA from a register value.
-#define BG_CSU_HP0_L_SDMA(r)   (((r) & BM_CSU_HP0_L_SDMA) >> BP_CSU_HP0_L_SDMA)
+#define BG_CSU_HP0_L_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_SDMA) >> BP_CSU_HP0_L_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_SDMA.
-#define BF_CSU_HP0_L_SDMA(v)   ((((reg32_t) v) << BP_CSU_HP0_L_SDMA) & BM_CSU_HP0_L_SDMA)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_SDMA.
-#define BF_CSU_HP0_L_SDMA(v)   (((v) << BP_CSU_HP0_L_SDMA) & BM_CSU_HP0_L_SDMA)
-#endif
+#define BF_CSU_HP0_L_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_SDMA) & BM_CSU_HP0_L_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_SDMA field to a new value.
@@ -25075,15 +21630,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_PU      (0x00000040)  //!< Bit mask for CSU_HP0_HP_PU.
 
 //! @brief Get value of CSU_HP0_HP_PU from a register value.
-#define BG_CSU_HP0_HP_PU(r)   (((r) & BM_CSU_HP0_HP_PU) >> BP_CSU_HP0_HP_PU)
+#define BG_CSU_HP0_HP_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_PU) >> BP_CSU_HP0_HP_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_PU.
-#define BF_CSU_HP0_HP_PU(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_PU) & BM_CSU_HP0_HP_PU)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_PU.
-#define BF_CSU_HP0_HP_PU(v)   (((v) << BP_CSU_HP0_HP_PU) & BM_CSU_HP0_HP_PU)
-#endif
+#define BF_CSU_HP0_HP_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_PU) & BM_CSU_HP0_HP_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_PU field to a new value.
@@ -25104,15 +21654,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_PU      (0x00000080)  //!< Bit mask for CSU_HP0_L_PU.
 
 //! @brief Get value of CSU_HP0_L_PU from a register value.
-#define BG_CSU_HP0_L_PU(r)   (((r) & BM_CSU_HP0_L_PU) >> BP_CSU_HP0_L_PU)
+#define BG_CSU_HP0_L_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_PU) >> BP_CSU_HP0_L_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_PU.
-#define BF_CSU_HP0_L_PU(v)   ((((reg32_t) v) << BP_CSU_HP0_L_PU) & BM_CSU_HP0_L_PU)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_PU.
-#define BF_CSU_HP0_L_PU(v)   (((v) << BP_CSU_HP0_L_PU) & BM_CSU_HP0_L_PU)
-#endif
+#define BF_CSU_HP0_L_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_PU) & BM_CSU_HP0_L_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PU field to a new value.
@@ -25133,15 +21678,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_USB      (0x00000100)  //!< Bit mask for CSU_HP0_HP_USB.
 
 //! @brief Get value of CSU_HP0_HP_USB from a register value.
-#define BG_CSU_HP0_HP_USB(r)   (((r) & BM_CSU_HP0_HP_USB) >> BP_CSU_HP0_HP_USB)
+#define BG_CSU_HP0_HP_USB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_USB) >> BP_CSU_HP0_HP_USB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_USB.
-#define BF_CSU_HP0_HP_USB(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_USB) & BM_CSU_HP0_HP_USB)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_USB.
-#define BF_CSU_HP0_HP_USB(v)   (((v) << BP_CSU_HP0_HP_USB) & BM_CSU_HP0_HP_USB)
-#endif
+#define BF_CSU_HP0_HP_USB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_USB) & BM_CSU_HP0_HP_USB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_USB field to a new value.
@@ -25162,15 +21702,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_USB      (0x00000200)  //!< Bit mask for CSU_HP0_L_USB.
 
 //! @brief Get value of CSU_HP0_L_USB from a register value.
-#define BG_CSU_HP0_L_USB(r)   (((r) & BM_CSU_HP0_L_USB) >> BP_CSU_HP0_L_USB)
+#define BG_CSU_HP0_L_USB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_USB) >> BP_CSU_HP0_L_USB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_USB.
-#define BF_CSU_HP0_L_USB(v)   ((((reg32_t) v) << BP_CSU_HP0_L_USB) & BM_CSU_HP0_L_USB)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_USB.
-#define BF_CSU_HP0_L_USB(v)   (((v) << BP_CSU_HP0_L_USB) & BM_CSU_HP0_L_USB)
-#endif
+#define BF_CSU_HP0_L_USB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_USB) & BM_CSU_HP0_L_USB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USB field to a new value.
@@ -25191,15 +21726,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_TEST      (0x00000400)  //!< Bit mask for CSU_HP0_HP_TEST.
 
 //! @brief Get value of CSU_HP0_HP_TEST from a register value.
-#define BG_CSU_HP0_HP_TEST(r)   (((r) & BM_CSU_HP0_HP_TEST) >> BP_CSU_HP0_HP_TEST)
+#define BG_CSU_HP0_HP_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_TEST) >> BP_CSU_HP0_HP_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_TEST.
-#define BF_CSU_HP0_HP_TEST(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_TEST) & BM_CSU_HP0_HP_TEST)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_TEST.
-#define BF_CSU_HP0_HP_TEST(v)   (((v) << BP_CSU_HP0_HP_TEST) & BM_CSU_HP0_HP_TEST)
-#endif
+#define BF_CSU_HP0_HP_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_TEST) & BM_CSU_HP0_HP_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_TEST field to a new value.
@@ -25220,15 +21750,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_TEST      (0x00000800)  //!< Bit mask for CSU_HP0_L_TEST.
 
 //! @brief Get value of CSU_HP0_L_TEST from a register value.
-#define BG_CSU_HP0_L_TEST(r)   (((r) & BM_CSU_HP0_L_TEST) >> BP_CSU_HP0_L_TEST)
+#define BG_CSU_HP0_L_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_TEST) >> BP_CSU_HP0_L_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_TEST.
-#define BF_CSU_HP0_L_TEST(v)   ((((reg32_t) v) << BP_CSU_HP0_L_TEST) & BM_CSU_HP0_L_TEST)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_TEST.
-#define BF_CSU_HP0_L_TEST(v)   (((v) << BP_CSU_HP0_L_TEST) & BM_CSU_HP0_L_TEST)
-#endif
+#define BF_CSU_HP0_L_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_TEST) & BM_CSU_HP0_L_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_TEST field to a new value.
@@ -25249,15 +21774,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_MLB      (0x00001000)  //!< Bit mask for CSU_HP0_HP_MLB.
 
 //! @brief Get value of CSU_HP0_HP_MLB from a register value.
-#define BG_CSU_HP0_HP_MLB(r)   (((r) & BM_CSU_HP0_HP_MLB) >> BP_CSU_HP0_HP_MLB)
+#define BG_CSU_HP0_HP_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_MLB) >> BP_CSU_HP0_HP_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_MLB.
-#define BF_CSU_HP0_HP_MLB(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_MLB) & BM_CSU_HP0_HP_MLB)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_MLB.
-#define BF_CSU_HP0_HP_MLB(v)   (((v) << BP_CSU_HP0_HP_MLB) & BM_CSU_HP0_HP_MLB)
-#endif
+#define BF_CSU_HP0_HP_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_MLB) & BM_CSU_HP0_HP_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_MLB field to a new value.
@@ -25278,15 +21798,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_MLB      (0x00002000)  //!< Bit mask for CSU_HP0_L_MLB.
 
 //! @brief Get value of CSU_HP0_L_MLB from a register value.
-#define BG_CSU_HP0_L_MLB(r)   (((r) & BM_CSU_HP0_L_MLB) >> BP_CSU_HP0_L_MLB)
+#define BG_CSU_HP0_L_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_MLB) >> BP_CSU_HP0_L_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_MLB.
-#define BF_CSU_HP0_L_MLB(v)   ((((reg32_t) v) << BP_CSU_HP0_L_MLB) & BM_CSU_HP0_L_MLB)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_MLB.
-#define BF_CSU_HP0_L_MLB(v)   (((v) << BP_CSU_HP0_L_MLB) & BM_CSU_HP0_L_MLB)
-#endif
+#define BF_CSU_HP0_L_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_MLB) & BM_CSU_HP0_L_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_MLB field to a new value.
@@ -25307,15 +21822,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_CAAM      (0x00004000)  //!< Bit mask for CSU_HP0_HP_CAAM.
 
 //! @brief Get value of CSU_HP0_HP_CAAM from a register value.
-#define BG_CSU_HP0_HP_CAAM(r)   (((r) & BM_CSU_HP0_HP_CAAM) >> BP_CSU_HP0_HP_CAAM)
+#define BG_CSU_HP0_HP_CAAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_CAAM) >> BP_CSU_HP0_HP_CAAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_CAAM.
-#define BF_CSU_HP0_HP_CAAM(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_CAAM) & BM_CSU_HP0_HP_CAAM)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_CAAM.
-#define BF_CSU_HP0_HP_CAAM(v)   (((v) << BP_CSU_HP0_HP_CAAM) & BM_CSU_HP0_HP_CAAM)
-#endif
+#define BF_CSU_HP0_HP_CAAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_CAAM) & BM_CSU_HP0_HP_CAAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_CAAM field to a new value.
@@ -25336,15 +21846,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_CAAM      (0x00008000)  //!< Bit mask for CSU_HP0_L_CAAM.
 
 //! @brief Get value of CSU_HP0_L_CAAM from a register value.
-#define BG_CSU_HP0_L_CAAM(r)   (((r) & BM_CSU_HP0_L_CAAM) >> BP_CSU_HP0_L_CAAM)
+#define BG_CSU_HP0_L_CAAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_CAAM) >> BP_CSU_HP0_L_CAAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_CAAM.
-#define BF_CSU_HP0_L_CAAM(v)   ((((reg32_t) v) << BP_CSU_HP0_L_CAAM) & BM_CSU_HP0_L_CAAM)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_CAAM.
-#define BF_CSU_HP0_L_CAAM(v)   (((v) << BP_CSU_HP0_L_CAAM) & BM_CSU_HP0_L_CAAM)
-#endif
+#define BF_CSU_HP0_L_CAAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_CAAM) & BM_CSU_HP0_L_CAAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_CAAM field to a new value.
@@ -25365,15 +21870,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_RAWNAND      (0x00010000)  //!< Bit mask for CSU_HP0_HP_RAWNAND.
 
 //! @brief Get value of CSU_HP0_HP_RAWNAND from a register value.
-#define BG_CSU_HP0_HP_RAWNAND(r)   (((r) & BM_CSU_HP0_HP_RAWNAND) >> BP_CSU_HP0_HP_RAWNAND)
+#define BG_CSU_HP0_HP_RAWNAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_RAWNAND) >> BP_CSU_HP0_HP_RAWNAND)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_RAWNAND.
-#define BF_CSU_HP0_HP_RAWNAND(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_RAWNAND) & BM_CSU_HP0_HP_RAWNAND)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_RAWNAND.
-#define BF_CSU_HP0_HP_RAWNAND(v)   (((v) << BP_CSU_HP0_HP_RAWNAND) & BM_CSU_HP0_HP_RAWNAND)
-#endif
+#define BF_CSU_HP0_HP_RAWNAND(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_RAWNAND) & BM_CSU_HP0_HP_RAWNAND)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_RAWNAND field to a new value.
@@ -25394,15 +21894,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_RAWNAND      (0x00020000)  //!< Bit mask for CSU_HP0_L_RAWNAND.
 
 //! @brief Get value of CSU_HP0_L_RAWNAND from a register value.
-#define BG_CSU_HP0_L_RAWNAND(r)   (((r) & BM_CSU_HP0_L_RAWNAND) >> BP_CSU_HP0_L_RAWNAND)
+#define BG_CSU_HP0_L_RAWNAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_RAWNAND) >> BP_CSU_HP0_L_RAWNAND)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_RAWNAND.
-#define BF_CSU_HP0_L_RAWNAND(v)   ((((reg32_t) v) << BP_CSU_HP0_L_RAWNAND) & BM_CSU_HP0_L_RAWNAND)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_RAWNAND.
-#define BF_CSU_HP0_L_RAWNAND(v)   (((v) << BP_CSU_HP0_L_RAWNAND) & BM_CSU_HP0_L_RAWNAND)
-#endif
+#define BF_CSU_HP0_L_RAWNAND(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_RAWNAND) & BM_CSU_HP0_L_RAWNAND)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_RAWNAND field to a new value.
@@ -25423,15 +21918,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_APBHDMA      (0x00040000)  //!< Bit mask for CSU_HP0_HP_APBHDMA.
 
 //! @brief Get value of CSU_HP0_HP_APBHDMA from a register value.
-#define BG_CSU_HP0_HP_APBHDMA(r)   (((r) & BM_CSU_HP0_HP_APBHDMA) >> BP_CSU_HP0_HP_APBHDMA)
+#define BG_CSU_HP0_HP_APBHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_APBHDMA) >> BP_CSU_HP0_HP_APBHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_APBHDMA.
-#define BF_CSU_HP0_HP_APBHDMA(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_APBHDMA) & BM_CSU_HP0_HP_APBHDMA)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_APBHDMA.
-#define BF_CSU_HP0_HP_APBHDMA(v)   (((v) << BP_CSU_HP0_HP_APBHDMA) & BM_CSU_HP0_HP_APBHDMA)
-#endif
+#define BF_CSU_HP0_HP_APBHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_APBHDMA) & BM_CSU_HP0_HP_APBHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_APBHDMA field to a new value.
@@ -25452,15 +21942,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_ABPHDMA      (0x00080000)  //!< Bit mask for CSU_HP0_L_ABPHDMA.
 
 //! @brief Get value of CSU_HP0_L_ABPHDMA from a register value.
-#define BG_CSU_HP0_L_ABPHDMA(r)   (((r) & BM_CSU_HP0_L_ABPHDMA) >> BP_CSU_HP0_L_ABPHDMA)
+#define BG_CSU_HP0_L_ABPHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_ABPHDMA) >> BP_CSU_HP0_L_ABPHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_ABPHDMA.
-#define BF_CSU_HP0_L_ABPHDMA(v)   ((((reg32_t) v) << BP_CSU_HP0_L_ABPHDMA) & BM_CSU_HP0_L_ABPHDMA)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_ABPHDMA.
-#define BF_CSU_HP0_L_ABPHDMA(v)   (((v) << BP_CSU_HP0_L_ABPHDMA) & BM_CSU_HP0_L_ABPHDMA)
-#endif
+#define BF_CSU_HP0_L_ABPHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_ABPHDMA) & BM_CSU_HP0_L_ABPHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_ABPHDMA field to a new value.
@@ -25481,15 +21966,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_ENET      (0x00100000)  //!< Bit mask for CSU_HP0_HP_ENET.
 
 //! @brief Get value of CSU_HP0_HP_ENET from a register value.
-#define BG_CSU_HP0_HP_ENET(r)   (((r) & BM_CSU_HP0_HP_ENET) >> BP_CSU_HP0_HP_ENET)
+#define BG_CSU_HP0_HP_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_ENET) >> BP_CSU_HP0_HP_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_ENET.
-#define BF_CSU_HP0_HP_ENET(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_ENET) & BM_CSU_HP0_HP_ENET)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_ENET.
-#define BF_CSU_HP0_HP_ENET(v)   (((v) << BP_CSU_HP0_HP_ENET) & BM_CSU_HP0_HP_ENET)
-#endif
+#define BF_CSU_HP0_HP_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_ENET) & BM_CSU_HP0_HP_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_ENET field to a new value.
@@ -25510,15 +21990,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_ENET      (0x00200000)  //!< Bit mask for CSU_HP0_L_ENET.
 
 //! @brief Get value of CSU_HP0_L_ENET from a register value.
-#define BG_CSU_HP0_L_ENET(r)   (((r) & BM_CSU_HP0_L_ENET) >> BP_CSU_HP0_L_ENET)
+#define BG_CSU_HP0_L_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_ENET) >> BP_CSU_HP0_L_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_ENET.
-#define BF_CSU_HP0_L_ENET(v)   ((((reg32_t) v) << BP_CSU_HP0_L_ENET) & BM_CSU_HP0_L_ENET)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_ENET.
-#define BF_CSU_HP0_L_ENET(v)   (((v) << BP_CSU_HP0_L_ENET) & BM_CSU_HP0_L_ENET)
-#endif
+#define BF_CSU_HP0_L_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_ENET) & BM_CSU_HP0_L_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_ENET field to a new value.
@@ -25539,15 +22014,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_DAP      (0x00400000)  //!< Bit mask for CSU_HP0_HP_DAP.
 
 //! @brief Get value of CSU_HP0_HP_DAP from a register value.
-#define BG_CSU_HP0_HP_DAP(r)   (((r) & BM_CSU_HP0_HP_DAP) >> BP_CSU_HP0_HP_DAP)
+#define BG_CSU_HP0_HP_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_DAP) >> BP_CSU_HP0_HP_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_DAP.
-#define BF_CSU_HP0_HP_DAP(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_DAP) & BM_CSU_HP0_HP_DAP)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_DAP.
-#define BF_CSU_HP0_HP_DAP(v)   (((v) << BP_CSU_HP0_HP_DAP) & BM_CSU_HP0_HP_DAP)
-#endif
+#define BF_CSU_HP0_HP_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_DAP) & BM_CSU_HP0_HP_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_DAP field to a new value.
@@ -25568,15 +22038,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_DAP      (0x00800000)  //!< Bit mask for CSU_HP0_L_DAP.
 
 //! @brief Get value of CSU_HP0_L_DAP from a register value.
-#define BG_CSU_HP0_L_DAP(r)   (((r) & BM_CSU_HP0_L_DAP) >> BP_CSU_HP0_L_DAP)
+#define BG_CSU_HP0_L_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_DAP) >> BP_CSU_HP0_L_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_DAP.
-#define BF_CSU_HP0_L_DAP(v)   ((((reg32_t) v) << BP_CSU_HP0_L_DAP) & BM_CSU_HP0_L_DAP)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_DAP.
-#define BF_CSU_HP0_L_DAP(v)   (((v) << BP_CSU_HP0_L_DAP) & BM_CSU_HP0_L_DAP)
-#endif
+#define BF_CSU_HP0_L_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_DAP) & BM_CSU_HP0_L_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_DAP field to a new value.
@@ -25597,15 +22062,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_USDHC1      (0x01000000)  //!< Bit mask for CSU_HP0_HP_USDHC1.
 
 //! @brief Get value of CSU_HP0_HP_USDHC1 from a register value.
-#define BG_CSU_HP0_HP_USDHC1(r)   (((r) & BM_CSU_HP0_HP_USDHC1) >> BP_CSU_HP0_HP_USDHC1)
+#define BG_CSU_HP0_HP_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_USDHC1) >> BP_CSU_HP0_HP_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_USDHC1.
-#define BF_CSU_HP0_HP_USDHC1(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_USDHC1) & BM_CSU_HP0_HP_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_USDHC1.
-#define BF_CSU_HP0_HP_USDHC1(v)   (((v) << BP_CSU_HP0_HP_USDHC1) & BM_CSU_HP0_HP_USDHC1)
-#endif
+#define BF_CSU_HP0_HP_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_USDHC1) & BM_CSU_HP0_HP_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_USDHC1 field to a new value.
@@ -25626,15 +22086,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_USDHC1      (0x02000000)  //!< Bit mask for CSU_HP0_L_USDHC1.
 
 //! @brief Get value of CSU_HP0_L_USDHC1 from a register value.
-#define BG_CSU_HP0_L_USDHC1(r)   (((r) & BM_CSU_HP0_L_USDHC1) >> BP_CSU_HP0_L_USDHC1)
+#define BG_CSU_HP0_L_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_USDHC1) >> BP_CSU_HP0_L_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_USDHC1.
-#define BF_CSU_HP0_L_USDHC1(v)   ((((reg32_t) v) << BP_CSU_HP0_L_USDHC1) & BM_CSU_HP0_L_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_USDHC1.
-#define BF_CSU_HP0_L_USDHC1(v)   (((v) << BP_CSU_HP0_L_USDHC1) & BM_CSU_HP0_L_USDHC1)
-#endif
+#define BF_CSU_HP0_L_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_USDHC1) & BM_CSU_HP0_L_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC1 field to a new value.
@@ -25655,15 +22110,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_USDHC2      (0x04000000)  //!< Bit mask for CSU_HP0_HP_USDHC2.
 
 //! @brief Get value of CSU_HP0_HP_USDHC2 from a register value.
-#define BG_CSU_HP0_HP_USDHC2(r)   (((r) & BM_CSU_HP0_HP_USDHC2) >> BP_CSU_HP0_HP_USDHC2)
+#define BG_CSU_HP0_HP_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_USDHC2) >> BP_CSU_HP0_HP_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_USDHC2.
-#define BF_CSU_HP0_HP_USDHC2(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_USDHC2) & BM_CSU_HP0_HP_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_USDHC2.
-#define BF_CSU_HP0_HP_USDHC2(v)   (((v) << BP_CSU_HP0_HP_USDHC2) & BM_CSU_HP0_HP_USDHC2)
-#endif
+#define BF_CSU_HP0_HP_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_USDHC2) & BM_CSU_HP0_HP_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_USDHC2 field to a new value.
@@ -25684,15 +22134,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_USDHC2      (0x08000000)  //!< Bit mask for CSU_HP0_L_USDHC2.
 
 //! @brief Get value of CSU_HP0_L_USDHC2 from a register value.
-#define BG_CSU_HP0_L_USDHC2(r)   (((r) & BM_CSU_HP0_L_USDHC2) >> BP_CSU_HP0_L_USDHC2)
+#define BG_CSU_HP0_L_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_USDHC2) >> BP_CSU_HP0_L_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_USDHC2.
-#define BF_CSU_HP0_L_USDHC2(v)   ((((reg32_t) v) << BP_CSU_HP0_L_USDHC2) & BM_CSU_HP0_L_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_USDHC2.
-#define BF_CSU_HP0_L_USDHC2(v)   (((v) << BP_CSU_HP0_L_USDHC2) & BM_CSU_HP0_L_USDHC2)
-#endif
+#define BF_CSU_HP0_L_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_USDHC2) & BM_CSU_HP0_L_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC2 field to a new value.
@@ -25713,15 +22158,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_USDHC3      (0x10000000)  //!< Bit mask for CSU_HP0_HP_USDHC3.
 
 //! @brief Get value of CSU_HP0_HP_USDHC3 from a register value.
-#define BG_CSU_HP0_HP_USDHC3(r)   (((r) & BM_CSU_HP0_HP_USDHC3) >> BP_CSU_HP0_HP_USDHC3)
+#define BG_CSU_HP0_HP_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_USDHC3) >> BP_CSU_HP0_HP_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_USDHC3.
-#define BF_CSU_HP0_HP_USDHC3(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_USDHC3) & BM_CSU_HP0_HP_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_USDHC3.
-#define BF_CSU_HP0_HP_USDHC3(v)   (((v) << BP_CSU_HP0_HP_USDHC3) & BM_CSU_HP0_HP_USDHC3)
-#endif
+#define BF_CSU_HP0_HP_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_USDHC3) & BM_CSU_HP0_HP_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_USDHC3 field to a new value.
@@ -25742,15 +22182,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_USDHC3      (0x20000000)  //!< Bit mask for CSU_HP0_L_USDHC3.
 
 //! @brief Get value of CSU_HP0_L_USDHC3 from a register value.
-#define BG_CSU_HP0_L_USDHC3(r)   (((r) & BM_CSU_HP0_L_USDHC3) >> BP_CSU_HP0_L_USDHC3)
+#define BG_CSU_HP0_L_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_USDHC3) >> BP_CSU_HP0_L_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_USDHC3.
-#define BF_CSU_HP0_L_USDHC3(v)   ((((reg32_t) v) << BP_CSU_HP0_L_USDHC3) & BM_CSU_HP0_L_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_USDHC3.
-#define BF_CSU_HP0_L_USDHC3(v)   (((v) << BP_CSU_HP0_L_USDHC3) & BM_CSU_HP0_L_USDHC3)
-#endif
+#define BF_CSU_HP0_L_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_USDHC3) & BM_CSU_HP0_L_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC3 field to a new value.
@@ -25771,15 +22206,10 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_HP_USDHC4      (0x40000000)  //!< Bit mask for CSU_HP0_HP_USDHC4.
 
 //! @brief Get value of CSU_HP0_HP_USDHC4 from a register value.
-#define BG_CSU_HP0_HP_USDHC4(r)   (((r) & BM_CSU_HP0_HP_USDHC4) >> BP_CSU_HP0_HP_USDHC4)
+#define BG_CSU_HP0_HP_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_HP_USDHC4) >> BP_CSU_HP0_HP_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_HP_USDHC4.
-#define BF_CSU_HP0_HP_USDHC4(v)   ((((reg32_t) v) << BP_CSU_HP0_HP_USDHC4) & BM_CSU_HP0_HP_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_HP0_HP_USDHC4.
-#define BF_CSU_HP0_HP_USDHC4(v)   (((v) << BP_CSU_HP0_HP_USDHC4) & BM_CSU_HP0_HP_USDHC4)
-#endif
+#define BF_CSU_HP0_HP_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_HP_USDHC4) & BM_CSU_HP0_HP_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_USDHC4 field to a new value.
@@ -25800,21 +22230,20 @@ typedef union _hw_csu_hp0
 #define BM_CSU_HP0_L_USDHC4      (0x80000000)  //!< Bit mask for CSU_HP0_L_USDHC4.
 
 //! @brief Get value of CSU_HP0_L_USDHC4 from a register value.
-#define BG_CSU_HP0_L_USDHC4(r)   (((r) & BM_CSU_HP0_L_USDHC4) >> BP_CSU_HP0_L_USDHC4)
+#define BG_CSU_HP0_L_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP0_L_USDHC4) >> BP_CSU_HP0_L_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP0_L_USDHC4.
-#define BF_CSU_HP0_L_USDHC4(v)   ((((reg32_t) v) << BP_CSU_HP0_L_USDHC4) & BM_CSU_HP0_L_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_HP0_L_USDHC4.
-#define BF_CSU_HP0_L_USDHC4(v)   (((v) << BP_CSU_HP0_L_USDHC4) & BM_CSU_HP0_L_USDHC4)
-#endif
+#define BF_CSU_HP0_L_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP0_L_USDHC4) & BM_CSU_HP0_L_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC4 field to a new value.
 #define BW_CSU_HP0_L_USDHC4(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L_USDHC4) | BF_CSU_HP0_L_USDHC4(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_HP1 - HP1 register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -25867,15 +22296,10 @@ typedef union _hw_csu_hp1
 #define BM_CSU_HP1_HP_HDMI_HSI      (0x00000001)  //!< Bit mask for CSU_HP1_HP_HDMI_HSI.
 
 //! @brief Get value of CSU_HP1_HP_HDMI_HSI from a register value.
-#define BG_CSU_HP1_HP_HDMI_HSI(r)   (((r) & BM_CSU_HP1_HP_HDMI_HSI) >> BP_CSU_HP1_HP_HDMI_HSI)
+#define BG_CSU_HP1_HP_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP1_HP_HDMI_HSI) >> BP_CSU_HP1_HP_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP1_HP_HDMI_HSI.
-#define BF_CSU_HP1_HP_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_HP1_HP_HDMI_HSI) & BM_CSU_HP1_HP_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_HP1_HP_HDMI_HSI.
-#define BF_CSU_HP1_HP_HDMI_HSI(v)   (((v) << BP_CSU_HP1_HP_HDMI_HSI) & BM_CSU_HP1_HP_HDMI_HSI)
-#endif
+#define BF_CSU_HP1_HP_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP1_HP_HDMI_HSI) & BM_CSU_HP1_HP_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HP_HDMI_HSI field to a new value.
@@ -25896,21 +22320,20 @@ typedef union _hw_csu_hp1
 #define BM_CSU_HP1_L_HDMI_HSI      (0x00000002)  //!< Bit mask for CSU_HP1_L_HDMI_HSI.
 
 //! @brief Get value of CSU_HP1_L_HDMI_HSI from a register value.
-#define BG_CSU_HP1_L_HDMI_HSI(r)   (((r) & BM_CSU_HP1_L_HDMI_HSI) >> BP_CSU_HP1_L_HDMI_HSI)
+#define BG_CSU_HP1_L_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HP1_L_HDMI_HSI) >> BP_CSU_HP1_L_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HP1_L_HDMI_HSI.
-#define BF_CSU_HP1_L_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_HP1_L_HDMI_HSI) & BM_CSU_HP1_L_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_HP1_L_HDMI_HSI.
-#define BF_CSU_HP1_L_HDMI_HSI(v)   (((v) << BP_CSU_HP1_L_HDMI_HSI) & BM_CSU_HP1_L_HDMI_HSI)
-#endif
+#define BF_CSU_HP1_L_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HP1_L_HDMI_HSI) & BM_CSU_HP1_L_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_HDMI_HSI field to a new value.
 #define BW_CSU_HP1_L_HDMI_HSI(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L_HDMI_HSI) | BF_CSU_HP1_L_HDMI_HSI(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_SA - Secure access register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -25926,8 +22349,8 @@ typedef union _hw_csu_hp1
  * corresponding policy indicator bits.  Memory Space has been reserved for 32 Type 1 Masters.
  * Since, one 32 bit register can accommodate SA fields corresponding to 16 masters, hence for 32
  * masters memory equivalent of 2 registers is reserved.However, actual number of registers(flops)
- * inferred in a design would depend on the following Parameter --- Name - No_Of_TP1_Masters  Min.
- * Value -1  Max. Value - 32  Possible Values - 1 to 32
+ * inferred in a design would depend on the following Parameter --- Name - No_Of_TP1_Masters Min.
+ * Value -1 Max. Value - 32 Possible Values - 1 to 32
  */
 typedef union _hw_csu_sa
 {
@@ -25998,15 +22421,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_CP15      (0x00000001)  //!< Bit mask for CSU_SA_SA_CP15.
 
 //! @brief Get value of CSU_SA_SA_CP15 from a register value.
-#define BG_CSU_SA_SA_CP15(r)   (((r) & BM_CSU_SA_SA_CP15) >> BP_CSU_SA_SA_CP15)
+#define BG_CSU_SA_SA_CP15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_CP15) >> BP_CSU_SA_SA_CP15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_CP15.
-#define BF_CSU_SA_SA_CP15(v)   ((((reg32_t) v) << BP_CSU_SA_SA_CP15) & BM_CSU_SA_SA_CP15)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_CP15.
-#define BF_CSU_SA_SA_CP15(v)   (((v) << BP_CSU_SA_SA_CP15) & BM_CSU_SA_SA_CP15)
-#endif
+#define BF_CSU_SA_SA_CP15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_CP15) & BM_CSU_SA_SA_CP15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_CP15 field to a new value.
@@ -26027,15 +22445,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_CP15      (0x00000002)  //!< Bit mask for CSU_SA_L_CP15.
 
 //! @brief Get value of CSU_SA_L_CP15 from a register value.
-#define BG_CSU_SA_L_CP15(r)   (((r) & BM_CSU_SA_L_CP15) >> BP_CSU_SA_L_CP15)
+#define BG_CSU_SA_L_CP15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_CP15) >> BP_CSU_SA_L_CP15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_CP15.
-#define BF_CSU_SA_L_CP15(v)   ((((reg32_t) v) << BP_CSU_SA_L_CP15) & BM_CSU_SA_L_CP15)
-#else
-//! @brief Format value for bitfield CSU_SA_L_CP15.
-#define BF_CSU_SA_L_CP15(v)   (((v) << BP_CSU_SA_L_CP15) & BM_CSU_SA_L_CP15)
-#endif
+#define BF_CSU_SA_L_CP15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_CP15) & BM_CSU_SA_L_CP15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_CP15 field to a new value.
@@ -26056,15 +22469,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_SDMA      (0x00000010)  //!< Bit mask for CSU_SA_SA_SDMA.
 
 //! @brief Get value of CSU_SA_SA_SDMA from a register value.
-#define BG_CSU_SA_SA_SDMA(r)   (((r) & BM_CSU_SA_SA_SDMA) >> BP_CSU_SA_SA_SDMA)
+#define BG_CSU_SA_SA_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_SDMA) >> BP_CSU_SA_SA_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_SDMA.
-#define BF_CSU_SA_SA_SDMA(v)   ((((reg32_t) v) << BP_CSU_SA_SA_SDMA) & BM_CSU_SA_SA_SDMA)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_SDMA.
-#define BF_CSU_SA_SA_SDMA(v)   (((v) << BP_CSU_SA_SA_SDMA) & BM_CSU_SA_SA_SDMA)
-#endif
+#define BF_CSU_SA_SA_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_SDMA) & BM_CSU_SA_SA_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_SDMA field to a new value.
@@ -26085,15 +22493,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_SDMA      (0x00000020)  //!< Bit mask for CSU_SA_L_SDMA.
 
 //! @brief Get value of CSU_SA_L_SDMA from a register value.
-#define BG_CSU_SA_L_SDMA(r)   (((r) & BM_CSU_SA_L_SDMA) >> BP_CSU_SA_L_SDMA)
+#define BG_CSU_SA_L_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_SDMA) >> BP_CSU_SA_L_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_SDMA.
-#define BF_CSU_SA_L_SDMA(v)   ((((reg32_t) v) << BP_CSU_SA_L_SDMA) & BM_CSU_SA_L_SDMA)
-#else
-//! @brief Format value for bitfield CSU_SA_L_SDMA.
-#define BF_CSU_SA_L_SDMA(v)   (((v) << BP_CSU_SA_L_SDMA) & BM_CSU_SA_L_SDMA)
-#endif
+#define BF_CSU_SA_L_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_SDMA) & BM_CSU_SA_L_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_SDMA field to a new value.
@@ -26115,15 +22518,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_PU      (0x00000040)  //!< Bit mask for CSU_SA_SA_PU.
 
 //! @brief Get value of CSU_SA_SA_PU from a register value.
-#define BG_CSU_SA_SA_PU(r)   (((r) & BM_CSU_SA_SA_PU) >> BP_CSU_SA_SA_PU)
+#define BG_CSU_SA_SA_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_PU) >> BP_CSU_SA_SA_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_PU.
-#define BF_CSU_SA_SA_PU(v)   ((((reg32_t) v) << BP_CSU_SA_SA_PU) & BM_CSU_SA_SA_PU)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_PU.
-#define BF_CSU_SA_SA_PU(v)   (((v) << BP_CSU_SA_SA_PU) & BM_CSU_SA_SA_PU)
-#endif
+#define BF_CSU_SA_SA_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_PU) & BM_CSU_SA_SA_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_PU field to a new value.
@@ -26144,15 +22542,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_PU      (0x00000080)  //!< Bit mask for CSU_SA_L_PU.
 
 //! @brief Get value of CSU_SA_L_PU from a register value.
-#define BG_CSU_SA_L_PU(r)   (((r) & BM_CSU_SA_L_PU) >> BP_CSU_SA_L_PU)
+#define BG_CSU_SA_L_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_PU) >> BP_CSU_SA_L_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_PU.
-#define BF_CSU_SA_L_PU(v)   ((((reg32_t) v) << BP_CSU_SA_L_PU) & BM_CSU_SA_L_PU)
-#else
-//! @brief Format value for bitfield CSU_SA_L_PU.
-#define BF_CSU_SA_L_PU(v)   (((v) << BP_CSU_SA_L_PU) & BM_CSU_SA_L_PU)
-#endif
+#define BF_CSU_SA_L_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_PU) & BM_CSU_SA_L_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PU field to a new value.
@@ -26173,15 +22566,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_USB_MLB      (0x00000100)  //!< Bit mask for CSU_SA_SA_USB_MLB.
 
 //! @brief Get value of CSU_SA_SA_USB_MLB from a register value.
-#define BG_CSU_SA_SA_USB_MLB(r)   (((r) & BM_CSU_SA_SA_USB_MLB) >> BP_CSU_SA_SA_USB_MLB)
+#define BG_CSU_SA_SA_USB_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_USB_MLB) >> BP_CSU_SA_SA_USB_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_USB_MLB.
-#define BF_CSU_SA_SA_USB_MLB(v)   ((((reg32_t) v) << BP_CSU_SA_SA_USB_MLB) & BM_CSU_SA_SA_USB_MLB)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_USB_MLB.
-#define BF_CSU_SA_SA_USB_MLB(v)   (((v) << BP_CSU_SA_SA_USB_MLB) & BM_CSU_SA_SA_USB_MLB)
-#endif
+#define BF_CSU_SA_SA_USB_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_USB_MLB) & BM_CSU_SA_SA_USB_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_USB_MLB field to a new value.
@@ -26202,15 +22590,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_USB_MLB      (0x00000200)  //!< Bit mask for CSU_SA_L_USB_MLB.
 
 //! @brief Get value of CSU_SA_L_USB_MLB from a register value.
-#define BG_CSU_SA_L_USB_MLB(r)   (((r) & BM_CSU_SA_L_USB_MLB) >> BP_CSU_SA_L_USB_MLB)
+#define BG_CSU_SA_L_USB_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_USB_MLB) >> BP_CSU_SA_L_USB_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_USB_MLB.
-#define BF_CSU_SA_L_USB_MLB(v)   ((((reg32_t) v) << BP_CSU_SA_L_USB_MLB) & BM_CSU_SA_L_USB_MLB)
-#else
-//! @brief Format value for bitfield CSU_SA_L_USB_MLB.
-#define BF_CSU_SA_L_USB_MLB(v)   (((v) << BP_CSU_SA_L_USB_MLB) & BM_CSU_SA_L_USB_MLB)
-#endif
+#define BF_CSU_SA_L_USB_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_USB_MLB) & BM_CSU_SA_L_USB_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USB_MLB field to a new value.
@@ -26231,15 +22614,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_PCIE_TEST      (0x00000400)  //!< Bit mask for CSU_SA_SA_PCIE_TEST.
 
 //! @brief Get value of CSU_SA_SA_PCIE_TEST from a register value.
-#define BG_CSU_SA_SA_PCIE_TEST(r)   (((r) & BM_CSU_SA_SA_PCIE_TEST) >> BP_CSU_SA_SA_PCIE_TEST)
+#define BG_CSU_SA_SA_PCIE_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_PCIE_TEST) >> BP_CSU_SA_SA_PCIE_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_PCIE_TEST.
-#define BF_CSU_SA_SA_PCIE_TEST(v)   ((((reg32_t) v) << BP_CSU_SA_SA_PCIE_TEST) & BM_CSU_SA_SA_PCIE_TEST)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_PCIE_TEST.
-#define BF_CSU_SA_SA_PCIE_TEST(v)   (((v) << BP_CSU_SA_SA_PCIE_TEST) & BM_CSU_SA_SA_PCIE_TEST)
-#endif
+#define BF_CSU_SA_SA_PCIE_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_PCIE_TEST) & BM_CSU_SA_SA_PCIE_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_PCIE_TEST field to a new value.
@@ -26260,15 +22638,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_PCIE_TEST      (0x00000800)  //!< Bit mask for CSU_SA_L_PCIE_TEST.
 
 //! @brief Get value of CSU_SA_L_PCIE_TEST from a register value.
-#define BG_CSU_SA_L_PCIE_TEST(r)   (((r) & BM_CSU_SA_L_PCIE_TEST) >> BP_CSU_SA_L_PCIE_TEST)
+#define BG_CSU_SA_L_PCIE_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_PCIE_TEST) >> BP_CSU_SA_L_PCIE_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_PCIE_TEST.
-#define BF_CSU_SA_L_PCIE_TEST(v)   ((((reg32_t) v) << BP_CSU_SA_L_PCIE_TEST) & BM_CSU_SA_L_PCIE_TEST)
-#else
-//! @brief Format value for bitfield CSU_SA_L_PCIE_TEST.
-#define BF_CSU_SA_L_PCIE_TEST(v)   (((v) << BP_CSU_SA_L_PCIE_TEST) & BM_CSU_SA_L_PCIE_TEST)
-#endif
+#define BF_CSU_SA_L_PCIE_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_PCIE_TEST) & BM_CSU_SA_L_PCIE_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PCIE_TEST field to a new value.
@@ -26289,15 +22662,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_RAWNAND_APBHDMA      (0x00004000)  //!< Bit mask for CSU_SA_SA_RAWNAND_APBHDMA.
 
 //! @brief Get value of CSU_SA_SA_RAWNAND_APBHDMA from a register value.
-#define BG_CSU_SA_SA_RAWNAND_APBHDMA(r)   (((r) & BM_CSU_SA_SA_RAWNAND_APBHDMA) >> BP_CSU_SA_SA_RAWNAND_APBHDMA)
+#define BG_CSU_SA_SA_RAWNAND_APBHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_RAWNAND_APBHDMA) >> BP_CSU_SA_SA_RAWNAND_APBHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_RAWNAND_APBHDMA.
-#define BF_CSU_SA_SA_RAWNAND_APBHDMA(v)   ((((reg32_t) v) << BP_CSU_SA_SA_RAWNAND_APBHDMA) & BM_CSU_SA_SA_RAWNAND_APBHDMA)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_RAWNAND_APBHDMA.
-#define BF_CSU_SA_SA_RAWNAND_APBHDMA(v)   (((v) << BP_CSU_SA_SA_RAWNAND_APBHDMA) & BM_CSU_SA_SA_RAWNAND_APBHDMA)
-#endif
+#define BF_CSU_SA_SA_RAWNAND_APBHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_RAWNAND_APBHDMA) & BM_CSU_SA_SA_RAWNAND_APBHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_RAWNAND_APBHDMA field to a new value.
@@ -26318,15 +22686,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_RAWNAND_APBHDMA      (0x00008000)  //!< Bit mask for CSU_SA_L_RAWNAND_APBHDMA.
 
 //! @brief Get value of CSU_SA_L_RAWNAND_APBHDMA from a register value.
-#define BG_CSU_SA_L_RAWNAND_APBHDMA(r)   (((r) & BM_CSU_SA_L_RAWNAND_APBHDMA) >> BP_CSU_SA_L_RAWNAND_APBHDMA)
+#define BG_CSU_SA_L_RAWNAND_APBHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_RAWNAND_APBHDMA) >> BP_CSU_SA_L_RAWNAND_APBHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_RAWNAND_APBHDMA.
-#define BF_CSU_SA_L_RAWNAND_APBHDMA(v)   ((((reg32_t) v) << BP_CSU_SA_L_RAWNAND_APBHDMA) & BM_CSU_SA_L_RAWNAND_APBHDMA)
-#else
-//! @brief Format value for bitfield CSU_SA_L_RAWNAND_APBHDMA.
-#define BF_CSU_SA_L_RAWNAND_APBHDMA(v)   (((v) << BP_CSU_SA_L_RAWNAND_APBHDMA) & BM_CSU_SA_L_RAWNAND_APBHDMA)
-#endif
+#define BF_CSU_SA_L_RAWNAND_APBHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_RAWNAND_APBHDMA) & BM_CSU_SA_L_RAWNAND_APBHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_RAWNAND_APBHDMA field to a new value.
@@ -26347,15 +22710,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_ENET      (0x00010000)  //!< Bit mask for CSU_SA_SA_ENET.
 
 //! @brief Get value of CSU_SA_SA_ENET from a register value.
-#define BG_CSU_SA_SA_ENET(r)   (((r) & BM_CSU_SA_SA_ENET) >> BP_CSU_SA_SA_ENET)
+#define BG_CSU_SA_SA_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_ENET) >> BP_CSU_SA_SA_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_ENET.
-#define BF_CSU_SA_SA_ENET(v)   ((((reg32_t) v) << BP_CSU_SA_SA_ENET) & BM_CSU_SA_SA_ENET)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_ENET.
-#define BF_CSU_SA_SA_ENET(v)   (((v) << BP_CSU_SA_SA_ENET) & BM_CSU_SA_SA_ENET)
-#endif
+#define BF_CSU_SA_SA_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_ENET) & BM_CSU_SA_SA_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_ENET field to a new value.
@@ -26376,15 +22734,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_ENET      (0x00020000)  //!< Bit mask for CSU_SA_L_ENET.
 
 //! @brief Get value of CSU_SA_L_ENET from a register value.
-#define BG_CSU_SA_L_ENET(r)   (((r) & BM_CSU_SA_L_ENET) >> BP_CSU_SA_L_ENET)
+#define BG_CSU_SA_L_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_ENET) >> BP_CSU_SA_L_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_ENET.
-#define BF_CSU_SA_L_ENET(v)   ((((reg32_t) v) << BP_CSU_SA_L_ENET) & BM_CSU_SA_L_ENET)
-#else
-//! @brief Format value for bitfield CSU_SA_L_ENET.
-#define BF_CSU_SA_L_ENET(v)   (((v) << BP_CSU_SA_L_ENET) & BM_CSU_SA_L_ENET)
-#endif
+#define BF_CSU_SA_L_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_ENET) & BM_CSU_SA_L_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_ENET field to a new value.
@@ -26405,15 +22758,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_DAP      (0x00040000)  //!< Bit mask for CSU_SA_SA_DAP.
 
 //! @brief Get value of CSU_SA_SA_DAP from a register value.
-#define BG_CSU_SA_SA_DAP(r)   (((r) & BM_CSU_SA_SA_DAP) >> BP_CSU_SA_SA_DAP)
+#define BG_CSU_SA_SA_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_DAP) >> BP_CSU_SA_SA_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_DAP.
-#define BF_CSU_SA_SA_DAP(v)   ((((reg32_t) v) << BP_CSU_SA_SA_DAP) & BM_CSU_SA_SA_DAP)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_DAP.
-#define BF_CSU_SA_SA_DAP(v)   (((v) << BP_CSU_SA_SA_DAP) & BM_CSU_SA_SA_DAP)
-#endif
+#define BF_CSU_SA_SA_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_DAP) & BM_CSU_SA_SA_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_DAP field to a new value.
@@ -26434,15 +22782,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_DAP      (0x00080000)  //!< Bit mask for CSU_SA_L_DAP.
 
 //! @brief Get value of CSU_SA_L_DAP from a register value.
-#define BG_CSU_SA_L_DAP(r)   (((r) & BM_CSU_SA_L_DAP) >> BP_CSU_SA_L_DAP)
+#define BG_CSU_SA_L_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_DAP) >> BP_CSU_SA_L_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_DAP.
-#define BF_CSU_SA_L_DAP(v)   ((((reg32_t) v) << BP_CSU_SA_L_DAP) & BM_CSU_SA_L_DAP)
-#else
-//! @brief Format value for bitfield CSU_SA_L_DAP.
-#define BF_CSU_SA_L_DAP(v)   (((v) << BP_CSU_SA_L_DAP) & BM_CSU_SA_L_DAP)
-#endif
+#define BF_CSU_SA_L_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_DAP) & BM_CSU_SA_L_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_DAP field to a new value.
@@ -26463,15 +22806,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_USDHC1      (0x00100000)  //!< Bit mask for CSU_SA_SA_USDHC1.
 
 //! @brief Get value of CSU_SA_SA_USDHC1 from a register value.
-#define BG_CSU_SA_SA_USDHC1(r)   (((r) & BM_CSU_SA_SA_USDHC1) >> BP_CSU_SA_SA_USDHC1)
+#define BG_CSU_SA_SA_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_USDHC1) >> BP_CSU_SA_SA_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_USDHC1.
-#define BF_CSU_SA_SA_USDHC1(v)   ((((reg32_t) v) << BP_CSU_SA_SA_USDHC1) & BM_CSU_SA_SA_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_USDHC1.
-#define BF_CSU_SA_SA_USDHC1(v)   (((v) << BP_CSU_SA_SA_USDHC1) & BM_CSU_SA_SA_USDHC1)
-#endif
+#define BF_CSU_SA_SA_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_USDHC1) & BM_CSU_SA_SA_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_USDHC1 field to a new value.
@@ -26492,15 +22830,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_USDHC1      (0x00200000)  //!< Bit mask for CSU_SA_L_USDHC1.
 
 //! @brief Get value of CSU_SA_L_USDHC1 from a register value.
-#define BG_CSU_SA_L_USDHC1(r)   (((r) & BM_CSU_SA_L_USDHC1) >> BP_CSU_SA_L_USDHC1)
+#define BG_CSU_SA_L_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_USDHC1) >> BP_CSU_SA_L_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_USDHC1.
-#define BF_CSU_SA_L_USDHC1(v)   ((((reg32_t) v) << BP_CSU_SA_L_USDHC1) & BM_CSU_SA_L_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_SA_L_USDHC1.
-#define BF_CSU_SA_L_USDHC1(v)   (((v) << BP_CSU_SA_L_USDHC1) & BM_CSU_SA_L_USDHC1)
-#endif
+#define BF_CSU_SA_L_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_USDHC1) & BM_CSU_SA_L_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC1 field to a new value.
@@ -26521,15 +22854,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_USDHC2      (0x00400000)  //!< Bit mask for CSU_SA_SA_USDHC2.
 
 //! @brief Get value of CSU_SA_SA_USDHC2 from a register value.
-#define BG_CSU_SA_SA_USDHC2(r)   (((r) & BM_CSU_SA_SA_USDHC2) >> BP_CSU_SA_SA_USDHC2)
+#define BG_CSU_SA_SA_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_USDHC2) >> BP_CSU_SA_SA_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_USDHC2.
-#define BF_CSU_SA_SA_USDHC2(v)   ((((reg32_t) v) << BP_CSU_SA_SA_USDHC2) & BM_CSU_SA_SA_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_USDHC2.
-#define BF_CSU_SA_SA_USDHC2(v)   (((v) << BP_CSU_SA_SA_USDHC2) & BM_CSU_SA_SA_USDHC2)
-#endif
+#define BF_CSU_SA_SA_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_USDHC2) & BM_CSU_SA_SA_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_USDHC2 field to a new value.
@@ -26550,15 +22878,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_USDHC2      (0x00800000)  //!< Bit mask for CSU_SA_L_USDHC2.
 
 //! @brief Get value of CSU_SA_L_USDHC2 from a register value.
-#define BG_CSU_SA_L_USDHC2(r)   (((r) & BM_CSU_SA_L_USDHC2) >> BP_CSU_SA_L_USDHC2)
+#define BG_CSU_SA_L_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_USDHC2) >> BP_CSU_SA_L_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_USDHC2.
-#define BF_CSU_SA_L_USDHC2(v)   ((((reg32_t) v) << BP_CSU_SA_L_USDHC2) & BM_CSU_SA_L_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_SA_L_USDHC2.
-#define BF_CSU_SA_L_USDHC2(v)   (((v) << BP_CSU_SA_L_USDHC2) & BM_CSU_SA_L_USDHC2)
-#endif
+#define BF_CSU_SA_L_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_USDHC2) & BM_CSU_SA_L_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC2 field to a new value.
@@ -26579,15 +22902,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_USDHC3      (0x01000000)  //!< Bit mask for CSU_SA_SA_USDHC3.
 
 //! @brief Get value of CSU_SA_SA_USDHC3 from a register value.
-#define BG_CSU_SA_SA_USDHC3(r)   (((r) & BM_CSU_SA_SA_USDHC3) >> BP_CSU_SA_SA_USDHC3)
+#define BG_CSU_SA_SA_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_USDHC3) >> BP_CSU_SA_SA_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_USDHC3.
-#define BF_CSU_SA_SA_USDHC3(v)   ((((reg32_t) v) << BP_CSU_SA_SA_USDHC3) & BM_CSU_SA_SA_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_USDHC3.
-#define BF_CSU_SA_SA_USDHC3(v)   (((v) << BP_CSU_SA_SA_USDHC3) & BM_CSU_SA_SA_USDHC3)
-#endif
+#define BF_CSU_SA_SA_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_USDHC3) & BM_CSU_SA_SA_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_USDHC3 field to a new value.
@@ -26608,15 +22926,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_USDHC3      (0x02000000)  //!< Bit mask for CSU_SA_L_USDHC3.
 
 //! @brief Get value of CSU_SA_L_USDHC3 from a register value.
-#define BG_CSU_SA_L_USDHC3(r)   (((r) & BM_CSU_SA_L_USDHC3) >> BP_CSU_SA_L_USDHC3)
+#define BG_CSU_SA_L_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_USDHC3) >> BP_CSU_SA_L_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_USDHC3.
-#define BF_CSU_SA_L_USDHC3(v)   ((((reg32_t) v) << BP_CSU_SA_L_USDHC3) & BM_CSU_SA_L_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_SA_L_USDHC3.
-#define BF_CSU_SA_L_USDHC3(v)   (((v) << BP_CSU_SA_L_USDHC3) & BM_CSU_SA_L_USDHC3)
-#endif
+#define BF_CSU_SA_L_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_USDHC3) & BM_CSU_SA_L_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC3 field to a new value.
@@ -26637,15 +22950,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_USDHC4      (0x04000000)  //!< Bit mask for CSU_SA_SA_USDHC4.
 
 //! @brief Get value of CSU_SA_SA_USDHC4 from a register value.
-#define BG_CSU_SA_SA_USDHC4(r)   (((r) & BM_CSU_SA_SA_USDHC4) >> BP_CSU_SA_SA_USDHC4)
+#define BG_CSU_SA_SA_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_USDHC4) >> BP_CSU_SA_SA_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_USDHC4.
-#define BF_CSU_SA_SA_USDHC4(v)   ((((reg32_t) v) << BP_CSU_SA_SA_USDHC4) & BM_CSU_SA_SA_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_USDHC4.
-#define BF_CSU_SA_SA_USDHC4(v)   (((v) << BP_CSU_SA_SA_USDHC4) & BM_CSU_SA_SA_USDHC4)
-#endif
+#define BF_CSU_SA_SA_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_USDHC4) & BM_CSU_SA_SA_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_USDHC4 field to a new value.
@@ -26666,15 +22974,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_USDHC4      (0x08000000)  //!< Bit mask for CSU_SA_L_USDHC4.
 
 //! @brief Get value of CSU_SA_L_USDHC4 from a register value.
-#define BG_CSU_SA_L_USDHC4(r)   (((r) & BM_CSU_SA_L_USDHC4) >> BP_CSU_SA_L_USDHC4)
+#define BG_CSU_SA_L_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_USDHC4) >> BP_CSU_SA_L_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_USDHC4.
-#define BF_CSU_SA_L_USDHC4(v)   ((((reg32_t) v) << BP_CSU_SA_L_USDHC4) & BM_CSU_SA_L_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_SA_L_USDHC4.
-#define BF_CSU_SA_L_USDHC4(v)   (((v) << BP_CSU_SA_L_USDHC4) & BM_CSU_SA_L_USDHC4)
-#endif
+#define BF_CSU_SA_L_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_USDHC4) & BM_CSU_SA_L_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC4 field to a new value.
@@ -26695,15 +22998,10 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_SA_HDMI_HSI      (0x10000000)  //!< Bit mask for CSU_SA_SA_HDMI_HSI.
 
 //! @brief Get value of CSU_SA_SA_HDMI_HSI from a register value.
-#define BG_CSU_SA_SA_HDMI_HSI(r)   (((r) & BM_CSU_SA_SA_HDMI_HSI) >> BP_CSU_SA_SA_HDMI_HSI)
+#define BG_CSU_SA_SA_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_SA_HDMI_HSI) >> BP_CSU_SA_SA_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_SA_HDMI_HSI.
-#define BF_CSU_SA_SA_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_SA_SA_HDMI_HSI) & BM_CSU_SA_SA_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_SA_SA_HDMI_HSI.
-#define BF_CSU_SA_SA_HDMI_HSI(v)   (((v) << BP_CSU_SA_SA_HDMI_HSI) & BM_CSU_SA_SA_HDMI_HSI)
-#endif
+#define BF_CSU_SA_SA_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_SA_HDMI_HSI) & BM_CSU_SA_SA_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SA_HDMI_HSI field to a new value.
@@ -26724,21 +23022,20 @@ typedef union _hw_csu_sa
 #define BM_CSU_SA_L_HDMI_HSI      (0x20000000)  //!< Bit mask for CSU_SA_L_HDMI_HSI.
 
 //! @brief Get value of CSU_SA_L_HDMI_HSI from a register value.
-#define BG_CSU_SA_L_HDMI_HSI(r)   (((r) & BM_CSU_SA_L_HDMI_HSI) >> BP_CSU_SA_L_HDMI_HSI)
+#define BG_CSU_SA_L_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_SA_L_HDMI_HSI) >> BP_CSU_SA_L_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_SA_L_HDMI_HSI.
-#define BF_CSU_SA_L_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_SA_L_HDMI_HSI) & BM_CSU_SA_L_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_SA_L_HDMI_HSI.
-#define BF_CSU_SA_L_HDMI_HSI(v)   (((v) << BP_CSU_SA_L_HDMI_HSI) & BM_CSU_SA_L_HDMI_HSI)
-#endif
+#define BF_CSU_SA_L_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_SA_L_HDMI_HSI) & BM_CSU_SA_L_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_HDMI_HSI field to a new value.
 #define BW_CSU_SA_L_HDMI_HSI(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L_HDMI_HSI) | BF_CSU_SA_L_HDMI_HSI(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_HPCONTROL0 - HPCONTROL0 register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -26824,15 +23121,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_PCIE      (0x00000001)  //!< Bit mask for CSU_HPCONTROL0_HPC_PCIE.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_PCIE from a register value.
-#define BG_CSU_HPCONTROL0_HPC_PCIE(r)   (((r) & BM_CSU_HPCONTROL0_HPC_PCIE) >> BP_CSU_HPCONTROL0_HPC_PCIE)
+#define BG_CSU_HPCONTROL0_HPC_PCIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_PCIE) >> BP_CSU_HPCONTROL0_HPC_PCIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_PCIE.
-#define BF_CSU_HPCONTROL0_HPC_PCIE(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_PCIE) & BM_CSU_HPCONTROL0_HPC_PCIE)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_PCIE.
-#define BF_CSU_HPCONTROL0_HPC_PCIE(v)   (((v) << BP_CSU_HPCONTROL0_HPC_PCIE) & BM_CSU_HPCONTROL0_HPC_PCIE)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_PCIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_PCIE) & BM_CSU_HPCONTROL0_HPC_PCIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_PCIE field to a new value.
@@ -26853,15 +23145,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_PCIE      (0x00000002)  //!< Bit mask for CSU_HPCONTROL0_L_PCIE.
 
 //! @brief Get value of CSU_HPCONTROL0_L_PCIE from a register value.
-#define BG_CSU_HPCONTROL0_L_PCIE(r)   (((r) & BM_CSU_HPCONTROL0_L_PCIE) >> BP_CSU_HPCONTROL0_L_PCIE)
+#define BG_CSU_HPCONTROL0_L_PCIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_PCIE) >> BP_CSU_HPCONTROL0_L_PCIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_PCIE.
-#define BF_CSU_HPCONTROL0_L_PCIE(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_PCIE) & BM_CSU_HPCONTROL0_L_PCIE)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_PCIE.
-#define BF_CSU_HPCONTROL0_L_PCIE(v)   (((v) << BP_CSU_HPCONTROL0_L_PCIE) & BM_CSU_HPCONTROL0_L_PCIE)
-#endif
+#define BF_CSU_HPCONTROL0_L_PCIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_PCIE) & BM_CSU_HPCONTROL0_L_PCIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PCIE field to a new value.
@@ -26883,15 +23170,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_SDMA      (0x00000010)  //!< Bit mask for CSU_HPCONTROL0_HPC_SDMA.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_SDMA from a register value.
-#define BG_CSU_HPCONTROL0_HPC_SDMA(r)   (((r) & BM_CSU_HPCONTROL0_HPC_SDMA) >> BP_CSU_HPCONTROL0_HPC_SDMA)
+#define BG_CSU_HPCONTROL0_HPC_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_SDMA) >> BP_CSU_HPCONTROL0_HPC_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_SDMA.
-#define BF_CSU_HPCONTROL0_HPC_SDMA(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_SDMA) & BM_CSU_HPCONTROL0_HPC_SDMA)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_SDMA.
-#define BF_CSU_HPCONTROL0_HPC_SDMA(v)   (((v) << BP_CSU_HPCONTROL0_HPC_SDMA) & BM_CSU_HPCONTROL0_HPC_SDMA)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_SDMA) & BM_CSU_HPCONTROL0_HPC_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_SDMA field to a new value.
@@ -26912,15 +23194,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_SDMA      (0x00000020)  //!< Bit mask for CSU_HPCONTROL0_L_SDMA.
 
 //! @brief Get value of CSU_HPCONTROL0_L_SDMA from a register value.
-#define BG_CSU_HPCONTROL0_L_SDMA(r)   (((r) & BM_CSU_HPCONTROL0_L_SDMA) >> BP_CSU_HPCONTROL0_L_SDMA)
+#define BG_CSU_HPCONTROL0_L_SDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_SDMA) >> BP_CSU_HPCONTROL0_L_SDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_SDMA.
-#define BF_CSU_HPCONTROL0_L_SDMA(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_SDMA) & BM_CSU_HPCONTROL0_L_SDMA)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_SDMA.
-#define BF_CSU_HPCONTROL0_L_SDMA(v)   (((v) << BP_CSU_HPCONTROL0_L_SDMA) & BM_CSU_HPCONTROL0_L_SDMA)
-#endif
+#define BF_CSU_HPCONTROL0_L_SDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_SDMA) & BM_CSU_HPCONTROL0_L_SDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_SDMA field to a new value.
@@ -26943,15 +23220,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_PU      (0x00000040)  //!< Bit mask for CSU_HPCONTROL0_HPC_PU.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_PU from a register value.
-#define BG_CSU_HPCONTROL0_HPC_PU(r)   (((r) & BM_CSU_HPCONTROL0_HPC_PU) >> BP_CSU_HPCONTROL0_HPC_PU)
+#define BG_CSU_HPCONTROL0_HPC_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_PU) >> BP_CSU_HPCONTROL0_HPC_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_PU.
-#define BF_CSU_HPCONTROL0_HPC_PU(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_PU) & BM_CSU_HPCONTROL0_HPC_PU)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_PU.
-#define BF_CSU_HPCONTROL0_HPC_PU(v)   (((v) << BP_CSU_HPCONTROL0_HPC_PU) & BM_CSU_HPCONTROL0_HPC_PU)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_PU) & BM_CSU_HPCONTROL0_HPC_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_PU field to a new value.
@@ -26972,15 +23244,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_PU      (0x00000080)  //!< Bit mask for CSU_HPCONTROL0_L_PU.
 
 //! @brief Get value of CSU_HPCONTROL0_L_PU from a register value.
-#define BG_CSU_HPCONTROL0_L_PU(r)   (((r) & BM_CSU_HPCONTROL0_L_PU) >> BP_CSU_HPCONTROL0_L_PU)
+#define BG_CSU_HPCONTROL0_L_PU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_PU) >> BP_CSU_HPCONTROL0_L_PU)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_PU.
-#define BF_CSU_HPCONTROL0_L_PU(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_PU) & BM_CSU_HPCONTROL0_L_PU)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_PU.
-#define BF_CSU_HPCONTROL0_L_PU(v)   (((v) << BP_CSU_HPCONTROL0_L_PU) & BM_CSU_HPCONTROL0_L_PU)
-#endif
+#define BF_CSU_HPCONTROL0_L_PU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_PU) & BM_CSU_HPCONTROL0_L_PU)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_PU field to a new value.
@@ -27002,15 +23269,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_USB      (0x00000100)  //!< Bit mask for CSU_HPCONTROL0_HPC_USB.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_USB from a register value.
-#define BG_CSU_HPCONTROL0_HPC_USB(r)   (((r) & BM_CSU_HPCONTROL0_HPC_USB) >> BP_CSU_HPCONTROL0_HPC_USB)
+#define BG_CSU_HPCONTROL0_HPC_USB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_USB) >> BP_CSU_HPCONTROL0_HPC_USB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USB.
-#define BF_CSU_HPCONTROL0_HPC_USB(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_USB) & BM_CSU_HPCONTROL0_HPC_USB)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USB.
-#define BF_CSU_HPCONTROL0_HPC_USB(v)   (((v) << BP_CSU_HPCONTROL0_HPC_USB) & BM_CSU_HPCONTROL0_HPC_USB)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_USB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_USB) & BM_CSU_HPCONTROL0_HPC_USB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_USB field to a new value.
@@ -27031,15 +23293,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_USB      (0x00000200)  //!< Bit mask for CSU_HPCONTROL0_L_USB.
 
 //! @brief Get value of CSU_HPCONTROL0_L_USB from a register value.
-#define BG_CSU_HPCONTROL0_L_USB(r)   (((r) & BM_CSU_HPCONTROL0_L_USB) >> BP_CSU_HPCONTROL0_L_USB)
+#define BG_CSU_HPCONTROL0_L_USB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_USB) >> BP_CSU_HPCONTROL0_L_USB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_USB.
-#define BF_CSU_HPCONTROL0_L_USB(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_USB) & BM_CSU_HPCONTROL0_L_USB)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_USB.
-#define BF_CSU_HPCONTROL0_L_USB(v)   (((v) << BP_CSU_HPCONTROL0_L_USB) & BM_CSU_HPCONTROL0_L_USB)
-#endif
+#define BF_CSU_HPCONTROL0_L_USB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_USB) & BM_CSU_HPCONTROL0_L_USB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USB field to a new value.
@@ -27061,15 +23318,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_TEST      (0x00000400)  //!< Bit mask for CSU_HPCONTROL0_HPC_TEST.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_TEST from a register value.
-#define BG_CSU_HPCONTROL0_HPC_TEST(r)   (((r) & BM_CSU_HPCONTROL0_HPC_TEST) >> BP_CSU_HPCONTROL0_HPC_TEST)
+#define BG_CSU_HPCONTROL0_HPC_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_TEST) >> BP_CSU_HPCONTROL0_HPC_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_TEST.
-#define BF_CSU_HPCONTROL0_HPC_TEST(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_TEST) & BM_CSU_HPCONTROL0_HPC_TEST)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_TEST.
-#define BF_CSU_HPCONTROL0_HPC_TEST(v)   (((v) << BP_CSU_HPCONTROL0_HPC_TEST) & BM_CSU_HPCONTROL0_HPC_TEST)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_TEST) & BM_CSU_HPCONTROL0_HPC_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_TEST field to a new value.
@@ -27090,15 +23342,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_TEST      (0x00000800)  //!< Bit mask for CSU_HPCONTROL0_L_TEST.
 
 //! @brief Get value of CSU_HPCONTROL0_L_TEST from a register value.
-#define BG_CSU_HPCONTROL0_L_TEST(r)   (((r) & BM_CSU_HPCONTROL0_L_TEST) >> BP_CSU_HPCONTROL0_L_TEST)
+#define BG_CSU_HPCONTROL0_L_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_TEST) >> BP_CSU_HPCONTROL0_L_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_TEST.
-#define BF_CSU_HPCONTROL0_L_TEST(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_TEST) & BM_CSU_HPCONTROL0_L_TEST)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_TEST.
-#define BF_CSU_HPCONTROL0_L_TEST(v)   (((v) << BP_CSU_HPCONTROL0_L_TEST) & BM_CSU_HPCONTROL0_L_TEST)
-#endif
+#define BF_CSU_HPCONTROL0_L_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_TEST) & BM_CSU_HPCONTROL0_L_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_TEST field to a new value.
@@ -27120,15 +23367,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_MLB      (0x00001000)  //!< Bit mask for CSU_HPCONTROL0_HPC_MLB.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_MLB from a register value.
-#define BG_CSU_HPCONTROL0_HPC_MLB(r)   (((r) & BM_CSU_HPCONTROL0_HPC_MLB) >> BP_CSU_HPCONTROL0_HPC_MLB)
+#define BG_CSU_HPCONTROL0_HPC_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_MLB) >> BP_CSU_HPCONTROL0_HPC_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_MLB.
-#define BF_CSU_HPCONTROL0_HPC_MLB(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_MLB) & BM_CSU_HPCONTROL0_HPC_MLB)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_MLB.
-#define BF_CSU_HPCONTROL0_HPC_MLB(v)   (((v) << BP_CSU_HPCONTROL0_HPC_MLB) & BM_CSU_HPCONTROL0_HPC_MLB)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_MLB) & BM_CSU_HPCONTROL0_HPC_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_MLB field to a new value.
@@ -27149,15 +23391,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_MLB      (0x00002000)  //!< Bit mask for CSU_HPCONTROL0_L_MLB.
 
 //! @brief Get value of CSU_HPCONTROL0_L_MLB from a register value.
-#define BG_CSU_HPCONTROL0_L_MLB(r)   (((r) & BM_CSU_HPCONTROL0_L_MLB) >> BP_CSU_HPCONTROL0_L_MLB)
+#define BG_CSU_HPCONTROL0_L_MLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_MLB) >> BP_CSU_HPCONTROL0_L_MLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_MLB.
-#define BF_CSU_HPCONTROL0_L_MLB(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_MLB) & BM_CSU_HPCONTROL0_L_MLB)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_MLB.
-#define BF_CSU_HPCONTROL0_L_MLB(v)   (((v) << BP_CSU_HPCONTROL0_L_MLB) & BM_CSU_HPCONTROL0_L_MLB)
-#endif
+#define BF_CSU_HPCONTROL0_L_MLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_MLB) & BM_CSU_HPCONTROL0_L_MLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_MLB field to a new value.
@@ -27179,15 +23416,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_CAAM      (0x00004000)  //!< Bit mask for CSU_HPCONTROL0_HPC_CAAM.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_CAAM from a register value.
-#define BG_CSU_HPCONTROL0_HPC_CAAM(r)   (((r) & BM_CSU_HPCONTROL0_HPC_CAAM) >> BP_CSU_HPCONTROL0_HPC_CAAM)
+#define BG_CSU_HPCONTROL0_HPC_CAAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_CAAM) >> BP_CSU_HPCONTROL0_HPC_CAAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_CAAM.
-#define BF_CSU_HPCONTROL0_HPC_CAAM(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_CAAM) & BM_CSU_HPCONTROL0_HPC_CAAM)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_CAAM.
-#define BF_CSU_HPCONTROL0_HPC_CAAM(v)   (((v) << BP_CSU_HPCONTROL0_HPC_CAAM) & BM_CSU_HPCONTROL0_HPC_CAAM)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_CAAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_CAAM) & BM_CSU_HPCONTROL0_HPC_CAAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_CAAM field to a new value.
@@ -27208,15 +23440,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_CAAM      (0x00008000)  //!< Bit mask for CSU_HPCONTROL0_L_CAAM.
 
 //! @brief Get value of CSU_HPCONTROL0_L_CAAM from a register value.
-#define BG_CSU_HPCONTROL0_L_CAAM(r)   (((r) & BM_CSU_HPCONTROL0_L_CAAM) >> BP_CSU_HPCONTROL0_L_CAAM)
+#define BG_CSU_HPCONTROL0_L_CAAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_CAAM) >> BP_CSU_HPCONTROL0_L_CAAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_CAAM.
-#define BF_CSU_HPCONTROL0_L_CAAM(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_CAAM) & BM_CSU_HPCONTROL0_L_CAAM)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_CAAM.
-#define BF_CSU_HPCONTROL0_L_CAAM(v)   (((v) << BP_CSU_HPCONTROL0_L_CAAM) & BM_CSU_HPCONTROL0_L_CAAM)
-#endif
+#define BF_CSU_HPCONTROL0_L_CAAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_CAAM) & BM_CSU_HPCONTROL0_L_CAAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_CAAM field to a new value.
@@ -27238,15 +23465,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_RAWNAND      (0x00010000)  //!< Bit mask for CSU_HPCONTROL0_HPC_RAWNAND.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_RAWNAND from a register value.
-#define BG_CSU_HPCONTROL0_HPC_RAWNAND(r)   (((r) & BM_CSU_HPCONTROL0_HPC_RAWNAND) >> BP_CSU_HPCONTROL0_HPC_RAWNAND)
+#define BG_CSU_HPCONTROL0_HPC_RAWNAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_RAWNAND) >> BP_CSU_HPCONTROL0_HPC_RAWNAND)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_RAWNAND.
-#define BF_CSU_HPCONTROL0_HPC_RAWNAND(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_RAWNAND) & BM_CSU_HPCONTROL0_HPC_RAWNAND)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_RAWNAND.
-#define BF_CSU_HPCONTROL0_HPC_RAWNAND(v)   (((v) << BP_CSU_HPCONTROL0_HPC_RAWNAND) & BM_CSU_HPCONTROL0_HPC_RAWNAND)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_RAWNAND(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_RAWNAND) & BM_CSU_HPCONTROL0_HPC_RAWNAND)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_RAWNAND field to a new value.
@@ -27267,15 +23489,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_RAWNAND      (0x00020000)  //!< Bit mask for CSU_HPCONTROL0_L_RAWNAND.
 
 //! @brief Get value of CSU_HPCONTROL0_L_RAWNAND from a register value.
-#define BG_CSU_HPCONTROL0_L_RAWNAND(r)   (((r) & BM_CSU_HPCONTROL0_L_RAWNAND) >> BP_CSU_HPCONTROL0_L_RAWNAND)
+#define BG_CSU_HPCONTROL0_L_RAWNAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_RAWNAND) >> BP_CSU_HPCONTROL0_L_RAWNAND)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_RAWNAND.
-#define BF_CSU_HPCONTROL0_L_RAWNAND(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_RAWNAND) & BM_CSU_HPCONTROL0_L_RAWNAND)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_RAWNAND.
-#define BF_CSU_HPCONTROL0_L_RAWNAND(v)   (((v) << BP_CSU_HPCONTROL0_L_RAWNAND) & BM_CSU_HPCONTROL0_L_RAWNAND)
-#endif
+#define BF_CSU_HPCONTROL0_L_RAWNAND(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_RAWNAND) & BM_CSU_HPCONTROL0_L_RAWNAND)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_RAWNAND field to a new value.
@@ -27297,15 +23514,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_APBHDMA      (0x00040000)  //!< Bit mask for CSU_HPCONTROL0_HPC_APBHDMA.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_APBHDMA from a register value.
-#define BG_CSU_HPCONTROL0_HPC_APBHDMA(r)   (((r) & BM_CSU_HPCONTROL0_HPC_APBHDMA) >> BP_CSU_HPCONTROL0_HPC_APBHDMA)
+#define BG_CSU_HPCONTROL0_HPC_APBHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_APBHDMA) >> BP_CSU_HPCONTROL0_HPC_APBHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_APBHDMA.
-#define BF_CSU_HPCONTROL0_HPC_APBHDMA(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_APBHDMA) & BM_CSU_HPCONTROL0_HPC_APBHDMA)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_APBHDMA.
-#define BF_CSU_HPCONTROL0_HPC_APBHDMA(v)   (((v) << BP_CSU_HPCONTROL0_HPC_APBHDMA) & BM_CSU_HPCONTROL0_HPC_APBHDMA)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_APBHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_APBHDMA) & BM_CSU_HPCONTROL0_HPC_APBHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_APBHDMA field to a new value.
@@ -27326,15 +23538,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_ABPHDMA      (0x00080000)  //!< Bit mask for CSU_HPCONTROL0_L_ABPHDMA.
 
 //! @brief Get value of CSU_HPCONTROL0_L_ABPHDMA from a register value.
-#define BG_CSU_HPCONTROL0_L_ABPHDMA(r)   (((r) & BM_CSU_HPCONTROL0_L_ABPHDMA) >> BP_CSU_HPCONTROL0_L_ABPHDMA)
+#define BG_CSU_HPCONTROL0_L_ABPHDMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_ABPHDMA) >> BP_CSU_HPCONTROL0_L_ABPHDMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_ABPHDMA.
-#define BF_CSU_HPCONTROL0_L_ABPHDMA(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_ABPHDMA) & BM_CSU_HPCONTROL0_L_ABPHDMA)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_ABPHDMA.
-#define BF_CSU_HPCONTROL0_L_ABPHDMA(v)   (((v) << BP_CSU_HPCONTROL0_L_ABPHDMA) & BM_CSU_HPCONTROL0_L_ABPHDMA)
-#endif
+#define BF_CSU_HPCONTROL0_L_ABPHDMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_ABPHDMA) & BM_CSU_HPCONTROL0_L_ABPHDMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_ABPHDMA field to a new value.
@@ -27356,15 +23563,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_ENET      (0x00100000)  //!< Bit mask for CSU_HPCONTROL0_HPC_ENET.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_ENET from a register value.
-#define BG_CSU_HPCONTROL0_HPC_ENET(r)   (((r) & BM_CSU_HPCONTROL0_HPC_ENET) >> BP_CSU_HPCONTROL0_HPC_ENET)
+#define BG_CSU_HPCONTROL0_HPC_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_ENET) >> BP_CSU_HPCONTROL0_HPC_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_ENET.
-#define BF_CSU_HPCONTROL0_HPC_ENET(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_ENET) & BM_CSU_HPCONTROL0_HPC_ENET)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_ENET.
-#define BF_CSU_HPCONTROL0_HPC_ENET(v)   (((v) << BP_CSU_HPCONTROL0_HPC_ENET) & BM_CSU_HPCONTROL0_HPC_ENET)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_ENET) & BM_CSU_HPCONTROL0_HPC_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_ENET field to a new value.
@@ -27385,15 +23587,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_ENET      (0x00200000)  //!< Bit mask for CSU_HPCONTROL0_L_ENET.
 
 //! @brief Get value of CSU_HPCONTROL0_L_ENET from a register value.
-#define BG_CSU_HPCONTROL0_L_ENET(r)   (((r) & BM_CSU_HPCONTROL0_L_ENET) >> BP_CSU_HPCONTROL0_L_ENET)
+#define BG_CSU_HPCONTROL0_L_ENET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_ENET) >> BP_CSU_HPCONTROL0_L_ENET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_ENET.
-#define BF_CSU_HPCONTROL0_L_ENET(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_ENET) & BM_CSU_HPCONTROL0_L_ENET)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_ENET.
-#define BF_CSU_HPCONTROL0_L_ENET(v)   (((v) << BP_CSU_HPCONTROL0_L_ENET) & BM_CSU_HPCONTROL0_L_ENET)
-#endif
+#define BF_CSU_HPCONTROL0_L_ENET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_ENET) & BM_CSU_HPCONTROL0_L_ENET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_ENET field to a new value.
@@ -27415,15 +23612,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_DAP      (0x00400000)  //!< Bit mask for CSU_HPCONTROL0_HPC_DAP.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_DAP from a register value.
-#define BG_CSU_HPCONTROL0_HPC_DAP(r)   (((r) & BM_CSU_HPCONTROL0_HPC_DAP) >> BP_CSU_HPCONTROL0_HPC_DAP)
+#define BG_CSU_HPCONTROL0_HPC_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_DAP) >> BP_CSU_HPCONTROL0_HPC_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_DAP.
-#define BF_CSU_HPCONTROL0_HPC_DAP(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_DAP) & BM_CSU_HPCONTROL0_HPC_DAP)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_DAP.
-#define BF_CSU_HPCONTROL0_HPC_DAP(v)   (((v) << BP_CSU_HPCONTROL0_HPC_DAP) & BM_CSU_HPCONTROL0_HPC_DAP)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_DAP) & BM_CSU_HPCONTROL0_HPC_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_DAP field to a new value.
@@ -27444,15 +23636,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_DAP      (0x00800000)  //!< Bit mask for CSU_HPCONTROL0_L_DAP.
 
 //! @brief Get value of CSU_HPCONTROL0_L_DAP from a register value.
-#define BG_CSU_HPCONTROL0_L_DAP(r)   (((r) & BM_CSU_HPCONTROL0_L_DAP) >> BP_CSU_HPCONTROL0_L_DAP)
+#define BG_CSU_HPCONTROL0_L_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_DAP) >> BP_CSU_HPCONTROL0_L_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_DAP.
-#define BF_CSU_HPCONTROL0_L_DAP(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_DAP) & BM_CSU_HPCONTROL0_L_DAP)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_DAP.
-#define BF_CSU_HPCONTROL0_L_DAP(v)   (((v) << BP_CSU_HPCONTROL0_L_DAP) & BM_CSU_HPCONTROL0_L_DAP)
-#endif
+#define BF_CSU_HPCONTROL0_L_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_DAP) & BM_CSU_HPCONTROL0_L_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_DAP field to a new value.
@@ -27474,15 +23661,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_USDHC1      (0x01000000)  //!< Bit mask for CSU_HPCONTROL0_HPC_USDHC1.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_USDHC1 from a register value.
-#define BG_CSU_HPCONTROL0_HPC_USDHC1(r)   (((r) & BM_CSU_HPCONTROL0_HPC_USDHC1) >> BP_CSU_HPCONTROL0_HPC_USDHC1)
+#define BG_CSU_HPCONTROL0_HPC_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_USDHC1) >> BP_CSU_HPCONTROL0_HPC_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC1.
-#define BF_CSU_HPCONTROL0_HPC_USDHC1(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_USDHC1) & BM_CSU_HPCONTROL0_HPC_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC1.
-#define BF_CSU_HPCONTROL0_HPC_USDHC1(v)   (((v) << BP_CSU_HPCONTROL0_HPC_USDHC1) & BM_CSU_HPCONTROL0_HPC_USDHC1)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_USDHC1) & BM_CSU_HPCONTROL0_HPC_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_USDHC1 field to a new value.
@@ -27503,15 +23685,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_USDHC1      (0x02000000)  //!< Bit mask for CSU_HPCONTROL0_L_USDHC1.
 
 //! @brief Get value of CSU_HPCONTROL0_L_USDHC1 from a register value.
-#define BG_CSU_HPCONTROL0_L_USDHC1(r)   (((r) & BM_CSU_HPCONTROL0_L_USDHC1) >> BP_CSU_HPCONTROL0_L_USDHC1)
+#define BG_CSU_HPCONTROL0_L_USDHC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_USDHC1) >> BP_CSU_HPCONTROL0_L_USDHC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC1.
-#define BF_CSU_HPCONTROL0_L_USDHC1(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_USDHC1) & BM_CSU_HPCONTROL0_L_USDHC1)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC1.
-#define BF_CSU_HPCONTROL0_L_USDHC1(v)   (((v) << BP_CSU_HPCONTROL0_L_USDHC1) & BM_CSU_HPCONTROL0_L_USDHC1)
-#endif
+#define BF_CSU_HPCONTROL0_L_USDHC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_USDHC1) & BM_CSU_HPCONTROL0_L_USDHC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC1 field to a new value.
@@ -27533,15 +23710,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_USDHC2      (0x04000000)  //!< Bit mask for CSU_HPCONTROL0_HPC_USDHC2.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_USDHC2 from a register value.
-#define BG_CSU_HPCONTROL0_HPC_USDHC2(r)   (((r) & BM_CSU_HPCONTROL0_HPC_USDHC2) >> BP_CSU_HPCONTROL0_HPC_USDHC2)
+#define BG_CSU_HPCONTROL0_HPC_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_USDHC2) >> BP_CSU_HPCONTROL0_HPC_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC2.
-#define BF_CSU_HPCONTROL0_HPC_USDHC2(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_USDHC2) & BM_CSU_HPCONTROL0_HPC_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC2.
-#define BF_CSU_HPCONTROL0_HPC_USDHC2(v)   (((v) << BP_CSU_HPCONTROL0_HPC_USDHC2) & BM_CSU_HPCONTROL0_HPC_USDHC2)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_USDHC2) & BM_CSU_HPCONTROL0_HPC_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_USDHC2 field to a new value.
@@ -27562,15 +23734,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_USDHC2      (0x08000000)  //!< Bit mask for CSU_HPCONTROL0_L_USDHC2.
 
 //! @brief Get value of CSU_HPCONTROL0_L_USDHC2 from a register value.
-#define BG_CSU_HPCONTROL0_L_USDHC2(r)   (((r) & BM_CSU_HPCONTROL0_L_USDHC2) >> BP_CSU_HPCONTROL0_L_USDHC2)
+#define BG_CSU_HPCONTROL0_L_USDHC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_USDHC2) >> BP_CSU_HPCONTROL0_L_USDHC2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC2.
-#define BF_CSU_HPCONTROL0_L_USDHC2(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_USDHC2) & BM_CSU_HPCONTROL0_L_USDHC2)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC2.
-#define BF_CSU_HPCONTROL0_L_USDHC2(v)   (((v) << BP_CSU_HPCONTROL0_L_USDHC2) & BM_CSU_HPCONTROL0_L_USDHC2)
-#endif
+#define BF_CSU_HPCONTROL0_L_USDHC2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_USDHC2) & BM_CSU_HPCONTROL0_L_USDHC2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC2 field to a new value.
@@ -27592,15 +23759,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_USDHC3      (0x10000000)  //!< Bit mask for CSU_HPCONTROL0_HPC_USDHC3.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_USDHC3 from a register value.
-#define BG_CSU_HPCONTROL0_HPC_USDHC3(r)   (((r) & BM_CSU_HPCONTROL0_HPC_USDHC3) >> BP_CSU_HPCONTROL0_HPC_USDHC3)
+#define BG_CSU_HPCONTROL0_HPC_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_USDHC3) >> BP_CSU_HPCONTROL0_HPC_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC3.
-#define BF_CSU_HPCONTROL0_HPC_USDHC3(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_USDHC3) & BM_CSU_HPCONTROL0_HPC_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC3.
-#define BF_CSU_HPCONTROL0_HPC_USDHC3(v)   (((v) << BP_CSU_HPCONTROL0_HPC_USDHC3) & BM_CSU_HPCONTROL0_HPC_USDHC3)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_USDHC3) & BM_CSU_HPCONTROL0_HPC_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_USDHC3 field to a new value.
@@ -27621,15 +23783,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_USDHC3      (0x20000000)  //!< Bit mask for CSU_HPCONTROL0_L_USDHC3.
 
 //! @brief Get value of CSU_HPCONTROL0_L_USDHC3 from a register value.
-#define BG_CSU_HPCONTROL0_L_USDHC3(r)   (((r) & BM_CSU_HPCONTROL0_L_USDHC3) >> BP_CSU_HPCONTROL0_L_USDHC3)
+#define BG_CSU_HPCONTROL0_L_USDHC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_USDHC3) >> BP_CSU_HPCONTROL0_L_USDHC3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC3.
-#define BF_CSU_HPCONTROL0_L_USDHC3(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_USDHC3) & BM_CSU_HPCONTROL0_L_USDHC3)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC3.
-#define BF_CSU_HPCONTROL0_L_USDHC3(v)   (((v) << BP_CSU_HPCONTROL0_L_USDHC3) & BM_CSU_HPCONTROL0_L_USDHC3)
-#endif
+#define BF_CSU_HPCONTROL0_L_USDHC3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_USDHC3) & BM_CSU_HPCONTROL0_L_USDHC3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC3 field to a new value.
@@ -27651,15 +23808,10 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_HPC_USDHC4      (0x40000000)  //!< Bit mask for CSU_HPCONTROL0_HPC_USDHC4.
 
 //! @brief Get value of CSU_HPCONTROL0_HPC_USDHC4 from a register value.
-#define BG_CSU_HPCONTROL0_HPC_USDHC4(r)   (((r) & BM_CSU_HPCONTROL0_HPC_USDHC4) >> BP_CSU_HPCONTROL0_HPC_USDHC4)
+#define BG_CSU_HPCONTROL0_HPC_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_HPC_USDHC4) >> BP_CSU_HPCONTROL0_HPC_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC4.
-#define BF_CSU_HPCONTROL0_HPC_USDHC4(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_HPC_USDHC4) & BM_CSU_HPCONTROL0_HPC_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_HPC_USDHC4.
-#define BF_CSU_HPCONTROL0_HPC_USDHC4(v)   (((v) << BP_CSU_HPCONTROL0_HPC_USDHC4) & BM_CSU_HPCONTROL0_HPC_USDHC4)
-#endif
+#define BF_CSU_HPCONTROL0_HPC_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_HPC_USDHC4) & BM_CSU_HPCONTROL0_HPC_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_USDHC4 field to a new value.
@@ -27680,21 +23832,20 @@ typedef union _hw_csu_hpcontrol0
 #define BM_CSU_HPCONTROL0_L_USDHC4      (0x80000000)  //!< Bit mask for CSU_HPCONTROL0_L_USDHC4.
 
 //! @brief Get value of CSU_HPCONTROL0_L_USDHC4 from a register value.
-#define BG_CSU_HPCONTROL0_L_USDHC4(r)   (((r) & BM_CSU_HPCONTROL0_L_USDHC4) >> BP_CSU_HPCONTROL0_L_USDHC4)
+#define BG_CSU_HPCONTROL0_L_USDHC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL0_L_USDHC4) >> BP_CSU_HPCONTROL0_L_USDHC4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC4.
-#define BF_CSU_HPCONTROL0_L_USDHC4(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL0_L_USDHC4) & BM_CSU_HPCONTROL0_L_USDHC4)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL0_L_USDHC4.
-#define BF_CSU_HPCONTROL0_L_USDHC4(v)   (((v) << BP_CSU_HPCONTROL0_L_USDHC4) & BM_CSU_HPCONTROL0_L_USDHC4)
-#endif
+#define BF_CSU_HPCONTROL0_L_USDHC4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL0_L_USDHC4) & BM_CSU_HPCONTROL0_L_USDHC4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_USDHC4 field to a new value.
 #define BW_CSU_HPCONTROL0_L_USDHC4(v)   (HW_CSU_HPCONTROL0_WR((HW_CSU_HPCONTROL0_RD() & ~BM_CSU_HPCONTROL0_L_USDHC4) | BF_CSU_HPCONTROL0_L_USDHC4(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_CSU_HPCONTROL1 - HPCONTROL1 register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -27749,15 +23900,10 @@ typedef union _hw_csu_hpcontrol1
 #define BM_CSU_HPCONTROL1_HPC_HDMI_HSI      (0x00000001)  //!< Bit mask for CSU_HPCONTROL1_HPC_HDMI_HSI.
 
 //! @brief Get value of CSU_HPCONTROL1_HPC_HDMI_HSI from a register value.
-#define BG_CSU_HPCONTROL1_HPC_HDMI_HSI(r)   (((r) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI) >> BP_CSU_HPCONTROL1_HPC_HDMI_HSI)
+#define BG_CSU_HPCONTROL1_HPC_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI) >> BP_CSU_HPCONTROL1_HPC_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL1_HPC_HDMI_HSI.
-#define BF_CSU_HPCONTROL1_HPC_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL1_HPC_HDMI_HSI) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL1_HPC_HDMI_HSI.
-#define BF_CSU_HPCONTROL1_HPC_HDMI_HSI(v)   (((v) << BP_CSU_HPCONTROL1_HPC_HDMI_HSI) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI)
-#endif
+#define BF_CSU_HPCONTROL1_HPC_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL1_HPC_HDMI_HSI) & BM_CSU_HPCONTROL1_HPC_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPC_HDMI_HSI field to a new value.
@@ -27778,15 +23924,10 @@ typedef union _hw_csu_hpcontrol1
 #define BM_CSU_HPCONTROL1_L_HDMI_HSI      (0x00000002)  //!< Bit mask for CSU_HPCONTROL1_L_HDMI_HSI.
 
 //! @brief Get value of CSU_HPCONTROL1_L_HDMI_HSI from a register value.
-#define BG_CSU_HPCONTROL1_L_HDMI_HSI(r)   (((r) & BM_CSU_HPCONTROL1_L_HDMI_HSI) >> BP_CSU_HPCONTROL1_L_HDMI_HSI)
+#define BG_CSU_HPCONTROL1_L_HDMI_HSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSU_HPCONTROL1_L_HDMI_HSI) >> BP_CSU_HPCONTROL1_L_HDMI_HSI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield CSU_HPCONTROL1_L_HDMI_HSI.
-#define BF_CSU_HPCONTROL1_L_HDMI_HSI(v)   ((((reg32_t) v) << BP_CSU_HPCONTROL1_L_HDMI_HSI) & BM_CSU_HPCONTROL1_L_HDMI_HSI)
-#else
-//! @brief Format value for bitfield CSU_HPCONTROL1_L_HDMI_HSI.
-#define BF_CSU_HPCONTROL1_L_HDMI_HSI(v)   (((v) << BP_CSU_HPCONTROL1_L_HDMI_HSI) & BM_CSU_HPCONTROL1_L_HDMI_HSI)
-#endif
+#define BF_CSU_HPCONTROL1_L_HDMI_HSI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CSU_HPCONTROL1_L_HDMI_HSI) & BM_CSU_HPCONTROL1_L_HDMI_HSI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the L_HDMI_HSI field to a new value.

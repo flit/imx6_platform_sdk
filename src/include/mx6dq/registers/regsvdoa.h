@@ -43,6 +43,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAC - VDOA Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_VDOA_VDOAC - VDOA Control Register (RW)
@@ -100,15 +115,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_BNDM      (0x00000003)  //!< Bit mask for VDOA_VDOAC_BNDM.
 
 //! @brief Get value of VDOA_VDOAC_BNDM from a register value.
-#define BG_VDOA_VDOAC_BNDM(r)   (((r) & BM_VDOA_VDOAC_BNDM) >> BP_VDOA_VDOAC_BNDM)
+#define BG_VDOA_VDOAC_BNDM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_BNDM) >> BP_VDOA_VDOAC_BNDM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_BNDM.
-#define BF_VDOA_VDOAC_BNDM(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_BNDM) & BM_VDOA_VDOAC_BNDM)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_BNDM.
-#define BF_VDOA_VDOAC_BNDM(v)   (((v) << BP_VDOA_VDOAC_BNDM) & BM_VDOA_VDOAC_BNDM)
-#endif
+#define BF_VDOA_VDOAC_BNDM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_BNDM) & BM_VDOA_VDOAC_BNDM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BNDM field to a new value.
@@ -132,15 +142,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_NF      (0x00000004)  //!< Bit mask for VDOA_VDOAC_NF.
 
 //! @brief Get value of VDOA_VDOAC_NF from a register value.
-#define BG_VDOA_VDOAC_NF(r)   (((r) & BM_VDOA_VDOAC_NF) >> BP_VDOA_VDOAC_NF)
+#define BG_VDOA_VDOAC_NF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_NF) >> BP_VDOA_VDOAC_NF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_NF.
-#define BF_VDOA_VDOAC_NF(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_NF) & BM_VDOA_VDOAC_NF)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_NF.
-#define BF_VDOA_VDOAC_NF(v)   (((v) << BP_VDOA_VDOAC_NF) & BM_VDOA_VDOAC_NF)
-#endif
+#define BF_VDOA_VDOAC_NF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_NF) & BM_VDOA_VDOAC_NF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NF field to a new value.
@@ -164,15 +169,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_SYNC      (0x00000008)  //!< Bit mask for VDOA_VDOAC_SYNC.
 
 //! @brief Get value of VDOA_VDOAC_SYNC from a register value.
-#define BG_VDOA_VDOAC_SYNC(r)   (((r) & BM_VDOA_VDOAC_SYNC) >> BP_VDOA_VDOAC_SYNC)
+#define BG_VDOA_VDOAC_SYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_SYNC) >> BP_VDOA_VDOAC_SYNC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_SYNC.
-#define BF_VDOA_VDOAC_SYNC(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_SYNC) & BM_VDOA_VDOAC_SYNC)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_SYNC.
-#define BF_VDOA_VDOAC_SYNC(v)   (((v) << BP_VDOA_VDOAC_SYNC) & BM_VDOA_VDOAC_SYNC)
-#endif
+#define BF_VDOA_VDOAC_SYNC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_SYNC) & BM_VDOA_VDOAC_SYNC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYNC field to a new value.
@@ -195,15 +195,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_SO      (0x00000010)  //!< Bit mask for VDOA_VDOAC_SO.
 
 //! @brief Get value of VDOA_VDOAC_SO from a register value.
-#define BG_VDOA_VDOAC_SO(r)   (((r) & BM_VDOA_VDOAC_SO) >> BP_VDOA_VDOAC_SO)
+#define BG_VDOA_VDOAC_SO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_SO) >> BP_VDOA_VDOAC_SO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_SO.
-#define BF_VDOA_VDOAC_SO(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_SO) & BM_VDOA_VDOAC_SO)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_SO.
-#define BF_VDOA_VDOAC_SO(v)   (((v) << BP_VDOA_VDOAC_SO) & BM_VDOA_VDOAC_SO)
-#endif
+#define BF_VDOA_VDOAC_SO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_SO) & BM_VDOA_VDOAC_SO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SO field to a new value.
@@ -227,15 +222,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_PFS      (0x00000020)  //!< Bit mask for VDOA_VDOAC_PFS.
 
 //! @brief Get value of VDOA_VDOAC_PFS from a register value.
-#define BG_VDOA_VDOAC_PFS(r)   (((r) & BM_VDOA_VDOAC_PFS) >> BP_VDOA_VDOAC_PFS)
+#define BG_VDOA_VDOAC_PFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_PFS) >> BP_VDOA_VDOAC_PFS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_PFS.
-#define BF_VDOA_VDOAC_PFS(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_PFS) & BM_VDOA_VDOAC_PFS)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_PFS.
-#define BF_VDOA_VDOAC_PFS(v)   (((v) << BP_VDOA_VDOAC_PFS) & BM_VDOA_VDOAC_PFS)
-#endif
+#define BF_VDOA_VDOAC_PFS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_PFS) & BM_VDOA_VDOAC_PFS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PFS field to a new value.
@@ -258,15 +248,10 @@ typedef union _hw_vdoa_vdoac
 #define BM_VDOA_VDOAC_ISEL      (0x00000040)  //!< Bit mask for VDOA_VDOAC_ISEL.
 
 //! @brief Get value of VDOA_VDOAC_ISEL from a register value.
-#define BG_VDOA_VDOAC_ISEL(r)   (((r) & BM_VDOA_VDOAC_ISEL) >> BP_VDOA_VDOAC_ISEL)
+#define BG_VDOA_VDOAC_ISEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAC_ISEL) >> BP_VDOA_VDOAC_ISEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAC_ISEL.
-#define BF_VDOA_VDOAC_ISEL(v)   ((((reg32_t) v) << BP_VDOA_VDOAC_ISEL) & BM_VDOA_VDOAC_ISEL)
-#else
-//! @brief Format value for bitfield VDOA_VDOAC_ISEL.
-#define BF_VDOA_VDOAC_ISEL(v)   (((v) << BP_VDOA_VDOAC_ISEL) & BM_VDOA_VDOAC_ISEL)
-#endif
+#define BF_VDOA_VDOAC_ISEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAC_ISEL) & BM_VDOA_VDOAC_ISEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISEL field to a new value.
@@ -275,6 +260,10 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_0 (0x0) //!< Use vdoa_buf_rdy[0] and ipu_buf_eob[0]
 #define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_1 (0x1) //!< Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOASRR - VDOA Start and Reset
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -324,15 +313,10 @@ typedef union _hw_vdoa_vdoasrr
 #define BM_VDOA_VDOASRR_SWRST      (0x00000001)  //!< Bit mask for VDOA_VDOASRR_SWRST.
 
 //! @brief Get value of VDOA_VDOASRR_SWRST from a register value.
-#define BG_VDOA_VDOASRR_SWRST(r)   (((r) & BM_VDOA_VDOASRR_SWRST) >> BP_VDOA_VDOASRR_SWRST)
+#define BG_VDOA_VDOASRR_SWRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASRR_SWRST) >> BP_VDOA_VDOASRR_SWRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOASRR_SWRST.
-#define BF_VDOA_VDOASRR_SWRST(v)   ((((reg32_t) v) << BP_VDOA_VDOASRR_SWRST) & BM_VDOA_VDOASRR_SWRST)
-#else
-//! @brief Format value for bitfield VDOA_VDOASRR_SWRST.
-#define BF_VDOA_VDOASRR_SWRST(v)   (((v) << BP_VDOA_VDOASRR_SWRST) & BM_VDOA_VDOASRR_SWRST)
-#endif
+#define BF_VDOA_VDOASRR_SWRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOASRR_SWRST) & BM_VDOA_VDOASRR_SWRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWRST field to a new value.
@@ -354,15 +338,10 @@ typedef union _hw_vdoa_vdoasrr
 #define BM_VDOA_VDOASRR_START      (0x00000002)  //!< Bit mask for VDOA_VDOASRR_START.
 
 //! @brief Get value of VDOA_VDOASRR_START from a register value.
-#define BG_VDOA_VDOASRR_START(r)   (((r) & BM_VDOA_VDOASRR_START) >> BP_VDOA_VDOASRR_START)
+#define BG_VDOA_VDOASRR_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASRR_START) >> BP_VDOA_VDOASRR_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOASRR_START.
-#define BF_VDOA_VDOASRR_START(v)   ((((reg32_t) v) << BP_VDOA_VDOASRR_START) & BM_VDOA_VDOASRR_START)
-#else
-//! @brief Format value for bitfield VDOA_VDOASRR_START.
-#define BF_VDOA_VDOASRR_START(v)   (((v) << BP_VDOA_VDOASRR_START) & BM_VDOA_VDOASRR_START)
-#endif
+#define BF_VDOA_VDOASRR_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOASRR_START) & BM_VDOA_VDOASRR_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START field to a new value.
@@ -370,6 +349,10 @@ typedef union _hw_vdoa_vdoasrr
 #endif
 
 #define BV_VDOA_VDOASRR_START__START_TRANSFER (0x1) //!< Start a new transfer All registers we copied internally so any write to them will take place only in next transfer (double buffer)
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIE - VDOA Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -422,15 +405,10 @@ typedef union _hw_vdoa_vdoaie
 #define BM_VDOA_VDOAIE_EIEOT      (0x00000001)  //!< Bit mask for VDOA_VDOAIE_EIEOT.
 
 //! @brief Get value of VDOA_VDOAIE_EIEOT from a register value.
-#define BG_VDOA_VDOAIE_EIEOT(r)   (((r) & BM_VDOA_VDOAIE_EIEOT) >> BP_VDOA_VDOAIE_EIEOT)
+#define BG_VDOA_VDOAIE_EIEOT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIE_EIEOT) >> BP_VDOA_VDOAIE_EIEOT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIE_EIEOT.
-#define BF_VDOA_VDOAIE_EIEOT(v)   ((((reg32_t) v) << BP_VDOA_VDOAIE_EIEOT) & BM_VDOA_VDOAIE_EIEOT)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIE_EIEOT.
-#define BF_VDOA_VDOAIE_EIEOT(v)   (((v) << BP_VDOA_VDOAIE_EIEOT) & BM_VDOA_VDOAIE_EIEOT)
-#endif
+#define BF_VDOA_VDOAIE_EIEOT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIE_EIEOT) & BM_VDOA_VDOAIE_EIEOT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EIEOT field to a new value.
@@ -453,15 +431,10 @@ typedef union _hw_vdoa_vdoaie
 #define BM_VDOA_VDOAIE_EITERR      (0x00000002)  //!< Bit mask for VDOA_VDOAIE_EITERR.
 
 //! @brief Get value of VDOA_VDOAIE_EITERR from a register value.
-#define BG_VDOA_VDOAIE_EITERR(r)   (((r) & BM_VDOA_VDOAIE_EITERR) >> BP_VDOA_VDOAIE_EITERR)
+#define BG_VDOA_VDOAIE_EITERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIE_EITERR) >> BP_VDOA_VDOAIE_EITERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIE_EITERR.
-#define BF_VDOA_VDOAIE_EITERR(v)   ((((reg32_t) v) << BP_VDOA_VDOAIE_EITERR) & BM_VDOA_VDOAIE_EITERR)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIE_EITERR.
-#define BF_VDOA_VDOAIE_EITERR(v)   (((v) << BP_VDOA_VDOAIE_EITERR) & BM_VDOA_VDOAIE_EITERR)
-#endif
+#define BF_VDOA_VDOAIE_EITERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIE_EITERR) & BM_VDOA_VDOAIE_EITERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EITERR field to a new value.
@@ -470,6 +443,10 @@ typedef union _hw_vdoa_vdoaie
 
 #define BV_VDOA_VDOAIE_EITERR__IRQ_DISABLED (0x0) //!< interrupt disable (default)
 #define BV_VDOA_VDOAIE_EITERR__IRQ_ENABLED (0x1) //!< Interrupt Enabled
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIST - VDOA Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -518,15 +495,10 @@ typedef union _hw_vdoa_vdoaist
 #define BM_VDOA_VDOAIST_EOT      (0x00000001)  //!< Bit mask for VDOA_VDOAIST_EOT.
 
 //! @brief Get value of VDOA_VDOAIST_EOT from a register value.
-#define BG_VDOA_VDOAIST_EOT(r)   (((r) & BM_VDOA_VDOAIST_EOT) >> BP_VDOA_VDOAIST_EOT)
+#define BG_VDOA_VDOAIST_EOT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIST_EOT) >> BP_VDOA_VDOAIST_EOT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIST_EOT.
-#define BF_VDOA_VDOAIST_EOT(v)   ((((reg32_t) v) << BP_VDOA_VDOAIST_EOT) & BM_VDOA_VDOAIST_EOT)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIST_EOT.
-#define BF_VDOA_VDOAIST_EOT(v)   (((v) << BP_VDOA_VDOAIST_EOT) & BM_VDOA_VDOAIST_EOT)
-#endif
+#define BF_VDOA_VDOAIST_EOT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIST_EOT) & BM_VDOA_VDOAIST_EOT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EOT field to a new value.
@@ -543,20 +515,19 @@ typedef union _hw_vdoa_vdoaist
 #define BM_VDOA_VDOAIST_TERR      (0x00000002)  //!< Bit mask for VDOA_VDOAIST_TERR.
 
 //! @brief Get value of VDOA_VDOAIST_TERR from a register value.
-#define BG_VDOA_VDOAIST_TERR(r)   (((r) & BM_VDOA_VDOAIST_TERR) >> BP_VDOA_VDOAIST_TERR)
+#define BG_VDOA_VDOAIST_TERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIST_TERR) >> BP_VDOA_VDOAIST_TERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIST_TERR.
-#define BF_VDOA_VDOAIST_TERR(v)   ((((reg32_t) v) << BP_VDOA_VDOAIST_TERR) & BM_VDOA_VDOAIST_TERR)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIST_TERR.
-#define BF_VDOA_VDOAIST_TERR(v)   (((v) << BP_VDOA_VDOAIST_TERR) & BM_VDOA_VDOAIST_TERR)
-#endif
+#define BF_VDOA_VDOAIST_TERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIST_TERR) & BM_VDOA_VDOAIST_TERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TERR field to a new value.
 #define BW_VDOA_VDOAIST_TERR(v)   (HW_VDOA_VDOAIST_WR((HW_VDOA_VDOAIST_RD() & ~BM_VDOA_VDOAIST_TERR) | BF_VDOA_VDOAIST_TERR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAFP - VDOA Frame Parameters Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -607,15 +578,10 @@ typedef union _hw_vdoa_vdoafp
 #define BM_VDOA_VDOAFP_FW      (0x00003fff)  //!< Bit mask for VDOA_VDOAFP_FW.
 
 //! @brief Get value of VDOA_VDOAFP_FW from a register value.
-#define BG_VDOA_VDOAFP_FW(r)   (((r) & BM_VDOA_VDOAFP_FW) >> BP_VDOA_VDOAFP_FW)
+#define BG_VDOA_VDOAFP_FW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAFP_FW) >> BP_VDOA_VDOAFP_FW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAFP_FW.
-#define BF_VDOA_VDOAFP_FW(v)   ((((reg32_t) v) << BP_VDOA_VDOAFP_FW) & BM_VDOA_VDOAFP_FW)
-#else
-//! @brief Format value for bitfield VDOA_VDOAFP_FW.
-#define BF_VDOA_VDOAFP_FW(v)   (((v) << BP_VDOA_VDOAFP_FW) & BM_VDOA_VDOAFP_FW)
-#endif
+#define BF_VDOA_VDOAFP_FW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAFP_FW) & BM_VDOA_VDOAFP_FW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FW field to a new value.
@@ -632,20 +598,19 @@ typedef union _hw_vdoa_vdoafp
 #define BM_VDOA_VDOAFP_FH      (0x1fff0000)  //!< Bit mask for VDOA_VDOAFP_FH.
 
 //! @brief Get value of VDOA_VDOAFP_FH from a register value.
-#define BG_VDOA_VDOAFP_FH(r)   (((r) & BM_VDOA_VDOAFP_FH) >> BP_VDOA_VDOAFP_FH)
+#define BG_VDOA_VDOAFP_FH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAFP_FH) >> BP_VDOA_VDOAFP_FH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAFP_FH.
-#define BF_VDOA_VDOAFP_FH(v)   ((((reg32_t) v) << BP_VDOA_VDOAFP_FH) & BM_VDOA_VDOAFP_FH)
-#else
-//! @brief Format value for bitfield VDOA_VDOAFP_FH.
-#define BF_VDOA_VDOAFP_FH(v)   (((v) << BP_VDOA_VDOAFP_FH) & BM_VDOA_VDOAFP_FH)
-#endif
+#define BF_VDOA_VDOAFP_FH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAFP_FH) & BM_VDOA_VDOAFP_FH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FH field to a new value.
 #define BW_VDOA_VDOAFP_FH(v)   (HW_VDOA_VDOAFP_WR((HW_VDOA_VDOAFP_RD() & ~BM_VDOA_VDOAFP_FH) | BF_VDOA_VDOAFP_FH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA00 - VDOA IPU External Buffer 0 Frame 0 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -693,20 +658,19 @@ typedef union _hw_vdoa_vdoaieba00
 #define BM_VDOA_VDOAIEBA00_IEBA00      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA00_IEBA00.
 
 //! @brief Get value of VDOA_VDOAIEBA00_IEBA00 from a register value.
-#define BG_VDOA_VDOAIEBA00_IEBA00(r)   (((r) & BM_VDOA_VDOAIEBA00_IEBA00) >> BP_VDOA_VDOAIEBA00_IEBA00)
+#define BG_VDOA_VDOAIEBA00_IEBA00(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA00_IEBA00) >> BP_VDOA_VDOAIEBA00_IEBA00)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA00_IEBA00.
-#define BF_VDOA_VDOAIEBA00_IEBA00(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA00_IEBA00) & BM_VDOA_VDOAIEBA00_IEBA00)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA00_IEBA00.
-#define BF_VDOA_VDOAIEBA00_IEBA00(v)   (((v) << BP_VDOA_VDOAIEBA00_IEBA00) & BM_VDOA_VDOAIEBA00_IEBA00)
-#endif
+#define BF_VDOA_VDOAIEBA00_IEBA00(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA00_IEBA00) & BM_VDOA_VDOAIEBA00_IEBA00)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA00 field to a new value.
 #define BW_VDOA_VDOAIEBA00_IEBA00(v)   (HW_VDOA_VDOAIEBA00_WR((HW_VDOA_VDOAIEBA00_RD() & ~BM_VDOA_VDOAIEBA00_IEBA00) | BF_VDOA_VDOAIEBA00_IEBA00(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA01 - VDOA IPU External Buffer 0 Frame 1 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -754,20 +718,19 @@ typedef union _hw_vdoa_vdoaieba01
 #define BM_VDOA_VDOAIEBA01_IEBA01      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA01_IEBA01.
 
 //! @brief Get value of VDOA_VDOAIEBA01_IEBA01 from a register value.
-#define BG_VDOA_VDOAIEBA01_IEBA01(r)   (((r) & BM_VDOA_VDOAIEBA01_IEBA01) >> BP_VDOA_VDOAIEBA01_IEBA01)
+#define BG_VDOA_VDOAIEBA01_IEBA01(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA01_IEBA01) >> BP_VDOA_VDOAIEBA01_IEBA01)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA01_IEBA01.
-#define BF_VDOA_VDOAIEBA01_IEBA01(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA01_IEBA01) & BM_VDOA_VDOAIEBA01_IEBA01)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA01_IEBA01.
-#define BF_VDOA_VDOAIEBA01_IEBA01(v)   (((v) << BP_VDOA_VDOAIEBA01_IEBA01) & BM_VDOA_VDOAIEBA01_IEBA01)
-#endif
+#define BF_VDOA_VDOAIEBA01_IEBA01(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA01_IEBA01) & BM_VDOA_VDOAIEBA01_IEBA01)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA01 field to a new value.
 #define BW_VDOA_VDOAIEBA01_IEBA01(v)   (HW_VDOA_VDOAIEBA01_WR((HW_VDOA_VDOAIEBA01_RD() & ~BM_VDOA_VDOAIEBA01_IEBA01) | BF_VDOA_VDOAIEBA01_IEBA01(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA02 - VDOA IPU External Buffer 0 Frame 2 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -815,20 +778,19 @@ typedef union _hw_vdoa_vdoaieba02
 #define BM_VDOA_VDOAIEBA02_IEBA02      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA02_IEBA02.
 
 //! @brief Get value of VDOA_VDOAIEBA02_IEBA02 from a register value.
-#define BG_VDOA_VDOAIEBA02_IEBA02(r)   (((r) & BM_VDOA_VDOAIEBA02_IEBA02) >> BP_VDOA_VDOAIEBA02_IEBA02)
+#define BG_VDOA_VDOAIEBA02_IEBA02(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA02_IEBA02) >> BP_VDOA_VDOAIEBA02_IEBA02)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA02_IEBA02.
-#define BF_VDOA_VDOAIEBA02_IEBA02(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA02_IEBA02) & BM_VDOA_VDOAIEBA02_IEBA02)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA02_IEBA02.
-#define BF_VDOA_VDOAIEBA02_IEBA02(v)   (((v) << BP_VDOA_VDOAIEBA02_IEBA02) & BM_VDOA_VDOAIEBA02_IEBA02)
-#endif
+#define BF_VDOA_VDOAIEBA02_IEBA02(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA02_IEBA02) & BM_VDOA_VDOAIEBA02_IEBA02)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA02 field to a new value.
 #define BW_VDOA_VDOAIEBA02_IEBA02(v)   (HW_VDOA_VDOAIEBA02_WR((HW_VDOA_VDOAIEBA02_RD() & ~BM_VDOA_VDOAIEBA02_IEBA02) | BF_VDOA_VDOAIEBA02_IEBA02(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA10 - VDOA IPU External Buffer 1 Frame 0 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -876,20 +838,19 @@ typedef union _hw_vdoa_vdoaieba10
 #define BM_VDOA_VDOAIEBA10_IEBA10      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA10_IEBA10.
 
 //! @brief Get value of VDOA_VDOAIEBA10_IEBA10 from a register value.
-#define BG_VDOA_VDOAIEBA10_IEBA10(r)   (((r) & BM_VDOA_VDOAIEBA10_IEBA10) >> BP_VDOA_VDOAIEBA10_IEBA10)
+#define BG_VDOA_VDOAIEBA10_IEBA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA10_IEBA10) >> BP_VDOA_VDOAIEBA10_IEBA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA10_IEBA10.
-#define BF_VDOA_VDOAIEBA10_IEBA10(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA10_IEBA10) & BM_VDOA_VDOAIEBA10_IEBA10)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA10_IEBA10.
-#define BF_VDOA_VDOAIEBA10_IEBA10(v)   (((v) << BP_VDOA_VDOAIEBA10_IEBA10) & BM_VDOA_VDOAIEBA10_IEBA10)
-#endif
+#define BF_VDOA_VDOAIEBA10_IEBA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA10_IEBA10) & BM_VDOA_VDOAIEBA10_IEBA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA10 field to a new value.
 #define BW_VDOA_VDOAIEBA10_IEBA10(v)   (HW_VDOA_VDOAIEBA10_WR((HW_VDOA_VDOAIEBA10_RD() & ~BM_VDOA_VDOAIEBA10_IEBA10) | BF_VDOA_VDOAIEBA10_IEBA10(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA11 - VDOA IPU External Buffer 1 Frame 1 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -937,20 +898,19 @@ typedef union _hw_vdoa_vdoaieba11
 #define BM_VDOA_VDOAIEBA11_IEBA11      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA11_IEBA11.
 
 //! @brief Get value of VDOA_VDOAIEBA11_IEBA11 from a register value.
-#define BG_VDOA_VDOAIEBA11_IEBA11(r)   (((r) & BM_VDOA_VDOAIEBA11_IEBA11) >> BP_VDOA_VDOAIEBA11_IEBA11)
+#define BG_VDOA_VDOAIEBA11_IEBA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA11_IEBA11) >> BP_VDOA_VDOAIEBA11_IEBA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA11_IEBA11.
-#define BF_VDOA_VDOAIEBA11_IEBA11(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA11_IEBA11) & BM_VDOA_VDOAIEBA11_IEBA11)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA11_IEBA11.
-#define BF_VDOA_VDOAIEBA11_IEBA11(v)   (((v) << BP_VDOA_VDOAIEBA11_IEBA11) & BM_VDOA_VDOAIEBA11_IEBA11)
-#endif
+#define BF_VDOA_VDOAIEBA11_IEBA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA11_IEBA11) & BM_VDOA_VDOAIEBA11_IEBA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA11 field to a new value.
 #define BW_VDOA_VDOAIEBA11_IEBA11(v)   (HW_VDOA_VDOAIEBA11_WR((HW_VDOA_VDOAIEBA11_RD() & ~BM_VDOA_VDOAIEBA11_IEBA11) | BF_VDOA_VDOAIEBA11_IEBA11(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIEBA12 - VDOA IPU External Buffer 1 Frame 2 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -998,20 +958,19 @@ typedef union _hw_vdoa_vdoaieba12
 #define BM_VDOA_VDOAIEBA12_IEBA12      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA12_IEBA12.
 
 //! @brief Get value of VDOA_VDOAIEBA12_IEBA12 from a register value.
-#define BG_VDOA_VDOAIEBA12_IEBA12(r)   (((r) & BM_VDOA_VDOAIEBA12_IEBA12) >> BP_VDOA_VDOAIEBA12_IEBA12)
+#define BG_VDOA_VDOAIEBA12_IEBA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIEBA12_IEBA12) >> BP_VDOA_VDOAIEBA12_IEBA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIEBA12_IEBA12.
-#define BF_VDOA_VDOAIEBA12_IEBA12(v)   ((((reg32_t) v) << BP_VDOA_VDOAIEBA12_IEBA12) & BM_VDOA_VDOAIEBA12_IEBA12)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIEBA12_IEBA12.
-#define BF_VDOA_VDOAIEBA12_IEBA12(v)   (((v) << BP_VDOA_VDOAIEBA12_IEBA12) & BM_VDOA_VDOAIEBA12_IEBA12)
-#endif
+#define BF_VDOA_VDOAIEBA12_IEBA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIEBA12_IEBA12) & BM_VDOA_VDOAIEBA12_IEBA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEBA12 field to a new value.
 #define BW_VDOA_VDOAIEBA12_IEBA12(v)   (HW_VDOA_VDOAIEBA12_WR((HW_VDOA_VDOAIEBA12_RD() & ~BM_VDOA_VDOAIEBA12_IEBA12) | BF_VDOA_VDOAIEBA12_IEBA12(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOASL - VDOA IPU Stride Line Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1063,15 +1022,10 @@ typedef union _hw_vdoa_vdoasl
 #define BM_VDOA_VDOASL_ISLY      (0x00007fff)  //!< Bit mask for VDOA_VDOASL_ISLY.
 
 //! @brief Get value of VDOA_VDOASL_ISLY from a register value.
-#define BG_VDOA_VDOASL_ISLY(r)   (((r) & BM_VDOA_VDOASL_ISLY) >> BP_VDOA_VDOASL_ISLY)
+#define BG_VDOA_VDOASL_ISLY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASL_ISLY) >> BP_VDOA_VDOASL_ISLY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOASL_ISLY.
-#define BF_VDOA_VDOASL_ISLY(v)   ((((reg32_t) v) << BP_VDOA_VDOASL_ISLY) & BM_VDOA_VDOASL_ISLY)
-#else
-//! @brief Format value for bitfield VDOA_VDOASL_ISLY.
-#define BF_VDOA_VDOASL_ISLY(v)   (((v) << BP_VDOA_VDOASL_ISLY) & BM_VDOA_VDOASL_ISLY)
-#endif
+#define BF_VDOA_VDOASL_ISLY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOASL_ISLY) & BM_VDOA_VDOASL_ISLY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISLY field to a new value.
@@ -1088,20 +1042,19 @@ typedef union _hw_vdoa_vdoasl
 #define BM_VDOA_VDOASL_VSLY      (0x3fff0000)  //!< Bit mask for VDOA_VDOASL_VSLY.
 
 //! @brief Get value of VDOA_VDOASL_VSLY from a register value.
-#define BG_VDOA_VDOASL_VSLY(r)   (((r) & BM_VDOA_VDOASL_VSLY) >> BP_VDOA_VDOASL_VSLY)
+#define BG_VDOA_VDOASL_VSLY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASL_VSLY) >> BP_VDOA_VDOASL_VSLY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOASL_VSLY.
-#define BF_VDOA_VDOASL_VSLY(v)   ((((reg32_t) v) << BP_VDOA_VDOASL_VSLY) & BM_VDOA_VDOASL_VSLY)
-#else
-//! @brief Format value for bitfield VDOA_VDOASL_VSLY.
-#define BF_VDOA_VDOASL_VSLY(v)   (((v) << BP_VDOA_VDOASL_VSLY) & BM_VDOA_VDOASL_VSLY)
-#endif
+#define BF_VDOA_VDOASL_VSLY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOASL_VSLY) & BM_VDOA_VDOASL_VSLY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSLY field to a new value.
 #define BW_VDOA_VDOASL_VSLY(v)   (HW_VDOA_VDOASL_WR((HW_VDOA_VDOASL_RD() & ~BM_VDOA_VDOASL_VSLY) | BF_VDOA_VDOASL_VSLY(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAIUBO - VDOA IPU U (Chroma) Buffer Offset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1151,20 +1104,19 @@ typedef union _hw_vdoa_vdoaiubo
 #define BM_VDOA_VDOAIUBO_IUBO      (0x07ffffff)  //!< Bit mask for VDOA_VDOAIUBO_IUBO.
 
 //! @brief Get value of VDOA_VDOAIUBO_IUBO from a register value.
-#define BG_VDOA_VDOAIUBO_IUBO(r)   (((r) & BM_VDOA_VDOAIUBO_IUBO) >> BP_VDOA_VDOAIUBO_IUBO)
+#define BG_VDOA_VDOAIUBO_IUBO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAIUBO_IUBO) >> BP_VDOA_VDOAIUBO_IUBO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAIUBO_IUBO.
-#define BF_VDOA_VDOAIUBO_IUBO(v)   ((((reg32_t) v) << BP_VDOA_VDOAIUBO_IUBO) & BM_VDOA_VDOAIUBO_IUBO)
-#else
-//! @brief Format value for bitfield VDOA_VDOAIUBO_IUBO.
-#define BF_VDOA_VDOAIUBO_IUBO(v)   (((v) << BP_VDOA_VDOAIUBO_IUBO) & BM_VDOA_VDOAIUBO_IUBO)
-#endif
+#define BF_VDOA_VDOAIUBO_IUBO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAIUBO_IUBO) & BM_VDOA_VDOAIUBO_IUBO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IUBO field to a new value.
 #define BW_VDOA_VDOAIUBO_IUBO(v)   (HW_VDOA_VDOAIUBO_WR((HW_VDOA_VDOAIUBO_RD() & ~BM_VDOA_VDOAIUBO_IUBO) | BF_VDOA_VDOAIUBO_IUBO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAVEBA0 - VDOA VPU External Buffer 0 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1212,20 +1164,19 @@ typedef union _hw_vdoa_vdoaveba0
 #define BM_VDOA_VDOAVEBA0_VEBA0      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA0_VEBA0.
 
 //! @brief Get value of VDOA_VDOAVEBA0_VEBA0 from a register value.
-#define BG_VDOA_VDOAVEBA0_VEBA0(r)   (((r) & BM_VDOA_VDOAVEBA0_VEBA0) >> BP_VDOA_VDOAVEBA0_VEBA0)
+#define BG_VDOA_VDOAVEBA0_VEBA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAVEBA0_VEBA0) >> BP_VDOA_VDOAVEBA0_VEBA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAVEBA0_VEBA0.
-#define BF_VDOA_VDOAVEBA0_VEBA0(v)   ((((reg32_t) v) << BP_VDOA_VDOAVEBA0_VEBA0) & BM_VDOA_VDOAVEBA0_VEBA0)
-#else
-//! @brief Format value for bitfield VDOA_VDOAVEBA0_VEBA0.
-#define BF_VDOA_VDOAVEBA0_VEBA0(v)   (((v) << BP_VDOA_VDOAVEBA0_VEBA0) & BM_VDOA_VDOAVEBA0_VEBA0)
-#endif
+#define BF_VDOA_VDOAVEBA0_VEBA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAVEBA0_VEBA0) & BM_VDOA_VDOAVEBA0_VEBA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VEBA0 field to a new value.
 #define BW_VDOA_VDOAVEBA0_VEBA0(v)   (HW_VDOA_VDOAVEBA0_WR((HW_VDOA_VDOAVEBA0_RD() & ~BM_VDOA_VDOAVEBA0_VEBA0) | BF_VDOA_VDOAVEBA0_VEBA0(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAVEBA1 - VDOA VPU External Buffer 1 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1273,20 +1224,19 @@ typedef union _hw_vdoa_vdoaveba1
 #define BM_VDOA_VDOAVEBA1_VEBA1      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA1_VEBA1.
 
 //! @brief Get value of VDOA_VDOAVEBA1_VEBA1 from a register value.
-#define BG_VDOA_VDOAVEBA1_VEBA1(r)   (((r) & BM_VDOA_VDOAVEBA1_VEBA1) >> BP_VDOA_VDOAVEBA1_VEBA1)
+#define BG_VDOA_VDOAVEBA1_VEBA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAVEBA1_VEBA1) >> BP_VDOA_VDOAVEBA1_VEBA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAVEBA1_VEBA1.
-#define BF_VDOA_VDOAVEBA1_VEBA1(v)   ((((reg32_t) v) << BP_VDOA_VDOAVEBA1_VEBA1) & BM_VDOA_VDOAVEBA1_VEBA1)
-#else
-//! @brief Format value for bitfield VDOA_VDOAVEBA1_VEBA1.
-#define BF_VDOA_VDOAVEBA1_VEBA1(v)   (((v) << BP_VDOA_VDOAVEBA1_VEBA1) & BM_VDOA_VDOAVEBA1_VEBA1)
-#endif
+#define BF_VDOA_VDOAVEBA1_VEBA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAVEBA1_VEBA1) & BM_VDOA_VDOAVEBA1_VEBA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VEBA1 field to a new value.
 #define BW_VDOA_VDOAVEBA1_VEBA1(v)   (HW_VDOA_VDOAVEBA1_WR((HW_VDOA_VDOAVEBA1_RD() & ~BM_VDOA_VDOAVEBA1_VEBA1) | BF_VDOA_VDOAVEBA1_VEBA1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAVEBA2 - VDOA VPU External Buffer 2 Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1334,20 +1284,19 @@ typedef union _hw_vdoa_vdoaveba2
 #define BM_VDOA_VDOAVEBA2_VEBA2      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA2_VEBA2.
 
 //! @brief Get value of VDOA_VDOAVEBA2_VEBA2 from a register value.
-#define BG_VDOA_VDOAVEBA2_VEBA2(r)   (((r) & BM_VDOA_VDOAVEBA2_VEBA2) >> BP_VDOA_VDOAVEBA2_VEBA2)
+#define BG_VDOA_VDOAVEBA2_VEBA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAVEBA2_VEBA2) >> BP_VDOA_VDOAVEBA2_VEBA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAVEBA2_VEBA2.
-#define BF_VDOA_VDOAVEBA2_VEBA2(v)   ((((reg32_t) v) << BP_VDOA_VDOAVEBA2_VEBA2) & BM_VDOA_VDOAVEBA2_VEBA2)
-#else
-//! @brief Format value for bitfield VDOA_VDOAVEBA2_VEBA2.
-#define BF_VDOA_VDOAVEBA2_VEBA2(v)   (((v) << BP_VDOA_VDOAVEBA2_VEBA2) & BM_VDOA_VDOAVEBA2_VEBA2)
-#endif
+#define BF_VDOA_VDOAVEBA2_VEBA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAVEBA2_VEBA2) & BM_VDOA_VDOAVEBA2_VEBA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VEBA2 field to a new value.
 #define BW_VDOA_VDOAVEBA2_VEBA2(v)   (HW_VDOA_VDOAVEBA2_WR((HW_VDOA_VDOAVEBA2_RD() & ~BM_VDOA_VDOAVEBA2_VEBA2) | BF_VDOA_VDOAVEBA2_VEBA2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOAVUBO - VDOA VPU U (Chroma) Buffer Offset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1396,20 +1345,19 @@ typedef union _hw_vdoa_vdoavubo
 #define BM_VDOA_VDOAVUBO_VUBO      (0x07ffffff)  //!< Bit mask for VDOA_VDOAVUBO_VUBO.
 
 //! @brief Get value of VDOA_VDOAVUBO_VUBO from a register value.
-#define BG_VDOA_VDOAVUBO_VUBO(r)   (((r) & BM_VDOA_VDOAVUBO_VUBO) >> BP_VDOA_VDOAVUBO_VUBO)
+#define BG_VDOA_VDOAVUBO_VUBO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOAVUBO_VUBO) >> BP_VDOA_VDOAVUBO_VUBO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VDOA_VDOAVUBO_VUBO.
-#define BF_VDOA_VDOAVUBO_VUBO(v)   ((((reg32_t) v) << BP_VDOA_VDOAVUBO_VUBO) & BM_VDOA_VDOAVUBO_VUBO)
-#else
-//! @brief Format value for bitfield VDOA_VDOAVUBO_VUBO.
-#define BF_VDOA_VDOAVUBO_VUBO(v)   (((v) << BP_VDOA_VDOAVUBO_VUBO) & BM_VDOA_VDOAVUBO_VUBO)
-#endif
+#define BF_VDOA_VDOAVUBO_VUBO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VDOA_VDOAVUBO_VUBO) & BM_VDOA_VDOAVUBO_VUBO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VUBO field to a new value.
 #define BW_VDOA_VDOAVUBO_VUBO(v)   (HW_VDOA_VDOAVUBO_WR((HW_VDOA_VDOAVUBO_RD() & ~BM_VDOA_VDOAVUBO_VUBO) | BF_VDOA_VDOAVUBO_VUBO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_VDOA_VDOASR - VDOA Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1456,7 +1404,7 @@ typedef union _hw_vdoa_vdoasr
 #define BM_VDOA_VDOASR_CURRENT_BUFFER      (0x00000001)  //!< Bit mask for VDOA_VDOASR_CURRENT_BUFFER.
 
 //! @brief Get value of VDOA_VDOASR_CURRENT_BUFFER from a register value.
-#define BG_VDOA_VDOASR_CURRENT_BUFFER(r)   (((r) & BM_VDOA_VDOASR_CURRENT_BUFFER) >> BP_VDOA_VDOASR_CURRENT_BUFFER)
+#define BG_VDOA_VDOASR_CURRENT_BUFFER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_CURRENT_BUFFER) >> BP_VDOA_VDOASR_CURRENT_BUFFER)
 
 /* --- Register HW_VDOA_VDOASR, field CURRENT_FRAME[2:1] (RO)
  *
@@ -1467,7 +1415,7 @@ typedef union _hw_vdoa_vdoasr
 #define BM_VDOA_VDOASR_CURRENT_FRAME      (0x00000006)  //!< Bit mask for VDOA_VDOASR_CURRENT_FRAME.
 
 //! @brief Get value of VDOA_VDOASR_CURRENT_FRAME from a register value.
-#define BG_VDOA_VDOASR_CURRENT_FRAME(r)   (((r) & BM_VDOA_VDOASR_CURRENT_FRAME) >> BP_VDOA_VDOASR_CURRENT_FRAME)
+#define BG_VDOA_VDOASR_CURRENT_FRAME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_CURRENT_FRAME) >> BP_VDOA_VDOASR_CURRENT_FRAME)
 
 /* --- Register HW_VDOA_VDOASR, field EOB[3] (RO)
  *
@@ -1479,7 +1427,7 @@ typedef union _hw_vdoa_vdoasr
 #define BM_VDOA_VDOASR_EOB      (0x00000008)  //!< Bit mask for VDOA_VDOASR_EOB.
 
 //! @brief Get value of VDOA_VDOASR_EOB from a register value.
-#define BG_VDOA_VDOASR_EOB(r)   (((r) & BM_VDOA_VDOASR_EOB) >> BP_VDOA_VDOASR_EOB)
+#define BG_VDOA_VDOASR_EOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_EOB) >> BP_VDOA_VDOASR_EOB)
 
 /* --- Register HW_VDOA_VDOASR, field ERRW[4] (RO)
  *
@@ -1495,7 +1443,7 @@ typedef union _hw_vdoa_vdoasr
 #define BM_VDOA_VDOASR_ERRW      (0x00000010)  //!< Bit mask for VDOA_VDOASR_ERRW.
 
 //! @brief Get value of VDOA_VDOASR_ERRW from a register value.
-#define BG_VDOA_VDOASR_ERRW(r)   (((r) & BM_VDOA_VDOASR_ERRW) >> BP_VDOA_VDOASR_ERRW)
+#define BG_VDOA_VDOASR_ERRW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_ERRW) >> BP_VDOA_VDOASR_ERRW)
 
 #define BV_VDOA_VDOASR_ERRW__READ_ERROR (0x0) //!< Read Error
 #define BV_VDOA_VDOASR_ERRW__WRITE_ERROR (0x1) //!< Write Error

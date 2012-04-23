@@ -3,7 +3,7 @@ description="Freescale iMX6SDL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
   :Memory_block.M_SJC={\
-    start=0x00000000:length=0x00000010:description="SJC"\
+    start=0x00000000:length=0x0000000b:description="SJC"\
   }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
@@ -117,18 +117,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_SJC_GPCCR_ACLKOFFDIS={\
         gui_name="ACLKOFFDIS":position=1:size=1:read_only=false\
       }\
-    }:Register.G_SJC_GPUCR1={\
-      gui_name="GPUCR1":start=0x00000009:length=4:\
-      read_only=false:write_only=false\
-    }:Register.G_SJC_GPUCR2={\
-      gui_name="GPUCR2":start=0x0000000a:length=4:\
-      read_only=false:write_only=false\
-    }:Register.G_SJC_GPUCR3={\
-      gui_name="GPUCR3":start=0x0000000b:length=4:\
-      read_only=false:write_only=false\
-    }:Register.G_SJC_GPSCR={\
-      gui_name="GPSCR":start=0x0000000c:length=4:\
-      read_only=false:write_only=false\
     }\
   }:Register_window.SJC={\
         line="$+":\
@@ -179,18 +167,6 @@ Advanced_Information.Cortex-A9={\
     line="=G_SJC_GPCCR":\
     line="B_SJC_GPCCR_SCLKR":\
     line="B_SJC_GPCCR_ACLKOFFDIS":\
-    line="$$":\
-    line="$+":\
-    line="=G_SJC_GPUCR1":\
-    line="$$":\
-    line="$+":\
-    line="=G_SJC_GPUCR2":\
-    line="$$":\
-    line="$+":\
-    line="=G_SJC_GPUCR3":\
-    line="$$":\
-    line="$+":\
-    line="=G_SJC_GPSCR":\
     line="$$":\
   }:ARM_config={}\
 }

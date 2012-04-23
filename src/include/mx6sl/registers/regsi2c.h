@@ -46,6 +46,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_I2C_IADR - I2C Address Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_I2C_IADR - I2C Address Register (RW)
@@ -96,20 +111,19 @@ typedef union _hw_i2c_iadr
 #define BM_I2C_IADR_ADR      (0x000000fe)  //!< Bit mask for I2C_IADR_ADR.
 
 //! @brief Get value of I2C_IADR_ADR from a register value.
-#define BG_I2C_IADR_ADR(r)   (((r) & BM_I2C_IADR_ADR) >> BP_I2C_IADR_ADR)
+#define BG_I2C_IADR_ADR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_IADR_ADR) >> BP_I2C_IADR_ADR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_IADR_ADR.
-#define BF_I2C_IADR_ADR(v)   ((((reg16_t) v) << BP_I2C_IADR_ADR) & BM_I2C_IADR_ADR)
-#else
-//! @brief Format value for bitfield I2C_IADR_ADR.
-#define BF_I2C_IADR_ADR(v)   (((v) << BP_I2C_IADR_ADR) & BM_I2C_IADR_ADR)
-#endif
+#define BF_I2C_IADR_ADR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_IADR_ADR) & BM_I2C_IADR_ADR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADR field to a new value.
 #define BW_I2C_IADR_ADR(x, v)   (HW_I2C_IADR_WR(x, (HW_I2C_IADR_RD(x) & ~BM_I2C_IADR_ADR) | BF_I2C_IADR_ADR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_I2C_IFDR - I2C Frequency Divider Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -173,20 +187,19 @@ typedef union _hw_i2c_ifdr
 #define BM_I2C_IFDR_IC      (0x0000003f)  //!< Bit mask for I2C_IFDR_IC.
 
 //! @brief Get value of I2C_IFDR_IC from a register value.
-#define BG_I2C_IFDR_IC(r)   (((r) & BM_I2C_IFDR_IC) >> BP_I2C_IFDR_IC)
+#define BG_I2C_IFDR_IC(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_IFDR_IC) >> BP_I2C_IFDR_IC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_IFDR_IC.
-#define BF_I2C_IFDR_IC(v)   ((((reg16_t) v) << BP_I2C_IFDR_IC) & BM_I2C_IFDR_IC)
-#else
-//! @brief Format value for bitfield I2C_IFDR_IC.
-#define BF_I2C_IFDR_IC(v)   (((v) << BP_I2C_IFDR_IC) & BM_I2C_IFDR_IC)
-#endif
+#define BF_I2C_IFDR_IC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_IFDR_IC) & BM_I2C_IFDR_IC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IC field to a new value.
 #define BW_I2C_IFDR_IC(x, v)   (HW_I2C_IFDR_WR(x, (HW_I2C_IFDR_RD(x) & ~BM_I2C_IFDR_IC) | BF_I2C_IFDR_IC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_I2C_I2CR - I2C Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -246,15 +259,10 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_RSTA      (0x00000004)  //!< Bit mask for I2C_I2CR_RSTA.
 
 //! @brief Get value of I2C_I2CR_RSTA from a register value.
-#define BG_I2C_I2CR_RSTA(r)   (((r) & BM_I2C_I2CR_RSTA) >> BP_I2C_I2CR_RSTA)
+#define BG_I2C_I2CR_RSTA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_RSTA) >> BP_I2C_I2CR_RSTA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_RSTA.
-#define BF_I2C_I2CR_RSTA(v)   ((((reg16_t) v) << BP_I2C_I2CR_RSTA) & BM_I2C_I2CR_RSTA)
-#else
-//! @brief Format value for bitfield I2C_I2CR_RSTA.
-#define BF_I2C_I2CR_RSTA(v)   (((v) << BP_I2C_I2CR_RSTA) & BM_I2C_I2CR_RSTA)
-#endif
+#define BF_I2C_I2CR_RSTA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_RSTA) & BM_I2C_I2CR_RSTA)
 
 
 /* --- Register HW_I2C_I2CR, field TXAK[3] (RW)
@@ -271,15 +279,10 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_TXAK      (0x00000008)  //!< Bit mask for I2C_I2CR_TXAK.
 
 //! @brief Get value of I2C_I2CR_TXAK from a register value.
-#define BG_I2C_I2CR_TXAK(r)   (((r) & BM_I2C_I2CR_TXAK) >> BP_I2C_I2CR_TXAK)
+#define BG_I2C_I2CR_TXAK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_TXAK) >> BP_I2C_I2CR_TXAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_TXAK.
-#define BF_I2C_I2CR_TXAK(v)   ((((reg16_t) v) << BP_I2C_I2CR_TXAK) & BM_I2C_I2CR_TXAK)
-#else
-//! @brief Format value for bitfield I2C_I2CR_TXAK.
-#define BF_I2C_I2CR_TXAK(v)   (((v) << BP_I2C_I2CR_TXAK) & BM_I2C_I2CR_TXAK)
-#endif
+#define BF_I2C_I2CR_TXAK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_TXAK) & BM_I2C_I2CR_TXAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXAK field to a new value.
@@ -302,15 +305,10 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_MTX      (0x00000010)  //!< Bit mask for I2C_I2CR_MTX.
 
 //! @brief Get value of I2C_I2CR_MTX from a register value.
-#define BG_I2C_I2CR_MTX(r)   (((r) & BM_I2C_I2CR_MTX) >> BP_I2C_I2CR_MTX)
+#define BG_I2C_I2CR_MTX(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_MTX) >> BP_I2C_I2CR_MTX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_MTX.
-#define BF_I2C_I2CR_MTX(v)   ((((reg16_t) v) << BP_I2C_I2CR_MTX) & BM_I2C_I2CR_MTX)
-#else
-//! @brief Format value for bitfield I2C_I2CR_MTX.
-#define BF_I2C_I2CR_MTX(v)   (((v) << BP_I2C_I2CR_MTX) & BM_I2C_I2CR_MTX)
-#endif
+#define BF_I2C_I2CR_MTX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_MTX) & BM_I2C_I2CR_MTX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MTX field to a new value.
@@ -334,15 +332,10 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_MSTA      (0x00000020)  //!< Bit mask for I2C_I2CR_MSTA.
 
 //! @brief Get value of I2C_I2CR_MSTA from a register value.
-#define BG_I2C_I2CR_MSTA(r)   (((r) & BM_I2C_I2CR_MSTA) >> BP_I2C_I2CR_MSTA)
+#define BG_I2C_I2CR_MSTA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_MSTA) >> BP_I2C_I2CR_MSTA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_MSTA.
-#define BF_I2C_I2CR_MSTA(v)   ((((reg16_t) v) << BP_I2C_I2CR_MSTA) & BM_I2C_I2CR_MSTA)
-#else
-//! @brief Format value for bitfield I2C_I2CR_MSTA.
-#define BF_I2C_I2CR_MSTA(v)   (((v) << BP_I2C_I2CR_MSTA) & BM_I2C_I2CR_MSTA)
-#endif
+#define BF_I2C_I2CR_MSTA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_MSTA) & BM_I2C_I2CR_MSTA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MSTA field to a new value.
@@ -367,15 +360,10 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_IIEN      (0x00000040)  //!< Bit mask for I2C_I2CR_IIEN.
 
 //! @brief Get value of I2C_I2CR_IIEN from a register value.
-#define BG_I2C_I2CR_IIEN(r)   (((r) & BM_I2C_I2CR_IIEN) >> BP_I2C_I2CR_IIEN)
+#define BG_I2C_I2CR_IIEN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_IIEN) >> BP_I2C_I2CR_IIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_IIEN.
-#define BF_I2C_I2CR_IIEN(v)   ((((reg16_t) v) << BP_I2C_I2CR_IIEN) & BM_I2C_I2CR_IIEN)
-#else
-//! @brief Format value for bitfield I2C_I2CR_IIEN.
-#define BF_I2C_I2CR_IIEN(v)   (((v) << BP_I2C_I2CR_IIEN) & BM_I2C_I2CR_IIEN)
-#endif
+#define BF_I2C_I2CR_IIEN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_IIEN) & BM_I2C_I2CR_IIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IIEN field to a new value.
@@ -401,21 +389,20 @@ typedef union _hw_i2c_i2cr
 #define BM_I2C_I2CR_IEN      (0x00000080)  //!< Bit mask for I2C_I2CR_IEN.
 
 //! @brief Get value of I2C_I2CR_IEN from a register value.
-#define BG_I2C_I2CR_IEN(r)   (((r) & BM_I2C_I2CR_IEN) >> BP_I2C_I2CR_IEN)
+#define BG_I2C_I2CR_IEN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2CR_IEN) >> BP_I2C_I2CR_IEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2CR_IEN.
-#define BF_I2C_I2CR_IEN(v)   ((((reg16_t) v) << BP_I2C_I2CR_IEN) & BM_I2C_I2CR_IEN)
-#else
-//! @brief Format value for bitfield I2C_I2CR_IEN.
-#define BF_I2C_I2CR_IEN(v)   (((v) << BP_I2C_I2CR_IEN) & BM_I2C_I2CR_IEN)
-#endif
+#define BF_I2C_I2CR_IEN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_IEN) & BM_I2C_I2CR_IEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IEN field to a new value.
 #define BW_I2C_I2CR_IEN(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_IEN) | BF_I2C_I2CR_IEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_I2C_I2SR - I2C Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -475,7 +462,7 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_RXAK      (0x00000001)  //!< Bit mask for I2C_I2SR_RXAK.
 
 //! @brief Get value of I2C_I2SR_RXAK from a register value.
-#define BG_I2C_I2SR_RXAK(r)   (((r) & BM_I2C_I2SR_RXAK) >> BP_I2C_I2SR_RXAK)
+#define BG_I2C_I2SR_RXAK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_RXAK) >> BP_I2C_I2SR_RXAK)
 
 
 /* --- Register HW_I2C_I2SR, field IIF[1] (RW)
@@ -496,15 +483,10 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_IIF      (0x00000002)  //!< Bit mask for I2C_I2SR_IIF.
 
 //! @brief Get value of I2C_I2SR_IIF from a register value.
-#define BG_I2C_I2SR_IIF(r)   (((r) & BM_I2C_I2SR_IIF) >> BP_I2C_I2SR_IIF)
+#define BG_I2C_I2SR_IIF(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IIF) >> BP_I2C_I2SR_IIF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2SR_IIF.
-#define BF_I2C_I2SR_IIF(v)   ((((reg16_t) v) << BP_I2C_I2SR_IIF) & BM_I2C_I2SR_IIF)
-#else
-//! @brief Format value for bitfield I2C_I2SR_IIF.
-#define BF_I2C_I2SR_IIF(v)   (((v) << BP_I2C_I2SR_IIF) & BM_I2C_I2SR_IIF)
-#endif
+#define BF_I2C_I2SR_IIF(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2SR_IIF) & BM_I2C_I2SR_IIF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IIF field to a new value.
@@ -528,7 +510,7 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_SRW      (0x00000004)  //!< Bit mask for I2C_I2SR_SRW.
 
 //! @brief Get value of I2C_I2SR_SRW from a register value.
-#define BG_I2C_I2SR_SRW(r)   (((r) & BM_I2C_I2SR_SRW) >> BP_I2C_I2SR_SRW)
+#define BG_I2C_I2SR_SRW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_SRW) >> BP_I2C_I2SR_SRW)
 
 
 /* --- Register HW_I2C_I2SR, field IAL[4] (RW)
@@ -550,15 +532,10 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_IAL      (0x00000010)  //!< Bit mask for I2C_I2SR_IAL.
 
 //! @brief Get value of I2C_I2SR_IAL from a register value.
-#define BG_I2C_I2SR_IAL(r)   (((r) & BM_I2C_I2SR_IAL) >> BP_I2C_I2SR_IAL)
+#define BG_I2C_I2SR_IAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IAL) >> BP_I2C_I2SR_IAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2SR_IAL.
-#define BF_I2C_I2SR_IAL(v)   ((((reg16_t) v) << BP_I2C_I2SR_IAL) & BM_I2C_I2SR_IAL)
-#else
-//! @brief Format value for bitfield I2C_I2SR_IAL.
-#define BF_I2C_I2SR_IAL(v)   (((v) << BP_I2C_I2SR_IAL) & BM_I2C_I2SR_IAL)
-#endif
+#define BF_I2C_I2SR_IAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2SR_IAL) & BM_I2C_I2SR_IAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IAL field to a new value.
@@ -581,7 +558,7 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_IBB      (0x00000020)  //!< Bit mask for I2C_I2SR_IBB.
 
 //! @brief Get value of I2C_I2SR_IBB from a register value.
-#define BG_I2C_I2SR_IBB(r)   (((r) & BM_I2C_I2SR_IBB) >> BP_I2C_I2SR_IBB)
+#define BG_I2C_I2SR_IBB(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IBB) >> BP_I2C_I2SR_IBB)
 
 
 /* --- Register HW_I2C_I2SR, field IAAS[6] (RO)
@@ -599,7 +576,7 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_IAAS      (0x00000040)  //!< Bit mask for I2C_I2SR_IAAS.
 
 //! @brief Get value of I2C_I2SR_IAAS from a register value.
-#define BG_I2C_I2SR_IAAS(r)   (((r) & BM_I2C_I2SR_IAAS) >> BP_I2C_I2SR_IAAS)
+#define BG_I2C_I2SR_IAAS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IAAS) >> BP_I2C_I2SR_IAAS)
 
 
 /* --- Register HW_I2C_I2SR, field ICF[7] (RO)
@@ -616,8 +593,12 @@ typedef union _hw_i2c_i2sr
 #define BM_I2C_I2SR_ICF      (0x00000080)  //!< Bit mask for I2C_I2SR_ICF.
 
 //! @brief Get value of I2C_I2SR_ICF from a register value.
-#define BG_I2C_I2SR_ICF(r)   (((r) & BM_I2C_I2SR_ICF) >> BP_I2C_I2SR_ICF)
+#define BG_I2C_I2SR_ICF(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_ICF) >> BP_I2C_I2SR_ICF)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_I2C_I2DR - I2C Data I/O Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -671,15 +652,10 @@ typedef union _hw_i2c_i2dr
 #define BM_I2C_I2DR_DATA      (0x000000ff)  //!< Bit mask for I2C_I2DR_DATA.
 
 //! @brief Get value of I2C_I2DR_DATA from a register value.
-#define BG_I2C_I2DR_DATA(r)   (((r) & BM_I2C_I2DR_DATA) >> BP_I2C_I2DR_DATA)
+#define BG_I2C_I2DR_DATA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2DR_DATA) >> BP_I2C_I2DR_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield I2C_I2DR_DATA.
-#define BF_I2C_I2DR_DATA(v)   ((((reg16_t) v) << BP_I2C_I2DR_DATA) & BM_I2C_I2DR_DATA)
-#else
-//! @brief Format value for bitfield I2C_I2DR_DATA.
-#define BF_I2C_I2DR_DATA(v)   (((v) << BP_I2C_I2DR_DATA) & BM_I2C_I2DR_DATA)
-#endif
+#define BF_I2C_I2DR_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2DR_DATA) & BM_I2C_I2DR_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.

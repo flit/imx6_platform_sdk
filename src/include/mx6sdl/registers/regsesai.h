@@ -56,6 +56,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_ETDR - ESAI Transmit Data Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ESAI_ETDR - ESAI Transmit Data Register (WORZ)
@@ -104,15 +119,14 @@ typedef union _hw_esai_etdr
 #define BM_ESAI_ETDR_ETDR      (0xffffffff)  //!< Bit mask for ESAI_ETDR_ETDR.
 
 //! @brief Get value of ESAI_ETDR_ETDR from a register value.
-#define BG_ESAI_ETDR_ETDR(r)   (((r) & BM_ESAI_ETDR_ETDR) >> BP_ESAI_ETDR_ETDR)
+#define BG_ESAI_ETDR_ETDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ETDR_ETDR) >> BP_ESAI_ETDR_ETDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ETDR_ETDR.
-#define BF_ESAI_ETDR_ETDR(v)   ((((reg32_t) v) << BP_ESAI_ETDR_ETDR) & BM_ESAI_ETDR_ETDR)
-#else
-//! @brief Format value for bitfield ESAI_ETDR_ETDR.
-#define BF_ESAI_ETDR_ETDR(v)   (((v) << BP_ESAI_ETDR_ETDR) & BM_ESAI_ETDR_ETDR)
-#endif
+#define BF_ESAI_ETDR_ETDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ETDR_ETDR) & BM_ESAI_ETDR_ETDR)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_ERDR - ESAI Receive Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -162,7 +176,11 @@ typedef union _hw_esai_erdr
 #define BM_ESAI_ERDR_ERDR      (0xffffffff)  //!< Bit mask for ESAI_ERDR_ERDR.
 
 //! @brief Get value of ESAI_ERDR_ERDR from a register value.
-#define BG_ESAI_ERDR_ERDR(r)   (((r) & BM_ESAI_ERDR_ERDR) >> BP_ESAI_ERDR_ERDR)
+#define BG_ESAI_ERDR_ERDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ERDR_ERDR) >> BP_ESAI_ERDR_ERDR)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_ECR - ESAI Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -221,15 +239,10 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ESAIEN      (0x00000001)  //!< Bit mask for ESAI_ECR_ESAIEN.
 
 //! @brief Get value of ESAI_ECR_ESAIEN from a register value.
-#define BG_ESAI_ECR_ESAIEN(r)   (((r) & BM_ESAI_ECR_ESAIEN) >> BP_ESAI_ECR_ESAIEN)
+#define BG_ESAI_ECR_ESAIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ESAIEN) >> BP_ESAI_ECR_ESAIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ESAIEN.
-#define BF_ESAI_ECR_ESAIEN(v)   ((((reg32_t) v) << BP_ESAI_ECR_ESAIEN) & BM_ESAI_ECR_ESAIEN)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ESAIEN.
-#define BF_ESAI_ECR_ESAIEN(v)   (((v) << BP_ESAI_ECR_ESAIEN) & BM_ESAI_ECR_ESAIEN)
-#endif
+#define BF_ESAI_ECR_ESAIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ESAIEN) & BM_ESAI_ECR_ESAIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESAIEN field to a new value.
@@ -250,15 +263,10 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ERST      (0x00000002)  //!< Bit mask for ESAI_ECR_ERST.
 
 //! @brief Get value of ESAI_ECR_ERST from a register value.
-#define BG_ESAI_ECR_ERST(r)   (((r) & BM_ESAI_ECR_ERST) >> BP_ESAI_ECR_ERST)
+#define BG_ESAI_ECR_ERST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ERST) >> BP_ESAI_ECR_ERST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ERST.
-#define BF_ESAI_ECR_ERST(v)   ((((reg32_t) v) << BP_ESAI_ECR_ERST) & BM_ESAI_ECR_ERST)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ERST.
-#define BF_ESAI_ECR_ERST(v)   (((v) << BP_ESAI_ECR_ERST) & BM_ESAI_ECR_ERST)
-#endif
+#define BF_ESAI_ECR_ERST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ERST) & BM_ESAI_ECR_ERST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERST field to a new value.
@@ -279,15 +287,10 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ERO      (0x00010000)  //!< Bit mask for ESAI_ECR_ERO.
 
 //! @brief Get value of ESAI_ECR_ERO from a register value.
-#define BG_ESAI_ECR_ERO(r)   (((r) & BM_ESAI_ECR_ERO) >> BP_ESAI_ECR_ERO)
+#define BG_ESAI_ECR_ERO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ERO) >> BP_ESAI_ECR_ERO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ERO.
-#define BF_ESAI_ECR_ERO(v)   ((((reg32_t) v) << BP_ESAI_ECR_ERO) & BM_ESAI_ECR_ERO)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ERO.
-#define BF_ESAI_ECR_ERO(v)   (((v) << BP_ESAI_ECR_ERO) & BM_ESAI_ECR_ERO)
-#endif
+#define BF_ESAI_ECR_ERO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ERO) & BM_ESAI_ECR_ERO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERO field to a new value.
@@ -309,15 +312,10 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ERI      (0x00020000)  //!< Bit mask for ESAI_ECR_ERI.
 
 //! @brief Get value of ESAI_ECR_ERI from a register value.
-#define BG_ESAI_ECR_ERI(r)   (((r) & BM_ESAI_ECR_ERI) >> BP_ESAI_ECR_ERI)
+#define BG_ESAI_ECR_ERI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ERI) >> BP_ESAI_ECR_ERI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ERI.
-#define BF_ESAI_ECR_ERI(v)   ((((reg32_t) v) << BP_ESAI_ECR_ERI) & BM_ESAI_ECR_ERI)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ERI.
-#define BF_ESAI_ECR_ERI(v)   (((v) << BP_ESAI_ECR_ERI) & BM_ESAI_ECR_ERI)
-#endif
+#define BF_ESAI_ECR_ERI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ERI) & BM_ESAI_ECR_ERI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERI field to a new value.
@@ -338,15 +336,10 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ETO      (0x00040000)  //!< Bit mask for ESAI_ECR_ETO.
 
 //! @brief Get value of ESAI_ECR_ETO from a register value.
-#define BG_ESAI_ECR_ETO(r)   (((r) & BM_ESAI_ECR_ETO) >> BP_ESAI_ECR_ETO)
+#define BG_ESAI_ECR_ETO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ETO) >> BP_ESAI_ECR_ETO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ETO.
-#define BF_ESAI_ECR_ETO(v)   ((((reg32_t) v) << BP_ESAI_ECR_ETO) & BM_ESAI_ECR_ETO)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ETO.
-#define BF_ESAI_ECR_ETO(v)   (((v) << BP_ESAI_ECR_ETO) & BM_ESAI_ECR_ETO)
-#endif
+#define BF_ESAI_ECR_ETO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ETO) & BM_ESAI_ECR_ETO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ETO field to a new value.
@@ -368,21 +361,20 @@ typedef union _hw_esai_ecr
 #define BM_ESAI_ECR_ETI      (0x00080000)  //!< Bit mask for ESAI_ECR_ETI.
 
 //! @brief Get value of ESAI_ECR_ETI from a register value.
-#define BG_ESAI_ECR_ETI(r)   (((r) & BM_ESAI_ECR_ETI) >> BP_ESAI_ECR_ETI)
+#define BG_ESAI_ECR_ETI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ECR_ETI) >> BP_ESAI_ECR_ETI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_ECR_ETI.
-#define BF_ESAI_ECR_ETI(v)   ((((reg32_t) v) << BP_ESAI_ECR_ETI) & BM_ESAI_ECR_ETI)
-#else
-//! @brief Format value for bitfield ESAI_ECR_ETI.
-#define BF_ESAI_ECR_ETI(v)   (((v) << BP_ESAI_ECR_ETI) & BM_ESAI_ECR_ETI)
-#endif
+#define BF_ESAI_ECR_ETI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ECR_ETI) & BM_ESAI_ECR_ETI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ETI field to a new value.
 #define BW_ESAI_ECR_ETI(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ETI) | BF_ESAI_ECR_ETI(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_ESR - ESAI Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -440,7 +432,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_RD      (0x00000001)  //!< Bit mask for ESAI_ESR_RD.
 
 //! @brief Get value of ESAI_ESR_RD from a register value.
-#define BG_ESAI_ESR_RD(r)   (((r) & BM_ESAI_ESR_RD) >> BP_ESAI_ESR_RD)
+#define BG_ESAI_ESR_RD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RD) >> BP_ESAI_ESR_RD)
 
 
 /* --- Register HW_ESAI_ESR, field RED[1] (RO)
@@ -456,7 +448,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_RED      (0x00000002)  //!< Bit mask for ESAI_ESR_RED.
 
 //! @brief Get value of ESAI_ESR_RED from a register value.
-#define BG_ESAI_ESR_RED(r)   (((r) & BM_ESAI_ESR_RED) >> BP_ESAI_ESR_RED)
+#define BG_ESAI_ESR_RED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RED) >> BP_ESAI_ESR_RED)
 
 
 /* --- Register HW_ESAI_ESR, field RDE[2] (RO)
@@ -472,7 +464,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_RDE      (0x00000004)  //!< Bit mask for ESAI_ESR_RDE.
 
 //! @brief Get value of ESAI_ESR_RDE from a register value.
-#define BG_ESAI_ESR_RDE(r)   (((r) & BM_ESAI_ESR_RDE) >> BP_ESAI_ESR_RDE)
+#define BG_ESAI_ESR_RDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RDE) >> BP_ESAI_ESR_RDE)
 
 
 /* --- Register HW_ESAI_ESR, field RLS[3] (RO)
@@ -489,7 +481,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_RLS      (0x00000008)  //!< Bit mask for ESAI_ESR_RLS.
 
 //! @brief Get value of ESAI_ESR_RLS from a register value.
-#define BG_ESAI_ESR_RLS(r)   (((r) & BM_ESAI_ESR_RLS) >> BP_ESAI_ESR_RLS)
+#define BG_ESAI_ESR_RLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RLS) >> BP_ESAI_ESR_RLS)
 
 
 /* --- Register HW_ESAI_ESR, field TD[4] (RO)
@@ -505,7 +497,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TD      (0x00000010)  //!< Bit mask for ESAI_ESR_TD.
 
 //! @brief Get value of ESAI_ESR_TD from a register value.
-#define BG_ESAI_ESR_TD(r)   (((r) & BM_ESAI_ESR_TD) >> BP_ESAI_ESR_TD)
+#define BG_ESAI_ESR_TD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TD) >> BP_ESAI_ESR_TD)
 
 
 /* --- Register HW_ESAI_ESR, field TED[5] (RO)
@@ -521,7 +513,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TED      (0x00000020)  //!< Bit mask for ESAI_ESR_TED.
 
 //! @brief Get value of ESAI_ESR_TED from a register value.
-#define BG_ESAI_ESR_TED(r)   (((r) & BM_ESAI_ESR_TED) >> BP_ESAI_ESR_TED)
+#define BG_ESAI_ESR_TED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TED) >> BP_ESAI_ESR_TED)
 
 
 /* --- Register HW_ESAI_ESR, field TDE[6] (RO)
@@ -537,7 +529,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TDE      (0x00000040)  //!< Bit mask for ESAI_ESR_TDE.
 
 //! @brief Get value of ESAI_ESR_TDE from a register value.
-#define BG_ESAI_ESR_TDE(r)   (((r) & BM_ESAI_ESR_TDE) >> BP_ESAI_ESR_TDE)
+#define BG_ESAI_ESR_TDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TDE) >> BP_ESAI_ESR_TDE)
 
 
 /* --- Register HW_ESAI_ESR, field TLS[7] (RO)
@@ -554,7 +546,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TLS      (0x00000080)  //!< Bit mask for ESAI_ESR_TLS.
 
 //! @brief Get value of ESAI_ESR_TLS from a register value.
-#define BG_ESAI_ESR_TLS(r)   (((r) & BM_ESAI_ESR_TLS) >> BP_ESAI_ESR_TLS)
+#define BG_ESAI_ESR_TLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TLS) >> BP_ESAI_ESR_TLS)
 
 
 /* --- Register HW_ESAI_ESR, field TFE[8] (RO)
@@ -572,7 +564,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TFE      (0x00000100)  //!< Bit mask for ESAI_ESR_TFE.
 
 //! @brief Get value of ESAI_ESR_TFE from a register value.
-#define BG_ESAI_ESR_TFE(r)   (((r) & BM_ESAI_ESR_TFE) >> BP_ESAI_ESR_TFE)
+#define BG_ESAI_ESR_TFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TFE) >> BP_ESAI_ESR_TFE)
 
 
 /* --- Register HW_ESAI_ESR, field RFF[9] (RO)
@@ -590,7 +582,7 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_RFF      (0x00000200)  //!< Bit mask for ESAI_ESR_RFF.
 
 //! @brief Get value of ESAI_ESR_RFF from a register value.
-#define BG_ESAI_ESR_RFF(r)   (((r) & BM_ESAI_ESR_RFF) >> BP_ESAI_ESR_RFF)
+#define BG_ESAI_ESR_RFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RFF) >> BP_ESAI_ESR_RFF)
 
 
 /* --- Register HW_ESAI_ESR, field TINIT[10] (RO)
@@ -611,8 +603,12 @@ typedef union _hw_esai_esr
 #define BM_ESAI_ESR_TINIT      (0x00000400)  //!< Bit mask for ESAI_ESR_TINIT.
 
 //! @brief Get value of ESAI_ESR_TINIT from a register value.
-#define BG_ESAI_ESR_TINIT(r)   (((r) & BM_ESAI_ESR_TINIT) >> BP_ESAI_ESR_TINIT)
+#define BG_ESAI_ESR_TINIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TINIT) >> BP_ESAI_ESR_TINIT)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TFCR - Transmit FIFO Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -674,15 +670,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TFE      (0x00000001)  //!< Bit mask for ESAI_TFCR_TFE.
 
 //! @brief Get value of ESAI_TFCR_TFE from a register value.
-#define BG_ESAI_TFCR_TFE(r)   (((r) & BM_ESAI_TFCR_TFE) >> BP_ESAI_TFCR_TFE)
+#define BG_ESAI_TFCR_TFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TFE) >> BP_ESAI_TFCR_TFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TFE.
-#define BF_ESAI_TFCR_TFE(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TFE) & BM_ESAI_TFCR_TFE)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TFE.
-#define BF_ESAI_TFCR_TFE(v)   (((v) << BP_ESAI_TFCR_TFE) & BM_ESAI_TFCR_TFE)
-#endif
+#define BF_ESAI_TFCR_TFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TFE) & BM_ESAI_TFCR_TFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFE field to a new value.
@@ -703,15 +694,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TFR      (0x00000002)  //!< Bit mask for ESAI_TFCR_TFR.
 
 //! @brief Get value of ESAI_TFCR_TFR from a register value.
-#define BG_ESAI_TFCR_TFR(r)   (((r) & BM_ESAI_TFCR_TFR) >> BP_ESAI_TFCR_TFR)
+#define BG_ESAI_TFCR_TFR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TFR) >> BP_ESAI_TFCR_TFR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TFR.
-#define BF_ESAI_TFCR_TFR(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TFR) & BM_ESAI_TFCR_TFR)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TFR.
-#define BF_ESAI_TFCR_TFR(v)   (((v) << BP_ESAI_TFCR_TFR) & BM_ESAI_TFCR_TFR)
-#endif
+#define BF_ESAI_TFCR_TFR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TFR) & BM_ESAI_TFCR_TFR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFR field to a new value.
@@ -733,15 +719,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE0      (0x00000004)  //!< Bit mask for ESAI_TFCR_TE0.
 
 //! @brief Get value of ESAI_TFCR_TE0 from a register value.
-#define BG_ESAI_TFCR_TE0(r)   (((r) & BM_ESAI_TFCR_TE0) >> BP_ESAI_TFCR_TE0)
+#define BG_ESAI_TFCR_TE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE0) >> BP_ESAI_TFCR_TE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE0.
-#define BF_ESAI_TFCR_TE0(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE0) & BM_ESAI_TFCR_TE0)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE0.
-#define BF_ESAI_TFCR_TE0(v)   (((v) << BP_ESAI_TFCR_TE0) & BM_ESAI_TFCR_TE0)
-#endif
+#define BF_ESAI_TFCR_TE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE0) & BM_ESAI_TFCR_TE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE0 field to a new value.
@@ -763,15 +744,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE1      (0x00000008)  //!< Bit mask for ESAI_TFCR_TE1.
 
 //! @brief Get value of ESAI_TFCR_TE1 from a register value.
-#define BG_ESAI_TFCR_TE1(r)   (((r) & BM_ESAI_TFCR_TE1) >> BP_ESAI_TFCR_TE1)
+#define BG_ESAI_TFCR_TE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE1) >> BP_ESAI_TFCR_TE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE1.
-#define BF_ESAI_TFCR_TE1(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE1) & BM_ESAI_TFCR_TE1)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE1.
-#define BF_ESAI_TFCR_TE1(v)   (((v) << BP_ESAI_TFCR_TE1) & BM_ESAI_TFCR_TE1)
-#endif
+#define BF_ESAI_TFCR_TE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE1) & BM_ESAI_TFCR_TE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE1 field to a new value.
@@ -793,15 +769,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE2      (0x00000010)  //!< Bit mask for ESAI_TFCR_TE2.
 
 //! @brief Get value of ESAI_TFCR_TE2 from a register value.
-#define BG_ESAI_TFCR_TE2(r)   (((r) & BM_ESAI_TFCR_TE2) >> BP_ESAI_TFCR_TE2)
+#define BG_ESAI_TFCR_TE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE2) >> BP_ESAI_TFCR_TE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE2.
-#define BF_ESAI_TFCR_TE2(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE2) & BM_ESAI_TFCR_TE2)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE2.
-#define BF_ESAI_TFCR_TE2(v)   (((v) << BP_ESAI_TFCR_TE2) & BM_ESAI_TFCR_TE2)
-#endif
+#define BF_ESAI_TFCR_TE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE2) & BM_ESAI_TFCR_TE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE2 field to a new value.
@@ -823,15 +794,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE3      (0x00000020)  //!< Bit mask for ESAI_TFCR_TE3.
 
 //! @brief Get value of ESAI_TFCR_TE3 from a register value.
-#define BG_ESAI_TFCR_TE3(r)   (((r) & BM_ESAI_TFCR_TE3) >> BP_ESAI_TFCR_TE3)
+#define BG_ESAI_TFCR_TE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE3) >> BP_ESAI_TFCR_TE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE3.
-#define BF_ESAI_TFCR_TE3(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE3) & BM_ESAI_TFCR_TE3)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE3.
-#define BF_ESAI_TFCR_TE3(v)   (((v) << BP_ESAI_TFCR_TE3) & BM_ESAI_TFCR_TE3)
-#endif
+#define BF_ESAI_TFCR_TE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE3) & BM_ESAI_TFCR_TE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE3 field to a new value.
@@ -853,15 +819,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE4      (0x00000040)  //!< Bit mask for ESAI_TFCR_TE4.
 
 //! @brief Get value of ESAI_TFCR_TE4 from a register value.
-#define BG_ESAI_TFCR_TE4(r)   (((r) & BM_ESAI_TFCR_TE4) >> BP_ESAI_TFCR_TE4)
+#define BG_ESAI_TFCR_TE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE4) >> BP_ESAI_TFCR_TE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE4.
-#define BF_ESAI_TFCR_TE4(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE4) & BM_ESAI_TFCR_TE4)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE4.
-#define BF_ESAI_TFCR_TE4(v)   (((v) << BP_ESAI_TFCR_TE4) & BM_ESAI_TFCR_TE4)
-#endif
+#define BF_ESAI_TFCR_TE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE4) & BM_ESAI_TFCR_TE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE4 field to a new value.
@@ -883,15 +844,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TE5      (0x00000080)  //!< Bit mask for ESAI_TFCR_TE5.
 
 //! @brief Get value of ESAI_TFCR_TE5 from a register value.
-#define BG_ESAI_TFCR_TE5(r)   (((r) & BM_ESAI_TFCR_TE5) >> BP_ESAI_TFCR_TE5)
+#define BG_ESAI_TFCR_TE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TE5) >> BP_ESAI_TFCR_TE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TE5.
-#define BF_ESAI_TFCR_TE5(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TE5) & BM_ESAI_TFCR_TE5)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TE5.
-#define BF_ESAI_TFCR_TE5(v)   (((v) << BP_ESAI_TFCR_TE5) & BM_ESAI_TFCR_TE5)
-#endif
+#define BF_ESAI_TFCR_TE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TE5) & BM_ESAI_TFCR_TE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE5 field to a new value.
@@ -910,15 +866,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TFWM      (0x0000ff00)  //!< Bit mask for ESAI_TFCR_TFWM.
 
 //! @brief Get value of ESAI_TFCR_TFWM from a register value.
-#define BG_ESAI_TFCR_TFWM(r)   (((r) & BM_ESAI_TFCR_TFWM) >> BP_ESAI_TFCR_TFWM)
+#define BG_ESAI_TFCR_TFWM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TFWM) >> BP_ESAI_TFCR_TFWM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TFWM.
-#define BF_ESAI_TFCR_TFWM(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TFWM) & BM_ESAI_TFCR_TFWM)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TFWM.
-#define BF_ESAI_TFCR_TFWM(v)   (((v) << BP_ESAI_TFCR_TFWM) & BM_ESAI_TFCR_TFWM)
-#endif
+#define BF_ESAI_TFCR_TFWM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TFWM) & BM_ESAI_TFCR_TFWM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFWM field to a new value.
@@ -945,15 +896,10 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TWA      (0x00070000)  //!< Bit mask for ESAI_TFCR_TWA.
 
 //! @brief Get value of ESAI_TFCR_TWA from a register value.
-#define BG_ESAI_TFCR_TWA(r)   (((r) & BM_ESAI_TFCR_TWA) >> BP_ESAI_TFCR_TWA)
+#define BG_ESAI_TFCR_TWA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TWA) >> BP_ESAI_TFCR_TWA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TWA.
-#define BF_ESAI_TFCR_TWA(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TWA) & BM_ESAI_TFCR_TWA)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TWA.
-#define BF_ESAI_TFCR_TWA(v)   (((v) << BP_ESAI_TFCR_TWA) & BM_ESAI_TFCR_TWA)
-#endif
+#define BF_ESAI_TFCR_TWA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TWA) & BM_ESAI_TFCR_TWA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWA field to a new value.
@@ -976,21 +922,20 @@ typedef union _hw_esai_tfcr
 #define BM_ESAI_TFCR_TIEN      (0x00080000)  //!< Bit mask for ESAI_TFCR_TIEN.
 
 //! @brief Get value of ESAI_TFCR_TIEN from a register value.
-#define BG_ESAI_TFCR_TIEN(r)   (((r) & BM_ESAI_TFCR_TIEN) >> BP_ESAI_TFCR_TIEN)
+#define BG_ESAI_TFCR_TIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFCR_TIEN) >> BP_ESAI_TFCR_TIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TFCR_TIEN.
-#define BF_ESAI_TFCR_TIEN(v)   ((((reg32_t) v) << BP_ESAI_TFCR_TIEN) & BM_ESAI_TFCR_TIEN)
-#else
-//! @brief Format value for bitfield ESAI_TFCR_TIEN.
-#define BF_ESAI_TFCR_TIEN(v)   (((v) << BP_ESAI_TFCR_TIEN) & BM_ESAI_TFCR_TIEN)
-#endif
+#define BF_ESAI_TFCR_TIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TFCR_TIEN) & BM_ESAI_TFCR_TIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIEN field to a new value.
 #define BW_ESAI_TFCR_TIEN(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TIEN) | BF_ESAI_TFCR_TIEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TFSR - Transmit FIFO Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1037,7 +982,7 @@ typedef union _hw_esai_tfsr
 #define BM_ESAI_TFSR_TFCNT      (0x000000ff)  //!< Bit mask for ESAI_TFSR_TFCNT.
 
 //! @brief Get value of ESAI_TFSR_TFCNT from a register value.
-#define BG_ESAI_TFSR_TFCNT(r)   (((r) & BM_ESAI_TFSR_TFCNT) >> BP_ESAI_TFSR_TFCNT)
+#define BG_ESAI_TFSR_TFCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_TFCNT) >> BP_ESAI_TFSR_TFCNT)
 
 /* --- Register HW_ESAI_TFSR, field NTFI[10:8] (RO)
  *
@@ -1058,7 +1003,7 @@ typedef union _hw_esai_tfsr
 #define BM_ESAI_TFSR_NTFI      (0x00000700)  //!< Bit mask for ESAI_TFSR_NTFI.
 
 //! @brief Get value of ESAI_TFSR_NTFI from a register value.
-#define BG_ESAI_TFSR_NTFI(r)   (((r) & BM_ESAI_TFSR_NTFI) >> BP_ESAI_TFSR_NTFI)
+#define BG_ESAI_TFSR_NTFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_NTFI) >> BP_ESAI_TFSR_NTFI)
 
 
 /* --- Register HW_ESAI_TFSR, field NTFO[14:12] (RO)
@@ -1082,8 +1027,12 @@ typedef union _hw_esai_tfsr
 #define BM_ESAI_TFSR_NTFO      (0x00007000)  //!< Bit mask for ESAI_TFSR_NTFO.
 
 //! @brief Get value of ESAI_TFSR_NTFO from a register value.
-#define BG_ESAI_TFSR_NTFO(r)   (((r) & BM_ESAI_TFSR_NTFO) >> BP_ESAI_TFSR_NTFO)
+#define BG_ESAI_TFSR_NTFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_NTFO) >> BP_ESAI_TFSR_NTFO)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RFCR - Receive FIFO Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1144,15 +1093,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RFE      (0x00000001)  //!< Bit mask for ESAI_RFCR_RFE.
 
 //! @brief Get value of ESAI_RFCR_RFE from a register value.
-#define BG_ESAI_RFCR_RFE(r)   (((r) & BM_ESAI_RFCR_RFE) >> BP_ESAI_RFCR_RFE)
+#define BG_ESAI_RFCR_RFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RFE) >> BP_ESAI_RFCR_RFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RFE.
-#define BF_ESAI_RFCR_RFE(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RFE) & BM_ESAI_RFCR_RFE)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RFE.
-#define BF_ESAI_RFCR_RFE(v)   (((v) << BP_ESAI_RFCR_RFE) & BM_ESAI_RFCR_RFE)
-#endif
+#define BF_ESAI_RFCR_RFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RFE) & BM_ESAI_RFCR_RFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFE field to a new value.
@@ -1173,15 +1117,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RFR      (0x00000002)  //!< Bit mask for ESAI_RFCR_RFR.
 
 //! @brief Get value of ESAI_RFCR_RFR from a register value.
-#define BG_ESAI_RFCR_RFR(r)   (((r) & BM_ESAI_RFCR_RFR) >> BP_ESAI_RFCR_RFR)
+#define BG_ESAI_RFCR_RFR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RFR) >> BP_ESAI_RFCR_RFR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RFR.
-#define BF_ESAI_RFCR_RFR(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RFR) & BM_ESAI_RFCR_RFR)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RFR.
-#define BF_ESAI_RFCR_RFR(v)   (((v) << BP_ESAI_RFCR_RFR) & BM_ESAI_RFCR_RFR)
-#endif
+#define BF_ESAI_RFCR_RFR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RFR) & BM_ESAI_RFCR_RFR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFR field to a new value.
@@ -1203,15 +1142,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RE0      (0x00000004)  //!< Bit mask for ESAI_RFCR_RE0.
 
 //! @brief Get value of ESAI_RFCR_RE0 from a register value.
-#define BG_ESAI_RFCR_RE0(r)   (((r) & BM_ESAI_RFCR_RE0) >> BP_ESAI_RFCR_RE0)
+#define BG_ESAI_RFCR_RE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RE0) >> BP_ESAI_RFCR_RE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RE0.
-#define BF_ESAI_RFCR_RE0(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RE0) & BM_ESAI_RFCR_RE0)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RE0.
-#define BF_ESAI_RFCR_RE0(v)   (((v) << BP_ESAI_RFCR_RE0) & BM_ESAI_RFCR_RE0)
-#endif
+#define BF_ESAI_RFCR_RE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RE0) & BM_ESAI_RFCR_RE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE0 field to a new value.
@@ -1233,15 +1167,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RE1      (0x00000008)  //!< Bit mask for ESAI_RFCR_RE1.
 
 //! @brief Get value of ESAI_RFCR_RE1 from a register value.
-#define BG_ESAI_RFCR_RE1(r)   (((r) & BM_ESAI_RFCR_RE1) >> BP_ESAI_RFCR_RE1)
+#define BG_ESAI_RFCR_RE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RE1) >> BP_ESAI_RFCR_RE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RE1.
-#define BF_ESAI_RFCR_RE1(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RE1) & BM_ESAI_RFCR_RE1)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RE1.
-#define BF_ESAI_RFCR_RE1(v)   (((v) << BP_ESAI_RFCR_RE1) & BM_ESAI_RFCR_RE1)
-#endif
+#define BF_ESAI_RFCR_RE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RE1) & BM_ESAI_RFCR_RE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE1 field to a new value.
@@ -1263,15 +1192,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RE2      (0x00000010)  //!< Bit mask for ESAI_RFCR_RE2.
 
 //! @brief Get value of ESAI_RFCR_RE2 from a register value.
-#define BG_ESAI_RFCR_RE2(r)   (((r) & BM_ESAI_RFCR_RE2) >> BP_ESAI_RFCR_RE2)
+#define BG_ESAI_RFCR_RE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RE2) >> BP_ESAI_RFCR_RE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RE2.
-#define BF_ESAI_RFCR_RE2(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RE2) & BM_ESAI_RFCR_RE2)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RE2.
-#define BF_ESAI_RFCR_RE2(v)   (((v) << BP_ESAI_RFCR_RE2) & BM_ESAI_RFCR_RE2)
-#endif
+#define BF_ESAI_RFCR_RE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RE2) & BM_ESAI_RFCR_RE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE2 field to a new value.
@@ -1293,15 +1217,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RE3      (0x00000020)  //!< Bit mask for ESAI_RFCR_RE3.
 
 //! @brief Get value of ESAI_RFCR_RE3 from a register value.
-#define BG_ESAI_RFCR_RE3(r)   (((r) & BM_ESAI_RFCR_RE3) >> BP_ESAI_RFCR_RE3)
+#define BG_ESAI_RFCR_RE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RE3) >> BP_ESAI_RFCR_RE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RE3.
-#define BF_ESAI_RFCR_RE3(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RE3) & BM_ESAI_RFCR_RE3)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RE3.
-#define BF_ESAI_RFCR_RE3(v)   (((v) << BP_ESAI_RFCR_RE3) & BM_ESAI_RFCR_RE3)
-#endif
+#define BF_ESAI_RFCR_RE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RE3) & BM_ESAI_RFCR_RE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE3 field to a new value.
@@ -1320,15 +1239,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RFWM      (0x0000ff00)  //!< Bit mask for ESAI_RFCR_RFWM.
 
 //! @brief Get value of ESAI_RFCR_RFWM from a register value.
-#define BG_ESAI_RFCR_RFWM(r)   (((r) & BM_ESAI_RFCR_RFWM) >> BP_ESAI_RFCR_RFWM)
+#define BG_ESAI_RFCR_RFWM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RFWM) >> BP_ESAI_RFCR_RFWM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RFWM.
-#define BF_ESAI_RFCR_RFWM(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RFWM) & BM_ESAI_RFCR_RFWM)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RFWM.
-#define BF_ESAI_RFCR_RFWM(v)   (((v) << BP_ESAI_RFCR_RFWM) & BM_ESAI_RFCR_RFWM)
-#endif
+#define BF_ESAI_RFCR_RFWM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RFWM) & BM_ESAI_RFCR_RFWM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFWM field to a new value.
@@ -1355,15 +1269,10 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_RWA      (0x00070000)  //!< Bit mask for ESAI_RFCR_RWA.
 
 //! @brief Get value of ESAI_RFCR_RWA from a register value.
-#define BG_ESAI_RFCR_RWA(r)   (((r) & BM_ESAI_RFCR_RWA) >> BP_ESAI_RFCR_RWA)
+#define BG_ESAI_RFCR_RWA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_RWA) >> BP_ESAI_RFCR_RWA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_RWA.
-#define BF_ESAI_RFCR_RWA(v)   ((((reg32_t) v) << BP_ESAI_RFCR_RWA) & BM_ESAI_RFCR_RWA)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_RWA.
-#define BF_ESAI_RFCR_RWA(v)   (((v) << BP_ESAI_RFCR_RWA) & BM_ESAI_RFCR_RWA)
-#endif
+#define BF_ESAI_RFCR_RWA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_RWA) & BM_ESAI_RFCR_RWA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWA field to a new value.
@@ -1385,21 +1294,20 @@ typedef union _hw_esai_rfcr
 #define BM_ESAI_RFCR_REXT      (0x00080000)  //!< Bit mask for ESAI_RFCR_REXT.
 
 //! @brief Get value of ESAI_RFCR_REXT from a register value.
-#define BG_ESAI_RFCR_REXT(r)   (((r) & BM_ESAI_RFCR_REXT) >> BP_ESAI_RFCR_REXT)
+#define BG_ESAI_RFCR_REXT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFCR_REXT) >> BP_ESAI_RFCR_REXT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RFCR_REXT.
-#define BF_ESAI_RFCR_REXT(v)   ((((reg32_t) v) << BP_ESAI_RFCR_REXT) & BM_ESAI_RFCR_REXT)
-#else
-//! @brief Format value for bitfield ESAI_RFCR_REXT.
-#define BF_ESAI_RFCR_REXT(v)   (((v) << BP_ESAI_RFCR_REXT) & BM_ESAI_RFCR_REXT)
-#endif
+#define BF_ESAI_RFCR_REXT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RFCR_REXT) & BM_ESAI_RFCR_REXT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REXT field to a new value.
 #define BW_ESAI_RFCR_REXT(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_REXT) | BF_ESAI_RFCR_REXT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RFSR - Receive FIFO Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1446,7 +1354,7 @@ typedef union _hw_esai_rfsr
 #define BM_ESAI_RFSR_RFCNT      (0x000000ff)  //!< Bit mask for ESAI_RFSR_RFCNT.
 
 //! @brief Get value of ESAI_RFSR_RFCNT from a register value.
-#define BG_ESAI_RFSR_RFCNT(r)   (((r) & BM_ESAI_RFSR_RFCNT) >> BP_ESAI_RFSR_RFCNT)
+#define BG_ESAI_RFSR_RFCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_RFCNT) >> BP_ESAI_RFSR_RFCNT)
 
 /* --- Register HW_ESAI_RFSR, field NRFO[9:8] (RO)
  *
@@ -1463,7 +1371,7 @@ typedef union _hw_esai_rfsr
 #define BM_ESAI_RFSR_NRFO      (0x00000300)  //!< Bit mask for ESAI_RFSR_NRFO.
 
 //! @brief Get value of ESAI_RFSR_NRFO from a register value.
-#define BG_ESAI_RFSR_NRFO(r)   (((r) & BM_ESAI_RFSR_NRFO) >> BP_ESAI_RFSR_NRFO)
+#define BG_ESAI_RFSR_NRFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_NRFO) >> BP_ESAI_RFSR_NRFO)
 
 
 /* --- Register HW_ESAI_RFSR, field NRFI[13:12] (RO)
@@ -1482,8 +1390,12 @@ typedef union _hw_esai_rfsr
 #define BM_ESAI_RFSR_NRFI      (0x00003000)  //!< Bit mask for ESAI_RFSR_NRFI.
 
 //! @brief Get value of ESAI_RFSR_NRFI from a register value.
-#define BG_ESAI_RFSR_NRFI(r)   (((r) & BM_ESAI_RFSR_NRFI) >> BP_ESAI_RFSR_NRFI)
+#define BG_ESAI_RFSR_NRFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_NRFI) >> BP_ESAI_RFSR_NRFI)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX0 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1534,15 +1446,14 @@ typedef union _hw_esai_tx0
 #define BM_ESAI_TX0_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX0_TXN.
 
 //! @brief Get value of ESAI_TX0_TXN from a register value.
-#define BG_ESAI_TX0_TXN(r)   (((r) & BM_ESAI_TX0_TXN) >> BP_ESAI_TX0_TXN)
+#define BG_ESAI_TX0_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX0_TXN) >> BP_ESAI_TX0_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX0_TXN.
-#define BF_ESAI_TX0_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX0_TXN) & BM_ESAI_TX0_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX0_TXN.
-#define BF_ESAI_TX0_TXN(v)   (((v) << BP_ESAI_TX0_TXN) & BM_ESAI_TX0_TXN)
-#endif
+#define BF_ESAI_TX0_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX0_TXN) & BM_ESAI_TX0_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX1 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1593,15 +1504,14 @@ typedef union _hw_esai_tx1
 #define BM_ESAI_TX1_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX1_TXN.
 
 //! @brief Get value of ESAI_TX1_TXN from a register value.
-#define BG_ESAI_TX1_TXN(r)   (((r) & BM_ESAI_TX1_TXN) >> BP_ESAI_TX1_TXN)
+#define BG_ESAI_TX1_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX1_TXN) >> BP_ESAI_TX1_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX1_TXN.
-#define BF_ESAI_TX1_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX1_TXN) & BM_ESAI_TX1_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX1_TXN.
-#define BF_ESAI_TX1_TXN(v)   (((v) << BP_ESAI_TX1_TXN) & BM_ESAI_TX1_TXN)
-#endif
+#define BF_ESAI_TX1_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX1_TXN) & BM_ESAI_TX1_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX2 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1652,15 +1562,14 @@ typedef union _hw_esai_tx2
 #define BM_ESAI_TX2_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX2_TXN.
 
 //! @brief Get value of ESAI_TX2_TXN from a register value.
-#define BG_ESAI_TX2_TXN(r)   (((r) & BM_ESAI_TX2_TXN) >> BP_ESAI_TX2_TXN)
+#define BG_ESAI_TX2_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX2_TXN) >> BP_ESAI_TX2_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX2_TXN.
-#define BF_ESAI_TX2_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX2_TXN) & BM_ESAI_TX2_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX2_TXN.
-#define BF_ESAI_TX2_TXN(v)   (((v) << BP_ESAI_TX2_TXN) & BM_ESAI_TX2_TXN)
-#endif
+#define BF_ESAI_TX2_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX2_TXN) & BM_ESAI_TX2_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX3 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1711,15 +1620,14 @@ typedef union _hw_esai_tx3
 #define BM_ESAI_TX3_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX3_TXN.
 
 //! @brief Get value of ESAI_TX3_TXN from a register value.
-#define BG_ESAI_TX3_TXN(r)   (((r) & BM_ESAI_TX3_TXN) >> BP_ESAI_TX3_TXN)
+#define BG_ESAI_TX3_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX3_TXN) >> BP_ESAI_TX3_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX3_TXN.
-#define BF_ESAI_TX3_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX3_TXN) & BM_ESAI_TX3_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX3_TXN.
-#define BF_ESAI_TX3_TXN(v)   (((v) << BP_ESAI_TX3_TXN) & BM_ESAI_TX3_TXN)
-#endif
+#define BF_ESAI_TX3_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX3_TXN) & BM_ESAI_TX3_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX4 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1770,15 +1678,14 @@ typedef union _hw_esai_tx4
 #define BM_ESAI_TX4_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX4_TXN.
 
 //! @brief Get value of ESAI_TX4_TXN from a register value.
-#define BG_ESAI_TX4_TXN(r)   (((r) & BM_ESAI_TX4_TXN) >> BP_ESAI_TX4_TXN)
+#define BG_ESAI_TX4_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX4_TXN) >> BP_ESAI_TX4_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX4_TXN.
-#define BF_ESAI_TX4_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX4_TXN) & BM_ESAI_TX4_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX4_TXN.
-#define BF_ESAI_TX4_TXN(v)   (((v) << BP_ESAI_TX4_TXN) & BM_ESAI_TX4_TXN)
-#endif
+#define BF_ESAI_TX4_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX4_TXN) & BM_ESAI_TX4_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX5 - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1829,15 +1736,14 @@ typedef union _hw_esai_tx5
 #define BM_ESAI_TX5_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX5_TXN.
 
 //! @brief Get value of ESAI_TX5_TXN from a register value.
-#define BG_ESAI_TX5_TXN(r)   (((r) & BM_ESAI_TX5_TXN) >> BP_ESAI_TX5_TXN)
+#define BG_ESAI_TX5_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX5_TXN) >> BP_ESAI_TX5_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX5_TXN.
-#define BF_ESAI_TX5_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX5_TXN) & BM_ESAI_TX5_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX5_TXN.
-#define BF_ESAI_TX5_TXN(v)   (((v) << BP_ESAI_TX5_TXN) & BM_ESAI_TX5_TXN)
-#endif
+#define BF_ESAI_TX5_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX5_TXN) & BM_ESAI_TX5_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TX - Transmit Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1888,15 +1794,14 @@ typedef union _hw_esai_tx
 #define BM_ESAI_TX_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX_TXN.
 
 //! @brief Get value of ESAI_TX_TXN from a register value.
-#define BG_ESAI_TX_TXN(r)   (((r) & BM_ESAI_TX_TXN) >> BP_ESAI_TX_TXN)
+#define BG_ESAI_TX_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX_TXN) >> BP_ESAI_TX_TXN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TX_TXN.
-#define BF_ESAI_TX_TXN(v)   ((((reg32_t) v) << BP_ESAI_TX_TXN) & BM_ESAI_TX_TXN)
-#else
-//! @brief Format value for bitfield ESAI_TX_TXN.
-#define BF_ESAI_TX_TXN(v)   (((v) << BP_ESAI_TX_TXN) & BM_ESAI_TX_TXN)
-#endif
+#define BF_ESAI_TX_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX_TXN) & BM_ESAI_TX_TXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RX0 - Receive Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1944,7 +1849,11 @@ typedef union _hw_esai_rx0
 #define BM_ESAI_RX0_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX0_RXN.
 
 //! @brief Get value of ESAI_RX0_RXN from a register value.
-#define BG_ESAI_RX0_RXN(r)   (((r) & BM_ESAI_RX0_RXN) >> BP_ESAI_RX0_RXN)
+#define BG_ESAI_RX0_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX0_RXN) >> BP_ESAI_RX0_RXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RX1 - Receive Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1992,7 +1901,11 @@ typedef union _hw_esai_rx1
 #define BM_ESAI_RX1_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX1_RXN.
 
 //! @brief Get value of ESAI_RX1_RXN from a register value.
-#define BG_ESAI_RX1_RXN(r)   (((r) & BM_ESAI_RX1_RXN) >> BP_ESAI_RX1_RXN)
+#define BG_ESAI_RX1_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX1_RXN) >> BP_ESAI_RX1_RXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RX2 - Receive Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2040,7 +1953,11 @@ typedef union _hw_esai_rx2
 #define BM_ESAI_RX2_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX2_RXN.
 
 //! @brief Get value of ESAI_RX2_RXN from a register value.
-#define BG_ESAI_RX2_RXN(r)   (((r) & BM_ESAI_RX2_RXN) >> BP_ESAI_RX2_RXN)
+#define BG_ESAI_RX2_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX2_RXN) >> BP_ESAI_RX2_RXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RX3 - Receive Data Register n
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2088,7 +2005,11 @@ typedef union _hw_esai_rx3
 #define BM_ESAI_RX3_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX3_RXN.
 
 //! @brief Get value of ESAI_RX3_RXN from a register value.
-#define BG_ESAI_RX3_RXN(r)   (((r) & BM_ESAI_RX3_RXN) >> BP_ESAI_RX3_RXN)
+#define BG_ESAI_RX3_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX3_RXN) >> BP_ESAI_RX3_RXN)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_SAISR - Serial Audio Interface Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2152,7 +2073,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_IF0      (0x00000001)  //!< Bit mask for ESAI_SAISR_IF0.
 
 //! @brief Get value of ESAI_SAISR_IF0 from a register value.
-#define BG_ESAI_SAISR_IF0(r)   (((r) & BM_ESAI_SAISR_IF0) >> BP_ESAI_SAISR_IF0)
+#define BG_ESAI_SAISR_IF0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF0) >> BP_ESAI_SAISR_IF0)
 
 /* --- Register HW_ESAI_SAISR, field IF1[1] (RO)
  *
@@ -2168,7 +2089,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_IF1      (0x00000002)  //!< Bit mask for ESAI_SAISR_IF1.
 
 //! @brief Get value of ESAI_SAISR_IF1 from a register value.
-#define BG_ESAI_SAISR_IF1(r)   (((r) & BM_ESAI_SAISR_IF1) >> BP_ESAI_SAISR_IF1)
+#define BG_ESAI_SAISR_IF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF1) >> BP_ESAI_SAISR_IF1)
 
 /* --- Register HW_ESAI_SAISR, field IF2[2] (RO)
  *
@@ -2184,7 +2105,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_IF2      (0x00000004)  //!< Bit mask for ESAI_SAISR_IF2.
 
 //! @brief Get value of ESAI_SAISR_IF2 from a register value.
-#define BG_ESAI_SAISR_IF2(r)   (((r) & BM_ESAI_SAISR_IF2) >> BP_ESAI_SAISR_IF2)
+#define BG_ESAI_SAISR_IF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF2) >> BP_ESAI_SAISR_IF2)
 
 /* --- Register HW_ESAI_SAISR, field RFS[6] (RO)
  *
@@ -2201,7 +2122,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_RFS      (0x00000040)  //!< Bit mask for ESAI_SAISR_RFS.
 
 //! @brief Get value of ESAI_SAISR_RFS from a register value.
-#define BG_ESAI_SAISR_RFS(r)   (((r) & BM_ESAI_SAISR_RFS) >> BP_ESAI_SAISR_RFS)
+#define BG_ESAI_SAISR_RFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RFS) >> BP_ESAI_SAISR_RFS)
 
 /* --- Register HW_ESAI_SAISR, field ROE[7] (RO)
  *
@@ -2217,7 +2138,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_ROE      (0x00000080)  //!< Bit mask for ESAI_SAISR_ROE.
 
 //! @brief Get value of ESAI_SAISR_ROE from a register value.
-#define BG_ESAI_SAISR_ROE(r)   (((r) & BM_ESAI_SAISR_ROE) >> BP_ESAI_SAISR_ROE)
+#define BG_ESAI_SAISR_ROE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_ROE) >> BP_ESAI_SAISR_ROE)
 
 /* --- Register HW_ESAI_SAISR, field RDF[8] (RO)
  *
@@ -2232,7 +2153,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_RDF      (0x00000100)  //!< Bit mask for ESAI_SAISR_RDF.
 
 //! @brief Get value of ESAI_SAISR_RDF from a register value.
-#define BG_ESAI_SAISR_RDF(r)   (((r) & BM_ESAI_SAISR_RDF) >> BP_ESAI_SAISR_RDF)
+#define BG_ESAI_SAISR_RDF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RDF) >> BP_ESAI_SAISR_RDF)
 
 /* --- Register HW_ESAI_SAISR, field REDF[9] (RO)
  *
@@ -2250,7 +2171,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_REDF      (0x00000200)  //!< Bit mask for ESAI_SAISR_REDF.
 
 //! @brief Get value of ESAI_SAISR_REDF from a register value.
-#define BG_ESAI_SAISR_REDF(r)   (((r) & BM_ESAI_SAISR_REDF) >> BP_ESAI_SAISR_REDF)
+#define BG_ESAI_SAISR_REDF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_REDF) >> BP_ESAI_SAISR_REDF)
 
 /* --- Register HW_ESAI_SAISR, field RODF[10] (RO)
  *
@@ -2267,7 +2188,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_RODF      (0x00000400)  //!< Bit mask for ESAI_SAISR_RODF.
 
 //! @brief Get value of ESAI_SAISR_RODF from a register value.
-#define BG_ESAI_SAISR_RODF(r)   (((r) & BM_ESAI_SAISR_RODF) >> BP_ESAI_SAISR_RODF)
+#define BG_ESAI_SAISR_RODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RODF) >> BP_ESAI_SAISR_RODF)
 
 /* --- Register HW_ESAI_SAISR, field TFS[13] (RO)
  *
@@ -2286,7 +2207,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_TFS      (0x00002000)  //!< Bit mask for ESAI_SAISR_TFS.
 
 //! @brief Get value of ESAI_SAISR_TFS from a register value.
-#define BG_ESAI_SAISR_TFS(r)   (((r) & BM_ESAI_SAISR_TFS) >> BP_ESAI_SAISR_TFS)
+#define BG_ESAI_SAISR_TFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TFS) >> BP_ESAI_SAISR_TFS)
 
 /* --- Register HW_ESAI_SAISR, field TUE[14] (RO)
  *
@@ -2303,7 +2224,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_TUE      (0x00004000)  //!< Bit mask for ESAI_SAISR_TUE.
 
 //! @brief Get value of ESAI_SAISR_TUE from a register value.
-#define BG_ESAI_SAISR_TUE(r)   (((r) & BM_ESAI_SAISR_TUE) >> BP_ESAI_SAISR_TUE)
+#define BG_ESAI_SAISR_TUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TUE) >> BP_ESAI_SAISR_TUE)
 
 /* --- Register HW_ESAI_SAISR, field TDE[15] (RO)
  *
@@ -2322,7 +2243,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_TDE      (0x00008000)  //!< Bit mask for ESAI_SAISR_TDE.
 
 //! @brief Get value of ESAI_SAISR_TDE from a register value.
-#define BG_ESAI_SAISR_TDE(r)   (((r) & BM_ESAI_SAISR_TDE) >> BP_ESAI_SAISR_TDE)
+#define BG_ESAI_SAISR_TDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TDE) >> BP_ESAI_SAISR_TDE)
 
 /* --- Register HW_ESAI_SAISR, field TEDE[16] (RO)
  *
@@ -2344,7 +2265,7 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_TEDE      (0x00010000)  //!< Bit mask for ESAI_SAISR_TEDE.
 
 //! @brief Get value of ESAI_SAISR_TEDE from a register value.
-#define BG_ESAI_SAISR_TEDE(r)   (((r) & BM_ESAI_SAISR_TEDE) >> BP_ESAI_SAISR_TEDE)
+#define BG_ESAI_SAISR_TEDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TEDE) >> BP_ESAI_SAISR_TEDE)
 
 /* --- Register HW_ESAI_SAISR, field TODFE[17] (RO)
  *
@@ -2366,7 +2287,11 @@ typedef union _hw_esai_saisr
 #define BM_ESAI_SAISR_TODFE      (0x00020000)  //!< Bit mask for ESAI_SAISR_TODFE.
 
 //! @brief Get value of ESAI_SAISR_TODFE from a register value.
-#define BG_ESAI_SAISR_TODFE(r)   (((r) & BM_ESAI_SAISR_TODFE) >> BP_ESAI_SAISR_TODFE)
+#define BG_ESAI_SAISR_TODFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TODFE) >> BP_ESAI_SAISR_TODFE)
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_SAICR - Serial Audio Interface Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2425,15 +2350,10 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_OF0      (0x00000001)  //!< Bit mask for ESAI_SAICR_OF0.
 
 //! @brief Get value of ESAI_SAICR_OF0 from a register value.
-#define BG_ESAI_SAICR_OF0(r)   (((r) & BM_ESAI_SAICR_OF0) >> BP_ESAI_SAICR_OF0)
+#define BG_ESAI_SAICR_OF0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_OF0) >> BP_ESAI_SAICR_OF0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_OF0.
-#define BF_ESAI_SAICR_OF0(v)   ((((reg32_t) v) << BP_ESAI_SAICR_OF0) & BM_ESAI_SAICR_OF0)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_OF0.
-#define BF_ESAI_SAICR_OF0(v)   (((v) << BP_ESAI_SAICR_OF0) & BM_ESAI_SAICR_OF0)
-#endif
+#define BF_ESAI_SAICR_OF0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_OF0) & BM_ESAI_SAICR_OF0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF0 field to a new value.
@@ -2454,15 +2374,10 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_OF1      (0x00000002)  //!< Bit mask for ESAI_SAICR_OF1.
 
 //! @brief Get value of ESAI_SAICR_OF1 from a register value.
-#define BG_ESAI_SAICR_OF1(r)   (((r) & BM_ESAI_SAICR_OF1) >> BP_ESAI_SAICR_OF1)
+#define BG_ESAI_SAICR_OF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_OF1) >> BP_ESAI_SAICR_OF1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_OF1.
-#define BF_ESAI_SAICR_OF1(v)   ((((reg32_t) v) << BP_ESAI_SAICR_OF1) & BM_ESAI_SAICR_OF1)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_OF1.
-#define BF_ESAI_SAICR_OF1(v)   (((v) << BP_ESAI_SAICR_OF1) & BM_ESAI_SAICR_OF1)
-#endif
+#define BF_ESAI_SAICR_OF1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_OF1) & BM_ESAI_SAICR_OF1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF1 field to a new value.
@@ -2483,15 +2398,10 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_OF2      (0x00000004)  //!< Bit mask for ESAI_SAICR_OF2.
 
 //! @brief Get value of ESAI_SAICR_OF2 from a register value.
-#define BG_ESAI_SAICR_OF2(r)   (((r) & BM_ESAI_SAICR_OF2) >> BP_ESAI_SAICR_OF2)
+#define BG_ESAI_SAICR_OF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_OF2) >> BP_ESAI_SAICR_OF2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_OF2.
-#define BF_ESAI_SAICR_OF2(v)   ((((reg32_t) v) << BP_ESAI_SAICR_OF2) & BM_ESAI_SAICR_OF2)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_OF2.
-#define BF_ESAI_SAICR_OF2(v)   (((v) << BP_ESAI_SAICR_OF2) & BM_ESAI_SAICR_OF2)
-#endif
+#define BF_ESAI_SAICR_OF2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_OF2) & BM_ESAI_SAICR_OF2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF2 field to a new value.
@@ -2515,15 +2425,10 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_SYN      (0x00000040)  //!< Bit mask for ESAI_SAICR_SYN.
 
 //! @brief Get value of ESAI_SAICR_SYN from a register value.
-#define BG_ESAI_SAICR_SYN(r)   (((r) & BM_ESAI_SAICR_SYN) >> BP_ESAI_SAICR_SYN)
+#define BG_ESAI_SAICR_SYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_SYN) >> BP_ESAI_SAICR_SYN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_SYN.
-#define BF_ESAI_SAICR_SYN(v)   ((((reg32_t) v) << BP_ESAI_SAICR_SYN) & BM_ESAI_SAICR_SYN)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_SYN.
-#define BF_ESAI_SAICR_SYN(v)   (((v) << BP_ESAI_SAICR_SYN) & BM_ESAI_SAICR_SYN)
-#endif
+#define BF_ESAI_SAICR_SYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_SYN) & BM_ESAI_SAICR_SYN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYN field to a new value.
@@ -2545,15 +2450,10 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_TEBE      (0x00000080)  //!< Bit mask for ESAI_SAICR_TEBE.
 
 //! @brief Get value of ESAI_SAICR_TEBE from a register value.
-#define BG_ESAI_SAICR_TEBE(r)   (((r) & BM_ESAI_SAICR_TEBE) >> BP_ESAI_SAICR_TEBE)
+#define BG_ESAI_SAICR_TEBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_TEBE) >> BP_ESAI_SAICR_TEBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_TEBE.
-#define BF_ESAI_SAICR_TEBE(v)   ((((reg32_t) v) << BP_ESAI_SAICR_TEBE) & BM_ESAI_SAICR_TEBE)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_TEBE.
-#define BF_ESAI_SAICR_TEBE(v)   (((v) << BP_ESAI_SAICR_TEBE) & BM_ESAI_SAICR_TEBE)
-#endif
+#define BF_ESAI_SAICR_TEBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_TEBE) & BM_ESAI_SAICR_TEBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEBE field to a new value.
@@ -2576,20 +2476,19 @@ typedef union _hw_esai_saicr
 #define BM_ESAI_SAICR_ALC      (0x00000100)  //!< Bit mask for ESAI_SAICR_ALC.
 
 //! @brief Get value of ESAI_SAICR_ALC from a register value.
-#define BG_ESAI_SAICR_ALC(r)   (((r) & BM_ESAI_SAICR_ALC) >> BP_ESAI_SAICR_ALC)
+#define BG_ESAI_SAICR_ALC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAICR_ALC) >> BP_ESAI_SAICR_ALC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_SAICR_ALC.
-#define BF_ESAI_SAICR_ALC(v)   ((((reg32_t) v) << BP_ESAI_SAICR_ALC) & BM_ESAI_SAICR_ALC)
-#else
-//! @brief Format value for bitfield ESAI_SAICR_ALC.
-#define BF_ESAI_SAICR_ALC(v)   (((v) << BP_ESAI_SAICR_ALC) & BM_ESAI_SAICR_ALC)
-#endif
+#define BF_ESAI_SAICR_ALC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_SAICR_ALC) & BM_ESAI_SAICR_ALC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALC field to a new value.
 #define BW_ESAI_SAICR_ALC(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_ALC) | BF_ESAI_SAICR_ALC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TCR - Transmit Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2680,15 +2579,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE0      (0x00000001)  //!< Bit mask for ESAI_TCR_TE0.
 
 //! @brief Get value of ESAI_TCR_TE0 from a register value.
-#define BG_ESAI_TCR_TE0(r)   (((r) & BM_ESAI_TCR_TE0) >> BP_ESAI_TCR_TE0)
+#define BG_ESAI_TCR_TE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE0) >> BP_ESAI_TCR_TE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE0.
-#define BF_ESAI_TCR_TE0(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE0) & BM_ESAI_TCR_TE0)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE0.
-#define BF_ESAI_TCR_TE0(v)   (((v) << BP_ESAI_TCR_TE0) & BM_ESAI_TCR_TE0)
-#endif
+#define BF_ESAI_TCR_TE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE0) & BM_ESAI_TCR_TE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE0 field to a new value.
@@ -2715,15 +2609,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE1      (0x00000002)  //!< Bit mask for ESAI_TCR_TE1.
 
 //! @brief Get value of ESAI_TCR_TE1 from a register value.
-#define BG_ESAI_TCR_TE1(r)   (((r) & BM_ESAI_TCR_TE1) >> BP_ESAI_TCR_TE1)
+#define BG_ESAI_TCR_TE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE1) >> BP_ESAI_TCR_TE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE1.
-#define BF_ESAI_TCR_TE1(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE1) & BM_ESAI_TCR_TE1)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE1.
-#define BF_ESAI_TCR_TE1(v)   (((v) << BP_ESAI_TCR_TE1) & BM_ESAI_TCR_TE1)
-#endif
+#define BF_ESAI_TCR_TE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE1) & BM_ESAI_TCR_TE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE1 field to a new value.
@@ -2753,15 +2642,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE2      (0x00000004)  //!< Bit mask for ESAI_TCR_TE2.
 
 //! @brief Get value of ESAI_TCR_TE2 from a register value.
-#define BG_ESAI_TCR_TE2(r)   (((r) & BM_ESAI_TCR_TE2) >> BP_ESAI_TCR_TE2)
+#define BG_ESAI_TCR_TE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE2) >> BP_ESAI_TCR_TE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE2.
-#define BF_ESAI_TCR_TE2(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE2) & BM_ESAI_TCR_TE2)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE2.
-#define BF_ESAI_TCR_TE2(v)   (((v) << BP_ESAI_TCR_TE2) & BM_ESAI_TCR_TE2)
-#endif
+#define BF_ESAI_TCR_TE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE2) & BM_ESAI_TCR_TE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE2 field to a new value.
@@ -2791,15 +2675,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE3      (0x00000008)  //!< Bit mask for ESAI_TCR_TE3.
 
 //! @brief Get value of ESAI_TCR_TE3 from a register value.
-#define BG_ESAI_TCR_TE3(r)   (((r) & BM_ESAI_TCR_TE3) >> BP_ESAI_TCR_TE3)
+#define BG_ESAI_TCR_TE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE3) >> BP_ESAI_TCR_TE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE3.
-#define BF_ESAI_TCR_TE3(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE3) & BM_ESAI_TCR_TE3)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE3.
-#define BF_ESAI_TCR_TE3(v)   (((v) << BP_ESAI_TCR_TE3) & BM_ESAI_TCR_TE3)
-#endif
+#define BF_ESAI_TCR_TE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE3) & BM_ESAI_TCR_TE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE3 field to a new value.
@@ -2829,15 +2708,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE4      (0x00000010)  //!< Bit mask for ESAI_TCR_TE4.
 
 //! @brief Get value of ESAI_TCR_TE4 from a register value.
-#define BG_ESAI_TCR_TE4(r)   (((r) & BM_ESAI_TCR_TE4) >> BP_ESAI_TCR_TE4)
+#define BG_ESAI_TCR_TE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE4) >> BP_ESAI_TCR_TE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE4.
-#define BF_ESAI_TCR_TE4(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE4) & BM_ESAI_TCR_TE4)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE4.
-#define BF_ESAI_TCR_TE4(v)   (((v) << BP_ESAI_TCR_TE4) & BM_ESAI_TCR_TE4)
-#endif
+#define BF_ESAI_TCR_TE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE4) & BM_ESAI_TCR_TE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE4 field to a new value.
@@ -2867,15 +2741,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TE5      (0x00000020)  //!< Bit mask for ESAI_TCR_TE5.
 
 //! @brief Get value of ESAI_TCR_TE5 from a register value.
-#define BG_ESAI_TCR_TE5(r)   (((r) & BM_ESAI_TCR_TE5) >> BP_ESAI_TCR_TE5)
+#define BG_ESAI_TCR_TE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TE5) >> BP_ESAI_TCR_TE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TE5.
-#define BF_ESAI_TCR_TE5(v)   ((((reg32_t) v) << BP_ESAI_TCR_TE5) & BM_ESAI_TCR_TE5)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TE5.
-#define BF_ESAI_TCR_TE5(v)   (((v) << BP_ESAI_TCR_TE5) & BM_ESAI_TCR_TE5)
-#endif
+#define BF_ESAI_TCR_TE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TE5) & BM_ESAI_TCR_TE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TE5 field to a new value.
@@ -2892,15 +2761,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TSHFD      (0x00000040)  //!< Bit mask for ESAI_TCR_TSHFD.
 
 //! @brief Get value of ESAI_TCR_TSHFD from a register value.
-#define BG_ESAI_TCR_TSHFD(r)   (((r) & BM_ESAI_TCR_TSHFD) >> BP_ESAI_TCR_TSHFD)
+#define BG_ESAI_TCR_TSHFD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TSHFD) >> BP_ESAI_TCR_TSHFD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TSHFD.
-#define BF_ESAI_TCR_TSHFD(v)   ((((reg32_t) v) << BP_ESAI_TCR_TSHFD) & BM_ESAI_TCR_TSHFD)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TSHFD.
-#define BF_ESAI_TCR_TSHFD(v)   (((v) << BP_ESAI_TCR_TSHFD) & BM_ESAI_TCR_TSHFD)
-#endif
+#define BF_ESAI_TCR_TSHFD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TSHFD) & BM_ESAI_TCR_TSHFD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TSHFD field to a new value.
@@ -2927,15 +2791,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TWA      (0x00000080)  //!< Bit mask for ESAI_TCR_TWA.
 
 //! @brief Get value of ESAI_TCR_TWA from a register value.
-#define BG_ESAI_TCR_TWA(r)   (((r) & BM_ESAI_TCR_TWA) >> BP_ESAI_TCR_TWA)
+#define BG_ESAI_TCR_TWA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TWA) >> BP_ESAI_TCR_TWA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TWA.
-#define BF_ESAI_TCR_TWA(v)   ((((reg32_t) v) << BP_ESAI_TCR_TWA) & BM_ESAI_TCR_TWA)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TWA.
-#define BF_ESAI_TCR_TWA(v)   (((v) << BP_ESAI_TCR_TWA) & BM_ESAI_TCR_TWA)
-#endif
+#define BF_ESAI_TCR_TWA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TWA) & BM_ESAI_TCR_TWA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWA field to a new value.
@@ -2960,15 +2819,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TMOD      (0x00000300)  //!< Bit mask for ESAI_TCR_TMOD.
 
 //! @brief Get value of ESAI_TCR_TMOD from a register value.
-#define BG_ESAI_TCR_TMOD(r)   (((r) & BM_ESAI_TCR_TMOD) >> BP_ESAI_TCR_TMOD)
+#define BG_ESAI_TCR_TMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TMOD) >> BP_ESAI_TCR_TMOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TMOD.
-#define BF_ESAI_TCR_TMOD(v)   ((((reg32_t) v) << BP_ESAI_TCR_TMOD) & BM_ESAI_TCR_TMOD)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TMOD.
-#define BF_ESAI_TCR_TMOD(v)   (((v) << BP_ESAI_TCR_TMOD) & BM_ESAI_TCR_TMOD)
-#endif
+#define BF_ESAI_TCR_TMOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TMOD) & BM_ESAI_TCR_TMOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TMOD field to a new value.
@@ -2987,15 +2841,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TSWS      (0x00007c00)  //!< Bit mask for ESAI_TCR_TSWS.
 
 //! @brief Get value of ESAI_TCR_TSWS from a register value.
-#define BG_ESAI_TCR_TSWS(r)   (((r) & BM_ESAI_TCR_TSWS) >> BP_ESAI_TCR_TSWS)
+#define BG_ESAI_TCR_TSWS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TSWS) >> BP_ESAI_TCR_TSWS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TSWS.
-#define BF_ESAI_TCR_TSWS(v)   ((((reg32_t) v) << BP_ESAI_TCR_TSWS) & BM_ESAI_TCR_TSWS)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TSWS.
-#define BF_ESAI_TCR_TSWS(v)   (((v) << BP_ESAI_TCR_TSWS) & BM_ESAI_TCR_TSWS)
-#endif
+#define BF_ESAI_TCR_TSWS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TSWS) & BM_ESAI_TCR_TSWS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TSWS field to a new value.
@@ -3014,15 +2863,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TFSL      (0x00008000)  //!< Bit mask for ESAI_TCR_TFSL.
 
 //! @brief Get value of ESAI_TCR_TFSL from a register value.
-#define BG_ESAI_TCR_TFSL(r)   (((r) & BM_ESAI_TCR_TFSL) >> BP_ESAI_TCR_TFSL)
+#define BG_ESAI_TCR_TFSL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TFSL) >> BP_ESAI_TCR_TFSL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TFSL.
-#define BF_ESAI_TCR_TFSL(v)   ((((reg32_t) v) << BP_ESAI_TCR_TFSL) & BM_ESAI_TCR_TFSL)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TFSL.
-#define BF_ESAI_TCR_TFSL(v)   (((v) << BP_ESAI_TCR_TFSL) & BM_ESAI_TCR_TFSL)
-#endif
+#define BF_ESAI_TCR_TFSL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TFSL) & BM_ESAI_TCR_TFSL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSL field to a new value.
@@ -3042,15 +2886,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TFSR      (0x00010000)  //!< Bit mask for ESAI_TCR_TFSR.
 
 //! @brief Get value of ESAI_TCR_TFSR from a register value.
-#define BG_ESAI_TCR_TFSR(r)   (((r) & BM_ESAI_TCR_TFSR) >> BP_ESAI_TCR_TFSR)
+#define BG_ESAI_TCR_TFSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TFSR) >> BP_ESAI_TCR_TFSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TFSR.
-#define BF_ESAI_TCR_TFSR(v)   ((((reg32_t) v) << BP_ESAI_TCR_TFSR) & BM_ESAI_TCR_TFSR)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TFSR.
-#define BF_ESAI_TCR_TFSR(v)   (((v) << BP_ESAI_TCR_TFSR) & BM_ESAI_TCR_TFSR)
-#endif
+#define BF_ESAI_TCR_TFSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TFSR) & BM_ESAI_TCR_TFSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSR field to a new value.
@@ -3076,15 +2915,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_PADC      (0x00020000)  //!< Bit mask for ESAI_TCR_PADC.
 
 //! @brief Get value of ESAI_TCR_PADC from a register value.
-#define BG_ESAI_TCR_PADC(r)   (((r) & BM_ESAI_TCR_PADC) >> BP_ESAI_TCR_PADC)
+#define BG_ESAI_TCR_PADC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_PADC) >> BP_ESAI_TCR_PADC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_PADC.
-#define BF_ESAI_TCR_PADC(v)   ((((reg32_t) v) << BP_ESAI_TCR_PADC) & BM_ESAI_TCR_PADC)
-#else
-//! @brief Format value for bitfield ESAI_TCR_PADC.
-#define BF_ESAI_TCR_PADC(v)   (((v) << BP_ESAI_TCR_PADC) & BM_ESAI_TCR_PADC)
-#endif
+#define BF_ESAI_TCR_PADC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_PADC) & BM_ESAI_TCR_PADC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADC field to a new value.
@@ -3109,15 +2943,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TPR      (0x00080000)  //!< Bit mask for ESAI_TCR_TPR.
 
 //! @brief Get value of ESAI_TCR_TPR from a register value.
-#define BG_ESAI_TCR_TPR(r)   (((r) & BM_ESAI_TCR_TPR) >> BP_ESAI_TCR_TPR)
+#define BG_ESAI_TCR_TPR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TPR) >> BP_ESAI_TCR_TPR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TPR.
-#define BF_ESAI_TCR_TPR(v)   ((((reg32_t) v) << BP_ESAI_TCR_TPR) & BM_ESAI_TCR_TPR)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TPR.
-#define BF_ESAI_TCR_TPR(v)   (((v) << BP_ESAI_TCR_TPR) & BM_ESAI_TCR_TPR)
-#endif
+#define BF_ESAI_TCR_TPR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TPR) & BM_ESAI_TCR_TPR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TPR field to a new value.
@@ -3136,15 +2965,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TEIE      (0x00100000)  //!< Bit mask for ESAI_TCR_TEIE.
 
 //! @brief Get value of ESAI_TCR_TEIE from a register value.
-#define BG_ESAI_TCR_TEIE(r)   (((r) & BM_ESAI_TCR_TEIE) >> BP_ESAI_TCR_TEIE)
+#define BG_ESAI_TCR_TEIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TEIE) >> BP_ESAI_TCR_TEIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TEIE.
-#define BF_ESAI_TCR_TEIE(v)   ((((reg32_t) v) << BP_ESAI_TCR_TEIE) & BM_ESAI_TCR_TEIE)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TEIE.
-#define BF_ESAI_TCR_TEIE(v)   (((v) << BP_ESAI_TCR_TEIE) & BM_ESAI_TCR_TEIE)
-#endif
+#define BF_ESAI_TCR_TEIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TEIE) & BM_ESAI_TCR_TEIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEIE field to a new value.
@@ -3170,15 +2994,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TEDIE      (0x00200000)  //!< Bit mask for ESAI_TCR_TEDIE.
 
 //! @brief Get value of ESAI_TCR_TEDIE from a register value.
-#define BG_ESAI_TCR_TEDIE(r)   (((r) & BM_ESAI_TCR_TEDIE) >> BP_ESAI_TCR_TEDIE)
+#define BG_ESAI_TCR_TEDIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TEDIE) >> BP_ESAI_TCR_TEDIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TEDIE.
-#define BF_ESAI_TCR_TEDIE(v)   ((((reg32_t) v) << BP_ESAI_TCR_TEDIE) & BM_ESAI_TCR_TEDIE)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TEDIE.
-#define BF_ESAI_TCR_TEDIE(v)   (((v) << BP_ESAI_TCR_TEDIE) & BM_ESAI_TCR_TEDIE)
-#endif
+#define BF_ESAI_TCR_TEDIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TEDIE) & BM_ESAI_TCR_TEDIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEDIE field to a new value.
@@ -3199,15 +3018,10 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TIE      (0x00400000)  //!< Bit mask for ESAI_TCR_TIE.
 
 //! @brief Get value of ESAI_TCR_TIE from a register value.
-#define BG_ESAI_TCR_TIE(r)   (((r) & BM_ESAI_TCR_TIE) >> BP_ESAI_TCR_TIE)
+#define BG_ESAI_TCR_TIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TIE) >> BP_ESAI_TCR_TIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TIE.
-#define BF_ESAI_TCR_TIE(v)   ((((reg32_t) v) << BP_ESAI_TCR_TIE) & BM_ESAI_TCR_TIE)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TIE.
-#define BF_ESAI_TCR_TIE(v)   (((v) << BP_ESAI_TCR_TIE) & BM_ESAI_TCR_TIE)
-#endif
+#define BF_ESAI_TCR_TIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TIE) & BM_ESAI_TCR_TIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIE field to a new value.
@@ -3227,20 +3041,19 @@ typedef union _hw_esai_tcr
 #define BM_ESAI_TCR_TLIE      (0x00800000)  //!< Bit mask for ESAI_TCR_TLIE.
 
 //! @brief Get value of ESAI_TCR_TLIE from a register value.
-#define BG_ESAI_TCR_TLIE(r)   (((r) & BM_ESAI_TCR_TLIE) >> BP_ESAI_TCR_TLIE)
+#define BG_ESAI_TCR_TLIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCR_TLIE) >> BP_ESAI_TCR_TLIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCR_TLIE.
-#define BF_ESAI_TCR_TLIE(v)   ((((reg32_t) v) << BP_ESAI_TCR_TLIE) & BM_ESAI_TCR_TLIE)
-#else
-//! @brief Format value for bitfield ESAI_TCR_TLIE.
-#define BF_ESAI_TCR_TLIE(v)   (((v) << BP_ESAI_TCR_TLIE) & BM_ESAI_TCR_TLIE)
-#endif
+#define BF_ESAI_TCR_TLIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCR_TLIE) & BM_ESAI_TCR_TLIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TLIE field to a new value.
 #define BW_ESAI_TCR_TLIE(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TLIE) | BF_ESAI_TCR_TLIE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TCCR - Transmit Clock Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3315,15 +3128,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TPM      (0x000000ff)  //!< Bit mask for ESAI_TCCR_TPM.
 
 //! @brief Get value of ESAI_TCCR_TPM from a register value.
-#define BG_ESAI_TCCR_TPM(r)   (((r) & BM_ESAI_TCCR_TPM) >> BP_ESAI_TCCR_TPM)
+#define BG_ESAI_TCCR_TPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TPM) >> BP_ESAI_TCCR_TPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TPM.
-#define BF_ESAI_TCCR_TPM(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TPM) & BM_ESAI_TCCR_TPM)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TPM.
-#define BF_ESAI_TCCR_TPM(v)   (((v) << BP_ESAI_TCCR_TPM) & BM_ESAI_TCCR_TPM)
-#endif
+#define BF_ESAI_TCCR_TPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TPM) & BM_ESAI_TCCR_TPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TPM field to a new value.
@@ -3346,15 +3154,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TPSR      (0x00000100)  //!< Bit mask for ESAI_TCCR_TPSR.
 
 //! @brief Get value of ESAI_TCCR_TPSR from a register value.
-#define BG_ESAI_TCCR_TPSR(r)   (((r) & BM_ESAI_TCCR_TPSR) >> BP_ESAI_TCCR_TPSR)
+#define BG_ESAI_TCCR_TPSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TPSR) >> BP_ESAI_TCCR_TPSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TPSR.
-#define BF_ESAI_TCCR_TPSR(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TPSR) & BM_ESAI_TCCR_TPSR)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TPSR.
-#define BF_ESAI_TCCR_TPSR(v)   (((v) << BP_ESAI_TCCR_TPSR) & BM_ESAI_TCCR_TPSR)
-#endif
+#define BF_ESAI_TCCR_TPSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TPSR) & BM_ESAI_TCCR_TPSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TPSR field to a new value.
@@ -3378,15 +3181,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TDC      (0x00003e00)  //!< Bit mask for ESAI_TCCR_TDC.
 
 //! @brief Get value of ESAI_TCCR_TDC from a register value.
-#define BG_ESAI_TCCR_TDC(r)   (((r) & BM_ESAI_TCCR_TDC) >> BP_ESAI_TCCR_TDC)
+#define BG_ESAI_TCCR_TDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TDC) >> BP_ESAI_TCCR_TDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TDC.
-#define BF_ESAI_TCCR_TDC(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TDC) & BM_ESAI_TCCR_TDC)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TDC.
-#define BF_ESAI_TCCR_TDC(v)   (((v) << BP_ESAI_TCCR_TDC) & BM_ESAI_TCCR_TDC)
-#endif
+#define BF_ESAI_TCCR_TDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TDC) & BM_ESAI_TCCR_TDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDC field to a new value.
@@ -3407,15 +3205,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TFP      (0x0003c000)  //!< Bit mask for ESAI_TCCR_TFP.
 
 //! @brief Get value of ESAI_TCCR_TFP from a register value.
-#define BG_ESAI_TCCR_TFP(r)   (((r) & BM_ESAI_TCCR_TFP) >> BP_ESAI_TCCR_TFP)
+#define BG_ESAI_TCCR_TFP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TFP) >> BP_ESAI_TCCR_TFP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TFP.
-#define BF_ESAI_TCCR_TFP(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TFP) & BM_ESAI_TCCR_TFP)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TFP.
-#define BF_ESAI_TCCR_TFP(v)   (((v) << BP_ESAI_TCCR_TFP) & BM_ESAI_TCCR_TFP)
-#endif
+#define BF_ESAI_TCCR_TFP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TFP) & BM_ESAI_TCCR_TFP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFP field to a new value.
@@ -3436,15 +3229,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TCKP      (0x00040000)  //!< Bit mask for ESAI_TCCR_TCKP.
 
 //! @brief Get value of ESAI_TCCR_TCKP from a register value.
-#define BG_ESAI_TCCR_TCKP(r)   (((r) & BM_ESAI_TCCR_TCKP) >> BP_ESAI_TCCR_TCKP)
+#define BG_ESAI_TCCR_TCKP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TCKP) >> BP_ESAI_TCCR_TCKP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TCKP.
-#define BF_ESAI_TCCR_TCKP(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TCKP) & BM_ESAI_TCCR_TCKP)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TCKP.
-#define BF_ESAI_TCCR_TCKP(v)   (((v) << BP_ESAI_TCCR_TCKP) & BM_ESAI_TCCR_TCKP)
-#endif
+#define BF_ESAI_TCCR_TCKP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TCKP) & BM_ESAI_TCCR_TCKP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKP field to a new value.
@@ -3464,15 +3252,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TFSP      (0x00080000)  //!< Bit mask for ESAI_TCCR_TFSP.
 
 //! @brief Get value of ESAI_TCCR_TFSP from a register value.
-#define BG_ESAI_TCCR_TFSP(r)   (((r) & BM_ESAI_TCCR_TFSP) >> BP_ESAI_TCCR_TFSP)
+#define BG_ESAI_TCCR_TFSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TFSP) >> BP_ESAI_TCCR_TFSP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TFSP.
-#define BF_ESAI_TCCR_TFSP(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TFSP) & BM_ESAI_TCCR_TFSP)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TFSP.
-#define BF_ESAI_TCCR_TFSP(v)   (((v) << BP_ESAI_TCCR_TFSP) & BM_ESAI_TCCR_TFSP)
-#endif
+#define BF_ESAI_TCCR_TFSP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TFSP) & BM_ESAI_TCCR_TFSP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSP field to a new value.
@@ -3493,15 +3276,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_THCKP      (0x00100000)  //!< Bit mask for ESAI_TCCR_THCKP.
 
 //! @brief Get value of ESAI_TCCR_THCKP from a register value.
-#define BG_ESAI_TCCR_THCKP(r)   (((r) & BM_ESAI_TCCR_THCKP) >> BP_ESAI_TCCR_THCKP)
+#define BG_ESAI_TCCR_THCKP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_THCKP) >> BP_ESAI_TCCR_THCKP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_THCKP.
-#define BF_ESAI_TCCR_THCKP(v)   ((((reg32_t) v) << BP_ESAI_TCCR_THCKP) & BM_ESAI_TCCR_THCKP)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_THCKP.
-#define BF_ESAI_TCCR_THCKP(v)   (((v) << BP_ESAI_TCCR_THCKP) & BM_ESAI_TCCR_THCKP)
-#endif
+#define BF_ESAI_TCCR_THCKP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_THCKP) & BM_ESAI_TCCR_THCKP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THCKP field to a new value.
@@ -3523,15 +3301,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TCKD      (0x00200000)  //!< Bit mask for ESAI_TCCR_TCKD.
 
 //! @brief Get value of ESAI_TCCR_TCKD from a register value.
-#define BG_ESAI_TCCR_TCKD(r)   (((r) & BM_ESAI_TCCR_TCKD) >> BP_ESAI_TCCR_TCKD)
+#define BG_ESAI_TCCR_TCKD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TCKD) >> BP_ESAI_TCCR_TCKD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TCKD.
-#define BF_ESAI_TCCR_TCKD(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TCKD) & BM_ESAI_TCCR_TCKD)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TCKD.
-#define BF_ESAI_TCCR_TCKD(v)   (((v) << BP_ESAI_TCCR_TCKD) & BM_ESAI_TCCR_TCKD)
-#endif
+#define BF_ESAI_TCCR_TCKD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TCKD) & BM_ESAI_TCCR_TCKD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKD field to a new value.
@@ -3548,15 +3321,10 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_TFSD      (0x00400000)  //!< Bit mask for ESAI_TCCR_TFSD.
 
 //! @brief Get value of ESAI_TCCR_TFSD from a register value.
-#define BG_ESAI_TCCR_TFSD(r)   (((r) & BM_ESAI_TCCR_TFSD) >> BP_ESAI_TCCR_TFSD)
+#define BG_ESAI_TCCR_TFSD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_TFSD) >> BP_ESAI_TCCR_TFSD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_TFSD.
-#define BF_ESAI_TCCR_TFSD(v)   ((((reg32_t) v) << BP_ESAI_TCCR_TFSD) & BM_ESAI_TCCR_TFSD)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_TFSD.
-#define BF_ESAI_TCCR_TFSD(v)   (((v) << BP_ESAI_TCCR_TFSD) & BM_ESAI_TCCR_TFSD)
-#endif
+#define BF_ESAI_TCCR_TFSD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_TFSD) & BM_ESAI_TCCR_TFSD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFSD field to a new value.
@@ -3573,20 +3341,19 @@ typedef union _hw_esai_tccr
 #define BM_ESAI_TCCR_THCKD      (0x00800000)  //!< Bit mask for ESAI_TCCR_THCKD.
 
 //! @brief Get value of ESAI_TCCR_THCKD from a register value.
-#define BG_ESAI_TCCR_THCKD(r)   (((r) & BM_ESAI_TCCR_THCKD) >> BP_ESAI_TCCR_THCKD)
+#define BG_ESAI_TCCR_THCKD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TCCR_THCKD) >> BP_ESAI_TCCR_THCKD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TCCR_THCKD.
-#define BF_ESAI_TCCR_THCKD(v)   ((((reg32_t) v) << BP_ESAI_TCCR_THCKD) & BM_ESAI_TCCR_THCKD)
-#else
-//! @brief Format value for bitfield ESAI_TCCR_THCKD.
-#define BF_ESAI_TCCR_THCKD(v)   (((v) << BP_ESAI_TCCR_THCKD) & BM_ESAI_TCCR_THCKD)
-#endif
+#define BF_ESAI_TCCR_THCKD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TCCR_THCKD) & BM_ESAI_TCCR_THCKD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the THCKD field to a new value.
 #define BW_ESAI_TCCR_THCKD(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_THCKD) | BF_ESAI_TCCR_THCKD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RCR - Receive Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3670,15 +3437,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RE0      (0x00000001)  //!< Bit mask for ESAI_RCR_RE0.
 
 //! @brief Get value of ESAI_RCR_RE0 from a register value.
-#define BG_ESAI_RCR_RE0(r)   (((r) & BM_ESAI_RCR_RE0) >> BP_ESAI_RCR_RE0)
+#define BG_ESAI_RCR_RE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RE0) >> BP_ESAI_RCR_RE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RE0.
-#define BF_ESAI_RCR_RE0(v)   ((((reg32_t) v) << BP_ESAI_RCR_RE0) & BM_ESAI_RCR_RE0)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RE0.
-#define BF_ESAI_RCR_RE0(v)   (((v) << BP_ESAI_RCR_RE0) & BM_ESAI_RCR_RE0)
-#endif
+#define BF_ESAI_RCR_RE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RE0) & BM_ESAI_RCR_RE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE0 field to a new value.
@@ -3700,15 +3462,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RE1      (0x00000002)  //!< Bit mask for ESAI_RCR_RE1.
 
 //! @brief Get value of ESAI_RCR_RE1 from a register value.
-#define BG_ESAI_RCR_RE1(r)   (((r) & BM_ESAI_RCR_RE1) >> BP_ESAI_RCR_RE1)
+#define BG_ESAI_RCR_RE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RE1) >> BP_ESAI_RCR_RE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RE1.
-#define BF_ESAI_RCR_RE1(v)   ((((reg32_t) v) << BP_ESAI_RCR_RE1) & BM_ESAI_RCR_RE1)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RE1.
-#define BF_ESAI_RCR_RE1(v)   (((v) << BP_ESAI_RCR_RE1) & BM_ESAI_RCR_RE1)
-#endif
+#define BF_ESAI_RCR_RE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RE1) & BM_ESAI_RCR_RE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE1 field to a new value.
@@ -3730,15 +3487,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RE2      (0x00000004)  //!< Bit mask for ESAI_RCR_RE2.
 
 //! @brief Get value of ESAI_RCR_RE2 from a register value.
-#define BG_ESAI_RCR_RE2(r)   (((r) & BM_ESAI_RCR_RE2) >> BP_ESAI_RCR_RE2)
+#define BG_ESAI_RCR_RE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RE2) >> BP_ESAI_RCR_RE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RE2.
-#define BF_ESAI_RCR_RE2(v)   ((((reg32_t) v) << BP_ESAI_RCR_RE2) & BM_ESAI_RCR_RE2)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RE2.
-#define BF_ESAI_RCR_RE2(v)   (((v) << BP_ESAI_RCR_RE2) & BM_ESAI_RCR_RE2)
-#endif
+#define BF_ESAI_RCR_RE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RE2) & BM_ESAI_RCR_RE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE2 field to a new value.
@@ -3760,15 +3512,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RE3      (0x00000008)  //!< Bit mask for ESAI_RCR_RE3.
 
 //! @brief Get value of ESAI_RCR_RE3 from a register value.
-#define BG_ESAI_RCR_RE3(r)   (((r) & BM_ESAI_RCR_RE3) >> BP_ESAI_RCR_RE3)
+#define BG_ESAI_RCR_RE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RE3) >> BP_ESAI_RCR_RE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RE3.
-#define BF_ESAI_RCR_RE3(v)   ((((reg32_t) v) << BP_ESAI_RCR_RE3) & BM_ESAI_RCR_RE3)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RE3.
-#define BF_ESAI_RCR_RE3(v)   (((v) << BP_ESAI_RCR_RE3) & BM_ESAI_RCR_RE3)
-#endif
+#define BF_ESAI_RCR_RE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RE3) & BM_ESAI_RCR_RE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RE3 field to a new value.
@@ -3785,15 +3532,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RSHFD      (0x00000040)  //!< Bit mask for ESAI_RCR_RSHFD.
 
 //! @brief Get value of ESAI_RCR_RSHFD from a register value.
-#define BG_ESAI_RCR_RSHFD(r)   (((r) & BM_ESAI_RCR_RSHFD) >> BP_ESAI_RCR_RSHFD)
+#define BG_ESAI_RCR_RSHFD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RSHFD) >> BP_ESAI_RCR_RSHFD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RSHFD.
-#define BF_ESAI_RCR_RSHFD(v)   ((((reg32_t) v) << BP_ESAI_RCR_RSHFD) & BM_ESAI_RCR_RSHFD)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RSHFD.
-#define BF_ESAI_RCR_RSHFD(v)   (((v) << BP_ESAI_RCR_RSHFD) & BM_ESAI_RCR_RSHFD)
-#endif
+#define BF_ESAI_RCR_RSHFD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RSHFD) & BM_ESAI_RCR_RSHFD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSHFD field to a new value.
@@ -3815,15 +3557,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RWA      (0x00000080)  //!< Bit mask for ESAI_RCR_RWA.
 
 //! @brief Get value of ESAI_RCR_RWA from a register value.
-#define BG_ESAI_RCR_RWA(r)   (((r) & BM_ESAI_RCR_RWA) >> BP_ESAI_RCR_RWA)
+#define BG_ESAI_RCR_RWA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RWA) >> BP_ESAI_RCR_RWA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RWA.
-#define BF_ESAI_RCR_RWA(v)   ((((reg32_t) v) << BP_ESAI_RCR_RWA) & BM_ESAI_RCR_RWA)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RWA.
-#define BF_ESAI_RCR_RWA(v)   (((v) << BP_ESAI_RCR_RWA) & BM_ESAI_RCR_RWA)
-#endif
+#define BF_ESAI_RCR_RWA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RWA) & BM_ESAI_RCR_RWA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWA field to a new value.
@@ -3845,15 +3582,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RMOD      (0x00000300)  //!< Bit mask for ESAI_RCR_RMOD.
 
 //! @brief Get value of ESAI_RCR_RMOD from a register value.
-#define BG_ESAI_RCR_RMOD(r)   (((r) & BM_ESAI_RCR_RMOD) >> BP_ESAI_RCR_RMOD)
+#define BG_ESAI_RCR_RMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RMOD) >> BP_ESAI_RCR_RMOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RMOD.
-#define BF_ESAI_RCR_RMOD(v)   ((((reg32_t) v) << BP_ESAI_RCR_RMOD) & BM_ESAI_RCR_RMOD)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RMOD.
-#define BF_ESAI_RCR_RMOD(v)   (((v) << BP_ESAI_RCR_RMOD) & BM_ESAI_RCR_RMOD)
-#endif
+#define BF_ESAI_RCR_RMOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RMOD) & BM_ESAI_RCR_RMOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RMOD field to a new value.
@@ -3872,15 +3604,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RSWS      (0x00007c00)  //!< Bit mask for ESAI_RCR_RSWS.
 
 //! @brief Get value of ESAI_RCR_RSWS from a register value.
-#define BG_ESAI_RCR_RSWS(r)   (((r) & BM_ESAI_RCR_RSWS) >> BP_ESAI_RCR_RSWS)
+#define BG_ESAI_RCR_RSWS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RSWS) >> BP_ESAI_RCR_RSWS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RSWS.
-#define BF_ESAI_RCR_RSWS(v)   ((((reg32_t) v) << BP_ESAI_RCR_RSWS) & BM_ESAI_RCR_RSWS)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RSWS.
-#define BF_ESAI_RCR_RSWS(v)   (((v) << BP_ESAI_RCR_RSWS) & BM_ESAI_RCR_RSWS)
-#endif
+#define BF_ESAI_RCR_RSWS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RSWS) & BM_ESAI_RCR_RSWS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSWS field to a new value.
@@ -3899,15 +3626,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RFSL      (0x00008000)  //!< Bit mask for ESAI_RCR_RFSL.
 
 //! @brief Get value of ESAI_RCR_RFSL from a register value.
-#define BG_ESAI_RCR_RFSL(r)   (((r) & BM_ESAI_RCR_RFSL) >> BP_ESAI_RCR_RFSL)
+#define BG_ESAI_RCR_RFSL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RFSL) >> BP_ESAI_RCR_RFSL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RFSL.
-#define BF_ESAI_RCR_RFSL(v)   ((((reg32_t) v) << BP_ESAI_RCR_RFSL) & BM_ESAI_RCR_RFSL)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RFSL.
-#define BF_ESAI_RCR_RFSL(v)   (((v) << BP_ESAI_RCR_RFSL) & BM_ESAI_RCR_RFSL)
-#endif
+#define BF_ESAI_RCR_RFSL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RFSL) & BM_ESAI_RCR_RFSL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSL field to a new value.
@@ -3927,15 +3649,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RFSR      (0x00010000)  //!< Bit mask for ESAI_RCR_RFSR.
 
 //! @brief Get value of ESAI_RCR_RFSR from a register value.
-#define BG_ESAI_RCR_RFSR(r)   (((r) & BM_ESAI_RCR_RFSR) >> BP_ESAI_RCR_RFSR)
+#define BG_ESAI_RCR_RFSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RFSR) >> BP_ESAI_RCR_RFSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RFSR.
-#define BF_ESAI_RCR_RFSR(v)   ((((reg32_t) v) << BP_ESAI_RCR_RFSR) & BM_ESAI_RCR_RFSR)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RFSR.
-#define BF_ESAI_RCR_RFSR(v)   (((v) << BP_ESAI_RCR_RFSR) & BM_ESAI_RCR_RFSR)
-#endif
+#define BF_ESAI_RCR_RFSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RFSR) & BM_ESAI_RCR_RFSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSR field to a new value.
@@ -3957,15 +3674,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RPR      (0x00080000)  //!< Bit mask for ESAI_RCR_RPR.
 
 //! @brief Get value of ESAI_RCR_RPR from a register value.
-#define BG_ESAI_RCR_RPR(r)   (((r) & BM_ESAI_RCR_RPR) >> BP_ESAI_RCR_RPR)
+#define BG_ESAI_RCR_RPR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RPR) >> BP_ESAI_RCR_RPR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RPR.
-#define BF_ESAI_RCR_RPR(v)   ((((reg32_t) v) << BP_ESAI_RCR_RPR) & BM_ESAI_RCR_RPR)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RPR.
-#define BF_ESAI_RCR_RPR(v)   (((v) << BP_ESAI_RCR_RPR) & BM_ESAI_RCR_RPR)
-#endif
+#define BF_ESAI_RCR_RPR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RPR) & BM_ESAI_RCR_RPR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RPR field to a new value.
@@ -3984,15 +3696,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_REIE      (0x00100000)  //!< Bit mask for ESAI_RCR_REIE.
 
 //! @brief Get value of ESAI_RCR_REIE from a register value.
-#define BG_ESAI_RCR_REIE(r)   (((r) & BM_ESAI_RCR_REIE) >> BP_ESAI_RCR_REIE)
+#define BG_ESAI_RCR_REIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_REIE) >> BP_ESAI_RCR_REIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_REIE.
-#define BF_ESAI_RCR_REIE(v)   ((((reg32_t) v) << BP_ESAI_RCR_REIE) & BM_ESAI_RCR_REIE)
-#else
-//! @brief Format value for bitfield ESAI_RCR_REIE.
-#define BF_ESAI_RCR_REIE(v)   (((v) << BP_ESAI_RCR_REIE) & BM_ESAI_RCR_REIE)
-#endif
+#define BF_ESAI_RCR_REIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_REIE) & BM_ESAI_RCR_REIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REIE field to a new value.
@@ -4017,15 +3724,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_REDIE      (0x00200000)  //!< Bit mask for ESAI_RCR_REDIE.
 
 //! @brief Get value of ESAI_RCR_REDIE from a register value.
-#define BG_ESAI_RCR_REDIE(r)   (((r) & BM_ESAI_RCR_REDIE) >> BP_ESAI_RCR_REDIE)
+#define BG_ESAI_RCR_REDIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_REDIE) >> BP_ESAI_RCR_REDIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_REDIE.
-#define BF_ESAI_RCR_REDIE(v)   ((((reg32_t) v) << BP_ESAI_RCR_REDIE) & BM_ESAI_RCR_REDIE)
-#else
-//! @brief Format value for bitfield ESAI_RCR_REDIE.
-#define BF_ESAI_RCR_REDIE(v)   (((v) << BP_ESAI_RCR_REDIE) & BM_ESAI_RCR_REDIE)
-#endif
+#define BF_ESAI_RCR_REDIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_REDIE) & BM_ESAI_RCR_REDIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REDIE field to a new value.
@@ -4046,15 +3748,10 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RIE      (0x00400000)  //!< Bit mask for ESAI_RCR_RIE.
 
 //! @brief Get value of ESAI_RCR_RIE from a register value.
-#define BG_ESAI_RCR_RIE(r)   (((r) & BM_ESAI_RCR_RIE) >> BP_ESAI_RCR_RIE)
+#define BG_ESAI_RCR_RIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RIE) >> BP_ESAI_RCR_RIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RIE.
-#define BF_ESAI_RCR_RIE(v)   ((((reg32_t) v) << BP_ESAI_RCR_RIE) & BM_ESAI_RCR_RIE)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RIE.
-#define BF_ESAI_RCR_RIE(v)   (((v) << BP_ESAI_RCR_RIE) & BM_ESAI_RCR_RIE)
-#endif
+#define BF_ESAI_RCR_RIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RIE) & BM_ESAI_RCR_RIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RIE field to a new value.
@@ -4074,20 +3771,19 @@ typedef union _hw_esai_rcr
 #define BM_ESAI_RCR_RLIE      (0x00800000)  //!< Bit mask for ESAI_RCR_RLIE.
 
 //! @brief Get value of ESAI_RCR_RLIE from a register value.
-#define BG_ESAI_RCR_RLIE(r)   (((r) & BM_ESAI_RCR_RLIE) >> BP_ESAI_RCR_RLIE)
+#define BG_ESAI_RCR_RLIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCR_RLIE) >> BP_ESAI_RCR_RLIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCR_RLIE.
-#define BF_ESAI_RCR_RLIE(v)   ((((reg32_t) v) << BP_ESAI_RCR_RLIE) & BM_ESAI_RCR_RLIE)
-#else
-//! @brief Format value for bitfield ESAI_RCR_RLIE.
-#define BF_ESAI_RCR_RLIE(v)   (((v) << BP_ESAI_RCR_RLIE) & BM_ESAI_RCR_RLIE)
-#endif
+#define BF_ESAI_RCR_RLIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCR_RLIE) & BM_ESAI_RCR_RLIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RLIE field to a new value.
 #define BW_ESAI_RCR_RLIE(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RLIE) | BF_ESAI_RCR_RLIE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RCCR - Receive Clock Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4159,15 +3855,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RPM      (0x000000ff)  //!< Bit mask for ESAI_RCCR_RPM.
 
 //! @brief Get value of ESAI_RCCR_RPM from a register value.
-#define BG_ESAI_RCCR_RPM(r)   (((r) & BM_ESAI_RCCR_RPM) >> BP_ESAI_RCCR_RPM)
+#define BG_ESAI_RCCR_RPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RPM) >> BP_ESAI_RCCR_RPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RPM.
-#define BF_ESAI_RCCR_RPM(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RPM) & BM_ESAI_RCCR_RPM)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RPM.
-#define BF_ESAI_RCCR_RPM(v)   (((v) << BP_ESAI_RCCR_RPM) & BM_ESAI_RCCR_RPM)
-#endif
+#define BF_ESAI_RCCR_RPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RPM) & BM_ESAI_RCCR_RPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RPM field to a new value.
@@ -4190,15 +3881,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RPSP      (0x00000100)  //!< Bit mask for ESAI_RCCR_RPSP.
 
 //! @brief Get value of ESAI_RCCR_RPSP from a register value.
-#define BG_ESAI_RCCR_RPSP(r)   (((r) & BM_ESAI_RCCR_RPSP) >> BP_ESAI_RCCR_RPSP)
+#define BG_ESAI_RCCR_RPSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RPSP) >> BP_ESAI_RCCR_RPSP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RPSP.
-#define BF_ESAI_RCCR_RPSP(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RPSP) & BM_ESAI_RCCR_RPSP)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RPSP.
-#define BF_ESAI_RCCR_RPSP(v)   (((v) << BP_ESAI_RCCR_RPSP) & BM_ESAI_RCCR_RPSP)
-#endif
+#define BF_ESAI_RCCR_RPSP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RPSP) & BM_ESAI_RCCR_RPSP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RPSP field to a new value.
@@ -4222,15 +3908,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RDC      (0x00003e00)  //!< Bit mask for ESAI_RCCR_RDC.
 
 //! @brief Get value of ESAI_RCCR_RDC from a register value.
-#define BG_ESAI_RCCR_RDC(r)   (((r) & BM_ESAI_RCCR_RDC) >> BP_ESAI_RCCR_RDC)
+#define BG_ESAI_RCCR_RDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RDC) >> BP_ESAI_RCCR_RDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RDC.
-#define BF_ESAI_RCCR_RDC(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RDC) & BM_ESAI_RCCR_RDC)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RDC.
-#define BF_ESAI_RCCR_RDC(v)   (((v) << BP_ESAI_RCCR_RDC) & BM_ESAI_RCCR_RDC)
-#endif
+#define BF_ESAI_RCCR_RDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RDC) & BM_ESAI_RCCR_RDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDC field to a new value.
@@ -4251,15 +3932,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RFP      (0x0003c000)  //!< Bit mask for ESAI_RCCR_RFP.
 
 //! @brief Get value of ESAI_RCCR_RFP from a register value.
-#define BG_ESAI_RCCR_RFP(r)   (((r) & BM_ESAI_RCCR_RFP) >> BP_ESAI_RCCR_RFP)
+#define BG_ESAI_RCCR_RFP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RFP) >> BP_ESAI_RCCR_RFP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RFP.
-#define BF_ESAI_RCCR_RFP(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RFP) & BM_ESAI_RCCR_RFP)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RFP.
-#define BF_ESAI_RCCR_RFP(v)   (((v) << BP_ESAI_RCCR_RFP) & BM_ESAI_RCCR_RFP)
-#endif
+#define BF_ESAI_RCCR_RFP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RFP) & BM_ESAI_RCCR_RFP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFP field to a new value.
@@ -4279,15 +3955,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RCKP      (0x00040000)  //!< Bit mask for ESAI_RCCR_RCKP.
 
 //! @brief Get value of ESAI_RCCR_RCKP from a register value.
-#define BG_ESAI_RCCR_RCKP(r)   (((r) & BM_ESAI_RCCR_RCKP) >> BP_ESAI_RCCR_RCKP)
+#define BG_ESAI_RCCR_RCKP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RCKP) >> BP_ESAI_RCCR_RCKP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RCKP.
-#define BF_ESAI_RCCR_RCKP(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RCKP) & BM_ESAI_RCCR_RCKP)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RCKP.
-#define BF_ESAI_RCCR_RCKP(v)   (((v) << BP_ESAI_RCCR_RCKP) & BM_ESAI_RCCR_RCKP)
-#endif
+#define BF_ESAI_RCCR_RCKP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RCKP) & BM_ESAI_RCCR_RCKP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCKP field to a new value.
@@ -4307,15 +3978,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RFSP      (0x00080000)  //!< Bit mask for ESAI_RCCR_RFSP.
 
 //! @brief Get value of ESAI_RCCR_RFSP from a register value.
-#define BG_ESAI_RCCR_RFSP(r)   (((r) & BM_ESAI_RCCR_RFSP) >> BP_ESAI_RCCR_RFSP)
+#define BG_ESAI_RCCR_RFSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RFSP) >> BP_ESAI_RCCR_RFSP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RFSP.
-#define BF_ESAI_RCCR_RFSP(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RFSP) & BM_ESAI_RCCR_RFSP)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RFSP.
-#define BF_ESAI_RCCR_RFSP(v)   (((v) << BP_ESAI_RCCR_RFSP) & BM_ESAI_RCCR_RFSP)
-#endif
+#define BF_ESAI_RCCR_RFSP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RFSP) & BM_ESAI_RCCR_RFSP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSP field to a new value.
@@ -4336,15 +4002,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RHCKP      (0x00100000)  //!< Bit mask for ESAI_RCCR_RHCKP.
 
 //! @brief Get value of ESAI_RCCR_RHCKP from a register value.
-#define BG_ESAI_RCCR_RHCKP(r)   (((r) & BM_ESAI_RCCR_RHCKP) >> BP_ESAI_RCCR_RHCKP)
+#define BG_ESAI_RCCR_RHCKP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RHCKP) >> BP_ESAI_RCCR_RHCKP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RHCKP.
-#define BF_ESAI_RCCR_RHCKP(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RHCKP) & BM_ESAI_RCCR_RHCKP)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RHCKP.
-#define BF_ESAI_RCCR_RHCKP(v)   (((v) << BP_ESAI_RCCR_RHCKP) & BM_ESAI_RCCR_RHCKP)
-#endif
+#define BF_ESAI_RCCR_RHCKP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RHCKP) & BM_ESAI_RCCR_RHCKP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RHCKP field to a new value.
@@ -4368,15 +4029,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RCKD      (0x00200000)  //!< Bit mask for ESAI_RCCR_RCKD.
 
 //! @brief Get value of ESAI_RCCR_RCKD from a register value.
-#define BG_ESAI_RCCR_RCKD(r)   (((r) & BM_ESAI_RCCR_RCKD) >> BP_ESAI_RCCR_RCKD)
+#define BG_ESAI_RCCR_RCKD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RCKD) >> BP_ESAI_RCCR_RCKD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RCKD.
-#define BF_ESAI_RCCR_RCKD(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RCKD) & BM_ESAI_RCCR_RCKD)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RCKD.
-#define BF_ESAI_RCCR_RCKD(v)   (((v) << BP_ESAI_RCCR_RCKD) & BM_ESAI_RCCR_RCKD)
-#endif
+#define BF_ESAI_RCCR_RCKD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RCKD) & BM_ESAI_RCCR_RCKD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCKD field to a new value.
@@ -4401,15 +4057,10 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RFSD      (0x00400000)  //!< Bit mask for ESAI_RCCR_RFSD.
 
 //! @brief Get value of ESAI_RCCR_RFSD from a register value.
-#define BG_ESAI_RCCR_RFSD(r)   (((r) & BM_ESAI_RCCR_RFSD) >> BP_ESAI_RCCR_RFSD)
+#define BG_ESAI_RCCR_RFSD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RFSD) >> BP_ESAI_RCCR_RFSD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RFSD.
-#define BF_ESAI_RCCR_RFSD(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RFSD) & BM_ESAI_RCCR_RFSD)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RFSD.
-#define BF_ESAI_RCCR_RFSD(v)   (((v) << BP_ESAI_RCCR_RFSD) & BM_ESAI_RCCR_RFSD)
-#endif
+#define BF_ESAI_RCCR_RFSD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RFSD) & BM_ESAI_RCCR_RFSD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFSD field to a new value.
@@ -4434,20 +4085,19 @@ typedef union _hw_esai_rccr
 #define BM_ESAI_RCCR_RHCKD      (0x00800000)  //!< Bit mask for ESAI_RCCR_RHCKD.
 
 //! @brief Get value of ESAI_RCCR_RHCKD from a register value.
-#define BG_ESAI_RCCR_RHCKD(r)   (((r) & BM_ESAI_RCCR_RHCKD) >> BP_ESAI_RCCR_RHCKD)
+#define BG_ESAI_RCCR_RHCKD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RHCKD) >> BP_ESAI_RCCR_RHCKD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RCCR_RHCKD.
-#define BF_ESAI_RCCR_RHCKD(v)   ((((reg32_t) v) << BP_ESAI_RCCR_RHCKD) & BM_ESAI_RCCR_RHCKD)
-#else
-//! @brief Format value for bitfield ESAI_RCCR_RHCKD.
-#define BF_ESAI_RCCR_RHCKD(v)   (((v) << BP_ESAI_RCCR_RHCKD) & BM_ESAI_RCCR_RHCKD)
-#endif
+#define BF_ESAI_RCCR_RHCKD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RHCKD) & BM_ESAI_RCCR_RHCKD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RHCKD field to a new value.
 #define BW_ESAI_RCCR_RHCKD(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RHCKD) | BF_ESAI_RCCR_RHCKD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TSMA - Transmit Slot Mask Register A
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4516,20 +4166,19 @@ typedef union _hw_esai_tsma
 #define BM_ESAI_TSMA_TS      (0x0000ffff)  //!< Bit mask for ESAI_TSMA_TS.
 
 //! @brief Get value of ESAI_TSMA_TS from a register value.
-#define BG_ESAI_TSMA_TS(r)   (((r) & BM_ESAI_TSMA_TS) >> BP_ESAI_TSMA_TS)
+#define BG_ESAI_TSMA_TS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TSMA_TS) >> BP_ESAI_TSMA_TS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TSMA_TS.
-#define BF_ESAI_TSMA_TS(v)   ((((reg32_t) v) << BP_ESAI_TSMA_TS) & BM_ESAI_TSMA_TS)
-#else
-//! @brief Format value for bitfield ESAI_TSMA_TS.
-#define BF_ESAI_TSMA_TS(v)   (((v) << BP_ESAI_TSMA_TS) & BM_ESAI_TSMA_TS)
-#endif
+#define BF_ESAI_TSMA_TS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TSMA_TS) & BM_ESAI_TSMA_TS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS field to a new value.
 #define BW_ESAI_TSMA_TS(v)   (HW_ESAI_TSMA_WR((HW_ESAI_TSMA_RD() & ~BM_ESAI_TSMA_TS) | BF_ESAI_TSMA_TS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_TSMB - Transmit Slot Mask Register B
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4597,20 +4246,19 @@ typedef union _hw_esai_tsmb
 #define BM_ESAI_TSMB_TS      (0x0000ffff)  //!< Bit mask for ESAI_TSMB_TS.
 
 //! @brief Get value of ESAI_TSMB_TS from a register value.
-#define BG_ESAI_TSMB_TS(r)   (((r) & BM_ESAI_TSMB_TS) >> BP_ESAI_TSMB_TS)
+#define BG_ESAI_TSMB_TS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TSMB_TS) >> BP_ESAI_TSMB_TS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_TSMB_TS.
-#define BF_ESAI_TSMB_TS(v)   ((((reg32_t) v) << BP_ESAI_TSMB_TS) & BM_ESAI_TSMB_TS)
-#else
-//! @brief Format value for bitfield ESAI_TSMB_TS.
-#define BF_ESAI_TSMB_TS(v)   (((v) << BP_ESAI_TSMB_TS) & BM_ESAI_TSMB_TS)
-#endif
+#define BF_ESAI_TSMB_TS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TSMB_TS) & BM_ESAI_TSMB_TS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS field to a new value.
 #define BW_ESAI_TSMB_TS(v)   (HW_ESAI_TSMB_WR((HW_ESAI_TSMB_RD() & ~BM_ESAI_TSMB_TS) | BF_ESAI_TSMB_TS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RSMA - Receive Slot Mask Register A
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4674,20 +4322,19 @@ typedef union _hw_esai_rsma
 #define BM_ESAI_RSMA_RS      (0x0000ffff)  //!< Bit mask for ESAI_RSMA_RS.
 
 //! @brief Get value of ESAI_RSMA_RS from a register value.
-#define BG_ESAI_RSMA_RS(r)   (((r) & BM_ESAI_RSMA_RS) >> BP_ESAI_RSMA_RS)
+#define BG_ESAI_RSMA_RS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RSMA_RS) >> BP_ESAI_RSMA_RS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RSMA_RS.
-#define BF_ESAI_RSMA_RS(v)   ((((reg32_t) v) << BP_ESAI_RSMA_RS) & BM_ESAI_RSMA_RS)
-#else
-//! @brief Format value for bitfield ESAI_RSMA_RS.
-#define BF_ESAI_RSMA_RS(v)   (((v) << BP_ESAI_RSMA_RS) & BM_ESAI_RSMA_RS)
-#endif
+#define BF_ESAI_RSMA_RS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RSMA_RS) & BM_ESAI_RSMA_RS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RS field to a new value.
 #define BW_ESAI_RSMA_RS(v)   (HW_ESAI_RSMA_WR((HW_ESAI_RSMA_RD() & ~BM_ESAI_RSMA_RS) | BF_ESAI_RSMA_RS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_RSMB - Receive Slot Mask Register B
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4750,20 +4397,19 @@ typedef union _hw_esai_rsmb
 #define BM_ESAI_RSMB_RS      (0x0000ffff)  //!< Bit mask for ESAI_RSMB_RS.
 
 //! @brief Get value of ESAI_RSMB_RS from a register value.
-#define BG_ESAI_RSMB_RS(r)   (((r) & BM_ESAI_RSMB_RS) >> BP_ESAI_RSMB_RS)
+#define BG_ESAI_RSMB_RS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RSMB_RS) >> BP_ESAI_RSMB_RS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_RSMB_RS.
-#define BF_ESAI_RSMB_RS(v)   ((((reg32_t) v) << BP_ESAI_RSMB_RS) & BM_ESAI_RSMB_RS)
-#else
-//! @brief Format value for bitfield ESAI_RSMB_RS.
-#define BF_ESAI_RSMB_RS(v)   (((v) << BP_ESAI_RSMB_RS) & BM_ESAI_RSMB_RS)
-#endif
+#define BF_ESAI_RSMB_RS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RSMB_RS) & BM_ESAI_RSMB_RS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RS field to a new value.
 #define BW_ESAI_RSMB_RS(v)   (HW_ESAI_RSMB_WR((HW_ESAI_RSMB_RD() & ~BM_ESAI_RSMB_RS) | BF_ESAI_RSMB_RS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_PRRC - Port C Direction Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4815,20 +4461,19 @@ typedef union _hw_esai_prrc
 #define BM_ESAI_PRRC_PDC      (0x00000fff)  //!< Bit mask for ESAI_PRRC_PDC.
 
 //! @brief Get value of ESAI_PRRC_PDC from a register value.
-#define BG_ESAI_PRRC_PDC(r)   (((r) & BM_ESAI_PRRC_PDC) >> BP_ESAI_PRRC_PDC)
+#define BG_ESAI_PRRC_PDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_PRRC_PDC) >> BP_ESAI_PRRC_PDC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_PRRC_PDC.
-#define BF_ESAI_PRRC_PDC(v)   ((((reg32_t) v) << BP_ESAI_PRRC_PDC) & BM_ESAI_PRRC_PDC)
-#else
-//! @brief Format value for bitfield ESAI_PRRC_PDC.
-#define BF_ESAI_PRRC_PDC(v)   (((v) << BP_ESAI_PRRC_PDC) & BM_ESAI_PRRC_PDC)
-#endif
+#define BF_ESAI_PRRC_PDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_PRRC_PDC) & BM_ESAI_PRRC_PDC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDC field to a new value.
 #define BW_ESAI_PRRC_PDC(v)   (HW_ESAI_PRRC_WR((HW_ESAI_PRRC_RD() & ~BM_ESAI_PRRC_PDC) | BF_ESAI_PRRC_PDC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ESAI_PCRC - Port C Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4881,15 +4526,10 @@ typedef union _hw_esai_pcrc
 #define BM_ESAI_PCRC_PC      (0x00000fff)  //!< Bit mask for ESAI_PCRC_PC.
 
 //! @brief Get value of ESAI_PCRC_PC from a register value.
-#define BG_ESAI_PCRC_PC(r)   (((r) & BM_ESAI_PCRC_PC) >> BP_ESAI_PCRC_PC)
+#define BG_ESAI_PCRC_PC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_PCRC_PC) >> BP_ESAI_PCRC_PC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ESAI_PCRC_PC.
-#define BF_ESAI_PCRC_PC(v)   ((((reg32_t) v) << BP_ESAI_PCRC_PC) & BM_ESAI_PCRC_PC)
-#else
-//! @brief Format value for bitfield ESAI_PCRC_PC.
-#define BF_ESAI_PCRC_PC(v)   (((v) << BP_ESAI_PCRC_PC) & BM_ESAI_PCRC_PC)
-#endif
+#define BF_ESAI_PCRC_PC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_PCRC_PC) & BM_ESAI_PCRC_PC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PC field to a new value.

@@ -57,6 +57,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MLBC0 - MediaLB Control 0 Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MLB_MLBC0 - MediaLB Control 0 Register (RW)
@@ -114,15 +129,10 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_MLBEN      (0x00000001)  //!< Bit mask for MLB_MLBC0_MLBEN.
 
 //! @brief Get value of MLB_MLBC0_MLBEN from a register value.
-#define BG_MLB_MLBC0_MLBEN(r)   (((r) & BM_MLB_MLBC0_MLBEN) >> BP_MLB_MLBC0_MLBEN)
+#define BG_MLB_MLBC0_MLBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_MLBEN) >> BP_MLB_MLBC0_MLBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_MLBEN.
-#define BF_MLB_MLBC0_MLBEN(v)   ((((reg32_t) v) << BP_MLB_MLBC0_MLBEN) & BM_MLB_MLBC0_MLBEN)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_MLBEN.
-#define BF_MLB_MLBC0_MLBEN(v)   (((v) << BP_MLB_MLBC0_MLBEN) & BM_MLB_MLBC0_MLBEN)
-#endif
+#define BF_MLB_MLBC0_MLBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_MLBEN) & BM_MLB_MLBC0_MLBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MLBEN field to a new value.
@@ -148,15 +158,10 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_MLBCLK      (0x0000001c)  //!< Bit mask for MLB_MLBC0_MLBCLK.
 
 //! @brief Get value of MLB_MLBC0_MLBCLK from a register value.
-#define BG_MLB_MLBC0_MLBCLK(r)   (((r) & BM_MLB_MLBC0_MLBCLK) >> BP_MLB_MLBC0_MLBCLK)
+#define BG_MLB_MLBC0_MLBCLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_MLBCLK) >> BP_MLB_MLBC0_MLBCLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_MLBCLK.
-#define BF_MLB_MLBC0_MLBCLK(v)   ((((reg32_t) v) << BP_MLB_MLBC0_MLBCLK) & BM_MLB_MLBC0_MLBCLK)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_MLBCLK.
-#define BF_MLB_MLBC0_MLBCLK(v)   (((v) << BP_MLB_MLBC0_MLBCLK) & BM_MLB_MLBC0_MLBCLK)
-#endif
+#define BF_MLB_MLBC0_MLBCLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_MLBCLK) & BM_MLB_MLBC0_MLBCLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MLBCLK field to a new value.
@@ -177,15 +182,10 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_MLBPEN      (0x00000020)  //!< Bit mask for MLB_MLBC0_MLBPEN.
 
 //! @brief Get value of MLB_MLBC0_MLBPEN from a register value.
-#define BG_MLB_MLBC0_MLBPEN(r)   (((r) & BM_MLB_MLBC0_MLBPEN) >> BP_MLB_MLBC0_MLBPEN)
+#define BG_MLB_MLBC0_MLBPEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_MLBPEN) >> BP_MLB_MLBC0_MLBPEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_MLBPEN.
-#define BF_MLB_MLBC0_MLBPEN(v)   ((((reg32_t) v) << BP_MLB_MLBC0_MLBPEN) & BM_MLB_MLBC0_MLBPEN)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_MLBPEN.
-#define BF_MLB_MLBC0_MLBPEN(v)   (((v) << BP_MLB_MLBC0_MLBPEN) & BM_MLB_MLBC0_MLBPEN)
-#endif
+#define BF_MLB_MLBC0_MLBPEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_MLBPEN) & BM_MLB_MLBC0_MLBPEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MLBPEN field to a new value.
@@ -206,7 +206,7 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_MLBLK      (0x00000080)  //!< Bit mask for MLB_MLBC0_MLBLK.
 
 //! @brief Get value of MLB_MLBC0_MLBLK from a register value.
-#define BG_MLB_MLBC0_MLBLK(r)   (((r) & BM_MLB_MLBC0_MLBLK) >> BP_MLB_MLBC0_MLBLK)
+#define BG_MLB_MLBC0_MLBLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_MLBLK) >> BP_MLB_MLBC0_MLBLK)
 
 /* --- Register HW_MLB_MLBC0, field ASYRETRY[12] (RW)
  *
@@ -219,15 +219,10 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_ASYRETRY      (0x00001000)  //!< Bit mask for MLB_MLBC0_ASYRETRY.
 
 //! @brief Get value of MLB_MLBC0_ASYRETRY from a register value.
-#define BG_MLB_MLBC0_ASYRETRY(r)   (((r) & BM_MLB_MLBC0_ASYRETRY) >> BP_MLB_MLBC0_ASYRETRY)
+#define BG_MLB_MLBC0_ASYRETRY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_ASYRETRY) >> BP_MLB_MLBC0_ASYRETRY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_ASYRETRY.
-#define BF_MLB_MLBC0_ASYRETRY(v)   ((((reg32_t) v) << BP_MLB_MLBC0_ASYRETRY) & BM_MLB_MLBC0_ASYRETRY)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_ASYRETRY.
-#define BF_MLB_MLBC0_ASYRETRY(v)   (((v) << BP_MLB_MLBC0_ASYRETRY) & BM_MLB_MLBC0_ASYRETRY)
-#endif
+#define BF_MLB_MLBC0_ASYRETRY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_ASYRETRY) & BM_MLB_MLBC0_ASYRETRY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASYRETRY field to a new value.
@@ -245,15 +240,10 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_CTLRETRY      (0x00004000)  //!< Bit mask for MLB_MLBC0_CTLRETRY.
 
 //! @brief Get value of MLB_MLBC0_CTLRETRY from a register value.
-#define BG_MLB_MLBC0_CTLRETRY(r)   (((r) & BM_MLB_MLBC0_CTLRETRY) >> BP_MLB_MLBC0_CTLRETRY)
+#define BG_MLB_MLBC0_CTLRETRY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_CTLRETRY) >> BP_MLB_MLBC0_CTLRETRY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_CTLRETRY.
-#define BF_MLB_MLBC0_CTLRETRY(v)   ((((reg32_t) v) << BP_MLB_MLBC0_CTLRETRY) & BM_MLB_MLBC0_CTLRETRY)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_CTLRETRY.
-#define BF_MLB_MLBC0_CTLRETRY(v)   (((v) << BP_MLB_MLBC0_CTLRETRY) & BM_MLB_MLBC0_CTLRETRY)
-#endif
+#define BF_MLB_MLBC0_CTLRETRY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_CTLRETRY) & BM_MLB_MLBC0_CTLRETRY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTLRETRY field to a new value.
@@ -279,21 +269,20 @@ typedef union _hw_mlb_mlbc0
 #define BM_MLB_MLBC0_FCNT      (0x00038000)  //!< Bit mask for MLB_MLBC0_FCNT.
 
 //! @brief Get value of MLB_MLBC0_FCNT from a register value.
-#define BG_MLB_MLBC0_FCNT(r)   (((r) & BM_MLB_MLBC0_FCNT) >> BP_MLB_MLBC0_FCNT)
+#define BG_MLB_MLBC0_FCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC0_FCNT) >> BP_MLB_MLBC0_FCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBC0_FCNT.
-#define BF_MLB_MLBC0_FCNT(v)   ((((reg32_t) v) << BP_MLB_MLBC0_FCNT) & BM_MLB_MLBC0_FCNT)
-#else
-//! @brief Format value for bitfield MLB_MLBC0_FCNT.
-#define BF_MLB_MLBC0_FCNT(v)   (((v) << BP_MLB_MLBC0_FCNT) & BM_MLB_MLBC0_FCNT)
-#endif
+#define BF_MLB_MLBC0_FCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBC0_FCNT) & BM_MLB_MLBC0_FCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FCNT field to a new value.
 #define BW_MLB_MLBC0_FCNT(v)   (HW_MLB_MLBC0_WR((HW_MLB_MLBC0_RD() & ~BM_MLB_MLBC0_FCNT) | BF_MLB_MLBC0_FCNT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MLBPC0 - MediaLB 6-pin Control 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -343,20 +332,19 @@ typedef union _hw_mlb_mlbpc0
 #define BM_MLB_MLBPC0_MCLKHYS      (0x00000800)  //!< Bit mask for MLB_MLBPC0_MCLKHYS.
 
 //! @brief Get value of MLB_MLBPC0_MCLKHYS from a register value.
-#define BG_MLB_MLBPC0_MCLKHYS(r)   (((r) & BM_MLB_MLBPC0_MCLKHYS) >> BP_MLB_MLBPC0_MCLKHYS)
+#define BG_MLB_MLBPC0_MCLKHYS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC0_MCLKHYS) >> BP_MLB_MLBPC0_MCLKHYS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBPC0_MCLKHYS.
-#define BF_MLB_MLBPC0_MCLKHYS(v)   ((((reg32_t) v) << BP_MLB_MLBPC0_MCLKHYS) & BM_MLB_MLBPC0_MCLKHYS)
-#else
-//! @brief Format value for bitfield MLB_MLBPC0_MCLKHYS.
-#define BF_MLB_MLBPC0_MCLKHYS(v)   (((v) << BP_MLB_MLBPC0_MCLKHYS) & BM_MLB_MLBPC0_MCLKHYS)
-#endif
+#define BF_MLB_MLBPC0_MCLKHYS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBPC0_MCLKHYS) & BM_MLB_MLBPC0_MCLKHYS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MCLKHYS field to a new value.
 #define BW_MLB_MLBPC0_MCLKHYS(v)   (HW_MLB_MLBPC0_WR((HW_MLB_MLBPC0_RD() & ~BM_MLB_MLBPC0_MCLKHYS) | BF_MLB_MLBPC0_MCLKHYS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MS0 - MediaLB Channel Status 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -401,7 +389,11 @@ typedef union _hw_mlb_ms0
 #define BM_MLB_MS0_MCS      (0xffffffff)  //!< Bit mask for MLB_MS0_MCS.
 
 //! @brief Get value of MLB_MS0_MCS from a register value.
-#define BG_MLB_MS0_MCS(r)   (((r) & BM_MLB_MS0_MCS) >> BP_MLB_MS0_MCS)
+#define BG_MLB_MS0_MCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MS0_MCS) >> BP_MLB_MS0_MCS)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MLBPC2 - MediaLB 6-pin Control 2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -450,7 +442,7 @@ typedef union _hw_mlb_mlbpc2
 #define BM_MLB_MLBPC2_SDOPC      (0x00000001)  //!< Bit mask for MLB_MLBPC2_SDOPC.
 
 //! @brief Get value of MLB_MLBPC2_SDOPC from a register value.
-#define BG_MLB_MLBPC2_SDOPC(r)   (((r) & BM_MLB_MLBPC2_SDOPC) >> BP_MLB_MLBPC2_SDOPC)
+#define BG_MLB_MLBPC2_SDOPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC2_SDOPC) >> BP_MLB_MLBPC2_SDOPC)
 
 
 /* --- Register HW_MLB_MLBPC2, field SDRTO[2:1] (RW)
@@ -462,7 +454,11 @@ typedef union _hw_mlb_mlbpc2
 #define BM_MLB_MLBPC2_SDRTO      (0x00000006)  //!< Bit mask for MLB_MLBPC2_SDRTO.
 
 //! @brief Get value of MLB_MLBPC2_SDRTO from a register value.
-#define BG_MLB_MLBPC2_SDRTO(r)   (((r) & BM_MLB_MLBPC2_SDRTO) >> BP_MLB_MLBPC2_SDRTO)
+#define BG_MLB_MLBPC2_SDRTO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC2_SDRTO) >> BP_MLB_MLBPC2_SDRTO)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MS1 - MediaLB Channel Status1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -507,7 +503,11 @@ typedef union _hw_mlb_ms1
 #define BM_MLB_MS1_MCS      (0xffffffff)  //!< Bit mask for MLB_MS1_MCS.
 
 //! @brief Get value of MLB_MS1_MCS from a register value.
-#define BG_MLB_MS1_MCS(r)   (((r) & BM_MLB_MS1_MCS) >> BP_MLB_MS1_MCS)
+#define BG_MLB_MS1_MCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MS1_MCS) >> BP_MLB_MS1_MCS)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MSS - MediaLB System Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -556,7 +556,7 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_RSTSYSCMD      (0x00000001)  //!< Bit mask for MLB_MSS_RSTSYSCMD.
 
 //! @brief Get value of MLB_MSS_RSTSYSCMD from a register value.
-#define BG_MLB_MSS_RSTSYSCMD(r)   (((r) & BM_MLB_MSS_RSTSYSCMD) >> BP_MLB_MSS_RSTSYSCMD)
+#define BG_MLB_MSS_RSTSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_RSTSYSCMD) >> BP_MLB_MSS_RSTSYSCMD)
 
 /* --- Register HW_MLB_MSS, field LKSYSCMD[1] (RO)
  *
@@ -568,7 +568,7 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_LKSYSCMD      (0x00000002)  //!< Bit mask for MLB_MSS_LKSYSCMD.
 
 //! @brief Get value of MLB_MSS_LKSYSCMD from a register value.
-#define BG_MLB_MSS_LKSYSCMD(r)   (((r) & BM_MLB_MSS_LKSYSCMD) >> BP_MLB_MSS_LKSYSCMD)
+#define BG_MLB_MSS_LKSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_LKSYSCMD) >> BP_MLB_MSS_LKSYSCMD)
 
 /* --- Register HW_MLB_MSS, field ULKSYSCMD[2] (RO)
  *
@@ -580,7 +580,7 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_ULKSYSCMD      (0x00000004)  //!< Bit mask for MLB_MSS_ULKSYSCMD.
 
 //! @brief Get value of MLB_MSS_ULKSYSCMD from a register value.
-#define BG_MLB_MSS_ULKSYSCMD(r)   (((r) & BM_MLB_MSS_ULKSYSCMD) >> BP_MLB_MSS_ULKSYSCMD)
+#define BG_MLB_MSS_ULKSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_ULKSYSCMD) >> BP_MLB_MSS_ULKSYSCMD)
 
 /* --- Register HW_MLB_MSS, field CSSYSCMD[3] (RO)
  *
@@ -594,7 +594,7 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_CSSYSCMD      (0x00000008)  //!< Bit mask for MLB_MSS_CSSYSCMD.
 
 //! @brief Get value of MLB_MSS_CSSYSCMD from a register value.
-#define BG_MLB_MSS_CSSYSCMD(r)   (((r) & BM_MLB_MSS_CSSYSCMD) >> BP_MLB_MSS_CSSYSCMD)
+#define BG_MLB_MSS_CSSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_CSSYSCMD) >> BP_MLB_MSS_CSSYSCMD)
 
 /* --- Register HW_MLB_MSS, field SWSYSCMD[4] (RO)
  *
@@ -606,7 +606,7 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_SWSYSCMD      (0x00000010)  //!< Bit mask for MLB_MSS_SWSYSCMD.
 
 //! @brief Get value of MLB_MSS_SWSYSCMD from a register value.
-#define BG_MLB_MSS_SWSYSCMD(r)   (((r) & BM_MLB_MSS_SWSYSCMD) >> BP_MLB_MSS_SWSYSCMD)
+#define BG_MLB_MSS_SWSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_SWSYSCMD) >> BP_MLB_MSS_SWSYSCMD)
 
 /* --- Register HW_MLB_MSS, field SERVREQ[5] (RW)
  *
@@ -619,7 +619,11 @@ typedef union _hw_mlb_mss
 #define BM_MLB_MSS_SERVREQ      (0x00000020)  //!< Bit mask for MLB_MSS_SERVREQ.
 
 //! @brief Get value of MLB_MSS_SERVREQ from a register value.
-#define BG_MLB_MSS_SERVREQ(r)   (((r) & BM_MLB_MSS_SERVREQ) >> BP_MLB_MSS_SERVREQ)
+#define BG_MLB_MSS_SERVREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSS_SERVREQ) >> BP_MLB_MSS_SERVREQ)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MSD - MediaLB System Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -667,7 +671,7 @@ typedef union _hw_mlb_msd
 #define BM_MLB_MSD_SD0      (0x000000ff)  //!< Bit mask for MLB_MSD_SD0.
 
 //! @brief Get value of MLB_MSD_SD0 from a register value.
-#define BG_MLB_MSD_SD0(r)   (((r) & BM_MLB_MSD_SD0) >> BP_MLB_MSD_SD0)
+#define BG_MLB_MSD_SD0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSD_SD0) >> BP_MLB_MSD_SD0)
 
 /* --- Register HW_MLB_MSD, field SD1[15:8] (RO)
  *
@@ -680,7 +684,7 @@ typedef union _hw_mlb_msd
 #define BM_MLB_MSD_SD1      (0x0000ff00)  //!< Bit mask for MLB_MSD_SD1.
 
 //! @brief Get value of MLB_MSD_SD1 from a register value.
-#define BG_MLB_MSD_SD1(r)   (((r) & BM_MLB_MSD_SD1) >> BP_MLB_MSD_SD1)
+#define BG_MLB_MSD_SD1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSD_SD1) >> BP_MLB_MSD_SD1)
 
 /* --- Register HW_MLB_MSD, field SD2[23:16] (RO)
  *
@@ -693,7 +697,7 @@ typedef union _hw_mlb_msd
 #define BM_MLB_MSD_SD2      (0x00ff0000)  //!< Bit mask for MLB_MSD_SD2.
 
 //! @brief Get value of MLB_MSD_SD2 from a register value.
-#define BG_MLB_MSD_SD2(r)   (((r) & BM_MLB_MSD_SD2) >> BP_MLB_MSD_SD2)
+#define BG_MLB_MSD_SD2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSD_SD2) >> BP_MLB_MSD_SD2)
 
 /* --- Register HW_MLB_MSD, field SD3[31:24] (RO)
  *
@@ -706,7 +710,11 @@ typedef union _hw_mlb_msd
 #define BM_MLB_MSD_SD3      (0xff000000)  //!< Bit mask for MLB_MSD_SD3.
 
 //! @brief Get value of MLB_MSD_SD3 from a register value.
-#define BG_MLB_MSD_SD3(r)   (((r) & BM_MLB_MSD_SD3) >> BP_MLB_MSD_SD3)
+#define BG_MLB_MSD_SD3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MSD_SD3) >> BP_MLB_MSD_SD3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MIEN - MediaLB Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -771,15 +779,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ISOC_PE      (0x00000001)  //!< Bit mask for MLB_MIEN_ISOC_PE.
 
 //! @brief Get value of MLB_MIEN_ISOC_PE from a register value.
-#define BG_MLB_MIEN_ISOC_PE(r)   (((r) & BM_MLB_MIEN_ISOC_PE) >> BP_MLB_MIEN_ISOC_PE)
+#define BG_MLB_MIEN_ISOC_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ISOC_PE) >> BP_MLB_MIEN_ISOC_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ISOC_PE.
-#define BF_MLB_MIEN_ISOC_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_ISOC_PE) & BM_MLB_MIEN_ISOC_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ISOC_PE.
-#define BF_MLB_MIEN_ISOC_PE(v)   (((v) << BP_MLB_MIEN_ISOC_PE) & BM_MLB_MIEN_ISOC_PE)
-#endif
+#define BF_MLB_MIEN_ISOC_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ISOC_PE) & BM_MLB_MIEN_ISOC_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISOC_PE field to a new value.
@@ -797,15 +800,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ISOC_BUFO      (0x00000002)  //!< Bit mask for MLB_MIEN_ISOC_BUFO.
 
 //! @brief Get value of MLB_MIEN_ISOC_BUFO from a register value.
-#define BG_MLB_MIEN_ISOC_BUFO(r)   (((r) & BM_MLB_MIEN_ISOC_BUFO) >> BP_MLB_MIEN_ISOC_BUFO)
+#define BG_MLB_MIEN_ISOC_BUFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ISOC_BUFO) >> BP_MLB_MIEN_ISOC_BUFO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ISOC_BUFO.
-#define BF_MLB_MIEN_ISOC_BUFO(v)   ((((reg32_t) v) << BP_MLB_MIEN_ISOC_BUFO) & BM_MLB_MIEN_ISOC_BUFO)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ISOC_BUFO.
-#define BF_MLB_MIEN_ISOC_BUFO(v)   (((v) << BP_MLB_MIEN_ISOC_BUFO) & BM_MLB_MIEN_ISOC_BUFO)
-#endif
+#define BF_MLB_MIEN_ISOC_BUFO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ISOC_BUFO) & BM_MLB_MIEN_ISOC_BUFO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ISOC_BUFO field to a new value.
@@ -822,15 +820,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_SYNC_PE      (0x00010000)  //!< Bit mask for MLB_MIEN_SYNC_PE.
 
 //! @brief Get value of MLB_MIEN_SYNC_PE from a register value.
-#define BG_MLB_MIEN_SYNC_PE(r)   (((r) & BM_MLB_MIEN_SYNC_PE) >> BP_MLB_MIEN_SYNC_PE)
+#define BG_MLB_MIEN_SYNC_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_SYNC_PE) >> BP_MLB_MIEN_SYNC_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_SYNC_PE.
-#define BF_MLB_MIEN_SYNC_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_SYNC_PE) & BM_MLB_MIEN_SYNC_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_SYNC_PE.
-#define BF_MLB_MIEN_SYNC_PE(v)   (((v) << BP_MLB_MIEN_SYNC_PE) & BM_MLB_MIEN_SYNC_PE)
-#endif
+#define BF_MLB_MIEN_SYNC_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_SYNC_PE) & BM_MLB_MIEN_SYNC_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYNC_PE field to a new value.
@@ -847,15 +840,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ARX_DONE      (0x00020000)  //!< Bit mask for MLB_MIEN_ARX_DONE.
 
 //! @brief Get value of MLB_MIEN_ARX_DONE from a register value.
-#define BG_MLB_MIEN_ARX_DONE(r)   (((r) & BM_MLB_MIEN_ARX_DONE) >> BP_MLB_MIEN_ARX_DONE)
+#define BG_MLB_MIEN_ARX_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ARX_DONE) >> BP_MLB_MIEN_ARX_DONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ARX_DONE.
-#define BF_MLB_MIEN_ARX_DONE(v)   ((((reg32_t) v) << BP_MLB_MIEN_ARX_DONE) & BM_MLB_MIEN_ARX_DONE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ARX_DONE.
-#define BF_MLB_MIEN_ARX_DONE(v)   (((v) << BP_MLB_MIEN_ARX_DONE) & BM_MLB_MIEN_ARX_DONE)
-#endif
+#define BF_MLB_MIEN_ARX_DONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ARX_DONE) & BM_MLB_MIEN_ARX_DONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARX_DONE field to a new value.
@@ -872,15 +860,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ARX_PE      (0x00040000)  //!< Bit mask for MLB_MIEN_ARX_PE.
 
 //! @brief Get value of MLB_MIEN_ARX_PE from a register value.
-#define BG_MLB_MIEN_ARX_PE(r)   (((r) & BM_MLB_MIEN_ARX_PE) >> BP_MLB_MIEN_ARX_PE)
+#define BG_MLB_MIEN_ARX_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ARX_PE) >> BP_MLB_MIEN_ARX_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ARX_PE.
-#define BF_MLB_MIEN_ARX_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_ARX_PE) & BM_MLB_MIEN_ARX_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ARX_PE.
-#define BF_MLB_MIEN_ARX_PE(v)   (((v) << BP_MLB_MIEN_ARX_PE) & BM_MLB_MIEN_ARX_PE)
-#endif
+#define BF_MLB_MIEN_ARX_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ARX_PE) & BM_MLB_MIEN_ARX_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARX_PE field to a new value.
@@ -897,15 +880,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ARX_BREAK      (0x00080000)  //!< Bit mask for MLB_MIEN_ARX_BREAK.
 
 //! @brief Get value of MLB_MIEN_ARX_BREAK from a register value.
-#define BG_MLB_MIEN_ARX_BREAK(r)   (((r) & BM_MLB_MIEN_ARX_BREAK) >> BP_MLB_MIEN_ARX_BREAK)
+#define BG_MLB_MIEN_ARX_BREAK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ARX_BREAK) >> BP_MLB_MIEN_ARX_BREAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ARX_BREAK.
-#define BF_MLB_MIEN_ARX_BREAK(v)   ((((reg32_t) v) << BP_MLB_MIEN_ARX_BREAK) & BM_MLB_MIEN_ARX_BREAK)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ARX_BREAK.
-#define BF_MLB_MIEN_ARX_BREAK(v)   (((v) << BP_MLB_MIEN_ARX_BREAK) & BM_MLB_MIEN_ARX_BREAK)
-#endif
+#define BF_MLB_MIEN_ARX_BREAK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ARX_BREAK) & BM_MLB_MIEN_ARX_BREAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARX_BREAK field to a new value.
@@ -922,15 +900,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ATX_DONE      (0x00100000)  //!< Bit mask for MLB_MIEN_ATX_DONE.
 
 //! @brief Get value of MLB_MIEN_ATX_DONE from a register value.
-#define BG_MLB_MIEN_ATX_DONE(r)   (((r) & BM_MLB_MIEN_ATX_DONE) >> BP_MLB_MIEN_ATX_DONE)
+#define BG_MLB_MIEN_ATX_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ATX_DONE) >> BP_MLB_MIEN_ATX_DONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ATX_DONE.
-#define BF_MLB_MIEN_ATX_DONE(v)   ((((reg32_t) v) << BP_MLB_MIEN_ATX_DONE) & BM_MLB_MIEN_ATX_DONE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ATX_DONE.
-#define BF_MLB_MIEN_ATX_DONE(v)   (((v) << BP_MLB_MIEN_ATX_DONE) & BM_MLB_MIEN_ATX_DONE)
-#endif
+#define BF_MLB_MIEN_ATX_DONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ATX_DONE) & BM_MLB_MIEN_ATX_DONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATX_DONE field to a new value.
@@ -947,15 +920,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ATX_PE      (0x00200000)  //!< Bit mask for MLB_MIEN_ATX_PE.
 
 //! @brief Get value of MLB_MIEN_ATX_PE from a register value.
-#define BG_MLB_MIEN_ATX_PE(r)   (((r) & BM_MLB_MIEN_ATX_PE) >> BP_MLB_MIEN_ATX_PE)
+#define BG_MLB_MIEN_ATX_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ATX_PE) >> BP_MLB_MIEN_ATX_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ATX_PE.
-#define BF_MLB_MIEN_ATX_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_ATX_PE) & BM_MLB_MIEN_ATX_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ATX_PE.
-#define BF_MLB_MIEN_ATX_PE(v)   (((v) << BP_MLB_MIEN_ATX_PE) & BM_MLB_MIEN_ATX_PE)
-#endif
+#define BF_MLB_MIEN_ATX_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ATX_PE) & BM_MLB_MIEN_ATX_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATX_PE field to a new value.
@@ -972,15 +940,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_ATX_BREAK      (0x00400000)  //!< Bit mask for MLB_MIEN_ATX_BREAK.
 
 //! @brief Get value of MLB_MIEN_ATX_BREAK from a register value.
-#define BG_MLB_MIEN_ATX_BREAK(r)   (((r) & BM_MLB_MIEN_ATX_BREAK) >> BP_MLB_MIEN_ATX_BREAK)
+#define BG_MLB_MIEN_ATX_BREAK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_ATX_BREAK) >> BP_MLB_MIEN_ATX_BREAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_ATX_BREAK.
-#define BF_MLB_MIEN_ATX_BREAK(v)   ((((reg32_t) v) << BP_MLB_MIEN_ATX_BREAK) & BM_MLB_MIEN_ATX_BREAK)
-#else
-//! @brief Format value for bitfield MLB_MIEN_ATX_BREAK.
-#define BF_MLB_MIEN_ATX_BREAK(v)   (((v) << BP_MLB_MIEN_ATX_BREAK) & BM_MLB_MIEN_ATX_BREAK)
-#endif
+#define BF_MLB_MIEN_ATX_BREAK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_ATX_BREAK) & BM_MLB_MIEN_ATX_BREAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATX_BREAK field to a new value.
@@ -997,15 +960,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CRX_DONE      (0x01000000)  //!< Bit mask for MLB_MIEN_CRX_DONE.
 
 //! @brief Get value of MLB_MIEN_CRX_DONE from a register value.
-#define BG_MLB_MIEN_CRX_DONE(r)   (((r) & BM_MLB_MIEN_CRX_DONE) >> BP_MLB_MIEN_CRX_DONE)
+#define BG_MLB_MIEN_CRX_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CRX_DONE) >> BP_MLB_MIEN_CRX_DONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CRX_DONE.
-#define BF_MLB_MIEN_CRX_DONE(v)   ((((reg32_t) v) << BP_MLB_MIEN_CRX_DONE) & BM_MLB_MIEN_CRX_DONE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CRX_DONE.
-#define BF_MLB_MIEN_CRX_DONE(v)   (((v) << BP_MLB_MIEN_CRX_DONE) & BM_MLB_MIEN_CRX_DONE)
-#endif
+#define BF_MLB_MIEN_CRX_DONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CRX_DONE) & BM_MLB_MIEN_CRX_DONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRX_DONE field to a new value.
@@ -1022,15 +980,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CRX_PE      (0x02000000)  //!< Bit mask for MLB_MIEN_CRX_PE.
 
 //! @brief Get value of MLB_MIEN_CRX_PE from a register value.
-#define BG_MLB_MIEN_CRX_PE(r)   (((r) & BM_MLB_MIEN_CRX_PE) >> BP_MLB_MIEN_CRX_PE)
+#define BG_MLB_MIEN_CRX_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CRX_PE) >> BP_MLB_MIEN_CRX_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CRX_PE.
-#define BF_MLB_MIEN_CRX_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_CRX_PE) & BM_MLB_MIEN_CRX_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CRX_PE.
-#define BF_MLB_MIEN_CRX_PE(v)   (((v) << BP_MLB_MIEN_CRX_PE) & BM_MLB_MIEN_CRX_PE)
-#endif
+#define BF_MLB_MIEN_CRX_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CRX_PE) & BM_MLB_MIEN_CRX_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRX_PE field to a new value.
@@ -1047,15 +1000,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CRX_BREAK      (0x04000000)  //!< Bit mask for MLB_MIEN_CRX_BREAK.
 
 //! @brief Get value of MLB_MIEN_CRX_BREAK from a register value.
-#define BG_MLB_MIEN_CRX_BREAK(r)   (((r) & BM_MLB_MIEN_CRX_BREAK) >> BP_MLB_MIEN_CRX_BREAK)
+#define BG_MLB_MIEN_CRX_BREAK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CRX_BREAK) >> BP_MLB_MIEN_CRX_BREAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CRX_BREAK.
-#define BF_MLB_MIEN_CRX_BREAK(v)   ((((reg32_t) v) << BP_MLB_MIEN_CRX_BREAK) & BM_MLB_MIEN_CRX_BREAK)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CRX_BREAK.
-#define BF_MLB_MIEN_CRX_BREAK(v)   (((v) << BP_MLB_MIEN_CRX_BREAK) & BM_MLB_MIEN_CRX_BREAK)
-#endif
+#define BF_MLB_MIEN_CRX_BREAK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CRX_BREAK) & BM_MLB_MIEN_CRX_BREAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRX_BREAK field to a new value.
@@ -1072,15 +1020,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CTX_DONE      (0x08000000)  //!< Bit mask for MLB_MIEN_CTX_DONE.
 
 //! @brief Get value of MLB_MIEN_CTX_DONE from a register value.
-#define BG_MLB_MIEN_CTX_DONE(r)   (((r) & BM_MLB_MIEN_CTX_DONE) >> BP_MLB_MIEN_CTX_DONE)
+#define BG_MLB_MIEN_CTX_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CTX_DONE) >> BP_MLB_MIEN_CTX_DONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CTX_DONE.
-#define BF_MLB_MIEN_CTX_DONE(v)   ((((reg32_t) v) << BP_MLB_MIEN_CTX_DONE) & BM_MLB_MIEN_CTX_DONE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CTX_DONE.
-#define BF_MLB_MIEN_CTX_DONE(v)   (((v) << BP_MLB_MIEN_CTX_DONE) & BM_MLB_MIEN_CTX_DONE)
-#endif
+#define BF_MLB_MIEN_CTX_DONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CTX_DONE) & BM_MLB_MIEN_CTX_DONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTX_DONE field to a new value.
@@ -1097,15 +1040,10 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CTX_PE      (0x10000000)  //!< Bit mask for MLB_MIEN_CTX_PE.
 
 //! @brief Get value of MLB_MIEN_CTX_PE from a register value.
-#define BG_MLB_MIEN_CTX_PE(r)   (((r) & BM_MLB_MIEN_CTX_PE) >> BP_MLB_MIEN_CTX_PE)
+#define BG_MLB_MIEN_CTX_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CTX_PE) >> BP_MLB_MIEN_CTX_PE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CTX_PE.
-#define BF_MLB_MIEN_CTX_PE(v)   ((((reg32_t) v) << BP_MLB_MIEN_CTX_PE) & BM_MLB_MIEN_CTX_PE)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CTX_PE.
-#define BF_MLB_MIEN_CTX_PE(v)   (((v) << BP_MLB_MIEN_CTX_PE) & BM_MLB_MIEN_CTX_PE)
-#endif
+#define BF_MLB_MIEN_CTX_PE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CTX_PE) & BM_MLB_MIEN_CTX_PE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTX_PE field to a new value.
@@ -1122,20 +1060,19 @@ typedef union _hw_mlb_mien
 #define BM_MLB_MIEN_CTX_BREAK      (0x20000000)  //!< Bit mask for MLB_MIEN_CTX_BREAK.
 
 //! @brief Get value of MLB_MIEN_CTX_BREAK from a register value.
-#define BG_MLB_MIEN_CTX_BREAK(r)   (((r) & BM_MLB_MIEN_CTX_BREAK) >> BP_MLB_MIEN_CTX_BREAK)
+#define BG_MLB_MIEN_CTX_BREAK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MIEN_CTX_BREAK) >> BP_MLB_MIEN_CTX_BREAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MIEN_CTX_BREAK.
-#define BF_MLB_MIEN_CTX_BREAK(v)   ((((reg32_t) v) << BP_MLB_MIEN_CTX_BREAK) & BM_MLB_MIEN_CTX_BREAK)
-#else
-//! @brief Format value for bitfield MLB_MIEN_CTX_BREAK.
-#define BF_MLB_MIEN_CTX_BREAK(v)   (((v) << BP_MLB_MIEN_CTX_BREAK) & BM_MLB_MIEN_CTX_BREAK)
-#endif
+#define BF_MLB_MIEN_CTX_BREAK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MIEN_CTX_BREAK) & BM_MLB_MIEN_CTX_BREAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTX_BREAK field to a new value.
 #define BW_MLB_MIEN_CTX_BREAK(v)   (HW_MLB_MIEN_WR((HW_MLB_MIEN_RD() & ~BM_MLB_MIEN_CTX_BREAK) | BF_MLB_MIEN_CTX_BREAK(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MLBPC1 - MediaLB 6-pin Control 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1187,15 +1124,10 @@ typedef union _hw_mlb_mlbpc1
 #define BM_MLB_MLBPC1_SDRCVBIAS      (0x0000000f)  //!< Bit mask for MLB_MLBPC1_SDRCVBIAS.
 
 //! @brief Get value of MLB_MLBPC1_SDRCVBIAS from a register value.
-#define BG_MLB_MLBPC1_SDRCVBIAS(r)   (((r) & BM_MLB_MLBPC1_SDRCVBIAS) >> BP_MLB_MLBPC1_SDRCVBIAS)
+#define BG_MLB_MLBPC1_SDRCVBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC1_SDRCVBIAS) >> BP_MLB_MLBPC1_SDRCVBIAS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBPC1_SDRCVBIAS.
-#define BF_MLB_MLBPC1_SDRCVBIAS(v)   ((((reg32_t) v) << BP_MLB_MLBPC1_SDRCVBIAS) & BM_MLB_MLBPC1_SDRCVBIAS)
-#else
-//! @brief Format value for bitfield MLB_MLBPC1_SDRCVBIAS.
-#define BF_MLB_MLBPC1_SDRCVBIAS(v)   (((v) << BP_MLB_MLBPC1_SDRCVBIAS) & BM_MLB_MLBPC1_SDRCVBIAS)
-#endif
+#define BF_MLB_MLBPC1_SDRCVBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBPC1_SDRCVBIAS) & BM_MLB_MLBPC1_SDRCVBIAS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDRCVBIAS field to a new value.
@@ -1213,15 +1145,10 @@ typedef union _hw_mlb_mlbpc1
 #define BM_MLB_MLBPC1_SDXMTBIAS      (0x000000f0)  //!< Bit mask for MLB_MLBPC1_SDXMTBIAS.
 
 //! @brief Get value of MLB_MLBPC1_SDXMTBIAS from a register value.
-#define BG_MLB_MLBPC1_SDXMTBIAS(r)   (((r) & BM_MLB_MLBPC1_SDXMTBIAS) >> BP_MLB_MLBPC1_SDXMTBIAS)
+#define BG_MLB_MLBPC1_SDXMTBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC1_SDXMTBIAS) >> BP_MLB_MLBPC1_SDXMTBIAS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBPC1_SDXMTBIAS.
-#define BF_MLB_MLBPC1_SDXMTBIAS(v)   ((((reg32_t) v) << BP_MLB_MLBPC1_SDXMTBIAS) & BM_MLB_MLBPC1_SDXMTBIAS)
-#else
-//! @brief Format value for bitfield MLB_MLBPC1_SDXMTBIAS.
-#define BF_MLB_MLBPC1_SDXMTBIAS(v)   (((v) << BP_MLB_MLBPC1_SDXMTBIAS) & BM_MLB_MLBPC1_SDXMTBIAS)
-#endif
+#define BF_MLB_MLBPC1_SDXMTBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBPC1_SDXMTBIAS) & BM_MLB_MLBPC1_SDXMTBIAS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDXMTBIAS field to a new value.
@@ -1239,20 +1166,19 @@ typedef union _hw_mlb_mlbpc1
 #define BM_MLB_MLBPC1_CKRCVBIAS      (0x00000f00)  //!< Bit mask for MLB_MLBPC1_CKRCVBIAS.
 
 //! @brief Get value of MLB_MLBPC1_CKRCVBIAS from a register value.
-#define BG_MLB_MLBPC1_CKRCVBIAS(r)   (((r) & BM_MLB_MLBPC1_CKRCVBIAS) >> BP_MLB_MLBPC1_CKRCVBIAS)
+#define BG_MLB_MLBPC1_CKRCVBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBPC1_CKRCVBIAS) >> BP_MLB_MLBPC1_CKRCVBIAS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MLBPC1_CKRCVBIAS.
-#define BF_MLB_MLBPC1_CKRCVBIAS(v)   ((((reg32_t) v) << BP_MLB_MLBPC1_CKRCVBIAS) & BM_MLB_MLBPC1_CKRCVBIAS)
-#else
-//! @brief Format value for bitfield MLB_MLBPC1_CKRCVBIAS.
-#define BF_MLB_MLBPC1_CKRCVBIAS(v)   (((v) << BP_MLB_MLBPC1_CKRCVBIAS) & BM_MLB_MLBPC1_CKRCVBIAS)
-#endif
+#define BF_MLB_MLBPC1_CKRCVBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MLBPC1_CKRCVBIAS) & BM_MLB_MLBPC1_CKRCVBIAS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CKRCVBIAS field to a new value.
 #define BW_MLB_MLBPC1_CKRCVBIAS(v)   (HW_MLB_MLBPC1_WR((HW_MLB_MLBPC1_RD() & ~BM_MLB_MLBPC1_CKRCVBIAS) | BF_MLB_MLBPC1_CKRCVBIAS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MLBC1 - MediaLB Control 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1299,7 +1225,7 @@ typedef union _hw_mlb_mlbc1
 #define BM_MLB_MLBC1_LOCK      (0x00000040)  //!< Bit mask for MLB_MLBC1_LOCK.
 
 //! @brief Get value of MLB_MLBC1_LOCK from a register value.
-#define BG_MLB_MLBC1_LOCK(r)   (((r) & BM_MLB_MLBC1_LOCK) >> BP_MLB_MLBC1_LOCK)
+#define BG_MLB_MLBC1_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC1_LOCK) >> BP_MLB_MLBC1_LOCK)
 
 /* --- Register HW_MLB_MLBC1, field CLKM[7] (RO)
  *
@@ -1311,7 +1237,7 @@ typedef union _hw_mlb_mlbc1
 #define BM_MLB_MLBC1_CLKM      (0x00000080)  //!< Bit mask for MLB_MLBC1_CLKM.
 
 //! @brief Get value of MLB_MLBC1_CLKM from a register value.
-#define BG_MLB_MLBC1_CLKM(r)   (((r) & BM_MLB_MLBC1_CLKM) >> BP_MLB_MLBC1_CLKM)
+#define BG_MLB_MLBC1_CLKM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC1_CLKM) >> BP_MLB_MLBC1_CLKM)
 
 /* --- Register HW_MLB_MLBC1, field NDA[15:8] (RW)
  *
@@ -1322,7 +1248,11 @@ typedef union _hw_mlb_mlbc1
 #define BM_MLB_MLBC1_NDA      (0x0000ff00)  //!< Bit mask for MLB_MLBC1_NDA.
 
 //! @brief Get value of MLB_MLBC1_NDA from a register value.
-#define BG_MLB_MLBC1_NDA(r)   (((r) & BM_MLB_MLBC1_NDA) >> BP_MLB_MLBC1_NDA)
+#define BG_MLB_MLBC1_NDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MLBC1_NDA) >> BP_MLB_MLBC1_NDA)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCTL - HBI Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1378,15 +1308,10 @@ typedef union _hw_mlb_hctl
 #define BM_MLB_HCTL_RST0      (0x00000001)  //!< Bit mask for MLB_HCTL_RST0.
 
 //! @brief Get value of MLB_HCTL_RST0 from a register value.
-#define BG_MLB_HCTL_RST0(r)   (((r) & BM_MLB_HCTL_RST0) >> BP_MLB_HCTL_RST0)
+#define BG_MLB_HCTL_RST0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCTL_RST0) >> BP_MLB_HCTL_RST0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_HCTL_RST0.
-#define BF_MLB_HCTL_RST0(v)   ((((reg32_t) v) << BP_MLB_HCTL_RST0) & BM_MLB_HCTL_RST0)
-#else
-//! @brief Format value for bitfield MLB_HCTL_RST0.
-#define BF_MLB_HCTL_RST0(v)   (((v) << BP_MLB_HCTL_RST0) & BM_MLB_HCTL_RST0)
-#endif
+#define BF_MLB_HCTL_RST0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_HCTL_RST0) & BM_MLB_HCTL_RST0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST0 field to a new value.
@@ -1407,15 +1332,10 @@ typedef union _hw_mlb_hctl
 #define BM_MLB_HCTL_RST1      (0x00000002)  //!< Bit mask for MLB_HCTL_RST1.
 
 //! @brief Get value of MLB_HCTL_RST1 from a register value.
-#define BG_MLB_HCTL_RST1(r)   (((r) & BM_MLB_HCTL_RST1) >> BP_MLB_HCTL_RST1)
+#define BG_MLB_HCTL_RST1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCTL_RST1) >> BP_MLB_HCTL_RST1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_HCTL_RST1.
-#define BF_MLB_HCTL_RST1(v)   ((((reg32_t) v) << BP_MLB_HCTL_RST1) & BM_MLB_HCTL_RST1)
-#else
-//! @brief Format value for bitfield MLB_HCTL_RST1.
-#define BF_MLB_HCTL_RST1(v)   (((v) << BP_MLB_HCTL_RST1) & BM_MLB_HCTL_RST1)
-#endif
+#define BF_MLB_HCTL_RST1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_HCTL_RST1) & BM_MLB_HCTL_RST1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST1 field to a new value.
@@ -1436,21 +1356,20 @@ typedef union _hw_mlb_hctl
 #define BM_MLB_HCTL_EN      (0x00008000)  //!< Bit mask for MLB_HCTL_EN.
 
 //! @brief Get value of MLB_HCTL_EN from a register value.
-#define BG_MLB_HCTL_EN(r)   (((r) & BM_MLB_HCTL_EN) >> BP_MLB_HCTL_EN)
+#define BG_MLB_HCTL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCTL_EN) >> BP_MLB_HCTL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_HCTL_EN.
-#define BF_MLB_HCTL_EN(v)   ((((reg32_t) v) << BP_MLB_HCTL_EN) & BM_MLB_HCTL_EN)
-#else
-//! @brief Format value for bitfield MLB_HCTL_EN.
-#define BF_MLB_HCTL_EN(v)   (((v) << BP_MLB_HCTL_EN) & BM_MLB_HCTL_EN)
-#endif
+#define BF_MLB_HCTL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_HCTL_EN) & BM_MLB_HCTL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
 #define BW_MLB_HCTL_EN(v)   (HW_MLB_HCTL_WR((HW_MLB_HCTL_RD() & ~BM_MLB_HCTL_EN) | BF_MLB_HCTL_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCMR0 - HBI Channel Mask 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1504,21 +1423,20 @@ typedef union _hw_mlb_hcmr0
 #define BM_MLB_HCMR0_CHM      (0xffffffff)  //!< Bit mask for MLB_HCMR0_CHM.
 
 //! @brief Get value of MLB_HCMR0_CHM from a register value.
-#define BG_MLB_HCMR0_CHM(r)   (((r) & BM_MLB_HCMR0_CHM) >> BP_MLB_HCMR0_CHM)
+#define BG_MLB_HCMR0_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCMR0_CHM) >> BP_MLB_HCMR0_CHM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_HCMR0_CHM.
-#define BF_MLB_HCMR0_CHM(v)   ((((reg32_t) v) << BP_MLB_HCMR0_CHM) & BM_MLB_HCMR0_CHM)
-#else
-//! @brief Format value for bitfield MLB_HCMR0_CHM.
-#define BF_MLB_HCMR0_CHM(v)   (((v) << BP_MLB_HCMR0_CHM) & BM_MLB_HCMR0_CHM)
-#endif
+#define BF_MLB_HCMR0_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_HCMR0_CHM) & BM_MLB_HCMR0_CHM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHM field to a new value.
 #define BW_MLB_HCMR0_CHM(v)   (HW_MLB_HCMR0_WR((HW_MLB_HCMR0_RD() & ~BM_MLB_HCMR0_CHM) | BF_MLB_HCMR0_CHM(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCMR1 - HBI Channel Mask 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1569,21 +1487,20 @@ typedef union _hw_mlb_hcmr1
 #define BM_MLB_HCMR1_CHM      (0xffffffff)  //!< Bit mask for MLB_HCMR1_CHM.
 
 //! @brief Get value of MLB_HCMR1_CHM from a register value.
-#define BG_MLB_HCMR1_CHM(r)   (((r) & BM_MLB_HCMR1_CHM) >> BP_MLB_HCMR1_CHM)
+#define BG_MLB_HCMR1_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCMR1_CHM) >> BP_MLB_HCMR1_CHM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_HCMR1_CHM.
-#define BF_MLB_HCMR1_CHM(v)   ((((reg32_t) v) << BP_MLB_HCMR1_CHM) & BM_MLB_HCMR1_CHM)
-#else
-//! @brief Format value for bitfield MLB_HCMR1_CHM.
-#define BF_MLB_HCMR1_CHM(v)   (((v) << BP_MLB_HCMR1_CHM) & BM_MLB_HCMR1_CHM)
-#endif
+#define BF_MLB_HCMR1_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_HCMR1_CHM) & BM_MLB_HCMR1_CHM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHM field to a new value.
 #define BW_MLB_HCMR1_CHM(v)   (HW_MLB_HCMR1_WR((HW_MLB_HCMR1_RD() & ~BM_MLB_HCMR1_CHM) | BF_MLB_HCMR1_CHM(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCER0 - HBI Channel Error 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1626,7 +1543,11 @@ typedef union _hw_mlb_hcer0
 #define BM_MLB_HCER0_CERR      (0xffffffff)  //!< Bit mask for MLB_HCER0_CERR.
 
 //! @brief Get value of MLB_HCER0_CERR from a register value.
-#define BG_MLB_HCER0_CERR(r)   (((r) & BM_MLB_HCER0_CERR) >> BP_MLB_HCER0_CERR)
+#define BG_MLB_HCER0_CERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCER0_CERR) >> BP_MLB_HCER0_CERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCER1 - HBI Channel Error 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1671,7 +1592,11 @@ typedef union _hw_mlb_hcer1
 #define BM_MLB_HCER1_CERR      (0xffffffff)  //!< Bit mask for MLB_HCER1_CERR.
 
 //! @brief Get value of MLB_HCER1_CERR from a register value.
-#define BG_MLB_HCER1_CERR(r)   (((r) & BM_MLB_HCER1_CERR) >> BP_MLB_HCER1_CERR)
+#define BG_MLB_HCER1_CERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCER1_CERR) >> BP_MLB_HCER1_CERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCBR0 - HBI Channel Busy 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1723,8 +1648,12 @@ typedef union _hw_mlb_hcbr0
 #define BM_MLB_HCBR0_CHB      (0xffffffff)  //!< Bit mask for MLB_HCBR0_CHB.
 
 //! @brief Get value of MLB_HCBR0_CHB from a register value.
-#define BG_MLB_HCBR0_CHB(r)   (((r) & BM_MLB_HCBR0_CHB) >> BP_MLB_HCBR0_CHB)
+#define BG_MLB_HCBR0_CHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCBR0_CHB) >> BP_MLB_HCBR0_CHB)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_HCBR1 - HBI Channel Busy 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1771,8 +1700,12 @@ typedef union _hw_mlb_hcbr1
 #define BM_MLB_HCBR1_CHB      (0xffffffff)  //!< Bit mask for MLB_HCBR1_CHB.
 
 //! @brief Get value of MLB_HCBR1_CHB from a register value.
-#define BG_MLB_HCBR1_CHB(r)   (((r) & BM_MLB_HCBR1_CHB) >> BP_MLB_HCBR1_CHB)
+#define BG_MLB_HCBR1_CHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_HCBR1_CHB) >> BP_MLB_HCBR1_CHB)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDAT0 - MIF Data 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1819,20 +1752,19 @@ typedef union _hw_mlb_mdat0
 #define BM_MLB_MDAT0_DATA      (0xffffffff)  //!< Bit mask for MLB_MDAT0_DATA.
 
 //! @brief Get value of MLB_MDAT0_DATA from a register value.
-#define BG_MLB_MDAT0_DATA(r)   (((r) & BM_MLB_MDAT0_DATA) >> BP_MLB_MDAT0_DATA)
+#define BG_MLB_MDAT0_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDAT0_DATA) >> BP_MLB_MDAT0_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDAT0_DATA.
-#define BF_MLB_MDAT0_DATA(v)   ((((reg32_t) v) << BP_MLB_MDAT0_DATA) & BM_MLB_MDAT0_DATA)
-#else
-//! @brief Format value for bitfield MLB_MDAT0_DATA.
-#define BF_MLB_MDAT0_DATA(v)   (((v) << BP_MLB_MDAT0_DATA) & BM_MLB_MDAT0_DATA)
-#endif
+#define BF_MLB_MDAT0_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDAT0_DATA) & BM_MLB_MDAT0_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MLB_MDAT0_DATA(v)   (HW_MLB_MDAT0_WR((HW_MLB_MDAT0_RD() & ~BM_MLB_MDAT0_DATA) | BF_MLB_MDAT0_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDAT1 - MIF Data 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1879,20 +1811,19 @@ typedef union _hw_mlb_mdat1
 #define BM_MLB_MDAT1_DATA      (0xffffffff)  //!< Bit mask for MLB_MDAT1_DATA.
 
 //! @brief Get value of MLB_MDAT1_DATA from a register value.
-#define BG_MLB_MDAT1_DATA(r)   (((r) & BM_MLB_MDAT1_DATA) >> BP_MLB_MDAT1_DATA)
+#define BG_MLB_MDAT1_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDAT1_DATA) >> BP_MLB_MDAT1_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDAT1_DATA.
-#define BF_MLB_MDAT1_DATA(v)   ((((reg32_t) v) << BP_MLB_MDAT1_DATA) & BM_MLB_MDAT1_DATA)
-#else
-//! @brief Format value for bitfield MLB_MDAT1_DATA.
-#define BF_MLB_MDAT1_DATA(v)   (((v) << BP_MLB_MDAT1_DATA) & BM_MLB_MDAT1_DATA)
-#endif
+#define BF_MLB_MDAT1_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDAT1_DATA) & BM_MLB_MDAT1_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MLB_MDAT1_DATA(v)   (HW_MLB_MDAT1_WR((HW_MLB_MDAT1_RD() & ~BM_MLB_MDAT1_DATA) | BF_MLB_MDAT1_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDAT2 - MIF Data 2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1939,20 +1870,19 @@ typedef union _hw_mlb_mdat2
 #define BM_MLB_MDAT2_DATA      (0xffffffff)  //!< Bit mask for MLB_MDAT2_DATA.
 
 //! @brief Get value of MLB_MDAT2_DATA from a register value.
-#define BG_MLB_MDAT2_DATA(r)   (((r) & BM_MLB_MDAT2_DATA) >> BP_MLB_MDAT2_DATA)
+#define BG_MLB_MDAT2_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDAT2_DATA) >> BP_MLB_MDAT2_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDAT2_DATA.
-#define BF_MLB_MDAT2_DATA(v)   ((((reg32_t) v) << BP_MLB_MDAT2_DATA) & BM_MLB_MDAT2_DATA)
-#else
-//! @brief Format value for bitfield MLB_MDAT2_DATA.
-#define BF_MLB_MDAT2_DATA(v)   (((v) << BP_MLB_MDAT2_DATA) & BM_MLB_MDAT2_DATA)
-#endif
+#define BF_MLB_MDAT2_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDAT2_DATA) & BM_MLB_MDAT2_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MLB_MDAT2_DATA(v)   (HW_MLB_MDAT2_WR((HW_MLB_MDAT2_RD() & ~BM_MLB_MDAT2_DATA) | BF_MLB_MDAT2_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDAT3 - MIF Data 3 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1999,20 +1929,19 @@ typedef union _hw_mlb_mdat3
 #define BM_MLB_MDAT3_DATA      (0xffffffff)  //!< Bit mask for MLB_MDAT3_DATA.
 
 //! @brief Get value of MLB_MDAT3_DATA from a register value.
-#define BG_MLB_MDAT3_DATA(r)   (((r) & BM_MLB_MDAT3_DATA) >> BP_MLB_MDAT3_DATA)
+#define BG_MLB_MDAT3_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDAT3_DATA) >> BP_MLB_MDAT3_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDAT3_DATA.
-#define BF_MLB_MDAT3_DATA(v)   ((((reg32_t) v) << BP_MLB_MDAT3_DATA) & BM_MLB_MDAT3_DATA)
-#else
-//! @brief Format value for bitfield MLB_MDAT3_DATA.
-#define BF_MLB_MDAT3_DATA(v)   (((v) << BP_MLB_MDAT3_DATA) & BM_MLB_MDAT3_DATA)
-#endif
+#define BF_MLB_MDAT3_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDAT3_DATA) & BM_MLB_MDAT3_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MLB_MDAT3_DATA(v)   (HW_MLB_MDAT3_WR((HW_MLB_MDAT3_RD() & ~BM_MLB_MDAT3_DATA) | BF_MLB_MDAT3_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDWE0 - MIF Data Write Enable 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2063,21 +1992,20 @@ typedef union _hw_mlb_mdwe0
 #define BM_MLB_MDWE0_MASK      (0xffffffff)  //!< Bit mask for MLB_MDWE0_MASK.
 
 //! @brief Get value of MLB_MDWE0_MASK from a register value.
-#define BG_MLB_MDWE0_MASK(r)   (((r) & BM_MLB_MDWE0_MASK) >> BP_MLB_MDWE0_MASK)
+#define BG_MLB_MDWE0_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDWE0_MASK) >> BP_MLB_MDWE0_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDWE0_MASK.
-#define BF_MLB_MDWE0_MASK(v)   ((((reg32_t) v) << BP_MLB_MDWE0_MASK) & BM_MLB_MDWE0_MASK)
-#else
-//! @brief Format value for bitfield MLB_MDWE0_MASK.
-#define BF_MLB_MDWE0_MASK(v)   (((v) << BP_MLB_MDWE0_MASK) & BM_MLB_MDWE0_MASK)
-#endif
+#define BF_MLB_MDWE0_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDWE0_MASK) & BM_MLB_MDWE0_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK field to a new value.
 #define BW_MLB_MDWE0_MASK(v)   (HW_MLB_MDWE0_WR((HW_MLB_MDWE0_RD() & ~BM_MLB_MDWE0_MASK) | BF_MLB_MDWE0_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDWE1 - MIF Data Write Enable 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2128,21 +2056,20 @@ typedef union _hw_mlb_mdwe1
 #define BM_MLB_MDWE1_MASK      (0xffffffff)  //!< Bit mask for MLB_MDWE1_MASK.
 
 //! @brief Get value of MLB_MDWE1_MASK from a register value.
-#define BG_MLB_MDWE1_MASK(r)   (((r) & BM_MLB_MDWE1_MASK) >> BP_MLB_MDWE1_MASK)
+#define BG_MLB_MDWE1_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDWE1_MASK) >> BP_MLB_MDWE1_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDWE1_MASK.
-#define BF_MLB_MDWE1_MASK(v)   ((((reg32_t) v) << BP_MLB_MDWE1_MASK) & BM_MLB_MDWE1_MASK)
-#else
-//! @brief Format value for bitfield MLB_MDWE1_MASK.
-#define BF_MLB_MDWE1_MASK(v)   (((v) << BP_MLB_MDWE1_MASK) & BM_MLB_MDWE1_MASK)
-#endif
+#define BF_MLB_MDWE1_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDWE1_MASK) & BM_MLB_MDWE1_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK field to a new value.
 #define BW_MLB_MDWE1_MASK(v)   (HW_MLB_MDWE1_WR((HW_MLB_MDWE1_RD() & ~BM_MLB_MDWE1_MASK) | BF_MLB_MDWE1_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDWE2 - MIF Data Write Enable 2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2193,21 +2120,20 @@ typedef union _hw_mlb_mdwe2
 #define BM_MLB_MDWE2_MASK      (0xffffffff)  //!< Bit mask for MLB_MDWE2_MASK.
 
 //! @brief Get value of MLB_MDWE2_MASK from a register value.
-#define BG_MLB_MDWE2_MASK(r)   (((r) & BM_MLB_MDWE2_MASK) >> BP_MLB_MDWE2_MASK)
+#define BG_MLB_MDWE2_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDWE2_MASK) >> BP_MLB_MDWE2_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDWE2_MASK.
-#define BF_MLB_MDWE2_MASK(v)   ((((reg32_t) v) << BP_MLB_MDWE2_MASK) & BM_MLB_MDWE2_MASK)
-#else
-//! @brief Format value for bitfield MLB_MDWE2_MASK.
-#define BF_MLB_MDWE2_MASK(v)   (((v) << BP_MLB_MDWE2_MASK) & BM_MLB_MDWE2_MASK)
-#endif
+#define BF_MLB_MDWE2_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDWE2_MASK) & BM_MLB_MDWE2_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK field to a new value.
 #define BW_MLB_MDWE2_MASK(v)   (HW_MLB_MDWE2_WR((HW_MLB_MDWE2_RD() & ~BM_MLB_MDWE2_MASK) | BF_MLB_MDWE2_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MDWE3 - MIF Data Write Enable 3 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2258,21 +2184,20 @@ typedef union _hw_mlb_mdwe3
 #define BM_MLB_MDWE3_MASK      (0xffffffff)  //!< Bit mask for MLB_MDWE3_MASK.
 
 //! @brief Get value of MLB_MDWE3_MASK from a register value.
-#define BG_MLB_MDWE3_MASK(r)   (((r) & BM_MLB_MDWE3_MASK) >> BP_MLB_MDWE3_MASK)
+#define BG_MLB_MDWE3_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MDWE3_MASK) >> BP_MLB_MDWE3_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MDWE3_MASK.
-#define BF_MLB_MDWE3_MASK(v)   ((((reg32_t) v) << BP_MLB_MDWE3_MASK) & BM_MLB_MDWE3_MASK)
-#else
-//! @brief Format value for bitfield MLB_MDWE3_MASK.
-#define BF_MLB_MDWE3_MASK(v)   (((v) << BP_MLB_MDWE3_MASK) & BM_MLB_MDWE3_MASK)
-#endif
+#define BF_MLB_MDWE3_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MDWE3_MASK) & BM_MLB_MDWE3_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK field to a new value.
 #define BW_MLB_MDWE3_MASK(v)   (HW_MLB_MDWE3_WR((HW_MLB_MDWE3_RD() & ~BM_MLB_MDWE3_MASK) | BF_MLB_MDWE3_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MCTL - MIF Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2316,7 +2241,11 @@ typedef union _hw_mlb_mctl
 #define BM_MLB_MCTL_XCMP      (0x00000001)  //!< Bit mask for MLB_MCTL_XCMP.
 
 //! @brief Get value of MLB_MCTL_XCMP from a register value.
-#define BG_MLB_MCTL_XCMP(r)   (((r) & BM_MLB_MCTL_XCMP) >> BP_MLB_MCTL_XCMP)
+#define BG_MLB_MCTL_XCMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MCTL_XCMP) >> BP_MLB_MCTL_XCMP)
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_MADR - MIF Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2367,15 +2296,10 @@ typedef union _hw_mlb_madr
 #define BM_MLB_MADR_ADDR      (0x000000ff)  //!< Bit mask for MLB_MADR_ADDR.
 
 //! @brief Get value of MLB_MADR_ADDR from a register value.
-#define BG_MLB_MADR_ADDR(r)   (((r) & BM_MLB_MADR_ADDR) >> BP_MLB_MADR_ADDR)
+#define BG_MLB_MADR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MADR_ADDR) >> BP_MLB_MADR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MADR_ADDR.
-#define BF_MLB_MADR_ADDR(v)   ((((reg32_t) v) << BP_MLB_MADR_ADDR) & BM_MLB_MADR_ADDR)
-#else
-//! @brief Format value for bitfield MLB_MADR_ADDR.
-#define BF_MLB_MADR_ADDR(v)   (((v) << BP_MLB_MADR_ADDR) & BM_MLB_MADR_ADDR)
-#endif
+#define BF_MLB_MADR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MADR_ADDR) & BM_MLB_MADR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
@@ -2391,15 +2315,10 @@ typedef union _hw_mlb_madr
 #define BM_MLB_MADR_ADDR1      (0x00003f00)  //!< Bit mask for MLB_MADR_ADDR1.
 
 //! @brief Get value of MLB_MADR_ADDR1 from a register value.
-#define BG_MLB_MADR_ADDR1(r)   (((r) & BM_MLB_MADR_ADDR1) >> BP_MLB_MADR_ADDR1)
+#define BG_MLB_MADR_ADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MADR_ADDR1) >> BP_MLB_MADR_ADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MADR_ADDR1.
-#define BF_MLB_MADR_ADDR1(v)   ((((reg32_t) v) << BP_MLB_MADR_ADDR1) & BM_MLB_MADR_ADDR1)
-#else
-//! @brief Format value for bitfield MLB_MADR_ADDR1.
-#define BF_MLB_MADR_ADDR1(v)   (((v) << BP_MLB_MADR_ADDR1) & BM_MLB_MADR_ADDR1)
-#endif
+#define BF_MLB_MADR_ADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MADR_ADDR1) & BM_MLB_MADR_ADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR1 field to a new value.
@@ -2419,15 +2338,10 @@ typedef union _hw_mlb_madr
 #define BM_MLB_MADR_TB      (0x40000000)  //!< Bit mask for MLB_MADR_TB.
 
 //! @brief Get value of MLB_MADR_TB from a register value.
-#define BG_MLB_MADR_TB(r)   (((r) & BM_MLB_MADR_TB) >> BP_MLB_MADR_TB)
+#define BG_MLB_MADR_TB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MADR_TB) >> BP_MLB_MADR_TB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MADR_TB.
-#define BF_MLB_MADR_TB(v)   ((((reg32_t) v) << BP_MLB_MADR_TB) & BM_MLB_MADR_TB)
-#else
-//! @brief Format value for bitfield MLB_MADR_TB.
-#define BF_MLB_MADR_TB(v)   (((v) << BP_MLB_MADR_TB) & BM_MLB_MADR_TB)
-#endif
+#define BF_MLB_MADR_TB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MADR_TB) & BM_MLB_MADR_TB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TB field to a new value.
@@ -2448,21 +2362,20 @@ typedef union _hw_mlb_madr
 #define BM_MLB_MADR_WNR      (0x80000000)  //!< Bit mask for MLB_MADR_WNR.
 
 //! @brief Get value of MLB_MADR_WNR from a register value.
-#define BG_MLB_MADR_WNR(r)   (((r) & BM_MLB_MADR_WNR) >> BP_MLB_MADR_WNR)
+#define BG_MLB_MADR_WNR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_MADR_WNR) >> BP_MLB_MADR_WNR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_MADR_WNR.
-#define BF_MLB_MADR_WNR(v)   ((((reg32_t) v) << BP_MLB_MADR_WNR) & BM_MLB_MADR_WNR)
-#else
-//! @brief Format value for bitfield MLB_MADR_WNR.
-#define BF_MLB_MADR_WNR(v)   (((v) << BP_MLB_MADR_WNR) & BM_MLB_MADR_WNR)
-#endif
+#define BF_MLB_MADR_WNR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_MADR_WNR) & BM_MLB_MADR_WNR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WNR field to a new value.
 #define BW_MLB_MADR_WNR(v)   (HW_MLB_MADR_WR((HW_MLB_MADR_RD() & ~BM_MLB_MADR_WNR) | BF_MLB_MADR_WNR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_ACTL - AHB Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2521,15 +2434,10 @@ typedef union _hw_mlb_actl
 #define BM_MLB_ACTL_SCE      (0x00000001)  //!< Bit mask for MLB_ACTL_SCE.
 
 //! @brief Get value of MLB_ACTL_SCE from a register value.
-#define BG_MLB_ACTL_SCE(r)   (((r) & BM_MLB_ACTL_SCE) >> BP_MLB_ACTL_SCE)
+#define BG_MLB_ACTL_SCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACTL_SCE) >> BP_MLB_ACTL_SCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACTL_SCE.
-#define BF_MLB_ACTL_SCE(v)   ((((reg32_t) v) << BP_MLB_ACTL_SCE) & BM_MLB_ACTL_SCE)
-#else
-//! @brief Format value for bitfield MLB_ACTL_SCE.
-#define BF_MLB_ACTL_SCE(v)   (((v) << BP_MLB_ACTL_SCE) & BM_MLB_ACTL_SCE)
-#endif
+#define BF_MLB_ACTL_SCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACTL_SCE) & BM_MLB_ACTL_SCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCE field to a new value.
@@ -2550,15 +2458,10 @@ typedef union _hw_mlb_actl
 #define BM_MLB_ACTL_SMX      (0x00000002)  //!< Bit mask for MLB_ACTL_SMX.
 
 //! @brief Get value of MLB_ACTL_SMX from a register value.
-#define BG_MLB_ACTL_SMX(r)   (((r) & BM_MLB_ACTL_SMX) >> BP_MLB_ACTL_SMX)
+#define BG_MLB_ACTL_SMX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACTL_SMX) >> BP_MLB_ACTL_SMX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACTL_SMX.
-#define BF_MLB_ACTL_SMX(v)   ((((reg32_t) v) << BP_MLB_ACTL_SMX) & BM_MLB_ACTL_SMX)
-#else
-//! @brief Format value for bitfield MLB_ACTL_SMX.
-#define BF_MLB_ACTL_SMX(v)   (((v) << BP_MLB_ACTL_SMX) & BM_MLB_ACTL_SMX)
-#endif
+#define BF_MLB_ACTL_SMX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACTL_SMX) & BM_MLB_ACTL_SMX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SMX field to a new value.
@@ -2579,15 +2482,10 @@ typedef union _hw_mlb_actl
 #define BM_MLB_ACTL_DMA_MODE      (0x00000004)  //!< Bit mask for MLB_ACTL_DMA_MODE.
 
 //! @brief Get value of MLB_ACTL_DMA_MODE from a register value.
-#define BG_MLB_ACTL_DMA_MODE(r)   (((r) & BM_MLB_ACTL_DMA_MODE) >> BP_MLB_ACTL_DMA_MODE)
+#define BG_MLB_ACTL_DMA_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACTL_DMA_MODE) >> BP_MLB_ACTL_DMA_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACTL_DMA_MODE.
-#define BF_MLB_ACTL_DMA_MODE(v)   ((((reg32_t) v) << BP_MLB_ACTL_DMA_MODE) & BM_MLB_ACTL_DMA_MODE)
-#else
-//! @brief Format value for bitfield MLB_ACTL_DMA_MODE.
-#define BF_MLB_ACTL_DMA_MODE(v)   (((v) << BP_MLB_ACTL_DMA_MODE) & BM_MLB_ACTL_DMA_MODE)
-#endif
+#define BF_MLB_ACTL_DMA_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACTL_DMA_MODE) & BM_MLB_ACTL_DMA_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_MODE field to a new value.
@@ -2608,21 +2506,20 @@ typedef union _hw_mlb_actl
 #define BM_MLB_ACTL_MPB      (0x00000010)  //!< Bit mask for MLB_ACTL_MPB.
 
 //! @brief Get value of MLB_ACTL_MPB from a register value.
-#define BG_MLB_ACTL_MPB(r)   (((r) & BM_MLB_ACTL_MPB) >> BP_MLB_ACTL_MPB)
+#define BG_MLB_ACTL_MPB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACTL_MPB) >> BP_MLB_ACTL_MPB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACTL_MPB.
-#define BF_MLB_ACTL_MPB(v)   ((((reg32_t) v) << BP_MLB_ACTL_MPB) & BM_MLB_ACTL_MPB)
-#else
-//! @brief Format value for bitfield MLB_ACTL_MPB.
-#define BF_MLB_ACTL_MPB(v)   (((v) << BP_MLB_ACTL_MPB) & BM_MLB_ACTL_MPB)
-#endif
+#define BF_MLB_ACTL_MPB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACTL_MPB) & BM_MLB_ACTL_MPB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPB field to a new value.
 #define BW_MLB_ACTL_MPB(v)   (HW_MLB_ACTL_WR((HW_MLB_ACTL_RD() & ~BM_MLB_ACTL_MPB) | BF_MLB_ACTL_MPB(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_ACSR0 - AHB Channel Status 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2678,8 +2575,12 @@ typedef union _hw_mlb_acsr0
 #define BM_MLB_ACSR0_V      (0xffffffff)  //!< Bit mask for MLB_ACSR0_V.
 
 //! @brief Get value of MLB_ACSR0_V from a register value.
-#define BG_MLB_ACSR0_V(r)   (((r) & BM_MLB_ACSR0_V) >> BP_MLB_ACSR0_V)
+#define BG_MLB_ACSR0_V(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACSR0_V) >> BP_MLB_ACSR0_V)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_ACSR1 - AHB Channel Status 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2726,8 +2627,12 @@ typedef union _hw_mlb_acsr1
 #define BM_MLB_ACSR1_CHS      (0xffffffff)  //!< Bit mask for MLB_ACSR1_CHS.
 
 //! @brief Get value of MLB_ACSR1_CHS from a register value.
-#define BG_MLB_ACSR1_CHS(r)   (((r) & BM_MLB_ACSR1_CHS) >> BP_MLB_ACSR1_CHS)
+#define BG_MLB_ACSR1_CHS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACSR1_CHS) >> BP_MLB_ACSR1_CHS)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_ACMR0 - AHB Channel Mask 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2780,21 +2685,20 @@ typedef union _hw_mlb_acmr0
 #define BM_MLB_ACMR0_CHM      (0xffffffff)  //!< Bit mask for MLB_ACMR0_CHM.
 
 //! @brief Get value of MLB_ACMR0_CHM from a register value.
-#define BG_MLB_ACMR0_CHM(r)   (((r) & BM_MLB_ACMR0_CHM) >> BP_MLB_ACMR0_CHM)
+#define BG_MLB_ACMR0_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACMR0_CHM) >> BP_MLB_ACMR0_CHM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACMR0_CHM.
-#define BF_MLB_ACMR0_CHM(v)   ((((reg32_t) v) << BP_MLB_ACMR0_CHM) & BM_MLB_ACMR0_CHM)
-#else
-//! @brief Format value for bitfield MLB_ACMR0_CHM.
-#define BF_MLB_ACMR0_CHM(v)   (((v) << BP_MLB_ACMR0_CHM) & BM_MLB_ACMR0_CHM)
-#endif
+#define BF_MLB_ACMR0_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACMR0_CHM) & BM_MLB_ACMR0_CHM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHM field to a new value.
 #define BW_MLB_ACMR0_CHM(v)   (HW_MLB_ACMR0_WR((HW_MLB_ACMR0_RD() & ~BM_MLB_ACMR0_CHM) | BF_MLB_ACMR0_CHM(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MLB_ACMR1 - AHB Channel Mask 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2845,15 +2749,10 @@ typedef union _hw_mlb_acmr1
 #define BM_MLB_ACMR1_CHM      (0xffffffff)  //!< Bit mask for MLB_ACMR1_CHM.
 
 //! @brief Get value of MLB_ACMR1_CHM from a register value.
-#define BG_MLB_ACMR1_CHM(r)   (((r) & BM_MLB_ACMR1_CHM) >> BP_MLB_ACMR1_CHM)
+#define BG_MLB_ACMR1_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB_ACMR1_CHM) >> BP_MLB_ACMR1_CHM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MLB_ACMR1_CHM.
-#define BF_MLB_ACMR1_CHM(v)   ((((reg32_t) v) << BP_MLB_ACMR1_CHM) & BM_MLB_ACMR1_CHM)
-#else
-//! @brief Format value for bitfield MLB_ACMR1_CHM.
-#define BF_MLB_ACMR1_CHM(v)   (((v) << BP_MLB_ACMR1_CHM) & BM_MLB_ACMR1_CHM)
-#endif
+#define BF_MLB_ACMR1_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB_ACMR1_CHM) & BM_MLB_ACMR1_CHM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHM field to a new value.

@@ -942,57 +942,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_CCGR6_CG15={\
         gui_name="CG15":position=30:size=2:read_only=false\
       }\
-    }:Register.G_CCM_CCGR7={\
-      gui_name="CCGR7":start=0x020c4084:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_CCGR7_CG0={\
-        gui_name="CG0":position=0:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG1={\
-        gui_name="CG1":position=2:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG2={\
-        gui_name="CG2":position=4:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG3={\
-        gui_name="CG3":position=6:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG4={\
-        gui_name="CG4":position=8:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG5={\
-        gui_name="CG5":position=10:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG6={\
-        gui_name="CG6":position=12:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG7={\
-        gui_name="CG7":position=14:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG8={\
-        gui_name="CG8":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG9={\
-        gui_name="CG9":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG10={\
-        gui_name="CG10":position=20:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG11={\
-        gui_name="CG11":position=22:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG12={\
-        gui_name="CG12":position=24:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG13={\
-        gui_name="CG13":position=26:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG14={\
-        gui_name="CG14":position=28:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_CCGR7_CG15={\
-        gui_name="CG15":position=30:size=2:read_only=false\
-      }\
     }:Register.G_CCM_CMEOR={\
       gui_name="CMEOR":start=0x020c4088:length=4:\
       read_only=false:write_only=false:\
@@ -1399,25 +1348,6 @@ Advanced_Information.Cortex-A9={\
     line="B_CCM_CCGR6_CG13":\
     line="B_CCM_CCGR6_CG14":\
     line="B_CCM_CCGR6_CG15":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_CCGR7":\
-    line="B_CCM_CCGR7_CG0":\
-    line="B_CCM_CCGR7_CG1":\
-    line="B_CCM_CCGR7_CG2":\
-    line="B_CCM_CCGR7_CG3":\
-    line="B_CCM_CCGR7_CG4":\
-    line="B_CCM_CCGR7_CG5":\
-    line="B_CCM_CCGR7_CG6":\
-    line="B_CCM_CCGR7_CG7":\
-    line="B_CCM_CCGR7_CG8":\
-    line="B_CCM_CCGR7_CG9":\
-    line="B_CCM_CCGR7_CG10":\
-    line="B_CCM_CCGR7_CG11":\
-    line="B_CCM_CCGR7_CG12":\
-    line="B_CCM_CCGR7_CG13":\
-    line="B_CCM_CCGR7_CG14":\
-    line="B_CCM_CCGR7_CG15":\
     line="$$":\
     line="$+":\
     line="=G_CCM_CMEOR":\

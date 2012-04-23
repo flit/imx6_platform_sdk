@@ -27,6 +27,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_TEMPMON_TEMPSENSE0 - Tempsensor Control Register 0
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_TEMPMON_TEMPSENSE0 - Tempsensor Control Register 0 (RW)
@@ -44,10 +59,9 @@ typedef union _hw_tempmon_tempsense0
         unsigned POWER_DOWN : 1; //!< [0] This bit powers down the temperature sensor.
         unsigned MEASURE_TEMP : 1; //!< [1] Starts the measurement process. If the measurement frequency is zero in the TEMPSENSE1 register, this results in a single conversion.
         unsigned FINISHED : 1; //!< [2] Indicates that the latest temp is valid. This bit should be cleared by the sensor after the start of each measurement.
-        unsigned VBGADJ : 3; //!< [5:3] Analog adjustment bits.
-        unsigned RESERVED0 : 2; //!< [7:6] Reserved.
-        unsigned TEMP_VALUE : 12; //!< [19:8] This bit field contains the last measured temperature.
-        unsigned ALARM_VALUE : 12; //!< [31:20] This bit field contains the temperature that will generate an alarm interrupt.
+        unsigned RESERVED0 : 5; //!< [7:3] Reserved.
+        unsigned TEMP_CNT : 12; //!< [19:8] This bit field contains the last measured temperature count.
+        unsigned ALARM_VALUE : 12; //!< [31:20] This bit field contains the temperature count (raw sensor output) that will generate an alarm interrupt.
     } B;
 } hw_tempmon_tempsense0_t;
 #endif
@@ -86,15 +100,10 @@ typedef union _hw_tempmon_tempsense0
 #define BM_TEMPMON_TEMPSENSE0_POWER_DOWN      (0x00000001)  //!< Bit mask for TEMPMON_TEMPSENSE0_POWER_DOWN.
 
 //! @brief Get value of TEMPMON_TEMPSENSE0_POWER_DOWN from a register value.
-#define BG_TEMPMON_TEMPSENSE0_POWER_DOWN(r)   (((r) & BM_TEMPMON_TEMPSENSE0_POWER_DOWN) >> BP_TEMPMON_TEMPSENSE0_POWER_DOWN)
+#define BG_TEMPMON_TEMPSENSE0_POWER_DOWN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_POWER_DOWN) >> BP_TEMPMON_TEMPSENSE0_POWER_DOWN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield TEMPMON_TEMPSENSE0_POWER_DOWN.
-#define BF_TEMPMON_TEMPSENSE0_POWER_DOWN(v)   ((((reg32_t) v) << BP_TEMPMON_TEMPSENSE0_POWER_DOWN) & BM_TEMPMON_TEMPSENSE0_POWER_DOWN)
-#else
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE0_POWER_DOWN.
-#define BF_TEMPMON_TEMPSENSE0_POWER_DOWN(v)   (((v) << BP_TEMPMON_TEMPSENSE0_POWER_DOWN) & BM_TEMPMON_TEMPSENSE0_POWER_DOWN)
-#endif
+#define BF_TEMPMON_TEMPSENSE0_POWER_DOWN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_TEMPMON_TEMPSENSE0_POWER_DOWN) & BM_TEMPMON_TEMPSENSE0_POWER_DOWN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POWER_DOWN field to a new value.
@@ -110,6 +119,7 @@ typedef union _hw_tempmon_tempsense0
  * this results in a single conversion.
  *
  * Values:
+ * STOP = 0 - Do not start the measurement process.
  * START = 1 - Start the measurement process.
  */
 
@@ -117,21 +127,17 @@ typedef union _hw_tempmon_tempsense0
 #define BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP      (0x00000002)  //!< Bit mask for TEMPMON_TEMPSENSE0_MEASURE_TEMP.
 
 //! @brief Get value of TEMPMON_TEMPSENSE0_MEASURE_TEMP from a register value.
-#define BG_TEMPMON_TEMPSENSE0_MEASURE_TEMP(r)   (((r) & BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP) >> BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP)
+#define BG_TEMPMON_TEMPSENSE0_MEASURE_TEMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP) >> BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield TEMPMON_TEMPSENSE0_MEASURE_TEMP.
-#define BF_TEMPMON_TEMPSENSE0_MEASURE_TEMP(v)   ((((reg32_t) v) << BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP) & BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP)
-#else
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE0_MEASURE_TEMP.
-#define BF_TEMPMON_TEMPSENSE0_MEASURE_TEMP(v)   (((v) << BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP) & BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP)
-#endif
+#define BF_TEMPMON_TEMPSENSE0_MEASURE_TEMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP) & BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MEASURE_TEMP field to a new value.
 #define BW_TEMPMON_TEMPSENSE0_MEASURE_TEMP(v)   BF_CS1(TEMPMON_TEMPSENSE0, MEASURE_TEMP, v)
 #endif
 
+#define BV_TEMPMON_TEMPSENSE0_MEASURE_TEMP__STOP (0x0) //!< Do not start the measurement process.
 #define BV_TEMPMON_TEMPSENSE0_MEASURE_TEMP__START (0x1) //!< Start the measurement process.
 
 /* --- Register HW_TEMPMON_TEMPSENSE0, field FINISHED[2] (RO)
@@ -148,69 +154,45 @@ typedef union _hw_tempmon_tempsense0
 #define BM_TEMPMON_TEMPSENSE0_FINISHED      (0x00000004)  //!< Bit mask for TEMPMON_TEMPSENSE0_FINISHED.
 
 //! @brief Get value of TEMPMON_TEMPSENSE0_FINISHED from a register value.
-#define BG_TEMPMON_TEMPSENSE0_FINISHED(r)   (((r) & BM_TEMPMON_TEMPSENSE0_FINISHED) >> BP_TEMPMON_TEMPSENSE0_FINISHED)
+#define BG_TEMPMON_TEMPSENSE0_FINISHED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_FINISHED) >> BP_TEMPMON_TEMPSENSE0_FINISHED)
 
 #define BV_TEMPMON_TEMPSENSE0_FINISHED__INVALID (0x0) //!< Last measurement is not ready yet.
 #define BV_TEMPMON_TEMPSENSE0_FINISHED__VALID (0x1) //!< Last measurement is valid.
 
-/* --- Register HW_TEMPMON_TEMPSENSE0, field VBGADJ[5:3] (RW)
+/* --- Register HW_TEMPMON_TEMPSENSE0, field TEMP_CNT[19:8] (RO)
  *
- * Analog adjustment bits.
+ * This bit field contains the last measured temperature count.
  */
 
-#define BP_TEMPMON_TEMPSENSE0_VBGADJ      (3)      //!< Bit position for TEMPMON_TEMPSENSE0_VBGADJ.
-#define BM_TEMPMON_TEMPSENSE0_VBGADJ      (0x00000038)  //!< Bit mask for TEMPMON_TEMPSENSE0_VBGADJ.
+#define BP_TEMPMON_TEMPSENSE0_TEMP_CNT      (8)      //!< Bit position for TEMPMON_TEMPSENSE0_TEMP_CNT.
+#define BM_TEMPMON_TEMPSENSE0_TEMP_CNT      (0x000fff00)  //!< Bit mask for TEMPMON_TEMPSENSE0_TEMP_CNT.
 
-//! @brief Get value of TEMPMON_TEMPSENSE0_VBGADJ from a register value.
-#define BG_TEMPMON_TEMPSENSE0_VBGADJ(r)   (((r) & BM_TEMPMON_TEMPSENSE0_VBGADJ) >> BP_TEMPMON_TEMPSENSE0_VBGADJ)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE0_VBGADJ.
-#define BF_TEMPMON_TEMPSENSE0_VBGADJ(v)   ((((reg32_t) v) << BP_TEMPMON_TEMPSENSE0_VBGADJ) & BM_TEMPMON_TEMPSENSE0_VBGADJ)
-#else
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE0_VBGADJ.
-#define BF_TEMPMON_TEMPSENSE0_VBGADJ(v)   (((v) << BP_TEMPMON_TEMPSENSE0_VBGADJ) & BM_TEMPMON_TEMPSENSE0_VBGADJ)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VBGADJ field to a new value.
-#define BW_TEMPMON_TEMPSENSE0_VBGADJ(v)   BF_CS1(TEMPMON_TEMPSENSE0, VBGADJ, v)
-#endif
-
-/* --- Register HW_TEMPMON_TEMPSENSE0, field TEMP_VALUE[19:8] (RO)
- *
- * This bit field contains the last measured temperature.
- */
-
-#define BP_TEMPMON_TEMPSENSE0_TEMP_VALUE      (8)      //!< Bit position for TEMPMON_TEMPSENSE0_TEMP_VALUE.
-#define BM_TEMPMON_TEMPSENSE0_TEMP_VALUE      (0x000fff00)  //!< Bit mask for TEMPMON_TEMPSENSE0_TEMP_VALUE.
-
-//! @brief Get value of TEMPMON_TEMPSENSE0_TEMP_VALUE from a register value.
-#define BG_TEMPMON_TEMPSENSE0_TEMP_VALUE(r)   (((r) & BM_TEMPMON_TEMPSENSE0_TEMP_VALUE) >> BP_TEMPMON_TEMPSENSE0_TEMP_VALUE)
+//! @brief Get value of TEMPMON_TEMPSENSE0_TEMP_CNT from a register value.
+#define BG_TEMPMON_TEMPSENSE0_TEMP_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_TEMP_CNT) >> BP_TEMPMON_TEMPSENSE0_TEMP_CNT)
 
 /* --- Register HW_TEMPMON_TEMPSENSE0, field ALARM_VALUE[31:20] (RW)
  *
- * This bit field contains the temperature that will generate an alarm interrupt.
+ * This bit field contains the temperature count (raw sensor output) that will generate an alarm
+ * interrupt.
  */
 
 #define BP_TEMPMON_TEMPSENSE0_ALARM_VALUE      (20)      //!< Bit position for TEMPMON_TEMPSENSE0_ALARM_VALUE.
 #define BM_TEMPMON_TEMPSENSE0_ALARM_VALUE      (0xfff00000)  //!< Bit mask for TEMPMON_TEMPSENSE0_ALARM_VALUE.
 
 //! @brief Get value of TEMPMON_TEMPSENSE0_ALARM_VALUE from a register value.
-#define BG_TEMPMON_TEMPSENSE0_ALARM_VALUE(r)   (((r) & BM_TEMPMON_TEMPSENSE0_ALARM_VALUE) >> BP_TEMPMON_TEMPSENSE0_ALARM_VALUE)
+#define BG_TEMPMON_TEMPSENSE0_ALARM_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_ALARM_VALUE) >> BP_TEMPMON_TEMPSENSE0_ALARM_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield TEMPMON_TEMPSENSE0_ALARM_VALUE.
-#define BF_TEMPMON_TEMPSENSE0_ALARM_VALUE(v)   ((((reg32_t) v) << BP_TEMPMON_TEMPSENSE0_ALARM_VALUE) & BM_TEMPMON_TEMPSENSE0_ALARM_VALUE)
-#else
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE0_ALARM_VALUE.
-#define BF_TEMPMON_TEMPSENSE0_ALARM_VALUE(v)   (((v) << BP_TEMPMON_TEMPSENSE0_ALARM_VALUE) & BM_TEMPMON_TEMPSENSE0_ALARM_VALUE)
-#endif
+#define BF_TEMPMON_TEMPSENSE0_ALARM_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_TEMPMON_TEMPSENSE0_ALARM_VALUE) & BM_TEMPMON_TEMPSENSE0_ALARM_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALARM_VALUE field to a new value.
 #define BW_TEMPMON_TEMPSENSE0_ALARM_VALUE(v)   BF_CS1(TEMPMON_TEMPSENSE0, ALARM_VALUE, v)
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_TEMPMON_TEMPSENSE1 - Tempsensor Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -263,15 +245,10 @@ typedef union _hw_tempmon_tempsense1
 #define BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ      (0x0000ffff)  //!< Bit mask for TEMPMON_TEMPSENSE1_MEASURE_FREQ.
 
 //! @brief Get value of TEMPMON_TEMPSENSE1_MEASURE_FREQ from a register value.
-#define BG_TEMPMON_TEMPSENSE1_MEASURE_FREQ(r)   (((r) & BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ) >> BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ)
+#define BG_TEMPMON_TEMPSENSE1_MEASURE_FREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ) >> BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield TEMPMON_TEMPSENSE1_MEASURE_FREQ.
-#define BF_TEMPMON_TEMPSENSE1_MEASURE_FREQ(v)   ((((reg32_t) v) << BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ) & BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ)
-#else
-//! @brief Format value for bitfield TEMPMON_TEMPSENSE1_MEASURE_FREQ.
-#define BF_TEMPMON_TEMPSENSE1_MEASURE_FREQ(v)   (((v) << BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ) & BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ)
-#endif
+#define BF_TEMPMON_TEMPSENSE1_MEASURE_FREQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ) & BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MEASURE_FREQ field to a new value.

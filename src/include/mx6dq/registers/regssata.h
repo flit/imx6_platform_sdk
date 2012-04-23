@@ -62,6 +62,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_CAP - HBA Capabilites Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SATA_CAP - HBA Capabilites Register (RO)
@@ -125,7 +140,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_NP      (0x0000001f)  //!< Bit mask for SATA_CAP_NP.
 
 //! @brief Get value of SATA_CAP_NP from a register value.
-#define BG_SATA_CAP_NP(r)   (((r) & BM_SATA_CAP_NP) >> BP_SATA_CAP_NP)
+#define BG_SATA_CAP_NP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_NP) >> BP_SATA_CAP_NP)
 
 /* --- Register HW_SATA_CAP, field SXS[5] (RO)
  *
@@ -145,7 +160,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SXS      (0x00000020)  //!< Bit mask for SATA_CAP_SXS.
 
 //! @brief Get value of SATA_CAP_SXS from a register value.
-#define BG_SATA_CAP_SXS(r)   (((r) & BM_SATA_CAP_SXS) >> BP_SATA_CAP_SXS)
+#define BG_SATA_CAP_SXS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SXS) >> BP_SATA_CAP_SXS)
 
 
 /* --- Register HW_SATA_CAP, field EMS[6] (RO)
@@ -157,7 +172,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_EMS      (0x00000040)  //!< Bit mask for SATA_CAP_EMS.
 
 //! @brief Get value of SATA_CAP_EMS from a register value.
-#define BG_SATA_CAP_EMS(r)   (((r) & BM_SATA_CAP_EMS) >> BP_SATA_CAP_EMS)
+#define BG_SATA_CAP_EMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_EMS) >> BP_SATA_CAP_EMS)
 
 /* --- Register HW_SATA_CAP, field CCCS[7] (RO)
  *
@@ -168,7 +183,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_CCCS      (0x00000080)  //!< Bit mask for SATA_CAP_CCCS.
 
 //! @brief Get value of SATA_CAP_CCCS from a register value.
-#define BG_SATA_CAP_CCCS(r)   (((r) & BM_SATA_CAP_CCCS) >> BP_SATA_CAP_CCCS)
+#define BG_SATA_CAP_CCCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_CCCS) >> BP_SATA_CAP_CCCS)
 
 /* --- Register HW_SATA_CAP, field NCS[12:8] (RO)
  *
@@ -179,7 +194,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_NCS      (0x00001f00)  //!< Bit mask for SATA_CAP_NCS.
 
 //! @brief Get value of SATA_CAP_NCS from a register value.
-#define BG_SATA_CAP_NCS(r)   (((r) & BM_SATA_CAP_NCS) >> BP_SATA_CAP_NCS)
+#define BG_SATA_CAP_NCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_NCS) >> BP_SATA_CAP_NCS)
 
 /* --- Register HW_SATA_CAP, field PSC[13] (RO)
  *
@@ -191,7 +206,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_PSC      (0x00002000)  //!< Bit mask for SATA_CAP_PSC.
 
 //! @brief Get value of SATA_CAP_PSC from a register value.
-#define BG_SATA_CAP_PSC(r)   (((r) & BM_SATA_CAP_PSC) >> BP_SATA_CAP_PSC)
+#define BG_SATA_CAP_PSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_PSC) >> BP_SATA_CAP_PSC)
 
 /* --- Register HW_SATA_CAP, field SSC[14] (RO)
  *
@@ -203,7 +218,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SSC      (0x00004000)  //!< Bit mask for SATA_CAP_SSC.
 
 //! @brief Get value of SATA_CAP_SSC from a register value.
-#define BG_SATA_CAP_SSC(r)   (((r) & BM_SATA_CAP_SSC) >> BP_SATA_CAP_SSC)
+#define BG_SATA_CAP_SSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSC) >> BP_SATA_CAP_SSC)
 
 /* --- Register HW_SATA_CAP, field PMD[15] (RO)
  *
@@ -215,7 +230,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_PMD      (0x00008000)  //!< Bit mask for SATA_CAP_PMD.
 
 //! @brief Get value of SATA_CAP_PMD from a register value.
-#define BG_SATA_CAP_PMD(r)   (((r) & BM_SATA_CAP_PMD) >> BP_SATA_CAP_PMD)
+#define BG_SATA_CAP_PMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_PMD) >> BP_SATA_CAP_PMD)
 
 /* --- Register HW_SATA_CAP, field SMP[17] (RO)
  *
@@ -227,7 +242,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SMP      (0x00020000)  //!< Bit mask for SATA_CAP_SMP.
 
 //! @brief Get value of SATA_CAP_SMP from a register value.
-#define BG_SATA_CAP_SMP(r)   (((r) & BM_SATA_CAP_SMP) >> BP_SATA_CAP_SMP)
+#define BG_SATA_CAP_SMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SMP) >> BP_SATA_CAP_SMP)
 
 /* --- Register HW_SATA_CAP, field SAM[18] (RO)
  *
@@ -239,7 +254,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SAM      (0x00040000)  //!< Bit mask for SATA_CAP_SAM.
 
 //! @brief Get value of SATA_CAP_SAM from a register value.
-#define BG_SATA_CAP_SAM(r)   (((r) & BM_SATA_CAP_SAM) >> BP_SATA_CAP_SAM)
+#define BG_SATA_CAP_SAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SAM) >> BP_SATA_CAP_SAM)
 
 /* --- Register HW_SATA_CAP, field ISS[23:20] (RU)
  *
@@ -250,7 +265,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_ISS      (0x00f00000)  //!< Bit mask for SATA_CAP_ISS.
 
 //! @brief Get value of SATA_CAP_ISS from a register value.
-#define BG_SATA_CAP_ISS(r)   (((r) & BM_SATA_CAP_ISS) >> BP_SATA_CAP_ISS)
+#define BG_SATA_CAP_ISS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_ISS) >> BP_SATA_CAP_ISS)
 
 /* --- Register HW_SATA_CAP, field SCLO[24] (RO)
  *
@@ -262,7 +277,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SCLO      (0x01000000)  //!< Bit mask for SATA_CAP_SCLO.
 
 //! @brief Get value of SATA_CAP_SCLO from a register value.
-#define BG_SATA_CAP_SCLO(r)   (((r) & BM_SATA_CAP_SCLO) >> BP_SATA_CAP_SCLO)
+#define BG_SATA_CAP_SCLO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SCLO) >> BP_SATA_CAP_SCLO)
 
 /* --- Register HW_SATA_CAP, field SAL[25] (RO)
  *
@@ -273,7 +288,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SAL      (0x02000000)  //!< Bit mask for SATA_CAP_SAL.
 
 //! @brief Get value of SATA_CAP_SAL from a register value.
-#define BG_SATA_CAP_SAL(r)   (((r) & BM_SATA_CAP_SAL) >> BP_SATA_CAP_SAL)
+#define BG_SATA_CAP_SAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SAL) >> BP_SATA_CAP_SAL)
 
 /* --- Register HW_SATA_CAP, field SALP[26] (RO)
  *
@@ -286,7 +301,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SALP      (0x04000000)  //!< Bit mask for SATA_CAP_SALP.
 
 //! @brief Get value of SATA_CAP_SALP from a register value.
-#define BG_SATA_CAP_SALP(r)   (((r) & BM_SATA_CAP_SALP) >> BP_SATA_CAP_SALP)
+#define BG_SATA_CAP_SALP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SALP) >> BP_SATA_CAP_SALP)
 
 /* --- Register HW_SATA_CAP, field SSS[27] (RO)
  *
@@ -299,7 +314,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SSS      (0x08000000)  //!< Bit mask for SATA_CAP_SSS.
 
 //! @brief Get value of SATA_CAP_SSS from a register value.
-#define BG_SATA_CAP_SSS(r)   (((r) & BM_SATA_CAP_SSS) >> BP_SATA_CAP_SSS)
+#define BG_SATA_CAP_SSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSS) >> BP_SATA_CAP_SSS)
 
 /* --- Register HW_SATA_CAP, field SMPS[28] (RO)
  *
@@ -313,7 +328,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SMPS      (0x10000000)  //!< Bit mask for SATA_CAP_SMPS.
 
 //! @brief Get value of SATA_CAP_SMPS from a register value.
-#define BG_SATA_CAP_SMPS(r)   (((r) & BM_SATA_CAP_SMPS) >> BP_SATA_CAP_SMPS)
+#define BG_SATA_CAP_SMPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SMPS) >> BP_SATA_CAP_SMPS)
 
 /* --- Register HW_SATA_CAP, field SSNTF[29] (RO)
  *
@@ -325,7 +340,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SSNTF      (0x20000000)  //!< Bit mask for SATA_CAP_SSNTF.
 
 //! @brief Get value of SATA_CAP_SSNTF from a register value.
-#define BG_SATA_CAP_SSNTF(r)   (((r) & BM_SATA_CAP_SSNTF) >> BP_SATA_CAP_SSNTF)
+#define BG_SATA_CAP_SSNTF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSNTF) >> BP_SATA_CAP_SSNTF)
 
 /* --- Register HW_SATA_CAP, field SNCQ[30] (RO)
  *
@@ -337,7 +352,7 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_SNCQ      (0x40000000)  //!< Bit mask for SATA_CAP_SNCQ.
 
 //! @brief Get value of SATA_CAP_SNCQ from a register value.
-#define BG_SATA_CAP_SNCQ(r)   (((r) & BM_SATA_CAP_SNCQ) >> BP_SATA_CAP_SNCQ)
+#define BG_SATA_CAP_SNCQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SNCQ) >> BP_SATA_CAP_SNCQ)
 
 /* --- Register HW_SATA_CAP, field S64A[31] (RO)
  *
@@ -353,8 +368,12 @@ typedef union _hw_sata_cap
 #define BM_SATA_CAP_S64A      (0x80000000)  //!< Bit mask for SATA_CAP_S64A.
 
 //! @brief Get value of SATA_CAP_S64A from a register value.
-#define BG_SATA_CAP_S64A(r)   (((r) & BM_SATA_CAP_S64A) >> BP_SATA_CAP_S64A)
+#define BG_SATA_CAP_S64A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_S64A) >> BP_SATA_CAP_S64A)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_GHC - Global HBA Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -409,15 +428,10 @@ typedef union _hw_sata_ghc
 #define BM_SATA_GHC_HR      (0x00000001)  //!< Bit mask for SATA_GHC_HR.
 
 //! @brief Get value of SATA_GHC_HR from a register value.
-#define BG_SATA_GHC_HR(r)   (((r) & BM_SATA_GHC_HR) >> BP_SATA_GHC_HR)
+#define BG_SATA_GHC_HR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GHC_HR) >> BP_SATA_GHC_HR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_GHC_HR.
-#define BF_SATA_GHC_HR(v)   ((((reg32_t) v) << BP_SATA_GHC_HR) & BM_SATA_GHC_HR)
-#else
-//! @brief Format value for bitfield SATA_GHC_HR.
-#define BF_SATA_GHC_HR(v)   (((v) << BP_SATA_GHC_HR) & BM_SATA_GHC_HR)
-#endif
+#define BF_SATA_GHC_HR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GHC_HR) & BM_SATA_GHC_HR)
 
 /* --- Register HW_SATA_GHC, field IE[1] (RW)
  *
@@ -431,15 +445,10 @@ typedef union _hw_sata_ghc
 #define BM_SATA_GHC_IE      (0x00000002)  //!< Bit mask for SATA_GHC_IE.
 
 //! @brief Get value of SATA_GHC_IE from a register value.
-#define BG_SATA_GHC_IE(r)   (((r) & BM_SATA_GHC_IE) >> BP_SATA_GHC_IE)
+#define BG_SATA_GHC_IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GHC_IE) >> BP_SATA_GHC_IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_GHC_IE.
-#define BF_SATA_GHC_IE(v)   ((((reg32_t) v) << BP_SATA_GHC_IE) & BM_SATA_GHC_IE)
-#else
-//! @brief Format value for bitfield SATA_GHC_IE.
-#define BF_SATA_GHC_IE(v)   (((v) << BP_SATA_GHC_IE) & BM_SATA_GHC_IE)
-#endif
+#define BF_SATA_GHC_IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GHC_IE) & BM_SATA_GHC_IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IE field to a new value.
@@ -456,20 +465,19 @@ typedef union _hw_sata_ghc
 #define BM_SATA_GHC_AE      (0x80000000)  //!< Bit mask for SATA_GHC_AE.
 
 //! @brief Get value of SATA_GHC_AE from a register value.
-#define BG_SATA_GHC_AE(r)   (((r) & BM_SATA_GHC_AE) >> BP_SATA_GHC_AE)
+#define BG_SATA_GHC_AE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GHC_AE) >> BP_SATA_GHC_AE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_GHC_AE.
-#define BF_SATA_GHC_AE(v)   ((((reg32_t) v) << BP_SATA_GHC_AE) & BM_SATA_GHC_AE)
-#else
-//! @brief Format value for bitfield SATA_GHC_AE.
-#define BF_SATA_GHC_AE(v)   (((v) << BP_SATA_GHC_AE) & BM_SATA_GHC_AE)
-#endif
+#define BF_SATA_GHC_AE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GHC_AE) & BM_SATA_GHC_AE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AE field to a new value.
 #define BW_SATA_GHC_AE(v)   (HW_SATA_GHC_WR((HW_SATA_GHC_RD() & ~BM_SATA_GHC_AE) | BF_SATA_GHC_AE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_IS - Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -525,20 +533,19 @@ typedef union _hw_sata_is
 #define BM_SATA_IS_IPS      (0x00000003)  //!< Bit mask for SATA_IS_IPS.
 
 //! @brief Get value of SATA_IS_IPS from a register value.
-#define BG_SATA_IS_IPS(r)   (((r) & BM_SATA_IS_IPS) >> BP_SATA_IS_IPS)
+#define BG_SATA_IS_IPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_IS_IPS) >> BP_SATA_IS_IPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_IS_IPS.
-#define BF_SATA_IS_IPS(v)   ((((reg32_t) v) << BP_SATA_IS_IPS) & BM_SATA_IS_IPS)
-#else
-//! @brief Format value for bitfield SATA_IS_IPS.
-#define BF_SATA_IS_IPS(v)   (((v) << BP_SATA_IS_IPS) & BM_SATA_IS_IPS)
-#endif
+#define BF_SATA_IS_IPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_IS_IPS) & BM_SATA_IS_IPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPS field to a new value.
 #define BW_SATA_IS_IPS(v)   (HW_SATA_IS_WR((HW_SATA_IS_RD() & ~BM_SATA_IS_IPS) | BF_SATA_IS_IPS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_PI - Ports Implemented Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -588,7 +595,11 @@ typedef union _hw_sata_pi
 #define BM_SATA_PI_PI      (0x00000001)  //!< Bit mask for SATA_PI_PI.
 
 //! @brief Get value of SATA_PI_PI from a register value.
-#define BG_SATA_PI_PI(r)   (((r) & BM_SATA_PI_PI) >> BP_SATA_PI_PI)
+#define BG_SATA_PI_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PI_PI) >> BP_SATA_PI_PI)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_VS - AHCl Version Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -635,7 +646,7 @@ typedef union _hw_sata_vs
 #define BM_SATA_VS_MNR      (0x0000ffff)  //!< Bit mask for SATA_VS_MNR.
 
 //! @brief Get value of SATA_VS_MNR from a register value.
-#define BG_SATA_VS_MNR(r)   (((r) & BM_SATA_VS_MNR) >> BP_SATA_VS_MNR)
+#define BG_SATA_VS_MNR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_VS_MNR) >> BP_SATA_VS_MNR)
 
 /* --- Register HW_SATA_VS, field MJR[31:16] (RO)
  *
@@ -646,7 +657,11 @@ typedef union _hw_sata_vs
 #define BM_SATA_VS_MJR      (0xffff0000)  //!< Bit mask for SATA_VS_MJR.
 
 //! @brief Get value of SATA_VS_MJR from a register value.
-#define BG_SATA_VS_MJR(r)   (((r) & BM_SATA_VS_MJR) >> BP_SATA_VS_MJR)
+#define BG_SATA_VS_MJR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_VS_MJR) >> BP_SATA_VS_MJR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_CCC_CTL - Command Completion Coalescing Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -704,15 +719,10 @@ typedef union _hw_sata_ccc_ctl
 #define BM_SATA_CCC_CTL_EN      (0x00000001)  //!< Bit mask for SATA_CCC_CTL_EN.
 
 //! @brief Get value of SATA_CCC_CTL_EN from a register value.
-#define BG_SATA_CCC_CTL_EN(r)   (((r) & BM_SATA_CCC_CTL_EN) >> BP_SATA_CCC_CTL_EN)
+#define BG_SATA_CCC_CTL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CCC_CTL_EN) >> BP_SATA_CCC_CTL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_CCC_CTL_EN.
-#define BF_SATA_CCC_CTL_EN(v)   ((((reg32_t) v) << BP_SATA_CCC_CTL_EN) & BM_SATA_CCC_CTL_EN)
-#else
-//! @brief Format value for bitfield SATA_CCC_CTL_EN.
-#define BF_SATA_CCC_CTL_EN(v)   (((v) << BP_SATA_CCC_CTL_EN) & BM_SATA_CCC_CTL_EN)
-#endif
+#define BF_SATA_CCC_CTL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_CCC_CTL_EN) & BM_SATA_CCC_CTL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -732,15 +742,10 @@ typedef union _hw_sata_ccc_ctl
 #define BM_SATA_CCC_CTL_INT      (0x000000f8)  //!< Bit mask for SATA_CCC_CTL_INT.
 
 //! @brief Get value of SATA_CCC_CTL_INT from a register value.
-#define BG_SATA_CCC_CTL_INT(r)   (((r) & BM_SATA_CCC_CTL_INT) >> BP_SATA_CCC_CTL_INT)
+#define BG_SATA_CCC_CTL_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CCC_CTL_INT) >> BP_SATA_CCC_CTL_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_CCC_CTL_INT.
-#define BF_SATA_CCC_CTL_INT(v)   ((((reg32_t) v) << BP_SATA_CCC_CTL_INT) & BM_SATA_CCC_CTL_INT)
-#else
-//! @brief Format value for bitfield SATA_CCC_CTL_INT.
-#define BF_SATA_CCC_CTL_INT(v)   (((v) << BP_SATA_CCC_CTL_INT) & BM_SATA_CCC_CTL_INT)
-#endif
+#define BF_SATA_CCC_CTL_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_CCC_CTL_INT) & BM_SATA_CCC_CTL_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INT field to a new value.
@@ -760,15 +765,10 @@ typedef union _hw_sata_ccc_ctl
 #define BM_SATA_CCC_CTL_CC      (0x0000ff00)  //!< Bit mask for SATA_CCC_CTL_CC.
 
 //! @brief Get value of SATA_CCC_CTL_CC from a register value.
-#define BG_SATA_CCC_CTL_CC(r)   (((r) & BM_SATA_CCC_CTL_CC) >> BP_SATA_CCC_CTL_CC)
+#define BG_SATA_CCC_CTL_CC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CCC_CTL_CC) >> BP_SATA_CCC_CTL_CC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_CCC_CTL_CC.
-#define BF_SATA_CCC_CTL_CC(v)   ((((reg32_t) v) << BP_SATA_CCC_CTL_CC) & BM_SATA_CCC_CTL_CC)
-#else
-//! @brief Format value for bitfield SATA_CCC_CTL_CC.
-#define BF_SATA_CCC_CTL_CC(v)   (((v) << BP_SATA_CCC_CTL_CC) & BM_SATA_CCC_CTL_CC)
-#endif
+#define BF_SATA_CCC_CTL_CC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_CCC_CTL_CC) & BM_SATA_CCC_CTL_CC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CC field to a new value.
@@ -786,20 +786,19 @@ typedef union _hw_sata_ccc_ctl
 #define BM_SATA_CCC_CTL_TV      (0xffff0000)  //!< Bit mask for SATA_CCC_CTL_TV.
 
 //! @brief Get value of SATA_CCC_CTL_TV from a register value.
-#define BG_SATA_CCC_CTL_TV(r)   (((r) & BM_SATA_CCC_CTL_TV) >> BP_SATA_CCC_CTL_TV)
+#define BG_SATA_CCC_CTL_TV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CCC_CTL_TV) >> BP_SATA_CCC_CTL_TV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_CCC_CTL_TV.
-#define BF_SATA_CCC_CTL_TV(v)   ((((reg32_t) v) << BP_SATA_CCC_CTL_TV) & BM_SATA_CCC_CTL_TV)
-#else
-//! @brief Format value for bitfield SATA_CCC_CTL_TV.
-#define BF_SATA_CCC_CTL_TV(v)   (((v) << BP_SATA_CCC_CTL_TV) & BM_SATA_CCC_CTL_TV)
-#endif
+#define BF_SATA_CCC_CTL_TV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_CCC_CTL_TV) & BM_SATA_CCC_CTL_TV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TV field to a new value.
 #define BW_SATA_CCC_CTL_TV(v)   (HW_SATA_CCC_CTL_WR((HW_SATA_CCC_CTL_RD() & ~BM_SATA_CCC_CTL_TV) | BF_SATA_CCC_CTL_TV(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_CCC_PORTS - Command Completion Coalescing Ports
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -853,21 +852,20 @@ typedef union _hw_sata_ccc_ports
 #define BM_SATA_CCC_PORTS_PRT      (0xffffffff)  //!< Bit mask for SATA_CCC_PORTS_PRT.
 
 //! @brief Get value of SATA_CCC_PORTS_PRT from a register value.
-#define BG_SATA_CCC_PORTS_PRT(r)   (((r) & BM_SATA_CCC_PORTS_PRT) >> BP_SATA_CCC_PORTS_PRT)
+#define BG_SATA_CCC_PORTS_PRT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CCC_PORTS_PRT) >> BP_SATA_CCC_PORTS_PRT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_CCC_PORTS_PRT.
-#define BF_SATA_CCC_PORTS_PRT(v)   ((((reg32_t) v) << BP_SATA_CCC_PORTS_PRT) & BM_SATA_CCC_PORTS_PRT)
-#else
-//! @brief Format value for bitfield SATA_CCC_PORTS_PRT.
-#define BF_SATA_CCC_PORTS_PRT(v)   (((v) << BP_SATA_CCC_PORTS_PRT) & BM_SATA_CCC_PORTS_PRT)
-#endif
+#define BF_SATA_CCC_PORTS_PRT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_CCC_PORTS_PRT) & BM_SATA_CCC_PORTS_PRT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRT field to a new value.
 #define BW_SATA_CCC_PORTS_PRT(v)   (HW_SATA_CCC_PORTS_WR((HW_SATA_CCC_PORTS_RD() & ~BM_SATA_CCC_PORTS_PRT) | BF_SATA_CCC_PORTS_PRT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_CAP2 - HBA Capabilities Extended Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -913,7 +911,11 @@ typedef union _hw_sata_cap2
 #define BM_SATA_CAP2_APST      (0x00000004)  //!< Bit mask for SATA_CAP2_APST.
 
 //! @brief Get value of SATA_CAP2_APST from a register value.
-#define BG_SATA_CAP2_APST(r)   (((r) & BM_SATA_CAP2_APST) >> BP_SATA_CAP2_APST)
+#define BG_SATA_CAP2_APST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP2_APST) >> BP_SATA_CAP2_APST)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_BISTAFR - BIST Activate FIS Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -971,7 +973,7 @@ typedef union _hw_sata_bistafr
 #define BM_SATA_BISTAFR_PD      (0x000000ff)  //!< Bit mask for SATA_BISTAFR_PD.
 
 //! @brief Get value of SATA_BISTAFR_PD from a register value.
-#define BG_SATA_BISTAFR_PD(r)   (((r) & BM_SATA_BISTAFR_PD) >> BP_SATA_BISTAFR_PD)
+#define BG_SATA_BISTAFR_PD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTAFR_PD) >> BP_SATA_BISTAFR_PD)
 
 
 /* --- Register HW_SATA_BISTAFR, field NCP[15:8] (RO)
@@ -995,8 +997,12 @@ typedef union _hw_sata_bistafr
 #define BM_SATA_BISTAFR_NCP      (0x0000ff00)  //!< Bit mask for SATA_BISTAFR_NCP.
 
 //! @brief Get value of SATA_BISTAFR_NCP from a register value.
-#define BG_SATA_BISTAFR_NCP(r)   (((r) & BM_SATA_BISTAFR_NCP) >> BP_SATA_BISTAFR_NCP)
+#define BG_SATA_BISTAFR_NCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTAFR_NCP) >> BP_SATA_BISTAFR_NCP)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_BISTCR - BIST Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1075,15 +1081,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_PATTERN      (0x0000000f)  //!< Bit mask for SATA_BISTCR_PATTERN.
 
 //! @brief Get value of SATA_BISTCR_PATTERN from a register value.
-#define BG_SATA_BISTCR_PATTERN(r)   (((r) & BM_SATA_BISTCR_PATTERN) >> BP_SATA_BISTCR_PATTERN)
+#define BG_SATA_BISTCR_PATTERN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_PATTERN) >> BP_SATA_BISTCR_PATTERN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_PATTERN.
-#define BF_SATA_BISTCR_PATTERN(v)   ((((reg32_t) v) << BP_SATA_BISTCR_PATTERN) & BM_SATA_BISTCR_PATTERN)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_PATTERN.
-#define BF_SATA_BISTCR_PATTERN(v)   (((v) << BP_SATA_BISTCR_PATTERN) & BM_SATA_BISTCR_PATTERN)
-#endif
+#define BF_SATA_BISTCR_PATTERN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_PATTERN) & BM_SATA_BISTCR_PATTERN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PATTERN field to a new value.
@@ -1105,15 +1106,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_PV      (0x00000010)  //!< Bit mask for SATA_BISTCR_PV.
 
 //! @brief Get value of SATA_BISTCR_PV from a register value.
-#define BG_SATA_BISTCR_PV(r)   (((r) & BM_SATA_BISTCR_PV) >> BP_SATA_BISTCR_PV)
+#define BG_SATA_BISTCR_PV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_PV) >> BP_SATA_BISTCR_PV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_PV.
-#define BF_SATA_BISTCR_PV(v)   ((((reg32_t) v) << BP_SATA_BISTCR_PV) & BM_SATA_BISTCR_PV)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_PV.
-#define BF_SATA_BISTCR_PV(v)   (((v) << BP_SATA_BISTCR_PV) & BM_SATA_BISTCR_PV)
-#endif
+#define BF_SATA_BISTCR_PV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_PV) & BM_SATA_BISTCR_PV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PV field to a new value.
@@ -1131,15 +1127,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_FLIP      (0x00000020)  //!< Bit mask for SATA_BISTCR_FLIP.
 
 //! @brief Get value of SATA_BISTCR_FLIP from a register value.
-#define BG_SATA_BISTCR_FLIP(r)   (((r) & BM_SATA_BISTCR_FLIP) >> BP_SATA_BISTCR_FLIP)
+#define BG_SATA_BISTCR_FLIP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_FLIP) >> BP_SATA_BISTCR_FLIP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_FLIP.
-#define BF_SATA_BISTCR_FLIP(v)   ((((reg32_t) v) << BP_SATA_BISTCR_FLIP) & BM_SATA_BISTCR_FLIP)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_FLIP.
-#define BF_SATA_BISTCR_FLIP(v)   (((v) << BP_SATA_BISTCR_FLIP) & BM_SATA_BISTCR_FLIP)
-#endif
+#define BF_SATA_BISTCR_FLIP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_FLIP) & BM_SATA_BISTCR_FLIP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FLIP field to a new value.
@@ -1160,15 +1151,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_ERREN      (0x00000040)  //!< Bit mask for SATA_BISTCR_ERREN.
 
 //! @brief Get value of SATA_BISTCR_ERREN from a register value.
-#define BG_SATA_BISTCR_ERREN(r)   (((r) & BM_SATA_BISTCR_ERREN) >> BP_SATA_BISTCR_ERREN)
+#define BG_SATA_BISTCR_ERREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_ERREN) >> BP_SATA_BISTCR_ERREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_ERREN.
-#define BF_SATA_BISTCR_ERREN(v)   ((((reg32_t) v) << BP_SATA_BISTCR_ERREN) & BM_SATA_BISTCR_ERREN)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_ERREN.
-#define BF_SATA_BISTCR_ERREN(v)   (((v) << BP_SATA_BISTCR_ERREN) & BM_SATA_BISTCR_ERREN)
-#endif
+#define BF_SATA_BISTCR_ERREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_ERREN) & BM_SATA_BISTCR_ERREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERREN field to a new value.
@@ -1195,15 +1181,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_LLC      (0x00000700)  //!< Bit mask for SATA_BISTCR_LLC.
 
 //! @brief Get value of SATA_BISTCR_LLC from a register value.
-#define BG_SATA_BISTCR_LLC(r)   (((r) & BM_SATA_BISTCR_LLC) >> BP_SATA_BISTCR_LLC)
+#define BG_SATA_BISTCR_LLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_LLC) >> BP_SATA_BISTCR_LLC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_LLC.
-#define BF_SATA_BISTCR_LLC(v)   ((((reg32_t) v) << BP_SATA_BISTCR_LLC) & BM_SATA_BISTCR_LLC)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_LLC.
-#define BF_SATA_BISTCR_LLC(v)   (((v) << BP_SATA_BISTCR_LLC) & BM_SATA_BISTCR_LLC)
-#endif
+#define BF_SATA_BISTCR_LLC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_LLC) & BM_SATA_BISTCR_LLC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LLC field to a new value.
@@ -1226,15 +1207,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_SDFE      (0x00001000)  //!< Bit mask for SATA_BISTCR_SDFE.
 
 //! @brief Get value of SATA_BISTCR_SDFE from a register value.
-#define BG_SATA_BISTCR_SDFE(r)   (((r) & BM_SATA_BISTCR_SDFE) >> BP_SATA_BISTCR_SDFE)
+#define BG_SATA_BISTCR_SDFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_SDFE) >> BP_SATA_BISTCR_SDFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_SDFE.
-#define BF_SATA_BISTCR_SDFE(v)   ((((reg32_t) v) << BP_SATA_BISTCR_SDFE) & BM_SATA_BISTCR_SDFE)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_SDFE.
-#define BF_SATA_BISTCR_SDFE(v)   (((v) << BP_SATA_BISTCR_SDFE) & BM_SATA_BISTCR_SDFE)
-#endif
+#define BF_SATA_BISTCR_SDFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_SDFE) & BM_SATA_BISTCR_SDFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDFE field to a new value.
@@ -1252,15 +1228,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_QPHYINIT      (0x00004000)  //!< Bit mask for SATA_BISTCR_QPHYINIT.
 
 //! @brief Get value of SATA_BISTCR_QPHYINIT from a register value.
-#define BG_SATA_BISTCR_QPHYINIT(r)   (((r) & BM_SATA_BISTCR_QPHYINIT) >> BP_SATA_BISTCR_QPHYINIT)
+#define BG_SATA_BISTCR_QPHYINIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_QPHYINIT) >> BP_SATA_BISTCR_QPHYINIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_QPHYINIT.
-#define BF_SATA_BISTCR_QPHYINIT(v)   ((((reg32_t) v) << BP_SATA_BISTCR_QPHYINIT) & BM_SATA_BISTCR_QPHYINIT)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_QPHYINIT.
-#define BF_SATA_BISTCR_QPHYINIT(v)   (((v) << BP_SATA_BISTCR_QPHYINIT) & BM_SATA_BISTCR_QPHYINIT)
-#endif
+#define BF_SATA_BISTCR_QPHYINIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_QPHYINIT) & BM_SATA_BISTCR_QPHYINIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the QPHYINIT field to a new value.
@@ -1282,15 +1253,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_NEALB      (0x00010000)  //!< Bit mask for SATA_BISTCR_NEALB.
 
 //! @brief Get value of SATA_BISTCR_NEALB from a register value.
-#define BG_SATA_BISTCR_NEALB(r)   (((r) & BM_SATA_BISTCR_NEALB) >> BP_SATA_BISTCR_NEALB)
+#define BG_SATA_BISTCR_NEALB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_NEALB) >> BP_SATA_BISTCR_NEALB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_NEALB.
-#define BF_SATA_BISTCR_NEALB(v)   ((((reg32_t) v) << BP_SATA_BISTCR_NEALB) & BM_SATA_BISTCR_NEALB)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_NEALB.
-#define BF_SATA_BISTCR_NEALB(v)   (((v) << BP_SATA_BISTCR_NEALB) & BM_SATA_BISTCR_NEALB)
-#endif
+#define BF_SATA_BISTCR_NEALB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_NEALB) & BM_SATA_BISTCR_NEALB)
 
 
 /* --- Register HW_SATA_BISTCR, field CNTCLR[17] (WO)
@@ -1306,15 +1272,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_CNTCLR      (0x00020000)  //!< Bit mask for SATA_BISTCR_CNTCLR.
 
 //! @brief Get value of SATA_BISTCR_CNTCLR from a register value.
-#define BG_SATA_BISTCR_CNTCLR(r)   (((r) & BM_SATA_BISTCR_CNTCLR) >> BP_SATA_BISTCR_CNTCLR)
+#define BG_SATA_BISTCR_CNTCLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_CNTCLR) >> BP_SATA_BISTCR_CNTCLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_CNTCLR.
-#define BF_SATA_BISTCR_CNTCLR(v)   ((((reg32_t) v) << BP_SATA_BISTCR_CNTCLR) & BM_SATA_BISTCR_CNTCLR)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_CNTCLR.
-#define BF_SATA_BISTCR_CNTCLR(v)   (((v) << BP_SATA_BISTCR_CNTCLR) & BM_SATA_BISTCR_CNTCLR)
-#endif
+#define BF_SATA_BISTCR_CNTCLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_CNTCLR) & BM_SATA_BISTCR_CNTCLR)
 
 
 /* --- Register HW_SATA_BISTCR, field TXO[18] (RW)
@@ -1327,15 +1288,10 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_TXO      (0x00040000)  //!< Bit mask for SATA_BISTCR_TXO.
 
 //! @brief Get value of SATA_BISTCR_TXO from a register value.
-#define BG_SATA_BISTCR_TXO(r)   (((r) & BM_SATA_BISTCR_TXO) >> BP_SATA_BISTCR_TXO)
+#define BG_SATA_BISTCR_TXO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_TXO) >> BP_SATA_BISTCR_TXO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_TXO.
-#define BF_SATA_BISTCR_TXO(v)   ((((reg32_t) v) << BP_SATA_BISTCR_TXO) & BM_SATA_BISTCR_TXO)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_TXO.
-#define BF_SATA_BISTCR_TXO(v)   (((v) << BP_SATA_BISTCR_TXO) & BM_SATA_BISTCR_TXO)
-#endif
+#define BF_SATA_BISTCR_TXO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_TXO) & BM_SATA_BISTCR_TXO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXO field to a new value.
@@ -1353,15 +1309,14 @@ typedef union _hw_sata_bistcr
 #define BM_SATA_BISTCR_FERLB      (0x00100000)  //!< Bit mask for SATA_BISTCR_FERLB.
 
 //! @brief Get value of SATA_BISTCR_FERLB from a register value.
-#define BG_SATA_BISTCR_FERLB(r)   (((r) & BM_SATA_BISTCR_FERLB) >> BP_SATA_BISTCR_FERLB)
+#define BG_SATA_BISTCR_FERLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTCR_FERLB) >> BP_SATA_BISTCR_FERLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_BISTCR_FERLB.
-#define BF_SATA_BISTCR_FERLB(v)   ((((reg32_t) v) << BP_SATA_BISTCR_FERLB) & BM_SATA_BISTCR_FERLB)
-#else
-//! @brief Format value for bitfield SATA_BISTCR_FERLB.
-#define BF_SATA_BISTCR_FERLB(v)   (((v) << BP_SATA_BISTCR_FERLB) & BM_SATA_BISTCR_FERLB)
-#endif
+#define BF_SATA_BISTCR_FERLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_FERLB) & BM_SATA_BISTCR_FERLB)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_BISTFCTR - BIST FIS Count Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1398,6 +1353,10 @@ typedef union _hw_sata_bistfctr
 /*
  * constants & macros for individual SATA_BISTFCTR bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_BISTSR - BIST Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1447,7 +1406,7 @@ typedef union _hw_sata_bistsr
 #define BM_SATA_BISTSR_FRAMERR      (0x0000ffff)  //!< Bit mask for SATA_BISTSR_FRAMERR.
 
 //! @brief Get value of SATA_BISTSR_FRAMERR from a register value.
-#define BG_SATA_BISTSR_FRAMERR(r)   (((r) & BM_SATA_BISTSR_FRAMERR) >> BP_SATA_BISTSR_FRAMERR)
+#define BG_SATA_BISTSR_FRAMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTSR_FRAMERR) >> BP_SATA_BISTSR_FRAMERR)
 
 /* --- Register HW_SATA_BISTSR, field BRSTERR[23:16] (RO)
  *
@@ -1462,7 +1421,11 @@ typedef union _hw_sata_bistsr
 #define BM_SATA_BISTSR_BRSTERR      (0x00ff0000)  //!< Bit mask for SATA_BISTSR_BRSTERR.
 
 //! @brief Get value of SATA_BISTSR_BRSTERR from a register value.
-#define BG_SATA_BISTSR_BRSTERR(r)   (((r) & BM_SATA_BISTSR_BRSTERR) >> BP_SATA_BISTSR_BRSTERR)
+#define BG_SATA_BISTSR_BRSTERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTSR_BRSTERR) >> BP_SATA_BISTSR_BRSTERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_OOBR - OOB Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1519,15 +1482,10 @@ typedef union _hw_sata_oobr
 #define BM_SATA_OOBR_CIMAX      (0x000000ff)  //!< Bit mask for SATA_OOBR_CIMAX.
 
 //! @brief Get value of SATA_OOBR_CIMAX from a register value.
-#define BG_SATA_OOBR_CIMAX(r)   (((r) & BM_SATA_OOBR_CIMAX) >> BP_SATA_OOBR_CIMAX)
+#define BG_SATA_OOBR_CIMAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_OOBR_CIMAX) >> BP_SATA_OOBR_CIMAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_OOBR_CIMAX.
-#define BF_SATA_OOBR_CIMAX(v)   ((((reg32_t) v) << BP_SATA_OOBR_CIMAX) & BM_SATA_OOBR_CIMAX)
-#else
-//! @brief Format value for bitfield SATA_OOBR_CIMAX.
-#define BF_SATA_OOBR_CIMAX(v)   (((v) << BP_SATA_OOBR_CIMAX) & BM_SATA_OOBR_CIMAX)
-#endif
+#define BF_SATA_OOBR_CIMAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_OOBR_CIMAX) & BM_SATA_OOBR_CIMAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIMAX field to a new value.
@@ -1543,15 +1501,10 @@ typedef union _hw_sata_oobr
 #define BM_SATA_OOBR_CIMIN      (0x0000ff00)  //!< Bit mask for SATA_OOBR_CIMIN.
 
 //! @brief Get value of SATA_OOBR_CIMIN from a register value.
-#define BG_SATA_OOBR_CIMIN(r)   (((r) & BM_SATA_OOBR_CIMIN) >> BP_SATA_OOBR_CIMIN)
+#define BG_SATA_OOBR_CIMIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_OOBR_CIMIN) >> BP_SATA_OOBR_CIMIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_OOBR_CIMIN.
-#define BF_SATA_OOBR_CIMIN(v)   ((((reg32_t) v) << BP_SATA_OOBR_CIMIN) & BM_SATA_OOBR_CIMIN)
-#else
-//! @brief Format value for bitfield SATA_OOBR_CIMIN.
-#define BF_SATA_OOBR_CIMIN(v)   (((v) << BP_SATA_OOBR_CIMIN) & BM_SATA_OOBR_CIMIN)
-#endif
+#define BF_SATA_OOBR_CIMIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_OOBR_CIMIN) & BM_SATA_OOBR_CIMIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIMIN field to a new value.
@@ -1567,15 +1520,10 @@ typedef union _hw_sata_oobr
 #define BM_SATA_OOBR_CWMAX      (0x00ff0000)  //!< Bit mask for SATA_OOBR_CWMAX.
 
 //! @brief Get value of SATA_OOBR_CWMAX from a register value.
-#define BG_SATA_OOBR_CWMAX(r)   (((r) & BM_SATA_OOBR_CWMAX) >> BP_SATA_OOBR_CWMAX)
+#define BG_SATA_OOBR_CWMAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_OOBR_CWMAX) >> BP_SATA_OOBR_CWMAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_OOBR_CWMAX.
-#define BF_SATA_OOBR_CWMAX(v)   ((((reg32_t) v) << BP_SATA_OOBR_CWMAX) & BM_SATA_OOBR_CWMAX)
-#else
-//! @brief Format value for bitfield SATA_OOBR_CWMAX.
-#define BF_SATA_OOBR_CWMAX(v)   (((v) << BP_SATA_OOBR_CWMAX) & BM_SATA_OOBR_CWMAX)
-#endif
+#define BF_SATA_OOBR_CWMAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_OOBR_CWMAX) & BM_SATA_OOBR_CWMAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CWMAX field to a new value.
@@ -1591,15 +1539,10 @@ typedef union _hw_sata_oobr
 #define BM_SATA_OOBR_CWMIN      (0x7f000000)  //!< Bit mask for SATA_OOBR_CWMIN.
 
 //! @brief Get value of SATA_OOBR_CWMIN from a register value.
-#define BG_SATA_OOBR_CWMIN(r)   (((r) & BM_SATA_OOBR_CWMIN) >> BP_SATA_OOBR_CWMIN)
+#define BG_SATA_OOBR_CWMIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_OOBR_CWMIN) >> BP_SATA_OOBR_CWMIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_OOBR_CWMIN.
-#define BF_SATA_OOBR_CWMIN(v)   ((((reg32_t) v) << BP_SATA_OOBR_CWMIN) & BM_SATA_OOBR_CWMIN)
-#else
-//! @brief Format value for bitfield SATA_OOBR_CWMIN.
-#define BF_SATA_OOBR_CWMIN(v)   (((v) << BP_SATA_OOBR_CWMIN) & BM_SATA_OOBR_CWMIN)
-#endif
+#define BF_SATA_OOBR_CWMIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_OOBR_CWMIN) & BM_SATA_OOBR_CWMIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CWMIN field to a new value.
@@ -1619,21 +1562,20 @@ typedef union _hw_sata_oobr
 #define BM_SATA_OOBR_WE      (0x80000000)  //!< Bit mask for SATA_OOBR_WE.
 
 //! @brief Get value of SATA_OOBR_WE from a register value.
-#define BG_SATA_OOBR_WE(r)   (((r) & BM_SATA_OOBR_WE) >> BP_SATA_OOBR_WE)
+#define BG_SATA_OOBR_WE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_OOBR_WE) >> BP_SATA_OOBR_WE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_OOBR_WE.
-#define BF_SATA_OOBR_WE(v)   ((((reg32_t) v) << BP_SATA_OOBR_WE) & BM_SATA_OOBR_WE)
-#else
-//! @brief Format value for bitfield SATA_OOBR_WE.
-#define BF_SATA_OOBR_WE(v)   (((v) << BP_SATA_OOBR_WE) & BM_SATA_OOBR_WE)
-#endif
+#define BF_SATA_OOBR_WE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_OOBR_WE) & BM_SATA_OOBR_WE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WE field to a new value.
 #define BW_SATA_OOBR_WE(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_WE) | BF_SATA_OOBR_WE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_GPCR - General Purpose Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1684,20 +1626,19 @@ typedef union _hw_sata_gpcr
 #define BM_SATA_GPCR_GP_CONTROL      (0xffffffff)  //!< Bit mask for SATA_GPCR_GP_CONTROL.
 
 //! @brief Get value of SATA_GPCR_GP_CONTROL from a register value.
-#define BG_SATA_GPCR_GP_CONTROL(r)   (((r) & BM_SATA_GPCR_GP_CONTROL) >> BP_SATA_GPCR_GP_CONTROL)
+#define BG_SATA_GPCR_GP_CONTROL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPCR_GP_CONTROL) >> BP_SATA_GPCR_GP_CONTROL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_GPCR_GP_CONTROL.
-#define BF_SATA_GPCR_GP_CONTROL(v)   ((((reg32_t) v) << BP_SATA_GPCR_GP_CONTROL) & BM_SATA_GPCR_GP_CONTROL)
-#else
-//! @brief Format value for bitfield SATA_GPCR_GP_CONTROL.
-#define BF_SATA_GPCR_GP_CONTROL(v)   (((v) << BP_SATA_GPCR_GP_CONTROL) & BM_SATA_GPCR_GP_CONTROL)
-#endif
+#define BF_SATA_GPCR_GP_CONTROL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GPCR_GP_CONTROL) & BM_SATA_GPCR_GP_CONTROL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GP_CONTROL field to a new value.
 #define BW_SATA_GPCR_GP_CONTROL(v)   (HW_SATA_GPCR_WR((HW_SATA_GPCR_RD() & ~BM_SATA_GPCR_GP_CONTROL) | BF_SATA_GPCR_GP_CONTROL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_GPSR - General Purpose Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1749,20 +1690,19 @@ typedef union _hw_sata_gpsr
 #define BM_SATA_GPSR_GP_STATUS      (0xffffffff)  //!< Bit mask for SATA_GPSR_GP_STATUS.
 
 //! @brief Get value of SATA_GPSR_GP_STATUS from a register value.
-#define BG_SATA_GPSR_GP_STATUS(r)   (((r) & BM_SATA_GPSR_GP_STATUS) >> BP_SATA_GPSR_GP_STATUS)
+#define BG_SATA_GPSR_GP_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPSR_GP_STATUS) >> BP_SATA_GPSR_GP_STATUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_GPSR_GP_STATUS.
-#define BF_SATA_GPSR_GP_STATUS(v)   ((((reg32_t) v) << BP_SATA_GPSR_GP_STATUS) & BM_SATA_GPSR_GP_STATUS)
-#else
-//! @brief Format value for bitfield SATA_GPSR_GP_STATUS.
-#define BF_SATA_GPSR_GP_STATUS(v)   (((v) << BP_SATA_GPSR_GP_STATUS) & BM_SATA_GPSR_GP_STATUS)
-#endif
+#define BF_SATA_GPSR_GP_STATUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GPSR_GP_STATUS) & BM_SATA_GPSR_GP_STATUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GP_STATUS field to a new value.
 #define BW_SATA_GPSR_GP_STATUS(v)   (HW_SATA_GPSR_WR((HW_SATA_GPSR_RD() & ~BM_SATA_GPSR_GP_STATUS) | BF_SATA_GPSR_GP_STATUS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_TIMER1MS - Timer 1-ms Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1815,20 +1755,19 @@ typedef union _hw_sata_timer1ms
 #define BM_SATA_TIMER1MS_TIMV      (0x000fffff)  //!< Bit mask for SATA_TIMER1MS_TIMV.
 
 //! @brief Get value of SATA_TIMER1MS_TIMV from a register value.
-#define BG_SATA_TIMER1MS_TIMV(r)   (((r) & BM_SATA_TIMER1MS_TIMV) >> BP_SATA_TIMER1MS_TIMV)
+#define BG_SATA_TIMER1MS_TIMV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_TIMER1MS_TIMV) >> BP_SATA_TIMER1MS_TIMV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_TIMER1MS_TIMV.
-#define BF_SATA_TIMER1MS_TIMV(v)   ((((reg32_t) v) << BP_SATA_TIMER1MS_TIMV) & BM_SATA_TIMER1MS_TIMV)
-#else
-//! @brief Format value for bitfield SATA_TIMER1MS_TIMV.
-#define BF_SATA_TIMER1MS_TIMV(v)   (((v) << BP_SATA_TIMER1MS_TIMV) & BM_SATA_TIMER1MS_TIMV)
-#endif
+#define BF_SATA_TIMER1MS_TIMV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_TIMER1MS_TIMV) & BM_SATA_TIMER1MS_TIMV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIMV field to a new value.
 #define BW_SATA_TIMER1MS_TIMV(v)   (HW_SATA_TIMER1MS_WR((HW_SATA_TIMER1MS_RD() & ~BM_SATA_TIMER1MS_TIMV) | BF_SATA_TIMER1MS_TIMV(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_GPARAM1R - Global Parameter 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1889,7 +1828,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_M_HADDR      (0x00000040)  //!< Bit mask for SATA_GPARAM1R_M_HADDR.
 
 //! @brief Get value of SATA_GPARAM1R_M_HADDR from a register value.
-#define BG_SATA_GPARAM1R_M_HADDR(r)   (((r) & BM_SATA_GPARAM1R_M_HADDR) >> BP_SATA_GPARAM1R_M_HADDR)
+#define BG_SATA_GPARAM1R_M_HADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_M_HADDR) >> BP_SATA_GPARAM1R_M_HADDR)
 
 
 /* --- Register HW_SATA_GPARAM1R, field S_HADDR[7] (RO)
@@ -1905,7 +1844,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_S_HADDR      (0x00000080)  //!< Bit mask for SATA_GPARAM1R_S_HADDR.
 
 //! @brief Get value of SATA_GPARAM1R_S_HADDR from a register value.
-#define BG_SATA_GPARAM1R_S_HADDR(r)   (((r) & BM_SATA_GPARAM1R_S_HADDR) >> BP_SATA_GPARAM1R_S_HADDR)
+#define BG_SATA_GPARAM1R_S_HADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_S_HADDR) >> BP_SATA_GPARAM1R_S_HADDR)
 
 
 /* --- Register HW_SATA_GPARAM1R, field AHB_ENDIAN[9:8] (RO)
@@ -1921,7 +1860,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_AHB_ENDIAN      (0x00000300)  //!< Bit mask for SATA_GPARAM1R_AHB_ENDIAN.
 
 //! @brief Get value of SATA_GPARAM1R_AHB_ENDIAN from a register value.
-#define BG_SATA_GPARAM1R_AHB_ENDIAN(r)   (((r) & BM_SATA_GPARAM1R_AHB_ENDIAN) >> BP_SATA_GPARAM1R_AHB_ENDIAN)
+#define BG_SATA_GPARAM1R_AHB_ENDIAN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_AHB_ENDIAN) >> BP_SATA_GPARAM1R_AHB_ENDIAN)
 
 
 /* --- Register HW_SATA_GPARAM1R, field RETURN_ERR[10] (RO)
@@ -1937,7 +1876,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_RETURN_ERR      (0x00000400)  //!< Bit mask for SATA_GPARAM1R_RETURN_ERR.
 
 //! @brief Get value of SATA_GPARAM1R_RETURN_ERR from a register value.
-#define BG_SATA_GPARAM1R_RETURN_ERR(r)   (((r) & BM_SATA_GPARAM1R_RETURN_ERR) >> BP_SATA_GPARAM1R_RETURN_ERR)
+#define BG_SATA_GPARAM1R_RETURN_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_RETURN_ERR) >> BP_SATA_GPARAM1R_RETURN_ERR)
 
 
 /* --- Register HW_SATA_GPARAM1R, field BIST_M[13] (RO)
@@ -1953,7 +1892,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_BIST_M      (0x00002000)  //!< Bit mask for SATA_GPARAM1R_BIST_M.
 
 //! @brief Get value of SATA_GPARAM1R_BIST_M from a register value.
-#define BG_SATA_GPARAM1R_BIST_M(r)   (((r) & BM_SATA_GPARAM1R_BIST_M) >> BP_SATA_GPARAM1R_BIST_M)
+#define BG_SATA_GPARAM1R_BIST_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_BIST_M) >> BP_SATA_GPARAM1R_BIST_M)
 
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_STAT[20:15] (RO)
@@ -1966,7 +1905,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_PHY_STAT      (0x001f8000)  //!< Bit mask for SATA_GPARAM1R_PHY_STAT.
 
 //! @brief Get value of SATA_GPARAM1R_PHY_STAT from a register value.
-#define BG_SATA_GPARAM1R_PHY_STAT(r)   (((r) & BM_SATA_GPARAM1R_PHY_STAT) >> BP_SATA_GPARAM1R_PHY_STAT)
+#define BG_SATA_GPARAM1R_PHY_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_PHY_STAT) >> BP_SATA_GPARAM1R_PHY_STAT)
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_CTRL[26:21] (RO)
  *
@@ -1978,7 +1917,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_PHY_CTRL      (0x07e00000)  //!< Bit mask for SATA_GPARAM1R_PHY_CTRL.
 
 //! @brief Get value of SATA_GPARAM1R_PHY_CTRL from a register value.
-#define BG_SATA_GPARAM1R_PHY_CTRL(r)   (((r) & BM_SATA_GPARAM1R_PHY_CTRL) >> BP_SATA_GPARAM1R_PHY_CTRL)
+#define BG_SATA_GPARAM1R_PHY_CTRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_PHY_CTRL) >> BP_SATA_GPARAM1R_PHY_CTRL)
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_RST[27] (RO)
  *
@@ -1993,7 +1932,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_PHY_RST      (0x08000000)  //!< Bit mask for SATA_GPARAM1R_PHY_RST.
 
 //! @brief Get value of SATA_GPARAM1R_PHY_RST from a register value.
-#define BG_SATA_GPARAM1R_PHY_RST(r)   (((r) & BM_SATA_GPARAM1R_PHY_RST) >> BP_SATA_GPARAM1R_PHY_RST)
+#define BG_SATA_GPARAM1R_PHY_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_PHY_RST) >> BP_SATA_GPARAM1R_PHY_RST)
 
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_DATA[29:28] (RO)
@@ -2006,7 +1945,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_PHY_DATA      (0x30000000)  //!< Bit mask for SATA_GPARAM1R_PHY_DATA.
 
 //! @brief Get value of SATA_GPARAM1R_PHY_DATA from a register value.
-#define BG_SATA_GPARAM1R_PHY_DATA(r)   (((r) & BM_SATA_GPARAM1R_PHY_DATA) >> BP_SATA_GPARAM1R_PHY_DATA)
+#define BG_SATA_GPARAM1R_PHY_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_PHY_DATA) >> BP_SATA_GPARAM1R_PHY_DATA)
 
 /* --- Register HW_SATA_GPARAM1R, field RX_BUFFER[30] (RO)
  *
@@ -2020,7 +1959,7 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_RX_BUFFER      (0x40000000)  //!< Bit mask for SATA_GPARAM1R_RX_BUFFER.
 
 //! @brief Get value of SATA_GPARAM1R_RX_BUFFER from a register value.
-#define BG_SATA_GPARAM1R_RX_BUFFER(r)   (((r) & BM_SATA_GPARAM1R_RX_BUFFER) >> BP_SATA_GPARAM1R_RX_BUFFER)
+#define BG_SATA_GPARAM1R_RX_BUFFER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_RX_BUFFER) >> BP_SATA_GPARAM1R_RX_BUFFER)
 
 
 /* --- Register HW_SATA_GPARAM1R, field ALIGN_M[31] (RO)
@@ -2036,8 +1975,12 @@ typedef union _hw_sata_gparam1r
 #define BM_SATA_GPARAM1R_ALIGN_M      (0x80000000)  //!< Bit mask for SATA_GPARAM1R_ALIGN_M.
 
 //! @brief Get value of SATA_GPARAM1R_ALIGN_M from a register value.
-#define BG_SATA_GPARAM1R_ALIGN_M(r)   (((r) & BM_SATA_GPARAM1R_ALIGN_M) >> BP_SATA_GPARAM1R_ALIGN_M)
+#define BG_SATA_GPARAM1R_ALIGN_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM1R_ALIGN_M) >> BP_SATA_GPARAM1R_ALIGN_M)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_GPARAM2R - Global Parameter 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2089,7 +2032,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_RXOOB_CLK      (0x000001ff)  //!< Bit mask for SATA_GPARAM2R_RXOOB_CLK.
 
 //! @brief Get value of SATA_GPARAM2R_RXOOB_CLK from a register value.
-#define BG_SATA_GPARAM2R_RXOOB_CLK(r)   (((r) & BM_SATA_GPARAM2R_RXOOB_CLK) >> BP_SATA_GPARAM2R_RXOOB_CLK)
+#define BG_SATA_GPARAM2R_RXOOB_CLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_RXOOB_CLK) >> BP_SATA_GPARAM2R_RXOOB_CLK)
 
 /* --- Register HW_SATA_GPARAM2R, field TX_OOB_M[9] (RO)
  *
@@ -2103,7 +2046,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_TX_OOB_M      (0x00000200)  //!< Bit mask for SATA_GPARAM2R_TX_OOB_M.
 
 //! @brief Get value of SATA_GPARAM2R_TX_OOB_M from a register value.
-#define BG_SATA_GPARAM2R_TX_OOB_M(r)   (((r) & BM_SATA_GPARAM2R_TX_OOB_M) >> BP_SATA_GPARAM2R_TX_OOB_M)
+#define BG_SATA_GPARAM2R_TX_OOB_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_TX_OOB_M) >> BP_SATA_GPARAM2R_TX_OOB_M)
 
 
 /* --- Register HW_SATA_GPARAM2R, field RX_OOB_M[10] (RO)
@@ -2118,7 +2061,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_RX_OOB_M      (0x00000400)  //!< Bit mask for SATA_GPARAM2R_RX_OOB_M.
 
 //! @brief Get value of SATA_GPARAM2R_RX_OOB_M from a register value.
-#define BG_SATA_GPARAM2R_RX_OOB_M(r)   (((r) & BM_SATA_GPARAM2R_RX_OOB_M) >> BP_SATA_GPARAM2R_RX_OOB_M)
+#define BG_SATA_GPARAM2R_RX_OOB_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_RX_OOB_M) >> BP_SATA_GPARAM2R_RX_OOB_M)
 
 
 /* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK_M[11] (RO)
@@ -2134,7 +2077,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_RXOOB_CLK_M      (0x00000800)  //!< Bit mask for SATA_GPARAM2R_RXOOB_CLK_M.
 
 //! @brief Get value of SATA_GPARAM2R_RXOOB_CLK_M from a register value.
-#define BG_SATA_GPARAM2R_RXOOB_CLK_M(r)   (((r) & BM_SATA_GPARAM2R_RXOOB_CLK_M) >> BP_SATA_GPARAM2R_RXOOB_CLK_M)
+#define BG_SATA_GPARAM2R_RXOOB_CLK_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_RXOOB_CLK_M) >> BP_SATA_GPARAM2R_RXOOB_CLK_M)
 
 
 /* --- Register HW_SATA_GPARAM2R, field ENCODE_M[12] (RO)
@@ -2150,7 +2093,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_ENCODE_M      (0x00001000)  //!< Bit mask for SATA_GPARAM2R_ENCODE_M.
 
 //! @brief Get value of SATA_GPARAM2R_ENCODE_M from a register value.
-#define BG_SATA_GPARAM2R_ENCODE_M(r)   (((r) & BM_SATA_GPARAM2R_ENCODE_M) >> BP_SATA_GPARAM2R_ENCODE_M)
+#define BG_SATA_GPARAM2R_ENCODE_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_ENCODE_M) >> BP_SATA_GPARAM2R_ENCODE_M)
 
 
 /* --- Register HW_SATA_GPARAM2R, field DEV_MP[13] (RO)
@@ -2166,7 +2109,7 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_DEV_MP      (0x00002000)  //!< Bit mask for SATA_GPARAM2R_DEV_MP.
 
 //! @brief Get value of SATA_GPARAM2R_DEV_MP from a register value.
-#define BG_SATA_GPARAM2R_DEV_MP(r)   (((r) & BM_SATA_GPARAM2R_DEV_MP) >> BP_SATA_GPARAM2R_DEV_MP)
+#define BG_SATA_GPARAM2R_DEV_MP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_DEV_MP) >> BP_SATA_GPARAM2R_DEV_MP)
 
 
 /* --- Register HW_SATA_GPARAM2R, field DEV_CP[14] (RO)
@@ -2182,8 +2125,12 @@ typedef union _hw_sata_gparam2r
 #define BM_SATA_GPARAM2R_DEV_CP      (0x00004000)  //!< Bit mask for SATA_GPARAM2R_DEV_CP.
 
 //! @brief Get value of SATA_GPARAM2R_DEV_CP from a register value.
-#define BG_SATA_GPARAM2R_DEV_CP(r)   (((r) & BM_SATA_GPARAM2R_DEV_CP) >> BP_SATA_GPARAM2R_DEV_CP)
+#define BG_SATA_GPARAM2R_DEV_CP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_GPARAM2R_DEV_CP) >> BP_SATA_GPARAM2R_DEV_CP)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_PPARAMR - Port Parameter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2236,7 +2183,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_RXFIFO_DEPTH      (0x00000007)  //!< Bit mask for SATA_PPARAMR_RXFIFO_DEPTH.
 
 //! @brief Get value of SATA_PPARAMR_RXFIFO_DEPTH from a register value.
-#define BG_SATA_PPARAMR_RXFIFO_DEPTH(r)   (((r) & BM_SATA_PPARAMR_RXFIFO_DEPTH) >> BP_SATA_PPARAMR_RXFIFO_DEPTH)
+#define BG_SATA_PPARAMR_RXFIFO_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_RXFIFO_DEPTH) >> BP_SATA_PPARAMR_RXFIFO_DEPTH)
 
 /* --- Register HW_SATA_PPARAMR, field TXFIFO_DEPTH[5:3] (RO)
  *
@@ -2248,7 +2195,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_TXFIFO_DEPTH      (0x00000038)  //!< Bit mask for SATA_PPARAMR_TXFIFO_DEPTH.
 
 //! @brief Get value of SATA_PPARAMR_TXFIFO_DEPTH from a register value.
-#define BG_SATA_PPARAMR_TXFIFO_DEPTH(r)   (((r) & BM_SATA_PPARAMR_TXFIFO_DEPTH) >> BP_SATA_PPARAMR_TXFIFO_DEPTH)
+#define BG_SATA_PPARAMR_TXFIFO_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_TXFIFO_DEPTH) >> BP_SATA_PPARAMR_TXFIFO_DEPTH)
 
 /* --- Register HW_SATA_PPARAMR, field RX_MEM_S[6] (RO)
  *
@@ -2263,7 +2210,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_RX_MEM_S      (0x00000040)  //!< Bit mask for SATA_PPARAMR_RX_MEM_S.
 
 //! @brief Get value of SATA_PPARAMR_RX_MEM_S from a register value.
-#define BG_SATA_PPARAMR_RX_MEM_S(r)   (((r) & BM_SATA_PPARAMR_RX_MEM_S) >> BP_SATA_PPARAMR_RX_MEM_S)
+#define BG_SATA_PPARAMR_RX_MEM_S(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_RX_MEM_S) >> BP_SATA_PPARAMR_RX_MEM_S)
 
 
 /* --- Register HW_SATA_PPARAMR, field RX_MEM_M[7] (RO)
@@ -2279,7 +2226,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_RX_MEM_M      (0x00000080)  //!< Bit mask for SATA_PPARAMR_RX_MEM_M.
 
 //! @brief Get value of SATA_PPARAMR_RX_MEM_M from a register value.
-#define BG_SATA_PPARAMR_RX_MEM_M(r)   (((r) & BM_SATA_PPARAMR_RX_MEM_M) >> BP_SATA_PPARAMR_RX_MEM_M)
+#define BG_SATA_PPARAMR_RX_MEM_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_RX_MEM_M) >> BP_SATA_PPARAMR_RX_MEM_M)
 
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_S[8] (RO)
@@ -2295,7 +2242,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_TX_MEM_S      (0x00000100)  //!< Bit mask for SATA_PPARAMR_TX_MEM_S.
 
 //! @brief Get value of SATA_PPARAMR_TX_MEM_S from a register value.
-#define BG_SATA_PPARAMR_TX_MEM_S(r)   (((r) & BM_SATA_PPARAMR_TX_MEM_S) >> BP_SATA_PPARAMR_TX_MEM_S)
+#define BG_SATA_PPARAMR_TX_MEM_S(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_TX_MEM_S) >> BP_SATA_PPARAMR_TX_MEM_S)
 
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_M[9] (RO)
@@ -2311,7 +2258,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_TX_MEM_M      (0x00000200)  //!< Bit mask for SATA_PPARAMR_TX_MEM_M.
 
 //! @brief Get value of SATA_PPARAMR_TX_MEM_M from a register value.
-#define BG_SATA_PPARAMR_TX_MEM_M(r)   (((r) & BM_SATA_PPARAMR_TX_MEM_M) >> BP_SATA_PPARAMR_TX_MEM_M)
+#define BG_SATA_PPARAMR_TX_MEM_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_TX_MEM_M) >> BP_SATA_PPARAMR_TX_MEM_M)
 
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_S1[10] (RU)
@@ -2328,7 +2275,7 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_TX_MEM_S1      (0x00000400)  //!< Bit mask for SATA_PPARAMR_TX_MEM_S1.
 
 //! @brief Get value of SATA_PPARAMR_TX_MEM_S1 from a register value.
-#define BG_SATA_PPARAMR_TX_MEM_S1(r)   (((r) & BM_SATA_PPARAMR_TX_MEM_S1) >> BP_SATA_PPARAMR_TX_MEM_S1)
+#define BG_SATA_PPARAMR_TX_MEM_S1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_TX_MEM_S1) >> BP_SATA_PPARAMR_TX_MEM_S1)
 
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_M1[11] (RU)
@@ -2345,8 +2292,12 @@ typedef union _hw_sata_pparamr
 #define BM_SATA_PPARAMR_TX_MEM_M1      (0x00000800)  //!< Bit mask for SATA_PPARAMR_TX_MEM_M1.
 
 //! @brief Get value of SATA_PPARAMR_TX_MEM_M1 from a register value.
-#define BG_SATA_PPARAMR_TX_MEM_M1(r)   (((r) & BM_SATA_PPARAMR_TX_MEM_M1) >> BP_SATA_PPARAMR_TX_MEM_M1)
+#define BG_SATA_PPARAMR_TX_MEM_M1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PPARAMR_TX_MEM_M1) >> BP_SATA_PPARAMR_TX_MEM_M1)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_TESTR - Test Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2417,15 +2368,10 @@ typedef union _hw_sata_testr
 #define BM_SATA_TESTR_TEST_IF      (0x00000001)  //!< Bit mask for SATA_TESTR_TEST_IF.
 
 //! @brief Get value of SATA_TESTR_TEST_IF from a register value.
-#define BG_SATA_TESTR_TEST_IF(r)   (((r) & BM_SATA_TESTR_TEST_IF) >> BP_SATA_TESTR_TEST_IF)
+#define BG_SATA_TESTR_TEST_IF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_TESTR_TEST_IF) >> BP_SATA_TESTR_TEST_IF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_TESTR_TEST_IF.
-#define BF_SATA_TESTR_TEST_IF(v)   ((((reg32_t) v) << BP_SATA_TESTR_TEST_IF) & BM_SATA_TESTR_TEST_IF)
-#else
-//! @brief Format value for bitfield SATA_TESTR_TEST_IF.
-#define BF_SATA_TESTR_TEST_IF(v)   (((v) << BP_SATA_TESTR_TEST_IF) & BM_SATA_TESTR_TEST_IF)
-#endif
+#define BF_SATA_TESTR_TEST_IF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_TESTR_TEST_IF) & BM_SATA_TESTR_TEST_IF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEST_IF field to a new value.
@@ -2453,21 +2399,20 @@ typedef union _hw_sata_testr
 #define BM_SATA_TESTR_PSEL      (0x00070000)  //!< Bit mask for SATA_TESTR_PSEL.
 
 //! @brief Get value of SATA_TESTR_PSEL from a register value.
-#define BG_SATA_TESTR_PSEL(r)   (((r) & BM_SATA_TESTR_PSEL) >> BP_SATA_TESTR_PSEL)
+#define BG_SATA_TESTR_PSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_TESTR_PSEL) >> BP_SATA_TESTR_PSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_TESTR_PSEL.
-#define BF_SATA_TESTR_PSEL(v)   ((((reg32_t) v) << BP_SATA_TESTR_PSEL) & BM_SATA_TESTR_PSEL)
-#else
-//! @brief Format value for bitfield SATA_TESTR_PSEL.
-#define BF_SATA_TESTR_PSEL(v)   (((v) << BP_SATA_TESTR_PSEL) & BM_SATA_TESTR_PSEL)
-#endif
+#define BF_SATA_TESTR_PSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_TESTR_PSEL) & BM_SATA_TESTR_PSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSEL field to a new value.
 #define BW_SATA_TESTR_PSEL(v)   (HW_SATA_TESTR_WR((HW_SATA_TESTR_RD() & ~BM_SATA_TESTR_PSEL) | BF_SATA_TESTR_PSEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_VERSIONR - Version Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2504,6 +2449,10 @@ typedef union _hw_sata_versionr
 /*
  * constants & macros for individual SATA_VERSIONR bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0CLB - Port0 Command List Base Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2557,20 +2506,19 @@ typedef union _hw_sata_p0clb
 #define BM_SATA_P0CLB_CLB      (0xfffffc00)  //!< Bit mask for SATA_P0CLB_CLB.
 
 //! @brief Get value of SATA_P0CLB_CLB from a register value.
-#define BG_SATA_P0CLB_CLB(r)   (((r) & BM_SATA_P0CLB_CLB) >> BP_SATA_P0CLB_CLB)
+#define BG_SATA_P0CLB_CLB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CLB_CLB) >> BP_SATA_P0CLB_CLB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CLB_CLB.
-#define BF_SATA_P0CLB_CLB(v)   ((((reg32_t) v) << BP_SATA_P0CLB_CLB) & BM_SATA_P0CLB_CLB)
-#else
-//! @brief Format value for bitfield SATA_P0CLB_CLB.
-#define BF_SATA_P0CLB_CLB(v)   (((v) << BP_SATA_P0CLB_CLB) & BM_SATA_P0CLB_CLB)
-#endif
+#define BF_SATA_P0CLB_CLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CLB_CLB) & BM_SATA_P0CLB_CLB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLB field to a new value.
 #define BW_SATA_P0CLB_CLB(v)   (HW_SATA_P0CLB_WR((HW_SATA_P0CLB_RD() & ~BM_SATA_P0CLB_CLB) | BF_SATA_P0CLB_CLB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0FB - Port0 FIS Base Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2622,20 +2570,19 @@ typedef union _hw_sata_p0fb
 #define BM_SATA_P0FB_FB      (0xffffff00)  //!< Bit mask for SATA_P0FB_FB.
 
 //! @brief Get value of SATA_P0FB_FB from a register value.
-#define BG_SATA_P0FB_FB(r)   (((r) & BM_SATA_P0FB_FB) >> BP_SATA_P0FB_FB)
+#define BG_SATA_P0FB_FB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0FB_FB) >> BP_SATA_P0FB_FB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0FB_FB.
-#define BF_SATA_P0FB_FB(v)   ((((reg32_t) v) << BP_SATA_P0FB_FB) & BM_SATA_P0FB_FB)
-#else
-//! @brief Format value for bitfield SATA_P0FB_FB.
-#define BF_SATA_P0FB_FB(v)   (((v) << BP_SATA_P0FB_FB) & BM_SATA_P0FB_FB)
-#endif
+#define BF_SATA_P0FB_FB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0FB_FB) & BM_SATA_P0FB_FB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FB field to a new value.
 #define BW_SATA_P0FB_FB(v)   (HW_SATA_P0FB_WR((HW_SATA_P0FB_RD() & ~BM_SATA_P0FB_FB) | BF_SATA_P0FB_FB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0IS - Port0 Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2705,7 +2652,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_DHRS      (0x00000001)  //!< Bit mask for SATA_P0IS_DHRS.
 
 //! @brief Get value of SATA_P0IS_DHRS from a register value.
-#define BG_SATA_P0IS_DHRS(r)   (((r) & BM_SATA_P0IS_DHRS) >> BP_SATA_P0IS_DHRS)
+#define BG_SATA_P0IS_DHRS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DHRS) >> BP_SATA_P0IS_DHRS)
 
 /* --- Register HW_SATA_P0IS, field PSS[1] (RO)
  *
@@ -2718,7 +2665,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_PSS      (0x00000002)  //!< Bit mask for SATA_P0IS_PSS.
 
 //! @brief Get value of SATA_P0IS_PSS from a register value.
-#define BG_SATA_P0IS_PSS(r)   (((r) & BM_SATA_P0IS_PSS) >> BP_SATA_P0IS_PSS)
+#define BG_SATA_P0IS_PSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PSS) >> BP_SATA_P0IS_PSS)
 
 /* --- Register HW_SATA_P0IS, field DSS[2] (RO)
  *
@@ -2730,7 +2677,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_DSS      (0x00000004)  //!< Bit mask for SATA_P0IS_DSS.
 
 //! @brief Get value of SATA_P0IS_DSS from a register value.
-#define BG_SATA_P0IS_DSS(r)   (((r) & BM_SATA_P0IS_DSS) >> BP_SATA_P0IS_DSS)
+#define BG_SATA_P0IS_DSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DSS) >> BP_SATA_P0IS_DSS)
 
 /* --- Register HW_SATA_P0IS, field SDBS[3] (RO)
  *
@@ -2742,7 +2689,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_SDBS      (0x00000008)  //!< Bit mask for SATA_P0IS_SDBS.
 
 //! @brief Get value of SATA_P0IS_SDBS from a register value.
-#define BG_SATA_P0IS_SDBS(r)   (((r) & BM_SATA_P0IS_SDBS) >> BP_SATA_P0IS_SDBS)
+#define BG_SATA_P0IS_SDBS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_SDBS) >> BP_SATA_P0IS_SDBS)
 
 /* --- Register HW_SATA_P0IS, field UFS[4] (RO)
  *
@@ -2758,7 +2705,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_UFS      (0x00000010)  //!< Bit mask for SATA_P0IS_UFS.
 
 //! @brief Get value of SATA_P0IS_UFS from a register value.
-#define BG_SATA_P0IS_UFS(r)   (((r) & BM_SATA_P0IS_UFS) >> BP_SATA_P0IS_UFS)
+#define BG_SATA_P0IS_UFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_UFS) >> BP_SATA_P0IS_UFS)
 
 /* --- Register HW_SATA_P0IS, field DPS[5] (RO)
  *
@@ -2772,7 +2719,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_DPS      (0x00000020)  //!< Bit mask for SATA_P0IS_DPS.
 
 //! @brief Get value of SATA_P0IS_DPS from a register value.
-#define BG_SATA_P0IS_DPS(r)   (((r) & BM_SATA_P0IS_DPS) >> BP_SATA_P0IS_DPS)
+#define BG_SATA_P0IS_DPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DPS) >> BP_SATA_P0IS_DPS)
 
 /* --- Register HW_SATA_P0IS, field PCS[6] (RO)
  *
@@ -2788,7 +2735,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_PCS      (0x00000040)  //!< Bit mask for SATA_P0IS_PCS.
 
 //! @brief Get value of SATA_P0IS_PCS from a register value.
-#define BG_SATA_P0IS_PCS(r)   (((r) & BM_SATA_P0IS_PCS) >> BP_SATA_P0IS_PCS)
+#define BG_SATA_P0IS_PCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PCS) >> BP_SATA_P0IS_PCS)
 
 
 /* --- Register HW_SATA_P0IS, field PRCS[22] (RO)
@@ -2802,7 +2749,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_PRCS      (0x00400000)  //!< Bit mask for SATA_P0IS_PRCS.
 
 //! @brief Get value of SATA_P0IS_PRCS from a register value.
-#define BG_SATA_P0IS_PRCS(r)   (((r) & BM_SATA_P0IS_PRCS) >> BP_SATA_P0IS_PRCS)
+#define BG_SATA_P0IS_PRCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PRCS) >> BP_SATA_P0IS_PRCS)
 
 /* --- Register HW_SATA_P0IS, field IPMS[23] (RO)
  *
@@ -2816,7 +2763,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_IPMS      (0x00800000)  //!< Bit mask for SATA_P0IS_IPMS.
 
 //! @brief Get value of SATA_P0IS_IPMS from a register value.
-#define BG_SATA_P0IS_IPMS(r)   (((r) & BM_SATA_P0IS_IPMS) >> BP_SATA_P0IS_IPMS)
+#define BG_SATA_P0IS_IPMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_IPMS) >> BP_SATA_P0IS_IPMS)
 
 /* --- Register HW_SATA_P0IS, field OFS[24] (RO)
  *
@@ -2830,7 +2777,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_OFS      (0x01000000)  //!< Bit mask for SATA_P0IS_OFS.
 
 //! @brief Get value of SATA_P0IS_OFS from a register value.
-#define BG_SATA_P0IS_OFS(r)   (((r) & BM_SATA_P0IS_OFS) >> BP_SATA_P0IS_OFS)
+#define BG_SATA_P0IS_OFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_OFS) >> BP_SATA_P0IS_OFS)
 
 /* --- Register HW_SATA_P0IS, field INFS[26] (RO)
  *
@@ -2846,7 +2793,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_INFS      (0x04000000)  //!< Bit mask for SATA_P0IS_INFS.
 
 //! @brief Get value of SATA_P0IS_INFS from a register value.
-#define BG_SATA_P0IS_INFS(r)   (((r) & BM_SATA_P0IS_INFS) >> BP_SATA_P0IS_INFS)
+#define BG_SATA_P0IS_INFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_INFS) >> BP_SATA_P0IS_INFS)
 
 /* --- Register HW_SATA_P0IS, field IFS[27] (RO)
  *
@@ -2864,7 +2811,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_IFS      (0x08000000)  //!< Bit mask for SATA_P0IS_IFS.
 
 //! @brief Get value of SATA_P0IS_IFS from a register value.
-#define BG_SATA_P0IS_IFS(r)   (((r) & BM_SATA_P0IS_IFS) >> BP_SATA_P0IS_IFS)
+#define BG_SATA_P0IS_IFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_IFS) >> BP_SATA_P0IS_IFS)
 
 /* --- Register HW_SATA_P0IS, field HBDS[28] (RO)
  *
@@ -2875,7 +2822,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_HBDS      (0x10000000)  //!< Bit mask for SATA_P0IS_HBDS.
 
 //! @brief Get value of SATA_P0IS_HBDS from a register value.
-#define BG_SATA_P0IS_HBDS(r)   (((r) & BM_SATA_P0IS_HBDS) >> BP_SATA_P0IS_HBDS)
+#define BG_SATA_P0IS_HBDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_HBDS) >> BP_SATA_P0IS_HBDS)
 
 /* --- Register HW_SATA_P0IS, field HBFS[29] (RO)
  *
@@ -2887,7 +2834,7 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_HBFS      (0x20000000)  //!< Bit mask for SATA_P0IS_HBFS.
 
 //! @brief Get value of SATA_P0IS_HBFS from a register value.
-#define BG_SATA_P0IS_HBFS(r)   (((r) & BM_SATA_P0IS_HBFS) >> BP_SATA_P0IS_HBFS)
+#define BG_SATA_P0IS_HBFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_HBFS) >> BP_SATA_P0IS_HBFS)
 
 /* --- Register HW_SATA_P0IS, field TFES[30] (RO)
  *
@@ -2899,7 +2846,11 @@ typedef union _hw_sata_p0is
 #define BM_SATA_P0IS_TFES      (0x40000000)  //!< Bit mask for SATA_P0IS_TFES.
 
 //! @brief Get value of SATA_P0IS_TFES from a register value.
-#define BG_SATA_P0IS_TFES(r)   (((r) & BM_SATA_P0IS_TFES) >> BP_SATA_P0IS_TFES)
+#define BG_SATA_P0IS_TFES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_TFES) >> BP_SATA_P0IS_TFES)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0IE - Port0 Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2970,15 +2921,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_DHRE      (0x00000001)  //!< Bit mask for SATA_P0IE_DHRE.
 
 //! @brief Get value of SATA_P0IE_DHRE from a register value.
-#define BG_SATA_P0IE_DHRE(r)   (((r) & BM_SATA_P0IE_DHRE) >> BP_SATA_P0IE_DHRE)
+#define BG_SATA_P0IE_DHRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_DHRE) >> BP_SATA_P0IE_DHRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_DHRE.
-#define BF_SATA_P0IE_DHRE(v)   ((((reg32_t) v) << BP_SATA_P0IE_DHRE) & BM_SATA_P0IE_DHRE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_DHRE.
-#define BF_SATA_P0IE_DHRE(v)   (((v) << BP_SATA_P0IE_DHRE) & BM_SATA_P0IE_DHRE)
-#endif
+#define BF_SATA_P0IE_DHRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_DHRE) & BM_SATA_P0IE_DHRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DHRE field to a new value.
@@ -2995,15 +2941,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_PSE      (0x00000002)  //!< Bit mask for SATA_P0IE_PSE.
 
 //! @brief Get value of SATA_P0IE_PSE from a register value.
-#define BG_SATA_P0IE_PSE(r)   (((r) & BM_SATA_P0IE_PSE) >> BP_SATA_P0IE_PSE)
+#define BG_SATA_P0IE_PSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_PSE) >> BP_SATA_P0IE_PSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_PSE.
-#define BF_SATA_P0IE_PSE(v)   ((((reg32_t) v) << BP_SATA_P0IE_PSE) & BM_SATA_P0IE_PSE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_PSE.
-#define BF_SATA_P0IE_PSE(v)   (((v) << BP_SATA_P0IE_PSE) & BM_SATA_P0IE_PSE)
-#endif
+#define BF_SATA_P0IE_PSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_PSE) & BM_SATA_P0IE_PSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSE field to a new value.
@@ -3020,15 +2961,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_DSE      (0x00000004)  //!< Bit mask for SATA_P0IE_DSE.
 
 //! @brief Get value of SATA_P0IE_DSE from a register value.
-#define BG_SATA_P0IE_DSE(r)   (((r) & BM_SATA_P0IE_DSE) >> BP_SATA_P0IE_DSE)
+#define BG_SATA_P0IE_DSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_DSE) >> BP_SATA_P0IE_DSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_DSE.
-#define BF_SATA_P0IE_DSE(v)   ((((reg32_t) v) << BP_SATA_P0IE_DSE) & BM_SATA_P0IE_DSE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_DSE.
-#define BF_SATA_P0IE_DSE(v)   (((v) << BP_SATA_P0IE_DSE) & BM_SATA_P0IE_DSE)
-#endif
+#define BF_SATA_P0IE_DSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_DSE) & BM_SATA_P0IE_DSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSE field to a new value.
@@ -3045,15 +2981,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_SDBE      (0x00000008)  //!< Bit mask for SATA_P0IE_SDBE.
 
 //! @brief Get value of SATA_P0IE_SDBE from a register value.
-#define BG_SATA_P0IE_SDBE(r)   (((r) & BM_SATA_P0IE_SDBE) >> BP_SATA_P0IE_SDBE)
+#define BG_SATA_P0IE_SDBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_SDBE) >> BP_SATA_P0IE_SDBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_SDBE.
-#define BF_SATA_P0IE_SDBE(v)   ((((reg32_t) v) << BP_SATA_P0IE_SDBE) & BM_SATA_P0IE_SDBE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_SDBE.
-#define BF_SATA_P0IE_SDBE(v)   (((v) << BP_SATA_P0IE_SDBE) & BM_SATA_P0IE_SDBE)
-#endif
+#define BF_SATA_P0IE_SDBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_SDBE) & BM_SATA_P0IE_SDBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDBE field to a new value.
@@ -3070,15 +3001,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_UFE      (0x00000010)  //!< Bit mask for SATA_P0IE_UFE.
 
 //! @brief Get value of SATA_P0IE_UFE from a register value.
-#define BG_SATA_P0IE_UFE(r)   (((r) & BM_SATA_P0IE_UFE) >> BP_SATA_P0IE_UFE)
+#define BG_SATA_P0IE_UFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_UFE) >> BP_SATA_P0IE_UFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_UFE.
-#define BF_SATA_P0IE_UFE(v)   ((((reg32_t) v) << BP_SATA_P0IE_UFE) & BM_SATA_P0IE_UFE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_UFE.
-#define BF_SATA_P0IE_UFE(v)   (((v) << BP_SATA_P0IE_UFE) & BM_SATA_P0IE_UFE)
-#endif
+#define BF_SATA_P0IE_UFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_UFE) & BM_SATA_P0IE_UFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UFE field to a new value.
@@ -3095,15 +3021,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_DPE      (0x00000020)  //!< Bit mask for SATA_P0IE_DPE.
 
 //! @brief Get value of SATA_P0IE_DPE from a register value.
-#define BG_SATA_P0IE_DPE(r)   (((r) & BM_SATA_P0IE_DPE) >> BP_SATA_P0IE_DPE)
+#define BG_SATA_P0IE_DPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_DPE) >> BP_SATA_P0IE_DPE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_DPE.
-#define BF_SATA_P0IE_DPE(v)   ((((reg32_t) v) << BP_SATA_P0IE_DPE) & BM_SATA_P0IE_DPE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_DPE.
-#define BF_SATA_P0IE_DPE(v)   (((v) << BP_SATA_P0IE_DPE) & BM_SATA_P0IE_DPE)
-#endif
+#define BF_SATA_P0IE_DPE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_DPE) & BM_SATA_P0IE_DPE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DPE field to a new value.
@@ -3120,15 +3041,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_PCE      (0x00000040)  //!< Bit mask for SATA_P0IE_PCE.
 
 //! @brief Get value of SATA_P0IE_PCE from a register value.
-#define BG_SATA_P0IE_PCE(r)   (((r) & BM_SATA_P0IE_PCE) >> BP_SATA_P0IE_PCE)
+#define BG_SATA_P0IE_PCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_PCE) >> BP_SATA_P0IE_PCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_PCE.
-#define BF_SATA_P0IE_PCE(v)   ((((reg32_t) v) << BP_SATA_P0IE_PCE) & BM_SATA_P0IE_PCE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_PCE.
-#define BF_SATA_P0IE_PCE(v)   (((v) << BP_SATA_P0IE_PCE) & BM_SATA_P0IE_PCE)
-#endif
+#define BF_SATA_P0IE_PCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_PCE) & BM_SATA_P0IE_PCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PCE field to a new value.
@@ -3145,15 +3061,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_PRCE      (0x00400000)  //!< Bit mask for SATA_P0IE_PRCE.
 
 //! @brief Get value of SATA_P0IE_PRCE from a register value.
-#define BG_SATA_P0IE_PRCE(r)   (((r) & BM_SATA_P0IE_PRCE) >> BP_SATA_P0IE_PRCE)
+#define BG_SATA_P0IE_PRCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_PRCE) >> BP_SATA_P0IE_PRCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_PRCE.
-#define BF_SATA_P0IE_PRCE(v)   ((((reg32_t) v) << BP_SATA_P0IE_PRCE) & BM_SATA_P0IE_PRCE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_PRCE.
-#define BF_SATA_P0IE_PRCE(v)   (((v) << BP_SATA_P0IE_PRCE) & BM_SATA_P0IE_PRCE)
-#endif
+#define BF_SATA_P0IE_PRCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_PRCE) & BM_SATA_P0IE_PRCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRCE field to a new value.
@@ -3170,15 +3081,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_IPME      (0x00800000)  //!< Bit mask for SATA_P0IE_IPME.
 
 //! @brief Get value of SATA_P0IE_IPME from a register value.
-#define BG_SATA_P0IE_IPME(r)   (((r) & BM_SATA_P0IE_IPME) >> BP_SATA_P0IE_IPME)
+#define BG_SATA_P0IE_IPME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_IPME) >> BP_SATA_P0IE_IPME)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_IPME.
-#define BF_SATA_P0IE_IPME(v)   ((((reg32_t) v) << BP_SATA_P0IE_IPME) & BM_SATA_P0IE_IPME)
-#else
-//! @brief Format value for bitfield SATA_P0IE_IPME.
-#define BF_SATA_P0IE_IPME(v)   (((v) << BP_SATA_P0IE_IPME) & BM_SATA_P0IE_IPME)
-#endif
+#define BF_SATA_P0IE_IPME(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_IPME) & BM_SATA_P0IE_IPME)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPME field to a new value.
@@ -3195,15 +3101,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_OFE      (0x01000000)  //!< Bit mask for SATA_P0IE_OFE.
 
 //! @brief Get value of SATA_P0IE_OFE from a register value.
-#define BG_SATA_P0IE_OFE(r)   (((r) & BM_SATA_P0IE_OFE) >> BP_SATA_P0IE_OFE)
+#define BG_SATA_P0IE_OFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_OFE) >> BP_SATA_P0IE_OFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_OFE.
-#define BF_SATA_P0IE_OFE(v)   ((((reg32_t) v) << BP_SATA_P0IE_OFE) & BM_SATA_P0IE_OFE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_OFE.
-#define BF_SATA_P0IE_OFE(v)   (((v) << BP_SATA_P0IE_OFE) & BM_SATA_P0IE_OFE)
-#endif
+#define BF_SATA_P0IE_OFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_OFE) & BM_SATA_P0IE_OFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFE field to a new value.
@@ -3220,15 +3121,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_INFE      (0x04000000)  //!< Bit mask for SATA_P0IE_INFE.
 
 //! @brief Get value of SATA_P0IE_INFE from a register value.
-#define BG_SATA_P0IE_INFE(r)   (((r) & BM_SATA_P0IE_INFE) >> BP_SATA_P0IE_INFE)
+#define BG_SATA_P0IE_INFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_INFE) >> BP_SATA_P0IE_INFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_INFE.
-#define BF_SATA_P0IE_INFE(v)   ((((reg32_t) v) << BP_SATA_P0IE_INFE) & BM_SATA_P0IE_INFE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_INFE.
-#define BF_SATA_P0IE_INFE(v)   (((v) << BP_SATA_P0IE_INFE) & BM_SATA_P0IE_INFE)
-#endif
+#define BF_SATA_P0IE_INFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_INFE) & BM_SATA_P0IE_INFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INFE field to a new value.
@@ -3245,15 +3141,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_IFE      (0x08000000)  //!< Bit mask for SATA_P0IE_IFE.
 
 //! @brief Get value of SATA_P0IE_IFE from a register value.
-#define BG_SATA_P0IE_IFE(r)   (((r) & BM_SATA_P0IE_IFE) >> BP_SATA_P0IE_IFE)
+#define BG_SATA_P0IE_IFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_IFE) >> BP_SATA_P0IE_IFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_IFE.
-#define BF_SATA_P0IE_IFE(v)   ((((reg32_t) v) << BP_SATA_P0IE_IFE) & BM_SATA_P0IE_IFE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_IFE.
-#define BF_SATA_P0IE_IFE(v)   (((v) << BP_SATA_P0IE_IFE) & BM_SATA_P0IE_IFE)
-#endif
+#define BF_SATA_P0IE_IFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_IFE) & BM_SATA_P0IE_IFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IFE field to a new value.
@@ -3270,15 +3161,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_HBDE      (0x10000000)  //!< Bit mask for SATA_P0IE_HBDE.
 
 //! @brief Get value of SATA_P0IE_HBDE from a register value.
-#define BG_SATA_P0IE_HBDE(r)   (((r) & BM_SATA_P0IE_HBDE) >> BP_SATA_P0IE_HBDE)
+#define BG_SATA_P0IE_HBDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_HBDE) >> BP_SATA_P0IE_HBDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_HBDE.
-#define BF_SATA_P0IE_HBDE(v)   ((((reg32_t) v) << BP_SATA_P0IE_HBDE) & BM_SATA_P0IE_HBDE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_HBDE.
-#define BF_SATA_P0IE_HBDE(v)   (((v) << BP_SATA_P0IE_HBDE) & BM_SATA_P0IE_HBDE)
-#endif
+#define BF_SATA_P0IE_HBDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_HBDE) & BM_SATA_P0IE_HBDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBDE field to a new value.
@@ -3295,15 +3181,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_HBFE      (0x20000000)  //!< Bit mask for SATA_P0IE_HBFE.
 
 //! @brief Get value of SATA_P0IE_HBFE from a register value.
-#define BG_SATA_P0IE_HBFE(r)   (((r) & BM_SATA_P0IE_HBFE) >> BP_SATA_P0IE_HBFE)
+#define BG_SATA_P0IE_HBFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_HBFE) >> BP_SATA_P0IE_HBFE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_HBFE.
-#define BF_SATA_P0IE_HBFE(v)   ((((reg32_t) v) << BP_SATA_P0IE_HBFE) & BM_SATA_P0IE_HBFE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_HBFE.
-#define BF_SATA_P0IE_HBFE(v)   (((v) << BP_SATA_P0IE_HBFE) & BM_SATA_P0IE_HBFE)
-#endif
+#define BF_SATA_P0IE_HBFE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_HBFE) & BM_SATA_P0IE_HBFE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBFE field to a new value.
@@ -3320,15 +3201,10 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_TFEE      (0x40000000)  //!< Bit mask for SATA_P0IE_TFEE.
 
 //! @brief Get value of SATA_P0IE_TFEE from a register value.
-#define BG_SATA_P0IE_TFEE(r)   (((r) & BM_SATA_P0IE_TFEE) >> BP_SATA_P0IE_TFEE)
+#define BG_SATA_P0IE_TFEE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_TFEE) >> BP_SATA_P0IE_TFEE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_TFEE.
-#define BF_SATA_P0IE_TFEE(v)   ((((reg32_t) v) << BP_SATA_P0IE_TFEE) & BM_SATA_P0IE_TFEE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_TFEE.
-#define BF_SATA_P0IE_TFEE(v)   (((v) << BP_SATA_P0IE_TFEE) & BM_SATA_P0IE_TFEE)
-#endif
+#define BF_SATA_P0IE_TFEE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_TFEE) & BM_SATA_P0IE_TFEE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFEE field to a new value.
@@ -3347,20 +3223,19 @@ typedef union _hw_sata_p0ie
 #define BM_SATA_P0IE_CPDE      (0x80000000)  //!< Bit mask for SATA_P0IE_CPDE.
 
 //! @brief Get value of SATA_P0IE_CPDE from a register value.
-#define BG_SATA_P0IE_CPDE(r)   (((r) & BM_SATA_P0IE_CPDE) >> BP_SATA_P0IE_CPDE)
+#define BG_SATA_P0IE_CPDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IE_CPDE) >> BP_SATA_P0IE_CPDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0IE_CPDE.
-#define BF_SATA_P0IE_CPDE(v)   ((((reg32_t) v) << BP_SATA_P0IE_CPDE) & BM_SATA_P0IE_CPDE)
-#else
-//! @brief Format value for bitfield SATA_P0IE_CPDE.
-#define BF_SATA_P0IE_CPDE(v)   (((v) << BP_SATA_P0IE_CPDE) & BM_SATA_P0IE_CPDE)
-#endif
+#define BF_SATA_P0IE_CPDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0IE_CPDE) & BM_SATA_P0IE_CPDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CPDE field to a new value.
 #define BW_SATA_P0IE_CPDE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_CPDE) | BF_SATA_P0IE_CPDE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0CMD - Port0 Command Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3436,15 +3311,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ST      (0x00000001)  //!< Bit mask for SATA_P0CMD_ST.
 
 //! @brief Get value of SATA_P0CMD_ST from a register value.
-#define BG_SATA_P0CMD_ST(r)   (((r) & BM_SATA_P0CMD_ST) >> BP_SATA_P0CMD_ST)
+#define BG_SATA_P0CMD_ST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ST) >> BP_SATA_P0CMD_ST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ST.
-#define BF_SATA_P0CMD_ST(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ST) & BM_SATA_P0CMD_ST)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ST.
-#define BF_SATA_P0CMD_ST(v)   (((v) << BP_SATA_P0CMD_ST) & BM_SATA_P0CMD_ST)
-#endif
+#define BF_SATA_P0CMD_ST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ST) & BM_SATA_P0CMD_ST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ST field to a new value.
@@ -3464,15 +3334,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_SUD      (0x00000002)  //!< Bit mask for SATA_P0CMD_SUD.
 
 //! @brief Get value of SATA_P0CMD_SUD from a register value.
-#define BG_SATA_P0CMD_SUD(r)   (((r) & BM_SATA_P0CMD_SUD) >> BP_SATA_P0CMD_SUD)
+#define BG_SATA_P0CMD_SUD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_SUD) >> BP_SATA_P0CMD_SUD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_SUD.
-#define BF_SATA_P0CMD_SUD(v)   ((((reg32_t) v) << BP_SATA_P0CMD_SUD) & BM_SATA_P0CMD_SUD)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_SUD.
-#define BF_SATA_P0CMD_SUD(v)   (((v) << BP_SATA_P0CMD_SUD) & BM_SATA_P0CMD_SUD)
-#endif
+#define BF_SATA_P0CMD_SUD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_SUD) & BM_SATA_P0CMD_SUD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUD field to a new value.
@@ -3491,15 +3356,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_POD      (0x00000004)  //!< Bit mask for SATA_P0CMD_POD.
 
 //! @brief Get value of SATA_P0CMD_POD from a register value.
-#define BG_SATA_P0CMD_POD(r)   (((r) & BM_SATA_P0CMD_POD) >> BP_SATA_P0CMD_POD)
+#define BG_SATA_P0CMD_POD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_POD) >> BP_SATA_P0CMD_POD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_POD.
-#define BF_SATA_P0CMD_POD(v)   ((((reg32_t) v) << BP_SATA_P0CMD_POD) & BM_SATA_P0CMD_POD)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_POD.
-#define BF_SATA_P0CMD_POD(v)   (((v) << BP_SATA_P0CMD_POD) & BM_SATA_P0CMD_POD)
-#endif
+#define BF_SATA_P0CMD_POD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_POD) & BM_SATA_P0CMD_POD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POD field to a new value.
@@ -3522,15 +3382,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_CLO      (0x00000008)  //!< Bit mask for SATA_P0CMD_CLO.
 
 //! @brief Get value of SATA_P0CMD_CLO from a register value.
-#define BG_SATA_P0CMD_CLO(r)   (((r) & BM_SATA_P0CMD_CLO) >> BP_SATA_P0CMD_CLO)
+#define BG_SATA_P0CMD_CLO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_CLO) >> BP_SATA_P0CMD_CLO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_CLO.
-#define BF_SATA_P0CMD_CLO(v)   ((((reg32_t) v) << BP_SATA_P0CMD_CLO) & BM_SATA_P0CMD_CLO)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_CLO.
-#define BF_SATA_P0CMD_CLO(v)   (((v) << BP_SATA_P0CMD_CLO) & BM_SATA_P0CMD_CLO)
-#endif
+#define BF_SATA_P0CMD_CLO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_CLO) & BM_SATA_P0CMD_CLO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLO field to a new value.
@@ -3552,15 +3407,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_FRE      (0x00000010)  //!< Bit mask for SATA_P0CMD_FRE.
 
 //! @brief Get value of SATA_P0CMD_FRE from a register value.
-#define BG_SATA_P0CMD_FRE(r)   (((r) & BM_SATA_P0CMD_FRE) >> BP_SATA_P0CMD_FRE)
+#define BG_SATA_P0CMD_FRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_FRE) >> BP_SATA_P0CMD_FRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_FRE.
-#define BF_SATA_P0CMD_FRE(v)   ((((reg32_t) v) << BP_SATA_P0CMD_FRE) & BM_SATA_P0CMD_FRE)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_FRE.
-#define BF_SATA_P0CMD_FRE(v)   (((v) << BP_SATA_P0CMD_FRE) & BM_SATA_P0CMD_FRE)
-#endif
+#define BF_SATA_P0CMD_FRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_FRE) & BM_SATA_P0CMD_FRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRE field to a new value.
@@ -3582,15 +3432,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_CCS      (0x00001f00)  //!< Bit mask for SATA_P0CMD_CCS.
 
 //! @brief Get value of SATA_P0CMD_CCS from a register value.
-#define BG_SATA_P0CMD_CCS(r)   (((r) & BM_SATA_P0CMD_CCS) >> BP_SATA_P0CMD_CCS)
+#define BG_SATA_P0CMD_CCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_CCS) >> BP_SATA_P0CMD_CCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_CCS.
-#define BF_SATA_P0CMD_CCS(v)   ((((reg32_t) v) << BP_SATA_P0CMD_CCS) & BM_SATA_P0CMD_CCS)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_CCS.
-#define BF_SATA_P0CMD_CCS(v)   (((v) << BP_SATA_P0CMD_CCS) & BM_SATA_P0CMD_CCS)
-#endif
+#define BF_SATA_P0CMD_CCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_CCS) & BM_SATA_P0CMD_CCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCS field to a new value.
@@ -3614,15 +3459,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_MPSS      (0x00002000)  //!< Bit mask for SATA_P0CMD_MPSS.
 
 //! @brief Get value of SATA_P0CMD_MPSS from a register value.
-#define BG_SATA_P0CMD_MPSS(r)   (((r) & BM_SATA_P0CMD_MPSS) >> BP_SATA_P0CMD_MPSS)
+#define BG_SATA_P0CMD_MPSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_MPSS) >> BP_SATA_P0CMD_MPSS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_MPSS.
-#define BF_SATA_P0CMD_MPSS(v)   ((((reg32_t) v) << BP_SATA_P0CMD_MPSS) & BM_SATA_P0CMD_MPSS)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_MPSS.
-#define BF_SATA_P0CMD_MPSS(v)   (((v) << BP_SATA_P0CMD_MPSS) & BM_SATA_P0CMD_MPSS)
-#endif
+#define BF_SATA_P0CMD_MPSS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_MPSS) & BM_SATA_P0CMD_MPSS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPSS field to a new value.
@@ -3640,15 +3480,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_FR      (0x00004000)  //!< Bit mask for SATA_P0CMD_FR.
 
 //! @brief Get value of SATA_P0CMD_FR from a register value.
-#define BG_SATA_P0CMD_FR(r)   (((r) & BM_SATA_P0CMD_FR) >> BP_SATA_P0CMD_FR)
+#define BG_SATA_P0CMD_FR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_FR) >> BP_SATA_P0CMD_FR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_FR.
-#define BF_SATA_P0CMD_FR(v)   ((((reg32_t) v) << BP_SATA_P0CMD_FR) & BM_SATA_P0CMD_FR)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_FR.
-#define BF_SATA_P0CMD_FR(v)   (((v) << BP_SATA_P0CMD_FR) & BM_SATA_P0CMD_FR)
-#endif
+#define BF_SATA_P0CMD_FR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_FR) & BM_SATA_P0CMD_FR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FR field to a new value.
@@ -3666,15 +3501,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_CR      (0x00008000)  //!< Bit mask for SATA_P0CMD_CR.
 
 //! @brief Get value of SATA_P0CMD_CR from a register value.
-#define BG_SATA_P0CMD_CR(r)   (((r) & BM_SATA_P0CMD_CR) >> BP_SATA_P0CMD_CR)
+#define BG_SATA_P0CMD_CR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_CR) >> BP_SATA_P0CMD_CR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_CR.
-#define BF_SATA_P0CMD_CR(v)   ((((reg32_t) v) << BP_SATA_P0CMD_CR) & BM_SATA_P0CMD_CR)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_CR.
-#define BF_SATA_P0CMD_CR(v)   (((v) << BP_SATA_P0CMD_CR) & BM_SATA_P0CMD_CR)
-#endif
+#define BF_SATA_P0CMD_CR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_CR) & BM_SATA_P0CMD_CR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR field to a new value.
@@ -3696,15 +3526,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_CPS      (0x00010000)  //!< Bit mask for SATA_P0CMD_CPS.
 
 //! @brief Get value of SATA_P0CMD_CPS from a register value.
-#define BG_SATA_P0CMD_CPS(r)   (((r) & BM_SATA_P0CMD_CPS) >> BP_SATA_P0CMD_CPS)
+#define BG_SATA_P0CMD_CPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_CPS) >> BP_SATA_P0CMD_CPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_CPS.
-#define BF_SATA_P0CMD_CPS(v)   ((((reg32_t) v) << BP_SATA_P0CMD_CPS) & BM_SATA_P0CMD_CPS)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_CPS.
-#define BF_SATA_P0CMD_CPS(v)   (((v) << BP_SATA_P0CMD_CPS) & BM_SATA_P0CMD_CPS)
-#endif
+#define BF_SATA_P0CMD_CPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_CPS) & BM_SATA_P0CMD_CPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CPS field to a new value.
@@ -3727,15 +3552,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_PMA      (0x00020000)  //!< Bit mask for SATA_P0CMD_PMA.
 
 //! @brief Get value of SATA_P0CMD_PMA from a register value.
-#define BG_SATA_P0CMD_PMA(r)   (((r) & BM_SATA_P0CMD_PMA) >> BP_SATA_P0CMD_PMA)
+#define BG_SATA_P0CMD_PMA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_PMA) >> BP_SATA_P0CMD_PMA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_PMA.
-#define BF_SATA_P0CMD_PMA(v)   ((((reg32_t) v) << BP_SATA_P0CMD_PMA) & BM_SATA_P0CMD_PMA)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_PMA.
-#define BF_SATA_P0CMD_PMA(v)   (((v) << BP_SATA_P0CMD_PMA) & BM_SATA_P0CMD_PMA)
-#endif
+#define BF_SATA_P0CMD_PMA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_PMA) & BM_SATA_P0CMD_PMA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PMA field to a new value.
@@ -3758,15 +3578,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_HPCP      (0x00040000)  //!< Bit mask for SATA_P0CMD_HPCP.
 
 //! @brief Get value of SATA_P0CMD_HPCP from a register value.
-#define BG_SATA_P0CMD_HPCP(r)   (((r) & BM_SATA_P0CMD_HPCP) >> BP_SATA_P0CMD_HPCP)
+#define BG_SATA_P0CMD_HPCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_HPCP) >> BP_SATA_P0CMD_HPCP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_HPCP.
-#define BF_SATA_P0CMD_HPCP(v)   ((((reg32_t) v) << BP_SATA_P0CMD_HPCP) & BM_SATA_P0CMD_HPCP)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_HPCP.
-#define BF_SATA_P0CMD_HPCP(v)   (((v) << BP_SATA_P0CMD_HPCP) & BM_SATA_P0CMD_HPCP)
-#endif
+#define BF_SATA_P0CMD_HPCP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_HPCP) & BM_SATA_P0CMD_HPCP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HPCP field to a new value.
@@ -3786,15 +3601,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ESP      (0x00200000)  //!< Bit mask for SATA_P0CMD_ESP.
 
 //! @brief Get value of SATA_P0CMD_ESP from a register value.
-#define BG_SATA_P0CMD_ESP(r)   (((r) & BM_SATA_P0CMD_ESP) >> BP_SATA_P0CMD_ESP)
+#define BG_SATA_P0CMD_ESP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ESP) >> BP_SATA_P0CMD_ESP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ESP.
-#define BF_SATA_P0CMD_ESP(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ESP) & BM_SATA_P0CMD_ESP)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ESP.
-#define BF_SATA_P0CMD_ESP(v)   (((v) << BP_SATA_P0CMD_ESP) & BM_SATA_P0CMD_ESP)
-#endif
+#define BF_SATA_P0CMD_ESP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ESP) & BM_SATA_P0CMD_ESP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESP field to a new value.
@@ -3815,15 +3625,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_APSTE      (0x00800000)  //!< Bit mask for SATA_P0CMD_APSTE.
 
 //! @brief Get value of SATA_P0CMD_APSTE from a register value.
-#define BG_SATA_P0CMD_APSTE(r)   (((r) & BM_SATA_P0CMD_APSTE) >> BP_SATA_P0CMD_APSTE)
+#define BG_SATA_P0CMD_APSTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_APSTE) >> BP_SATA_P0CMD_APSTE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_APSTE.
-#define BF_SATA_P0CMD_APSTE(v)   ((((reg32_t) v) << BP_SATA_P0CMD_APSTE) & BM_SATA_P0CMD_APSTE)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_APSTE.
-#define BF_SATA_P0CMD_APSTE(v)   (((v) << BP_SATA_P0CMD_APSTE) & BM_SATA_P0CMD_APSTE)
-#endif
+#define BF_SATA_P0CMD_APSTE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_APSTE) & BM_SATA_P0CMD_APSTE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APSTE field to a new value.
@@ -3845,15 +3650,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ATAPI      (0x01000000)  //!< Bit mask for SATA_P0CMD_ATAPI.
 
 //! @brief Get value of SATA_P0CMD_ATAPI from a register value.
-#define BG_SATA_P0CMD_ATAPI(r)   (((r) & BM_SATA_P0CMD_ATAPI) >> BP_SATA_P0CMD_ATAPI)
+#define BG_SATA_P0CMD_ATAPI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ATAPI) >> BP_SATA_P0CMD_ATAPI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ATAPI.
-#define BF_SATA_P0CMD_ATAPI(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ATAPI) & BM_SATA_P0CMD_ATAPI)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ATAPI.
-#define BF_SATA_P0CMD_ATAPI(v)   (((v) << BP_SATA_P0CMD_ATAPI) & BM_SATA_P0CMD_ATAPI)
-#endif
+#define BF_SATA_P0CMD_ATAPI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ATAPI) & BM_SATA_P0CMD_ATAPI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATAPI field to a new value.
@@ -3871,15 +3671,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_DLAE      (0x02000000)  //!< Bit mask for SATA_P0CMD_DLAE.
 
 //! @brief Get value of SATA_P0CMD_DLAE from a register value.
-#define BG_SATA_P0CMD_DLAE(r)   (((r) & BM_SATA_P0CMD_DLAE) >> BP_SATA_P0CMD_DLAE)
+#define BG_SATA_P0CMD_DLAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_DLAE) >> BP_SATA_P0CMD_DLAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_DLAE.
-#define BF_SATA_P0CMD_DLAE(v)   ((((reg32_t) v) << BP_SATA_P0CMD_DLAE) & BM_SATA_P0CMD_DLAE)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_DLAE.
-#define BF_SATA_P0CMD_DLAE(v)   (((v) << BP_SATA_P0CMD_DLAE) & BM_SATA_P0CMD_DLAE)
-#endif
+#define BF_SATA_P0CMD_DLAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_DLAE) & BM_SATA_P0CMD_DLAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLAE field to a new value.
@@ -3897,15 +3692,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ALPE      (0x04000000)  //!< Bit mask for SATA_P0CMD_ALPE.
 
 //! @brief Get value of SATA_P0CMD_ALPE from a register value.
-#define BG_SATA_P0CMD_ALPE(r)   (((r) & BM_SATA_P0CMD_ALPE) >> BP_SATA_P0CMD_ALPE)
+#define BG_SATA_P0CMD_ALPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ALPE) >> BP_SATA_P0CMD_ALPE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ALPE.
-#define BF_SATA_P0CMD_ALPE(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ALPE) & BM_SATA_P0CMD_ALPE)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ALPE.
-#define BF_SATA_P0CMD_ALPE(v)   (((v) << BP_SATA_P0CMD_ALPE) & BM_SATA_P0CMD_ALPE)
-#endif
+#define BF_SATA_P0CMD_ALPE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ALPE) & BM_SATA_P0CMD_ALPE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ALPE field to a new value.
@@ -3927,15 +3717,10 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ASP      (0x08000000)  //!< Bit mask for SATA_P0CMD_ASP.
 
 //! @brief Get value of SATA_P0CMD_ASP from a register value.
-#define BG_SATA_P0CMD_ASP(r)   (((r) & BM_SATA_P0CMD_ASP) >> BP_SATA_P0CMD_ASP)
+#define BG_SATA_P0CMD_ASP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ASP) >> BP_SATA_P0CMD_ASP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ASP.
-#define BF_SATA_P0CMD_ASP(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ASP) & BM_SATA_P0CMD_ASP)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ASP.
-#define BF_SATA_P0CMD_ASP(v)   (((v) << BP_SATA_P0CMD_ASP) & BM_SATA_P0CMD_ASP)
-#endif
+#define BF_SATA_P0CMD_ASP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ASP) & BM_SATA_P0CMD_ASP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ASP field to a new value.
@@ -3968,20 +3753,19 @@ typedef union _hw_sata_p0cmd
 #define BM_SATA_P0CMD_ICC      (0xf0000000)  //!< Bit mask for SATA_P0CMD_ICC.
 
 //! @brief Get value of SATA_P0CMD_ICC from a register value.
-#define BG_SATA_P0CMD_ICC(r)   (((r) & BM_SATA_P0CMD_ICC) >> BP_SATA_P0CMD_ICC)
+#define BG_SATA_P0CMD_ICC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CMD_ICC) >> BP_SATA_P0CMD_ICC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CMD_ICC.
-#define BF_SATA_P0CMD_ICC(v)   ((((reg32_t) v) << BP_SATA_P0CMD_ICC) & BM_SATA_P0CMD_ICC)
-#else
-//! @brief Format value for bitfield SATA_P0CMD_ICC.
-#define BF_SATA_P0CMD_ICC(v)   (((v) << BP_SATA_P0CMD_ICC) & BM_SATA_P0CMD_ICC)
-#endif
+#define BF_SATA_P0CMD_ICC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CMD_ICC) & BM_SATA_P0CMD_ICC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ICC field to a new value.
 #define BW_SATA_P0CMD_ICC(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ICC) | BF_SATA_P0CMD_ICC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0TFD - Port0 Task File Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4034,7 +3818,7 @@ typedef union _hw_sata_p0tfd
 #define BM_SATA_P0TFD_STS      (0x000000ff)  //!< Bit mask for SATA_P0TFD_STS.
 
 //! @brief Get value of SATA_P0TFD_STS from a register value.
-#define BG_SATA_P0TFD_STS(r)   (((r) & BM_SATA_P0TFD_STS) >> BP_SATA_P0TFD_STS)
+#define BG_SATA_P0TFD_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0TFD_STS) >> BP_SATA_P0TFD_STS)
 
 /* --- Register HW_SATA_P0TFD, field ERR[15:8] (RO)
  *
@@ -4045,7 +3829,11 @@ typedef union _hw_sata_p0tfd
 #define BM_SATA_P0TFD_ERR      (0x0000ff00)  //!< Bit mask for SATA_P0TFD_ERR.
 
 //! @brief Get value of SATA_P0TFD_ERR from a register value.
-#define BG_SATA_P0TFD_ERR(r)   (((r) & BM_SATA_P0TFD_ERR) >> BP_SATA_P0TFD_ERR)
+#define BG_SATA_P0TFD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0TFD_ERR) >> BP_SATA_P0TFD_ERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SIG - Port0 Signature Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4094,7 +3882,11 @@ typedef union _hw_sata_p0sig
 #define BM_SATA_P0SIG_SIG      (0xffffffff)  //!< Bit mask for SATA_P0SIG_SIG.
 
 //! @brief Get value of SATA_P0SIG_SIG from a register value.
-#define BG_SATA_P0SIG_SIG(r)   (((r) & BM_SATA_P0SIG_SIG) >> BP_SATA_P0SIG_SIG)
+#define BG_SATA_P0SIG_SIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SIG_SIG) >> BP_SATA_P0SIG_SIG)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SSTS - Port0 Serial ATA Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4149,7 +3941,7 @@ typedef union _hw_sata_p0ssts
 #define BM_SATA_P0SSTS_DET      (0x0000000f)  //!< Bit mask for SATA_P0SSTS_DET.
 
 //! @brief Get value of SATA_P0SSTS_DET from a register value.
-#define BG_SATA_P0SSTS_DET(r)   (((r) & BM_SATA_P0SSTS_DET) >> BP_SATA_P0SSTS_DET)
+#define BG_SATA_P0SSTS_DET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_DET) >> BP_SATA_P0SSTS_DET)
 
 /* --- Register HW_SATA_P0SSTS, field SPD[7:4] (RO)
  *
@@ -4167,7 +3959,7 @@ typedef union _hw_sata_p0ssts
 #define BM_SATA_P0SSTS_SPD      (0x000000f0)  //!< Bit mask for SATA_P0SSTS_SPD.
 
 //! @brief Get value of SATA_P0SSTS_SPD from a register value.
-#define BG_SATA_P0SSTS_SPD(r)   (((r) & BM_SATA_P0SSTS_SPD) >> BP_SATA_P0SSTS_SPD)
+#define BG_SATA_P0SSTS_SPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_SPD) >> BP_SATA_P0SSTS_SPD)
 
 
 /* --- Register HW_SATA_P0SSTS, field IPM[11:8] (RO)
@@ -4186,8 +3978,12 @@ typedef union _hw_sata_p0ssts
 #define BM_SATA_P0SSTS_IPM      (0x00000f00)  //!< Bit mask for SATA_P0SSTS_IPM.
 
 //! @brief Get value of SATA_P0SSTS_IPM from a register value.
-#define BG_SATA_P0SSTS_IPM(r)   (((r) & BM_SATA_P0SSTS_IPM) >> BP_SATA_P0SSTS_IPM)
+#define BG_SATA_P0SSTS_IPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_IPM) >> BP_SATA_P0SSTS_IPM)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SCTL - Port0 Serial ATA Control {SControl} Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4253,15 +4049,10 @@ typedef union _hw_sata_p0sctl
 #define BM_SATA_P0SCTL_DET      (0x0000000f)  //!< Bit mask for SATA_P0SCTL_DET.
 
 //! @brief Get value of SATA_P0SCTL_DET from a register value.
-#define BG_SATA_P0SCTL_DET(r)   (((r) & BM_SATA_P0SCTL_DET) >> BP_SATA_P0SCTL_DET)
+#define BG_SATA_P0SCTL_DET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SCTL_DET) >> BP_SATA_P0SCTL_DET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0SCTL_DET.
-#define BF_SATA_P0SCTL_DET(v)   ((((reg32_t) v) << BP_SATA_P0SCTL_DET) & BM_SATA_P0SCTL_DET)
-#else
-//! @brief Format value for bitfield SATA_P0SCTL_DET.
-#define BF_SATA_P0SCTL_DET(v)   (((v) << BP_SATA_P0SCTL_DET) & BM_SATA_P0SCTL_DET)
-#endif
+#define BF_SATA_P0SCTL_DET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0SCTL_DET) & BM_SATA_P0SCTL_DET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DET field to a new value.
@@ -4287,15 +4078,10 @@ typedef union _hw_sata_p0sctl
 #define BM_SATA_P0SCTL_SPD      (0x000000f0)  //!< Bit mask for SATA_P0SCTL_SPD.
 
 //! @brief Get value of SATA_P0SCTL_SPD from a register value.
-#define BG_SATA_P0SCTL_SPD(r)   (((r) & BM_SATA_P0SCTL_SPD) >> BP_SATA_P0SCTL_SPD)
+#define BG_SATA_P0SCTL_SPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SCTL_SPD) >> BP_SATA_P0SCTL_SPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0SCTL_SPD.
-#define BF_SATA_P0SCTL_SPD(v)   ((((reg32_t) v) << BP_SATA_P0SCTL_SPD) & BM_SATA_P0SCTL_SPD)
-#else
-//! @brief Format value for bitfield SATA_P0SCTL_SPD.
-#define BF_SATA_P0SCTL_SPD(v)   (((v) << BP_SATA_P0SCTL_SPD) & BM_SATA_P0SCTL_SPD)
-#endif
+#define BF_SATA_P0SCTL_SPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0SCTL_SPD) & BM_SATA_P0SCTL_SPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPD field to a new value.
@@ -4322,21 +4108,20 @@ typedef union _hw_sata_p0sctl
 #define BM_SATA_P0SCTL_IPM      (0x00000f00)  //!< Bit mask for SATA_P0SCTL_IPM.
 
 //! @brief Get value of SATA_P0SCTL_IPM from a register value.
-#define BG_SATA_P0SCTL_IPM(r)   (((r) & BM_SATA_P0SCTL_IPM) >> BP_SATA_P0SCTL_IPM)
+#define BG_SATA_P0SCTL_IPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SCTL_IPM) >> BP_SATA_P0SCTL_IPM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0SCTL_IPM.
-#define BF_SATA_P0SCTL_IPM(v)   ((((reg32_t) v) << BP_SATA_P0SCTL_IPM) & BM_SATA_P0SCTL_IPM)
-#else
-//! @brief Format value for bitfield SATA_P0SCTL_IPM.
-#define BF_SATA_P0SCTL_IPM(v)   (((v) << BP_SATA_P0SCTL_IPM) & BM_SATA_P0SCTL_IPM)
-#endif
+#define BF_SATA_P0SCTL_IPM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0SCTL_IPM) & BM_SATA_P0SCTL_IPM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPM field to a new value.
 #define BW_SATA_P0SCTL_IPM(v)   (HW_SATA_P0SCTL_WR((HW_SATA_P0SCTL_RD() & ~BM_SATA_P0SCTL_IPM) | BF_SATA_P0SCTL_IPM(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SERR - Port0 Serial ATA Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4409,7 +4194,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_I      (0x00000001)  //!< Bit mask for SATA_P0SERR_ERR_I.
 
 //! @brief Get value of SATA_P0SERR_ERR_I from a register value.
-#define BG_SATA_P0SERR_ERR_I(r)   (((r) & BM_SATA_P0SERR_ERR_I) >> BP_SATA_P0SERR_ERR_I)
+#define BG_SATA_P0SERR_ERR_I(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_I) >> BP_SATA_P0SERR_ERR_I)
 
 /* --- Register HW_SATA_P0SERR, field ERR_M[1] (RO)
  *
@@ -4422,7 +4207,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_M      (0x00000002)  //!< Bit mask for SATA_P0SERR_ERR_M.
 
 //! @brief Get value of SATA_P0SERR_ERR_M from a register value.
-#define BG_SATA_P0SERR_ERR_M(r)   (((r) & BM_SATA_P0SERR_ERR_M) >> BP_SATA_P0SERR_ERR_M)
+#define BG_SATA_P0SERR_ERR_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_M) >> BP_SATA_P0SERR_ERR_M)
 
 /* --- Register HW_SATA_P0SERR, field ERR_T[8] (RO)
  *
@@ -4435,7 +4220,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_T      (0x00000100)  //!< Bit mask for SATA_P0SERR_ERR_T.
 
 //! @brief Get value of SATA_P0SERR_ERR_T from a register value.
-#define BG_SATA_P0SERR_ERR_T(r)   (((r) & BM_SATA_P0SERR_ERR_T) >> BP_SATA_P0SERR_ERR_T)
+#define BG_SATA_P0SERR_ERR_T(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_T) >> BP_SATA_P0SERR_ERR_T)
 
 /* --- Register HW_SATA_P0SERR, field ERR_C[9] (RO)
  *
@@ -4448,7 +4233,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_C      (0x00000200)  //!< Bit mask for SATA_P0SERR_ERR_C.
 
 //! @brief Get value of SATA_P0SERR_ERR_C from a register value.
-#define BG_SATA_P0SERR_ERR_C(r)   (((r) & BM_SATA_P0SERR_ERR_C) >> BP_SATA_P0SERR_ERR_C)
+#define BG_SATA_P0SERR_ERR_C(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_C) >> BP_SATA_P0SERR_ERR_C)
 
 /* --- Register HW_SATA_P0SERR, field ERR_P[10] (RO)
  *
@@ -4461,7 +4246,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_P      (0x00000400)  //!< Bit mask for SATA_P0SERR_ERR_P.
 
 //! @brief Get value of SATA_P0SERR_ERR_P from a register value.
-#define BG_SATA_P0SERR_ERR_P(r)   (((r) & BM_SATA_P0SERR_ERR_P) >> BP_SATA_P0SERR_ERR_P)
+#define BG_SATA_P0SERR_ERR_P(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_P) >> BP_SATA_P0SERR_ERR_P)
 
 /* --- Register HW_SATA_P0SERR, field ERR_E[11] (RO)
  *
@@ -4473,7 +4258,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_ERR_E      (0x00000800)  //!< Bit mask for SATA_P0SERR_ERR_E.
 
 //! @brief Get value of SATA_P0SERR_ERR_E from a register value.
-#define BG_SATA_P0SERR_ERR_E(r)   (((r) & BM_SATA_P0SERR_ERR_E) >> BP_SATA_P0SERR_ERR_E)
+#define BG_SATA_P0SERR_ERR_E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_E) >> BP_SATA_P0SERR_ERR_E)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_N[16] (RO)
  *
@@ -4485,7 +4270,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_N      (0x00010000)  //!< Bit mask for SATA_P0SERR_DIAG_N.
 
 //! @brief Get value of SATA_P0SERR_DIAG_N from a register value.
-#define BG_SATA_P0SERR_DIAG_N(r)   (((r) & BM_SATA_P0SERR_DIAG_N) >> BP_SATA_P0SERR_DIAG_N)
+#define BG_SATA_P0SERR_DIAG_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_N) >> BP_SATA_P0SERR_DIAG_N)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_I[17] (RO)
  *
@@ -4500,7 +4285,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_I      (0x00020000)  //!< Bit mask for SATA_P0SERR_DIAG_I.
 
 //! @brief Get value of SATA_P0SERR_DIAG_I from a register value.
-#define BG_SATA_P0SERR_DIAG_I(r)   (((r) & BM_SATA_P0SERR_DIAG_I) >> BP_SATA_P0SERR_DIAG_I)
+#define BG_SATA_P0SERR_DIAG_I(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_I) >> BP_SATA_P0SERR_DIAG_I)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_W[18] (RO)
  *
@@ -4511,7 +4296,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_W      (0x00040000)  //!< Bit mask for SATA_P0SERR_DIAG_W.
 
 //! @brief Get value of SATA_P0SERR_DIAG_W from a register value.
-#define BG_SATA_P0SERR_DIAG_W(r)   (((r) & BM_SATA_P0SERR_DIAG_W) >> BP_SATA_P0SERR_DIAG_W)
+#define BG_SATA_P0SERR_DIAG_W(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_W) >> BP_SATA_P0SERR_DIAG_W)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_B[19] (RO)
  *
@@ -4525,7 +4310,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_B      (0x00080000)  //!< Bit mask for SATA_P0SERR_DIAG_B.
 
 //! @brief Get value of SATA_P0SERR_DIAG_B from a register value.
-#define BG_SATA_P0SERR_DIAG_B(r)   (((r) & BM_SATA_P0SERR_DIAG_B) >> BP_SATA_P0SERR_DIAG_B)
+#define BG_SATA_P0SERR_DIAG_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_B) >> BP_SATA_P0SERR_DIAG_B)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_D[20] (RO)
  *
@@ -4536,7 +4321,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_D      (0x00100000)  //!< Bit mask for SATA_P0SERR_DIAG_D.
 
 //! @brief Get value of SATA_P0SERR_DIAG_D from a register value.
-#define BG_SATA_P0SERR_DIAG_D(r)   (((r) & BM_SATA_P0SERR_DIAG_D) >> BP_SATA_P0SERR_DIAG_D)
+#define BG_SATA_P0SERR_DIAG_D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_D) >> BP_SATA_P0SERR_DIAG_D)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_C[21] (RO)
  *
@@ -4547,7 +4332,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_C      (0x00200000)  //!< Bit mask for SATA_P0SERR_DIAG_C.
 
 //! @brief Get value of SATA_P0SERR_DIAG_C from a register value.
-#define BG_SATA_P0SERR_DIAG_C(r)   (((r) & BM_SATA_P0SERR_DIAG_C) >> BP_SATA_P0SERR_DIAG_C)
+#define BG_SATA_P0SERR_DIAG_C(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_C) >> BP_SATA_P0SERR_DIAG_C)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_H[22] (RO)
  *
@@ -4561,7 +4346,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_H      (0x00400000)  //!< Bit mask for SATA_P0SERR_DIAG_H.
 
 //! @brief Get value of SATA_P0SERR_DIAG_H from a register value.
-#define BG_SATA_P0SERR_DIAG_H(r)   (((r) & BM_SATA_P0SERR_DIAG_H) >> BP_SATA_P0SERR_DIAG_H)
+#define BG_SATA_P0SERR_DIAG_H(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_H) >> BP_SATA_P0SERR_DIAG_H)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_S[23] (RO)
  *
@@ -4574,7 +4359,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_S      (0x00800000)  //!< Bit mask for SATA_P0SERR_DIAG_S.
 
 //! @brief Get value of SATA_P0SERR_DIAG_S from a register value.
-#define BG_SATA_P0SERR_DIAG_S(r)   (((r) & BM_SATA_P0SERR_DIAG_S) >> BP_SATA_P0SERR_DIAG_S)
+#define BG_SATA_P0SERR_DIAG_S(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_S) >> BP_SATA_P0SERR_DIAG_S)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_T[24] (RO)
  *
@@ -4586,7 +4371,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_T      (0x01000000)  //!< Bit mask for SATA_P0SERR_DIAG_T.
 
 //! @brief Get value of SATA_P0SERR_DIAG_T from a register value.
-#define BG_SATA_P0SERR_DIAG_T(r)   (((r) & BM_SATA_P0SERR_DIAG_T) >> BP_SATA_P0SERR_DIAG_T)
+#define BG_SATA_P0SERR_DIAG_T(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_T) >> BP_SATA_P0SERR_DIAG_T)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_F[25] (RO)
  *
@@ -4600,7 +4385,7 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_F      (0x02000000)  //!< Bit mask for SATA_P0SERR_DIAG_F.
 
 //! @brief Get value of SATA_P0SERR_DIAG_F from a register value.
-#define BG_SATA_P0SERR_DIAG_F(r)   (((r) & BM_SATA_P0SERR_DIAG_F) >> BP_SATA_P0SERR_DIAG_F)
+#define BG_SATA_P0SERR_DIAG_F(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_F) >> BP_SATA_P0SERR_DIAG_F)
 
 /* --- Register HW_SATA_P0SERR, field DIAG_X[26] (RO)
  *
@@ -4612,7 +4397,11 @@ typedef union _hw_sata_p0serr
 #define BM_SATA_P0SERR_DIAG_X      (0x04000000)  //!< Bit mask for SATA_P0SERR_DIAG_X.
 
 //! @brief Get value of SATA_P0SERR_DIAG_X from a register value.
-#define BG_SATA_P0SERR_DIAG_X(r)   (((r) & BM_SATA_P0SERR_DIAG_X) >> BP_SATA_P0SERR_DIAG_X)
+#define BG_SATA_P0SERR_DIAG_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_X) >> BP_SATA_P0SERR_DIAG_X)
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SACT - Port0 Serial ATA Active Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4668,20 +4457,19 @@ typedef union _hw_sata_p0sact
 #define BM_SATA_P0SACT_DS      (0xffffffff)  //!< Bit mask for SATA_P0SACT_DS.
 
 //! @brief Get value of SATA_P0SACT_DS from a register value.
-#define BG_SATA_P0SACT_DS(r)   (((r) & BM_SATA_P0SACT_DS) >> BP_SATA_P0SACT_DS)
+#define BG_SATA_P0SACT_DS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SACT_DS) >> BP_SATA_P0SACT_DS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0SACT_DS.
-#define BF_SATA_P0SACT_DS(v)   ((((reg32_t) v) << BP_SATA_P0SACT_DS) & BM_SATA_P0SACT_DS)
-#else
-//! @brief Format value for bitfield SATA_P0SACT_DS.
-#define BF_SATA_P0SACT_DS(v)   (((v) << BP_SATA_P0SACT_DS) & BM_SATA_P0SACT_DS)
-#endif
+#define BF_SATA_P0SACT_DS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0SACT_DS) & BM_SATA_P0SACT_DS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS field to a new value.
 #define BW_SATA_P0SACT_DS(v)   (HW_SATA_P0SACT_WR((HW_SATA_P0SACT_RD() & ~BM_SATA_P0SACT_DS) | BF_SATA_P0SACT_DS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0CI - Port0 Command Issue Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4734,20 +4522,19 @@ typedef union _hw_sata_p0ci
 #define BM_SATA_P0CI_CI      (0xffffffff)  //!< Bit mask for SATA_P0CI_CI.
 
 //! @brief Get value of SATA_P0CI_CI from a register value.
-#define BG_SATA_P0CI_CI(r)   (((r) & BM_SATA_P0CI_CI) >> BP_SATA_P0CI_CI)
+#define BG_SATA_P0CI_CI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0CI_CI) >> BP_SATA_P0CI_CI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0CI_CI.
-#define BF_SATA_P0CI_CI(v)   ((((reg32_t) v) << BP_SATA_P0CI_CI) & BM_SATA_P0CI_CI)
-#else
-//! @brief Format value for bitfield SATA_P0CI_CI.
-#define BF_SATA_P0CI_CI(v)   (((v) << BP_SATA_P0CI_CI) & BM_SATA_P0CI_CI)
-#endif
+#define BF_SATA_P0CI_CI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0CI_CI) & BM_SATA_P0CI_CI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CI field to a new value.
 #define BW_SATA_P0CI_CI(v)   (HW_SATA_P0CI_WR((HW_SATA_P0CI_RD() & ~BM_SATA_P0CI_CI) | BF_SATA_P0CI_CI(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0SNTF - Port0 Serial ATA Notification Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4803,20 +4590,19 @@ typedef union _hw_sata_p0sntf
 #define BM_SATA_P0SNTF_PMN      (0x0000ffff)  //!< Bit mask for SATA_P0SNTF_PMN.
 
 //! @brief Get value of SATA_P0SNTF_PMN from a register value.
-#define BG_SATA_P0SNTF_PMN(r)   (((r) & BM_SATA_P0SNTF_PMN) >> BP_SATA_P0SNTF_PMN)
+#define BG_SATA_P0SNTF_PMN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SNTF_PMN) >> BP_SATA_P0SNTF_PMN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0SNTF_PMN.
-#define BF_SATA_P0SNTF_PMN(v)   ((((reg32_t) v) << BP_SATA_P0SNTF_PMN) & BM_SATA_P0SNTF_PMN)
-#else
-//! @brief Format value for bitfield SATA_P0SNTF_PMN.
-#define BF_SATA_P0SNTF_PMN(v)   (((v) << BP_SATA_P0SNTF_PMN) & BM_SATA_P0SNTF_PMN)
-#endif
+#define BF_SATA_P0SNTF_PMN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0SNTF_PMN) & BM_SATA_P0SNTF_PMN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PMN field to a new value.
 #define BW_SATA_P0SNTF_PMN(v)   (HW_SATA_P0SNTF_WR((HW_SATA_P0SNTF_RD() & ~BM_SATA_P0SNTF_PMN) | BF_SATA_P0SNTF_PMN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0DMACR - Port0 DMA Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4889,15 +4675,10 @@ typedef union _hw_sata_p0dmacr
 #define BM_SATA_P0DMACR_TXTS      (0x0000000f)  //!< Bit mask for SATA_P0DMACR_TXTS.
 
 //! @brief Get value of SATA_P0DMACR_TXTS from a register value.
-#define BG_SATA_P0DMACR_TXTS(r)   (((r) & BM_SATA_P0DMACR_TXTS) >> BP_SATA_P0DMACR_TXTS)
+#define BG_SATA_P0DMACR_TXTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0DMACR_TXTS) >> BP_SATA_P0DMACR_TXTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0DMACR_TXTS.
-#define BF_SATA_P0DMACR_TXTS(v)   ((((reg32_t) v) << BP_SATA_P0DMACR_TXTS) & BM_SATA_P0DMACR_TXTS)
-#else
-//! @brief Format value for bitfield SATA_P0DMACR_TXTS.
-#define BF_SATA_P0DMACR_TXTS(v)   (((v) << BP_SATA_P0DMACR_TXTS) & BM_SATA_P0DMACR_TXTS)
-#endif
+#define BF_SATA_P0DMACR_TXTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0DMACR_TXTS) & BM_SATA_P0DMACR_TXTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXTS field to a new value.
@@ -4932,21 +4713,20 @@ typedef union _hw_sata_p0dmacr
 #define BM_SATA_P0DMACR_RXTS      (0x000000f0)  //!< Bit mask for SATA_P0DMACR_RXTS.
 
 //! @brief Get value of SATA_P0DMACR_RXTS from a register value.
-#define BG_SATA_P0DMACR_RXTS(r)   (((r) & BM_SATA_P0DMACR_RXTS) >> BP_SATA_P0DMACR_RXTS)
+#define BG_SATA_P0DMACR_RXTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0DMACR_RXTS) >> BP_SATA_P0DMACR_RXTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0DMACR_RXTS.
-#define BF_SATA_P0DMACR_RXTS(v)   ((((reg32_t) v) << BP_SATA_P0DMACR_RXTS) & BM_SATA_P0DMACR_RXTS)
-#else
-//! @brief Format value for bitfield SATA_P0DMACR_RXTS.
-#define BF_SATA_P0DMACR_RXTS(v)   (((v) << BP_SATA_P0DMACR_RXTS) & BM_SATA_P0DMACR_RXTS)
-#endif
+#define BF_SATA_P0DMACR_RXTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0DMACR_RXTS) & BM_SATA_P0DMACR_RXTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXTS field to a new value.
 #define BW_SATA_P0DMACR_RXTS(v)   (HW_SATA_P0DMACR_WR((HW_SATA_P0DMACR_RD() & ~BM_SATA_P0DMACR_RXTS) | BF_SATA_P0DMACR_RXTS(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0PHYCR - Port0 PHY Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5007,15 +4787,10 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_CR_DATA_IN      (0x0000ffff)  //!< Bit mask for SATA_P0PHYCR_CR_DATA_IN.
 
 //! @brief Get value of SATA_P0PHYCR_CR_DATA_IN from a register value.
-#define BG_SATA_P0PHYCR_CR_DATA_IN(r)   (((r) & BM_SATA_P0PHYCR_CR_DATA_IN) >> BP_SATA_P0PHYCR_CR_DATA_IN)
+#define BG_SATA_P0PHYCR_CR_DATA_IN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_CR_DATA_IN) >> BP_SATA_P0PHYCR_CR_DATA_IN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_CR_DATA_IN.
-#define BF_SATA_P0PHYCR_CR_DATA_IN(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_CR_DATA_IN) & BM_SATA_P0PHYCR_CR_DATA_IN)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_CR_DATA_IN.
-#define BF_SATA_P0PHYCR_CR_DATA_IN(v)   (((v) << BP_SATA_P0PHYCR_CR_DATA_IN) & BM_SATA_P0PHYCR_CR_DATA_IN)
-#endif
+#define BF_SATA_P0PHYCR_CR_DATA_IN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_CR_DATA_IN) & BM_SATA_P0PHYCR_CR_DATA_IN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_DATA_IN field to a new value.
@@ -5031,15 +4806,10 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_CR_CAP_ADDR      (0x00010000)  //!< Bit mask for SATA_P0PHYCR_CR_CAP_ADDR.
 
 //! @brief Get value of SATA_P0PHYCR_CR_CAP_ADDR from a register value.
-#define BG_SATA_P0PHYCR_CR_CAP_ADDR(r)   (((r) & BM_SATA_P0PHYCR_CR_CAP_ADDR) >> BP_SATA_P0PHYCR_CR_CAP_ADDR)
+#define BG_SATA_P0PHYCR_CR_CAP_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_CR_CAP_ADDR) >> BP_SATA_P0PHYCR_CR_CAP_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_CR_CAP_ADDR.
-#define BF_SATA_P0PHYCR_CR_CAP_ADDR(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_CR_CAP_ADDR) & BM_SATA_P0PHYCR_CR_CAP_ADDR)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_CR_CAP_ADDR.
-#define BF_SATA_P0PHYCR_CR_CAP_ADDR(v)   (((v) << BP_SATA_P0PHYCR_CR_CAP_ADDR) & BM_SATA_P0PHYCR_CR_CAP_ADDR)
-#endif
+#define BF_SATA_P0PHYCR_CR_CAP_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_CR_CAP_ADDR) & BM_SATA_P0PHYCR_CR_CAP_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_CAP_ADDR field to a new value.
@@ -5055,15 +4825,10 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_CR_CAP_DATA      (0x00020000)  //!< Bit mask for SATA_P0PHYCR_CR_CAP_DATA.
 
 //! @brief Get value of SATA_P0PHYCR_CR_CAP_DATA from a register value.
-#define BG_SATA_P0PHYCR_CR_CAP_DATA(r)   (((r) & BM_SATA_P0PHYCR_CR_CAP_DATA) >> BP_SATA_P0PHYCR_CR_CAP_DATA)
+#define BG_SATA_P0PHYCR_CR_CAP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_CR_CAP_DATA) >> BP_SATA_P0PHYCR_CR_CAP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_CR_CAP_DATA.
-#define BF_SATA_P0PHYCR_CR_CAP_DATA(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_CR_CAP_DATA) & BM_SATA_P0PHYCR_CR_CAP_DATA)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_CR_CAP_DATA.
-#define BF_SATA_P0PHYCR_CR_CAP_DATA(v)   (((v) << BP_SATA_P0PHYCR_CR_CAP_DATA) & BM_SATA_P0PHYCR_CR_CAP_DATA)
-#endif
+#define BF_SATA_P0PHYCR_CR_CAP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_CR_CAP_DATA) & BM_SATA_P0PHYCR_CR_CAP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_CAP_DATA field to a new value.
@@ -5079,15 +4844,10 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_CR_WRITE      (0x00040000)  //!< Bit mask for SATA_P0PHYCR_CR_WRITE.
 
 //! @brief Get value of SATA_P0PHYCR_CR_WRITE from a register value.
-#define BG_SATA_P0PHYCR_CR_WRITE(r)   (((r) & BM_SATA_P0PHYCR_CR_WRITE) >> BP_SATA_P0PHYCR_CR_WRITE)
+#define BG_SATA_P0PHYCR_CR_WRITE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_CR_WRITE) >> BP_SATA_P0PHYCR_CR_WRITE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_CR_WRITE.
-#define BF_SATA_P0PHYCR_CR_WRITE(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_CR_WRITE) & BM_SATA_P0PHYCR_CR_WRITE)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_CR_WRITE.
-#define BF_SATA_P0PHYCR_CR_WRITE(v)   (((v) << BP_SATA_P0PHYCR_CR_WRITE) & BM_SATA_P0PHYCR_CR_WRITE)
-#endif
+#define BF_SATA_P0PHYCR_CR_WRITE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_CR_WRITE) & BM_SATA_P0PHYCR_CR_WRITE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_WRITE field to a new value.
@@ -5103,15 +4863,10 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_CR_READ      (0x00080000)  //!< Bit mask for SATA_P0PHYCR_CR_READ.
 
 //! @brief Get value of SATA_P0PHYCR_CR_READ from a register value.
-#define BG_SATA_P0PHYCR_CR_READ(r)   (((r) & BM_SATA_P0PHYCR_CR_READ) >> BP_SATA_P0PHYCR_CR_READ)
+#define BG_SATA_P0PHYCR_CR_READ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_CR_READ) >> BP_SATA_P0PHYCR_CR_READ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_CR_READ.
-#define BF_SATA_P0PHYCR_CR_READ(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_CR_READ) & BM_SATA_P0PHYCR_CR_READ)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_CR_READ.
-#define BF_SATA_P0PHYCR_CR_READ(v)   (((v) << BP_SATA_P0PHYCR_CR_READ) & BM_SATA_P0PHYCR_CR_READ)
-#endif
+#define BF_SATA_P0PHYCR_CR_READ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_CR_READ) & BM_SATA_P0PHYCR_CR_READ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_READ field to a new value.
@@ -5127,20 +4882,19 @@ typedef union _hw_sata_p0phycr
 #define BM_SATA_P0PHYCR_TEST_PDDQ      (0x00100000)  //!< Bit mask for SATA_P0PHYCR_TEST_PDDQ.
 
 //! @brief Get value of SATA_P0PHYCR_TEST_PDDQ from a register value.
-#define BG_SATA_P0PHYCR_TEST_PDDQ(r)   (((r) & BM_SATA_P0PHYCR_TEST_PDDQ) >> BP_SATA_P0PHYCR_TEST_PDDQ)
+#define BG_SATA_P0PHYCR_TEST_PDDQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYCR_TEST_PDDQ) >> BP_SATA_P0PHYCR_TEST_PDDQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SATA_P0PHYCR_TEST_PDDQ.
-#define BF_SATA_P0PHYCR_TEST_PDDQ(v)   ((((reg32_t) v) << BP_SATA_P0PHYCR_TEST_PDDQ) & BM_SATA_P0PHYCR_TEST_PDDQ)
-#else
-//! @brief Format value for bitfield SATA_P0PHYCR_TEST_PDDQ.
-#define BF_SATA_P0PHYCR_TEST_PDDQ(v)   (((v) << BP_SATA_P0PHYCR_TEST_PDDQ) & BM_SATA_P0PHYCR_TEST_PDDQ)
-#endif
+#define BF_SATA_P0PHYCR_TEST_PDDQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_P0PHYCR_TEST_PDDQ) & BM_SATA_P0PHYCR_TEST_PDDQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEST_PDDQ field to a new value.
 #define BW_SATA_P0PHYCR_TEST_PDDQ(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_TEST_PDDQ) | BF_SATA_P0PHYCR_TEST_PDDQ(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SATA_P0PHYSR - Port0 PHY Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5195,7 +4949,7 @@ typedef union _hw_sata_p0physr
 #define BM_SATA_P0PHYSR_CR_DATA_OUT      (0x0000ffff)  //!< Bit mask for SATA_P0PHYSR_CR_DATA_OUT.
 
 //! @brief Get value of SATA_P0PHYSR_CR_DATA_OUT from a register value.
-#define BG_SATA_P0PHYSR_CR_DATA_OUT(r)   (((r) & BM_SATA_P0PHYSR_CR_DATA_OUT) >> BP_SATA_P0PHYSR_CR_DATA_OUT)
+#define BG_SATA_P0PHYSR_CR_DATA_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYSR_CR_DATA_OUT) >> BP_SATA_P0PHYSR_CR_DATA_OUT)
 
 /* --- Register HW_SATA_P0PHYSR, field CR_ACK[18] (RO)
  *
@@ -5207,7 +4961,7 @@ typedef union _hw_sata_p0physr
 #define BM_SATA_P0PHYSR_CR_ACK      (0x00040000)  //!< Bit mask for SATA_P0PHYSR_CR_ACK.
 
 //! @brief Get value of SATA_P0PHYSR_CR_ACK from a register value.
-#define BG_SATA_P0PHYSR_CR_ACK(r)   (((r) & BM_SATA_P0PHYSR_CR_ACK) >> BP_SATA_P0PHYSR_CR_ACK)
+#define BG_SATA_P0PHYSR_CR_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYSR_CR_ACK) >> BP_SATA_P0PHYSR_CR_ACK)
 
 
 /*!

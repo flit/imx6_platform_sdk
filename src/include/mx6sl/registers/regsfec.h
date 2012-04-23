@@ -48,6 +48,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_EIR - Ethernet interrupt event register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_FEC_EIR - Ethernet interrupt event register (RW)
@@ -122,15 +137,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_UN      (0x00080000)  //!< Bit mask for FEC_EIR_UN.
 
 //! @brief Get value of FEC_EIR_UN from a register value.
-#define BG_FEC_EIR_UN(r)   (((r) & BM_FEC_EIR_UN) >> BP_FEC_EIR_UN)
+#define BG_FEC_EIR_UN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_UN) >> BP_FEC_EIR_UN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_UN.
-#define BF_FEC_EIR_UN(v)   ((((reg32_t) v) << BP_FEC_EIR_UN) & BM_FEC_EIR_UN)
-#else
-//! @brief Format value for bitfield FEC_EIR_UN.
-#define BF_FEC_EIR_UN(v)   (((v) << BP_FEC_EIR_UN) & BM_FEC_EIR_UN)
-#endif
+#define BF_FEC_EIR_UN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_UN) & BM_FEC_EIR_UN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UN field to a new value.
@@ -148,15 +158,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_RL      (0x00100000)  //!< Bit mask for FEC_EIR_RL.
 
 //! @brief Get value of FEC_EIR_RL from a register value.
-#define BG_FEC_EIR_RL(r)   (((r) & BM_FEC_EIR_RL) >> BP_FEC_EIR_RL)
+#define BG_FEC_EIR_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_RL) >> BP_FEC_EIR_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_RL.
-#define BF_FEC_EIR_RL(v)   ((((reg32_t) v) << BP_FEC_EIR_RL) & BM_FEC_EIR_RL)
-#else
-//! @brief Format value for bitfield FEC_EIR_RL.
-#define BF_FEC_EIR_RL(v)   (((v) << BP_FEC_EIR_RL) & BM_FEC_EIR_RL)
-#endif
+#define BF_FEC_EIR_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_RL) & BM_FEC_EIR_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -174,15 +179,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_LC      (0x00200000)  //!< Bit mask for FEC_EIR_LC.
 
 //! @brief Get value of FEC_EIR_LC from a register value.
-#define BG_FEC_EIR_LC(r)   (((r) & BM_FEC_EIR_LC) >> BP_FEC_EIR_LC)
+#define BG_FEC_EIR_LC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_LC) >> BP_FEC_EIR_LC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_LC.
-#define BF_FEC_EIR_LC(v)   ((((reg32_t) v) << BP_FEC_EIR_LC) & BM_FEC_EIR_LC)
-#else
-//! @brief Format value for bitfield FEC_EIR_LC.
-#define BF_FEC_EIR_LC(v)   (((v) << BP_FEC_EIR_LC) & BM_FEC_EIR_LC)
-#endif
+#define BF_FEC_EIR_LC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_LC) & BM_FEC_EIR_LC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LC field to a new value.
@@ -202,15 +202,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_EBERR      (0x00400000)  //!< Bit mask for FEC_EIR_EBERR.
 
 //! @brief Get value of FEC_EIR_EBERR from a register value.
-#define BG_FEC_EIR_EBERR(r)   (((r) & BM_FEC_EIR_EBERR) >> BP_FEC_EIR_EBERR)
+#define BG_FEC_EIR_EBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_EBERR) >> BP_FEC_EIR_EBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_EBERR.
-#define BF_FEC_EIR_EBERR(v)   ((((reg32_t) v) << BP_FEC_EIR_EBERR) & BM_FEC_EIR_EBERR)
-#else
-//! @brief Format value for bitfield FEC_EIR_EBERR.
-#define BF_FEC_EIR_EBERR(v)   (((v) << BP_FEC_EIR_EBERR) & BM_FEC_EIR_EBERR)
-#endif
+#define BF_FEC_EIR_EBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_EBERR) & BM_FEC_EIR_EBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EBERR field to a new value.
@@ -226,15 +221,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_MII      (0x00800000)  //!< Bit mask for FEC_EIR_MII.
 
 //! @brief Get value of FEC_EIR_MII from a register value.
-#define BG_FEC_EIR_MII(r)   (((r) & BM_FEC_EIR_MII) >> BP_FEC_EIR_MII)
+#define BG_FEC_EIR_MII(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_MII) >> BP_FEC_EIR_MII)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_MII.
-#define BF_FEC_EIR_MII(v)   ((((reg32_t) v) << BP_FEC_EIR_MII) & BM_FEC_EIR_MII)
-#else
-//! @brief Format value for bitfield FEC_EIR_MII.
-#define BF_FEC_EIR_MII(v)   (((v) << BP_FEC_EIR_MII) & BM_FEC_EIR_MII)
-#endif
+#define BF_FEC_EIR_MII(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_MII) & BM_FEC_EIR_MII)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII field to a new value.
@@ -251,15 +241,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_RXB      (0x01000000)  //!< Bit mask for FEC_EIR_RXB.
 
 //! @brief Get value of FEC_EIR_RXB from a register value.
-#define BG_FEC_EIR_RXB(r)   (((r) & BM_FEC_EIR_RXB) >> BP_FEC_EIR_RXB)
+#define BG_FEC_EIR_RXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_RXB) >> BP_FEC_EIR_RXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_RXB.
-#define BF_FEC_EIR_RXB(v)   ((((reg32_t) v) << BP_FEC_EIR_RXB) & BM_FEC_EIR_RXB)
-#else
-//! @brief Format value for bitfield FEC_EIR_RXB.
-#define BF_FEC_EIR_RXB(v)   (((v) << BP_FEC_EIR_RXB) & BM_FEC_EIR_RXB)
-#endif
+#define BF_FEC_EIR_RXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_RXB) & BM_FEC_EIR_RXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXB field to a new value.
@@ -276,15 +261,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_RXF      (0x02000000)  //!< Bit mask for FEC_EIR_RXF.
 
 //! @brief Get value of FEC_EIR_RXF from a register value.
-#define BG_FEC_EIR_RXF(r)   (((r) & BM_FEC_EIR_RXF) >> BP_FEC_EIR_RXF)
+#define BG_FEC_EIR_RXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_RXF) >> BP_FEC_EIR_RXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_RXF.
-#define BF_FEC_EIR_RXF(v)   ((((reg32_t) v) << BP_FEC_EIR_RXF) & BM_FEC_EIR_RXF)
-#else
-//! @brief Format value for bitfield FEC_EIR_RXF.
-#define BF_FEC_EIR_RXF(v)   (((v) << BP_FEC_EIR_RXF) & BM_FEC_EIR_RXF)
-#endif
+#define BF_FEC_EIR_RXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_RXF) & BM_FEC_EIR_RXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXF field to a new value.
@@ -300,15 +280,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_TXB      (0x04000000)  //!< Bit mask for FEC_EIR_TXB.
 
 //! @brief Get value of FEC_EIR_TXB from a register value.
-#define BG_FEC_EIR_TXB(r)   (((r) & BM_FEC_EIR_TXB) >> BP_FEC_EIR_TXB)
+#define BG_FEC_EIR_TXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_TXB) >> BP_FEC_EIR_TXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_TXB.
-#define BF_FEC_EIR_TXB(v)   ((((reg32_t) v) << BP_FEC_EIR_TXB) & BM_FEC_EIR_TXB)
-#else
-//! @brief Format value for bitfield FEC_EIR_TXB.
-#define BF_FEC_EIR_TXB(v)   (((v) << BP_FEC_EIR_TXB) & BM_FEC_EIR_TXB)
-#endif
+#define BF_FEC_EIR_TXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_TXB) & BM_FEC_EIR_TXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB field to a new value.
@@ -325,15 +300,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_TXF      (0x08000000)  //!< Bit mask for FEC_EIR_TXF.
 
 //! @brief Get value of FEC_EIR_TXF from a register value.
-#define BG_FEC_EIR_TXF(r)   (((r) & BM_FEC_EIR_TXF) >> BP_FEC_EIR_TXF)
+#define BG_FEC_EIR_TXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_TXF) >> BP_FEC_EIR_TXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_TXF.
-#define BF_FEC_EIR_TXF(v)   ((((reg32_t) v) << BP_FEC_EIR_TXF) & BM_FEC_EIR_TXF)
-#else
-//! @brief Format value for bitfield FEC_EIR_TXF.
-#define BF_FEC_EIR_TXF(v)   (((v) << BP_FEC_EIR_TXF) & BM_FEC_EIR_TXF)
-#endif
+#define BF_FEC_EIR_TXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_TXF) & BM_FEC_EIR_TXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXF field to a new value.
@@ -355,15 +325,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_GRA      (0x10000000)  //!< Bit mask for FEC_EIR_GRA.
 
 //! @brief Get value of FEC_EIR_GRA from a register value.
-#define BG_FEC_EIR_GRA(r)   (((r) & BM_FEC_EIR_GRA) >> BP_FEC_EIR_GRA)
+#define BG_FEC_EIR_GRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_GRA) >> BP_FEC_EIR_GRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_GRA.
-#define BF_FEC_EIR_GRA(v)   ((((reg32_t) v) << BP_FEC_EIR_GRA) & BM_FEC_EIR_GRA)
-#else
-//! @brief Format value for bitfield FEC_EIR_GRA.
-#define BF_FEC_EIR_GRA(v)   (((v) << BP_FEC_EIR_GRA) & BM_FEC_EIR_GRA)
-#endif
+#define BF_FEC_EIR_GRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_GRA) & BM_FEC_EIR_GRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GRA field to a new value.
@@ -381,15 +346,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_BABT      (0x20000000)  //!< Bit mask for FEC_EIR_BABT.
 
 //! @brief Get value of FEC_EIR_BABT from a register value.
-#define BG_FEC_EIR_BABT(r)   (((r) & BM_FEC_EIR_BABT) >> BP_FEC_EIR_BABT)
+#define BG_FEC_EIR_BABT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_BABT) >> BP_FEC_EIR_BABT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_BABT.
-#define BF_FEC_EIR_BABT(v)   ((((reg32_t) v) << BP_FEC_EIR_BABT) & BM_FEC_EIR_BABT)
-#else
-//! @brief Format value for bitfield FEC_EIR_BABT.
-#define BF_FEC_EIR_BABT(v)   (((v) << BP_FEC_EIR_BABT) & BM_FEC_EIR_BABT)
-#endif
+#define BF_FEC_EIR_BABT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_BABT) & BM_FEC_EIR_BABT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABT field to a new value.
@@ -406,15 +366,10 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_BABR      (0x40000000)  //!< Bit mask for FEC_EIR_BABR.
 
 //! @brief Get value of FEC_EIR_BABR from a register value.
-#define BG_FEC_EIR_BABR(r)   (((r) & BM_FEC_EIR_BABR) >> BP_FEC_EIR_BABR)
+#define BG_FEC_EIR_BABR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_BABR) >> BP_FEC_EIR_BABR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_BABR.
-#define BF_FEC_EIR_BABR(v)   ((((reg32_t) v) << BP_FEC_EIR_BABR) & BM_FEC_EIR_BABR)
-#else
-//! @brief Format value for bitfield FEC_EIR_BABR.
-#define BF_FEC_EIR_BABR(v)   (((v) << BP_FEC_EIR_BABR) & BM_FEC_EIR_BABR)
-#endif
+#define BF_FEC_EIR_BABR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_BABR) & BM_FEC_EIR_BABR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABR field to a new value.
@@ -431,20 +386,19 @@ typedef union _hw_fec_eir
 #define BM_FEC_EIR_HBERR      (0x80000000)  //!< Bit mask for FEC_EIR_HBERR.
 
 //! @brief Get value of FEC_EIR_HBERR from a register value.
-#define BG_FEC_EIR_HBERR(r)   (((r) & BM_FEC_EIR_HBERR) >> BP_FEC_EIR_HBERR)
+#define BG_FEC_EIR_HBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIR_HBERR) >> BP_FEC_EIR_HBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIR_HBERR.
-#define BF_FEC_EIR_HBERR(v)   ((((reg32_t) v) << BP_FEC_EIR_HBERR) & BM_FEC_EIR_HBERR)
-#else
-//! @brief Format value for bitfield FEC_EIR_HBERR.
-#define BF_FEC_EIR_HBERR(v)   (((v) << BP_FEC_EIR_HBERR) & BM_FEC_EIR_HBERR)
-#endif
+#define BF_FEC_EIR_HBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIR_HBERR) & BM_FEC_EIR_HBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBERR field to a new value.
 #define BW_FEC_EIR_HBERR(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_HBERR) | BF_FEC_EIR_HBERR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_EIMR - Ethernet interrupt mask register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -465,19 +419,19 @@ typedef union _hw_fec_eimr
     struct _hw_fec_eimr_bitfields
     {
         unsigned RESERVED0 : 19; //!< [18:0] Reserved, read as 0
-        unsigned UN : 1; //!< [19] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned RL : 1; //!< [20] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned LC : 1; //!< [21] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned EBERR : 1; //!< [22] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned MII : 1; //!< [23] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned RXB : 1; //!< [24] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned RXF : 1; //!< [25] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned TXB : 1; //!< [26] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned TXF : 1; //!< [27] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned GRA : 1; //!< [28] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned BABT : 1; //!< [29] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned BABR : 1; //!< [30] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
-        unsigned HBERR : 1; //!< [31] Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt. At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned UN : 1; //!< [19] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned RL : 1; //!< [20] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned LC : 1; //!< [21] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned EBERR : 1; //!< [22] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned MII : 1; //!< [23] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned RXB : 1; //!< [24] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned RXF : 1; //!< [25] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned TXB : 1; //!< [26] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned TXF : 1; //!< [27] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned GRA : 1; //!< [28] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned BABT : 1; //!< [29] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned BABR : 1; //!< [30] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
+        unsigned HBERR : 1; //!< [31] Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding FEC_EIMR bit is cleared.
     } B;
 } hw_fec_eimr_t;
 #endif
@@ -502,11 +456,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field UN[19] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -517,15 +471,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_UN      (0x00080000)  //!< Bit mask for FEC_EIMR_UN.
 
 //! @brief Get value of FEC_EIMR_UN from a register value.
-#define BG_FEC_EIMR_UN(r)   (((r) & BM_FEC_EIMR_UN) >> BP_FEC_EIMR_UN)
+#define BG_FEC_EIMR_UN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_UN) >> BP_FEC_EIMR_UN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_UN.
-#define BF_FEC_EIMR_UN(v)   ((((reg32_t) v) << BP_FEC_EIMR_UN) & BM_FEC_EIMR_UN)
-#else
-//! @brief Format value for bitfield FEC_EIMR_UN.
-#define BF_FEC_EIMR_UN(v)   (((v) << BP_FEC_EIMR_UN) & BM_FEC_EIMR_UN)
-#endif
+#define BF_FEC_EIMR_UN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_UN) & BM_FEC_EIMR_UN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UN field to a new value.
@@ -535,11 +484,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field RL[20] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -550,15 +499,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_RL      (0x00100000)  //!< Bit mask for FEC_EIMR_RL.
 
 //! @brief Get value of FEC_EIMR_RL from a register value.
-#define BG_FEC_EIMR_RL(r)   (((r) & BM_FEC_EIMR_RL) >> BP_FEC_EIMR_RL)
+#define BG_FEC_EIMR_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_RL) >> BP_FEC_EIMR_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_RL.
-#define BF_FEC_EIMR_RL(v)   ((((reg32_t) v) << BP_FEC_EIMR_RL) & BM_FEC_EIMR_RL)
-#else
-//! @brief Format value for bitfield FEC_EIMR_RL.
-#define BF_FEC_EIMR_RL(v)   (((v) << BP_FEC_EIMR_RL) & BM_FEC_EIMR_RL)
-#endif
+#define BF_FEC_EIMR_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_RL) & BM_FEC_EIMR_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -568,11 +512,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field LC[21] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -583,15 +527,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_LC      (0x00200000)  //!< Bit mask for FEC_EIMR_LC.
 
 //! @brief Get value of FEC_EIMR_LC from a register value.
-#define BG_FEC_EIMR_LC(r)   (((r) & BM_FEC_EIMR_LC) >> BP_FEC_EIMR_LC)
+#define BG_FEC_EIMR_LC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_LC) >> BP_FEC_EIMR_LC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_LC.
-#define BF_FEC_EIMR_LC(v)   ((((reg32_t) v) << BP_FEC_EIMR_LC) & BM_FEC_EIMR_LC)
-#else
-//! @brief Format value for bitfield FEC_EIMR_LC.
-#define BF_FEC_EIMR_LC(v)   (((v) << BP_FEC_EIMR_LC) & BM_FEC_EIMR_LC)
-#endif
+#define BF_FEC_EIMR_LC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_LC) & BM_FEC_EIMR_LC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LC field to a new value.
@@ -601,11 +540,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field EBERR[22] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -616,15 +555,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_EBERR      (0x00400000)  //!< Bit mask for FEC_EIMR_EBERR.
 
 //! @brief Get value of FEC_EIMR_EBERR from a register value.
-#define BG_FEC_EIMR_EBERR(r)   (((r) & BM_FEC_EIMR_EBERR) >> BP_FEC_EIMR_EBERR)
+#define BG_FEC_EIMR_EBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_EBERR) >> BP_FEC_EIMR_EBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_EBERR.
-#define BF_FEC_EIMR_EBERR(v)   ((((reg32_t) v) << BP_FEC_EIMR_EBERR) & BM_FEC_EIMR_EBERR)
-#else
-//! @brief Format value for bitfield FEC_EIMR_EBERR.
-#define BF_FEC_EIMR_EBERR(v)   (((v) << BP_FEC_EIMR_EBERR) & BM_FEC_EIMR_EBERR)
-#endif
+#define BF_FEC_EIMR_EBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_EBERR) & BM_FEC_EIMR_EBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EBERR field to a new value.
@@ -634,11 +568,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field MII[23] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -649,15 +583,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_MII      (0x00800000)  //!< Bit mask for FEC_EIMR_MII.
 
 //! @brief Get value of FEC_EIMR_MII from a register value.
-#define BG_FEC_EIMR_MII(r)   (((r) & BM_FEC_EIMR_MII) >> BP_FEC_EIMR_MII)
+#define BG_FEC_EIMR_MII(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_MII) >> BP_FEC_EIMR_MII)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_MII.
-#define BF_FEC_EIMR_MII(v)   ((((reg32_t) v) << BP_FEC_EIMR_MII) & BM_FEC_EIMR_MII)
-#else
-//! @brief Format value for bitfield FEC_EIMR_MII.
-#define BF_FEC_EIMR_MII(v)   (((v) << BP_FEC_EIMR_MII) & BM_FEC_EIMR_MII)
-#endif
+#define BF_FEC_EIMR_MII(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_MII) & BM_FEC_EIMR_MII)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII field to a new value.
@@ -667,11 +596,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field RXB[24] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -682,15 +611,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_RXB      (0x01000000)  //!< Bit mask for FEC_EIMR_RXB.
 
 //! @brief Get value of FEC_EIMR_RXB from a register value.
-#define BG_FEC_EIMR_RXB(r)   (((r) & BM_FEC_EIMR_RXB) >> BP_FEC_EIMR_RXB)
+#define BG_FEC_EIMR_RXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_RXB) >> BP_FEC_EIMR_RXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_RXB.
-#define BF_FEC_EIMR_RXB(v)   ((((reg32_t) v) << BP_FEC_EIMR_RXB) & BM_FEC_EIMR_RXB)
-#else
-//! @brief Format value for bitfield FEC_EIMR_RXB.
-#define BF_FEC_EIMR_RXB(v)   (((v) << BP_FEC_EIMR_RXB) & BM_FEC_EIMR_RXB)
-#endif
+#define BF_FEC_EIMR_RXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_RXB) & BM_FEC_EIMR_RXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXB field to a new value.
@@ -700,11 +624,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field RXF[25] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -715,15 +639,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_RXF      (0x02000000)  //!< Bit mask for FEC_EIMR_RXF.
 
 //! @brief Get value of FEC_EIMR_RXF from a register value.
-#define BG_FEC_EIMR_RXF(r)   (((r) & BM_FEC_EIMR_RXF) >> BP_FEC_EIMR_RXF)
+#define BG_FEC_EIMR_RXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_RXF) >> BP_FEC_EIMR_RXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_RXF.
-#define BF_FEC_EIMR_RXF(v)   ((((reg32_t) v) << BP_FEC_EIMR_RXF) & BM_FEC_EIMR_RXF)
-#else
-//! @brief Format value for bitfield FEC_EIMR_RXF.
-#define BF_FEC_EIMR_RXF(v)   (((v) << BP_FEC_EIMR_RXF) & BM_FEC_EIMR_RXF)
-#endif
+#define BF_FEC_EIMR_RXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_RXF) & BM_FEC_EIMR_RXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXF field to a new value.
@@ -733,11 +652,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field TXB[26] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -748,15 +667,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_TXB      (0x04000000)  //!< Bit mask for FEC_EIMR_TXB.
 
 //! @brief Get value of FEC_EIMR_TXB from a register value.
-#define BG_FEC_EIMR_TXB(r)   (((r) & BM_FEC_EIMR_TXB) >> BP_FEC_EIMR_TXB)
+#define BG_FEC_EIMR_TXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_TXB) >> BP_FEC_EIMR_TXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_TXB.
-#define BF_FEC_EIMR_TXB(v)   ((((reg32_t) v) << BP_FEC_EIMR_TXB) & BM_FEC_EIMR_TXB)
-#else
-//! @brief Format value for bitfield FEC_EIMR_TXB.
-#define BF_FEC_EIMR_TXB(v)   (((v) << BP_FEC_EIMR_TXB) & BM_FEC_EIMR_TXB)
-#endif
+#define BF_FEC_EIMR_TXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_TXB) & BM_FEC_EIMR_TXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB field to a new value.
@@ -766,11 +680,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field TXF[27] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -781,15 +695,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_TXF      (0x08000000)  //!< Bit mask for FEC_EIMR_TXF.
 
 //! @brief Get value of FEC_EIMR_TXF from a register value.
-#define BG_FEC_EIMR_TXF(r)   (((r) & BM_FEC_EIMR_TXF) >> BP_FEC_EIMR_TXF)
+#define BG_FEC_EIMR_TXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_TXF) >> BP_FEC_EIMR_TXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_TXF.
-#define BF_FEC_EIMR_TXF(v)   ((((reg32_t) v) << BP_FEC_EIMR_TXF) & BM_FEC_EIMR_TXF)
-#else
-//! @brief Format value for bitfield FEC_EIMR_TXF.
-#define BF_FEC_EIMR_TXF(v)   (((v) << BP_FEC_EIMR_TXF) & BM_FEC_EIMR_TXF)
-#endif
+#define BF_FEC_EIMR_TXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_TXF) & BM_FEC_EIMR_TXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXF field to a new value.
@@ -799,11 +708,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field GRA[28] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -814,15 +723,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_GRA      (0x10000000)  //!< Bit mask for FEC_EIMR_GRA.
 
 //! @brief Get value of FEC_EIMR_GRA from a register value.
-#define BG_FEC_EIMR_GRA(r)   (((r) & BM_FEC_EIMR_GRA) >> BP_FEC_EIMR_GRA)
+#define BG_FEC_EIMR_GRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_GRA) >> BP_FEC_EIMR_GRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_GRA.
-#define BF_FEC_EIMR_GRA(v)   ((((reg32_t) v) << BP_FEC_EIMR_GRA) & BM_FEC_EIMR_GRA)
-#else
-//! @brief Format value for bitfield FEC_EIMR_GRA.
-#define BF_FEC_EIMR_GRA(v)   (((v) << BP_FEC_EIMR_GRA) & BM_FEC_EIMR_GRA)
-#endif
+#define BF_FEC_EIMR_GRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_GRA) & BM_FEC_EIMR_GRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GRA field to a new value.
@@ -832,11 +736,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field BABT[29] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -847,15 +751,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_BABT      (0x20000000)  //!< Bit mask for FEC_EIMR_BABT.
 
 //! @brief Get value of FEC_EIMR_BABT from a register value.
-#define BG_FEC_EIMR_BABT(r)   (((r) & BM_FEC_EIMR_BABT) >> BP_FEC_EIMR_BABT)
+#define BG_FEC_EIMR_BABT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_BABT) >> BP_FEC_EIMR_BABT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_BABT.
-#define BF_FEC_EIMR_BABT(v)   ((((reg32_t) v) << BP_FEC_EIMR_BABT) & BM_FEC_EIMR_BABT)
-#else
-//! @brief Format value for bitfield FEC_EIMR_BABT.
-#define BF_FEC_EIMR_BABT(v)   (((v) << BP_FEC_EIMR_BABT) & BM_FEC_EIMR_BABT)
-#endif
+#define BF_FEC_EIMR_BABT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_BABT) & BM_FEC_EIMR_BABT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABT field to a new value.
@@ -865,11 +764,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field BABR[30] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -880,15 +779,10 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_BABR      (0x40000000)  //!< Bit mask for FEC_EIMR_BABR.
 
 //! @brief Get value of FEC_EIMR_BABR from a register value.
-#define BG_FEC_EIMR_BABR(r)   (((r) & BM_FEC_EIMR_BABR) >> BP_FEC_EIMR_BABR)
+#define BG_FEC_EIMR_BABR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_BABR) >> BP_FEC_EIMR_BABR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_BABR.
-#define BF_FEC_EIMR_BABR(v)   ((((reg32_t) v) << BP_FEC_EIMR_BABR) & BM_FEC_EIMR_BABR)
-#else
-//! @brief Format value for bitfield FEC_EIMR_BABR.
-#define BF_FEC_EIMR_BABR(v)   (((v) << BP_FEC_EIMR_BABR) & BM_FEC_EIMR_BABR)
-#endif
+#define BF_FEC_EIMR_BABR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_BABR) & BM_FEC_EIMR_BABR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABR field to a new value.
@@ -898,11 +792,11 @@ typedef union _hw_fec_eimr
 
 /* --- Register HW_FEC_EIMR, field HBERR[31] (RW)
  *
- * Interrupt mask. Each bit corresponds to an interrupt source defined by the FEC_EIR register. The
- * corresponding FEC_EIMR bit determines whether an interrupt condition can generate an interrupt.
- * At every system clock, the FEC_EIR samples the signal generated by the interrupting source. The
- * corresponding FEC_EIR bit reflects the state of the interrupt signal even if the corresponding
- * FEC_EIMR bit is cleared.
+ * Interrupt mask. This bit corresponds to an interrupt source defined by the FEC_EIR register. This
+ * FEC_EIMR bit determines whether an interrupt will be generated when the interrupt condition is
+ * fulfilled. At every system clock, the FEC_EIR samples the signals generated from the interrupting
+ * sources. The corresponding FEC_EIR bit reflects the state of the interrupt signal even if the
+ * corresponding FEC_EIMR bit is cleared.
  *
  * Values:
  * 0 - The corresponding interrupt source is masked.
@@ -913,21 +807,20 @@ typedef union _hw_fec_eimr
 #define BM_FEC_EIMR_HBERR      (0x80000000)  //!< Bit mask for FEC_EIMR_HBERR.
 
 //! @brief Get value of FEC_EIMR_HBERR from a register value.
-#define BG_FEC_EIMR_HBERR(r)   (((r) & BM_FEC_EIMR_HBERR) >> BP_FEC_EIMR_HBERR)
+#define BG_FEC_EIMR_HBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EIMR_HBERR) >> BP_FEC_EIMR_HBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EIMR_HBERR.
-#define BF_FEC_EIMR_HBERR(v)   ((((reg32_t) v) << BP_FEC_EIMR_HBERR) & BM_FEC_EIMR_HBERR)
-#else
-//! @brief Format value for bitfield FEC_EIMR_HBERR.
-#define BF_FEC_EIMR_HBERR(v)   (((v) << BP_FEC_EIMR_HBERR) & BM_FEC_EIMR_HBERR)
-#endif
+#define BF_FEC_EIMR_HBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EIMR_HBERR) & BM_FEC_EIMR_HBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBERR field to a new value.
 #define BW_FEC_EIMR_HBERR(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_HBERR) | BF_FEC_EIMR_HBERR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_RDAR - Receive descriptor active register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -937,13 +830,13 @@ typedef union _hw_fec_eimr
  *
  * FEC_RDAR is a user-writeable command register which indicates that the receive descriptor ring
  * has been updated, and that empty receive buffers have been produced by the driver with the empty
- * bit set.  The FEC_RDAR[R_DES_ACTIVE] bit is set whenever the register is written, independent of
- * the data actually written by the user. When it is set, the FEC polls the receive descriptor ring
- * and processes receive frames (provided FEC_ECR[ETHER_EN] is also set to 1). After the FEC finds a
- * receive descriptor whose empty bit is not set, the FEC clears the FEC_RDAR[R_DES_ACTIVE] bit and
- * ceases the polling in the receive descriptor ring polling until the user sets the bit again to
- * sign the availability of additional descriptors in the receive descriptor ring.  The FEC_RDAR is
- * cleared when FEC_ECR[ETHER_EN] is cleared or system is reset.
+ * bit in RxBD set.  The FEC_RDAR[R_DES_ACTIVE] bit is set whenever the register is written,
+ * independent of the data actually written by the user. When it is set, the FEC polls the receive
+ * descriptor ring and processes receive frames (provided FEC_ECR[ETHER_EN] is also set to 1). After
+ * the FEC finds a receive descriptor whose empty bit is not set, the FEC clears the
+ * FEC_RDAR[R_DES_ACTIVE] bit and ceases the polling in the receive descriptor ring polling until
+ * the user sets the bit again to sign the availability of additional descriptors in the receive
+ * descriptor ring.  The FEC_RDAR is cleared when FEC_ECR[ETHER_EN] is cleared or system is reset.
  */
 typedef union _hw_fec_rdar
 {
@@ -986,20 +879,19 @@ typedef union _hw_fec_rdar
 #define BM_FEC_RDAR_R_DES_ACTIVE      (0x01000000)  //!< Bit mask for FEC_RDAR_R_DES_ACTIVE.
 
 //! @brief Get value of FEC_RDAR_R_DES_ACTIVE from a register value.
-#define BG_FEC_RDAR_R_DES_ACTIVE(r)   (((r) & BM_FEC_RDAR_R_DES_ACTIVE) >> BP_FEC_RDAR_R_DES_ACTIVE)
+#define BG_FEC_RDAR_R_DES_ACTIVE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RDAR_R_DES_ACTIVE) >> BP_FEC_RDAR_R_DES_ACTIVE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RDAR_R_DES_ACTIVE.
-#define BF_FEC_RDAR_R_DES_ACTIVE(v)   ((((reg32_t) v) << BP_FEC_RDAR_R_DES_ACTIVE) & BM_FEC_RDAR_R_DES_ACTIVE)
-#else
-//! @brief Format value for bitfield FEC_RDAR_R_DES_ACTIVE.
-#define BF_FEC_RDAR_R_DES_ACTIVE(v)   (((v) << BP_FEC_RDAR_R_DES_ACTIVE) & BM_FEC_RDAR_R_DES_ACTIVE)
-#endif
+#define BF_FEC_RDAR_R_DES_ACTIVE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RDAR_R_DES_ACTIVE) & BM_FEC_RDAR_R_DES_ACTIVE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_DES_ACTIVE field to a new value.
 #define BW_FEC_RDAR_R_DES_ACTIVE(v)   (HW_FEC_RDAR_WR((HW_FEC_RDAR_RD() & ~BM_FEC_RDAR_R_DES_ACTIVE) | BF_FEC_RDAR_R_DES_ACTIVE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_TDAR - Transmit descriptor active register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1059,20 +951,19 @@ typedef union _hw_fec_tdar
 #define BM_FEC_TDAR_X_DES_ACTIVE      (0x01000000)  //!< Bit mask for FEC_TDAR_X_DES_ACTIVE.
 
 //! @brief Get value of FEC_TDAR_X_DES_ACTIVE from a register value.
-#define BG_FEC_TDAR_X_DES_ACTIVE(r)   (((r) & BM_FEC_TDAR_X_DES_ACTIVE) >> BP_FEC_TDAR_X_DES_ACTIVE)
+#define BG_FEC_TDAR_X_DES_ACTIVE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TDAR_X_DES_ACTIVE) >> BP_FEC_TDAR_X_DES_ACTIVE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TDAR_X_DES_ACTIVE.
-#define BF_FEC_TDAR_X_DES_ACTIVE(v)   ((((reg32_t) v) << BP_FEC_TDAR_X_DES_ACTIVE) & BM_FEC_TDAR_X_DES_ACTIVE)
-#else
-//! @brief Format value for bitfield FEC_TDAR_X_DES_ACTIVE.
-#define BF_FEC_TDAR_X_DES_ACTIVE(v)   (((v) << BP_FEC_TDAR_X_DES_ACTIVE) & BM_FEC_TDAR_X_DES_ACTIVE)
-#endif
+#define BF_FEC_TDAR_X_DES_ACTIVE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TDAR_X_DES_ACTIVE) & BM_FEC_TDAR_X_DES_ACTIVE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X_DES_ACTIVE field to a new value.
 #define BW_FEC_TDAR_X_DES_ACTIVE(v)   (HW_FEC_TDAR_WR((HW_FEC_TDAR_RD() & ~BM_FEC_TDAR_X_DES_ACTIVE) | BF_FEC_TDAR_X_DES_ACTIVE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_ECR - Ethernet control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1127,15 +1018,10 @@ typedef union _hw_fec_ecr
 #define BM_FEC_ECR_RESET      (0x00000001)  //!< Bit mask for FEC_ECR_RESET.
 
 //! @brief Get value of FEC_ECR_RESET from a register value.
-#define BG_FEC_ECR_RESET(r)   (((r) & BM_FEC_ECR_RESET) >> BP_FEC_ECR_RESET)
+#define BG_FEC_ECR_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_ECR_RESET) >> BP_FEC_ECR_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_ECR_RESET.
-#define BF_FEC_ECR_RESET(v)   ((((reg32_t) v) << BP_FEC_ECR_RESET) & BM_FEC_ECR_RESET)
-#else
-//! @brief Format value for bitfield FEC_ECR_RESET.
-#define BF_FEC_ECR_RESET(v)   (((v) << BP_FEC_ECR_RESET) & BM_FEC_ECR_RESET)
-#endif
+#define BF_FEC_ECR_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_ECR_RESET) & BM_FEC_ECR_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESET field to a new value.
@@ -1158,20 +1044,19 @@ typedef union _hw_fec_ecr
 #define BM_FEC_ECR_ETHER_EN      (0x00000002)  //!< Bit mask for FEC_ECR_ETHER_EN.
 
 //! @brief Get value of FEC_ECR_ETHER_EN from a register value.
-#define BG_FEC_ECR_ETHER_EN(r)   (((r) & BM_FEC_ECR_ETHER_EN) >> BP_FEC_ECR_ETHER_EN)
+#define BG_FEC_ECR_ETHER_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_ECR_ETHER_EN) >> BP_FEC_ECR_ETHER_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_ECR_ETHER_EN.
-#define BF_FEC_ECR_ETHER_EN(v)   ((((reg32_t) v) << BP_FEC_ECR_ETHER_EN) & BM_FEC_ECR_ETHER_EN)
-#else
-//! @brief Format value for bitfield FEC_ECR_ETHER_EN.
-#define BF_FEC_ECR_ETHER_EN(v)   (((v) << BP_FEC_ECR_ETHER_EN) & BM_FEC_ECR_ETHER_EN)
-#endif
+#define BF_FEC_ECR_ETHER_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_ECR_ETHER_EN) & BM_FEC_ECR_ETHER_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ETHER_EN field to a new value.
 #define BW_FEC_ECR_ETHER_EN(v)   (HW_FEC_ECR_WR((HW_FEC_ECR_RD() & ~BM_FEC_ECR_ETHER_EN) | BF_FEC_ECR_ETHER_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_MMFR - MII management frame register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1251,15 +1136,10 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_DATA      (0x0000ffff)  //!< Bit mask for FEC_MMFR_DATA.
 
 //! @brief Get value of FEC_MMFR_DATA from a register value.
-#define BG_FEC_MMFR_DATA(r)   (((r) & BM_FEC_MMFR_DATA) >> BP_FEC_MMFR_DATA)
+#define BG_FEC_MMFR_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_DATA) >> BP_FEC_MMFR_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_DATA.
-#define BF_FEC_MMFR_DATA(v)   ((((reg32_t) v) << BP_FEC_MMFR_DATA) & BM_FEC_MMFR_DATA)
-#else
-//! @brief Format value for bitfield FEC_MMFR_DATA.
-#define BF_FEC_MMFR_DATA(v)   (((v) << BP_FEC_MMFR_DATA) & BM_FEC_MMFR_DATA)
-#endif
+#define BF_FEC_MMFR_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_DATA) & BM_FEC_MMFR_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
@@ -1275,15 +1155,10 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_TA      (0x00030000)  //!< Bit mask for FEC_MMFR_TA.
 
 //! @brief Get value of FEC_MMFR_TA from a register value.
-#define BG_FEC_MMFR_TA(r)   (((r) & BM_FEC_MMFR_TA) >> BP_FEC_MMFR_TA)
+#define BG_FEC_MMFR_TA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_TA) >> BP_FEC_MMFR_TA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_TA.
-#define BF_FEC_MMFR_TA(v)   ((((reg32_t) v) << BP_FEC_MMFR_TA) & BM_FEC_MMFR_TA)
-#else
-//! @brief Format value for bitfield FEC_MMFR_TA.
-#define BF_FEC_MMFR_TA(v)   (((v) << BP_FEC_MMFR_TA) & BM_FEC_MMFR_TA)
-#endif
+#define BF_FEC_MMFR_TA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_TA) & BM_FEC_MMFR_TA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TA field to a new value.
@@ -1299,15 +1174,10 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_RA      (0x007c0000)  //!< Bit mask for FEC_MMFR_RA.
 
 //! @brief Get value of FEC_MMFR_RA from a register value.
-#define BG_FEC_MMFR_RA(r)   (((r) & BM_FEC_MMFR_RA) >> BP_FEC_MMFR_RA)
+#define BG_FEC_MMFR_RA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_RA) >> BP_FEC_MMFR_RA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_RA.
-#define BF_FEC_MMFR_RA(v)   ((((reg32_t) v) << BP_FEC_MMFR_RA) & BM_FEC_MMFR_RA)
-#else
-//! @brief Format value for bitfield FEC_MMFR_RA.
-#define BF_FEC_MMFR_RA(v)   (((v) << BP_FEC_MMFR_RA) & BM_FEC_MMFR_RA)
-#endif
+#define BF_FEC_MMFR_RA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_RA) & BM_FEC_MMFR_RA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RA field to a new value.
@@ -1323,15 +1193,10 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_PA      (0x0f800000)  //!< Bit mask for FEC_MMFR_PA.
 
 //! @brief Get value of FEC_MMFR_PA from a register value.
-#define BG_FEC_MMFR_PA(r)   (((r) & BM_FEC_MMFR_PA) >> BP_FEC_MMFR_PA)
+#define BG_FEC_MMFR_PA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_PA) >> BP_FEC_MMFR_PA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_PA.
-#define BF_FEC_MMFR_PA(v)   ((((reg32_t) v) << BP_FEC_MMFR_PA) & BM_FEC_MMFR_PA)
-#else
-//! @brief Format value for bitfield FEC_MMFR_PA.
-#define BF_FEC_MMFR_PA(v)   (((v) << BP_FEC_MMFR_PA) & BM_FEC_MMFR_PA)
-#endif
+#define BF_FEC_MMFR_PA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_PA) & BM_FEC_MMFR_PA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PA field to a new value.
@@ -1349,15 +1214,10 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_OP      (0x30000000)  //!< Bit mask for FEC_MMFR_OP.
 
 //! @brief Get value of FEC_MMFR_OP from a register value.
-#define BG_FEC_MMFR_OP(r)   (((r) & BM_FEC_MMFR_OP) >> BP_FEC_MMFR_OP)
+#define BG_FEC_MMFR_OP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_OP) >> BP_FEC_MMFR_OP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_OP.
-#define BF_FEC_MMFR_OP(v)   ((((reg32_t) v) << BP_FEC_MMFR_OP) & BM_FEC_MMFR_OP)
-#else
-//! @brief Format value for bitfield FEC_MMFR_OP.
-#define BF_FEC_MMFR_OP(v)   (((v) << BP_FEC_MMFR_OP) & BM_FEC_MMFR_OP)
-#endif
+#define BF_FEC_MMFR_OP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_OP) & BM_FEC_MMFR_OP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OP field to a new value.
@@ -1373,20 +1233,19 @@ typedef union _hw_fec_mmfr
 #define BM_FEC_MMFR_ST      (0xc0000000)  //!< Bit mask for FEC_MMFR_ST.
 
 //! @brief Get value of FEC_MMFR_ST from a register value.
-#define BG_FEC_MMFR_ST(r)   (((r) & BM_FEC_MMFR_ST) >> BP_FEC_MMFR_ST)
+#define BG_FEC_MMFR_ST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MMFR_ST) >> BP_FEC_MMFR_ST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MMFR_ST.
-#define BF_FEC_MMFR_ST(v)   ((((reg32_t) v) << BP_FEC_MMFR_ST) & BM_FEC_MMFR_ST)
-#else
-//! @brief Format value for bitfield FEC_MMFR_ST.
-#define BF_FEC_MMFR_ST(v)   (((v) << BP_FEC_MMFR_ST) & BM_FEC_MMFR_ST)
-#endif
+#define BF_FEC_MMFR_ST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MMFR_ST) & BM_FEC_MMFR_ST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ST field to a new value.
 #define BW_FEC_MMFR_ST(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_ST) | BF_FEC_MMFR_ST(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_MSCR - MII speed control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1454,15 +1313,10 @@ typedef union _hw_fec_mscr
 #define BM_FEC_MSCR_MII_SPEED      (0x0000007e)  //!< Bit mask for FEC_MSCR_MII_SPEED.
 
 //! @brief Get value of FEC_MSCR_MII_SPEED from a register value.
-#define BG_FEC_MSCR_MII_SPEED(r)   (((r) & BM_FEC_MSCR_MII_SPEED) >> BP_FEC_MSCR_MII_SPEED)
+#define BG_FEC_MSCR_MII_SPEED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MSCR_MII_SPEED) >> BP_FEC_MSCR_MII_SPEED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MSCR_MII_SPEED.
-#define BF_FEC_MSCR_MII_SPEED(v)   ((((reg32_t) v) << BP_FEC_MSCR_MII_SPEED) & BM_FEC_MSCR_MII_SPEED)
-#else
-//! @brief Format value for bitfield FEC_MSCR_MII_SPEED.
-#define BF_FEC_MSCR_MII_SPEED(v)   (((v) << BP_FEC_MSCR_MII_SPEED) & BM_FEC_MSCR_MII_SPEED)
-#endif
+#define BF_FEC_MSCR_MII_SPEED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MSCR_MII_SPEED) & BM_FEC_MSCR_MII_SPEED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII_SPEED field to a new value.
@@ -1480,20 +1334,19 @@ typedef union _hw_fec_mscr
 #define BM_FEC_MSCR_DIS_PREAMBLE      (0x00000080)  //!< Bit mask for FEC_MSCR_DIS_PREAMBLE.
 
 //! @brief Get value of FEC_MSCR_DIS_PREAMBLE from a register value.
-#define BG_FEC_MSCR_DIS_PREAMBLE(r)   (((r) & BM_FEC_MSCR_DIS_PREAMBLE) >> BP_FEC_MSCR_DIS_PREAMBLE)
+#define BG_FEC_MSCR_DIS_PREAMBLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MSCR_DIS_PREAMBLE) >> BP_FEC_MSCR_DIS_PREAMBLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MSCR_DIS_PREAMBLE.
-#define BF_FEC_MSCR_DIS_PREAMBLE(v)   ((((reg32_t) v) << BP_FEC_MSCR_DIS_PREAMBLE) & BM_FEC_MSCR_DIS_PREAMBLE)
-#else
-//! @brief Format value for bitfield FEC_MSCR_DIS_PREAMBLE.
-#define BF_FEC_MSCR_DIS_PREAMBLE(v)   (((v) << BP_FEC_MSCR_DIS_PREAMBLE) & BM_FEC_MSCR_DIS_PREAMBLE)
-#endif
+#define BF_FEC_MSCR_DIS_PREAMBLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MSCR_DIS_PREAMBLE) & BM_FEC_MSCR_DIS_PREAMBLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIS_PREAMBLE field to a new value.
 #define BW_FEC_MSCR_DIS_PREAMBLE(v)   (HW_FEC_MSCR_WR((HW_FEC_MSCR_RD() & ~BM_FEC_MSCR_DIS_PREAMBLE) | BF_FEC_MSCR_DIS_PREAMBLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_MIBC - MIB control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1548,7 +1401,7 @@ typedef union _hw_fec_mibc
 #define BM_FEC_MIBC_MB_IDLE      (0x40000000)  //!< Bit mask for FEC_MIBC_MB_IDLE.
 
 //! @brief Get value of FEC_MIBC_MB_IDLE from a register value.
-#define BG_FEC_MIBC_MB_IDLE(r)   (((r) & BM_FEC_MIBC_MB_IDLE) >> BP_FEC_MIBC_MB_IDLE)
+#define BG_FEC_MIBC_MB_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MIBC_MB_IDLE) >> BP_FEC_MIBC_MB_IDLE)
 
 /* --- Register HW_FEC_MIBC, field MIB_DISABLE[31] (RW)
  *
@@ -1559,20 +1412,19 @@ typedef union _hw_fec_mibc
 #define BM_FEC_MIBC_MIB_DISABLE      (0x80000000)  //!< Bit mask for FEC_MIBC_MIB_DISABLE.
 
 //! @brief Get value of FEC_MIBC_MIB_DISABLE from a register value.
-#define BG_FEC_MIBC_MIB_DISABLE(r)   (((r) & BM_FEC_MIBC_MIB_DISABLE) >> BP_FEC_MIBC_MIB_DISABLE)
+#define BG_FEC_MIBC_MIB_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MIBC_MIB_DISABLE) >> BP_FEC_MIBC_MIB_DISABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_MIBC_MIB_DISABLE.
-#define BF_FEC_MIBC_MIB_DISABLE(v)   ((((reg32_t) v) << BP_FEC_MIBC_MIB_DISABLE) & BM_FEC_MIBC_MIB_DISABLE)
-#else
-//! @brief Format value for bitfield FEC_MIBC_MIB_DISABLE.
-#define BF_FEC_MIBC_MIB_DISABLE(v)   (((v) << BP_FEC_MIBC_MIB_DISABLE) & BM_FEC_MIBC_MIB_DISABLE)
-#endif
+#define BF_FEC_MIBC_MIB_DISABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_MIBC_MIB_DISABLE) & BM_FEC_MIBC_MIB_DISABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MIB_DISABLE field to a new value.
 #define BW_FEC_MIBC_MIB_DISABLE(v)   (HW_FEC_MIBC_WR((HW_FEC_MIBC_RD() & ~BM_FEC_MIBC_MIB_DISABLE) | BF_FEC_MIBC_MIB_DISABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_RCR - Receive control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1630,15 +1482,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_LOOP      (0x00000001)  //!< Bit mask for FEC_RCR_LOOP.
 
 //! @brief Get value of FEC_RCR_LOOP from a register value.
-#define BG_FEC_RCR_LOOP(r)   (((r) & BM_FEC_RCR_LOOP) >> BP_FEC_RCR_LOOP)
+#define BG_FEC_RCR_LOOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_LOOP) >> BP_FEC_RCR_LOOP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_LOOP.
-#define BF_FEC_RCR_LOOP(v)   ((((reg32_t) v) << BP_FEC_RCR_LOOP) & BM_FEC_RCR_LOOP)
-#else
-//! @brief Format value for bitfield FEC_RCR_LOOP.
-#define BF_FEC_RCR_LOOP(v)   (((v) << BP_FEC_RCR_LOOP) & BM_FEC_RCR_LOOP)
-#endif
+#define BF_FEC_RCR_LOOP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_LOOP) & BM_FEC_RCR_LOOP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOP field to a new value.
@@ -1659,15 +1506,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_DRT      (0x00000002)  //!< Bit mask for FEC_RCR_DRT.
 
 //! @brief Get value of FEC_RCR_DRT from a register value.
-#define BG_FEC_RCR_DRT(r)   (((r) & BM_FEC_RCR_DRT) >> BP_FEC_RCR_DRT)
+#define BG_FEC_RCR_DRT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_DRT) >> BP_FEC_RCR_DRT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_DRT.
-#define BF_FEC_RCR_DRT(v)   ((((reg32_t) v) << BP_FEC_RCR_DRT) & BM_FEC_RCR_DRT)
-#else
-//! @brief Format value for bitfield FEC_RCR_DRT.
-#define BF_FEC_RCR_DRT(v)   (((v) << BP_FEC_RCR_DRT) & BM_FEC_RCR_DRT)
-#endif
+#define BF_FEC_RCR_DRT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_DRT) & BM_FEC_RCR_DRT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRT field to a new value.
@@ -1686,15 +1528,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_MII_MODE      (0x00000004)  //!< Bit mask for FEC_RCR_MII_MODE.
 
 //! @brief Get value of FEC_RCR_MII_MODE from a register value.
-#define BG_FEC_RCR_MII_MODE(r)   (((r) & BM_FEC_RCR_MII_MODE) >> BP_FEC_RCR_MII_MODE)
+#define BG_FEC_RCR_MII_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_MII_MODE) >> BP_FEC_RCR_MII_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_MII_MODE.
-#define BF_FEC_RCR_MII_MODE(v)   ((((reg32_t) v) << BP_FEC_RCR_MII_MODE) & BM_FEC_RCR_MII_MODE)
-#else
-//! @brief Format value for bitfield FEC_RCR_MII_MODE.
-#define BF_FEC_RCR_MII_MODE(v)   (((v) << BP_FEC_RCR_MII_MODE) & BM_FEC_RCR_MII_MODE)
-#endif
+#define BF_FEC_RCR_MII_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_MII_MODE) & BM_FEC_RCR_MII_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII_MODE field to a new value.
@@ -1710,15 +1547,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_PROM      (0x00000008)  //!< Bit mask for FEC_RCR_PROM.
 
 //! @brief Get value of FEC_RCR_PROM from a register value.
-#define BG_FEC_RCR_PROM(r)   (((r) & BM_FEC_RCR_PROM) >> BP_FEC_RCR_PROM)
+#define BG_FEC_RCR_PROM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_PROM) >> BP_FEC_RCR_PROM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_PROM.
-#define BF_FEC_RCR_PROM(v)   ((((reg32_t) v) << BP_FEC_RCR_PROM) & BM_FEC_RCR_PROM)
-#else
-//! @brief Format value for bitfield FEC_RCR_PROM.
-#define BF_FEC_RCR_PROM(v)   (((v) << BP_FEC_RCR_PROM) & BM_FEC_RCR_PROM)
-#endif
+#define BF_FEC_RCR_PROM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_PROM) & BM_FEC_RCR_PROM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PROM field to a new value.
@@ -1737,15 +1569,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_BC_REJ      (0x00000010)  //!< Bit mask for FEC_RCR_BC_REJ.
 
 //! @brief Get value of FEC_RCR_BC_REJ from a register value.
-#define BG_FEC_RCR_BC_REJ(r)   (((r) & BM_FEC_RCR_BC_REJ) >> BP_FEC_RCR_BC_REJ)
+#define BG_FEC_RCR_BC_REJ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_BC_REJ) >> BP_FEC_RCR_BC_REJ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_BC_REJ.
-#define BF_FEC_RCR_BC_REJ(v)   ((((reg32_t) v) << BP_FEC_RCR_BC_REJ) & BM_FEC_RCR_BC_REJ)
-#else
-//! @brief Format value for bitfield FEC_RCR_BC_REJ.
-#define BF_FEC_RCR_BC_REJ(v)   (((v) << BP_FEC_RCR_BC_REJ) & BM_FEC_RCR_BC_REJ)
-#endif
+#define BF_FEC_RCR_BC_REJ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_BC_REJ) & BM_FEC_RCR_BC_REJ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BC_REJ field to a new value.
@@ -1762,15 +1589,10 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_FCE      (0x00000020)  //!< Bit mask for FEC_RCR_FCE.
 
 //! @brief Get value of FEC_RCR_FCE from a register value.
-#define BG_FEC_RCR_FCE(r)   (((r) & BM_FEC_RCR_FCE) >> BP_FEC_RCR_FCE)
+#define BG_FEC_RCR_FCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_FCE) >> BP_FEC_RCR_FCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_FCE.
-#define BF_FEC_RCR_FCE(v)   ((((reg32_t) v) << BP_FEC_RCR_FCE) & BM_FEC_RCR_FCE)
-#else
-//! @brief Format value for bitfield FEC_RCR_FCE.
-#define BF_FEC_RCR_FCE(v)   (((v) << BP_FEC_RCR_FCE) & BM_FEC_RCR_FCE)
-#endif
+#define BF_FEC_RCR_FCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_FCE) & BM_FEC_RCR_FCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FCE field to a new value.
@@ -1790,20 +1612,19 @@ typedef union _hw_fec_rcr
 #define BM_FEC_RCR_MAX_FL      (0x07ff0000)  //!< Bit mask for FEC_RCR_MAX_FL.
 
 //! @brief Get value of FEC_RCR_MAX_FL from a register value.
-#define BG_FEC_RCR_MAX_FL(r)   (((r) & BM_FEC_RCR_MAX_FL) >> BP_FEC_RCR_MAX_FL)
+#define BG_FEC_RCR_MAX_FL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_RCR_MAX_FL) >> BP_FEC_RCR_MAX_FL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_RCR_MAX_FL.
-#define BF_FEC_RCR_MAX_FL(v)   ((((reg32_t) v) << BP_FEC_RCR_MAX_FL) & BM_FEC_RCR_MAX_FL)
-#else
-//! @brief Format value for bitfield FEC_RCR_MAX_FL.
-#define BF_FEC_RCR_MAX_FL(v)   (((v) << BP_FEC_RCR_MAX_FL) & BM_FEC_RCR_MAX_FL)
-#endif
+#define BF_FEC_RCR_MAX_FL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_RCR_MAX_FL) & BM_FEC_RCR_MAX_FL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MAX_FL field to a new value.
 #define BW_FEC_RCR_MAX_FL(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_MAX_FL) | BF_FEC_RCR_MAX_FL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_TCR - Transmit control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1869,15 +1690,10 @@ typedef union _hw_fec_tcr
 #define BM_FEC_TCR_GTS      (0x00000001)  //!< Bit mask for FEC_TCR_GTS.
 
 //! @brief Get value of FEC_TCR_GTS from a register value.
-#define BG_FEC_TCR_GTS(r)   (((r) & BM_FEC_TCR_GTS) >> BP_FEC_TCR_GTS)
+#define BG_FEC_TCR_GTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_GTS) >> BP_FEC_TCR_GTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TCR_GTS.
-#define BF_FEC_TCR_GTS(v)   ((((reg32_t) v) << BP_FEC_TCR_GTS) & BM_FEC_TCR_GTS)
-#else
-//! @brief Format value for bitfield FEC_TCR_GTS.
-#define BF_FEC_TCR_GTS(v)   (((v) << BP_FEC_TCR_GTS) & BM_FEC_TCR_GTS)
-#endif
+#define BF_FEC_TCR_GTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TCR_GTS) & BM_FEC_TCR_GTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GTS field to a new value.
@@ -1900,15 +1716,10 @@ typedef union _hw_fec_tcr
 #define BM_FEC_TCR_HBC      (0x00000002)  //!< Bit mask for FEC_TCR_HBC.
 
 //! @brief Get value of FEC_TCR_HBC from a register value.
-#define BG_FEC_TCR_HBC(r)   (((r) & BM_FEC_TCR_HBC) >> BP_FEC_TCR_HBC)
+#define BG_FEC_TCR_HBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_HBC) >> BP_FEC_TCR_HBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TCR_HBC.
-#define BF_FEC_TCR_HBC(v)   ((((reg32_t) v) << BP_FEC_TCR_HBC) & BM_FEC_TCR_HBC)
-#else
-//! @brief Format value for bitfield FEC_TCR_HBC.
-#define BF_FEC_TCR_HBC(v)   (((v) << BP_FEC_TCR_HBC) & BM_FEC_TCR_HBC)
-#endif
+#define BF_FEC_TCR_HBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TCR_HBC) & BM_FEC_TCR_HBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HBC field to a new value.
@@ -1930,15 +1741,10 @@ typedef union _hw_fec_tcr
 #define BM_FEC_TCR_FDEN      (0x00000004)  //!< Bit mask for FEC_TCR_FDEN.
 
 //! @brief Get value of FEC_TCR_FDEN from a register value.
-#define BG_FEC_TCR_FDEN(r)   (((r) & BM_FEC_TCR_FDEN) >> BP_FEC_TCR_FDEN)
+#define BG_FEC_TCR_FDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_FDEN) >> BP_FEC_TCR_FDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TCR_FDEN.
-#define BF_FEC_TCR_FDEN(v)   ((((reg32_t) v) << BP_FEC_TCR_FDEN) & BM_FEC_TCR_FDEN)
-#else
-//! @brief Format value for bitfield FEC_TCR_FDEN.
-#define BF_FEC_TCR_FDEN(v)   (((v) << BP_FEC_TCR_FDEN) & BM_FEC_TCR_FDEN)
-#endif
+#define BF_FEC_TCR_FDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TCR_FDEN) & BM_FEC_TCR_FDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FDEN field to a new value.
@@ -1964,15 +1770,10 @@ typedef union _hw_fec_tcr
 #define BM_FEC_TCR_TFC_PAUSE      (0x00000008)  //!< Bit mask for FEC_TCR_TFC_PAUSE.
 
 //! @brief Get value of FEC_TCR_TFC_PAUSE from a register value.
-#define BG_FEC_TCR_TFC_PAUSE(r)   (((r) & BM_FEC_TCR_TFC_PAUSE) >> BP_FEC_TCR_TFC_PAUSE)
+#define BG_FEC_TCR_TFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_TFC_PAUSE) >> BP_FEC_TCR_TFC_PAUSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TCR_TFC_PAUSE.
-#define BF_FEC_TCR_TFC_PAUSE(v)   ((((reg32_t) v) << BP_FEC_TCR_TFC_PAUSE) & BM_FEC_TCR_TFC_PAUSE)
-#else
-//! @brief Format value for bitfield FEC_TCR_TFC_PAUSE.
-#define BF_FEC_TCR_TFC_PAUSE(v)   (((v) << BP_FEC_TCR_TFC_PAUSE) & BM_FEC_TCR_TFC_PAUSE)
-#endif
+#define BF_FEC_TCR_TFC_PAUSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TCR_TFC_PAUSE) & BM_FEC_TCR_TFC_PAUSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFC_PAUSE field to a new value.
@@ -1995,8 +1796,12 @@ typedef union _hw_fec_tcr
 #define BM_FEC_TCR_RFC_PAUSE      (0x00000010)  //!< Bit mask for FEC_TCR_RFC_PAUSE.
 
 //! @brief Get value of FEC_TCR_RFC_PAUSE from a register value.
-#define BG_FEC_TCR_RFC_PAUSE(r)   (((r) & BM_FEC_TCR_RFC_PAUSE) >> BP_FEC_TCR_RFC_PAUSE)
+#define BG_FEC_TCR_RFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_RFC_PAUSE) >> BP_FEC_TCR_RFC_PAUSE)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_PALR - Physical address low register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2048,20 +1853,19 @@ typedef union _hw_fec_palr
 #define BM_FEC_PALR_PADDR1      (0xffffffff)  //!< Bit mask for FEC_PALR_PADDR1.
 
 //! @brief Get value of FEC_PALR_PADDR1 from a register value.
-#define BG_FEC_PALR_PADDR1(r)   (((r) & BM_FEC_PALR_PADDR1) >> BP_FEC_PALR_PADDR1)
+#define BG_FEC_PALR_PADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_PALR_PADDR1) >> BP_FEC_PALR_PADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_PALR_PADDR1.
-#define BF_FEC_PALR_PADDR1(v)   ((((reg32_t) v) << BP_FEC_PALR_PADDR1) & BM_FEC_PALR_PADDR1)
-#else
-//! @brief Format value for bitfield FEC_PALR_PADDR1.
-#define BF_FEC_PALR_PADDR1(v)   (((v) << BP_FEC_PALR_PADDR1) & BM_FEC_PALR_PADDR1)
-#endif
+#define BF_FEC_PALR_PADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_PALR_PADDR1) & BM_FEC_PALR_PADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADDR1 field to a new value.
 #define BW_FEC_PALR_PADDR1(v)   (HW_FEC_PALR_WR((HW_FEC_PALR_RD() & ~BM_FEC_PALR_PADDR1) | BF_FEC_PALR_PADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_PAUR - Physical address upper register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2114,7 +1918,7 @@ typedef union _hw_fec_paur
 #define BM_FEC_PAUR_TYPE      (0x0000ffff)  //!< Bit mask for FEC_PAUR_TYPE.
 
 //! @brief Get value of FEC_PAUR_TYPE from a register value.
-#define BG_FEC_PAUR_TYPE(r)   (((r) & BM_FEC_PAUR_TYPE) >> BP_FEC_PAUR_TYPE)
+#define BG_FEC_PAUR_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_PAUR_TYPE) >> BP_FEC_PAUR_TYPE)
 
 /* --- Register HW_FEC_PAUR, field PADDR2[31:16] (RW)
  *
@@ -2126,20 +1930,19 @@ typedef union _hw_fec_paur
 #define BM_FEC_PAUR_PADDR2      (0xffff0000)  //!< Bit mask for FEC_PAUR_PADDR2.
 
 //! @brief Get value of FEC_PAUR_PADDR2 from a register value.
-#define BG_FEC_PAUR_PADDR2(r)   (((r) & BM_FEC_PAUR_PADDR2) >> BP_FEC_PAUR_PADDR2)
+#define BG_FEC_PAUR_PADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_PAUR_PADDR2) >> BP_FEC_PAUR_PADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_PAUR_PADDR2.
-#define BF_FEC_PAUR_PADDR2(v)   ((((reg32_t) v) << BP_FEC_PAUR_PADDR2) & BM_FEC_PAUR_PADDR2)
-#else
-//! @brief Format value for bitfield FEC_PAUR_PADDR2.
-#define BF_FEC_PAUR_PADDR2(v)   (((v) << BP_FEC_PAUR_PADDR2) & BM_FEC_PAUR_PADDR2)
-#endif
+#define BF_FEC_PAUR_PADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_PAUR_PADDR2) & BM_FEC_PAUR_PADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADDR2 field to a new value.
 #define BW_FEC_PAUR_PADDR2(v)   (HW_FEC_PAUR_WR((HW_FEC_PAUR_RD() & ~BM_FEC_PAUR_PADDR2) | BF_FEC_PAUR_PADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_OPDR - Opcode and pause duration register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2190,15 +1993,10 @@ typedef union _hw_fec_opdr
 #define BM_FEC_OPDR_PAUSE_DUR      (0x0000ffff)  //!< Bit mask for FEC_OPDR_PAUSE_DUR.
 
 //! @brief Get value of FEC_OPDR_PAUSE_DUR from a register value.
-#define BG_FEC_OPDR_PAUSE_DUR(r)   (((r) & BM_FEC_OPDR_PAUSE_DUR) >> BP_FEC_OPDR_PAUSE_DUR)
+#define BG_FEC_OPDR_PAUSE_DUR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_OPDR_PAUSE_DUR) >> BP_FEC_OPDR_PAUSE_DUR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_OPDR_PAUSE_DUR.
-#define BF_FEC_OPDR_PAUSE_DUR(v)   ((((reg32_t) v) << BP_FEC_OPDR_PAUSE_DUR) & BM_FEC_OPDR_PAUSE_DUR)
-#else
-//! @brief Format value for bitfield FEC_OPDR_PAUSE_DUR.
-#define BF_FEC_OPDR_PAUSE_DUR(v)   (((v) << BP_FEC_OPDR_PAUSE_DUR) & BM_FEC_OPDR_PAUSE_DUR)
-#endif
+#define BF_FEC_OPDR_PAUSE_DUR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_OPDR_PAUSE_DUR) & BM_FEC_OPDR_PAUSE_DUR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAUSE_DUR field to a new value.
@@ -2214,7 +2012,11 @@ typedef union _hw_fec_opdr
 #define BM_FEC_OPDR_OPCODE      (0xffff0000)  //!< Bit mask for FEC_OPDR_OPCODE.
 
 //! @brief Get value of FEC_OPDR_OPCODE from a register value.
-#define BG_FEC_OPDR_OPCODE(r)   (((r) & BM_FEC_OPDR_OPCODE) >> BP_FEC_OPDR_OPCODE)
+#define BG_FEC_OPDR_OPCODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_OPDR_OPCODE) >> BP_FEC_OPDR_OPCODE)
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_IAUR - Descriptor individual address upper register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2266,20 +2068,19 @@ typedef union _hw_fec_iaur
 #define BM_FEC_IAUR_IADDR1      (0xffffffff)  //!< Bit mask for FEC_IAUR_IADDR1.
 
 //! @brief Get value of FEC_IAUR_IADDR1 from a register value.
-#define BG_FEC_IAUR_IADDR1(r)   (((r) & BM_FEC_IAUR_IADDR1) >> BP_FEC_IAUR_IADDR1)
+#define BG_FEC_IAUR_IADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_IAUR_IADDR1) >> BP_FEC_IAUR_IADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_IAUR_IADDR1.
-#define BF_FEC_IAUR_IADDR1(v)   ((((reg32_t) v) << BP_FEC_IAUR_IADDR1) & BM_FEC_IAUR_IADDR1)
-#else
-//! @brief Format value for bitfield FEC_IAUR_IADDR1.
-#define BF_FEC_IAUR_IADDR1(v)   (((v) << BP_FEC_IAUR_IADDR1) & BM_FEC_IAUR_IADDR1)
-#endif
+#define BF_FEC_IAUR_IADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_IAUR_IADDR1) & BM_FEC_IAUR_IADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IADDR1 field to a new value.
 #define BW_FEC_IAUR_IADDR1(v)   (HW_FEC_IAUR_WR((HW_FEC_IAUR_RD() & ~BM_FEC_IAUR_IADDR1) | BF_FEC_IAUR_IADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_IALR - Descriptor individual address lower register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2331,20 +2132,19 @@ typedef union _hw_fec_ialr
 #define BM_FEC_IALR_IADDR2      (0xffffffff)  //!< Bit mask for FEC_IALR_IADDR2.
 
 //! @brief Get value of FEC_IALR_IADDR2 from a register value.
-#define BG_FEC_IALR_IADDR2(r)   (((r) & BM_FEC_IALR_IADDR2) >> BP_FEC_IALR_IADDR2)
+#define BG_FEC_IALR_IADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_IALR_IADDR2) >> BP_FEC_IALR_IADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_IALR_IADDR2.
-#define BF_FEC_IALR_IADDR2(v)   ((((reg32_t) v) << BP_FEC_IALR_IADDR2) & BM_FEC_IALR_IADDR2)
-#else
-//! @brief Format value for bitfield FEC_IALR_IADDR2.
-#define BF_FEC_IALR_IADDR2(v)   (((v) << BP_FEC_IALR_IADDR2) & BM_FEC_IALR_IADDR2)
-#endif
+#define BF_FEC_IALR_IADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_IALR_IADDR2) & BM_FEC_IALR_IADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IADDR2 field to a new value.
 #define BW_FEC_IALR_IADDR2(v)   (HW_FEC_IALR_WR((HW_FEC_IALR_RD() & ~BM_FEC_IALR_IADDR2) | BF_FEC_IALR_IADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_GAUR - Descriptor group address upper register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2395,20 +2195,19 @@ typedef union _hw_fec_gaur
 #define BM_FEC_GAUR_GADDR1      (0xffffffff)  //!< Bit mask for FEC_GAUR_GADDR1.
 
 //! @brief Get value of FEC_GAUR_GADDR1 from a register value.
-#define BG_FEC_GAUR_GADDR1(r)   (((r) & BM_FEC_GAUR_GADDR1) >> BP_FEC_GAUR_GADDR1)
+#define BG_FEC_GAUR_GADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_GAUR_GADDR1) >> BP_FEC_GAUR_GADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_GAUR_GADDR1.
-#define BF_FEC_GAUR_GADDR1(v)   ((((reg32_t) v) << BP_FEC_GAUR_GADDR1) & BM_FEC_GAUR_GADDR1)
-#else
-//! @brief Format value for bitfield FEC_GAUR_GADDR1.
-#define BF_FEC_GAUR_GADDR1(v)   (((v) << BP_FEC_GAUR_GADDR1) & BM_FEC_GAUR_GADDR1)
-#endif
+#define BF_FEC_GAUR_GADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_GAUR_GADDR1) & BM_FEC_GAUR_GADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GADDR1 field to a new value.
 #define BW_FEC_GAUR_GADDR1(v)   (HW_FEC_GAUR_WR((HW_FEC_GAUR_RD() & ~BM_FEC_GAUR_GADDR1) | BF_FEC_GAUR_GADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_GALR - Descriptor group address lower register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2459,20 +2258,19 @@ typedef union _hw_fec_galr
 #define BM_FEC_GALR_GADDR2      (0xffffffff)  //!< Bit mask for FEC_GALR_GADDR2.
 
 //! @brief Get value of FEC_GALR_GADDR2 from a register value.
-#define BG_FEC_GALR_GADDR2(r)   (((r) & BM_FEC_GALR_GADDR2) >> BP_FEC_GALR_GADDR2)
+#define BG_FEC_GALR_GADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_GALR_GADDR2) >> BP_FEC_GALR_GADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_GALR_GADDR2.
-#define BF_FEC_GALR_GADDR2(v)   ((((reg32_t) v) << BP_FEC_GALR_GADDR2) & BM_FEC_GALR_GADDR2)
-#else
-//! @brief Format value for bitfield FEC_GALR_GADDR2.
-#define BF_FEC_GALR_GADDR2(v)   (((v) << BP_FEC_GALR_GADDR2) & BM_FEC_GALR_GADDR2)
-#endif
+#define BF_FEC_GALR_GADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_GALR_GADDR2) & BM_FEC_GALR_GADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GADDR2 field to a new value.
 #define BW_FEC_GALR_GADDR2(v)   (HW_FEC_GALR_WR((HW_FEC_GALR_RD() & ~BM_FEC_GALR_GADDR2) | BF_FEC_GALR_GADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_TFWR - Transmit FIFO watermark register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2531,21 +2329,20 @@ typedef union _hw_fec_tfwr
 #define BM_FEC_TFWR_X_WMRK      (0x00000003)  //!< Bit mask for FEC_TFWR_X_WMRK.
 
 //! @brief Get value of FEC_TFWR_X_WMRK from a register value.
-#define BG_FEC_TFWR_X_WMRK(r)   (((r) & BM_FEC_TFWR_X_WMRK) >> BP_FEC_TFWR_X_WMRK)
+#define BG_FEC_TFWR_X_WMRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TFWR_X_WMRK) >> BP_FEC_TFWR_X_WMRK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_TFWR_X_WMRK.
-#define BF_FEC_TFWR_X_WMRK(v)   ((((reg32_t) v) << BP_FEC_TFWR_X_WMRK) & BM_FEC_TFWR_X_WMRK)
-#else
-//! @brief Format value for bitfield FEC_TFWR_X_WMRK.
-#define BF_FEC_TFWR_X_WMRK(v)   (((v) << BP_FEC_TFWR_X_WMRK) & BM_FEC_TFWR_X_WMRK)
-#endif
+#define BF_FEC_TFWR_X_WMRK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_TFWR_X_WMRK) & BM_FEC_TFWR_X_WMRK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X_WMRK field to a new value.
 #define BW_FEC_TFWR_X_WMRK(v)   (HW_FEC_TFWR_WR((HW_FEC_TFWR_RD() & ~BM_FEC_TFWR_X_WMRK) | BF_FEC_TFWR_X_WMRK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_FRBR - FIFO receive bound register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2592,7 +2389,11 @@ typedef union _hw_fec_frbr
 #define BM_FEC_FRBR_R_BOUND      (0x000003fc)  //!< Bit mask for FEC_FRBR_R_BOUND.
 
 //! @brief Get value of FEC_FRBR_R_BOUND from a register value.
-#define BG_FEC_FRBR_R_BOUND(r)   (((r) & BM_FEC_FRBR_R_BOUND) >> BP_FEC_FRBR_R_BOUND)
+#define BG_FEC_FRBR_R_BOUND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_FRBR_R_BOUND) >> BP_FEC_FRBR_R_BOUND)
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_FRSR - FIFO receive FIFO start registers
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2646,20 +2447,19 @@ typedef union _hw_fec_frsr
 #define BM_FEC_FRSR_R_FSTART      (0x000003fc)  //!< Bit mask for FEC_FRSR_R_FSTART.
 
 //! @brief Get value of FEC_FRSR_R_FSTART from a register value.
-#define BG_FEC_FRSR_R_FSTART(r)   (((r) & BM_FEC_FRSR_R_FSTART) >> BP_FEC_FRSR_R_FSTART)
+#define BG_FEC_FRSR_R_FSTART(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_FRSR_R_FSTART) >> BP_FEC_FRSR_R_FSTART)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_FRSR_R_FSTART.
-#define BF_FEC_FRSR_R_FSTART(v)   ((((reg32_t) v) << BP_FEC_FRSR_R_FSTART) & BM_FEC_FRSR_R_FSTART)
-#else
-//! @brief Format value for bitfield FEC_FRSR_R_FSTART.
-#define BF_FEC_FRSR_R_FSTART(v)   (((v) << BP_FEC_FRSR_R_FSTART) & BM_FEC_FRSR_R_FSTART)
-#endif
+#define BF_FEC_FRSR_R_FSTART(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_FRSR_R_FSTART) & BM_FEC_FRSR_R_FSTART)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_FSTART field to a new value.
 #define BW_FEC_FRSR_R_FSTART(v)   (HW_FEC_FRSR_WR((HW_FEC_FRSR_RD() & ~BM_FEC_FRSR_R_FSTART) | BF_FEC_FRSR_R_FSTART(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_ERDSR - Receive buffer descriptor ring start register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2711,20 +2511,19 @@ typedef union _hw_fec_erdsr
 #define BM_FEC_ERDSR_R_DES_START      (0xfffffffc)  //!< Bit mask for FEC_ERDSR_R_DES_START.
 
 //! @brief Get value of FEC_ERDSR_R_DES_START from a register value.
-#define BG_FEC_ERDSR_R_DES_START(r)   (((r) & BM_FEC_ERDSR_R_DES_START) >> BP_FEC_ERDSR_R_DES_START)
+#define BG_FEC_ERDSR_R_DES_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_ERDSR_R_DES_START) >> BP_FEC_ERDSR_R_DES_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_ERDSR_R_DES_START.
-#define BF_FEC_ERDSR_R_DES_START(v)   ((((reg32_t) v) << BP_FEC_ERDSR_R_DES_START) & BM_FEC_ERDSR_R_DES_START)
-#else
-//! @brief Format value for bitfield FEC_ERDSR_R_DES_START.
-#define BF_FEC_ERDSR_R_DES_START(v)   (((v) << BP_FEC_ERDSR_R_DES_START) & BM_FEC_ERDSR_R_DES_START)
-#endif
+#define BF_FEC_ERDSR_R_DES_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_ERDSR_R_DES_START) & BM_FEC_ERDSR_R_DES_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_DES_START field to a new value.
 #define BW_FEC_ERDSR_R_DES_START(v)   (HW_FEC_ERDSR_WR((HW_FEC_ERDSR_RD() & ~BM_FEC_ERDSR_R_DES_START) | BF_FEC_ERDSR_R_DES_START(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_ETDSR - Transmit buffer descriptor ring start register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2776,20 +2575,19 @@ typedef union _hw_fec_etdsr
 #define BM_FEC_ETDSR_X_DES_START      (0xfffffffc)  //!< Bit mask for FEC_ETDSR_X_DES_START.
 
 //! @brief Get value of FEC_ETDSR_X_DES_START from a register value.
-#define BG_FEC_ETDSR_X_DES_START(r)   (((r) & BM_FEC_ETDSR_X_DES_START) >> BP_FEC_ETDSR_X_DES_START)
+#define BG_FEC_ETDSR_X_DES_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_ETDSR_X_DES_START) >> BP_FEC_ETDSR_X_DES_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_ETDSR_X_DES_START.
-#define BF_FEC_ETDSR_X_DES_START(v)   ((((reg32_t) v) << BP_FEC_ETDSR_X_DES_START) & BM_FEC_ETDSR_X_DES_START)
-#else
-//! @brief Format value for bitfield FEC_ETDSR_X_DES_START.
-#define BF_FEC_ETDSR_X_DES_START(v)   (((v) << BP_FEC_ETDSR_X_DES_START) & BM_FEC_ETDSR_X_DES_START)
-#endif
+#define BF_FEC_ETDSR_X_DES_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_ETDSR_X_DES_START) & BM_FEC_ETDSR_X_DES_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X_DES_START field to a new value.
 #define BW_FEC_ETDSR_X_DES_START(v)   (HW_FEC_ETDSR_WR((HW_FEC_ETDSR_RD() & ~BM_FEC_ETDSR_X_DES_START) | BF_FEC_ETDSR_X_DES_START(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_FEC_EMRBR - Maximum receive buffer size register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2845,15 +2643,10 @@ typedef union _hw_fec_emrbr
 #define BM_FEC_EMRBR_R_BUF_SIZE      (0x000007f0)  //!< Bit mask for FEC_EMRBR_R_BUF_SIZE.
 
 //! @brief Get value of FEC_EMRBR_R_BUF_SIZE from a register value.
-#define BG_FEC_EMRBR_R_BUF_SIZE(r)   (((r) & BM_FEC_EMRBR_R_BUF_SIZE) >> BP_FEC_EMRBR_R_BUF_SIZE)
+#define BG_FEC_EMRBR_R_BUF_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_EMRBR_R_BUF_SIZE) >> BP_FEC_EMRBR_R_BUF_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield FEC_EMRBR_R_BUF_SIZE.
-#define BF_FEC_EMRBR_R_BUF_SIZE(v)   ((((reg32_t) v) << BP_FEC_EMRBR_R_BUF_SIZE) & BM_FEC_EMRBR_R_BUF_SIZE)
-#else
-//! @brief Format value for bitfield FEC_EMRBR_R_BUF_SIZE.
-#define BF_FEC_EMRBR_R_BUF_SIZE(v)   (((v) << BP_FEC_EMRBR_R_BUF_SIZE) & BM_FEC_EMRBR_R_BUF_SIZE)
-#endif
+#define BF_FEC_EMRBR_R_BUF_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_FEC_EMRBR_R_BUF_SIZE) & BM_FEC_EMRBR_R_BUF_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_BUF_SIZE field to a new value.

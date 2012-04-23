@@ -64,6 +64,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_EIR - Interrupt Event Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ENET_EIR - Interrupt Event Register (W1C)
@@ -133,15 +148,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_TS_TIMER      (0x00008000)  //!< Bit mask for ENET_EIR_TS_TIMER.
 
 //! @brief Get value of ENET_EIR_TS_TIMER from a register value.
-#define BG_ENET_EIR_TS_TIMER(r)   (((r) & BM_ENET_EIR_TS_TIMER) >> BP_ENET_EIR_TS_TIMER)
+#define BG_ENET_EIR_TS_TIMER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_TS_TIMER) >> BP_ENET_EIR_TS_TIMER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_TS_TIMER.
-#define BF_ENET_EIR_TS_TIMER(v)   ((((reg32_t) v) << BP_ENET_EIR_TS_TIMER) & BM_ENET_EIR_TS_TIMER)
-#else
-//! @brief Format value for bitfield ENET_EIR_TS_TIMER.
-#define BF_ENET_EIR_TS_TIMER(v)   (((v) << BP_ENET_EIR_TS_TIMER) & BM_ENET_EIR_TS_TIMER)
-#endif
+#define BF_ENET_EIR_TS_TIMER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_TS_TIMER) & BM_ENET_EIR_TS_TIMER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS_TIMER field to a new value.
@@ -158,15 +168,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_TS_AVAIL      (0x00010000)  //!< Bit mask for ENET_EIR_TS_AVAIL.
 
 //! @brief Get value of ENET_EIR_TS_AVAIL from a register value.
-#define BG_ENET_EIR_TS_AVAIL(r)   (((r) & BM_ENET_EIR_TS_AVAIL) >> BP_ENET_EIR_TS_AVAIL)
+#define BG_ENET_EIR_TS_AVAIL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_TS_AVAIL) >> BP_ENET_EIR_TS_AVAIL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_TS_AVAIL.
-#define BF_ENET_EIR_TS_AVAIL(v)   ((((reg32_t) v) << BP_ENET_EIR_TS_AVAIL) & BM_ENET_EIR_TS_AVAIL)
-#else
-//! @brief Format value for bitfield ENET_EIR_TS_AVAIL.
-#define BF_ENET_EIR_TS_AVAIL(v)   (((v) << BP_ENET_EIR_TS_AVAIL) & BM_ENET_EIR_TS_AVAIL)
-#endif
+#define BF_ENET_EIR_TS_AVAIL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_TS_AVAIL) & BM_ENET_EIR_TS_AVAIL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS_AVAIL field to a new value.
@@ -183,15 +188,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_WAKEUP      (0x00020000)  //!< Bit mask for ENET_EIR_WAKEUP.
 
 //! @brief Get value of ENET_EIR_WAKEUP from a register value.
-#define BG_ENET_EIR_WAKEUP(r)   (((r) & BM_ENET_EIR_WAKEUP) >> BP_ENET_EIR_WAKEUP)
+#define BG_ENET_EIR_WAKEUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_WAKEUP) >> BP_ENET_EIR_WAKEUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_WAKEUP.
-#define BF_ENET_EIR_WAKEUP(v)   ((((reg32_t) v) << BP_ENET_EIR_WAKEUP) & BM_ENET_EIR_WAKEUP)
-#else
-//! @brief Format value for bitfield ENET_EIR_WAKEUP.
-#define BF_ENET_EIR_WAKEUP(v)   (((v) << BP_ENET_EIR_WAKEUP) & BM_ENET_EIR_WAKEUP)
-#endif
+#define BF_ENET_EIR_WAKEUP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_WAKEUP) & BM_ENET_EIR_WAKEUP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKEUP field to a new value.
@@ -208,15 +208,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_PLR      (0x00040000)  //!< Bit mask for ENET_EIR_PLR.
 
 //! @brief Get value of ENET_EIR_PLR from a register value.
-#define BG_ENET_EIR_PLR(r)   (((r) & BM_ENET_EIR_PLR) >> BP_ENET_EIR_PLR)
+#define BG_ENET_EIR_PLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_PLR) >> BP_ENET_EIR_PLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_PLR.
-#define BF_ENET_EIR_PLR(v)   ((((reg32_t) v) << BP_ENET_EIR_PLR) & BM_ENET_EIR_PLR)
-#else
-//! @brief Format value for bitfield ENET_EIR_PLR.
-#define BF_ENET_EIR_PLR(v)   (((v) << BP_ENET_EIR_PLR) & BM_ENET_EIR_PLR)
-#endif
+#define BF_ENET_EIR_PLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_PLR) & BM_ENET_EIR_PLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PLR field to a new value.
@@ -233,15 +228,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_UN      (0x00080000)  //!< Bit mask for ENET_EIR_UN.
 
 //! @brief Get value of ENET_EIR_UN from a register value.
-#define BG_ENET_EIR_UN(r)   (((r) & BM_ENET_EIR_UN) >> BP_ENET_EIR_UN)
+#define BG_ENET_EIR_UN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_UN) >> BP_ENET_EIR_UN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_UN.
-#define BF_ENET_EIR_UN(v)   ((((reg32_t) v) << BP_ENET_EIR_UN) & BM_ENET_EIR_UN)
-#else
-//! @brief Format value for bitfield ENET_EIR_UN.
-#define BF_ENET_EIR_UN(v)   (((v) << BP_ENET_EIR_UN) & BM_ENET_EIR_UN)
-#endif
+#define BF_ENET_EIR_UN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_UN) & BM_ENET_EIR_UN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UN field to a new value.
@@ -259,15 +249,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_RL      (0x00100000)  //!< Bit mask for ENET_EIR_RL.
 
 //! @brief Get value of ENET_EIR_RL from a register value.
-#define BG_ENET_EIR_RL(r)   (((r) & BM_ENET_EIR_RL) >> BP_ENET_EIR_RL)
+#define BG_ENET_EIR_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_RL) >> BP_ENET_EIR_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_RL.
-#define BF_ENET_EIR_RL(v)   ((((reg32_t) v) << BP_ENET_EIR_RL) & BM_ENET_EIR_RL)
-#else
-//! @brief Format value for bitfield ENET_EIR_RL.
-#define BF_ENET_EIR_RL(v)   (((v) << BP_ENET_EIR_RL) & BM_ENET_EIR_RL)
-#endif
+#define BF_ENET_EIR_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_RL) & BM_ENET_EIR_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -284,15 +269,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_LC      (0x00200000)  //!< Bit mask for ENET_EIR_LC.
 
 //! @brief Get value of ENET_EIR_LC from a register value.
-#define BG_ENET_EIR_LC(r)   (((r) & BM_ENET_EIR_LC) >> BP_ENET_EIR_LC)
+#define BG_ENET_EIR_LC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_LC) >> BP_ENET_EIR_LC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_LC.
-#define BF_ENET_EIR_LC(v)   ((((reg32_t) v) << BP_ENET_EIR_LC) & BM_ENET_EIR_LC)
-#else
-//! @brief Format value for bitfield ENET_EIR_LC.
-#define BF_ENET_EIR_LC(v)   (((v) << BP_ENET_EIR_LC) & BM_ENET_EIR_LC)
-#endif
+#define BF_ENET_EIR_LC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_LC) & BM_ENET_EIR_LC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LC field to a new value.
@@ -311,15 +291,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_EBERR      (0x00400000)  //!< Bit mask for ENET_EIR_EBERR.
 
 //! @brief Get value of ENET_EIR_EBERR from a register value.
-#define BG_ENET_EIR_EBERR(r)   (((r) & BM_ENET_EIR_EBERR) >> BP_ENET_EIR_EBERR)
+#define BG_ENET_EIR_EBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_EBERR) >> BP_ENET_EIR_EBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_EBERR.
-#define BF_ENET_EIR_EBERR(v)   ((((reg32_t) v) << BP_ENET_EIR_EBERR) & BM_ENET_EIR_EBERR)
-#else
-//! @brief Format value for bitfield ENET_EIR_EBERR.
-#define BF_ENET_EIR_EBERR(v)   (((v) << BP_ENET_EIR_EBERR) & BM_ENET_EIR_EBERR)
-#endif
+#define BF_ENET_EIR_EBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_EBERR) & BM_ENET_EIR_EBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EBERR field to a new value.
@@ -335,15 +310,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_MII      (0x00800000)  //!< Bit mask for ENET_EIR_MII.
 
 //! @brief Get value of ENET_EIR_MII from a register value.
-#define BG_ENET_EIR_MII(r)   (((r) & BM_ENET_EIR_MII) >> BP_ENET_EIR_MII)
+#define BG_ENET_EIR_MII(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_MII) >> BP_ENET_EIR_MII)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_MII.
-#define BF_ENET_EIR_MII(v)   ((((reg32_t) v) << BP_ENET_EIR_MII) & BM_ENET_EIR_MII)
-#else
-//! @brief Format value for bitfield ENET_EIR_MII.
-#define BF_ENET_EIR_MII(v)   (((v) << BP_ENET_EIR_MII) & BM_ENET_EIR_MII)
-#endif
+#define BF_ENET_EIR_MII(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_MII) & BM_ENET_EIR_MII)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII field to a new value.
@@ -360,15 +330,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_RXB      (0x01000000)  //!< Bit mask for ENET_EIR_RXB.
 
 //! @brief Get value of ENET_EIR_RXB from a register value.
-#define BG_ENET_EIR_RXB(r)   (((r) & BM_ENET_EIR_RXB) >> BP_ENET_EIR_RXB)
+#define BG_ENET_EIR_RXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_RXB) >> BP_ENET_EIR_RXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_RXB.
-#define BF_ENET_EIR_RXB(v)   ((((reg32_t) v) << BP_ENET_EIR_RXB) & BM_ENET_EIR_RXB)
-#else
-//! @brief Format value for bitfield ENET_EIR_RXB.
-#define BF_ENET_EIR_RXB(v)   (((v) << BP_ENET_EIR_RXB) & BM_ENET_EIR_RXB)
-#endif
+#define BF_ENET_EIR_RXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_RXB) & BM_ENET_EIR_RXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXB field to a new value.
@@ -385,15 +350,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_RXF      (0x02000000)  //!< Bit mask for ENET_EIR_RXF.
 
 //! @brief Get value of ENET_EIR_RXF from a register value.
-#define BG_ENET_EIR_RXF(r)   (((r) & BM_ENET_EIR_RXF) >> BP_ENET_EIR_RXF)
+#define BG_ENET_EIR_RXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_RXF) >> BP_ENET_EIR_RXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_RXF.
-#define BF_ENET_EIR_RXF(v)   ((((reg32_t) v) << BP_ENET_EIR_RXF) & BM_ENET_EIR_RXF)
-#else
-//! @brief Format value for bitfield ENET_EIR_RXF.
-#define BF_ENET_EIR_RXF(v)   (((v) << BP_ENET_EIR_RXF) & BM_ENET_EIR_RXF)
-#endif
+#define BF_ENET_EIR_RXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_RXF) & BM_ENET_EIR_RXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXF field to a new value.
@@ -409,15 +369,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_TXB      (0x04000000)  //!< Bit mask for ENET_EIR_TXB.
 
 //! @brief Get value of ENET_EIR_TXB from a register value.
-#define BG_ENET_EIR_TXB(r)   (((r) & BM_ENET_EIR_TXB) >> BP_ENET_EIR_TXB)
+#define BG_ENET_EIR_TXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_TXB) >> BP_ENET_EIR_TXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_TXB.
-#define BF_ENET_EIR_TXB(v)   ((((reg32_t) v) << BP_ENET_EIR_TXB) & BM_ENET_EIR_TXB)
-#else
-//! @brief Format value for bitfield ENET_EIR_TXB.
-#define BF_ENET_EIR_TXB(v)   (((v) << BP_ENET_EIR_TXB) & BM_ENET_EIR_TXB)
-#endif
+#define BF_ENET_EIR_TXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_TXB) & BM_ENET_EIR_TXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB field to a new value.
@@ -434,15 +389,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_TXF      (0x08000000)  //!< Bit mask for ENET_EIR_TXF.
 
 //! @brief Get value of ENET_EIR_TXF from a register value.
-#define BG_ENET_EIR_TXF(r)   (((r) & BM_ENET_EIR_TXF) >> BP_ENET_EIR_TXF)
+#define BG_ENET_EIR_TXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_TXF) >> BP_ENET_EIR_TXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_TXF.
-#define BF_ENET_EIR_TXF(v)   ((((reg32_t) v) << BP_ENET_EIR_TXF) & BM_ENET_EIR_TXF)
-#else
-//! @brief Format value for bitfield ENET_EIR_TXF.
-#define BF_ENET_EIR_TXF(v)   (((v) << BP_ENET_EIR_TXF) & BM_ENET_EIR_TXF)
-#endif
+#define BF_ENET_EIR_TXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_TXF) & BM_ENET_EIR_TXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXF field to a new value.
@@ -461,15 +411,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_GRA      (0x10000000)  //!< Bit mask for ENET_EIR_GRA.
 
 //! @brief Get value of ENET_EIR_GRA from a register value.
-#define BG_ENET_EIR_GRA(r)   (((r) & BM_ENET_EIR_GRA) >> BP_ENET_EIR_GRA)
+#define BG_ENET_EIR_GRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_GRA) >> BP_ENET_EIR_GRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_GRA.
-#define BF_ENET_EIR_GRA(v)   ((((reg32_t) v) << BP_ENET_EIR_GRA) & BM_ENET_EIR_GRA)
-#else
-//! @brief Format value for bitfield ENET_EIR_GRA.
-#define BF_ENET_EIR_GRA(v)   (((v) << BP_ENET_EIR_GRA) & BM_ENET_EIR_GRA)
-#endif
+#define BF_ENET_EIR_GRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_GRA) & BM_ENET_EIR_GRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GRA field to a new value.
@@ -487,15 +432,10 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_BABT      (0x20000000)  //!< Bit mask for ENET_EIR_BABT.
 
 //! @brief Get value of ENET_EIR_BABT from a register value.
-#define BG_ENET_EIR_BABT(r)   (((r) & BM_ENET_EIR_BABT) >> BP_ENET_EIR_BABT)
+#define BG_ENET_EIR_BABT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_BABT) >> BP_ENET_EIR_BABT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_BABT.
-#define BF_ENET_EIR_BABT(v)   ((((reg32_t) v) << BP_ENET_EIR_BABT) & BM_ENET_EIR_BABT)
-#else
-//! @brief Format value for bitfield ENET_EIR_BABT.
-#define BF_ENET_EIR_BABT(v)   (((v) << BP_ENET_EIR_BABT) & BM_ENET_EIR_BABT)
-#endif
+#define BF_ENET_EIR_BABT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_BABT) & BM_ENET_EIR_BABT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABT field to a new value.
@@ -511,20 +451,19 @@ typedef union _hw_enet_eir
 #define BM_ENET_EIR_BABR      (0x40000000)  //!< Bit mask for ENET_EIR_BABR.
 
 //! @brief Get value of ENET_EIR_BABR from a register value.
-#define BG_ENET_EIR_BABR(r)   (((r) & BM_ENET_EIR_BABR) >> BP_ENET_EIR_BABR)
+#define BG_ENET_EIR_BABR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIR_BABR) >> BP_ENET_EIR_BABR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIR_BABR.
-#define BF_ENET_EIR_BABR(v)   ((((reg32_t) v) << BP_ENET_EIR_BABR) & BM_ENET_EIR_BABR)
-#else
-//! @brief Format value for bitfield ENET_EIR_BABR.
-#define BF_ENET_EIR_BABR(v)   (((v) << BP_ENET_EIR_BABR) & BM_ENET_EIR_BABR)
-#endif
+#define BF_ENET_EIR_BABR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIR_BABR) & BM_ENET_EIR_BABR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABR field to a new value.
 #define BW_ENET_EIR_BABR(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_BABR) | BF_ENET_EIR_BABR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_EIMR - Interrupt Mask Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -594,15 +533,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_TS_TIMER      (0x00008000)  //!< Bit mask for ENET_EIMR_TS_TIMER.
 
 //! @brief Get value of ENET_EIMR_TS_TIMER from a register value.
-#define BG_ENET_EIMR_TS_TIMER(r)   (((r) & BM_ENET_EIMR_TS_TIMER) >> BP_ENET_EIMR_TS_TIMER)
+#define BG_ENET_EIMR_TS_TIMER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_TS_TIMER) >> BP_ENET_EIMR_TS_TIMER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_TS_TIMER.
-#define BF_ENET_EIMR_TS_TIMER(v)   ((((reg32_t) v) << BP_ENET_EIMR_TS_TIMER) & BM_ENET_EIMR_TS_TIMER)
-#else
-//! @brief Format value for bitfield ENET_EIMR_TS_TIMER.
-#define BF_ENET_EIMR_TS_TIMER(v)   (((v) << BP_ENET_EIMR_TS_TIMER) & BM_ENET_EIMR_TS_TIMER)
-#endif
+#define BF_ENET_EIMR_TS_TIMER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_TS_TIMER) & BM_ENET_EIMR_TS_TIMER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS_TIMER field to a new value.
@@ -621,15 +555,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_TS_AVAIL      (0x00010000)  //!< Bit mask for ENET_EIMR_TS_AVAIL.
 
 //! @brief Get value of ENET_EIMR_TS_AVAIL from a register value.
-#define BG_ENET_EIMR_TS_AVAIL(r)   (((r) & BM_ENET_EIMR_TS_AVAIL) >> BP_ENET_EIMR_TS_AVAIL)
+#define BG_ENET_EIMR_TS_AVAIL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_TS_AVAIL) >> BP_ENET_EIMR_TS_AVAIL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_TS_AVAIL.
-#define BF_ENET_EIMR_TS_AVAIL(v)   ((((reg32_t) v) << BP_ENET_EIMR_TS_AVAIL) & BM_ENET_EIMR_TS_AVAIL)
-#else
-//! @brief Format value for bitfield ENET_EIMR_TS_AVAIL.
-#define BF_ENET_EIMR_TS_AVAIL(v)   (((v) << BP_ENET_EIMR_TS_AVAIL) & BM_ENET_EIMR_TS_AVAIL)
-#endif
+#define BF_ENET_EIMR_TS_AVAIL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_TS_AVAIL) & BM_ENET_EIMR_TS_AVAIL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TS_AVAIL field to a new value.
@@ -648,15 +577,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_WAKEUP      (0x00020000)  //!< Bit mask for ENET_EIMR_WAKEUP.
 
 //! @brief Get value of ENET_EIMR_WAKEUP from a register value.
-#define BG_ENET_EIMR_WAKEUP(r)   (((r) & BM_ENET_EIMR_WAKEUP) >> BP_ENET_EIMR_WAKEUP)
+#define BG_ENET_EIMR_WAKEUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_WAKEUP) >> BP_ENET_EIMR_WAKEUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_WAKEUP.
-#define BF_ENET_EIMR_WAKEUP(v)   ((((reg32_t) v) << BP_ENET_EIMR_WAKEUP) & BM_ENET_EIMR_WAKEUP)
-#else
-//! @brief Format value for bitfield ENET_EIMR_WAKEUP.
-#define BF_ENET_EIMR_WAKEUP(v)   (((v) << BP_ENET_EIMR_WAKEUP) & BM_ENET_EIMR_WAKEUP)
-#endif
+#define BF_ENET_EIMR_WAKEUP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_WAKEUP) & BM_ENET_EIMR_WAKEUP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKEUP field to a new value.
@@ -675,15 +599,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_PLR      (0x00040000)  //!< Bit mask for ENET_EIMR_PLR.
 
 //! @brief Get value of ENET_EIMR_PLR from a register value.
-#define BG_ENET_EIMR_PLR(r)   (((r) & BM_ENET_EIMR_PLR) >> BP_ENET_EIMR_PLR)
+#define BG_ENET_EIMR_PLR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_PLR) >> BP_ENET_EIMR_PLR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_PLR.
-#define BF_ENET_EIMR_PLR(v)   ((((reg32_t) v) << BP_ENET_EIMR_PLR) & BM_ENET_EIMR_PLR)
-#else
-//! @brief Format value for bitfield ENET_EIMR_PLR.
-#define BF_ENET_EIMR_PLR(v)   (((v) << BP_ENET_EIMR_PLR) & BM_ENET_EIMR_PLR)
-#endif
+#define BF_ENET_EIMR_PLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_PLR) & BM_ENET_EIMR_PLR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PLR field to a new value.
@@ -702,15 +621,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_UN      (0x00080000)  //!< Bit mask for ENET_EIMR_UN.
 
 //! @brief Get value of ENET_EIMR_UN from a register value.
-#define BG_ENET_EIMR_UN(r)   (((r) & BM_ENET_EIMR_UN) >> BP_ENET_EIMR_UN)
+#define BG_ENET_EIMR_UN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_UN) >> BP_ENET_EIMR_UN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_UN.
-#define BF_ENET_EIMR_UN(v)   ((((reg32_t) v) << BP_ENET_EIMR_UN) & BM_ENET_EIMR_UN)
-#else
-//! @brief Format value for bitfield ENET_EIMR_UN.
-#define BF_ENET_EIMR_UN(v)   (((v) << BP_ENET_EIMR_UN) & BM_ENET_EIMR_UN)
-#endif
+#define BF_ENET_EIMR_UN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_UN) & BM_ENET_EIMR_UN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UN field to a new value.
@@ -729,15 +643,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_RL      (0x00100000)  //!< Bit mask for ENET_EIMR_RL.
 
 //! @brief Get value of ENET_EIMR_RL from a register value.
-#define BG_ENET_EIMR_RL(r)   (((r) & BM_ENET_EIMR_RL) >> BP_ENET_EIMR_RL)
+#define BG_ENET_EIMR_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_RL) >> BP_ENET_EIMR_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_RL.
-#define BF_ENET_EIMR_RL(v)   ((((reg32_t) v) << BP_ENET_EIMR_RL) & BM_ENET_EIMR_RL)
-#else
-//! @brief Format value for bitfield ENET_EIMR_RL.
-#define BF_ENET_EIMR_RL(v)   (((v) << BP_ENET_EIMR_RL) & BM_ENET_EIMR_RL)
-#endif
+#define BF_ENET_EIMR_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_RL) & BM_ENET_EIMR_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -756,15 +665,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_LC      (0x00200000)  //!< Bit mask for ENET_EIMR_LC.
 
 //! @brief Get value of ENET_EIMR_LC from a register value.
-#define BG_ENET_EIMR_LC(r)   (((r) & BM_ENET_EIMR_LC) >> BP_ENET_EIMR_LC)
+#define BG_ENET_EIMR_LC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_LC) >> BP_ENET_EIMR_LC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_LC.
-#define BF_ENET_EIMR_LC(v)   ((((reg32_t) v) << BP_ENET_EIMR_LC) & BM_ENET_EIMR_LC)
-#else
-//! @brief Format value for bitfield ENET_EIMR_LC.
-#define BF_ENET_EIMR_LC(v)   (((v) << BP_ENET_EIMR_LC) & BM_ENET_EIMR_LC)
-#endif
+#define BF_ENET_EIMR_LC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_LC) & BM_ENET_EIMR_LC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LC field to a new value.
@@ -783,15 +687,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_EBERR      (0x00400000)  //!< Bit mask for ENET_EIMR_EBERR.
 
 //! @brief Get value of ENET_EIMR_EBERR from a register value.
-#define BG_ENET_EIMR_EBERR(r)   (((r) & BM_ENET_EIMR_EBERR) >> BP_ENET_EIMR_EBERR)
+#define BG_ENET_EIMR_EBERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_EBERR) >> BP_ENET_EIMR_EBERR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_EBERR.
-#define BF_ENET_EIMR_EBERR(v)   ((((reg32_t) v) << BP_ENET_EIMR_EBERR) & BM_ENET_EIMR_EBERR)
-#else
-//! @brief Format value for bitfield ENET_EIMR_EBERR.
-#define BF_ENET_EIMR_EBERR(v)   (((v) << BP_ENET_EIMR_EBERR) & BM_ENET_EIMR_EBERR)
-#endif
+#define BF_ENET_EIMR_EBERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_EBERR) & BM_ENET_EIMR_EBERR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EBERR field to a new value.
@@ -810,15 +709,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_MII      (0x00800000)  //!< Bit mask for ENET_EIMR_MII.
 
 //! @brief Get value of ENET_EIMR_MII from a register value.
-#define BG_ENET_EIMR_MII(r)   (((r) & BM_ENET_EIMR_MII) >> BP_ENET_EIMR_MII)
+#define BG_ENET_EIMR_MII(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_MII) >> BP_ENET_EIMR_MII)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_MII.
-#define BF_ENET_EIMR_MII(v)   ((((reg32_t) v) << BP_ENET_EIMR_MII) & BM_ENET_EIMR_MII)
-#else
-//! @brief Format value for bitfield ENET_EIMR_MII.
-#define BF_ENET_EIMR_MII(v)   (((v) << BP_ENET_EIMR_MII) & BM_ENET_EIMR_MII)
-#endif
+#define BF_ENET_EIMR_MII(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_MII) & BM_ENET_EIMR_MII)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII field to a new value.
@@ -837,15 +731,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_RXB      (0x01000000)  //!< Bit mask for ENET_EIMR_RXB.
 
 //! @brief Get value of ENET_EIMR_RXB from a register value.
-#define BG_ENET_EIMR_RXB(r)   (((r) & BM_ENET_EIMR_RXB) >> BP_ENET_EIMR_RXB)
+#define BG_ENET_EIMR_RXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_RXB) >> BP_ENET_EIMR_RXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_RXB.
-#define BF_ENET_EIMR_RXB(v)   ((((reg32_t) v) << BP_ENET_EIMR_RXB) & BM_ENET_EIMR_RXB)
-#else
-//! @brief Format value for bitfield ENET_EIMR_RXB.
-#define BF_ENET_EIMR_RXB(v)   (((v) << BP_ENET_EIMR_RXB) & BM_ENET_EIMR_RXB)
-#endif
+#define BF_ENET_EIMR_RXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_RXB) & BM_ENET_EIMR_RXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXB field to a new value.
@@ -864,15 +753,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_RXF      (0x02000000)  //!< Bit mask for ENET_EIMR_RXF.
 
 //! @brief Get value of ENET_EIMR_RXF from a register value.
-#define BG_ENET_EIMR_RXF(r)   (((r) & BM_ENET_EIMR_RXF) >> BP_ENET_EIMR_RXF)
+#define BG_ENET_EIMR_RXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_RXF) >> BP_ENET_EIMR_RXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_RXF.
-#define BF_ENET_EIMR_RXF(v)   ((((reg32_t) v) << BP_ENET_EIMR_RXF) & BM_ENET_EIMR_RXF)
-#else
-//! @brief Format value for bitfield ENET_EIMR_RXF.
-#define BF_ENET_EIMR_RXF(v)   (((v) << BP_ENET_EIMR_RXF) & BM_ENET_EIMR_RXF)
-#endif
+#define BF_ENET_EIMR_RXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_RXF) & BM_ENET_EIMR_RXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RXF field to a new value.
@@ -895,15 +779,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_TXB      (0x04000000)  //!< Bit mask for ENET_EIMR_TXB.
 
 //! @brief Get value of ENET_EIMR_TXB from a register value.
-#define BG_ENET_EIMR_TXB(r)   (((r) & BM_ENET_EIMR_TXB) >> BP_ENET_EIMR_TXB)
+#define BG_ENET_EIMR_TXB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_TXB) >> BP_ENET_EIMR_TXB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_TXB.
-#define BF_ENET_EIMR_TXB(v)   ((((reg32_t) v) << BP_ENET_EIMR_TXB) & BM_ENET_EIMR_TXB)
-#else
-//! @brief Format value for bitfield ENET_EIMR_TXB.
-#define BF_ENET_EIMR_TXB(v)   (((v) << BP_ENET_EIMR_TXB) & BM_ENET_EIMR_TXB)
-#endif
+#define BF_ENET_EIMR_TXB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_TXB) & BM_ENET_EIMR_TXB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXB field to a new value.
@@ -927,15 +806,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_TXF      (0x08000000)  //!< Bit mask for ENET_EIMR_TXF.
 
 //! @brief Get value of ENET_EIMR_TXF from a register value.
-#define BG_ENET_EIMR_TXF(r)   (((r) & BM_ENET_EIMR_TXF) >> BP_ENET_EIMR_TXF)
+#define BG_ENET_EIMR_TXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_TXF) >> BP_ENET_EIMR_TXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_TXF.
-#define BF_ENET_EIMR_TXF(v)   ((((reg32_t) v) << BP_ENET_EIMR_TXF) & BM_ENET_EIMR_TXF)
-#else
-//! @brief Format value for bitfield ENET_EIMR_TXF.
-#define BF_ENET_EIMR_TXF(v)   (((v) << BP_ENET_EIMR_TXF) & BM_ENET_EIMR_TXF)
-#endif
+#define BF_ENET_EIMR_TXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_TXF) & BM_ENET_EIMR_TXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXF field to a new value.
@@ -959,15 +833,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_GRA      (0x10000000)  //!< Bit mask for ENET_EIMR_GRA.
 
 //! @brief Get value of ENET_EIMR_GRA from a register value.
-#define BG_ENET_EIMR_GRA(r)   (((r) & BM_ENET_EIMR_GRA) >> BP_ENET_EIMR_GRA)
+#define BG_ENET_EIMR_GRA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_GRA) >> BP_ENET_EIMR_GRA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_GRA.
-#define BF_ENET_EIMR_GRA(v)   ((((reg32_t) v) << BP_ENET_EIMR_GRA) & BM_ENET_EIMR_GRA)
-#else
-//! @brief Format value for bitfield ENET_EIMR_GRA.
-#define BF_ENET_EIMR_GRA(v)   (((v) << BP_ENET_EIMR_GRA) & BM_ENET_EIMR_GRA)
-#endif
+#define BF_ENET_EIMR_GRA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_GRA) & BM_ENET_EIMR_GRA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GRA field to a new value.
@@ -991,15 +860,10 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_BABT      (0x20000000)  //!< Bit mask for ENET_EIMR_BABT.
 
 //! @brief Get value of ENET_EIMR_BABT from a register value.
-#define BG_ENET_EIMR_BABT(r)   (((r) & BM_ENET_EIMR_BABT) >> BP_ENET_EIMR_BABT)
+#define BG_ENET_EIMR_BABT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_BABT) >> BP_ENET_EIMR_BABT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_BABT.
-#define BF_ENET_EIMR_BABT(v)   ((((reg32_t) v) << BP_ENET_EIMR_BABT) & BM_ENET_EIMR_BABT)
-#else
-//! @brief Format value for bitfield ENET_EIMR_BABT.
-#define BF_ENET_EIMR_BABT(v)   (((v) << BP_ENET_EIMR_BABT) & BM_ENET_EIMR_BABT)
-#endif
+#define BF_ENET_EIMR_BABT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_BABT) & BM_ENET_EIMR_BABT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABT field to a new value.
@@ -1023,21 +887,20 @@ typedef union _hw_enet_eimr
 #define BM_ENET_EIMR_BABR      (0x40000000)  //!< Bit mask for ENET_EIMR_BABR.
 
 //! @brief Get value of ENET_EIMR_BABR from a register value.
-#define BG_ENET_EIMR_BABR(r)   (((r) & BM_ENET_EIMR_BABR) >> BP_ENET_EIMR_BABR)
+#define BG_ENET_EIMR_BABR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_EIMR_BABR) >> BP_ENET_EIMR_BABR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_EIMR_BABR.
-#define BF_ENET_EIMR_BABR(v)   ((((reg32_t) v) << BP_ENET_EIMR_BABR) & BM_ENET_EIMR_BABR)
-#else
-//! @brief Format value for bitfield ENET_EIMR_BABR.
-#define BF_ENET_EIMR_BABR(v)   (((v) << BP_ENET_EIMR_BABR) & BM_ENET_EIMR_BABR)
-#endif
+#define BF_ENET_EIMR_BABR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_EIMR_BABR) & BM_ENET_EIMR_BABR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BABR field to a new value.
 #define BW_ENET_EIMR_BABR(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_BABR) | BF_ENET_EIMR_BABR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RDAR - Receive Descriptor Active Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1096,20 +959,19 @@ typedef union _hw_enet_rdar
 #define BM_ENET_RDAR_RDAR      (0x01000000)  //!< Bit mask for ENET_RDAR_RDAR.
 
 //! @brief Get value of ENET_RDAR_RDAR from a register value.
-#define BG_ENET_RDAR_RDAR(r)   (((r) & BM_ENET_RDAR_RDAR) >> BP_ENET_RDAR_RDAR)
+#define BG_ENET_RDAR_RDAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RDAR_RDAR) >> BP_ENET_RDAR_RDAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RDAR_RDAR.
-#define BF_ENET_RDAR_RDAR(v)   ((((reg32_t) v) << BP_ENET_RDAR_RDAR) & BM_ENET_RDAR_RDAR)
-#else
-//! @brief Format value for bitfield ENET_RDAR_RDAR.
-#define BF_ENET_RDAR_RDAR(v)   (((v) << BP_ENET_RDAR_RDAR) & BM_ENET_RDAR_RDAR)
-#endif
+#define BF_ENET_RDAR_RDAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RDAR_RDAR) & BM_ENET_RDAR_RDAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDAR field to a new value.
 #define BW_ENET_RDAR_RDAR(v)   (HW_ENET_RDAR_WR((HW_ENET_RDAR_RD() & ~BM_ENET_RDAR_RDAR) | BF_ENET_RDAR_RDAR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TDAR - Transmit Descriptor Active Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1168,20 +1030,19 @@ typedef union _hw_enet_tdar
 #define BM_ENET_TDAR_TDAR      (0x01000000)  //!< Bit mask for ENET_TDAR_TDAR.
 
 //! @brief Get value of ENET_TDAR_TDAR from a register value.
-#define BG_ENET_TDAR_TDAR(r)   (((r) & BM_ENET_TDAR_TDAR) >> BP_ENET_TDAR_TDAR)
+#define BG_ENET_TDAR_TDAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TDAR_TDAR) >> BP_ENET_TDAR_TDAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TDAR_TDAR.
-#define BF_ENET_TDAR_TDAR(v)   ((((reg32_t) v) << BP_ENET_TDAR_TDAR) & BM_ENET_TDAR_TDAR)
-#else
-//! @brief Format value for bitfield ENET_TDAR_TDAR.
-#define BF_ENET_TDAR_TDAR(v)   (((v) << BP_ENET_TDAR_TDAR) & BM_ENET_TDAR_TDAR)
-#endif
+#define BF_ENET_TDAR_TDAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TDAR_TDAR) & BM_ENET_TDAR_TDAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDAR field to a new value.
 #define BW_ENET_TDAR_TDAR(v)   (HW_ENET_TDAR_WR((HW_ENET_TDAR_RD() & ~BM_ENET_TDAR_TDAR) | BF_ENET_TDAR_TDAR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ECR - Ethernet Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1240,15 +1101,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_RESET      (0x00000001)  //!< Bit mask for ENET_ECR_RESET.
 
 //! @brief Get value of ENET_ECR_RESET from a register value.
-#define BG_ENET_ECR_RESET(r)   (((r) & BM_ENET_ECR_RESET) >> BP_ENET_ECR_RESET)
+#define BG_ENET_ECR_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_RESET) >> BP_ENET_ECR_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_RESET.
-#define BF_ENET_ECR_RESET(v)   ((((reg32_t) v) << BP_ENET_ECR_RESET) & BM_ENET_ECR_RESET)
-#else
-//! @brief Format value for bitfield ENET_ECR_RESET.
-#define BF_ENET_ECR_RESET(v)   (((v) << BP_ENET_ECR_RESET) & BM_ENET_ECR_RESET)
-#endif
+#define BF_ENET_ECR_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_RESET) & BM_ENET_ECR_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESET field to a new value.
@@ -1274,15 +1130,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_ETHEREN      (0x00000002)  //!< Bit mask for ENET_ECR_ETHEREN.
 
 //! @brief Get value of ENET_ECR_ETHEREN from a register value.
-#define BG_ENET_ECR_ETHEREN(r)   (((r) & BM_ENET_ECR_ETHEREN) >> BP_ENET_ECR_ETHEREN)
+#define BG_ENET_ECR_ETHEREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_ETHEREN) >> BP_ENET_ECR_ETHEREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_ETHEREN.
-#define BF_ENET_ECR_ETHEREN(v)   ((((reg32_t) v) << BP_ENET_ECR_ETHEREN) & BM_ENET_ECR_ETHEREN)
-#else
-//! @brief Format value for bitfield ENET_ECR_ETHEREN.
-#define BF_ENET_ECR_ETHEREN(v)   (((v) << BP_ENET_ECR_ETHEREN) & BM_ENET_ECR_ETHEREN)
-#endif
+#define BF_ENET_ECR_ETHEREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_ETHEREN) & BM_ENET_ECR_ETHEREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ETHEREN field to a new value.
@@ -1304,15 +1155,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_MAGICEN      (0x00000004)  //!< Bit mask for ENET_ECR_MAGICEN.
 
 //! @brief Get value of ENET_ECR_MAGICEN from a register value.
-#define BG_ENET_ECR_MAGICEN(r)   (((r) & BM_ENET_ECR_MAGICEN) >> BP_ENET_ECR_MAGICEN)
+#define BG_ENET_ECR_MAGICEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_MAGICEN) >> BP_ENET_ECR_MAGICEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_MAGICEN.
-#define BF_ENET_ECR_MAGICEN(v)   ((((reg32_t) v) << BP_ENET_ECR_MAGICEN) & BM_ENET_ECR_MAGICEN)
-#else
-//! @brief Format value for bitfield ENET_ECR_MAGICEN.
-#define BF_ENET_ECR_MAGICEN(v)   (((v) << BP_ENET_ECR_MAGICEN) & BM_ENET_ECR_MAGICEN)
-#endif
+#define BF_ENET_ECR_MAGICEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_MAGICEN) & BM_ENET_ECR_MAGICEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MAGICEN field to a new value.
@@ -1333,15 +1179,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_SLEEP      (0x00000008)  //!< Bit mask for ENET_ECR_SLEEP.
 
 //! @brief Get value of ENET_ECR_SLEEP from a register value.
-#define BG_ENET_ECR_SLEEP(r)   (((r) & BM_ENET_ECR_SLEEP) >> BP_ENET_ECR_SLEEP)
+#define BG_ENET_ECR_SLEEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_SLEEP) >> BP_ENET_ECR_SLEEP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_SLEEP.
-#define BF_ENET_ECR_SLEEP(v)   ((((reg32_t) v) << BP_ENET_ECR_SLEEP) & BM_ENET_ECR_SLEEP)
-#else
-//! @brief Format value for bitfield ENET_ECR_SLEEP.
-#define BF_ENET_ECR_SLEEP(v)   (((v) << BP_ENET_ECR_SLEEP) & BM_ENET_ECR_SLEEP)
-#endif
+#define BF_ENET_ECR_SLEEP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_SLEEP) & BM_ENET_ECR_SLEEP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLEEP field to a new value.
@@ -1363,15 +1204,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_EN1588      (0x00000010)  //!< Bit mask for ENET_ECR_EN1588.
 
 //! @brief Get value of ENET_ECR_EN1588 from a register value.
-#define BG_ENET_ECR_EN1588(r)   (((r) & BM_ENET_ECR_EN1588) >> BP_ENET_ECR_EN1588)
+#define BG_ENET_ECR_EN1588(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_EN1588) >> BP_ENET_ECR_EN1588)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_EN1588.
-#define BF_ENET_ECR_EN1588(v)   ((((reg32_t) v) << BP_ENET_ECR_EN1588) & BM_ENET_ECR_EN1588)
-#else
-//! @brief Format value for bitfield ENET_ECR_EN1588.
-#define BF_ENET_ECR_EN1588(v)   (((v) << BP_ENET_ECR_EN1588) & BM_ENET_ECR_EN1588)
-#endif
+#define BF_ENET_ECR_EN1588(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_EN1588) & BM_ENET_ECR_EN1588)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN1588 field to a new value.
@@ -1393,15 +1229,10 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_DBGEN      (0x00000040)  //!< Bit mask for ENET_ECR_DBGEN.
 
 //! @brief Get value of ENET_ECR_DBGEN from a register value.
-#define BG_ENET_ECR_DBGEN(r)   (((r) & BM_ENET_ECR_DBGEN) >> BP_ENET_ECR_DBGEN)
+#define BG_ENET_ECR_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_DBGEN) >> BP_ENET_ECR_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_DBGEN.
-#define BF_ENET_ECR_DBGEN(v)   ((((reg32_t) v) << BP_ENET_ECR_DBGEN) & BM_ENET_ECR_DBGEN)
-#else
-//! @brief Format value for bitfield ENET_ECR_DBGEN.
-#define BF_ENET_ECR_DBGEN(v)   (((v) << BP_ENET_ECR_DBGEN) & BM_ENET_ECR_DBGEN)
-#endif
+#define BF_ENET_ECR_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_DBGEN) & BM_ENET_ECR_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
@@ -1423,20 +1254,19 @@ typedef union _hw_enet_ecr
 #define BM_ENET_ECR_STOPEN      (0x00000080)  //!< Bit mask for ENET_ECR_STOPEN.
 
 //! @brief Get value of ENET_ECR_STOPEN from a register value.
-#define BG_ENET_ECR_STOPEN(r)   (((r) & BM_ENET_ECR_STOPEN) >> BP_ENET_ECR_STOPEN)
+#define BG_ENET_ECR_STOPEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ECR_STOPEN) >> BP_ENET_ECR_STOPEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ECR_STOPEN.
-#define BF_ENET_ECR_STOPEN(v)   ((((reg32_t) v) << BP_ENET_ECR_STOPEN) & BM_ENET_ECR_STOPEN)
-#else
-//! @brief Format value for bitfield ENET_ECR_STOPEN.
-#define BF_ENET_ECR_STOPEN(v)   (((v) << BP_ENET_ECR_STOPEN) & BM_ENET_ECR_STOPEN)
-#endif
+#define BF_ENET_ECR_STOPEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ECR_STOPEN) & BM_ENET_ECR_STOPEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STOPEN field to a new value.
 #define BW_ENET_ECR_STOPEN(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_STOPEN) | BF_ENET_ECR_STOPEN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_MMFR - MII Management Frame Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1495,15 +1325,10 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_DATA      (0x0000ffff)  //!< Bit mask for ENET_MMFR_DATA.
 
 //! @brief Get value of ENET_MMFR_DATA from a register value.
-#define BG_ENET_MMFR_DATA(r)   (((r) & BM_ENET_MMFR_DATA) >> BP_ENET_MMFR_DATA)
+#define BG_ENET_MMFR_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_DATA) >> BP_ENET_MMFR_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_DATA.
-#define BF_ENET_MMFR_DATA(v)   ((((reg32_t) v) << BP_ENET_MMFR_DATA) & BM_ENET_MMFR_DATA)
-#else
-//! @brief Format value for bitfield ENET_MMFR_DATA.
-#define BF_ENET_MMFR_DATA(v)   (((v) << BP_ENET_MMFR_DATA) & BM_ENET_MMFR_DATA)
-#endif
+#define BF_ENET_MMFR_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_DATA) & BM_ENET_MMFR_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
@@ -1519,15 +1344,10 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_TA      (0x00030000)  //!< Bit mask for ENET_MMFR_TA.
 
 //! @brief Get value of ENET_MMFR_TA from a register value.
-#define BG_ENET_MMFR_TA(r)   (((r) & BM_ENET_MMFR_TA) >> BP_ENET_MMFR_TA)
+#define BG_ENET_MMFR_TA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_TA) >> BP_ENET_MMFR_TA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_TA.
-#define BF_ENET_MMFR_TA(v)   ((((reg32_t) v) << BP_ENET_MMFR_TA) & BM_ENET_MMFR_TA)
-#else
-//! @brief Format value for bitfield ENET_MMFR_TA.
-#define BF_ENET_MMFR_TA(v)   (((v) << BP_ENET_MMFR_TA) & BM_ENET_MMFR_TA)
-#endif
+#define BF_ENET_MMFR_TA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_TA) & BM_ENET_MMFR_TA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TA field to a new value.
@@ -1543,15 +1363,10 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_RA      (0x007c0000)  //!< Bit mask for ENET_MMFR_RA.
 
 //! @brief Get value of ENET_MMFR_RA from a register value.
-#define BG_ENET_MMFR_RA(r)   (((r) & BM_ENET_MMFR_RA) >> BP_ENET_MMFR_RA)
+#define BG_ENET_MMFR_RA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_RA) >> BP_ENET_MMFR_RA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_RA.
-#define BF_ENET_MMFR_RA(v)   ((((reg32_t) v) << BP_ENET_MMFR_RA) & BM_ENET_MMFR_RA)
-#else
-//! @brief Format value for bitfield ENET_MMFR_RA.
-#define BF_ENET_MMFR_RA(v)   (((v) << BP_ENET_MMFR_RA) & BM_ENET_MMFR_RA)
-#endif
+#define BF_ENET_MMFR_RA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_RA) & BM_ENET_MMFR_RA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RA field to a new value.
@@ -1567,15 +1382,10 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_PA      (0x0f800000)  //!< Bit mask for ENET_MMFR_PA.
 
 //! @brief Get value of ENET_MMFR_PA from a register value.
-#define BG_ENET_MMFR_PA(r)   (((r) & BM_ENET_MMFR_PA) >> BP_ENET_MMFR_PA)
+#define BG_ENET_MMFR_PA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_PA) >> BP_ENET_MMFR_PA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_PA.
-#define BF_ENET_MMFR_PA(v)   ((((reg32_t) v) << BP_ENET_MMFR_PA) & BM_ENET_MMFR_PA)
-#else
-//! @brief Format value for bitfield ENET_MMFR_PA.
-#define BF_ENET_MMFR_PA(v)   (((v) << BP_ENET_MMFR_PA) & BM_ENET_MMFR_PA)
-#endif
+#define BF_ENET_MMFR_PA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_PA) & BM_ENET_MMFR_PA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PA field to a new value.
@@ -1597,15 +1407,10 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_OP      (0x30000000)  //!< Bit mask for ENET_MMFR_OP.
 
 //! @brief Get value of ENET_MMFR_OP from a register value.
-#define BG_ENET_MMFR_OP(r)   (((r) & BM_ENET_MMFR_OP) >> BP_ENET_MMFR_OP)
+#define BG_ENET_MMFR_OP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_OP) >> BP_ENET_MMFR_OP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_OP.
-#define BF_ENET_MMFR_OP(v)   ((((reg32_t) v) << BP_ENET_MMFR_OP) & BM_ENET_MMFR_OP)
-#else
-//! @brief Format value for bitfield ENET_MMFR_OP.
-#define BF_ENET_MMFR_OP(v)   (((v) << BP_ENET_MMFR_OP) & BM_ENET_MMFR_OP)
-#endif
+#define BF_ENET_MMFR_OP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_OP) & BM_ENET_MMFR_OP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OP field to a new value.
@@ -1622,20 +1427,19 @@ typedef union _hw_enet_mmfr
 #define BM_ENET_MMFR_ST      (0xc0000000)  //!< Bit mask for ENET_MMFR_ST.
 
 //! @brief Get value of ENET_MMFR_ST from a register value.
-#define BG_ENET_MMFR_ST(r)   (((r) & BM_ENET_MMFR_ST) >> BP_ENET_MMFR_ST)
+#define BG_ENET_MMFR_ST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MMFR_ST) >> BP_ENET_MMFR_ST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MMFR_ST.
-#define BF_ENET_MMFR_ST(v)   ((((reg32_t) v) << BP_ENET_MMFR_ST) & BM_ENET_MMFR_ST)
-#else
-//! @brief Format value for bitfield ENET_MMFR_ST.
-#define BF_ENET_MMFR_ST(v)   (((v) << BP_ENET_MMFR_ST) & BM_ENET_MMFR_ST)
-#endif
+#define BF_ENET_MMFR_ST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MMFR_ST) & BM_ENET_MMFR_ST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ST field to a new value.
 #define BW_ENET_MMFR_ST(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_ST) | BF_ENET_MMFR_ST(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_MSCR - MII Speed Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1700,15 +1504,10 @@ typedef union _hw_enet_mscr
 #define BM_ENET_MSCR_MII_SPEED      (0x0000007e)  //!< Bit mask for ENET_MSCR_MII_SPEED.
 
 //! @brief Get value of ENET_MSCR_MII_SPEED from a register value.
-#define BG_ENET_MSCR_MII_SPEED(r)   (((r) & BM_ENET_MSCR_MII_SPEED) >> BP_ENET_MSCR_MII_SPEED)
+#define BG_ENET_MSCR_MII_SPEED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MSCR_MII_SPEED) >> BP_ENET_MSCR_MII_SPEED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MSCR_MII_SPEED.
-#define BF_ENET_MSCR_MII_SPEED(v)   ((((reg32_t) v) << BP_ENET_MSCR_MII_SPEED) & BM_ENET_MSCR_MII_SPEED)
-#else
-//! @brief Format value for bitfield ENET_MSCR_MII_SPEED.
-#define BF_ENET_MSCR_MII_SPEED(v)   (((v) << BP_ENET_MSCR_MII_SPEED) & BM_ENET_MSCR_MII_SPEED)
-#endif
+#define BF_ENET_MSCR_MII_SPEED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MSCR_MII_SPEED) & BM_ENET_MSCR_MII_SPEED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII_SPEED field to a new value.
@@ -1729,15 +1528,10 @@ typedef union _hw_enet_mscr
 #define BM_ENET_MSCR_DIS_PRE      (0x00000080)  //!< Bit mask for ENET_MSCR_DIS_PRE.
 
 //! @brief Get value of ENET_MSCR_DIS_PRE from a register value.
-#define BG_ENET_MSCR_DIS_PRE(r)   (((r) & BM_ENET_MSCR_DIS_PRE) >> BP_ENET_MSCR_DIS_PRE)
+#define BG_ENET_MSCR_DIS_PRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MSCR_DIS_PRE) >> BP_ENET_MSCR_DIS_PRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MSCR_DIS_PRE.
-#define BF_ENET_MSCR_DIS_PRE(v)   ((((reg32_t) v) << BP_ENET_MSCR_DIS_PRE) & BM_ENET_MSCR_DIS_PRE)
-#else
-//! @brief Format value for bitfield ENET_MSCR_DIS_PRE.
-#define BF_ENET_MSCR_DIS_PRE(v)   (((v) << BP_ENET_MSCR_DIS_PRE) & BM_ENET_MSCR_DIS_PRE)
-#endif
+#define BF_ENET_MSCR_DIS_PRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MSCR_DIS_PRE) & BM_ENET_MSCR_DIS_PRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIS_PRE field to a new value.
@@ -1761,21 +1555,20 @@ typedef union _hw_enet_mscr
 #define BM_ENET_MSCR_HOLDTIME      (0x00000700)  //!< Bit mask for ENET_MSCR_HOLDTIME.
 
 //! @brief Get value of ENET_MSCR_HOLDTIME from a register value.
-#define BG_ENET_MSCR_HOLDTIME(r)   (((r) & BM_ENET_MSCR_HOLDTIME) >> BP_ENET_MSCR_HOLDTIME)
+#define BG_ENET_MSCR_HOLDTIME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MSCR_HOLDTIME) >> BP_ENET_MSCR_HOLDTIME)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MSCR_HOLDTIME.
-#define BF_ENET_MSCR_HOLDTIME(v)   ((((reg32_t) v) << BP_ENET_MSCR_HOLDTIME) & BM_ENET_MSCR_HOLDTIME)
-#else
-//! @brief Format value for bitfield ENET_MSCR_HOLDTIME.
-#define BF_ENET_MSCR_HOLDTIME(v)   (((v) << BP_ENET_MSCR_HOLDTIME) & BM_ENET_MSCR_HOLDTIME)
-#endif
+#define BF_ENET_MSCR_HOLDTIME(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MSCR_HOLDTIME) & BM_ENET_MSCR_HOLDTIME)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HOLDTIME field to a new value.
 #define BW_ENET_MSCR_HOLDTIME(v)   (HW_ENET_MSCR_WR((HW_ENET_MSCR_RD() & ~BM_ENET_MSCR_HOLDTIME) | BF_ENET_MSCR_HOLDTIME(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_MIBC - MIB Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1828,15 +1621,10 @@ typedef union _hw_enet_mibc
 #define BM_ENET_MIBC_MIB_CLEAR      (0x20000000)  //!< Bit mask for ENET_MIBC_MIB_CLEAR.
 
 //! @brief Get value of ENET_MIBC_MIB_CLEAR from a register value.
-#define BG_ENET_MIBC_MIB_CLEAR(r)   (((r) & BM_ENET_MIBC_MIB_CLEAR) >> BP_ENET_MIBC_MIB_CLEAR)
+#define BG_ENET_MIBC_MIB_CLEAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MIBC_MIB_CLEAR) >> BP_ENET_MIBC_MIB_CLEAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MIBC_MIB_CLEAR.
-#define BF_ENET_MIBC_MIB_CLEAR(v)   ((((reg32_t) v) << BP_ENET_MIBC_MIB_CLEAR) & BM_ENET_MIBC_MIB_CLEAR)
-#else
-//! @brief Format value for bitfield ENET_MIBC_MIB_CLEAR.
-#define BF_ENET_MIBC_MIB_CLEAR(v)   (((v) << BP_ENET_MIBC_MIB_CLEAR) & BM_ENET_MIBC_MIB_CLEAR)
-#endif
+#define BF_ENET_MIBC_MIB_CLEAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MIBC_MIB_CLEAR) & BM_ENET_MIBC_MIB_CLEAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MIB_CLEAR field to a new value.
@@ -1852,7 +1640,7 @@ typedef union _hw_enet_mibc
 #define BM_ENET_MIBC_MIB_IDLE      (0x40000000)  //!< Bit mask for ENET_MIBC_MIB_IDLE.
 
 //! @brief Get value of ENET_MIBC_MIB_IDLE from a register value.
-#define BG_ENET_MIBC_MIB_IDLE(r)   (((r) & BM_ENET_MIBC_MIB_IDLE) >> BP_ENET_MIBC_MIB_IDLE)
+#define BG_ENET_MIBC_MIB_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MIBC_MIB_IDLE) >> BP_ENET_MIBC_MIB_IDLE)
 
 /* --- Register HW_ENET_MIBC, field MIB_DIS[31] (RW)
  *
@@ -1863,20 +1651,19 @@ typedef union _hw_enet_mibc
 #define BM_ENET_MIBC_MIB_DIS      (0x80000000)  //!< Bit mask for ENET_MIBC_MIB_DIS.
 
 //! @brief Get value of ENET_MIBC_MIB_DIS from a register value.
-#define BG_ENET_MIBC_MIB_DIS(r)   (((r) & BM_ENET_MIBC_MIB_DIS) >> BP_ENET_MIBC_MIB_DIS)
+#define BG_ENET_MIBC_MIB_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MIBC_MIB_DIS) >> BP_ENET_MIBC_MIB_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MIBC_MIB_DIS.
-#define BF_ENET_MIBC_MIB_DIS(v)   ((((reg32_t) v) << BP_ENET_MIBC_MIB_DIS) & BM_ENET_MIBC_MIB_DIS)
-#else
-//! @brief Format value for bitfield ENET_MIBC_MIB_DIS.
-#define BF_ENET_MIBC_MIB_DIS(v)   (((v) << BP_ENET_MIBC_MIB_DIS) & BM_ENET_MIBC_MIB_DIS)
-#endif
+#define BF_ENET_MIBC_MIB_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MIBC_MIB_DIS) & BM_ENET_MIBC_MIB_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MIB_DIS field to a new value.
 #define BW_ENET_MIBC_MIB_DIS(v)   (HW_ENET_MIBC_WR((HW_ENET_MIBC_RD() & ~BM_ENET_MIBC_MIB_DIS) | BF_ENET_MIBC_MIB_DIS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RCR - Receive Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1945,15 +1732,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_LOOP      (0x00000001)  //!< Bit mask for ENET_RCR_LOOP.
 
 //! @brief Get value of ENET_RCR_LOOP from a register value.
-#define BG_ENET_RCR_LOOP(r)   (((r) & BM_ENET_RCR_LOOP) >> BP_ENET_RCR_LOOP)
+#define BG_ENET_RCR_LOOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_LOOP) >> BP_ENET_RCR_LOOP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_LOOP.
-#define BF_ENET_RCR_LOOP(v)   ((((reg32_t) v) << BP_ENET_RCR_LOOP) & BM_ENET_RCR_LOOP)
-#else
-//! @brief Format value for bitfield ENET_RCR_LOOP.
-#define BF_ENET_RCR_LOOP(v)   (((v) << BP_ENET_RCR_LOOP) & BM_ENET_RCR_LOOP)
-#endif
+#define BF_ENET_RCR_LOOP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_LOOP) & BM_ENET_RCR_LOOP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOOP field to a new value.
@@ -1975,15 +1757,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_DRT      (0x00000002)  //!< Bit mask for ENET_RCR_DRT.
 
 //! @brief Get value of ENET_RCR_DRT from a register value.
-#define BG_ENET_RCR_DRT(r)   (((r) & BM_ENET_RCR_DRT) >> BP_ENET_RCR_DRT)
+#define BG_ENET_RCR_DRT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_DRT) >> BP_ENET_RCR_DRT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_DRT.
-#define BF_ENET_RCR_DRT(v)   ((((reg32_t) v) << BP_ENET_RCR_DRT) & BM_ENET_RCR_DRT)
-#else
-//! @brief Format value for bitfield ENET_RCR_DRT.
-#define BF_ENET_RCR_DRT(v)   (((v) << BP_ENET_RCR_DRT) & BM_ENET_RCR_DRT)
-#endif
+#define BF_ENET_RCR_DRT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_DRT) & BM_ENET_RCR_DRT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRT field to a new value.
@@ -2004,15 +1781,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_MII_MODE      (0x00000004)  //!< Bit mask for ENET_RCR_MII_MODE.
 
 //! @brief Get value of ENET_RCR_MII_MODE from a register value.
-#define BG_ENET_RCR_MII_MODE(r)   (((r) & BM_ENET_RCR_MII_MODE) >> BP_ENET_RCR_MII_MODE)
+#define BG_ENET_RCR_MII_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_MII_MODE) >> BP_ENET_RCR_MII_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_MII_MODE.
-#define BF_ENET_RCR_MII_MODE(v)   ((((reg32_t) v) << BP_ENET_RCR_MII_MODE) & BM_ENET_RCR_MII_MODE)
-#else
-//! @brief Format value for bitfield ENET_RCR_MII_MODE.
-#define BF_ENET_RCR_MII_MODE(v)   (((v) << BP_ENET_RCR_MII_MODE) & BM_ENET_RCR_MII_MODE)
-#endif
+#define BF_ENET_RCR_MII_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_MII_MODE) & BM_ENET_RCR_MII_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MII_MODE field to a new value.
@@ -2033,15 +1805,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_PROM      (0x00000008)  //!< Bit mask for ENET_RCR_PROM.
 
 //! @brief Get value of ENET_RCR_PROM from a register value.
-#define BG_ENET_RCR_PROM(r)   (((r) & BM_ENET_RCR_PROM) >> BP_ENET_RCR_PROM)
+#define BG_ENET_RCR_PROM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_PROM) >> BP_ENET_RCR_PROM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_PROM.
-#define BF_ENET_RCR_PROM(v)   ((((reg32_t) v) << BP_ENET_RCR_PROM) & BM_ENET_RCR_PROM)
-#else
-//! @brief Format value for bitfield ENET_RCR_PROM.
-#define BF_ENET_RCR_PROM(v)   (((v) << BP_ENET_RCR_PROM) & BM_ENET_RCR_PROM)
-#endif
+#define BF_ENET_RCR_PROM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_PROM) & BM_ENET_RCR_PROM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PROM field to a new value.
@@ -2060,15 +1827,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_BC_REJ      (0x00000010)  //!< Bit mask for ENET_RCR_BC_REJ.
 
 //! @brief Get value of ENET_RCR_BC_REJ from a register value.
-#define BG_ENET_RCR_BC_REJ(r)   (((r) & BM_ENET_RCR_BC_REJ) >> BP_ENET_RCR_BC_REJ)
+#define BG_ENET_RCR_BC_REJ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_BC_REJ) >> BP_ENET_RCR_BC_REJ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_BC_REJ.
-#define BF_ENET_RCR_BC_REJ(v)   ((((reg32_t) v) << BP_ENET_RCR_BC_REJ) & BM_ENET_RCR_BC_REJ)
-#else
-//! @brief Format value for bitfield ENET_RCR_BC_REJ.
-#define BF_ENET_RCR_BC_REJ(v)   (((v) << BP_ENET_RCR_BC_REJ) & BM_ENET_RCR_BC_REJ)
-#endif
+#define BF_ENET_RCR_BC_REJ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_BC_REJ) & BM_ENET_RCR_BC_REJ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BC_REJ field to a new value.
@@ -2085,15 +1847,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_FCE      (0x00000020)  //!< Bit mask for ENET_RCR_FCE.
 
 //! @brief Get value of ENET_RCR_FCE from a register value.
-#define BG_ENET_RCR_FCE(r)   (((r) & BM_ENET_RCR_FCE) >> BP_ENET_RCR_FCE)
+#define BG_ENET_RCR_FCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_FCE) >> BP_ENET_RCR_FCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_FCE.
-#define BF_ENET_RCR_FCE(v)   ((((reg32_t) v) << BP_ENET_RCR_FCE) & BM_ENET_RCR_FCE)
-#else
-//! @brief Format value for bitfield ENET_RCR_FCE.
-#define BF_ENET_RCR_FCE(v)   (((v) << BP_ENET_RCR_FCE) & BM_ENET_RCR_FCE)
-#endif
+#define BF_ENET_RCR_FCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_FCE) & BM_ENET_RCR_FCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FCE field to a new value.
@@ -2114,15 +1871,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_RMII_MODE      (0x00000100)  //!< Bit mask for ENET_RCR_RMII_MODE.
 
 //! @brief Get value of ENET_RCR_RMII_MODE from a register value.
-#define BG_ENET_RCR_RMII_MODE(r)   (((r) & BM_ENET_RCR_RMII_MODE) >> BP_ENET_RCR_RMII_MODE)
+#define BG_ENET_RCR_RMII_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_RMII_MODE) >> BP_ENET_RCR_RMII_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_RMII_MODE.
-#define BF_ENET_RCR_RMII_MODE(v)   ((((reg32_t) v) << BP_ENET_RCR_RMII_MODE) & BM_ENET_RCR_RMII_MODE)
-#else
-//! @brief Format value for bitfield ENET_RCR_RMII_MODE.
-#define BF_ENET_RCR_RMII_MODE(v)   (((v) << BP_ENET_RCR_RMII_MODE) & BM_ENET_RCR_RMII_MODE)
-#endif
+#define BF_ENET_RCR_RMII_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_RMII_MODE) & BM_ENET_RCR_RMII_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RMII_MODE field to a new value.
@@ -2146,15 +1898,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_RMII_10T      (0x00000200)  //!< Bit mask for ENET_RCR_RMII_10T.
 
 //! @brief Get value of ENET_RCR_RMII_10T from a register value.
-#define BG_ENET_RCR_RMII_10T(r)   (((r) & BM_ENET_RCR_RMII_10T) >> BP_ENET_RCR_RMII_10T)
+#define BG_ENET_RCR_RMII_10T(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_RMII_10T) >> BP_ENET_RCR_RMII_10T)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_RMII_10T.
-#define BF_ENET_RCR_RMII_10T(v)   ((((reg32_t) v) << BP_ENET_RCR_RMII_10T) & BM_ENET_RCR_RMII_10T)
-#else
-//! @brief Format value for bitfield ENET_RCR_RMII_10T.
-#define BF_ENET_RCR_RMII_10T(v)   (((v) << BP_ENET_RCR_RMII_10T) & BM_ENET_RCR_RMII_10T)
-#endif
+#define BF_ENET_RCR_RMII_10T(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_RMII_10T) & BM_ENET_RCR_RMII_10T)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RMII_10T field to a new value.
@@ -2175,15 +1922,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_PADEN      (0x00001000)  //!< Bit mask for ENET_RCR_PADEN.
 
 //! @brief Get value of ENET_RCR_PADEN from a register value.
-#define BG_ENET_RCR_PADEN(r)   (((r) & BM_ENET_RCR_PADEN) >> BP_ENET_RCR_PADEN)
+#define BG_ENET_RCR_PADEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_PADEN) >> BP_ENET_RCR_PADEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_PADEN.
-#define BF_ENET_RCR_PADEN(v)   ((((reg32_t) v) << BP_ENET_RCR_PADEN) & BM_ENET_RCR_PADEN)
-#else
-//! @brief Format value for bitfield ENET_RCR_PADEN.
-#define BF_ENET_RCR_PADEN(v)   (((v) << BP_ENET_RCR_PADEN) & BM_ENET_RCR_PADEN)
-#endif
+#define BF_ENET_RCR_PADEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_PADEN) & BM_ENET_RCR_PADEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADEN field to a new value.
@@ -2204,15 +1946,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_PAUFWD      (0x00002000)  //!< Bit mask for ENET_RCR_PAUFWD.
 
 //! @brief Get value of ENET_RCR_PAUFWD from a register value.
-#define BG_ENET_RCR_PAUFWD(r)   (((r) & BM_ENET_RCR_PAUFWD) >> BP_ENET_RCR_PAUFWD)
+#define BG_ENET_RCR_PAUFWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_PAUFWD) >> BP_ENET_RCR_PAUFWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_PAUFWD.
-#define BF_ENET_RCR_PAUFWD(v)   ((((reg32_t) v) << BP_ENET_RCR_PAUFWD) & BM_ENET_RCR_PAUFWD)
-#else
-//! @brief Format value for bitfield ENET_RCR_PAUFWD.
-#define BF_ENET_RCR_PAUFWD(v)   (((v) << BP_ENET_RCR_PAUFWD) & BM_ENET_RCR_PAUFWD)
-#endif
+#define BF_ENET_RCR_PAUFWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_PAUFWD) & BM_ENET_RCR_PAUFWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAUFWD field to a new value.
@@ -2235,15 +1972,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_CRCFWD      (0x00004000)  //!< Bit mask for ENET_RCR_CRCFWD.
 
 //! @brief Get value of ENET_RCR_CRCFWD from a register value.
-#define BG_ENET_RCR_CRCFWD(r)   (((r) & BM_ENET_RCR_CRCFWD) >> BP_ENET_RCR_CRCFWD)
+#define BG_ENET_RCR_CRCFWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_CRCFWD) >> BP_ENET_RCR_CRCFWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_CRCFWD.
-#define BF_ENET_RCR_CRCFWD(v)   ((((reg32_t) v) << BP_ENET_RCR_CRCFWD) & BM_ENET_RCR_CRCFWD)
-#else
-//! @brief Format value for bitfield ENET_RCR_CRCFWD.
-#define BF_ENET_RCR_CRCFWD(v)   (((v) << BP_ENET_RCR_CRCFWD) & BM_ENET_RCR_CRCFWD)
-#endif
+#define BF_ENET_RCR_CRCFWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_CRCFWD) & BM_ENET_RCR_CRCFWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRCFWD field to a new value.
@@ -2265,15 +1997,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_CFEN      (0x00008000)  //!< Bit mask for ENET_RCR_CFEN.
 
 //! @brief Get value of ENET_RCR_CFEN from a register value.
-#define BG_ENET_RCR_CFEN(r)   (((r) & BM_ENET_RCR_CFEN) >> BP_ENET_RCR_CFEN)
+#define BG_ENET_RCR_CFEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_CFEN) >> BP_ENET_RCR_CFEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_CFEN.
-#define BF_ENET_RCR_CFEN(v)   ((((reg32_t) v) << BP_ENET_RCR_CFEN) & BM_ENET_RCR_CFEN)
-#else
-//! @brief Format value for bitfield ENET_RCR_CFEN.
-#define BF_ENET_RCR_CFEN(v)   (((v) << BP_ENET_RCR_CFEN) & BM_ENET_RCR_CFEN)
-#endif
+#define BF_ENET_RCR_CFEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_CFEN) & BM_ENET_RCR_CFEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CFEN field to a new value.
@@ -2294,15 +2021,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_MAX_FL      (0x3fff0000)  //!< Bit mask for ENET_RCR_MAX_FL.
 
 //! @brief Get value of ENET_RCR_MAX_FL from a register value.
-#define BG_ENET_RCR_MAX_FL(r)   (((r) & BM_ENET_RCR_MAX_FL) >> BP_ENET_RCR_MAX_FL)
+#define BG_ENET_RCR_MAX_FL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_MAX_FL) >> BP_ENET_RCR_MAX_FL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_MAX_FL.
-#define BF_ENET_RCR_MAX_FL(v)   ((((reg32_t) v) << BP_ENET_RCR_MAX_FL) & BM_ENET_RCR_MAX_FL)
-#else
-//! @brief Format value for bitfield ENET_RCR_MAX_FL.
-#define BF_ENET_RCR_MAX_FL(v)   (((v) << BP_ENET_RCR_MAX_FL) & BM_ENET_RCR_MAX_FL)
-#endif
+#define BF_ENET_RCR_MAX_FL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_MAX_FL) & BM_ENET_RCR_MAX_FL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MAX_FL field to a new value.
@@ -2323,15 +2045,10 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_NLC      (0x40000000)  //!< Bit mask for ENET_RCR_NLC.
 
 //! @brief Get value of ENET_RCR_NLC from a register value.
-#define BG_ENET_RCR_NLC(r)   (((r) & BM_ENET_RCR_NLC) >> BP_ENET_RCR_NLC)
+#define BG_ENET_RCR_NLC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_NLC) >> BP_ENET_RCR_NLC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RCR_NLC.
-#define BF_ENET_RCR_NLC(v)   ((((reg32_t) v) << BP_ENET_RCR_NLC) & BM_ENET_RCR_NLC)
-#else
-//! @brief Format value for bitfield ENET_RCR_NLC.
-#define BF_ENET_RCR_NLC(v)   (((v) << BP_ENET_RCR_NLC) & BM_ENET_RCR_NLC)
-#endif
+#define BF_ENET_RCR_NLC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RCR_NLC) & BM_ENET_RCR_NLC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NLC field to a new value.
@@ -2348,7 +2065,11 @@ typedef union _hw_enet_rcr
 #define BM_ENET_RCR_GRS      (0x80000000)  //!< Bit mask for ENET_RCR_GRS.
 
 //! @brief Get value of ENET_RCR_GRS from a register value.
-#define BG_ENET_RCR_GRS(r)   (((r) & BM_ENET_RCR_GRS) >> BP_ENET_RCR_GRS)
+#define BG_ENET_RCR_GRS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_GRS) >> BP_ENET_RCR_GRS)
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TCR - Transmit Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2410,15 +2131,10 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_GTS      (0x00000001)  //!< Bit mask for ENET_TCR_GTS.
 
 //! @brief Get value of ENET_TCR_GTS from a register value.
-#define BG_ENET_TCR_GTS(r)   (((r) & BM_ENET_TCR_GTS) >> BP_ENET_TCR_GTS)
+#define BG_ENET_TCR_GTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_GTS) >> BP_ENET_TCR_GTS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_GTS.
-#define BF_ENET_TCR_GTS(v)   ((((reg32_t) v) << BP_ENET_TCR_GTS) & BM_ENET_TCR_GTS)
-#else
-//! @brief Format value for bitfield ENET_TCR_GTS.
-#define BF_ENET_TCR_GTS(v)   (((v) << BP_ENET_TCR_GTS) & BM_ENET_TCR_GTS)
-#endif
+#define BF_ENET_TCR_GTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_GTS) & BM_ENET_TCR_GTS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GTS field to a new value.
@@ -2435,15 +2151,10 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_FDEN      (0x00000004)  //!< Bit mask for ENET_TCR_FDEN.
 
 //! @brief Get value of ENET_TCR_FDEN from a register value.
-#define BG_ENET_TCR_FDEN(r)   (((r) & BM_ENET_TCR_FDEN) >> BP_ENET_TCR_FDEN)
+#define BG_ENET_TCR_FDEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_FDEN) >> BP_ENET_TCR_FDEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_FDEN.
-#define BF_ENET_TCR_FDEN(v)   ((((reg32_t) v) << BP_ENET_TCR_FDEN) & BM_ENET_TCR_FDEN)
-#else
-//! @brief Format value for bitfield ENET_TCR_FDEN.
-#define BF_ENET_TCR_FDEN(v)   (((v) << BP_ENET_TCR_FDEN) & BM_ENET_TCR_FDEN)
-#endif
+#define BF_ENET_TCR_FDEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_FDEN) & BM_ENET_TCR_FDEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FDEN field to a new value.
@@ -2466,15 +2177,10 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_TFC_PAUSE      (0x00000008)  //!< Bit mask for ENET_TCR_TFC_PAUSE.
 
 //! @brief Get value of ENET_TCR_TFC_PAUSE from a register value.
-#define BG_ENET_TCR_TFC_PAUSE(r)   (((r) & BM_ENET_TCR_TFC_PAUSE) >> BP_ENET_TCR_TFC_PAUSE)
+#define BG_ENET_TCR_TFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_TFC_PAUSE) >> BP_ENET_TCR_TFC_PAUSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_TFC_PAUSE.
-#define BF_ENET_TCR_TFC_PAUSE(v)   ((((reg32_t) v) << BP_ENET_TCR_TFC_PAUSE) & BM_ENET_TCR_TFC_PAUSE)
-#else
-//! @brief Format value for bitfield ENET_TCR_TFC_PAUSE.
-#define BF_ENET_TCR_TFC_PAUSE(v)   (((v) << BP_ENET_TCR_TFC_PAUSE) & BM_ENET_TCR_TFC_PAUSE)
-#endif
+#define BF_ENET_TCR_TFC_PAUSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_TFC_PAUSE) & BM_ENET_TCR_TFC_PAUSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFC_PAUSE field to a new value.
@@ -2493,7 +2199,7 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_RFC_PAUSE      (0x00000010)  //!< Bit mask for ENET_TCR_RFC_PAUSE.
 
 //! @brief Get value of ENET_TCR_RFC_PAUSE from a register value.
-#define BG_ENET_TCR_RFC_PAUSE(r)   (((r) & BM_ENET_TCR_RFC_PAUSE) >> BP_ENET_TCR_RFC_PAUSE)
+#define BG_ENET_TCR_RFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_RFC_PAUSE) >> BP_ENET_TCR_RFC_PAUSE)
 
 /* --- Register HW_ENET_TCR, field ADDSEL[7:5] (RW)
  *
@@ -2511,15 +2217,10 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_ADDSEL      (0x000000e0)  //!< Bit mask for ENET_TCR_ADDSEL.
 
 //! @brief Get value of ENET_TCR_ADDSEL from a register value.
-#define BG_ENET_TCR_ADDSEL(r)   (((r) & BM_ENET_TCR_ADDSEL) >> BP_ENET_TCR_ADDSEL)
+#define BG_ENET_TCR_ADDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_ADDSEL) >> BP_ENET_TCR_ADDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_ADDSEL.
-#define BF_ENET_TCR_ADDSEL(v)   ((((reg32_t) v) << BP_ENET_TCR_ADDSEL) & BM_ENET_TCR_ADDSEL)
-#else
-//! @brief Format value for bitfield ENET_TCR_ADDSEL.
-#define BF_ENET_TCR_ADDSEL(v)   (((v) << BP_ENET_TCR_ADDSEL) & BM_ENET_TCR_ADDSEL)
-#endif
+#define BF_ENET_TCR_ADDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_ADDSEL) & BM_ENET_TCR_ADDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDSEL field to a new value.
@@ -2540,15 +2241,10 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_ADDINS      (0x00000100)  //!< Bit mask for ENET_TCR_ADDINS.
 
 //! @brief Get value of ENET_TCR_ADDINS from a register value.
-#define BG_ENET_TCR_ADDINS(r)   (((r) & BM_ENET_TCR_ADDINS) >> BP_ENET_TCR_ADDINS)
+#define BG_ENET_TCR_ADDINS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_ADDINS) >> BP_ENET_TCR_ADDINS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_ADDINS.
-#define BF_ENET_TCR_ADDINS(v)   ((((reg32_t) v) << BP_ENET_TCR_ADDINS) & BM_ENET_TCR_ADDINS)
-#else
-//! @brief Format value for bitfield ENET_TCR_ADDINS.
-#define BF_ENET_TCR_ADDINS(v)   (((v) << BP_ENET_TCR_ADDINS) & BM_ENET_TCR_ADDINS)
-#endif
+#define BF_ENET_TCR_ADDINS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_ADDINS) & BM_ENET_TCR_ADDINS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDINS field to a new value.
@@ -2570,21 +2266,20 @@ typedef union _hw_enet_tcr
 #define BM_ENET_TCR_CRCFWD      (0x00000200)  //!< Bit mask for ENET_TCR_CRCFWD.
 
 //! @brief Get value of ENET_TCR_CRCFWD from a register value.
-#define BG_ENET_TCR_CRCFWD(r)   (((r) & BM_ENET_TCR_CRCFWD) >> BP_ENET_TCR_CRCFWD)
+#define BG_ENET_TCR_CRCFWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_CRCFWD) >> BP_ENET_TCR_CRCFWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TCR_CRCFWD.
-#define BF_ENET_TCR_CRCFWD(v)   ((((reg32_t) v) << BP_ENET_TCR_CRCFWD) & BM_ENET_TCR_CRCFWD)
-#else
-//! @brief Format value for bitfield ENET_TCR_CRCFWD.
-#define BF_ENET_TCR_CRCFWD(v)   (((v) << BP_ENET_TCR_CRCFWD) & BM_ENET_TCR_CRCFWD)
-#endif
+#define BF_ENET_TCR_CRCFWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TCR_CRCFWD) & BM_ENET_TCR_CRCFWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRCFWD field to a new value.
 #define BW_ENET_TCR_CRCFWD(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_CRCFWD) | BF_ENET_TCR_CRCFWD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_PALR - Physical Address Lower Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2636,20 +2331,19 @@ typedef union _hw_enet_palr
 #define BM_ENET_PALR_PADDR1      (0xffffffff)  //!< Bit mask for ENET_PALR_PADDR1.
 
 //! @brief Get value of ENET_PALR_PADDR1 from a register value.
-#define BG_ENET_PALR_PADDR1(r)   (((r) & BM_ENET_PALR_PADDR1) >> BP_ENET_PALR_PADDR1)
+#define BG_ENET_PALR_PADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_PALR_PADDR1) >> BP_ENET_PALR_PADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_PALR_PADDR1.
-#define BF_ENET_PALR_PADDR1(v)   ((((reg32_t) v) << BP_ENET_PALR_PADDR1) & BM_ENET_PALR_PADDR1)
-#else
-//! @brief Format value for bitfield ENET_PALR_PADDR1.
-#define BF_ENET_PALR_PADDR1(v)   (((v) << BP_ENET_PALR_PADDR1) & BM_ENET_PALR_PADDR1)
-#endif
+#define BF_ENET_PALR_PADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_PALR_PADDR1) & BM_ENET_PALR_PADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADDR1 field to a new value.
 #define BW_ENET_PALR_PADDR1(v)   (HW_ENET_PALR_WR((HW_ENET_PALR_RD() & ~BM_ENET_PALR_PADDR1) | BF_ENET_PALR_PADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_PAUR - Physical Address Upper Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2702,7 +2396,7 @@ typedef union _hw_enet_paur
 #define BM_ENET_PAUR_TYPE      (0x0000ffff)  //!< Bit mask for ENET_PAUR_TYPE.
 
 //! @brief Get value of ENET_PAUR_TYPE from a register value.
-#define BG_ENET_PAUR_TYPE(r)   (((r) & BM_ENET_PAUR_TYPE) >> BP_ENET_PAUR_TYPE)
+#define BG_ENET_PAUR_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_PAUR_TYPE) >> BP_ENET_PAUR_TYPE)
 
 /* --- Register HW_ENET_PAUR, field PADDR2[31:16] (RW)
  *
@@ -2714,20 +2408,19 @@ typedef union _hw_enet_paur
 #define BM_ENET_PAUR_PADDR2      (0xffff0000)  //!< Bit mask for ENET_PAUR_PADDR2.
 
 //! @brief Get value of ENET_PAUR_PADDR2 from a register value.
-#define BG_ENET_PAUR_PADDR2(r)   (((r) & BM_ENET_PAUR_PADDR2) >> BP_ENET_PAUR_PADDR2)
+#define BG_ENET_PAUR_PADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_PAUR_PADDR2) >> BP_ENET_PAUR_PADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_PAUR_PADDR2.
-#define BF_ENET_PAUR_PADDR2(v)   ((((reg32_t) v) << BP_ENET_PAUR_PADDR2) & BM_ENET_PAUR_PADDR2)
-#else
-//! @brief Format value for bitfield ENET_PAUR_PADDR2.
-#define BF_ENET_PAUR_PADDR2(v)   (((v) << BP_ENET_PAUR_PADDR2) & BM_ENET_PAUR_PADDR2)
-#endif
+#define BF_ENET_PAUR_PADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_PAUR_PADDR2) & BM_ENET_PAUR_PADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADDR2 field to a new value.
 #define BW_ENET_PAUR_PADDR2(v)   (HW_ENET_PAUR_WR((HW_ENET_PAUR_RD() & ~BM_ENET_PAUR_PADDR2) | BF_ENET_PAUR_PADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_OPD - Opcode/Pause Duration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2779,15 +2472,10 @@ typedef union _hw_enet_opd
 #define BM_ENET_OPD_PAUSE_DUR      (0x0000ffff)  //!< Bit mask for ENET_OPD_PAUSE_DUR.
 
 //! @brief Get value of ENET_OPD_PAUSE_DUR from a register value.
-#define BG_ENET_OPD_PAUSE_DUR(r)   (((r) & BM_ENET_OPD_PAUSE_DUR) >> BP_ENET_OPD_PAUSE_DUR)
+#define BG_ENET_OPD_PAUSE_DUR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_OPD_PAUSE_DUR) >> BP_ENET_OPD_PAUSE_DUR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_OPD_PAUSE_DUR.
-#define BF_ENET_OPD_PAUSE_DUR(v)   ((((reg32_t) v) << BP_ENET_OPD_PAUSE_DUR) & BM_ENET_OPD_PAUSE_DUR)
-#else
-//! @brief Format value for bitfield ENET_OPD_PAUSE_DUR.
-#define BF_ENET_OPD_PAUSE_DUR(v)   (((v) << BP_ENET_OPD_PAUSE_DUR) & BM_ENET_OPD_PAUSE_DUR)
-#endif
+#define BF_ENET_OPD_PAUSE_DUR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_OPD_PAUSE_DUR) & BM_ENET_OPD_PAUSE_DUR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAUSE_DUR field to a new value.
@@ -2803,7 +2491,11 @@ typedef union _hw_enet_opd
 #define BM_ENET_OPD_OPCODE      (0xffff0000)  //!< Bit mask for ENET_OPD_OPCODE.
 
 //! @brief Get value of ENET_OPD_OPCODE from a register value.
-#define BG_ENET_OPD_OPCODE(r)   (((r) & BM_ENET_OPD_OPCODE) >> BP_ENET_OPD_OPCODE)
+#define BG_ENET_OPD_OPCODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_OPD_OPCODE) >> BP_ENET_OPD_OPCODE)
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_IAUR - Descriptor Individual Upper Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2855,20 +2547,19 @@ typedef union _hw_enet_iaur
 #define BM_ENET_IAUR_IADDR1      (0xffffffff)  //!< Bit mask for ENET_IAUR_IADDR1.
 
 //! @brief Get value of ENET_IAUR_IADDR1 from a register value.
-#define BG_ENET_IAUR_IADDR1(r)   (((r) & BM_ENET_IAUR_IADDR1) >> BP_ENET_IAUR_IADDR1)
+#define BG_ENET_IAUR_IADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_IAUR_IADDR1) >> BP_ENET_IAUR_IADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_IAUR_IADDR1.
-#define BF_ENET_IAUR_IADDR1(v)   ((((reg32_t) v) << BP_ENET_IAUR_IADDR1) & BM_ENET_IAUR_IADDR1)
-#else
-//! @brief Format value for bitfield ENET_IAUR_IADDR1.
-#define BF_ENET_IAUR_IADDR1(v)   (((v) << BP_ENET_IAUR_IADDR1) & BM_ENET_IAUR_IADDR1)
-#endif
+#define BF_ENET_IAUR_IADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_IAUR_IADDR1) & BM_ENET_IAUR_IADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IADDR1 field to a new value.
 #define BW_ENET_IAUR_IADDR1(v)   (HW_ENET_IAUR_WR((HW_ENET_IAUR_RD() & ~BM_ENET_IAUR_IADDR1) | BF_ENET_IAUR_IADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_IALR - Descriptor Individual Lower Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2919,20 +2610,19 @@ typedef union _hw_enet_ialr
 #define BM_ENET_IALR_IADDR2      (0xffffffff)  //!< Bit mask for ENET_IALR_IADDR2.
 
 //! @brief Get value of ENET_IALR_IADDR2 from a register value.
-#define BG_ENET_IALR_IADDR2(r)   (((r) & BM_ENET_IALR_IADDR2) >> BP_ENET_IALR_IADDR2)
+#define BG_ENET_IALR_IADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_IALR_IADDR2) >> BP_ENET_IALR_IADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_IALR_IADDR2.
-#define BF_ENET_IALR_IADDR2(v)   ((((reg32_t) v) << BP_ENET_IALR_IADDR2) & BM_ENET_IALR_IADDR2)
-#else
-//! @brief Format value for bitfield ENET_IALR_IADDR2.
-#define BF_ENET_IALR_IADDR2(v)   (((v) << BP_ENET_IALR_IADDR2) & BM_ENET_IALR_IADDR2)
-#endif
+#define BF_ENET_IALR_IADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_IALR_IADDR2) & BM_ENET_IALR_IADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IADDR2 field to a new value.
 #define BW_ENET_IALR_IADDR2(v)   (HW_ENET_IALR_WR((HW_ENET_IALR_RD() & ~BM_ENET_IALR_IADDR2) | BF_ENET_IALR_IADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_GAUR - Descriptor Group Upper Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2982,20 +2672,19 @@ typedef union _hw_enet_gaur
 #define BM_ENET_GAUR_GADDR1      (0xffffffff)  //!< Bit mask for ENET_GAUR_GADDR1.
 
 //! @brief Get value of ENET_GAUR_GADDR1 from a register value.
-#define BG_ENET_GAUR_GADDR1(r)   (((r) & BM_ENET_GAUR_GADDR1) >> BP_ENET_GAUR_GADDR1)
+#define BG_ENET_GAUR_GADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_GAUR_GADDR1) >> BP_ENET_GAUR_GADDR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_GAUR_GADDR1.
-#define BF_ENET_GAUR_GADDR1(v)   ((((reg32_t) v) << BP_ENET_GAUR_GADDR1) & BM_ENET_GAUR_GADDR1)
-#else
-//! @brief Format value for bitfield ENET_GAUR_GADDR1.
-#define BF_ENET_GAUR_GADDR1(v)   (((v) << BP_ENET_GAUR_GADDR1) & BM_ENET_GAUR_GADDR1)
-#endif
+#define BF_ENET_GAUR_GADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_GAUR_GADDR1) & BM_ENET_GAUR_GADDR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GADDR1 field to a new value.
 #define BW_ENET_GAUR_GADDR1(v)   (HW_ENET_GAUR_WR((HW_ENET_GAUR_RD() & ~BM_ENET_GAUR_GADDR1) | BF_ENET_GAUR_GADDR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_GALR - Descriptor Group Lower Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3045,20 +2734,19 @@ typedef union _hw_enet_galr
 #define BM_ENET_GALR_GADDR2      (0xffffffff)  //!< Bit mask for ENET_GALR_GADDR2.
 
 //! @brief Get value of ENET_GALR_GADDR2 from a register value.
-#define BG_ENET_GALR_GADDR2(r)   (((r) & BM_ENET_GALR_GADDR2) >> BP_ENET_GALR_GADDR2)
+#define BG_ENET_GALR_GADDR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_GALR_GADDR2) >> BP_ENET_GALR_GADDR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_GALR_GADDR2.
-#define BF_ENET_GALR_GADDR2(v)   ((((reg32_t) v) << BP_ENET_GALR_GADDR2) & BM_ENET_GALR_GADDR2)
-#else
-//! @brief Format value for bitfield ENET_GALR_GADDR2.
-#define BF_ENET_GALR_GADDR2(v)   (((v) << BP_ENET_GALR_GADDR2) & BM_ENET_GALR_GADDR2)
-#endif
+#define BF_ENET_GALR_GADDR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_GALR_GADDR2) & BM_ENET_GALR_GADDR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GADDR2 field to a new value.
 #define BW_ENET_GALR_GADDR2(v)   (HW_ENET_GALR_WR((HW_ENET_GALR_RD() & ~BM_ENET_GALR_GADDR2) | BF_ENET_GALR_GADDR2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TFWR - Transmit FIFO Watermark Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3124,15 +2812,10 @@ typedef union _hw_enet_tfwr
 #define BM_ENET_TFWR_TFWR      (0x0000003f)  //!< Bit mask for ENET_TFWR_TFWR.
 
 //! @brief Get value of ENET_TFWR_TFWR from a register value.
-#define BG_ENET_TFWR_TFWR(r)   (((r) & BM_ENET_TFWR_TFWR) >> BP_ENET_TFWR_TFWR)
+#define BG_ENET_TFWR_TFWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TFWR_TFWR) >> BP_ENET_TFWR_TFWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TFWR_TFWR.
-#define BF_ENET_TFWR_TFWR(v)   ((((reg32_t) v) << BP_ENET_TFWR_TFWR) & BM_ENET_TFWR_TFWR)
-#else
-//! @brief Format value for bitfield ENET_TFWR_TFWR.
-#define BF_ENET_TFWR_TFWR(v)   (((v) << BP_ENET_TFWR_TFWR) & BM_ENET_TFWR_TFWR)
-#endif
+#define BF_ENET_TFWR_TFWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TFWR_TFWR) & BM_ENET_TFWR_TFWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFWR field to a new value.
@@ -3153,21 +2836,20 @@ typedef union _hw_enet_tfwr
 #define BM_ENET_TFWR_STRFWD      (0x00000100)  //!< Bit mask for ENET_TFWR_STRFWD.
 
 //! @brief Get value of ENET_TFWR_STRFWD from a register value.
-#define BG_ENET_TFWR_STRFWD(r)   (((r) & BM_ENET_TFWR_STRFWD) >> BP_ENET_TFWR_STRFWD)
+#define BG_ENET_TFWR_STRFWD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TFWR_STRFWD) >> BP_ENET_TFWR_STRFWD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TFWR_STRFWD.
-#define BF_ENET_TFWR_STRFWD(v)   ((((reg32_t) v) << BP_ENET_TFWR_STRFWD) & BM_ENET_TFWR_STRFWD)
-#else
-//! @brief Format value for bitfield ENET_TFWR_STRFWD.
-#define BF_ENET_TFWR_STRFWD(v)   (((v) << BP_ENET_TFWR_STRFWD) & BM_ENET_TFWR_STRFWD)
-#endif
+#define BF_ENET_TFWR_STRFWD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TFWR_STRFWD) & BM_ENET_TFWR_STRFWD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STRFWD field to a new value.
 #define BW_ENET_TFWR_STRFWD(v)   (HW_ENET_TFWR_WR((HW_ENET_TFWR_RD() & ~BM_ENET_TFWR_STRFWD) | BF_ENET_TFWR_STRFWD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RDSR - Receive Descriptor Ring Start Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3219,20 +2901,19 @@ typedef union _hw_enet_rdsr
 #define BM_ENET_RDSR_R_DES_START      (0xfffffff8)  //!< Bit mask for ENET_RDSR_R_DES_START.
 
 //! @brief Get value of ENET_RDSR_R_DES_START from a register value.
-#define BG_ENET_RDSR_R_DES_START(r)   (((r) & BM_ENET_RDSR_R_DES_START) >> BP_ENET_RDSR_R_DES_START)
+#define BG_ENET_RDSR_R_DES_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RDSR_R_DES_START) >> BP_ENET_RDSR_R_DES_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RDSR_R_DES_START.
-#define BF_ENET_RDSR_R_DES_START(v)   ((((reg32_t) v) << BP_ENET_RDSR_R_DES_START) & BM_ENET_RDSR_R_DES_START)
-#else
-//! @brief Format value for bitfield ENET_RDSR_R_DES_START.
-#define BF_ENET_RDSR_R_DES_START(v)   (((v) << BP_ENET_RDSR_R_DES_START) & BM_ENET_RDSR_R_DES_START)
-#endif
+#define BF_ENET_RDSR_R_DES_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RDSR_R_DES_START) & BM_ENET_RDSR_R_DES_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_DES_START field to a new value.
 #define BW_ENET_RDSR_R_DES_START(v)   (HW_ENET_RDSR_WR((HW_ENET_RDSR_RD() & ~BM_ENET_RDSR_R_DES_START) | BF_ENET_RDSR_R_DES_START(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TDSR - Transmit Buffer Descriptor Ring Start Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3284,20 +2965,19 @@ typedef union _hw_enet_tdsr
 #define BM_ENET_TDSR_X_DES_START      (0xfffffff8)  //!< Bit mask for ENET_TDSR_X_DES_START.
 
 //! @brief Get value of ENET_TDSR_X_DES_START from a register value.
-#define BG_ENET_TDSR_X_DES_START(r)   (((r) & BM_ENET_TDSR_X_DES_START) >> BP_ENET_TDSR_X_DES_START)
+#define BG_ENET_TDSR_X_DES_START(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TDSR_X_DES_START) >> BP_ENET_TDSR_X_DES_START)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TDSR_X_DES_START.
-#define BF_ENET_TDSR_X_DES_START(v)   ((((reg32_t) v) << BP_ENET_TDSR_X_DES_START) & BM_ENET_TDSR_X_DES_START)
-#else
-//! @brief Format value for bitfield ENET_TDSR_X_DES_START.
-#define BF_ENET_TDSR_X_DES_START(v)   (((v) << BP_ENET_TDSR_X_DES_START) & BM_ENET_TDSR_X_DES_START)
-#endif
+#define BF_ENET_TDSR_X_DES_START(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TDSR_X_DES_START) & BM_ENET_TDSR_X_DES_START)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the X_DES_START field to a new value.
 #define BW_ENET_TDSR_X_DES_START(v)   (HW_ENET_TDSR_WR((HW_ENET_TDSR_RD() & ~BM_ENET_TDSR_X_DES_START) | BF_ENET_TDSR_X_DES_START(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_MRBR - Maximum Receive Buffer Size Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3351,20 +3031,19 @@ typedef union _hw_enet_mrbr
 #define BM_ENET_MRBR_R_BUF_SIZE      (0x00003ff0)  //!< Bit mask for ENET_MRBR_R_BUF_SIZE.
 
 //! @brief Get value of ENET_MRBR_R_BUF_SIZE from a register value.
-#define BG_ENET_MRBR_R_BUF_SIZE(r)   (((r) & BM_ENET_MRBR_R_BUF_SIZE) >> BP_ENET_MRBR_R_BUF_SIZE)
+#define BG_ENET_MRBR_R_BUF_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MRBR_R_BUF_SIZE) >> BP_ENET_MRBR_R_BUF_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_MRBR_R_BUF_SIZE.
-#define BF_ENET_MRBR_R_BUF_SIZE(v)   ((((reg32_t) v) << BP_ENET_MRBR_R_BUF_SIZE) & BM_ENET_MRBR_R_BUF_SIZE)
-#else
-//! @brief Format value for bitfield ENET_MRBR_R_BUF_SIZE.
-#define BF_ENET_MRBR_R_BUF_SIZE(v)   (((v) << BP_ENET_MRBR_R_BUF_SIZE) & BM_ENET_MRBR_R_BUF_SIZE)
-#endif
+#define BF_ENET_MRBR_R_BUF_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_MRBR_R_BUF_SIZE) & BM_ENET_MRBR_R_BUF_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the R_BUF_SIZE field to a new value.
 #define BW_ENET_MRBR_R_BUF_SIZE(v)   (HW_ENET_MRBR_WR((HW_ENET_MRBR_RD() & ~BM_ENET_MRBR_R_BUF_SIZE) | BF_ENET_MRBR_R_BUF_SIZE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RSFL - Receive FIFO Section Full Threshold
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3402,6 +3081,10 @@ typedef union _hw_enet_rsfl
  * constants & macros for individual ENET_RSFL bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RSEM - Receive FIFO Section Empty Threshold
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ENET_RSEM - Receive FIFO Section Empty Threshold (RW)
@@ -3437,6 +3120,10 @@ typedef union _hw_enet_rsem
 /*
  * constants & macros for individual ENET_RSEM bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RAEM - Receive FIFO Almost Empty Threshold
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3474,6 +3161,10 @@ typedef union _hw_enet_raem
  * constants & macros for individual ENET_RAEM bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RAFL - Receive FIFO Almost Full Threshold
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ENET_RAFL - Receive FIFO Almost Full Threshold (RW)
@@ -3509,6 +3200,10 @@ typedef union _hw_enet_rafl
 /*
  * constants & macros for individual ENET_RAFL bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TSEM - Transmit FIFO Section Empty Threshold
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3546,6 +3241,10 @@ typedef union _hw_enet_tsem
  * constants & macros for individual ENET_TSEM bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TAEM - Transmit FIFO Almost Empty Threshold
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ENET_TAEM - Transmit FIFO Almost Empty Threshold (RW)
@@ -3582,6 +3281,10 @@ typedef union _hw_enet_taem
  * constants & macros for individual ENET_TAEM bitfields
  */
 
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TAFL - Transmit FIFO Almost Full Threshold
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ENET_TAFL - Transmit FIFO Almost Full Threshold (RW)
@@ -3617,6 +3320,10 @@ typedef union _hw_enet_tafl
 /*
  * constants & macros for individual ENET_TAFL bitfields
  */
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TIPG - Transmit Inter-Packet Gap
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3665,20 +3372,19 @@ typedef union _hw_enet_tipg
 #define BM_ENET_TIPG_IPG      (0x0000001f)  //!< Bit mask for ENET_TIPG_IPG.
 
 //! @brief Get value of ENET_TIPG_IPG from a register value.
-#define BG_ENET_TIPG_IPG(r)   (((r) & BM_ENET_TIPG_IPG) >> BP_ENET_TIPG_IPG)
+#define BG_ENET_TIPG_IPG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TIPG_IPG) >> BP_ENET_TIPG_IPG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TIPG_IPG.
-#define BF_ENET_TIPG_IPG(v)   ((((reg32_t) v) << BP_ENET_TIPG_IPG) & BM_ENET_TIPG_IPG)
-#else
-//! @brief Format value for bitfield ENET_TIPG_IPG.
-#define BF_ENET_TIPG_IPG(v)   (((v) << BP_ENET_TIPG_IPG) & BM_ENET_TIPG_IPG)
-#endif
+#define BF_ENET_TIPG_IPG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TIPG_IPG) & BM_ENET_TIPG_IPG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPG field to a new value.
 #define BW_ENET_TIPG_IPG(v)   (HW_ENET_TIPG_WR((HW_ENET_TIPG_RD() & ~BM_ENET_TIPG_IPG) | BF_ENET_TIPG_IPG(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_FTRL - Frame Truncation Length
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3729,20 +3435,19 @@ typedef union _hw_enet_ftrl
 #define BM_ENET_FTRL_TRUNC_FL      (0x00003fff)  //!< Bit mask for ENET_FTRL_TRUNC_FL.
 
 //! @brief Get value of ENET_FTRL_TRUNC_FL from a register value.
-#define BG_ENET_FTRL_TRUNC_FL(r)   (((r) & BM_ENET_FTRL_TRUNC_FL) >> BP_ENET_FTRL_TRUNC_FL)
+#define BG_ENET_FTRL_TRUNC_FL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_FTRL_TRUNC_FL) >> BP_ENET_FTRL_TRUNC_FL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_FTRL_TRUNC_FL.
-#define BF_ENET_FTRL_TRUNC_FL(v)   ((((reg32_t) v) << BP_ENET_FTRL_TRUNC_FL) & BM_ENET_FTRL_TRUNC_FL)
-#else
-//! @brief Format value for bitfield ENET_FTRL_TRUNC_FL.
-#define BF_ENET_FTRL_TRUNC_FL(v)   (((v) << BP_ENET_FTRL_TRUNC_FL) & BM_ENET_FTRL_TRUNC_FL)
-#endif
+#define BF_ENET_FTRL_TRUNC_FL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_FTRL_TRUNC_FL) & BM_ENET_FTRL_TRUNC_FL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRUNC_FL field to a new value.
 #define BW_ENET_FTRL_TRUNC_FL(v)   (HW_ENET_FTRL_WR((HW_ENET_FTRL_RD() & ~BM_ENET_FTRL_TRUNC_FL) | BF_ENET_FTRL_TRUNC_FL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_TACC - Transmit Accelerator Function Configuration
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3802,15 +3507,10 @@ typedef union _hw_enet_tacc
 #define BM_ENET_TACC_SHIFT16      (0x00000001)  //!< Bit mask for ENET_TACC_SHIFT16.
 
 //! @brief Get value of ENET_TACC_SHIFT16 from a register value.
-#define BG_ENET_TACC_SHIFT16(r)   (((r) & BM_ENET_TACC_SHIFT16) >> BP_ENET_TACC_SHIFT16)
+#define BG_ENET_TACC_SHIFT16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TACC_SHIFT16) >> BP_ENET_TACC_SHIFT16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TACC_SHIFT16.
-#define BF_ENET_TACC_SHIFT16(v)   ((((reg32_t) v) << BP_ENET_TACC_SHIFT16) & BM_ENET_TACC_SHIFT16)
-#else
-//! @brief Format value for bitfield ENET_TACC_SHIFT16.
-#define BF_ENET_TACC_SHIFT16(v)   (((v) << BP_ENET_TACC_SHIFT16) & BM_ENET_TACC_SHIFT16)
-#endif
+#define BF_ENET_TACC_SHIFT16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TACC_SHIFT16) & BM_ENET_TACC_SHIFT16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SHIFT16 field to a new value.
@@ -3832,15 +3532,10 @@ typedef union _hw_enet_tacc
 #define BM_ENET_TACC_IPCHK      (0x00000008)  //!< Bit mask for ENET_TACC_IPCHK.
 
 //! @brief Get value of ENET_TACC_IPCHK from a register value.
-#define BG_ENET_TACC_IPCHK(r)   (((r) & BM_ENET_TACC_IPCHK) >> BP_ENET_TACC_IPCHK)
+#define BG_ENET_TACC_IPCHK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TACC_IPCHK) >> BP_ENET_TACC_IPCHK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TACC_IPCHK.
-#define BF_ENET_TACC_IPCHK(v)   ((((reg32_t) v) << BP_ENET_TACC_IPCHK) & BM_ENET_TACC_IPCHK)
-#else
-//! @brief Format value for bitfield ENET_TACC_IPCHK.
-#define BF_ENET_TACC_IPCHK(v)   (((v) << BP_ENET_TACC_IPCHK) & BM_ENET_TACC_IPCHK)
-#endif
+#define BF_ENET_TACC_IPCHK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TACC_IPCHK) & BM_ENET_TACC_IPCHK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPCHK field to a new value.
@@ -3862,21 +3557,20 @@ typedef union _hw_enet_tacc
 #define BM_ENET_TACC_PROCHK      (0x00000010)  //!< Bit mask for ENET_TACC_PROCHK.
 
 //! @brief Get value of ENET_TACC_PROCHK from a register value.
-#define BG_ENET_TACC_PROCHK(r)   (((r) & BM_ENET_TACC_PROCHK) >> BP_ENET_TACC_PROCHK)
+#define BG_ENET_TACC_PROCHK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TACC_PROCHK) >> BP_ENET_TACC_PROCHK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_TACC_PROCHK.
-#define BF_ENET_TACC_PROCHK(v)   ((((reg32_t) v) << BP_ENET_TACC_PROCHK) & BM_ENET_TACC_PROCHK)
-#else
-//! @brief Format value for bitfield ENET_TACC_PROCHK.
-#define BF_ENET_TACC_PROCHK(v)   (((v) << BP_ENET_TACC_PROCHK) & BM_ENET_TACC_PROCHK)
-#endif
+#define BF_ENET_TACC_PROCHK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_TACC_PROCHK) & BM_ENET_TACC_PROCHK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PROCHK field to a new value.
 #define BW_ENET_TACC_PROCHK(v)   (HW_ENET_TACC_WR((HW_ENET_TACC_RD() & ~BM_ENET_TACC_PROCHK) | BF_ENET_TACC_PROCHK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_RACC - Receive Accelerator Function Configuration
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3933,15 +3627,10 @@ typedef union _hw_enet_racc
 #define BM_ENET_RACC_PADREM      (0x00000001)  //!< Bit mask for ENET_RACC_PADREM.
 
 //! @brief Get value of ENET_RACC_PADREM from a register value.
-#define BG_ENET_RACC_PADREM(r)   (((r) & BM_ENET_RACC_PADREM) >> BP_ENET_RACC_PADREM)
+#define BG_ENET_RACC_PADREM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RACC_PADREM) >> BP_ENET_RACC_PADREM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RACC_PADREM.
-#define BF_ENET_RACC_PADREM(v)   ((((reg32_t) v) << BP_ENET_RACC_PADREM) & BM_ENET_RACC_PADREM)
-#else
-//! @brief Format value for bitfield ENET_RACC_PADREM.
-#define BF_ENET_RACC_PADREM(v)   (((v) << BP_ENET_RACC_PADREM) & BM_ENET_RACC_PADREM)
-#endif
+#define BF_ENET_RACC_PADREM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RACC_PADREM) & BM_ENET_RACC_PADREM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PADREM field to a new value.
@@ -3964,15 +3653,10 @@ typedef union _hw_enet_racc
 #define BM_ENET_RACC_IPDIS      (0x00000002)  //!< Bit mask for ENET_RACC_IPDIS.
 
 //! @brief Get value of ENET_RACC_IPDIS from a register value.
-#define BG_ENET_RACC_IPDIS(r)   (((r) & BM_ENET_RACC_IPDIS) >> BP_ENET_RACC_IPDIS)
+#define BG_ENET_RACC_IPDIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RACC_IPDIS) >> BP_ENET_RACC_IPDIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RACC_IPDIS.
-#define BF_ENET_RACC_IPDIS(v)   ((((reg32_t) v) << BP_ENET_RACC_IPDIS) & BM_ENET_RACC_IPDIS)
-#else
-//! @brief Format value for bitfield ENET_RACC_IPDIS.
-#define BF_ENET_RACC_IPDIS(v)   (((v) << BP_ENET_RACC_IPDIS) & BM_ENET_RACC_IPDIS)
-#endif
+#define BF_ENET_RACC_IPDIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RACC_IPDIS) & BM_ENET_RACC_IPDIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPDIS field to a new value.
@@ -3995,15 +3679,10 @@ typedef union _hw_enet_racc
 #define BM_ENET_RACC_PRODIS      (0x00000004)  //!< Bit mask for ENET_RACC_PRODIS.
 
 //! @brief Get value of ENET_RACC_PRODIS from a register value.
-#define BG_ENET_RACC_PRODIS(r)   (((r) & BM_ENET_RACC_PRODIS) >> BP_ENET_RACC_PRODIS)
+#define BG_ENET_RACC_PRODIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RACC_PRODIS) >> BP_ENET_RACC_PRODIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RACC_PRODIS.
-#define BF_ENET_RACC_PRODIS(v)   ((((reg32_t) v) << BP_ENET_RACC_PRODIS) & BM_ENET_RACC_PRODIS)
-#else
-//! @brief Format value for bitfield ENET_RACC_PRODIS.
-#define BF_ENET_RACC_PRODIS(v)   (((v) << BP_ENET_RACC_PRODIS) & BM_ENET_RACC_PRODIS)
-#endif
+#define BF_ENET_RACC_PRODIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RACC_PRODIS) & BM_ENET_RACC_PRODIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRODIS field to a new value.
@@ -4025,15 +3704,10 @@ typedef union _hw_enet_racc
 #define BM_ENET_RACC_LINEDIS      (0x00000040)  //!< Bit mask for ENET_RACC_LINEDIS.
 
 //! @brief Get value of ENET_RACC_LINEDIS from a register value.
-#define BG_ENET_RACC_LINEDIS(r)   (((r) & BM_ENET_RACC_LINEDIS) >> BP_ENET_RACC_LINEDIS)
+#define BG_ENET_RACC_LINEDIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RACC_LINEDIS) >> BP_ENET_RACC_LINEDIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RACC_LINEDIS.
-#define BF_ENET_RACC_LINEDIS(v)   ((((reg32_t) v) << BP_ENET_RACC_LINEDIS) & BM_ENET_RACC_LINEDIS)
-#else
-//! @brief Format value for bitfield ENET_RACC_LINEDIS.
-#define BF_ENET_RACC_LINEDIS(v)   (((v) << BP_ENET_RACC_LINEDIS) & BM_ENET_RACC_LINEDIS)
-#endif
+#define BF_ENET_RACC_LINEDIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RACC_LINEDIS) & BM_ENET_RACC_LINEDIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LINEDIS field to a new value.
@@ -4057,21 +3731,20 @@ typedef union _hw_enet_racc
 #define BM_ENET_RACC_SHIFT16      (0x00000080)  //!< Bit mask for ENET_RACC_SHIFT16.
 
 //! @brief Get value of ENET_RACC_SHIFT16 from a register value.
-#define BG_ENET_RACC_SHIFT16(r)   (((r) & BM_ENET_RACC_SHIFT16) >> BP_ENET_RACC_SHIFT16)
+#define BG_ENET_RACC_SHIFT16(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RACC_SHIFT16) >> BP_ENET_RACC_SHIFT16)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_RACC_SHIFT16.
-#define BF_ENET_RACC_SHIFT16(v)   ((((reg32_t) v) << BP_ENET_RACC_SHIFT16) & BM_ENET_RACC_SHIFT16)
-#else
-//! @brief Format value for bitfield ENET_RACC_SHIFT16.
-#define BF_ENET_RACC_SHIFT16(v)   (((v) << BP_ENET_RACC_SHIFT16) & BM_ENET_RACC_SHIFT16)
-#endif
+#define BF_ENET_RACC_SHIFT16(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_RACC_SHIFT16) & BM_ENET_RACC_SHIFT16)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SHIFT16 field to a new value.
 #define BW_ENET_RACC_SHIFT16(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_SHIFT16) | BF_ENET_RACC_SHIFT16(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATCR - Timer Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4137,15 +3810,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_EN      (0x00000001)  //!< Bit mask for ENET_ATCR_EN.
 
 //! @brief Get value of ENET_ATCR_EN from a register value.
-#define BG_ENET_ATCR_EN(r)   (((r) & BM_ENET_ATCR_EN) >> BP_ENET_ATCR_EN)
+#define BG_ENET_ATCR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_EN) >> BP_ENET_ATCR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_EN.
-#define BF_ENET_ATCR_EN(v)   ((((reg32_t) v) << BP_ENET_ATCR_EN) & BM_ENET_ATCR_EN)
-#else
-//! @brief Format value for bitfield ENET_ATCR_EN.
-#define BF_ENET_ATCR_EN(v)   (((v) << BP_ENET_ATCR_EN) & BM_ENET_ATCR_EN)
-#endif
+#define BF_ENET_ATCR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_EN) & BM_ENET_ATCR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -4168,15 +3836,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_OFFEN      (0x00000004)  //!< Bit mask for ENET_ATCR_OFFEN.
 
 //! @brief Get value of ENET_ATCR_OFFEN from a register value.
-#define BG_ENET_ATCR_OFFEN(r)   (((r) & BM_ENET_ATCR_OFFEN) >> BP_ENET_ATCR_OFFEN)
+#define BG_ENET_ATCR_OFFEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_OFFEN) >> BP_ENET_ATCR_OFFEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_OFFEN.
-#define BF_ENET_ATCR_OFFEN(v)   ((((reg32_t) v) << BP_ENET_ATCR_OFFEN) & BM_ENET_ATCR_OFFEN)
-#else
-//! @brief Format value for bitfield ENET_ATCR_OFFEN.
-#define BF_ENET_ATCR_OFFEN(v)   (((v) << BP_ENET_ATCR_OFFEN) & BM_ENET_ATCR_OFFEN)
-#endif
+#define BF_ENET_ATCR_OFFEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_OFFEN) & BM_ENET_ATCR_OFFEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFEN field to a new value.
@@ -4198,15 +3861,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_OFFRST      (0x00000008)  //!< Bit mask for ENET_ATCR_OFFRST.
 
 //! @brief Get value of ENET_ATCR_OFFRST from a register value.
-#define BG_ENET_ATCR_OFFRST(r)   (((r) & BM_ENET_ATCR_OFFRST) >> BP_ENET_ATCR_OFFRST)
+#define BG_ENET_ATCR_OFFRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_OFFRST) >> BP_ENET_ATCR_OFFRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_OFFRST.
-#define BF_ENET_ATCR_OFFRST(v)   ((((reg32_t) v) << BP_ENET_ATCR_OFFRST) & BM_ENET_ATCR_OFFRST)
-#else
-//! @brief Format value for bitfield ENET_ATCR_OFFRST.
-#define BF_ENET_ATCR_OFFRST(v)   (((v) << BP_ENET_ATCR_OFFRST) & BM_ENET_ATCR_OFFRST)
-#endif
+#define BF_ENET_ATCR_OFFRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_OFFRST) & BM_ENET_ATCR_OFFRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFRST field to a new value.
@@ -4230,15 +3888,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_PEREN      (0x00000010)  //!< Bit mask for ENET_ATCR_PEREN.
 
 //! @brief Get value of ENET_ATCR_PEREN from a register value.
-#define BG_ENET_ATCR_PEREN(r)   (((r) & BM_ENET_ATCR_PEREN) >> BP_ENET_ATCR_PEREN)
+#define BG_ENET_ATCR_PEREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_PEREN) >> BP_ENET_ATCR_PEREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_PEREN.
-#define BF_ENET_ATCR_PEREN(v)   ((((reg32_t) v) << BP_ENET_ATCR_PEREN) & BM_ENET_ATCR_PEREN)
-#else
-//! @brief Format value for bitfield ENET_ATCR_PEREN.
-#define BF_ENET_ATCR_PEREN(v)   (((v) << BP_ENET_ATCR_PEREN) & BM_ENET_ATCR_PEREN)
-#endif
+#define BF_ENET_ATCR_PEREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_PEREN) & BM_ENET_ATCR_PEREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PEREN field to a new value.
@@ -4260,15 +3913,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_PINPER      (0x00000080)  //!< Bit mask for ENET_ATCR_PINPER.
 
 //! @brief Get value of ENET_ATCR_PINPER from a register value.
-#define BG_ENET_ATCR_PINPER(r)   (((r) & BM_ENET_ATCR_PINPER) >> BP_ENET_ATCR_PINPER)
+#define BG_ENET_ATCR_PINPER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_PINPER) >> BP_ENET_ATCR_PINPER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_PINPER.
-#define BF_ENET_ATCR_PINPER(v)   ((((reg32_t) v) << BP_ENET_ATCR_PINPER) & BM_ENET_ATCR_PINPER)
-#else
-//! @brief Format value for bitfield ENET_ATCR_PINPER.
-#define BF_ENET_ATCR_PINPER(v)   (((v) << BP_ENET_ATCR_PINPER) & BM_ENET_ATCR_PINPER)
-#endif
+#define BF_ENET_ATCR_PINPER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_PINPER) & BM_ENET_ATCR_PINPER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PINPER field to a new value.
@@ -4287,15 +3935,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_RESTART      (0x00000200)  //!< Bit mask for ENET_ATCR_RESTART.
 
 //! @brief Get value of ENET_ATCR_RESTART from a register value.
-#define BG_ENET_ATCR_RESTART(r)   (((r) & BM_ENET_ATCR_RESTART) >> BP_ENET_ATCR_RESTART)
+#define BG_ENET_ATCR_RESTART(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_RESTART) >> BP_ENET_ATCR_RESTART)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_RESTART.
-#define BF_ENET_ATCR_RESTART(v)   ((((reg32_t) v) << BP_ENET_ATCR_RESTART) & BM_ENET_ATCR_RESTART)
-#else
-//! @brief Format value for bitfield ENET_ATCR_RESTART.
-#define BF_ENET_ATCR_RESTART(v)   (((v) << BP_ENET_ATCR_RESTART) & BM_ENET_ATCR_RESTART)
-#endif
+#define BF_ENET_ATCR_RESTART(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_RESTART) & BM_ENET_ATCR_RESTART)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESTART field to a new value.
@@ -4315,15 +3958,10 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_CAPTURE      (0x00000800)  //!< Bit mask for ENET_ATCR_CAPTURE.
 
 //! @brief Get value of ENET_ATCR_CAPTURE from a register value.
-#define BG_ENET_ATCR_CAPTURE(r)   (((r) & BM_ENET_ATCR_CAPTURE) >> BP_ENET_ATCR_CAPTURE)
+#define BG_ENET_ATCR_CAPTURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_CAPTURE) >> BP_ENET_ATCR_CAPTURE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_CAPTURE.
-#define BF_ENET_ATCR_CAPTURE(v)   ((((reg32_t) v) << BP_ENET_ATCR_CAPTURE) & BM_ENET_ATCR_CAPTURE)
-#else
-//! @brief Format value for bitfield ENET_ATCR_CAPTURE.
-#define BF_ENET_ATCR_CAPTURE(v)   (((v) << BP_ENET_ATCR_CAPTURE) & BM_ENET_ATCR_CAPTURE)
-#endif
+#define BF_ENET_ATCR_CAPTURE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_CAPTURE) & BM_ENET_ATCR_CAPTURE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CAPTURE field to a new value.
@@ -4346,21 +3984,20 @@ typedef union _hw_enet_atcr
 #define BM_ENET_ATCR_SLAVE      (0x00002000)  //!< Bit mask for ENET_ATCR_SLAVE.
 
 //! @brief Get value of ENET_ATCR_SLAVE from a register value.
-#define BG_ENET_ATCR_SLAVE(r)   (((r) & BM_ENET_ATCR_SLAVE) >> BP_ENET_ATCR_SLAVE)
+#define BG_ENET_ATCR_SLAVE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCR_SLAVE) >> BP_ENET_ATCR_SLAVE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCR_SLAVE.
-#define BF_ENET_ATCR_SLAVE(v)   ((((reg32_t) v) << BP_ENET_ATCR_SLAVE) & BM_ENET_ATCR_SLAVE)
-#else
-//! @brief Format value for bitfield ENET_ATCR_SLAVE.
-#define BF_ENET_ATCR_SLAVE(v)   (((v) << BP_ENET_ATCR_SLAVE) & BM_ENET_ATCR_SLAVE)
-#endif
+#define BF_ENET_ATCR_SLAVE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCR_SLAVE) & BM_ENET_ATCR_SLAVE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLAVE field to a new value.
 #define BW_ENET_ATCR_SLAVE(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_SLAVE) | BF_ENET_ATCR_SLAVE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATVR - Timer Value Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4408,20 +4045,19 @@ typedef union _hw_enet_atvr
 #define BM_ENET_ATVR_ATIME      (0xffffffff)  //!< Bit mask for ENET_ATVR_ATIME.
 
 //! @brief Get value of ENET_ATVR_ATIME from a register value.
-#define BG_ENET_ATVR_ATIME(r)   (((r) & BM_ENET_ATVR_ATIME) >> BP_ENET_ATVR_ATIME)
+#define BG_ENET_ATVR_ATIME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATVR_ATIME) >> BP_ENET_ATVR_ATIME)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATVR_ATIME.
-#define BF_ENET_ATVR_ATIME(v)   ((((reg32_t) v) << BP_ENET_ATVR_ATIME) & BM_ENET_ATVR_ATIME)
-#else
-//! @brief Format value for bitfield ENET_ATVR_ATIME.
-#define BF_ENET_ATVR_ATIME(v)   (((v) << BP_ENET_ATVR_ATIME) & BM_ENET_ATVR_ATIME)
-#endif
+#define BF_ENET_ATVR_ATIME(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATVR_ATIME) & BM_ENET_ATVR_ATIME)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATIME field to a new value.
 #define BW_ENET_ATVR_ATIME(v)   (HW_ENET_ATVR_WR((HW_ENET_ATVR_RD() & ~BM_ENET_ATVR_ATIME) | BF_ENET_ATVR_ATIME(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATOFF - Timer Offset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4470,20 +4106,19 @@ typedef union _hw_enet_atoff
 #define BM_ENET_ATOFF_OFFSET      (0xffffffff)  //!< Bit mask for ENET_ATOFF_OFFSET.
 
 //! @brief Get value of ENET_ATOFF_OFFSET from a register value.
-#define BG_ENET_ATOFF_OFFSET(r)   (((r) & BM_ENET_ATOFF_OFFSET) >> BP_ENET_ATOFF_OFFSET)
+#define BG_ENET_ATOFF_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATOFF_OFFSET) >> BP_ENET_ATOFF_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATOFF_OFFSET.
-#define BF_ENET_ATOFF_OFFSET(v)   ((((reg32_t) v) << BP_ENET_ATOFF_OFFSET) & BM_ENET_ATOFF_OFFSET)
-#else
-//! @brief Format value for bitfield ENET_ATOFF_OFFSET.
-#define BF_ENET_ATOFF_OFFSET(v)   (((v) << BP_ENET_ATOFF_OFFSET) & BM_ENET_ATOFF_OFFSET)
-#endif
+#define BF_ENET_ATOFF_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATOFF_OFFSET) & BM_ENET_ATOFF_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
 #define BW_ENET_ATOFF_OFFSET(v)   (HW_ENET_ATOFF_WR((HW_ENET_ATOFF_RD() & ~BM_ENET_ATOFF_OFFSET) | BF_ENET_ATOFF_OFFSET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATPER - Timer Period Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4535,20 +4170,19 @@ typedef union _hw_enet_atper
 #define BM_ENET_ATPER_PERIOD      (0xffffffff)  //!< Bit mask for ENET_ATPER_PERIOD.
 
 //! @brief Get value of ENET_ATPER_PERIOD from a register value.
-#define BG_ENET_ATPER_PERIOD(r)   (((r) & BM_ENET_ATPER_PERIOD) >> BP_ENET_ATPER_PERIOD)
+#define BG_ENET_ATPER_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATPER_PERIOD) >> BP_ENET_ATPER_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATPER_PERIOD.
-#define BF_ENET_ATPER_PERIOD(v)   ((((reg32_t) v) << BP_ENET_ATPER_PERIOD) & BM_ENET_ATPER_PERIOD)
-#else
-//! @brief Format value for bitfield ENET_ATPER_PERIOD.
-#define BF_ENET_ATPER_PERIOD(v)   (((v) << BP_ENET_ATPER_PERIOD) & BM_ENET_ATPER_PERIOD)
-#endif
+#define BF_ENET_ATPER_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATPER_PERIOD) & BM_ENET_ATPER_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIOD field to a new value.
 #define BW_ENET_ATPER_PERIOD(v)   (HW_ENET_ATPER_WR((HW_ENET_ATPER_RD() & ~BM_ENET_ATPER_PERIOD) | BF_ENET_ATPER_PERIOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATCOR - Timer Correction Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4601,20 +4235,19 @@ typedef union _hw_enet_atcor
 #define BM_ENET_ATCOR_COR      (0x7fffffff)  //!< Bit mask for ENET_ATCOR_COR.
 
 //! @brief Get value of ENET_ATCOR_COR from a register value.
-#define BG_ENET_ATCOR_COR(r)   (((r) & BM_ENET_ATCOR_COR) >> BP_ENET_ATCOR_COR)
+#define BG_ENET_ATCOR_COR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATCOR_COR) >> BP_ENET_ATCOR_COR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATCOR_COR.
-#define BF_ENET_ATCOR_COR(v)   ((((reg32_t) v) << BP_ENET_ATCOR_COR) & BM_ENET_ATCOR_COR)
-#else
-//! @brief Format value for bitfield ENET_ATCOR_COR.
-#define BF_ENET_ATCOR_COR(v)   (((v) << BP_ENET_ATCOR_COR) & BM_ENET_ATCOR_COR)
-#endif
+#define BF_ENET_ATCOR_COR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATCOR_COR) & BM_ENET_ATCOR_COR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COR field to a new value.
 #define BW_ENET_ATCOR_COR(v)   (HW_ENET_ATCOR_WR((HW_ENET_ATCOR_RD() & ~BM_ENET_ATCOR_COR) | BF_ENET_ATCOR_COR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATINC - Time-Stamping Clock Period Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4666,15 +4299,10 @@ typedef union _hw_enet_atinc
 #define BM_ENET_ATINC_INC      (0x0000007f)  //!< Bit mask for ENET_ATINC_INC.
 
 //! @brief Get value of ENET_ATINC_INC from a register value.
-#define BG_ENET_ATINC_INC(r)   (((r) & BM_ENET_ATINC_INC) >> BP_ENET_ATINC_INC)
+#define BG_ENET_ATINC_INC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATINC_INC) >> BP_ENET_ATINC_INC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATINC_INC.
-#define BF_ENET_ATINC_INC(v)   ((((reg32_t) v) << BP_ENET_ATINC_INC) & BM_ENET_ATINC_INC)
-#else
-//! @brief Format value for bitfield ENET_ATINC_INC.
-#define BF_ENET_ATINC_INC(v)   (((v) << BP_ENET_ATINC_INC) & BM_ENET_ATINC_INC)
-#endif
+#define BF_ENET_ATINC_INC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATINC_INC) & BM_ENET_ATINC_INC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC field to a new value.
@@ -4691,20 +4319,19 @@ typedef union _hw_enet_atinc
 #define BM_ENET_ATINC_INC_CORR      (0x00007f00)  //!< Bit mask for ENET_ATINC_INC_CORR.
 
 //! @brief Get value of ENET_ATINC_INC_CORR from a register value.
-#define BG_ENET_ATINC_INC_CORR(r)   (((r) & BM_ENET_ATINC_INC_CORR) >> BP_ENET_ATINC_INC_CORR)
+#define BG_ENET_ATINC_INC_CORR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATINC_INC_CORR) >> BP_ENET_ATINC_INC_CORR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ENET_ATINC_INC_CORR.
-#define BF_ENET_ATINC_INC_CORR(v)   ((((reg32_t) v) << BP_ENET_ATINC_INC_CORR) & BM_ENET_ATINC_INC_CORR)
-#else
-//! @brief Format value for bitfield ENET_ATINC_INC_CORR.
-#define BF_ENET_ATINC_INC_CORR(v)   (((v) << BP_ENET_ATINC_INC_CORR) & BM_ENET_ATINC_INC_CORR)
-#endif
+#define BF_ENET_ATINC_INC_CORR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ENET_ATINC_INC_CORR) & BM_ENET_ATINC_INC_CORR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_CORR field to a new value.
 #define BW_ENET_ATINC_INC_CORR(v)   (HW_ENET_ATINC_WR((HW_ENET_ATINC_RD() & ~BM_ENET_ATINC_INC_CORR) | BF_ENET_ATINC_INC_CORR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ENET_ATSTMP - Timestamp of Last Transmitted Frame
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4748,7 +4375,7 @@ typedef union _hw_enet_atstmp
 #define BM_ENET_ATSTMP_TIMESTAMP      (0xffffffff)  //!< Bit mask for ENET_ATSTMP_TIMESTAMP.
 
 //! @brief Get value of ENET_ATSTMP_TIMESTAMP from a register value.
-#define BG_ENET_ATSTMP_TIMESTAMP(r)   (((r) & BM_ENET_ATSTMP_TIMESTAMP) >> BP_ENET_ATSTMP_TIMESTAMP)
+#define BG_ENET_ATSTMP_TIMESTAMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATSTMP_TIMESTAMP) >> BP_ENET_ATSTMP_TIMESTAMP)
 
 
 /*!

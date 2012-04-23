@@ -27,15 +27,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBNC_USB_OTG1_CTRL_WIE={\
         gui_name="WIE":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_USBNC_USB_OTG1_CTRL_RESET={\
-        gui_name="RESET":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_USBNC_USB_OTG1_CTRL_SUSPENDM={\
-        gui_name="SUSPENDM":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_USBNC_USB_OTG1_CTRL_UTMI_ON_C3={\
-        gui_name="UTMI_ON_CLOCK":position=13:size=1:read_only=false\
-      }:\
         bit_fields.B_USBNC_USB_OTG1_CTRL_WKUP_SW_EN={\
         gui_name="WKUP_SW_EN":position=14:size=1:read_only=false\
       }:\
@@ -45,7 +36,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBNC_USB_OTG1_CTRL_WKUP_ID_EN={\
         gui_name="WKUP_ID_EN":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_USBNC_USB_OTG1_CTRL_WKUP_VBUS4={\
+        bit_fields.B_USBNC_USB_OTG1_CTRL_WKUP_VBUS3={\
         gui_name="WKUP_VBUS_EN":position=17:size=1:read_only=false\
       }:\
         bit_fields.B_USBNC_USB_OTG1_CTRL_WIR={\
@@ -54,10 +45,10 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_USBNC_USB_OTG2_CTRL={\
       gui_name="USB_OTG2_CTRL":start=0x02184804:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_OVER_CUR_5={\
+        bit_fields.B_USBNC_USB_OTG2_CTRL_OVER_CUR_4={\
         gui_name="OVER_CUR_DIS":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_OVER_CUR_6={\
+        bit_fields.B_USBNC_USB_OTG2_CTRL_OVER_CUR_5={\
         gui_name="OVER_CUR_POL":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_USBNC_USB_OTG2_CTRL_PWR_POL={\
@@ -65,15 +56,6 @@ Advanced_Information.Cortex-A9={\
       }:\
         bit_fields.B_USBNC_USB_OTG2_CTRL_WIE={\
         gui_name="WIE":position=10:size=1:read_only=false\
-      }:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_RESET={\
-        gui_name="RESET":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_SUSPENDM={\
-        gui_name="SUSPENDM":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_UTMI_ON_C7={\
-        gui_name="UTMI_ON_CLOCK":position=13:size=1:read_only=false\
       }:\
         bit_fields.B_USBNC_USB_OTG2_CTRL_WKUP_SW_EN={\
         gui_name="WKUP_SW_EN":position=14:size=1:read_only=false\
@@ -84,7 +66,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_USBNC_USB_OTG2_CTRL_WKUP_ID_EN={\
         gui_name="WKUP_ID_EN":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_USBNC_USB_OTG2_CTRL_WKUP_VBUS8={\
+        bit_fields.B_USBNC_USB_OTG2_CTRL_WKUP_VBUS6={\
         gui_name="WKUP_VBUS_EN":position=17:size=1:read_only=false\
       }:\
         bit_fields.B_USBNC_USB_OTG2_CTRL_WIR={\
@@ -117,7 +99,7 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_USBNC_USB_UH_HSIC_CTRL={\
       gui_name="USB_UH_HSIC_CTRL":start=0x02184810:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBNC_USB_UH_HSIC_CTRL_HSIC_C9={\
+        bit_fields.B_USBNC_USB_UH_HSIC_CTRL_HSIC_C7={\
         gui_name="HSIC_CLK_ON":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_USBNC_USB_UH_HSIC_CTRL_HSIC_EN={\
@@ -129,14 +111,14 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_USBNC_USB_OTG1_PHY_CTRL_0={\
       gui_name="USB_OTG1_PHY_CTRL_0":start=0x02184818:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBNC_USB_OTG1_PHY_CTRL_0_UT10={\
-        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=true\
+        bit_fields.B_USBNC_USB_OTG1_PHY_CTRL_0_UTM8={\
+        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=false\
       }\
     }:Register.G_USBNC_USB_OTG2_PHY_CTRL_0={\
       gui_name="USB_OTG2_PHY_CTRL_0":start=0x0218481c:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_USBNC_USB_OTG2_PHY_CTRL_0_UT11={\
-        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=true\
+        bit_fields.B_USBNC_USB_OTG2_PHY_CTRL_0_UTM9={\
+        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=false\
       }\
     }\
   }:Register_window.USBNC={\
@@ -146,28 +128,22 @@ Advanced_Information.Cortex-A9={\
     line="B_USBNC_USB_OTG1_CTRL_OVER_CUR_2":\
     line="B_USBNC_USB_OTG1_CTRL_PWR_POL":\
     line="B_USBNC_USB_OTG1_CTRL_WIE":\
-    line="B_USBNC_USB_OTG1_CTRL_RESET":\
-    line="B_USBNC_USB_OTG1_CTRL_SUSPENDM":\
-    line="B_USBNC_USB_OTG1_CTRL_UTMI_ON_C3":\
     line="B_USBNC_USB_OTG1_CTRL_WKUP_SW_EN":\
     line="B_USBNC_USB_OTG1_CTRL_WKUP_SW":\
     line="B_USBNC_USB_OTG1_CTRL_WKUP_ID_EN":\
-    line="B_USBNC_USB_OTG1_CTRL_WKUP_VBUS4":\
+    line="B_USBNC_USB_OTG1_CTRL_WKUP_VBUS3":\
     line="B_USBNC_USB_OTG1_CTRL_WIR":\
     line="$$":\
     line="$+":\
     line="=G_USBNC_USB_OTG2_CTRL":\
+    line="B_USBNC_USB_OTG2_CTRL_OVER_CUR_4":\
     line="B_USBNC_USB_OTG2_CTRL_OVER_CUR_5":\
-    line="B_USBNC_USB_OTG2_CTRL_OVER_CUR_6":\
     line="B_USBNC_USB_OTG2_CTRL_PWR_POL":\
     line="B_USBNC_USB_OTG2_CTRL_WIE":\
-    line="B_USBNC_USB_OTG2_CTRL_RESET":\
-    line="B_USBNC_USB_OTG2_CTRL_SUSPENDM":\
-    line="B_USBNC_USB_OTG2_CTRL_UTMI_ON_C7":\
     line="B_USBNC_USB_OTG2_CTRL_WKUP_SW_EN":\
     line="B_USBNC_USB_OTG2_CTRL_WKUP_SW":\
     line="B_USBNC_USB_OTG2_CTRL_WKUP_ID_EN":\
-    line="B_USBNC_USB_OTG2_CTRL_WKUP_VBUS8":\
+    line="B_USBNC_USB_OTG2_CTRL_WKUP_VBUS6":\
     line="B_USBNC_USB_OTG2_CTRL_WIR":\
     line="$$":\
     line="$+":\
@@ -182,17 +158,17 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_USBNC_USB_UH_HSIC_CTRL":\
-    line="B_USBNC_USB_UH_HSIC_CTRL_HSIC_C9":\
+    line="B_USBNC_USB_UH_HSIC_CTRL_HSIC_C7":\
     line="B_USBNC_USB_UH_HSIC_CTRL_HSIC_EN":\
     line="B_USBNC_USB_UH_HSIC_CTRL_CLK_VLD":\
     line="$$":\
     line="$+":\
     line="=G_USBNC_USB_OTG1_PHY_CTRL_0":\
-    line="B_USBNC_USB_OTG1_PHY_CTRL_0_UT10":\
+    line="B_USBNC_USB_OTG1_PHY_CTRL_0_UTM8":\
     line="$$":\
     line="$+":\
     line="=G_USBNC_USB_OTG2_PHY_CTRL_0":\
-    line="B_USBNC_USB_OTG2_PHY_CTRL_0_UT11":\
+    line="B_USBNC_USB_OTG2_PHY_CTRL_0_UTM9":\
     line="$$":\
   }:ARM_config={}\
 }

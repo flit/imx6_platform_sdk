@@ -42,6 +42,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_EPIT_EPITCR - Control register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EPIT_EPITCR - Control register (RW)
@@ -111,15 +126,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_EN      (0x00000001)  //!< Bit mask for EPIT_EPITCR_EN.
 
 //! @brief Get value of EPIT_EPITCR_EN from a register value.
-#define BG_EPIT_EPITCR_EN(r)   (((r) & BM_EPIT_EPITCR_EN) >> BP_EPIT_EPITCR_EN)
+#define BG_EPIT_EPITCR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_EN) >> BP_EPIT_EPITCR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_EN.
-#define BF_EPIT_EPITCR_EN(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_EN) & BM_EPIT_EPITCR_EN)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_EN.
-#define BF_EPIT_EPITCR_EN(v)   (((v) << BP_EPIT_EPITCR_EN) & BM_EPIT_EPITCR_EN)
-#endif
+#define BF_EPIT_EPITCR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_EN) & BM_EPIT_EPITCR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -150,15 +160,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_ENMOD      (0x00000002)  //!< Bit mask for EPIT_EPITCR_ENMOD.
 
 //! @brief Get value of EPIT_EPITCR_ENMOD from a register value.
-#define BG_EPIT_EPITCR_ENMOD(r)   (((r) & BM_EPIT_EPITCR_ENMOD) >> BP_EPIT_EPITCR_ENMOD)
+#define BG_EPIT_EPITCR_ENMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_ENMOD) >> BP_EPIT_EPITCR_ENMOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_ENMOD.
-#define BF_EPIT_EPITCR_ENMOD(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_ENMOD) & BM_EPIT_EPITCR_ENMOD)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_ENMOD.
-#define BF_EPIT_EPITCR_ENMOD(v)   (((v) << BP_EPIT_EPITCR_ENMOD) & BM_EPIT_EPITCR_ENMOD)
-#endif
+#define BF_EPIT_EPITCR_ENMOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_ENMOD) & BM_EPIT_EPITCR_ENMOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENMOD field to a new value.
@@ -180,15 +185,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_OCIEN      (0x00000004)  //!< Bit mask for EPIT_EPITCR_OCIEN.
 
 //! @brief Get value of EPIT_EPITCR_OCIEN from a register value.
-#define BG_EPIT_EPITCR_OCIEN(r)   (((r) & BM_EPIT_EPITCR_OCIEN) >> BP_EPIT_EPITCR_OCIEN)
+#define BG_EPIT_EPITCR_OCIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_OCIEN) >> BP_EPIT_EPITCR_OCIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_OCIEN.
-#define BF_EPIT_EPITCR_OCIEN(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_OCIEN) & BM_EPIT_EPITCR_OCIEN)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_OCIEN.
-#define BF_EPIT_EPITCR_OCIEN(v)   (((v) << BP_EPIT_EPITCR_OCIEN) & BM_EPIT_EPITCR_OCIEN)
-#endif
+#define BF_EPIT_EPITCR_OCIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_OCIEN) & BM_EPIT_EPITCR_OCIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OCIEN field to a new value.
@@ -210,15 +210,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_RLD      (0x00000008)  //!< Bit mask for EPIT_EPITCR_RLD.
 
 //! @brief Get value of EPIT_EPITCR_RLD from a register value.
-#define BG_EPIT_EPITCR_RLD(r)   (((r) & BM_EPIT_EPITCR_RLD) >> BP_EPIT_EPITCR_RLD)
+#define BG_EPIT_EPITCR_RLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_RLD) >> BP_EPIT_EPITCR_RLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_RLD.
-#define BF_EPIT_EPITCR_RLD(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_RLD) & BM_EPIT_EPITCR_RLD)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_RLD.
-#define BF_EPIT_EPITCR_RLD(v)   (((v) << BP_EPIT_EPITCR_RLD) & BM_EPIT_EPITCR_RLD)
-#endif
+#define BF_EPIT_EPITCR_RLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_RLD) & BM_EPIT_EPITCR_RLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RLD field to a new value.
@@ -234,22 +229,17 @@ typedef union _hw_epit_epitcr
  * Values:
  * 0x000 - Divide by 1
  * 0x001 - Divide by 2
- * 0xFFFF - Divide by 4096
+ * 0xFFF - Divide by 4096
  */
 
 #define BP_EPIT_EPITCR_PRESCALAR      (4)      //!< Bit position for EPIT_EPITCR_PRESCALAR.
 #define BM_EPIT_EPITCR_PRESCALAR      (0x0000fff0)  //!< Bit mask for EPIT_EPITCR_PRESCALAR.
 
 //! @brief Get value of EPIT_EPITCR_PRESCALAR from a register value.
-#define BG_EPIT_EPITCR_PRESCALAR(r)   (((r) & BM_EPIT_EPITCR_PRESCALAR) >> BP_EPIT_EPITCR_PRESCALAR)
+#define BG_EPIT_EPITCR_PRESCALAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_PRESCALAR) >> BP_EPIT_EPITCR_PRESCALAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_PRESCALAR.
-#define BF_EPIT_EPITCR_PRESCALAR(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_PRESCALAR) & BM_EPIT_EPITCR_PRESCALAR)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_PRESCALAR.
-#define BF_EPIT_EPITCR_PRESCALAR(v)   (((v) << BP_EPIT_EPITCR_PRESCALAR) & BM_EPIT_EPITCR_PRESCALAR)
-#endif
+#define BF_EPIT_EPITCR_PRESCALAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_PRESCALAR) & BM_EPIT_EPITCR_PRESCALAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRESCALAR field to a new value.
@@ -273,15 +263,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_SWR      (0x00010000)  //!< Bit mask for EPIT_EPITCR_SWR.
 
 //! @brief Get value of EPIT_EPITCR_SWR from a register value.
-#define BG_EPIT_EPITCR_SWR(r)   (((r) & BM_EPIT_EPITCR_SWR) >> BP_EPIT_EPITCR_SWR)
+#define BG_EPIT_EPITCR_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_SWR) >> BP_EPIT_EPITCR_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_SWR.
-#define BF_EPIT_EPITCR_SWR(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_SWR) & BM_EPIT_EPITCR_SWR)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_SWR.
-#define BF_EPIT_EPITCR_SWR(v)   (((v) << BP_EPIT_EPITCR_SWR) & BM_EPIT_EPITCR_SWR)
-#endif
+#define BF_EPIT_EPITCR_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_SWR) & BM_EPIT_EPITCR_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -304,15 +289,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_IOVW      (0x00020000)  //!< Bit mask for EPIT_EPITCR_IOVW.
 
 //! @brief Get value of EPIT_EPITCR_IOVW from a register value.
-#define BG_EPIT_EPITCR_IOVW(r)   (((r) & BM_EPIT_EPITCR_IOVW) >> BP_EPIT_EPITCR_IOVW)
+#define BG_EPIT_EPITCR_IOVW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_IOVW) >> BP_EPIT_EPITCR_IOVW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_IOVW.
-#define BF_EPIT_EPITCR_IOVW(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_IOVW) & BM_EPIT_EPITCR_IOVW)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_IOVW.
-#define BF_EPIT_EPITCR_IOVW(v)   (((v) << BP_EPIT_EPITCR_IOVW) & BM_EPIT_EPITCR_IOVW)
-#endif
+#define BF_EPIT_EPITCR_IOVW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_IOVW) & BM_EPIT_EPITCR_IOVW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IOVW field to a new value.
@@ -335,15 +315,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_DBGEN      (0x00040000)  //!< Bit mask for EPIT_EPITCR_DBGEN.
 
 //! @brief Get value of EPIT_EPITCR_DBGEN from a register value.
-#define BG_EPIT_EPITCR_DBGEN(r)   (((r) & BM_EPIT_EPITCR_DBGEN) >> BP_EPIT_EPITCR_DBGEN)
+#define BG_EPIT_EPITCR_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_DBGEN) >> BP_EPIT_EPITCR_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_DBGEN.
-#define BF_EPIT_EPITCR_DBGEN(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_DBGEN) & BM_EPIT_EPITCR_DBGEN)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_DBGEN.
-#define BF_EPIT_EPITCR_DBGEN(v)   (((v) << BP_EPIT_EPITCR_DBGEN) & BM_EPIT_EPITCR_DBGEN)
-#endif
+#define BF_EPIT_EPITCR_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_DBGEN) & BM_EPIT_EPITCR_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
@@ -365,15 +340,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_WAITEN      (0x00080000)  //!< Bit mask for EPIT_EPITCR_WAITEN.
 
 //! @brief Get value of EPIT_EPITCR_WAITEN from a register value.
-#define BG_EPIT_EPITCR_WAITEN(r)   (((r) & BM_EPIT_EPITCR_WAITEN) >> BP_EPIT_EPITCR_WAITEN)
+#define BG_EPIT_EPITCR_WAITEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_WAITEN) >> BP_EPIT_EPITCR_WAITEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_WAITEN.
-#define BF_EPIT_EPITCR_WAITEN(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_WAITEN) & BM_EPIT_EPITCR_WAITEN)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_WAITEN.
-#define BF_EPIT_EPITCR_WAITEN(v)   (((v) << BP_EPIT_EPITCR_WAITEN) & BM_EPIT_EPITCR_WAITEN)
-#endif
+#define BF_EPIT_EPITCR_WAITEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_WAITEN) & BM_EPIT_EPITCR_WAITEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAITEN field to a new value.
@@ -395,15 +365,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_STOPEN      (0x00200000)  //!< Bit mask for EPIT_EPITCR_STOPEN.
 
 //! @brief Get value of EPIT_EPITCR_STOPEN from a register value.
-#define BG_EPIT_EPITCR_STOPEN(r)   (((r) & BM_EPIT_EPITCR_STOPEN) >> BP_EPIT_EPITCR_STOPEN)
+#define BG_EPIT_EPITCR_STOPEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_STOPEN) >> BP_EPIT_EPITCR_STOPEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_STOPEN.
-#define BF_EPIT_EPITCR_STOPEN(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_STOPEN) & BM_EPIT_EPITCR_STOPEN)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_STOPEN.
-#define BF_EPIT_EPITCR_STOPEN(v)   (((v) << BP_EPIT_EPITCR_STOPEN) & BM_EPIT_EPITCR_STOPEN)
-#endif
+#define BF_EPIT_EPITCR_STOPEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_STOPEN) & BM_EPIT_EPITCR_STOPEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STOPEN field to a new value.
@@ -426,15 +391,10 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_OM      (0x00c00000)  //!< Bit mask for EPIT_EPITCR_OM.
 
 //! @brief Get value of EPIT_EPITCR_OM from a register value.
-#define BG_EPIT_EPITCR_OM(r)   (((r) & BM_EPIT_EPITCR_OM) >> BP_EPIT_EPITCR_OM)
+#define BG_EPIT_EPITCR_OM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_OM) >> BP_EPIT_EPITCR_OM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_OM.
-#define BF_EPIT_EPITCR_OM(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_OM) & BM_EPIT_EPITCR_OM)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_OM.
-#define BF_EPIT_EPITCR_OM(v)   (((v) << BP_EPIT_EPITCR_OM) & BM_EPIT_EPITCR_OM)
-#endif
+#define BF_EPIT_EPITCR_OM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_OM) & BM_EPIT_EPITCR_OM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OM field to a new value.
@@ -459,21 +419,20 @@ typedef union _hw_epit_epitcr
 #define BM_EPIT_EPITCR_CLKSRC      (0x03000000)  //!< Bit mask for EPIT_EPITCR_CLKSRC.
 
 //! @brief Get value of EPIT_EPITCR_CLKSRC from a register value.
-#define BG_EPIT_EPITCR_CLKSRC(r)   (((r) & BM_EPIT_EPITCR_CLKSRC) >> BP_EPIT_EPITCR_CLKSRC)
+#define BG_EPIT_EPITCR_CLKSRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCR_CLKSRC) >> BP_EPIT_EPITCR_CLKSRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCR_CLKSRC.
-#define BF_EPIT_EPITCR_CLKSRC(v)   ((((reg32_t) v) << BP_EPIT_EPITCR_CLKSRC) & BM_EPIT_EPITCR_CLKSRC)
-#else
-//! @brief Format value for bitfield EPIT_EPITCR_CLKSRC.
-#define BF_EPIT_EPITCR_CLKSRC(v)   (((v) << BP_EPIT_EPITCR_CLKSRC) & BM_EPIT_EPITCR_CLKSRC)
-#endif
+#define BF_EPIT_EPITCR_CLKSRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCR_CLKSRC) & BM_EPIT_EPITCR_CLKSRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKSRC field to a new value.
 #define BW_EPIT_EPITCR_CLKSRC(x, v)   (HW_EPIT_EPITCR_WR(x, (HW_EPIT_EPITCR_RD(x) & ~BM_EPIT_EPITCR_CLKSRC) | BF_EPIT_EPITCR_CLKSRC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EPIT_EPITSR - Status register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -528,21 +487,20 @@ typedef union _hw_epit_epitsr
 #define BM_EPIT_EPITSR_OCIF      (0x00000001)  //!< Bit mask for EPIT_EPITSR_OCIF.
 
 //! @brief Get value of EPIT_EPITSR_OCIF from a register value.
-#define BG_EPIT_EPITSR_OCIF(r)   (((r) & BM_EPIT_EPITSR_OCIF) >> BP_EPIT_EPITSR_OCIF)
+#define BG_EPIT_EPITSR_OCIF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITSR_OCIF) >> BP_EPIT_EPITSR_OCIF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITSR_OCIF.
-#define BF_EPIT_EPITSR_OCIF(v)   ((((reg32_t) v) << BP_EPIT_EPITSR_OCIF) & BM_EPIT_EPITSR_OCIF)
-#else
-//! @brief Format value for bitfield EPIT_EPITSR_OCIF.
-#define BF_EPIT_EPITSR_OCIF(v)   (((v) << BP_EPIT_EPITSR_OCIF) & BM_EPIT_EPITSR_OCIF)
-#endif
+#define BF_EPIT_EPITSR_OCIF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITSR_OCIF) & BM_EPIT_EPITSR_OCIF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OCIF field to a new value.
 #define BW_EPIT_EPITSR_OCIF(x, v)   (HW_EPIT_EPITSR_WR(x, (HW_EPIT_EPITSR_RD(x) & ~BM_EPIT_EPITSR_OCIF) | BF_EPIT_EPITSR_OCIF(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EPIT_EPITLR - Load register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -595,20 +553,19 @@ typedef union _hw_epit_epitlr
 #define BM_EPIT_EPITLR_LOAD      (0xffffffff)  //!< Bit mask for EPIT_EPITLR_LOAD.
 
 //! @brief Get value of EPIT_EPITLR_LOAD from a register value.
-#define BG_EPIT_EPITLR_LOAD(r)   (((r) & BM_EPIT_EPITLR_LOAD) >> BP_EPIT_EPITLR_LOAD)
+#define BG_EPIT_EPITLR_LOAD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITLR_LOAD) >> BP_EPIT_EPITLR_LOAD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITLR_LOAD.
-#define BF_EPIT_EPITLR_LOAD(v)   ((((reg32_t) v) << BP_EPIT_EPITLR_LOAD) & BM_EPIT_EPITLR_LOAD)
-#else
-//! @brief Format value for bitfield EPIT_EPITLR_LOAD.
-#define BF_EPIT_EPITLR_LOAD(v)   (((v) << BP_EPIT_EPITLR_LOAD) & BM_EPIT_EPITLR_LOAD)
-#endif
+#define BF_EPIT_EPITLR_LOAD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITLR_LOAD) & BM_EPIT_EPITLR_LOAD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LOAD field to a new value.
 #define BW_EPIT_EPITLR_LOAD(x, v)   (HW_EPIT_EPITLR_WR(x, (HW_EPIT_EPITLR_RD(x) & ~BM_EPIT_EPITLR_LOAD) | BF_EPIT_EPITLR_LOAD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPIT_EPITCMPR - Compare register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -656,20 +613,19 @@ typedef union _hw_epit_epitcmpr
 #define BM_EPIT_EPITCMPR_COMPARE      (0xffffffff)  //!< Bit mask for EPIT_EPITCMPR_COMPARE.
 
 //! @brief Get value of EPIT_EPITCMPR_COMPARE from a register value.
-#define BG_EPIT_EPITCMPR_COMPARE(r)   (((r) & BM_EPIT_EPITCMPR_COMPARE) >> BP_EPIT_EPITCMPR_COMPARE)
+#define BG_EPIT_EPITCMPR_COMPARE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCMPR_COMPARE) >> BP_EPIT_EPITCMPR_COMPARE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPIT_EPITCMPR_COMPARE.
-#define BF_EPIT_EPITCMPR_COMPARE(v)   ((((reg32_t) v) << BP_EPIT_EPITCMPR_COMPARE) & BM_EPIT_EPITCMPR_COMPARE)
-#else
-//! @brief Format value for bitfield EPIT_EPITCMPR_COMPARE.
-#define BF_EPIT_EPITCMPR_COMPARE(v)   (((v) << BP_EPIT_EPITCMPR_COMPARE) & BM_EPIT_EPITCMPR_COMPARE)
-#endif
+#define BF_EPIT_EPITCMPR_COMPARE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPIT_EPITCMPR_COMPARE) & BM_EPIT_EPITCMPR_COMPARE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COMPARE field to a new value.
 #define BW_EPIT_EPITCMPR_COMPARE(x, v)   (HW_EPIT_EPITCMPR_WR(x, (HW_EPIT_EPITCMPR_RD(x) & ~BM_EPIT_EPITCMPR_COMPARE) | BF_EPIT_EPITCMPR_COMPARE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPIT_EPITCNR - Counter register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -716,7 +672,7 @@ typedef union _hw_epit_epitcnr
 #define BM_EPIT_EPITCNR_COUNT      (0xffffffff)  //!< Bit mask for EPIT_EPITCNR_COUNT.
 
 //! @brief Get value of EPIT_EPITCNR_COUNT from a register value.
-#define BG_EPIT_EPITCNR_COUNT(r)   (((r) & BM_EPIT_EPITCNR_COUNT) >> BP_EPIT_EPITCNR_COUNT)
+#define BG_EPIT_EPITCNR_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_EPITCNR_COUNT) >> BP_EPIT_EPITCNR_COUNT)
 
 
 /*!

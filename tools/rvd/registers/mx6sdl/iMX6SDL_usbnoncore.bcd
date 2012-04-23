@@ -166,13 +166,13 @@ Advanced_Information.Cortex-A9={\
       gui_name="USB_OTG_PHY_CTRL_0":start=0x02184818:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBNC_USB_OTG_PHY_CTRL_0_UTM17={\
-        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=true\
+        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=false\
       }\
     }:Register.G_USBNC_USB_UH1_PHY_CTRL_0={\
       gui_name="USB_UH1_PHY_CTRL_0":start=0x0218481c:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_USBNC_USB_UH1_PHY_CTRL_0_UTM18={\
-        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=true\
+        gui_name="UTMI_CLK_VLD":position=31:size=1:read_only=false\
       }\
     }\
   }:Register_window.USBNC={\

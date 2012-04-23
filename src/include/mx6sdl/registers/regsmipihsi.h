@@ -157,6 +157,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_CTRL - HSI Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MIPI_HSI_CTRL - HSI Control Register (RW)
@@ -225,15 +240,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR      (0x0000000f)  //!< Bit mask for MIPI_HSI_CTRL_TX_CLK_DIVISOR.
 
 //! @brief Get value of MIPI_HSI_CTRL_TX_CLK_DIVISOR from a register value.
-#define BG_MIPI_HSI_CTRL_TX_CLK_DIVISOR(r)   (((r) & BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR) >> BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR)
+#define BG_MIPI_HSI_CTRL_TX_CLK_DIVISOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR) >> BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_TX_CLK_DIVISOR.
-#define BF_MIPI_HSI_CTRL_TX_CLK_DIVISOR(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR) & BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_TX_CLK_DIVISOR.
-#define BF_MIPI_HSI_CTRL_TX_CLK_DIVISOR(v)   (((v) << BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR) & BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR)
-#endif
+#define BF_MIPI_HSI_CTRL_TX_CLK_DIVISOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR) & BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CLK_DIVISOR field to a new value.
@@ -252,15 +262,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_TX_BREAK      (0x00000010)  //!< Bit mask for MIPI_HSI_CTRL_TX_BREAK.
 
 //! @brief Get value of MIPI_HSI_CTRL_TX_BREAK from a register value.
-#define BG_MIPI_HSI_CTRL_TX_BREAK(r)   (((r) & BM_MIPI_HSI_CTRL_TX_BREAK) >> BP_MIPI_HSI_CTRL_TX_BREAK)
+#define BG_MIPI_HSI_CTRL_TX_BREAK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_TX_BREAK) >> BP_MIPI_HSI_CTRL_TX_BREAK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_TX_BREAK.
-#define BF_MIPI_HSI_CTRL_TX_BREAK(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_TX_BREAK) & BM_MIPI_HSI_CTRL_TX_BREAK)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_TX_BREAK.
-#define BF_MIPI_HSI_CTRL_TX_BREAK(v)   (((v) << BP_MIPI_HSI_CTRL_TX_BREAK) & BM_MIPI_HSI_CTRL_TX_BREAK)
-#endif
+#define BF_MIPI_HSI_CTRL_TX_BREAK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_TX_BREAK) & BM_MIPI_HSI_CTRL_TX_BREAK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_BREAK field to a new value.
@@ -286,15 +291,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT      (0x00000f00)  //!< Bit mask for MIPI_HSI_CTRL_DATA_TIMEOUT_CNT.
 
 //! @brief Get value of MIPI_HSI_CTRL_DATA_TIMEOUT_CNT from a register value.
-#define BG_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(r)   (((r) & BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) >> BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT)
+#define BG_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) >> BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_DATA_TIMEOUT_CNT.
-#define BF_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) & BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_DATA_TIMEOUT_CNT.
-#define BF_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(v)   (((v) << BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) & BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT)
-#endif
+#define BF_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) & BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_TIMEOUT_CNT field to a new value.
@@ -320,15 +320,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT      (0x00003000)  //!< Bit mask for MIPI_HSI_CTRL_RX_TAIL_BIT_CNT.
 
 //! @brief Get value of MIPI_HSI_CTRL_RX_TAIL_BIT_CNT from a register value.
-#define BG_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(r)   (((r) & BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) >> BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT)
+#define BG_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) >> BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_RX_TAIL_BIT_CNT.
-#define BF_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) & BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_RX_TAIL_BIT_CNT.
-#define BF_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(v)   (((v) << BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) & BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT)
-#endif
+#define BF_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) & BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_TAIL_BIT_CNT field to a new value.
@@ -348,15 +343,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT      (0x00ff0000)  //!< Bit mask for MIPI_HSI_CTRL_RX_FRAME_BRST_CNT.
 
 //! @brief Get value of MIPI_HSI_CTRL_RX_FRAME_BRST_CNT from a register value.
-#define BG_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(r)   (((r) & BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) >> BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT)
+#define BG_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) >> BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_RX_FRAME_BRST_CNT.
-#define BF_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) & BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_RX_FRAME_BRST_CNT.
-#define BF_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(v)   (((v) << BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) & BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT)
-#endif
+#define BF_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) & BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_FRAME_BRST_CNT field to a new value.
@@ -382,15 +372,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_RX_DLY_SEL      (0x07000000)  //!< Bit mask for MIPI_HSI_CTRL_RX_DLY_SEL.
 
 //! @brief Get value of MIPI_HSI_CTRL_RX_DLY_SEL from a register value.
-#define BG_MIPI_HSI_CTRL_RX_DLY_SEL(r)   (((r) & BM_MIPI_HSI_CTRL_RX_DLY_SEL) >> BP_MIPI_HSI_CTRL_RX_DLY_SEL)
+#define BG_MIPI_HSI_CTRL_RX_DLY_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_RX_DLY_SEL) >> BP_MIPI_HSI_CTRL_RX_DLY_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_RX_DLY_SEL.
-#define BF_MIPI_HSI_CTRL_RX_DLY_SEL(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_RX_DLY_SEL) & BM_MIPI_HSI_CTRL_RX_DLY_SEL)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_RX_DLY_SEL.
-#define BF_MIPI_HSI_CTRL_RX_DLY_SEL(v)   (((v) << BP_MIPI_HSI_CTRL_RX_DLY_SEL) & BM_MIPI_HSI_CTRL_RX_DLY_SEL)
-#endif
+#define BF_MIPI_HSI_CTRL_RX_DLY_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_RX_DLY_SEL) & BM_MIPI_HSI_CTRL_RX_DLY_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_DLY_SEL field to a new value.
@@ -408,15 +393,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_DMA_DISABLE      (0x08000000)  //!< Bit mask for MIPI_HSI_CTRL_DMA_DISABLE.
 
 //! @brief Get value of MIPI_HSI_CTRL_DMA_DISABLE from a register value.
-#define BG_MIPI_HSI_CTRL_DMA_DISABLE(r)   (((r) & BM_MIPI_HSI_CTRL_DMA_DISABLE) >> BP_MIPI_HSI_CTRL_DMA_DISABLE)
+#define BG_MIPI_HSI_CTRL_DMA_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_DMA_DISABLE) >> BP_MIPI_HSI_CTRL_DMA_DISABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_DMA_DISABLE.
-#define BF_MIPI_HSI_CTRL_DMA_DISABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_DMA_DISABLE) & BM_MIPI_HSI_CTRL_DMA_DISABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_DMA_DISABLE.
-#define BF_MIPI_HSI_CTRL_DMA_DISABLE(v)   (((v) << BP_MIPI_HSI_CTRL_DMA_DISABLE) & BM_MIPI_HSI_CTRL_DMA_DISABLE)
-#endif
+#define BF_MIPI_HSI_CTRL_DMA_DISABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_DMA_DISABLE) & BM_MIPI_HSI_CTRL_DMA_DISABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_DISABLE field to a new value.
@@ -433,15 +413,10 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for MIPI_HSI_CTRL_CLKGATE.
 
 //! @brief Get value of MIPI_HSI_CTRL_CLKGATE from a register value.
-#define BG_MIPI_HSI_CTRL_CLKGATE(r)   (((r) & BM_MIPI_HSI_CTRL_CLKGATE) >> BP_MIPI_HSI_CTRL_CLKGATE)
+#define BG_MIPI_HSI_CTRL_CLKGATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_CLKGATE) >> BP_MIPI_HSI_CTRL_CLKGATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_CLKGATE.
-#define BF_MIPI_HSI_CTRL_CLKGATE(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_CLKGATE) & BM_MIPI_HSI_CTRL_CLKGATE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_CLKGATE.
-#define BF_MIPI_HSI_CTRL_CLKGATE(v)   (((v) << BP_MIPI_HSI_CTRL_CLKGATE) & BM_MIPI_HSI_CTRL_CLKGATE)
-#endif
+#define BF_MIPI_HSI_CTRL_CLKGATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_CLKGATE) & BM_MIPI_HSI_CTRL_CLKGATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKGATE field to a new value.
@@ -459,20 +434,19 @@ typedef union _hw_mipi_hsi_ctrl
 #define BM_MIPI_HSI_CTRL_SFTRST      (0x80000000)  //!< Bit mask for MIPI_HSI_CTRL_SFTRST.
 
 //! @brief Get value of MIPI_HSI_CTRL_SFTRST from a register value.
-#define BG_MIPI_HSI_CTRL_SFTRST(r)   (((r) & BM_MIPI_HSI_CTRL_SFTRST) >> BP_MIPI_HSI_CTRL_SFTRST)
+#define BG_MIPI_HSI_CTRL_SFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CTRL_SFTRST) >> BP_MIPI_HSI_CTRL_SFTRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CTRL_SFTRST.
-#define BF_MIPI_HSI_CTRL_SFTRST(v)   ((((reg32_t) v) << BP_MIPI_HSI_CTRL_SFTRST) & BM_MIPI_HSI_CTRL_SFTRST)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CTRL_SFTRST.
-#define BF_MIPI_HSI_CTRL_SFTRST(v)   (((v) << BP_MIPI_HSI_CTRL_SFTRST) & BM_MIPI_HSI_CTRL_SFTRST)
-#endif
+#define BF_MIPI_HSI_CTRL_SFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CTRL_SFTRST) & BM_MIPI_HSI_CTRL_SFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SFTRST field to a new value.
 #define BW_MIPI_HSI_CTRL_SFTRST(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_SFTRST) | BF_MIPI_HSI_CTRL_SFTRST(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CONF - HSI Tx Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -544,15 +518,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_TRANS_MODE      (0x00000001)  //!< Bit mask for MIPI_HSI_TX_CONF_TRANS_MODE.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_TRANS_MODE from a register value.
-#define BG_MIPI_HSI_TX_CONF_TRANS_MODE(r)   (((r) & BM_MIPI_HSI_TX_CONF_TRANS_MODE) >> BP_MIPI_HSI_TX_CONF_TRANS_MODE)
+#define BG_MIPI_HSI_TX_CONF_TRANS_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_TRANS_MODE) >> BP_MIPI_HSI_TX_CONF_TRANS_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_TRANS_MODE.
-#define BF_MIPI_HSI_TX_CONF_TRANS_MODE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_TRANS_MODE) & BM_MIPI_HSI_TX_CONF_TRANS_MODE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_TRANS_MODE.
-#define BF_MIPI_HSI_TX_CONF_TRANS_MODE(v)   (((v) << BP_MIPI_HSI_TX_CONF_TRANS_MODE) & BM_MIPI_HSI_TX_CONF_TRANS_MODE)
-#endif
+#define BF_MIPI_HSI_TX_CONF_TRANS_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_TRANS_MODE) & BM_MIPI_HSI_TX_CONF_TRANS_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_MODE field to a new value.
@@ -574,15 +543,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_WAKEUP      (0x00000002)  //!< Bit mask for MIPI_HSI_TX_CONF_WAKEUP.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_WAKEUP from a register value.
-#define BG_MIPI_HSI_TX_CONF_WAKEUP(r)   (((r) & BM_MIPI_HSI_TX_CONF_WAKEUP) >> BP_MIPI_HSI_TX_CONF_WAKEUP)
+#define BG_MIPI_HSI_TX_CONF_WAKEUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_WAKEUP) >> BP_MIPI_HSI_TX_CONF_WAKEUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_WAKEUP.
-#define BF_MIPI_HSI_TX_CONF_WAKEUP(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_WAKEUP) & BM_MIPI_HSI_TX_CONF_WAKEUP)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_WAKEUP.
-#define BF_MIPI_HSI_TX_CONF_WAKEUP(v)   (((v) << BP_MIPI_HSI_TX_CONF_WAKEUP) & BM_MIPI_HSI_TX_CONF_WAKEUP)
-#endif
+#define BF_MIPI_HSI_TX_CONF_WAKEUP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_WAKEUP) & BM_MIPI_HSI_TX_CONF_WAKEUP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKEUP field to a new value.
@@ -607,15 +571,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_CONF_TIMEOUT_CNT.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_TIMEOUT_CNT from a register value.
-#define BG_MIPI_HSI_TX_CONF_TIMEOUT_CNT(r)   (((r) & BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT) >> BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT)
+#define BG_MIPI_HSI_TX_CONF_TIMEOUT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT) >> BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_TIMEOUT_CNT.
-#define BF_MIPI_HSI_TX_CONF_TIMEOUT_CNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_TIMEOUT_CNT.
-#define BF_MIPI_HSI_TX_CONF_TIMEOUT_CNT(v)   (((v) << BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT)
-#endif
+#define BF_MIPI_HSI_TX_CONF_TIMEOUT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIMEOUT_CNT field to a new value.
@@ -636,15 +595,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH0_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH0_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH0_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH0_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH0_EN) >> BP_MIPI_HSI_TX_CONF_CH0_EN)
+#define BG_MIPI_HSI_TX_CONF_CH0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH0_EN) >> BP_MIPI_HSI_TX_CONF_CH0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH0_EN.
-#define BF_MIPI_HSI_TX_CONF_CH0_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH0_EN) & BM_MIPI_HSI_TX_CONF_CH0_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH0_EN.
-#define BF_MIPI_HSI_TX_CONF_CH0_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH0_EN) & BM_MIPI_HSI_TX_CONF_CH0_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH0_EN) & BM_MIPI_HSI_TX_CONF_CH0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0_EN field to a new value.
@@ -665,15 +619,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH1_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH1_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH1_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH1_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH1_EN) >> BP_MIPI_HSI_TX_CONF_CH1_EN)
+#define BG_MIPI_HSI_TX_CONF_CH1_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH1_EN) >> BP_MIPI_HSI_TX_CONF_CH1_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH1_EN.
-#define BF_MIPI_HSI_TX_CONF_CH1_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH1_EN) & BM_MIPI_HSI_TX_CONF_CH1_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH1_EN.
-#define BF_MIPI_HSI_TX_CONF_CH1_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH1_EN) & BM_MIPI_HSI_TX_CONF_CH1_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH1_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH1_EN) & BM_MIPI_HSI_TX_CONF_CH1_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1_EN field to a new value.
@@ -694,15 +643,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH2_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH2_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH2_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH2_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH2_EN) >> BP_MIPI_HSI_TX_CONF_CH2_EN)
+#define BG_MIPI_HSI_TX_CONF_CH2_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH2_EN) >> BP_MIPI_HSI_TX_CONF_CH2_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH2_EN.
-#define BF_MIPI_HSI_TX_CONF_CH2_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH2_EN) & BM_MIPI_HSI_TX_CONF_CH2_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH2_EN.
-#define BF_MIPI_HSI_TX_CONF_CH2_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH2_EN) & BM_MIPI_HSI_TX_CONF_CH2_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH2_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH2_EN) & BM_MIPI_HSI_TX_CONF_CH2_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2_EN field to a new value.
@@ -723,15 +667,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH3_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH3_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH3_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH3_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH3_EN) >> BP_MIPI_HSI_TX_CONF_CH3_EN)
+#define BG_MIPI_HSI_TX_CONF_CH3_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH3_EN) >> BP_MIPI_HSI_TX_CONF_CH3_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH3_EN.
-#define BF_MIPI_HSI_TX_CONF_CH3_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH3_EN) & BM_MIPI_HSI_TX_CONF_CH3_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH3_EN.
-#define BF_MIPI_HSI_TX_CONF_CH3_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH3_EN) & BM_MIPI_HSI_TX_CONF_CH3_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH3_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH3_EN) & BM_MIPI_HSI_TX_CONF_CH3_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3_EN field to a new value.
@@ -752,15 +691,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH4_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH4_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH4_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH4_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH4_EN) >> BP_MIPI_HSI_TX_CONF_CH4_EN)
+#define BG_MIPI_HSI_TX_CONF_CH4_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH4_EN) >> BP_MIPI_HSI_TX_CONF_CH4_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH4_EN.
-#define BF_MIPI_HSI_TX_CONF_CH4_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH4_EN) & BM_MIPI_HSI_TX_CONF_CH4_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH4_EN.
-#define BF_MIPI_HSI_TX_CONF_CH4_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH4_EN) & BM_MIPI_HSI_TX_CONF_CH4_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH4_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH4_EN) & BM_MIPI_HSI_TX_CONF_CH4_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4_EN field to a new value.
@@ -781,15 +715,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH5_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH5_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH5_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH5_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH5_EN) >> BP_MIPI_HSI_TX_CONF_CH5_EN)
+#define BG_MIPI_HSI_TX_CONF_CH5_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH5_EN) >> BP_MIPI_HSI_TX_CONF_CH5_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH5_EN.
-#define BF_MIPI_HSI_TX_CONF_CH5_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH5_EN) & BM_MIPI_HSI_TX_CONF_CH5_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH5_EN.
-#define BF_MIPI_HSI_TX_CONF_CH5_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH5_EN) & BM_MIPI_HSI_TX_CONF_CH5_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH5_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH5_EN) & BM_MIPI_HSI_TX_CONF_CH5_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5_EN field to a new value.
@@ -810,15 +739,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH6_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH6_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH6_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH6_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH6_EN) >> BP_MIPI_HSI_TX_CONF_CH6_EN)
+#define BG_MIPI_HSI_TX_CONF_CH6_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH6_EN) >> BP_MIPI_HSI_TX_CONF_CH6_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH6_EN.
-#define BF_MIPI_HSI_TX_CONF_CH6_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH6_EN) & BM_MIPI_HSI_TX_CONF_CH6_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH6_EN.
-#define BF_MIPI_HSI_TX_CONF_CH6_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH6_EN) & BM_MIPI_HSI_TX_CONF_CH6_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH6_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH6_EN) & BM_MIPI_HSI_TX_CONF_CH6_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6_EN field to a new value.
@@ -839,15 +763,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH7_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH7_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH7_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH7_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH7_EN) >> BP_MIPI_HSI_TX_CONF_CH7_EN)
+#define BG_MIPI_HSI_TX_CONF_CH7_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH7_EN) >> BP_MIPI_HSI_TX_CONF_CH7_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH7_EN.
-#define BF_MIPI_HSI_TX_CONF_CH7_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH7_EN) & BM_MIPI_HSI_TX_CONF_CH7_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH7_EN.
-#define BF_MIPI_HSI_TX_CONF_CH7_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH7_EN) & BM_MIPI_HSI_TX_CONF_CH7_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH7_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH7_EN) & BM_MIPI_HSI_TX_CONF_CH7_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7_EN field to a new value.
@@ -868,15 +787,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH8_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH8_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH8_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH8_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH8_EN) >> BP_MIPI_HSI_TX_CONF_CH8_EN)
+#define BG_MIPI_HSI_TX_CONF_CH8_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH8_EN) >> BP_MIPI_HSI_TX_CONF_CH8_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH8_EN.
-#define BF_MIPI_HSI_TX_CONF_CH8_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH8_EN) & BM_MIPI_HSI_TX_CONF_CH8_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH8_EN.
-#define BF_MIPI_HSI_TX_CONF_CH8_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH8_EN) & BM_MIPI_HSI_TX_CONF_CH8_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH8_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH8_EN) & BM_MIPI_HSI_TX_CONF_CH8_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8_EN field to a new value.
@@ -897,15 +811,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH9_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH9_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH9_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH9_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH9_EN) >> BP_MIPI_HSI_TX_CONF_CH9_EN)
+#define BG_MIPI_HSI_TX_CONF_CH9_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH9_EN) >> BP_MIPI_HSI_TX_CONF_CH9_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH9_EN.
-#define BF_MIPI_HSI_TX_CONF_CH9_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH9_EN) & BM_MIPI_HSI_TX_CONF_CH9_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH9_EN.
-#define BF_MIPI_HSI_TX_CONF_CH9_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH9_EN) & BM_MIPI_HSI_TX_CONF_CH9_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH9_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH9_EN) & BM_MIPI_HSI_TX_CONF_CH9_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9_EN field to a new value.
@@ -926,15 +835,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH10_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH10_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH10_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH10_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH10_EN) >> BP_MIPI_HSI_TX_CONF_CH10_EN)
+#define BG_MIPI_HSI_TX_CONF_CH10_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH10_EN) >> BP_MIPI_HSI_TX_CONF_CH10_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH10_EN.
-#define BF_MIPI_HSI_TX_CONF_CH10_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH10_EN) & BM_MIPI_HSI_TX_CONF_CH10_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH10_EN.
-#define BF_MIPI_HSI_TX_CONF_CH10_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH10_EN) & BM_MIPI_HSI_TX_CONF_CH10_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH10_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH10_EN) & BM_MIPI_HSI_TX_CONF_CH10_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10_EN field to a new value.
@@ -955,15 +859,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH11_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH11_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH11_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH11_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH11_EN) >> BP_MIPI_HSI_TX_CONF_CH11_EN)
+#define BG_MIPI_HSI_TX_CONF_CH11_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH11_EN) >> BP_MIPI_HSI_TX_CONF_CH11_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH11_EN.
-#define BF_MIPI_HSI_TX_CONF_CH11_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH11_EN) & BM_MIPI_HSI_TX_CONF_CH11_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH11_EN.
-#define BF_MIPI_HSI_TX_CONF_CH11_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH11_EN) & BM_MIPI_HSI_TX_CONF_CH11_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH11_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH11_EN) & BM_MIPI_HSI_TX_CONF_CH11_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11_EN field to a new value.
@@ -984,15 +883,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH12_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH12_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH12_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH12_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH12_EN) >> BP_MIPI_HSI_TX_CONF_CH12_EN)
+#define BG_MIPI_HSI_TX_CONF_CH12_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH12_EN) >> BP_MIPI_HSI_TX_CONF_CH12_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH12_EN.
-#define BF_MIPI_HSI_TX_CONF_CH12_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH12_EN) & BM_MIPI_HSI_TX_CONF_CH12_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH12_EN.
-#define BF_MIPI_HSI_TX_CONF_CH12_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH12_EN) & BM_MIPI_HSI_TX_CONF_CH12_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH12_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH12_EN) & BM_MIPI_HSI_TX_CONF_CH12_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12_EN field to a new value.
@@ -1013,15 +907,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH13_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH13_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH13_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH13_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH13_EN) >> BP_MIPI_HSI_TX_CONF_CH13_EN)
+#define BG_MIPI_HSI_TX_CONF_CH13_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH13_EN) >> BP_MIPI_HSI_TX_CONF_CH13_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH13_EN.
-#define BF_MIPI_HSI_TX_CONF_CH13_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH13_EN) & BM_MIPI_HSI_TX_CONF_CH13_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH13_EN.
-#define BF_MIPI_HSI_TX_CONF_CH13_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH13_EN) & BM_MIPI_HSI_TX_CONF_CH13_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH13_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH13_EN) & BM_MIPI_HSI_TX_CONF_CH13_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13_EN field to a new value.
@@ -1042,15 +931,10 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH14_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH14_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH14_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH14_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH14_EN) >> BP_MIPI_HSI_TX_CONF_CH14_EN)
+#define BG_MIPI_HSI_TX_CONF_CH14_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH14_EN) >> BP_MIPI_HSI_TX_CONF_CH14_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH14_EN.
-#define BF_MIPI_HSI_TX_CONF_CH14_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH14_EN) & BM_MIPI_HSI_TX_CONF_CH14_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH14_EN.
-#define BF_MIPI_HSI_TX_CONF_CH14_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH14_EN) & BM_MIPI_HSI_TX_CONF_CH14_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH14_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH14_EN) & BM_MIPI_HSI_TX_CONF_CH14_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14_EN field to a new value.
@@ -1071,21 +955,20 @@ typedef union _hw_mipi_hsi_tx_conf
 #define BM_MIPI_HSI_TX_CONF_CH15_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH15_EN.
 
 //! @brief Get value of MIPI_HSI_TX_CONF_CH15_EN from a register value.
-#define BG_MIPI_HSI_TX_CONF_CH15_EN(r)   (((r) & BM_MIPI_HSI_TX_CONF_CH15_EN) >> BP_MIPI_HSI_TX_CONF_CH15_EN)
+#define BG_MIPI_HSI_TX_CONF_CH15_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CONF_CH15_EN) >> BP_MIPI_HSI_TX_CONF_CH15_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH15_EN.
-#define BF_MIPI_HSI_TX_CONF_CH15_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CONF_CH15_EN) & BM_MIPI_HSI_TX_CONF_CH15_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CONF_CH15_EN.
-#define BF_MIPI_HSI_TX_CONF_CH15_EN(v)   (((v) << BP_MIPI_HSI_TX_CONF_CH15_EN) & BM_MIPI_HSI_TX_CONF_CH15_EN)
-#endif
+#define BF_MIPI_HSI_TX_CONF_CH15_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CONF_CH15_EN) & BM_MIPI_HSI_TX_CONF_CH15_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH15_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH15_EN) | BF_MIPI_HSI_TX_CONF_CH15_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CONF - HSI Rx Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1161,15 +1044,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_DATA_FLOW      (0x00000003)  //!< Bit mask for MIPI_HSI_RX_CONF_DATA_FLOW.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_DATA_FLOW from a register value.
-#define BG_MIPI_HSI_RX_CONF_DATA_FLOW(r)   (((r) & BM_MIPI_HSI_RX_CONF_DATA_FLOW) >> BP_MIPI_HSI_RX_CONF_DATA_FLOW)
+#define BG_MIPI_HSI_RX_CONF_DATA_FLOW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_DATA_FLOW) >> BP_MIPI_HSI_RX_CONF_DATA_FLOW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_DATA_FLOW.
-#define BF_MIPI_HSI_RX_CONF_DATA_FLOW(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_DATA_FLOW) & BM_MIPI_HSI_RX_CONF_DATA_FLOW)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_DATA_FLOW.
-#define BF_MIPI_HSI_RX_CONF_DATA_FLOW(v)   (((v) << BP_MIPI_HSI_RX_CONF_DATA_FLOW) & BM_MIPI_HSI_RX_CONF_DATA_FLOW)
-#endif
+#define BF_MIPI_HSI_RX_CONF_DATA_FLOW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_DATA_FLOW) & BM_MIPI_HSI_RX_CONF_DATA_FLOW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_FLOW field to a new value.
@@ -1190,15 +1068,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_WAKE      (0x00000004)  //!< Bit mask for MIPI_HSI_RX_CONF_WAKE.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_WAKE from a register value.
-#define BG_MIPI_HSI_RX_CONF_WAKE(r)   (((r) & BM_MIPI_HSI_RX_CONF_WAKE) >> BP_MIPI_HSI_RX_CONF_WAKE)
+#define BG_MIPI_HSI_RX_CONF_WAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_WAKE) >> BP_MIPI_HSI_RX_CONF_WAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_WAKE.
-#define BF_MIPI_HSI_RX_CONF_WAKE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_WAKE) & BM_MIPI_HSI_RX_CONF_WAKE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_WAKE.
-#define BF_MIPI_HSI_RX_CONF_WAKE(v)   (((v) << BP_MIPI_HSI_RX_CONF_WAKE) & BM_MIPI_HSI_RX_CONF_WAKE)
-#endif
+#define BF_MIPI_HSI_RX_CONF_WAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_WAKE) & BM_MIPI_HSI_RX_CONF_WAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAKE field to a new value.
@@ -1219,15 +1092,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_REC_MODE      (0x00000008)  //!< Bit mask for MIPI_HSI_RX_CONF_REC_MODE.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_REC_MODE from a register value.
-#define BG_MIPI_HSI_RX_CONF_REC_MODE(r)   (((r) & BM_MIPI_HSI_RX_CONF_REC_MODE) >> BP_MIPI_HSI_RX_CONF_REC_MODE)
+#define BG_MIPI_HSI_RX_CONF_REC_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_REC_MODE) >> BP_MIPI_HSI_RX_CONF_REC_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_REC_MODE.
-#define BF_MIPI_HSI_RX_CONF_REC_MODE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_REC_MODE) & BM_MIPI_HSI_RX_CONF_REC_MODE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_REC_MODE.
-#define BF_MIPI_HSI_RX_CONF_REC_MODE(v)   (((v) << BP_MIPI_HSI_RX_CONF_REC_MODE) & BM_MIPI_HSI_RX_CONF_REC_MODE)
-#endif
+#define BF_MIPI_HSI_RX_CONF_REC_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_REC_MODE) & BM_MIPI_HSI_RX_CONF_REC_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REC_MODE field to a new value.
@@ -1248,15 +1116,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN      (0x00000010)  //!< Bit mask for MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) >> BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN)
+#define BG_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) >> BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN.
-#define BF_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) & BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN.
-#define BF_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) & BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) & BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAIL_BIT_CNT_EN field to a new value.
@@ -1279,15 +1142,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT      (0x00007f00)  //!< Bit mask for MIPI_HSI_RX_CONF_TIMEOUT_CNT.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_TIMEOUT_CNT from a register value.
-#define BG_MIPI_HSI_RX_CONF_TIMEOUT_CNT(r)   (((r) & BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT) >> BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT)
+#define BG_MIPI_HSI_RX_CONF_TIMEOUT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT) >> BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_TIMEOUT_CNT.
-#define BF_MIPI_HSI_RX_CONF_TIMEOUT_CNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_TIMEOUT_CNT.
-#define BF_MIPI_HSI_RX_CONF_TIMEOUT_CNT(v)   (((v) << BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT)
-#endif
+#define BF_MIPI_HSI_RX_CONF_TIMEOUT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT) & BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TIMEOUT_CNT field to a new value.
@@ -1307,15 +1165,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH0_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH0_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH0_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH0_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH0_EN) >> BP_MIPI_HSI_RX_CONF_CH0_EN)
+#define BG_MIPI_HSI_RX_CONF_CH0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH0_EN) >> BP_MIPI_HSI_RX_CONF_CH0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH0_EN.
-#define BF_MIPI_HSI_RX_CONF_CH0_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH0_EN) & BM_MIPI_HSI_RX_CONF_CH0_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH0_EN.
-#define BF_MIPI_HSI_RX_CONF_CH0_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH0_EN) & BM_MIPI_HSI_RX_CONF_CH0_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH0_EN) & BM_MIPI_HSI_RX_CONF_CH0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0_EN field to a new value.
@@ -1336,15 +1189,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH1_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH1_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH1_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH1_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH1_EN) >> BP_MIPI_HSI_RX_CONF_CH1_EN)
+#define BG_MIPI_HSI_RX_CONF_CH1_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH1_EN) >> BP_MIPI_HSI_RX_CONF_CH1_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH1_EN.
-#define BF_MIPI_HSI_RX_CONF_CH1_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH1_EN) & BM_MIPI_HSI_RX_CONF_CH1_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH1_EN.
-#define BF_MIPI_HSI_RX_CONF_CH1_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH1_EN) & BM_MIPI_HSI_RX_CONF_CH1_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH1_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH1_EN) & BM_MIPI_HSI_RX_CONF_CH1_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1_EN field to a new value.
@@ -1365,15 +1213,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH2_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH2_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH2_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH2_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH2_EN) >> BP_MIPI_HSI_RX_CONF_CH2_EN)
+#define BG_MIPI_HSI_RX_CONF_CH2_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH2_EN) >> BP_MIPI_HSI_RX_CONF_CH2_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH2_EN.
-#define BF_MIPI_HSI_RX_CONF_CH2_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH2_EN) & BM_MIPI_HSI_RX_CONF_CH2_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH2_EN.
-#define BF_MIPI_HSI_RX_CONF_CH2_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH2_EN) & BM_MIPI_HSI_RX_CONF_CH2_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH2_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH2_EN) & BM_MIPI_HSI_RX_CONF_CH2_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2_EN field to a new value.
@@ -1394,15 +1237,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH3_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH3_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH3_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH3_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH3_EN) >> BP_MIPI_HSI_RX_CONF_CH3_EN)
+#define BG_MIPI_HSI_RX_CONF_CH3_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH3_EN) >> BP_MIPI_HSI_RX_CONF_CH3_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH3_EN.
-#define BF_MIPI_HSI_RX_CONF_CH3_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH3_EN) & BM_MIPI_HSI_RX_CONF_CH3_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH3_EN.
-#define BF_MIPI_HSI_RX_CONF_CH3_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH3_EN) & BM_MIPI_HSI_RX_CONF_CH3_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH3_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH3_EN) & BM_MIPI_HSI_RX_CONF_CH3_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3_EN field to a new value.
@@ -1423,15 +1261,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH4_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH4_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH4_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH4_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH4_EN) >> BP_MIPI_HSI_RX_CONF_CH4_EN)
+#define BG_MIPI_HSI_RX_CONF_CH4_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH4_EN) >> BP_MIPI_HSI_RX_CONF_CH4_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH4_EN.
-#define BF_MIPI_HSI_RX_CONF_CH4_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH4_EN) & BM_MIPI_HSI_RX_CONF_CH4_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH4_EN.
-#define BF_MIPI_HSI_RX_CONF_CH4_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH4_EN) & BM_MIPI_HSI_RX_CONF_CH4_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH4_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH4_EN) & BM_MIPI_HSI_RX_CONF_CH4_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4_EN field to a new value.
@@ -1452,15 +1285,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH5_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH5_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH5_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH5_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH5_EN) >> BP_MIPI_HSI_RX_CONF_CH5_EN)
+#define BG_MIPI_HSI_RX_CONF_CH5_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH5_EN) >> BP_MIPI_HSI_RX_CONF_CH5_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH5_EN.
-#define BF_MIPI_HSI_RX_CONF_CH5_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH5_EN) & BM_MIPI_HSI_RX_CONF_CH5_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH5_EN.
-#define BF_MIPI_HSI_RX_CONF_CH5_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH5_EN) & BM_MIPI_HSI_RX_CONF_CH5_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH5_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH5_EN) & BM_MIPI_HSI_RX_CONF_CH5_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5_EN field to a new value.
@@ -1481,15 +1309,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH6_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH6_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH6_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH6_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH6_EN) >> BP_MIPI_HSI_RX_CONF_CH6_EN)
+#define BG_MIPI_HSI_RX_CONF_CH6_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH6_EN) >> BP_MIPI_HSI_RX_CONF_CH6_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH6_EN.
-#define BF_MIPI_HSI_RX_CONF_CH6_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH6_EN) & BM_MIPI_HSI_RX_CONF_CH6_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH6_EN.
-#define BF_MIPI_HSI_RX_CONF_CH6_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH6_EN) & BM_MIPI_HSI_RX_CONF_CH6_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH6_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH6_EN) & BM_MIPI_HSI_RX_CONF_CH6_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6_EN field to a new value.
@@ -1510,15 +1333,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH7_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH7_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH7_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH7_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH7_EN) >> BP_MIPI_HSI_RX_CONF_CH7_EN)
+#define BG_MIPI_HSI_RX_CONF_CH7_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH7_EN) >> BP_MIPI_HSI_RX_CONF_CH7_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH7_EN.
-#define BF_MIPI_HSI_RX_CONF_CH7_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH7_EN) & BM_MIPI_HSI_RX_CONF_CH7_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH7_EN.
-#define BF_MIPI_HSI_RX_CONF_CH7_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH7_EN) & BM_MIPI_HSI_RX_CONF_CH7_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH7_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH7_EN) & BM_MIPI_HSI_RX_CONF_CH7_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7_EN field to a new value.
@@ -1539,15 +1357,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH8_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH8_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH8_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH8_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH8_EN) >> BP_MIPI_HSI_RX_CONF_CH8_EN)
+#define BG_MIPI_HSI_RX_CONF_CH8_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH8_EN) >> BP_MIPI_HSI_RX_CONF_CH8_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH8_EN.
-#define BF_MIPI_HSI_RX_CONF_CH8_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH8_EN) & BM_MIPI_HSI_RX_CONF_CH8_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH8_EN.
-#define BF_MIPI_HSI_RX_CONF_CH8_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH8_EN) & BM_MIPI_HSI_RX_CONF_CH8_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH8_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH8_EN) & BM_MIPI_HSI_RX_CONF_CH8_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8_EN field to a new value.
@@ -1568,15 +1381,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH9_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH9_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH9_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH9_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH9_EN) >> BP_MIPI_HSI_RX_CONF_CH9_EN)
+#define BG_MIPI_HSI_RX_CONF_CH9_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH9_EN) >> BP_MIPI_HSI_RX_CONF_CH9_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH9_EN.
-#define BF_MIPI_HSI_RX_CONF_CH9_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH9_EN) & BM_MIPI_HSI_RX_CONF_CH9_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH9_EN.
-#define BF_MIPI_HSI_RX_CONF_CH9_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH9_EN) & BM_MIPI_HSI_RX_CONF_CH9_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH9_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH9_EN) & BM_MIPI_HSI_RX_CONF_CH9_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9_EN field to a new value.
@@ -1597,15 +1405,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH10_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH10_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH10_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH10_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH10_EN) >> BP_MIPI_HSI_RX_CONF_CH10_EN)
+#define BG_MIPI_HSI_RX_CONF_CH10_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH10_EN) >> BP_MIPI_HSI_RX_CONF_CH10_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH10_EN.
-#define BF_MIPI_HSI_RX_CONF_CH10_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH10_EN) & BM_MIPI_HSI_RX_CONF_CH10_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH10_EN.
-#define BF_MIPI_HSI_RX_CONF_CH10_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH10_EN) & BM_MIPI_HSI_RX_CONF_CH10_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH10_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH10_EN) & BM_MIPI_HSI_RX_CONF_CH10_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10_EN field to a new value.
@@ -1626,15 +1429,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH11_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH11_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH11_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH11_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH11_EN) >> BP_MIPI_HSI_RX_CONF_CH11_EN)
+#define BG_MIPI_HSI_RX_CONF_CH11_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH11_EN) >> BP_MIPI_HSI_RX_CONF_CH11_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH11_EN.
-#define BF_MIPI_HSI_RX_CONF_CH11_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH11_EN) & BM_MIPI_HSI_RX_CONF_CH11_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH11_EN.
-#define BF_MIPI_HSI_RX_CONF_CH11_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH11_EN) & BM_MIPI_HSI_RX_CONF_CH11_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH11_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH11_EN) & BM_MIPI_HSI_RX_CONF_CH11_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11_EN field to a new value.
@@ -1655,15 +1453,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH12_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH12_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH12_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH12_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH12_EN) >> BP_MIPI_HSI_RX_CONF_CH12_EN)
+#define BG_MIPI_HSI_RX_CONF_CH12_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH12_EN) >> BP_MIPI_HSI_RX_CONF_CH12_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH12_EN.
-#define BF_MIPI_HSI_RX_CONF_CH12_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH12_EN) & BM_MIPI_HSI_RX_CONF_CH12_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH12_EN.
-#define BF_MIPI_HSI_RX_CONF_CH12_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH12_EN) & BM_MIPI_HSI_RX_CONF_CH12_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH12_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH12_EN) & BM_MIPI_HSI_RX_CONF_CH12_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12_EN field to a new value.
@@ -1684,15 +1477,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH13_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH13_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH13_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH13_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH13_EN) >> BP_MIPI_HSI_RX_CONF_CH13_EN)
+#define BG_MIPI_HSI_RX_CONF_CH13_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH13_EN) >> BP_MIPI_HSI_RX_CONF_CH13_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH13_EN.
-#define BF_MIPI_HSI_RX_CONF_CH13_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH13_EN) & BM_MIPI_HSI_RX_CONF_CH13_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH13_EN.
-#define BF_MIPI_HSI_RX_CONF_CH13_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH13_EN) & BM_MIPI_HSI_RX_CONF_CH13_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH13_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH13_EN) & BM_MIPI_HSI_RX_CONF_CH13_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13_EN field to a new value.
@@ -1713,15 +1501,10 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH14_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH14_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH14_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH14_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH14_EN) >> BP_MIPI_HSI_RX_CONF_CH14_EN)
+#define BG_MIPI_HSI_RX_CONF_CH14_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH14_EN) >> BP_MIPI_HSI_RX_CONF_CH14_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH14_EN.
-#define BF_MIPI_HSI_RX_CONF_CH14_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH14_EN) & BM_MIPI_HSI_RX_CONF_CH14_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH14_EN.
-#define BF_MIPI_HSI_RX_CONF_CH14_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH14_EN) & BM_MIPI_HSI_RX_CONF_CH14_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH14_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH14_EN) & BM_MIPI_HSI_RX_CONF_CH14_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14_EN field to a new value.
@@ -1742,21 +1525,20 @@ typedef union _hw_mipi_hsi_rx_conf
 #define BM_MIPI_HSI_RX_CONF_CH15_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH15_EN.
 
 //! @brief Get value of MIPI_HSI_RX_CONF_CH15_EN from a register value.
-#define BG_MIPI_HSI_RX_CONF_CH15_EN(r)   (((r) & BM_MIPI_HSI_RX_CONF_CH15_EN) >> BP_MIPI_HSI_RX_CONF_CH15_EN)
+#define BG_MIPI_HSI_RX_CONF_CH15_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CONF_CH15_EN) >> BP_MIPI_HSI_RX_CONF_CH15_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH15_EN.
-#define BF_MIPI_HSI_RX_CONF_CH15_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CONF_CH15_EN) & BM_MIPI_HSI_RX_CONF_CH15_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CONF_CH15_EN.
-#define BF_MIPI_HSI_RX_CONF_CH15_EN(v)   (((v) << BP_MIPI_HSI_RX_CONF_CH15_EN) & BM_MIPI_HSI_RX_CONF_CH15_EN)
-#endif
+#define BF_MIPI_HSI_RX_CONF_CH15_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CONF_CH15_EN) & BM_MIPI_HSI_RX_CONF_CH15_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH15_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH15_EN) | BF_MIPI_HSI_RX_CONF_CH15_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_CAP - HSI Capability Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1811,7 +1593,7 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE      (0x0000000f)  //!< Bit mask for MIPI_HSI_CAP_TX_CH_NU_SUPPORTE.
 
 //! @brief Get value of MIPI_HSI_CAP_TX_CH_NU_SUPPORTE from a register value.
-#define BG_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE(r)   (((r) & BM_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE)
+#define BG_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE)
 
 
 /* --- Register HW_MIPI_HSI_CAP, field RX_CH_NU_SUPPORTE[7:4] (RO)
@@ -1828,7 +1610,7 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE      (0x000000f0)  //!< Bit mask for MIPI_HSI_CAP_RX_CH_NU_SUPPORTE.
 
 //! @brief Get value of MIPI_HSI_CAP_RX_CH_NU_SUPPORTE from a register value.
-#define BG_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE(r)   (((r) & BM_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE)
+#define BG_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE)
 
 
 /* --- Register HW_MIPI_HSI_CAP, field DMA_CH_NU_SUPPORT[12:8] (RO)
@@ -1850,7 +1632,7 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT      (0x00001f00)  //!< Bit mask for MIPI_HSI_CAP_DMA_CH_NU_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_DMA_CH_NU_SUPPORT from a register value.
-#define BG_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT(r)   (((r) & BM_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT) >> BP_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT)
+#define BG_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT) >> BP_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT)
 
 
 /* --- Register HW_MIPI_HSI_CAP, field TX_DMA_SUPPORT[16] (RO)
@@ -1866,7 +1648,7 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_TX_DMA_SUPPORT      (0x00010000)  //!< Bit mask for MIPI_HSI_CAP_TX_DMA_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_TX_DMA_SUPPORT from a register value.
-#define BG_MIPI_HSI_CAP_TX_DMA_SUPPORT(r)   (((r) & BM_MIPI_HSI_CAP_TX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_TX_DMA_SUPPORT)
+#define BG_MIPI_HSI_CAP_TX_DMA_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_TX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_TX_DMA_SUPPORT)
 
 
 /* --- Register HW_MIPI_HSI_CAP, field RX_DMA_SUPPORT[17] (RO)
@@ -1882,7 +1664,7 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_RX_DMA_SUPPORT      (0x00020000)  //!< Bit mask for MIPI_HSI_CAP_RX_DMA_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_RX_DMA_SUPPORT from a register value.
-#define BG_MIPI_HSI_CAP_RX_DMA_SUPPORT(r)   (((r) & BM_MIPI_HSI_CAP_RX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_RX_DMA_SUPPORT)
+#define BG_MIPI_HSI_CAP_RX_DMA_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_RX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_RX_DMA_SUPPORT)
 
 
 /* --- Register HW_MIPI_HSI_CAP, field WAKEUP_EVENT[18] (RO)
@@ -1898,8 +1680,12 @@ typedef union _hw_mipi_hsi_cap
 #define BM_MIPI_HSI_CAP_WAKEUP_EVENT      (0x00040000)  //!< Bit mask for MIPI_HSI_CAP_WAKEUP_EVENT.
 
 //! @brief Get value of MIPI_HSI_CAP_WAKEUP_EVENT from a register value.
-#define BG_MIPI_HSI_CAP_WAKEUP_EVENT(r)   (((r) & BM_MIPI_HSI_CAP_WAKEUP_EVENT) >> BP_MIPI_HSI_CAP_WAKEUP_EVENT)
+#define BG_MIPI_HSI_CAP_WAKEUP_EVENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_WAKEUP_EVENT) >> BP_MIPI_HSI_CAP_WAKEUP_EVENT)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_WML0 - HSI Tx Water Mark Level 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1961,15 +1747,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_WML0_CH8.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH8 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH8(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH8) >> BP_MIPI_HSI_TX_WML0_CH8)
+#define BG_MIPI_HSI_TX_WML0_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH8) >> BP_MIPI_HSI_TX_WML0_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH8.
-#define BF_MIPI_HSI_TX_WML0_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH8) & BM_MIPI_HSI_TX_WML0_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH8.
-#define BF_MIPI_HSI_TX_WML0_CH8(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH8) & BM_MIPI_HSI_TX_WML0_CH8)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH8) & BM_MIPI_HSI_TX_WML0_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8 field to a new value.
@@ -1994,15 +1775,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_WML0_CH9.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH9 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH9(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH9) >> BP_MIPI_HSI_TX_WML0_CH9)
+#define BG_MIPI_HSI_TX_WML0_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH9) >> BP_MIPI_HSI_TX_WML0_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH9.
-#define BF_MIPI_HSI_TX_WML0_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH9) & BM_MIPI_HSI_TX_WML0_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH9.
-#define BF_MIPI_HSI_TX_WML0_CH9(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH9) & BM_MIPI_HSI_TX_WML0_CH9)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH9) & BM_MIPI_HSI_TX_WML0_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9 field to a new value.
@@ -2027,15 +1803,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_WML0_CH10.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH10 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH10(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH10) >> BP_MIPI_HSI_TX_WML0_CH10)
+#define BG_MIPI_HSI_TX_WML0_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH10) >> BP_MIPI_HSI_TX_WML0_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH10.
-#define BF_MIPI_HSI_TX_WML0_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH10) & BM_MIPI_HSI_TX_WML0_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH10.
-#define BF_MIPI_HSI_TX_WML0_CH10(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH10) & BM_MIPI_HSI_TX_WML0_CH10)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH10) & BM_MIPI_HSI_TX_WML0_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10 field to a new value.
@@ -2060,15 +1831,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH11.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH11 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH11(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH11) >> BP_MIPI_HSI_TX_WML0_CH11)
+#define BG_MIPI_HSI_TX_WML0_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH11) >> BP_MIPI_HSI_TX_WML0_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH11.
-#define BF_MIPI_HSI_TX_WML0_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH11) & BM_MIPI_HSI_TX_WML0_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH11.
-#define BF_MIPI_HSI_TX_WML0_CH11(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH11) & BM_MIPI_HSI_TX_WML0_CH11)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH11) & BM_MIPI_HSI_TX_WML0_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11 field to a new value.
@@ -2093,15 +1859,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH12.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH12 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH12(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH12) >> BP_MIPI_HSI_TX_WML0_CH12)
+#define BG_MIPI_HSI_TX_WML0_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH12) >> BP_MIPI_HSI_TX_WML0_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH12.
-#define BF_MIPI_HSI_TX_WML0_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH12) & BM_MIPI_HSI_TX_WML0_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH12.
-#define BF_MIPI_HSI_TX_WML0_CH12(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH12) & BM_MIPI_HSI_TX_WML0_CH12)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH12) & BM_MIPI_HSI_TX_WML0_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12 field to a new value.
@@ -2126,15 +1887,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH13.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH13 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH13(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH13) >> BP_MIPI_HSI_TX_WML0_CH13)
+#define BG_MIPI_HSI_TX_WML0_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH13) >> BP_MIPI_HSI_TX_WML0_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH13.
-#define BF_MIPI_HSI_TX_WML0_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH13) & BM_MIPI_HSI_TX_WML0_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH13.
-#define BF_MIPI_HSI_TX_WML0_CH13(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH13) & BM_MIPI_HSI_TX_WML0_CH13)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH13) & BM_MIPI_HSI_TX_WML0_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13 field to a new value.
@@ -2159,15 +1915,10 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH14.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH14 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH14(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH14) >> BP_MIPI_HSI_TX_WML0_CH14)
+#define BG_MIPI_HSI_TX_WML0_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH14) >> BP_MIPI_HSI_TX_WML0_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH14.
-#define BF_MIPI_HSI_TX_WML0_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH14) & BM_MIPI_HSI_TX_WML0_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH14.
-#define BF_MIPI_HSI_TX_WML0_CH14(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH14) & BM_MIPI_HSI_TX_WML0_CH14)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH14) & BM_MIPI_HSI_TX_WML0_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14 field to a new value.
@@ -2192,21 +1943,20 @@ typedef union _hw_mipi_hsi_tx_wml0
 #define BM_MIPI_HSI_TX_WML0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH15.
 
 //! @brief Get value of MIPI_HSI_TX_WML0_CH15 from a register value.
-#define BG_MIPI_HSI_TX_WML0_CH15(r)   (((r) & BM_MIPI_HSI_TX_WML0_CH15) >> BP_MIPI_HSI_TX_WML0_CH15)
+#define BG_MIPI_HSI_TX_WML0_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_WML0_CH15) >> BP_MIPI_HSI_TX_WML0_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH15.
-#define BF_MIPI_HSI_TX_WML0_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_WML0_CH15) & BM_MIPI_HSI_TX_WML0_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_WML0_CH15.
-#define BF_MIPI_HSI_TX_WML0_CH15(v)   (((v) << BP_MIPI_HSI_TX_WML0_CH15) & BM_MIPI_HSI_TX_WML0_CH15)
-#endif
+#define BF_MIPI_HSI_TX_WML0_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_WML0_CH15) & BM_MIPI_HSI_TX_WML0_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH15(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH15) | BF_MIPI_HSI_TX_WML0_CH15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_TML1 - HSI Tx Water Mark Level 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2269,15 +2019,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_TML1_CH0.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH0 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH0(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH0) >> BP_MIPI_HSI_TX_TML1_CH0)
+#define BG_MIPI_HSI_TX_TML1_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH0) >> BP_MIPI_HSI_TX_TML1_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH0.
-#define BF_MIPI_HSI_TX_TML1_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH0) & BM_MIPI_HSI_TX_TML1_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH0.
-#define BF_MIPI_HSI_TX_TML1_CH0(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH0) & BM_MIPI_HSI_TX_TML1_CH0)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH0) & BM_MIPI_HSI_TX_TML1_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0 field to a new value.
@@ -2302,15 +2047,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_TML1_CH1.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH1 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH1(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH1) >> BP_MIPI_HSI_TX_TML1_CH1)
+#define BG_MIPI_HSI_TX_TML1_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH1) >> BP_MIPI_HSI_TX_TML1_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH1.
-#define BF_MIPI_HSI_TX_TML1_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH1) & BM_MIPI_HSI_TX_TML1_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH1.
-#define BF_MIPI_HSI_TX_TML1_CH1(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH1) & BM_MIPI_HSI_TX_TML1_CH1)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH1) & BM_MIPI_HSI_TX_TML1_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1 field to a new value.
@@ -2335,15 +2075,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_TML1_CH2.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH2 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH2(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH2) >> BP_MIPI_HSI_TX_TML1_CH2)
+#define BG_MIPI_HSI_TX_TML1_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH2) >> BP_MIPI_HSI_TX_TML1_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH2.
-#define BF_MIPI_HSI_TX_TML1_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH2) & BM_MIPI_HSI_TX_TML1_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH2.
-#define BF_MIPI_HSI_TX_TML1_CH2(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH2) & BM_MIPI_HSI_TX_TML1_CH2)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH2) & BM_MIPI_HSI_TX_TML1_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2 field to a new value.
@@ -2368,15 +2103,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH3.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH3 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH3(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH3) >> BP_MIPI_HSI_TX_TML1_CH3)
+#define BG_MIPI_HSI_TX_TML1_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH3) >> BP_MIPI_HSI_TX_TML1_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH3.
-#define BF_MIPI_HSI_TX_TML1_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH3) & BM_MIPI_HSI_TX_TML1_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH3.
-#define BF_MIPI_HSI_TX_TML1_CH3(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH3) & BM_MIPI_HSI_TX_TML1_CH3)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH3) & BM_MIPI_HSI_TX_TML1_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3 field to a new value.
@@ -2401,15 +2131,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH4.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH4 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH4(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH4) >> BP_MIPI_HSI_TX_TML1_CH4)
+#define BG_MIPI_HSI_TX_TML1_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH4) >> BP_MIPI_HSI_TX_TML1_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH4.
-#define BF_MIPI_HSI_TX_TML1_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH4) & BM_MIPI_HSI_TX_TML1_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH4.
-#define BF_MIPI_HSI_TX_TML1_CH4(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH4) & BM_MIPI_HSI_TX_TML1_CH4)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH4) & BM_MIPI_HSI_TX_TML1_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4 field to a new value.
@@ -2434,15 +2159,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH5.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH5 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH5(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH5) >> BP_MIPI_HSI_TX_TML1_CH5)
+#define BG_MIPI_HSI_TX_TML1_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH5) >> BP_MIPI_HSI_TX_TML1_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH5.
-#define BF_MIPI_HSI_TX_TML1_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH5) & BM_MIPI_HSI_TX_TML1_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH5.
-#define BF_MIPI_HSI_TX_TML1_CH5(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH5) & BM_MIPI_HSI_TX_TML1_CH5)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH5) & BM_MIPI_HSI_TX_TML1_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5 field to a new value.
@@ -2467,15 +2187,10 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH6.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH6 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH6(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH6) >> BP_MIPI_HSI_TX_TML1_CH6)
+#define BG_MIPI_HSI_TX_TML1_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH6) >> BP_MIPI_HSI_TX_TML1_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH6.
-#define BF_MIPI_HSI_TX_TML1_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH6) & BM_MIPI_HSI_TX_TML1_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH6.
-#define BF_MIPI_HSI_TX_TML1_CH6(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH6) & BM_MIPI_HSI_TX_TML1_CH6)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH6) & BM_MIPI_HSI_TX_TML1_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6 field to a new value.
@@ -2500,21 +2215,20 @@ typedef union _hw_mipi_hsi_tx_tml1
 #define BM_MIPI_HSI_TX_TML1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH7.
 
 //! @brief Get value of MIPI_HSI_TX_TML1_CH7 from a register value.
-#define BG_MIPI_HSI_TX_TML1_CH7(r)   (((r) & BM_MIPI_HSI_TX_TML1_CH7) >> BP_MIPI_HSI_TX_TML1_CH7)
+#define BG_MIPI_HSI_TX_TML1_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_TML1_CH7) >> BP_MIPI_HSI_TX_TML1_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH7.
-#define BF_MIPI_HSI_TX_TML1_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_TML1_CH7) & BM_MIPI_HSI_TX_TML1_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_TML1_CH7.
-#define BF_MIPI_HSI_TX_TML1_CH7(v)   (((v) << BP_MIPI_HSI_TX_TML1_CH7) & BM_MIPI_HSI_TX_TML1_CH7)
-#endif
+#define BF_MIPI_HSI_TX_TML1_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_TML1_CH7) & BM_MIPI_HSI_TX_TML1_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH7(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH7) | BF_MIPI_HSI_TX_TML1_CH7(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_ARB_PRI0 - HSI Tx Arbiter Priority 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2576,15 +2290,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH0.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH0 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH0(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH0) >> BP_MIPI_HSI_TX_ARB_PRI0_CH0)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH0) >> BP_MIPI_HSI_TX_ARB_PRI0_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH0.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH0) & BM_MIPI_HSI_TX_ARB_PRI0_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH0.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH0(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH0) & BM_MIPI_HSI_TX_ARB_PRI0_CH0)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH0) & BM_MIPI_HSI_TX_ARB_PRI0_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0 field to a new value.
@@ -2609,15 +2318,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH1.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH1 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH1(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH1) >> BP_MIPI_HSI_TX_ARB_PRI0_CH1)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH1) >> BP_MIPI_HSI_TX_ARB_PRI0_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH1.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH1) & BM_MIPI_HSI_TX_ARB_PRI0_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH1.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH1(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH1) & BM_MIPI_HSI_TX_ARB_PRI0_CH1)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH1) & BM_MIPI_HSI_TX_ARB_PRI0_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1 field to a new value.
@@ -2642,15 +2346,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH2.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH2 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH2(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH2) >> BP_MIPI_HSI_TX_ARB_PRI0_CH2)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH2) >> BP_MIPI_HSI_TX_ARB_PRI0_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH2.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH2) & BM_MIPI_HSI_TX_ARB_PRI0_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH2.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH2(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH2) & BM_MIPI_HSI_TX_ARB_PRI0_CH2)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH2) & BM_MIPI_HSI_TX_ARB_PRI0_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2 field to a new value.
@@ -2675,15 +2374,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH3.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH3 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH3(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH3) >> BP_MIPI_HSI_TX_ARB_PRI0_CH3)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH3) >> BP_MIPI_HSI_TX_ARB_PRI0_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH3.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH3) & BM_MIPI_HSI_TX_ARB_PRI0_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH3.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH3(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH3) & BM_MIPI_HSI_TX_ARB_PRI0_CH3)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH3) & BM_MIPI_HSI_TX_ARB_PRI0_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3 field to a new value.
@@ -2708,15 +2402,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH4.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH4 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH4(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH4) >> BP_MIPI_HSI_TX_ARB_PRI0_CH4)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH4) >> BP_MIPI_HSI_TX_ARB_PRI0_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH4.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH4) & BM_MIPI_HSI_TX_ARB_PRI0_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH4.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH4(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH4) & BM_MIPI_HSI_TX_ARB_PRI0_CH4)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH4) & BM_MIPI_HSI_TX_ARB_PRI0_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4 field to a new value.
@@ -2741,15 +2430,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH5.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH5 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH5(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH5) >> BP_MIPI_HSI_TX_ARB_PRI0_CH5)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH5) >> BP_MIPI_HSI_TX_ARB_PRI0_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH5.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH5) & BM_MIPI_HSI_TX_ARB_PRI0_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH5.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH5(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH5) & BM_MIPI_HSI_TX_ARB_PRI0_CH5)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH5) & BM_MIPI_HSI_TX_ARB_PRI0_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5 field to a new value.
@@ -2774,15 +2458,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH6.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH6 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH6(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH6) >> BP_MIPI_HSI_TX_ARB_PRI0_CH6)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH6) >> BP_MIPI_HSI_TX_ARB_PRI0_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH6.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH6) & BM_MIPI_HSI_TX_ARB_PRI0_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH6.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH6(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH6) & BM_MIPI_HSI_TX_ARB_PRI0_CH6)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH6) & BM_MIPI_HSI_TX_ARB_PRI0_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6 field to a new value.
@@ -2807,21 +2486,20 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH7.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI0_CH7 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI0_CH7(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI0_CH7) >> BP_MIPI_HSI_TX_ARB_PRI0_CH7)
+#define BG_MIPI_HSI_TX_ARB_PRI0_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI0_CH7) >> BP_MIPI_HSI_TX_ARB_PRI0_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH7.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI0_CH7) & BM_MIPI_HSI_TX_ARB_PRI0_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI0_CH7.
-#define BF_MIPI_HSI_TX_ARB_PRI0_CH7(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI0_CH7) & BM_MIPI_HSI_TX_ARB_PRI0_CH7)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI0_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI0_CH7) & BM_MIPI_HSI_TX_ARB_PRI0_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH7(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH7) | BF_MIPI_HSI_TX_ARB_PRI0_CH7(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_ARB_PRI1 - HSI Tx Arbiter Priority 1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2883,15 +2561,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH8.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH8 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH8(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH8) >> BP_MIPI_HSI_TX_ARB_PRI1_CH8)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH8) >> BP_MIPI_HSI_TX_ARB_PRI1_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH8.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH8) & BM_MIPI_HSI_TX_ARB_PRI1_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH8.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH8(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH8) & BM_MIPI_HSI_TX_ARB_PRI1_CH8)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH8) & BM_MIPI_HSI_TX_ARB_PRI1_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8 field to a new value.
@@ -2916,15 +2589,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH9.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH9 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH9(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH9) >> BP_MIPI_HSI_TX_ARB_PRI1_CH9)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH9) >> BP_MIPI_HSI_TX_ARB_PRI1_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH9.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH9) & BM_MIPI_HSI_TX_ARB_PRI1_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH9.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH9(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH9) & BM_MIPI_HSI_TX_ARB_PRI1_CH9)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH9) & BM_MIPI_HSI_TX_ARB_PRI1_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9 field to a new value.
@@ -2949,15 +2617,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH10.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH10 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH10(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH10) >> BP_MIPI_HSI_TX_ARB_PRI1_CH10)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH10) >> BP_MIPI_HSI_TX_ARB_PRI1_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH10.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH10) & BM_MIPI_HSI_TX_ARB_PRI1_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH10.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH10(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH10) & BM_MIPI_HSI_TX_ARB_PRI1_CH10)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH10) & BM_MIPI_HSI_TX_ARB_PRI1_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10 field to a new value.
@@ -2982,15 +2645,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH11.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH11 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH11(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH11) >> BP_MIPI_HSI_TX_ARB_PRI1_CH11)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH11) >> BP_MIPI_HSI_TX_ARB_PRI1_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH11.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH11) & BM_MIPI_HSI_TX_ARB_PRI1_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH11.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH11(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH11) & BM_MIPI_HSI_TX_ARB_PRI1_CH11)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH11) & BM_MIPI_HSI_TX_ARB_PRI1_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11 field to a new value.
@@ -3015,15 +2673,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH12.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH12 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH12(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH12) >> BP_MIPI_HSI_TX_ARB_PRI1_CH12)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH12) >> BP_MIPI_HSI_TX_ARB_PRI1_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH12.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH12) & BM_MIPI_HSI_TX_ARB_PRI1_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH12.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH12(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH12) & BM_MIPI_HSI_TX_ARB_PRI1_CH12)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH12) & BM_MIPI_HSI_TX_ARB_PRI1_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12 field to a new value.
@@ -3048,15 +2701,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH13.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH13 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH13(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH13) >> BP_MIPI_HSI_TX_ARB_PRI1_CH13)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH13) >> BP_MIPI_HSI_TX_ARB_PRI1_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH13.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH13) & BM_MIPI_HSI_TX_ARB_PRI1_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH13.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH13(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH13) & BM_MIPI_HSI_TX_ARB_PRI1_CH13)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH13) & BM_MIPI_HSI_TX_ARB_PRI1_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13 field to a new value.
@@ -3081,15 +2729,10 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH14.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH14 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH14(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH14) >> BP_MIPI_HSI_TX_ARB_PRI1_CH14)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH14) >> BP_MIPI_HSI_TX_ARB_PRI1_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH14.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH14) & BM_MIPI_HSI_TX_ARB_PRI1_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH14.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH14(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH14) & BM_MIPI_HSI_TX_ARB_PRI1_CH14)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH14) & BM_MIPI_HSI_TX_ARB_PRI1_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14 field to a new value.
@@ -3114,21 +2757,20 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH15.
 
 //! @brief Get value of MIPI_HSI_TX_ARB_PRI1_CH15 from a register value.
-#define BG_MIPI_HSI_TX_ARB_PRI1_CH15(r)   (((r) & BM_MIPI_HSI_TX_ARB_PRI1_CH15) >> BP_MIPI_HSI_TX_ARB_PRI1_CH15)
+#define BG_MIPI_HSI_TX_ARB_PRI1_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_ARB_PRI1_CH15) >> BP_MIPI_HSI_TX_ARB_PRI1_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH15.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_ARB_PRI1_CH15) & BM_MIPI_HSI_TX_ARB_PRI1_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_ARB_PRI1_CH15.
-#define BF_MIPI_HSI_TX_ARB_PRI1_CH15(v)   (((v) << BP_MIPI_HSI_TX_ARB_PRI1_CH15) & BM_MIPI_HSI_TX_ARB_PRI1_CH15)
-#endif
+#define BF_MIPI_HSI_TX_ARB_PRI1_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_ARB_PRI1_CH15) & BM_MIPI_HSI_TX_ARB_PRI1_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH15(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH15) | BF_MIPI_HSI_TX_ARB_PRI1_CH15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_LINE_ST - HSI Line Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3179,7 +2821,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_TX_DATA_STATUS      (0x00000001)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_DATA_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_DATA_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_TX_DATA_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_TX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_DATA_STATUS)
+#define BG_MIPI_HSI_LINE_ST_TX_DATA_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_DATA_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field TX_FLAG_STATUS[1] (RO)
  *
@@ -3190,7 +2832,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_TX_FLAG_STATUS      (0x00000002)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_FLAG_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_FLAG_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_TX_FLAG_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_TX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_FLAG_STATUS)
+#define BG_MIPI_HSI_LINE_ST_TX_FLAG_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_FLAG_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field TX_READY_STATUS[2] (RO)
  *
@@ -3201,7 +2843,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_TX_READY_STATUS      (0x00000004)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_READY_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_READY_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_TX_READY_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_TX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_READY_STATUS)
+#define BG_MIPI_HSI_LINE_ST_TX_READY_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_READY_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field TX_WAKEUP_STATUS[3] (RO)
  *
@@ -3212,7 +2854,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS      (0x00000008)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS)
+#define BG_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field RX_DATA_STATUS[4] (RO)
  *
@@ -3223,7 +2865,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_RX_DATA_STATUS      (0x00000010)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_DATA_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_DATA_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_RX_DATA_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_RX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_DATA_STATUS)
+#define BG_MIPI_HSI_LINE_ST_RX_DATA_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_DATA_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field RX_FLAG_STATUS[5] (RO)
  *
@@ -3234,7 +2876,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_RX_FLAG_STATUS      (0x00000020)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_FLAG_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_FLAG_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_RX_FLAG_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_RX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_FLAG_STATUS)
+#define BG_MIPI_HSI_LINE_ST_RX_FLAG_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_FLAG_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field RX_READY_STATUS[6] (RO)
  *
@@ -3245,7 +2887,7 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_RX_READY_STATUS      (0x00000040)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_READY_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_READY_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_RX_READY_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_RX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_READY_STATUS)
+#define BG_MIPI_HSI_LINE_ST_RX_READY_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_READY_STATUS)
 
 /* --- Register HW_MIPI_HSI_LINE_ST, field RX_WAKEUP_STATUS[7] (RO)
  *
@@ -3256,7 +2898,11 @@ typedef union _hw_mipi_hsi_line_st
 #define BM_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS      (0x00000080)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS from a register value.
-#define BG_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS(r)   (((r) & BM_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS)
+#define BG_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_ID_BIT - HSI ID Bits Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3314,15 +2960,10 @@ typedef union _hw_mipi_hsi_id_bit
 #define BM_MIPI_HSI_ID_BIT_TX_CH      (0x00000007)  //!< Bit mask for MIPI_HSI_ID_BIT_TX_CH.
 
 //! @brief Get value of MIPI_HSI_ID_BIT_TX_CH from a register value.
-#define BG_MIPI_HSI_ID_BIT_TX_CH(r)   (((r) & BM_MIPI_HSI_ID_BIT_TX_CH) >> BP_MIPI_HSI_ID_BIT_TX_CH)
+#define BG_MIPI_HSI_ID_BIT_TX_CH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ID_BIT_TX_CH) >> BP_MIPI_HSI_ID_BIT_TX_CH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ID_BIT_TX_CH.
-#define BF_MIPI_HSI_ID_BIT_TX_CH(v)   ((((reg32_t) v) << BP_MIPI_HSI_ID_BIT_TX_CH) & BM_MIPI_HSI_ID_BIT_TX_CH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ID_BIT_TX_CH.
-#define BF_MIPI_HSI_ID_BIT_TX_CH(v)   (((v) << BP_MIPI_HSI_ID_BIT_TX_CH) & BM_MIPI_HSI_ID_BIT_TX_CH)
-#endif
+#define BF_MIPI_HSI_ID_BIT_TX_CH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ID_BIT_TX_CH) & BM_MIPI_HSI_ID_BIT_TX_CH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH field to a new value.
@@ -3346,21 +2987,20 @@ typedef union _hw_mipi_hsi_id_bit
 #define BM_MIPI_HSI_ID_BIT_RX_CH      (0x00000070)  //!< Bit mask for MIPI_HSI_ID_BIT_RX_CH.
 
 //! @brief Get value of MIPI_HSI_ID_BIT_RX_CH from a register value.
-#define BG_MIPI_HSI_ID_BIT_RX_CH(r)   (((r) & BM_MIPI_HSI_ID_BIT_RX_CH) >> BP_MIPI_HSI_ID_BIT_RX_CH)
+#define BG_MIPI_HSI_ID_BIT_RX_CH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ID_BIT_RX_CH) >> BP_MIPI_HSI_ID_BIT_RX_CH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ID_BIT_RX_CH.
-#define BF_MIPI_HSI_ID_BIT_RX_CH(v)   ((((reg32_t) v) << BP_MIPI_HSI_ID_BIT_RX_CH) & BM_MIPI_HSI_ID_BIT_RX_CH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ID_BIT_RX_CH.
-#define BF_MIPI_HSI_ID_BIT_RX_CH(v)   (((v) << BP_MIPI_HSI_ID_BIT_RX_CH) & BM_MIPI_HSI_ID_BIT_RX_CH)
-#endif
+#define BF_MIPI_HSI_ID_BIT_RX_CH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ID_BIT_RX_CH) & BM_MIPI_HSI_ID_BIT_RX_CH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH field to a new value.
 #define BW_MIPI_HSI_ID_BIT_RX_CH(v)   (HW_MIPI_HSI_ID_BIT_WR((HW_MIPI_HSI_ID_BIT_RD() & ~BM_MIPI_HSI_ID_BIT_RX_CH) | BF_MIPI_HSI_ID_BIT_RX_CH(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_FIFO_THR_CONF - Tx and Rx Fif0 Threshold Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3442,15 +3082,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH0.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH0 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH0(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH0.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH0.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH0(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH0 field to a new value.
@@ -3471,15 +3106,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH1.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH1 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH1(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH1.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH1.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH1(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH1 field to a new value.
@@ -3500,15 +3130,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH2.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH2 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH2(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH2.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH2.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH2(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH2 field to a new value.
@@ -3529,15 +3154,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH3.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH3 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH3(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH3.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH3.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH3(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH3 field to a new value.
@@ -3558,15 +3178,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH4.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH4 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH4(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH4.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH4.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH4(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH4 field to a new value.
@@ -3587,15 +3202,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH5.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH5 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH5(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH5.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH5.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH5(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH5 field to a new value.
@@ -3616,15 +3226,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH6.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH6 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH6(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH6.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH6.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH6(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH6 field to a new value.
@@ -3645,15 +3250,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH7.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH7 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH7(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH7.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH7.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH7(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH7 field to a new value.
@@ -3674,15 +3274,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH8.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH8 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH8(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH8.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH8.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH8(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH8 field to a new value.
@@ -3703,15 +3298,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH9.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH9 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH9(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH9.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH9.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH9(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH9 field to a new value.
@@ -3732,15 +3322,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH10.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH10 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH10(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH10.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH10.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH10(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH10 field to a new value.
@@ -3761,15 +3346,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH11.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH11 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH11(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH11.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH11.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH11(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH11 field to a new value.
@@ -3790,15 +3370,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH12.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH12 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH12(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH12.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH12.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH12(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH12 field to a new value.
@@ -3819,15 +3394,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH13.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH13 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH13(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH13.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH13.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH13(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH13 field to a new value.
@@ -3848,15 +3418,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH14.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH14 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH14(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH14.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH14.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH14(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH14 field to a new value.
@@ -3877,15 +3442,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH15.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_RX_CH15 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH15(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15)
+#define BG_MIPI_HSI_FIFO_THR_CONF_RX_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15) >> BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH15.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_RX_CH15.
-#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH15(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_RX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH15 field to a new value.
@@ -3906,15 +3466,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH0.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH0 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH0(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH0.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH0.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH0(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH0 field to a new value.
@@ -3935,15 +3490,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH1.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH1 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH1(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH1.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH1.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH1(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH1 field to a new value.
@@ -3964,15 +3514,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH2.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH2 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH2(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH2.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH2.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH2(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH2 field to a new value.
@@ -3993,15 +3538,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH3.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH3 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH3(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH3.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH3.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH3(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH3 field to a new value.
@@ -4022,15 +3562,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH4.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH4 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH4(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH4.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH4.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH4(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH4 field to a new value.
@@ -4051,15 +3586,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH5.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH5 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH5(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH5.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH5.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH5(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH5 field to a new value.
@@ -4080,15 +3610,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH6.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH6 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH6(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH6.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH6.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH6(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH6 field to a new value.
@@ -4109,15 +3634,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH7.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH7 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH7(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH7.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH7.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH7(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH7 field to a new value.
@@ -4138,15 +3658,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH8.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH8 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH8(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH8.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH8.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH8(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH8 field to a new value.
@@ -4167,15 +3682,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH9.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH9 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH9(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH9.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH9.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH9(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH9 field to a new value.
@@ -4196,15 +3706,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH10.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH10 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH10(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH10.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH10.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH10(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH10 field to a new value.
@@ -4225,15 +3730,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH11.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH11 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH11(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH11.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH11.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH11(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH11 field to a new value.
@@ -4254,15 +3754,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH12.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH12 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH12(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH12.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH12.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH12(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH12 field to a new value.
@@ -4283,15 +3778,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH13.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH13 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH13(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH13.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH13.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH13(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH13 field to a new value.
@@ -4312,15 +3802,10 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH14.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH14 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH14(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH14.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH14.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH14(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH14 field to a new value.
@@ -4341,21 +3826,20 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH15.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_CONF_TX_CH15 from a register value.
-#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH15(r)   (((r) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15)
+#define BG_MIPI_HSI_FIFO_THR_CONF_TX_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15) >> BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH15.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_CONF_TX_CH15.
-#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)   (((v) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15) & BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH15 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_CH_SFTRST - Tx and Rx Channel Soft Reset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4430,15 +3914,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH0      (0x00000001)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH0.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH0 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH0(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH0) >> BP_MIPI_HSI_CH_SFTRST_RX_CH0)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH0) >> BP_MIPI_HSI_CH_SFTRST_RX_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH0.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH0) & BM_MIPI_HSI_CH_SFTRST_RX_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH0.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH0(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH0) & BM_MIPI_HSI_CH_SFTRST_RX_CH0)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH0) & BM_MIPI_HSI_CH_SFTRST_RX_CH0)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH1[1] (WO)
  *
@@ -4450,15 +3929,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH1      (0x00000002)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH1.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH1 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH1(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH1) >> BP_MIPI_HSI_CH_SFTRST_RX_CH1)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH1) >> BP_MIPI_HSI_CH_SFTRST_RX_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH1.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH1) & BM_MIPI_HSI_CH_SFTRST_RX_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH1.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH1(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH1) & BM_MIPI_HSI_CH_SFTRST_RX_CH1)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH1) & BM_MIPI_HSI_CH_SFTRST_RX_CH1)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH2[2] (WO)
  *
@@ -4470,15 +3944,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH2      (0x00000004)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH2.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH2 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH2(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH2) >> BP_MIPI_HSI_CH_SFTRST_RX_CH2)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH2) >> BP_MIPI_HSI_CH_SFTRST_RX_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH2.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH2) & BM_MIPI_HSI_CH_SFTRST_RX_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH2.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH2(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH2) & BM_MIPI_HSI_CH_SFTRST_RX_CH2)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH2) & BM_MIPI_HSI_CH_SFTRST_RX_CH2)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH3[3] (WO)
  *
@@ -4490,15 +3959,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH3      (0x00000008)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH3.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH3 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH3(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH3) >> BP_MIPI_HSI_CH_SFTRST_RX_CH3)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH3) >> BP_MIPI_HSI_CH_SFTRST_RX_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH3.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH3) & BM_MIPI_HSI_CH_SFTRST_RX_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH3.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH3(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH3) & BM_MIPI_HSI_CH_SFTRST_RX_CH3)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH3) & BM_MIPI_HSI_CH_SFTRST_RX_CH3)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH4[4] (WO)
  *
@@ -4510,15 +3974,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH4      (0x00000010)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH4.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH4 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH4(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH4) >> BP_MIPI_HSI_CH_SFTRST_RX_CH4)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH4) >> BP_MIPI_HSI_CH_SFTRST_RX_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH4.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH4) & BM_MIPI_HSI_CH_SFTRST_RX_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH4.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH4(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH4) & BM_MIPI_HSI_CH_SFTRST_RX_CH4)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH4) & BM_MIPI_HSI_CH_SFTRST_RX_CH4)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH5[5] (WO)
  *
@@ -4530,15 +3989,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH5      (0x00000020)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH5.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH5 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH5(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH5) >> BP_MIPI_HSI_CH_SFTRST_RX_CH5)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH5) >> BP_MIPI_HSI_CH_SFTRST_RX_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH5.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH5) & BM_MIPI_HSI_CH_SFTRST_RX_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH5.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH5(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH5) & BM_MIPI_HSI_CH_SFTRST_RX_CH5)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH5) & BM_MIPI_HSI_CH_SFTRST_RX_CH5)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH6[6] (WO)
  *
@@ -4550,15 +4004,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH6      (0x00000040)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH6.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH6 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH6(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH6) >> BP_MIPI_HSI_CH_SFTRST_RX_CH6)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH6) >> BP_MIPI_HSI_CH_SFTRST_RX_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH6.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH6) & BM_MIPI_HSI_CH_SFTRST_RX_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH6.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH6(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH6) & BM_MIPI_HSI_CH_SFTRST_RX_CH6)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH6) & BM_MIPI_HSI_CH_SFTRST_RX_CH6)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH7[7] (WO)
  *
@@ -4570,15 +4019,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH7      (0x00000080)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH7.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH7 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH7(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH7) >> BP_MIPI_HSI_CH_SFTRST_RX_CH7)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH7) >> BP_MIPI_HSI_CH_SFTRST_RX_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH7.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH7) & BM_MIPI_HSI_CH_SFTRST_RX_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH7.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH7(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH7) & BM_MIPI_HSI_CH_SFTRST_RX_CH7)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH7) & BM_MIPI_HSI_CH_SFTRST_RX_CH7)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH8[8] (WO)
  *
@@ -4590,15 +4034,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH8      (0x00000100)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH8.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH8 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH8(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH8) >> BP_MIPI_HSI_CH_SFTRST_RX_CH8)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH8) >> BP_MIPI_HSI_CH_SFTRST_RX_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH8.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH8) & BM_MIPI_HSI_CH_SFTRST_RX_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH8.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH8(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH8) & BM_MIPI_HSI_CH_SFTRST_RX_CH8)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH8) & BM_MIPI_HSI_CH_SFTRST_RX_CH8)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH9[9] (WO)
  *
@@ -4610,15 +4049,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH9      (0x00000200)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH9.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH9 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH9(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH9) >> BP_MIPI_HSI_CH_SFTRST_RX_CH9)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH9) >> BP_MIPI_HSI_CH_SFTRST_RX_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH9.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH9) & BM_MIPI_HSI_CH_SFTRST_RX_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH9.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH9(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH9) & BM_MIPI_HSI_CH_SFTRST_RX_CH9)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH9) & BM_MIPI_HSI_CH_SFTRST_RX_CH9)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH10[10] (WO)
  *
@@ -4630,15 +4064,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH10      (0x00000400)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH10.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH10 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH10(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH10) >> BP_MIPI_HSI_CH_SFTRST_RX_CH10)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH10) >> BP_MIPI_HSI_CH_SFTRST_RX_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH10.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH10) & BM_MIPI_HSI_CH_SFTRST_RX_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH10.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH10(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH10) & BM_MIPI_HSI_CH_SFTRST_RX_CH10)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH10) & BM_MIPI_HSI_CH_SFTRST_RX_CH10)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH11[11] (WO)
  *
@@ -4650,15 +4079,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH11      (0x00000800)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH11.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH11 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH11(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH11) >> BP_MIPI_HSI_CH_SFTRST_RX_CH11)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH11) >> BP_MIPI_HSI_CH_SFTRST_RX_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH11.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH11) & BM_MIPI_HSI_CH_SFTRST_RX_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH11.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH11(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH11) & BM_MIPI_HSI_CH_SFTRST_RX_CH11)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH11) & BM_MIPI_HSI_CH_SFTRST_RX_CH11)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH12[12] (WO)
  *
@@ -4670,15 +4094,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH12      (0x00001000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH12.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH12 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH12(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH12) >> BP_MIPI_HSI_CH_SFTRST_RX_CH12)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH12) >> BP_MIPI_HSI_CH_SFTRST_RX_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH12.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH12) & BM_MIPI_HSI_CH_SFTRST_RX_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH12.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH12(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH12) & BM_MIPI_HSI_CH_SFTRST_RX_CH12)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH12) & BM_MIPI_HSI_CH_SFTRST_RX_CH12)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH13[13] (WO)
  *
@@ -4690,15 +4109,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH13      (0x00002000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH13.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH13 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH13(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH13) >> BP_MIPI_HSI_CH_SFTRST_RX_CH13)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH13) >> BP_MIPI_HSI_CH_SFTRST_RX_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH13.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH13) & BM_MIPI_HSI_CH_SFTRST_RX_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH13.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH13(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH13) & BM_MIPI_HSI_CH_SFTRST_RX_CH13)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH13) & BM_MIPI_HSI_CH_SFTRST_RX_CH13)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH14[14] (WO)
  *
@@ -4710,15 +4124,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH14      (0x00004000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH14.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH14 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH14(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH14) >> BP_MIPI_HSI_CH_SFTRST_RX_CH14)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH14) >> BP_MIPI_HSI_CH_SFTRST_RX_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH14.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH14) & BM_MIPI_HSI_CH_SFTRST_RX_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH14.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH14(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH14) & BM_MIPI_HSI_CH_SFTRST_RX_CH14)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH14) & BM_MIPI_HSI_CH_SFTRST_RX_CH14)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field RX_CH15[15] (WO)
  *
@@ -4730,15 +4139,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH15      (0x00008000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH15.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_RX_CH15 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_RX_CH15(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_RX_CH15) >> BP_MIPI_HSI_CH_SFTRST_RX_CH15)
+#define BG_MIPI_HSI_CH_SFTRST_RX_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_RX_CH15) >> BP_MIPI_HSI_CH_SFTRST_RX_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH15.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_RX_CH15) & BM_MIPI_HSI_CH_SFTRST_RX_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH15.
-#define BF_MIPI_HSI_CH_SFTRST_RX_CH15(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_RX_CH15) & BM_MIPI_HSI_CH_SFTRST_RX_CH15)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_RX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH15) & BM_MIPI_HSI_CH_SFTRST_RX_CH15)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH0[16] (WO)
  *
@@ -4750,15 +4154,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH0      (0x00010000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH0.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH0 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH0(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH0) >> BP_MIPI_HSI_CH_SFTRST_TX_CH0)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH0) >> BP_MIPI_HSI_CH_SFTRST_TX_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH0.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH0) & BM_MIPI_HSI_CH_SFTRST_TX_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH0.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH0(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH0) & BM_MIPI_HSI_CH_SFTRST_TX_CH0)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH0) & BM_MIPI_HSI_CH_SFTRST_TX_CH0)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH1[17] (WO)
  *
@@ -4770,15 +4169,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH1      (0x00020000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH1.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH1 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH1(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH1) >> BP_MIPI_HSI_CH_SFTRST_TX_CH1)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH1) >> BP_MIPI_HSI_CH_SFTRST_TX_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH1.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH1) & BM_MIPI_HSI_CH_SFTRST_TX_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH1.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH1(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH1) & BM_MIPI_HSI_CH_SFTRST_TX_CH1)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH1) & BM_MIPI_HSI_CH_SFTRST_TX_CH1)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH2[18] (WO)
  *
@@ -4790,15 +4184,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH2      (0x00040000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH2.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH2 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH2(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH2) >> BP_MIPI_HSI_CH_SFTRST_TX_CH2)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH2) >> BP_MIPI_HSI_CH_SFTRST_TX_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH2.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH2) & BM_MIPI_HSI_CH_SFTRST_TX_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH2.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH2(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH2) & BM_MIPI_HSI_CH_SFTRST_TX_CH2)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH2) & BM_MIPI_HSI_CH_SFTRST_TX_CH2)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH3[19] (WO)
  *
@@ -4810,15 +4199,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH3      (0x00080000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH3.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH3 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH3(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH3) >> BP_MIPI_HSI_CH_SFTRST_TX_CH3)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH3) >> BP_MIPI_HSI_CH_SFTRST_TX_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH3.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH3) & BM_MIPI_HSI_CH_SFTRST_TX_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH3.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH3(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH3) & BM_MIPI_HSI_CH_SFTRST_TX_CH3)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH3) & BM_MIPI_HSI_CH_SFTRST_TX_CH3)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH4[20] (WO)
  *
@@ -4830,15 +4214,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH4      (0x00100000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH4.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH4 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH4(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH4) >> BP_MIPI_HSI_CH_SFTRST_TX_CH4)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH4) >> BP_MIPI_HSI_CH_SFTRST_TX_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH4.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH4) & BM_MIPI_HSI_CH_SFTRST_TX_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH4.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH4(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH4) & BM_MIPI_HSI_CH_SFTRST_TX_CH4)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH4) & BM_MIPI_HSI_CH_SFTRST_TX_CH4)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH5[21] (WO)
  *
@@ -4850,15 +4229,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH5      (0x00200000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH5.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH5 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH5(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH5) >> BP_MIPI_HSI_CH_SFTRST_TX_CH5)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH5) >> BP_MIPI_HSI_CH_SFTRST_TX_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH5.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH5) & BM_MIPI_HSI_CH_SFTRST_TX_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH5.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH5(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH5) & BM_MIPI_HSI_CH_SFTRST_TX_CH5)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH5) & BM_MIPI_HSI_CH_SFTRST_TX_CH5)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH6[22] (WO)
  *
@@ -4870,15 +4244,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH6      (0x00400000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH6.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH6 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH6(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH6) >> BP_MIPI_HSI_CH_SFTRST_TX_CH6)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH6) >> BP_MIPI_HSI_CH_SFTRST_TX_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH6.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH6) & BM_MIPI_HSI_CH_SFTRST_TX_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH6.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH6(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH6) & BM_MIPI_HSI_CH_SFTRST_TX_CH6)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH6) & BM_MIPI_HSI_CH_SFTRST_TX_CH6)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH7[23] (WO)
  *
@@ -4890,15 +4259,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH7      (0x00800000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH7.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH7 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH7(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH7) >> BP_MIPI_HSI_CH_SFTRST_TX_CH7)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH7) >> BP_MIPI_HSI_CH_SFTRST_TX_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH7.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH7) & BM_MIPI_HSI_CH_SFTRST_TX_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH7.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH7(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH7) & BM_MIPI_HSI_CH_SFTRST_TX_CH7)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH7) & BM_MIPI_HSI_CH_SFTRST_TX_CH7)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH8[24] (WO)
  *
@@ -4910,15 +4274,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH8      (0x01000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH8.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH8 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH8(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH8) >> BP_MIPI_HSI_CH_SFTRST_TX_CH8)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH8) >> BP_MIPI_HSI_CH_SFTRST_TX_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH8.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH8) & BM_MIPI_HSI_CH_SFTRST_TX_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH8.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH8(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH8) & BM_MIPI_HSI_CH_SFTRST_TX_CH8)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH8) & BM_MIPI_HSI_CH_SFTRST_TX_CH8)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH9[25] (WO)
  *
@@ -4930,15 +4289,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH9      (0x02000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH9.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH9 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH9(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH9) >> BP_MIPI_HSI_CH_SFTRST_TX_CH9)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH9) >> BP_MIPI_HSI_CH_SFTRST_TX_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH9.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH9) & BM_MIPI_HSI_CH_SFTRST_TX_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH9.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH9(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH9) & BM_MIPI_HSI_CH_SFTRST_TX_CH9)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH9) & BM_MIPI_HSI_CH_SFTRST_TX_CH9)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH10[26] (WO)
  *
@@ -4950,15 +4304,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH10      (0x04000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH10.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH10 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH10(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH10) >> BP_MIPI_HSI_CH_SFTRST_TX_CH10)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH10) >> BP_MIPI_HSI_CH_SFTRST_TX_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH10.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH10) & BM_MIPI_HSI_CH_SFTRST_TX_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH10.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH10(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH10) & BM_MIPI_HSI_CH_SFTRST_TX_CH10)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH10) & BM_MIPI_HSI_CH_SFTRST_TX_CH10)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH11[27] (WO)
  *
@@ -4970,15 +4319,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH11      (0x08000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH11.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH11 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH11(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH11) >> BP_MIPI_HSI_CH_SFTRST_TX_CH11)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH11) >> BP_MIPI_HSI_CH_SFTRST_TX_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH11.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH11) & BM_MIPI_HSI_CH_SFTRST_TX_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH11.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH11(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH11) & BM_MIPI_HSI_CH_SFTRST_TX_CH11)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH11) & BM_MIPI_HSI_CH_SFTRST_TX_CH11)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH12[28] (WO)
  *
@@ -4990,15 +4334,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH12      (0x10000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH12.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH12 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH12(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH12) >> BP_MIPI_HSI_CH_SFTRST_TX_CH12)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH12) >> BP_MIPI_HSI_CH_SFTRST_TX_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH12.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH12) & BM_MIPI_HSI_CH_SFTRST_TX_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH12.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH12(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH12) & BM_MIPI_HSI_CH_SFTRST_TX_CH12)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH12) & BM_MIPI_HSI_CH_SFTRST_TX_CH12)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH13[29] (WO)
  *
@@ -5010,15 +4349,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH13      (0x20000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH13.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH13 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH13(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH13) >> BP_MIPI_HSI_CH_SFTRST_TX_CH13)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH13) >> BP_MIPI_HSI_CH_SFTRST_TX_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH13.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH13) & BM_MIPI_HSI_CH_SFTRST_TX_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH13.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH13(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH13) & BM_MIPI_HSI_CH_SFTRST_TX_CH13)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH13) & BM_MIPI_HSI_CH_SFTRST_TX_CH13)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH14[30] (WO)
  *
@@ -5030,15 +4364,10 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH14      (0x40000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH14.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH14 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH14(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH14) >> BP_MIPI_HSI_CH_SFTRST_TX_CH14)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH14) >> BP_MIPI_HSI_CH_SFTRST_TX_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH14.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH14) & BM_MIPI_HSI_CH_SFTRST_TX_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH14.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH14(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH14) & BM_MIPI_HSI_CH_SFTRST_TX_CH14)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH14) & BM_MIPI_HSI_CH_SFTRST_TX_CH14)
 
 /* --- Register HW_MIPI_HSI_CH_SFTRST, field TX_CH15[31] (WO)
  *
@@ -5050,15 +4379,14 @@ typedef union _hw_mipi_hsi_ch_sftrst
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH15      (0x80000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH15.
 
 //! @brief Get value of MIPI_HSI_CH_SFTRST_TX_CH15 from a register value.
-#define BG_MIPI_HSI_CH_SFTRST_TX_CH15(r)   (((r) & BM_MIPI_HSI_CH_SFTRST_TX_CH15) >> BP_MIPI_HSI_CH_SFTRST_TX_CH15)
+#define BG_MIPI_HSI_CH_SFTRST_TX_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CH_SFTRST_TX_CH15) >> BP_MIPI_HSI_CH_SFTRST_TX_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH15.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_CH_SFTRST_TX_CH15) & BM_MIPI_HSI_CH_SFTRST_TX_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH15.
-#define BF_MIPI_HSI_CH_SFTRST_TX_CH15(v)   (((v) << BP_MIPI_HSI_CH_SFTRST_TX_CH15) & BM_MIPI_HSI_CH_SFTRST_TX_CH15)
-#endif
+#define BF_MIPI_HSI_CH_SFTRST_TX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH15) & BM_MIPI_HSI_CH_SFTRST_TX_CH15)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_IRQSTAT - HSI Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5119,7 +4447,7 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT)
+#define BG_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field RX_WAKEUP_INT[1] (WO)
@@ -5135,15 +4463,10 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_RX_WAKEUP_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
+#define BG_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field RX_TIMEOUT_INT[2] (RO)
@@ -5160,7 +4483,7 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT)
+#define BG_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field DMA_INT[3] (RO)
@@ -5172,7 +4495,7 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSTAT_DMA_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_DMA_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_DMA_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_DMA_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_INT)
+#define BG_MIPI_HSI_IRQSTAT_DMA_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_DMA_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_INT)
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field DMA_ERR_INT[4] (RO)
  *
@@ -5188,7 +4511,7 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSTAT_DMA_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_DMA_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_DMA_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_ERR_INT)
+#define BG_MIPI_HSI_IRQSTAT_DMA_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_ERR_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field TX_TIMEOUT_ERR_INT[5] (WO)
@@ -5204,15 +4527,10 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
+#define BG_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field RX_ERROR_INT[6] (WO)
@@ -5228,15 +4546,10 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_ERROR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_RX_ERROR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_RX_ERROR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
+#define BG_MIPI_HSI_IRQSTAT_RX_ERROR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_ERROR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_ERROR_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_RX_ERROR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field RX_BREAK_INT[7] (WO)
@@ -5252,15 +4565,10 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_BREAK_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_RX_BREAK_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_RX_BREAK_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
+#define BG_MIPI_HSI_IRQSTAT_RX_BREAK_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_BREAK_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSTAT_RX_BREAK_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_RX_BREAK_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
 
 
 /* --- Register HW_MIPI_HSI_IRQSTAT, field TX_EMPTY_INT[8] (RO)
@@ -5276,8 +4584,12 @@ typedef union _hw_mipi_hsi_irqstat
 #define BM_MIPI_HSI_IRQSTAT_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSTAT_TX_EMPTY_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_TX_EMPTY_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_TX_EMPTY_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSTAT_TX_EMPTY_INT)
+#define BG_MIPI_HSI_IRQSTAT_TX_EMPTY_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSTAT_TX_EMPTY_INT)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_IRQSTAT_EN - HSI Interrupt Status Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5337,15 +4649,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_THRESHOLD_INT field to a new value.
@@ -5366,15 +4673,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_WAKEUP_INT field to a new value.
@@ -5395,15 +4697,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_TIMEOUT_INT field to a new value.
@@ -5424,15 +4721,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_DMA_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_DMA_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_DMA_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_DMA_INT) >> BP_MIPI_HSI_IRQSTAT_EN_DMA_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_DMA_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_DMA_INT) >> BP_MIPI_HSI_IRQSTAT_EN_DMA_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_DMA_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_DMA_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_DMA_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_DMA_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_DMA_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_DMA_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_DMA_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_DMA_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_INT field to a new value.
@@ -5453,15 +4745,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_ERR_INT field to a new value.
@@ -5482,15 +4769,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_TIMEOUT_ERR_INT field to a new value.
@@ -5511,15 +4793,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_ERROR_INT field to a new value.
@@ -5540,15 +4817,10 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_BREAK_INT field to a new value.
@@ -5569,21 +4841,20 @@ typedef union _hw_mipi_hsi_irqstat_en
 #define BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT from a register value.
-#define BG_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(r)   (((r) & BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT)
+#define BG_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT.
-#define BF_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)   (((v) << BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT)
-#endif
+#define BF_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_EMPTY_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) | BF_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_IRQSIG_EN - HSI Interrupt Signal Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5643,15 +4914,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) & BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_THRESHOLD_INT field to a new value.
@@ -5672,15 +4938,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_WAKEUP_INT field to a new value.
@@ -5701,15 +4962,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_TIMEOUT_INT field to a new value.
@@ -5730,15 +4986,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_DMA_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_DMA_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_DMA_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_DMA_INT) >> BP_MIPI_HSI_IRQSIG_EN_DMA_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_DMA_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_DMA_INT) >> BP_MIPI_HSI_IRQSIG_EN_DMA_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_DMA_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_DMA_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_DMA_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_DMA_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_DMA_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_DMA_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_DMA_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_DMA_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_INT field to a new value.
@@ -5759,15 +5010,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_DMA_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_DMA_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_DMA_ERR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_DMA_ERR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_ERR_INT field to a new value.
@@ -5788,15 +5034,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) >> BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_TIMEOUT_ERR_INT field to a new value.
@@ -5817,15 +5058,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_ERROR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_RX_ERROR_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_ERROR_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_ERROR_INT field to a new value.
@@ -5846,15 +5082,10 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_BREAK_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_RX_BREAK_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) >> BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_RX_BREAK_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) & BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_BREAK_INT field to a new value.
@@ -5875,21 +5106,20 @@ typedef union _hw_mipi_hsi_irqsig_en
 #define BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT from a register value.
-#define BG_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(r)   (((r) & BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT)
+#define BG_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT.
-#define BF_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)   (((v) << BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT)
-#endif
+#define BF_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) & BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_EMPTY_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) | BF_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_FIFO_THR_IRQSTAT - HSI FIFO Threshold Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5967,7 +5197,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH1_INT[1] (RO)
@@ -5983,7 +5213,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH2_INT[2] (RO)
@@ -5999,7 +5229,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH3_INT[3] (RO)
@@ -6015,7 +5245,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH4_INT[4] (RO)
@@ -6031,7 +5261,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH5_INT[5] (RO)
@@ -6047,7 +5277,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH6_INT[6] (RO)
@@ -6063,7 +5293,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH7_INT[7] (RO)
@@ -6079,7 +5309,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH8_INT[8] (RO)
@@ -6095,7 +5325,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH9_INT[9] (RO)
@@ -6111,7 +5341,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH10_INT[10] (RO)
@@ -6127,7 +5357,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH11_INT[11] (RO)
@@ -6143,7 +5373,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH12_INT[12] (RO)
@@ -6159,7 +5389,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH13_INT[13] (RO)
@@ -6175,7 +5405,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH14_INT[14] (RO)
@@ -6191,7 +5421,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH15_INT[15] (RO)
@@ -6207,7 +5437,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH0_INT[16] (RO)
@@ -6223,7 +5453,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH1_INT[17] (RO)
@@ -6239,7 +5469,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH2_INT[18] (RO)
@@ -6255,7 +5485,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH3_INT[19] (RO)
@@ -6271,7 +5501,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH4_INT[20] (RO)
@@ -6287,7 +5517,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH5_INT[21] (RO)
@@ -6303,7 +5533,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH6_INT[22] (RO)
@@ -6319,7 +5549,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH7_INT[23] (RO)
@@ -6335,7 +5565,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH8_INT[24] (RO)
@@ -6351,7 +5581,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH9_INT[25] (RO)
@@ -6367,7 +5597,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH10_INT[26] (RO)
@@ -6383,7 +5613,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH11_INT[27] (RO)
@@ -6399,7 +5629,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH12_INT[28] (RO)
@@ -6415,7 +5645,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH13_INT[29] (RO)
@@ -6431,7 +5661,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH14_INT[30] (RO)
@@ -6447,7 +5677,7 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT)
 
 
 /* --- Register HW_MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH15_INT[31] (RO)
@@ -6463,8 +5693,12 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN - HSI FIFO Threshold Interrupt Status Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6546,15 +5780,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH0_INT field to a new value.
@@ -6575,15 +5804,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH1_INT field to a new value.
@@ -6604,15 +5828,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH2_INT field to a new value.
@@ -6633,15 +5852,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH3_INT field to a new value.
@@ -6662,15 +5876,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH4_INT field to a new value.
@@ -6691,15 +5900,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH5_INT field to a new value.
@@ -6720,15 +5924,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH6_INT field to a new value.
@@ -6749,15 +5948,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH7_INT field to a new value.
@@ -6778,15 +5972,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH8_INT field to a new value.
@@ -6807,15 +5996,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH9_INT field to a new value.
@@ -6836,15 +6020,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH10_INT field to a new value.
@@ -6865,15 +6044,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH11_INT field to a new value.
@@ -6894,15 +6068,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH12_INT field to a new value.
@@ -6923,15 +6092,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH13_INT field to a new value.
@@ -6952,15 +6116,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH14_INT field to a new value.
@@ -6981,15 +6140,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH15_INT field to a new value.
@@ -7010,15 +6164,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH0_INT field to a new value.
@@ -7039,15 +6188,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH1_INT field to a new value.
@@ -7068,15 +6212,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH2_INT field to a new value.
@@ -7097,15 +6236,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH3_INT field to a new value.
@@ -7126,15 +6260,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH4_INT field to a new value.
@@ -7155,15 +6284,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH5_INT field to a new value.
@@ -7184,15 +6308,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH6_INT field to a new value.
@@ -7213,15 +6332,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH7_INT field to a new value.
@@ -7242,15 +6356,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH8_INT field to a new value.
@@ -7271,15 +6380,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH9_INT field to a new value.
@@ -7300,15 +6404,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH10_INT field to a new value.
@@ -7329,15 +6428,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH11_INT field to a new value.
@@ -7358,15 +6452,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH12_INT field to a new value.
@@ -7387,15 +6476,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH13_INT field to a new value.
@@ -7416,15 +6500,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH14_INT field to a new value.
@@ -7445,21 +6524,20 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_FIFO_THR_IRQSIG_EN - HSI FIFO Threshold Interrupt Signal Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7541,15 +6619,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH0_INT field to a new value.
@@ -7570,15 +6643,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH1_INT field to a new value.
@@ -7599,15 +6667,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH2_INT field to a new value.
@@ -7628,15 +6691,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH3_INT field to a new value.
@@ -7657,15 +6715,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH4_INT field to a new value.
@@ -7686,15 +6739,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH5_INT field to a new value.
@@ -7715,15 +6763,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH6_INT field to a new value.
@@ -7744,15 +6787,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH7_INT field to a new value.
@@ -7773,15 +6811,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH8_INT field to a new value.
@@ -7802,15 +6835,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH9_INT field to a new value.
@@ -7831,15 +6859,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH10_INT field to a new value.
@@ -7860,15 +6883,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH11_INT field to a new value.
@@ -7889,15 +6907,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH12_INT field to a new value.
@@ -7918,15 +6931,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH13_INT field to a new value.
@@ -7947,15 +6955,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH14_INT field to a new value.
@@ -7976,15 +6979,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH15_INT field to a new value.
@@ -8005,15 +7003,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH0_INT field to a new value.
@@ -8034,15 +7027,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH1_INT field to a new value.
@@ -8063,15 +7051,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH2_INT field to a new value.
@@ -8092,15 +7075,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH3_INT field to a new value.
@@ -8121,15 +7099,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH4_INT field to a new value.
@@ -8150,15 +7123,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH5_INT field to a new value.
@@ -8179,15 +7147,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH6_INT field to a new value.
@@ -8208,15 +7171,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH7_INT field to a new value.
@@ -8237,15 +7195,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH8_INT field to a new value.
@@ -8266,15 +7219,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH9_INT field to a new value.
@@ -8295,15 +7243,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH10_INT field to a new value.
@@ -8324,15 +7267,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH11_INT field to a new value.
@@ -8353,15 +7291,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH12_INT field to a new value.
@@ -8382,15 +7315,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH13_INT field to a new value.
@@ -8411,15 +7339,10 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH14_INT field to a new value.
@@ -8440,21 +7363,20 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT from a register value.
-#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(r)   (((r) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT)
+#define BG_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)   ((((reg32_t) v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT.
-#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)   (((v) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT)
-#endif
+#define BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) & BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH0_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8501,20 +7423,19 @@ typedef union _hw_mipi_hsi_tx_ch0_dp
 #define BM_MIPI_HSI_TX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH0_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH0_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH0_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH0_DP_DATA) >> BP_MIPI_HSI_TX_CH0_DP_DATA)
+#define BG_MIPI_HSI_TX_CH0_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH0_DP_DATA) >> BP_MIPI_HSI_TX_CH0_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH0_DP_DATA.
-#define BF_MIPI_HSI_TX_CH0_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH0_DP_DATA) & BM_MIPI_HSI_TX_CH0_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH0_DP_DATA.
-#define BF_MIPI_HSI_TX_CH0_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH0_DP_DATA) & BM_MIPI_HSI_TX_CH0_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH0_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH0_DP_DATA) & BM_MIPI_HSI_TX_CH0_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH0_DP_DATA(v)   (HW_MIPI_HSI_TX_CH0_DP_WR((HW_MIPI_HSI_TX_CH0_DP_RD() & ~BM_MIPI_HSI_TX_CH0_DP_DATA) | BF_MIPI_HSI_TX_CH0_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH1_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8561,20 +7482,19 @@ typedef union _hw_mipi_hsi_tx_ch1_dp
 #define BM_MIPI_HSI_TX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH1_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH1_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH1_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH1_DP_DATA) >> BP_MIPI_HSI_TX_CH1_DP_DATA)
+#define BG_MIPI_HSI_TX_CH1_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH1_DP_DATA) >> BP_MIPI_HSI_TX_CH1_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH1_DP_DATA.
-#define BF_MIPI_HSI_TX_CH1_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH1_DP_DATA) & BM_MIPI_HSI_TX_CH1_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH1_DP_DATA.
-#define BF_MIPI_HSI_TX_CH1_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH1_DP_DATA) & BM_MIPI_HSI_TX_CH1_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH1_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH1_DP_DATA) & BM_MIPI_HSI_TX_CH1_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH1_DP_DATA(v)   (HW_MIPI_HSI_TX_CH1_DP_WR((HW_MIPI_HSI_TX_CH1_DP_RD() & ~BM_MIPI_HSI_TX_CH1_DP_DATA) | BF_MIPI_HSI_TX_CH1_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH2_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8621,20 +7541,19 @@ typedef union _hw_mipi_hsi_tx_ch2_dp
 #define BM_MIPI_HSI_TX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH2_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH2_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH2_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH2_DP_DATA) >> BP_MIPI_HSI_TX_CH2_DP_DATA)
+#define BG_MIPI_HSI_TX_CH2_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH2_DP_DATA) >> BP_MIPI_HSI_TX_CH2_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH2_DP_DATA.
-#define BF_MIPI_HSI_TX_CH2_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH2_DP_DATA) & BM_MIPI_HSI_TX_CH2_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH2_DP_DATA.
-#define BF_MIPI_HSI_TX_CH2_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH2_DP_DATA) & BM_MIPI_HSI_TX_CH2_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH2_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH2_DP_DATA) & BM_MIPI_HSI_TX_CH2_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH2_DP_DATA(v)   (HW_MIPI_HSI_TX_CH2_DP_WR((HW_MIPI_HSI_TX_CH2_DP_RD() & ~BM_MIPI_HSI_TX_CH2_DP_DATA) | BF_MIPI_HSI_TX_CH2_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH3_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8681,20 +7600,19 @@ typedef union _hw_mipi_hsi_tx_ch3_dp
 #define BM_MIPI_HSI_TX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH3_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH3_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH3_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH3_DP_DATA) >> BP_MIPI_HSI_TX_CH3_DP_DATA)
+#define BG_MIPI_HSI_TX_CH3_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH3_DP_DATA) >> BP_MIPI_HSI_TX_CH3_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH3_DP_DATA.
-#define BF_MIPI_HSI_TX_CH3_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH3_DP_DATA) & BM_MIPI_HSI_TX_CH3_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH3_DP_DATA.
-#define BF_MIPI_HSI_TX_CH3_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH3_DP_DATA) & BM_MIPI_HSI_TX_CH3_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH3_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH3_DP_DATA) & BM_MIPI_HSI_TX_CH3_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH3_DP_DATA(v)   (HW_MIPI_HSI_TX_CH3_DP_WR((HW_MIPI_HSI_TX_CH3_DP_RD() & ~BM_MIPI_HSI_TX_CH3_DP_DATA) | BF_MIPI_HSI_TX_CH3_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH4_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8741,20 +7659,19 @@ typedef union _hw_mipi_hsi_tx_ch4_dp
 #define BM_MIPI_HSI_TX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH4_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH4_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH4_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH4_DP_DATA) >> BP_MIPI_HSI_TX_CH4_DP_DATA)
+#define BG_MIPI_HSI_TX_CH4_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH4_DP_DATA) >> BP_MIPI_HSI_TX_CH4_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH4_DP_DATA.
-#define BF_MIPI_HSI_TX_CH4_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH4_DP_DATA) & BM_MIPI_HSI_TX_CH4_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH4_DP_DATA.
-#define BF_MIPI_HSI_TX_CH4_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH4_DP_DATA) & BM_MIPI_HSI_TX_CH4_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH4_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH4_DP_DATA) & BM_MIPI_HSI_TX_CH4_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH4_DP_DATA(v)   (HW_MIPI_HSI_TX_CH4_DP_WR((HW_MIPI_HSI_TX_CH4_DP_RD() & ~BM_MIPI_HSI_TX_CH4_DP_DATA) | BF_MIPI_HSI_TX_CH4_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH5_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8801,20 +7718,19 @@ typedef union _hw_mipi_hsi_tx_ch5_dp
 #define BM_MIPI_HSI_TX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH5_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH5_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH5_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH5_DP_DATA) >> BP_MIPI_HSI_TX_CH5_DP_DATA)
+#define BG_MIPI_HSI_TX_CH5_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH5_DP_DATA) >> BP_MIPI_HSI_TX_CH5_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH5_DP_DATA.
-#define BF_MIPI_HSI_TX_CH5_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH5_DP_DATA) & BM_MIPI_HSI_TX_CH5_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH5_DP_DATA.
-#define BF_MIPI_HSI_TX_CH5_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH5_DP_DATA) & BM_MIPI_HSI_TX_CH5_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH5_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH5_DP_DATA) & BM_MIPI_HSI_TX_CH5_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH5_DP_DATA(v)   (HW_MIPI_HSI_TX_CH5_DP_WR((HW_MIPI_HSI_TX_CH5_DP_RD() & ~BM_MIPI_HSI_TX_CH5_DP_DATA) | BF_MIPI_HSI_TX_CH5_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH6_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8861,20 +7777,19 @@ typedef union _hw_mipi_hsi_tx_ch6_dp
 #define BM_MIPI_HSI_TX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH6_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH6_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH6_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH6_DP_DATA) >> BP_MIPI_HSI_TX_CH6_DP_DATA)
+#define BG_MIPI_HSI_TX_CH6_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH6_DP_DATA) >> BP_MIPI_HSI_TX_CH6_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH6_DP_DATA.
-#define BF_MIPI_HSI_TX_CH6_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH6_DP_DATA) & BM_MIPI_HSI_TX_CH6_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH6_DP_DATA.
-#define BF_MIPI_HSI_TX_CH6_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH6_DP_DATA) & BM_MIPI_HSI_TX_CH6_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH6_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH6_DP_DATA) & BM_MIPI_HSI_TX_CH6_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH6_DP_DATA(v)   (HW_MIPI_HSI_TX_CH6_DP_WR((HW_MIPI_HSI_TX_CH6_DP_RD() & ~BM_MIPI_HSI_TX_CH6_DP_DATA) | BF_MIPI_HSI_TX_CH6_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH7_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8921,20 +7836,19 @@ typedef union _hw_mipi_hsi_tx_ch7_dp
 #define BM_MIPI_HSI_TX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH7_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH7_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH7_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH7_DP_DATA) >> BP_MIPI_HSI_TX_CH7_DP_DATA)
+#define BG_MIPI_HSI_TX_CH7_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH7_DP_DATA) >> BP_MIPI_HSI_TX_CH7_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH7_DP_DATA.
-#define BF_MIPI_HSI_TX_CH7_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH7_DP_DATA) & BM_MIPI_HSI_TX_CH7_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH7_DP_DATA.
-#define BF_MIPI_HSI_TX_CH7_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH7_DP_DATA) & BM_MIPI_HSI_TX_CH7_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH7_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH7_DP_DATA) & BM_MIPI_HSI_TX_CH7_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH7_DP_DATA(v)   (HW_MIPI_HSI_TX_CH7_DP_WR((HW_MIPI_HSI_TX_CH7_DP_RD() & ~BM_MIPI_HSI_TX_CH7_DP_DATA) | BF_MIPI_HSI_TX_CH7_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH8_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8981,20 +7895,19 @@ typedef union _hw_mipi_hsi_tx_ch8_dp
 #define BM_MIPI_HSI_TX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH8_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH8_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH8_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH8_DP_DATA) >> BP_MIPI_HSI_TX_CH8_DP_DATA)
+#define BG_MIPI_HSI_TX_CH8_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH8_DP_DATA) >> BP_MIPI_HSI_TX_CH8_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH8_DP_DATA.
-#define BF_MIPI_HSI_TX_CH8_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH8_DP_DATA) & BM_MIPI_HSI_TX_CH8_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH8_DP_DATA.
-#define BF_MIPI_HSI_TX_CH8_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH8_DP_DATA) & BM_MIPI_HSI_TX_CH8_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH8_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH8_DP_DATA) & BM_MIPI_HSI_TX_CH8_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH8_DP_DATA(v)   (HW_MIPI_HSI_TX_CH8_DP_WR((HW_MIPI_HSI_TX_CH8_DP_RD() & ~BM_MIPI_HSI_TX_CH8_DP_DATA) | BF_MIPI_HSI_TX_CH8_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH9_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9041,20 +7954,19 @@ typedef union _hw_mipi_hsi_tx_ch9_dp
 #define BM_MIPI_HSI_TX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH9_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH9_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH9_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH9_DP_DATA) >> BP_MIPI_HSI_TX_CH9_DP_DATA)
+#define BG_MIPI_HSI_TX_CH9_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH9_DP_DATA) >> BP_MIPI_HSI_TX_CH9_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH9_DP_DATA.
-#define BF_MIPI_HSI_TX_CH9_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH9_DP_DATA) & BM_MIPI_HSI_TX_CH9_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH9_DP_DATA.
-#define BF_MIPI_HSI_TX_CH9_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH9_DP_DATA) & BM_MIPI_HSI_TX_CH9_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH9_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH9_DP_DATA) & BM_MIPI_HSI_TX_CH9_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH9_DP_DATA(v)   (HW_MIPI_HSI_TX_CH9_DP_WR((HW_MIPI_HSI_TX_CH9_DP_RD() & ~BM_MIPI_HSI_TX_CH9_DP_DATA) | BF_MIPI_HSI_TX_CH9_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH10_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9101,20 +8013,19 @@ typedef union _hw_mipi_hsi_tx_ch10_dp
 #define BM_MIPI_HSI_TX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH10_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH10_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH10_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH10_DP_DATA) >> BP_MIPI_HSI_TX_CH10_DP_DATA)
+#define BG_MIPI_HSI_TX_CH10_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH10_DP_DATA) >> BP_MIPI_HSI_TX_CH10_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH10_DP_DATA.
-#define BF_MIPI_HSI_TX_CH10_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH10_DP_DATA) & BM_MIPI_HSI_TX_CH10_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH10_DP_DATA.
-#define BF_MIPI_HSI_TX_CH10_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH10_DP_DATA) & BM_MIPI_HSI_TX_CH10_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH10_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH10_DP_DATA) & BM_MIPI_HSI_TX_CH10_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH10_DP_DATA(v)   (HW_MIPI_HSI_TX_CH10_DP_WR((HW_MIPI_HSI_TX_CH10_DP_RD() & ~BM_MIPI_HSI_TX_CH10_DP_DATA) | BF_MIPI_HSI_TX_CH10_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH11_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9161,20 +8072,19 @@ typedef union _hw_mipi_hsi_tx_ch11_dp
 #define BM_MIPI_HSI_TX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH11_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH11_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH11_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH11_DP_DATA) >> BP_MIPI_HSI_TX_CH11_DP_DATA)
+#define BG_MIPI_HSI_TX_CH11_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH11_DP_DATA) >> BP_MIPI_HSI_TX_CH11_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH11_DP_DATA.
-#define BF_MIPI_HSI_TX_CH11_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH11_DP_DATA) & BM_MIPI_HSI_TX_CH11_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH11_DP_DATA.
-#define BF_MIPI_HSI_TX_CH11_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH11_DP_DATA) & BM_MIPI_HSI_TX_CH11_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH11_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH11_DP_DATA) & BM_MIPI_HSI_TX_CH11_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH11_DP_DATA(v)   (HW_MIPI_HSI_TX_CH11_DP_WR((HW_MIPI_HSI_TX_CH11_DP_RD() & ~BM_MIPI_HSI_TX_CH11_DP_DATA) | BF_MIPI_HSI_TX_CH11_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH12_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9221,20 +8131,19 @@ typedef union _hw_mipi_hsi_tx_ch12_dp
 #define BM_MIPI_HSI_TX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH12_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH12_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH12_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH12_DP_DATA) >> BP_MIPI_HSI_TX_CH12_DP_DATA)
+#define BG_MIPI_HSI_TX_CH12_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH12_DP_DATA) >> BP_MIPI_HSI_TX_CH12_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH12_DP_DATA.
-#define BF_MIPI_HSI_TX_CH12_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH12_DP_DATA) & BM_MIPI_HSI_TX_CH12_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH12_DP_DATA.
-#define BF_MIPI_HSI_TX_CH12_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH12_DP_DATA) & BM_MIPI_HSI_TX_CH12_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH12_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH12_DP_DATA) & BM_MIPI_HSI_TX_CH12_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH12_DP_DATA(v)   (HW_MIPI_HSI_TX_CH12_DP_WR((HW_MIPI_HSI_TX_CH12_DP_RD() & ~BM_MIPI_HSI_TX_CH12_DP_DATA) | BF_MIPI_HSI_TX_CH12_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH13_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9281,20 +8190,19 @@ typedef union _hw_mipi_hsi_tx_ch13_dp
 #define BM_MIPI_HSI_TX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH13_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH13_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH13_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH13_DP_DATA) >> BP_MIPI_HSI_TX_CH13_DP_DATA)
+#define BG_MIPI_HSI_TX_CH13_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH13_DP_DATA) >> BP_MIPI_HSI_TX_CH13_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH13_DP_DATA.
-#define BF_MIPI_HSI_TX_CH13_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH13_DP_DATA) & BM_MIPI_HSI_TX_CH13_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH13_DP_DATA.
-#define BF_MIPI_HSI_TX_CH13_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH13_DP_DATA) & BM_MIPI_HSI_TX_CH13_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH13_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH13_DP_DATA) & BM_MIPI_HSI_TX_CH13_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH13_DP_DATA(v)   (HW_MIPI_HSI_TX_CH13_DP_WR((HW_MIPI_HSI_TX_CH13_DP_RD() & ~BM_MIPI_HSI_TX_CH13_DP_DATA) | BF_MIPI_HSI_TX_CH13_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH14_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9341,20 +8249,19 @@ typedef union _hw_mipi_hsi_tx_ch14_dp
 #define BM_MIPI_HSI_TX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH14_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH14_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH14_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH14_DP_DATA) >> BP_MIPI_HSI_TX_CH14_DP_DATA)
+#define BG_MIPI_HSI_TX_CH14_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH14_DP_DATA) >> BP_MIPI_HSI_TX_CH14_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH14_DP_DATA.
-#define BF_MIPI_HSI_TX_CH14_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH14_DP_DATA) & BM_MIPI_HSI_TX_CH14_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH14_DP_DATA.
-#define BF_MIPI_HSI_TX_CH14_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH14_DP_DATA) & BM_MIPI_HSI_TX_CH14_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH14_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH14_DP_DATA) & BM_MIPI_HSI_TX_CH14_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH14_DP_DATA(v)   (HW_MIPI_HSI_TX_CH14_DP_WR((HW_MIPI_HSI_TX_CH14_DP_RD() & ~BM_MIPI_HSI_TX_CH14_DP_DATA) | BF_MIPI_HSI_TX_CH14_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_CH15_DP - Tx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9401,20 +8308,19 @@ typedef union _hw_mipi_hsi_tx_ch15_dp
 #define BM_MIPI_HSI_TX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH15_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_TX_CH15_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH15_DP_DATA(r)   (((r) & BM_MIPI_HSI_TX_CH15_DP_DATA) >> BP_MIPI_HSI_TX_CH15_DP_DATA)
+#define BG_MIPI_HSI_TX_CH15_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH15_DP_DATA) >> BP_MIPI_HSI_TX_CH15_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_CH15_DP_DATA.
-#define BF_MIPI_HSI_TX_CH15_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_CH15_DP_DATA) & BM_MIPI_HSI_TX_CH15_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_CH15_DP_DATA.
-#define BF_MIPI_HSI_TX_CH15_DP_DATA(v)   (((v) << BP_MIPI_HSI_TX_CH15_DP_DATA) & BM_MIPI_HSI_TX_CH15_DP_DATA)
-#endif
+#define BF_MIPI_HSI_TX_CH15_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH15_DP_DATA) & BM_MIPI_HSI_TX_CH15_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH15_DP_DATA(v)   (HW_MIPI_HSI_TX_CH15_DP_WR((HW_MIPI_HSI_TX_CH15_DP_RD() & ~BM_MIPI_HSI_TX_CH15_DP_DATA) | BF_MIPI_HSI_TX_CH15_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH0_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9461,20 +8367,19 @@ typedef union _hw_mipi_hsi_rx_ch0_dp
 #define BM_MIPI_HSI_RX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH0_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH0_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH0_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH0_DP_DATA) >> BP_MIPI_HSI_RX_CH0_DP_DATA)
+#define BG_MIPI_HSI_RX_CH0_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH0_DP_DATA) >> BP_MIPI_HSI_RX_CH0_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH0_DP_DATA.
-#define BF_MIPI_HSI_RX_CH0_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH0_DP_DATA) & BM_MIPI_HSI_RX_CH0_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH0_DP_DATA.
-#define BF_MIPI_HSI_RX_CH0_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH0_DP_DATA) & BM_MIPI_HSI_RX_CH0_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH0_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH0_DP_DATA) & BM_MIPI_HSI_RX_CH0_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH0_DP_DATA(v)   (HW_MIPI_HSI_RX_CH0_DP_WR((HW_MIPI_HSI_RX_CH0_DP_RD() & ~BM_MIPI_HSI_RX_CH0_DP_DATA) | BF_MIPI_HSI_RX_CH0_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH1_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9521,20 +8426,19 @@ typedef union _hw_mipi_hsi_rx_ch1_dp
 #define BM_MIPI_HSI_RX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH1_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH1_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH1_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH1_DP_DATA) >> BP_MIPI_HSI_RX_CH1_DP_DATA)
+#define BG_MIPI_HSI_RX_CH1_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH1_DP_DATA) >> BP_MIPI_HSI_RX_CH1_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH1_DP_DATA.
-#define BF_MIPI_HSI_RX_CH1_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH1_DP_DATA) & BM_MIPI_HSI_RX_CH1_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH1_DP_DATA.
-#define BF_MIPI_HSI_RX_CH1_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH1_DP_DATA) & BM_MIPI_HSI_RX_CH1_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH1_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH1_DP_DATA) & BM_MIPI_HSI_RX_CH1_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH1_DP_DATA(v)   (HW_MIPI_HSI_RX_CH1_DP_WR((HW_MIPI_HSI_RX_CH1_DP_RD() & ~BM_MIPI_HSI_RX_CH1_DP_DATA) | BF_MIPI_HSI_RX_CH1_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH2_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9581,20 +8485,19 @@ typedef union _hw_mipi_hsi_rx_ch2_dp
 #define BM_MIPI_HSI_RX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH2_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH2_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH2_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH2_DP_DATA) >> BP_MIPI_HSI_RX_CH2_DP_DATA)
+#define BG_MIPI_HSI_RX_CH2_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH2_DP_DATA) >> BP_MIPI_HSI_RX_CH2_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH2_DP_DATA.
-#define BF_MIPI_HSI_RX_CH2_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH2_DP_DATA) & BM_MIPI_HSI_RX_CH2_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH2_DP_DATA.
-#define BF_MIPI_HSI_RX_CH2_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH2_DP_DATA) & BM_MIPI_HSI_RX_CH2_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH2_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH2_DP_DATA) & BM_MIPI_HSI_RX_CH2_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH2_DP_DATA(v)   (HW_MIPI_HSI_RX_CH2_DP_WR((HW_MIPI_HSI_RX_CH2_DP_RD() & ~BM_MIPI_HSI_RX_CH2_DP_DATA) | BF_MIPI_HSI_RX_CH2_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH3_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9641,20 +8544,19 @@ typedef union _hw_mipi_hsi_rx_ch3_dp
 #define BM_MIPI_HSI_RX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH3_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH3_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH3_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH3_DP_DATA) >> BP_MIPI_HSI_RX_CH3_DP_DATA)
+#define BG_MIPI_HSI_RX_CH3_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH3_DP_DATA) >> BP_MIPI_HSI_RX_CH3_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH3_DP_DATA.
-#define BF_MIPI_HSI_RX_CH3_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH3_DP_DATA) & BM_MIPI_HSI_RX_CH3_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH3_DP_DATA.
-#define BF_MIPI_HSI_RX_CH3_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH3_DP_DATA) & BM_MIPI_HSI_RX_CH3_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH3_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH3_DP_DATA) & BM_MIPI_HSI_RX_CH3_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH3_DP_DATA(v)   (HW_MIPI_HSI_RX_CH3_DP_WR((HW_MIPI_HSI_RX_CH3_DP_RD() & ~BM_MIPI_HSI_RX_CH3_DP_DATA) | BF_MIPI_HSI_RX_CH3_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH4_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9701,20 +8603,19 @@ typedef union _hw_mipi_hsi_rx_ch4_dp
 #define BM_MIPI_HSI_RX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH4_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH4_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH4_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH4_DP_DATA) >> BP_MIPI_HSI_RX_CH4_DP_DATA)
+#define BG_MIPI_HSI_RX_CH4_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH4_DP_DATA) >> BP_MIPI_HSI_RX_CH4_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH4_DP_DATA.
-#define BF_MIPI_HSI_RX_CH4_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH4_DP_DATA) & BM_MIPI_HSI_RX_CH4_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH4_DP_DATA.
-#define BF_MIPI_HSI_RX_CH4_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH4_DP_DATA) & BM_MIPI_HSI_RX_CH4_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH4_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH4_DP_DATA) & BM_MIPI_HSI_RX_CH4_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH4_DP_DATA(v)   (HW_MIPI_HSI_RX_CH4_DP_WR((HW_MIPI_HSI_RX_CH4_DP_RD() & ~BM_MIPI_HSI_RX_CH4_DP_DATA) | BF_MIPI_HSI_RX_CH4_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH5_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9761,20 +8662,19 @@ typedef union _hw_mipi_hsi_rx_ch5_dp
 #define BM_MIPI_HSI_RX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH5_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH5_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH5_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH5_DP_DATA) >> BP_MIPI_HSI_RX_CH5_DP_DATA)
+#define BG_MIPI_HSI_RX_CH5_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH5_DP_DATA) >> BP_MIPI_HSI_RX_CH5_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH5_DP_DATA.
-#define BF_MIPI_HSI_RX_CH5_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH5_DP_DATA) & BM_MIPI_HSI_RX_CH5_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH5_DP_DATA.
-#define BF_MIPI_HSI_RX_CH5_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH5_DP_DATA) & BM_MIPI_HSI_RX_CH5_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH5_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH5_DP_DATA) & BM_MIPI_HSI_RX_CH5_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH5_DP_DATA(v)   (HW_MIPI_HSI_RX_CH5_DP_WR((HW_MIPI_HSI_RX_CH5_DP_RD() & ~BM_MIPI_HSI_RX_CH5_DP_DATA) | BF_MIPI_HSI_RX_CH5_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH6_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9821,20 +8721,19 @@ typedef union _hw_mipi_hsi_rx_ch6_dp
 #define BM_MIPI_HSI_RX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH6_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH6_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH6_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH6_DP_DATA) >> BP_MIPI_HSI_RX_CH6_DP_DATA)
+#define BG_MIPI_HSI_RX_CH6_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH6_DP_DATA) >> BP_MIPI_HSI_RX_CH6_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH6_DP_DATA.
-#define BF_MIPI_HSI_RX_CH6_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH6_DP_DATA) & BM_MIPI_HSI_RX_CH6_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH6_DP_DATA.
-#define BF_MIPI_HSI_RX_CH6_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH6_DP_DATA) & BM_MIPI_HSI_RX_CH6_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH6_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH6_DP_DATA) & BM_MIPI_HSI_RX_CH6_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH6_DP_DATA(v)   (HW_MIPI_HSI_RX_CH6_DP_WR((HW_MIPI_HSI_RX_CH6_DP_RD() & ~BM_MIPI_HSI_RX_CH6_DP_DATA) | BF_MIPI_HSI_RX_CH6_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH7_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9881,20 +8780,19 @@ typedef union _hw_mipi_hsi_rx_ch7_dp
 #define BM_MIPI_HSI_RX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH7_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH7_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH7_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH7_DP_DATA) >> BP_MIPI_HSI_RX_CH7_DP_DATA)
+#define BG_MIPI_HSI_RX_CH7_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH7_DP_DATA) >> BP_MIPI_HSI_RX_CH7_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH7_DP_DATA.
-#define BF_MIPI_HSI_RX_CH7_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH7_DP_DATA) & BM_MIPI_HSI_RX_CH7_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH7_DP_DATA.
-#define BF_MIPI_HSI_RX_CH7_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH7_DP_DATA) & BM_MIPI_HSI_RX_CH7_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH7_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH7_DP_DATA) & BM_MIPI_HSI_RX_CH7_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH7_DP_DATA(v)   (HW_MIPI_HSI_RX_CH7_DP_WR((HW_MIPI_HSI_RX_CH7_DP_RD() & ~BM_MIPI_HSI_RX_CH7_DP_DATA) | BF_MIPI_HSI_RX_CH7_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH8_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9941,20 +8839,19 @@ typedef union _hw_mipi_hsi_rx_ch8_dp
 #define BM_MIPI_HSI_RX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH8_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH8_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH8_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH8_DP_DATA) >> BP_MIPI_HSI_RX_CH8_DP_DATA)
+#define BG_MIPI_HSI_RX_CH8_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH8_DP_DATA) >> BP_MIPI_HSI_RX_CH8_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH8_DP_DATA.
-#define BF_MIPI_HSI_RX_CH8_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH8_DP_DATA) & BM_MIPI_HSI_RX_CH8_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH8_DP_DATA.
-#define BF_MIPI_HSI_RX_CH8_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH8_DP_DATA) & BM_MIPI_HSI_RX_CH8_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH8_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH8_DP_DATA) & BM_MIPI_HSI_RX_CH8_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH8_DP_DATA(v)   (HW_MIPI_HSI_RX_CH8_DP_WR((HW_MIPI_HSI_RX_CH8_DP_RD() & ~BM_MIPI_HSI_RX_CH8_DP_DATA) | BF_MIPI_HSI_RX_CH8_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH9_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10001,20 +8898,19 @@ typedef union _hw_mipi_hsi_rx_ch9_dp
 #define BM_MIPI_HSI_RX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH9_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH9_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH9_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH9_DP_DATA) >> BP_MIPI_HSI_RX_CH9_DP_DATA)
+#define BG_MIPI_HSI_RX_CH9_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH9_DP_DATA) >> BP_MIPI_HSI_RX_CH9_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH9_DP_DATA.
-#define BF_MIPI_HSI_RX_CH9_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH9_DP_DATA) & BM_MIPI_HSI_RX_CH9_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH9_DP_DATA.
-#define BF_MIPI_HSI_RX_CH9_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH9_DP_DATA) & BM_MIPI_HSI_RX_CH9_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH9_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH9_DP_DATA) & BM_MIPI_HSI_RX_CH9_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH9_DP_DATA(v)   (HW_MIPI_HSI_RX_CH9_DP_WR((HW_MIPI_HSI_RX_CH9_DP_RD() & ~BM_MIPI_HSI_RX_CH9_DP_DATA) | BF_MIPI_HSI_RX_CH9_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH10_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10061,20 +8957,19 @@ typedef union _hw_mipi_hsi_rx_ch10_dp
 #define BM_MIPI_HSI_RX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH10_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH10_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH10_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH10_DP_DATA) >> BP_MIPI_HSI_RX_CH10_DP_DATA)
+#define BG_MIPI_HSI_RX_CH10_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH10_DP_DATA) >> BP_MIPI_HSI_RX_CH10_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH10_DP_DATA.
-#define BF_MIPI_HSI_RX_CH10_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH10_DP_DATA) & BM_MIPI_HSI_RX_CH10_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH10_DP_DATA.
-#define BF_MIPI_HSI_RX_CH10_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH10_DP_DATA) & BM_MIPI_HSI_RX_CH10_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH10_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH10_DP_DATA) & BM_MIPI_HSI_RX_CH10_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH10_DP_DATA(v)   (HW_MIPI_HSI_RX_CH10_DP_WR((HW_MIPI_HSI_RX_CH10_DP_RD() & ~BM_MIPI_HSI_RX_CH10_DP_DATA) | BF_MIPI_HSI_RX_CH10_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH11_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10121,20 +9016,19 @@ typedef union _hw_mipi_hsi_rx_ch11_dp
 #define BM_MIPI_HSI_RX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH11_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH11_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH11_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH11_DP_DATA) >> BP_MIPI_HSI_RX_CH11_DP_DATA)
+#define BG_MIPI_HSI_RX_CH11_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH11_DP_DATA) >> BP_MIPI_HSI_RX_CH11_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH11_DP_DATA.
-#define BF_MIPI_HSI_RX_CH11_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH11_DP_DATA) & BM_MIPI_HSI_RX_CH11_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH11_DP_DATA.
-#define BF_MIPI_HSI_RX_CH11_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH11_DP_DATA) & BM_MIPI_HSI_RX_CH11_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH11_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH11_DP_DATA) & BM_MIPI_HSI_RX_CH11_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH11_DP_DATA(v)   (HW_MIPI_HSI_RX_CH11_DP_WR((HW_MIPI_HSI_RX_CH11_DP_RD() & ~BM_MIPI_HSI_RX_CH11_DP_DATA) | BF_MIPI_HSI_RX_CH11_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH12_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10181,20 +9075,19 @@ typedef union _hw_mipi_hsi_rx_ch12_dp
 #define BM_MIPI_HSI_RX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH12_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH12_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH12_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH12_DP_DATA) >> BP_MIPI_HSI_RX_CH12_DP_DATA)
+#define BG_MIPI_HSI_RX_CH12_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH12_DP_DATA) >> BP_MIPI_HSI_RX_CH12_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH12_DP_DATA.
-#define BF_MIPI_HSI_RX_CH12_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH12_DP_DATA) & BM_MIPI_HSI_RX_CH12_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH12_DP_DATA.
-#define BF_MIPI_HSI_RX_CH12_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH12_DP_DATA) & BM_MIPI_HSI_RX_CH12_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH12_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH12_DP_DATA) & BM_MIPI_HSI_RX_CH12_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH12_DP_DATA(v)   (HW_MIPI_HSI_RX_CH12_DP_WR((HW_MIPI_HSI_RX_CH12_DP_RD() & ~BM_MIPI_HSI_RX_CH12_DP_DATA) | BF_MIPI_HSI_RX_CH12_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH13_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10241,20 +9134,19 @@ typedef union _hw_mipi_hsi_rx_ch13_dp
 #define BM_MIPI_HSI_RX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH13_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH13_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH13_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH13_DP_DATA) >> BP_MIPI_HSI_RX_CH13_DP_DATA)
+#define BG_MIPI_HSI_RX_CH13_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH13_DP_DATA) >> BP_MIPI_HSI_RX_CH13_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH13_DP_DATA.
-#define BF_MIPI_HSI_RX_CH13_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH13_DP_DATA) & BM_MIPI_HSI_RX_CH13_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH13_DP_DATA.
-#define BF_MIPI_HSI_RX_CH13_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH13_DP_DATA) & BM_MIPI_HSI_RX_CH13_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH13_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH13_DP_DATA) & BM_MIPI_HSI_RX_CH13_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH13_DP_DATA(v)   (HW_MIPI_HSI_RX_CH13_DP_WR((HW_MIPI_HSI_RX_CH13_DP_RD() & ~BM_MIPI_HSI_RX_CH13_DP_DATA) | BF_MIPI_HSI_RX_CH13_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH14_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10301,20 +9193,19 @@ typedef union _hw_mipi_hsi_rx_ch14_dp
 #define BM_MIPI_HSI_RX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH14_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH14_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH14_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH14_DP_DATA) >> BP_MIPI_HSI_RX_CH14_DP_DATA)
+#define BG_MIPI_HSI_RX_CH14_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH14_DP_DATA) >> BP_MIPI_HSI_RX_CH14_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH14_DP_DATA.
-#define BF_MIPI_HSI_RX_CH14_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH14_DP_DATA) & BM_MIPI_HSI_RX_CH14_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH14_DP_DATA.
-#define BF_MIPI_HSI_RX_CH14_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH14_DP_DATA) & BM_MIPI_HSI_RX_CH14_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH14_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH14_DP_DATA) & BM_MIPI_HSI_RX_CH14_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH14_DP_DATA(v)   (HW_MIPI_HSI_RX_CH14_DP_WR((HW_MIPI_HSI_RX_CH14_DP_RD() & ~BM_MIPI_HSI_RX_CH14_DP_DATA) | BF_MIPI_HSI_RX_CH14_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_CH15_DP - Rx Channel n Data Port Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10361,20 +9252,19 @@ typedef union _hw_mipi_hsi_rx_ch15_dp
 #define BM_MIPI_HSI_RX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH15_DP_DATA.
 
 //! @brief Get value of MIPI_HSI_RX_CH15_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH15_DP_DATA(r)   (((r) & BM_MIPI_HSI_RX_CH15_DP_DATA) >> BP_MIPI_HSI_RX_CH15_DP_DATA)
+#define BG_MIPI_HSI_RX_CH15_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH15_DP_DATA) >> BP_MIPI_HSI_RX_CH15_DP_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_CH15_DP_DATA.
-#define BF_MIPI_HSI_RX_CH15_DP_DATA(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_CH15_DP_DATA) & BM_MIPI_HSI_RX_CH15_DP_DATA)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_CH15_DP_DATA.
-#define BF_MIPI_HSI_RX_CH15_DP_DATA(v)   (((v) << BP_MIPI_HSI_RX_CH15_DP_DATA) & BM_MIPI_HSI_RX_CH15_DP_DATA)
-#endif
+#define BF_MIPI_HSI_RX_CH15_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH15_DP_DATA) & BM_MIPI_HSI_RX_CH15_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH15_DP_DATA(v)   (HW_MIPI_HSI_RX_CH15_DP_WR((HW_MIPI_HSI_RX_CH15_DP_RD() & ~BM_MIPI_HSI_RX_CH15_DP_DATA) | BF_MIPI_HSI_RX_CH15_DP_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_ERR_IRQSTAT - HSI Error Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10436,7 +9326,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH1_TIMEOUT_INT[17] (RO)
  *
@@ -10450,7 +9340,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH2_TIMEOUT_INT[18] (RO)
  *
@@ -10464,7 +9354,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH3_TIMEOUT_INT[19] (RO)
  *
@@ -10478,7 +9368,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH4_TIMEOUT_INT[20] (RO)
  *
@@ -10492,7 +9382,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH5_TIMEOUT_INT[21] (RO)
  *
@@ -10506,7 +9396,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH6_TIMEOUT_INT[22] (RO)
  *
@@ -10520,7 +9410,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH7_TIMEOUT_INT[23] (RO)
  *
@@ -10534,7 +9424,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH8_TIMEOUT_INT[24] (RO)
  *
@@ -10548,7 +9438,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH9_TIMEOUT_INT[25] (RO)
  *
@@ -10562,7 +9452,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH10_TIMEOUT_INT[26] (RO)
  *
@@ -10576,7 +9466,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH11_TIMEOUT_INT[27] (RO)
  *
@@ -10590,7 +9480,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH12_TIMEOUT_INT[28] (RO)
  *
@@ -10604,7 +9494,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH13_TIMEOUT_INT[29] (RO)
  *
@@ -10618,7 +9508,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH14_TIMEOUT_INT[30] (RO)
  *
@@ -10632,7 +9522,7 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT)
 
 /* --- Register HW_MIPI_HSI_ERR_IRQSTAT, field RX_CH15_TIMEOUT_INT[31] (RO)
  *
@@ -10646,7 +9536,11 @@ typedef union _hw_mipi_hsi_err_irqstat
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT)
+#define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_ERR_IRQSTAT_EN - HSI Error Interrupt Status Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10713,15 +9607,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH0_TIMEOUT_INT_EN field to a new value.
@@ -10742,15 +9631,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH1_TIMEOUT_INT_EN field to a new value.
@@ -10771,15 +9655,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH2_TIMEOUT_INT_EN field to a new value.
@@ -10800,15 +9679,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH3_TIMEOUT_INT_EN field to a new value.
@@ -10829,15 +9703,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH4_TIMEOUT_INT_EN field to a new value.
@@ -10858,15 +9727,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH5_TIMEOUT_INT_EN field to a new value.
@@ -10887,15 +9751,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH6_TIMEOUT_INT_EN field to a new value.
@@ -10916,15 +9775,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH7_TIMEOUT_INT_EN field to a new value.
@@ -10945,15 +9799,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH8_TIMEOUT_INT_EN field to a new value.
@@ -10974,15 +9823,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH9_TIMEOUT_INT_EN field to a new value.
@@ -11003,15 +9847,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH10_TIMEOUT_INT_EN field to a new value.
@@ -11032,15 +9871,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH11_TIMEOUT_INT_EN field to a new value.
@@ -11061,15 +9895,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH12_TIMEOUT_INT_EN field to a new value.
@@ -11090,15 +9919,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH13_TIMEOUT_INT_EN field to a new value.
@@ -11119,15 +9943,10 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH14_TIMEOUT_INT_EN field to a new value.
@@ -11148,21 +9967,20 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH15_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_ERR_IRQSIG_EN - HSI Error Interrupt Signal Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11229,15 +10047,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH0_TIMEOUT_INT_EN field to a new value.
@@ -11258,15 +10071,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH1_TIMEOUT_INT_EN field to a new value.
@@ -11287,15 +10095,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH2_TIMEOUT_INT_EN field to a new value.
@@ -11316,15 +10119,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH3_TIMEOUT_INT_EN field to a new value.
@@ -11345,15 +10143,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH4_TIMEOUT_INT_EN field to a new value.
@@ -11374,15 +10167,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH5_TIMEOUT_INT_EN field to a new value.
@@ -11403,15 +10191,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH6_TIMEOUT_INT_EN field to a new value.
@@ -11432,15 +10215,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH7_TIMEOUT_INT_EN field to a new value.
@@ -11461,15 +10239,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH8_TIMEOUT_INT_EN field to a new value.
@@ -11490,15 +10263,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH9_TIMEOUT_INT_EN field to a new value.
@@ -11519,15 +10287,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH10_TIMEOUT_INT_EN field to a new value.
@@ -11548,15 +10311,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH11_TIMEOUT_INT_EN field to a new value.
@@ -11577,15 +10335,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH12_TIMEOUT_INT_EN field to a new value.
@@ -11606,15 +10359,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH13_TIMEOUT_INT_EN field to a new value.
@@ -11635,15 +10383,10 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH14_TIMEOUT_INT_EN field to a new value.
@@ -11664,21 +10407,20 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN from a register value.
-#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(r)   (((r) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN)
+#define BG_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) >> BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)   ((((reg32_t) v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN)
-#else
-//! @brief Format value for bitfield MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN.
-#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)   (((v) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN)
-#endif
+#define BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) & BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RX_CH15_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA0_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11731,15 +10473,10 @@ typedef union _hw_mipi_hsi_tdma0_conf
 #define BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA0_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -11757,15 +10494,10 @@ typedef union _hw_mipi_hsi_tdma0_conf
 #define BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA0_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA0_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -11781,20 +10513,19 @@ typedef union _hw_mipi_hsi_tdma0_conf
 #define BM_MIPI_HSI_TDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA0_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA0_CONF_ENABLE) >> BP_MIPI_HSI_TDMA0_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA0_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_ENABLE) >> BP_MIPI_HSI_TDMA0_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA0_CONF_ENABLE) & BM_MIPI_HSI_TDMA0_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA0_CONF_ENABLE) & BM_MIPI_HSI_TDMA0_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_ENABLE) & BM_MIPI_HSI_TDMA0_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_ENABLE) | BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA1_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11847,15 +10578,10 @@ typedef union _hw_mipi_hsi_tdma1_conf
 #define BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA1_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -11873,15 +10599,10 @@ typedef union _hw_mipi_hsi_tdma1_conf
 #define BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA1_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA1_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -11897,20 +10618,19 @@ typedef union _hw_mipi_hsi_tdma1_conf
 #define BM_MIPI_HSI_TDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA1_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA1_CONF_ENABLE) >> BP_MIPI_HSI_TDMA1_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA1_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_ENABLE) >> BP_MIPI_HSI_TDMA1_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA1_CONF_ENABLE) & BM_MIPI_HSI_TDMA1_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA1_CONF_ENABLE) & BM_MIPI_HSI_TDMA1_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_ENABLE) & BM_MIPI_HSI_TDMA1_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_ENABLE) | BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA2_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11963,15 +10683,10 @@ typedef union _hw_mipi_hsi_tdma2_conf
 #define BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA2_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -11989,15 +10704,10 @@ typedef union _hw_mipi_hsi_tdma2_conf
 #define BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA2_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA2_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12013,20 +10723,19 @@ typedef union _hw_mipi_hsi_tdma2_conf
 #define BM_MIPI_HSI_TDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA2_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA2_CONF_ENABLE) >> BP_MIPI_HSI_TDMA2_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA2_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_ENABLE) >> BP_MIPI_HSI_TDMA2_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA2_CONF_ENABLE) & BM_MIPI_HSI_TDMA2_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA2_CONF_ENABLE) & BM_MIPI_HSI_TDMA2_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_ENABLE) & BM_MIPI_HSI_TDMA2_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_ENABLE) | BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA3_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12079,15 +10788,10 @@ typedef union _hw_mipi_hsi_tdma3_conf
 #define BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA3_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12105,15 +10809,10 @@ typedef union _hw_mipi_hsi_tdma3_conf
 #define BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA3_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA3_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12129,20 +10828,19 @@ typedef union _hw_mipi_hsi_tdma3_conf
 #define BM_MIPI_HSI_TDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA3_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA3_CONF_ENABLE) >> BP_MIPI_HSI_TDMA3_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA3_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_ENABLE) >> BP_MIPI_HSI_TDMA3_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA3_CONF_ENABLE) & BM_MIPI_HSI_TDMA3_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA3_CONF_ENABLE) & BM_MIPI_HSI_TDMA3_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_ENABLE) & BM_MIPI_HSI_TDMA3_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_ENABLE) | BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA4_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12195,15 +10893,10 @@ typedef union _hw_mipi_hsi_tdma4_conf
 #define BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA4_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12221,15 +10914,10 @@ typedef union _hw_mipi_hsi_tdma4_conf
 #define BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA4_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA4_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12245,20 +10933,19 @@ typedef union _hw_mipi_hsi_tdma4_conf
 #define BM_MIPI_HSI_TDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA4_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA4_CONF_ENABLE) >> BP_MIPI_HSI_TDMA4_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA4_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_ENABLE) >> BP_MIPI_HSI_TDMA4_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA4_CONF_ENABLE) & BM_MIPI_HSI_TDMA4_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA4_CONF_ENABLE) & BM_MIPI_HSI_TDMA4_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_ENABLE) & BM_MIPI_HSI_TDMA4_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_ENABLE) | BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA5_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12311,15 +10998,10 @@ typedef union _hw_mipi_hsi_tdma5_conf
 #define BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA5_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12337,15 +11019,10 @@ typedef union _hw_mipi_hsi_tdma5_conf
 #define BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA5_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA5_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12361,20 +11038,19 @@ typedef union _hw_mipi_hsi_tdma5_conf
 #define BM_MIPI_HSI_TDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA5_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA5_CONF_ENABLE) >> BP_MIPI_HSI_TDMA5_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA5_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_ENABLE) >> BP_MIPI_HSI_TDMA5_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA5_CONF_ENABLE) & BM_MIPI_HSI_TDMA5_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA5_CONF_ENABLE) & BM_MIPI_HSI_TDMA5_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_ENABLE) & BM_MIPI_HSI_TDMA5_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_ENABLE) | BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA6_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12427,15 +11103,10 @@ typedef union _hw_mipi_hsi_tdma6_conf
 #define BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA6_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12453,15 +11124,10 @@ typedef union _hw_mipi_hsi_tdma6_conf
 #define BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA6_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA6_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12477,20 +11143,19 @@ typedef union _hw_mipi_hsi_tdma6_conf
 #define BM_MIPI_HSI_TDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA6_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA6_CONF_ENABLE) >> BP_MIPI_HSI_TDMA6_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA6_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_ENABLE) >> BP_MIPI_HSI_TDMA6_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA6_CONF_ENABLE) & BM_MIPI_HSI_TDMA6_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA6_CONF_ENABLE) & BM_MIPI_HSI_TDMA6_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_ENABLE) & BM_MIPI_HSI_TDMA6_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_ENABLE) | BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA7_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12543,15 +11208,10 @@ typedef union _hw_mipi_hsi_tdma7_conf
 #define BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA7_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12569,15 +11229,10 @@ typedef union _hw_mipi_hsi_tdma7_conf
 #define BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA7_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA7_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12593,20 +11248,19 @@ typedef union _hw_mipi_hsi_tdma7_conf
 #define BM_MIPI_HSI_TDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA7_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA7_CONF_ENABLE) >> BP_MIPI_HSI_TDMA7_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA7_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_ENABLE) >> BP_MIPI_HSI_TDMA7_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA7_CONF_ENABLE) & BM_MIPI_HSI_TDMA7_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA7_CONF_ENABLE) & BM_MIPI_HSI_TDMA7_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_ENABLE) & BM_MIPI_HSI_TDMA7_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_ENABLE) | BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA8_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12659,15 +11313,10 @@ typedef union _hw_mipi_hsi_tdma8_conf
 #define BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA8_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12685,15 +11334,10 @@ typedef union _hw_mipi_hsi_tdma8_conf
 #define BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA8_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA8_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12709,20 +11353,19 @@ typedef union _hw_mipi_hsi_tdma8_conf
 #define BM_MIPI_HSI_TDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA8_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA8_CONF_ENABLE) >> BP_MIPI_HSI_TDMA8_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA8_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_ENABLE) >> BP_MIPI_HSI_TDMA8_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA8_CONF_ENABLE) & BM_MIPI_HSI_TDMA8_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA8_CONF_ENABLE) & BM_MIPI_HSI_TDMA8_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_ENABLE) & BM_MIPI_HSI_TDMA8_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_ENABLE) | BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA9_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12775,15 +11418,10 @@ typedef union _hw_mipi_hsi_tdma9_conf
 #define BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA9_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12801,15 +11439,10 @@ typedef union _hw_mipi_hsi_tdma9_conf
 #define BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA9_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA9_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12825,20 +11458,19 @@ typedef union _hw_mipi_hsi_tdma9_conf
 #define BM_MIPI_HSI_TDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA9_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA9_CONF_ENABLE) >> BP_MIPI_HSI_TDMA9_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA9_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_ENABLE) >> BP_MIPI_HSI_TDMA9_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA9_CONF_ENABLE) & BM_MIPI_HSI_TDMA9_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA9_CONF_ENABLE) & BM_MIPI_HSI_TDMA9_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_ENABLE) & BM_MIPI_HSI_TDMA9_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_ENABLE) | BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA10_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12891,15 +11523,10 @@ typedef union _hw_mipi_hsi_tdma10_conf
 #define BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA10_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -12917,15 +11544,10 @@ typedef union _hw_mipi_hsi_tdma10_conf
 #define BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA10_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA10_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -12941,20 +11563,19 @@ typedef union _hw_mipi_hsi_tdma10_conf
 #define BM_MIPI_HSI_TDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA10_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA10_CONF_ENABLE) >> BP_MIPI_HSI_TDMA10_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA10_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_ENABLE) >> BP_MIPI_HSI_TDMA10_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA10_CONF_ENABLE) & BM_MIPI_HSI_TDMA10_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA10_CONF_ENABLE) & BM_MIPI_HSI_TDMA10_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_ENABLE) & BM_MIPI_HSI_TDMA10_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_ENABLE) | BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA11_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13007,15 +11628,10 @@ typedef union _hw_mipi_hsi_tdma11_conf
 #define BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA11_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13033,15 +11649,10 @@ typedef union _hw_mipi_hsi_tdma11_conf
 #define BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA11_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA11_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13057,20 +11668,19 @@ typedef union _hw_mipi_hsi_tdma11_conf
 #define BM_MIPI_HSI_TDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA11_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA11_CONF_ENABLE) >> BP_MIPI_HSI_TDMA11_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA11_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_ENABLE) >> BP_MIPI_HSI_TDMA11_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA11_CONF_ENABLE) & BM_MIPI_HSI_TDMA11_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA11_CONF_ENABLE) & BM_MIPI_HSI_TDMA11_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_ENABLE) & BM_MIPI_HSI_TDMA11_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_ENABLE) | BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA12_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13123,15 +11733,10 @@ typedef union _hw_mipi_hsi_tdma12_conf
 #define BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA12_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13149,15 +11754,10 @@ typedef union _hw_mipi_hsi_tdma12_conf
 #define BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA12_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA12_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13173,20 +11773,19 @@ typedef union _hw_mipi_hsi_tdma12_conf
 #define BM_MIPI_HSI_TDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA12_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA12_CONF_ENABLE) >> BP_MIPI_HSI_TDMA12_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA12_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_ENABLE) >> BP_MIPI_HSI_TDMA12_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA12_CONF_ENABLE) & BM_MIPI_HSI_TDMA12_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA12_CONF_ENABLE) & BM_MIPI_HSI_TDMA12_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_ENABLE) & BM_MIPI_HSI_TDMA12_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_ENABLE) | BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA13_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13239,15 +11838,10 @@ typedef union _hw_mipi_hsi_tdma13_conf
 #define BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA13_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13265,15 +11859,10 @@ typedef union _hw_mipi_hsi_tdma13_conf
 #define BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA13_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA13_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13289,20 +11878,19 @@ typedef union _hw_mipi_hsi_tdma13_conf
 #define BM_MIPI_HSI_TDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA13_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA13_CONF_ENABLE) >> BP_MIPI_HSI_TDMA13_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA13_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_ENABLE) >> BP_MIPI_HSI_TDMA13_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA13_CONF_ENABLE) & BM_MIPI_HSI_TDMA13_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA13_CONF_ENABLE) & BM_MIPI_HSI_TDMA13_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_ENABLE) & BM_MIPI_HSI_TDMA13_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_ENABLE) | BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA14_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13355,15 +11943,10 @@ typedef union _hw_mipi_hsi_tdma14_conf
 #define BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA14_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13381,15 +11964,10 @@ typedef union _hw_mipi_hsi_tdma14_conf
 #define BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA14_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA14_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13405,20 +11983,19 @@ typedef union _hw_mipi_hsi_tdma14_conf
 #define BM_MIPI_HSI_TDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA14_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA14_CONF_ENABLE) >> BP_MIPI_HSI_TDMA14_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA14_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_ENABLE) >> BP_MIPI_HSI_TDMA14_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA14_CONF_ENABLE) & BM_MIPI_HSI_TDMA14_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA14_CONF_ENABLE) & BM_MIPI_HSI_TDMA14_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_ENABLE) & BM_MIPI_HSI_TDMA14_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_ENABLE) | BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA15_CONF - Tx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13471,15 +12048,10 @@ typedef union _hw_mipi_hsi_tdma15_conf
 #define BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_TDMA15_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13497,15 +12069,10 @@ typedef union _hw_mipi_hsi_tdma15_conf
 #define BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_TDMA15_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_TDMA15_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13521,20 +12088,19 @@ typedef union _hw_mipi_hsi_tdma15_conf
 #define BM_MIPI_HSI_TDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_TDMA15_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_TDMA15_CONF_ENABLE) >> BP_MIPI_HSI_TDMA15_CONF_ENABLE)
+#define BG_MIPI_HSI_TDMA15_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_ENABLE) >> BP_MIPI_HSI_TDMA15_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA15_CONF_ENABLE) & BM_MIPI_HSI_TDMA15_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_TDMA15_CONF_ENABLE) & BM_MIPI_HSI_TDMA15_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_ENABLE) & BM_MIPI_HSI_TDMA15_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_ENABLE) | BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA0_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13587,15 +12153,10 @@ typedef union _hw_mipi_hsi_rdma0_conf
 #define BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA0_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13613,15 +12174,10 @@ typedef union _hw_mipi_hsi_rdma0_conf
 #define BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA0_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA0_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13637,20 +12193,19 @@ typedef union _hw_mipi_hsi_rdma0_conf
 #define BM_MIPI_HSI_RDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA0_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA0_CONF_ENABLE) >> BP_MIPI_HSI_RDMA0_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA0_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_ENABLE) >> BP_MIPI_HSI_RDMA0_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA0_CONF_ENABLE) & BM_MIPI_HSI_RDMA0_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA0_CONF_ENABLE) & BM_MIPI_HSI_RDMA0_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_ENABLE) & BM_MIPI_HSI_RDMA0_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_ENABLE) | BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA1_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13703,15 +12258,10 @@ typedef union _hw_mipi_hsi_rdma1_conf
 #define BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA1_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13729,15 +12279,10 @@ typedef union _hw_mipi_hsi_rdma1_conf
 #define BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA1_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA1_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13753,20 +12298,19 @@ typedef union _hw_mipi_hsi_rdma1_conf
 #define BM_MIPI_HSI_RDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA1_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA1_CONF_ENABLE) >> BP_MIPI_HSI_RDMA1_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA1_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_ENABLE) >> BP_MIPI_HSI_RDMA1_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA1_CONF_ENABLE) & BM_MIPI_HSI_RDMA1_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA1_CONF_ENABLE) & BM_MIPI_HSI_RDMA1_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_ENABLE) & BM_MIPI_HSI_RDMA1_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_ENABLE) | BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA2_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13819,15 +12363,10 @@ typedef union _hw_mipi_hsi_rdma2_conf
 #define BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA2_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13845,15 +12384,10 @@ typedef union _hw_mipi_hsi_rdma2_conf
 #define BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA2_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA2_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13869,20 +12403,19 @@ typedef union _hw_mipi_hsi_rdma2_conf
 #define BM_MIPI_HSI_RDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA2_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA2_CONF_ENABLE) >> BP_MIPI_HSI_RDMA2_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA2_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_ENABLE) >> BP_MIPI_HSI_RDMA2_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA2_CONF_ENABLE) & BM_MIPI_HSI_RDMA2_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA2_CONF_ENABLE) & BM_MIPI_HSI_RDMA2_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_ENABLE) & BM_MIPI_HSI_RDMA2_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_ENABLE) | BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA3_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13935,15 +12468,10 @@ typedef union _hw_mipi_hsi_rdma3_conf
 #define BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA3_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -13961,15 +12489,10 @@ typedef union _hw_mipi_hsi_rdma3_conf
 #define BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA3_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA3_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -13985,20 +12508,19 @@ typedef union _hw_mipi_hsi_rdma3_conf
 #define BM_MIPI_HSI_RDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA3_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA3_CONF_ENABLE) >> BP_MIPI_HSI_RDMA3_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA3_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_ENABLE) >> BP_MIPI_HSI_RDMA3_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA3_CONF_ENABLE) & BM_MIPI_HSI_RDMA3_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA3_CONF_ENABLE) & BM_MIPI_HSI_RDMA3_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_ENABLE) & BM_MIPI_HSI_RDMA3_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_ENABLE) | BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA4_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14051,15 +12573,10 @@ typedef union _hw_mipi_hsi_rdma4_conf
 #define BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA4_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14077,15 +12594,10 @@ typedef union _hw_mipi_hsi_rdma4_conf
 #define BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA4_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA4_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14101,20 +12613,19 @@ typedef union _hw_mipi_hsi_rdma4_conf
 #define BM_MIPI_HSI_RDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA4_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA4_CONF_ENABLE) >> BP_MIPI_HSI_RDMA4_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA4_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_ENABLE) >> BP_MIPI_HSI_RDMA4_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA4_CONF_ENABLE) & BM_MIPI_HSI_RDMA4_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA4_CONF_ENABLE) & BM_MIPI_HSI_RDMA4_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_ENABLE) & BM_MIPI_HSI_RDMA4_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_ENABLE) | BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA5_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14167,15 +12678,10 @@ typedef union _hw_mipi_hsi_rdma5_conf
 #define BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA5_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14193,15 +12699,10 @@ typedef union _hw_mipi_hsi_rdma5_conf
 #define BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA5_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA5_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14217,20 +12718,19 @@ typedef union _hw_mipi_hsi_rdma5_conf
 #define BM_MIPI_HSI_RDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA5_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA5_CONF_ENABLE) >> BP_MIPI_HSI_RDMA5_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA5_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_ENABLE) >> BP_MIPI_HSI_RDMA5_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA5_CONF_ENABLE) & BM_MIPI_HSI_RDMA5_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA5_CONF_ENABLE) & BM_MIPI_HSI_RDMA5_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_ENABLE) & BM_MIPI_HSI_RDMA5_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_ENABLE) | BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA6_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14283,15 +12783,10 @@ typedef union _hw_mipi_hsi_rdma6_conf
 #define BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA6_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14309,15 +12804,10 @@ typedef union _hw_mipi_hsi_rdma6_conf
 #define BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA6_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA6_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14333,20 +12823,19 @@ typedef union _hw_mipi_hsi_rdma6_conf
 #define BM_MIPI_HSI_RDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA6_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA6_CONF_ENABLE) >> BP_MIPI_HSI_RDMA6_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA6_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_ENABLE) >> BP_MIPI_HSI_RDMA6_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA6_CONF_ENABLE) & BM_MIPI_HSI_RDMA6_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA6_CONF_ENABLE) & BM_MIPI_HSI_RDMA6_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_ENABLE) & BM_MIPI_HSI_RDMA6_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_ENABLE) | BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA7_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14399,15 +12888,10 @@ typedef union _hw_mipi_hsi_rdma7_conf
 #define BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA7_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14425,15 +12909,10 @@ typedef union _hw_mipi_hsi_rdma7_conf
 #define BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA7_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA7_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14449,20 +12928,19 @@ typedef union _hw_mipi_hsi_rdma7_conf
 #define BM_MIPI_HSI_RDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA7_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA7_CONF_ENABLE) >> BP_MIPI_HSI_RDMA7_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA7_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_ENABLE) >> BP_MIPI_HSI_RDMA7_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA7_CONF_ENABLE) & BM_MIPI_HSI_RDMA7_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA7_CONF_ENABLE) & BM_MIPI_HSI_RDMA7_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_ENABLE) & BM_MIPI_HSI_RDMA7_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_ENABLE) | BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA8_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14515,15 +12993,10 @@ typedef union _hw_mipi_hsi_rdma8_conf
 #define BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA8_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14541,15 +13014,10 @@ typedef union _hw_mipi_hsi_rdma8_conf
 #define BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA8_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA8_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14565,20 +13033,19 @@ typedef union _hw_mipi_hsi_rdma8_conf
 #define BM_MIPI_HSI_RDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA8_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA8_CONF_ENABLE) >> BP_MIPI_HSI_RDMA8_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA8_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_ENABLE) >> BP_MIPI_HSI_RDMA8_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA8_CONF_ENABLE) & BM_MIPI_HSI_RDMA8_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA8_CONF_ENABLE) & BM_MIPI_HSI_RDMA8_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_ENABLE) & BM_MIPI_HSI_RDMA8_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_ENABLE) | BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA9_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14631,15 +13098,10 @@ typedef union _hw_mipi_hsi_rdma9_conf
 #define BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA9_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14657,15 +13119,10 @@ typedef union _hw_mipi_hsi_rdma9_conf
 #define BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA9_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA9_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14681,20 +13138,19 @@ typedef union _hw_mipi_hsi_rdma9_conf
 #define BM_MIPI_HSI_RDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA9_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA9_CONF_ENABLE) >> BP_MIPI_HSI_RDMA9_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA9_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_ENABLE) >> BP_MIPI_HSI_RDMA9_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA9_CONF_ENABLE) & BM_MIPI_HSI_RDMA9_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA9_CONF_ENABLE) & BM_MIPI_HSI_RDMA9_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_ENABLE) & BM_MIPI_HSI_RDMA9_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_ENABLE) | BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA10_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14747,15 +13203,10 @@ typedef union _hw_mipi_hsi_rdma10_conf
 #define BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA10_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14773,15 +13224,10 @@ typedef union _hw_mipi_hsi_rdma10_conf
 #define BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA10_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA10_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14797,20 +13243,19 @@ typedef union _hw_mipi_hsi_rdma10_conf
 #define BM_MIPI_HSI_RDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA10_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA10_CONF_ENABLE) >> BP_MIPI_HSI_RDMA10_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA10_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_ENABLE) >> BP_MIPI_HSI_RDMA10_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA10_CONF_ENABLE) & BM_MIPI_HSI_RDMA10_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA10_CONF_ENABLE) & BM_MIPI_HSI_RDMA10_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_ENABLE) & BM_MIPI_HSI_RDMA10_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_ENABLE) | BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA11_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14863,15 +13308,10 @@ typedef union _hw_mipi_hsi_rdma11_conf
 #define BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA11_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -14889,15 +13329,10 @@ typedef union _hw_mipi_hsi_rdma11_conf
 #define BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA11_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA11_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -14913,20 +13348,19 @@ typedef union _hw_mipi_hsi_rdma11_conf
 #define BM_MIPI_HSI_RDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA11_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA11_CONF_ENABLE) >> BP_MIPI_HSI_RDMA11_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA11_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_ENABLE) >> BP_MIPI_HSI_RDMA11_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA11_CONF_ENABLE) & BM_MIPI_HSI_RDMA11_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA11_CONF_ENABLE) & BM_MIPI_HSI_RDMA11_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_ENABLE) & BM_MIPI_HSI_RDMA11_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_ENABLE) | BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA12_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14979,15 +13413,10 @@ typedef union _hw_mipi_hsi_rdma12_conf
 #define BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA12_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -15005,15 +13434,10 @@ typedef union _hw_mipi_hsi_rdma12_conf
 #define BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA12_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA12_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -15029,20 +13453,19 @@ typedef union _hw_mipi_hsi_rdma12_conf
 #define BM_MIPI_HSI_RDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA12_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA12_CONF_ENABLE) >> BP_MIPI_HSI_RDMA12_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA12_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_ENABLE) >> BP_MIPI_HSI_RDMA12_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA12_CONF_ENABLE) & BM_MIPI_HSI_RDMA12_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA12_CONF_ENABLE) & BM_MIPI_HSI_RDMA12_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_ENABLE) & BM_MIPI_HSI_RDMA12_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_ENABLE) | BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA13_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15095,15 +13518,10 @@ typedef union _hw_mipi_hsi_rdma13_conf
 #define BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA13_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -15121,15 +13539,10 @@ typedef union _hw_mipi_hsi_rdma13_conf
 #define BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA13_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA13_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -15145,20 +13558,19 @@ typedef union _hw_mipi_hsi_rdma13_conf
 #define BM_MIPI_HSI_RDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA13_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA13_CONF_ENABLE) >> BP_MIPI_HSI_RDMA13_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA13_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_ENABLE) >> BP_MIPI_HSI_RDMA13_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA13_CONF_ENABLE) & BM_MIPI_HSI_RDMA13_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA13_CONF_ENABLE) & BM_MIPI_HSI_RDMA13_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_ENABLE) & BM_MIPI_HSI_RDMA13_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_ENABLE) | BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA14_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15211,15 +13623,10 @@ typedef union _hw_mipi_hsi_rdma14_conf
 #define BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA14_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -15237,15 +13644,10 @@ typedef union _hw_mipi_hsi_rdma14_conf
 #define BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA14_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA14_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -15261,20 +13663,19 @@ typedef union _hw_mipi_hsi_rdma14_conf
 #define BM_MIPI_HSI_RDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA14_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA14_CONF_ENABLE) >> BP_MIPI_HSI_RDMA14_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA14_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_ENABLE) >> BP_MIPI_HSI_RDMA14_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA14_CONF_ENABLE) & BM_MIPI_HSI_RDMA14_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA14_CONF_ENABLE) & BM_MIPI_HSI_RDMA14_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_ENABLE) & BM_MIPI_HSI_RDMA14_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_ENABLE) | BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA15_CONF - Rx DMA Channel n Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15327,15 +13728,10 @@ typedef union _hw_mipi_hsi_rdma15_conf
 #define BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
 
 //! @brief Get value of MIPI_HSI_RDMA15_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(r)   (((r) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
+#define BG_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   (((v) << BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
-#endif
+#define BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
@@ -15353,15 +13749,10 @@ typedef union _hw_mipi_hsi_rdma15_conf
 #define BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_BURST_SIZE.
 
 //! @brief Get value of MIPI_HSI_RDMA15_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_BURST_SIZE(r)   (((r) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
+#define BG_MIPI_HSI_RDMA15_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   (((v) << BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
-#endif
+#define BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
@@ -15377,20 +13768,19 @@ typedef union _hw_mipi_hsi_rdma15_conf
 #define BM_MIPI_HSI_RDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_ENABLE.
 
 //! @brief Get value of MIPI_HSI_RDMA15_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_ENABLE(r)   (((r) & BM_MIPI_HSI_RDMA15_CONF_ENABLE) >> BP_MIPI_HSI_RDMA15_CONF_ENABLE)
+#define BG_MIPI_HSI_RDMA15_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_ENABLE) >> BP_MIPI_HSI_RDMA15_CONF_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA15_CONF_ENABLE) & BM_MIPI_HSI_RDMA15_CONF_ENABLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)   (((v) << BP_MIPI_HSI_RDMA15_CONF_ENABLE) & BM_MIPI_HSI_RDMA15_CONF_ENABLE)
-#endif
+#define BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_ENABLE) & BM_MIPI_HSI_RDMA15_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_ENABLE) | BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA0_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15438,20 +13828,19 @@ typedef union _hw_mipi_hsi_tdma0_sta_addr
 #define BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA0_STA_ADDR_WR((HW_MIPI_HSI_TDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA1_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15499,20 +13888,19 @@ typedef union _hw_mipi_hsi_tdma1_sta_addr
 #define BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA1_STA_ADDR_WR((HW_MIPI_HSI_TDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA2_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15560,20 +13948,19 @@ typedef union _hw_mipi_hsi_tdma2_sta_addr
 #define BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA2_STA_ADDR_WR((HW_MIPI_HSI_TDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA3_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15621,20 +14008,19 @@ typedef union _hw_mipi_hsi_tdma3_sta_addr
 #define BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA3_STA_ADDR_WR((HW_MIPI_HSI_TDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA4_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15682,20 +14068,19 @@ typedef union _hw_mipi_hsi_tdma4_sta_addr
 #define BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA4_STA_ADDR_WR((HW_MIPI_HSI_TDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA5_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15743,20 +14128,19 @@ typedef union _hw_mipi_hsi_tdma5_sta_addr
 #define BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA5_STA_ADDR_WR((HW_MIPI_HSI_TDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA6_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15804,20 +14188,19 @@ typedef union _hw_mipi_hsi_tdma6_sta_addr
 #define BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA6_STA_ADDR_WR((HW_MIPI_HSI_TDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA7_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15865,20 +14248,19 @@ typedef union _hw_mipi_hsi_tdma7_sta_addr
 #define BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA7_STA_ADDR_WR((HW_MIPI_HSI_TDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA8_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15926,20 +14308,19 @@ typedef union _hw_mipi_hsi_tdma8_sta_addr
 #define BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA8_STA_ADDR_WR((HW_MIPI_HSI_TDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA9_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -15987,20 +14368,19 @@ typedef union _hw_mipi_hsi_tdma9_sta_addr
 #define BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA9_STA_ADDR_WR((HW_MIPI_HSI_TDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA10_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16048,20 +14428,19 @@ typedef union _hw_mipi_hsi_tdma10_sta_addr
 #define BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA10_STA_ADDR_WR((HW_MIPI_HSI_TDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA11_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16109,20 +14488,19 @@ typedef union _hw_mipi_hsi_tdma11_sta_addr
 #define BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA11_STA_ADDR_WR((HW_MIPI_HSI_TDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA12_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16170,20 +14548,19 @@ typedef union _hw_mipi_hsi_tdma12_sta_addr
 #define BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA12_STA_ADDR_WR((HW_MIPI_HSI_TDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA13_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16231,20 +14608,19 @@ typedef union _hw_mipi_hsi_tdma13_sta_addr
 #define BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA13_STA_ADDR_WR((HW_MIPI_HSI_TDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA14_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16292,20 +14668,19 @@ typedef union _hw_mipi_hsi_tdma14_sta_addr
 #define BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA14_STA_ADDR_WR((HW_MIPI_HSI_TDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TDMA15_STA_ADDR - Tx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16353,20 +14728,19 @@ typedef union _hw_mipi_hsi_tdma15_sta_addr
 #define BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA15_STA_ADDR_WR((HW_MIPI_HSI_TDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA0_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16414,20 +14788,19 @@ typedef union _hw_mipi_hsi_rdma0_sta_addr
 #define BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA0_STA_ADDR_WR((HW_MIPI_HSI_RDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA1_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16475,20 +14848,19 @@ typedef union _hw_mipi_hsi_rdma1_sta_addr
 #define BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA1_STA_ADDR_WR((HW_MIPI_HSI_RDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA2_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16536,20 +14908,19 @@ typedef union _hw_mipi_hsi_rdma2_sta_addr
 #define BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA2_STA_ADDR_WR((HW_MIPI_HSI_RDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA3_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16597,20 +14968,19 @@ typedef union _hw_mipi_hsi_rdma3_sta_addr
 #define BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA3_STA_ADDR_WR((HW_MIPI_HSI_RDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA4_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16658,20 +15028,19 @@ typedef union _hw_mipi_hsi_rdma4_sta_addr
 #define BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA4_STA_ADDR_WR((HW_MIPI_HSI_RDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA5_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16719,20 +15088,19 @@ typedef union _hw_mipi_hsi_rdma5_sta_addr
 #define BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA5_STA_ADDR_WR((HW_MIPI_HSI_RDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA6_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16780,20 +15148,19 @@ typedef union _hw_mipi_hsi_rdma6_sta_addr
 #define BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA6_STA_ADDR_WR((HW_MIPI_HSI_RDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA7_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16841,20 +15208,19 @@ typedef union _hw_mipi_hsi_rdma7_sta_addr
 #define BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA7_STA_ADDR_WR((HW_MIPI_HSI_RDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA8_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16902,20 +15268,19 @@ typedef union _hw_mipi_hsi_rdma8_sta_addr
 #define BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA8_STA_ADDR_WR((HW_MIPI_HSI_RDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA9_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -16963,20 +15328,19 @@ typedef union _hw_mipi_hsi_rdma9_sta_addr
 #define BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA9_STA_ADDR_WR((HW_MIPI_HSI_RDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA10_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17024,20 +15388,19 @@ typedef union _hw_mipi_hsi_rdma10_sta_addr
 #define BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA10_STA_ADDR_WR((HW_MIPI_HSI_RDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA11_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17085,20 +15448,19 @@ typedef union _hw_mipi_hsi_rdma11_sta_addr
 #define BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA11_STA_ADDR_WR((HW_MIPI_HSI_RDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA12_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17146,20 +15508,19 @@ typedef union _hw_mipi_hsi_rdma12_sta_addr
 #define BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA12_STA_ADDR_WR((HW_MIPI_HSI_RDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA13_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17207,20 +15568,19 @@ typedef union _hw_mipi_hsi_rdma13_sta_addr
 #define BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA13_STA_ADDR_WR((HW_MIPI_HSI_RDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA14_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17268,20 +15628,19 @@ typedef union _hw_mipi_hsi_rdma14_sta_addr
 #define BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA14_STA_ADDR_WR((HW_MIPI_HSI_RDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RDMA15_STA_ADDR - Rx DMA Channel n Start Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17329,20 +15688,19 @@ typedef union _hw_mipi_hsi_rdma15_sta_addr
 #define BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
 
 //! @brief Get value of MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(r)   (((r) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
+#define BG_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   (((v) << BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
-#endif
+#define BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA15_STA_ADDR_WR((HW_MIPI_HSI_RDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_IRQSTAT - DMA Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17416,7 +15774,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA0)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA1[1] (RO)
  *
@@ -17427,7 +15785,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA1)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA2[2] (RO)
  *
@@ -17438,7 +15796,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA2)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA3[3] (RO)
  *
@@ -17449,7 +15807,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA3)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA4[4] (RO)
  *
@@ -17460,7 +15818,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA4)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA5[5] (RO)
  *
@@ -17471,7 +15829,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA5)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA6[6] (RO)
  *
@@ -17482,7 +15840,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA6)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA7[7] (RO)
  *
@@ -17493,7 +15851,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA7)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA8[8] (RO)
  *
@@ -17504,7 +15862,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA8)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA9[9] (RO)
  *
@@ -17515,7 +15873,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA9)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA10[10] (RO)
  *
@@ -17526,7 +15884,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA10)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA11[11] (RO)
  *
@@ -17537,7 +15895,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA11)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA12[12] (RO)
  *
@@ -17548,7 +15906,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA12)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA13[13] (RO)
  *
@@ -17559,7 +15917,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA13)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA14[14] (RO)
  *
@@ -17570,7 +15928,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA14)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field RDMA15[15] (RO)
  *
@@ -17581,7 +15939,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA15)
+#define BG_MIPI_HSI_DMA_IRQSTAT_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA15)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA0[16] (RO)
  *
@@ -17592,7 +15950,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA0)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA1[17] (RO)
  *
@@ -17603,7 +15961,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA1)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA2[18] (RO)
  *
@@ -17614,7 +15972,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA2)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA3[19] (RO)
  *
@@ -17625,7 +15983,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA3)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA4[20] (RO)
  *
@@ -17636,7 +15994,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA4)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA5[21] (RO)
  *
@@ -17647,7 +16005,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA5)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA6[22] (RO)
  *
@@ -17658,7 +16016,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA6)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA7[23] (RO)
  *
@@ -17669,7 +16027,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA7)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA8[24] (RO)
  *
@@ -17680,7 +16038,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA8)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA9[25] (RO)
  *
@@ -17691,7 +16049,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA9)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA10[26] (RO)
  *
@@ -17702,7 +16060,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA10)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA11[27] (RO)
  *
@@ -17713,7 +16071,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA11)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA12[28] (RO)
  *
@@ -17724,7 +16082,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA12)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA13[29] (RO)
  *
@@ -17735,7 +16093,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA13)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA14[30] (RO)
  *
@@ -17746,7 +16104,7 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA14)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_IRQSTAT, field TDMA15[31] (RO)
  *
@@ -17757,7 +16115,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA15)
+#define BG_MIPI_HSI_DMA_IRQSTAT_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA15)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_IRQSTAT_EN - DMA Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -17835,15 +16197,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA0 field to a new value.
@@ -17859,15 +16216,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA1 field to a new value.
@@ -17883,15 +16235,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA2 field to a new value.
@@ -17907,15 +16254,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA3 field to a new value.
@@ -17931,15 +16273,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA4 field to a new value.
@@ -17955,15 +16292,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA5 field to a new value.
@@ -17979,15 +16311,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA6 field to a new value.
@@ -18003,15 +16330,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA7 field to a new value.
@@ -18027,15 +16349,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA8 field to a new value.
@@ -18051,15 +16368,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA9 field to a new value.
@@ -18075,15 +16387,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA10 field to a new value.
@@ -18099,15 +16406,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA11 field to a new value.
@@ -18123,15 +16425,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA12 field to a new value.
@@ -18147,15 +16444,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA13 field to a new value.
@@ -18171,15 +16463,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA14 field to a new value.
@@ -18195,15 +16482,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA15 field to a new value.
@@ -18219,15 +16501,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA0 field to a new value.
@@ -18243,15 +16520,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA1 field to a new value.
@@ -18267,15 +16539,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA2 field to a new value.
@@ -18291,15 +16558,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA3 field to a new value.
@@ -18315,15 +16577,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA4 field to a new value.
@@ -18339,15 +16596,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA5 field to a new value.
@@ -18363,15 +16615,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA6 field to a new value.
@@ -18387,15 +16634,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA7 field to a new value.
@@ -18411,15 +16653,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA8 field to a new value.
@@ -18435,15 +16672,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA9 field to a new value.
@@ -18459,15 +16691,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA10 field to a new value.
@@ -18483,15 +16710,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA11 field to a new value.
@@ -18507,15 +16729,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA12 field to a new value.
@@ -18531,15 +16748,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA13 field to a new value.
@@ -18555,15 +16767,10 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA14 field to a new value.
@@ -18579,20 +16786,19 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_EN_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15)
+#define BG_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSTAT_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)   (((v) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_IRQSIG_EN - DMA Interrupt Status Signal Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -18671,15 +16877,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA0 field to a new value.
@@ -18695,15 +16896,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA1 field to a new value.
@@ -18719,15 +16915,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA2 field to a new value.
@@ -18743,15 +16934,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA3 field to a new value.
@@ -18767,15 +16953,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA4 field to a new value.
@@ -18791,15 +16972,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA5 field to a new value.
@@ -18815,15 +16991,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA6 field to a new value.
@@ -18839,15 +17010,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA7 field to a new value.
@@ -18863,15 +17029,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA8 field to a new value.
@@ -18887,15 +17048,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA9 field to a new value.
@@ -18911,15 +17067,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA10 field to a new value.
@@ -18935,15 +17086,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA11 field to a new value.
@@ -18959,15 +17105,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA12 field to a new value.
@@ -18983,15 +17124,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA13 field to a new value.
@@ -19007,15 +17143,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA14 field to a new value.
@@ -19031,15 +17162,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) >> BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA15 field to a new value.
@@ -19055,15 +17181,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA0 field to a new value.
@@ -19079,15 +17200,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA1 field to a new value.
@@ -19103,15 +17219,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA2 field to a new value.
@@ -19127,15 +17238,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA3 field to a new value.
@@ -19151,15 +17257,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA4 field to a new value.
@@ -19175,15 +17276,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA5 field to a new value.
@@ -19199,15 +17295,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA6 field to a new value.
@@ -19223,15 +17314,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA7 field to a new value.
@@ -19247,15 +17333,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA8 field to a new value.
@@ -19271,15 +17352,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA9 field to a new value.
@@ -19295,15 +17371,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA10 field to a new value.
@@ -19319,15 +17390,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA11 field to a new value.
@@ -19343,15 +17409,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA12 field to a new value.
@@ -19367,15 +17428,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA13 field to a new value.
@@ -19391,15 +17447,10 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA14 field to a new value.
@@ -19415,20 +17466,19 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSIG_EN_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15)
+#define BG_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) >> BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_IRQSIG_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)   (((v) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_ERR_IRQSTAT - DMA Error Interrupt Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19502,7 +17552,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA1[1] (RO)
  *
@@ -19513,7 +17563,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA2[2] (RO)
  *
@@ -19524,7 +17574,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA3[3] (RO)
  *
@@ -19535,7 +17585,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA4[4] (RO)
  *
@@ -19546,7 +17596,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA5[5] (RO)
  *
@@ -19557,7 +17607,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA6[6] (RO)
  *
@@ -19568,7 +17618,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA7[7] (RO)
  *
@@ -19579,7 +17629,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA8[8] (RO)
  *
@@ -19590,7 +17640,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA9[9] (RO)
  *
@@ -19601,7 +17651,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA10[10] (RO)
  *
@@ -19612,7 +17662,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA11[11] (RO)
  *
@@ -19623,7 +17673,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA12[12] (RO)
  *
@@ -19634,7 +17684,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA13[13] (RO)
  *
@@ -19645,7 +17695,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA14[14] (RO)
  *
@@ -19656,7 +17706,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA15[15] (RO)
  *
@@ -19667,7 +17717,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA0[16] (RO)
  *
@@ -19678,7 +17728,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA1[17] (RO)
  *
@@ -19689,7 +17739,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA2[18] (RO)
  *
@@ -19700,7 +17750,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA3[19] (RO)
  *
@@ -19711,7 +17761,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA4[20] (RO)
  *
@@ -19722,7 +17772,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA5[21] (RO)
  *
@@ -19733,7 +17783,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA6[22] (RO)
  *
@@ -19744,7 +17794,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA7[23] (RO)
  *
@@ -19755,7 +17805,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA8[24] (RO)
  *
@@ -19766,7 +17816,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA9[25] (RO)
  *
@@ -19777,7 +17827,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA10[26] (RO)
  *
@@ -19788,7 +17838,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA11[27] (RO)
  *
@@ -19799,7 +17849,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA12[28] (RO)
  *
@@ -19810,7 +17860,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA13[29] (RO)
  *
@@ -19821,7 +17871,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA14[30] (RO)
  *
@@ -19832,7 +17882,7 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA15[31] (RO)
  *
@@ -19843,7 +17893,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN - DMA Error Interrupt Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -19922,15 +17976,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA0 field to a new value.
@@ -19946,15 +17995,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA1 field to a new value.
@@ -19970,15 +18014,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA2 field to a new value.
@@ -19994,15 +18033,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA3 field to a new value.
@@ -20018,15 +18052,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA4 field to a new value.
@@ -20042,15 +18071,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA5 field to a new value.
@@ -20066,15 +18090,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA6 field to a new value.
@@ -20090,15 +18109,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA7 field to a new value.
@@ -20114,15 +18128,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA8 field to a new value.
@@ -20138,15 +18147,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA9 field to a new value.
@@ -20162,15 +18166,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA10 field to a new value.
@@ -20186,15 +18185,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA11 field to a new value.
@@ -20210,15 +18204,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA12 field to a new value.
@@ -20234,15 +18223,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA13 field to a new value.
@@ -20258,15 +18242,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA14 field to a new value.
@@ -20282,15 +18261,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA15 field to a new value.
@@ -20306,15 +18280,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA0 field to a new value.
@@ -20330,15 +18299,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA1 field to a new value.
@@ -20354,15 +18318,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA2 field to a new value.
@@ -20378,15 +18337,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA3 field to a new value.
@@ -20402,15 +18356,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA4 field to a new value.
@@ -20426,15 +18375,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA5 field to a new value.
@@ -20450,15 +18394,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA6 field to a new value.
@@ -20474,15 +18413,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA7 field to a new value.
@@ -20498,15 +18432,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA8 field to a new value.
@@ -20522,15 +18451,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA9 field to a new value.
@@ -20546,15 +18470,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA10 field to a new value.
@@ -20570,15 +18489,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA11 field to a new value.
@@ -20594,15 +18508,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA12 field to a new value.
@@ -20618,15 +18527,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA13 field to a new value.
@@ -20642,15 +18546,10 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA14 field to a new value.
@@ -20666,20 +18565,19 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_ERR_IRQSIG_EN - DMA Error Interrupt Signal Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -20758,15 +18656,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA0 field to a new value.
@@ -20782,15 +18675,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA1 field to a new value.
@@ -20806,15 +18694,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA2 field to a new value.
@@ -20830,15 +18713,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA3 field to a new value.
@@ -20854,15 +18732,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA4 field to a new value.
@@ -20878,15 +18751,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA5 field to a new value.
@@ -20902,15 +18770,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA6 field to a new value.
@@ -20926,15 +18789,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA7 field to a new value.
@@ -20950,15 +18808,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA8 field to a new value.
@@ -20974,15 +18827,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA9 field to a new value.
@@ -20998,15 +18846,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA10 field to a new value.
@@ -21022,15 +18865,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA11 field to a new value.
@@ -21046,15 +18884,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA12 field to a new value.
@@ -21070,15 +18903,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA13 field to a new value.
@@ -21094,15 +18922,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA14 field to a new value.
@@ -21118,15 +18941,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RDMA15 field to a new value.
@@ -21142,15 +18960,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA0 field to a new value.
@@ -21166,15 +18979,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA1 field to a new value.
@@ -21190,15 +18998,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA2 field to a new value.
@@ -21214,15 +19017,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA3 field to a new value.
@@ -21238,15 +19036,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA4 field to a new value.
@@ -21262,15 +19055,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA5 field to a new value.
@@ -21286,15 +19074,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA6 field to a new value.
@@ -21310,15 +19093,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA7 field to a new value.
@@ -21334,15 +19112,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA8 field to a new value.
@@ -21358,15 +19131,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA9 field to a new value.
@@ -21382,15 +19150,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA10 field to a new value.
@@ -21406,15 +19169,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA11 field to a new value.
@@ -21430,15 +19188,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA12 field to a new value.
@@ -21454,15 +19207,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA13 field to a new value.
@@ -21478,15 +19226,10 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA14 field to a new value.
@@ -21502,20 +19245,19 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15)
+#define BG_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)   ((((reg32_t) v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15.
-#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)   (((v) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15)
-#endif
+#define BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) & BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_DMA_SINGLE_REQ_EN - DMA Single Request Enable Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -21590,7 +19332,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA1[1] (RO)
  *
@@ -21602,7 +19344,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA2[2] (RO)
  *
@@ -21614,7 +19356,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA3[3] (RO)
  *
@@ -21626,7 +19368,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA4[4] (RO)
  *
@@ -21638,7 +19380,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA5[5] (RO)
  *
@@ -21650,7 +19392,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA6[6] (RO)
  *
@@ -21662,7 +19404,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA7[7] (RO)
  *
@@ -21674,7 +19416,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA8[8] (RO)
  *
@@ -21686,7 +19428,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA9[9] (RO)
  *
@@ -21698,7 +19440,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA10[10] (RO)
  *
@@ -21710,7 +19452,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA11[11] (RO)
  *
@@ -21722,7 +19464,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA12[12] (RO)
  *
@@ -21734,7 +19476,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA13[13] (RO)
  *
@@ -21746,7 +19488,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA14[14] (RO)
  *
@@ -21758,7 +19500,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA15[15] (RO)
  *
@@ -21770,7 +19512,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA0[16] (RO)
  *
@@ -21782,7 +19524,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA1[17] (RO)
  *
@@ -21794,7 +19536,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA2[18] (RO)
  *
@@ -21806,7 +19548,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA3[19] (RO)
  *
@@ -21818,7 +19560,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA4[20] (RO)
  *
@@ -21830,7 +19572,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA5[21] (RO)
  *
@@ -21842,7 +19584,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA6[22] (RO)
  *
@@ -21854,7 +19596,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA7[23] (RO)
  *
@@ -21866,7 +19608,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA8[24] (RO)
  *
@@ -21878,7 +19620,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA9[25] (RO)
  *
@@ -21890,7 +19632,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA10[26] (RO)
  *
@@ -21902,7 +19644,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA11[27] (RO)
  *
@@ -21914,7 +19656,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA12[28] (RO)
  *
@@ -21926,7 +19668,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA13[29] (RO)
  *
@@ -21938,7 +19680,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA14[30] (RO)
  *
@@ -21950,7 +19692,7 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14)
 
 /* --- Register HW_MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA15[31] (RO)
  *
@@ -21962,7 +19704,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15 from a register value.
-#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15(r)   (((r) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15)
+#define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15)
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_FIFO_SIZE_CONF0 - Tx Fifo Size Configuration Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22031,15 +19777,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8 field to a new value.
@@ -22071,15 +19812,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9 field to a new value.
@@ -22111,15 +19847,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10 field to a new value.
@@ -22151,15 +19882,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11 field to a new value.
@@ -22191,15 +19917,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12 field to a new value.
@@ -22231,15 +19952,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13 field to a new value.
@@ -22271,15 +19987,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14 field to a new value.
@@ -22311,21 +20022,20 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_FIFO_SIZE_CONF1 - Tx Fifo Size Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22394,15 +20104,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0 field to a new value.
@@ -22434,15 +20139,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1 field to a new value.
@@ -22474,15 +20174,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2 field to a new value.
@@ -22514,15 +20209,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3 field to a new value.
@@ -22554,15 +20244,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4 field to a new value.
@@ -22594,15 +20279,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5 field to a new value.
@@ -22634,15 +20314,10 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6 field to a new value.
@@ -22674,21 +20349,20 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(r)   (((r) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7)
+#define BG_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) >> BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7.
-#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)   (((v) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7)
-#endif
+#define BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_FIFO_SIZE_CONF0 - Rx Fifo Size Configuration Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -22757,15 +20431,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH8 field to a new value.
@@ -22797,15 +20466,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH9 field to a new value.
@@ -22837,15 +20501,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH10 field to a new value.
@@ -22877,15 +20536,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH11 field to a new value.
@@ -22917,15 +20571,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH12 field to a new value.
@@ -22957,15 +20606,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH13 field to a new value.
@@ -22997,15 +20641,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH14 field to a new value.
@@ -23037,21 +20676,20 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_FIFO_SIZE_CONF1 - Rx Fifo Size Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23120,15 +20758,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0 field to a new value.
@@ -23160,15 +20793,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1 field to a new value.
@@ -23200,15 +20828,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH2 field to a new value.
@@ -23240,15 +20863,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH3 field to a new value.
@@ -23280,15 +20898,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH4 field to a new value.
@@ -23320,15 +20933,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH5 field to a new value.
@@ -23360,15 +20968,10 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH6 field to a new value.
@@ -23400,21 +21003,20 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(r)   (((r) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7)
+#define BG_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) >> BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)   ((((reg32_t) v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7)
-#else
-//! @brief Format value for bitfield MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7.
-#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)   (((v) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7)
-#endif
+#define BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) & BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_FIFO_STAT - Tx Fifo Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23478,7 +21080,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH0      (0x00000003)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH0.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH0 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH0(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH0) >> BP_MIPI_HSI_TX_FIFO_STAT_CH0)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH0) >> BP_MIPI_HSI_TX_FIFO_STAT_CH0)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH1[3:2] (RO)
@@ -23496,7 +21098,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH1      (0x0000000c)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH1.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH1 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH1(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH1) >> BP_MIPI_HSI_TX_FIFO_STAT_CH1)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH1) >> BP_MIPI_HSI_TX_FIFO_STAT_CH1)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH2[5:4] (RO)
@@ -23514,7 +21116,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH2      (0x00000030)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH2.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH2 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH2(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH2) >> BP_MIPI_HSI_TX_FIFO_STAT_CH2)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH2) >> BP_MIPI_HSI_TX_FIFO_STAT_CH2)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH3[7:6] (RO)
@@ -23532,7 +21134,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH3      (0x000000c0)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH3.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH3 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH3(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH3) >> BP_MIPI_HSI_TX_FIFO_STAT_CH3)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH3) >> BP_MIPI_HSI_TX_FIFO_STAT_CH3)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH4[9:8] (RO)
@@ -23550,7 +21152,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH4      (0x00000300)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH4.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH4 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH4(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH4) >> BP_MIPI_HSI_TX_FIFO_STAT_CH4)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH4) >> BP_MIPI_HSI_TX_FIFO_STAT_CH4)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH5[11:10] (RO)
@@ -23568,7 +21170,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH5      (0x00000c00)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH5.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH5 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH5(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH5) >> BP_MIPI_HSI_TX_FIFO_STAT_CH5)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH5) >> BP_MIPI_HSI_TX_FIFO_STAT_CH5)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH6[13:12] (RO)
@@ -23586,7 +21188,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH6      (0x00003000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH6.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH6 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH6(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH6) >> BP_MIPI_HSI_TX_FIFO_STAT_CH6)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH6) >> BP_MIPI_HSI_TX_FIFO_STAT_CH6)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH7[15:14] (RO)
@@ -23604,7 +21206,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH7      (0x0000c000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH7.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH7 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH7(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH7) >> BP_MIPI_HSI_TX_FIFO_STAT_CH7)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH7) >> BP_MIPI_HSI_TX_FIFO_STAT_CH7)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH8[17:16] (RO)
@@ -23622,7 +21224,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH8      (0x00030000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH8.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH8 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH8(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH8) >> BP_MIPI_HSI_TX_FIFO_STAT_CH8)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH8) >> BP_MIPI_HSI_TX_FIFO_STAT_CH8)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH9[19:18] (RO)
@@ -23640,7 +21242,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH9      (0x000c0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH9.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH9 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH9(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH9) >> BP_MIPI_HSI_TX_FIFO_STAT_CH9)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH9) >> BP_MIPI_HSI_TX_FIFO_STAT_CH9)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH10[21:20] (RO)
@@ -23658,7 +21260,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH10      (0x00300000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH10.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH10 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH10(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH10) >> BP_MIPI_HSI_TX_FIFO_STAT_CH10)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH10) >> BP_MIPI_HSI_TX_FIFO_STAT_CH10)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH11[23:22] (RO)
@@ -23676,7 +21278,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH11      (0x00c00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH11.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH11 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH11(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH11) >> BP_MIPI_HSI_TX_FIFO_STAT_CH11)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH11) >> BP_MIPI_HSI_TX_FIFO_STAT_CH11)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH12[25:24] (RO)
@@ -23694,7 +21296,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH12      (0x03000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH12.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH12 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH12(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH12) >> BP_MIPI_HSI_TX_FIFO_STAT_CH12)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH12) >> BP_MIPI_HSI_TX_FIFO_STAT_CH12)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH13[27:26] (RO)
@@ -23712,7 +21314,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH13      (0x0c000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH13.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH13 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH13(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH13) >> BP_MIPI_HSI_TX_FIFO_STAT_CH13)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH13) >> BP_MIPI_HSI_TX_FIFO_STAT_CH13)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH14[29:28] (RO)
@@ -23730,7 +21332,7 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH14      (0x30000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH14.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH14 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH14(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH14) >> BP_MIPI_HSI_TX_FIFO_STAT_CH14)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH14) >> BP_MIPI_HSI_TX_FIFO_STAT_CH14)
 
 
 /* --- Register HW_MIPI_HSI_TX_FIFO_STAT, field CH15[31:30] (RO)
@@ -23748,8 +21350,12 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH15      (0xc0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH15.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH15 from a register value.
-#define BG_MIPI_HSI_TX_FIFO_STAT_CH15(r)   (((r) & BM_MIPI_HSI_TX_FIFO_STAT_CH15) >> BP_MIPI_HSI_TX_FIFO_STAT_CH15)
+#define BG_MIPI_HSI_TX_FIFO_STAT_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH15) >> BP_MIPI_HSI_TX_FIFO_STAT_CH15)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_RX_FIFO_STAT - Rx Fifo Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -23813,7 +21419,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH0      (0x00000003)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH0.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH0 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH0(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH0) >> BP_MIPI_HSI_RX_FIFO_STAT_CH0)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH0) >> BP_MIPI_HSI_RX_FIFO_STAT_CH0)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH1[3:2] (RO)
@@ -23831,7 +21437,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH1      (0x0000000c)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH1.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH1 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH1(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH1) >> BP_MIPI_HSI_RX_FIFO_STAT_CH1)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH1) >> BP_MIPI_HSI_RX_FIFO_STAT_CH1)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH2[5:4] (RO)
@@ -23849,7 +21455,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH2      (0x00000030)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH2.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH2 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH2(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH2) >> BP_MIPI_HSI_RX_FIFO_STAT_CH2)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH2) >> BP_MIPI_HSI_RX_FIFO_STAT_CH2)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH3[7:6] (RO)
@@ -23867,7 +21473,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH3      (0x000000c0)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH3.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH3 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH3(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH3) >> BP_MIPI_HSI_RX_FIFO_STAT_CH3)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH3) >> BP_MIPI_HSI_RX_FIFO_STAT_CH3)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH4[9:8] (RO)
@@ -23885,7 +21491,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH4      (0x00000300)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH4.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH4 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH4(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH4) >> BP_MIPI_HSI_RX_FIFO_STAT_CH4)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH4) >> BP_MIPI_HSI_RX_FIFO_STAT_CH4)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH5[11:10] (RO)
@@ -23903,7 +21509,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH5      (0x00000c00)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH5.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH5 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH5(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH5) >> BP_MIPI_HSI_RX_FIFO_STAT_CH5)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH5) >> BP_MIPI_HSI_RX_FIFO_STAT_CH5)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH6[13:12] (RO)
@@ -23921,7 +21527,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH6      (0x00003000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH6.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH6 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH6(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH6) >> BP_MIPI_HSI_RX_FIFO_STAT_CH6)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH6) >> BP_MIPI_HSI_RX_FIFO_STAT_CH6)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH7[15:14] (RO)
@@ -23939,7 +21545,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH7      (0x0000c000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH7.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH7 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH7(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH7) >> BP_MIPI_HSI_RX_FIFO_STAT_CH7)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH7) >> BP_MIPI_HSI_RX_FIFO_STAT_CH7)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH8[17:16] (RO)
@@ -23957,7 +21563,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH8      (0x00030000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH8.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH8 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH8(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH8) >> BP_MIPI_HSI_RX_FIFO_STAT_CH8)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH8) >> BP_MIPI_HSI_RX_FIFO_STAT_CH8)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH9[19:18] (RO)
@@ -23975,7 +21581,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH9      (0x000c0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH9.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH9 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH9(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH9) >> BP_MIPI_HSI_RX_FIFO_STAT_CH9)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH9) >> BP_MIPI_HSI_RX_FIFO_STAT_CH9)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH10[21:20] (RO)
@@ -23993,7 +21599,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH10      (0x00300000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH10.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH10 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH10(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH10) >> BP_MIPI_HSI_RX_FIFO_STAT_CH10)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH10) >> BP_MIPI_HSI_RX_FIFO_STAT_CH10)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH11[23:22] (RO)
@@ -24011,7 +21617,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH11      (0x00c00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH11.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH11 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH11(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH11) >> BP_MIPI_HSI_RX_FIFO_STAT_CH11)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH11) >> BP_MIPI_HSI_RX_FIFO_STAT_CH11)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH12[25:24] (RO)
@@ -24029,7 +21635,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH12      (0x03000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH12.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH12 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH12(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH12) >> BP_MIPI_HSI_RX_FIFO_STAT_CH12)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH12) >> BP_MIPI_HSI_RX_FIFO_STAT_CH12)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH13[27:26] (RO)
@@ -24047,7 +21653,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH13      (0x0c000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH13.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH13 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH13(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH13) >> BP_MIPI_HSI_RX_FIFO_STAT_CH13)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH13) >> BP_MIPI_HSI_RX_FIFO_STAT_CH13)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH14[29:28] (RO)
@@ -24065,7 +21671,7 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH14      (0x30000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH14.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH14 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH14(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH14) >> BP_MIPI_HSI_RX_FIFO_STAT_CH14)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH14) >> BP_MIPI_HSI_RX_FIFO_STAT_CH14)
 
 
 /* --- Register HW_MIPI_HSI_RX_FIFO_STAT, field CH15[31:30] (RO)
@@ -24083,8 +21689,12 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH15      (0xc0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH15.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH15 from a register value.
-#define BG_MIPI_HSI_RX_FIFO_STAT_CH15(r)   (((r) & BM_MIPI_HSI_RX_FIFO_STAT_CH15) >> BP_MIPI_HSI_RX_FIFO_STAT_CH15)
+#define BG_MIPI_HSI_RX_FIFO_STAT_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH15) >> BP_MIPI_HSI_RX_FIFO_STAT_CH15)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_AHB_MASTER_CONF - Ahb Master Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24134,15 +21744,10 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM      (0x0000000f)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM.
 
 //! @brief Get value of MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM from a register value.
-#define BG_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(r)   (((r) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) >> BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM)
+#define BG_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) >> BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(v)   ((((reg32_t) v) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM)
-#else
-//! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(v)   (((v) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM)
-#endif
+#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_INSERT_IDLE_NUM field to a new value.
@@ -24166,15 +21771,10 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE      (0x00000030)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DMA_MODE.
 
 //! @brief Get value of MIPI_HSI_AHB_MASTER_CONF_DMA_MODE from a register value.
-#define BG_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(r)   (((r) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) >> BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE)
+#define BG_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) >> BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DMA_MODE.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(v)   ((((reg32_t) v) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DMA_MODE.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(v)   (((v) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE)
-#endif
+#define BF_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) & BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMA_MODE field to a new value.
@@ -24191,20 +21791,19 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE      (0x000003c0)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE.
 
 //! @brief Get value of MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE from a register value.
-#define BG_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(r)   (((r) & BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) >> BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE)
+#define BG_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) >> BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)   ((((reg32_t) v) << BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) & BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE)
-#else
-//! @brief Format value for bitfield MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE.
-#define BF_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)   (((v) << BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) & BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE)
-#endif
+#define BF_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) & BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DP_HOLD_CYCLE field to a new value.
 #define BW_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)   (HW_MIPI_HSI_AHB_MASTER_CONF_WR((HW_MIPI_HSI_AHB_MASTER_CONF_RD() & ~BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) | BF_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MIPI_HSI_TX_BREAK_LEN - TX Break Length Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -24252,15 +21851,10 @@ typedef union _hw_mipi_hsi_tx_break_len
 #define BM_MIPI_HSI_TX_BREAK_LEN_COUNT      (0x0000003f)  //!< Bit mask for MIPI_HSI_TX_BREAK_LEN_COUNT.
 
 //! @brief Get value of MIPI_HSI_TX_BREAK_LEN_COUNT from a register value.
-#define BG_MIPI_HSI_TX_BREAK_LEN_COUNT(r)   (((r) & BM_MIPI_HSI_TX_BREAK_LEN_COUNT) >> BP_MIPI_HSI_TX_BREAK_LEN_COUNT)
+#define BG_MIPI_HSI_TX_BREAK_LEN_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_BREAK_LEN_COUNT) >> BP_MIPI_HSI_TX_BREAK_LEN_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MIPI_HSI_TX_BREAK_LEN_COUNT.
-#define BF_MIPI_HSI_TX_BREAK_LEN_COUNT(v)   ((((reg32_t) v) << BP_MIPI_HSI_TX_BREAK_LEN_COUNT) & BM_MIPI_HSI_TX_BREAK_LEN_COUNT)
-#else
-//! @brief Format value for bitfield MIPI_HSI_TX_BREAK_LEN_COUNT.
-#define BF_MIPI_HSI_TX_BREAK_LEN_COUNT(v)   (((v) << BP_MIPI_HSI_TX_BREAK_LEN_COUNT) & BM_MIPI_HSI_TX_BREAK_LEN_COUNT)
-#endif
+#define BF_MIPI_HSI_TX_BREAK_LEN_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_BREAK_LEN_COUNT) & BM_MIPI_HSI_TX_BREAK_LEN_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNT field to a new value.

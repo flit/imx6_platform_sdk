@@ -3,7 +3,7 @@ description="Freescale iMX6SL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
   :Memory_block.M_CCM_ANALOG={\
-    start=0x020c8000:length=0x00000104:description="CCM_ANALOG"\
+    start=0x020c8000:length=0x00000174:description="CCM_ANALOG"\
   }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
@@ -12,11 +12,92 @@ Advanced_Information.Cortex-A9={\
       bit_fields.default={}\
     }\
   }:Peripherals.CCM_ANALOG={\
-    base=Absolute:description="":Register.G_CCM_ANALOG_PLL_SYS={\
-      gui_name="PLL_SYS":start=0x020c8000:length=4:\
+    base=Absolute:description="":Register.G_CCM_ANALOG_PLL_ARM={\
+      gui_name="PLL_ARM":start=0x020c8000:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_DIV_SELECT={\
+        gui_name="DIV_SELECT":position=0:size=7:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_HALF_LF={\
+        gui_name="HALF_LF":position=7:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_DOUBLE_LF={\
+        gui_name="DOUBLE_LF":position=8:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_HALF_CP={\
+        gui_name="HALF_CP":position=9:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_DOUBLE_CP={\
+        gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_HOLD_RING_1={\
+        gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_POWERDOWN={\
+        gui_name="POWERDOWN":position=12:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_ENABLE={\
+        gui_name="ENABLE":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_BYPASS_CLK2={\
+        gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_BYPASS={\
+        gui_name="BYPASS":position=16:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_LVDS_SEL={\
+        gui_name="LVDS_SEL":position=17:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_LVDS_24MHZ3={\
+        gui_name="LVDS_24MHZ_SEL":position=18:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_PLL_SEL={\
+        gui_name="PLL_SEL":position=19:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_ARM_LOCK={\
+        gui_name="LOCK":position=31:size=1:read_only=true\
+      }\
+    }:Register.G_CCM_ANALOG_PLL_USB1={\
+      gui_name="PLL_USB1":start=0x020c8010:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_CCM_ANALOG_PLL_USB1_DIV_SELECT={\
+        gui_name="DIV_SELECT":position=0:size=2:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB1_EN_USB_CL4={\
+        gui_name="EN_USB_CLKS":position=6:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB1_POWER={\
+        gui_name="POWER":position=12:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB1_ENABLE={\
+        gui_name="ENABLE":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB1_LOCK={\
+        gui_name="LOCK":position=31:size=1:read_only=true\
+      }\
+    }:Register.G_CCM_ANALOG_PLL_USB2={\
+      gui_name="PLL_USB2":start=0x020c8020:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_CCM_ANALOG_PLL_USB2_DIV_SELECT={\
+        gui_name="DIV_SELECT":position=0:size=2:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB2_EN_USB_CL5={\
+        gui_name="EN_USB_CLKS":position=6:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB2_POWER={\
+        gui_name="POWER":position=12:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB2_ENABLE={\
+        gui_name="ENABLE":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_PLL_USB2_LOCK={\
+        gui_name="LOCK":position=31:size=1:read_only=true\
+      }\
+    }:Register.G_CCM_ANALOG_PLL_SYS={\
+      gui_name="PLL_SYS":start=0x020c8030:length=4:\
       read_only=false:write_only=false:\
         bit_fields.B_CCM_ANALOG_PLL_SYS_DIV_SELECT={\
-        gui_name="DIV_SELECT":position=0:size=7:read_only=false\
+        gui_name="DIV_SELECT":position=0:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_SYS_HALF_LF={\
         gui_name="HALF_LF":position=7:size=1:read_only=false\
@@ -30,7 +111,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_SYS_DOUBLE_CP={\
         gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_SYS_HOLD_RING_1={\
+        bit_fields.B_CCM_ANALOG_PLL_SYS_HOLD_RING_6={\
         gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_SYS_POWERDOWN={\
@@ -39,127 +120,22 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_SYS_ENABLE={\
         gui_name="ENABLE":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_SYS_BYPASS_CLK2={\
+        bit_fields.B_CCM_ANALOG_PLL_SYS_BYPASS_CLK7={\
         gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_SYS_BYPASS={\
         gui_name="BYPASS":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_SYS_LVDS_SEL={\
-        gui_name="LVDS_SEL":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_SYS_LVDS_24MHZ3={\
-        gui_name="LVDS_24MHZ_SEL":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_SYS_PLL_SEL={\
-        gui_name="PLL_SEL":position=19:size=1:read_only=false\
+        bit_fields.B_CCM_ANALOG_PLL_SYS_PFD_OFFSET8={\
+        gui_name="PFD_OFFSET_EN":position=18:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_SYS_LOCK={\
         gui_name="LOCK":position=31:size=1:read_only=true\
       }\
-    }:Register.G_CCM_ANALOG_USBPHY0_PLL_480_CT4={\
-      gui_name="USBPHY0_PLL_480_CTRL":start=0x020c8010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_USBPHY0_PLL_480_CT5={\
-        gui_name="DIV_SELECT":position=0:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY0_PLL_480_CT6={\
-        gui_name="EN_USB_CLKS":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY0_PLL_480_CT7={\
-        gui_name="POWER":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY0_PLL_480_CT8={\
-        gui_name="ENABLE":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY0_PLL_480_CT9={\
-        gui_name="LOCK":position=31:size=1:read_only=true\
-      }\
-    }:Register.G_CCM_ANALOG_USBPHY1_PLL_480_C10={\
-      gui_name="USBPHY1_PLL_480_CTRL":start=0x020c8020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_USBPHY1_PLL_480_C11={\
-        gui_name="DIV_SELECT":position=0:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY1_PLL_480_C12={\
-        gui_name="EN_USB_CLKS":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY1_PLL_480_C13={\
-        gui_name="POWER":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY1_PLL_480_C14={\
-        gui_name="ENABLE":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_USBPHY1_PLL_480_C15={\
-        gui_name="LOCK":position=31:size=1:read_only=true\
-      }\
-    }:Register.G_CCM_ANALOG_PLL_528={\
-      gui_name="PLL_528":start=0x020c8030:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_528_DIV_SELECT={\
-        gui_name="DIV_SELECT":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_HALF_LF={\
-        gui_name="HALF_LF":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_DOUBLE_LF={\
-        gui_name="DOUBLE_LF":position=8:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_HALF_CP={\
-        gui_name="HALF_CP":position=9:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_DOUBLE_CP={\
-        gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_HOLD_RING16={\
-        gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_POWERDOWN={\
-        gui_name="POWERDOWN":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_ENABLE={\
-        gui_name="ENABLE":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_BYPASS_CL17={\
-        gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_BYPASS={\
-        gui_name="BYPASS":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_PFD_OFFSE18={\
-        gui_name="PFD_OFFSET_EN":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_LOCK={\
-        gui_name="LOCK":position=31:size=1:read_only=true\
-      }\
-    }:Register.G_CCM_ANALOG_PLL_528_SS={\
-      gui_name="PLL_528_SS":start=0x020c8040:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_528_SS_STEP={\
-        gui_name="STEP":position=0:size=15:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_SS_ENABLE={\
-        gui_name="ENABLE":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_528_SS_STOP={\
-        gui_name="STOP":position=16:size=16:read_only=false\
-      }\
-    }:Register.G_CCM_ANALOG_PLL_528_NUM={\
-      gui_name="PLL_528_NUM":start=0x020c8050:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_528_NUM_A={\
-        gui_name="A":position=0:size=30:read_only=false\
-      }\
-    }:Register.G_CCM_ANALOG_PLL_528_DENOM={\
-      gui_name="PLL_528_DENOM":start=0x020c8060:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_528_DENOM_B={\
-        gui_name="B":position=0:size=30:read_only=false\
-      }\
     }:Register.G_CCM_ANALOG_PLL_AUDIO={\
       gui_name="PLL_AUDIO":start=0x020c8070:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_AUDIO_DIV_SEL19={\
+        bit_fields.B_CCM_ANALOG_PLL_AUDIO_DIV_SELE9={\
         gui_name="DIV_SELECT":position=0:size=7:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_HALF_LF={\
@@ -174,7 +150,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_DOUBLE_CP={\
         gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_AUDIO_HOLD_RI20={\
+        bit_fields.B_CCM_ANALOG_PLL_AUDIO_HOLD_RI10={\
         gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_POWERDOWN={\
@@ -183,16 +159,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_ENABLE={\
         gui_name="ENABLE":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_AUDIO_BYPASS_21={\
+        bit_fields.B_CCM_ANALOG_PLL_AUDIO_BYPASS_11={\
         gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_BYPASS={\
         gui_name="BYPASS":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_AUDIO_PFD_OFF22={\
+        bit_fields.B_CCM_ANALOG_PLL_AUDIO_PFD_OFF12={\
         gui_name="PFD_OFFSET_EN":position=18:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_AUDIO_POST_DI23={\
+        bit_fields.B_CCM_ANALOG_PLL_AUDIO_POST_DI13={\
         gui_name="POST_DIV_SELECT":position=19:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_AUDIO_SSC_EN={\
@@ -216,7 +192,7 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_CCM_ANALOG_PLL_VIDEO={\
       gui_name="PLL_VIDEO":start=0x020c80a0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_VIDEO_DIV_SEL24={\
+        bit_fields.B_CCM_ANALOG_PLL_VIDEO_DIV_SEL14={\
         gui_name="DIV_SELECT":position=0:size=7:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_HALF_LF={\
@@ -231,7 +207,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_DOUBLE_CP={\
         gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_VIDEO_HOLD_RI25={\
+        bit_fields.B_CCM_ANALOG_PLL_VIDEO_HOLD_RI15={\
         gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_POWERDOWN={\
@@ -240,16 +216,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_ENABLE={\
         gui_name="ENABLE":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_VIDEO_BYPASS_26={\
+        bit_fields.B_CCM_ANALOG_PLL_VIDEO_BYPASS_16={\
         gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_BYPASS={\
         gui_name="BYPASS":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_VIDEO_PFD_OFF27={\
+        bit_fields.B_CCM_ANALOG_PLL_VIDEO_PFD_OFF17={\
         gui_name="PFD_OFFSET_EN":position=18:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_VIDEO_POST_DI28={\
+        bit_fields.B_CCM_ANALOG_PLL_VIDEO_POST_DI18={\
         gui_name="POST_DIV_SELECT":position=19:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_SSC_EN={\
@@ -270,33 +246,6 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_VIDEO_DENOM_B={\
         gui_name="B":position=0:size=30:read_only=false\
       }\
-    }:Register.G_CCM_ANALOG_PLL_MLB={\
-      gui_name="PLL_MLB":start=0x020c80d0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_HOLD_RING29={\
-        gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_PHASE_SEL={\
-        gui_name="PHASE_SEL":position=12:size=2:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_BYPASS={\
-        gui_name="BYPASS":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_VDDA_DELA30={\
-        gui_name="VDDA_DELAY_CFG":position=17:size=3:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_VDDD_DELA31={\
-        gui_name="VDDD_DELAY_CFG":position=20:size=3:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_RX_CLK_DE32={\
-        gui_name="RX_CLK_DELAY_CFG":position=23:size=3:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_MLB_FLT_R33={\
-        gui_name="MLB_FLT_RES_CFG":position=26:size=3:read_only=false\
-      }:\
-        bit_fields.B_CCM_ANALOG_PLL_MLB_LOCK={\
-        gui_name="LOCK":position=31:size=1:read_only=true\
-      }\
     }:Register.G_CCM_ANALOG_PLL_ENET={\
       gui_name="PLL_ENET":start=0x020c80e0:length=4:\
       read_only=false:write_only=false:\
@@ -315,7 +264,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_ENET_DOUBLE_CP={\
         gui_name="DOUBLE_CP":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_ENET_HOLD_RIN34={\
+        bit_fields.B_CCM_ANALOG_PLL_ENET_HOLD_RIN19={\
         gui_name="HOLD_RING_OFF":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_ENET_POWERDOWN={\
@@ -324,20 +273,20 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PLL_ENET_ENABLE={\
         gui_name="ENABLE":position=13:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_ENET_BYPASS_C35={\
+        bit_fields.B_CCM_ANALOG_PLL_ENET_BYPASS_C20={\
         gui_name="BYPASS_CLK_SRC":position=14:size=2:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_ENET_BYPASS={\
         gui_name="BYPASS":position=16:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_ENET_PFD_OFFS36={\
+        bit_fields.B_CCM_ANALOG_PLL_ENET_PFD_OFFS21={\
         gui_name="PFD_OFFSET_EN":position=18:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_ENET_ENABLE_P37={\
-        gui_name="ENABLE_PCIE":position=19:size=1:read_only=false\
+        bit_fields.B_CCM_ANALOG_PLL_ENET_ENABLE_122={\
+        gui_name="ENABLE_125M":position=19:size=1:read_only=false\
       }:\
-        bit_fields.B_CCM_ANALOG_PLL_ENET_ENABLE_S38={\
-        gui_name="ENABLE_SATA":position=20:size=1:read_only=false\
+        bit_fields.B_CCM_ANALOG_PLL_ENET_ENABLE_123={\
+        gui_name="ENABLE_100M":position=20:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PLL_ENET_LOCK={\
         gui_name="LOCK":position=31:size=1:read_only=true\
@@ -351,7 +300,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD0_STABLE={\
         gui_name="PFD0_STABLE":position=6:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_480_PFD0_CLKG39={\
+        bit_fields.B_CCM_ANALOG_PFD_480_PFD0_CLKG24={\
         gui_name="PFD0_CLKGATE":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD1_FRAC={\
@@ -360,7 +309,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD1_STABLE={\
         gui_name="PFD1_STABLE":position=14:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_480_PFD1_CLKG40={\
+        bit_fields.B_CCM_ANALOG_PFD_480_PFD1_CLKG25={\
         gui_name="PFD1_CLKGATE":position=15:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD2_FRAC={\
@@ -369,7 +318,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD2_STABLE={\
         gui_name="PFD2_STABLE":position=22:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_480_PFD2_CLKG41={\
+        bit_fields.B_CCM_ANALOG_PFD_480_PFD2_CLKG26={\
         gui_name="PFD2_CLKGATE":position=23:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD3_FRAC={\
@@ -378,7 +327,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_480_PFD3_STABLE={\
         gui_name="PFD3_STABLE":position=30:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_480_PFD3_CLKG42={\
+        bit_fields.B_CCM_ANALOG_PFD_480_PFD3_CLKG27={\
         gui_name="PFD3_CLKGATE":position=31:size=1:read_only=false\
       }\
     }:Register.G_CCM_ANALOG_PFD_528={\
@@ -390,7 +339,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD0_STABLE={\
         gui_name="PFD0_STABLE":position=6:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_528_PFD0_CLKG43={\
+        bit_fields.B_CCM_ANALOG_PFD_528_PFD0_CLKG28={\
         gui_name="PFD0_CLKGATE":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD1_FRAC={\
@@ -399,7 +348,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD1_STABLE={\
         gui_name="PFD1_STABLE":position=14:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_528_PFD1_CLKG44={\
+        bit_fields.B_CCM_ANALOG_PFD_528_PFD1_CLKG29={\
         gui_name="PFD1_CLKGATE":position=15:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD2_FRAC={\
@@ -408,7 +357,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD2_STABLE={\
         gui_name="PFD2_STABLE":position=22:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_528_PFD2_CLKG45={\
+        bit_fields.B_CCM_ANALOG_PFD_528_PFD2_CLKG30={\
         gui_name="PFD2_CLKGATE":position=23:size=1:read_only=false\
       }:\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD3_FRAC={\
@@ -417,87 +366,94 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CCM_ANALOG_PFD_528_PFD3_STABLE={\
         gui_name="PFD3_STABLE":position=30:size=1:read_only=true\
       }:\
-        bit_fields.B_CCM_ANALOG_PFD_528_PFD3_CLKG46={\
+        bit_fields.B_CCM_ANALOG_PFD_528_PFD3_CLKG31={\
         gui_name="PFD3_CLKGATE":position=31:size=1:read_only=false\
+      }\
+    }:Register.G_CCM_ANALOG_MISC0={\
+      gui_name="MISC0":start=0x020c8150:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_CCM_ANALOG_MISC0_STOP_MODE_C32={\
+        gui_name="STOP_MODE_CONFIG":position=11:size=2:read_only=false\
+      }\
+    }:Register.G_CCM_ANALOG_MISC2={\
+      gui_name="MISC2":start=0x020c8170:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_CCM_ANALOG_MISC2_PLL3_DISABLE={\
+        gui_name="PLL3_DISABLE":position=7:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_MISC2_AUDIO_DIV_LSB={\
+        gui_name="AUDIO_DIV_LSB":position=15:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_MISC2_AUDIO_DIV_MSB={\
+        gui_name="AUDIO_DIV_MSB":position=23:size=1:read_only=false\
+      }:\
+        bit_fields.B_CCM_ANALOG_MISC2_VIDEO_DIV={\
+        gui_name="VIDEO_DIV":position=30:size=2:read_only=false\
       }\
     }\
   }:Register_window.CCM_ANALOG={\
         line="$+":\
+    line="=G_CCM_ANALOG_PLL_ARM":\
+    line="B_CCM_ANALOG_PLL_ARM_DIV_SELECT":\
+    line="B_CCM_ANALOG_PLL_ARM_HALF_LF":\
+    line="B_CCM_ANALOG_PLL_ARM_DOUBLE_LF":\
+    line="B_CCM_ANALOG_PLL_ARM_HALF_CP":\
+    line="B_CCM_ANALOG_PLL_ARM_DOUBLE_CP":\
+    line="B_CCM_ANALOG_PLL_ARM_HOLD_RING_1":\
+    line="B_CCM_ANALOG_PLL_ARM_POWERDOWN":\
+    line="B_CCM_ANALOG_PLL_ARM_ENABLE":\
+    line="B_CCM_ANALOG_PLL_ARM_BYPASS_CLK2":\
+    line="B_CCM_ANALOG_PLL_ARM_BYPASS":\
+    line="B_CCM_ANALOG_PLL_ARM_LVDS_SEL":\
+    line="B_CCM_ANALOG_PLL_ARM_LVDS_24MHZ3":\
+    line="B_CCM_ANALOG_PLL_ARM_PLL_SEL":\
+    line="B_CCM_ANALOG_PLL_ARM_LOCK":\
+    line="$$":\
+    line="$+":\
+    line="=G_CCM_ANALOG_PLL_USB1":\
+    line="B_CCM_ANALOG_PLL_USB1_DIV_SELECT":\
+    line="B_CCM_ANALOG_PLL_USB1_EN_USB_CL4":\
+    line="B_CCM_ANALOG_PLL_USB1_POWER":\
+    line="B_CCM_ANALOG_PLL_USB1_ENABLE":\
+    line="B_CCM_ANALOG_PLL_USB1_LOCK":\
+    line="$$":\
+    line="$+":\
+    line="=G_CCM_ANALOG_PLL_USB2":\
+    line="B_CCM_ANALOG_PLL_USB2_DIV_SELECT":\
+    line="B_CCM_ANALOG_PLL_USB2_EN_USB_CL5":\
+    line="B_CCM_ANALOG_PLL_USB2_POWER":\
+    line="B_CCM_ANALOG_PLL_USB2_ENABLE":\
+    line="B_CCM_ANALOG_PLL_USB2_LOCK":\
+    line="$$":\
+    line="$+":\
     line="=G_CCM_ANALOG_PLL_SYS":\
     line="B_CCM_ANALOG_PLL_SYS_DIV_SELECT":\
     line="B_CCM_ANALOG_PLL_SYS_HALF_LF":\
     line="B_CCM_ANALOG_PLL_SYS_DOUBLE_LF":\
     line="B_CCM_ANALOG_PLL_SYS_HALF_CP":\
     line="B_CCM_ANALOG_PLL_SYS_DOUBLE_CP":\
-    line="B_CCM_ANALOG_PLL_SYS_HOLD_RING_1":\
+    line="B_CCM_ANALOG_PLL_SYS_HOLD_RING_6":\
     line="B_CCM_ANALOG_PLL_SYS_POWERDOWN":\
     line="B_CCM_ANALOG_PLL_SYS_ENABLE":\
-    line="B_CCM_ANALOG_PLL_SYS_BYPASS_CLK2":\
+    line="B_CCM_ANALOG_PLL_SYS_BYPASS_CLK7":\
     line="B_CCM_ANALOG_PLL_SYS_BYPASS":\
-    line="B_CCM_ANALOG_PLL_SYS_LVDS_SEL":\
-    line="B_CCM_ANALOG_PLL_SYS_LVDS_24MHZ3":\
-    line="B_CCM_ANALOG_PLL_SYS_PLL_SEL":\
+    line="B_CCM_ANALOG_PLL_SYS_PFD_OFFSET8":\
     line="B_CCM_ANALOG_PLL_SYS_LOCK":\
     line="$$":\
     line="$+":\
-    line="=G_CCM_ANALOG_USBPHY0_PLL_480_CT4":\
-    line="B_CCM_ANALOG_USBPHY0_PLL_480_CT5":\
-    line="B_CCM_ANALOG_USBPHY0_PLL_480_CT6":\
-    line="B_CCM_ANALOG_USBPHY0_PLL_480_CT7":\
-    line="B_CCM_ANALOG_USBPHY0_PLL_480_CT8":\
-    line="B_CCM_ANALOG_USBPHY0_PLL_480_CT9":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_ANALOG_USBPHY1_PLL_480_C10":\
-    line="B_CCM_ANALOG_USBPHY1_PLL_480_C11":\
-    line="B_CCM_ANALOG_USBPHY1_PLL_480_C12":\
-    line="B_CCM_ANALOG_USBPHY1_PLL_480_C13":\
-    line="B_CCM_ANALOG_USBPHY1_PLL_480_C14":\
-    line="B_CCM_ANALOG_USBPHY1_PLL_480_C15":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_ANALOG_PLL_528":\
-    line="B_CCM_ANALOG_PLL_528_DIV_SELECT":\
-    line="B_CCM_ANALOG_PLL_528_HALF_LF":\
-    line="B_CCM_ANALOG_PLL_528_DOUBLE_LF":\
-    line="B_CCM_ANALOG_PLL_528_HALF_CP":\
-    line="B_CCM_ANALOG_PLL_528_DOUBLE_CP":\
-    line="B_CCM_ANALOG_PLL_528_HOLD_RING16":\
-    line="B_CCM_ANALOG_PLL_528_POWERDOWN":\
-    line="B_CCM_ANALOG_PLL_528_ENABLE":\
-    line="B_CCM_ANALOG_PLL_528_BYPASS_CL17":\
-    line="B_CCM_ANALOG_PLL_528_BYPASS":\
-    line="B_CCM_ANALOG_PLL_528_PFD_OFFSE18":\
-    line="B_CCM_ANALOG_PLL_528_LOCK":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_ANALOG_PLL_528_SS":\
-    line="B_CCM_ANALOG_PLL_528_SS_STEP":\
-    line="B_CCM_ANALOG_PLL_528_SS_ENABLE":\
-    line="B_CCM_ANALOG_PLL_528_SS_STOP":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_ANALOG_PLL_528_NUM":\
-    line="B_CCM_ANALOG_PLL_528_NUM_A":\
-    line="$$":\
-    line="$+":\
-    line="=G_CCM_ANALOG_PLL_528_DENOM":\
-    line="B_CCM_ANALOG_PLL_528_DENOM_B":\
-    line="$$":\
-    line="$+":\
     line="=G_CCM_ANALOG_PLL_AUDIO":\
-    line="B_CCM_ANALOG_PLL_AUDIO_DIV_SEL19":\
+    line="B_CCM_ANALOG_PLL_AUDIO_DIV_SELE9":\
     line="B_CCM_ANALOG_PLL_AUDIO_HALF_LF":\
     line="B_CCM_ANALOG_PLL_AUDIO_DOUBLE_LF":\
     line="B_CCM_ANALOG_PLL_AUDIO_HALF_CP":\
     line="B_CCM_ANALOG_PLL_AUDIO_DOUBLE_CP":\
-    line="B_CCM_ANALOG_PLL_AUDIO_HOLD_RI20":\
+    line="B_CCM_ANALOG_PLL_AUDIO_HOLD_RI10":\
     line="B_CCM_ANALOG_PLL_AUDIO_POWERDOWN":\
     line="B_CCM_ANALOG_PLL_AUDIO_ENABLE":\
-    line="B_CCM_ANALOG_PLL_AUDIO_BYPASS_21":\
+    line="B_CCM_ANALOG_PLL_AUDIO_BYPASS_11":\
     line="B_CCM_ANALOG_PLL_AUDIO_BYPASS":\
-    line="B_CCM_ANALOG_PLL_AUDIO_PFD_OFF22":\
-    line="B_CCM_ANALOG_PLL_AUDIO_POST_DI23":\
+    line="B_CCM_ANALOG_PLL_AUDIO_PFD_OFF12":\
+    line="B_CCM_ANALOG_PLL_AUDIO_POST_DI13":\
     line="B_CCM_ANALOG_PLL_AUDIO_SSC_EN":\
     line="B_CCM_ANALOG_PLL_AUDIO_LOCK":\
     line="$$":\
@@ -511,18 +467,18 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_CCM_ANALOG_PLL_VIDEO":\
-    line="B_CCM_ANALOG_PLL_VIDEO_DIV_SEL24":\
+    line="B_CCM_ANALOG_PLL_VIDEO_DIV_SEL14":\
     line="B_CCM_ANALOG_PLL_VIDEO_HALF_LF":\
     line="B_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF":\
     line="B_CCM_ANALOG_PLL_VIDEO_HALF_CP":\
     line="B_CCM_ANALOG_PLL_VIDEO_DOUBLE_CP":\
-    line="B_CCM_ANALOG_PLL_VIDEO_HOLD_RI25":\
+    line="B_CCM_ANALOG_PLL_VIDEO_HOLD_RI15":\
     line="B_CCM_ANALOG_PLL_VIDEO_POWERDOWN":\
     line="B_CCM_ANALOG_PLL_VIDEO_ENABLE":\
-    line="B_CCM_ANALOG_PLL_VIDEO_BYPASS_26":\
+    line="B_CCM_ANALOG_PLL_VIDEO_BYPASS_16":\
     line="B_CCM_ANALOG_PLL_VIDEO_BYPASS":\
-    line="B_CCM_ANALOG_PLL_VIDEO_PFD_OFF27":\
-    line="B_CCM_ANALOG_PLL_VIDEO_POST_DI28":\
+    line="B_CCM_ANALOG_PLL_VIDEO_PFD_OFF17":\
+    line="B_CCM_ANALOG_PLL_VIDEO_POST_DI18":\
     line="B_CCM_ANALOG_PLL_VIDEO_SSC_EN":\
     line="B_CCM_ANALOG_PLL_VIDEO_LOCK":\
     line="$$":\
@@ -535,62 +491,62 @@ Advanced_Information.Cortex-A9={\
     line="B_CCM_ANALOG_PLL_VIDEO_DENOM_B":\
     line="$$":\
     line="$+":\
-    line="=G_CCM_ANALOG_PLL_MLB":\
-    line="B_CCM_ANALOG_PLL_MLB_HOLD_RING29":\
-    line="B_CCM_ANALOG_PLL_MLB_PHASE_SEL":\
-    line="B_CCM_ANALOG_PLL_MLB_BYPASS":\
-    line="B_CCM_ANALOG_PLL_MLB_VDDA_DELA30":\
-    line="B_CCM_ANALOG_PLL_MLB_VDDD_DELA31":\
-    line="B_CCM_ANALOG_PLL_MLB_RX_CLK_DE32":\
-    line="B_CCM_ANALOG_PLL_MLB_MLB_FLT_R33":\
-    line="B_CCM_ANALOG_PLL_MLB_LOCK":\
-    line="$$":\
-    line="$+":\
     line="=G_CCM_ANALOG_PLL_ENET":\
     line="B_CCM_ANALOG_PLL_ENET_DIV_SELECT":\
     line="B_CCM_ANALOG_PLL_ENET_HALF_LF":\
     line="B_CCM_ANALOG_PLL_ENET_DOUBLE_LF":\
     line="B_CCM_ANALOG_PLL_ENET_HALF_CP":\
     line="B_CCM_ANALOG_PLL_ENET_DOUBLE_CP":\
-    line="B_CCM_ANALOG_PLL_ENET_HOLD_RIN34":\
+    line="B_CCM_ANALOG_PLL_ENET_HOLD_RIN19":\
     line="B_CCM_ANALOG_PLL_ENET_POWERDOWN":\
     line="B_CCM_ANALOG_PLL_ENET_ENABLE":\
-    line="B_CCM_ANALOG_PLL_ENET_BYPASS_C35":\
+    line="B_CCM_ANALOG_PLL_ENET_BYPASS_C20":\
     line="B_CCM_ANALOG_PLL_ENET_BYPASS":\
-    line="B_CCM_ANALOG_PLL_ENET_PFD_OFFS36":\
-    line="B_CCM_ANALOG_PLL_ENET_ENABLE_P37":\
-    line="B_CCM_ANALOG_PLL_ENET_ENABLE_S38":\
+    line="B_CCM_ANALOG_PLL_ENET_PFD_OFFS21":\
+    line="B_CCM_ANALOG_PLL_ENET_ENABLE_122":\
+    line="B_CCM_ANALOG_PLL_ENET_ENABLE_123":\
     line="B_CCM_ANALOG_PLL_ENET_LOCK":\
     line="$$":\
     line="$+":\
     line="=G_CCM_ANALOG_PFD_480":\
     line="B_CCM_ANALOG_PFD_480_PFD0_FRAC":\
     line="B_CCM_ANALOG_PFD_480_PFD0_STABLE":\
-    line="B_CCM_ANALOG_PFD_480_PFD0_CLKG39":\
+    line="B_CCM_ANALOG_PFD_480_PFD0_CLKG24":\
     line="B_CCM_ANALOG_PFD_480_PFD1_FRAC":\
     line="B_CCM_ANALOG_PFD_480_PFD1_STABLE":\
-    line="B_CCM_ANALOG_PFD_480_PFD1_CLKG40":\
+    line="B_CCM_ANALOG_PFD_480_PFD1_CLKG25":\
     line="B_CCM_ANALOG_PFD_480_PFD2_FRAC":\
     line="B_CCM_ANALOG_PFD_480_PFD2_STABLE":\
-    line="B_CCM_ANALOG_PFD_480_PFD2_CLKG41":\
+    line="B_CCM_ANALOG_PFD_480_PFD2_CLKG26":\
     line="B_CCM_ANALOG_PFD_480_PFD3_FRAC":\
     line="B_CCM_ANALOG_PFD_480_PFD3_STABLE":\
-    line="B_CCM_ANALOG_PFD_480_PFD3_CLKG42":\
+    line="B_CCM_ANALOG_PFD_480_PFD3_CLKG27":\
     line="$$":\
     line="$+":\
     line="=G_CCM_ANALOG_PFD_528":\
     line="B_CCM_ANALOG_PFD_528_PFD0_FRAC":\
     line="B_CCM_ANALOG_PFD_528_PFD0_STABLE":\
-    line="B_CCM_ANALOG_PFD_528_PFD0_CLKG43":\
+    line="B_CCM_ANALOG_PFD_528_PFD0_CLKG28":\
     line="B_CCM_ANALOG_PFD_528_PFD1_FRAC":\
     line="B_CCM_ANALOG_PFD_528_PFD1_STABLE":\
-    line="B_CCM_ANALOG_PFD_528_PFD1_CLKG44":\
+    line="B_CCM_ANALOG_PFD_528_PFD1_CLKG29":\
     line="B_CCM_ANALOG_PFD_528_PFD2_FRAC":\
     line="B_CCM_ANALOG_PFD_528_PFD2_STABLE":\
-    line="B_CCM_ANALOG_PFD_528_PFD2_CLKG45":\
+    line="B_CCM_ANALOG_PFD_528_PFD2_CLKG30":\
     line="B_CCM_ANALOG_PFD_528_PFD3_FRAC":\
     line="B_CCM_ANALOG_PFD_528_PFD3_STABLE":\
-    line="B_CCM_ANALOG_PFD_528_PFD3_CLKG46":\
+    line="B_CCM_ANALOG_PFD_528_PFD3_CLKG31":\
+    line="$$":\
+    line="$+":\
+    line="=G_CCM_ANALOG_MISC0":\
+    line="B_CCM_ANALOG_MISC0_STOP_MODE_C32":\
+    line="$$":\
+    line="$+":\
+    line="=G_CCM_ANALOG_MISC2":\
+    line="B_CCM_ANALOG_MISC2_PLL3_DISABLE":\
+    line="B_CCM_ANALOG_MISC2_AUDIO_DIV_LSB":\
+    line="B_CCM_ANALOG_MISC2_AUDIO_DIV_MSB":\
+    line="B_CCM_ANALOG_MISC2_VIDEO_DIV":\
     line="$$":\
   }:ARM_config={}\
 }

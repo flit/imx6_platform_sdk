@@ -52,6 +52,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1 (RW)
@@ -123,15 +138,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS0GCR1_CSEN.
 
 //! @brief Get value of EIM_CS0GCR1_CSEN from a register value.
-#define BG_EIM_CS0GCR1_CSEN(r)   (((r) & BM_EIM_CS0GCR1_CSEN) >> BP_EIM_CS0GCR1_CSEN)
+#define BG_EIM_CS0GCR1_CSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_CSEN) >> BP_EIM_CS0GCR1_CSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_CSEN.
-#define BF_EIM_CS0GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CSEN) & BM_EIM_CS0GCR1_CSEN)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_CSEN.
-#define BF_EIM_CS0GCR1_CSEN(v)   (((v) << BP_EIM_CS0GCR1_CSEN) & BM_EIM_CS0GCR1_CSEN)
-#endif
+#define BF_EIM_CS0GCR1_CSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_CSEN) & BM_EIM_CS0GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
@@ -154,15 +164,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS0GCR1_SWR.
 
 //! @brief Get value of EIM_CS0GCR1_SWR from a register value.
-#define BG_EIM_CS0GCR1_SWR(r)   (((r) & BM_EIM_CS0GCR1_SWR) >> BP_EIM_CS0GCR1_SWR)
+#define BG_EIM_CS0GCR1_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_SWR) >> BP_EIM_CS0GCR1_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_SWR.
-#define BF_EIM_CS0GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SWR) & BM_EIM_CS0GCR1_SWR)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_SWR.
-#define BF_EIM_CS0GCR1_SWR(v)   (((v) << BP_EIM_CS0GCR1_SWR) & BM_EIM_CS0GCR1_SWR)
-#endif
+#define BF_EIM_CS0GCR1_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_SWR) & BM_EIM_CS0GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -185,15 +190,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS0GCR1_SRD.
 
 //! @brief Get value of EIM_CS0GCR1_SRD from a register value.
-#define BG_EIM_CS0GCR1_SRD(r)   (((r) & BM_EIM_CS0GCR1_SRD) >> BP_EIM_CS0GCR1_SRD)
+#define BG_EIM_CS0GCR1_SRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_SRD) >> BP_EIM_CS0GCR1_SRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_SRD.
-#define BF_EIM_CS0GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SRD) & BM_EIM_CS0GCR1_SRD)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_SRD.
-#define BF_EIM_CS0GCR1_SRD(v)   (((v) << BP_EIM_CS0GCR1_SRD) & BM_EIM_CS0GCR1_SRD)
-#endif
+#define BF_EIM_CS0GCR1_SRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_SRD) & BM_EIM_CS0GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
@@ -216,15 +216,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS0GCR1_MUM.
 
 //! @brief Get value of EIM_CS0GCR1_MUM from a register value.
-#define BG_EIM_CS0GCR1_MUM(r)   (((r) & BM_EIM_CS0GCR1_MUM) >> BP_EIM_CS0GCR1_MUM)
+#define BG_EIM_CS0GCR1_MUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_MUM) >> BP_EIM_CS0GCR1_MUM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_MUM.
-#define BF_EIM_CS0GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_MUM) & BM_EIM_CS0GCR1_MUM)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_MUM.
-#define BF_EIM_CS0GCR1_MUM(v)   (((v) << BP_EIM_CS0GCR1_MUM) & BM_EIM_CS0GCR1_MUM)
-#endif
+#define BF_EIM_CS0GCR1_MUM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_MUM) & BM_EIM_CS0GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
@@ -250,15 +245,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS0GCR1_WFL.
 
 //! @brief Get value of EIM_CS0GCR1_WFL from a register value.
-#define BG_EIM_CS0GCR1_WFL(r)   (((r) & BM_EIM_CS0GCR1_WFL) >> BP_EIM_CS0GCR1_WFL)
+#define BG_EIM_CS0GCR1_WFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_WFL) >> BP_EIM_CS0GCR1_WFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_WFL.
-#define BF_EIM_CS0GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WFL) & BM_EIM_CS0GCR1_WFL)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_WFL.
-#define BF_EIM_CS0GCR1_WFL(v)   (((v) << BP_EIM_CS0GCR1_WFL) & BM_EIM_CS0GCR1_WFL)
-#endif
+#define BF_EIM_CS0GCR1_WFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_WFL) & BM_EIM_CS0GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
@@ -284,15 +274,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS0GCR1_RFL.
 
 //! @brief Get value of EIM_CS0GCR1_RFL from a register value.
-#define BG_EIM_CS0GCR1_RFL(r)   (((r) & BM_EIM_CS0GCR1_RFL) >> BP_EIM_CS0GCR1_RFL)
+#define BG_EIM_CS0GCR1_RFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_RFL) >> BP_EIM_CS0GCR1_RFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_RFL.
-#define BF_EIM_CS0GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_RFL) & BM_EIM_CS0GCR1_RFL)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_RFL.
-#define BF_EIM_CS0GCR1_RFL(v)   (((v) << BP_EIM_CS0GCR1_RFL) & BM_EIM_CS0GCR1_RFL)
-#endif
+#define BF_EIM_CS0GCR1_RFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_RFL) & BM_EIM_CS0GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
@@ -314,15 +299,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS0GCR1_CRE.
 
 //! @brief Get value of EIM_CS0GCR1_CRE from a register value.
-#define BG_EIM_CS0GCR1_CRE(r)   (((r) & BM_EIM_CS0GCR1_CRE) >> BP_EIM_CS0GCR1_CRE)
+#define BG_EIM_CS0GCR1_CRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_CRE) >> BP_EIM_CS0GCR1_CRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_CRE.
-#define BF_EIM_CS0GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CRE) & BM_EIM_CS0GCR1_CRE)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_CRE.
-#define BF_EIM_CS0GCR1_CRE(v)   (((v) << BP_EIM_CS0GCR1_CRE) & BM_EIM_CS0GCR1_CRE)
-#endif
+#define BF_EIM_CS0GCR1_CRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_CRE) & BM_EIM_CS0GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
@@ -347,15 +327,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS0GCR1_CREP.
 
 //! @brief Get value of EIM_CS0GCR1_CREP from a register value.
-#define BG_EIM_CS0GCR1_CREP(r)   (((r) & BM_EIM_CS0GCR1_CREP) >> BP_EIM_CS0GCR1_CREP)
+#define BG_EIM_CS0GCR1_CREP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_CREP) >> BP_EIM_CS0GCR1_CREP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_CREP.
-#define BF_EIM_CS0GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CREP) & BM_EIM_CS0GCR1_CREP)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_CREP.
-#define BF_EIM_CS0GCR1_CREP(v)   (((v) << BP_EIM_CS0GCR1_CREP) & BM_EIM_CS0GCR1_CREP)
-#endif
+#define BF_EIM_CS0GCR1_CREP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_CREP) & BM_EIM_CS0GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
@@ -389,15 +364,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS0GCR1_BL.
 
 //! @brief Get value of EIM_CS0GCR1_BL from a register value.
-#define BG_EIM_CS0GCR1_BL(r)   (((r) & BM_EIM_CS0GCR1_BL) >> BP_EIM_CS0GCR1_BL)
+#define BG_EIM_CS0GCR1_BL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_BL) >> BP_EIM_CS0GCR1_BL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_BL.
-#define BF_EIM_CS0GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BL) & BM_EIM_CS0GCR1_BL)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_BL.
-#define BF_EIM_CS0GCR1_BL(v)   (((v) << BP_EIM_CS0GCR1_BL) & BM_EIM_CS0GCR1_BL)
-#endif
+#define BF_EIM_CS0GCR1_BL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_BL) & BM_EIM_CS0GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
@@ -419,15 +389,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS0GCR1_WC.
 
 //! @brief Get value of EIM_CS0GCR1_WC from a register value.
-#define BG_EIM_CS0GCR1_WC(r)   (((r) & BM_EIM_CS0GCR1_WC) >> BP_EIM_CS0GCR1_WC)
+#define BG_EIM_CS0GCR1_WC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_WC) >> BP_EIM_CS0GCR1_WC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_WC.
-#define BF_EIM_CS0GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WC) & BM_EIM_CS0GCR1_WC)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_WC.
-#define BF_EIM_CS0GCR1_WC(v)   (((v) << BP_EIM_CS0GCR1_WC) & BM_EIM_CS0GCR1_WC)
-#endif
+#define BF_EIM_CS0GCR1_WC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_WC) & BM_EIM_CS0GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
@@ -453,15 +418,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS0GCR1_BCD.
 
 //! @brief Get value of EIM_CS0GCR1_BCD from a register value.
-#define BG_EIM_CS0GCR1_BCD(r)   (((r) & BM_EIM_CS0GCR1_BCD) >> BP_EIM_CS0GCR1_BCD)
+#define BG_EIM_CS0GCR1_BCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_BCD) >> BP_EIM_CS0GCR1_BCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_BCD.
-#define BF_EIM_CS0GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BCD) & BM_EIM_CS0GCR1_BCD)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_BCD.
-#define BF_EIM_CS0GCR1_BCD(v)   (((v) << BP_EIM_CS0GCR1_BCD) & BM_EIM_CS0GCR1_BCD)
-#endif
+#define BF_EIM_CS0GCR1_BCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_BCD) & BM_EIM_CS0GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
@@ -488,15 +448,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS0GCR1_BCS.
 
 //! @brief Get value of EIM_CS0GCR1_BCS from a register value.
-#define BG_EIM_CS0GCR1_BCS(r)   (((r) & BM_EIM_CS0GCR1_BCS) >> BP_EIM_CS0GCR1_BCS)
+#define BG_EIM_CS0GCR1_BCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_BCS) >> BP_EIM_CS0GCR1_BCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_BCS.
-#define BF_EIM_CS0GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_BCS) & BM_EIM_CS0GCR1_BCS)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_BCS.
-#define BF_EIM_CS0GCR1_BCS(v)   (((v) << BP_EIM_CS0GCR1_BCS) & BM_EIM_CS0GCR1_BCS)
-#endif
+#define BF_EIM_CS0GCR1_BCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_BCS) & BM_EIM_CS0GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
@@ -526,15 +481,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS0GCR1_DSZ.
 
 //! @brief Get value of EIM_CS0GCR1_DSZ from a register value.
-#define BG_EIM_CS0GCR1_DSZ(r)   (((r) & BM_EIM_CS0GCR1_DSZ) >> BP_EIM_CS0GCR1_DSZ)
+#define BG_EIM_CS0GCR1_DSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_DSZ) >> BP_EIM_CS0GCR1_DSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_DSZ.
-#define BF_EIM_CS0GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_DSZ) & BM_EIM_CS0GCR1_DSZ)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_DSZ.
-#define BF_EIM_CS0GCR1_DSZ(v)   (((v) << BP_EIM_CS0GCR1_DSZ) & BM_EIM_CS0GCR1_DSZ)
-#endif
+#define BF_EIM_CS0GCR1_DSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_DSZ) & BM_EIM_CS0GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
@@ -557,15 +507,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS0GCR1_SP.
 
 //! @brief Get value of EIM_CS0GCR1_SP from a register value.
-#define BG_EIM_CS0GCR1_SP(r)   (((r) & BM_EIM_CS0GCR1_SP) >> BP_EIM_CS0GCR1_SP)
+#define BG_EIM_CS0GCR1_SP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_SP) >> BP_EIM_CS0GCR1_SP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_SP.
-#define BF_EIM_CS0GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_SP) & BM_EIM_CS0GCR1_SP)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_SP.
-#define BF_EIM_CS0GCR1_SP(v)   (((v) << BP_EIM_CS0GCR1_SP) & BM_EIM_CS0GCR1_SP)
-#endif
+#define BF_EIM_CS0GCR1_SP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_SP) & BM_EIM_CS0GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
@@ -592,15 +537,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS0GCR1_CSREC.
 
 //! @brief Get value of EIM_CS0GCR1_CSREC from a register value.
-#define BG_EIM_CS0GCR1_CSREC(r)   (((r) & BM_EIM_CS0GCR1_CSREC) >> BP_EIM_CS0GCR1_CSREC)
+#define BG_EIM_CS0GCR1_CSREC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_CSREC) >> BP_EIM_CS0GCR1_CSREC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_CSREC.
-#define BF_EIM_CS0GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_CSREC) & BM_EIM_CS0GCR1_CSREC)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_CSREC.
-#define BF_EIM_CS0GCR1_CSREC(v)   (((v) << BP_EIM_CS0GCR1_CSREC) & BM_EIM_CS0GCR1_CSREC)
-#endif
+#define BF_EIM_CS0GCR1_CSREC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_CSREC) & BM_EIM_CS0GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
@@ -623,15 +563,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS0GCR1_AUS.
 
 //! @brief Get value of EIM_CS0GCR1_AUS from a register value.
-#define BG_EIM_CS0GCR1_AUS(r)   (((r) & BM_EIM_CS0GCR1_AUS) >> BP_EIM_CS0GCR1_AUS)
+#define BG_EIM_CS0GCR1_AUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_AUS) >> BP_EIM_CS0GCR1_AUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_AUS.
-#define BF_EIM_CS0GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_AUS) & BM_EIM_CS0GCR1_AUS)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_AUS.
-#define BF_EIM_CS0GCR1_AUS(v)   (((v) << BP_EIM_CS0GCR1_AUS) & BM_EIM_CS0GCR1_AUS)
-#endif
+#define BF_EIM_CS0GCR1_AUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_AUS) & BM_EIM_CS0GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
@@ -656,15 +591,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS0GCR1_GBC.
 
 //! @brief Get value of EIM_CS0GCR1_GBC from a register value.
-#define BG_EIM_CS0GCR1_GBC(r)   (((r) & BM_EIM_CS0GCR1_GBC) >> BP_EIM_CS0GCR1_GBC)
+#define BG_EIM_CS0GCR1_GBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_GBC) >> BP_EIM_CS0GCR1_GBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_GBC.
-#define BF_EIM_CS0GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_GBC) & BM_EIM_CS0GCR1_GBC)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_GBC.
-#define BF_EIM_CS0GCR1_GBC(v)   (((v) << BP_EIM_CS0GCR1_GBC) & BM_EIM_CS0GCR1_GBC)
-#endif
+#define BF_EIM_CS0GCR1_GBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_GBC) & BM_EIM_CS0GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
@@ -687,15 +617,10 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS0GCR1_WP.
 
 //! @brief Get value of EIM_CS0GCR1_WP from a register value.
-#define BG_EIM_CS0GCR1_WP(r)   (((r) & BM_EIM_CS0GCR1_WP) >> BP_EIM_CS0GCR1_WP)
+#define BG_EIM_CS0GCR1_WP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_WP) >> BP_EIM_CS0GCR1_WP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_WP.
-#define BF_EIM_CS0GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_WP) & BM_EIM_CS0GCR1_WP)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_WP.
-#define BF_EIM_CS0GCR1_WP(v)   (((v) << BP_EIM_CS0GCR1_WP) & BM_EIM_CS0GCR1_WP)
-#endif
+#define BF_EIM_CS0GCR1_WP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_WP) & BM_EIM_CS0GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
@@ -730,21 +655,20 @@ typedef union _hw_eim_cs0gcr1
 #define BM_EIM_CS0GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS0GCR1_PSZ.
 
 //! @brief Get value of EIM_CS0GCR1_PSZ from a register value.
-#define BG_EIM_CS0GCR1_PSZ(r)   (((r) & BM_EIM_CS0GCR1_PSZ) >> BP_EIM_CS0GCR1_PSZ)
+#define BG_EIM_CS0GCR1_PSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR1_PSZ) >> BP_EIM_CS0GCR1_PSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR1_PSZ.
-#define BF_EIM_CS0GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS0GCR1_PSZ) & BM_EIM_CS0GCR1_PSZ)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR1_PSZ.
-#define BF_EIM_CS0GCR1_PSZ(v)   (((v) << BP_EIM_CS0GCR1_PSZ) & BM_EIM_CS0GCR1_PSZ)
-#endif
+#define BF_EIM_CS0GCR1_PSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR1_PSZ) & BM_EIM_CS0GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS0GCR1_PSZ(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_PSZ) | BF_EIM_CS0GCR1_PSZ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0GCR2 - Chip Select n General Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -807,15 +731,10 @@ typedef union _hw_eim_cs0gcr2
 #define BM_EIM_CS0GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS0GCR2_ADH.
 
 //! @brief Get value of EIM_CS0GCR2_ADH from a register value.
-#define BG_EIM_CS0GCR2_ADH(r)   (((r) & BM_EIM_CS0GCR2_ADH) >> BP_EIM_CS0GCR2_ADH)
+#define BG_EIM_CS0GCR2_ADH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR2_ADH) >> BP_EIM_CS0GCR2_ADH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR2_ADH.
-#define BF_EIM_CS0GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_ADH) & BM_EIM_CS0GCR2_ADH)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR2_ADH.
-#define BF_EIM_CS0GCR2_ADH(v)   (((v) << BP_EIM_CS0GCR2_ADH) & BM_EIM_CS0GCR2_ADH)
-#endif
+#define BF_EIM_CS0GCR2_ADH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR2_ADH) & BM_EIM_CS0GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
@@ -843,15 +762,10 @@ typedef union _hw_eim_cs0gcr2
 #define BM_EIM_CS0GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS0GCR2_DAPS.
 
 //! @brief Get value of EIM_CS0GCR2_DAPS from a register value.
-#define BG_EIM_CS0GCR2_DAPS(r)   (((r) & BM_EIM_CS0GCR2_DAPS) >> BP_EIM_CS0GCR2_DAPS)
+#define BG_EIM_CS0GCR2_DAPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR2_DAPS) >> BP_EIM_CS0GCR2_DAPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR2_DAPS.
-#define BF_EIM_CS0GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAPS) & BM_EIM_CS0GCR2_DAPS)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR2_DAPS.
-#define BF_EIM_CS0GCR2_DAPS(v)   (((v) << BP_EIM_CS0GCR2_DAPS) & BM_EIM_CS0GCR2_DAPS)
-#endif
+#define BF_EIM_CS0GCR2_DAPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR2_DAPS) & BM_EIM_CS0GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
@@ -875,15 +789,10 @@ typedef union _hw_eim_cs0gcr2
 #define BM_EIM_CS0GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS0GCR2_DAE.
 
 //! @brief Get value of EIM_CS0GCR2_DAE from a register value.
-#define BG_EIM_CS0GCR2_DAE(r)   (((r) & BM_EIM_CS0GCR2_DAE) >> BP_EIM_CS0GCR2_DAE)
+#define BG_EIM_CS0GCR2_DAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR2_DAE) >> BP_EIM_CS0GCR2_DAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR2_DAE.
-#define BF_EIM_CS0GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAE) & BM_EIM_CS0GCR2_DAE)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR2_DAE.
-#define BF_EIM_CS0GCR2_DAE(v)   (((v) << BP_EIM_CS0GCR2_DAE) & BM_EIM_CS0GCR2_DAE)
-#endif
+#define BF_EIM_CS0GCR2_DAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR2_DAE) & BM_EIM_CS0GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
@@ -906,15 +815,10 @@ typedef union _hw_eim_cs0gcr2
 #define BM_EIM_CS0GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS0GCR2_DAP.
 
 //! @brief Get value of EIM_CS0GCR2_DAP from a register value.
-#define BG_EIM_CS0GCR2_DAP(r)   (((r) & BM_EIM_CS0GCR2_DAP) >> BP_EIM_CS0GCR2_DAP)
+#define BG_EIM_CS0GCR2_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR2_DAP) >> BP_EIM_CS0GCR2_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR2_DAP.
-#define BF_EIM_CS0GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_DAP) & BM_EIM_CS0GCR2_DAP)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR2_DAP.
-#define BF_EIM_CS0GCR2_DAP(v)   (((v) << BP_EIM_CS0GCR2_DAP) & BM_EIM_CS0GCR2_DAP)
-#endif
+#define BF_EIM_CS0GCR2_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR2_DAP) & BM_EIM_CS0GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
@@ -937,21 +841,20 @@ typedef union _hw_eim_cs0gcr2
 #define BM_EIM_CS0GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS0GCR2_MUX16_BYP_GRANT.
 
 //! @brief Get value of EIM_CS0GCR2_MUX16_BYP_GRANT from a register value.
-#define BG_EIM_CS0GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS0GCR2_MUX16_BYP_GRANT)
+#define BG_EIM_CS0GCR2_MUX16_BYP_GRANT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS0GCR2_MUX16_BYP_GRANT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS0GCR2_MUX16_BYP_GRANT) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT)
-#else
-//! @brief Format value for bitfield EIM_CS0GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS0GCR2_MUX16_BYP_GRANT) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT)
-#endif
+#define BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0GCR2_MUX16_BYP_GRANT) & BM_EIM_CS0GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_MUX16_BYP_GRANT) | BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0RCR1 - Chip Select n Read Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1019,15 +922,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS0RCR1_RCSN.
 
 //! @brief Get value of EIM_CS0RCR1_RCSN from a register value.
-#define BG_EIM_CS0RCR1_RCSN(r)   (((r) & BM_EIM_CS0RCR1_RCSN) >> BP_EIM_CS0RCR1_RCSN)
+#define BG_EIM_CS0RCR1_RCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RCSN) >> BP_EIM_CS0RCR1_RCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RCSN.
-#define BF_EIM_CS0RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RCSN) & BM_EIM_CS0RCR1_RCSN)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RCSN.
-#define BF_EIM_CS0RCR1_RCSN(v)   (((v) << BP_EIM_CS0RCR1_RCSN) & BM_EIM_CS0RCR1_RCSN)
-#endif
+#define BF_EIM_CS0RCR1_RCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RCSN) & BM_EIM_CS0RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
@@ -1052,15 +950,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS0RCR1_RCSA.
 
 //! @brief Get value of EIM_CS0RCR1_RCSA from a register value.
-#define BG_EIM_CS0RCR1_RCSA(r)   (((r) & BM_EIM_CS0RCR1_RCSA) >> BP_EIM_CS0RCR1_RCSA)
+#define BG_EIM_CS0RCR1_RCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RCSA) >> BP_EIM_CS0RCR1_RCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RCSA.
-#define BF_EIM_CS0RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RCSA) & BM_EIM_CS0RCR1_RCSA)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RCSA.
-#define BF_EIM_CS0RCR1_RCSA(v)   (((v) << BP_EIM_CS0RCR1_RCSA) & BM_EIM_CS0RCR1_RCSA)
-#endif
+#define BF_EIM_CS0RCR1_RCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RCSA) & BM_EIM_CS0RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
@@ -1085,15 +978,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS0RCR1_OEN.
 
 //! @brief Get value of EIM_CS0RCR1_OEN from a register value.
-#define BG_EIM_CS0RCR1_OEN(r)   (((r) & BM_EIM_CS0RCR1_OEN) >> BP_EIM_CS0RCR1_OEN)
+#define BG_EIM_CS0RCR1_OEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_OEN) >> BP_EIM_CS0RCR1_OEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_OEN.
-#define BF_EIM_CS0RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_OEN) & BM_EIM_CS0RCR1_OEN)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_OEN.
-#define BF_EIM_CS0RCR1_OEN(v)   (((v) << BP_EIM_CS0RCR1_OEN) & BM_EIM_CS0RCR1_OEN)
-#endif
+#define BF_EIM_CS0RCR1_OEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_OEN) & BM_EIM_CS0RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
@@ -1121,15 +1009,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS0RCR1_OEA.
 
 //! @brief Get value of EIM_CS0RCR1_OEA from a register value.
-#define BG_EIM_CS0RCR1_OEA(r)   (((r) & BM_EIM_CS0RCR1_OEA) >> BP_EIM_CS0RCR1_OEA)
+#define BG_EIM_CS0RCR1_OEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_OEA) >> BP_EIM_CS0RCR1_OEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_OEA.
-#define BF_EIM_CS0RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_OEA) & BM_EIM_CS0RCR1_OEA)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_OEA.
-#define BF_EIM_CS0RCR1_OEA(v)   (((v) << BP_EIM_CS0RCR1_OEA) & BM_EIM_CS0RCR1_OEA)
-#endif
+#define BF_EIM_CS0RCR1_OEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_OEA) & BM_EIM_CS0RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
@@ -1153,15 +1036,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS0RCR1_RADVN.
 
 //! @brief Get value of EIM_CS0RCR1_RADVN from a register value.
-#define BG_EIM_CS0RCR1_RADVN(r)   (((r) & BM_EIM_CS0RCR1_RADVN) >> BP_EIM_CS0RCR1_RADVN)
+#define BG_EIM_CS0RCR1_RADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RADVN) >> BP_EIM_CS0RCR1_RADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RADVN.
-#define BF_EIM_CS0RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RADVN) & BM_EIM_CS0RCR1_RADVN)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RADVN.
-#define BF_EIM_CS0RCR1_RADVN(v)   (((v) << BP_EIM_CS0RCR1_RADVN) & BM_EIM_CS0RCR1_RADVN)
-#endif
+#define BF_EIM_CS0RCR1_RADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RADVN) & BM_EIM_CS0RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
@@ -1180,15 +1058,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS0RCR1_RAL.
 
 //! @brief Get value of EIM_CS0RCR1_RAL from a register value.
-#define BG_EIM_CS0RCR1_RAL(r)   (((r) & BM_EIM_CS0RCR1_RAL) >> BP_EIM_CS0RCR1_RAL)
+#define BG_EIM_CS0RCR1_RAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RAL) >> BP_EIM_CS0RCR1_RAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RAL.
-#define BF_EIM_CS0RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RAL) & BM_EIM_CS0RCR1_RAL)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RAL.
-#define BF_EIM_CS0RCR1_RAL(v)   (((v) << BP_EIM_CS0RCR1_RAL) & BM_EIM_CS0RCR1_RAL)
-#endif
+#define BF_EIM_CS0RCR1_RAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RAL) & BM_EIM_CS0RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
@@ -1212,15 +1085,10 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS0RCR1_RADVA.
 
 //! @brief Get value of EIM_CS0RCR1_RADVA from a register value.
-#define BG_EIM_CS0RCR1_RADVA(r)   (((r) & BM_EIM_CS0RCR1_RADVA) >> BP_EIM_CS0RCR1_RADVA)
+#define BG_EIM_CS0RCR1_RADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RADVA) >> BP_EIM_CS0RCR1_RADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RADVA.
-#define BF_EIM_CS0RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RADVA) & BM_EIM_CS0RCR1_RADVA)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RADVA.
-#define BF_EIM_CS0RCR1_RADVA(v)   (((v) << BP_EIM_CS0RCR1_RADVA) & BM_EIM_CS0RCR1_RADVA)
-#endif
+#define BF_EIM_CS0RCR1_RADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RADVA) & BM_EIM_CS0RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
@@ -1258,21 +1126,20 @@ typedef union _hw_eim_cs0rcr1
 #define BM_EIM_CS0RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS0RCR1_RWSC.
 
 //! @brief Get value of EIM_CS0RCR1_RWSC from a register value.
-#define BG_EIM_CS0RCR1_RWSC(r)   (((r) & BM_EIM_CS0RCR1_RWSC) >> BP_EIM_CS0RCR1_RWSC)
+#define BG_EIM_CS0RCR1_RWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR1_RWSC) >> BP_EIM_CS0RCR1_RWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR1_RWSC.
-#define BF_EIM_CS0RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS0RCR1_RWSC) & BM_EIM_CS0RCR1_RWSC)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR1_RWSC.
-#define BF_EIM_CS0RCR1_RWSC(v)   (((v) << BP_EIM_CS0RCR1_RWSC) & BM_EIM_CS0RCR1_RWSC)
-#endif
+#define BF_EIM_CS0RCR1_RWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR1_RWSC) & BM_EIM_CS0RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS0RCR1_RWSC(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RWSC) | BF_EIM_CS0RCR1_RWSC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0RCR2 - Chip Select n Read Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1335,15 +1202,10 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS0RCR2_RBEN.
 
 //! @brief Get value of EIM_CS0RCR2_RBEN from a register value.
-#define BG_EIM_CS0RCR2_RBEN(r)   (((r) & BM_EIM_CS0RCR2_RBEN) >> BP_EIM_CS0RCR2_RBEN)
+#define BG_EIM_CS0RCR2_RBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_RBEN) >> BP_EIM_CS0RCR2_RBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_RBEN.
-#define BF_EIM_CS0RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBEN) & BM_EIM_CS0RCR2_RBEN)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_RBEN.
-#define BF_EIM_CS0RCR2_RBEN(v)   (((v) << BP_EIM_CS0RCR2_RBEN) & BM_EIM_CS0RCR2_RBEN)
-#endif
+#define BF_EIM_CS0RCR2_RBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_RBEN) & BM_EIM_CS0RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
@@ -1364,15 +1226,10 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS0RCR2_RBE.
 
 //! @brief Get value of EIM_CS0RCR2_RBE from a register value.
-#define BG_EIM_CS0RCR2_RBE(r)   (((r) & BM_EIM_CS0RCR2_RBE) >> BP_EIM_CS0RCR2_RBE)
+#define BG_EIM_CS0RCR2_RBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_RBE) >> BP_EIM_CS0RCR2_RBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_RBE.
-#define BF_EIM_CS0RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBE) & BM_EIM_CS0RCR2_RBE)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_RBE.
-#define BF_EIM_CS0RCR2_RBE(v)   (((v) << BP_EIM_CS0RCR2_RBE) & BM_EIM_CS0RCR2_RBE)
-#endif
+#define BF_EIM_CS0RCR2_RBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_RBE) & BM_EIM_CS0RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
@@ -1397,15 +1254,10 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS0RCR2_RBEA.
 
 //! @brief Get value of EIM_CS0RCR2_RBEA from a register value.
-#define BG_EIM_CS0RCR2_RBEA(r)   (((r) & BM_EIM_CS0RCR2_RBEA) >> BP_EIM_CS0RCR2_RBEA)
+#define BG_EIM_CS0RCR2_RBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_RBEA) >> BP_EIM_CS0RCR2_RBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_RBEA.
-#define BF_EIM_CS0RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RBEA) & BM_EIM_CS0RCR2_RBEA)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_RBEA.
-#define BF_EIM_CS0RCR2_RBEA(v)   (((v) << BP_EIM_CS0RCR2_RBEA) & BM_EIM_CS0RCR2_RBEA)
-#endif
+#define BF_EIM_CS0RCR2_RBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_RBEA) & BM_EIM_CS0RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
@@ -1430,15 +1282,10 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS0RCR2_RL.
 
 //! @brief Get value of EIM_CS0RCR2_RL from a register value.
-#define BG_EIM_CS0RCR2_RL(r)   (((r) & BM_EIM_CS0RCR2_RL) >> BP_EIM_CS0RCR2_RL)
+#define BG_EIM_CS0RCR2_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_RL) >> BP_EIM_CS0RCR2_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_RL.
-#define BF_EIM_CS0RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_RL) & BM_EIM_CS0RCR2_RL)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_RL.
-#define BF_EIM_CS0RCR2_RL(v)   (((v) << BP_EIM_CS0RCR2_RL) & BM_EIM_CS0RCR2_RL)
-#endif
+#define BF_EIM_CS0RCR2_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_RL) & BM_EIM_CS0RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -1468,15 +1315,10 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS0RCR2_PAT.
 
 //! @brief Get value of EIM_CS0RCR2_PAT from a register value.
-#define BG_EIM_CS0RCR2_PAT(r)   (((r) & BM_EIM_CS0RCR2_PAT) >> BP_EIM_CS0RCR2_PAT)
+#define BG_EIM_CS0RCR2_PAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_PAT) >> BP_EIM_CS0RCR2_PAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_PAT.
-#define BF_EIM_CS0RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_PAT) & BM_EIM_CS0RCR2_PAT)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_PAT.
-#define BF_EIM_CS0RCR2_PAT(v)   (((v) << BP_EIM_CS0RCR2_PAT) & BM_EIM_CS0RCR2_PAT)
-#endif
+#define BF_EIM_CS0RCR2_PAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_PAT) & BM_EIM_CS0RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
@@ -1497,20 +1339,19 @@ typedef union _hw_eim_cs0rcr2
 #define BM_EIM_CS0RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS0RCR2_APR.
 
 //! @brief Get value of EIM_CS0RCR2_APR from a register value.
-#define BG_EIM_CS0RCR2_APR(r)   (((r) & BM_EIM_CS0RCR2_APR) >> BP_EIM_CS0RCR2_APR)
+#define BG_EIM_CS0RCR2_APR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0RCR2_APR) >> BP_EIM_CS0RCR2_APR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0RCR2_APR.
-#define BF_EIM_CS0RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS0RCR2_APR) & BM_EIM_CS0RCR2_APR)
-#else
-//! @brief Format value for bitfield EIM_CS0RCR2_APR.
-#define BF_EIM_CS0RCR2_APR(v)   (((v) << BP_EIM_CS0RCR2_APR) & BM_EIM_CS0RCR2_APR)
-#endif
+#define BF_EIM_CS0RCR2_APR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0RCR2_APR) & BM_EIM_CS0RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS0RCR2_APR(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_APR) | BF_EIM_CS0RCR2_APR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0WCR1 - Chip Select n Write Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1575,15 +1416,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS0WCR1_WCSN.
 
 //! @brief Get value of EIM_CS0WCR1_WCSN from a register value.
-#define BG_EIM_CS0WCR1_WCSN(r)   (((r) & BM_EIM_CS0WCR1_WCSN) >> BP_EIM_CS0WCR1_WCSN)
+#define BG_EIM_CS0WCR1_WCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WCSN) >> BP_EIM_CS0WCR1_WCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WCSN.
-#define BF_EIM_CS0WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WCSN) & BM_EIM_CS0WCR1_WCSN)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WCSN.
-#define BF_EIM_CS0WCR1_WCSN(v)   (((v) << BP_EIM_CS0WCR1_WCSN) & BM_EIM_CS0WCR1_WCSN)
-#endif
+#define BF_EIM_CS0WCR1_WCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WCSN) & BM_EIM_CS0WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
@@ -1609,15 +1445,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS0WCR1_WCSA.
 
 //! @brief Get value of EIM_CS0WCR1_WCSA from a register value.
-#define BG_EIM_CS0WCR1_WCSA(r)   (((r) & BM_EIM_CS0WCR1_WCSA) >> BP_EIM_CS0WCR1_WCSA)
+#define BG_EIM_CS0WCR1_WCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WCSA) >> BP_EIM_CS0WCR1_WCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WCSA.
-#define BF_EIM_CS0WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WCSA) & BM_EIM_CS0WCR1_WCSA)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WCSA.
-#define BF_EIM_CS0WCR1_WCSA(v)   (((v) << BP_EIM_CS0WCR1_WCSA) & BM_EIM_CS0WCR1_WCSA)
-#endif
+#define BF_EIM_CS0WCR1_WCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WCSA) & BM_EIM_CS0WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
@@ -1643,15 +1474,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS0WCR1_WEN.
 
 //! @brief Get value of EIM_CS0WCR1_WEN from a register value.
-#define BG_EIM_CS0WCR1_WEN(r)   (((r) & BM_EIM_CS0WCR1_WEN) >> BP_EIM_CS0WCR1_WEN)
+#define BG_EIM_CS0WCR1_WEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WEN) >> BP_EIM_CS0WCR1_WEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WEN.
-#define BF_EIM_CS0WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WEN) & BM_EIM_CS0WCR1_WEN)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WEN.
-#define BF_EIM_CS0WCR1_WEN(v)   (((v) << BP_EIM_CS0WCR1_WEN) & BM_EIM_CS0WCR1_WEN)
-#endif
+#define BF_EIM_CS0WCR1_WEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WEN) & BM_EIM_CS0WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
@@ -1678,15 +1504,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS0WCR1_WEA.
 
 //! @brief Get value of EIM_CS0WCR1_WEA from a register value.
-#define BG_EIM_CS0WCR1_WEA(r)   (((r) & BM_EIM_CS0WCR1_WEA) >> BP_EIM_CS0WCR1_WEA)
+#define BG_EIM_CS0WCR1_WEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WEA) >> BP_EIM_CS0WCR1_WEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WEA.
-#define BF_EIM_CS0WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WEA) & BM_EIM_CS0WCR1_WEA)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WEA.
-#define BF_EIM_CS0WCR1_WEA(v)   (((v) << BP_EIM_CS0WCR1_WEA) & BM_EIM_CS0WCR1_WEA)
-#endif
+#define BF_EIM_CS0WCR1_WEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WEA) & BM_EIM_CS0WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
@@ -1709,15 +1530,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS0WCR1_WBEN.
 
 //! @brief Get value of EIM_CS0WCR1_WBEN from a register value.
-#define BG_EIM_CS0WCR1_WBEN(r)   (((r) & BM_EIM_CS0WCR1_WBEN) >> BP_EIM_CS0WCR1_WBEN)
+#define BG_EIM_CS0WCR1_WBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WBEN) >> BP_EIM_CS0WCR1_WBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WBEN.
-#define BF_EIM_CS0WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBEN) & BM_EIM_CS0WCR1_WBEN)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WBEN.
-#define BF_EIM_CS0WCR1_WBEN(v)   (((v) << BP_EIM_CS0WCR1_WBEN) & BM_EIM_CS0WCR1_WBEN)
-#endif
+#define BF_EIM_CS0WCR1_WBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WBEN) & BM_EIM_CS0WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
@@ -1742,15 +1558,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS0WCR1_WBEA.
 
 //! @brief Get value of EIM_CS0WCR1_WBEA from a register value.
-#define BG_EIM_CS0WCR1_WBEA(r)   (((r) & BM_EIM_CS0WCR1_WBEA) >> BP_EIM_CS0WCR1_WBEA)
+#define BG_EIM_CS0WCR1_WBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WBEA) >> BP_EIM_CS0WCR1_WBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WBEA.
-#define BF_EIM_CS0WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBEA) & BM_EIM_CS0WCR1_WBEA)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WBEA.
-#define BF_EIM_CS0WCR1_WBEA(v)   (((v) << BP_EIM_CS0WCR1_WBEA) & BM_EIM_CS0WCR1_WBEA)
-#endif
+#define BF_EIM_CS0WCR1_WBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WBEA) & BM_EIM_CS0WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
@@ -1773,15 +1584,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS0WCR1_WADVN.
 
 //! @brief Get value of EIM_CS0WCR1_WADVN from a register value.
-#define BG_EIM_CS0WCR1_WADVN(r)   (((r) & BM_EIM_CS0WCR1_WADVN) >> BP_EIM_CS0WCR1_WADVN)
+#define BG_EIM_CS0WCR1_WADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WADVN) >> BP_EIM_CS0WCR1_WADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WADVN.
-#define BF_EIM_CS0WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WADVN) & BM_EIM_CS0WCR1_WADVN)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WADVN.
-#define BF_EIM_CS0WCR1_WADVN(v)   (((v) << BP_EIM_CS0WCR1_WADVN) & BM_EIM_CS0WCR1_WADVN)
-#endif
+#define BF_EIM_CS0WCR1_WADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WADVN) & BM_EIM_CS0WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
@@ -1805,15 +1611,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS0WCR1_WADVA.
 
 //! @brief Get value of EIM_CS0WCR1_WADVA from a register value.
-#define BG_EIM_CS0WCR1_WADVA(r)   (((r) & BM_EIM_CS0WCR1_WADVA) >> BP_EIM_CS0WCR1_WADVA)
+#define BG_EIM_CS0WCR1_WADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WADVA) >> BP_EIM_CS0WCR1_WADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WADVA.
-#define BF_EIM_CS0WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WADVA) & BM_EIM_CS0WCR1_WADVA)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WADVA.
-#define BF_EIM_CS0WCR1_WADVA(v)   (((v) << BP_EIM_CS0WCR1_WADVA) & BM_EIM_CS0WCR1_WADVA)
-#endif
+#define BF_EIM_CS0WCR1_WADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WADVA) & BM_EIM_CS0WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
@@ -1850,15 +1651,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS0WCR1_WWSC.
 
 //! @brief Get value of EIM_CS0WCR1_WWSC from a register value.
-#define BG_EIM_CS0WCR1_WWSC(r)   (((r) & BM_EIM_CS0WCR1_WWSC) >> BP_EIM_CS0WCR1_WWSC)
+#define BG_EIM_CS0WCR1_WWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WWSC) >> BP_EIM_CS0WCR1_WWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WWSC.
-#define BF_EIM_CS0WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WWSC) & BM_EIM_CS0WCR1_WWSC)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WWSC.
-#define BF_EIM_CS0WCR1_WWSC(v)   (((v) << BP_EIM_CS0WCR1_WWSC) & BM_EIM_CS0WCR1_WWSC)
-#endif
+#define BF_EIM_CS0WCR1_WWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WWSC) & BM_EIM_CS0WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
@@ -1876,15 +1672,10 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS0WCR1_WBED.
 
 //! @brief Get value of EIM_CS0WCR1_WBED from a register value.
-#define BG_EIM_CS0WCR1_WBED(r)   (((r) & BM_EIM_CS0WCR1_WBED) >> BP_EIM_CS0WCR1_WBED)
+#define BG_EIM_CS0WCR1_WBED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WBED) >> BP_EIM_CS0WCR1_WBED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WBED.
-#define BF_EIM_CS0WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WBED) & BM_EIM_CS0WCR1_WBED)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WBED.
-#define BF_EIM_CS0WCR1_WBED(v)   (((v) << BP_EIM_CS0WCR1_WBED) & BM_EIM_CS0WCR1_WBED)
-#endif
+#define BF_EIM_CS0WCR1_WBED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WBED) & BM_EIM_CS0WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
@@ -1903,20 +1694,19 @@ typedef union _hw_eim_cs0wcr1
 #define BM_EIM_CS0WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS0WCR1_WAL.
 
 //! @brief Get value of EIM_CS0WCR1_WAL from a register value.
-#define BG_EIM_CS0WCR1_WAL(r)   (((r) & BM_EIM_CS0WCR1_WAL) >> BP_EIM_CS0WCR1_WAL)
+#define BG_EIM_CS0WCR1_WAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR1_WAL) >> BP_EIM_CS0WCR1_WAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR1_WAL.
-#define BF_EIM_CS0WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS0WCR1_WAL) & BM_EIM_CS0WCR1_WAL)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR1_WAL.
-#define BF_EIM_CS0WCR1_WAL(v)   (((v) << BP_EIM_CS0WCR1_WAL) & BM_EIM_CS0WCR1_WAL)
-#endif
+#define BF_EIM_CS0WCR1_WAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR1_WAL) & BM_EIM_CS0WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS0WCR1_WAL(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WAL) | BF_EIM_CS0WCR1_WAL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS0WCR2 - Chip Select n Write Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1966,20 +1756,19 @@ typedef union _hw_eim_cs0wcr2
 #define BM_EIM_CS0WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS0WCR2_WBCDD.
 
 //! @brief Get value of EIM_CS0WCR2_WBCDD from a register value.
-#define BG_EIM_CS0WCR2_WBCDD(r)   (((r) & BM_EIM_CS0WCR2_WBCDD) >> BP_EIM_CS0WCR2_WBCDD)
+#define BG_EIM_CS0WCR2_WBCDD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS0WCR2_WBCDD) >> BP_EIM_CS0WCR2_WBCDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS0WCR2_WBCDD.
-#define BF_EIM_CS0WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS0WCR2_WBCDD) & BM_EIM_CS0WCR2_WBCDD)
-#else
-//! @brief Format value for bitfield EIM_CS0WCR2_WBCDD.
-#define BF_EIM_CS0WCR2_WBCDD(v)   (((v) << BP_EIM_CS0WCR2_WBCDD) & BM_EIM_CS0WCR2_WBCDD)
-#endif
+#define BF_EIM_CS0WCR2_WBCDD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS0WCR2_WBCDD) & BM_EIM_CS0WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS0WCR2_WBCDD(v)   (HW_EIM_CS0WCR2_WR((HW_EIM_CS0WCR2_RD() & ~BM_EIM_CS0WCR2_WBCDD) | BF_EIM_CS0WCR2_WBCDD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1GCR1 - Chip Select n General Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2052,15 +1841,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS1GCR1_CSEN.
 
 //! @brief Get value of EIM_CS1GCR1_CSEN from a register value.
-#define BG_EIM_CS1GCR1_CSEN(r)   (((r) & BM_EIM_CS1GCR1_CSEN) >> BP_EIM_CS1GCR1_CSEN)
+#define BG_EIM_CS1GCR1_CSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_CSEN) >> BP_EIM_CS1GCR1_CSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_CSEN.
-#define BF_EIM_CS1GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CSEN) & BM_EIM_CS1GCR1_CSEN)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_CSEN.
-#define BF_EIM_CS1GCR1_CSEN(v)   (((v) << BP_EIM_CS1GCR1_CSEN) & BM_EIM_CS1GCR1_CSEN)
-#endif
+#define BF_EIM_CS1GCR1_CSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_CSEN) & BM_EIM_CS1GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
@@ -2083,15 +1867,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS1GCR1_SWR.
 
 //! @brief Get value of EIM_CS1GCR1_SWR from a register value.
-#define BG_EIM_CS1GCR1_SWR(r)   (((r) & BM_EIM_CS1GCR1_SWR) >> BP_EIM_CS1GCR1_SWR)
+#define BG_EIM_CS1GCR1_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_SWR) >> BP_EIM_CS1GCR1_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_SWR.
-#define BF_EIM_CS1GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SWR) & BM_EIM_CS1GCR1_SWR)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_SWR.
-#define BF_EIM_CS1GCR1_SWR(v)   (((v) << BP_EIM_CS1GCR1_SWR) & BM_EIM_CS1GCR1_SWR)
-#endif
+#define BF_EIM_CS1GCR1_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_SWR) & BM_EIM_CS1GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -2114,15 +1893,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS1GCR1_SRD.
 
 //! @brief Get value of EIM_CS1GCR1_SRD from a register value.
-#define BG_EIM_CS1GCR1_SRD(r)   (((r) & BM_EIM_CS1GCR1_SRD) >> BP_EIM_CS1GCR1_SRD)
+#define BG_EIM_CS1GCR1_SRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_SRD) >> BP_EIM_CS1GCR1_SRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_SRD.
-#define BF_EIM_CS1GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SRD) & BM_EIM_CS1GCR1_SRD)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_SRD.
-#define BF_EIM_CS1GCR1_SRD(v)   (((v) << BP_EIM_CS1GCR1_SRD) & BM_EIM_CS1GCR1_SRD)
-#endif
+#define BF_EIM_CS1GCR1_SRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_SRD) & BM_EIM_CS1GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
@@ -2145,15 +1919,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS1GCR1_MUM.
 
 //! @brief Get value of EIM_CS1GCR1_MUM from a register value.
-#define BG_EIM_CS1GCR1_MUM(r)   (((r) & BM_EIM_CS1GCR1_MUM) >> BP_EIM_CS1GCR1_MUM)
+#define BG_EIM_CS1GCR1_MUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_MUM) >> BP_EIM_CS1GCR1_MUM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_MUM.
-#define BF_EIM_CS1GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_MUM) & BM_EIM_CS1GCR1_MUM)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_MUM.
-#define BF_EIM_CS1GCR1_MUM(v)   (((v) << BP_EIM_CS1GCR1_MUM) & BM_EIM_CS1GCR1_MUM)
-#endif
+#define BF_EIM_CS1GCR1_MUM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_MUM) & BM_EIM_CS1GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
@@ -2179,15 +1948,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS1GCR1_WFL.
 
 //! @brief Get value of EIM_CS1GCR1_WFL from a register value.
-#define BG_EIM_CS1GCR1_WFL(r)   (((r) & BM_EIM_CS1GCR1_WFL) >> BP_EIM_CS1GCR1_WFL)
+#define BG_EIM_CS1GCR1_WFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_WFL) >> BP_EIM_CS1GCR1_WFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_WFL.
-#define BF_EIM_CS1GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WFL) & BM_EIM_CS1GCR1_WFL)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_WFL.
-#define BF_EIM_CS1GCR1_WFL(v)   (((v) << BP_EIM_CS1GCR1_WFL) & BM_EIM_CS1GCR1_WFL)
-#endif
+#define BF_EIM_CS1GCR1_WFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_WFL) & BM_EIM_CS1GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
@@ -2213,15 +1977,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS1GCR1_RFL.
 
 //! @brief Get value of EIM_CS1GCR1_RFL from a register value.
-#define BG_EIM_CS1GCR1_RFL(r)   (((r) & BM_EIM_CS1GCR1_RFL) >> BP_EIM_CS1GCR1_RFL)
+#define BG_EIM_CS1GCR1_RFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_RFL) >> BP_EIM_CS1GCR1_RFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_RFL.
-#define BF_EIM_CS1GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_RFL) & BM_EIM_CS1GCR1_RFL)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_RFL.
-#define BF_EIM_CS1GCR1_RFL(v)   (((v) << BP_EIM_CS1GCR1_RFL) & BM_EIM_CS1GCR1_RFL)
-#endif
+#define BF_EIM_CS1GCR1_RFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_RFL) & BM_EIM_CS1GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
@@ -2243,15 +2002,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS1GCR1_CRE.
 
 //! @brief Get value of EIM_CS1GCR1_CRE from a register value.
-#define BG_EIM_CS1GCR1_CRE(r)   (((r) & BM_EIM_CS1GCR1_CRE) >> BP_EIM_CS1GCR1_CRE)
+#define BG_EIM_CS1GCR1_CRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_CRE) >> BP_EIM_CS1GCR1_CRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_CRE.
-#define BF_EIM_CS1GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CRE) & BM_EIM_CS1GCR1_CRE)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_CRE.
-#define BF_EIM_CS1GCR1_CRE(v)   (((v) << BP_EIM_CS1GCR1_CRE) & BM_EIM_CS1GCR1_CRE)
-#endif
+#define BF_EIM_CS1GCR1_CRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_CRE) & BM_EIM_CS1GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
@@ -2276,15 +2030,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS1GCR1_CREP.
 
 //! @brief Get value of EIM_CS1GCR1_CREP from a register value.
-#define BG_EIM_CS1GCR1_CREP(r)   (((r) & BM_EIM_CS1GCR1_CREP) >> BP_EIM_CS1GCR1_CREP)
+#define BG_EIM_CS1GCR1_CREP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_CREP) >> BP_EIM_CS1GCR1_CREP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_CREP.
-#define BF_EIM_CS1GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CREP) & BM_EIM_CS1GCR1_CREP)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_CREP.
-#define BF_EIM_CS1GCR1_CREP(v)   (((v) << BP_EIM_CS1GCR1_CREP) & BM_EIM_CS1GCR1_CREP)
-#endif
+#define BF_EIM_CS1GCR1_CREP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_CREP) & BM_EIM_CS1GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
@@ -2318,15 +2067,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS1GCR1_BL.
 
 //! @brief Get value of EIM_CS1GCR1_BL from a register value.
-#define BG_EIM_CS1GCR1_BL(r)   (((r) & BM_EIM_CS1GCR1_BL) >> BP_EIM_CS1GCR1_BL)
+#define BG_EIM_CS1GCR1_BL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_BL) >> BP_EIM_CS1GCR1_BL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_BL.
-#define BF_EIM_CS1GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BL) & BM_EIM_CS1GCR1_BL)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_BL.
-#define BF_EIM_CS1GCR1_BL(v)   (((v) << BP_EIM_CS1GCR1_BL) & BM_EIM_CS1GCR1_BL)
-#endif
+#define BF_EIM_CS1GCR1_BL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_BL) & BM_EIM_CS1GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
@@ -2348,15 +2092,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS1GCR1_WC.
 
 //! @brief Get value of EIM_CS1GCR1_WC from a register value.
-#define BG_EIM_CS1GCR1_WC(r)   (((r) & BM_EIM_CS1GCR1_WC) >> BP_EIM_CS1GCR1_WC)
+#define BG_EIM_CS1GCR1_WC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_WC) >> BP_EIM_CS1GCR1_WC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_WC.
-#define BF_EIM_CS1GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WC) & BM_EIM_CS1GCR1_WC)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_WC.
-#define BF_EIM_CS1GCR1_WC(v)   (((v) << BP_EIM_CS1GCR1_WC) & BM_EIM_CS1GCR1_WC)
-#endif
+#define BF_EIM_CS1GCR1_WC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_WC) & BM_EIM_CS1GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
@@ -2382,15 +2121,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS1GCR1_BCD.
 
 //! @brief Get value of EIM_CS1GCR1_BCD from a register value.
-#define BG_EIM_CS1GCR1_BCD(r)   (((r) & BM_EIM_CS1GCR1_BCD) >> BP_EIM_CS1GCR1_BCD)
+#define BG_EIM_CS1GCR1_BCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_BCD) >> BP_EIM_CS1GCR1_BCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_BCD.
-#define BF_EIM_CS1GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BCD) & BM_EIM_CS1GCR1_BCD)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_BCD.
-#define BF_EIM_CS1GCR1_BCD(v)   (((v) << BP_EIM_CS1GCR1_BCD) & BM_EIM_CS1GCR1_BCD)
-#endif
+#define BF_EIM_CS1GCR1_BCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_BCD) & BM_EIM_CS1GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
@@ -2417,15 +2151,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS1GCR1_BCS.
 
 //! @brief Get value of EIM_CS1GCR1_BCS from a register value.
-#define BG_EIM_CS1GCR1_BCS(r)   (((r) & BM_EIM_CS1GCR1_BCS) >> BP_EIM_CS1GCR1_BCS)
+#define BG_EIM_CS1GCR1_BCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_BCS) >> BP_EIM_CS1GCR1_BCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_BCS.
-#define BF_EIM_CS1GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_BCS) & BM_EIM_CS1GCR1_BCS)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_BCS.
-#define BF_EIM_CS1GCR1_BCS(v)   (((v) << BP_EIM_CS1GCR1_BCS) & BM_EIM_CS1GCR1_BCS)
-#endif
+#define BF_EIM_CS1GCR1_BCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_BCS) & BM_EIM_CS1GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
@@ -2455,15 +2184,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS1GCR1_DSZ.
 
 //! @brief Get value of EIM_CS1GCR1_DSZ from a register value.
-#define BG_EIM_CS1GCR1_DSZ(r)   (((r) & BM_EIM_CS1GCR1_DSZ) >> BP_EIM_CS1GCR1_DSZ)
+#define BG_EIM_CS1GCR1_DSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_DSZ) >> BP_EIM_CS1GCR1_DSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_DSZ.
-#define BF_EIM_CS1GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_DSZ) & BM_EIM_CS1GCR1_DSZ)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_DSZ.
-#define BF_EIM_CS1GCR1_DSZ(v)   (((v) << BP_EIM_CS1GCR1_DSZ) & BM_EIM_CS1GCR1_DSZ)
-#endif
+#define BF_EIM_CS1GCR1_DSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_DSZ) & BM_EIM_CS1GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
@@ -2486,15 +2210,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS1GCR1_SP.
 
 //! @brief Get value of EIM_CS1GCR1_SP from a register value.
-#define BG_EIM_CS1GCR1_SP(r)   (((r) & BM_EIM_CS1GCR1_SP) >> BP_EIM_CS1GCR1_SP)
+#define BG_EIM_CS1GCR1_SP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_SP) >> BP_EIM_CS1GCR1_SP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_SP.
-#define BF_EIM_CS1GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_SP) & BM_EIM_CS1GCR1_SP)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_SP.
-#define BF_EIM_CS1GCR1_SP(v)   (((v) << BP_EIM_CS1GCR1_SP) & BM_EIM_CS1GCR1_SP)
-#endif
+#define BF_EIM_CS1GCR1_SP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_SP) & BM_EIM_CS1GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
@@ -2521,15 +2240,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS1GCR1_CSREC.
 
 //! @brief Get value of EIM_CS1GCR1_CSREC from a register value.
-#define BG_EIM_CS1GCR1_CSREC(r)   (((r) & BM_EIM_CS1GCR1_CSREC) >> BP_EIM_CS1GCR1_CSREC)
+#define BG_EIM_CS1GCR1_CSREC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_CSREC) >> BP_EIM_CS1GCR1_CSREC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_CSREC.
-#define BF_EIM_CS1GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_CSREC) & BM_EIM_CS1GCR1_CSREC)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_CSREC.
-#define BF_EIM_CS1GCR1_CSREC(v)   (((v) << BP_EIM_CS1GCR1_CSREC) & BM_EIM_CS1GCR1_CSREC)
-#endif
+#define BF_EIM_CS1GCR1_CSREC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_CSREC) & BM_EIM_CS1GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
@@ -2552,15 +2266,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS1GCR1_AUS.
 
 //! @brief Get value of EIM_CS1GCR1_AUS from a register value.
-#define BG_EIM_CS1GCR1_AUS(r)   (((r) & BM_EIM_CS1GCR1_AUS) >> BP_EIM_CS1GCR1_AUS)
+#define BG_EIM_CS1GCR1_AUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_AUS) >> BP_EIM_CS1GCR1_AUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_AUS.
-#define BF_EIM_CS1GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_AUS) & BM_EIM_CS1GCR1_AUS)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_AUS.
-#define BF_EIM_CS1GCR1_AUS(v)   (((v) << BP_EIM_CS1GCR1_AUS) & BM_EIM_CS1GCR1_AUS)
-#endif
+#define BF_EIM_CS1GCR1_AUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_AUS) & BM_EIM_CS1GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
@@ -2585,15 +2294,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS1GCR1_GBC.
 
 //! @brief Get value of EIM_CS1GCR1_GBC from a register value.
-#define BG_EIM_CS1GCR1_GBC(r)   (((r) & BM_EIM_CS1GCR1_GBC) >> BP_EIM_CS1GCR1_GBC)
+#define BG_EIM_CS1GCR1_GBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_GBC) >> BP_EIM_CS1GCR1_GBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_GBC.
-#define BF_EIM_CS1GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_GBC) & BM_EIM_CS1GCR1_GBC)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_GBC.
-#define BF_EIM_CS1GCR1_GBC(v)   (((v) << BP_EIM_CS1GCR1_GBC) & BM_EIM_CS1GCR1_GBC)
-#endif
+#define BF_EIM_CS1GCR1_GBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_GBC) & BM_EIM_CS1GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
@@ -2616,15 +2320,10 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS1GCR1_WP.
 
 //! @brief Get value of EIM_CS1GCR1_WP from a register value.
-#define BG_EIM_CS1GCR1_WP(r)   (((r) & BM_EIM_CS1GCR1_WP) >> BP_EIM_CS1GCR1_WP)
+#define BG_EIM_CS1GCR1_WP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_WP) >> BP_EIM_CS1GCR1_WP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_WP.
-#define BF_EIM_CS1GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_WP) & BM_EIM_CS1GCR1_WP)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_WP.
-#define BF_EIM_CS1GCR1_WP(v)   (((v) << BP_EIM_CS1GCR1_WP) & BM_EIM_CS1GCR1_WP)
-#endif
+#define BF_EIM_CS1GCR1_WP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_WP) & BM_EIM_CS1GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
@@ -2659,21 +2358,20 @@ typedef union _hw_eim_cs1gcr1
 #define BM_EIM_CS1GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS1GCR1_PSZ.
 
 //! @brief Get value of EIM_CS1GCR1_PSZ from a register value.
-#define BG_EIM_CS1GCR1_PSZ(r)   (((r) & BM_EIM_CS1GCR1_PSZ) >> BP_EIM_CS1GCR1_PSZ)
+#define BG_EIM_CS1GCR1_PSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR1_PSZ) >> BP_EIM_CS1GCR1_PSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR1_PSZ.
-#define BF_EIM_CS1GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS1GCR1_PSZ) & BM_EIM_CS1GCR1_PSZ)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR1_PSZ.
-#define BF_EIM_CS1GCR1_PSZ(v)   (((v) << BP_EIM_CS1GCR1_PSZ) & BM_EIM_CS1GCR1_PSZ)
-#endif
+#define BF_EIM_CS1GCR1_PSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR1_PSZ) & BM_EIM_CS1GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS1GCR1_PSZ(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_PSZ) | BF_EIM_CS1GCR1_PSZ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1GCR2 - Chip Select n General Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2736,15 +2434,10 @@ typedef union _hw_eim_cs1gcr2
 #define BM_EIM_CS1GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS1GCR2_ADH.
 
 //! @brief Get value of EIM_CS1GCR2_ADH from a register value.
-#define BG_EIM_CS1GCR2_ADH(r)   (((r) & BM_EIM_CS1GCR2_ADH) >> BP_EIM_CS1GCR2_ADH)
+#define BG_EIM_CS1GCR2_ADH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR2_ADH) >> BP_EIM_CS1GCR2_ADH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR2_ADH.
-#define BF_EIM_CS1GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_ADH) & BM_EIM_CS1GCR2_ADH)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR2_ADH.
-#define BF_EIM_CS1GCR2_ADH(v)   (((v) << BP_EIM_CS1GCR2_ADH) & BM_EIM_CS1GCR2_ADH)
-#endif
+#define BF_EIM_CS1GCR2_ADH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR2_ADH) & BM_EIM_CS1GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
@@ -2772,15 +2465,10 @@ typedef union _hw_eim_cs1gcr2
 #define BM_EIM_CS1GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS1GCR2_DAPS.
 
 //! @brief Get value of EIM_CS1GCR2_DAPS from a register value.
-#define BG_EIM_CS1GCR2_DAPS(r)   (((r) & BM_EIM_CS1GCR2_DAPS) >> BP_EIM_CS1GCR2_DAPS)
+#define BG_EIM_CS1GCR2_DAPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR2_DAPS) >> BP_EIM_CS1GCR2_DAPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR2_DAPS.
-#define BF_EIM_CS1GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAPS) & BM_EIM_CS1GCR2_DAPS)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR2_DAPS.
-#define BF_EIM_CS1GCR2_DAPS(v)   (((v) << BP_EIM_CS1GCR2_DAPS) & BM_EIM_CS1GCR2_DAPS)
-#endif
+#define BF_EIM_CS1GCR2_DAPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR2_DAPS) & BM_EIM_CS1GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
@@ -2804,15 +2492,10 @@ typedef union _hw_eim_cs1gcr2
 #define BM_EIM_CS1GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS1GCR2_DAE.
 
 //! @brief Get value of EIM_CS1GCR2_DAE from a register value.
-#define BG_EIM_CS1GCR2_DAE(r)   (((r) & BM_EIM_CS1GCR2_DAE) >> BP_EIM_CS1GCR2_DAE)
+#define BG_EIM_CS1GCR2_DAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR2_DAE) >> BP_EIM_CS1GCR2_DAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR2_DAE.
-#define BF_EIM_CS1GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAE) & BM_EIM_CS1GCR2_DAE)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR2_DAE.
-#define BF_EIM_CS1GCR2_DAE(v)   (((v) << BP_EIM_CS1GCR2_DAE) & BM_EIM_CS1GCR2_DAE)
-#endif
+#define BF_EIM_CS1GCR2_DAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR2_DAE) & BM_EIM_CS1GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
@@ -2835,15 +2518,10 @@ typedef union _hw_eim_cs1gcr2
 #define BM_EIM_CS1GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS1GCR2_DAP.
 
 //! @brief Get value of EIM_CS1GCR2_DAP from a register value.
-#define BG_EIM_CS1GCR2_DAP(r)   (((r) & BM_EIM_CS1GCR2_DAP) >> BP_EIM_CS1GCR2_DAP)
+#define BG_EIM_CS1GCR2_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR2_DAP) >> BP_EIM_CS1GCR2_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR2_DAP.
-#define BF_EIM_CS1GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_DAP) & BM_EIM_CS1GCR2_DAP)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR2_DAP.
-#define BF_EIM_CS1GCR2_DAP(v)   (((v) << BP_EIM_CS1GCR2_DAP) & BM_EIM_CS1GCR2_DAP)
-#endif
+#define BF_EIM_CS1GCR2_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR2_DAP) & BM_EIM_CS1GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
@@ -2866,21 +2544,20 @@ typedef union _hw_eim_cs1gcr2
 #define BM_EIM_CS1GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS1GCR2_MUX16_BYP_GRANT.
 
 //! @brief Get value of EIM_CS1GCR2_MUX16_BYP_GRANT from a register value.
-#define BG_EIM_CS1GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS1GCR2_MUX16_BYP_GRANT)
+#define BG_EIM_CS1GCR2_MUX16_BYP_GRANT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS1GCR2_MUX16_BYP_GRANT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS1GCR2_MUX16_BYP_GRANT) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT)
-#else
-//! @brief Format value for bitfield EIM_CS1GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS1GCR2_MUX16_BYP_GRANT) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT)
-#endif
+#define BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1GCR2_MUX16_BYP_GRANT) & BM_EIM_CS1GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_MUX16_BYP_GRANT) | BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1RCR1 - Chip Select n Read Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2948,15 +2625,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS1RCR1_RCSN.
 
 //! @brief Get value of EIM_CS1RCR1_RCSN from a register value.
-#define BG_EIM_CS1RCR1_RCSN(r)   (((r) & BM_EIM_CS1RCR1_RCSN) >> BP_EIM_CS1RCR1_RCSN)
+#define BG_EIM_CS1RCR1_RCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RCSN) >> BP_EIM_CS1RCR1_RCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RCSN.
-#define BF_EIM_CS1RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RCSN) & BM_EIM_CS1RCR1_RCSN)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RCSN.
-#define BF_EIM_CS1RCR1_RCSN(v)   (((v) << BP_EIM_CS1RCR1_RCSN) & BM_EIM_CS1RCR1_RCSN)
-#endif
+#define BF_EIM_CS1RCR1_RCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RCSN) & BM_EIM_CS1RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
@@ -2981,15 +2653,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS1RCR1_RCSA.
 
 //! @brief Get value of EIM_CS1RCR1_RCSA from a register value.
-#define BG_EIM_CS1RCR1_RCSA(r)   (((r) & BM_EIM_CS1RCR1_RCSA) >> BP_EIM_CS1RCR1_RCSA)
+#define BG_EIM_CS1RCR1_RCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RCSA) >> BP_EIM_CS1RCR1_RCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RCSA.
-#define BF_EIM_CS1RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RCSA) & BM_EIM_CS1RCR1_RCSA)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RCSA.
-#define BF_EIM_CS1RCR1_RCSA(v)   (((v) << BP_EIM_CS1RCR1_RCSA) & BM_EIM_CS1RCR1_RCSA)
-#endif
+#define BF_EIM_CS1RCR1_RCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RCSA) & BM_EIM_CS1RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
@@ -3014,15 +2681,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS1RCR1_OEN.
 
 //! @brief Get value of EIM_CS1RCR1_OEN from a register value.
-#define BG_EIM_CS1RCR1_OEN(r)   (((r) & BM_EIM_CS1RCR1_OEN) >> BP_EIM_CS1RCR1_OEN)
+#define BG_EIM_CS1RCR1_OEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_OEN) >> BP_EIM_CS1RCR1_OEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_OEN.
-#define BF_EIM_CS1RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_OEN) & BM_EIM_CS1RCR1_OEN)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_OEN.
-#define BF_EIM_CS1RCR1_OEN(v)   (((v) << BP_EIM_CS1RCR1_OEN) & BM_EIM_CS1RCR1_OEN)
-#endif
+#define BF_EIM_CS1RCR1_OEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_OEN) & BM_EIM_CS1RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
@@ -3050,15 +2712,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS1RCR1_OEA.
 
 //! @brief Get value of EIM_CS1RCR1_OEA from a register value.
-#define BG_EIM_CS1RCR1_OEA(r)   (((r) & BM_EIM_CS1RCR1_OEA) >> BP_EIM_CS1RCR1_OEA)
+#define BG_EIM_CS1RCR1_OEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_OEA) >> BP_EIM_CS1RCR1_OEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_OEA.
-#define BF_EIM_CS1RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_OEA) & BM_EIM_CS1RCR1_OEA)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_OEA.
-#define BF_EIM_CS1RCR1_OEA(v)   (((v) << BP_EIM_CS1RCR1_OEA) & BM_EIM_CS1RCR1_OEA)
-#endif
+#define BF_EIM_CS1RCR1_OEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_OEA) & BM_EIM_CS1RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
@@ -3082,15 +2739,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS1RCR1_RADVN.
 
 //! @brief Get value of EIM_CS1RCR1_RADVN from a register value.
-#define BG_EIM_CS1RCR1_RADVN(r)   (((r) & BM_EIM_CS1RCR1_RADVN) >> BP_EIM_CS1RCR1_RADVN)
+#define BG_EIM_CS1RCR1_RADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RADVN) >> BP_EIM_CS1RCR1_RADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RADVN.
-#define BF_EIM_CS1RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RADVN) & BM_EIM_CS1RCR1_RADVN)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RADVN.
-#define BF_EIM_CS1RCR1_RADVN(v)   (((v) << BP_EIM_CS1RCR1_RADVN) & BM_EIM_CS1RCR1_RADVN)
-#endif
+#define BF_EIM_CS1RCR1_RADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RADVN) & BM_EIM_CS1RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
@@ -3109,15 +2761,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS1RCR1_RAL.
 
 //! @brief Get value of EIM_CS1RCR1_RAL from a register value.
-#define BG_EIM_CS1RCR1_RAL(r)   (((r) & BM_EIM_CS1RCR1_RAL) >> BP_EIM_CS1RCR1_RAL)
+#define BG_EIM_CS1RCR1_RAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RAL) >> BP_EIM_CS1RCR1_RAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RAL.
-#define BF_EIM_CS1RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RAL) & BM_EIM_CS1RCR1_RAL)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RAL.
-#define BF_EIM_CS1RCR1_RAL(v)   (((v) << BP_EIM_CS1RCR1_RAL) & BM_EIM_CS1RCR1_RAL)
-#endif
+#define BF_EIM_CS1RCR1_RAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RAL) & BM_EIM_CS1RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
@@ -3141,15 +2788,10 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS1RCR1_RADVA.
 
 //! @brief Get value of EIM_CS1RCR1_RADVA from a register value.
-#define BG_EIM_CS1RCR1_RADVA(r)   (((r) & BM_EIM_CS1RCR1_RADVA) >> BP_EIM_CS1RCR1_RADVA)
+#define BG_EIM_CS1RCR1_RADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RADVA) >> BP_EIM_CS1RCR1_RADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RADVA.
-#define BF_EIM_CS1RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RADVA) & BM_EIM_CS1RCR1_RADVA)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RADVA.
-#define BF_EIM_CS1RCR1_RADVA(v)   (((v) << BP_EIM_CS1RCR1_RADVA) & BM_EIM_CS1RCR1_RADVA)
-#endif
+#define BF_EIM_CS1RCR1_RADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RADVA) & BM_EIM_CS1RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
@@ -3187,21 +2829,20 @@ typedef union _hw_eim_cs1rcr1
 #define BM_EIM_CS1RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS1RCR1_RWSC.
 
 //! @brief Get value of EIM_CS1RCR1_RWSC from a register value.
-#define BG_EIM_CS1RCR1_RWSC(r)   (((r) & BM_EIM_CS1RCR1_RWSC) >> BP_EIM_CS1RCR1_RWSC)
+#define BG_EIM_CS1RCR1_RWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR1_RWSC) >> BP_EIM_CS1RCR1_RWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR1_RWSC.
-#define BF_EIM_CS1RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS1RCR1_RWSC) & BM_EIM_CS1RCR1_RWSC)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR1_RWSC.
-#define BF_EIM_CS1RCR1_RWSC(v)   (((v) << BP_EIM_CS1RCR1_RWSC) & BM_EIM_CS1RCR1_RWSC)
-#endif
+#define BF_EIM_CS1RCR1_RWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR1_RWSC) & BM_EIM_CS1RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS1RCR1_RWSC(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RWSC) | BF_EIM_CS1RCR1_RWSC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1RCR2 - Chip Select n Read Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3264,15 +2905,10 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS1RCR2_RBEN.
 
 //! @brief Get value of EIM_CS1RCR2_RBEN from a register value.
-#define BG_EIM_CS1RCR2_RBEN(r)   (((r) & BM_EIM_CS1RCR2_RBEN) >> BP_EIM_CS1RCR2_RBEN)
+#define BG_EIM_CS1RCR2_RBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_RBEN) >> BP_EIM_CS1RCR2_RBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_RBEN.
-#define BF_EIM_CS1RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBEN) & BM_EIM_CS1RCR2_RBEN)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_RBEN.
-#define BF_EIM_CS1RCR2_RBEN(v)   (((v) << BP_EIM_CS1RCR2_RBEN) & BM_EIM_CS1RCR2_RBEN)
-#endif
+#define BF_EIM_CS1RCR2_RBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_RBEN) & BM_EIM_CS1RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
@@ -3293,15 +2929,10 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS1RCR2_RBE.
 
 //! @brief Get value of EIM_CS1RCR2_RBE from a register value.
-#define BG_EIM_CS1RCR2_RBE(r)   (((r) & BM_EIM_CS1RCR2_RBE) >> BP_EIM_CS1RCR2_RBE)
+#define BG_EIM_CS1RCR2_RBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_RBE) >> BP_EIM_CS1RCR2_RBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_RBE.
-#define BF_EIM_CS1RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBE) & BM_EIM_CS1RCR2_RBE)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_RBE.
-#define BF_EIM_CS1RCR2_RBE(v)   (((v) << BP_EIM_CS1RCR2_RBE) & BM_EIM_CS1RCR2_RBE)
-#endif
+#define BF_EIM_CS1RCR2_RBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_RBE) & BM_EIM_CS1RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
@@ -3326,15 +2957,10 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS1RCR2_RBEA.
 
 //! @brief Get value of EIM_CS1RCR2_RBEA from a register value.
-#define BG_EIM_CS1RCR2_RBEA(r)   (((r) & BM_EIM_CS1RCR2_RBEA) >> BP_EIM_CS1RCR2_RBEA)
+#define BG_EIM_CS1RCR2_RBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_RBEA) >> BP_EIM_CS1RCR2_RBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_RBEA.
-#define BF_EIM_CS1RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RBEA) & BM_EIM_CS1RCR2_RBEA)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_RBEA.
-#define BF_EIM_CS1RCR2_RBEA(v)   (((v) << BP_EIM_CS1RCR2_RBEA) & BM_EIM_CS1RCR2_RBEA)
-#endif
+#define BF_EIM_CS1RCR2_RBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_RBEA) & BM_EIM_CS1RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
@@ -3359,15 +2985,10 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS1RCR2_RL.
 
 //! @brief Get value of EIM_CS1RCR2_RL from a register value.
-#define BG_EIM_CS1RCR2_RL(r)   (((r) & BM_EIM_CS1RCR2_RL) >> BP_EIM_CS1RCR2_RL)
+#define BG_EIM_CS1RCR2_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_RL) >> BP_EIM_CS1RCR2_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_RL.
-#define BF_EIM_CS1RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_RL) & BM_EIM_CS1RCR2_RL)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_RL.
-#define BF_EIM_CS1RCR2_RL(v)   (((v) << BP_EIM_CS1RCR2_RL) & BM_EIM_CS1RCR2_RL)
-#endif
+#define BF_EIM_CS1RCR2_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_RL) & BM_EIM_CS1RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -3397,15 +3018,10 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS1RCR2_PAT.
 
 //! @brief Get value of EIM_CS1RCR2_PAT from a register value.
-#define BG_EIM_CS1RCR2_PAT(r)   (((r) & BM_EIM_CS1RCR2_PAT) >> BP_EIM_CS1RCR2_PAT)
+#define BG_EIM_CS1RCR2_PAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_PAT) >> BP_EIM_CS1RCR2_PAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_PAT.
-#define BF_EIM_CS1RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_PAT) & BM_EIM_CS1RCR2_PAT)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_PAT.
-#define BF_EIM_CS1RCR2_PAT(v)   (((v) << BP_EIM_CS1RCR2_PAT) & BM_EIM_CS1RCR2_PAT)
-#endif
+#define BF_EIM_CS1RCR2_PAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_PAT) & BM_EIM_CS1RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
@@ -3426,20 +3042,19 @@ typedef union _hw_eim_cs1rcr2
 #define BM_EIM_CS1RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS1RCR2_APR.
 
 //! @brief Get value of EIM_CS1RCR2_APR from a register value.
-#define BG_EIM_CS1RCR2_APR(r)   (((r) & BM_EIM_CS1RCR2_APR) >> BP_EIM_CS1RCR2_APR)
+#define BG_EIM_CS1RCR2_APR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1RCR2_APR) >> BP_EIM_CS1RCR2_APR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1RCR2_APR.
-#define BF_EIM_CS1RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS1RCR2_APR) & BM_EIM_CS1RCR2_APR)
-#else
-//! @brief Format value for bitfield EIM_CS1RCR2_APR.
-#define BF_EIM_CS1RCR2_APR(v)   (((v) << BP_EIM_CS1RCR2_APR) & BM_EIM_CS1RCR2_APR)
-#endif
+#define BF_EIM_CS1RCR2_APR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1RCR2_APR) & BM_EIM_CS1RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS1RCR2_APR(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_APR) | BF_EIM_CS1RCR2_APR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1WCR1 - Chip Select n Write Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3504,15 +3119,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS1WCR1_WCSN.
 
 //! @brief Get value of EIM_CS1WCR1_WCSN from a register value.
-#define BG_EIM_CS1WCR1_WCSN(r)   (((r) & BM_EIM_CS1WCR1_WCSN) >> BP_EIM_CS1WCR1_WCSN)
+#define BG_EIM_CS1WCR1_WCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WCSN) >> BP_EIM_CS1WCR1_WCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WCSN.
-#define BF_EIM_CS1WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WCSN) & BM_EIM_CS1WCR1_WCSN)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WCSN.
-#define BF_EIM_CS1WCR1_WCSN(v)   (((v) << BP_EIM_CS1WCR1_WCSN) & BM_EIM_CS1WCR1_WCSN)
-#endif
+#define BF_EIM_CS1WCR1_WCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WCSN) & BM_EIM_CS1WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
@@ -3538,15 +3148,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS1WCR1_WCSA.
 
 //! @brief Get value of EIM_CS1WCR1_WCSA from a register value.
-#define BG_EIM_CS1WCR1_WCSA(r)   (((r) & BM_EIM_CS1WCR1_WCSA) >> BP_EIM_CS1WCR1_WCSA)
+#define BG_EIM_CS1WCR1_WCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WCSA) >> BP_EIM_CS1WCR1_WCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WCSA.
-#define BF_EIM_CS1WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WCSA) & BM_EIM_CS1WCR1_WCSA)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WCSA.
-#define BF_EIM_CS1WCR1_WCSA(v)   (((v) << BP_EIM_CS1WCR1_WCSA) & BM_EIM_CS1WCR1_WCSA)
-#endif
+#define BF_EIM_CS1WCR1_WCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WCSA) & BM_EIM_CS1WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
@@ -3572,15 +3177,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS1WCR1_WEN.
 
 //! @brief Get value of EIM_CS1WCR1_WEN from a register value.
-#define BG_EIM_CS1WCR1_WEN(r)   (((r) & BM_EIM_CS1WCR1_WEN) >> BP_EIM_CS1WCR1_WEN)
+#define BG_EIM_CS1WCR1_WEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WEN) >> BP_EIM_CS1WCR1_WEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WEN.
-#define BF_EIM_CS1WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WEN) & BM_EIM_CS1WCR1_WEN)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WEN.
-#define BF_EIM_CS1WCR1_WEN(v)   (((v) << BP_EIM_CS1WCR1_WEN) & BM_EIM_CS1WCR1_WEN)
-#endif
+#define BF_EIM_CS1WCR1_WEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WEN) & BM_EIM_CS1WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
@@ -3607,15 +3207,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS1WCR1_WEA.
 
 //! @brief Get value of EIM_CS1WCR1_WEA from a register value.
-#define BG_EIM_CS1WCR1_WEA(r)   (((r) & BM_EIM_CS1WCR1_WEA) >> BP_EIM_CS1WCR1_WEA)
+#define BG_EIM_CS1WCR1_WEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WEA) >> BP_EIM_CS1WCR1_WEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WEA.
-#define BF_EIM_CS1WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WEA) & BM_EIM_CS1WCR1_WEA)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WEA.
-#define BF_EIM_CS1WCR1_WEA(v)   (((v) << BP_EIM_CS1WCR1_WEA) & BM_EIM_CS1WCR1_WEA)
-#endif
+#define BF_EIM_CS1WCR1_WEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WEA) & BM_EIM_CS1WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
@@ -3638,15 +3233,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS1WCR1_WBEN.
 
 //! @brief Get value of EIM_CS1WCR1_WBEN from a register value.
-#define BG_EIM_CS1WCR1_WBEN(r)   (((r) & BM_EIM_CS1WCR1_WBEN) >> BP_EIM_CS1WCR1_WBEN)
+#define BG_EIM_CS1WCR1_WBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WBEN) >> BP_EIM_CS1WCR1_WBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WBEN.
-#define BF_EIM_CS1WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBEN) & BM_EIM_CS1WCR1_WBEN)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WBEN.
-#define BF_EIM_CS1WCR1_WBEN(v)   (((v) << BP_EIM_CS1WCR1_WBEN) & BM_EIM_CS1WCR1_WBEN)
-#endif
+#define BF_EIM_CS1WCR1_WBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WBEN) & BM_EIM_CS1WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
@@ -3671,15 +3261,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS1WCR1_WBEA.
 
 //! @brief Get value of EIM_CS1WCR1_WBEA from a register value.
-#define BG_EIM_CS1WCR1_WBEA(r)   (((r) & BM_EIM_CS1WCR1_WBEA) >> BP_EIM_CS1WCR1_WBEA)
+#define BG_EIM_CS1WCR1_WBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WBEA) >> BP_EIM_CS1WCR1_WBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WBEA.
-#define BF_EIM_CS1WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBEA) & BM_EIM_CS1WCR1_WBEA)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WBEA.
-#define BF_EIM_CS1WCR1_WBEA(v)   (((v) << BP_EIM_CS1WCR1_WBEA) & BM_EIM_CS1WCR1_WBEA)
-#endif
+#define BF_EIM_CS1WCR1_WBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WBEA) & BM_EIM_CS1WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
@@ -3702,15 +3287,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS1WCR1_WADVN.
 
 //! @brief Get value of EIM_CS1WCR1_WADVN from a register value.
-#define BG_EIM_CS1WCR1_WADVN(r)   (((r) & BM_EIM_CS1WCR1_WADVN) >> BP_EIM_CS1WCR1_WADVN)
+#define BG_EIM_CS1WCR1_WADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WADVN) >> BP_EIM_CS1WCR1_WADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WADVN.
-#define BF_EIM_CS1WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WADVN) & BM_EIM_CS1WCR1_WADVN)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WADVN.
-#define BF_EIM_CS1WCR1_WADVN(v)   (((v) << BP_EIM_CS1WCR1_WADVN) & BM_EIM_CS1WCR1_WADVN)
-#endif
+#define BF_EIM_CS1WCR1_WADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WADVN) & BM_EIM_CS1WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
@@ -3734,15 +3314,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS1WCR1_WADVA.
 
 //! @brief Get value of EIM_CS1WCR1_WADVA from a register value.
-#define BG_EIM_CS1WCR1_WADVA(r)   (((r) & BM_EIM_CS1WCR1_WADVA) >> BP_EIM_CS1WCR1_WADVA)
+#define BG_EIM_CS1WCR1_WADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WADVA) >> BP_EIM_CS1WCR1_WADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WADVA.
-#define BF_EIM_CS1WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WADVA) & BM_EIM_CS1WCR1_WADVA)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WADVA.
-#define BF_EIM_CS1WCR1_WADVA(v)   (((v) << BP_EIM_CS1WCR1_WADVA) & BM_EIM_CS1WCR1_WADVA)
-#endif
+#define BF_EIM_CS1WCR1_WADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WADVA) & BM_EIM_CS1WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
@@ -3779,15 +3354,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS1WCR1_WWSC.
 
 //! @brief Get value of EIM_CS1WCR1_WWSC from a register value.
-#define BG_EIM_CS1WCR1_WWSC(r)   (((r) & BM_EIM_CS1WCR1_WWSC) >> BP_EIM_CS1WCR1_WWSC)
+#define BG_EIM_CS1WCR1_WWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WWSC) >> BP_EIM_CS1WCR1_WWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WWSC.
-#define BF_EIM_CS1WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WWSC) & BM_EIM_CS1WCR1_WWSC)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WWSC.
-#define BF_EIM_CS1WCR1_WWSC(v)   (((v) << BP_EIM_CS1WCR1_WWSC) & BM_EIM_CS1WCR1_WWSC)
-#endif
+#define BF_EIM_CS1WCR1_WWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WWSC) & BM_EIM_CS1WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
@@ -3805,15 +3375,10 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS1WCR1_WBED.
 
 //! @brief Get value of EIM_CS1WCR1_WBED from a register value.
-#define BG_EIM_CS1WCR1_WBED(r)   (((r) & BM_EIM_CS1WCR1_WBED) >> BP_EIM_CS1WCR1_WBED)
+#define BG_EIM_CS1WCR1_WBED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WBED) >> BP_EIM_CS1WCR1_WBED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WBED.
-#define BF_EIM_CS1WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WBED) & BM_EIM_CS1WCR1_WBED)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WBED.
-#define BF_EIM_CS1WCR1_WBED(v)   (((v) << BP_EIM_CS1WCR1_WBED) & BM_EIM_CS1WCR1_WBED)
-#endif
+#define BF_EIM_CS1WCR1_WBED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WBED) & BM_EIM_CS1WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
@@ -3832,20 +3397,19 @@ typedef union _hw_eim_cs1wcr1
 #define BM_EIM_CS1WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS1WCR1_WAL.
 
 //! @brief Get value of EIM_CS1WCR1_WAL from a register value.
-#define BG_EIM_CS1WCR1_WAL(r)   (((r) & BM_EIM_CS1WCR1_WAL) >> BP_EIM_CS1WCR1_WAL)
+#define BG_EIM_CS1WCR1_WAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR1_WAL) >> BP_EIM_CS1WCR1_WAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR1_WAL.
-#define BF_EIM_CS1WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS1WCR1_WAL) & BM_EIM_CS1WCR1_WAL)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR1_WAL.
-#define BF_EIM_CS1WCR1_WAL(v)   (((v) << BP_EIM_CS1WCR1_WAL) & BM_EIM_CS1WCR1_WAL)
-#endif
+#define BF_EIM_CS1WCR1_WAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR1_WAL) & BM_EIM_CS1WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS1WCR1_WAL(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WAL) | BF_EIM_CS1WCR1_WAL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS1WCR2 - Chip Select n Write Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3895,20 +3459,19 @@ typedef union _hw_eim_cs1wcr2
 #define BM_EIM_CS1WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS1WCR2_WBCDD.
 
 //! @brief Get value of EIM_CS1WCR2_WBCDD from a register value.
-#define BG_EIM_CS1WCR2_WBCDD(r)   (((r) & BM_EIM_CS1WCR2_WBCDD) >> BP_EIM_CS1WCR2_WBCDD)
+#define BG_EIM_CS1WCR2_WBCDD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS1WCR2_WBCDD) >> BP_EIM_CS1WCR2_WBCDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS1WCR2_WBCDD.
-#define BF_EIM_CS1WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS1WCR2_WBCDD) & BM_EIM_CS1WCR2_WBCDD)
-#else
-//! @brief Format value for bitfield EIM_CS1WCR2_WBCDD.
-#define BF_EIM_CS1WCR2_WBCDD(v)   (((v) << BP_EIM_CS1WCR2_WBCDD) & BM_EIM_CS1WCR2_WBCDD)
-#endif
+#define BF_EIM_CS1WCR2_WBCDD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS1WCR2_WBCDD) & BM_EIM_CS1WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS1WCR2_WBCDD(v)   (HW_EIM_CS1WCR2_WR((HW_EIM_CS1WCR2_RD() & ~BM_EIM_CS1WCR2_WBCDD) | BF_EIM_CS1WCR2_WBCDD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2GCR1 - Chip Select n General Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3981,15 +3544,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS2GCR1_CSEN.
 
 //! @brief Get value of EIM_CS2GCR1_CSEN from a register value.
-#define BG_EIM_CS2GCR1_CSEN(r)   (((r) & BM_EIM_CS2GCR1_CSEN) >> BP_EIM_CS2GCR1_CSEN)
+#define BG_EIM_CS2GCR1_CSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_CSEN) >> BP_EIM_CS2GCR1_CSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_CSEN.
-#define BF_EIM_CS2GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CSEN) & BM_EIM_CS2GCR1_CSEN)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_CSEN.
-#define BF_EIM_CS2GCR1_CSEN(v)   (((v) << BP_EIM_CS2GCR1_CSEN) & BM_EIM_CS2GCR1_CSEN)
-#endif
+#define BF_EIM_CS2GCR1_CSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_CSEN) & BM_EIM_CS2GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
@@ -4012,15 +3570,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS2GCR1_SWR.
 
 //! @brief Get value of EIM_CS2GCR1_SWR from a register value.
-#define BG_EIM_CS2GCR1_SWR(r)   (((r) & BM_EIM_CS2GCR1_SWR) >> BP_EIM_CS2GCR1_SWR)
+#define BG_EIM_CS2GCR1_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_SWR) >> BP_EIM_CS2GCR1_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_SWR.
-#define BF_EIM_CS2GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SWR) & BM_EIM_CS2GCR1_SWR)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_SWR.
-#define BF_EIM_CS2GCR1_SWR(v)   (((v) << BP_EIM_CS2GCR1_SWR) & BM_EIM_CS2GCR1_SWR)
-#endif
+#define BF_EIM_CS2GCR1_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_SWR) & BM_EIM_CS2GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -4043,15 +3596,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS2GCR1_SRD.
 
 //! @brief Get value of EIM_CS2GCR1_SRD from a register value.
-#define BG_EIM_CS2GCR1_SRD(r)   (((r) & BM_EIM_CS2GCR1_SRD) >> BP_EIM_CS2GCR1_SRD)
+#define BG_EIM_CS2GCR1_SRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_SRD) >> BP_EIM_CS2GCR1_SRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_SRD.
-#define BF_EIM_CS2GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SRD) & BM_EIM_CS2GCR1_SRD)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_SRD.
-#define BF_EIM_CS2GCR1_SRD(v)   (((v) << BP_EIM_CS2GCR1_SRD) & BM_EIM_CS2GCR1_SRD)
-#endif
+#define BF_EIM_CS2GCR1_SRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_SRD) & BM_EIM_CS2GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
@@ -4074,15 +3622,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS2GCR1_MUM.
 
 //! @brief Get value of EIM_CS2GCR1_MUM from a register value.
-#define BG_EIM_CS2GCR1_MUM(r)   (((r) & BM_EIM_CS2GCR1_MUM) >> BP_EIM_CS2GCR1_MUM)
+#define BG_EIM_CS2GCR1_MUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_MUM) >> BP_EIM_CS2GCR1_MUM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_MUM.
-#define BF_EIM_CS2GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_MUM) & BM_EIM_CS2GCR1_MUM)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_MUM.
-#define BF_EIM_CS2GCR1_MUM(v)   (((v) << BP_EIM_CS2GCR1_MUM) & BM_EIM_CS2GCR1_MUM)
-#endif
+#define BF_EIM_CS2GCR1_MUM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_MUM) & BM_EIM_CS2GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
@@ -4108,15 +3651,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS2GCR1_WFL.
 
 //! @brief Get value of EIM_CS2GCR1_WFL from a register value.
-#define BG_EIM_CS2GCR1_WFL(r)   (((r) & BM_EIM_CS2GCR1_WFL) >> BP_EIM_CS2GCR1_WFL)
+#define BG_EIM_CS2GCR1_WFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_WFL) >> BP_EIM_CS2GCR1_WFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_WFL.
-#define BF_EIM_CS2GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WFL) & BM_EIM_CS2GCR1_WFL)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_WFL.
-#define BF_EIM_CS2GCR1_WFL(v)   (((v) << BP_EIM_CS2GCR1_WFL) & BM_EIM_CS2GCR1_WFL)
-#endif
+#define BF_EIM_CS2GCR1_WFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_WFL) & BM_EIM_CS2GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
@@ -4142,15 +3680,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS2GCR1_RFL.
 
 //! @brief Get value of EIM_CS2GCR1_RFL from a register value.
-#define BG_EIM_CS2GCR1_RFL(r)   (((r) & BM_EIM_CS2GCR1_RFL) >> BP_EIM_CS2GCR1_RFL)
+#define BG_EIM_CS2GCR1_RFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_RFL) >> BP_EIM_CS2GCR1_RFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_RFL.
-#define BF_EIM_CS2GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_RFL) & BM_EIM_CS2GCR1_RFL)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_RFL.
-#define BF_EIM_CS2GCR1_RFL(v)   (((v) << BP_EIM_CS2GCR1_RFL) & BM_EIM_CS2GCR1_RFL)
-#endif
+#define BF_EIM_CS2GCR1_RFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_RFL) & BM_EIM_CS2GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
@@ -4172,15 +3705,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS2GCR1_CRE.
 
 //! @brief Get value of EIM_CS2GCR1_CRE from a register value.
-#define BG_EIM_CS2GCR1_CRE(r)   (((r) & BM_EIM_CS2GCR1_CRE) >> BP_EIM_CS2GCR1_CRE)
+#define BG_EIM_CS2GCR1_CRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_CRE) >> BP_EIM_CS2GCR1_CRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_CRE.
-#define BF_EIM_CS2GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CRE) & BM_EIM_CS2GCR1_CRE)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_CRE.
-#define BF_EIM_CS2GCR1_CRE(v)   (((v) << BP_EIM_CS2GCR1_CRE) & BM_EIM_CS2GCR1_CRE)
-#endif
+#define BF_EIM_CS2GCR1_CRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_CRE) & BM_EIM_CS2GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
@@ -4205,15 +3733,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS2GCR1_CREP.
 
 //! @brief Get value of EIM_CS2GCR1_CREP from a register value.
-#define BG_EIM_CS2GCR1_CREP(r)   (((r) & BM_EIM_CS2GCR1_CREP) >> BP_EIM_CS2GCR1_CREP)
+#define BG_EIM_CS2GCR1_CREP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_CREP) >> BP_EIM_CS2GCR1_CREP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_CREP.
-#define BF_EIM_CS2GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CREP) & BM_EIM_CS2GCR1_CREP)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_CREP.
-#define BF_EIM_CS2GCR1_CREP(v)   (((v) << BP_EIM_CS2GCR1_CREP) & BM_EIM_CS2GCR1_CREP)
-#endif
+#define BF_EIM_CS2GCR1_CREP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_CREP) & BM_EIM_CS2GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
@@ -4247,15 +3770,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS2GCR1_BL.
 
 //! @brief Get value of EIM_CS2GCR1_BL from a register value.
-#define BG_EIM_CS2GCR1_BL(r)   (((r) & BM_EIM_CS2GCR1_BL) >> BP_EIM_CS2GCR1_BL)
+#define BG_EIM_CS2GCR1_BL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_BL) >> BP_EIM_CS2GCR1_BL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_BL.
-#define BF_EIM_CS2GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BL) & BM_EIM_CS2GCR1_BL)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_BL.
-#define BF_EIM_CS2GCR1_BL(v)   (((v) << BP_EIM_CS2GCR1_BL) & BM_EIM_CS2GCR1_BL)
-#endif
+#define BF_EIM_CS2GCR1_BL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_BL) & BM_EIM_CS2GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
@@ -4277,15 +3795,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS2GCR1_WC.
 
 //! @brief Get value of EIM_CS2GCR1_WC from a register value.
-#define BG_EIM_CS2GCR1_WC(r)   (((r) & BM_EIM_CS2GCR1_WC) >> BP_EIM_CS2GCR1_WC)
+#define BG_EIM_CS2GCR1_WC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_WC) >> BP_EIM_CS2GCR1_WC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_WC.
-#define BF_EIM_CS2GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WC) & BM_EIM_CS2GCR1_WC)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_WC.
-#define BF_EIM_CS2GCR1_WC(v)   (((v) << BP_EIM_CS2GCR1_WC) & BM_EIM_CS2GCR1_WC)
-#endif
+#define BF_EIM_CS2GCR1_WC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_WC) & BM_EIM_CS2GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
@@ -4311,15 +3824,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS2GCR1_BCD.
 
 //! @brief Get value of EIM_CS2GCR1_BCD from a register value.
-#define BG_EIM_CS2GCR1_BCD(r)   (((r) & BM_EIM_CS2GCR1_BCD) >> BP_EIM_CS2GCR1_BCD)
+#define BG_EIM_CS2GCR1_BCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_BCD) >> BP_EIM_CS2GCR1_BCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_BCD.
-#define BF_EIM_CS2GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BCD) & BM_EIM_CS2GCR1_BCD)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_BCD.
-#define BF_EIM_CS2GCR1_BCD(v)   (((v) << BP_EIM_CS2GCR1_BCD) & BM_EIM_CS2GCR1_BCD)
-#endif
+#define BF_EIM_CS2GCR1_BCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_BCD) & BM_EIM_CS2GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
@@ -4346,15 +3854,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS2GCR1_BCS.
 
 //! @brief Get value of EIM_CS2GCR1_BCS from a register value.
-#define BG_EIM_CS2GCR1_BCS(r)   (((r) & BM_EIM_CS2GCR1_BCS) >> BP_EIM_CS2GCR1_BCS)
+#define BG_EIM_CS2GCR1_BCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_BCS) >> BP_EIM_CS2GCR1_BCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_BCS.
-#define BF_EIM_CS2GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_BCS) & BM_EIM_CS2GCR1_BCS)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_BCS.
-#define BF_EIM_CS2GCR1_BCS(v)   (((v) << BP_EIM_CS2GCR1_BCS) & BM_EIM_CS2GCR1_BCS)
-#endif
+#define BF_EIM_CS2GCR1_BCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_BCS) & BM_EIM_CS2GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
@@ -4384,15 +3887,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS2GCR1_DSZ.
 
 //! @brief Get value of EIM_CS2GCR1_DSZ from a register value.
-#define BG_EIM_CS2GCR1_DSZ(r)   (((r) & BM_EIM_CS2GCR1_DSZ) >> BP_EIM_CS2GCR1_DSZ)
+#define BG_EIM_CS2GCR1_DSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_DSZ) >> BP_EIM_CS2GCR1_DSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_DSZ.
-#define BF_EIM_CS2GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_DSZ) & BM_EIM_CS2GCR1_DSZ)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_DSZ.
-#define BF_EIM_CS2GCR1_DSZ(v)   (((v) << BP_EIM_CS2GCR1_DSZ) & BM_EIM_CS2GCR1_DSZ)
-#endif
+#define BF_EIM_CS2GCR1_DSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_DSZ) & BM_EIM_CS2GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
@@ -4415,15 +3913,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS2GCR1_SP.
 
 //! @brief Get value of EIM_CS2GCR1_SP from a register value.
-#define BG_EIM_CS2GCR1_SP(r)   (((r) & BM_EIM_CS2GCR1_SP) >> BP_EIM_CS2GCR1_SP)
+#define BG_EIM_CS2GCR1_SP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_SP) >> BP_EIM_CS2GCR1_SP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_SP.
-#define BF_EIM_CS2GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_SP) & BM_EIM_CS2GCR1_SP)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_SP.
-#define BF_EIM_CS2GCR1_SP(v)   (((v) << BP_EIM_CS2GCR1_SP) & BM_EIM_CS2GCR1_SP)
-#endif
+#define BF_EIM_CS2GCR1_SP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_SP) & BM_EIM_CS2GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
@@ -4450,15 +3943,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS2GCR1_CSREC.
 
 //! @brief Get value of EIM_CS2GCR1_CSREC from a register value.
-#define BG_EIM_CS2GCR1_CSREC(r)   (((r) & BM_EIM_CS2GCR1_CSREC) >> BP_EIM_CS2GCR1_CSREC)
+#define BG_EIM_CS2GCR1_CSREC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_CSREC) >> BP_EIM_CS2GCR1_CSREC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_CSREC.
-#define BF_EIM_CS2GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_CSREC) & BM_EIM_CS2GCR1_CSREC)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_CSREC.
-#define BF_EIM_CS2GCR1_CSREC(v)   (((v) << BP_EIM_CS2GCR1_CSREC) & BM_EIM_CS2GCR1_CSREC)
-#endif
+#define BF_EIM_CS2GCR1_CSREC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_CSREC) & BM_EIM_CS2GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
@@ -4481,15 +3969,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS2GCR1_AUS.
 
 //! @brief Get value of EIM_CS2GCR1_AUS from a register value.
-#define BG_EIM_CS2GCR1_AUS(r)   (((r) & BM_EIM_CS2GCR1_AUS) >> BP_EIM_CS2GCR1_AUS)
+#define BG_EIM_CS2GCR1_AUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_AUS) >> BP_EIM_CS2GCR1_AUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_AUS.
-#define BF_EIM_CS2GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_AUS) & BM_EIM_CS2GCR1_AUS)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_AUS.
-#define BF_EIM_CS2GCR1_AUS(v)   (((v) << BP_EIM_CS2GCR1_AUS) & BM_EIM_CS2GCR1_AUS)
-#endif
+#define BF_EIM_CS2GCR1_AUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_AUS) & BM_EIM_CS2GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
@@ -4514,15 +3997,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS2GCR1_GBC.
 
 //! @brief Get value of EIM_CS2GCR1_GBC from a register value.
-#define BG_EIM_CS2GCR1_GBC(r)   (((r) & BM_EIM_CS2GCR1_GBC) >> BP_EIM_CS2GCR1_GBC)
+#define BG_EIM_CS2GCR1_GBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_GBC) >> BP_EIM_CS2GCR1_GBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_GBC.
-#define BF_EIM_CS2GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_GBC) & BM_EIM_CS2GCR1_GBC)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_GBC.
-#define BF_EIM_CS2GCR1_GBC(v)   (((v) << BP_EIM_CS2GCR1_GBC) & BM_EIM_CS2GCR1_GBC)
-#endif
+#define BF_EIM_CS2GCR1_GBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_GBC) & BM_EIM_CS2GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
@@ -4545,15 +4023,10 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS2GCR1_WP.
 
 //! @brief Get value of EIM_CS2GCR1_WP from a register value.
-#define BG_EIM_CS2GCR1_WP(r)   (((r) & BM_EIM_CS2GCR1_WP) >> BP_EIM_CS2GCR1_WP)
+#define BG_EIM_CS2GCR1_WP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_WP) >> BP_EIM_CS2GCR1_WP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_WP.
-#define BF_EIM_CS2GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_WP) & BM_EIM_CS2GCR1_WP)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_WP.
-#define BF_EIM_CS2GCR1_WP(v)   (((v) << BP_EIM_CS2GCR1_WP) & BM_EIM_CS2GCR1_WP)
-#endif
+#define BF_EIM_CS2GCR1_WP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_WP) & BM_EIM_CS2GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
@@ -4588,21 +4061,20 @@ typedef union _hw_eim_cs2gcr1
 #define BM_EIM_CS2GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS2GCR1_PSZ.
 
 //! @brief Get value of EIM_CS2GCR1_PSZ from a register value.
-#define BG_EIM_CS2GCR1_PSZ(r)   (((r) & BM_EIM_CS2GCR1_PSZ) >> BP_EIM_CS2GCR1_PSZ)
+#define BG_EIM_CS2GCR1_PSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR1_PSZ) >> BP_EIM_CS2GCR1_PSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR1_PSZ.
-#define BF_EIM_CS2GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS2GCR1_PSZ) & BM_EIM_CS2GCR1_PSZ)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR1_PSZ.
-#define BF_EIM_CS2GCR1_PSZ(v)   (((v) << BP_EIM_CS2GCR1_PSZ) & BM_EIM_CS2GCR1_PSZ)
-#endif
+#define BF_EIM_CS2GCR1_PSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR1_PSZ) & BM_EIM_CS2GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS2GCR1_PSZ(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_PSZ) | BF_EIM_CS2GCR1_PSZ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2GCR2 - Chip Select n General Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4665,15 +4137,10 @@ typedef union _hw_eim_cs2gcr2
 #define BM_EIM_CS2GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS2GCR2_ADH.
 
 //! @brief Get value of EIM_CS2GCR2_ADH from a register value.
-#define BG_EIM_CS2GCR2_ADH(r)   (((r) & BM_EIM_CS2GCR2_ADH) >> BP_EIM_CS2GCR2_ADH)
+#define BG_EIM_CS2GCR2_ADH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR2_ADH) >> BP_EIM_CS2GCR2_ADH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR2_ADH.
-#define BF_EIM_CS2GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_ADH) & BM_EIM_CS2GCR2_ADH)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR2_ADH.
-#define BF_EIM_CS2GCR2_ADH(v)   (((v) << BP_EIM_CS2GCR2_ADH) & BM_EIM_CS2GCR2_ADH)
-#endif
+#define BF_EIM_CS2GCR2_ADH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR2_ADH) & BM_EIM_CS2GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
@@ -4701,15 +4168,10 @@ typedef union _hw_eim_cs2gcr2
 #define BM_EIM_CS2GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS2GCR2_DAPS.
 
 //! @brief Get value of EIM_CS2GCR2_DAPS from a register value.
-#define BG_EIM_CS2GCR2_DAPS(r)   (((r) & BM_EIM_CS2GCR2_DAPS) >> BP_EIM_CS2GCR2_DAPS)
+#define BG_EIM_CS2GCR2_DAPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR2_DAPS) >> BP_EIM_CS2GCR2_DAPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR2_DAPS.
-#define BF_EIM_CS2GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAPS) & BM_EIM_CS2GCR2_DAPS)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR2_DAPS.
-#define BF_EIM_CS2GCR2_DAPS(v)   (((v) << BP_EIM_CS2GCR2_DAPS) & BM_EIM_CS2GCR2_DAPS)
-#endif
+#define BF_EIM_CS2GCR2_DAPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR2_DAPS) & BM_EIM_CS2GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
@@ -4733,15 +4195,10 @@ typedef union _hw_eim_cs2gcr2
 #define BM_EIM_CS2GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS2GCR2_DAE.
 
 //! @brief Get value of EIM_CS2GCR2_DAE from a register value.
-#define BG_EIM_CS2GCR2_DAE(r)   (((r) & BM_EIM_CS2GCR2_DAE) >> BP_EIM_CS2GCR2_DAE)
+#define BG_EIM_CS2GCR2_DAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR2_DAE) >> BP_EIM_CS2GCR2_DAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR2_DAE.
-#define BF_EIM_CS2GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAE) & BM_EIM_CS2GCR2_DAE)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR2_DAE.
-#define BF_EIM_CS2GCR2_DAE(v)   (((v) << BP_EIM_CS2GCR2_DAE) & BM_EIM_CS2GCR2_DAE)
-#endif
+#define BF_EIM_CS2GCR2_DAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR2_DAE) & BM_EIM_CS2GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
@@ -4764,15 +4221,10 @@ typedef union _hw_eim_cs2gcr2
 #define BM_EIM_CS2GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS2GCR2_DAP.
 
 //! @brief Get value of EIM_CS2GCR2_DAP from a register value.
-#define BG_EIM_CS2GCR2_DAP(r)   (((r) & BM_EIM_CS2GCR2_DAP) >> BP_EIM_CS2GCR2_DAP)
+#define BG_EIM_CS2GCR2_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR2_DAP) >> BP_EIM_CS2GCR2_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR2_DAP.
-#define BF_EIM_CS2GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_DAP) & BM_EIM_CS2GCR2_DAP)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR2_DAP.
-#define BF_EIM_CS2GCR2_DAP(v)   (((v) << BP_EIM_CS2GCR2_DAP) & BM_EIM_CS2GCR2_DAP)
-#endif
+#define BF_EIM_CS2GCR2_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR2_DAP) & BM_EIM_CS2GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
@@ -4795,21 +4247,20 @@ typedef union _hw_eim_cs2gcr2
 #define BM_EIM_CS2GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS2GCR2_MUX16_BYP_GRANT.
 
 //! @brief Get value of EIM_CS2GCR2_MUX16_BYP_GRANT from a register value.
-#define BG_EIM_CS2GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS2GCR2_MUX16_BYP_GRANT)
+#define BG_EIM_CS2GCR2_MUX16_BYP_GRANT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS2GCR2_MUX16_BYP_GRANT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS2GCR2_MUX16_BYP_GRANT) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT)
-#else
-//! @brief Format value for bitfield EIM_CS2GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS2GCR2_MUX16_BYP_GRANT) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT)
-#endif
+#define BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2GCR2_MUX16_BYP_GRANT) & BM_EIM_CS2GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_MUX16_BYP_GRANT) | BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2RCR1 - Chip Select n Read Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4877,15 +4328,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS2RCR1_RCSN.
 
 //! @brief Get value of EIM_CS2RCR1_RCSN from a register value.
-#define BG_EIM_CS2RCR1_RCSN(r)   (((r) & BM_EIM_CS2RCR1_RCSN) >> BP_EIM_CS2RCR1_RCSN)
+#define BG_EIM_CS2RCR1_RCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RCSN) >> BP_EIM_CS2RCR1_RCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RCSN.
-#define BF_EIM_CS2RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RCSN) & BM_EIM_CS2RCR1_RCSN)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RCSN.
-#define BF_EIM_CS2RCR1_RCSN(v)   (((v) << BP_EIM_CS2RCR1_RCSN) & BM_EIM_CS2RCR1_RCSN)
-#endif
+#define BF_EIM_CS2RCR1_RCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RCSN) & BM_EIM_CS2RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
@@ -4910,15 +4356,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS2RCR1_RCSA.
 
 //! @brief Get value of EIM_CS2RCR1_RCSA from a register value.
-#define BG_EIM_CS2RCR1_RCSA(r)   (((r) & BM_EIM_CS2RCR1_RCSA) >> BP_EIM_CS2RCR1_RCSA)
+#define BG_EIM_CS2RCR1_RCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RCSA) >> BP_EIM_CS2RCR1_RCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RCSA.
-#define BF_EIM_CS2RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RCSA) & BM_EIM_CS2RCR1_RCSA)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RCSA.
-#define BF_EIM_CS2RCR1_RCSA(v)   (((v) << BP_EIM_CS2RCR1_RCSA) & BM_EIM_CS2RCR1_RCSA)
-#endif
+#define BF_EIM_CS2RCR1_RCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RCSA) & BM_EIM_CS2RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
@@ -4943,15 +4384,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS2RCR1_OEN.
 
 //! @brief Get value of EIM_CS2RCR1_OEN from a register value.
-#define BG_EIM_CS2RCR1_OEN(r)   (((r) & BM_EIM_CS2RCR1_OEN) >> BP_EIM_CS2RCR1_OEN)
+#define BG_EIM_CS2RCR1_OEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_OEN) >> BP_EIM_CS2RCR1_OEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_OEN.
-#define BF_EIM_CS2RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_OEN) & BM_EIM_CS2RCR1_OEN)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_OEN.
-#define BF_EIM_CS2RCR1_OEN(v)   (((v) << BP_EIM_CS2RCR1_OEN) & BM_EIM_CS2RCR1_OEN)
-#endif
+#define BF_EIM_CS2RCR1_OEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_OEN) & BM_EIM_CS2RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
@@ -4979,15 +4415,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS2RCR1_OEA.
 
 //! @brief Get value of EIM_CS2RCR1_OEA from a register value.
-#define BG_EIM_CS2RCR1_OEA(r)   (((r) & BM_EIM_CS2RCR1_OEA) >> BP_EIM_CS2RCR1_OEA)
+#define BG_EIM_CS2RCR1_OEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_OEA) >> BP_EIM_CS2RCR1_OEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_OEA.
-#define BF_EIM_CS2RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_OEA) & BM_EIM_CS2RCR1_OEA)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_OEA.
-#define BF_EIM_CS2RCR1_OEA(v)   (((v) << BP_EIM_CS2RCR1_OEA) & BM_EIM_CS2RCR1_OEA)
-#endif
+#define BF_EIM_CS2RCR1_OEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_OEA) & BM_EIM_CS2RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
@@ -5011,15 +4442,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS2RCR1_RADVN.
 
 //! @brief Get value of EIM_CS2RCR1_RADVN from a register value.
-#define BG_EIM_CS2RCR1_RADVN(r)   (((r) & BM_EIM_CS2RCR1_RADVN) >> BP_EIM_CS2RCR1_RADVN)
+#define BG_EIM_CS2RCR1_RADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RADVN) >> BP_EIM_CS2RCR1_RADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RADVN.
-#define BF_EIM_CS2RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RADVN) & BM_EIM_CS2RCR1_RADVN)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RADVN.
-#define BF_EIM_CS2RCR1_RADVN(v)   (((v) << BP_EIM_CS2RCR1_RADVN) & BM_EIM_CS2RCR1_RADVN)
-#endif
+#define BF_EIM_CS2RCR1_RADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RADVN) & BM_EIM_CS2RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
@@ -5038,15 +4464,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS2RCR1_RAL.
 
 //! @brief Get value of EIM_CS2RCR1_RAL from a register value.
-#define BG_EIM_CS2RCR1_RAL(r)   (((r) & BM_EIM_CS2RCR1_RAL) >> BP_EIM_CS2RCR1_RAL)
+#define BG_EIM_CS2RCR1_RAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RAL) >> BP_EIM_CS2RCR1_RAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RAL.
-#define BF_EIM_CS2RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RAL) & BM_EIM_CS2RCR1_RAL)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RAL.
-#define BF_EIM_CS2RCR1_RAL(v)   (((v) << BP_EIM_CS2RCR1_RAL) & BM_EIM_CS2RCR1_RAL)
-#endif
+#define BF_EIM_CS2RCR1_RAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RAL) & BM_EIM_CS2RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
@@ -5070,15 +4491,10 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS2RCR1_RADVA.
 
 //! @brief Get value of EIM_CS2RCR1_RADVA from a register value.
-#define BG_EIM_CS2RCR1_RADVA(r)   (((r) & BM_EIM_CS2RCR1_RADVA) >> BP_EIM_CS2RCR1_RADVA)
+#define BG_EIM_CS2RCR1_RADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RADVA) >> BP_EIM_CS2RCR1_RADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RADVA.
-#define BF_EIM_CS2RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RADVA) & BM_EIM_CS2RCR1_RADVA)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RADVA.
-#define BF_EIM_CS2RCR1_RADVA(v)   (((v) << BP_EIM_CS2RCR1_RADVA) & BM_EIM_CS2RCR1_RADVA)
-#endif
+#define BF_EIM_CS2RCR1_RADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RADVA) & BM_EIM_CS2RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
@@ -5116,21 +4532,20 @@ typedef union _hw_eim_cs2rcr1
 #define BM_EIM_CS2RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS2RCR1_RWSC.
 
 //! @brief Get value of EIM_CS2RCR1_RWSC from a register value.
-#define BG_EIM_CS2RCR1_RWSC(r)   (((r) & BM_EIM_CS2RCR1_RWSC) >> BP_EIM_CS2RCR1_RWSC)
+#define BG_EIM_CS2RCR1_RWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR1_RWSC) >> BP_EIM_CS2RCR1_RWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR1_RWSC.
-#define BF_EIM_CS2RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS2RCR1_RWSC) & BM_EIM_CS2RCR1_RWSC)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR1_RWSC.
-#define BF_EIM_CS2RCR1_RWSC(v)   (((v) << BP_EIM_CS2RCR1_RWSC) & BM_EIM_CS2RCR1_RWSC)
-#endif
+#define BF_EIM_CS2RCR1_RWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR1_RWSC) & BM_EIM_CS2RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS2RCR1_RWSC(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RWSC) | BF_EIM_CS2RCR1_RWSC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2RCR2 - Chip Select n Read Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5193,15 +4608,10 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS2RCR2_RBEN.
 
 //! @brief Get value of EIM_CS2RCR2_RBEN from a register value.
-#define BG_EIM_CS2RCR2_RBEN(r)   (((r) & BM_EIM_CS2RCR2_RBEN) >> BP_EIM_CS2RCR2_RBEN)
+#define BG_EIM_CS2RCR2_RBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_RBEN) >> BP_EIM_CS2RCR2_RBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_RBEN.
-#define BF_EIM_CS2RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBEN) & BM_EIM_CS2RCR2_RBEN)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_RBEN.
-#define BF_EIM_CS2RCR2_RBEN(v)   (((v) << BP_EIM_CS2RCR2_RBEN) & BM_EIM_CS2RCR2_RBEN)
-#endif
+#define BF_EIM_CS2RCR2_RBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_RBEN) & BM_EIM_CS2RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
@@ -5222,15 +4632,10 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS2RCR2_RBE.
 
 //! @brief Get value of EIM_CS2RCR2_RBE from a register value.
-#define BG_EIM_CS2RCR2_RBE(r)   (((r) & BM_EIM_CS2RCR2_RBE) >> BP_EIM_CS2RCR2_RBE)
+#define BG_EIM_CS2RCR2_RBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_RBE) >> BP_EIM_CS2RCR2_RBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_RBE.
-#define BF_EIM_CS2RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBE) & BM_EIM_CS2RCR2_RBE)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_RBE.
-#define BF_EIM_CS2RCR2_RBE(v)   (((v) << BP_EIM_CS2RCR2_RBE) & BM_EIM_CS2RCR2_RBE)
-#endif
+#define BF_EIM_CS2RCR2_RBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_RBE) & BM_EIM_CS2RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
@@ -5255,15 +4660,10 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS2RCR2_RBEA.
 
 //! @brief Get value of EIM_CS2RCR2_RBEA from a register value.
-#define BG_EIM_CS2RCR2_RBEA(r)   (((r) & BM_EIM_CS2RCR2_RBEA) >> BP_EIM_CS2RCR2_RBEA)
+#define BG_EIM_CS2RCR2_RBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_RBEA) >> BP_EIM_CS2RCR2_RBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_RBEA.
-#define BF_EIM_CS2RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RBEA) & BM_EIM_CS2RCR2_RBEA)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_RBEA.
-#define BF_EIM_CS2RCR2_RBEA(v)   (((v) << BP_EIM_CS2RCR2_RBEA) & BM_EIM_CS2RCR2_RBEA)
-#endif
+#define BF_EIM_CS2RCR2_RBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_RBEA) & BM_EIM_CS2RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
@@ -5288,15 +4688,10 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS2RCR2_RL.
 
 //! @brief Get value of EIM_CS2RCR2_RL from a register value.
-#define BG_EIM_CS2RCR2_RL(r)   (((r) & BM_EIM_CS2RCR2_RL) >> BP_EIM_CS2RCR2_RL)
+#define BG_EIM_CS2RCR2_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_RL) >> BP_EIM_CS2RCR2_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_RL.
-#define BF_EIM_CS2RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_RL) & BM_EIM_CS2RCR2_RL)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_RL.
-#define BF_EIM_CS2RCR2_RL(v)   (((v) << BP_EIM_CS2RCR2_RL) & BM_EIM_CS2RCR2_RL)
-#endif
+#define BF_EIM_CS2RCR2_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_RL) & BM_EIM_CS2RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -5326,15 +4721,10 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS2RCR2_PAT.
 
 //! @brief Get value of EIM_CS2RCR2_PAT from a register value.
-#define BG_EIM_CS2RCR2_PAT(r)   (((r) & BM_EIM_CS2RCR2_PAT) >> BP_EIM_CS2RCR2_PAT)
+#define BG_EIM_CS2RCR2_PAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_PAT) >> BP_EIM_CS2RCR2_PAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_PAT.
-#define BF_EIM_CS2RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_PAT) & BM_EIM_CS2RCR2_PAT)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_PAT.
-#define BF_EIM_CS2RCR2_PAT(v)   (((v) << BP_EIM_CS2RCR2_PAT) & BM_EIM_CS2RCR2_PAT)
-#endif
+#define BF_EIM_CS2RCR2_PAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_PAT) & BM_EIM_CS2RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
@@ -5355,20 +4745,19 @@ typedef union _hw_eim_cs2rcr2
 #define BM_EIM_CS2RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS2RCR2_APR.
 
 //! @brief Get value of EIM_CS2RCR2_APR from a register value.
-#define BG_EIM_CS2RCR2_APR(r)   (((r) & BM_EIM_CS2RCR2_APR) >> BP_EIM_CS2RCR2_APR)
+#define BG_EIM_CS2RCR2_APR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2RCR2_APR) >> BP_EIM_CS2RCR2_APR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2RCR2_APR.
-#define BF_EIM_CS2RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS2RCR2_APR) & BM_EIM_CS2RCR2_APR)
-#else
-//! @brief Format value for bitfield EIM_CS2RCR2_APR.
-#define BF_EIM_CS2RCR2_APR(v)   (((v) << BP_EIM_CS2RCR2_APR) & BM_EIM_CS2RCR2_APR)
-#endif
+#define BF_EIM_CS2RCR2_APR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2RCR2_APR) & BM_EIM_CS2RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS2RCR2_APR(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_APR) | BF_EIM_CS2RCR2_APR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2WCR1 - Chip Select n Write Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5433,15 +4822,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS2WCR1_WCSN.
 
 //! @brief Get value of EIM_CS2WCR1_WCSN from a register value.
-#define BG_EIM_CS2WCR1_WCSN(r)   (((r) & BM_EIM_CS2WCR1_WCSN) >> BP_EIM_CS2WCR1_WCSN)
+#define BG_EIM_CS2WCR1_WCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WCSN) >> BP_EIM_CS2WCR1_WCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WCSN.
-#define BF_EIM_CS2WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WCSN) & BM_EIM_CS2WCR1_WCSN)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WCSN.
-#define BF_EIM_CS2WCR1_WCSN(v)   (((v) << BP_EIM_CS2WCR1_WCSN) & BM_EIM_CS2WCR1_WCSN)
-#endif
+#define BF_EIM_CS2WCR1_WCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WCSN) & BM_EIM_CS2WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
@@ -5467,15 +4851,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS2WCR1_WCSA.
 
 //! @brief Get value of EIM_CS2WCR1_WCSA from a register value.
-#define BG_EIM_CS2WCR1_WCSA(r)   (((r) & BM_EIM_CS2WCR1_WCSA) >> BP_EIM_CS2WCR1_WCSA)
+#define BG_EIM_CS2WCR1_WCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WCSA) >> BP_EIM_CS2WCR1_WCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WCSA.
-#define BF_EIM_CS2WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WCSA) & BM_EIM_CS2WCR1_WCSA)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WCSA.
-#define BF_EIM_CS2WCR1_WCSA(v)   (((v) << BP_EIM_CS2WCR1_WCSA) & BM_EIM_CS2WCR1_WCSA)
-#endif
+#define BF_EIM_CS2WCR1_WCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WCSA) & BM_EIM_CS2WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
@@ -5501,15 +4880,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS2WCR1_WEN.
 
 //! @brief Get value of EIM_CS2WCR1_WEN from a register value.
-#define BG_EIM_CS2WCR1_WEN(r)   (((r) & BM_EIM_CS2WCR1_WEN) >> BP_EIM_CS2WCR1_WEN)
+#define BG_EIM_CS2WCR1_WEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WEN) >> BP_EIM_CS2WCR1_WEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WEN.
-#define BF_EIM_CS2WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WEN) & BM_EIM_CS2WCR1_WEN)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WEN.
-#define BF_EIM_CS2WCR1_WEN(v)   (((v) << BP_EIM_CS2WCR1_WEN) & BM_EIM_CS2WCR1_WEN)
-#endif
+#define BF_EIM_CS2WCR1_WEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WEN) & BM_EIM_CS2WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
@@ -5536,15 +4910,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS2WCR1_WEA.
 
 //! @brief Get value of EIM_CS2WCR1_WEA from a register value.
-#define BG_EIM_CS2WCR1_WEA(r)   (((r) & BM_EIM_CS2WCR1_WEA) >> BP_EIM_CS2WCR1_WEA)
+#define BG_EIM_CS2WCR1_WEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WEA) >> BP_EIM_CS2WCR1_WEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WEA.
-#define BF_EIM_CS2WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WEA) & BM_EIM_CS2WCR1_WEA)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WEA.
-#define BF_EIM_CS2WCR1_WEA(v)   (((v) << BP_EIM_CS2WCR1_WEA) & BM_EIM_CS2WCR1_WEA)
-#endif
+#define BF_EIM_CS2WCR1_WEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WEA) & BM_EIM_CS2WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
@@ -5567,15 +4936,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS2WCR1_WBEN.
 
 //! @brief Get value of EIM_CS2WCR1_WBEN from a register value.
-#define BG_EIM_CS2WCR1_WBEN(r)   (((r) & BM_EIM_CS2WCR1_WBEN) >> BP_EIM_CS2WCR1_WBEN)
+#define BG_EIM_CS2WCR1_WBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WBEN) >> BP_EIM_CS2WCR1_WBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WBEN.
-#define BF_EIM_CS2WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBEN) & BM_EIM_CS2WCR1_WBEN)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WBEN.
-#define BF_EIM_CS2WCR1_WBEN(v)   (((v) << BP_EIM_CS2WCR1_WBEN) & BM_EIM_CS2WCR1_WBEN)
-#endif
+#define BF_EIM_CS2WCR1_WBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WBEN) & BM_EIM_CS2WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
@@ -5600,15 +4964,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS2WCR1_WBEA.
 
 //! @brief Get value of EIM_CS2WCR1_WBEA from a register value.
-#define BG_EIM_CS2WCR1_WBEA(r)   (((r) & BM_EIM_CS2WCR1_WBEA) >> BP_EIM_CS2WCR1_WBEA)
+#define BG_EIM_CS2WCR1_WBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WBEA) >> BP_EIM_CS2WCR1_WBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WBEA.
-#define BF_EIM_CS2WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBEA) & BM_EIM_CS2WCR1_WBEA)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WBEA.
-#define BF_EIM_CS2WCR1_WBEA(v)   (((v) << BP_EIM_CS2WCR1_WBEA) & BM_EIM_CS2WCR1_WBEA)
-#endif
+#define BF_EIM_CS2WCR1_WBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WBEA) & BM_EIM_CS2WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
@@ -5631,15 +4990,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS2WCR1_WADVN.
 
 //! @brief Get value of EIM_CS2WCR1_WADVN from a register value.
-#define BG_EIM_CS2WCR1_WADVN(r)   (((r) & BM_EIM_CS2WCR1_WADVN) >> BP_EIM_CS2WCR1_WADVN)
+#define BG_EIM_CS2WCR1_WADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WADVN) >> BP_EIM_CS2WCR1_WADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WADVN.
-#define BF_EIM_CS2WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WADVN) & BM_EIM_CS2WCR1_WADVN)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WADVN.
-#define BF_EIM_CS2WCR1_WADVN(v)   (((v) << BP_EIM_CS2WCR1_WADVN) & BM_EIM_CS2WCR1_WADVN)
-#endif
+#define BF_EIM_CS2WCR1_WADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WADVN) & BM_EIM_CS2WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
@@ -5663,15 +5017,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS2WCR1_WADVA.
 
 //! @brief Get value of EIM_CS2WCR1_WADVA from a register value.
-#define BG_EIM_CS2WCR1_WADVA(r)   (((r) & BM_EIM_CS2WCR1_WADVA) >> BP_EIM_CS2WCR1_WADVA)
+#define BG_EIM_CS2WCR1_WADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WADVA) >> BP_EIM_CS2WCR1_WADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WADVA.
-#define BF_EIM_CS2WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WADVA) & BM_EIM_CS2WCR1_WADVA)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WADVA.
-#define BF_EIM_CS2WCR1_WADVA(v)   (((v) << BP_EIM_CS2WCR1_WADVA) & BM_EIM_CS2WCR1_WADVA)
-#endif
+#define BF_EIM_CS2WCR1_WADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WADVA) & BM_EIM_CS2WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
@@ -5708,15 +5057,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS2WCR1_WWSC.
 
 //! @brief Get value of EIM_CS2WCR1_WWSC from a register value.
-#define BG_EIM_CS2WCR1_WWSC(r)   (((r) & BM_EIM_CS2WCR1_WWSC) >> BP_EIM_CS2WCR1_WWSC)
+#define BG_EIM_CS2WCR1_WWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WWSC) >> BP_EIM_CS2WCR1_WWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WWSC.
-#define BF_EIM_CS2WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WWSC) & BM_EIM_CS2WCR1_WWSC)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WWSC.
-#define BF_EIM_CS2WCR1_WWSC(v)   (((v) << BP_EIM_CS2WCR1_WWSC) & BM_EIM_CS2WCR1_WWSC)
-#endif
+#define BF_EIM_CS2WCR1_WWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WWSC) & BM_EIM_CS2WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
@@ -5734,15 +5078,10 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS2WCR1_WBED.
 
 //! @brief Get value of EIM_CS2WCR1_WBED from a register value.
-#define BG_EIM_CS2WCR1_WBED(r)   (((r) & BM_EIM_CS2WCR1_WBED) >> BP_EIM_CS2WCR1_WBED)
+#define BG_EIM_CS2WCR1_WBED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WBED) >> BP_EIM_CS2WCR1_WBED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WBED.
-#define BF_EIM_CS2WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WBED) & BM_EIM_CS2WCR1_WBED)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WBED.
-#define BF_EIM_CS2WCR1_WBED(v)   (((v) << BP_EIM_CS2WCR1_WBED) & BM_EIM_CS2WCR1_WBED)
-#endif
+#define BF_EIM_CS2WCR1_WBED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WBED) & BM_EIM_CS2WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
@@ -5761,20 +5100,19 @@ typedef union _hw_eim_cs2wcr1
 #define BM_EIM_CS2WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS2WCR1_WAL.
 
 //! @brief Get value of EIM_CS2WCR1_WAL from a register value.
-#define BG_EIM_CS2WCR1_WAL(r)   (((r) & BM_EIM_CS2WCR1_WAL) >> BP_EIM_CS2WCR1_WAL)
+#define BG_EIM_CS2WCR1_WAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR1_WAL) >> BP_EIM_CS2WCR1_WAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR1_WAL.
-#define BF_EIM_CS2WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS2WCR1_WAL) & BM_EIM_CS2WCR1_WAL)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR1_WAL.
-#define BF_EIM_CS2WCR1_WAL(v)   (((v) << BP_EIM_CS2WCR1_WAL) & BM_EIM_CS2WCR1_WAL)
-#endif
+#define BF_EIM_CS2WCR1_WAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR1_WAL) & BM_EIM_CS2WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS2WCR1_WAL(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WAL) | BF_EIM_CS2WCR1_WAL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS2WCR2 - Chip Select n Write Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5824,20 +5162,19 @@ typedef union _hw_eim_cs2wcr2
 #define BM_EIM_CS2WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS2WCR2_WBCDD.
 
 //! @brief Get value of EIM_CS2WCR2_WBCDD from a register value.
-#define BG_EIM_CS2WCR2_WBCDD(r)   (((r) & BM_EIM_CS2WCR2_WBCDD) >> BP_EIM_CS2WCR2_WBCDD)
+#define BG_EIM_CS2WCR2_WBCDD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS2WCR2_WBCDD) >> BP_EIM_CS2WCR2_WBCDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS2WCR2_WBCDD.
-#define BF_EIM_CS2WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS2WCR2_WBCDD) & BM_EIM_CS2WCR2_WBCDD)
-#else
-//! @brief Format value for bitfield EIM_CS2WCR2_WBCDD.
-#define BF_EIM_CS2WCR2_WBCDD(v)   (((v) << BP_EIM_CS2WCR2_WBCDD) & BM_EIM_CS2WCR2_WBCDD)
-#endif
+#define BF_EIM_CS2WCR2_WBCDD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS2WCR2_WBCDD) & BM_EIM_CS2WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS2WCR2_WBCDD(v)   (HW_EIM_CS2WCR2_WR((HW_EIM_CS2WCR2_RD() & ~BM_EIM_CS2WCR2_WBCDD) | BF_EIM_CS2WCR2_WBCDD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3GCR1 - Chip Select n General Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5910,15 +5247,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS3GCR1_CSEN.
 
 //! @brief Get value of EIM_CS3GCR1_CSEN from a register value.
-#define BG_EIM_CS3GCR1_CSEN(r)   (((r) & BM_EIM_CS3GCR1_CSEN) >> BP_EIM_CS3GCR1_CSEN)
+#define BG_EIM_CS3GCR1_CSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_CSEN) >> BP_EIM_CS3GCR1_CSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_CSEN.
-#define BF_EIM_CS3GCR1_CSEN(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CSEN) & BM_EIM_CS3GCR1_CSEN)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_CSEN.
-#define BF_EIM_CS3GCR1_CSEN(v)   (((v) << BP_EIM_CS3GCR1_CSEN) & BM_EIM_CS3GCR1_CSEN)
-#endif
+#define BF_EIM_CS3GCR1_CSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_CSEN) & BM_EIM_CS3GCR1_CSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSEN field to a new value.
@@ -5941,15 +5273,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS3GCR1_SWR.
 
 //! @brief Get value of EIM_CS3GCR1_SWR from a register value.
-#define BG_EIM_CS3GCR1_SWR(r)   (((r) & BM_EIM_CS3GCR1_SWR) >> BP_EIM_CS3GCR1_SWR)
+#define BG_EIM_CS3GCR1_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_SWR) >> BP_EIM_CS3GCR1_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_SWR.
-#define BF_EIM_CS3GCR1_SWR(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SWR) & BM_EIM_CS3GCR1_SWR)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_SWR.
-#define BF_EIM_CS3GCR1_SWR(v)   (((v) << BP_EIM_CS3GCR1_SWR) & BM_EIM_CS3GCR1_SWR)
-#endif
+#define BF_EIM_CS3GCR1_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_SWR) & BM_EIM_CS3GCR1_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -5972,15 +5299,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS3GCR1_SRD.
 
 //! @brief Get value of EIM_CS3GCR1_SRD from a register value.
-#define BG_EIM_CS3GCR1_SRD(r)   (((r) & BM_EIM_CS3GCR1_SRD) >> BP_EIM_CS3GCR1_SRD)
+#define BG_EIM_CS3GCR1_SRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_SRD) >> BP_EIM_CS3GCR1_SRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_SRD.
-#define BF_EIM_CS3GCR1_SRD(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SRD) & BM_EIM_CS3GCR1_SRD)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_SRD.
-#define BF_EIM_CS3GCR1_SRD(v)   (((v) << BP_EIM_CS3GCR1_SRD) & BM_EIM_CS3GCR1_SRD)
-#endif
+#define BF_EIM_CS3GCR1_SRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_SRD) & BM_EIM_CS3GCR1_SRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRD field to a new value.
@@ -6003,15 +5325,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS3GCR1_MUM.
 
 //! @brief Get value of EIM_CS3GCR1_MUM from a register value.
-#define BG_EIM_CS3GCR1_MUM(r)   (((r) & BM_EIM_CS3GCR1_MUM) >> BP_EIM_CS3GCR1_MUM)
+#define BG_EIM_CS3GCR1_MUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_MUM) >> BP_EIM_CS3GCR1_MUM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_MUM.
-#define BF_EIM_CS3GCR1_MUM(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_MUM) & BM_EIM_CS3GCR1_MUM)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_MUM.
-#define BF_EIM_CS3GCR1_MUM(v)   (((v) << BP_EIM_CS3GCR1_MUM) & BM_EIM_CS3GCR1_MUM)
-#endif
+#define BF_EIM_CS3GCR1_MUM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_MUM) & BM_EIM_CS3GCR1_MUM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUM field to a new value.
@@ -6037,15 +5354,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS3GCR1_WFL.
 
 //! @brief Get value of EIM_CS3GCR1_WFL from a register value.
-#define BG_EIM_CS3GCR1_WFL(r)   (((r) & BM_EIM_CS3GCR1_WFL) >> BP_EIM_CS3GCR1_WFL)
+#define BG_EIM_CS3GCR1_WFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_WFL) >> BP_EIM_CS3GCR1_WFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_WFL.
-#define BF_EIM_CS3GCR1_WFL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WFL) & BM_EIM_CS3GCR1_WFL)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_WFL.
-#define BF_EIM_CS3GCR1_WFL(v)   (((v) << BP_EIM_CS3GCR1_WFL) & BM_EIM_CS3GCR1_WFL)
-#endif
+#define BF_EIM_CS3GCR1_WFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_WFL) & BM_EIM_CS3GCR1_WFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFL field to a new value.
@@ -6071,15 +5383,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS3GCR1_RFL.
 
 //! @brief Get value of EIM_CS3GCR1_RFL from a register value.
-#define BG_EIM_CS3GCR1_RFL(r)   (((r) & BM_EIM_CS3GCR1_RFL) >> BP_EIM_CS3GCR1_RFL)
+#define BG_EIM_CS3GCR1_RFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_RFL) >> BP_EIM_CS3GCR1_RFL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_RFL.
-#define BF_EIM_CS3GCR1_RFL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_RFL) & BM_EIM_CS3GCR1_RFL)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_RFL.
-#define BF_EIM_CS3GCR1_RFL(v)   (((v) << BP_EIM_CS3GCR1_RFL) & BM_EIM_CS3GCR1_RFL)
-#endif
+#define BF_EIM_CS3GCR1_RFL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_RFL) & BM_EIM_CS3GCR1_RFL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RFL field to a new value.
@@ -6101,15 +5408,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS3GCR1_CRE.
 
 //! @brief Get value of EIM_CS3GCR1_CRE from a register value.
-#define BG_EIM_CS3GCR1_CRE(r)   (((r) & BM_EIM_CS3GCR1_CRE) >> BP_EIM_CS3GCR1_CRE)
+#define BG_EIM_CS3GCR1_CRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_CRE) >> BP_EIM_CS3GCR1_CRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_CRE.
-#define BF_EIM_CS3GCR1_CRE(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CRE) & BM_EIM_CS3GCR1_CRE)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_CRE.
-#define BF_EIM_CS3GCR1_CRE(v)   (((v) << BP_EIM_CS3GCR1_CRE) & BM_EIM_CS3GCR1_CRE)
-#endif
+#define BF_EIM_CS3GCR1_CRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_CRE) & BM_EIM_CS3GCR1_CRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRE field to a new value.
@@ -6134,15 +5436,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS3GCR1_CREP.
 
 //! @brief Get value of EIM_CS3GCR1_CREP from a register value.
-#define BG_EIM_CS3GCR1_CREP(r)   (((r) & BM_EIM_CS3GCR1_CREP) >> BP_EIM_CS3GCR1_CREP)
+#define BG_EIM_CS3GCR1_CREP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_CREP) >> BP_EIM_CS3GCR1_CREP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_CREP.
-#define BF_EIM_CS3GCR1_CREP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CREP) & BM_EIM_CS3GCR1_CREP)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_CREP.
-#define BF_EIM_CS3GCR1_CREP(v)   (((v) << BP_EIM_CS3GCR1_CREP) & BM_EIM_CS3GCR1_CREP)
-#endif
+#define BF_EIM_CS3GCR1_CREP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_CREP) & BM_EIM_CS3GCR1_CREP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREP field to a new value.
@@ -6176,15 +5473,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS3GCR1_BL.
 
 //! @brief Get value of EIM_CS3GCR1_BL from a register value.
-#define BG_EIM_CS3GCR1_BL(r)   (((r) & BM_EIM_CS3GCR1_BL) >> BP_EIM_CS3GCR1_BL)
+#define BG_EIM_CS3GCR1_BL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_BL) >> BP_EIM_CS3GCR1_BL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_BL.
-#define BF_EIM_CS3GCR1_BL(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BL) & BM_EIM_CS3GCR1_BL)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_BL.
-#define BF_EIM_CS3GCR1_BL(v)   (((v) << BP_EIM_CS3GCR1_BL) & BM_EIM_CS3GCR1_BL)
-#endif
+#define BF_EIM_CS3GCR1_BL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_BL) & BM_EIM_CS3GCR1_BL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
@@ -6206,15 +5498,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS3GCR1_WC.
 
 //! @brief Get value of EIM_CS3GCR1_WC from a register value.
-#define BG_EIM_CS3GCR1_WC(r)   (((r) & BM_EIM_CS3GCR1_WC) >> BP_EIM_CS3GCR1_WC)
+#define BG_EIM_CS3GCR1_WC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_WC) >> BP_EIM_CS3GCR1_WC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_WC.
-#define BF_EIM_CS3GCR1_WC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WC) & BM_EIM_CS3GCR1_WC)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_WC.
-#define BF_EIM_CS3GCR1_WC(v)   (((v) << BP_EIM_CS3GCR1_WC) & BM_EIM_CS3GCR1_WC)
-#endif
+#define BF_EIM_CS3GCR1_WC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_WC) & BM_EIM_CS3GCR1_WC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WC field to a new value.
@@ -6240,15 +5527,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS3GCR1_BCD.
 
 //! @brief Get value of EIM_CS3GCR1_BCD from a register value.
-#define BG_EIM_CS3GCR1_BCD(r)   (((r) & BM_EIM_CS3GCR1_BCD) >> BP_EIM_CS3GCR1_BCD)
+#define BG_EIM_CS3GCR1_BCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_BCD) >> BP_EIM_CS3GCR1_BCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_BCD.
-#define BF_EIM_CS3GCR1_BCD(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BCD) & BM_EIM_CS3GCR1_BCD)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_BCD.
-#define BF_EIM_CS3GCR1_BCD(v)   (((v) << BP_EIM_CS3GCR1_BCD) & BM_EIM_CS3GCR1_BCD)
-#endif
+#define BF_EIM_CS3GCR1_BCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_BCD) & BM_EIM_CS3GCR1_BCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCD field to a new value.
@@ -6275,15 +5557,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS3GCR1_BCS.
 
 //! @brief Get value of EIM_CS3GCR1_BCS from a register value.
-#define BG_EIM_CS3GCR1_BCS(r)   (((r) & BM_EIM_CS3GCR1_BCS) >> BP_EIM_CS3GCR1_BCS)
+#define BG_EIM_CS3GCR1_BCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_BCS) >> BP_EIM_CS3GCR1_BCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_BCS.
-#define BF_EIM_CS3GCR1_BCS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_BCS) & BM_EIM_CS3GCR1_BCS)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_BCS.
-#define BF_EIM_CS3GCR1_BCS(v)   (((v) << BP_EIM_CS3GCR1_BCS) & BM_EIM_CS3GCR1_BCS)
-#endif
+#define BF_EIM_CS3GCR1_BCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_BCS) & BM_EIM_CS3GCR1_BCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCS field to a new value.
@@ -6313,15 +5590,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS3GCR1_DSZ.
 
 //! @brief Get value of EIM_CS3GCR1_DSZ from a register value.
-#define BG_EIM_CS3GCR1_DSZ(r)   (((r) & BM_EIM_CS3GCR1_DSZ) >> BP_EIM_CS3GCR1_DSZ)
+#define BG_EIM_CS3GCR1_DSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_DSZ) >> BP_EIM_CS3GCR1_DSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_DSZ.
-#define BF_EIM_CS3GCR1_DSZ(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_DSZ) & BM_EIM_CS3GCR1_DSZ)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_DSZ.
-#define BF_EIM_CS3GCR1_DSZ(v)   (((v) << BP_EIM_CS3GCR1_DSZ) & BM_EIM_CS3GCR1_DSZ)
-#endif
+#define BF_EIM_CS3GCR1_DSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_DSZ) & BM_EIM_CS3GCR1_DSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSZ field to a new value.
@@ -6344,15 +5616,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS3GCR1_SP.
 
 //! @brief Get value of EIM_CS3GCR1_SP from a register value.
-#define BG_EIM_CS3GCR1_SP(r)   (((r) & BM_EIM_CS3GCR1_SP) >> BP_EIM_CS3GCR1_SP)
+#define BG_EIM_CS3GCR1_SP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_SP) >> BP_EIM_CS3GCR1_SP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_SP.
-#define BF_EIM_CS3GCR1_SP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_SP) & BM_EIM_CS3GCR1_SP)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_SP.
-#define BF_EIM_CS3GCR1_SP(v)   (((v) << BP_EIM_CS3GCR1_SP) & BM_EIM_CS3GCR1_SP)
-#endif
+#define BF_EIM_CS3GCR1_SP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_SP) & BM_EIM_CS3GCR1_SP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SP field to a new value.
@@ -6379,15 +5646,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS3GCR1_CSREC.
 
 //! @brief Get value of EIM_CS3GCR1_CSREC from a register value.
-#define BG_EIM_CS3GCR1_CSREC(r)   (((r) & BM_EIM_CS3GCR1_CSREC) >> BP_EIM_CS3GCR1_CSREC)
+#define BG_EIM_CS3GCR1_CSREC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_CSREC) >> BP_EIM_CS3GCR1_CSREC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_CSREC.
-#define BF_EIM_CS3GCR1_CSREC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_CSREC) & BM_EIM_CS3GCR1_CSREC)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_CSREC.
-#define BF_EIM_CS3GCR1_CSREC(v)   (((v) << BP_EIM_CS3GCR1_CSREC) & BM_EIM_CS3GCR1_CSREC)
-#endif
+#define BF_EIM_CS3GCR1_CSREC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_CSREC) & BM_EIM_CS3GCR1_CSREC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSREC field to a new value.
@@ -6410,15 +5672,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS3GCR1_AUS.
 
 //! @brief Get value of EIM_CS3GCR1_AUS from a register value.
-#define BG_EIM_CS3GCR1_AUS(r)   (((r) & BM_EIM_CS3GCR1_AUS) >> BP_EIM_CS3GCR1_AUS)
+#define BG_EIM_CS3GCR1_AUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_AUS) >> BP_EIM_CS3GCR1_AUS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_AUS.
-#define BF_EIM_CS3GCR1_AUS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_AUS) & BM_EIM_CS3GCR1_AUS)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_AUS.
-#define BF_EIM_CS3GCR1_AUS(v)   (((v) << BP_EIM_CS3GCR1_AUS) & BM_EIM_CS3GCR1_AUS)
-#endif
+#define BF_EIM_CS3GCR1_AUS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_AUS) & BM_EIM_CS3GCR1_AUS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUS field to a new value.
@@ -6443,15 +5700,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS3GCR1_GBC.
 
 //! @brief Get value of EIM_CS3GCR1_GBC from a register value.
-#define BG_EIM_CS3GCR1_GBC(r)   (((r) & BM_EIM_CS3GCR1_GBC) >> BP_EIM_CS3GCR1_GBC)
+#define BG_EIM_CS3GCR1_GBC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_GBC) >> BP_EIM_CS3GCR1_GBC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_GBC.
-#define BF_EIM_CS3GCR1_GBC(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_GBC) & BM_EIM_CS3GCR1_GBC)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_GBC.
-#define BF_EIM_CS3GCR1_GBC(v)   (((v) << BP_EIM_CS3GCR1_GBC) & BM_EIM_CS3GCR1_GBC)
-#endif
+#define BF_EIM_CS3GCR1_GBC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_GBC) & BM_EIM_CS3GCR1_GBC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBC field to a new value.
@@ -6474,15 +5726,10 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS3GCR1_WP.
 
 //! @brief Get value of EIM_CS3GCR1_WP from a register value.
-#define BG_EIM_CS3GCR1_WP(r)   (((r) & BM_EIM_CS3GCR1_WP) >> BP_EIM_CS3GCR1_WP)
+#define BG_EIM_CS3GCR1_WP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_WP) >> BP_EIM_CS3GCR1_WP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_WP.
-#define BF_EIM_CS3GCR1_WP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_WP) & BM_EIM_CS3GCR1_WP)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_WP.
-#define BF_EIM_CS3GCR1_WP(v)   (((v) << BP_EIM_CS3GCR1_WP) & BM_EIM_CS3GCR1_WP)
-#endif
+#define BF_EIM_CS3GCR1_WP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_WP) & BM_EIM_CS3GCR1_WP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP field to a new value.
@@ -6517,21 +5764,20 @@ typedef union _hw_eim_cs3gcr1
 #define BM_EIM_CS3GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS3GCR1_PSZ.
 
 //! @brief Get value of EIM_CS3GCR1_PSZ from a register value.
-#define BG_EIM_CS3GCR1_PSZ(r)   (((r) & BM_EIM_CS3GCR1_PSZ) >> BP_EIM_CS3GCR1_PSZ)
+#define BG_EIM_CS3GCR1_PSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR1_PSZ) >> BP_EIM_CS3GCR1_PSZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR1_PSZ.
-#define BF_EIM_CS3GCR1_PSZ(v)   ((((reg32_t) v) << BP_EIM_CS3GCR1_PSZ) & BM_EIM_CS3GCR1_PSZ)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR1_PSZ.
-#define BF_EIM_CS3GCR1_PSZ(v)   (((v) << BP_EIM_CS3GCR1_PSZ) & BM_EIM_CS3GCR1_PSZ)
-#endif
+#define BF_EIM_CS3GCR1_PSZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR1_PSZ) & BM_EIM_CS3GCR1_PSZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS3GCR1_PSZ(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_PSZ) | BF_EIM_CS3GCR1_PSZ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3GCR2 - Chip Select n General Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6594,15 +5840,10 @@ typedef union _hw_eim_cs3gcr2
 #define BM_EIM_CS3GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS3GCR2_ADH.
 
 //! @brief Get value of EIM_CS3GCR2_ADH from a register value.
-#define BG_EIM_CS3GCR2_ADH(r)   (((r) & BM_EIM_CS3GCR2_ADH) >> BP_EIM_CS3GCR2_ADH)
+#define BG_EIM_CS3GCR2_ADH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR2_ADH) >> BP_EIM_CS3GCR2_ADH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR2_ADH.
-#define BF_EIM_CS3GCR2_ADH(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_ADH) & BM_EIM_CS3GCR2_ADH)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR2_ADH.
-#define BF_EIM_CS3GCR2_ADH(v)   (((v) << BP_EIM_CS3GCR2_ADH) & BM_EIM_CS3GCR2_ADH)
-#endif
+#define BF_EIM_CS3GCR2_ADH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR2_ADH) & BM_EIM_CS3GCR2_ADH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADH field to a new value.
@@ -6630,15 +5871,10 @@ typedef union _hw_eim_cs3gcr2
 #define BM_EIM_CS3GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS3GCR2_DAPS.
 
 //! @brief Get value of EIM_CS3GCR2_DAPS from a register value.
-#define BG_EIM_CS3GCR2_DAPS(r)   (((r) & BM_EIM_CS3GCR2_DAPS) >> BP_EIM_CS3GCR2_DAPS)
+#define BG_EIM_CS3GCR2_DAPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR2_DAPS) >> BP_EIM_CS3GCR2_DAPS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR2_DAPS.
-#define BF_EIM_CS3GCR2_DAPS(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAPS) & BM_EIM_CS3GCR2_DAPS)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR2_DAPS.
-#define BF_EIM_CS3GCR2_DAPS(v)   (((v) << BP_EIM_CS3GCR2_DAPS) & BM_EIM_CS3GCR2_DAPS)
-#endif
+#define BF_EIM_CS3GCR2_DAPS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR2_DAPS) & BM_EIM_CS3GCR2_DAPS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAPS field to a new value.
@@ -6662,15 +5898,10 @@ typedef union _hw_eim_cs3gcr2
 #define BM_EIM_CS3GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS3GCR2_DAE.
 
 //! @brief Get value of EIM_CS3GCR2_DAE from a register value.
-#define BG_EIM_CS3GCR2_DAE(r)   (((r) & BM_EIM_CS3GCR2_DAE) >> BP_EIM_CS3GCR2_DAE)
+#define BG_EIM_CS3GCR2_DAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR2_DAE) >> BP_EIM_CS3GCR2_DAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR2_DAE.
-#define BF_EIM_CS3GCR2_DAE(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAE) & BM_EIM_CS3GCR2_DAE)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR2_DAE.
-#define BF_EIM_CS3GCR2_DAE(v)   (((v) << BP_EIM_CS3GCR2_DAE) & BM_EIM_CS3GCR2_DAE)
-#endif
+#define BF_EIM_CS3GCR2_DAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR2_DAE) & BM_EIM_CS3GCR2_DAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAE field to a new value.
@@ -6693,15 +5924,10 @@ typedef union _hw_eim_cs3gcr2
 #define BM_EIM_CS3GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS3GCR2_DAP.
 
 //! @brief Get value of EIM_CS3GCR2_DAP from a register value.
-#define BG_EIM_CS3GCR2_DAP(r)   (((r) & BM_EIM_CS3GCR2_DAP) >> BP_EIM_CS3GCR2_DAP)
+#define BG_EIM_CS3GCR2_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR2_DAP) >> BP_EIM_CS3GCR2_DAP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR2_DAP.
-#define BF_EIM_CS3GCR2_DAP(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_DAP) & BM_EIM_CS3GCR2_DAP)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR2_DAP.
-#define BF_EIM_CS3GCR2_DAP(v)   (((v) << BP_EIM_CS3GCR2_DAP) & BM_EIM_CS3GCR2_DAP)
-#endif
+#define BF_EIM_CS3GCR2_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR2_DAP) & BM_EIM_CS3GCR2_DAP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAP field to a new value.
@@ -6724,21 +5950,20 @@ typedef union _hw_eim_cs3gcr2
 #define BM_EIM_CS3GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS3GCR2_MUX16_BYP_GRANT.
 
 //! @brief Get value of EIM_CS3GCR2_MUX16_BYP_GRANT from a register value.
-#define BG_EIM_CS3GCR2_MUX16_BYP_GRANT(r)   (((r) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS3GCR2_MUX16_BYP_GRANT)
+#define BG_EIM_CS3GCR2_MUX16_BYP_GRANT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT) >> BP_EIM_CS3GCR2_MUX16_BYP_GRANT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   ((((reg32_t) v) << BP_EIM_CS3GCR2_MUX16_BYP_GRANT) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT)
-#else
-//! @brief Format value for bitfield EIM_CS3GCR2_MUX16_BYP_GRANT.
-#define BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   (((v) << BP_EIM_CS3GCR2_MUX16_BYP_GRANT) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT)
-#endif
+#define BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3GCR2_MUX16_BYP_GRANT) & BM_EIM_CS3GCR2_MUX16_BYP_GRANT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_MUX16_BYP_GRANT) | BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3RCR1 - Chip Select n Read Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6806,15 +6031,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS3RCR1_RCSN.
 
 //! @brief Get value of EIM_CS3RCR1_RCSN from a register value.
-#define BG_EIM_CS3RCR1_RCSN(r)   (((r) & BM_EIM_CS3RCR1_RCSN) >> BP_EIM_CS3RCR1_RCSN)
+#define BG_EIM_CS3RCR1_RCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RCSN) >> BP_EIM_CS3RCR1_RCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RCSN.
-#define BF_EIM_CS3RCR1_RCSN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RCSN) & BM_EIM_CS3RCR1_RCSN)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RCSN.
-#define BF_EIM_CS3RCR1_RCSN(v)   (((v) << BP_EIM_CS3RCR1_RCSN) & BM_EIM_CS3RCR1_RCSN)
-#endif
+#define BF_EIM_CS3RCR1_RCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RCSN) & BM_EIM_CS3RCR1_RCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSN field to a new value.
@@ -6839,15 +6059,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS3RCR1_RCSA.
 
 //! @brief Get value of EIM_CS3RCR1_RCSA from a register value.
-#define BG_EIM_CS3RCR1_RCSA(r)   (((r) & BM_EIM_CS3RCR1_RCSA) >> BP_EIM_CS3RCR1_RCSA)
+#define BG_EIM_CS3RCR1_RCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RCSA) >> BP_EIM_CS3RCR1_RCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RCSA.
-#define BF_EIM_CS3RCR1_RCSA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RCSA) & BM_EIM_CS3RCR1_RCSA)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RCSA.
-#define BF_EIM_CS3RCR1_RCSA(v)   (((v) << BP_EIM_CS3RCR1_RCSA) & BM_EIM_CS3RCR1_RCSA)
-#endif
+#define BF_EIM_CS3RCR1_RCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RCSA) & BM_EIM_CS3RCR1_RCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RCSA field to a new value.
@@ -6872,15 +6087,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS3RCR1_OEN.
 
 //! @brief Get value of EIM_CS3RCR1_OEN from a register value.
-#define BG_EIM_CS3RCR1_OEN(r)   (((r) & BM_EIM_CS3RCR1_OEN) >> BP_EIM_CS3RCR1_OEN)
+#define BG_EIM_CS3RCR1_OEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_OEN) >> BP_EIM_CS3RCR1_OEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_OEN.
-#define BF_EIM_CS3RCR1_OEN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_OEN) & BM_EIM_CS3RCR1_OEN)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_OEN.
-#define BF_EIM_CS3RCR1_OEN(v)   (((v) << BP_EIM_CS3RCR1_OEN) & BM_EIM_CS3RCR1_OEN)
-#endif
+#define BF_EIM_CS3RCR1_OEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_OEN) & BM_EIM_CS3RCR1_OEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEN field to a new value.
@@ -6908,15 +6118,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS3RCR1_OEA.
 
 //! @brief Get value of EIM_CS3RCR1_OEA from a register value.
-#define BG_EIM_CS3RCR1_OEA(r)   (((r) & BM_EIM_CS3RCR1_OEA) >> BP_EIM_CS3RCR1_OEA)
+#define BG_EIM_CS3RCR1_OEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_OEA) >> BP_EIM_CS3RCR1_OEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_OEA.
-#define BF_EIM_CS3RCR1_OEA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_OEA) & BM_EIM_CS3RCR1_OEA)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_OEA.
-#define BF_EIM_CS3RCR1_OEA(v)   (((v) << BP_EIM_CS3RCR1_OEA) & BM_EIM_CS3RCR1_OEA)
-#endif
+#define BF_EIM_CS3RCR1_OEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_OEA) & BM_EIM_CS3RCR1_OEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OEA field to a new value.
@@ -6940,15 +6145,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS3RCR1_RADVN.
 
 //! @brief Get value of EIM_CS3RCR1_RADVN from a register value.
-#define BG_EIM_CS3RCR1_RADVN(r)   (((r) & BM_EIM_CS3RCR1_RADVN) >> BP_EIM_CS3RCR1_RADVN)
+#define BG_EIM_CS3RCR1_RADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RADVN) >> BP_EIM_CS3RCR1_RADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RADVN.
-#define BF_EIM_CS3RCR1_RADVN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RADVN) & BM_EIM_CS3RCR1_RADVN)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RADVN.
-#define BF_EIM_CS3RCR1_RADVN(v)   (((v) << BP_EIM_CS3RCR1_RADVN) & BM_EIM_CS3RCR1_RADVN)
-#endif
+#define BF_EIM_CS3RCR1_RADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RADVN) & BM_EIM_CS3RCR1_RADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVN field to a new value.
@@ -6967,15 +6167,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS3RCR1_RAL.
 
 //! @brief Get value of EIM_CS3RCR1_RAL from a register value.
-#define BG_EIM_CS3RCR1_RAL(r)   (((r) & BM_EIM_CS3RCR1_RAL) >> BP_EIM_CS3RCR1_RAL)
+#define BG_EIM_CS3RCR1_RAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RAL) >> BP_EIM_CS3RCR1_RAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RAL.
-#define BF_EIM_CS3RCR1_RAL(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RAL) & BM_EIM_CS3RCR1_RAL)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RAL.
-#define BF_EIM_CS3RCR1_RAL(v)   (((v) << BP_EIM_CS3RCR1_RAL) & BM_EIM_CS3RCR1_RAL)
-#endif
+#define BF_EIM_CS3RCR1_RAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RAL) & BM_EIM_CS3RCR1_RAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RAL field to a new value.
@@ -6999,15 +6194,10 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS3RCR1_RADVA.
 
 //! @brief Get value of EIM_CS3RCR1_RADVA from a register value.
-#define BG_EIM_CS3RCR1_RADVA(r)   (((r) & BM_EIM_CS3RCR1_RADVA) >> BP_EIM_CS3RCR1_RADVA)
+#define BG_EIM_CS3RCR1_RADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RADVA) >> BP_EIM_CS3RCR1_RADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RADVA.
-#define BF_EIM_CS3RCR1_RADVA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RADVA) & BM_EIM_CS3RCR1_RADVA)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RADVA.
-#define BF_EIM_CS3RCR1_RADVA(v)   (((v) << BP_EIM_CS3RCR1_RADVA) & BM_EIM_CS3RCR1_RADVA)
-#endif
+#define BF_EIM_CS3RCR1_RADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RADVA) & BM_EIM_CS3RCR1_RADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RADVA field to a new value.
@@ -7045,21 +6235,20 @@ typedef union _hw_eim_cs3rcr1
 #define BM_EIM_CS3RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS3RCR1_RWSC.
 
 //! @brief Get value of EIM_CS3RCR1_RWSC from a register value.
-#define BG_EIM_CS3RCR1_RWSC(r)   (((r) & BM_EIM_CS3RCR1_RWSC) >> BP_EIM_CS3RCR1_RWSC)
+#define BG_EIM_CS3RCR1_RWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR1_RWSC) >> BP_EIM_CS3RCR1_RWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR1_RWSC.
-#define BF_EIM_CS3RCR1_RWSC(v)   ((((reg32_t) v) << BP_EIM_CS3RCR1_RWSC) & BM_EIM_CS3RCR1_RWSC)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR1_RWSC.
-#define BF_EIM_CS3RCR1_RWSC(v)   (((v) << BP_EIM_CS3RCR1_RWSC) & BM_EIM_CS3RCR1_RWSC)
-#endif
+#define BF_EIM_CS3RCR1_RWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR1_RWSC) & BM_EIM_CS3RCR1_RWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS3RCR1_RWSC(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RWSC) | BF_EIM_CS3RCR1_RWSC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3RCR2 - Chip Select n Read Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7122,15 +6311,10 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS3RCR2_RBEN.
 
 //! @brief Get value of EIM_CS3RCR2_RBEN from a register value.
-#define BG_EIM_CS3RCR2_RBEN(r)   (((r) & BM_EIM_CS3RCR2_RBEN) >> BP_EIM_CS3RCR2_RBEN)
+#define BG_EIM_CS3RCR2_RBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_RBEN) >> BP_EIM_CS3RCR2_RBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_RBEN.
-#define BF_EIM_CS3RCR2_RBEN(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBEN) & BM_EIM_CS3RCR2_RBEN)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_RBEN.
-#define BF_EIM_CS3RCR2_RBEN(v)   (((v) << BP_EIM_CS3RCR2_RBEN) & BM_EIM_CS3RCR2_RBEN)
-#endif
+#define BF_EIM_CS3RCR2_RBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_RBEN) & BM_EIM_CS3RCR2_RBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEN field to a new value.
@@ -7151,15 +6335,10 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS3RCR2_RBE.
 
 //! @brief Get value of EIM_CS3RCR2_RBE from a register value.
-#define BG_EIM_CS3RCR2_RBE(r)   (((r) & BM_EIM_CS3RCR2_RBE) >> BP_EIM_CS3RCR2_RBE)
+#define BG_EIM_CS3RCR2_RBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_RBE) >> BP_EIM_CS3RCR2_RBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_RBE.
-#define BF_EIM_CS3RCR2_RBE(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBE) & BM_EIM_CS3RCR2_RBE)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_RBE.
-#define BF_EIM_CS3RCR2_RBE(v)   (((v) << BP_EIM_CS3RCR2_RBE) & BM_EIM_CS3RCR2_RBE)
-#endif
+#define BF_EIM_CS3RCR2_RBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_RBE) & BM_EIM_CS3RCR2_RBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBE field to a new value.
@@ -7184,15 +6363,10 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS3RCR2_RBEA.
 
 //! @brief Get value of EIM_CS3RCR2_RBEA from a register value.
-#define BG_EIM_CS3RCR2_RBEA(r)   (((r) & BM_EIM_CS3RCR2_RBEA) >> BP_EIM_CS3RCR2_RBEA)
+#define BG_EIM_CS3RCR2_RBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_RBEA) >> BP_EIM_CS3RCR2_RBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_RBEA.
-#define BF_EIM_CS3RCR2_RBEA(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RBEA) & BM_EIM_CS3RCR2_RBEA)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_RBEA.
-#define BF_EIM_CS3RCR2_RBEA(v)   (((v) << BP_EIM_CS3RCR2_RBEA) & BM_EIM_CS3RCR2_RBEA)
-#endif
+#define BF_EIM_CS3RCR2_RBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_RBEA) & BM_EIM_CS3RCR2_RBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RBEA field to a new value.
@@ -7217,15 +6391,10 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS3RCR2_RL.
 
 //! @brief Get value of EIM_CS3RCR2_RL from a register value.
-#define BG_EIM_CS3RCR2_RL(r)   (((r) & BM_EIM_CS3RCR2_RL) >> BP_EIM_CS3RCR2_RL)
+#define BG_EIM_CS3RCR2_RL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_RL) >> BP_EIM_CS3RCR2_RL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_RL.
-#define BF_EIM_CS3RCR2_RL(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_RL) & BM_EIM_CS3RCR2_RL)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_RL.
-#define BF_EIM_CS3RCR2_RL(v)   (((v) << BP_EIM_CS3RCR2_RL) & BM_EIM_CS3RCR2_RL)
-#endif
+#define BF_EIM_CS3RCR2_RL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_RL) & BM_EIM_CS3RCR2_RL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RL field to a new value.
@@ -7255,15 +6424,10 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS3RCR2_PAT.
 
 //! @brief Get value of EIM_CS3RCR2_PAT from a register value.
-#define BG_EIM_CS3RCR2_PAT(r)   (((r) & BM_EIM_CS3RCR2_PAT) >> BP_EIM_CS3RCR2_PAT)
+#define BG_EIM_CS3RCR2_PAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_PAT) >> BP_EIM_CS3RCR2_PAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_PAT.
-#define BF_EIM_CS3RCR2_PAT(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_PAT) & BM_EIM_CS3RCR2_PAT)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_PAT.
-#define BF_EIM_CS3RCR2_PAT(v)   (((v) << BP_EIM_CS3RCR2_PAT) & BM_EIM_CS3RCR2_PAT)
-#endif
+#define BF_EIM_CS3RCR2_PAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_PAT) & BM_EIM_CS3RCR2_PAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PAT field to a new value.
@@ -7284,20 +6448,19 @@ typedef union _hw_eim_cs3rcr2
 #define BM_EIM_CS3RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS3RCR2_APR.
 
 //! @brief Get value of EIM_CS3RCR2_APR from a register value.
-#define BG_EIM_CS3RCR2_APR(r)   (((r) & BM_EIM_CS3RCR2_APR) >> BP_EIM_CS3RCR2_APR)
+#define BG_EIM_CS3RCR2_APR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3RCR2_APR) >> BP_EIM_CS3RCR2_APR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3RCR2_APR.
-#define BF_EIM_CS3RCR2_APR(v)   ((((reg32_t) v) << BP_EIM_CS3RCR2_APR) & BM_EIM_CS3RCR2_APR)
-#else
-//! @brief Format value for bitfield EIM_CS3RCR2_APR.
-#define BF_EIM_CS3RCR2_APR(v)   (((v) << BP_EIM_CS3RCR2_APR) & BM_EIM_CS3RCR2_APR)
-#endif
+#define BF_EIM_CS3RCR2_APR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3RCR2_APR) & BM_EIM_CS3RCR2_APR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS3RCR2_APR(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_APR) | BF_EIM_CS3RCR2_APR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3WCR1 - Chip Select n Write Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7362,15 +6525,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS3WCR1_WCSN.
 
 //! @brief Get value of EIM_CS3WCR1_WCSN from a register value.
-#define BG_EIM_CS3WCR1_WCSN(r)   (((r) & BM_EIM_CS3WCR1_WCSN) >> BP_EIM_CS3WCR1_WCSN)
+#define BG_EIM_CS3WCR1_WCSN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WCSN) >> BP_EIM_CS3WCR1_WCSN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WCSN.
-#define BF_EIM_CS3WCR1_WCSN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WCSN) & BM_EIM_CS3WCR1_WCSN)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WCSN.
-#define BF_EIM_CS3WCR1_WCSN(v)   (((v) << BP_EIM_CS3WCR1_WCSN) & BM_EIM_CS3WCR1_WCSN)
-#endif
+#define BF_EIM_CS3WCR1_WCSN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WCSN) & BM_EIM_CS3WCR1_WCSN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSN field to a new value.
@@ -7396,15 +6554,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS3WCR1_WCSA.
 
 //! @brief Get value of EIM_CS3WCR1_WCSA from a register value.
-#define BG_EIM_CS3WCR1_WCSA(r)   (((r) & BM_EIM_CS3WCR1_WCSA) >> BP_EIM_CS3WCR1_WCSA)
+#define BG_EIM_CS3WCR1_WCSA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WCSA) >> BP_EIM_CS3WCR1_WCSA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WCSA.
-#define BF_EIM_CS3WCR1_WCSA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WCSA) & BM_EIM_CS3WCR1_WCSA)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WCSA.
-#define BF_EIM_CS3WCR1_WCSA(v)   (((v) << BP_EIM_CS3WCR1_WCSA) & BM_EIM_CS3WCR1_WCSA)
-#endif
+#define BF_EIM_CS3WCR1_WCSA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WCSA) & BM_EIM_CS3WCR1_WCSA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WCSA field to a new value.
@@ -7430,15 +6583,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS3WCR1_WEN.
 
 //! @brief Get value of EIM_CS3WCR1_WEN from a register value.
-#define BG_EIM_CS3WCR1_WEN(r)   (((r) & BM_EIM_CS3WCR1_WEN) >> BP_EIM_CS3WCR1_WEN)
+#define BG_EIM_CS3WCR1_WEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WEN) >> BP_EIM_CS3WCR1_WEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WEN.
-#define BF_EIM_CS3WCR1_WEN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WEN) & BM_EIM_CS3WCR1_WEN)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WEN.
-#define BF_EIM_CS3WCR1_WEN(v)   (((v) << BP_EIM_CS3WCR1_WEN) & BM_EIM_CS3WCR1_WEN)
-#endif
+#define BF_EIM_CS3WCR1_WEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WEN) & BM_EIM_CS3WCR1_WEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEN field to a new value.
@@ -7465,15 +6613,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS3WCR1_WEA.
 
 //! @brief Get value of EIM_CS3WCR1_WEA from a register value.
-#define BG_EIM_CS3WCR1_WEA(r)   (((r) & BM_EIM_CS3WCR1_WEA) >> BP_EIM_CS3WCR1_WEA)
+#define BG_EIM_CS3WCR1_WEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WEA) >> BP_EIM_CS3WCR1_WEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WEA.
-#define BF_EIM_CS3WCR1_WEA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WEA) & BM_EIM_CS3WCR1_WEA)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WEA.
-#define BF_EIM_CS3WCR1_WEA(v)   (((v) << BP_EIM_CS3WCR1_WEA) & BM_EIM_CS3WCR1_WEA)
-#endif
+#define BF_EIM_CS3WCR1_WEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WEA) & BM_EIM_CS3WCR1_WEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WEA field to a new value.
@@ -7496,15 +6639,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS3WCR1_WBEN.
 
 //! @brief Get value of EIM_CS3WCR1_WBEN from a register value.
-#define BG_EIM_CS3WCR1_WBEN(r)   (((r) & BM_EIM_CS3WCR1_WBEN) >> BP_EIM_CS3WCR1_WBEN)
+#define BG_EIM_CS3WCR1_WBEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WBEN) >> BP_EIM_CS3WCR1_WBEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WBEN.
-#define BF_EIM_CS3WCR1_WBEN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBEN) & BM_EIM_CS3WCR1_WBEN)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WBEN.
-#define BF_EIM_CS3WCR1_WBEN(v)   (((v) << BP_EIM_CS3WCR1_WBEN) & BM_EIM_CS3WCR1_WBEN)
-#endif
+#define BF_EIM_CS3WCR1_WBEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WBEN) & BM_EIM_CS3WCR1_WBEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEN field to a new value.
@@ -7529,15 +6667,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS3WCR1_WBEA.
 
 //! @brief Get value of EIM_CS3WCR1_WBEA from a register value.
-#define BG_EIM_CS3WCR1_WBEA(r)   (((r) & BM_EIM_CS3WCR1_WBEA) >> BP_EIM_CS3WCR1_WBEA)
+#define BG_EIM_CS3WCR1_WBEA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WBEA) >> BP_EIM_CS3WCR1_WBEA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WBEA.
-#define BF_EIM_CS3WCR1_WBEA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBEA) & BM_EIM_CS3WCR1_WBEA)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WBEA.
-#define BF_EIM_CS3WCR1_WBEA(v)   (((v) << BP_EIM_CS3WCR1_WBEA) & BM_EIM_CS3WCR1_WBEA)
-#endif
+#define BF_EIM_CS3WCR1_WBEA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WBEA) & BM_EIM_CS3WCR1_WBEA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBEA field to a new value.
@@ -7560,15 +6693,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS3WCR1_WADVN.
 
 //! @brief Get value of EIM_CS3WCR1_WADVN from a register value.
-#define BG_EIM_CS3WCR1_WADVN(r)   (((r) & BM_EIM_CS3WCR1_WADVN) >> BP_EIM_CS3WCR1_WADVN)
+#define BG_EIM_CS3WCR1_WADVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WADVN) >> BP_EIM_CS3WCR1_WADVN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WADVN.
-#define BF_EIM_CS3WCR1_WADVN(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WADVN) & BM_EIM_CS3WCR1_WADVN)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WADVN.
-#define BF_EIM_CS3WCR1_WADVN(v)   (((v) << BP_EIM_CS3WCR1_WADVN) & BM_EIM_CS3WCR1_WADVN)
-#endif
+#define BF_EIM_CS3WCR1_WADVN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WADVN) & BM_EIM_CS3WCR1_WADVN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVN field to a new value.
@@ -7592,15 +6720,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS3WCR1_WADVA.
 
 //! @brief Get value of EIM_CS3WCR1_WADVA from a register value.
-#define BG_EIM_CS3WCR1_WADVA(r)   (((r) & BM_EIM_CS3WCR1_WADVA) >> BP_EIM_CS3WCR1_WADVA)
+#define BG_EIM_CS3WCR1_WADVA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WADVA) >> BP_EIM_CS3WCR1_WADVA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WADVA.
-#define BF_EIM_CS3WCR1_WADVA(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WADVA) & BM_EIM_CS3WCR1_WADVA)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WADVA.
-#define BF_EIM_CS3WCR1_WADVA(v)   (((v) << BP_EIM_CS3WCR1_WADVA) & BM_EIM_CS3WCR1_WADVA)
-#endif
+#define BF_EIM_CS3WCR1_WADVA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WADVA) & BM_EIM_CS3WCR1_WADVA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WADVA field to a new value.
@@ -7637,15 +6760,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS3WCR1_WWSC.
 
 //! @brief Get value of EIM_CS3WCR1_WWSC from a register value.
-#define BG_EIM_CS3WCR1_WWSC(r)   (((r) & BM_EIM_CS3WCR1_WWSC) >> BP_EIM_CS3WCR1_WWSC)
+#define BG_EIM_CS3WCR1_WWSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WWSC) >> BP_EIM_CS3WCR1_WWSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WWSC.
-#define BF_EIM_CS3WCR1_WWSC(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WWSC) & BM_EIM_CS3WCR1_WWSC)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WWSC.
-#define BF_EIM_CS3WCR1_WWSC(v)   (((v) << BP_EIM_CS3WCR1_WWSC) & BM_EIM_CS3WCR1_WWSC)
-#endif
+#define BF_EIM_CS3WCR1_WWSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WWSC) & BM_EIM_CS3WCR1_WWSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WWSC field to a new value.
@@ -7663,15 +6781,10 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS3WCR1_WBED.
 
 //! @brief Get value of EIM_CS3WCR1_WBED from a register value.
-#define BG_EIM_CS3WCR1_WBED(r)   (((r) & BM_EIM_CS3WCR1_WBED) >> BP_EIM_CS3WCR1_WBED)
+#define BG_EIM_CS3WCR1_WBED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WBED) >> BP_EIM_CS3WCR1_WBED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WBED.
-#define BF_EIM_CS3WCR1_WBED(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WBED) & BM_EIM_CS3WCR1_WBED)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WBED.
-#define BF_EIM_CS3WCR1_WBED(v)   (((v) << BP_EIM_CS3WCR1_WBED) & BM_EIM_CS3WCR1_WBED)
-#endif
+#define BF_EIM_CS3WCR1_WBED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WBED) & BM_EIM_CS3WCR1_WBED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBED field to a new value.
@@ -7690,20 +6803,19 @@ typedef union _hw_eim_cs3wcr1
 #define BM_EIM_CS3WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS3WCR1_WAL.
 
 //! @brief Get value of EIM_CS3WCR1_WAL from a register value.
-#define BG_EIM_CS3WCR1_WAL(r)   (((r) & BM_EIM_CS3WCR1_WAL) >> BP_EIM_CS3WCR1_WAL)
+#define BG_EIM_CS3WCR1_WAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR1_WAL) >> BP_EIM_CS3WCR1_WAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR1_WAL.
-#define BF_EIM_CS3WCR1_WAL(v)   ((((reg32_t) v) << BP_EIM_CS3WCR1_WAL) & BM_EIM_CS3WCR1_WAL)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR1_WAL.
-#define BF_EIM_CS3WCR1_WAL(v)   (((v) << BP_EIM_CS3WCR1_WAL) & BM_EIM_CS3WCR1_WAL)
-#endif
+#define BF_EIM_CS3WCR1_WAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR1_WAL) & BM_EIM_CS3WCR1_WAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS3WCR1_WAL(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WAL) | BF_EIM_CS3WCR1_WAL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_CS3WCR2 - Chip Select n Write Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7753,20 +6865,19 @@ typedef union _hw_eim_cs3wcr2
 #define BM_EIM_CS3WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS3WCR2_WBCDD.
 
 //! @brief Get value of EIM_CS3WCR2_WBCDD from a register value.
-#define BG_EIM_CS3WCR2_WBCDD(r)   (((r) & BM_EIM_CS3WCR2_WBCDD) >> BP_EIM_CS3WCR2_WBCDD)
+#define BG_EIM_CS3WCR2_WBCDD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_CS3WCR2_WBCDD) >> BP_EIM_CS3WCR2_WBCDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_CS3WCR2_WBCDD.
-#define BF_EIM_CS3WCR2_WBCDD(v)   ((((reg32_t) v) << BP_EIM_CS3WCR2_WBCDD) & BM_EIM_CS3WCR2_WBCDD)
-#else
-//! @brief Format value for bitfield EIM_CS3WCR2_WBCDD.
-#define BF_EIM_CS3WCR2_WBCDD(v)   (((v) << BP_EIM_CS3WCR2_WBCDD) & BM_EIM_CS3WCR2_WBCDD)
-#endif
+#define BF_EIM_CS3WCR2_WBCDD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_CS3WCR2_WBCDD) & BM_EIM_CS3WCR2_WBCDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS3WCR2_WBCDD(v)   (HW_EIM_CS3WCR2_WR((HW_EIM_CS3WCR2_RD() & ~BM_EIM_CS3WCR2_WBCDD) | BF_EIM_CS3WCR2_WBCDD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_WCR - EIM Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7831,15 +6942,10 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_BCM      (0x00000001)  //!< Bit mask for EIM_WCR_BCM.
 
 //! @brief Get value of EIM_WCR_BCM from a register value.
-#define BG_EIM_WCR_BCM(r)   (((r) & BM_EIM_WCR_BCM) >> BP_EIM_WCR_BCM)
+#define BG_EIM_WCR_BCM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_BCM) >> BP_EIM_WCR_BCM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_BCM.
-#define BF_EIM_WCR_BCM(v)   ((((reg32_t) v) << BP_EIM_WCR_BCM) & BM_EIM_WCR_BCM)
-#else
-//! @brief Format value for bitfield EIM_WCR_BCM.
-#define BF_EIM_WCR_BCM(v)   (((v) << BP_EIM_WCR_BCM) & BM_EIM_WCR_BCM)
-#endif
+#define BF_EIM_WCR_BCM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_BCM) & BM_EIM_WCR_BCM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCM field to a new value.
@@ -7865,15 +6971,10 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_GBCD      (0x00000006)  //!< Bit mask for EIM_WCR_GBCD.
 
 //! @brief Get value of EIM_WCR_GBCD from a register value.
-#define BG_EIM_WCR_GBCD(r)   (((r) & BM_EIM_WCR_GBCD) >> BP_EIM_WCR_GBCD)
+#define BG_EIM_WCR_GBCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_GBCD) >> BP_EIM_WCR_GBCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_GBCD.
-#define BF_EIM_WCR_GBCD(v)   ((((reg32_t) v) << BP_EIM_WCR_GBCD) & BM_EIM_WCR_GBCD)
-#else
-//! @brief Format value for bitfield EIM_WCR_GBCD.
-#define BF_EIM_WCR_GBCD(v)   (((v) << BP_EIM_WCR_GBCD) & BM_EIM_WCR_GBCD)
-#endif
+#define BF_EIM_WCR_GBCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_GBCD) & BM_EIM_WCR_GBCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GBCD field to a new value.
@@ -7896,15 +6997,10 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_INTEN      (0x00000010)  //!< Bit mask for EIM_WCR_INTEN.
 
 //! @brief Get value of EIM_WCR_INTEN from a register value.
-#define BG_EIM_WCR_INTEN(r)   (((r) & BM_EIM_WCR_INTEN) >> BP_EIM_WCR_INTEN)
+#define BG_EIM_WCR_INTEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_INTEN) >> BP_EIM_WCR_INTEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_INTEN.
-#define BF_EIM_WCR_INTEN(v)   ((((reg32_t) v) << BP_EIM_WCR_INTEN) & BM_EIM_WCR_INTEN)
-#else
-//! @brief Format value for bitfield EIM_WCR_INTEN.
-#define BF_EIM_WCR_INTEN(v)   (((v) << BP_EIM_WCR_INTEN) & BM_EIM_WCR_INTEN)
-#endif
+#define BF_EIM_WCR_INTEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_INTEN) & BM_EIM_WCR_INTEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTEN field to a new value.
@@ -7925,15 +7021,10 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_INTPOL      (0x00000020)  //!< Bit mask for EIM_WCR_INTPOL.
 
 //! @brief Get value of EIM_WCR_INTPOL from a register value.
-#define BG_EIM_WCR_INTPOL(r)   (((r) & BM_EIM_WCR_INTPOL) >> BP_EIM_WCR_INTPOL)
+#define BG_EIM_WCR_INTPOL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_INTPOL) >> BP_EIM_WCR_INTPOL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_INTPOL.
-#define BF_EIM_WCR_INTPOL(v)   ((((reg32_t) v) << BP_EIM_WCR_INTPOL) & BM_EIM_WCR_INTPOL)
-#else
-//! @brief Format value for bitfield EIM_WCR_INTPOL.
-#define BF_EIM_WCR_INTPOL(v)   (((v) << BP_EIM_WCR_INTPOL) & BM_EIM_WCR_INTPOL)
-#endif
+#define BF_EIM_WCR_INTPOL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_INTPOL) & BM_EIM_WCR_INTPOL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTPOL field to a new value.
@@ -7955,15 +7046,10 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_WDOG_EN      (0x00000100)  //!< Bit mask for EIM_WCR_WDOG_EN.
 
 //! @brief Get value of EIM_WCR_WDOG_EN from a register value.
-#define BG_EIM_WCR_WDOG_EN(r)   (((r) & BM_EIM_WCR_WDOG_EN) >> BP_EIM_WCR_WDOG_EN)
+#define BG_EIM_WCR_WDOG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_WDOG_EN) >> BP_EIM_WCR_WDOG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_WDOG_EN.
-#define BF_EIM_WCR_WDOG_EN(v)   ((((reg32_t) v) << BP_EIM_WCR_WDOG_EN) & BM_EIM_WCR_WDOG_EN)
-#else
-//! @brief Format value for bitfield EIM_WCR_WDOG_EN.
-#define BF_EIM_WCR_WDOG_EN(v)   (((v) << BP_EIM_WCR_WDOG_EN) & BM_EIM_WCR_WDOG_EN)
-#endif
+#define BF_EIM_WCR_WDOG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_WDOG_EN) & BM_EIM_WCR_WDOG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDOG_EN field to a new value.
@@ -7988,21 +7074,20 @@ typedef union _hw_eim_wcr
 #define BM_EIM_WCR_WDOG_LIMIT      (0x00000600)  //!< Bit mask for EIM_WCR_WDOG_LIMIT.
 
 //! @brief Get value of EIM_WCR_WDOG_LIMIT from a register value.
-#define BG_EIM_WCR_WDOG_LIMIT(r)   (((r) & BM_EIM_WCR_WDOG_LIMIT) >> BP_EIM_WCR_WDOG_LIMIT)
+#define BG_EIM_WCR_WDOG_LIMIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WCR_WDOG_LIMIT) >> BP_EIM_WCR_WDOG_LIMIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WCR_WDOG_LIMIT.
-#define BF_EIM_WCR_WDOG_LIMIT(v)   ((((reg32_t) v) << BP_EIM_WCR_WDOG_LIMIT) & BM_EIM_WCR_WDOG_LIMIT)
-#else
-//! @brief Format value for bitfield EIM_WCR_WDOG_LIMIT.
-#define BF_EIM_WCR_WDOG_LIMIT(v)   (((v) << BP_EIM_WCR_WDOG_LIMIT) & BM_EIM_WCR_WDOG_LIMIT)
-#endif
+#define BF_EIM_WCR_WDOG_LIMIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WCR_WDOG_LIMIT) & BM_EIM_WCR_WDOG_LIMIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WDOG_LIMIT field to a new value.
 #define BW_EIM_WCR_WDOG_LIMIT(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_WDOG_LIMIT) | BF_EIM_WCR_WDOG_LIMIT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_WIAR - EIM IP Access Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8060,15 +7145,10 @@ typedef union _hw_eim_wiar
 #define BM_EIM_WIAR_IPS_REQ      (0x00000001)  //!< Bit mask for EIM_WIAR_IPS_REQ.
 
 //! @brief Get value of EIM_WIAR_IPS_REQ from a register value.
-#define BG_EIM_WIAR_IPS_REQ(r)   (((r) & BM_EIM_WIAR_IPS_REQ) >> BP_EIM_WIAR_IPS_REQ)
+#define BG_EIM_WIAR_IPS_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WIAR_IPS_REQ) >> BP_EIM_WIAR_IPS_REQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WIAR_IPS_REQ.
-#define BF_EIM_WIAR_IPS_REQ(v)   ((((reg32_t) v) << BP_EIM_WIAR_IPS_REQ) & BM_EIM_WIAR_IPS_REQ)
-#else
-//! @brief Format value for bitfield EIM_WIAR_IPS_REQ.
-#define BF_EIM_WIAR_IPS_REQ(v)   (((v) << BP_EIM_WIAR_IPS_REQ) & BM_EIM_WIAR_IPS_REQ)
-#endif
+#define BF_EIM_WIAR_IPS_REQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WIAR_IPS_REQ) & BM_EIM_WIAR_IPS_REQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPS_REQ field to a new value.
@@ -8091,15 +7171,10 @@ typedef union _hw_eim_wiar
 #define BM_EIM_WIAR_IPS_ACK      (0x00000002)  //!< Bit mask for EIM_WIAR_IPS_ACK.
 
 //! @brief Get value of EIM_WIAR_IPS_ACK from a register value.
-#define BG_EIM_WIAR_IPS_ACK(r)   (((r) & BM_EIM_WIAR_IPS_ACK) >> BP_EIM_WIAR_IPS_ACK)
+#define BG_EIM_WIAR_IPS_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WIAR_IPS_ACK) >> BP_EIM_WIAR_IPS_ACK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WIAR_IPS_ACK.
-#define BF_EIM_WIAR_IPS_ACK(v)   ((((reg32_t) v) << BP_EIM_WIAR_IPS_ACK) & BM_EIM_WIAR_IPS_ACK)
-#else
-//! @brief Format value for bitfield EIM_WIAR_IPS_ACK.
-#define BF_EIM_WIAR_IPS_ACK(v)   (((v) << BP_EIM_WIAR_IPS_ACK) & BM_EIM_WIAR_IPS_ACK)
-#endif
+#define BF_EIM_WIAR_IPS_ACK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WIAR_IPS_ACK) & BM_EIM_WIAR_IPS_ACK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPS_ACK field to a new value.
@@ -8118,15 +7193,10 @@ typedef union _hw_eim_wiar
 #define BM_EIM_WIAR_INT      (0x00000004)  //!< Bit mask for EIM_WIAR_INT.
 
 //! @brief Get value of EIM_WIAR_INT from a register value.
-#define BG_EIM_WIAR_INT(r)   (((r) & BM_EIM_WIAR_INT) >> BP_EIM_WIAR_INT)
+#define BG_EIM_WIAR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WIAR_INT) >> BP_EIM_WIAR_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WIAR_INT.
-#define BF_EIM_WIAR_INT(v)   ((((reg32_t) v) << BP_EIM_WIAR_INT) & BM_EIM_WIAR_INT)
-#else
-//! @brief Format value for bitfield EIM_WIAR_INT.
-#define BF_EIM_WIAR_INT(v)   (((v) << BP_EIM_WIAR_INT) & BM_EIM_WIAR_INT)
-#endif
+#define BF_EIM_WIAR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WIAR_INT) & BM_EIM_WIAR_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INT field to a new value.
@@ -8150,15 +7220,10 @@ typedef union _hw_eim_wiar
 #define BM_EIM_WIAR_ERRST      (0x00000008)  //!< Bit mask for EIM_WIAR_ERRST.
 
 //! @brief Get value of EIM_WIAR_ERRST from a register value.
-#define BG_EIM_WIAR_ERRST(r)   (((r) & BM_EIM_WIAR_ERRST) >> BP_EIM_WIAR_ERRST)
+#define BG_EIM_WIAR_ERRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WIAR_ERRST) >> BP_EIM_WIAR_ERRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WIAR_ERRST.
-#define BF_EIM_WIAR_ERRST(v)   ((((reg32_t) v) << BP_EIM_WIAR_ERRST) & BM_EIM_WIAR_ERRST)
-#else
-//! @brief Format value for bitfield EIM_WIAR_ERRST.
-#define BF_EIM_WIAR_ERRST(v)   (((v) << BP_EIM_WIAR_ERRST) & BM_EIM_WIAR_ERRST)
-#endif
+#define BF_EIM_WIAR_ERRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WIAR_ERRST) & BM_EIM_WIAR_ERRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERRST field to a new value.
@@ -8180,21 +7245,20 @@ typedef union _hw_eim_wiar
 #define BM_EIM_WIAR_ACLK_EN      (0x00000010)  //!< Bit mask for EIM_WIAR_ACLK_EN.
 
 //! @brief Get value of EIM_WIAR_ACLK_EN from a register value.
-#define BG_EIM_WIAR_ACLK_EN(r)   (((r) & BM_EIM_WIAR_ACLK_EN) >> BP_EIM_WIAR_ACLK_EN)
+#define BG_EIM_WIAR_ACLK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_WIAR_ACLK_EN) >> BP_EIM_WIAR_ACLK_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_WIAR_ACLK_EN.
-#define BF_EIM_WIAR_ACLK_EN(v)   ((((reg32_t) v) << BP_EIM_WIAR_ACLK_EN) & BM_EIM_WIAR_ACLK_EN)
-#else
-//! @brief Format value for bitfield EIM_WIAR_ACLK_EN.
-#define BF_EIM_WIAR_ACLK_EN(v)   (((v) << BP_EIM_WIAR_ACLK_EN) & BM_EIM_WIAR_ACLK_EN)
-#endif
+#define BF_EIM_WIAR_ACLK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_WIAR_ACLK_EN) & BM_EIM_WIAR_ACLK_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ACLK_EN field to a new value.
 #define BW_EIM_WIAR_ACLK_EN(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_ACLK_EN) | BF_EIM_WIAR_ACLK_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_EIM_EAR - Error Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8242,15 +7306,10 @@ typedef union _hw_eim_ear
 #define BM_EIM_EAR_ERROR_ADDR      (0xffffffff)  //!< Bit mask for EIM_EAR_ERROR_ADDR.
 
 //! @brief Get value of EIM_EAR_ERROR_ADDR from a register value.
-#define BG_EIM_EAR_ERROR_ADDR(r)   (((r) & BM_EIM_EAR_ERROR_ADDR) >> BP_EIM_EAR_ERROR_ADDR)
+#define BG_EIM_EAR_ERROR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_EAR_ERROR_ADDR) >> BP_EIM_EAR_ERROR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EIM_EAR_ERROR_ADDR.
-#define BF_EIM_EAR_ERROR_ADDR(v)   ((((reg32_t) v) << BP_EIM_EAR_ERROR_ADDR) & BM_EIM_EAR_ERROR_ADDR)
-#else
-//! @brief Format value for bitfield EIM_EAR_ERROR_ADDR.
-#define BF_EIM_EAR_ERROR_ADDR(v)   (((v) << BP_EIM_EAR_ERROR_ADDR) & BM_EIM_EAR_ERROR_ADDR)
-#endif
+#define BF_EIM_EAR_ERROR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EIM_EAR_ERROR_ADDR) & BM_EIM_EAR_ERROR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ERROR_ADDR field to a new value.

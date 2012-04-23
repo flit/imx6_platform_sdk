@@ -130,6 +130,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_CTRL - EPDC Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_EPDC_HW_EPDC_CTRL - EPDC Control Register (RW)
@@ -185,15 +200,10 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_CTRL_BURST_LEN_8.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_BURST_LEN_8 from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_BURST_LEN_8(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8) >> BP_EPDC_HW_EPDC_CTRL_BURST_LEN_8)
+#define BG_EPDC_HW_EPDC_CTRL_BURST_LEN_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8) >> BP_EPDC_HW_EPDC_CTRL_BURST_LEN_8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_BURST_LEN_8.
-#define BF_EPDC_HW_EPDC_CTRL_BURST_LEN_8(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_BURST_LEN_8) & BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_BURST_LEN_8.
-#define BF_EPDC_HW_EPDC_CTRL_BURST_LEN_8(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_BURST_LEN_8) & BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_BURST_LEN_8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_BURST_LEN_8) & BM_EPDC_HW_EPDC_CTRL_BURST_LEN_8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_LEN_8 field to a new value.
@@ -217,15 +227,10 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE      (0x00000030)  //!< Bit mask for EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE) >> BP_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE)
+#define BG_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE) >> BP_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE.
-#define BF_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE.
-#define BF_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_LUT_DATA_SWIZZLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_DATA_SWIZZLE field to a new value.
@@ -255,15 +260,10 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE      (0x000000c0)  //!< Bit mask for EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE) >> BP_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE)
+#define BG_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE) >> BP_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE.
-#define BF_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE.
-#define BF_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE) & BM_EPDC_HW_EPDC_CTRL_UPD_DATA_SWIZZLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPD_DATA_SWIZZLE field to a new value.
@@ -284,15 +284,10 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN      (0x00000100)  //!< Bit mask for EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN) >> BP_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN)
+#define BG_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN) >> BP_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN.
-#define BF_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN) & BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN.
-#define BF_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN) & BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN) & BM_EPDC_HW_EPDC_CTRL_SRAM_POWERDOWN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SRAM_POWERDOWN field to a new value.
@@ -309,15 +304,10 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for EPDC_HW_EPDC_CTRL_CLKGATE.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_CLKGATE from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_CLKGATE(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_CLKGATE) >> BP_EPDC_HW_EPDC_CTRL_CLKGATE)
+#define BG_EPDC_HW_EPDC_CTRL_CLKGATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_CLKGATE) >> BP_EPDC_HW_EPDC_CTRL_CLKGATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_CLKGATE.
-#define BF_EPDC_HW_EPDC_CTRL_CLKGATE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_CLKGATE) & BM_EPDC_HW_EPDC_CTRL_CLKGATE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_CLKGATE.
-#define BF_EPDC_HW_EPDC_CTRL_CLKGATE(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_CLKGATE) & BM_EPDC_HW_EPDC_CTRL_CLKGATE)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_CLKGATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_CLKGATE) & BM_EPDC_HW_EPDC_CTRL_CLKGATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKGATE field to a new value.
@@ -335,20 +325,19 @@ typedef union _hw_epdc_hw_epdc_ctrl
 #define BM_EPDC_HW_EPDC_CTRL_SFTRST      (0x80000000)  //!< Bit mask for EPDC_HW_EPDC_CTRL_SFTRST.
 
 //! @brief Get value of EPDC_HW_EPDC_CTRL_SFTRST from a register value.
-#define BG_EPDC_HW_EPDC_CTRL_SFTRST(r)   (((r) & BM_EPDC_HW_EPDC_CTRL_SFTRST) >> BP_EPDC_HW_EPDC_CTRL_SFTRST)
+#define BG_EPDC_HW_EPDC_CTRL_SFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_CTRL_SFTRST) >> BP_EPDC_HW_EPDC_CTRL_SFTRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_SFTRST.
-#define BF_EPDC_HW_EPDC_CTRL_SFTRST(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_CTRL_SFTRST) & BM_EPDC_HW_EPDC_CTRL_SFTRST)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_CTRL_SFTRST.
-#define BF_EPDC_HW_EPDC_CTRL_SFTRST(v)   (((v) << BP_EPDC_HW_EPDC_CTRL_SFTRST) & BM_EPDC_HW_EPDC_CTRL_SFTRST)
-#endif
+#define BF_EPDC_HW_EPDC_CTRL_SFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_CTRL_SFTRST) & BM_EPDC_HW_EPDC_CTRL_SFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SFTRST field to a new value.
 #define BW_EPDC_HW_EPDC_CTRL_SFTRST(v)   (HW_EPDC_HW_EPDC_CTRL_WR((HW_EPDC_HW_EPDC_CTRL_RD() & ~BM_EPDC_HW_EPDC_CTRL_SFTRST) | BF_EPDC_HW_EPDC_CTRL_SFTRST(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_WVADDR - EPDC Waveform Address Pointer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -395,20 +384,19 @@ typedef union _hw_epdc_hw_epdc_wvaddr
 #define BM_EPDC_HW_EPDC_WVADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_WVADDR_ADDR.
 
 //! @brief Get value of EPDC_HW_EPDC_WVADDR_ADDR from a register value.
-#define BG_EPDC_HW_EPDC_WVADDR_ADDR(r)   (((r) & BM_EPDC_HW_EPDC_WVADDR_ADDR) >> BP_EPDC_HW_EPDC_WVADDR_ADDR)
+#define BG_EPDC_HW_EPDC_WVADDR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_WVADDR_ADDR) >> BP_EPDC_HW_EPDC_WVADDR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_WVADDR_ADDR.
-#define BF_EPDC_HW_EPDC_WVADDR_ADDR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_WVADDR_ADDR) & BM_EPDC_HW_EPDC_WVADDR_ADDR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_WVADDR_ADDR.
-#define BF_EPDC_HW_EPDC_WVADDR_ADDR(v)   (((v) << BP_EPDC_HW_EPDC_WVADDR_ADDR) & BM_EPDC_HW_EPDC_WVADDR_ADDR)
-#endif
+#define BF_EPDC_HW_EPDC_WVADDR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_WVADDR_ADDR) & BM_EPDC_HW_EPDC_WVADDR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_HW_EPDC_WVADDR_ADDR(v)   (HW_EPDC_HW_EPDC_WVADDR_WR((HW_EPDC_HW_EPDC_WVADDR_RD() & ~BM_EPDC_HW_EPDC_WVADDR_ADDR) | BF_EPDC_HW_EPDC_WVADDR_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_WB_ADDR - EPDC Working Buffer Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -456,20 +444,19 @@ typedef union _hw_epdc_hw_epdc_wb_addr
 #define BM_EPDC_HW_EPDC_WB_ADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_WB_ADDR_ADDR.
 
 //! @brief Get value of EPDC_HW_EPDC_WB_ADDR_ADDR from a register value.
-#define BG_EPDC_HW_EPDC_WB_ADDR_ADDR(r)   (((r) & BM_EPDC_HW_EPDC_WB_ADDR_ADDR) >> BP_EPDC_HW_EPDC_WB_ADDR_ADDR)
+#define BG_EPDC_HW_EPDC_WB_ADDR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_WB_ADDR_ADDR) >> BP_EPDC_HW_EPDC_WB_ADDR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_WB_ADDR_ADDR.
-#define BF_EPDC_HW_EPDC_WB_ADDR_ADDR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_WB_ADDR_ADDR) & BM_EPDC_HW_EPDC_WB_ADDR_ADDR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_WB_ADDR_ADDR.
-#define BF_EPDC_HW_EPDC_WB_ADDR_ADDR(v)   (((v) << BP_EPDC_HW_EPDC_WB_ADDR_ADDR) & BM_EPDC_HW_EPDC_WB_ADDR_ADDR)
-#endif
+#define BF_EPDC_HW_EPDC_WB_ADDR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_WB_ADDR_ADDR) & BM_EPDC_HW_EPDC_WB_ADDR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_HW_EPDC_WB_ADDR_ADDR(v)   (HW_EPDC_HW_EPDC_WB_ADDR_WR((HW_EPDC_HW_EPDC_WB_ADDR_RD() & ~BM_EPDC_HW_EPDC_WB_ADDR_ADDR) | BF_EPDC_HW_EPDC_WB_ADDR_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_RES - EPDC Screen Resolution
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -520,15 +507,10 @@ typedef union _hw_epdc_hw_epdc_res
 #define BM_EPDC_HW_EPDC_RES_HORIZONTAL      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_RES_HORIZONTAL.
 
 //! @brief Get value of EPDC_HW_EPDC_RES_HORIZONTAL from a register value.
-#define BG_EPDC_HW_EPDC_RES_HORIZONTAL(r)   (((r) & BM_EPDC_HW_EPDC_RES_HORIZONTAL) >> BP_EPDC_HW_EPDC_RES_HORIZONTAL)
+#define BG_EPDC_HW_EPDC_RES_HORIZONTAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_RES_HORIZONTAL) >> BP_EPDC_HW_EPDC_RES_HORIZONTAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_RES_HORIZONTAL.
-#define BF_EPDC_HW_EPDC_RES_HORIZONTAL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_RES_HORIZONTAL) & BM_EPDC_HW_EPDC_RES_HORIZONTAL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_RES_HORIZONTAL.
-#define BF_EPDC_HW_EPDC_RES_HORIZONTAL(v)   (((v) << BP_EPDC_HW_EPDC_RES_HORIZONTAL) & BM_EPDC_HW_EPDC_RES_HORIZONTAL)
-#endif
+#define BF_EPDC_HW_EPDC_RES_HORIZONTAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_RES_HORIZONTAL) & BM_EPDC_HW_EPDC_RES_HORIZONTAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HORIZONTAL field to a new value.
@@ -544,20 +526,19 @@ typedef union _hw_epdc_hw_epdc_res
 #define BM_EPDC_HW_EPDC_RES_VERTICAL      (0x1fff0000)  //!< Bit mask for EPDC_HW_EPDC_RES_VERTICAL.
 
 //! @brief Get value of EPDC_HW_EPDC_RES_VERTICAL from a register value.
-#define BG_EPDC_HW_EPDC_RES_VERTICAL(r)   (((r) & BM_EPDC_HW_EPDC_RES_VERTICAL) >> BP_EPDC_HW_EPDC_RES_VERTICAL)
+#define BG_EPDC_HW_EPDC_RES_VERTICAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_RES_VERTICAL) >> BP_EPDC_HW_EPDC_RES_VERTICAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_RES_VERTICAL.
-#define BF_EPDC_HW_EPDC_RES_VERTICAL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_RES_VERTICAL) & BM_EPDC_HW_EPDC_RES_VERTICAL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_RES_VERTICAL.
-#define BF_EPDC_HW_EPDC_RES_VERTICAL(v)   (((v) << BP_EPDC_HW_EPDC_RES_VERTICAL) & BM_EPDC_HW_EPDC_RES_VERTICAL)
-#endif
+#define BF_EPDC_HW_EPDC_RES_VERTICAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_RES_VERTICAL) & BM_EPDC_HW_EPDC_RES_VERTICAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VERTICAL field to a new value.
 #define BW_EPDC_HW_EPDC_RES_VERTICAL(v)   (HW_EPDC_HW_EPDC_RES_WR((HW_EPDC_HW_EPDC_RES_RD() & ~BM_EPDC_HW_EPDC_RES_VERTICAL) | BF_EPDC_HW_EPDC_RES_VERTICAL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_FORMAT - EPDC Format Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -619,15 +600,10 @@ typedef union _hw_epdc_hw_epdc_format
 #define BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT      (0x00000003)  //!< Bit mask for EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT.
 
 //! @brief Get value of EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT from a register value.
-#define BG_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT(r)   (((r) & BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT) >> BP_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT)
+#define BG_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT) >> BP_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT.
-#define BF_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT.
-#define BF_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT(v)   (((v) << BP_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT)
-#endif
+#define BF_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_TFT_PIXEL_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFT_PIXEL_FORMAT field to a new value.
@@ -656,15 +632,10 @@ typedef union _hw_epdc_hw_epdc_format
 #define BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT      (0x00000700)  //!< Bit mask for EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT.
 
 //! @brief Get value of EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT from a register value.
-#define BG_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT(r)   (((r) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT) >> BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT)
+#define BG_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT) >> BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT.
-#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT.
-#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT(v)   (((v) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT)
-#endif
+#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUF_PIXEL_FORMAT field to a new value.
@@ -687,15 +658,10 @@ typedef union _hw_epdc_hw_epdc_format
 #define BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL.
 
 //! @brief Get value of EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL from a register value.
-#define BG_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(r)   (((r) & BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL) >> BP_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL)
+#define BG_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL) >> BP_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL.
-#define BF_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL) & BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL.
-#define BF_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(v)   (((v) << BP_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL) & BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL)
-#endif
+#define BF_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL) & BM_EPDC_HW_EPDC_FORMAT_DEFAULT_TFT_PIXEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEFAULT_TFT_PIXEL field to a new value.
@@ -715,15 +681,10 @@ typedef union _hw_epdc_hw_epdc_format
 #define BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE      (0x01000000)  //!< Bit mask for EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE.
 
 //! @brief Get value of EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE from a register value.
-#define BG_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE(r)   (((r) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE) >> BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE)
+#define BG_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE) >> BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE.
-#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE.
-#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE(v)   (((v) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE)
-#endif
+#define BF_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE) & BM_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUF_PIXEL_SCALE field to a new value.
@@ -732,6 +693,10 @@ typedef union _hw_epdc_hw_epdc_format
 
 #define BV_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE__TRUNCATE (0x0) //!< Use Truncate method (LSB)
 #define BV_EPDC_HW_EPDC_FORMAT_BUF_PIXEL_SCALE__ROUND (0x1) //!< Use rounding method (with saturation)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_FIFOCTRL - EPDC FIFO control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -785,15 +750,10 @@ typedef union _hw_epdc_hw_epdc_fifoctrl
 #define BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL      (0x000000ff)  //!< Bit mask for EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL.
 
 //! @brief Get value of EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL from a register value.
-#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL(r)   (((r) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL)
+#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL(v)   (((v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL)
-#endif
+#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_L_LEVEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_L_LEVEL field to a new value.
@@ -810,15 +770,10 @@ typedef union _hw_epdc_hw_epdc_fifoctrl
 #define BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL      (0x0000ff00)  //!< Bit mask for EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL.
 
 //! @brief Get value of EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL from a register value.
-#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL(r)   (((r) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL)
+#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL(v)   (((v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL)
-#endif
+#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_H_LEVEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_H_LEVEL field to a new value.
@@ -834,15 +789,10 @@ typedef union _hw_epdc_hw_epdc_fifoctrl
 #define BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL.
 
 //! @brief Get value of EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL from a register value.
-#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(r)   (((r) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL)
+#define BG_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL) >> BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(v)   (((v) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL)
-#endif
+#define BF_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL) & BM_EPDC_HW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_INIT_LEVEL field to a new value.
@@ -859,20 +809,19 @@ typedef union _hw_epdc_hw_epdc_fifoctrl
 #define BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY      (0x80000000)  //!< Bit mask for EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY.
 
 //! @brief Get value of EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY from a register value.
-#define BG_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(r)   (((r) & BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) >> BP_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY)
+#define BG_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) >> BP_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) & BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY.
-#define BF_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)   (((v) << BP_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) & BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY)
-#endif
+#define BF_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) & BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_PRIORITY field to a new value.
 #define BW_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)   (HW_EPDC_HW_EPDC_FIFOCTRL_WR((HW_EPDC_HW_EPDC_FIFOCTRL_RD() & ~BM_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY) | BF_EPDC_HW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_ADDR - EPDC Update Region Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -923,20 +872,19 @@ typedef union _hw_epdc_hw_epdc_upd_addr
 #define BM_EPDC_HW_EPDC_UPD_ADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_UPD_ADDR_ADDR.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_ADDR_ADDR from a register value.
-#define BG_EPDC_HW_EPDC_UPD_ADDR_ADDR(r)   (((r) & BM_EPDC_HW_EPDC_UPD_ADDR_ADDR) >> BP_EPDC_HW_EPDC_UPD_ADDR_ADDR)
+#define BG_EPDC_HW_EPDC_UPD_ADDR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_ADDR_ADDR) >> BP_EPDC_HW_EPDC_UPD_ADDR_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_ADDR_ADDR.
-#define BF_EPDC_HW_EPDC_UPD_ADDR_ADDR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_ADDR_ADDR) & BM_EPDC_HW_EPDC_UPD_ADDR_ADDR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_ADDR_ADDR.
-#define BF_EPDC_HW_EPDC_UPD_ADDR_ADDR(v)   (((v) << BP_EPDC_HW_EPDC_UPD_ADDR_ADDR) & BM_EPDC_HW_EPDC_UPD_ADDR_ADDR)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_ADDR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_ADDR_ADDR) & BM_EPDC_HW_EPDC_UPD_ADDR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_ADDR_ADDR(v)   (HW_EPDC_HW_EPDC_UPD_ADDR_WR((HW_EPDC_HW_EPDC_UPD_ADDR_RD() & ~BM_EPDC_HW_EPDC_UPD_ADDR_ADDR) | BF_EPDC_HW_EPDC_UPD_ADDR_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_STRIDE - EPDC Update Region Stride
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -987,20 +935,19 @@ typedef union _hw_epdc_hw_epdc_upd_stride
 #define BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_UPD_STRIDE_STRIDE.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_STRIDE_STRIDE from a register value.
-#define BG_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(r)   (((r) & BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) >> BP_EPDC_HW_EPDC_UPD_STRIDE_STRIDE)
+#define BG_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) >> BP_EPDC_HW_EPDC_UPD_STRIDE_STRIDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_STRIDE_STRIDE.
-#define BF_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) & BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_STRIDE_STRIDE.
-#define BF_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(v)   (((v) << BP_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) & BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) & BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STRIDE field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(v)   (HW_EPDC_HW_EPDC_UPD_STRIDE_WR((HW_EPDC_HW_EPDC_UPD_STRIDE_RD() & ~BM_EPDC_HW_EPDC_UPD_STRIDE_STRIDE) | BF_EPDC_HW_EPDC_UPD_STRIDE_STRIDE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_CORD - EPDC Update Command Co-ordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1050,15 +997,10 @@ typedef union _hw_epdc_hw_epdc_upd_cord
 #define BM_EPDC_HW_EPDC_UPD_CORD_XCORD      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_UPD_CORD_XCORD.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CORD_XCORD from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CORD_XCORD(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CORD_XCORD) >> BP_EPDC_HW_EPDC_UPD_CORD_XCORD)
+#define BG_EPDC_HW_EPDC_UPD_CORD_XCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CORD_XCORD) >> BP_EPDC_HW_EPDC_UPD_CORD_XCORD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CORD_XCORD.
-#define BF_EPDC_HW_EPDC_UPD_CORD_XCORD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CORD_XCORD) & BM_EPDC_HW_EPDC_UPD_CORD_XCORD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CORD_XCORD.
-#define BF_EPDC_HW_EPDC_UPD_CORD_XCORD(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CORD_XCORD) & BM_EPDC_HW_EPDC_UPD_CORD_XCORD)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CORD_XCORD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CORD_XCORD) & BM_EPDC_HW_EPDC_UPD_CORD_XCORD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the XCORD field to a new value.
@@ -1074,20 +1016,19 @@ typedef union _hw_epdc_hw_epdc_upd_cord
 #define BM_EPDC_HW_EPDC_UPD_CORD_YCORD      (0x1fff0000)  //!< Bit mask for EPDC_HW_EPDC_UPD_CORD_YCORD.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CORD_YCORD from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CORD_YCORD(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CORD_YCORD) >> BP_EPDC_HW_EPDC_UPD_CORD_YCORD)
+#define BG_EPDC_HW_EPDC_UPD_CORD_YCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CORD_YCORD) >> BP_EPDC_HW_EPDC_UPD_CORD_YCORD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CORD_YCORD.
-#define BF_EPDC_HW_EPDC_UPD_CORD_YCORD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CORD_YCORD) & BM_EPDC_HW_EPDC_UPD_CORD_YCORD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CORD_YCORD.
-#define BF_EPDC_HW_EPDC_UPD_CORD_YCORD(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CORD_YCORD) & BM_EPDC_HW_EPDC_UPD_CORD_YCORD)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CORD_YCORD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CORD_YCORD) & BM_EPDC_HW_EPDC_UPD_CORD_YCORD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YCORD field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_CORD_YCORD(v)   (HW_EPDC_HW_EPDC_UPD_CORD_WR((HW_EPDC_HW_EPDC_UPD_CORD_RD() & ~BM_EPDC_HW_EPDC_UPD_CORD_YCORD) | BF_EPDC_HW_EPDC_UPD_CORD_YCORD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_SIZE - EPDC Update Command Size
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1138,15 +1079,10 @@ typedef union _hw_epdc_hw_epdc_upd_size
 #define BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_UPD_SIZE_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_SIZE_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_UPD_SIZE_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH) >> BP_EPDC_HW_EPDC_UPD_SIZE_WIDTH)
+#define BG_EPDC_HW_EPDC_UPD_SIZE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH) >> BP_EPDC_HW_EPDC_UPD_SIZE_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_SIZE_WIDTH.
-#define BF_EPDC_HW_EPDC_UPD_SIZE_WIDTH(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_SIZE_WIDTH) & BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_SIZE_WIDTH.
-#define BF_EPDC_HW_EPDC_UPD_SIZE_WIDTH(v)   (((v) << BP_EPDC_HW_EPDC_UPD_SIZE_WIDTH) & BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_SIZE_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_SIZE_WIDTH) & BM_EPDC_HW_EPDC_UPD_SIZE_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIDTH field to a new value.
@@ -1162,20 +1098,19 @@ typedef union _hw_epdc_hw_epdc_upd_size
 #define BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT      (0x1fff0000)  //!< Bit mask for EPDC_HW_EPDC_UPD_SIZE_HEIGHT.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_SIZE_HEIGHT from a register value.
-#define BG_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(r)   (((r) & BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) >> BP_EPDC_HW_EPDC_UPD_SIZE_HEIGHT)
+#define BG_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) >> BP_EPDC_HW_EPDC_UPD_SIZE_HEIGHT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_SIZE_HEIGHT.
-#define BF_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) & BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_SIZE_HEIGHT.
-#define BF_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(v)   (((v) << BP_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) & BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) & BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HEIGHT field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(v)   (HW_EPDC_HW_EPDC_UPD_SIZE_WR((HW_EPDC_HW_EPDC_UPD_SIZE_RD() & ~BM_EPDC_HW_EPDC_UPD_SIZE_HEIGHT) | BF_EPDC_HW_EPDC_UPD_SIZE_HEIGHT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_CTRL - EPDC Update Command Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1237,15 +1172,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE) >> BP_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE) >> BP_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_UPDATE_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPDATE_MODE field to a new value.
@@ -1265,15 +1195,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_DRY_RUN.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_DRY_RUN from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN) >> BP_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN) >> BP_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_DRY_RUN.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN) & BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_DRY_RUN.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN) & BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN) & BM_EPDC_HW_EPDC_UPD_CTRL_DRY_RUN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DRY_RUN field to a new value.
@@ -1289,15 +1214,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV      (0x00000004)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_AUTOWV.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_AUTOWV from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_AUTOWV(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV) >> BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_AUTOWV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV) >> BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_AUTOWV.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_AUTOWV.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUTOWV field to a new value.
@@ -1313,15 +1233,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE      (0x00000008)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE) >> BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE) >> BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE) & BM_EPDC_HW_EPDC_UPD_CTRL_AUTOWV_PAUSE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUTOWV_PAUSE field to a new value.
@@ -1337,15 +1252,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE      (0x0000ff00)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE) >> BP_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE) >> BP_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE) & BM_EPDC_HW_EPDC_UPD_CTRL_WAVEFORM_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAVEFORM_MODE field to a new value.
@@ -1361,15 +1271,10 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL      (0x003f0000)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_LUT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_LUT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL) >> BP_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL) >> BP_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_LUT_SEL.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL) & BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_LUT_SEL.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL) & BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL) & BM_EPDC_HW_EPDC_UPD_CTRL_LUT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_SEL field to a new value.
@@ -1385,20 +1290,19 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
 #define BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED      (0x80000000)  //!< Bit mask for EPDC_HW_EPDC_UPD_CTRL_USE_FIXED.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_CTRL_USE_FIXED from a register value.
-#define BG_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(r)   (((r) & BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) >> BP_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED)
+#define BG_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) >> BP_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_USE_FIXED.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) & BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_CTRL_USE_FIXED.
-#define BF_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(v)   (((v) << BP_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) & BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) & BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USE_FIXED field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(v)   (HW_EPDC_HW_EPDC_UPD_CTRL_WR((HW_EPDC_HW_EPDC_UPD_CTRL_RD() & ~BM_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED) | BF_EPDC_HW_EPDC_UPD_CTRL_USE_FIXED(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_FIXED - EPDC Update Fixed Pixel Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1452,15 +1356,10 @@ typedef union _hw_epdc_hw_epdc_upd_fixed
 #define BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP      (0x000000ff)  //!< Bit mask for EPDC_HW_EPDC_UPD_FIXED_FIXCP.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_FIXED_FIXCP from a register value.
-#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXCP(r)   (((r) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP)
+#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXCP.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXCP.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP(v)   (((v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIXCP field to a new value.
@@ -1476,15 +1375,10 @@ typedef union _hw_epdc_hw_epdc_upd_fixed
 #define BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP      (0x0000ff00)  //!< Bit mask for EPDC_HW_EPDC_UPD_FIXED_FIXNP.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_FIXED_FIXNP from a register value.
-#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXNP(r)   (((r) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP)
+#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXNP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXNP.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXNP.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP(v)   (((v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIXNP field to a new value.
@@ -1500,15 +1394,10 @@ typedef union _hw_epdc_hw_epdc_upd_fixed
 #define BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN      (0x40000000)  //!< Bit mask for EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN from a register value.
-#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN(r)   (((r) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN)
+#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN(v)   (((v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXCP_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIXCP_EN field to a new value.
@@ -1524,20 +1413,19 @@ typedef union _hw_epdc_hw_epdc_upd_fixed
 #define BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN      (0x80000000)  //!< Bit mask for EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN from a register value.
-#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(r)   (((r) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN)
+#define BG_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) >> BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN.
-#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(v)   (((v) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN)
-#endif
+#define BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) & BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIXNP_EN field to a new value.
 #define BW_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(v)   (HW_EPDC_HW_EPDC_UPD_FIXED_WR((HW_EPDC_HW_EPDC_UPD_FIXED_RD() & ~BM_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN) | BF_EPDC_HW_EPDC_UPD_FIXED_FIXNP_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TEMP - EPDC Temperature Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1585,20 +1473,19 @@ typedef union _hw_epdc_hw_epdc_temp
 #define BM_EPDC_HW_EPDC_TEMP_TEMPERATURE      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_TEMP_TEMPERATURE.
 
 //! @brief Get value of EPDC_HW_EPDC_TEMP_TEMPERATURE from a register value.
-#define BG_EPDC_HW_EPDC_TEMP_TEMPERATURE(r)   (((r) & BM_EPDC_HW_EPDC_TEMP_TEMPERATURE) >> BP_EPDC_HW_EPDC_TEMP_TEMPERATURE)
+#define BG_EPDC_HW_EPDC_TEMP_TEMPERATURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TEMP_TEMPERATURE) >> BP_EPDC_HW_EPDC_TEMP_TEMPERATURE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TEMP_TEMPERATURE.
-#define BF_EPDC_HW_EPDC_TEMP_TEMPERATURE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TEMP_TEMPERATURE) & BM_EPDC_HW_EPDC_TEMP_TEMPERATURE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TEMP_TEMPERATURE.
-#define BF_EPDC_HW_EPDC_TEMP_TEMPERATURE(v)   (((v) << BP_EPDC_HW_EPDC_TEMP_TEMPERATURE) & BM_EPDC_HW_EPDC_TEMP_TEMPERATURE)
-#endif
+#define BF_EPDC_HW_EPDC_TEMP_TEMPERATURE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TEMP_TEMPERATURE) & BM_EPDC_HW_EPDC_TEMP_TEMPERATURE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TEMPERATURE field to a new value.
 #define BW_EPDC_HW_EPDC_TEMP_TEMPERATURE(v)   (HW_EPDC_HW_EPDC_TEMP_WR((HW_EPDC_HW_EPDC_TEMP_RD() & ~BM_EPDC_HW_EPDC_TEMP_TEMPERATURE) | BF_EPDC_HW_EPDC_TEMP_TEMPERATURE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_AUTOWV_LUT - Waveform Mode Lookup Table Control Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1650,15 +1537,10 @@ typedef union _hw_epdc_hw_epdc_autowv_lut
 #define BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR      (0x000000ff)  //!< Bit mask for EPDC_HW_EPDC_AUTOWV_LUT_ADDR.
 
 //! @brief Get value of EPDC_HW_EPDC_AUTOWV_LUT_ADDR from a register value.
-#define BG_EPDC_HW_EPDC_AUTOWV_LUT_ADDR(r)   (((r) & BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR) >> BP_EPDC_HW_EPDC_AUTOWV_LUT_ADDR)
+#define BG_EPDC_HW_EPDC_AUTOWV_LUT_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR) >> BP_EPDC_HW_EPDC_AUTOWV_LUT_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_AUTOWV_LUT_ADDR.
-#define BF_EPDC_HW_EPDC_AUTOWV_LUT_ADDR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_AUTOWV_LUT_ADDR) & BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_AUTOWV_LUT_ADDR.
-#define BF_EPDC_HW_EPDC_AUTOWV_LUT_ADDR(v)   (((v) << BP_EPDC_HW_EPDC_AUTOWV_LUT_ADDR) & BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR)
-#endif
+#define BF_EPDC_HW_EPDC_AUTOWV_LUT_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_AUTOWV_LUT_ADDR) & BM_EPDC_HW_EPDC_AUTOWV_LUT_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
@@ -1674,20 +1556,19 @@ typedef union _hw_epdc_hw_epdc_autowv_lut
 #define BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_AUTOWV_LUT_DATA.
 
 //! @brief Get value of EPDC_HW_EPDC_AUTOWV_LUT_DATA from a register value.
-#define BG_EPDC_HW_EPDC_AUTOWV_LUT_DATA(r)   (((r) & BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA) >> BP_EPDC_HW_EPDC_AUTOWV_LUT_DATA)
+#define BG_EPDC_HW_EPDC_AUTOWV_LUT_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA) >> BP_EPDC_HW_EPDC_AUTOWV_LUT_DATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_AUTOWV_LUT_DATA.
-#define BF_EPDC_HW_EPDC_AUTOWV_LUT_DATA(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_AUTOWV_LUT_DATA) & BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_AUTOWV_LUT_DATA.
-#define BF_EPDC_HW_EPDC_AUTOWV_LUT_DATA(v)   (((v) << BP_EPDC_HW_EPDC_AUTOWV_LUT_DATA) & BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA)
-#endif
+#define BF_EPDC_HW_EPDC_AUTOWV_LUT_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_AUTOWV_LUT_DATA) & BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
 #define BW_EPDC_HW_EPDC_AUTOWV_LUT_DATA(v)   (HW_EPDC_HW_EPDC_AUTOWV_LUT_WR((HW_EPDC_HW_EPDC_AUTOWV_LUT_RD() & ~BM_EPDC_HW_EPDC_AUTOWV_LUT_DATA) | BF_EPDC_HW_EPDC_AUTOWV_LUT_DATA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_CTRL - EPDC Timing Control Engine Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1759,15 +1640,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK      (0x00000003)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK) >> BP_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK) >> BP_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK) & BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK) & BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK) & BM_EPDC_HW_EPDC_TCE_CTRL_PIXELS_PER_SDCLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXELS_PER_SDCLK field to a new value.
@@ -1792,15 +1668,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH      (0x00000004)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH) >> BP_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH) >> BP_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH) & BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH) & BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH) & BM_EPDC_HW_EPDC_TCE_CTRL_SDDO_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDDO_WIDTH field to a new value.
@@ -1820,15 +1691,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN      (0x00000008)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN) >> BP_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN) >> BP_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN) & BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN) & BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN) & BM_EPDC_HW_EPDC_TCE_CTRL_DUAL_SCAN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DUAL_SCAN field to a new value.
@@ -1848,15 +1714,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0      (0x00000010)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0 from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0) >> BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0) >> BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCAN_DIR_0 field to a new value.
@@ -1879,15 +1740,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1      (0x00000020)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1 from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1) >> BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1) >> BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1) & BM_EPDC_HW_EPDC_TCE_CTRL_SCAN_DIR_1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SCAN_DIR_1 field to a new value.
@@ -1908,15 +1764,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE      (0x00000040)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LVDS_MODE field to a new value.
@@ -1933,15 +1784,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE      (0x00000080)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE) >> BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE) >> BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE) & BM_EPDC_HW_EPDC_TCE_CTRL_LVDS_MODE_CE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LVDS_MODE_CE field to a new value.
@@ -1959,15 +1805,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE      (0x00000100)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_DDR_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_DDR_MODE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_DDR_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_DDR_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_DDR_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_MODE field to a new value.
@@ -1987,15 +1828,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE      (0x00000200)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE) >> BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VCOM_MODE field to a new value.
@@ -2014,15 +1850,10 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL      (0x00000c00)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL) >> BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL) >> BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL) & BM_EPDC_HW_EPDC_TCE_CTRL_VCOM_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VCOM_VAL field to a new value.
@@ -2043,20 +1874,19 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
 #define BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF      (0x01ff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF from a register value.
-#define BG_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(r)   (((r) & BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) >> BP_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF)
+#define BG_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) >> BP_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) & BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF.
-#define BF_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)   (((v) << BP_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) & BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) & BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSCAN_HOLDOFF field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)   (HW_EPDC_HW_EPDC_TCE_CTRL_WR((HW_EPDC_HW_EPDC_TCE_CTRL_RD() & ~BM_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF) | BF_EPDC_HW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_SDCFG - EPDC Timing Control Engine Source-Driver Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2112,15 +1942,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE) >> BP_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE) >> BP_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_PIXELS_PER_CE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIXELS_PER_CE field to a new value.
@@ -2137,15 +1962,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT      (0x00002000)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_INVERT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDDO_INVERT field to a new value.
@@ -2168,15 +1988,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT      (0x0000c000)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDDO_REFORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDDO_REFORMAT field to a new value.
@@ -2195,15 +2010,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE      (0x000f0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_NUM_CE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_NUM_CE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE) >> BP_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE) >> BP_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_NUM_CE.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_NUM_CE.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE) & BM_EPDC_HW_EPDC_TCE_SDCFG_NUM_CE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NUM_CE field to a new value.
@@ -2219,15 +2029,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR      (0x00100000)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_SDSHR.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_SDSHR from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDSHR(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDSHR)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDSHR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDSHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDSHR.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDSHR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDSHR) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDSHR.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDSHR(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDSHR) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDSHR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDSHR) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDSHR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDSHR field to a new value.
@@ -2243,20 +2048,19 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
 #define BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD      (0x00200000)  //!< Bit mask for EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD from a register value.
-#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(r)   (((r) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD)
+#define BG_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) >> BP_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD.
-#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)   (((v) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) & BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLK_HOLD field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)   (HW_EPDC_HW_EPDC_TCE_SDCFG_WR((HW_EPDC_HW_EPDC_TCE_SDCFG_RD() & ~BM_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD) | BF_EPDC_HW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_GDCFG - EPDC Timing Control Engine Gate-Driver Config Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2312,15 +2116,10 @@ typedef union _hw_epdc_hw_epdc_tce_gdcfg
 #define BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE)
+#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDSP_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDSP_MODE field to a new value.
@@ -2338,15 +2137,10 @@ typedef union _hw_epdc_hw_epdc_tce_gdcfg
 #define BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE from a register value.
-#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE(r)   (((r) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE)
+#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE(v)   (((v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDOE_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDOE_MODE field to a new value.
@@ -2362,15 +2156,10 @@ typedef union _hw_epdc_hw_epdc_tce_gdcfg
 #define BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL      (0x00000010)  //!< Bit mask for EPDC_HW_EPDC_TCE_GDCFG_GDRL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_GDCFG_GDRL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDRL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDRL)
+#define BG_EPDC_HW_EPDC_TCE_GDCFG_GDRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL) >> BP_EPDC_HW_EPDC_TCE_GDCFG_GDRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDRL.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDRL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDRL) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_GDRL.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDRL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDRL) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_GDCFG_GDRL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_GDCFG_GDRL) & BM_EPDC_HW_EPDC_TCE_GDCFG_GDRL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDRL field to a new value.
@@ -2386,20 +2175,19 @@ typedef union _hw_epdc_hw_epdc_tce_gdcfg
 #define BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN from a register value.
-#define BG_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(r)   (((r) & BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) >> BP_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN)
+#define BG_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) >> BP_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) & BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN.
-#define BF_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)   (((v) << BP_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) & BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) & BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIOD_VSCAN field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)   (HW_EPDC_HW_EPDC_TCE_GDCFG_WR((HW_EPDC_HW_EPDC_TCE_GDCFG_RD() & ~BM_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN) | BF_EPDC_HW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_HSCAN1 - EPDC Timing Control Engine Horizontal Timing Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2454,15 +2242,10 @@ typedef union _hw_epdc_hw_epdc_tce_hscan1
 #define BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC      (0x00000fff)  //!< Bit mask for EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC from a register value.
-#define BG_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC(r)   (((r) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC) >> BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC)
+#define BG_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC) >> BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC(v)   (((v) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LINE_SYNC field to a new value.
@@ -2480,20 +2263,19 @@ typedef union _hw_epdc_hw_epdc_tce_hscan1
 #define BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH      (0x0fff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) >> BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH)
+#define BG_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) >> BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)   (((v) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) & BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LINE_SYNC_WIDTH field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)   (HW_EPDC_HW_EPDC_TCE_HSCAN1_WR((HW_EPDC_HW_EPDC_TCE_HSCAN1_RD() & ~BM_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH) | BF_EPDC_HW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_HSCAN2 - EPDC Timing Control Engine Horizontal Timing Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2549,15 +2331,10 @@ typedef union _hw_epdc_hw_epdc_tce_hscan2
 #define BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN      (0x00000fff)  //!< Bit mask for EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN from a register value.
-#define BG_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN(r)   (((r) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN) >> BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN)
+#define BG_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN) >> BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN(v)   (((v) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_BEGIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LINE_BEGIN field to a new value.
@@ -2574,20 +2351,19 @@ typedef union _hw_epdc_hw_epdc_tce_hscan2
 #define BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END      (0x0fff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_HSCAN2_LINE_END.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_HSCAN2_LINE_END from a register value.
-#define BG_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(r)   (((r) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) >> BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END)
+#define BG_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) >> BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN2_LINE_END.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_HSCAN2_LINE_END.
-#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(v)   (((v) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) & BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LINE_END field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(v)   (HW_EPDC_HW_EPDC_TCE_HSCAN2_WR((HW_EPDC_HW_EPDC_TCE_HSCAN2_RD() & ~BM_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END) | BF_EPDC_HW_EPDC_TCE_HSCAN2_LINE_END(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_VSCAN - EPDC Timing Control Engine Vertical Timing Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2639,15 +2415,10 @@ typedef union _hw_epdc_hw_epdc_tce_vscan
 #define BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC      (0x000000ff)  //!< Bit mask for EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC from a register value.
-#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC(r)   (((r) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC)
+#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC(v)   (((v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_SYNC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_SYNC field to a new value.
@@ -2663,15 +2434,10 @@ typedef union _hw_epdc_hw_epdc_tce_vscan
 #define BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN      (0x0000ff00)  //!< Bit mask for EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN from a register value.
-#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN(r)   (((r) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN)
+#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN(v)   (((v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_BEGIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_BEGIN field to a new value.
@@ -2687,20 +2453,19 @@ typedef union _hw_epdc_hw_epdc_tce_vscan
 #define BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_VSCAN_FRAME_END.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_VSCAN_FRAME_END from a register value.
-#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(r)   (((r) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END)
+#define BG_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) >> BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_END.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_VSCAN_FRAME_END.
-#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(v)   (((v) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) & BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_END field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(v)   (HW_EPDC_HW_EPDC_TCE_VSCAN_WR((HW_EPDC_HW_EPDC_TCE_VSCAN_RD() & ~BM_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END) | BF_EPDC_HW_EPDC_TCE_VSCAN_FRAME_END(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_OE - EPDC Timing Control Engine OE timing control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2753,15 +2518,10 @@ typedef union _hw_epdc_hw_epdc_tce_oe
 #define BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY      (0x000000ff)  //!< Bit mask for EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY from a register value.
-#define BG_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY(r)   (((r) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY) >> BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY)
+#define BG_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY) >> BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY(v)   (((v) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_DLY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDOEZ_DLY field to a new value.
@@ -2777,15 +2537,10 @@ typedef union _hw_epdc_hw_epdc_tce_oe
 #define BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH      (0x0000ff00)  //!< Bit mask for EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH) >> BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH)
+#define BG_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH) >> BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH(v)   (((v) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOEZ_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDOEZ_WIDTH field to a new value.
@@ -2801,15 +2556,10 @@ typedef union _hw_epdc_hw_epdc_tce_oe
 #define BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_OE_SDOED_DLY.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_OE_SDOED_DLY from a register value.
-#define BG_EPDC_HW_EPDC_TCE_OE_SDOED_DLY(r)   (((r) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY) >> BP_EPDC_HW_EPDC_TCE_OE_SDOED_DLY)
+#define BG_EPDC_HW_EPDC_TCE_OE_SDOED_DLY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY) >> BP_EPDC_HW_EPDC_TCE_OE_SDOED_DLY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOED_DLY.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_DLY(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOED_DLY.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_DLY(v)   (((v) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_DLY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_DLY) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_DLY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDOED_DLY field to a new value.
@@ -2825,20 +2575,19 @@ typedef union _hw_epdc_hw_epdc_tce_oe
 #define BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) >> BP_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH)
+#define BG_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) >> BP_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH.
-#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(v)   (((v) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) & BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDOED_WIDTH field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(v)   (HW_EPDC_HW_EPDC_TCE_OE_WR((HW_EPDC_HW_EPDC_TCE_OE_RD() & ~BM_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH) | BF_EPDC_HW_EPDC_TCE_OE_SDOED_WIDTH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_POLARITY - EPDC Timing Control Engine Driver Polarity Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2892,15 +2641,10 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
 #define BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL)
+#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDCE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCE_POL field to a new value.
@@ -2916,15 +2660,10 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
 #define BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL)
+#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDLE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDLE_POL field to a new value.
@@ -2940,15 +2679,10 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
 #define BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL      (0x00000004)  //!< Bit mask for EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL)
+#define BG_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_SDOE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDOE_POL field to a new value.
@@ -2964,15 +2698,10 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
 #define BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL      (0x00000008)  //!< Bit mask for EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL)
+#define BG_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDOE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDOE_POL field to a new value.
@@ -2988,20 +2717,19 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
 #define BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL      (0x00000010)  //!< Bit mask for EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL from a register value.
-#define BG_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(r)   (((r) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL)
+#define BG_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) >> BP_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL.
-#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(v)   (((v) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) & BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDSP_POL field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(v)   (HW_EPDC_HW_EPDC_TCE_POLARITY_WR((HW_EPDC_HW_EPDC_TCE_POLARITY_RD() & ~BM_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL) | BF_EPDC_HW_EPDC_TCE_POLARITY_GDSP_POL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_TIMING1 - EPDC Timing Control Engine Timing Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3061,15 +2789,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing1
 #define BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT      (0x00000003)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT)
+#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_SHIFT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLK_SHIFT field to a new value.
@@ -3090,15 +2813,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing1
 #define BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT      (0x00000008)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT)
+#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDCLK_INVERT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLK_INVERT field to a new value.
@@ -3121,15 +2839,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing1
 #define BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT      (0x00000030)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT)
+#define BG_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT) >> BP_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT.
-#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT) & BM_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDLE_SHIFT field to a new value.
@@ -3140,6 +2853,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing1
 #define BV_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT__ONE (0x1) //!< Shift SDLE 1 pixclk cycle
 #define BV_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT__TWO (0x2) //!< Shift SDLE 2 pixclk cycles
 #define BV_EPDC_HW_EPDC_TCE_TIMING1_SDLE_SHIFT__THREE (0x3) //!< Shift SDLE 3 pixclk cycles
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_TIMING2 - EPDC Timing Control Engine Timing Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3191,15 +2908,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing2
 #define BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET)
+#define BG_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDSP_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDSP_OFFSET field to a new value.
@@ -3219,20 +2931,19 @@ typedef union _hw_epdc_hw_epdc_tce_timing2
 #define BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) >> BP_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP)
+#define BG_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) >> BP_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP.
-#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP.
-#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) & BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDCLK_HP field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(v)   (HW_EPDC_HW_EPDC_TCE_TIMING2_WR((HW_EPDC_HW_EPDC_TCE_TIMING2_RD() & ~BM_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP) | BF_EPDC_HW_EPDC_TCE_TIMING2_GDCLK_HP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_TCE_TIMING3 - EPDC Timing Control Engine Timing Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3282,15 +2993,10 @@ typedef union _hw_epdc_hw_epdc_tce_timing3
 #define BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET)
+#define BG_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDCLK_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDCLK_OFFSET field to a new value.
@@ -3307,20 +3013,19 @@ typedef union _hw_epdc_hw_epdc_tce_timing3
 #define BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET)
+#define BG_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) >> BP_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET.
-#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) & BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GDOE_OFFSET field to a new value.
 #define BW_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)   (HW_EPDC_HW_EPDC_TCE_TIMING3_WR((HW_EPDC_HW_EPDC_TCE_TIMING3_RD() & ~BM_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET) | BF_EPDC_HW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_CTRL0 - EPDC Pigeon Mode Control Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3372,15 +3077,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_ctrl0
 #define BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD      (0x00000fff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD)
+#define BG_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_FD_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FD_PERIOD field to a new value.
@@ -3396,20 +3096,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_ctrl0
 #define BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD      (0x0fff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD)
+#define BG_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LD_PERIOD field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)   (HW_EPDC_HW_EPDC_PIGEON_CTRL0_WR((HW_EPDC_HW_EPDC_PIGEON_CTRL0_RD() & ~BM_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD) | BF_EPDC_HW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_CTRL1 - EPDC Pigeon Mode Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3461,15 +3160,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_ctrl1
 #define BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD      (0x00000fff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD)
+#define BG_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD) >> BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_CNT_PERIOD field to a new value.
@@ -3485,20 +3179,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_ctrl1
 #define BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES      (0x0fff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) >> BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES)
+#define BG_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) >> BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES.
-#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) & BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_CNT_CYCLES field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)   (HW_EPDC_HW_EPDC_PIGEON_CTRL1_WR((HW_EPDC_HW_EPDC_PIGEON_CTRL1_RD() & ~BM_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES) | BF_EPDC_HW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ_MASK1 - EPDC IRQ Mask Register for LUT 0~31
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3547,20 +3240,19 @@ typedef union _hw_epdc_hw_epdc_irq_mask1
 #define BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUTN_CMPLT_IRQ_EN field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)   (HW_EPDC_HW_EPDC_IRQ_MASK1_WR((HW_EPDC_HW_EPDC_IRQ_MASK1_RD() & ~BM_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN) | BF_EPDC_HW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ_MASK2 - EPDC IRQ Mask Register for LUT 32~63
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3609,20 +3301,19 @@ typedef union _hw_epdc_hw_epdc_irq_mask2
 #define BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUTN_CMPLT_IRQ_EN field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)   (HW_EPDC_HW_EPDC_IRQ_MASK2_WR((HW_EPDC_HW_EPDC_IRQ_MASK2_RD() & ~BM_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN) | BF_EPDC_HW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ1 - EPDC Interrupt Register for LUT 0~31
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3673,20 +3364,19 @@ typedef union _hw_epdc_hw_epdc_irq1
 #define BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUTN_CMPLT_IRQ field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)   (HW_EPDC_HW_EPDC_IRQ1_WR((HW_EPDC_HW_EPDC_IRQ1_RD() & ~BM_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ) | BF_EPDC_HW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ2 - EPDC Interrupt Registerr for LUT 32~63
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3737,20 +3427,19 @@ typedef union _hw_epdc_hw_epdc_irq2
 #define BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUTN_CMPLT_IRQ field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)   (HW_EPDC_HW_EPDC_IRQ2_WR((HW_EPDC_HW_EPDC_IRQ2_RD() & ~BM_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ) | BF_EPDC_HW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ_MASK - EPDC IRQ Mask Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3808,15 +3497,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN      (0x00010000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_CMPLT_IRQ_EN field to a new value.
@@ -3832,15 +3516,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN      (0x00020000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_COL_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COL_IRQ_EN field to a new value.
@@ -3856,15 +3535,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN      (0x00040000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCE_UNDERRUN_IRQ_EN field to a new value.
@@ -3881,15 +3555,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN      (0x00080000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_END_IRQ_EN field to a new value.
@@ -3905,15 +3574,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN      (0x00100000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUS_ERROR_IRQ_EN field to a new value.
@@ -3929,15 +3593,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN      (0x00200000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCE_IDLE_IRQ_EN field to a new value.
@@ -3953,15 +3612,10 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN      (0x00400000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPD_DONE_IRQ_EN field to a new value.
@@ -3977,20 +3631,19 @@ typedef union _hw_epdc_hw_epdc_irq_mask
 #define BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN      (0x00800000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN)
+#define BG_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) >> BP_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN.
-#define BF_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) & BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWR_IRQ_EN field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)   (HW_EPDC_HW_EPDC_IRQ_MASK_WR((HW_EPDC_HW_EPDC_IRQ_MASK_RD() & ~BM_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN) | BF_EPDC_HW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_IRQ - EPDC Interrupt Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4049,15 +3702,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ      (0x00010000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ) >> BP_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ) & BM_EPDC_HW_EPDC_IRQ_WB_CMPLT_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WB_CMPLT_IRQ field to a new value.
@@ -4073,15 +3721,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ      (0x00020000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_LUT_COL_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_LUT_COL_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ) >> BP_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ) >> BP_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_LUT_COL_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ) & BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_LUT_COL_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ) & BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ) & BM_EPDC_HW_EPDC_IRQ_LUT_COL_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LUT_COL_IRQ field to a new value.
@@ -4097,15 +3740,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ      (0x00040000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ) >> BP_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ) >> BP_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_UNDERRUN_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCE_UNDERRUN_IRQ field to a new value.
@@ -4122,15 +3760,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ      (0x00080000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_FRAME_END_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_FRAME_END_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ) >> BP_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ) >> BP_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_FRAME_END_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ) & BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_FRAME_END_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ) & BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ) & BM_EPDC_HW_EPDC_IRQ_FRAME_END_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRAME_END_IRQ field to a new value.
@@ -4146,15 +3779,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ      (0x00100000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ) >> BP_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ) >> BP_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ) & BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ) & BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ) & BM_EPDC_HW_EPDC_IRQ_BUS_ERROR_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUS_ERROR_IRQ field to a new value.
@@ -4170,15 +3798,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ      (0x00200000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ) >> BP_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ) >> BP_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ) & BM_EPDC_HW_EPDC_IRQ_TCE_IDLE_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCE_IDLE_IRQ field to a new value.
@@ -4194,15 +3817,10 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ      (0x00400000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ) >> BP_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ) >> BP_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ) & BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ) & BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ) & BM_EPDC_HW_EPDC_IRQ_UPD_DONE_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPD_DONE_IRQ field to a new value.
@@ -4218,20 +3836,19 @@ typedef union _hw_epdc_hw_epdc_irq
 #define BM_EPDC_HW_EPDC_IRQ_PWR_IRQ      (0x00800000)  //!< Bit mask for EPDC_HW_EPDC_IRQ_PWR_IRQ.
 
 //! @brief Get value of EPDC_HW_EPDC_IRQ_PWR_IRQ from a register value.
-#define BG_EPDC_HW_EPDC_IRQ_PWR_IRQ(r)   (((r) & BM_EPDC_HW_EPDC_IRQ_PWR_IRQ) >> BP_EPDC_HW_EPDC_IRQ_PWR_IRQ)
+#define BG_EPDC_HW_EPDC_IRQ_PWR_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_IRQ_PWR_IRQ) >> BP_EPDC_HW_EPDC_IRQ_PWR_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_PWR_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_PWR_IRQ(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_IRQ_PWR_IRQ) & BM_EPDC_HW_EPDC_IRQ_PWR_IRQ)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_IRQ_PWR_IRQ.
-#define BF_EPDC_HW_EPDC_IRQ_PWR_IRQ(v)   (((v) << BP_EPDC_HW_EPDC_IRQ_PWR_IRQ) & BM_EPDC_HW_EPDC_IRQ_PWR_IRQ)
-#endif
+#define BF_EPDC_HW_EPDC_IRQ_PWR_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_IRQ_PWR_IRQ) & BM_EPDC_HW_EPDC_IRQ_PWR_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWR_IRQ field to a new value.
 #define BW_EPDC_HW_EPDC_IRQ_PWR_IRQ(v)   (HW_EPDC_HW_EPDC_IRQ_WR((HW_EPDC_HW_EPDC_IRQ_RD() & ~BM_EPDC_HW_EPDC_IRQ_PWR_IRQ) | BF_EPDC_HW_EPDC_IRQ_PWR_IRQ(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS_LUTS1 - EPDC Status Register - LUTs
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4279,7 +3896,11 @@ typedef union _hw_epdc_hw_epdc_status_luts1
 #define BM_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS) >> BP_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS)
+#define BG_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS) >> BP_EPDC_HW_EPDC_STATUS_LUTS1_LUTN_STS)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS_LUTS2 - EPDC Status Register - LUTs
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4327,7 +3948,11 @@ typedef union _hw_epdc_hw_epdc_status_luts2
 #define BM_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS) >> BP_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS)
+#define BG_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS) >> BP_EPDC_HW_EPDC_STATUS_LUTS2_LUTN_STS)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS_NEXTLUT - EPDC Status Register - Next Available LUT
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4380,7 +4005,7 @@ typedef union _hw_epdc_hw_epdc_status_nextlut
 #define BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT      (0x0000003f)  //!< Bit mask for EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT) >> BP_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT)
+#define BG_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT) >> BP_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT)
 
 /* --- Register HW_EPDC_HW_EPDC_STATUS_NEXTLUT, field NEXT_LUT_VALID[8] (RO)
  *
@@ -4391,7 +4016,11 @@ typedef union _hw_epdc_hw_epdc_status_nextlut
 #define BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID      (0x00000100)  //!< Bit mask for EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID) >> BP_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID)
+#define BG_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID) >> BP_EPDC_HW_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS_COL1 - EPDC LUT Collision Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4446,7 +4075,11 @@ typedef union _hw_epdc_hw_epdc_status_col1
 #define BM_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS) >> BP_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS)
+#define BG_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS) >> BP_EPDC_HW_EPDC_STATUS_COL1_LUTN_COL_STS)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS_COL2 - EPDC LUT Collision Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4501,7 +4134,11 @@ typedef union _hw_epdc_hw_epdc_status_col2
 #define BM_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS      (0xffffffff)  //!< Bit mask for EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS) >> BP_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS)
+#define BG_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS) >> BP_EPDC_HW_EPDC_STATUS_COL2_LUTN_COL_STS)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_STATUS - EPDC General Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4559,7 +4196,7 @@ typedef union _hw_epdc_hw_epdc_status
 #define BM_EPDC_HW_EPDC_STATUS_WB_BUSY      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_STATUS_WB_BUSY.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_WB_BUSY from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_WB_BUSY(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_WB_BUSY) >> BP_EPDC_HW_EPDC_STATUS_WB_BUSY)
+#define BG_EPDC_HW_EPDC_STATUS_WB_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_WB_BUSY) >> BP_EPDC_HW_EPDC_STATUS_WB_BUSY)
 
 /* --- Register HW_EPDC_HW_EPDC_STATUS, field LUTS_BUSY[1] (RO)
  *
@@ -4570,7 +4207,7 @@ typedef union _hw_epdc_hw_epdc_status
 #define BM_EPDC_HW_EPDC_STATUS_LUTS_BUSY      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_STATUS_LUTS_BUSY.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_LUTS_BUSY from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_LUTS_BUSY(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_LUTS_BUSY) >> BP_EPDC_HW_EPDC_STATUS_LUTS_BUSY)
+#define BG_EPDC_HW_EPDC_STATUS_LUTS_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_LUTS_BUSY) >> BP_EPDC_HW_EPDC_STATUS_LUTS_BUSY)
 
 /* --- Register HW_EPDC_HW_EPDC_STATUS, field LUTS_UNDERRUN[2] (RO)
  *
@@ -4583,7 +4220,7 @@ typedef union _hw_epdc_hw_epdc_status
 #define BM_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN      (0x00000004)  //!< Bit mask for EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN) >> BP_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN)
+#define BG_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN) >> BP_EPDC_HW_EPDC_STATUS_LUTS_UNDERRUN)
 
 /* --- Register HW_EPDC_HW_EPDC_STATUS, field HISTOGRAM_NP[12:8] (RW)
  *
@@ -4600,15 +4237,10 @@ typedef union _hw_epdc_hw_epdc_status
 #define BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_STATUS_HISTOGRAM_NP.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_HISTOGRAM_NP from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP) >> BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP)
+#define BG_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP) >> BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_STATUS_HISTOGRAM_NP.
-#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_STATUS_HISTOGRAM_NP.
-#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP(v)   (((v) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP)
-#endif
+#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_NP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HISTOGRAM_NP field to a new value.
@@ -4630,20 +4262,19 @@ typedef union _hw_epdc_hw_epdc_status
 #define BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_STATUS_HISTOGRAM_CP.
 
 //! @brief Get value of EPDC_HW_EPDC_STATUS_HISTOGRAM_CP from a register value.
-#define BG_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(r)   (((r) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) >> BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP)
+#define BG_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) >> BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_STATUS_HISTOGRAM_CP.
-#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_STATUS_HISTOGRAM_CP.
-#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(v)   (((v) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP)
-#endif
+#define BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) & BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HISTOGRAM_CP field to a new value.
 #define BW_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(v)   (HW_EPDC_HW_EPDC_STATUS_WR((HW_EPDC_HW_EPDC_STATUS_RD() & ~BM_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP) | BF_EPDC_HW_EPDC_STATUS_HISTOGRAM_CP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_COL_CORD - EPDC Collision Region Co-ordinate
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4694,7 +4325,7 @@ typedef union _hw_epdc_hw_epdc_upd_col_cord
 #define BM_EPDC_HW_EPDC_UPD_COL_CORD_XCORD      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_UPD_COL_CORD_XCORD.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_COL_CORD_XCORD from a register value.
-#define BG_EPDC_HW_EPDC_UPD_COL_CORD_XCORD(r)   (((r) & BM_EPDC_HW_EPDC_UPD_COL_CORD_XCORD) >> BP_EPDC_HW_EPDC_UPD_COL_CORD_XCORD)
+#define BG_EPDC_HW_EPDC_UPD_COL_CORD_XCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_COL_CORD_XCORD) >> BP_EPDC_HW_EPDC_UPD_COL_CORD_XCORD)
 
 /* --- Register HW_EPDC_HW_EPDC_UPD_COL_CORD, field YCORD[28:16] (RO)
  *
@@ -4705,7 +4336,11 @@ typedef union _hw_epdc_hw_epdc_upd_col_cord
 #define BM_EPDC_HW_EPDC_UPD_COL_CORD_YCORD      (0x1fff0000)  //!< Bit mask for EPDC_HW_EPDC_UPD_COL_CORD_YCORD.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_COL_CORD_YCORD from a register value.
-#define BG_EPDC_HW_EPDC_UPD_COL_CORD_YCORD(r)   (((r) & BM_EPDC_HW_EPDC_UPD_COL_CORD_YCORD) >> BP_EPDC_HW_EPDC_UPD_COL_CORD_YCORD)
+#define BG_EPDC_HW_EPDC_UPD_COL_CORD_YCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_COL_CORD_YCORD) >> BP_EPDC_HW_EPDC_UPD_COL_CORD_YCORD)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_UPD_COL_SIZE - EPDC Collision Region Size
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4756,7 +4391,7 @@ typedef union _hw_epdc_hw_epdc_upd_col_size
 #define BM_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH      (0x00001fff)  //!< Bit mask for EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH from a register value.
-#define BG_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH(r)   (((r) & BM_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH) >> BP_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH)
+#define BG_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH) >> BP_EPDC_HW_EPDC_UPD_COL_SIZE_WIDTH)
 
 /* --- Register HW_EPDC_HW_EPDC_UPD_COL_SIZE, field HEIGHT[28:16] (RO)
  *
@@ -4767,7 +4402,11 @@ typedef union _hw_epdc_hw_epdc_upd_col_size
 #define BM_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT      (0x1fff0000)  //!< Bit mask for EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT.
 
 //! @brief Get value of EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT from a register value.
-#define BG_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT(r)   (((r) & BM_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT) >> BP_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT)
+#define BG_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT) >> BP_EPDC_HW_EPDC_UPD_COL_SIZE_HEIGHT)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_DEBUG - EPDC Debug register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4824,15 +4463,10 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_COLLISION_OFF.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_COLLISION_OFF from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_COLLISION_OFF(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF) >> BP_EPDC_HW_EPDC_DEBUG_COLLISION_OFF)
+#define BG_EPDC_HW_EPDC_DEBUG_COLLISION_OFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF) >> BP_EPDC_HW_EPDC_DEBUG_COLLISION_OFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_COLLISION_OFF.
-#define BF_EPDC_HW_EPDC_DEBUG_COLLISION_OFF(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_COLLISION_OFF) & BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_COLLISION_OFF.
-#define BF_EPDC_HW_EPDC_DEBUG_COLLISION_OFF(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_COLLISION_OFF) & BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_COLLISION_OFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_COLLISION_OFF) & BM_EPDC_HW_EPDC_DEBUG_COLLISION_OFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COLLISION_OFF field to a new value.
@@ -4848,15 +4482,10 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER) >> BP_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER)
+#define BG_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER) >> BP_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER.
-#define BF_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER) & BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER.
-#define BF_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER) & BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER) & BM_EPDC_HW_EPDC_DEBUG_UNDERRUN_RECOVER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UNDERRUN_RECOVER field to a new value.
@@ -4872,15 +4501,10 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN)
+#define BG_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UPD_BURST_LEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPD_BURST_LEN field to a new value.
@@ -4896,15 +4520,10 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN)
+#define BG_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBR_BURST_LEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UBR_BURST_LEN field to a new value.
@@ -4920,15 +4539,10 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN      (0x0000f000)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN)
+#define BG_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN) >> BP_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN.
-#define BF_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN) & BM_EPDC_HW_EPDC_DEBUG_UBW_BURST_LEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UBW_BURST_LEN field to a new value.
@@ -4944,20 +4558,19 @@ typedef union _hw_epdc_hw_epdc_debug
 #define BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL      (0x3f000000)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) >> BP_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL)
+#define BG_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) >> BP_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL.
-#define BF_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) & BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL.
-#define BF_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) & BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) & BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEBUG_LUT_SEL field to a new value.
 #define BW_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(v)   (HW_EPDC_HW_EPDC_DEBUG_WR((HW_EPDC_HW_EPDC_DEBUG_RD() & ~BM_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL) | BF_EPDC_HW_EPDC_DEBUG_DEBUG_LUT_SEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_DEBUG_LUT - EPDC LUT Debug Information register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5008,7 +4621,7 @@ typedef union _hw_epdc_hw_epdc_debug_lut
 #define BM_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE) >> BP_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE)
+#define BG_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE) >> BP_EPDC_HW_EPDC_DEBUG_LUT_STATEMACHINE)
 
 /* --- Register HW_EPDC_HW_EPDC_DEBUG_LUT, field FRAME[14:5] (RO)
  *
@@ -5019,7 +4632,7 @@ typedef union _hw_epdc_hw_epdc_debug_lut
 #define BM_EPDC_HW_EPDC_DEBUG_LUT_FRAME      (0x00007fe0)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_LUT_FRAME.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_LUT_FRAME from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_LUT_FRAME(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_LUT_FRAME) >> BP_EPDC_HW_EPDC_DEBUG_LUT_FRAME)
+#define BG_EPDC_HW_EPDC_DEBUG_LUT_FRAME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_LUT_FRAME) >> BP_EPDC_HW_EPDC_DEBUG_LUT_FRAME)
 
 /* --- Register HW_EPDC_HW_EPDC_DEBUG_LUT, field LUTADDR[25:16] (RO)
  *
@@ -5030,7 +4643,11 @@ typedef union _hw_epdc_hw_epdc_debug_lut
 #define BM_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR      (0x03ff0000)  //!< Bit mask for EPDC_HW_EPDC_DEBUG_LUT_LUTADDR.
 
 //! @brief Get value of EPDC_HW_EPDC_DEBUG_LUT_LUTADDR from a register value.
-#define BG_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR(r)   (((r) & BM_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR) >> BP_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR)
+#define BG_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR) >> BP_EPDC_HW_EPDC_DEBUG_LUT_LUTADDR)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST1_PARAM - 1-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5081,20 +4698,19 @@ typedef union _hw_epdc_hw_epdc_hist1_param
 #define BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST1_PARAM_VALUE0.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST1_PARAM_VALUE0 from a register value.
-#define BG_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(r)   (((r) & BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST1_PARAM_VALUE0)
+#define BG_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST1_PARAM_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST1_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST1_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(v)   (((v) << BP_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0)
-#endif
+#define BF_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(v)   (HW_EPDC_HW_EPDC_HIST1_PARAM_WR((HW_EPDC_HW_EPDC_HIST1_PARAM_RD() & ~BM_EPDC_HW_EPDC_HIST1_PARAM_VALUE0) | BF_EPDC_HW_EPDC_HIST1_PARAM_VALUE0(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST2_PARAM - 2-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5147,15 +4763,10 @@ typedef union _hw_epdc_hw_epdc_hist2_param
 #define BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST2_PARAM_VALUE0.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST2_PARAM_VALUE0 from a register value.
-#define BG_EPDC_HW_EPDC_HIST2_PARAM_VALUE0(r)   (((r) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE0)
+#define BG_EPDC_HW_EPDC_HIST2_PARAM_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST2_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST2_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE0(v)   (((v) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0)
-#endif
+#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
@@ -5171,20 +4782,19 @@ typedef union _hw_epdc_hw_epdc_hist2_param
 #define BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST2_PARAM_VALUE1.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST2_PARAM_VALUE1 from a register value.
-#define BG_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(r)   (((r) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) >> BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE1)
+#define BG_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) >> BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST2_PARAM_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST2_PARAM_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(v)   (((v) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1)
-#endif
+#define BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(v)   (HW_EPDC_HW_EPDC_HIST2_PARAM_WR((HW_EPDC_HW_EPDC_HIST2_PARAM_RD() & ~BM_EPDC_HW_EPDC_HIST2_PARAM_VALUE1) | BF_EPDC_HW_EPDC_HIST2_PARAM_VALUE1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST4_PARAM - 4-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5241,15 +4851,10 @@ typedef union _hw_epdc_hw_epdc_hist4_param
 #define BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST4_PARAM_VALUE0.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST4_PARAM_VALUE0 from a register value.
-#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE0(r)   (((r) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE0)
+#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE0(v)   (((v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0)
-#endif
+#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE0) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
@@ -5265,15 +4870,10 @@ typedef union _hw_epdc_hw_epdc_hist4_param
 #define BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST4_PARAM_VALUE1.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST4_PARAM_VALUE1 from a register value.
-#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE1(r)   (((r) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE1)
+#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE1(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE1(v)   (((v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1)
-#endif
+#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE1) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
@@ -5289,15 +4889,10 @@ typedef union _hw_epdc_hw_epdc_hist4_param
 #define BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST4_PARAM_VALUE2.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST4_PARAM_VALUE2 from a register value.
-#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE2(r)   (((r) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE2)
+#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE2(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE2) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE2(v)   (((v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE2) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2)
-#endif
+#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE2) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
@@ -5313,20 +4908,19 @@ typedef union _hw_epdc_hw_epdc_hist4_param
 #define BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST4_PARAM_VALUE3.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST4_PARAM_VALUE3 from a register value.
-#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(r)   (((r) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE3)
+#define BG_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) >> BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST4_PARAM_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(v)   (((v) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3)
-#endif
+#define BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) & BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(v)   (HW_EPDC_HW_EPDC_HIST4_PARAM_WR((HW_EPDC_HW_EPDC_HIST4_PARAM_RD() & ~BM_EPDC_HW_EPDC_HIST4_PARAM_VALUE3) | BF_EPDC_HW_EPDC_HIST4_PARAM_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST8_PARAM0 - 8-level Histogram Parameter 0 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5383,15 +4977,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param0
 #define BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM0_VALUE0.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM0_VALUE0 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
@@ -5407,15 +4996,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param0
 #define BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM0_VALUE1.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM0_VALUE1 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
@@ -5431,15 +5015,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param0
 #define BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM0_VALUE2.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM0_VALUE2 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
@@ -5455,20 +5034,19 @@ typedef union _hw_epdc_hw_epdc_hist8_param0
 #define BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM0_VALUE3.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM0_VALUE3 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) >> BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM0_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(v)   (HW_EPDC_HW_EPDC_HIST8_PARAM0_WR((HW_EPDC_HW_EPDC_HIST8_PARAM0_RD() & ~BM_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3) | BF_EPDC_HW_EPDC_HIST8_PARAM0_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST8_PARAM1 - 8-level Histogram Parameter 1 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5525,15 +5103,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param1
 #define BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM1_VALUE4.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM1_VALUE4 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE4.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE4.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE4 field to a new value.
@@ -5549,15 +5122,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param1
 #define BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM1_VALUE5.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM1_VALUE5 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE5.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE5.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE5 field to a new value.
@@ -5573,15 +5141,10 @@ typedef union _hw_epdc_hw_epdc_hist8_param1
 #define BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM1_VALUE6.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM1_VALUE6 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE6.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE6.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE6 field to a new value.
@@ -5597,20 +5160,19 @@ typedef union _hw_epdc_hw_epdc_hist8_param1
 #define BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST8_PARAM1_VALUE7.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST8_PARAM1_VALUE7 from a register value.
-#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(r)   (((r) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7)
+#define BG_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) >> BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE7.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST8_PARAM1_VALUE7.
-#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(v)   (((v) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7)
-#endif
+#define BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE7 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(v)   (HW_EPDC_HW_EPDC_HIST8_PARAM1_WR((HW_EPDC_HW_EPDC_HIST8_PARAM1_RD() & ~BM_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7) | BF_EPDC_HW_EPDC_HIST8_PARAM1_VALUE7(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST16_PARAM0 - 16-level Histogram Parameter 0 Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5667,15 +5229,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param0
 #define BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM0_VALUE0.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM0_VALUE0 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE0.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE0 field to a new value.
@@ -5691,15 +5248,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param0
 #define BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM0_VALUE1.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM0_VALUE1 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE1.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE1 field to a new value.
@@ -5715,15 +5267,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param0
 #define BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM0_VALUE2.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM0_VALUE2 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE2.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE2 field to a new value.
@@ -5739,20 +5286,19 @@ typedef union _hw_epdc_hw_epdc_hist16_param0
 #define BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM0_VALUE3.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM0_VALUE3 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) >> BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM0_VALUE3.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) & BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(v)   (HW_EPDC_HW_EPDC_HIST16_PARAM0_WR((HW_EPDC_HW_EPDC_HIST16_PARAM0_RD() & ~BM_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3) | BF_EPDC_HW_EPDC_HIST16_PARAM0_VALUE3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST16_PARAM1 - 16-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5809,15 +5355,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param1
 #define BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM1_VALUE4.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM1_VALUE4 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE4.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE4.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE4 field to a new value.
@@ -5833,15 +5374,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param1
 #define BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM1_VALUE5.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM1_VALUE5 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE5.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE5.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE5 field to a new value.
@@ -5857,15 +5393,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param1
 #define BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM1_VALUE6.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM1_VALUE6 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE6.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE6.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE6 field to a new value.
@@ -5881,20 +5412,19 @@ typedef union _hw_epdc_hw_epdc_hist16_param1
 #define BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM1_VALUE7.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM1_VALUE7 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) >> BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE7.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM1_VALUE7.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) & BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE7 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(v)   (HW_EPDC_HW_EPDC_HIST16_PARAM1_WR((HW_EPDC_HW_EPDC_HIST16_PARAM1_RD() & ~BM_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7) | BF_EPDC_HW_EPDC_HIST16_PARAM1_VALUE7(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST16_PARAM2 - 16-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5951,15 +5481,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param2
 #define BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM2_VALUE8.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM2_VALUE8 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE8.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE8.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE8 field to a new value.
@@ -5975,15 +5500,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param2
 #define BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM2_VALUE9.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM2_VALUE9 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE9.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE9.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE9 field to a new value.
@@ -5999,15 +5519,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param2
 #define BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM2_VALUE10.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM2_VALUE10 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE10.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE10.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE10 field to a new value.
@@ -6023,20 +5538,19 @@ typedef union _hw_epdc_hw_epdc_hist16_param2
 #define BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM2_VALUE11.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM2_VALUE11 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) >> BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE11.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM2_VALUE11.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) & BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE11 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(v)   (HW_EPDC_HW_EPDC_HIST16_PARAM2_WR((HW_EPDC_HW_EPDC_HIST16_PARAM2_RD() & ~BM_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11) | BF_EPDC_HW_EPDC_HIST16_PARAM2_VALUE11(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_HIST16_PARAM3 - 16-level Histogram Parameter Register.
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6093,15 +5607,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param3
 #define BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12      (0x0000001f)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM3_VALUE12.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM3_VALUE12 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE12.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE12.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE12 field to a new value.
@@ -6117,15 +5626,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param3
 #define BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13      (0x00001f00)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM3_VALUE13.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM3_VALUE13 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE13.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE13.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE13 field to a new value.
@@ -6141,15 +5645,10 @@ typedef union _hw_epdc_hw_epdc_hist16_param3
 #define BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14      (0x001f0000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM3_VALUE14.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM3_VALUE14 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE14.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE14.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE14 field to a new value.
@@ -6165,20 +5664,19 @@ typedef union _hw_epdc_hw_epdc_hist16_param3
 #define BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15      (0x1f000000)  //!< Bit mask for EPDC_HW_EPDC_HIST16_PARAM3_VALUE15.
 
 //! @brief Get value of EPDC_HW_EPDC_HIST16_PARAM3_VALUE15 from a register value.
-#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(r)   (((r) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15)
+#define BG_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) >> BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE15.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_HIST16_PARAM3_VALUE15.
-#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(v)   (((v) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15)
-#endif
+#define BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) & BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE15 field to a new value.
 #define BW_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(v)   (HW_EPDC_HW_EPDC_HIST16_PARAM3_WR((HW_EPDC_HW_EPDC_HIST16_PARAM3_RD() & ~BM_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15) | BF_EPDC_HW_EPDC_HIST16_PARAM3_VALUE15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_GPIO - EPDC General Purpose I/O Debug register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6232,15 +5730,10 @@ typedef union _hw_epdc_hw_epdc_gpio
 #define BM_EPDC_HW_EPDC_GPIO_BDR      (0x00000003)  //!< Bit mask for EPDC_HW_EPDC_GPIO_BDR.
 
 //! @brief Get value of EPDC_HW_EPDC_GPIO_BDR from a register value.
-#define BG_EPDC_HW_EPDC_GPIO_BDR(r)   (((r) & BM_EPDC_HW_EPDC_GPIO_BDR) >> BP_EPDC_HW_EPDC_GPIO_BDR)
+#define BG_EPDC_HW_EPDC_GPIO_BDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_GPIO_BDR) >> BP_EPDC_HW_EPDC_GPIO_BDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_BDR.
-#define BF_EPDC_HW_EPDC_GPIO_BDR(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_GPIO_BDR) & BM_EPDC_HW_EPDC_GPIO_BDR)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_BDR.
-#define BF_EPDC_HW_EPDC_GPIO_BDR(v)   (((v) << BP_EPDC_HW_EPDC_GPIO_BDR) & BM_EPDC_HW_EPDC_GPIO_BDR)
-#endif
+#define BF_EPDC_HW_EPDC_GPIO_BDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_GPIO_BDR) & BM_EPDC_HW_EPDC_GPIO_BDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BDR field to a new value.
@@ -6256,15 +5749,10 @@ typedef union _hw_epdc_hw_epdc_gpio
 #define BM_EPDC_HW_EPDC_GPIO_PWRCTRL      (0x0000003c)  //!< Bit mask for EPDC_HW_EPDC_GPIO_PWRCTRL.
 
 //! @brief Get value of EPDC_HW_EPDC_GPIO_PWRCTRL from a register value.
-#define BG_EPDC_HW_EPDC_GPIO_PWRCTRL(r)   (((r) & BM_EPDC_HW_EPDC_GPIO_PWRCTRL) >> BP_EPDC_HW_EPDC_GPIO_PWRCTRL)
+#define BG_EPDC_HW_EPDC_GPIO_PWRCTRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_GPIO_PWRCTRL) >> BP_EPDC_HW_EPDC_GPIO_PWRCTRL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRCTRL.
-#define BF_EPDC_HW_EPDC_GPIO_PWRCTRL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_GPIO_PWRCTRL) & BM_EPDC_HW_EPDC_GPIO_PWRCTRL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRCTRL.
-#define BF_EPDC_HW_EPDC_GPIO_PWRCTRL(v)   (((v) << BP_EPDC_HW_EPDC_GPIO_PWRCTRL) & BM_EPDC_HW_EPDC_GPIO_PWRCTRL)
-#endif
+#define BF_EPDC_HW_EPDC_GPIO_PWRCTRL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_GPIO_PWRCTRL) & BM_EPDC_HW_EPDC_GPIO_PWRCTRL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWRCTRL field to a new value.
@@ -6280,15 +5768,10 @@ typedef union _hw_epdc_hw_epdc_gpio
 #define BM_EPDC_HW_EPDC_GPIO_PWRCOM      (0x00000040)  //!< Bit mask for EPDC_HW_EPDC_GPIO_PWRCOM.
 
 //! @brief Get value of EPDC_HW_EPDC_GPIO_PWRCOM from a register value.
-#define BG_EPDC_HW_EPDC_GPIO_PWRCOM(r)   (((r) & BM_EPDC_HW_EPDC_GPIO_PWRCOM) >> BP_EPDC_HW_EPDC_GPIO_PWRCOM)
+#define BG_EPDC_HW_EPDC_GPIO_PWRCOM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_GPIO_PWRCOM) >> BP_EPDC_HW_EPDC_GPIO_PWRCOM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRCOM.
-#define BF_EPDC_HW_EPDC_GPIO_PWRCOM(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_GPIO_PWRCOM) & BM_EPDC_HW_EPDC_GPIO_PWRCOM)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRCOM.
-#define BF_EPDC_HW_EPDC_GPIO_PWRCOM(v)   (((v) << BP_EPDC_HW_EPDC_GPIO_PWRCOM) & BM_EPDC_HW_EPDC_GPIO_PWRCOM)
-#endif
+#define BF_EPDC_HW_EPDC_GPIO_PWRCOM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_GPIO_PWRCOM) & BM_EPDC_HW_EPDC_GPIO_PWRCOM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWRCOM field to a new value.
@@ -6304,15 +5787,10 @@ typedef union _hw_epdc_hw_epdc_gpio
 #define BM_EPDC_HW_EPDC_GPIO_PWRWAKE      (0x00000080)  //!< Bit mask for EPDC_HW_EPDC_GPIO_PWRWAKE.
 
 //! @brief Get value of EPDC_HW_EPDC_GPIO_PWRWAKE from a register value.
-#define BG_EPDC_HW_EPDC_GPIO_PWRWAKE(r)   (((r) & BM_EPDC_HW_EPDC_GPIO_PWRWAKE) >> BP_EPDC_HW_EPDC_GPIO_PWRWAKE)
+#define BG_EPDC_HW_EPDC_GPIO_PWRWAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_GPIO_PWRWAKE) >> BP_EPDC_HW_EPDC_GPIO_PWRWAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRWAKE.
-#define BF_EPDC_HW_EPDC_GPIO_PWRWAKE(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_GPIO_PWRWAKE) & BM_EPDC_HW_EPDC_GPIO_PWRWAKE)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_GPIO_PWRWAKE.
-#define BF_EPDC_HW_EPDC_GPIO_PWRWAKE(v)   (((v) << BP_EPDC_HW_EPDC_GPIO_PWRWAKE) & BM_EPDC_HW_EPDC_GPIO_PWRWAKE)
-#endif
+#define BF_EPDC_HW_EPDC_GPIO_PWRWAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_GPIO_PWRWAKE) & BM_EPDC_HW_EPDC_GPIO_PWRWAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWRWAKE field to a new value.
@@ -6328,7 +5806,11 @@ typedef union _hw_epdc_hw_epdc_gpio
 #define BM_EPDC_HW_EPDC_GPIO_PWRSTAT      (0x00000100)  //!< Bit mask for EPDC_HW_EPDC_GPIO_PWRSTAT.
 
 //! @brief Get value of EPDC_HW_EPDC_GPIO_PWRSTAT from a register value.
-#define BG_EPDC_HW_EPDC_GPIO_PWRSTAT(r)   (((r) & BM_EPDC_HW_EPDC_GPIO_PWRSTAT) >> BP_EPDC_HW_EPDC_GPIO_PWRSTAT)
+#define BG_EPDC_HW_EPDC_GPIO_PWRSTAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_GPIO_PWRSTAT) >> BP_EPDC_HW_EPDC_GPIO_PWRSTAT)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_VERSION - EPDC Version Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6377,7 +5859,7 @@ typedef union _hw_epdc_hw_epdc_version
 #define BM_EPDC_HW_EPDC_VERSION_STEP      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_VERSION_STEP.
 
 //! @brief Get value of EPDC_HW_EPDC_VERSION_STEP from a register value.
-#define BG_EPDC_HW_EPDC_VERSION_STEP(r)   (((r) & BM_EPDC_HW_EPDC_VERSION_STEP) >> BP_EPDC_HW_EPDC_VERSION_STEP)
+#define BG_EPDC_HW_EPDC_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_VERSION_STEP) >> BP_EPDC_HW_EPDC_VERSION_STEP)
 
 /* --- Register HW_EPDC_HW_EPDC_VERSION, field MINOR[23:16] (RO)
  *
@@ -6388,7 +5870,7 @@ typedef union _hw_epdc_hw_epdc_version
 #define BM_EPDC_HW_EPDC_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for EPDC_HW_EPDC_VERSION_MINOR.
 
 //! @brief Get value of EPDC_HW_EPDC_VERSION_MINOR from a register value.
-#define BG_EPDC_HW_EPDC_VERSION_MINOR(r)   (((r) & BM_EPDC_HW_EPDC_VERSION_MINOR) >> BP_EPDC_HW_EPDC_VERSION_MINOR)
+#define BG_EPDC_HW_EPDC_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_VERSION_MINOR) >> BP_EPDC_HW_EPDC_VERSION_MINOR)
 
 /* --- Register HW_EPDC_HW_EPDC_VERSION, field MAJOR[31:24] (RO)
  *
@@ -6399,7 +5881,11 @@ typedef union _hw_epdc_hw_epdc_version
 #define BM_EPDC_HW_EPDC_VERSION_MAJOR      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_VERSION_MAJOR.
 
 //! @brief Get value of EPDC_HW_EPDC_VERSION_MAJOR from a register value.
-#define BG_EPDC_HW_EPDC_VERSION_MAJOR(r)   (((r) & BM_EPDC_HW_EPDC_VERSION_MAJOR) >> BP_EPDC_HW_EPDC_VERSION_MAJOR)
+#define BG_EPDC_HW_EPDC_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_VERSION_MAJOR) >> BP_EPDC_HW_EPDC_VERSION_MAJOR)
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_0_0 - Panel Interface Signal Generator Register 0_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6452,15 +5938,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_0_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_0_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_EN) & BM_EPDC_HW_EPDC_PIGEON_0_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_EN) & BM_EPDC_HW_EPDC_PIGEON_0_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_EN) & BM_EPDC_HW_EPDC_PIGEON_0_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -6480,15 +5961,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_POL) & BM_EPDC_HW_EPDC_PIGEON_0_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_POL) & BM_EPDC_HW_EPDC_PIGEON_0_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_POL) & BM_EPDC_HW_EPDC_PIGEON_0_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -6513,15 +5989,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -6543,15 +6014,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_0_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_0_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_0_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -6577,15 +6043,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -6611,15 +6072,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -6646,15 +6102,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -6669,6 +6120,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
 #define BV_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_0_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_0_1 - Panel Interface Signal Generator Register 0_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6719,15 +6174,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_1
 #define BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -6748,15 +6198,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_1
 #define BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -6764,6 +6209,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_0_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_0_2 - Panel Interface Signal Generator Register 0_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6818,15 +6267,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_2
 #define BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -6847,20 +6291,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_2
 #define BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_0_2_WR((HW_EPDC_HW_EPDC_PIGEON_0_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_1_0 - Panel Interface Signal Generator Register 1_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6913,15 +6356,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_1_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_1_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_EN) & BM_EPDC_HW_EPDC_PIGEON_1_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_EN) & BM_EPDC_HW_EPDC_PIGEON_1_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_EN) & BM_EPDC_HW_EPDC_PIGEON_1_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -6941,15 +6379,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_POL) & BM_EPDC_HW_EPDC_PIGEON_1_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_POL) & BM_EPDC_HW_EPDC_PIGEON_1_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_POL) & BM_EPDC_HW_EPDC_PIGEON_1_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -6974,15 +6407,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -7004,15 +6432,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_1_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_1_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_1_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -7038,15 +6461,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -7072,15 +6490,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -7107,15 +6520,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -7130,6 +6538,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
 #define BV_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_1_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_1_1 - Panel Interface Signal Generator Register 1_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7180,15 +6592,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_1
 #define BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -7209,15 +6616,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_1
 #define BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -7225,6 +6627,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_1_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_1_2 - Panel Interface Signal Generator Register 1_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7279,15 +6685,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_2
 #define BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -7308,20 +6709,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_2
 #define BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_1_2_WR((HW_EPDC_HW_EPDC_PIGEON_1_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_2_0 - Panel Interface Signal Generator Register 2_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7374,15 +6774,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_2_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_2_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_EN) & BM_EPDC_HW_EPDC_PIGEON_2_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_EN) & BM_EPDC_HW_EPDC_PIGEON_2_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_EN) & BM_EPDC_HW_EPDC_PIGEON_2_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -7402,15 +6797,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_POL) & BM_EPDC_HW_EPDC_PIGEON_2_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_POL) & BM_EPDC_HW_EPDC_PIGEON_2_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_POL) & BM_EPDC_HW_EPDC_PIGEON_2_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -7435,15 +6825,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -7465,15 +6850,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_2_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_2_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_2_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -7499,15 +6879,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -7533,15 +6908,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -7568,15 +6938,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -7591,6 +6956,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
 #define BV_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_2_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_2_1 - Panel Interface Signal Generator Register 2_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7641,15 +7010,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_1
 #define BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -7670,15 +7034,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_1
 #define BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -7686,6 +7045,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_2_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_2_2 - Panel Interface Signal Generator Register 2_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7740,15 +7103,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_2
 #define BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -7769,20 +7127,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_2
 #define BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_2_2_WR((HW_EPDC_HW_EPDC_PIGEON_2_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_3_0 - Panel Interface Signal Generator Register 3_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7835,15 +7192,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_3_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_3_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_EN) & BM_EPDC_HW_EPDC_PIGEON_3_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_EN) & BM_EPDC_HW_EPDC_PIGEON_3_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_EN) & BM_EPDC_HW_EPDC_PIGEON_3_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -7863,15 +7215,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_POL) & BM_EPDC_HW_EPDC_PIGEON_3_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_POL) & BM_EPDC_HW_EPDC_PIGEON_3_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_POL) & BM_EPDC_HW_EPDC_PIGEON_3_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -7896,15 +7243,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -7926,15 +7268,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_3_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_3_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_3_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -7960,15 +7297,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -7994,15 +7326,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -8029,15 +7356,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -8052,6 +7374,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
 #define BV_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_3_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_3_1 - Panel Interface Signal Generator Register 3_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8102,15 +7428,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_1
 #define BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -8131,15 +7452,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_1
 #define BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -8147,6 +7463,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_3_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_3_2 - Panel Interface Signal Generator Register 3_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8201,15 +7521,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_2
 #define BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -8230,20 +7545,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_2
 #define BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_3_2_WR((HW_EPDC_HW_EPDC_PIGEON_3_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_4_0 - Panel Interface Signal Generator Register 4_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8296,15 +7610,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_4_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_4_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_EN) & BM_EPDC_HW_EPDC_PIGEON_4_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_EN) & BM_EPDC_HW_EPDC_PIGEON_4_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_EN) & BM_EPDC_HW_EPDC_PIGEON_4_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -8324,15 +7633,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_POL) & BM_EPDC_HW_EPDC_PIGEON_4_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_POL) & BM_EPDC_HW_EPDC_PIGEON_4_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_POL) & BM_EPDC_HW_EPDC_PIGEON_4_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -8357,15 +7661,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -8387,15 +7686,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_4_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_4_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_4_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -8421,15 +7715,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -8455,15 +7744,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -8490,15 +7774,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -8513,6 +7792,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
 #define BV_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_4_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_4_1 - Panel Interface Signal Generator Register 4_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8563,15 +7846,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_1
 #define BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -8592,15 +7870,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_1
 #define BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -8608,6 +7881,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_4_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_4_2 - Panel Interface Signal Generator Register 4_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8662,15 +7939,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_2
 #define BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -8691,20 +7963,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_2
 #define BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_4_2_WR((HW_EPDC_HW_EPDC_PIGEON_4_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_5_0 - Panel Interface Signal Generator Register 5_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8757,15 +8028,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_5_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_5_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_EN) & BM_EPDC_HW_EPDC_PIGEON_5_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_EN) & BM_EPDC_HW_EPDC_PIGEON_5_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_EN) & BM_EPDC_HW_EPDC_PIGEON_5_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -8785,15 +8051,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_POL) & BM_EPDC_HW_EPDC_PIGEON_5_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_POL) & BM_EPDC_HW_EPDC_PIGEON_5_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_POL) & BM_EPDC_HW_EPDC_PIGEON_5_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -8818,15 +8079,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -8848,15 +8104,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_5_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_5_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_5_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -8882,15 +8133,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -8916,15 +8162,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -8951,15 +8192,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -8974,6 +8210,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
 #define BV_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_5_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_5_1 - Panel Interface Signal Generator Register 5_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9024,15 +8264,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_1
 #define BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -9053,15 +8288,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_1
 #define BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -9069,6 +8299,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_5_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_5_2 - Panel Interface Signal Generator Register 5_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9123,15 +8357,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_2
 #define BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -9152,20 +8381,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_2
 #define BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_5_2_WR((HW_EPDC_HW_EPDC_PIGEON_5_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_6_0 - Panel Interface Signal Generator Register 6_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9218,15 +8446,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_6_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_6_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_EN) & BM_EPDC_HW_EPDC_PIGEON_6_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_EN) & BM_EPDC_HW_EPDC_PIGEON_6_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_EN) & BM_EPDC_HW_EPDC_PIGEON_6_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -9246,15 +8469,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_POL) & BM_EPDC_HW_EPDC_PIGEON_6_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_POL) & BM_EPDC_HW_EPDC_PIGEON_6_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_POL) & BM_EPDC_HW_EPDC_PIGEON_6_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -9279,15 +8497,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -9309,15 +8522,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_6_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_6_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_6_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -9343,15 +8551,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -9377,15 +8580,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -9412,15 +8610,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -9435,6 +8628,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
 #define BV_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_6_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_6_1 - Panel Interface Signal Generator Register 6_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9485,15 +8682,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_1
 #define BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -9514,15 +8706,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_1
 #define BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -9530,6 +8717,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_6_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_6_2 - Panel Interface Signal Generator Register 6_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9584,15 +8775,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_2
 #define BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -9613,20 +8799,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_2
 #define BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_6_2_WR((HW_EPDC_HW_EPDC_PIGEON_6_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_7_0 - Panel Interface Signal Generator Register 7_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9679,15 +8864,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_7_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_7_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_EN) & BM_EPDC_HW_EPDC_PIGEON_7_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_EN) & BM_EPDC_HW_EPDC_PIGEON_7_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_EN) & BM_EPDC_HW_EPDC_PIGEON_7_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -9707,15 +8887,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_POL) & BM_EPDC_HW_EPDC_PIGEON_7_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_POL) & BM_EPDC_HW_EPDC_PIGEON_7_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_POL) & BM_EPDC_HW_EPDC_PIGEON_7_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -9740,15 +8915,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -9770,15 +8940,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_7_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_7_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_7_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -9804,15 +8969,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -9838,15 +8998,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -9873,15 +9028,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -9896,6 +9046,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
 #define BV_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_7_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_7_1 - Panel Interface Signal Generator Register 7_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9946,15 +9100,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_1
 #define BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -9975,15 +9124,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_1
 #define BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -9991,6 +9135,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_7_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_7_2 - Panel Interface Signal Generator Register 7_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10045,15 +9193,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_2
 #define BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -10074,20 +9217,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_2
 #define BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_7_2_WR((HW_EPDC_HW_EPDC_PIGEON_7_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_8_0 - Panel Interface Signal Generator Register 8_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10140,15 +9282,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_8_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_8_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_EN) & BM_EPDC_HW_EPDC_PIGEON_8_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_EN) & BM_EPDC_HW_EPDC_PIGEON_8_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_EN) & BM_EPDC_HW_EPDC_PIGEON_8_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -10168,15 +9305,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_POL) & BM_EPDC_HW_EPDC_PIGEON_8_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_POL) & BM_EPDC_HW_EPDC_PIGEON_8_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_POL) & BM_EPDC_HW_EPDC_PIGEON_8_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -10201,15 +9333,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -10231,15 +9358,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_8_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_8_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_8_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -10265,15 +9387,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -10299,15 +9416,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -10334,15 +9446,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -10357,6 +9464,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
 #define BV_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_8_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_8_1 - Panel Interface Signal Generator Register 8_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10407,15 +9518,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_1
 #define BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -10436,15 +9542,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_1
 #define BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -10452,6 +9553,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_8_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_8_2 - Panel Interface Signal Generator Register 8_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10506,15 +9611,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_2
 #define BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -10535,20 +9635,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_2
 #define BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_8_2_WR((HW_EPDC_HW_EPDC_PIGEON_8_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_9_0 - Panel Interface Signal Generator Register 9_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10601,15 +9700,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_9_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_9_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_EN) & BM_EPDC_HW_EPDC_PIGEON_9_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_EN) & BM_EPDC_HW_EPDC_PIGEON_9_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_EN) & BM_EPDC_HW_EPDC_PIGEON_9_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -10629,15 +9723,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_POL) & BM_EPDC_HW_EPDC_PIGEON_9_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_POL) & BM_EPDC_HW_EPDC_PIGEON_9_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_POL) & BM_EPDC_HW_EPDC_PIGEON_9_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -10662,15 +9751,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -10692,15 +9776,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_9_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_9_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_9_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -10726,15 +9805,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -10760,15 +9834,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -10795,15 +9864,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -10818,6 +9882,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
 #define BV_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_9_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_9_1 - Panel Interface Signal Generator Register 9_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10868,15 +9936,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_1
 #define BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -10897,15 +9960,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_1
 #define BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -10913,6 +9971,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_9_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_9_2 - Panel Interface Signal Generator Register 9_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10967,15 +10029,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_2
 #define BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -10996,20 +10053,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_2
 #define BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_9_2_WR((HW_EPDC_HW_EPDC_PIGEON_9_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_10_0 - Panel Interface Signal Generator Register 10_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11062,15 +10118,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_10_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_10_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_EN) & BM_EPDC_HW_EPDC_PIGEON_10_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_EN) & BM_EPDC_HW_EPDC_PIGEON_10_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_EN) & BM_EPDC_HW_EPDC_PIGEON_10_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -11090,15 +10141,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_POL) & BM_EPDC_HW_EPDC_PIGEON_10_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_POL) & BM_EPDC_HW_EPDC_PIGEON_10_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_POL) & BM_EPDC_HW_EPDC_PIGEON_10_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -11123,15 +10169,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -11153,15 +10194,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_10_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_10_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_10_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -11187,15 +10223,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -11221,15 +10252,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -11256,15 +10282,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -11279,6 +10300,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
 #define BV_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_10_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_10_1 - Panel Interface Signal Generator Register 10_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11329,15 +10354,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_1
 #define BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -11358,15 +10378,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_1
 #define BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -11374,6 +10389,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_10_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_10_2 - Panel Interface Signal Generator Register 10_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11428,15 +10447,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_2
 #define BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -11457,20 +10471,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_2
 #define BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_10_2_WR((HW_EPDC_HW_EPDC_PIGEON_10_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_11_0 - Panel Interface Signal Generator Register 11_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11523,15 +10536,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_11_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_11_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_EN) & BM_EPDC_HW_EPDC_PIGEON_11_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_EN) & BM_EPDC_HW_EPDC_PIGEON_11_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_EN) & BM_EPDC_HW_EPDC_PIGEON_11_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -11551,15 +10559,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_POL) & BM_EPDC_HW_EPDC_PIGEON_11_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_POL) & BM_EPDC_HW_EPDC_PIGEON_11_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_POL) & BM_EPDC_HW_EPDC_PIGEON_11_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -11584,15 +10587,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -11614,15 +10612,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_11_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_11_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_11_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -11648,15 +10641,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -11682,15 +10670,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -11717,15 +10700,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -11740,6 +10718,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
 #define BV_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_11_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_11_1 - Panel Interface Signal Generator Register 11_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11790,15 +10772,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_1
 #define BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -11819,15 +10796,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_1
 #define BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -11835,6 +10807,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_11_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_11_2 - Panel Interface Signal Generator Register 11_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11889,15 +10865,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_2
 #define BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -11918,20 +10889,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_2
 #define BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_11_2_WR((HW_EPDC_HW_EPDC_PIGEON_11_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_12_0 - Panel Interface Signal Generator Register 12_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11984,15 +10954,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_12_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_12_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_EN) & BM_EPDC_HW_EPDC_PIGEON_12_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_EN) & BM_EPDC_HW_EPDC_PIGEON_12_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_EN) & BM_EPDC_HW_EPDC_PIGEON_12_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -12012,15 +10977,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_POL) & BM_EPDC_HW_EPDC_PIGEON_12_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_POL) & BM_EPDC_HW_EPDC_PIGEON_12_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_POL) & BM_EPDC_HW_EPDC_PIGEON_12_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -12045,15 +11005,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -12075,15 +11030,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_12_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_12_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_12_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -12109,15 +11059,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -12143,15 +11088,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -12178,15 +11118,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -12201,6 +11136,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
 #define BV_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_12_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_12_1 - Panel Interface Signal Generator Register 12_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12251,15 +11190,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_1
 #define BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -12280,15 +11214,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_1
 #define BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -12296,6 +11225,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_12_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_12_2 - Panel Interface Signal Generator Register 12_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12350,15 +11283,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_2
 #define BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -12379,20 +11307,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_2
 #define BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_12_2_WR((HW_EPDC_HW_EPDC_PIGEON_12_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_13_0 - Panel Interface Signal Generator Register 13_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12445,15 +11372,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_13_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_13_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_EN) & BM_EPDC_HW_EPDC_PIGEON_13_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_EN) & BM_EPDC_HW_EPDC_PIGEON_13_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_EN) & BM_EPDC_HW_EPDC_PIGEON_13_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -12473,15 +11395,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_POL) & BM_EPDC_HW_EPDC_PIGEON_13_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_POL) & BM_EPDC_HW_EPDC_PIGEON_13_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_POL) & BM_EPDC_HW_EPDC_PIGEON_13_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -12506,15 +11423,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -12536,15 +11448,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_13_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_13_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_13_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -12570,15 +11477,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -12604,15 +11506,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -12639,15 +11536,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -12662,6 +11554,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
 #define BV_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_13_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_13_1 - Panel Interface Signal Generator Register 13_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12712,15 +11608,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_1
 #define BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -12741,15 +11632,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_1
 #define BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -12757,6 +11643,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_13_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_13_2 - Panel Interface Signal Generator Register 13_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12811,15 +11701,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_2
 #define BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -12840,20 +11725,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_2
 #define BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_13_2_WR((HW_EPDC_HW_EPDC_PIGEON_13_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_14_0 - Panel Interface Signal Generator Register 14_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12906,15 +11790,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_14_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_14_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_EN) & BM_EPDC_HW_EPDC_PIGEON_14_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_EN) & BM_EPDC_HW_EPDC_PIGEON_14_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_EN) & BM_EPDC_HW_EPDC_PIGEON_14_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -12934,15 +11813,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_POL) & BM_EPDC_HW_EPDC_PIGEON_14_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_POL) & BM_EPDC_HW_EPDC_PIGEON_14_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_POL) & BM_EPDC_HW_EPDC_PIGEON_14_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -12967,15 +11841,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -12997,15 +11866,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_14_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_14_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_14_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -13031,15 +11895,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -13065,15 +11924,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -13100,15 +11954,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -13123,6 +11972,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
 #define BV_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_14_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_14_1 - Panel Interface Signal Generator Register 14_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13173,15 +12026,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_1
 #define BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -13202,15 +12050,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_1
 #define BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -13218,6 +12061,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_14_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_14_2 - Panel Interface Signal Generator Register 14_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13272,15 +12119,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_2
 #define BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -13301,20 +12143,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_2
 #define BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_14_2_WR((HW_EPDC_HW_EPDC_PIGEON_14_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_15_0 - Panel Interface Signal Generator Register 15_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13367,15 +12208,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_15_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_15_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_EN) & BM_EPDC_HW_EPDC_PIGEON_15_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_EN) & BM_EPDC_HW_EPDC_PIGEON_15_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_EN) & BM_EPDC_HW_EPDC_PIGEON_15_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -13395,15 +12231,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_POL) & BM_EPDC_HW_EPDC_PIGEON_15_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_POL) & BM_EPDC_HW_EPDC_PIGEON_15_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_POL) & BM_EPDC_HW_EPDC_PIGEON_15_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -13428,15 +12259,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -13458,15 +12284,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_15_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_15_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_15_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -13492,15 +12313,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -13526,15 +12342,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -13561,15 +12372,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -13584,6 +12390,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
 #define BV_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_15_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_15_1 - Panel Interface Signal Generator Register 15_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13634,15 +12444,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_1
 #define BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -13663,15 +12468,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_1
 #define BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -13679,6 +12479,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_15_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_15_2 - Panel Interface Signal Generator Register 15_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13733,15 +12537,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_2
 #define BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -13762,20 +12561,19 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_2
 #define BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)   (HW_EPDC_HW_EPDC_PIGEON_15_2_WR((HW_EPDC_HW_EPDC_PIGEON_15_2_RD() & ~BM_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER) | BF_EPDC_HW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_16_0 - Panel Interface Signal Generator Register 16_0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13828,15 +12626,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_EN      (0x00000001)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_EN.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_EN from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_EN(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_16_0_EN)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_EN) >> BP_EPDC_HW_EPDC_PIGEON_16_0_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_EN(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_EN) & BM_EPDC_HW_EPDC_PIGEON_16_0_EN)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_EN.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_EN(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_EN) & BM_EPDC_HW_EPDC_PIGEON_16_0_EN)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_EN) & BM_EPDC_HW_EPDC_PIGEON_16_0_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -13856,15 +12649,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_POL      (0x00000002)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_POL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_POL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_POL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_POL)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_POL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_POL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_POL) & BM_EPDC_HW_EPDC_PIGEON_16_0_POL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_POL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_POL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_POL) & BM_EPDC_HW_EPDC_PIGEON_16_0_POL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_POL) & BM_EPDC_HW_EPDC_PIGEON_16_0_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POL field to a new value.
@@ -13889,15 +12677,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_INC_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_INC_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_INC_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_INC_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INC_SEL field to a new value.
@@ -13919,15 +12702,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_OFFSET.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_OFFSET from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_OFFSET(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_16_0_OFFSET)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET) >> BP_EPDC_HW_EPDC_PIGEON_16_0_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_OFFSET(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_OFFSET.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_OFFSET(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_OFFSET) & BM_EPDC_HW_EPDC_PIGEON_16_0_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OFFSET field to a new value.
@@ -13953,15 +12731,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL) >> BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT_SEL field to a new value.
@@ -13987,15 +12760,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_0_MASK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASK_CNT field to a new value.
@@ -14022,15 +12790,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK)
+#define BG_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK) >> BP_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK.
-#define BF_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK) & BM_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STATE_MASK field to a new value.
@@ -14045,6 +12808,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
 #define BV_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_HW_EPDC_PIGEON_16_0_STATE_MASK__LE (0x80) //!< LINE END
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_16_1 - Panel Interface Signal Generator Register 16_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14095,15 +12862,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_1
 #define BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_1_SET_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_1_SET_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_1_SET_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_SET_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SET_CNT field to a new value.
@@ -14124,15 +12886,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_1
 #define BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT)
+#define BG_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT) >> BP_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT.
-#define BF_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT) & BM_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLR_CNT field to a new value.
@@ -14140,6 +12897,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_1
 #endif
 
 #define BV_EPDC_HW_EPDC_PIGEON_16_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
+
+//-------------------------------------------------------------------------------------------
+// HW_EPDC_HW_EPDC_PIGEON_16_2 - Panel Interface Signal Generator Register 16_1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -14194,15 +12955,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_2
 #define BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC)
+#define BG_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC) >> BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC.
-#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_LOGIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_LOGIC field to a new value.
@@ -14223,15 +12979,10 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_2
 #define BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER.
 
 //! @brief Get value of EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER from a register value.
-#define BG_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER(r)   (((r) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER)
+#define BG_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER) >> BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER(v)   ((((reg32_t) v) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER)
-#else
-//! @brief Format value for bitfield EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER.
-#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER(v)   (((v) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER)
-#endif
+#define BF_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER) & BM_EPDC_HW_EPDC_PIGEON_16_2_SIG_ANOTHER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SIG_ANOTHER field to a new value.

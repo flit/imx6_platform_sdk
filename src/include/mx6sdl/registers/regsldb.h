@@ -26,6 +26,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_LDB_CTRL - LDB Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_LDB_CTRL - LDB Control Register (RW)
@@ -91,15 +106,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_CH0_MODE      (0x00000003)  //!< Bit mask for LDB_CTRL_CH0_MODE.
 
 //! @brief Get value of LDB_CTRL_CH0_MODE from a register value.
-#define BG_LDB_CTRL_CH0_MODE(r)   (((r) & BM_LDB_CTRL_CH0_MODE) >> BP_LDB_CTRL_CH0_MODE)
+#define BG_LDB_CTRL_CH0_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_CH0_MODE) >> BP_LDB_CTRL_CH0_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_CH0_MODE.
-#define BF_LDB_CTRL_CH0_MODE(v)   ((((reg32_t) v) << BP_LDB_CTRL_CH0_MODE) & BM_LDB_CTRL_CH0_MODE)
-#else
-//! @brief Format value for bitfield LDB_CTRL_CH0_MODE.
-#define BF_LDB_CTRL_CH0_MODE(v)   (((v) << BP_LDB_CTRL_CH0_MODE) & BM_LDB_CTRL_CH0_MODE)
-#endif
+#define BF_LDB_CTRL_CH0_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_CH0_MODE) & BM_LDB_CTRL_CH0_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH0_MODE field to a new value.
@@ -122,15 +132,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_CH1_MODE      (0x0000000c)  //!< Bit mask for LDB_CTRL_CH1_MODE.
 
 //! @brief Get value of LDB_CTRL_CH1_MODE from a register value.
-#define BG_LDB_CTRL_CH1_MODE(r)   (((r) & BM_LDB_CTRL_CH1_MODE) >> BP_LDB_CTRL_CH1_MODE)
+#define BG_LDB_CTRL_CH1_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_CH1_MODE) >> BP_LDB_CTRL_CH1_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_CH1_MODE.
-#define BF_LDB_CTRL_CH1_MODE(v)   ((((reg32_t) v) << BP_LDB_CTRL_CH1_MODE) & BM_LDB_CTRL_CH1_MODE)
-#else
-//! @brief Format value for bitfield LDB_CTRL_CH1_MODE.
-#define BF_LDB_CTRL_CH1_MODE(v)   (((v) << BP_LDB_CTRL_CH1_MODE) & BM_LDB_CTRL_CH1_MODE)
-#endif
+#define BF_LDB_CTRL_CH1_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_CH1_MODE) & BM_LDB_CTRL_CH1_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CH1_MODE field to a new value.
@@ -152,15 +157,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_SPLIT_MODE_EN      (0x00000010)  //!< Bit mask for LDB_CTRL_SPLIT_MODE_EN.
 
 //! @brief Get value of LDB_CTRL_SPLIT_MODE_EN from a register value.
-#define BG_LDB_CTRL_SPLIT_MODE_EN(r)   (((r) & BM_LDB_CTRL_SPLIT_MODE_EN) >> BP_LDB_CTRL_SPLIT_MODE_EN)
+#define BG_LDB_CTRL_SPLIT_MODE_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_SPLIT_MODE_EN) >> BP_LDB_CTRL_SPLIT_MODE_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_SPLIT_MODE_EN.
-#define BF_LDB_CTRL_SPLIT_MODE_EN(v)   ((((reg32_t) v) << BP_LDB_CTRL_SPLIT_MODE_EN) & BM_LDB_CTRL_SPLIT_MODE_EN)
-#else
-//! @brief Format value for bitfield LDB_CTRL_SPLIT_MODE_EN.
-#define BF_LDB_CTRL_SPLIT_MODE_EN(v)   (((v) << BP_LDB_CTRL_SPLIT_MODE_EN) & BM_LDB_CTRL_SPLIT_MODE_EN)
-#endif
+#define BF_LDB_CTRL_SPLIT_MODE_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_SPLIT_MODE_EN) & BM_LDB_CTRL_SPLIT_MODE_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SPLIT_MODE_EN field to a new value.
@@ -182,15 +182,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_DATA_WIDTH_CH0      (0x00000020)  //!< Bit mask for LDB_CTRL_DATA_WIDTH_CH0.
 
 //! @brief Get value of LDB_CTRL_DATA_WIDTH_CH0 from a register value.
-#define BG_LDB_CTRL_DATA_WIDTH_CH0(r)   (((r) & BM_LDB_CTRL_DATA_WIDTH_CH0) >> BP_LDB_CTRL_DATA_WIDTH_CH0)
+#define BG_LDB_CTRL_DATA_WIDTH_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_DATA_WIDTH_CH0) >> BP_LDB_CTRL_DATA_WIDTH_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_DATA_WIDTH_CH0.
-#define BF_LDB_CTRL_DATA_WIDTH_CH0(v)   ((((reg32_t) v) << BP_LDB_CTRL_DATA_WIDTH_CH0) & BM_LDB_CTRL_DATA_WIDTH_CH0)
-#else
-//! @brief Format value for bitfield LDB_CTRL_DATA_WIDTH_CH0.
-#define BF_LDB_CTRL_DATA_WIDTH_CH0(v)   (((v) << BP_LDB_CTRL_DATA_WIDTH_CH0) & BM_LDB_CTRL_DATA_WIDTH_CH0)
-#endif
+#define BF_LDB_CTRL_DATA_WIDTH_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_DATA_WIDTH_CH0) & BM_LDB_CTRL_DATA_WIDTH_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_WIDTH_CH0 field to a new value.
@@ -211,15 +206,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_BIT_MAPPING_CH0      (0x00000040)  //!< Bit mask for LDB_CTRL_BIT_MAPPING_CH0.
 
 //! @brief Get value of LDB_CTRL_BIT_MAPPING_CH0 from a register value.
-#define BG_LDB_CTRL_BIT_MAPPING_CH0(r)   (((r) & BM_LDB_CTRL_BIT_MAPPING_CH0) >> BP_LDB_CTRL_BIT_MAPPING_CH0)
+#define BG_LDB_CTRL_BIT_MAPPING_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_BIT_MAPPING_CH0) >> BP_LDB_CTRL_BIT_MAPPING_CH0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_BIT_MAPPING_CH0.
-#define BF_LDB_CTRL_BIT_MAPPING_CH0(v)   ((((reg32_t) v) << BP_LDB_CTRL_BIT_MAPPING_CH0) & BM_LDB_CTRL_BIT_MAPPING_CH0)
-#else
-//! @brief Format value for bitfield LDB_CTRL_BIT_MAPPING_CH0.
-#define BF_LDB_CTRL_BIT_MAPPING_CH0(v)   (((v) << BP_LDB_CTRL_BIT_MAPPING_CH0) & BM_LDB_CTRL_BIT_MAPPING_CH0)
-#endif
+#define BF_LDB_CTRL_BIT_MAPPING_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_BIT_MAPPING_CH0) & BM_LDB_CTRL_BIT_MAPPING_CH0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BIT_MAPPING_CH0 field to a new value.
@@ -241,15 +231,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_DATA_WIDTH_CH1      (0x00000080)  //!< Bit mask for LDB_CTRL_DATA_WIDTH_CH1.
 
 //! @brief Get value of LDB_CTRL_DATA_WIDTH_CH1 from a register value.
-#define BG_LDB_CTRL_DATA_WIDTH_CH1(r)   (((r) & BM_LDB_CTRL_DATA_WIDTH_CH1) >> BP_LDB_CTRL_DATA_WIDTH_CH1)
+#define BG_LDB_CTRL_DATA_WIDTH_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_DATA_WIDTH_CH1) >> BP_LDB_CTRL_DATA_WIDTH_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_DATA_WIDTH_CH1.
-#define BF_LDB_CTRL_DATA_WIDTH_CH1(v)   ((((reg32_t) v) << BP_LDB_CTRL_DATA_WIDTH_CH1) & BM_LDB_CTRL_DATA_WIDTH_CH1)
-#else
-//! @brief Format value for bitfield LDB_CTRL_DATA_WIDTH_CH1.
-#define BF_LDB_CTRL_DATA_WIDTH_CH1(v)   (((v) << BP_LDB_CTRL_DATA_WIDTH_CH1) & BM_LDB_CTRL_DATA_WIDTH_CH1)
-#endif
+#define BF_LDB_CTRL_DATA_WIDTH_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_DATA_WIDTH_CH1) & BM_LDB_CTRL_DATA_WIDTH_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_WIDTH_CH1 field to a new value.
@@ -270,15 +255,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_BIT_MAPPING_CH1      (0x00000100)  //!< Bit mask for LDB_CTRL_BIT_MAPPING_CH1.
 
 //! @brief Get value of LDB_CTRL_BIT_MAPPING_CH1 from a register value.
-#define BG_LDB_CTRL_BIT_MAPPING_CH1(r)   (((r) & BM_LDB_CTRL_BIT_MAPPING_CH1) >> BP_LDB_CTRL_BIT_MAPPING_CH1)
+#define BG_LDB_CTRL_BIT_MAPPING_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_BIT_MAPPING_CH1) >> BP_LDB_CTRL_BIT_MAPPING_CH1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_BIT_MAPPING_CH1.
-#define BF_LDB_CTRL_BIT_MAPPING_CH1(v)   ((((reg32_t) v) << BP_LDB_CTRL_BIT_MAPPING_CH1) & BM_LDB_CTRL_BIT_MAPPING_CH1)
-#else
-//! @brief Format value for bitfield LDB_CTRL_BIT_MAPPING_CH1.
-#define BF_LDB_CTRL_BIT_MAPPING_CH1(v)   (((v) << BP_LDB_CTRL_BIT_MAPPING_CH1) & BM_LDB_CTRL_BIT_MAPPING_CH1)
-#endif
+#define BF_LDB_CTRL_BIT_MAPPING_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_BIT_MAPPING_CH1) & BM_LDB_CTRL_BIT_MAPPING_CH1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BIT_MAPPING_CH1 field to a new value.
@@ -299,15 +279,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_DI0_VS_POLARITY      (0x00000200)  //!< Bit mask for LDB_CTRL_DI0_VS_POLARITY.
 
 //! @brief Get value of LDB_CTRL_DI0_VS_POLARITY from a register value.
-#define BG_LDB_CTRL_DI0_VS_POLARITY(r)   (((r) & BM_LDB_CTRL_DI0_VS_POLARITY) >> BP_LDB_CTRL_DI0_VS_POLARITY)
+#define BG_LDB_CTRL_DI0_VS_POLARITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_DI0_VS_POLARITY) >> BP_LDB_CTRL_DI0_VS_POLARITY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_DI0_VS_POLARITY.
-#define BF_LDB_CTRL_DI0_VS_POLARITY(v)   ((((reg32_t) v) << BP_LDB_CTRL_DI0_VS_POLARITY) & BM_LDB_CTRL_DI0_VS_POLARITY)
-#else
-//! @brief Format value for bitfield LDB_CTRL_DI0_VS_POLARITY.
-#define BF_LDB_CTRL_DI0_VS_POLARITY(v)   (((v) << BP_LDB_CTRL_DI0_VS_POLARITY) & BM_LDB_CTRL_DI0_VS_POLARITY)
-#endif
+#define BF_LDB_CTRL_DI0_VS_POLARITY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_DI0_VS_POLARITY) & BM_LDB_CTRL_DI0_VS_POLARITY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI0_VS_POLARITY field to a new value.
@@ -328,15 +303,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_DI1_VS_POLARITY      (0x00000400)  //!< Bit mask for LDB_CTRL_DI1_VS_POLARITY.
 
 //! @brief Get value of LDB_CTRL_DI1_VS_POLARITY from a register value.
-#define BG_LDB_CTRL_DI1_VS_POLARITY(r)   (((r) & BM_LDB_CTRL_DI1_VS_POLARITY) >> BP_LDB_CTRL_DI1_VS_POLARITY)
+#define BG_LDB_CTRL_DI1_VS_POLARITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_DI1_VS_POLARITY) >> BP_LDB_CTRL_DI1_VS_POLARITY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_DI1_VS_POLARITY.
-#define BF_LDB_CTRL_DI1_VS_POLARITY(v)   ((((reg32_t) v) << BP_LDB_CTRL_DI1_VS_POLARITY) & BM_LDB_CTRL_DI1_VS_POLARITY)
-#else
-//! @brief Format value for bitfield LDB_CTRL_DI1_VS_POLARITY.
-#define BF_LDB_CTRL_DI1_VS_POLARITY(v)   (((v) << BP_LDB_CTRL_DI1_VS_POLARITY) & BM_LDB_CTRL_DI1_VS_POLARITY)
-#endif
+#define BF_LDB_CTRL_DI1_VS_POLARITY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_DI1_VS_POLARITY) & BM_LDB_CTRL_DI1_VS_POLARITY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI1_VS_POLARITY field to a new value.
@@ -357,15 +327,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_BGREF_RRMODE      (0x00008000)  //!< Bit mask for LDB_CTRL_BGREF_RRMODE.
 
 //! @brief Get value of LDB_CTRL_BGREF_RRMODE from a register value.
-#define BG_LDB_CTRL_BGREF_RRMODE(r)   (((r) & BM_LDB_CTRL_BGREF_RRMODE) >> BP_LDB_CTRL_BGREF_RRMODE)
+#define BG_LDB_CTRL_BGREF_RRMODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_BGREF_RRMODE) >> BP_LDB_CTRL_BGREF_RRMODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_BGREF_RRMODE.
-#define BF_LDB_CTRL_BGREF_RRMODE(v)   ((((reg32_t) v) << BP_LDB_CTRL_BGREF_RRMODE) & BM_LDB_CTRL_BGREF_RRMODE)
-#else
-//! @brief Format value for bitfield LDB_CTRL_BGREF_RRMODE.
-#define BF_LDB_CTRL_BGREF_RRMODE(v)   (((v) << BP_LDB_CTRL_BGREF_RRMODE) & BM_LDB_CTRL_BGREF_RRMODE)
-#endif
+#define BF_LDB_CTRL_BGREF_RRMODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_BGREF_RRMODE) & BM_LDB_CTRL_BGREF_RRMODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BGREF_RRMODE field to a new value.
@@ -393,15 +358,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_LVDS_CLK_SHIFT      (0x00070000)  //!< Bit mask for LDB_CTRL_LVDS_CLK_SHIFT.
 
 //! @brief Get value of LDB_CTRL_LVDS_CLK_SHIFT from a register value.
-#define BG_LDB_CTRL_LVDS_CLK_SHIFT(r)   (((r) & BM_LDB_CTRL_LVDS_CLK_SHIFT) >> BP_LDB_CTRL_LVDS_CLK_SHIFT)
+#define BG_LDB_CTRL_LVDS_CLK_SHIFT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_LVDS_CLK_SHIFT) >> BP_LDB_CTRL_LVDS_CLK_SHIFT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_LVDS_CLK_SHIFT.
-#define BF_LDB_CTRL_LVDS_CLK_SHIFT(v)   ((((reg32_t) v) << BP_LDB_CTRL_LVDS_CLK_SHIFT) & BM_LDB_CTRL_LVDS_CLK_SHIFT)
-#else
-//! @brief Format value for bitfield LDB_CTRL_LVDS_CLK_SHIFT.
-#define BF_LDB_CTRL_LVDS_CLK_SHIFT(v)   (((v) << BP_LDB_CTRL_LVDS_CLK_SHIFT) & BM_LDB_CTRL_LVDS_CLK_SHIFT)
-#endif
+#define BF_LDB_CTRL_LVDS_CLK_SHIFT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_LVDS_CLK_SHIFT) & BM_LDB_CTRL_LVDS_CLK_SHIFT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LVDS_CLK_SHIFT field to a new value.
@@ -425,15 +385,10 @@ typedef union _hw_ldb_ctrl
 #define BM_LDB_CTRL_COUNTER_RESET_VAL      (0x00300000)  //!< Bit mask for LDB_CTRL_COUNTER_RESET_VAL.
 
 //! @brief Get value of LDB_CTRL_COUNTER_RESET_VAL from a register value.
-#define BG_LDB_CTRL_COUNTER_RESET_VAL(r)   (((r) & BM_LDB_CTRL_COUNTER_RESET_VAL) >> BP_LDB_CTRL_COUNTER_RESET_VAL)
+#define BG_LDB_CTRL_COUNTER_RESET_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LDB_CTRL_COUNTER_RESET_VAL) >> BP_LDB_CTRL_COUNTER_RESET_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield LDB_CTRL_COUNTER_RESET_VAL.
-#define BF_LDB_CTRL_COUNTER_RESET_VAL(v)   ((((reg32_t) v) << BP_LDB_CTRL_COUNTER_RESET_VAL) & BM_LDB_CTRL_COUNTER_RESET_VAL)
-#else
-//! @brief Format value for bitfield LDB_CTRL_COUNTER_RESET_VAL.
-#define BF_LDB_CTRL_COUNTER_RESET_VAL(v)   (((v) << BP_LDB_CTRL_COUNTER_RESET_VAL) & BM_LDB_CTRL_COUNTER_RESET_VAL)
-#endif
+#define BF_LDB_CTRL_COUNTER_RESET_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_LDB_CTRL_COUNTER_RESET_VAL) & BM_LDB_CTRL_COUNTER_RESET_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COUNTER_RESET_VAL field to a new value.

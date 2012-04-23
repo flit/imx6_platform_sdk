@@ -46,6 +46,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer (RO)
@@ -88,7 +103,11 @@ typedef union _hw_sdmacore_mc0ptr
 #define BM_SDMACORE_MC0PTR_MC0PTR      (0xffffffff)  //!< Bit mask for SDMACORE_MC0PTR_MC0PTR.
 
 //! @brief Get value of SDMACORE_MC0PTR_MC0PTR from a register value.
-#define BG_SDMACORE_MC0PTR_MC0PTR(r)   (((r) & BM_SDMACORE_MC0PTR_MC0PTR) >> BP_SDMACORE_MC0PTR_MC0PTR)
+#define BG_SDMACORE_MC0PTR_MC0PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MC0PTR_MC0PTR) >> BP_SDMACORE_MC0PTR_MC0PTR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_CCPTR - Current Channel Pointer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -134,7 +153,11 @@ typedef union _hw_sdmacore_ccptr
 #define BM_SDMACORE_CCPTR_CCPTR      (0x0000ffff)  //!< Bit mask for SDMACORE_CCPTR_CCPTR.
 
 //! @brief Get value of SDMACORE_CCPTR_CCPTR from a register value.
-#define BG_SDMACORE_CCPTR_CCPTR(r)   (((r) & BM_SDMACORE_CCPTR_CCPTR) >> BP_SDMACORE_CCPTR_CCPTR)
+#define BG_SDMACORE_CCPTR_CCPTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCPTR_CCPTR) >> BP_SDMACORE_CCPTR_CCPTR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_CCR - Current Channel Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -181,7 +204,11 @@ typedef union _hw_sdmacore_ccr
 #define BM_SDMACORE_CCR_CCR      (0x0000001f)  //!< Bit mask for SDMACORE_CCR_CCR.
 
 //! @brief Get value of SDMACORE_CCR_CCR from a register value.
-#define BG_SDMACORE_CCR_CCR(r)   (((r) & BM_SDMACORE_CCR_CCR) >> BP_SDMACORE_CCR_CCR)
+#define BG_SDMACORE_CCR_CCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCR_CCR) >> BP_SDMACORE_CCR_CCR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_NCR - Highest Pending Channel Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -225,7 +252,11 @@ typedef union _hw_sdmacore_ncr
 #define BM_SDMACORE_NCR_NCR      (0x0000001f)  //!< Bit mask for SDMACORE_NCR_NCR.
 
 //! @brief Get value of SDMACORE_NCR_NCR from a register value.
-#define BG_SDMACORE_NCR_NCR(r)   (((r) & BM_SDMACORE_NCR_NCR) >> BP_SDMACORE_NCR_NCR)
+#define BG_SDMACORE_NCR_NCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_NCR_NCR) >> BP_SDMACORE_NCR_NCR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EVENTS - External DMA Requests Mirror
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -287,7 +318,11 @@ typedef union _hw_sdmacore_events
 #define BM_SDMACORE_EVENTS_EVENTS      (0xffffffff)  //!< Bit mask for SDMACORE_EVENTS_EVENTS.
 
 //! @brief Get value of SDMACORE_EVENTS_EVENTS from a register value.
-#define BG_SDMACORE_EVENTS_EVENTS(r)   (((r) & BM_SDMACORE_EVENTS_EVENTS) >> BP_SDMACORE_EVENTS_EVENTS)
+#define BG_SDMACORE_EVENTS_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EVENTS_EVENTS) >> BP_SDMACORE_EVENTS_EVENTS)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_CCPRI - Current Channel Priority
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -335,8 +370,12 @@ typedef union _hw_sdmacore_ccpri
 #define BM_SDMACORE_CCPRI_CCPRI      (0x00000007)  //!< Bit mask for SDMACORE_CCPRI_CCPRI.
 
 //! @brief Get value of SDMACORE_CCPRI_CCPRI from a register value.
-#define BG_SDMACORE_CCPRI_CCPRI(r)   (((r) & BM_SDMACORE_CCPRI_CCPRI) >> BP_SDMACORE_CCPRI_CCPRI)
+#define BG_SDMACORE_CCPRI_CCPRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCPRI_CCPRI) >> BP_SDMACORE_CCPRI_CCPRI)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_NCPRI - Next Channel Priority
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -381,7 +420,11 @@ typedef union _hw_sdmacore_ncpri
 #define BM_SDMACORE_NCPRI_NCPRI      (0x00000007)  //!< Bit mask for SDMACORE_NCPRI_NCPRI.
 
 //! @brief Get value of SDMACORE_NCPRI_NCPRI from a register value.
-#define BG_SDMACORE_NCPRI_NCPRI(r)   (((r) & BM_SDMACORE_NCPRI_NCPRI) >> BP_SDMACORE_NCPRI_NCPRI)
+#define BG_SDMACORE_NCPRI_NCPRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_NCPRI_NCPRI) >> BP_SDMACORE_NCPRI_NCPRI)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_ECOUNT - OnCE Event Cell Counter
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -432,20 +475,19 @@ typedef union _hw_sdmacore_ecount
 #define BM_SDMACORE_ECOUNT_ECOUNT      (0x0000ffff)  //!< Bit mask for SDMACORE_ECOUNT_ECOUNT.
 
 //! @brief Get value of SDMACORE_ECOUNT_ECOUNT from a register value.
-#define BG_SDMACORE_ECOUNT_ECOUNT(r)   (((r) & BM_SDMACORE_ECOUNT_ECOUNT) >> BP_SDMACORE_ECOUNT_ECOUNT)
+#define BG_SDMACORE_ECOUNT_ECOUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECOUNT_ECOUNT) >> BP_SDMACORE_ECOUNT_ECOUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECOUNT_ECOUNT.
-#define BF_SDMACORE_ECOUNT_ECOUNT(v)   ((((reg32_t) v) << BP_SDMACORE_ECOUNT_ECOUNT) & BM_SDMACORE_ECOUNT_ECOUNT)
-#else
-//! @brief Format value for bitfield SDMACORE_ECOUNT_ECOUNT.
-#define BF_SDMACORE_ECOUNT_ECOUNT(v)   (((v) << BP_SDMACORE_ECOUNT_ECOUNT) & BM_SDMACORE_ECOUNT_ECOUNT)
-#endif
+#define BF_SDMACORE_ECOUNT_ECOUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECOUNT_ECOUNT) & BM_SDMACORE_ECOUNT_ECOUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECOUNT field to a new value.
 #define BW_SDMACORE_ECOUNT_ECOUNT(v)   (HW_SDMACORE_ECOUNT_WR((HW_SDMACORE_ECOUNT_RD() & ~BM_SDMACORE_ECOUNT_ECOUNT) | BF_SDMACORE_ECOUNT_ECOUNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_ECTL - OnCE Event Cell Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -506,15 +548,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_ATS      (0x00000003)  //!< Bit mask for SDMACORE_ECTL_ATS.
 
 //! @brief Get value of SDMACORE_ECTL_ATS from a register value.
-#define BG_SDMACORE_ECTL_ATS(r)   (((r) & BM_SDMACORE_ECTL_ATS) >> BP_SDMACORE_ECTL_ATS)
+#define BG_SDMACORE_ECTL_ATS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_ATS) >> BP_SDMACORE_ECTL_ATS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_ATS.
-#define BF_SDMACORE_ECTL_ATS(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_ATS) & BM_SDMACORE_ECTL_ATS)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_ATS.
-#define BF_SDMACORE_ECTL_ATS(v)   (((v) << BP_SDMACORE_ECTL_ATS) & BM_SDMACORE_ECTL_ATS)
-#endif
+#define BF_SDMACORE_ECTL_ATS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_ATS) & BM_SDMACORE_ECTL_ATS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATS field to a new value.
@@ -539,15 +576,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_AATC      (0x0000000c)  //!< Bit mask for SDMACORE_ECTL_AATC.
 
 //! @brief Get value of SDMACORE_ECTL_AATC from a register value.
-#define BG_SDMACORE_ECTL_AATC(r)   (((r) & BM_SDMACORE_ECTL_AATC) >> BP_SDMACORE_ECTL_AATC)
+#define BG_SDMACORE_ECTL_AATC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_AATC) >> BP_SDMACORE_ECTL_AATC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_AATC.
-#define BF_SDMACORE_ECTL_AATC(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_AATC) & BM_SDMACORE_ECTL_AATC)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_AATC.
-#define BF_SDMACORE_ECTL_AATC(v)   (((v) << BP_SDMACORE_ECTL_AATC) & BM_SDMACORE_ECTL_AATC)
-#endif
+#define BF_SDMACORE_ECTL_AATC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_AATC) & BM_SDMACORE_ECTL_AATC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AATC field to a new value.
@@ -572,15 +604,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_ABTC      (0x00000030)  //!< Bit mask for SDMACORE_ECTL_ABTC.
 
 //! @brief Get value of SDMACORE_ECTL_ABTC from a register value.
-#define BG_SDMACORE_ECTL_ABTC(r)   (((r) & BM_SDMACORE_ECTL_ABTC) >> BP_SDMACORE_ECTL_ABTC)
+#define BG_SDMACORE_ECTL_ABTC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_ABTC) >> BP_SDMACORE_ECTL_ABTC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_ABTC.
-#define BF_SDMACORE_ECTL_ABTC(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_ABTC) & BM_SDMACORE_ECTL_ABTC)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_ABTC.
-#define BF_SDMACORE_ECTL_ABTC(v)   (((v) << BP_SDMACORE_ECTL_ABTC) & BM_SDMACORE_ECTL_ABTC)
-#endif
+#define BF_SDMACORE_ECTL_ABTC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_ABTC) & BM_SDMACORE_ECTL_ABTC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ABTC field to a new value.
@@ -605,15 +632,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_ATC      (0x000000c0)  //!< Bit mask for SDMACORE_ECTL_ATC.
 
 //! @brief Get value of SDMACORE_ECTL_ATC from a register value.
-#define BG_SDMACORE_ECTL_ATC(r)   (((r) & BM_SDMACORE_ECTL_ATC) >> BP_SDMACORE_ECTL_ATC)
+#define BG_SDMACORE_ECTL_ATC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_ATC) >> BP_SDMACORE_ECTL_ATC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_ATC.
-#define BF_SDMACORE_ECTL_ATC(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_ATC) & BM_SDMACORE_ECTL_ATC)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_ATC.
-#define BF_SDMACORE_ECTL_ATC(v)   (((v) << BP_SDMACORE_ECTL_ATC) & BM_SDMACORE_ECTL_ATC)
-#endif
+#define BF_SDMACORE_ECTL_ATC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_ATC) & BM_SDMACORE_ECTL_ATC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ATC field to a new value.
@@ -637,15 +659,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_DTC      (0x00000300)  //!< Bit mask for SDMACORE_ECTL_DTC.
 
 //! @brief Get value of SDMACORE_ECTL_DTC from a register value.
-#define BG_SDMACORE_ECTL_DTC(r)   (((r) & BM_SDMACORE_ECTL_DTC) >> BP_SDMACORE_ECTL_DTC)
+#define BG_SDMACORE_ECTL_DTC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_DTC) >> BP_SDMACORE_ECTL_DTC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_DTC.
-#define BF_SDMACORE_ECTL_DTC(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_DTC) & BM_SDMACORE_ECTL_DTC)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_DTC.
-#define BF_SDMACORE_ECTL_DTC(v)   (((v) << BP_SDMACORE_ECTL_DTC) & BM_SDMACORE_ECTL_DTC)
-#endif
+#define BF_SDMACORE_ECTL_DTC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_DTC) & BM_SDMACORE_ECTL_DTC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTC field to a new value.
@@ -671,15 +688,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_ECTC      (0x00000c00)  //!< Bit mask for SDMACORE_ECTL_ECTC.
 
 //! @brief Get value of SDMACORE_ECTL_ECTC from a register value.
-#define BG_SDMACORE_ECTL_ECTC(r)   (((r) & BM_SDMACORE_ECTL_ECTC) >> BP_SDMACORE_ECTL_ECTC)
+#define BG_SDMACORE_ECTL_ECTC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_ECTC) >> BP_SDMACORE_ECTL_ECTC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_ECTC.
-#define BF_SDMACORE_ECTL_ECTC(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_ECTC) & BM_SDMACORE_ECTL_ECTC)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_ECTC.
-#define BF_SDMACORE_ECTL_ECTC(v)   (((v) << BP_SDMACORE_ECTL_ECTC) & BM_SDMACORE_ECTL_ECTC)
-#endif
+#define BF_SDMACORE_ECTL_ECTC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_ECTC) & BM_SDMACORE_ECTL_ECTC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ECTC field to a new value.
@@ -706,15 +718,10 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_CNT      (0x00001000)  //!< Bit mask for SDMACORE_ECTL_CNT.
 
 //! @brief Get value of SDMACORE_ECTL_CNT from a register value.
-#define BG_SDMACORE_ECTL_CNT(r)   (((r) & BM_SDMACORE_ECTL_CNT) >> BP_SDMACORE_ECTL_CNT)
+#define BG_SDMACORE_ECTL_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_CNT) >> BP_SDMACORE_ECTL_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_CNT.
-#define BF_SDMACORE_ECTL_CNT(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_CNT) & BM_SDMACORE_ECTL_CNT)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_CNT.
-#define BF_SDMACORE_ECTL_CNT(v)   (((v) << BP_SDMACORE_ECTL_CNT) & BM_SDMACORE_ECTL_CNT)
-#endif
+#define BF_SDMACORE_ECTL_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_CNT) & BM_SDMACORE_ECTL_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CNT field to a new value.
@@ -737,21 +744,20 @@ typedef union _hw_sdmacore_ectl
 #define BM_SDMACORE_ECTL_EN      (0x00002000)  //!< Bit mask for SDMACORE_ECTL_EN.
 
 //! @brief Get value of SDMACORE_ECTL_EN from a register value.
-#define BG_SDMACORE_ECTL_EN(r)   (((r) & BM_SDMACORE_ECTL_EN) >> BP_SDMACORE_ECTL_EN)
+#define BG_SDMACORE_ECTL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ECTL_EN) >> BP_SDMACORE_ECTL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ECTL_EN.
-#define BF_SDMACORE_ECTL_EN(v)   ((((reg32_t) v) << BP_SDMACORE_ECTL_EN) & BM_SDMACORE_ECTL_EN)
-#else
-//! @brief Format value for bitfield SDMACORE_ECTL_EN.
-#define BF_SDMACORE_ECTL_EN(v)   (((v) << BP_SDMACORE_ECTL_EN) & BM_SDMACORE_ECTL_EN)
-#endif
+#define BF_SDMACORE_ECTL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ECTL_EN) & BM_SDMACORE_ECTL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
 #define BW_SDMACORE_ECTL_EN(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_EN) | BF_SDMACORE_ECTL_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EAA - OnCE Event Address Register A
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -799,20 +805,19 @@ typedef union _hw_sdmacore_eaa
 #define BM_SDMACORE_EAA_EAA      (0x0000ffff)  //!< Bit mask for SDMACORE_EAA_EAA.
 
 //! @brief Get value of SDMACORE_EAA_EAA from a register value.
-#define BG_SDMACORE_EAA_EAA(r)   (((r) & BM_SDMACORE_EAA_EAA) >> BP_SDMACORE_EAA_EAA)
+#define BG_SDMACORE_EAA_EAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EAA_EAA) >> BP_SDMACORE_EAA_EAA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_EAA_EAA.
-#define BF_SDMACORE_EAA_EAA(v)   ((((reg32_t) v) << BP_SDMACORE_EAA_EAA) & BM_SDMACORE_EAA_EAA)
-#else
-//! @brief Format value for bitfield SDMACORE_EAA_EAA.
-#define BF_SDMACORE_EAA_EAA(v)   (((v) << BP_SDMACORE_EAA_EAA) & BM_SDMACORE_EAA_EAA)
-#endif
+#define BF_SDMACORE_EAA_EAA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_EAA_EAA) & BM_SDMACORE_EAA_EAA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EAA field to a new value.
 #define BW_SDMACORE_EAA_EAA(v)   (HW_SDMACORE_EAA_WR((HW_SDMACORE_EAA_RD() & ~BM_SDMACORE_EAA_EAA) | BF_SDMACORE_EAA_EAA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EAB - OnCE Event Cell Address Register B
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -860,20 +865,19 @@ typedef union _hw_sdmacore_eab
 #define BM_SDMACORE_EAB_EAB      (0x0000ffff)  //!< Bit mask for SDMACORE_EAB_EAB.
 
 //! @brief Get value of SDMACORE_EAB_EAB from a register value.
-#define BG_SDMACORE_EAB_EAB(r)   (((r) & BM_SDMACORE_EAB_EAB) >> BP_SDMACORE_EAB_EAB)
+#define BG_SDMACORE_EAB_EAB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EAB_EAB) >> BP_SDMACORE_EAB_EAB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_EAB_EAB.
-#define BF_SDMACORE_EAB_EAB(v)   ((((reg32_t) v) << BP_SDMACORE_EAB_EAB) & BM_SDMACORE_EAB_EAB)
-#else
-//! @brief Format value for bitfield SDMACORE_EAB_EAB.
-#define BF_SDMACORE_EAB_EAB(v)   (((v) << BP_SDMACORE_EAB_EAB) & BM_SDMACORE_EAB_EAB)
-#endif
+#define BF_SDMACORE_EAB_EAB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_EAB_EAB) & BM_SDMACORE_EAB_EAB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EAB field to a new value.
 #define BW_SDMACORE_EAB_EAB(v)   (HW_SDMACORE_EAB_WR((HW_SDMACORE_EAB_RD() & ~BM_SDMACORE_EAB_EAB) | BF_SDMACORE_EAB_EAB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EAM - OnCE Event Cell Address Mask
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -925,20 +929,19 @@ typedef union _hw_sdmacore_eam
 #define BM_SDMACORE_EAM_EAM      (0x0000ffff)  //!< Bit mask for SDMACORE_EAM_EAM.
 
 //! @brief Get value of SDMACORE_EAM_EAM from a register value.
-#define BG_SDMACORE_EAM_EAM(r)   (((r) & BM_SDMACORE_EAM_EAM) >> BP_SDMACORE_EAM_EAM)
+#define BG_SDMACORE_EAM_EAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EAM_EAM) >> BP_SDMACORE_EAM_EAM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_EAM_EAM.
-#define BF_SDMACORE_EAM_EAM(v)   ((((reg32_t) v) << BP_SDMACORE_EAM_EAM) & BM_SDMACORE_EAM_EAM)
-#else
-//! @brief Format value for bitfield SDMACORE_EAM_EAM.
-#define BF_SDMACORE_EAM_EAM(v)   (((v) << BP_SDMACORE_EAM_EAM) & BM_SDMACORE_EAM_EAM)
-#endif
+#define BF_SDMACORE_EAM_EAM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_EAM_EAM) & BM_SDMACORE_EAM_EAM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EAM field to a new value.
 #define BW_SDMACORE_EAM_EAM(v)   (HW_SDMACORE_EAM_WR((HW_SDMACORE_EAM_RD() & ~BM_SDMACORE_EAM_EAM) | BF_SDMACORE_EAM_EAM(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_ED - OnCE Event Cell Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -986,20 +989,19 @@ typedef union _hw_sdmacore_ed
 #define BM_SDMACORE_ED_ED      (0xffffffff)  //!< Bit mask for SDMACORE_ED_ED.
 
 //! @brief Get value of SDMACORE_ED_ED from a register value.
-#define BG_SDMACORE_ED_ED(r)   (((r) & BM_SDMACORE_ED_ED) >> BP_SDMACORE_ED_ED)
+#define BG_SDMACORE_ED_ED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ED_ED) >> BP_SDMACORE_ED_ED)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_ED_ED.
-#define BF_SDMACORE_ED_ED(v)   ((((reg32_t) v) << BP_SDMACORE_ED_ED) & BM_SDMACORE_ED_ED)
-#else
-//! @brief Format value for bitfield SDMACORE_ED_ED.
-#define BF_SDMACORE_ED_ED(v)   (((v) << BP_SDMACORE_ED_ED) & BM_SDMACORE_ED_ED)
-#endif
+#define BF_SDMACORE_ED_ED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_ED_ED) & BM_SDMACORE_ED_ED)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ED field to a new value.
 #define BW_SDMACORE_ED_ED(v)   (HW_SDMACORE_ED_WR((HW_SDMACORE_ED_RD() & ~BM_SDMACORE_ED_ED) | BF_SDMACORE_ED_ED(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EDM - OnCE Event Cell Data Mask
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1050,20 +1052,19 @@ typedef union _hw_sdmacore_edm
 #define BM_SDMACORE_EDM_EDM      (0xffffffff)  //!< Bit mask for SDMACORE_EDM_EDM.
 
 //! @brief Get value of SDMACORE_EDM_EDM from a register value.
-#define BG_SDMACORE_EDM_EDM(r)   (((r) & BM_SDMACORE_EDM_EDM) >> BP_SDMACORE_EDM_EDM)
+#define BG_SDMACORE_EDM_EDM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EDM_EDM) >> BP_SDMACORE_EDM_EDM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_EDM_EDM.
-#define BF_SDMACORE_EDM_EDM(v)   ((((reg32_t) v) << BP_SDMACORE_EDM_EDM) & BM_SDMACORE_EDM_EDM)
-#else
-//! @brief Format value for bitfield SDMACORE_EDM_EDM.
-#define BF_SDMACORE_EDM_EDM(v)   (((v) << BP_SDMACORE_EDM_EDM) & BM_SDMACORE_EDM_EDM)
-#endif
+#define BF_SDMACORE_EDM_EDM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_EDM_EDM) & BM_SDMACORE_EDM_EDM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EDM field to a new value.
 #define BW_SDMACORE_EDM_EDM(v)   (HW_SDMACORE_EDM_WR((HW_SDMACORE_EDM_RD() & ~BM_SDMACORE_EDM_EDM) | BF_SDMACORE_EDM_EDM(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_RTB - OnCE Real-Time Buffer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1113,20 +1114,19 @@ typedef union _hw_sdmacore_rtb
 #define BM_SDMACORE_RTB_RTB      (0xffffffff)  //!< Bit mask for SDMACORE_RTB_RTB.
 
 //! @brief Get value of SDMACORE_RTB_RTB from a register value.
-#define BG_SDMACORE_RTB_RTB(r)   (((r) & BM_SDMACORE_RTB_RTB) >> BP_SDMACORE_RTB_RTB)
+#define BG_SDMACORE_RTB_RTB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_RTB_RTB) >> BP_SDMACORE_RTB_RTB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMACORE_RTB_RTB.
-#define BF_SDMACORE_RTB_RTB(v)   ((((reg32_t) v) << BP_SDMACORE_RTB_RTB) & BM_SDMACORE_RTB_RTB)
-#else
-//! @brief Format value for bitfield SDMACORE_RTB_RTB.
-#define BF_SDMACORE_RTB_RTB(v)   (((v) << BP_SDMACORE_RTB_RTB) & BM_SDMACORE_RTB_RTB)
-#endif
+#define BF_SDMACORE_RTB_RTB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMACORE_RTB_RTB) & BM_SDMACORE_RTB_RTB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTB field to a new value.
 #define BW_SDMACORE_RTB_RTB(v)   (HW_SDMACORE_RTB_WR((HW_SDMACORE_RTB_RD() & ~BM_SDMACORE_RTB_RTB) | BF_SDMACORE_RTB_RTB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_TB - OnCE Trace Buffer
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1173,7 +1173,7 @@ typedef union _hw_sdmacore_tb
 #define BM_SDMACORE_TB_CHFADDR      (0x00003fff)  //!< Bit mask for SDMACORE_TB_CHFADDR.
 
 //! @brief Get value of SDMACORE_TB_CHFADDR from a register value.
-#define BG_SDMACORE_TB_CHFADDR(r)   (((r) & BM_SDMACORE_TB_CHFADDR) >> BP_SDMACORE_TB_CHFADDR)
+#define BG_SDMACORE_TB_CHFADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_CHFADDR) >> BP_SDMACORE_TB_CHFADDR)
 
 /* --- Register HW_SDMACORE_TB, field TADDR[27:14] (RO)
  *
@@ -1184,7 +1184,7 @@ typedef union _hw_sdmacore_tb
 #define BM_SDMACORE_TB_TADDR      (0x0fffc000)  //!< Bit mask for SDMACORE_TB_TADDR.
 
 //! @brief Get value of SDMACORE_TB_TADDR from a register value.
-#define BG_SDMACORE_TB_TADDR(r)   (((r) & BM_SDMACORE_TB_TADDR) >> BP_SDMACORE_TB_TADDR)
+#define BG_SDMACORE_TB_TADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_TADDR) >> BP_SDMACORE_TB_TADDR)
 
 /* --- Register HW_SDMACORE_TB, field TBF[28] (RO)
  *
@@ -1200,8 +1200,12 @@ typedef union _hw_sdmacore_tb
 #define BM_SDMACORE_TB_TBF      (0x10000000)  //!< Bit mask for SDMACORE_TB_TBF.
 
 //! @brief Get value of SDMACORE_TB_TBF from a register value.
-#define BG_SDMACORE_TB_TBF(r)   (((r) & BM_SDMACORE_TB_TBF) >> BP_SDMACORE_TB_TBF)
+#define BG_SDMACORE_TB_TBF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_TBF) >> BP_SDMACORE_TB_TBF)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_OSTAT - OnCE Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1263,7 +1267,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_ECDR      (0x00000007)  //!< Bit mask for SDMACORE_OSTAT_ECDR.
 
 //! @brief Get value of SDMACORE_OSTAT_ECDR from a register value.
-#define BG_SDMACORE_OSTAT_ECDR(r)   (((r) & BM_SDMACORE_OSTAT_ECDR) >> BP_SDMACORE_OSTAT_ECDR)
+#define BG_SDMACORE_OSTAT_ECDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_ECDR) >> BP_SDMACORE_OSTAT_ECDR)
 
 
 /* --- Register HW_SDMACORE_OSTAT, field MST[7] (RO)
@@ -1279,7 +1283,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_MST      (0x00000080)  //!< Bit mask for SDMACORE_OSTAT_MST.
 
 //! @brief Get value of SDMACORE_OSTAT_MST from a register value.
-#define BG_SDMACORE_OSTAT_MST(r)   (((r) & BM_SDMACORE_OSTAT_MST) >> BP_SDMACORE_OSTAT_MST)
+#define BG_SDMACORE_OSTAT_MST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_MST) >> BP_SDMACORE_OSTAT_MST)
 
 
 /* --- Register HW_SDMACORE_OSTAT, field SWB[8] (RO)
@@ -1291,7 +1295,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_SWB      (0x00000100)  //!< Bit mask for SDMACORE_OSTAT_SWB.
 
 //! @brief Get value of SDMACORE_OSTAT_SWB from a register value.
-#define BG_SDMACORE_OSTAT_SWB(r)   (((r) & BM_SDMACORE_OSTAT_SWB) >> BP_SDMACORE_OSTAT_SWB)
+#define BG_SDMACORE_OSTAT_SWB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_SWB) >> BP_SDMACORE_OSTAT_SWB)
 
 /* --- Register HW_SDMACORE_OSTAT, field ODR[9] (RO)
  *
@@ -1302,7 +1306,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_ODR      (0x00000200)  //!< Bit mask for SDMACORE_OSTAT_ODR.
 
 //! @brief Get value of SDMACORE_OSTAT_ODR from a register value.
-#define BG_SDMACORE_OSTAT_ODR(r)   (((r) & BM_SDMACORE_OSTAT_ODR) >> BP_SDMACORE_OSTAT_ODR)
+#define BG_SDMACORE_OSTAT_ODR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_ODR) >> BP_SDMACORE_OSTAT_ODR)
 
 /* --- Register HW_SDMACORE_OSTAT, field EDR[10] (RO)
  *
@@ -1313,7 +1317,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_EDR      (0x00000400)  //!< Bit mask for SDMACORE_OSTAT_EDR.
 
 //! @brief Get value of SDMACORE_OSTAT_EDR from a register value.
-#define BG_SDMACORE_OSTAT_EDR(r)   (((r) & BM_SDMACORE_OSTAT_EDR) >> BP_SDMACORE_OSTAT_EDR)
+#define BG_SDMACORE_OSTAT_EDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_EDR) >> BP_SDMACORE_OSTAT_EDR)
 
 /* --- Register HW_SDMACORE_OSTAT, field RCV[11] (RO)
  *
@@ -1325,7 +1329,7 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_RCV      (0x00000800)  //!< Bit mask for SDMACORE_OSTAT_RCV.
 
 //! @brief Get value of SDMACORE_OSTAT_RCV from a register value.
-#define BG_SDMACORE_OSTAT_RCV(r)   (((r) & BM_SDMACORE_OSTAT_RCV) >> BP_SDMACORE_OSTAT_RCV)
+#define BG_SDMACORE_OSTAT_RCV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_RCV) >> BP_SDMACORE_OSTAT_RCV)
 
 /* --- Register HW_SDMACORE_OSTAT, field PST[15:12] (RO)
  *
@@ -1366,8 +1370,12 @@ typedef union _hw_sdmacore_ostat
 #define BM_SDMACORE_OSTAT_PST      (0x0000f000)  //!< Bit mask for SDMACORE_OSTAT_PST.
 
 //! @brief Get value of SDMACORE_OSTAT_PST from a register value.
-#define BG_SDMACORE_OSTAT_PST(r)   (((r) & BM_SDMACORE_OSTAT_PST) >> BP_SDMACORE_OSTAT_PST)
+#define BG_SDMACORE_OSTAT_PST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_PST) >> BP_SDMACORE_OSTAT_PST)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_MCHN0ADDR - Channel 0 Boot Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1414,7 +1422,7 @@ typedef union _hw_sdmacore_mchn0addr
 #define BM_SDMACORE_MCHN0ADDR_CHN0ADDR      (0x00003fff)  //!< Bit mask for SDMACORE_MCHN0ADDR_CHN0ADDR.
 
 //! @brief Get value of SDMACORE_MCHN0ADDR_CHN0ADDR from a register value.
-#define BG_SDMACORE_MCHN0ADDR_CHN0ADDR(r)   (((r) & BM_SDMACORE_MCHN0ADDR_CHN0ADDR) >> BP_SDMACORE_MCHN0ADDR_CHN0ADDR)
+#define BG_SDMACORE_MCHN0ADDR_CHN0ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MCHN0ADDR_CHN0ADDR) >> BP_SDMACORE_MCHN0ADDR_CHN0ADDR)
 
 /* --- Register HW_SDMACORE_MCHN0ADDR, field SMSZ[14] (RO)
  *
@@ -1434,8 +1442,12 @@ typedef union _hw_sdmacore_mchn0addr
 #define BM_SDMACORE_MCHN0ADDR_SMSZ      (0x00004000)  //!< Bit mask for SDMACORE_MCHN0ADDR_SMSZ.
 
 //! @brief Get value of SDMACORE_MCHN0ADDR_SMSZ from a register value.
-#define BG_SDMACORE_MCHN0ADDR_SMSZ(r)   (((r) & BM_SDMACORE_MCHN0ADDR_SMSZ) >> BP_SDMACORE_MCHN0ADDR_SMSZ)
+#define BG_SDMACORE_MCHN0ADDR_SMSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MCHN0ADDR_SMSZ) >> BP_SDMACORE_MCHN0ADDR_SMSZ)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_ENDIANNESS - ENDIAN Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1484,8 +1496,12 @@ typedef union _hw_sdmacore_endianness
 #define BM_SDMACORE_ENDIANNESS_APEND      (0x00000001)  //!< Bit mask for SDMACORE_ENDIANNESS_APEND.
 
 //! @brief Get value of SDMACORE_ENDIANNESS_APEND from a register value.
-#define BG_SDMACORE_ENDIANNESS_APEND(r)   (((r) & BM_SDMACORE_ENDIANNESS_APEND) >> BP_SDMACORE_ENDIANNESS_APEND)
+#define BG_SDMACORE_ENDIANNESS_APEND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ENDIANNESS_APEND) >> BP_SDMACORE_ENDIANNESS_APEND)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_SDMA_LOCK - Lock Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1534,8 +1550,12 @@ typedef union _hw_sdmacore_sdma_lock
 #define BM_SDMACORE_SDMA_LOCK_LOCK      (0x00000001)  //!< Bit mask for SDMACORE_SDMA_LOCK_LOCK.
 
 //! @brief Get value of SDMACORE_SDMA_LOCK_LOCK from a register value.
-#define BG_SDMACORE_SDMA_LOCK_LOCK(r)   (((r) & BM_SDMACORE_SDMA_LOCK_LOCK) >> BP_SDMACORE_SDMA_LOCK_LOCK)
+#define BG_SDMACORE_SDMA_LOCK_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_SDMA_LOCK_LOCK) >> BP_SDMACORE_SDMA_LOCK_LOCK)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMACORE_EVENTS2 - External DMA Requests Mirror #2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1581,7 +1601,7 @@ typedef union _hw_sdmacore_events2
 #define BM_SDMACORE_EVENTS2_EVENTS      (0x0000ffff)  //!< Bit mask for SDMACORE_EVENTS2_EVENTS.
 
 //! @brief Get value of SDMACORE_EVENTS2_EVENTS from a register value.
-#define BG_SDMACORE_EVENTS2_EVENTS(r)   (((r) & BM_SDMACORE_EVENTS2_EVENTS) >> BP_SDMACORE_EVENTS2_EVENTS)
+#define BG_SDMACORE_EVENTS2_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EVENTS2_EVENTS) >> BP_SDMACORE_EVENTS2_EVENTS)
 
 
 /*!

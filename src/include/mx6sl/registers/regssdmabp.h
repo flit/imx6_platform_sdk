@@ -32,6 +32,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_DC0PTR - Channel 0 Pointer
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_SDMABP_DC0PTR - Channel 0 Pointer (RW)
@@ -81,20 +96,19 @@ typedef union _hw_sdmabp_dc0ptr
 #define BM_SDMABP_DC0PTR_DC0PTR      (0xffffffff)  //!< Bit mask for SDMABP_DC0PTR_DC0PTR.
 
 //! @brief Get value of SDMABP_DC0PTR_DC0PTR from a register value.
-#define BG_SDMABP_DC0PTR_DC0PTR(r)   (((r) & BM_SDMABP_DC0PTR_DC0PTR) >> BP_SDMABP_DC0PTR_DC0PTR)
+#define BG_SDMABP_DC0PTR_DC0PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_DC0PTR_DC0PTR) >> BP_SDMABP_DC0PTR_DC0PTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMABP_DC0PTR_DC0PTR.
-#define BF_SDMABP_DC0PTR_DC0PTR(v)   ((((reg32_t) v) << BP_SDMABP_DC0PTR_DC0PTR) & BM_SDMABP_DC0PTR_DC0PTR)
-#else
-//! @brief Format value for bitfield SDMABP_DC0PTR_DC0PTR.
-#define BF_SDMABP_DC0PTR_DC0PTR(v)   (((v) << BP_SDMABP_DC0PTR_DC0PTR) & BM_SDMABP_DC0PTR_DC0PTR)
-#endif
+#define BF_SDMABP_DC0PTR_DC0PTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMABP_DC0PTR_DC0PTR) & BM_SDMABP_DC0PTR_DC0PTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DC0PTR field to a new value.
 #define BW_SDMABP_DC0PTR_DC0PTR(v)   (HW_SDMABP_DC0PTR_WR((HW_SDMABP_DC0PTR_RD() & ~BM_SDMABP_DC0PTR_DC0PTR) | BF_SDMABP_DC0PTR_DC0PTR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_INTR - Channel Interrupts
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -146,20 +160,19 @@ typedef union _hw_sdmabp_intr
 #define BM_SDMABP_INTR_DI      (0xffffffff)  //!< Bit mask for SDMABP_INTR_DI.
 
 //! @brief Get value of SDMABP_INTR_DI from a register value.
-#define BG_SDMABP_INTR_DI(r)   (((r) & BM_SDMABP_INTR_DI) >> BP_SDMABP_INTR_DI)
+#define BG_SDMABP_INTR_DI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_INTR_DI) >> BP_SDMABP_INTR_DI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMABP_INTR_DI.
-#define BF_SDMABP_INTR_DI(v)   ((((reg32_t) v) << BP_SDMABP_INTR_DI) & BM_SDMABP_INTR_DI)
-#else
-//! @brief Format value for bitfield SDMABP_INTR_DI.
-#define BF_SDMABP_INTR_DI(v)   (((v) << BP_SDMABP_INTR_DI) & BM_SDMABP_INTR_DI)
-#endif
+#define BF_SDMABP_INTR_DI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMABP_INTR_DI) & BM_SDMABP_INTR_DI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DI field to a new value.
 #define BW_SDMABP_INTR_DI(v)   (HW_SDMABP_INTR_WR((HW_SDMABP_INTR_RD() & ~BM_SDMABP_INTR_DI) | BF_SDMABP_INTR_DI(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_STOP_STAT - Channel Stop/Channel Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -209,20 +222,19 @@ typedef union _hw_sdmabp_stop_stat
 #define BM_SDMABP_STOP_STAT_DE      (0xffffffff)  //!< Bit mask for SDMABP_STOP_STAT_DE.
 
 //! @brief Get value of SDMABP_STOP_STAT_DE from a register value.
-#define BG_SDMABP_STOP_STAT_DE(r)   (((r) & BM_SDMABP_STOP_STAT_DE) >> BP_SDMABP_STOP_STAT_DE)
+#define BG_SDMABP_STOP_STAT_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_STOP_STAT_DE) >> BP_SDMABP_STOP_STAT_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMABP_STOP_STAT_DE.
-#define BF_SDMABP_STOP_STAT_DE(v)   ((((reg32_t) v) << BP_SDMABP_STOP_STAT_DE) & BM_SDMABP_STOP_STAT_DE)
-#else
-//! @brief Format value for bitfield SDMABP_STOP_STAT_DE.
-#define BF_SDMABP_STOP_STAT_DE(v)   (((v) << BP_SDMABP_STOP_STAT_DE) & BM_SDMABP_STOP_STAT_DE)
-#endif
+#define BF_SDMABP_STOP_STAT_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMABP_STOP_STAT_DE) & BM_SDMABP_STOP_STAT_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DE field to a new value.
 #define BW_SDMABP_STOP_STAT_DE(v)   (HW_SDMABP_STOP_STAT_WR((HW_SDMABP_STOP_STAT_RD() & ~BM_SDMABP_STOP_STAT_DE) | BF_SDMABP_STOP_STAT_DE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_DSTART - Channel Start
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -275,7 +287,11 @@ typedef union _hw_sdmabp_dstart
 #define BM_SDMABP_DSTART_DSTART      (0xffffffff)  //!< Bit mask for SDMABP_DSTART_DSTART.
 
 //! @brief Get value of SDMABP_DSTART_DSTART from a register value.
-#define BG_SDMABP_DSTART_DSTART(r)   (((r) & BM_SDMABP_DSTART_DSTART) >> BP_SDMABP_DSTART_DSTART)
+#define BG_SDMABP_DSTART_DSTART(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_DSTART_DSTART) >> BP_SDMABP_DSTART_DSTART)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_EVTERR - DMA Request Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -325,7 +341,11 @@ typedef union _hw_sdmabp_evterr
 #define BM_SDMABP_EVTERR_CHNERR      (0xffffffff)  //!< Bit mask for SDMABP_EVTERR_CHNERR.
 
 //! @brief Get value of SDMABP_EVTERR_CHNERR from a register value.
-#define BG_SDMABP_EVTERR_CHNERR(r)   (((r) & BM_SDMABP_EVTERR_CHNERR) >> BP_SDMABP_EVTERR_CHNERR)
+#define BG_SDMABP_EVTERR_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_EVTERR_CHNERR) >> BP_SDMABP_EVTERR_CHNERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_INTRMASK - Channel DSP Interrupt Mask
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -374,20 +394,19 @@ typedef union _hw_sdmabp_intrmask
 #define BM_SDMABP_INTRMASK_DIMASK      (0xffffffff)  //!< Bit mask for SDMABP_INTRMASK_DIMASK.
 
 //! @brief Get value of SDMABP_INTRMASK_DIMASK from a register value.
-#define BG_SDMABP_INTRMASK_DIMASK(r)   (((r) & BM_SDMABP_INTRMASK_DIMASK) >> BP_SDMABP_INTRMASK_DIMASK)
+#define BG_SDMABP_INTRMASK_DIMASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_INTRMASK_DIMASK) >> BP_SDMABP_INTRMASK_DIMASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield SDMABP_INTRMASK_DIMASK.
-#define BF_SDMABP_INTRMASK_DIMASK(v)   ((((reg32_t) v) << BP_SDMABP_INTRMASK_DIMASK) & BM_SDMABP_INTRMASK_DIMASK)
-#else
-//! @brief Format value for bitfield SDMABP_INTRMASK_DIMASK.
-#define BF_SDMABP_INTRMASK_DIMASK(v)   (((v) << BP_SDMABP_INTRMASK_DIMASK) & BM_SDMABP_INTRMASK_DIMASK)
-#endif
+#define BF_SDMABP_INTRMASK_DIMASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SDMABP_INTRMASK_DIMASK) & BM_SDMABP_INTRMASK_DIMASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIMASK field to a new value.
 #define BW_SDMABP_INTRMASK_DIMASK(v)   (HW_SDMABP_INTRMASK_WR((HW_SDMABP_INTRMASK_RD() & ~BM_SDMABP_INTRMASK_DIMASK) | BF_SDMABP_INTRMASK_DIMASK(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_SDMABP_EVTERRDBG - DMA Request Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -432,7 +451,7 @@ typedef union _hw_sdmabp_evterrdbg
 #define BM_SDMABP_EVTERRDBG_CHNERR      (0xffffffff)  //!< Bit mask for SDMABP_EVTERRDBG_CHNERR.
 
 //! @brief Get value of SDMABP_EVTERRDBG_CHNERR from a register value.
-#define BG_SDMABP_EVTERRDBG_CHNERR(r)   (((r) & BM_SDMABP_EVTERRDBG_CHNERR) >> BP_SDMABP_EVTERRDBG_CHNERR)
+#define BG_SDMABP_EVTERRDBG_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_EVTERRDBG_CHNERR) >> BP_SDMABP_EVTERRDBG_CHNERR)
 
 
 /*!

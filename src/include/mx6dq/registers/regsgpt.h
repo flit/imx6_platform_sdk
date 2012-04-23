@@ -35,6 +35,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_CR - GPT Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_GPT_CR - GPT Control Register (RW)
@@ -105,15 +120,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_EN      (0x00000001)  //!< Bit mask for GPT_CR_EN.
 
 //! @brief Get value of GPT_CR_EN from a register value.
-#define BG_GPT_CR_EN(r)   (((r) & BM_GPT_CR_EN) >> BP_GPT_CR_EN)
+#define BG_GPT_CR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_EN) >> BP_GPT_CR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_EN.
-#define BF_GPT_CR_EN(v)   ((((reg32_t) v) << BP_GPT_CR_EN) & BM_GPT_CR_EN)
-#else
-//! @brief Format value for bitfield GPT_CR_EN.
-#define BF_GPT_CR_EN(v)   (((v) << BP_GPT_CR_EN) & BM_GPT_CR_EN)
-#endif
+#define BF_GPT_CR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_EN) & BM_GPT_CR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -144,15 +154,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_ENMOD      (0x00000002)  //!< Bit mask for GPT_CR_ENMOD.
 
 //! @brief Get value of GPT_CR_ENMOD from a register value.
-#define BG_GPT_CR_ENMOD(r)   (((r) & BM_GPT_CR_ENMOD) >> BP_GPT_CR_ENMOD)
+#define BG_GPT_CR_ENMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_ENMOD) >> BP_GPT_CR_ENMOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_ENMOD.
-#define BF_GPT_CR_ENMOD(v)   ((((reg32_t) v) << BP_GPT_CR_ENMOD) & BM_GPT_CR_ENMOD)
-#else
-//! @brief Format value for bitfield GPT_CR_ENMOD.
-#define BF_GPT_CR_ENMOD(v)   (((v) << BP_GPT_CR_ENMOD) & BM_GPT_CR_ENMOD)
-#endif
+#define BF_GPT_CR_ENMOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_ENMOD) & BM_GPT_CR_ENMOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENMOD field to a new value.
@@ -174,15 +179,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_DBGEN      (0x00000004)  //!< Bit mask for GPT_CR_DBGEN.
 
 //! @brief Get value of GPT_CR_DBGEN from a register value.
-#define BG_GPT_CR_DBGEN(r)   (((r) & BM_GPT_CR_DBGEN) >> BP_GPT_CR_DBGEN)
+#define BG_GPT_CR_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_DBGEN) >> BP_GPT_CR_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_DBGEN.
-#define BF_GPT_CR_DBGEN(v)   ((((reg32_t) v) << BP_GPT_CR_DBGEN) & BM_GPT_CR_DBGEN)
-#else
-//! @brief Format value for bitfield GPT_CR_DBGEN.
-#define BF_GPT_CR_DBGEN(v)   (((v) << BP_GPT_CR_DBGEN) & BM_GPT_CR_DBGEN)
-#endif
+#define BF_GPT_CR_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_DBGEN) & BM_GPT_CR_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
@@ -204,15 +204,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_WAITEN      (0x00000008)  //!< Bit mask for GPT_CR_WAITEN.
 
 //! @brief Get value of GPT_CR_WAITEN from a register value.
-#define BG_GPT_CR_WAITEN(r)   (((r) & BM_GPT_CR_WAITEN) >> BP_GPT_CR_WAITEN)
+#define BG_GPT_CR_WAITEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_WAITEN) >> BP_GPT_CR_WAITEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_WAITEN.
-#define BF_GPT_CR_WAITEN(v)   ((((reg32_t) v) << BP_GPT_CR_WAITEN) & BM_GPT_CR_WAITEN)
-#else
-//! @brief Format value for bitfield GPT_CR_WAITEN.
-#define BF_GPT_CR_WAITEN(v)   (((v) << BP_GPT_CR_WAITEN) & BM_GPT_CR_WAITEN)
-#endif
+#define BF_GPT_CR_WAITEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_WAITEN) & BM_GPT_CR_WAITEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAITEN field to a new value.
@@ -234,15 +229,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_DOZEEN      (0x00000010)  //!< Bit mask for GPT_CR_DOZEEN.
 
 //! @brief Get value of GPT_CR_DOZEEN from a register value.
-#define BG_GPT_CR_DOZEEN(r)   (((r) & BM_GPT_CR_DOZEEN) >> BP_GPT_CR_DOZEEN)
+#define BG_GPT_CR_DOZEEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_DOZEEN) >> BP_GPT_CR_DOZEEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_DOZEEN.
-#define BF_GPT_CR_DOZEEN(v)   ((((reg32_t) v) << BP_GPT_CR_DOZEEN) & BM_GPT_CR_DOZEEN)
-#else
-//! @brief Format value for bitfield GPT_CR_DOZEEN.
-#define BF_GPT_CR_DOZEEN(v)   (((v) << BP_GPT_CR_DOZEEN) & BM_GPT_CR_DOZEEN)
-#endif
+#define BF_GPT_CR_DOZEEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_DOZEEN) & BM_GPT_CR_DOZEEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOZEEN field to a new value.
@@ -264,15 +254,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_STOPEN      (0x00000020)  //!< Bit mask for GPT_CR_STOPEN.
 
 //! @brief Get value of GPT_CR_STOPEN from a register value.
-#define BG_GPT_CR_STOPEN(r)   (((r) & BM_GPT_CR_STOPEN) >> BP_GPT_CR_STOPEN)
+#define BG_GPT_CR_STOPEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_STOPEN) >> BP_GPT_CR_STOPEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_STOPEN.
-#define BF_GPT_CR_STOPEN(v)   ((((reg32_t) v) << BP_GPT_CR_STOPEN) & BM_GPT_CR_STOPEN)
-#else
-//! @brief Format value for bitfield GPT_CR_STOPEN.
-#define BF_GPT_CR_STOPEN(v)   (((v) << BP_GPT_CR_STOPEN) & BM_GPT_CR_STOPEN)
-#endif
+#define BF_GPT_CR_STOPEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_STOPEN) & BM_GPT_CR_STOPEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STOPEN field to a new value.
@@ -303,15 +288,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_CLKSRC      (0x000001c0)  //!< Bit mask for GPT_CR_CLKSRC.
 
 //! @brief Get value of GPT_CR_CLKSRC from a register value.
-#define BG_GPT_CR_CLKSRC(r)   (((r) & BM_GPT_CR_CLKSRC) >> BP_GPT_CR_CLKSRC)
+#define BG_GPT_CR_CLKSRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_CLKSRC) >> BP_GPT_CR_CLKSRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_CLKSRC.
-#define BF_GPT_CR_CLKSRC(v)   ((((reg32_t) v) << BP_GPT_CR_CLKSRC) & BM_GPT_CR_CLKSRC)
-#else
-//! @brief Format value for bitfield GPT_CR_CLKSRC.
-#define BF_GPT_CR_CLKSRC(v)   (((v) << BP_GPT_CR_CLKSRC) & BM_GPT_CR_CLKSRC)
-#endif
+#define BF_GPT_CR_CLKSRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_CLKSRC) & BM_GPT_CR_CLKSRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKSRC field to a new value.
@@ -335,15 +315,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_FRR      (0x00000200)  //!< Bit mask for GPT_CR_FRR.
 
 //! @brief Get value of GPT_CR_FRR from a register value.
-#define BG_GPT_CR_FRR(r)   (((r) & BM_GPT_CR_FRR) >> BP_GPT_CR_FRR)
+#define BG_GPT_CR_FRR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_FRR) >> BP_GPT_CR_FRR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_FRR.
-#define BF_GPT_CR_FRR(v)   ((((reg32_t) v) << BP_GPT_CR_FRR) & BM_GPT_CR_FRR)
-#else
-//! @brief Format value for bitfield GPT_CR_FRR.
-#define BF_GPT_CR_FRR(v)   (((v) << BP_GPT_CR_FRR) & BM_GPT_CR_FRR)
-#endif
+#define BF_GPT_CR_FRR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FRR) & BM_GPT_CR_FRR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRR field to a new value.
@@ -368,15 +343,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_SWR      (0x00008000)  //!< Bit mask for GPT_CR_SWR.
 
 //! @brief Get value of GPT_CR_SWR from a register value.
-#define BG_GPT_CR_SWR(r)   (((r) & BM_GPT_CR_SWR) >> BP_GPT_CR_SWR)
+#define BG_GPT_CR_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_SWR) >> BP_GPT_CR_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_SWR.
-#define BF_GPT_CR_SWR(v)   ((((reg32_t) v) << BP_GPT_CR_SWR) & BM_GPT_CR_SWR)
-#else
-//! @brief Format value for bitfield GPT_CR_SWR.
-#define BF_GPT_CR_SWR(v)   (((v) << BP_GPT_CR_SWR) & BM_GPT_CR_SWR)
-#endif
+#define BF_GPT_CR_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_SWR) & BM_GPT_CR_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -393,15 +363,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_IM1      (0x00030000)  //!< Bit mask for GPT_CR_IM1.
 
 //! @brief Get value of GPT_CR_IM1 from a register value.
-#define BG_GPT_CR_IM1(r)   (((r) & BM_GPT_CR_IM1) >> BP_GPT_CR_IM1)
+#define BG_GPT_CR_IM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_IM1) >> BP_GPT_CR_IM1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_IM1.
-#define BF_GPT_CR_IM1(v)   ((((reg32_t) v) << BP_GPT_CR_IM1) & BM_GPT_CR_IM1)
-#else
-//! @brief Format value for bitfield GPT_CR_IM1.
-#define BF_GPT_CR_IM1(v)   (((v) << BP_GPT_CR_IM1) & BM_GPT_CR_IM1)
-#endif
+#define BF_GPT_CR_IM1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_IM1) & BM_GPT_CR_IM1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IM1 field to a new value.
@@ -425,15 +390,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_IM2      (0x000c0000)  //!< Bit mask for GPT_CR_IM2.
 
 //! @brief Get value of GPT_CR_IM2 from a register value.
-#define BG_GPT_CR_IM2(r)   (((r) & BM_GPT_CR_IM2) >> BP_GPT_CR_IM2)
+#define BG_GPT_CR_IM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_IM2) >> BP_GPT_CR_IM2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_IM2.
-#define BF_GPT_CR_IM2(v)   ((((reg32_t) v) << BP_GPT_CR_IM2) & BM_GPT_CR_IM2)
-#else
-//! @brief Format value for bitfield GPT_CR_IM2.
-#define BF_GPT_CR_IM2(v)   (((v) << BP_GPT_CR_IM2) & BM_GPT_CR_IM2)
-#endif
+#define BF_GPT_CR_IM2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_IM2) & BM_GPT_CR_IM2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IM2 field to a new value.
@@ -450,15 +410,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_OM1      (0x00700000)  //!< Bit mask for GPT_CR_OM1.
 
 //! @brief Get value of GPT_CR_OM1 from a register value.
-#define BG_GPT_CR_OM1(r)   (((r) & BM_GPT_CR_OM1) >> BP_GPT_CR_OM1)
+#define BG_GPT_CR_OM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_OM1) >> BP_GPT_CR_OM1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_OM1.
-#define BF_GPT_CR_OM1(v)   ((((reg32_t) v) << BP_GPT_CR_OM1) & BM_GPT_CR_OM1)
-#else
-//! @brief Format value for bitfield GPT_CR_OM1.
-#define BF_GPT_CR_OM1(v)   (((v) << BP_GPT_CR_OM1) & BM_GPT_CR_OM1)
-#endif
+#define BF_GPT_CR_OM1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_OM1) & BM_GPT_CR_OM1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OM1 field to a new value.
@@ -474,15 +429,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_OM2      (0x03800000)  //!< Bit mask for GPT_CR_OM2.
 
 //! @brief Get value of GPT_CR_OM2 from a register value.
-#define BG_GPT_CR_OM2(r)   (((r) & BM_GPT_CR_OM2) >> BP_GPT_CR_OM2)
+#define BG_GPT_CR_OM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_OM2) >> BP_GPT_CR_OM2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_OM2.
-#define BF_GPT_CR_OM2(v)   ((((reg32_t) v) << BP_GPT_CR_OM2) & BM_GPT_CR_OM2)
-#else
-//! @brief Format value for bitfield GPT_CR_OM2.
-#define BF_GPT_CR_OM2(v)   (((v) << BP_GPT_CR_OM2) & BM_GPT_CR_OM2)
-#endif
+#define BF_GPT_CR_OM2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_OM2) & BM_GPT_CR_OM2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OM2 field to a new value.
@@ -512,15 +462,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_OM3      (0x1c000000)  //!< Bit mask for GPT_CR_OM3.
 
 //! @brief Get value of GPT_CR_OM3 from a register value.
-#define BG_GPT_CR_OM3(r)   (((r) & BM_GPT_CR_OM3) >> BP_GPT_CR_OM3)
+#define BG_GPT_CR_OM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_OM3) >> BP_GPT_CR_OM3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_OM3.
-#define BF_GPT_CR_OM3(v)   ((((reg32_t) v) << BP_GPT_CR_OM3) & BM_GPT_CR_OM3)
-#else
-//! @brief Format value for bitfield GPT_CR_OM3.
-#define BF_GPT_CR_OM3(v)   (((v) << BP_GPT_CR_OM3) & BM_GPT_CR_OM3)
-#endif
+#define BF_GPT_CR_OM3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_OM3) & BM_GPT_CR_OM3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OM3 field to a new value.
@@ -537,15 +482,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_FO1      (0x20000000)  //!< Bit mask for GPT_CR_FO1.
 
 //! @brief Get value of GPT_CR_FO1 from a register value.
-#define BG_GPT_CR_FO1(r)   (((r) & BM_GPT_CR_FO1) >> BP_GPT_CR_FO1)
+#define BG_GPT_CR_FO1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_FO1) >> BP_GPT_CR_FO1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_FO1.
-#define BF_GPT_CR_FO1(v)   ((((reg32_t) v) << BP_GPT_CR_FO1) & BM_GPT_CR_FO1)
-#else
-//! @brief Format value for bitfield GPT_CR_FO1.
-#define BF_GPT_CR_FO1(v)   (((v) << BP_GPT_CR_FO1) & BM_GPT_CR_FO1)
-#endif
+#define BF_GPT_CR_FO1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO1) & BM_GPT_CR_FO1)
 
 /* --- Register HW_GPT_CR, field FO2[30] (WORZ)
  *
@@ -556,15 +496,10 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_FO2      (0x40000000)  //!< Bit mask for GPT_CR_FO2.
 
 //! @brief Get value of GPT_CR_FO2 from a register value.
-#define BG_GPT_CR_FO2(r)   (((r) & BM_GPT_CR_FO2) >> BP_GPT_CR_FO2)
+#define BG_GPT_CR_FO2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_FO2) >> BP_GPT_CR_FO2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_FO2.
-#define BF_GPT_CR_FO2(v)   ((((reg32_t) v) << BP_GPT_CR_FO2) & BM_GPT_CR_FO2)
-#else
-//! @brief Format value for bitfield GPT_CR_FO2.
-#define BF_GPT_CR_FO2(v)   (((v) << BP_GPT_CR_FO2) & BM_GPT_CR_FO2)
-#endif
+#define BF_GPT_CR_FO2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO2) & BM_GPT_CR_FO2)
 
 /* --- Register HW_GPT_CR, field FO3[31] (WORZ)
  *
@@ -582,16 +517,15 @@ typedef union _hw_gpt_cr
 #define BM_GPT_CR_FO3      (0x80000000)  //!< Bit mask for GPT_CR_FO3.
 
 //! @brief Get value of GPT_CR_FO3 from a register value.
-#define BG_GPT_CR_FO3(r)   (((r) & BM_GPT_CR_FO3) >> BP_GPT_CR_FO3)
+#define BG_GPT_CR_FO3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CR_FO3) >> BP_GPT_CR_FO3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_CR_FO3.
-#define BF_GPT_CR_FO3(v)   ((((reg32_t) v) << BP_GPT_CR_FO3) & BM_GPT_CR_FO3)
-#else
-//! @brief Format value for bitfield GPT_CR_FO3.
-#define BF_GPT_CR_FO3(v)   (((v) << BP_GPT_CR_FO3) & BM_GPT_CR_FO3)
-#endif
+#define BF_GPT_CR_FO3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO3) & BM_GPT_CR_FO3)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_PR - GPT Prescaler Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -648,21 +582,20 @@ typedef union _hw_gpt_pr
 #define BM_GPT_PR_PRESCALER      (0x00000fff)  //!< Bit mask for GPT_PR_PRESCALER.
 
 //! @brief Get value of GPT_PR_PRESCALER from a register value.
-#define BG_GPT_PR_PRESCALER(r)   (((r) & BM_GPT_PR_PRESCALER) >> BP_GPT_PR_PRESCALER)
+#define BG_GPT_PR_PRESCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_PR_PRESCALER) >> BP_GPT_PR_PRESCALER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_PR_PRESCALER.
-#define BF_GPT_PR_PRESCALER(v)   ((((reg32_t) v) << BP_GPT_PR_PRESCALER) & BM_GPT_PR_PRESCALER)
-#else
-//! @brief Format value for bitfield GPT_PR_PRESCALER.
-#define BF_GPT_PR_PRESCALER(v)   (((v) << BP_GPT_PR_PRESCALER) & BM_GPT_PR_PRESCALER)
-#endif
+#define BF_GPT_PR_PRESCALER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_PR_PRESCALER) & BM_GPT_PR_PRESCALER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRESCALER field to a new value.
 #define BW_GPT_PR_PRESCALER(v)   (HW_GPT_PR_WR((HW_GPT_PR_RD() & ~BM_GPT_PR_PRESCALER) | BF_GPT_PR_PRESCALER(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_SR - GPT Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -717,15 +650,10 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_OF1      (0x00000001)  //!< Bit mask for GPT_SR_OF1.
 
 //! @brief Get value of GPT_SR_OF1 from a register value.
-#define BG_GPT_SR_OF1(r)   (((r) & BM_GPT_SR_OF1) >> BP_GPT_SR_OF1)
+#define BG_GPT_SR_OF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_OF1) >> BP_GPT_SR_OF1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_OF1.
-#define BF_GPT_SR_OF1(v)   ((((reg32_t) v) << BP_GPT_SR_OF1) & BM_GPT_SR_OF1)
-#else
-//! @brief Format value for bitfield GPT_SR_OF1.
-#define BF_GPT_SR_OF1(v)   (((v) << BP_GPT_SR_OF1) & BM_GPT_SR_OF1)
-#endif
+#define BF_GPT_SR_OF1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_OF1) & BM_GPT_SR_OF1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF1 field to a new value.
@@ -741,15 +669,10 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_OF2      (0x00000002)  //!< Bit mask for GPT_SR_OF2.
 
 //! @brief Get value of GPT_SR_OF2 from a register value.
-#define BG_GPT_SR_OF2(r)   (((r) & BM_GPT_SR_OF2) >> BP_GPT_SR_OF2)
+#define BG_GPT_SR_OF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_OF2) >> BP_GPT_SR_OF2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_OF2.
-#define BF_GPT_SR_OF2(v)   ((((reg32_t) v) << BP_GPT_SR_OF2) & BM_GPT_SR_OF2)
-#else
-//! @brief Format value for bitfield GPT_SR_OF2.
-#define BF_GPT_SR_OF2(v)   (((v) << BP_GPT_SR_OF2) & BM_GPT_SR_OF2)
-#endif
+#define BF_GPT_SR_OF2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_OF2) & BM_GPT_SR_OF2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF2 field to a new value.
@@ -770,15 +693,10 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_OF3      (0x00000004)  //!< Bit mask for GPT_SR_OF3.
 
 //! @brief Get value of GPT_SR_OF3 from a register value.
-#define BG_GPT_SR_OF3(r)   (((r) & BM_GPT_SR_OF3) >> BP_GPT_SR_OF3)
+#define BG_GPT_SR_OF3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_OF3) >> BP_GPT_SR_OF3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_OF3.
-#define BF_GPT_SR_OF3(v)   ((((reg32_t) v) << BP_GPT_SR_OF3) & BM_GPT_SR_OF3)
-#else
-//! @brief Format value for bitfield GPT_SR_OF3.
-#define BF_GPT_SR_OF3(v)   (((v) << BP_GPT_SR_OF3) & BM_GPT_SR_OF3)
-#endif
+#define BF_GPT_SR_OF3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_OF3) & BM_GPT_SR_OF3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF3 field to a new value.
@@ -795,15 +713,10 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_IF1      (0x00000008)  //!< Bit mask for GPT_SR_IF1.
 
 //! @brief Get value of GPT_SR_IF1 from a register value.
-#define BG_GPT_SR_IF1(r)   (((r) & BM_GPT_SR_IF1) >> BP_GPT_SR_IF1)
+#define BG_GPT_SR_IF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_IF1) >> BP_GPT_SR_IF1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_IF1.
-#define BF_GPT_SR_IF1(v)   ((((reg32_t) v) << BP_GPT_SR_IF1) & BM_GPT_SR_IF1)
-#else
-//! @brief Format value for bitfield GPT_SR_IF1.
-#define BF_GPT_SR_IF1(v)   (((v) << BP_GPT_SR_IF1) & BM_GPT_SR_IF1)
-#endif
+#define BF_GPT_SR_IF1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_IF1) & BM_GPT_SR_IF1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IF1 field to a new value.
@@ -824,15 +737,10 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_IF2      (0x00000010)  //!< Bit mask for GPT_SR_IF2.
 
 //! @brief Get value of GPT_SR_IF2 from a register value.
-#define BG_GPT_SR_IF2(r)   (((r) & BM_GPT_SR_IF2) >> BP_GPT_SR_IF2)
+#define BG_GPT_SR_IF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_IF2) >> BP_GPT_SR_IF2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_IF2.
-#define BF_GPT_SR_IF2(v)   ((((reg32_t) v) << BP_GPT_SR_IF2) & BM_GPT_SR_IF2)
-#else
-//! @brief Format value for bitfield GPT_SR_IF2.
-#define BF_GPT_SR_IF2(v)   (((v) << BP_GPT_SR_IF2) & BM_GPT_SR_IF2)
-#endif
+#define BF_GPT_SR_IF2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_IF2) & BM_GPT_SR_IF2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IF2 field to a new value.
@@ -855,21 +763,20 @@ typedef union _hw_gpt_sr
 #define BM_GPT_SR_ROV      (0x00000020)  //!< Bit mask for GPT_SR_ROV.
 
 //! @brief Get value of GPT_SR_ROV from a register value.
-#define BG_GPT_SR_ROV(r)   (((r) & BM_GPT_SR_ROV) >> BP_GPT_SR_ROV)
+#define BG_GPT_SR_ROV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_SR_ROV) >> BP_GPT_SR_ROV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_SR_ROV.
-#define BF_GPT_SR_ROV(v)   ((((reg32_t) v) << BP_GPT_SR_ROV) & BM_GPT_SR_ROV)
-#else
-//! @brief Format value for bitfield GPT_SR_ROV.
-#define BF_GPT_SR_ROV(v)   (((v) << BP_GPT_SR_ROV) & BM_GPT_SR_ROV)
-#endif
+#define BF_GPT_SR_ROV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_SR_ROV) & BM_GPT_SR_ROV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROV field to a new value.
 #define BW_GPT_SR_ROV(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_ROV) | BF_GPT_SR_ROV(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_IR - GPT Interrupt Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -923,15 +830,10 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_OF1IE      (0x00000001)  //!< Bit mask for GPT_IR_OF1IE.
 
 //! @brief Get value of GPT_IR_OF1IE from a register value.
-#define BG_GPT_IR_OF1IE(r)   (((r) & BM_GPT_IR_OF1IE) >> BP_GPT_IR_OF1IE)
+#define BG_GPT_IR_OF1IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_OF1IE) >> BP_GPT_IR_OF1IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_OF1IE.
-#define BF_GPT_IR_OF1IE(v)   ((((reg32_t) v) << BP_GPT_IR_OF1IE) & BM_GPT_IR_OF1IE)
-#else
-//! @brief Format value for bitfield GPT_IR_OF1IE.
-#define BF_GPT_IR_OF1IE(v)   (((v) << BP_GPT_IR_OF1IE) & BM_GPT_IR_OF1IE)
-#endif
+#define BF_GPT_IR_OF1IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_OF1IE) & BM_GPT_IR_OF1IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF1IE field to a new value.
@@ -947,15 +849,10 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_OF2IE      (0x00000002)  //!< Bit mask for GPT_IR_OF2IE.
 
 //! @brief Get value of GPT_IR_OF2IE from a register value.
-#define BG_GPT_IR_OF2IE(r)   (((r) & BM_GPT_IR_OF2IE) >> BP_GPT_IR_OF2IE)
+#define BG_GPT_IR_OF2IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_OF2IE) >> BP_GPT_IR_OF2IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_OF2IE.
-#define BF_GPT_IR_OF2IE(v)   ((((reg32_t) v) << BP_GPT_IR_OF2IE) & BM_GPT_IR_OF2IE)
-#else
-//! @brief Format value for bitfield GPT_IR_OF2IE.
-#define BF_GPT_IR_OF2IE(v)   (((v) << BP_GPT_IR_OF2IE) & BM_GPT_IR_OF2IE)
-#endif
+#define BF_GPT_IR_OF2IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_OF2IE) & BM_GPT_IR_OF2IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF2IE field to a new value.
@@ -976,15 +873,10 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_OF3IE      (0x00000004)  //!< Bit mask for GPT_IR_OF3IE.
 
 //! @brief Get value of GPT_IR_OF3IE from a register value.
-#define BG_GPT_IR_OF3IE(r)   (((r) & BM_GPT_IR_OF3IE) >> BP_GPT_IR_OF3IE)
+#define BG_GPT_IR_OF3IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_OF3IE) >> BP_GPT_IR_OF3IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_OF3IE.
-#define BF_GPT_IR_OF3IE(v)   ((((reg32_t) v) << BP_GPT_IR_OF3IE) & BM_GPT_IR_OF3IE)
-#else
-//! @brief Format value for bitfield GPT_IR_OF3IE.
-#define BF_GPT_IR_OF3IE(v)   (((v) << BP_GPT_IR_OF3IE) & BM_GPT_IR_OF3IE)
-#endif
+#define BF_GPT_IR_OF3IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_OF3IE) & BM_GPT_IR_OF3IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OF3IE field to a new value.
@@ -1001,15 +893,10 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_IF1IE      (0x00000008)  //!< Bit mask for GPT_IR_IF1IE.
 
 //! @brief Get value of GPT_IR_IF1IE from a register value.
-#define BG_GPT_IR_IF1IE(r)   (((r) & BM_GPT_IR_IF1IE) >> BP_GPT_IR_IF1IE)
+#define BG_GPT_IR_IF1IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_IF1IE) >> BP_GPT_IR_IF1IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_IF1IE.
-#define BF_GPT_IR_IF1IE(v)   ((((reg32_t) v) << BP_GPT_IR_IF1IE) & BM_GPT_IR_IF1IE)
-#else
-//! @brief Format value for bitfield GPT_IR_IF1IE.
-#define BF_GPT_IR_IF1IE(v)   (((v) << BP_GPT_IR_IF1IE) & BM_GPT_IR_IF1IE)
-#endif
+#define BF_GPT_IR_IF1IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_IF1IE) & BM_GPT_IR_IF1IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IF1IE field to a new value.
@@ -1030,15 +917,10 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_IF2IE      (0x00000010)  //!< Bit mask for GPT_IR_IF2IE.
 
 //! @brief Get value of GPT_IR_IF2IE from a register value.
-#define BG_GPT_IR_IF2IE(r)   (((r) & BM_GPT_IR_IF2IE) >> BP_GPT_IR_IF2IE)
+#define BG_GPT_IR_IF2IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_IF2IE) >> BP_GPT_IR_IF2IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_IF2IE.
-#define BF_GPT_IR_IF2IE(v)   ((((reg32_t) v) << BP_GPT_IR_IF2IE) & BM_GPT_IR_IF2IE)
-#else
-//! @brief Format value for bitfield GPT_IR_IF2IE.
-#define BF_GPT_IR_IF2IE(v)   (((v) << BP_GPT_IR_IF2IE) & BM_GPT_IR_IF2IE)
-#endif
+#define BF_GPT_IR_IF2IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_IF2IE) & BM_GPT_IR_IF2IE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IF2IE field to a new value.
@@ -1059,21 +941,20 @@ typedef union _hw_gpt_ir
 #define BM_GPT_IR_ROVIE      (0x00000020)  //!< Bit mask for GPT_IR_ROVIE.
 
 //! @brief Get value of GPT_IR_ROVIE from a register value.
-#define BG_GPT_IR_ROVIE(r)   (((r) & BM_GPT_IR_ROVIE) >> BP_GPT_IR_ROVIE)
+#define BG_GPT_IR_ROVIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_IR_ROVIE) >> BP_GPT_IR_ROVIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_IR_ROVIE.
-#define BF_GPT_IR_ROVIE(v)   ((((reg32_t) v) << BP_GPT_IR_ROVIE) & BM_GPT_IR_ROVIE)
-#else
-//! @brief Format value for bitfield GPT_IR_ROVIE.
-#define BF_GPT_IR_ROVIE(v)   (((v) << BP_GPT_IR_ROVIE) & BM_GPT_IR_ROVIE)
-#endif
+#define BF_GPT_IR_ROVIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_IR_ROVIE) & BM_GPT_IR_ROVIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROVIE field to a new value.
 #define BW_GPT_IR_ROVIE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_ROVIE) | BF_GPT_IR_ROVIE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_OCR1 - GPT Output Compare Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1125,20 +1006,19 @@ typedef union _hw_gpt_ocr1
 #define BM_GPT_OCR1_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR1_COMP.
 
 //! @brief Get value of GPT_OCR1_COMP from a register value.
-#define BG_GPT_OCR1_COMP(r)   (((r) & BM_GPT_OCR1_COMP) >> BP_GPT_OCR1_COMP)
+#define BG_GPT_OCR1_COMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_OCR1_COMP) >> BP_GPT_OCR1_COMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_OCR1_COMP.
-#define BF_GPT_OCR1_COMP(v)   ((((reg32_t) v) << BP_GPT_OCR1_COMP) & BM_GPT_OCR1_COMP)
-#else
-//! @brief Format value for bitfield GPT_OCR1_COMP.
-#define BF_GPT_OCR1_COMP(v)   (((v) << BP_GPT_OCR1_COMP) & BM_GPT_OCR1_COMP)
-#endif
+#define BF_GPT_OCR1_COMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_OCR1_COMP) & BM_GPT_OCR1_COMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR1_COMP(v)   (HW_GPT_OCR1_WR((HW_GPT_OCR1_RD() & ~BM_GPT_OCR1_COMP) | BF_GPT_OCR1_COMP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_OCR2 - GPT Output Compare Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1187,20 +1067,19 @@ typedef union _hw_gpt_ocr2
 #define BM_GPT_OCR2_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR2_COMP.
 
 //! @brief Get value of GPT_OCR2_COMP from a register value.
-#define BG_GPT_OCR2_COMP(r)   (((r) & BM_GPT_OCR2_COMP) >> BP_GPT_OCR2_COMP)
+#define BG_GPT_OCR2_COMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_OCR2_COMP) >> BP_GPT_OCR2_COMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_OCR2_COMP.
-#define BF_GPT_OCR2_COMP(v)   ((((reg32_t) v) << BP_GPT_OCR2_COMP) & BM_GPT_OCR2_COMP)
-#else
-//! @brief Format value for bitfield GPT_OCR2_COMP.
-#define BF_GPT_OCR2_COMP(v)   (((v) << BP_GPT_OCR2_COMP) & BM_GPT_OCR2_COMP)
-#endif
+#define BF_GPT_OCR2_COMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_OCR2_COMP) & BM_GPT_OCR2_COMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR2_COMP(v)   (HW_GPT_OCR2_WR((HW_GPT_OCR2_RD() & ~BM_GPT_OCR2_COMP) | BF_GPT_OCR2_COMP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_OCR3 - GPT Output Compare Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1249,20 +1128,19 @@ typedef union _hw_gpt_ocr3
 #define BM_GPT_OCR3_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR3_COMP.
 
 //! @brief Get value of GPT_OCR3_COMP from a register value.
-#define BG_GPT_OCR3_COMP(r)   (((r) & BM_GPT_OCR3_COMP) >> BP_GPT_OCR3_COMP)
+#define BG_GPT_OCR3_COMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_OCR3_COMP) >> BP_GPT_OCR3_COMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield GPT_OCR3_COMP.
-#define BF_GPT_OCR3_COMP(v)   ((((reg32_t) v) << BP_GPT_OCR3_COMP) & BM_GPT_OCR3_COMP)
-#else
-//! @brief Format value for bitfield GPT_OCR3_COMP.
-#define BF_GPT_OCR3_COMP(v)   (((v) << BP_GPT_OCR3_COMP) & BM_GPT_OCR3_COMP)
-#endif
+#define BF_GPT_OCR3_COMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_OCR3_COMP) & BM_GPT_OCR3_COMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR3_COMP(v)   (HW_GPT_OCR3_WR((HW_GPT_OCR3_RD() & ~BM_GPT_OCR3_COMP) | BF_GPT_OCR3_COMP(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_ICR1 - GPT Input Capture Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1307,7 +1185,11 @@ typedef union _hw_gpt_icr1
 #define BM_GPT_ICR1_CAPT      (0xffffffff)  //!< Bit mask for GPT_ICR1_CAPT.
 
 //! @brief Get value of GPT_ICR1_CAPT from a register value.
-#define BG_GPT_ICR1_CAPT(r)   (((r) & BM_GPT_ICR1_CAPT) >> BP_GPT_ICR1_CAPT)
+#define BG_GPT_ICR1_CAPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_ICR1_CAPT) >> BP_GPT_ICR1_CAPT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_ICR2 - GPT Input Capture Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1352,7 +1234,11 @@ typedef union _hw_gpt_icr2
 #define BM_GPT_ICR2_CAPT      (0xffffffff)  //!< Bit mask for GPT_ICR2_CAPT.
 
 //! @brief Get value of GPT_ICR2_CAPT from a register value.
-#define BG_GPT_ICR2_CAPT(r)   (((r) & BM_GPT_ICR2_CAPT) >> BP_GPT_ICR2_CAPT)
+#define BG_GPT_ICR2_CAPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_ICR2_CAPT) >> BP_GPT_ICR2_CAPT)
+
+//-------------------------------------------------------------------------------------------
+// HW_GPT_CNT - GPT Counter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1396,7 +1282,7 @@ typedef union _hw_gpt_cnt
 #define BM_GPT_CNT_COUNT      (0xffffffff)  //!< Bit mask for GPT_CNT_COUNT.
 
 //! @brief Get value of GPT_CNT_COUNT from a register value.
-#define BG_GPT_CNT_COUNT(r)   (((r) & BM_GPT_CNT_COUNT) >> BP_GPT_CNT_COUNT)
+#define BG_GPT_CNT_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CNT_COUNT) >> BP_GPT_CNT_COUNT)
 
 
 /*!

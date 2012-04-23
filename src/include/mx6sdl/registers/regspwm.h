@@ -47,6 +47,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMCR - PWM Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_PWM_PWMCR - PWM Control Register (RW)
@@ -112,15 +127,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_EN      (0x00000001)  //!< Bit mask for PWM_PWMCR_EN.
 
 //! @brief Get value of PWM_PWMCR_EN from a register value.
-#define BG_PWM_PWMCR_EN(r)   (((r) & BM_PWM_PWMCR_EN) >> BP_PWM_PWMCR_EN)
+#define BG_PWM_PWMCR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_EN) >> BP_PWM_PWMCR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_EN.
-#define BF_PWM_PWMCR_EN(v)   ((((reg32_t) v) << BP_PWM_PWMCR_EN) & BM_PWM_PWMCR_EN)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_EN.
-#define BF_PWM_PWMCR_EN(v)   (((v) << BP_PWM_PWMCR_EN) & BM_PWM_PWMCR_EN)
-#endif
+#define BF_PWM_PWMCR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_EN) & BM_PWM_PWMCR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EN field to a new value.
@@ -144,15 +154,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_REPEAT      (0x00000006)  //!< Bit mask for PWM_PWMCR_REPEAT.
 
 //! @brief Get value of PWM_PWMCR_REPEAT from a register value.
-#define BG_PWM_PWMCR_REPEAT(r)   (((r) & BM_PWM_PWMCR_REPEAT) >> BP_PWM_PWMCR_REPEAT)
+#define BG_PWM_PWMCR_REPEAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_REPEAT) >> BP_PWM_PWMCR_REPEAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_REPEAT.
-#define BF_PWM_PWMCR_REPEAT(v)   ((((reg32_t) v) << BP_PWM_PWMCR_REPEAT) & BM_PWM_PWMCR_REPEAT)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_REPEAT.
-#define BF_PWM_PWMCR_REPEAT(v)   (((v) << BP_PWM_PWMCR_REPEAT) & BM_PWM_PWMCR_REPEAT)
-#endif
+#define BF_PWM_PWMCR_REPEAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_REPEAT) & BM_PWM_PWMCR_REPEAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REPEAT field to a new value.
@@ -178,15 +183,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_SWR      (0x00000008)  //!< Bit mask for PWM_PWMCR_SWR.
 
 //! @brief Get value of PWM_PWMCR_SWR from a register value.
-#define BG_PWM_PWMCR_SWR(r)   (((r) & BM_PWM_PWMCR_SWR) >> BP_PWM_PWMCR_SWR)
+#define BG_PWM_PWMCR_SWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_SWR) >> BP_PWM_PWMCR_SWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_SWR.
-#define BF_PWM_PWMCR_SWR(v)   ((((reg32_t) v) << BP_PWM_PWMCR_SWR) & BM_PWM_PWMCR_SWR)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_SWR.
-#define BF_PWM_PWMCR_SWR(v)   (((v) << BP_PWM_PWMCR_SWR) & BM_PWM_PWMCR_SWR)
-#endif
+#define BF_PWM_PWMCR_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_SWR) & BM_PWM_PWMCR_SWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SWR field to a new value.
@@ -209,15 +209,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_PRESCALER      (0x0000fff0)  //!< Bit mask for PWM_PWMCR_PRESCALER.
 
 //! @brief Get value of PWM_PWMCR_PRESCALER from a register value.
-#define BG_PWM_PWMCR_PRESCALER(r)   (((r) & BM_PWM_PWMCR_PRESCALER) >> BP_PWM_PWMCR_PRESCALER)
+#define BG_PWM_PWMCR_PRESCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_PRESCALER) >> BP_PWM_PWMCR_PRESCALER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_PRESCALER.
-#define BF_PWM_PWMCR_PRESCALER(v)   ((((reg32_t) v) << BP_PWM_PWMCR_PRESCALER) & BM_PWM_PWMCR_PRESCALER)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_PRESCALER.
-#define BF_PWM_PWMCR_PRESCALER(v)   (((v) << BP_PWM_PWMCR_PRESCALER) & BM_PWM_PWMCR_PRESCALER)
-#endif
+#define BF_PWM_PWMCR_PRESCALER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_PRESCALER) & BM_PWM_PWMCR_PRESCALER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRESCALER field to a new value.
@@ -242,15 +237,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_CLKSRC      (0x00030000)  //!< Bit mask for PWM_PWMCR_CLKSRC.
 
 //! @brief Get value of PWM_PWMCR_CLKSRC from a register value.
-#define BG_PWM_PWMCR_CLKSRC(r)   (((r) & BM_PWM_PWMCR_CLKSRC) >> BP_PWM_PWMCR_CLKSRC)
+#define BG_PWM_PWMCR_CLKSRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_CLKSRC) >> BP_PWM_PWMCR_CLKSRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_CLKSRC.
-#define BF_PWM_PWMCR_CLKSRC(v)   ((((reg32_t) v) << BP_PWM_PWMCR_CLKSRC) & BM_PWM_PWMCR_CLKSRC)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_CLKSRC.
-#define BF_PWM_PWMCR_CLKSRC(v)   (((v) << BP_PWM_PWMCR_CLKSRC) & BM_PWM_PWMCR_CLKSRC)
-#endif
+#define BF_PWM_PWMCR_CLKSRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_CLKSRC) & BM_PWM_PWMCR_CLKSRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKSRC field to a new value.
@@ -273,15 +263,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_POUTC      (0x000c0000)  //!< Bit mask for PWM_PWMCR_POUTC.
 
 //! @brief Get value of PWM_PWMCR_POUTC from a register value.
-#define BG_PWM_PWMCR_POUTC(r)   (((r) & BM_PWM_PWMCR_POUTC) >> BP_PWM_PWMCR_POUTC)
+#define BG_PWM_PWMCR_POUTC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_POUTC) >> BP_PWM_PWMCR_POUTC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_POUTC.
-#define BF_PWM_PWMCR_POUTC(v)   ((((reg32_t) v) << BP_PWM_PWMCR_POUTC) & BM_PWM_PWMCR_POUTC)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_POUTC.
-#define BF_PWM_PWMCR_POUTC(v)   (((v) << BP_PWM_PWMCR_POUTC) & BM_PWM_PWMCR_POUTC)
-#endif
+#define BF_PWM_PWMCR_POUTC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_POUTC) & BM_PWM_PWMCR_POUTC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the POUTC field to a new value.
@@ -303,15 +288,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_HCTR      (0x00100000)  //!< Bit mask for PWM_PWMCR_HCTR.
 
 //! @brief Get value of PWM_PWMCR_HCTR from a register value.
-#define BG_PWM_PWMCR_HCTR(r)   (((r) & BM_PWM_PWMCR_HCTR) >> BP_PWM_PWMCR_HCTR)
+#define BG_PWM_PWMCR_HCTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_HCTR) >> BP_PWM_PWMCR_HCTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_HCTR.
-#define BF_PWM_PWMCR_HCTR(v)   ((((reg32_t) v) << BP_PWM_PWMCR_HCTR) & BM_PWM_PWMCR_HCTR)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_HCTR.
-#define BF_PWM_PWMCR_HCTR(v)   (((v) << BP_PWM_PWMCR_HCTR) & BM_PWM_PWMCR_HCTR)
-#endif
+#define BF_PWM_PWMCR_HCTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_HCTR) & BM_PWM_PWMCR_HCTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HCTR field to a new value.
@@ -333,15 +313,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_BCTR      (0x00200000)  //!< Bit mask for PWM_PWMCR_BCTR.
 
 //! @brief Get value of PWM_PWMCR_BCTR from a register value.
-#define BG_PWM_PWMCR_BCTR(r)   (((r) & BM_PWM_PWMCR_BCTR) >> BP_PWM_PWMCR_BCTR)
+#define BG_PWM_PWMCR_BCTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_BCTR) >> BP_PWM_PWMCR_BCTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_BCTR.
-#define BF_PWM_PWMCR_BCTR(v)   ((((reg32_t) v) << BP_PWM_PWMCR_BCTR) & BM_PWM_PWMCR_BCTR)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_BCTR.
-#define BF_PWM_PWMCR_BCTR(v)   (((v) << BP_PWM_PWMCR_BCTR) & BM_PWM_PWMCR_BCTR)
-#endif
+#define BF_PWM_PWMCR_BCTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_BCTR) & BM_PWM_PWMCR_BCTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCTR field to a new value.
@@ -364,15 +339,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_DBGEN      (0x00400000)  //!< Bit mask for PWM_PWMCR_DBGEN.
 
 //! @brief Get value of PWM_PWMCR_DBGEN from a register value.
-#define BG_PWM_PWMCR_DBGEN(r)   (((r) & BM_PWM_PWMCR_DBGEN) >> BP_PWM_PWMCR_DBGEN)
+#define BG_PWM_PWMCR_DBGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_DBGEN) >> BP_PWM_PWMCR_DBGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_DBGEN.
-#define BF_PWM_PWMCR_DBGEN(v)   ((((reg32_t) v) << BP_PWM_PWMCR_DBGEN) & BM_PWM_PWMCR_DBGEN)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_DBGEN.
-#define BF_PWM_PWMCR_DBGEN(v)   (((v) << BP_PWM_PWMCR_DBGEN) & BM_PWM_PWMCR_DBGEN)
-#endif
+#define BF_PWM_PWMCR_DBGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_DBGEN) & BM_PWM_PWMCR_DBGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBGEN field to a new value.
@@ -395,15 +365,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_WAITEN      (0x00800000)  //!< Bit mask for PWM_PWMCR_WAITEN.
 
 //! @brief Get value of PWM_PWMCR_WAITEN from a register value.
-#define BG_PWM_PWMCR_WAITEN(r)   (((r) & BM_PWM_PWMCR_WAITEN) >> BP_PWM_PWMCR_WAITEN)
+#define BG_PWM_PWMCR_WAITEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_WAITEN) >> BP_PWM_PWMCR_WAITEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_WAITEN.
-#define BF_PWM_PWMCR_WAITEN(v)   ((((reg32_t) v) << BP_PWM_PWMCR_WAITEN) & BM_PWM_PWMCR_WAITEN)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_WAITEN.
-#define BF_PWM_PWMCR_WAITEN(v)   (((v) << BP_PWM_PWMCR_WAITEN) & BM_PWM_PWMCR_WAITEN)
-#endif
+#define BF_PWM_PWMCR_WAITEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_WAITEN) & BM_PWM_PWMCR_WAITEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAITEN field to a new value.
@@ -426,15 +391,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_DOZEN      (0x01000000)  //!< Bit mask for PWM_PWMCR_DOZEN.
 
 //! @brief Get value of PWM_PWMCR_DOZEN from a register value.
-#define BG_PWM_PWMCR_DOZEN(r)   (((r) & BM_PWM_PWMCR_DOZEN) >> BP_PWM_PWMCR_DOZEN)
+#define BG_PWM_PWMCR_DOZEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_DOZEN) >> BP_PWM_PWMCR_DOZEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_DOZEN.
-#define BF_PWM_PWMCR_DOZEN(v)   ((((reg32_t) v) << BP_PWM_PWMCR_DOZEN) & BM_PWM_PWMCR_DOZEN)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_DOZEN.
-#define BF_PWM_PWMCR_DOZEN(v)   (((v) << BP_PWM_PWMCR_DOZEN) & BM_PWM_PWMCR_DOZEN)
-#endif
+#define BF_PWM_PWMCR_DOZEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_DOZEN) & BM_PWM_PWMCR_DOZEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOZEN field to a new value.
@@ -457,15 +417,10 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_STOPEN      (0x02000000)  //!< Bit mask for PWM_PWMCR_STOPEN.
 
 //! @brief Get value of PWM_PWMCR_STOPEN from a register value.
-#define BG_PWM_PWMCR_STOPEN(r)   (((r) & BM_PWM_PWMCR_STOPEN) >> BP_PWM_PWMCR_STOPEN)
+#define BG_PWM_PWMCR_STOPEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_STOPEN) >> BP_PWM_PWMCR_STOPEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_STOPEN.
-#define BF_PWM_PWMCR_STOPEN(v)   ((((reg32_t) v) << BP_PWM_PWMCR_STOPEN) & BM_PWM_PWMCR_STOPEN)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_STOPEN.
-#define BF_PWM_PWMCR_STOPEN(v)   (((v) << BP_PWM_PWMCR_STOPEN) & BM_PWM_PWMCR_STOPEN)
-#endif
+#define BF_PWM_PWMCR_STOPEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_STOPEN) & BM_PWM_PWMCR_STOPEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the STOPEN field to a new value.
@@ -489,21 +444,20 @@ typedef union _hw_pwm_pwmcr
 #define BM_PWM_PWMCR_FWM      (0x0c000000)  //!< Bit mask for PWM_PWMCR_FWM.
 
 //! @brief Get value of PWM_PWMCR_FWM from a register value.
-#define BG_PWM_PWMCR_FWM(r)   (((r) & BM_PWM_PWMCR_FWM) >> BP_PWM_PWMCR_FWM)
+#define BG_PWM_PWMCR_FWM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCR_FWM) >> BP_PWM_PWMCR_FWM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMCR_FWM.
-#define BF_PWM_PWMCR_FWM(v)   ((((reg32_t) v) << BP_PWM_PWMCR_FWM) & BM_PWM_PWMCR_FWM)
-#else
-//! @brief Format value for bitfield PWM_PWMCR_FWM.
-#define BF_PWM_PWMCR_FWM(v)   (((v) << BP_PWM_PWMCR_FWM) & BM_PWM_PWMCR_FWM)
-#endif
+#define BF_PWM_PWMCR_FWM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMCR_FWM) & BM_PWM_PWMCR_FWM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FWM field to a new value.
 #define BW_PWM_PWMCR_FWM(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_FWM) | BF_PWM_PWMCR_FWM(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMSR - PWM Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -569,7 +523,7 @@ typedef union _hw_pwm_pwmsr
 #define BM_PWM_PWMSR_FIFOAV      (0x00000007)  //!< Bit mask for PWM_PWMSR_FIFOAV.
 
 //! @brief Get value of PWM_PWMSR_FIFOAV from a register value.
-#define BG_PWM_PWMSR_FIFOAV(r)   (((r) & BM_PWM_PWMSR_FIFOAV) >> BP_PWM_PWMSR_FIFOAV)
+#define BG_PWM_PWMSR_FIFOAV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_FIFOAV) >> BP_PWM_PWMSR_FIFOAV)
 
 
 /* --- Register HW_PWM_PWMSR, field FE[3] (W1C)
@@ -586,15 +540,10 @@ typedef union _hw_pwm_pwmsr
 #define BM_PWM_PWMSR_FE      (0x00000008)  //!< Bit mask for PWM_PWMSR_FE.
 
 //! @brief Get value of PWM_PWMSR_FE from a register value.
-#define BG_PWM_PWMSR_FE(r)   (((r) & BM_PWM_PWMSR_FE) >> BP_PWM_PWMSR_FE)
+#define BG_PWM_PWMSR_FE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_FE) >> BP_PWM_PWMSR_FE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMSR_FE.
-#define BF_PWM_PWMSR_FE(v)   ((((reg32_t) v) << BP_PWM_PWMSR_FE) & BM_PWM_PWMSR_FE)
-#else
-//! @brief Format value for bitfield PWM_PWMSR_FE.
-#define BF_PWM_PWMSR_FE(v)   (((v) << BP_PWM_PWMSR_FE) & BM_PWM_PWMSR_FE)
-#endif
+#define BF_PWM_PWMSR_FE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMSR_FE) & BM_PWM_PWMSR_FE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FE field to a new value.
@@ -615,15 +564,10 @@ typedef union _hw_pwm_pwmsr
 #define BM_PWM_PWMSR_ROV      (0x00000010)  //!< Bit mask for PWM_PWMSR_ROV.
 
 //! @brief Get value of PWM_PWMSR_ROV from a register value.
-#define BG_PWM_PWMSR_ROV(r)   (((r) & BM_PWM_PWMSR_ROV) >> BP_PWM_PWMSR_ROV)
+#define BG_PWM_PWMSR_ROV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_ROV) >> BP_PWM_PWMSR_ROV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMSR_ROV.
-#define BF_PWM_PWMSR_ROV(v)   ((((reg32_t) v) << BP_PWM_PWMSR_ROV) & BM_PWM_PWMSR_ROV)
-#else
-//! @brief Format value for bitfield PWM_PWMSR_ROV.
-#define BF_PWM_PWMSR_ROV(v)   (((v) << BP_PWM_PWMSR_ROV) & BM_PWM_PWMSR_ROV)
-#endif
+#define BF_PWM_PWMSR_ROV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMSR_ROV) & BM_PWM_PWMSR_ROV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROV field to a new value.
@@ -644,15 +588,10 @@ typedef union _hw_pwm_pwmsr
 #define BM_PWM_PWMSR_CMP      (0x00000020)  //!< Bit mask for PWM_PWMSR_CMP.
 
 //! @brief Get value of PWM_PWMSR_CMP from a register value.
-#define BG_PWM_PWMSR_CMP(r)   (((r) & BM_PWM_PWMSR_CMP) >> BP_PWM_PWMSR_CMP)
+#define BG_PWM_PWMSR_CMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_CMP) >> BP_PWM_PWMSR_CMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMSR_CMP.
-#define BF_PWM_PWMSR_CMP(v)   ((((reg32_t) v) << BP_PWM_PWMSR_CMP) & BM_PWM_PWMSR_CMP)
-#else
-//! @brief Format value for bitfield PWM_PWMSR_CMP.
-#define BF_PWM_PWMSR_CMP(v)   (((v) << BP_PWM_PWMSR_CMP) & BM_PWM_PWMSR_CMP)
-#endif
+#define BF_PWM_PWMSR_CMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMSR_CMP) & BM_PWM_PWMSR_CMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMP field to a new value.
@@ -674,21 +613,20 @@ typedef union _hw_pwm_pwmsr
 #define BM_PWM_PWMSR_FWE      (0x00000040)  //!< Bit mask for PWM_PWMSR_FWE.
 
 //! @brief Get value of PWM_PWMSR_FWE from a register value.
-#define BG_PWM_PWMSR_FWE(r)   (((r) & BM_PWM_PWMSR_FWE) >> BP_PWM_PWMSR_FWE)
+#define BG_PWM_PWMSR_FWE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_FWE) >> BP_PWM_PWMSR_FWE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMSR_FWE.
-#define BF_PWM_PWMSR_FWE(v)   ((((reg32_t) v) << BP_PWM_PWMSR_FWE) & BM_PWM_PWMSR_FWE)
-#else
-//! @brief Format value for bitfield PWM_PWMSR_FWE.
-#define BF_PWM_PWMSR_FWE(v)   (((v) << BP_PWM_PWMSR_FWE) & BM_PWM_PWMSR_FWE)
-#endif
+#define BF_PWM_PWMSR_FWE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMSR_FWE) & BM_PWM_PWMSR_FWE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FWE field to a new value.
 #define BW_PWM_PWMSR_FWE(x, v)   (HW_PWM_PWMSR_WR(x, (HW_PWM_PWMSR_RD(x) & ~BM_PWM_PWMSR_FWE) | BF_PWM_PWMSR_FWE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMIR - PWM Interrupt Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -743,15 +681,10 @@ typedef union _hw_pwm_pwmir
 #define BM_PWM_PWMIR_FIE      (0x00000001)  //!< Bit mask for PWM_PWMIR_FIE.
 
 //! @brief Get value of PWM_PWMIR_FIE from a register value.
-#define BG_PWM_PWMIR_FIE(r)   (((r) & BM_PWM_PWMIR_FIE) >> BP_PWM_PWMIR_FIE)
+#define BG_PWM_PWMIR_FIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMIR_FIE) >> BP_PWM_PWMIR_FIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMIR_FIE.
-#define BF_PWM_PWMIR_FIE(v)   ((((reg32_t) v) << BP_PWM_PWMIR_FIE) & BM_PWM_PWMIR_FIE)
-#else
-//! @brief Format value for bitfield PWM_PWMIR_FIE.
-#define BF_PWM_PWMIR_FIE(v)   (((v) << BP_PWM_PWMIR_FIE) & BM_PWM_PWMIR_FIE)
-#endif
+#define BF_PWM_PWMIR_FIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMIR_FIE) & BM_PWM_PWMIR_FIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIE field to a new value.
@@ -772,15 +705,10 @@ typedef union _hw_pwm_pwmir
 #define BM_PWM_PWMIR_RIE      (0x00000002)  //!< Bit mask for PWM_PWMIR_RIE.
 
 //! @brief Get value of PWM_PWMIR_RIE from a register value.
-#define BG_PWM_PWMIR_RIE(r)   (((r) & BM_PWM_PWMIR_RIE) >> BP_PWM_PWMIR_RIE)
+#define BG_PWM_PWMIR_RIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMIR_RIE) >> BP_PWM_PWMIR_RIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMIR_RIE.
-#define BF_PWM_PWMIR_RIE(v)   ((((reg32_t) v) << BP_PWM_PWMIR_RIE) & BM_PWM_PWMIR_RIE)
-#else
-//! @brief Format value for bitfield PWM_PWMIR_RIE.
-#define BF_PWM_PWMIR_RIE(v)   (((v) << BP_PWM_PWMIR_RIE) & BM_PWM_PWMIR_RIE)
-#endif
+#define BF_PWM_PWMIR_RIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMIR_RIE) & BM_PWM_PWMIR_RIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RIE field to a new value.
@@ -801,21 +729,20 @@ typedef union _hw_pwm_pwmir
 #define BM_PWM_PWMIR_CIE      (0x00000004)  //!< Bit mask for PWM_PWMIR_CIE.
 
 //! @brief Get value of PWM_PWMIR_CIE from a register value.
-#define BG_PWM_PWMIR_CIE(r)   (((r) & BM_PWM_PWMIR_CIE) >> BP_PWM_PWMIR_CIE)
+#define BG_PWM_PWMIR_CIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMIR_CIE) >> BP_PWM_PWMIR_CIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMIR_CIE.
-#define BF_PWM_PWMIR_CIE(v)   ((((reg32_t) v) << BP_PWM_PWMIR_CIE) & BM_PWM_PWMIR_CIE)
-#else
-//! @brief Format value for bitfield PWM_PWMIR_CIE.
-#define BF_PWM_PWMIR_CIE(v)   (((v) << BP_PWM_PWMIR_CIE) & BM_PWM_PWMIR_CIE)
-#endif
+#define BF_PWM_PWMIR_CIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMIR_CIE) & BM_PWM_PWMIR_CIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIE field to a new value.
 #define BW_PWM_PWMIR_CIE(x, v)   (HW_PWM_PWMIR_WR(x, (HW_PWM_PWMIR_RD(x) & ~BM_PWM_PWMIR_CIE) | BF_PWM_PWMIR_CIE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMSAR - PWM Sample Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -872,20 +799,19 @@ typedef union _hw_pwm_pwmsar
 #define BM_PWM_PWMSAR_SAMPLE      (0x0000ffff)  //!< Bit mask for PWM_PWMSAR_SAMPLE.
 
 //! @brief Get value of PWM_PWMSAR_SAMPLE from a register value.
-#define BG_PWM_PWMSAR_SAMPLE(r)   (((r) & BM_PWM_PWMSAR_SAMPLE) >> BP_PWM_PWMSAR_SAMPLE)
+#define BG_PWM_PWMSAR_SAMPLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSAR_SAMPLE) >> BP_PWM_PWMSAR_SAMPLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMSAR_SAMPLE.
-#define BF_PWM_PWMSAR_SAMPLE(v)   ((((reg32_t) v) << BP_PWM_PWMSAR_SAMPLE) & BM_PWM_PWMSAR_SAMPLE)
-#else
-//! @brief Format value for bitfield PWM_PWMSAR_SAMPLE.
-#define BF_PWM_PWMSAR_SAMPLE(v)   (((v) << BP_PWM_PWMSAR_SAMPLE) & BM_PWM_PWMSAR_SAMPLE)
-#endif
+#define BF_PWM_PWMSAR_SAMPLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMSAR_SAMPLE) & BM_PWM_PWMSAR_SAMPLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SAMPLE field to a new value.
 #define BW_PWM_PWMSAR_SAMPLE(x, v)   (HW_PWM_PWMSAR_WR(x, (HW_PWM_PWMSAR_RD(x) & ~BM_PWM_PWMSAR_SAMPLE) | BF_PWM_PWMSAR_SAMPLE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMPR - PWM Period Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -940,20 +866,19 @@ typedef union _hw_pwm_pwmpr
 #define BM_PWM_PWMPR_PERIOD      (0x0000ffff)  //!< Bit mask for PWM_PWMPR_PERIOD.
 
 //! @brief Get value of PWM_PWMPR_PERIOD from a register value.
-#define BG_PWM_PWMPR_PERIOD(r)   (((r) & BM_PWM_PWMPR_PERIOD) >> BP_PWM_PWMPR_PERIOD)
+#define BG_PWM_PWMPR_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMPR_PERIOD) >> BP_PWM_PWMPR_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield PWM_PWMPR_PERIOD.
-#define BF_PWM_PWMPR_PERIOD(v)   ((((reg32_t) v) << BP_PWM_PWMPR_PERIOD) & BM_PWM_PWMPR_PERIOD)
-#else
-//! @brief Format value for bitfield PWM_PWMPR_PERIOD.
-#define BF_PWM_PWMPR_PERIOD(v)   (((v) << BP_PWM_PWMPR_PERIOD) & BM_PWM_PWMPR_PERIOD)
-#endif
+#define BF_PWM_PWMPR_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PWM_PWMPR_PERIOD) & BM_PWM_PWMPR_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PERIOD field to a new value.
 #define BW_PWM_PWMPR_PERIOD(x, v)   (HW_PWM_PWMPR_WR(x, (HW_PWM_PWMPR_RD(x) & ~BM_PWM_PWMPR_PERIOD) | BF_PWM_PWMPR_PERIOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_PWM_PWMCNR - PWM Counter Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -999,7 +924,7 @@ typedef union _hw_pwm_pwmcnr
 #define BM_PWM_PWMCNR_COUNT      (0x0000ffff)  //!< Bit mask for PWM_PWMCNR_COUNT.
 
 //! @brief Get value of PWM_PWMCNR_COUNT from a register value.
-#define BG_PWM_PWMCNR_COUNT(r)   (((r) & BM_PWM_PWMCNR_COUNT) >> BP_PWM_PWMCNR_COUNT)
+#define BG_PWM_PWMCNR_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCNR_COUNT) >> BP_PWM_PWMCNR_COUNT)
 
 
 /*!

@@ -58,6 +58,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CTRL - eLCDIF General Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_ELCDIF_CTRL - eLCDIF General Control Register (RW)
@@ -135,15 +150,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_RUN      (0x00000001)  //!< Bit mask for ELCDIF_CTRL_RUN.
 
 //! @brief Get value of ELCDIF_CTRL_RUN from a register value.
-#define BG_ELCDIF_CTRL_RUN(r)   (((r) & BM_ELCDIF_CTRL_RUN) >> BP_ELCDIF_CTRL_RUN)
+#define BG_ELCDIF_CTRL_RUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_RUN) >> BP_ELCDIF_CTRL_RUN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_RUN.
-#define BF_ELCDIF_CTRL_RUN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_RUN) & BM_ELCDIF_CTRL_RUN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_RUN.
-#define BF_ELCDIF_CTRL_RUN(v)   (((v) << BP_ELCDIF_CTRL_RUN) & BM_ELCDIF_CTRL_RUN)
-#endif
+#define BF_ELCDIF_CTRL_RUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_RUN) & BM_ELCDIF_CTRL_RUN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RUN field to a new value.
@@ -165,15 +175,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT      (0x00000002)  //!< Bit mask for ELCDIF_CTRL_DATA_FORMAT_24_BIT.
 
 //! @brief Get value of ELCDIF_CTRL_DATA_FORMAT_24_BIT from a register value.
-#define BG_ELCDIF_CTRL_DATA_FORMAT_24_BIT(r)   (((r) & BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_24_BIT)
+#define BG_ELCDIF_CTRL_DATA_FORMAT_24_BIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_24_BIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_24_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_24_BIT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DATA_FORMAT_24_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_24_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_24_BIT(v)   (((v) << BP_ELCDIF_CTRL_DATA_FORMAT_24_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT)
-#endif
+#define BF_ELCDIF_CTRL_DATA_FORMAT_24_BIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DATA_FORMAT_24_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_24_BIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_FORMAT_24_BIT field to a new value.
@@ -198,15 +203,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT      (0x00000004)  //!< Bit mask for ELCDIF_CTRL_DATA_FORMAT_18_BIT.
 
 //! @brief Get value of ELCDIF_CTRL_DATA_FORMAT_18_BIT from a register value.
-#define BG_ELCDIF_CTRL_DATA_FORMAT_18_BIT(r)   (((r) & BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_18_BIT)
+#define BG_ELCDIF_CTRL_DATA_FORMAT_18_BIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_18_BIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_18_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_18_BIT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DATA_FORMAT_18_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_18_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_18_BIT(v)   (((v) << BP_ELCDIF_CTRL_DATA_FORMAT_18_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT)
-#endif
+#define BF_ELCDIF_CTRL_DATA_FORMAT_18_BIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DATA_FORMAT_18_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_18_BIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_FORMAT_18_BIT field to a new value.
@@ -227,15 +227,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT      (0x00000008)  //!< Bit mask for ELCDIF_CTRL_DATA_FORMAT_16_BIT.
 
 //! @brief Get value of ELCDIF_CTRL_DATA_FORMAT_16_BIT from a register value.
-#define BG_ELCDIF_CTRL_DATA_FORMAT_16_BIT(r)   (((r) & BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_16_BIT)
+#define BG_ELCDIF_CTRL_DATA_FORMAT_16_BIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT) >> BP_ELCDIF_CTRL_DATA_FORMAT_16_BIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_16_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_16_BIT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DATA_FORMAT_16_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DATA_FORMAT_16_BIT.
-#define BF_ELCDIF_CTRL_DATA_FORMAT_16_BIT(v)   (((v) << BP_ELCDIF_CTRL_DATA_FORMAT_16_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT)
-#endif
+#define BF_ELCDIF_CTRL_DATA_FORMAT_16_BIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DATA_FORMAT_16_BIT) & BM_ELCDIF_CTRL_DATA_FORMAT_16_BIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_FORMAT_16_BIT field to a new value.
@@ -252,15 +247,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_MASTER      (0x00000020)  //!< Bit mask for ELCDIF_CTRL_MASTER.
 
 //! @brief Get value of ELCDIF_CTRL_MASTER from a register value.
-#define BG_ELCDIF_CTRL_MASTER(r)   (((r) & BM_ELCDIF_CTRL_MASTER) >> BP_ELCDIF_CTRL_MASTER)
+#define BG_ELCDIF_CTRL_MASTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_MASTER) >> BP_ELCDIF_CTRL_MASTER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_MASTER.
-#define BF_ELCDIF_CTRL_MASTER(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_MASTER) & BM_ELCDIF_CTRL_MASTER)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_MASTER.
-#define BF_ELCDIF_CTRL_MASTER(v)   (((v) << BP_ELCDIF_CTRL_MASTER) & BM_ELCDIF_CTRL_MASTER)
-#endif
+#define BF_ELCDIF_CTRL_MASTER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_MASTER) & BM_ELCDIF_CTRL_MASTER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MASTER field to a new value.
@@ -278,15 +268,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE      (0x00000040)  //!< Bit mask for ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE.
 
 //! @brief Get value of ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE from a register value.
-#define BG_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE(r)   (((r) & BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE) >> BP_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE)
+#define BG_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE) >> BP_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE.
-#define BF_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE) & BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE.
-#define BF_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE(v)   (((v) << BP_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE) & BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE)
-#endif
+#define BF_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE) & BM_ELCDIF_CTRL_ENABLE_PXP_HANDSHAKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_PXP_HANDSHAKE field to a new value.
@@ -303,15 +288,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC      (0x00000080)  //!< Bit mask for ELCDIF_CTRL_RGB_TO_YCBCR422_CSC.
 
 //! @brief Get value of ELCDIF_CTRL_RGB_TO_YCBCR422_CSC from a register value.
-#define BG_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC(r)   (((r) & BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC) >> BP_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC)
+#define BG_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC) >> BP_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_RGB_TO_YCBCR422_CSC.
-#define BF_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC) & BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_RGB_TO_YCBCR422_CSC.
-#define BF_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC(v)   (((v) << BP_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC) & BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC)
-#endif
+#define BF_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC) & BM_ELCDIF_CTRL_RGB_TO_YCBCR422_CSC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RGB_TO_YCBCR422_CSC field to a new value.
@@ -333,15 +313,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_WORD_LENGTH      (0x00000300)  //!< Bit mask for ELCDIF_CTRL_WORD_LENGTH.
 
 //! @brief Get value of ELCDIF_CTRL_WORD_LENGTH from a register value.
-#define BG_ELCDIF_CTRL_WORD_LENGTH(r)   (((r) & BM_ELCDIF_CTRL_WORD_LENGTH) >> BP_ELCDIF_CTRL_WORD_LENGTH)
+#define BG_ELCDIF_CTRL_WORD_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_WORD_LENGTH) >> BP_ELCDIF_CTRL_WORD_LENGTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_WORD_LENGTH.
-#define BF_ELCDIF_CTRL_WORD_LENGTH(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_WORD_LENGTH) & BM_ELCDIF_CTRL_WORD_LENGTH)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_WORD_LENGTH.
-#define BF_ELCDIF_CTRL_WORD_LENGTH(v)   (((v) << BP_ELCDIF_CTRL_WORD_LENGTH) & BM_ELCDIF_CTRL_WORD_LENGTH)
-#endif
+#define BF_ELCDIF_CTRL_WORD_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_WORD_LENGTH) & BM_ELCDIF_CTRL_WORD_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WORD_LENGTH field to a new value.
@@ -368,15 +343,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH      (0x00000c00)  //!< Bit mask for ELCDIF_CTRL_LCD_DATABUS_WIDTH.
 
 //! @brief Get value of ELCDIF_CTRL_LCD_DATABUS_WIDTH from a register value.
-#define BG_ELCDIF_CTRL_LCD_DATABUS_WIDTH(r)   (((r) & BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH) >> BP_ELCDIF_CTRL_LCD_DATABUS_WIDTH)
+#define BG_ELCDIF_CTRL_LCD_DATABUS_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH) >> BP_ELCDIF_CTRL_LCD_DATABUS_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_LCD_DATABUS_WIDTH.
-#define BF_ELCDIF_CTRL_LCD_DATABUS_WIDTH(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_LCD_DATABUS_WIDTH) & BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_LCD_DATABUS_WIDTH.
-#define BF_ELCDIF_CTRL_LCD_DATABUS_WIDTH(v)   (((v) << BP_ELCDIF_CTRL_LCD_DATABUS_WIDTH) & BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH)
-#endif
+#define BF_ELCDIF_CTRL_LCD_DATABUS_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_LCD_DATABUS_WIDTH) & BM_ELCDIF_CTRL_LCD_DATABUS_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LCD_DATABUS_WIDTH field to a new value.
@@ -411,15 +381,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE      (0x00003000)  //!< Bit mask for ELCDIF_CTRL_CSC_DATA_SWIZZLE.
 
 //! @brief Get value of ELCDIF_CTRL_CSC_DATA_SWIZZLE from a register value.
-#define BG_ELCDIF_CTRL_CSC_DATA_SWIZZLE(r)   (((r) & BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE) >> BP_ELCDIF_CTRL_CSC_DATA_SWIZZLE)
+#define BG_ELCDIF_CTRL_CSC_DATA_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE) >> BP_ELCDIF_CTRL_CSC_DATA_SWIZZLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_CSC_DATA_SWIZZLE.
-#define BF_ELCDIF_CTRL_CSC_DATA_SWIZZLE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_CSC_DATA_SWIZZLE) & BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_CSC_DATA_SWIZZLE.
-#define BF_ELCDIF_CTRL_CSC_DATA_SWIZZLE(v)   (((v) << BP_ELCDIF_CTRL_CSC_DATA_SWIZZLE) & BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE)
-#endif
+#define BF_ELCDIF_CTRL_CSC_DATA_SWIZZLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_CSC_DATA_SWIZZLE) & BM_ELCDIF_CTRL_CSC_DATA_SWIZZLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSC_DATA_SWIZZLE field to a new value.
@@ -451,15 +416,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE      (0x0000c000)  //!< Bit mask for ELCDIF_CTRL_INPUT_DATA_SWIZZLE.
 
 //! @brief Get value of ELCDIF_CTRL_INPUT_DATA_SWIZZLE from a register value.
-#define BG_ELCDIF_CTRL_INPUT_DATA_SWIZZLE(r)   (((r) & BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE) >> BP_ELCDIF_CTRL_INPUT_DATA_SWIZZLE)
+#define BG_ELCDIF_CTRL_INPUT_DATA_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE) >> BP_ELCDIF_CTRL_INPUT_DATA_SWIZZLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_INPUT_DATA_SWIZZLE.
-#define BF_ELCDIF_CTRL_INPUT_DATA_SWIZZLE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_INPUT_DATA_SWIZZLE) & BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_INPUT_DATA_SWIZZLE.
-#define BF_ELCDIF_CTRL_INPUT_DATA_SWIZZLE(v)   (((v) << BP_ELCDIF_CTRL_INPUT_DATA_SWIZZLE) & BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE)
-#endif
+#define BF_ELCDIF_CTRL_INPUT_DATA_SWIZZLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_INPUT_DATA_SWIZZLE) & BM_ELCDIF_CTRL_INPUT_DATA_SWIZZLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INPUT_DATA_SWIZZLE field to a new value.
@@ -486,15 +446,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DATA_SELECT      (0x00010000)  //!< Bit mask for ELCDIF_CTRL_DATA_SELECT.
 
 //! @brief Get value of ELCDIF_CTRL_DATA_SELECT from a register value.
-#define BG_ELCDIF_CTRL_DATA_SELECT(r)   (((r) & BM_ELCDIF_CTRL_DATA_SELECT) >> BP_ELCDIF_CTRL_DATA_SELECT)
+#define BG_ELCDIF_CTRL_DATA_SELECT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DATA_SELECT) >> BP_ELCDIF_CTRL_DATA_SELECT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DATA_SELECT.
-#define BF_ELCDIF_CTRL_DATA_SELECT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DATA_SELECT) & BM_ELCDIF_CTRL_DATA_SELECT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DATA_SELECT.
-#define BF_ELCDIF_CTRL_DATA_SELECT(v)   (((v) << BP_ELCDIF_CTRL_DATA_SELECT) & BM_ELCDIF_CTRL_DATA_SELECT)
-#endif
+#define BF_ELCDIF_CTRL_DATA_SELECT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DATA_SELECT) & BM_ELCDIF_CTRL_DATA_SELECT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_SELECT field to a new value.
@@ -516,15 +471,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DOTCLK_MODE      (0x00020000)  //!< Bit mask for ELCDIF_CTRL_DOTCLK_MODE.
 
 //! @brief Get value of ELCDIF_CTRL_DOTCLK_MODE from a register value.
-#define BG_ELCDIF_CTRL_DOTCLK_MODE(r)   (((r) & BM_ELCDIF_CTRL_DOTCLK_MODE) >> BP_ELCDIF_CTRL_DOTCLK_MODE)
+#define BG_ELCDIF_CTRL_DOTCLK_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DOTCLK_MODE) >> BP_ELCDIF_CTRL_DOTCLK_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DOTCLK_MODE.
-#define BF_ELCDIF_CTRL_DOTCLK_MODE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DOTCLK_MODE) & BM_ELCDIF_CTRL_DOTCLK_MODE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DOTCLK_MODE.
-#define BF_ELCDIF_CTRL_DOTCLK_MODE(v)   (((v) << BP_ELCDIF_CTRL_DOTCLK_MODE) & BM_ELCDIF_CTRL_DOTCLK_MODE)
-#endif
+#define BF_ELCDIF_CTRL_DOTCLK_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DOTCLK_MODE) & BM_ELCDIF_CTRL_DOTCLK_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOTCLK_MODE field to a new value.
@@ -542,15 +492,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_VSYNC_MODE      (0x00040000)  //!< Bit mask for ELCDIF_CTRL_VSYNC_MODE.
 
 //! @brief Get value of ELCDIF_CTRL_VSYNC_MODE from a register value.
-#define BG_ELCDIF_CTRL_VSYNC_MODE(r)   (((r) & BM_ELCDIF_CTRL_VSYNC_MODE) >> BP_ELCDIF_CTRL_VSYNC_MODE)
+#define BG_ELCDIF_CTRL_VSYNC_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_VSYNC_MODE) >> BP_ELCDIF_CTRL_VSYNC_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_VSYNC_MODE.
-#define BF_ELCDIF_CTRL_VSYNC_MODE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_VSYNC_MODE) & BM_ELCDIF_CTRL_VSYNC_MODE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_VSYNC_MODE.
-#define BF_ELCDIF_CTRL_VSYNC_MODE(v)   (((v) << BP_ELCDIF_CTRL_VSYNC_MODE) & BM_ELCDIF_CTRL_VSYNC_MODE)
-#endif
+#define BF_ELCDIF_CTRL_VSYNC_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_VSYNC_MODE) & BM_ELCDIF_CTRL_VSYNC_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_MODE field to a new value.
@@ -570,15 +515,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_BYPASS_COUNT      (0x00080000)  //!< Bit mask for ELCDIF_CTRL_BYPASS_COUNT.
 
 //! @brief Get value of ELCDIF_CTRL_BYPASS_COUNT from a register value.
-#define BG_ELCDIF_CTRL_BYPASS_COUNT(r)   (((r) & BM_ELCDIF_CTRL_BYPASS_COUNT) >> BP_ELCDIF_CTRL_BYPASS_COUNT)
+#define BG_ELCDIF_CTRL_BYPASS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_BYPASS_COUNT) >> BP_ELCDIF_CTRL_BYPASS_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_BYPASS_COUNT.
-#define BF_ELCDIF_CTRL_BYPASS_COUNT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_BYPASS_COUNT) & BM_ELCDIF_CTRL_BYPASS_COUNT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_BYPASS_COUNT.
-#define BF_ELCDIF_CTRL_BYPASS_COUNT(v)   (((v) << BP_ELCDIF_CTRL_BYPASS_COUNT) & BM_ELCDIF_CTRL_BYPASS_COUNT)
-#endif
+#define BF_ELCDIF_CTRL_BYPASS_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_BYPASS_COUNT) & BM_ELCDIF_CTRL_BYPASS_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYPASS_COUNT field to a new value.
@@ -596,15 +536,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DVI_MODE      (0x00100000)  //!< Bit mask for ELCDIF_CTRL_DVI_MODE.
 
 //! @brief Get value of ELCDIF_CTRL_DVI_MODE from a register value.
-#define BG_ELCDIF_CTRL_DVI_MODE(r)   (((r) & BM_ELCDIF_CTRL_DVI_MODE) >> BP_ELCDIF_CTRL_DVI_MODE)
+#define BG_ELCDIF_CTRL_DVI_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DVI_MODE) >> BP_ELCDIF_CTRL_DVI_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DVI_MODE.
-#define BF_ELCDIF_CTRL_DVI_MODE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DVI_MODE) & BM_ELCDIF_CTRL_DVI_MODE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DVI_MODE.
-#define BF_ELCDIF_CTRL_DVI_MODE(v)   (((v) << BP_ELCDIF_CTRL_DVI_MODE) & BM_ELCDIF_CTRL_DVI_MODE)
-#endif
+#define BF_ELCDIF_CTRL_DVI_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DVI_MODE) & BM_ELCDIF_CTRL_DVI_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVI_MODE field to a new value.
@@ -620,15 +555,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_SHIFT_NUM_BITS      (0x03e00000)  //!< Bit mask for ELCDIF_CTRL_SHIFT_NUM_BITS.
 
 //! @brief Get value of ELCDIF_CTRL_SHIFT_NUM_BITS from a register value.
-#define BG_ELCDIF_CTRL_SHIFT_NUM_BITS(r)   (((r) & BM_ELCDIF_CTRL_SHIFT_NUM_BITS) >> BP_ELCDIF_CTRL_SHIFT_NUM_BITS)
+#define BG_ELCDIF_CTRL_SHIFT_NUM_BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_SHIFT_NUM_BITS) >> BP_ELCDIF_CTRL_SHIFT_NUM_BITS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_SHIFT_NUM_BITS.
-#define BF_ELCDIF_CTRL_SHIFT_NUM_BITS(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_SHIFT_NUM_BITS) & BM_ELCDIF_CTRL_SHIFT_NUM_BITS)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_SHIFT_NUM_BITS.
-#define BF_ELCDIF_CTRL_SHIFT_NUM_BITS(v)   (((v) << BP_ELCDIF_CTRL_SHIFT_NUM_BITS) & BM_ELCDIF_CTRL_SHIFT_NUM_BITS)
-#endif
+#define BF_ELCDIF_CTRL_SHIFT_NUM_BITS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_SHIFT_NUM_BITS) & BM_ELCDIF_CTRL_SHIFT_NUM_BITS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SHIFT_NUM_BITS field to a new value.
@@ -649,15 +579,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_DATA_SHIFT_DIR      (0x04000000)  //!< Bit mask for ELCDIF_CTRL_DATA_SHIFT_DIR.
 
 //! @brief Get value of ELCDIF_CTRL_DATA_SHIFT_DIR from a register value.
-#define BG_ELCDIF_CTRL_DATA_SHIFT_DIR(r)   (((r) & BM_ELCDIF_CTRL_DATA_SHIFT_DIR) >> BP_ELCDIF_CTRL_DATA_SHIFT_DIR)
+#define BG_ELCDIF_CTRL_DATA_SHIFT_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_DATA_SHIFT_DIR) >> BP_ELCDIF_CTRL_DATA_SHIFT_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_DATA_SHIFT_DIR.
-#define BF_ELCDIF_CTRL_DATA_SHIFT_DIR(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_DATA_SHIFT_DIR) & BM_ELCDIF_CTRL_DATA_SHIFT_DIR)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_DATA_SHIFT_DIR.
-#define BF_ELCDIF_CTRL_DATA_SHIFT_DIR(v)   (((v) << BP_ELCDIF_CTRL_DATA_SHIFT_DIR) & BM_ELCDIF_CTRL_DATA_SHIFT_DIR)
-#endif
+#define BF_ELCDIF_CTRL_DATA_SHIFT_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_DATA_SHIFT_DIR) & BM_ELCDIF_CTRL_DATA_SHIFT_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_SHIFT_DIR field to a new value.
@@ -677,15 +602,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE      (0x08000000)  //!< Bit mask for ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE.
 
 //! @brief Get value of ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE from a register value.
-#define BG_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(r)   (((r) & BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE) >> BP_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE)
+#define BG_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE) >> BP_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE.
-#define BF_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE) & BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE.
-#define BF_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(v)   (((v) << BP_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE) & BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE)
-#endif
+#define BF_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE) & BM_ELCDIF_CTRL_WAIT_FOR_VSYNC_EDGE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WAIT_FOR_VSYNC_EDGE field to a new value.
@@ -703,15 +623,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_READ_WRITEB      (0x10000000)  //!< Bit mask for ELCDIF_CTRL_READ_WRITEB.
 
 //! @brief Get value of ELCDIF_CTRL_READ_WRITEB from a register value.
-#define BG_ELCDIF_CTRL_READ_WRITEB(r)   (((r) & BM_ELCDIF_CTRL_READ_WRITEB) >> BP_ELCDIF_CTRL_READ_WRITEB)
+#define BG_ELCDIF_CTRL_READ_WRITEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_READ_WRITEB) >> BP_ELCDIF_CTRL_READ_WRITEB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_READ_WRITEB.
-#define BF_ELCDIF_CTRL_READ_WRITEB(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_READ_WRITEB) & BM_ELCDIF_CTRL_READ_WRITEB)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_READ_WRITEB.
-#define BF_ELCDIF_CTRL_READ_WRITEB(v)   (((v) << BP_ELCDIF_CTRL_READ_WRITEB) & BM_ELCDIF_CTRL_READ_WRITEB)
-#endif
+#define BF_ELCDIF_CTRL_READ_WRITEB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_READ_WRITEB) & BM_ELCDIF_CTRL_READ_WRITEB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_WRITEB field to a new value.
@@ -731,15 +646,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_YCBCR422_INPUT      (0x20000000)  //!< Bit mask for ELCDIF_CTRL_YCBCR422_INPUT.
 
 //! @brief Get value of ELCDIF_CTRL_YCBCR422_INPUT from a register value.
-#define BG_ELCDIF_CTRL_YCBCR422_INPUT(r)   (((r) & BM_ELCDIF_CTRL_YCBCR422_INPUT) >> BP_ELCDIF_CTRL_YCBCR422_INPUT)
+#define BG_ELCDIF_CTRL_YCBCR422_INPUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_YCBCR422_INPUT) >> BP_ELCDIF_CTRL_YCBCR422_INPUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_YCBCR422_INPUT.
-#define BF_ELCDIF_CTRL_YCBCR422_INPUT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_YCBCR422_INPUT) & BM_ELCDIF_CTRL_YCBCR422_INPUT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_YCBCR422_INPUT.
-#define BF_ELCDIF_CTRL_YCBCR422_INPUT(v)   (((v) << BP_ELCDIF_CTRL_YCBCR422_INPUT) & BM_ELCDIF_CTRL_YCBCR422_INPUT)
-#endif
+#define BF_ELCDIF_CTRL_YCBCR422_INPUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_YCBCR422_INPUT) & BM_ELCDIF_CTRL_YCBCR422_INPUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the YCBCR422_INPUT field to a new value.
@@ -756,15 +666,10 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for ELCDIF_CTRL_CLKGATE.
 
 //! @brief Get value of ELCDIF_CTRL_CLKGATE from a register value.
-#define BG_ELCDIF_CTRL_CLKGATE(r)   (((r) & BM_ELCDIF_CTRL_CLKGATE) >> BP_ELCDIF_CTRL_CLKGATE)
+#define BG_ELCDIF_CTRL_CLKGATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_CLKGATE) >> BP_ELCDIF_CTRL_CLKGATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_CLKGATE.
-#define BF_ELCDIF_CTRL_CLKGATE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_CLKGATE) & BM_ELCDIF_CTRL_CLKGATE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_CLKGATE.
-#define BF_ELCDIF_CTRL_CLKGATE(v)   (((v) << BP_ELCDIF_CTRL_CLKGATE) & BM_ELCDIF_CTRL_CLKGATE)
-#endif
+#define BF_ELCDIF_CTRL_CLKGATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_CLKGATE) & BM_ELCDIF_CTRL_CLKGATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKGATE field to a new value.
@@ -781,20 +686,19 @@ typedef union _hw_elcdif_ctrl
 #define BM_ELCDIF_CTRL_SFTRST      (0x80000000)  //!< Bit mask for ELCDIF_CTRL_SFTRST.
 
 //! @brief Get value of ELCDIF_CTRL_SFTRST from a register value.
-#define BG_ELCDIF_CTRL_SFTRST(r)   (((r) & BM_ELCDIF_CTRL_SFTRST) >> BP_ELCDIF_CTRL_SFTRST)
+#define BG_ELCDIF_CTRL_SFTRST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL_SFTRST) >> BP_ELCDIF_CTRL_SFTRST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL_SFTRST.
-#define BF_ELCDIF_CTRL_SFTRST(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL_SFTRST) & BM_ELCDIF_CTRL_SFTRST)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL_SFTRST.
-#define BF_ELCDIF_CTRL_SFTRST(v)   (((v) << BP_ELCDIF_CTRL_SFTRST) & BM_ELCDIF_CTRL_SFTRST)
-#endif
+#define BF_ELCDIF_CTRL_SFTRST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL_SFTRST) & BM_ELCDIF_CTRL_SFTRST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SFTRST field to a new value.
 #define BW_ELCDIF_CTRL_SFTRST(v)   BF_CS1(ELCDIF_CTRL, SFTRST, v)
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CTRL1 - eLCDIF General Control1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -873,15 +777,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_RESET      (0x00000001)  //!< Bit mask for ELCDIF_CTRL1_RESET.
 
 //! @brief Get value of ELCDIF_CTRL1_RESET from a register value.
-#define BG_ELCDIF_CTRL1_RESET(r)   (((r) & BM_ELCDIF_CTRL1_RESET) >> BP_ELCDIF_CTRL1_RESET)
+#define BG_ELCDIF_CTRL1_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_RESET) >> BP_ELCDIF_CTRL1_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_RESET.
-#define BF_ELCDIF_CTRL1_RESET(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_RESET) & BM_ELCDIF_CTRL1_RESET)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_RESET.
-#define BF_ELCDIF_CTRL1_RESET(v)   (((v) << BP_ELCDIF_CTRL1_RESET) & BM_ELCDIF_CTRL1_RESET)
-#endif
+#define BF_ELCDIF_CTRL1_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_RESET) & BM_ELCDIF_CTRL1_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESET field to a new value.
@@ -905,15 +804,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_MODE86      (0x00000002)  //!< Bit mask for ELCDIF_CTRL1_MODE86.
 
 //! @brief Get value of ELCDIF_CTRL1_MODE86 from a register value.
-#define BG_ELCDIF_CTRL1_MODE86(r)   (((r) & BM_ELCDIF_CTRL1_MODE86) >> BP_ELCDIF_CTRL1_MODE86)
+#define BG_ELCDIF_CTRL1_MODE86(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_MODE86) >> BP_ELCDIF_CTRL1_MODE86)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_MODE86.
-#define BF_ELCDIF_CTRL1_MODE86(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_MODE86) & BM_ELCDIF_CTRL1_MODE86)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_MODE86.
-#define BF_ELCDIF_CTRL1_MODE86(v)   (((v) << BP_ELCDIF_CTRL1_MODE86) & BM_ELCDIF_CTRL1_MODE86)
-#endif
+#define BF_ELCDIF_CTRL1_MODE86(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_MODE86) & BM_ELCDIF_CTRL1_MODE86)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MODE86 field to a new value.
@@ -938,15 +832,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_BUSY_ENABLE      (0x00000004)  //!< Bit mask for ELCDIF_CTRL1_BUSY_ENABLE.
 
 //! @brief Get value of ELCDIF_CTRL1_BUSY_ENABLE from a register value.
-#define BG_ELCDIF_CTRL1_BUSY_ENABLE(r)   (((r) & BM_ELCDIF_CTRL1_BUSY_ENABLE) >> BP_ELCDIF_CTRL1_BUSY_ENABLE)
+#define BG_ELCDIF_CTRL1_BUSY_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_BUSY_ENABLE) >> BP_ELCDIF_CTRL1_BUSY_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_BUSY_ENABLE.
-#define BF_ELCDIF_CTRL1_BUSY_ENABLE(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_BUSY_ENABLE) & BM_ELCDIF_CTRL1_BUSY_ENABLE)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_BUSY_ENABLE.
-#define BF_ELCDIF_CTRL1_BUSY_ENABLE(v)   (((v) << BP_ELCDIF_CTRL1_BUSY_ENABLE) & BM_ELCDIF_CTRL1_BUSY_ENABLE)
-#endif
+#define BF_ELCDIF_CTRL1_BUSY_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_BUSY_ENABLE) & BM_ELCDIF_CTRL1_BUSY_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BUSY_ENABLE field to a new value.
@@ -972,15 +861,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ      (0x00000100)  //!< Bit mask for ELCDIF_CTRL1_VSYNC_EDGE_IRQ.
 
 //! @brief Get value of ELCDIF_CTRL1_VSYNC_EDGE_IRQ from a register value.
-#define BG_ELCDIF_CTRL1_VSYNC_EDGE_IRQ(r)   (((r) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ) >> BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ)
+#define BG_ELCDIF_CTRL1_VSYNC_EDGE_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ) >> BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_VSYNC_EDGE_IRQ.
-#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_VSYNC_EDGE_IRQ.
-#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ(v)   (((v) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ)
-#endif
+#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_EDGE_IRQ field to a new value.
@@ -1007,15 +891,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ      (0x00000200)  //!< Bit mask for ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ.
 
 //! @brief Get value of ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ from a register value.
-#define BG_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ(r)   (((r) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ) >> BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ)
+#define BG_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ) >> BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ.
-#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ.
-#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ(v)   (((v) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ)
-#endif
+#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CUR_FRAME_DONE_IRQ field to a new value.
@@ -1040,15 +919,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_UNDERFLOW_IRQ      (0x00000400)  //!< Bit mask for ELCDIF_CTRL1_UNDERFLOW_IRQ.
 
 //! @brief Get value of ELCDIF_CTRL1_UNDERFLOW_IRQ from a register value.
-#define BG_ELCDIF_CTRL1_UNDERFLOW_IRQ(r)   (((r) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ) >> BP_ELCDIF_CTRL1_UNDERFLOW_IRQ)
+#define BG_ELCDIF_CTRL1_UNDERFLOW_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ) >> BP_ELCDIF_CTRL1_UNDERFLOW_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_UNDERFLOW_IRQ.
-#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_UNDERFLOW_IRQ.
-#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ(v)   (((v) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ)
-#endif
+#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UNDERFLOW_IRQ field to a new value.
@@ -1073,15 +947,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_OVERFLOW_IRQ      (0x00000800)  //!< Bit mask for ELCDIF_CTRL1_OVERFLOW_IRQ.
 
 //! @brief Get value of ELCDIF_CTRL1_OVERFLOW_IRQ from a register value.
-#define BG_ELCDIF_CTRL1_OVERFLOW_IRQ(r)   (((r) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ) >> BP_ELCDIF_CTRL1_OVERFLOW_IRQ)
+#define BG_ELCDIF_CTRL1_OVERFLOW_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ) >> BP_ELCDIF_CTRL1_OVERFLOW_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_OVERFLOW_IRQ.
-#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_OVERFLOW_IRQ.
-#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ(v)   (((v) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ)
-#endif
+#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVERFLOW_IRQ field to a new value.
@@ -1101,15 +970,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN      (0x00001000)  //!< Bit mask for ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN.
 
 //! @brief Get value of ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN from a register value.
-#define BG_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(r)   (((r) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN) >> BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN)
+#define BG_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN) >> BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN.
-#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN.
-#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(v)   (((v) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN)
-#endif
+#define BF_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN) & BM_ELCDIF_CTRL1_VSYNC_EDGE_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_EDGE_IRQ_EN field to a new value.
@@ -1126,15 +990,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN      (0x00002000)  //!< Bit mask for ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN.
 
 //! @brief Get value of ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN from a register value.
-#define BG_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(r)   (((r) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN) >> BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN)
+#define BG_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN) >> BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN.
-#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN.
-#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(v)   (((v) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN)
-#endif
+#define BF_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN) & BM_ELCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CUR_FRAME_DONE_IRQ_EN field to a new value.
@@ -1150,15 +1009,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN      (0x00004000)  //!< Bit mask for ELCDIF_CTRL1_UNDERFLOW_IRQ_EN.
 
 //! @brief Get value of ELCDIF_CTRL1_UNDERFLOW_IRQ_EN from a register value.
-#define BG_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN(r)   (((r) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN) >> BP_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN)
+#define BG_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN) >> BP_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_UNDERFLOW_IRQ_EN.
-#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_UNDERFLOW_IRQ_EN.
-#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN(v)   (((v) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN)
-#endif
+#define BF_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_UNDERFLOW_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UNDERFLOW_IRQ_EN field to a new value.
@@ -1174,15 +1028,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN      (0x00008000)  //!< Bit mask for ELCDIF_CTRL1_OVERFLOW_IRQ_EN.
 
 //! @brief Get value of ELCDIF_CTRL1_OVERFLOW_IRQ_EN from a register value.
-#define BG_ELCDIF_CTRL1_OVERFLOW_IRQ_EN(r)   (((r) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN) >> BP_ELCDIF_CTRL1_OVERFLOW_IRQ_EN)
+#define BG_ELCDIF_CTRL1_OVERFLOW_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN) >> BP_ELCDIF_CTRL1_OVERFLOW_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_OVERFLOW_IRQ_EN.
-#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ_EN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_OVERFLOW_IRQ_EN.
-#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ_EN(v)   (((v) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN)
-#endif
+#define BF_ELCDIF_CTRL1_OVERFLOW_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_OVERFLOW_IRQ_EN) & BM_ELCDIF_CTRL1_OVERFLOW_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVERFLOW_IRQ_EN field to a new value.
@@ -1206,15 +1055,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT      (0x000f0000)  //!< Bit mask for ELCDIF_CTRL1_BYTE_PACKING_FORMAT.
 
 //! @brief Get value of ELCDIF_CTRL1_BYTE_PACKING_FORMAT from a register value.
-#define BG_ELCDIF_CTRL1_BYTE_PACKING_FORMAT(r)   (((r) & BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT) >> BP_ELCDIF_CTRL1_BYTE_PACKING_FORMAT)
+#define BG_ELCDIF_CTRL1_BYTE_PACKING_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT) >> BP_ELCDIF_CTRL1_BYTE_PACKING_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_BYTE_PACKING_FORMAT.
-#define BF_ELCDIF_CTRL1_BYTE_PACKING_FORMAT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_BYTE_PACKING_FORMAT) & BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_BYTE_PACKING_FORMAT.
-#define BF_ELCDIF_CTRL1_BYTE_PACKING_FORMAT(v)   (((v) << BP_ELCDIF_CTRL1_BYTE_PACKING_FORMAT) & BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT)
-#endif
+#define BF_ELCDIF_CTRL1_BYTE_PACKING_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_BYTE_PACKING_FORMAT) & BM_ELCDIF_CTRL1_BYTE_PACKING_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BYTE_PACKING_FORMAT field to a new value.
@@ -1232,15 +1076,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS      (0x00100000)  //!< Bit mask for ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS.
 
 //! @brief Get value of ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS from a register value.
-#define BG_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(r)   (((r) & BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS) >> BP_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS)
+#define BG_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS) >> BP_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS.
-#define BF_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS) & BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS.
-#define BF_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(v)   (((v) << BP_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS) & BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS)
-#endif
+#define BF_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS) & BM_ELCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IRQ_ON_ALTERNATE_FIELDS field to a new value.
@@ -1256,15 +1095,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_FIFO_CLEAR      (0x00200000)  //!< Bit mask for ELCDIF_CTRL1_FIFO_CLEAR.
 
 //! @brief Get value of ELCDIF_CTRL1_FIFO_CLEAR from a register value.
-#define BG_ELCDIF_CTRL1_FIFO_CLEAR(r)   (((r) & BM_ELCDIF_CTRL1_FIFO_CLEAR) >> BP_ELCDIF_CTRL1_FIFO_CLEAR)
+#define BG_ELCDIF_CTRL1_FIFO_CLEAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_FIFO_CLEAR) >> BP_ELCDIF_CTRL1_FIFO_CLEAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_FIFO_CLEAR.
-#define BF_ELCDIF_CTRL1_FIFO_CLEAR(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_FIFO_CLEAR) & BM_ELCDIF_CTRL1_FIFO_CLEAR)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_FIFO_CLEAR.
-#define BF_ELCDIF_CTRL1_FIFO_CLEAR(v)   (((v) << BP_ELCDIF_CTRL1_FIFO_CLEAR) & BM_ELCDIF_CTRL1_FIFO_CLEAR)
-#endif
+#define BF_ELCDIF_CTRL1_FIFO_CLEAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_FIFO_CLEAR) & BM_ELCDIF_CTRL1_FIFO_CLEAR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FIFO_CLEAR field to a new value.
@@ -1282,15 +1116,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD      (0x00400000)  //!< Bit mask for ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD.
 
 //! @brief Get value of ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD from a register value.
-#define BG_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(r)   (((r) & BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD) >> BP_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD)
+#define BG_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD) >> BP_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD.
-#define BF_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD) & BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD.
-#define BF_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(v)   (((v) << BP_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD) & BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD)
-#endif
+#define BF_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD) & BM_ELCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START_INTERLACE_FROM_SECOND_FIELD field to a new value.
@@ -1307,15 +1136,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_INTERLACE_FIELDS      (0x00800000)  //!< Bit mask for ELCDIF_CTRL1_INTERLACE_FIELDS.
 
 //! @brief Get value of ELCDIF_CTRL1_INTERLACE_FIELDS from a register value.
-#define BG_ELCDIF_CTRL1_INTERLACE_FIELDS(r)   (((r) & BM_ELCDIF_CTRL1_INTERLACE_FIELDS) >> BP_ELCDIF_CTRL1_INTERLACE_FIELDS)
+#define BG_ELCDIF_CTRL1_INTERLACE_FIELDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_INTERLACE_FIELDS) >> BP_ELCDIF_CTRL1_INTERLACE_FIELDS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_INTERLACE_FIELDS.
-#define BF_ELCDIF_CTRL1_INTERLACE_FIELDS(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_INTERLACE_FIELDS) & BM_ELCDIF_CTRL1_INTERLACE_FIELDS)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_INTERLACE_FIELDS.
-#define BF_ELCDIF_CTRL1_INTERLACE_FIELDS(v)   (((v) << BP_ELCDIF_CTRL1_INTERLACE_FIELDS) & BM_ELCDIF_CTRL1_INTERLACE_FIELDS)
-#endif
+#define BF_ELCDIF_CTRL1_INTERLACE_FIELDS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_INTERLACE_FIELDS) & BM_ELCDIF_CTRL1_INTERLACE_FIELDS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INTERLACE_FIELDS field to a new value.
@@ -1332,15 +1156,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW      (0x01000000)  //!< Bit mask for ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW.
 
 //! @brief Get value of ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW from a register value.
-#define BG_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW(r)   (((r) & BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW) >> BP_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW)
+#define BG_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW) >> BP_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW.
-#define BF_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW) & BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW.
-#define BF_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW(v)   (((v) << BP_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW) & BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW)
-#endif
+#define BF_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW) & BM_ELCDIF_CTRL1_RECOVER_ON_UNDERFLOW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RECOVER_ON_UNDERFLOW field to a new value.
@@ -1362,15 +1181,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_BM_ERROR_IRQ      (0x02000000)  //!< Bit mask for ELCDIF_CTRL1_BM_ERROR_IRQ.
 
 //! @brief Get value of ELCDIF_CTRL1_BM_ERROR_IRQ from a register value.
-#define BG_ELCDIF_CTRL1_BM_ERROR_IRQ(r)   (((r) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ) >> BP_ELCDIF_CTRL1_BM_ERROR_IRQ)
+#define BG_ELCDIF_CTRL1_BM_ERROR_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ) >> BP_ELCDIF_CTRL1_BM_ERROR_IRQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_BM_ERROR_IRQ.
-#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_BM_ERROR_IRQ.
-#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ(v)   (((v) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ)
-#endif
+#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BM_ERROR_IRQ field to a new value.
@@ -1389,15 +1203,10 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN      (0x04000000)  //!< Bit mask for ELCDIF_CTRL1_BM_ERROR_IRQ_EN.
 
 //! @brief Get value of ELCDIF_CTRL1_BM_ERROR_IRQ_EN from a register value.
-#define BG_ELCDIF_CTRL1_BM_ERROR_IRQ_EN(r)   (((r) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN) >> BP_ELCDIF_CTRL1_BM_ERROR_IRQ_EN)
+#define BG_ELCDIF_CTRL1_BM_ERROR_IRQ_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN) >> BP_ELCDIF_CTRL1_BM_ERROR_IRQ_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_BM_ERROR_IRQ_EN.
-#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ_EN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ_EN) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_BM_ERROR_IRQ_EN.
-#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ_EN(v)   (((v) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ_EN) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN)
-#endif
+#define BF_ELCDIF_CTRL1_BM_ERROR_IRQ_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_BM_ERROR_IRQ_EN) & BM_ELCDIF_CTRL1_BM_ERROR_IRQ_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BM_ERROR_IRQ_EN field to a new value.
@@ -1415,20 +1224,19 @@ typedef union _hw_elcdif_ctrl1
 #define BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB      (0x08000000)  //!< Bit mask for ELCDIF_CTRL1_COMBINE_MPU_WR_STRB.
 
 //! @brief Get value of ELCDIF_CTRL1_COMBINE_MPU_WR_STRB from a register value.
-#define BG_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(r)   (((r) & BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB) >> BP_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB)
+#define BG_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB) >> BP_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL1_COMBINE_MPU_WR_STRB.
-#define BF_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB) & BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL1_COMBINE_MPU_WR_STRB.
-#define BF_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(v)   (((v) << BP_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB) & BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB)
-#endif
+#define BF_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB) & BM_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COMBINE_MPU_WR_STRB field to a new value.
 #define BW_ELCDIF_CTRL1_COMBINE_MPU_WR_STRB(v)   BF_CS1(ELCDIF_CTRL1, COMBINE_MPU_WR_STRB, v)
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CTRL2 - eLCDIF General Control2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1495,15 +1303,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ      (0x0000000e)  //!< Bit mask for ELCDIF_CTRL2_INITIAL_DUMMY_READ.
 
 //! @brief Get value of ELCDIF_CTRL2_INITIAL_DUMMY_READ from a register value.
-#define BG_ELCDIF_CTRL2_INITIAL_DUMMY_READ(r)   (((r) & BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ) >> BP_ELCDIF_CTRL2_INITIAL_DUMMY_READ)
+#define BG_ELCDIF_CTRL2_INITIAL_DUMMY_READ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ) >> BP_ELCDIF_CTRL2_INITIAL_DUMMY_READ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_INITIAL_DUMMY_READ.
-#define BF_ELCDIF_CTRL2_INITIAL_DUMMY_READ(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_INITIAL_DUMMY_READ) & BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_INITIAL_DUMMY_READ.
-#define BF_ELCDIF_CTRL2_INITIAL_DUMMY_READ(v)   (((v) << BP_ELCDIF_CTRL2_INITIAL_DUMMY_READ) & BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ)
-#endif
+#define BF_ELCDIF_CTRL2_INITIAL_DUMMY_READ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_INITIAL_DUMMY_READ) & BM_ELCDIF_CTRL2_INITIAL_DUMMY_READ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INITIAL_DUMMY_READ field to a new value.
@@ -1526,15 +1329,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS      (0x00000070)  //!< Bit mask for ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS.
 
 //! @brief Get value of ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS from a register value.
-#define BG_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(r)   (((r) & BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS) >> BP_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS)
+#define BG_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS) >> BP_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS.
-#define BF_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS) & BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS.
-#define BF_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(v)   (((v) << BP_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS) & BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS)
-#endif
+#define BF_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS) & BM_ELCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_MODE_NUM_PACKED_SUBWORDS field to a new value.
@@ -1551,15 +1349,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT      (0x00000100)  //!< Bit mask for ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT.
 
 //! @brief Get value of ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT from a register value.
-#define BG_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT(r)   (((r) & BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT) >> BP_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT)
+#define BG_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT) >> BP_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT.
-#define BF_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT) & BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT.
-#define BF_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT(v)   (((v) << BP_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT) & BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT)
-#endif
+#define BF_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT) & BM_ELCDIF_CTRL2_READ_MODE_6_BIT_INPUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_MODE_6_BIT_INPUT field to a new value.
@@ -1578,15 +1371,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT      (0x00000200)  //!< Bit mask for ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT.
 
 //! @brief Get value of ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT from a register value.
-#define BG_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(r)   (((r) & BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT) >> BP_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT)
+#define BG_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT) >> BP_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT.
-#define BF_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT) & BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT.
-#define BF_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(v)   (((v) << BP_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT) & BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT)
-#endif
+#define BF_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT) & BM_ELCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_MODE_OUTPUT_IN_RGB_FORMAT field to a new value.
@@ -1607,15 +1395,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_READ_PACK_DIR      (0x00000400)  //!< Bit mask for ELCDIF_CTRL2_READ_PACK_DIR.
 
 //! @brief Get value of ELCDIF_CTRL2_READ_PACK_DIR from a register value.
-#define BG_ELCDIF_CTRL2_READ_PACK_DIR(r)   (((r) & BM_ELCDIF_CTRL2_READ_PACK_DIR) >> BP_ELCDIF_CTRL2_READ_PACK_DIR)
+#define BG_ELCDIF_CTRL2_READ_PACK_DIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_READ_PACK_DIR) >> BP_ELCDIF_CTRL2_READ_PACK_DIR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_READ_PACK_DIR.
-#define BF_ELCDIF_CTRL2_READ_PACK_DIR(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_READ_PACK_DIR) & BM_ELCDIF_CTRL2_READ_PACK_DIR)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_READ_PACK_DIR.
-#define BF_ELCDIF_CTRL2_READ_PACK_DIR(v)   (((v) << BP_ELCDIF_CTRL2_READ_PACK_DIR) & BM_ELCDIF_CTRL2_READ_PACK_DIR)
-#endif
+#define BF_ELCDIF_CTRL2_READ_PACK_DIR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_READ_PACK_DIR) & BM_ELCDIF_CTRL2_READ_PACK_DIR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_PACK_DIR field to a new value.
@@ -1640,15 +1423,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN      (0x00007000)  //!< Bit mask for ELCDIF_CTRL2_EVEN_LINE_PATTERN.
 
 //! @brief Get value of ELCDIF_CTRL2_EVEN_LINE_PATTERN from a register value.
-#define BG_ELCDIF_CTRL2_EVEN_LINE_PATTERN(r)   (((r) & BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN) >> BP_ELCDIF_CTRL2_EVEN_LINE_PATTERN)
+#define BG_ELCDIF_CTRL2_EVEN_LINE_PATTERN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN) >> BP_ELCDIF_CTRL2_EVEN_LINE_PATTERN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_EVEN_LINE_PATTERN.
-#define BF_ELCDIF_CTRL2_EVEN_LINE_PATTERN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_EVEN_LINE_PATTERN) & BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_EVEN_LINE_PATTERN.
-#define BF_ELCDIF_CTRL2_EVEN_LINE_PATTERN(v)   (((v) << BP_ELCDIF_CTRL2_EVEN_LINE_PATTERN) & BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN)
-#endif
+#define BF_ELCDIF_CTRL2_EVEN_LINE_PATTERN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_EVEN_LINE_PATTERN) & BM_ELCDIF_CTRL2_EVEN_LINE_PATTERN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EVEN_LINE_PATTERN field to a new value.
@@ -1680,15 +1458,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_ODD_LINE_PATTERN      (0x00070000)  //!< Bit mask for ELCDIF_CTRL2_ODD_LINE_PATTERN.
 
 //! @brief Get value of ELCDIF_CTRL2_ODD_LINE_PATTERN from a register value.
-#define BG_ELCDIF_CTRL2_ODD_LINE_PATTERN(r)   (((r) & BM_ELCDIF_CTRL2_ODD_LINE_PATTERN) >> BP_ELCDIF_CTRL2_ODD_LINE_PATTERN)
+#define BG_ELCDIF_CTRL2_ODD_LINE_PATTERN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_ODD_LINE_PATTERN) >> BP_ELCDIF_CTRL2_ODD_LINE_PATTERN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_ODD_LINE_PATTERN.
-#define BF_ELCDIF_CTRL2_ODD_LINE_PATTERN(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_ODD_LINE_PATTERN) & BM_ELCDIF_CTRL2_ODD_LINE_PATTERN)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_ODD_LINE_PATTERN.
-#define BF_ELCDIF_CTRL2_ODD_LINE_PATTERN(v)   (((v) << BP_ELCDIF_CTRL2_ODD_LINE_PATTERN) & BM_ELCDIF_CTRL2_ODD_LINE_PATTERN)
-#endif
+#define BF_ELCDIF_CTRL2_ODD_LINE_PATTERN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_ODD_LINE_PATTERN) & BM_ELCDIF_CTRL2_ODD_LINE_PATTERN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODD_LINE_PATTERN field to a new value.
@@ -1714,15 +1487,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_BURST_LEN_8      (0x00100000)  //!< Bit mask for ELCDIF_CTRL2_BURST_LEN_8.
 
 //! @brief Get value of ELCDIF_CTRL2_BURST_LEN_8 from a register value.
-#define BG_ELCDIF_CTRL2_BURST_LEN_8(r)   (((r) & BM_ELCDIF_CTRL2_BURST_LEN_8) >> BP_ELCDIF_CTRL2_BURST_LEN_8)
+#define BG_ELCDIF_CTRL2_BURST_LEN_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_BURST_LEN_8) >> BP_ELCDIF_CTRL2_BURST_LEN_8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_BURST_LEN_8.
-#define BF_ELCDIF_CTRL2_BURST_LEN_8(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_BURST_LEN_8) & BM_ELCDIF_CTRL2_BURST_LEN_8)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_BURST_LEN_8.
-#define BF_ELCDIF_CTRL2_BURST_LEN_8(v)   (((v) << BP_ELCDIF_CTRL2_BURST_LEN_8) & BM_ELCDIF_CTRL2_BURST_LEN_8)
-#endif
+#define BF_ELCDIF_CTRL2_BURST_LEN_8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_BURST_LEN_8) & BM_ELCDIF_CTRL2_BURST_LEN_8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_LEN_8 field to a new value.
@@ -1746,15 +1514,10 @@ typedef union _hw_elcdif_ctrl2
 #define BM_ELCDIF_CTRL2_OUTSTANDING_REQS      (0x00e00000)  //!< Bit mask for ELCDIF_CTRL2_OUTSTANDING_REQS.
 
 //! @brief Get value of ELCDIF_CTRL2_OUTSTANDING_REQS from a register value.
-#define BG_ELCDIF_CTRL2_OUTSTANDING_REQS(r)   (((r) & BM_ELCDIF_CTRL2_OUTSTANDING_REQS) >> BP_ELCDIF_CTRL2_OUTSTANDING_REQS)
+#define BG_ELCDIF_CTRL2_OUTSTANDING_REQS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CTRL2_OUTSTANDING_REQS) >> BP_ELCDIF_CTRL2_OUTSTANDING_REQS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CTRL2_OUTSTANDING_REQS.
-#define BF_ELCDIF_CTRL2_OUTSTANDING_REQS(v)   ((((reg32_t) v) << BP_ELCDIF_CTRL2_OUTSTANDING_REQS) & BM_ELCDIF_CTRL2_OUTSTANDING_REQS)
-#else
-//! @brief Format value for bitfield ELCDIF_CTRL2_OUTSTANDING_REQS.
-#define BF_ELCDIF_CTRL2_OUTSTANDING_REQS(v)   (((v) << BP_ELCDIF_CTRL2_OUTSTANDING_REQS) & BM_ELCDIF_CTRL2_OUTSTANDING_REQS)
-#endif
+#define BF_ELCDIF_CTRL2_OUTSTANDING_REQS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CTRL2_OUTSTANDING_REQS) & BM_ELCDIF_CTRL2_OUTSTANDING_REQS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OUTSTANDING_REQS field to a new value.
@@ -1766,6 +1529,10 @@ typedef union _hw_elcdif_ctrl2
 #define BV_ELCDIF_CTRL2_OUTSTANDING_REQS__REQ_4 (0x2) //!< 
 #define BV_ELCDIF_CTRL2_OUTSTANDING_REQS__REQ_8 (0x3) //!< 
 #define BV_ELCDIF_CTRL2_OUTSTANDING_REQS__REQ_16 (0x4) //!< 
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_TRANSFER_COUNT - eLCDIF Horizontal and Vertical Valid Data Count Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1821,15 +1588,10 @@ typedef union _hw_elcdif_transfer_count
 #define BM_ELCDIF_TRANSFER_COUNT_H_COUNT      (0x0000ffff)  //!< Bit mask for ELCDIF_TRANSFER_COUNT_H_COUNT.
 
 //! @brief Get value of ELCDIF_TRANSFER_COUNT_H_COUNT from a register value.
-#define BG_ELCDIF_TRANSFER_COUNT_H_COUNT(r)   (((r) & BM_ELCDIF_TRANSFER_COUNT_H_COUNT) >> BP_ELCDIF_TRANSFER_COUNT_H_COUNT)
+#define BG_ELCDIF_TRANSFER_COUNT_H_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TRANSFER_COUNT_H_COUNT) >> BP_ELCDIF_TRANSFER_COUNT_H_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TRANSFER_COUNT_H_COUNT.
-#define BF_ELCDIF_TRANSFER_COUNT_H_COUNT(v)   ((((reg32_t) v) << BP_ELCDIF_TRANSFER_COUNT_H_COUNT) & BM_ELCDIF_TRANSFER_COUNT_H_COUNT)
-#else
-//! @brief Format value for bitfield ELCDIF_TRANSFER_COUNT_H_COUNT.
-#define BF_ELCDIF_TRANSFER_COUNT_H_COUNT(v)   (((v) << BP_ELCDIF_TRANSFER_COUNT_H_COUNT) & BM_ELCDIF_TRANSFER_COUNT_H_COUNT)
-#endif
+#define BF_ELCDIF_TRANSFER_COUNT_H_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TRANSFER_COUNT_H_COUNT) & BM_ELCDIF_TRANSFER_COUNT_H_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the H_COUNT field to a new value.
@@ -1847,20 +1609,19 @@ typedef union _hw_elcdif_transfer_count
 #define BM_ELCDIF_TRANSFER_COUNT_V_COUNT      (0xffff0000)  //!< Bit mask for ELCDIF_TRANSFER_COUNT_V_COUNT.
 
 //! @brief Get value of ELCDIF_TRANSFER_COUNT_V_COUNT from a register value.
-#define BG_ELCDIF_TRANSFER_COUNT_V_COUNT(r)   (((r) & BM_ELCDIF_TRANSFER_COUNT_V_COUNT) >> BP_ELCDIF_TRANSFER_COUNT_V_COUNT)
+#define BG_ELCDIF_TRANSFER_COUNT_V_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TRANSFER_COUNT_V_COUNT) >> BP_ELCDIF_TRANSFER_COUNT_V_COUNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TRANSFER_COUNT_V_COUNT.
-#define BF_ELCDIF_TRANSFER_COUNT_V_COUNT(v)   ((((reg32_t) v) << BP_ELCDIF_TRANSFER_COUNT_V_COUNT) & BM_ELCDIF_TRANSFER_COUNT_V_COUNT)
-#else
-//! @brief Format value for bitfield ELCDIF_TRANSFER_COUNT_V_COUNT.
-#define BF_ELCDIF_TRANSFER_COUNT_V_COUNT(v)   (((v) << BP_ELCDIF_TRANSFER_COUNT_V_COUNT) & BM_ELCDIF_TRANSFER_COUNT_V_COUNT)
-#endif
+#define BF_ELCDIF_TRANSFER_COUNT_V_COUNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TRANSFER_COUNT_V_COUNT) & BM_ELCDIF_TRANSFER_COUNT_V_COUNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V_COUNT field to a new value.
 #define BW_ELCDIF_TRANSFER_COUNT_V_COUNT(v)   (HW_ELCDIF_TRANSFER_COUNT_WR((HW_ELCDIF_TRANSFER_COUNT_RD() & ~BM_ELCDIF_TRANSFER_COUNT_V_COUNT) | BF_ELCDIF_TRANSFER_COUNT_V_COUNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CUR_BUF - LCD Interface Current Buffer Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1912,20 +1673,19 @@ typedef union _hw_elcdif_cur_buf
 #define BM_ELCDIF_CUR_BUF_ADDR      (0xffffffff)  //!< Bit mask for ELCDIF_CUR_BUF_ADDR.
 
 //! @brief Get value of ELCDIF_CUR_BUF_ADDR from a register value.
-#define BG_ELCDIF_CUR_BUF_ADDR(r)   (((r) & BM_ELCDIF_CUR_BUF_ADDR) >> BP_ELCDIF_CUR_BUF_ADDR)
+#define BG_ELCDIF_CUR_BUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CUR_BUF_ADDR) >> BP_ELCDIF_CUR_BUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CUR_BUF_ADDR.
-#define BF_ELCDIF_CUR_BUF_ADDR(v)   ((((reg32_t) v) << BP_ELCDIF_CUR_BUF_ADDR) & BM_ELCDIF_CUR_BUF_ADDR)
-#else
-//! @brief Format value for bitfield ELCDIF_CUR_BUF_ADDR.
-#define BF_ELCDIF_CUR_BUF_ADDR(v)   (((v) << BP_ELCDIF_CUR_BUF_ADDR) & BM_ELCDIF_CUR_BUF_ADDR)
-#endif
+#define BF_ELCDIF_CUR_BUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CUR_BUF_ADDR) & BM_ELCDIF_CUR_BUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_ELCDIF_CUR_BUF_ADDR(v)   (HW_ELCDIF_CUR_BUF_WR((HW_ELCDIF_CUR_BUF_RD() & ~BM_ELCDIF_CUR_BUF_ADDR) | BF_ELCDIF_CUR_BUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_NEXT_BUF - LCD Interface Next Buffer Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1976,20 +1736,19 @@ typedef union _hw_elcdif_next_buf
 #define BM_ELCDIF_NEXT_BUF_ADDR      (0xffffffff)  //!< Bit mask for ELCDIF_NEXT_BUF_ADDR.
 
 //! @brief Get value of ELCDIF_NEXT_BUF_ADDR from a register value.
-#define BG_ELCDIF_NEXT_BUF_ADDR(r)   (((r) & BM_ELCDIF_NEXT_BUF_ADDR) >> BP_ELCDIF_NEXT_BUF_ADDR)
+#define BG_ELCDIF_NEXT_BUF_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_NEXT_BUF_ADDR) >> BP_ELCDIF_NEXT_BUF_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_NEXT_BUF_ADDR.
-#define BF_ELCDIF_NEXT_BUF_ADDR(v)   ((((reg32_t) v) << BP_ELCDIF_NEXT_BUF_ADDR) & BM_ELCDIF_NEXT_BUF_ADDR)
-#else
-//! @brief Format value for bitfield ELCDIF_NEXT_BUF_ADDR.
-#define BF_ELCDIF_NEXT_BUF_ADDR(v)   (((v) << BP_ELCDIF_NEXT_BUF_ADDR) & BM_ELCDIF_NEXT_BUF_ADDR)
-#endif
+#define BF_ELCDIF_NEXT_BUF_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_NEXT_BUF_ADDR) & BM_ELCDIF_NEXT_BUF_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_ELCDIF_NEXT_BUF_ADDR(v)   (HW_ELCDIF_NEXT_BUF_WR((HW_ELCDIF_NEXT_BUF_RD() & ~BM_ELCDIF_NEXT_BUF_ADDR) | BF_ELCDIF_NEXT_BUF_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_TIMING - LCD Interface Timing Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2047,15 +1806,10 @@ typedef union _hw_elcdif_timing
 #define BM_ELCDIF_TIMING_DATA_SETUP      (0x000000ff)  //!< Bit mask for ELCDIF_TIMING_DATA_SETUP.
 
 //! @brief Get value of ELCDIF_TIMING_DATA_SETUP from a register value.
-#define BG_ELCDIF_TIMING_DATA_SETUP(r)   (((r) & BM_ELCDIF_TIMING_DATA_SETUP) >> BP_ELCDIF_TIMING_DATA_SETUP)
+#define BG_ELCDIF_TIMING_DATA_SETUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TIMING_DATA_SETUP) >> BP_ELCDIF_TIMING_DATA_SETUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TIMING_DATA_SETUP.
-#define BF_ELCDIF_TIMING_DATA_SETUP(v)   ((((reg32_t) v) << BP_ELCDIF_TIMING_DATA_SETUP) & BM_ELCDIF_TIMING_DATA_SETUP)
-#else
-//! @brief Format value for bitfield ELCDIF_TIMING_DATA_SETUP.
-#define BF_ELCDIF_TIMING_DATA_SETUP(v)   (((v) << BP_ELCDIF_TIMING_DATA_SETUP) & BM_ELCDIF_TIMING_DATA_SETUP)
-#endif
+#define BF_ELCDIF_TIMING_DATA_SETUP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TIMING_DATA_SETUP) & BM_ELCDIF_TIMING_DATA_SETUP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_SETUP field to a new value.
@@ -2072,15 +1826,10 @@ typedef union _hw_elcdif_timing
 #define BM_ELCDIF_TIMING_DATA_HOLD      (0x0000ff00)  //!< Bit mask for ELCDIF_TIMING_DATA_HOLD.
 
 //! @brief Get value of ELCDIF_TIMING_DATA_HOLD from a register value.
-#define BG_ELCDIF_TIMING_DATA_HOLD(r)   (((r) & BM_ELCDIF_TIMING_DATA_HOLD) >> BP_ELCDIF_TIMING_DATA_HOLD)
+#define BG_ELCDIF_TIMING_DATA_HOLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TIMING_DATA_HOLD) >> BP_ELCDIF_TIMING_DATA_HOLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TIMING_DATA_HOLD.
-#define BF_ELCDIF_TIMING_DATA_HOLD(v)   ((((reg32_t) v) << BP_ELCDIF_TIMING_DATA_HOLD) & BM_ELCDIF_TIMING_DATA_HOLD)
-#else
-//! @brief Format value for bitfield ELCDIF_TIMING_DATA_HOLD.
-#define BF_ELCDIF_TIMING_DATA_HOLD(v)   (((v) << BP_ELCDIF_TIMING_DATA_HOLD) & BM_ELCDIF_TIMING_DATA_HOLD)
-#endif
+#define BF_ELCDIF_TIMING_DATA_HOLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TIMING_DATA_HOLD) & BM_ELCDIF_TIMING_DATA_HOLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_HOLD field to a new value.
@@ -2096,15 +1845,10 @@ typedef union _hw_elcdif_timing
 #define BM_ELCDIF_TIMING_CMD_SETUP      (0x00ff0000)  //!< Bit mask for ELCDIF_TIMING_CMD_SETUP.
 
 //! @brief Get value of ELCDIF_TIMING_CMD_SETUP from a register value.
-#define BG_ELCDIF_TIMING_CMD_SETUP(r)   (((r) & BM_ELCDIF_TIMING_CMD_SETUP) >> BP_ELCDIF_TIMING_CMD_SETUP)
+#define BG_ELCDIF_TIMING_CMD_SETUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TIMING_CMD_SETUP) >> BP_ELCDIF_TIMING_CMD_SETUP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TIMING_CMD_SETUP.
-#define BF_ELCDIF_TIMING_CMD_SETUP(v)   ((((reg32_t) v) << BP_ELCDIF_TIMING_CMD_SETUP) & BM_ELCDIF_TIMING_CMD_SETUP)
-#else
-//! @brief Format value for bitfield ELCDIF_TIMING_CMD_SETUP.
-#define BF_ELCDIF_TIMING_CMD_SETUP(v)   (((v) << BP_ELCDIF_TIMING_CMD_SETUP) & BM_ELCDIF_TIMING_CMD_SETUP)
-#endif
+#define BF_ELCDIF_TIMING_CMD_SETUP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TIMING_CMD_SETUP) & BM_ELCDIF_TIMING_CMD_SETUP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_SETUP field to a new value.
@@ -2120,20 +1864,19 @@ typedef union _hw_elcdif_timing
 #define BM_ELCDIF_TIMING_CMD_HOLD      (0xff000000)  //!< Bit mask for ELCDIF_TIMING_CMD_HOLD.
 
 //! @brief Get value of ELCDIF_TIMING_CMD_HOLD from a register value.
-#define BG_ELCDIF_TIMING_CMD_HOLD(r)   (((r) & BM_ELCDIF_TIMING_CMD_HOLD) >> BP_ELCDIF_TIMING_CMD_HOLD)
+#define BG_ELCDIF_TIMING_CMD_HOLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_TIMING_CMD_HOLD) >> BP_ELCDIF_TIMING_CMD_HOLD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_TIMING_CMD_HOLD.
-#define BF_ELCDIF_TIMING_CMD_HOLD(v)   ((((reg32_t) v) << BP_ELCDIF_TIMING_CMD_HOLD) & BM_ELCDIF_TIMING_CMD_HOLD)
-#else
-//! @brief Format value for bitfield ELCDIF_TIMING_CMD_HOLD.
-#define BF_ELCDIF_TIMING_CMD_HOLD(v)   (((v) << BP_ELCDIF_TIMING_CMD_HOLD) & BM_ELCDIF_TIMING_CMD_HOLD)
-#endif
+#define BF_ELCDIF_TIMING_CMD_HOLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_TIMING_CMD_HOLD) & BM_ELCDIF_TIMING_CMD_HOLD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_HOLD field to a new value.
 #define BW_ELCDIF_TIMING_CMD_HOLD(v)   (HW_ELCDIF_TIMING_WR((HW_ELCDIF_TIMING_RD() & ~BM_ELCDIF_TIMING_CMD_HOLD) | BF_ELCDIF_TIMING_CMD_HOLD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VDCTRL0 - eLCDIF VSYNC Mode and Dotclk Mode Control Register0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2201,15 +1944,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH      (0x0003ffff)  //!< Bit mask for ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH.
 
 //! @brief Get value of ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH from a register value.
-#define BG_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(r)   (((r) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH) >> BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH)
+#define BG_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH) >> BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(v)   (((v) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH)
-#endif
+#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_PULSE_WIDTH field to a new value.
@@ -2227,15 +1965,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_HALF_LINE_MODE      (0x00040000)  //!< Bit mask for ELCDIF_VDCTRL0_HALF_LINE_MODE.
 
 //! @brief Get value of ELCDIF_VDCTRL0_HALF_LINE_MODE from a register value.
-#define BG_ELCDIF_VDCTRL0_HALF_LINE_MODE(r)   (((r) & BM_ELCDIF_VDCTRL0_HALF_LINE_MODE) >> BP_ELCDIF_VDCTRL0_HALF_LINE_MODE)
+#define BG_ELCDIF_VDCTRL0_HALF_LINE_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_HALF_LINE_MODE) >> BP_ELCDIF_VDCTRL0_HALF_LINE_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_HALF_LINE_MODE.
-#define BF_ELCDIF_VDCTRL0_HALF_LINE_MODE(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_HALF_LINE_MODE) & BM_ELCDIF_VDCTRL0_HALF_LINE_MODE)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_HALF_LINE_MODE.
-#define BF_ELCDIF_VDCTRL0_HALF_LINE_MODE(v)   (((v) << BP_ELCDIF_VDCTRL0_HALF_LINE_MODE) & BM_ELCDIF_VDCTRL0_HALF_LINE_MODE)
-#endif
+#define BF_ELCDIF_VDCTRL0_HALF_LINE_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_HALF_LINE_MODE) & BM_ELCDIF_VDCTRL0_HALF_LINE_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HALF_LINE_MODE field to a new value.
@@ -2253,15 +1986,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_HALF_LINE      (0x00080000)  //!< Bit mask for ELCDIF_VDCTRL0_HALF_LINE.
 
 //! @brief Get value of ELCDIF_VDCTRL0_HALF_LINE from a register value.
-#define BG_ELCDIF_VDCTRL0_HALF_LINE(r)   (((r) & BM_ELCDIF_VDCTRL0_HALF_LINE) >> BP_ELCDIF_VDCTRL0_HALF_LINE)
+#define BG_ELCDIF_VDCTRL0_HALF_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_HALF_LINE) >> BP_ELCDIF_VDCTRL0_HALF_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_HALF_LINE.
-#define BF_ELCDIF_VDCTRL0_HALF_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_HALF_LINE) & BM_ELCDIF_VDCTRL0_HALF_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_HALF_LINE.
-#define BF_ELCDIF_VDCTRL0_HALF_LINE(v)   (((v) << BP_ELCDIF_VDCTRL0_HALF_LINE) & BM_ELCDIF_VDCTRL0_HALF_LINE)
-#endif
+#define BF_ELCDIF_VDCTRL0_HALF_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_HALF_LINE) & BM_ELCDIF_VDCTRL0_HALF_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HALF_LINE field to a new value.
@@ -2278,15 +2006,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT      (0x00100000)  //!< Bit mask for ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT.
 
 //! @brief Get value of ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT from a register value.
-#define BG_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(r)   (((r) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT) >> BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT)
+#define BG_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT) >> BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(v)   (((v) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT)
-#endif
+#define BF_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_PULSE_WIDTH_UNIT field to a new value.
@@ -2304,15 +2027,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT      (0x00200000)  //!< Bit mask for ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT.
 
 //! @brief Get value of ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT from a register value.
-#define BG_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(r)   (((r) & BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT) >> BP_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT)
+#define BG_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT) >> BP_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT.
-#define BF_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(v)   (((v) << BP_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT)
-#endif
+#define BF_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT) & BM_ELCDIF_VDCTRL0_VSYNC_PERIOD_UNIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_PERIOD_UNIT field to a new value.
@@ -2328,15 +2046,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_ENABLE_POL      (0x01000000)  //!< Bit mask for ELCDIF_VDCTRL0_ENABLE_POL.
 
 //! @brief Get value of ELCDIF_VDCTRL0_ENABLE_POL from a register value.
-#define BG_ELCDIF_VDCTRL0_ENABLE_POL(r)   (((r) & BM_ELCDIF_VDCTRL0_ENABLE_POL) >> BP_ELCDIF_VDCTRL0_ENABLE_POL)
+#define BG_ELCDIF_VDCTRL0_ENABLE_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_ENABLE_POL) >> BP_ELCDIF_VDCTRL0_ENABLE_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_ENABLE_POL.
-#define BF_ELCDIF_VDCTRL0_ENABLE_POL(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_ENABLE_POL) & BM_ELCDIF_VDCTRL0_ENABLE_POL)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_ENABLE_POL.
-#define BF_ELCDIF_VDCTRL0_ENABLE_POL(v)   (((v) << BP_ELCDIF_VDCTRL0_ENABLE_POL) & BM_ELCDIF_VDCTRL0_ENABLE_POL)
-#endif
+#define BF_ELCDIF_VDCTRL0_ENABLE_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_ENABLE_POL) & BM_ELCDIF_VDCTRL0_ENABLE_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_POL field to a new value.
@@ -2353,15 +2066,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_DOTCLK_POL      (0x02000000)  //!< Bit mask for ELCDIF_VDCTRL0_DOTCLK_POL.
 
 //! @brief Get value of ELCDIF_VDCTRL0_DOTCLK_POL from a register value.
-#define BG_ELCDIF_VDCTRL0_DOTCLK_POL(r)   (((r) & BM_ELCDIF_VDCTRL0_DOTCLK_POL) >> BP_ELCDIF_VDCTRL0_DOTCLK_POL)
+#define BG_ELCDIF_VDCTRL0_DOTCLK_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_DOTCLK_POL) >> BP_ELCDIF_VDCTRL0_DOTCLK_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_DOTCLK_POL.
-#define BF_ELCDIF_VDCTRL0_DOTCLK_POL(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_DOTCLK_POL) & BM_ELCDIF_VDCTRL0_DOTCLK_POL)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_DOTCLK_POL.
-#define BF_ELCDIF_VDCTRL0_DOTCLK_POL(v)   (((v) << BP_ELCDIF_VDCTRL0_DOTCLK_POL) & BM_ELCDIF_VDCTRL0_DOTCLK_POL)
-#endif
+#define BF_ELCDIF_VDCTRL0_DOTCLK_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_DOTCLK_POL) & BM_ELCDIF_VDCTRL0_DOTCLK_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOTCLK_POL field to a new value.
@@ -2378,15 +2086,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_HSYNC_POL      (0x04000000)  //!< Bit mask for ELCDIF_VDCTRL0_HSYNC_POL.
 
 //! @brief Get value of ELCDIF_VDCTRL0_HSYNC_POL from a register value.
-#define BG_ELCDIF_VDCTRL0_HSYNC_POL(r)   (((r) & BM_ELCDIF_VDCTRL0_HSYNC_POL) >> BP_ELCDIF_VDCTRL0_HSYNC_POL)
+#define BG_ELCDIF_VDCTRL0_HSYNC_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_HSYNC_POL) >> BP_ELCDIF_VDCTRL0_HSYNC_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_HSYNC_POL.
-#define BF_ELCDIF_VDCTRL0_HSYNC_POL(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_HSYNC_POL) & BM_ELCDIF_VDCTRL0_HSYNC_POL)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_HSYNC_POL.
-#define BF_ELCDIF_VDCTRL0_HSYNC_POL(v)   (((v) << BP_ELCDIF_VDCTRL0_HSYNC_POL) & BM_ELCDIF_VDCTRL0_HSYNC_POL)
-#endif
+#define BF_ELCDIF_VDCTRL0_HSYNC_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_HSYNC_POL) & BM_ELCDIF_VDCTRL0_HSYNC_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSYNC_POL field to a new value.
@@ -2403,15 +2106,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_VSYNC_POL      (0x08000000)  //!< Bit mask for ELCDIF_VDCTRL0_VSYNC_POL.
 
 //! @brief Get value of ELCDIF_VDCTRL0_VSYNC_POL from a register value.
-#define BG_ELCDIF_VDCTRL0_VSYNC_POL(r)   (((r) & BM_ELCDIF_VDCTRL0_VSYNC_POL) >> BP_ELCDIF_VDCTRL0_VSYNC_POL)
+#define BG_ELCDIF_VDCTRL0_VSYNC_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_VSYNC_POL) >> BP_ELCDIF_VDCTRL0_VSYNC_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_POL.
-#define BF_ELCDIF_VDCTRL0_VSYNC_POL(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_VSYNC_POL) & BM_ELCDIF_VDCTRL0_VSYNC_POL)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_POL.
-#define BF_ELCDIF_VDCTRL0_VSYNC_POL(v)   (((v) << BP_ELCDIF_VDCTRL0_VSYNC_POL) & BM_ELCDIF_VDCTRL0_VSYNC_POL)
-#endif
+#define BF_ELCDIF_VDCTRL0_VSYNC_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_VSYNC_POL) & BM_ELCDIF_VDCTRL0_VSYNC_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_POL field to a new value.
@@ -2429,15 +2127,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_ENABLE_PRESENT      (0x10000000)  //!< Bit mask for ELCDIF_VDCTRL0_ENABLE_PRESENT.
 
 //! @brief Get value of ELCDIF_VDCTRL0_ENABLE_PRESENT from a register value.
-#define BG_ELCDIF_VDCTRL0_ENABLE_PRESENT(r)   (((r) & BM_ELCDIF_VDCTRL0_ENABLE_PRESENT) >> BP_ELCDIF_VDCTRL0_ENABLE_PRESENT)
+#define BG_ELCDIF_VDCTRL0_ENABLE_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_ENABLE_PRESENT) >> BP_ELCDIF_VDCTRL0_ENABLE_PRESENT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_ENABLE_PRESENT.
-#define BF_ELCDIF_VDCTRL0_ENABLE_PRESENT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_ENABLE_PRESENT) & BM_ELCDIF_VDCTRL0_ENABLE_PRESENT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_ENABLE_PRESENT.
-#define BF_ELCDIF_VDCTRL0_ENABLE_PRESENT(v)   (((v) << BP_ELCDIF_VDCTRL0_ENABLE_PRESENT) & BM_ELCDIF_VDCTRL0_ENABLE_PRESENT)
-#endif
+#define BF_ELCDIF_VDCTRL0_ENABLE_PRESENT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_ENABLE_PRESENT) & BM_ELCDIF_VDCTRL0_ENABLE_PRESENT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE_PRESENT field to a new value.
@@ -2458,15 +2151,10 @@ typedef union _hw_elcdif_vdctrl0
 #define BM_ELCDIF_VDCTRL0_VSYNC_OEB      (0x20000000)  //!< Bit mask for ELCDIF_VDCTRL0_VSYNC_OEB.
 
 //! @brief Get value of ELCDIF_VDCTRL0_VSYNC_OEB from a register value.
-#define BG_ELCDIF_VDCTRL0_VSYNC_OEB(r)   (((r) & BM_ELCDIF_VDCTRL0_VSYNC_OEB) >> BP_ELCDIF_VDCTRL0_VSYNC_OEB)
+#define BG_ELCDIF_VDCTRL0_VSYNC_OEB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL0_VSYNC_OEB) >> BP_ELCDIF_VDCTRL0_VSYNC_OEB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_OEB.
-#define BF_ELCDIF_VDCTRL0_VSYNC_OEB(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL0_VSYNC_OEB) & BM_ELCDIF_VDCTRL0_VSYNC_OEB)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL0_VSYNC_OEB.
-#define BF_ELCDIF_VDCTRL0_VSYNC_OEB(v)   (((v) << BP_ELCDIF_VDCTRL0_VSYNC_OEB) & BM_ELCDIF_VDCTRL0_VSYNC_OEB)
-#endif
+#define BF_ELCDIF_VDCTRL0_VSYNC_OEB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL0_VSYNC_OEB) & BM_ELCDIF_VDCTRL0_VSYNC_OEB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_OEB field to a new value.
@@ -2475,6 +2163,10 @@ typedef union _hw_elcdif_vdctrl0
 
 #define BV_ELCDIF_VDCTRL0_VSYNC_OEB__VSYNC_OUTPUT (0x0) //!< The VSYNC pin is in the output mode and the VSYNC signal has to be generated by the eLCDIF block.
 #define BV_ELCDIF_VDCTRL0_VSYNC_OEB__VSYNC_INPUT (0x1) //!< The VSYNC pin is in the input mode and the LCD controller sends the VSYNC signal to the block.
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VDCTRL1 - eLCDIF VSYNC Mode and Dotclk Mode Control Register1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2524,20 +2216,19 @@ typedef union _hw_elcdif_vdctrl1
 #define BM_ELCDIF_VDCTRL1_VSYNC_PERIOD      (0xffffffff)  //!< Bit mask for ELCDIF_VDCTRL1_VSYNC_PERIOD.
 
 //! @brief Get value of ELCDIF_VDCTRL1_VSYNC_PERIOD from a register value.
-#define BG_ELCDIF_VDCTRL1_VSYNC_PERIOD(r)   (((r) & BM_ELCDIF_VDCTRL1_VSYNC_PERIOD) >> BP_ELCDIF_VDCTRL1_VSYNC_PERIOD)
+#define BG_ELCDIF_VDCTRL1_VSYNC_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL1_VSYNC_PERIOD) >> BP_ELCDIF_VDCTRL1_VSYNC_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL1_VSYNC_PERIOD.
-#define BF_ELCDIF_VDCTRL1_VSYNC_PERIOD(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL1_VSYNC_PERIOD) & BM_ELCDIF_VDCTRL1_VSYNC_PERIOD)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL1_VSYNC_PERIOD.
-#define BF_ELCDIF_VDCTRL1_VSYNC_PERIOD(v)   (((v) << BP_ELCDIF_VDCTRL1_VSYNC_PERIOD) & BM_ELCDIF_VDCTRL1_VSYNC_PERIOD)
-#endif
+#define BF_ELCDIF_VDCTRL1_VSYNC_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL1_VSYNC_PERIOD) & BM_ELCDIF_VDCTRL1_VSYNC_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_PERIOD field to a new value.
 #define BW_ELCDIF_VDCTRL1_VSYNC_PERIOD(v)   (HW_ELCDIF_VDCTRL1_WR((HW_ELCDIF_VDCTRL1_RD() & ~BM_ELCDIF_VDCTRL1_VSYNC_PERIOD) | BF_ELCDIF_VDCTRL1_VSYNC_PERIOD(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VDCTRL2 - LCDIF VSYNC Mode and Dotclk Mode Control Register2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2587,15 +2278,10 @@ typedef union _hw_elcdif_vdctrl2
 #define BM_ELCDIF_VDCTRL2_HSYNC_PERIOD      (0x0003ffff)  //!< Bit mask for ELCDIF_VDCTRL2_HSYNC_PERIOD.
 
 //! @brief Get value of ELCDIF_VDCTRL2_HSYNC_PERIOD from a register value.
-#define BG_ELCDIF_VDCTRL2_HSYNC_PERIOD(r)   (((r) & BM_ELCDIF_VDCTRL2_HSYNC_PERIOD) >> BP_ELCDIF_VDCTRL2_HSYNC_PERIOD)
+#define BG_ELCDIF_VDCTRL2_HSYNC_PERIOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL2_HSYNC_PERIOD) >> BP_ELCDIF_VDCTRL2_HSYNC_PERIOD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL2_HSYNC_PERIOD.
-#define BF_ELCDIF_VDCTRL2_HSYNC_PERIOD(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL2_HSYNC_PERIOD) & BM_ELCDIF_VDCTRL2_HSYNC_PERIOD)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL2_HSYNC_PERIOD.
-#define BF_ELCDIF_VDCTRL2_HSYNC_PERIOD(v)   (((v) << BP_ELCDIF_VDCTRL2_HSYNC_PERIOD) & BM_ELCDIF_VDCTRL2_HSYNC_PERIOD)
-#endif
+#define BF_ELCDIF_VDCTRL2_HSYNC_PERIOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL2_HSYNC_PERIOD) & BM_ELCDIF_VDCTRL2_HSYNC_PERIOD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSYNC_PERIOD field to a new value.
@@ -2611,20 +2297,19 @@ typedef union _hw_elcdif_vdctrl2
 #define BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH      (0xfffc0000)  //!< Bit mask for ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH.
 
 //! @brief Get value of ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH from a register value.
-#define BG_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(r)   (((r) & BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) >> BP_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH)
+#define BG_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) >> BP_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH.
-#define BF_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH.
-#define BF_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)   (((v) << BP_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH)
-#endif
+#define BF_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) & BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSYNC_PULSE_WIDTH field to a new value.
 #define BW_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)   (HW_ELCDIF_VDCTRL2_WR((HW_ELCDIF_VDCTRL2_RD() & ~BM_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) | BF_ELCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VDCTRL3 - eLCDIF VSYNC Mode and Dotclk Mode Control Register3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2680,15 +2365,10 @@ typedef union _hw_elcdif_vdctrl3
 #define BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT      (0x0000ffff)  //!< Bit mask for ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT.
 
 //! @brief Get value of ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT from a register value.
-#define BG_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT(r)   (((r) & BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT) >> BP_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT)
+#define BG_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT) >> BP_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT.
-#define BF_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT.
-#define BF_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT(v)   (((v) << BP_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT)
-#endif
+#define BF_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_VERTICAL_WAIT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VERTICAL_WAIT_CNT field to a new value.
@@ -2706,15 +2386,10 @@ typedef union _hw_elcdif_vdctrl3
 #define BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT      (0x0fff0000)  //!< Bit mask for ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT.
 
 //! @brief Get value of ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT from a register value.
-#define BG_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(r)   (((r) & BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) >> BP_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT)
+#define BG_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) >> BP_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT.
-#define BF_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT.
-#define BF_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(v)   (((v) << BP_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT)
-#endif
+#define BF_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) & BM_ELCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HORIZONTAL_WAIT_CNT field to a new value.
@@ -2730,15 +2405,10 @@ typedef union _hw_elcdif_vdctrl3
 #define BM_ELCDIF_VDCTRL3_VSYNC_ONLY      (0x10000000)  //!< Bit mask for ELCDIF_VDCTRL3_VSYNC_ONLY.
 
 //! @brief Get value of ELCDIF_VDCTRL3_VSYNC_ONLY from a register value.
-#define BG_ELCDIF_VDCTRL3_VSYNC_ONLY(r)   (((r) & BM_ELCDIF_VDCTRL3_VSYNC_ONLY) >> BP_ELCDIF_VDCTRL3_VSYNC_ONLY)
+#define BG_ELCDIF_VDCTRL3_VSYNC_ONLY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL3_VSYNC_ONLY) >> BP_ELCDIF_VDCTRL3_VSYNC_ONLY)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL3_VSYNC_ONLY.
-#define BF_ELCDIF_VDCTRL3_VSYNC_ONLY(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL3_VSYNC_ONLY) & BM_ELCDIF_VDCTRL3_VSYNC_ONLY)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL3_VSYNC_ONLY.
-#define BF_ELCDIF_VDCTRL3_VSYNC_ONLY(v)   (((v) << BP_ELCDIF_VDCTRL3_VSYNC_ONLY) & BM_ELCDIF_VDCTRL3_VSYNC_ONLY)
-#endif
+#define BF_ELCDIF_VDCTRL3_VSYNC_ONLY(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL3_VSYNC_ONLY) & BM_ELCDIF_VDCTRL3_VSYNC_ONLY)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSYNC_ONLY field to a new value.
@@ -2756,20 +2426,19 @@ typedef union _hw_elcdif_vdctrl3
 #define BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS      (0x20000000)  //!< Bit mask for ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS.
 
 //! @brief Get value of ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS from a register value.
-#define BG_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(r)   (((r) & BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) >> BP_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS)
+#define BG_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) >> BP_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS.
-#define BF_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) & BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS.
-#define BF_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)   (((v) << BP_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) & BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS)
-#endif
+#define BF_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) & BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MUX_SYNC_SIGNALS field to a new value.
 #define BW_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)   (HW_ELCDIF_VDCTRL3_WR((HW_ELCDIF_VDCTRL3_RD() & ~BM_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS) | BF_ELCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VDCTRL4 - eLCDIF VSYNC Mode and Dotclk Mode Control Register4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2823,15 +2492,10 @@ typedef union _hw_elcdif_vdctrl4
 #define BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT      (0x0003ffff)  //!< Bit mask for ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT.
 
 //! @brief Get value of ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT from a register value.
-#define BG_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(r)   (((r) & BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) >> BP_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT)
+#define BG_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) >> BP_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT.
-#define BF_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) & BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT.
-#define BF_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(v)   (((v) << BP_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) & BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT)
-#endif
+#define BF_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) & BM_ELCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOTCLK_H_VALID_DATA_CNT field to a new value.
@@ -2853,15 +2517,10 @@ typedef union _hw_elcdif_vdctrl4
 #define BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON      (0x00040000)  //!< Bit mask for ELCDIF_VDCTRL4_SYNC_SIGNALS_ON.
 
 //! @brief Get value of ELCDIF_VDCTRL4_SYNC_SIGNALS_ON from a register value.
-#define BG_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON(r)   (((r) & BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON) >> BP_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON)
+#define BG_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON) >> BP_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL4_SYNC_SIGNALS_ON.
-#define BF_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON) & BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL4_SYNC_SIGNALS_ON.
-#define BF_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON(v)   (((v) << BP_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON) & BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON)
-#endif
+#define BF_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON) & BM_ELCDIF_VDCTRL4_SYNC_SIGNALS_ON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SYNC_SIGNALS_ON field to a new value.
@@ -2878,20 +2537,19 @@ typedef union _hw_elcdif_vdctrl4
 #define BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL      (0xe0000000)  //!< Bit mask for ELCDIF_VDCTRL4_DOTCLK_DLY_SEL.
 
 //! @brief Get value of ELCDIF_VDCTRL4_DOTCLK_DLY_SEL from a register value.
-#define BG_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(r)   (((r) & BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) >> BP_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL)
+#define BG_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) >> BP_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_VDCTRL4_DOTCLK_DLY_SEL.
-#define BF_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)   ((((reg32_t) v) << BP_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) & BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL)
-#else
-//! @brief Format value for bitfield ELCDIF_VDCTRL4_DOTCLK_DLY_SEL.
-#define BF_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)   (((v) << BP_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) & BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL)
-#endif
+#define BF_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) & BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DOTCLK_DLY_SEL field to a new value.
 #define BW_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)   (HW_ELCDIF_VDCTRL4_WR((HW_ELCDIF_VDCTRL4_RD() & ~BM_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL) | BF_ELCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DVICTRL0 - Digital Video Interface Control0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2947,15 +2605,10 @@ typedef union _hw_elcdif_dvictrl0
 #define BM_ELCDIF_DVICTRL0_H_BLANKING_CNT      (0x00000fff)  //!< Bit mask for ELCDIF_DVICTRL0_H_BLANKING_CNT.
 
 //! @brief Get value of ELCDIF_DVICTRL0_H_BLANKING_CNT from a register value.
-#define BG_ELCDIF_DVICTRL0_H_BLANKING_CNT(r)   (((r) & BM_ELCDIF_DVICTRL0_H_BLANKING_CNT) >> BP_ELCDIF_DVICTRL0_H_BLANKING_CNT)
+#define BG_ELCDIF_DVICTRL0_H_BLANKING_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL0_H_BLANKING_CNT) >> BP_ELCDIF_DVICTRL0_H_BLANKING_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL0_H_BLANKING_CNT.
-#define BF_ELCDIF_DVICTRL0_H_BLANKING_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL0_H_BLANKING_CNT) & BM_ELCDIF_DVICTRL0_H_BLANKING_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL0_H_BLANKING_CNT.
-#define BF_ELCDIF_DVICTRL0_H_BLANKING_CNT(v)   (((v) << BP_ELCDIF_DVICTRL0_H_BLANKING_CNT) & BM_ELCDIF_DVICTRL0_H_BLANKING_CNT)
-#endif
+#define BF_ELCDIF_DVICTRL0_H_BLANKING_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL0_H_BLANKING_CNT) & BM_ELCDIF_DVICTRL0_H_BLANKING_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the H_BLANKING_CNT field to a new value.
@@ -2972,20 +2625,19 @@ typedef union _hw_elcdif_dvictrl0
 #define BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT      (0x0fff0000)  //!< Bit mask for ELCDIF_DVICTRL0_H_ACTIVE_CNT.
 
 //! @brief Get value of ELCDIF_DVICTRL0_H_ACTIVE_CNT from a register value.
-#define BG_ELCDIF_DVICTRL0_H_ACTIVE_CNT(r)   (((r) & BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT) >> BP_ELCDIF_DVICTRL0_H_ACTIVE_CNT)
+#define BG_ELCDIF_DVICTRL0_H_ACTIVE_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT) >> BP_ELCDIF_DVICTRL0_H_ACTIVE_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL0_H_ACTIVE_CNT.
-#define BF_ELCDIF_DVICTRL0_H_ACTIVE_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL0_H_ACTIVE_CNT) & BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL0_H_ACTIVE_CNT.
-#define BF_ELCDIF_DVICTRL0_H_ACTIVE_CNT(v)   (((v) << BP_ELCDIF_DVICTRL0_H_ACTIVE_CNT) & BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT)
-#endif
+#define BF_ELCDIF_DVICTRL0_H_ACTIVE_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL0_H_ACTIVE_CNT) & BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the H_ACTIVE_CNT field to a new value.
 #define BW_ELCDIF_DVICTRL0_H_ACTIVE_CNT(v)   (HW_ELCDIF_DVICTRL0_WR((HW_ELCDIF_DVICTRL0_RD() & ~BM_ELCDIF_DVICTRL0_H_ACTIVE_CNT) | BF_ELCDIF_DVICTRL0_H_ACTIVE_CNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DVICTRL1 - Digital Video Interface Control1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3041,15 +2693,10 @@ typedef union _hw_elcdif_dvictrl1
 #define BM_ELCDIF_DVICTRL1_F2_START_LINE      (0x000003ff)  //!< Bit mask for ELCDIF_DVICTRL1_F2_START_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL1_F2_START_LINE from a register value.
-#define BG_ELCDIF_DVICTRL1_F2_START_LINE(r)   (((r) & BM_ELCDIF_DVICTRL1_F2_START_LINE) >> BP_ELCDIF_DVICTRL1_F2_START_LINE)
+#define BG_ELCDIF_DVICTRL1_F2_START_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL1_F2_START_LINE) >> BP_ELCDIF_DVICTRL1_F2_START_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL1_F2_START_LINE.
-#define BF_ELCDIF_DVICTRL1_F2_START_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL1_F2_START_LINE) & BM_ELCDIF_DVICTRL1_F2_START_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL1_F2_START_LINE.
-#define BF_ELCDIF_DVICTRL1_F2_START_LINE(v)   (((v) << BP_ELCDIF_DVICTRL1_F2_START_LINE) & BM_ELCDIF_DVICTRL1_F2_START_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL1_F2_START_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL1_F2_START_LINE) & BM_ELCDIF_DVICTRL1_F2_START_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F2_START_LINE field to a new value.
@@ -3065,15 +2712,10 @@ typedef union _hw_elcdif_dvictrl1
 #define BM_ELCDIF_DVICTRL1_F1_END_LINE      (0x000ffc00)  //!< Bit mask for ELCDIF_DVICTRL1_F1_END_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL1_F1_END_LINE from a register value.
-#define BG_ELCDIF_DVICTRL1_F1_END_LINE(r)   (((r) & BM_ELCDIF_DVICTRL1_F1_END_LINE) >> BP_ELCDIF_DVICTRL1_F1_END_LINE)
+#define BG_ELCDIF_DVICTRL1_F1_END_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL1_F1_END_LINE) >> BP_ELCDIF_DVICTRL1_F1_END_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL1_F1_END_LINE.
-#define BF_ELCDIF_DVICTRL1_F1_END_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL1_F1_END_LINE) & BM_ELCDIF_DVICTRL1_F1_END_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL1_F1_END_LINE.
-#define BF_ELCDIF_DVICTRL1_F1_END_LINE(v)   (((v) << BP_ELCDIF_DVICTRL1_F1_END_LINE) & BM_ELCDIF_DVICTRL1_F1_END_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL1_F1_END_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL1_F1_END_LINE) & BM_ELCDIF_DVICTRL1_F1_END_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F1_END_LINE field to a new value.
@@ -3089,20 +2731,19 @@ typedef union _hw_elcdif_dvictrl1
 #define BM_ELCDIF_DVICTRL1_F1_START_LINE      (0x3ff00000)  //!< Bit mask for ELCDIF_DVICTRL1_F1_START_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL1_F1_START_LINE from a register value.
-#define BG_ELCDIF_DVICTRL1_F1_START_LINE(r)   (((r) & BM_ELCDIF_DVICTRL1_F1_START_LINE) >> BP_ELCDIF_DVICTRL1_F1_START_LINE)
+#define BG_ELCDIF_DVICTRL1_F1_START_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL1_F1_START_LINE) >> BP_ELCDIF_DVICTRL1_F1_START_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL1_F1_START_LINE.
-#define BF_ELCDIF_DVICTRL1_F1_START_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL1_F1_START_LINE) & BM_ELCDIF_DVICTRL1_F1_START_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL1_F1_START_LINE.
-#define BF_ELCDIF_DVICTRL1_F1_START_LINE(v)   (((v) << BP_ELCDIF_DVICTRL1_F1_START_LINE) & BM_ELCDIF_DVICTRL1_F1_START_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL1_F1_START_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL1_F1_START_LINE) & BM_ELCDIF_DVICTRL1_F1_START_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F1_START_LINE field to a new value.
 #define BW_ELCDIF_DVICTRL1_F1_START_LINE(v)   (HW_ELCDIF_DVICTRL1_WR((HW_ELCDIF_DVICTRL1_RD() & ~BM_ELCDIF_DVICTRL1_F1_START_LINE) | BF_ELCDIF_DVICTRL1_F1_START_LINE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DVICTRL2 - Digital Video Interface Control2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3159,15 +2800,10 @@ typedef union _hw_elcdif_dvictrl2
 #define BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE      (0x000003ff)  //!< Bit mask for ELCDIF_DVICTRL2_V1_BLANK_END_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL2_V1_BLANK_END_LINE from a register value.
-#define BG_ELCDIF_DVICTRL2_V1_BLANK_END_LINE(r)   (((r) & BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE) >> BP_ELCDIF_DVICTRL2_V1_BLANK_END_LINE)
+#define BG_ELCDIF_DVICTRL2_V1_BLANK_END_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE) >> BP_ELCDIF_DVICTRL2_V1_BLANK_END_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL2_V1_BLANK_END_LINE.
-#define BF_ELCDIF_DVICTRL2_V1_BLANK_END_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL2_V1_BLANK_END_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL2_V1_BLANK_END_LINE.
-#define BF_ELCDIF_DVICTRL2_V1_BLANK_END_LINE(v)   (((v) << BP_ELCDIF_DVICTRL2_V1_BLANK_END_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL2_V1_BLANK_END_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL2_V1_BLANK_END_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_END_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V1_BLANK_END_LINE field to a new value.
@@ -3183,15 +2819,10 @@ typedef union _hw_elcdif_dvictrl2
 #define BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE      (0x000ffc00)  //!< Bit mask for ELCDIF_DVICTRL2_V1_BLANK_START_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL2_V1_BLANK_START_LINE from a register value.
-#define BG_ELCDIF_DVICTRL2_V1_BLANK_START_LINE(r)   (((r) & BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE) >> BP_ELCDIF_DVICTRL2_V1_BLANK_START_LINE)
+#define BG_ELCDIF_DVICTRL2_V1_BLANK_START_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE) >> BP_ELCDIF_DVICTRL2_V1_BLANK_START_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL2_V1_BLANK_START_LINE.
-#define BF_ELCDIF_DVICTRL2_V1_BLANK_START_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL2_V1_BLANK_START_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL2_V1_BLANK_START_LINE.
-#define BF_ELCDIF_DVICTRL2_V1_BLANK_START_LINE(v)   (((v) << BP_ELCDIF_DVICTRL2_V1_BLANK_START_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL2_V1_BLANK_START_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL2_V1_BLANK_START_LINE) & BM_ELCDIF_DVICTRL2_V1_BLANK_START_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V1_BLANK_START_LINE field to a new value.
@@ -3207,20 +2838,19 @@ typedef union _hw_elcdif_dvictrl2
 #define BM_ELCDIF_DVICTRL2_F2_END_LINE      (0x3ff00000)  //!< Bit mask for ELCDIF_DVICTRL2_F2_END_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL2_F2_END_LINE from a register value.
-#define BG_ELCDIF_DVICTRL2_F2_END_LINE(r)   (((r) & BM_ELCDIF_DVICTRL2_F2_END_LINE) >> BP_ELCDIF_DVICTRL2_F2_END_LINE)
+#define BG_ELCDIF_DVICTRL2_F2_END_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL2_F2_END_LINE) >> BP_ELCDIF_DVICTRL2_F2_END_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL2_F2_END_LINE.
-#define BF_ELCDIF_DVICTRL2_F2_END_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL2_F2_END_LINE) & BM_ELCDIF_DVICTRL2_F2_END_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL2_F2_END_LINE.
-#define BF_ELCDIF_DVICTRL2_F2_END_LINE(v)   (((v) << BP_ELCDIF_DVICTRL2_F2_END_LINE) & BM_ELCDIF_DVICTRL2_F2_END_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL2_F2_END_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL2_F2_END_LINE) & BM_ELCDIF_DVICTRL2_F2_END_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the F2_END_LINE field to a new value.
 #define BW_ELCDIF_DVICTRL2_F2_END_LINE(v)   (HW_ELCDIF_DVICTRL2_WR((HW_ELCDIF_DVICTRL2_RD() & ~BM_ELCDIF_DVICTRL2_F2_END_LINE) | BF_ELCDIF_DVICTRL2_F2_END_LINE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DVICTRL3 - Digital Video Interface Control3 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3276,15 +2906,10 @@ typedef union _hw_elcdif_dvictrl3
 #define BM_ELCDIF_DVICTRL3_V_LINES_CNT      (0x000003ff)  //!< Bit mask for ELCDIF_DVICTRL3_V_LINES_CNT.
 
 //! @brief Get value of ELCDIF_DVICTRL3_V_LINES_CNT from a register value.
-#define BG_ELCDIF_DVICTRL3_V_LINES_CNT(r)   (((r) & BM_ELCDIF_DVICTRL3_V_LINES_CNT) >> BP_ELCDIF_DVICTRL3_V_LINES_CNT)
+#define BG_ELCDIF_DVICTRL3_V_LINES_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL3_V_LINES_CNT) >> BP_ELCDIF_DVICTRL3_V_LINES_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL3_V_LINES_CNT.
-#define BF_ELCDIF_DVICTRL3_V_LINES_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL3_V_LINES_CNT) & BM_ELCDIF_DVICTRL3_V_LINES_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL3_V_LINES_CNT.
-#define BF_ELCDIF_DVICTRL3_V_LINES_CNT(v)   (((v) << BP_ELCDIF_DVICTRL3_V_LINES_CNT) & BM_ELCDIF_DVICTRL3_V_LINES_CNT)
-#endif
+#define BF_ELCDIF_DVICTRL3_V_LINES_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL3_V_LINES_CNT) & BM_ELCDIF_DVICTRL3_V_LINES_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V_LINES_CNT field to a new value.
@@ -3301,15 +2926,10 @@ typedef union _hw_elcdif_dvictrl3
 #define BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE      (0x000ffc00)  //!< Bit mask for ELCDIF_DVICTRL3_V2_BLANK_END_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL3_V2_BLANK_END_LINE from a register value.
-#define BG_ELCDIF_DVICTRL3_V2_BLANK_END_LINE(r)   (((r) & BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE) >> BP_ELCDIF_DVICTRL3_V2_BLANK_END_LINE)
+#define BG_ELCDIF_DVICTRL3_V2_BLANK_END_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE) >> BP_ELCDIF_DVICTRL3_V2_BLANK_END_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL3_V2_BLANK_END_LINE.
-#define BF_ELCDIF_DVICTRL3_V2_BLANK_END_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL3_V2_BLANK_END_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL3_V2_BLANK_END_LINE.
-#define BF_ELCDIF_DVICTRL3_V2_BLANK_END_LINE(v)   (((v) << BP_ELCDIF_DVICTRL3_V2_BLANK_END_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL3_V2_BLANK_END_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL3_V2_BLANK_END_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_END_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V2_BLANK_END_LINE field to a new value.
@@ -3325,20 +2945,19 @@ typedef union _hw_elcdif_dvictrl3
 #define BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE      (0x3ff00000)  //!< Bit mask for ELCDIF_DVICTRL3_V2_BLANK_START_LINE.
 
 //! @brief Get value of ELCDIF_DVICTRL3_V2_BLANK_START_LINE from a register value.
-#define BG_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(r)   (((r) & BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) >> BP_ELCDIF_DVICTRL3_V2_BLANK_START_LINE)
+#define BG_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) >> BP_ELCDIF_DVICTRL3_V2_BLANK_START_LINE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL3_V2_BLANK_START_LINE.
-#define BF_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL3_V2_BLANK_START_LINE.
-#define BF_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(v)   (((v) << BP_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE)
-#endif
+#define BF_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) & BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the V2_BLANK_START_LINE field to a new value.
 #define BW_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(v)   (HW_ELCDIF_DVICTRL3_WR((HW_ELCDIF_DVICTRL3_RD() & ~BM_ELCDIF_DVICTRL3_V2_BLANK_START_LINE) | BF_ELCDIF_DVICTRL3_V2_BLANK_START_LINE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DVICTRL4 - Digital Video Interface Control4 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3395,15 +3014,10 @@ typedef union _hw_elcdif_dvictrl4
 #define BM_ELCDIF_DVICTRL4_H_FILL_CNT      (0x000000ff)  //!< Bit mask for ELCDIF_DVICTRL4_H_FILL_CNT.
 
 //! @brief Get value of ELCDIF_DVICTRL4_H_FILL_CNT from a register value.
-#define BG_ELCDIF_DVICTRL4_H_FILL_CNT(r)   (((r) & BM_ELCDIF_DVICTRL4_H_FILL_CNT) >> BP_ELCDIF_DVICTRL4_H_FILL_CNT)
+#define BG_ELCDIF_DVICTRL4_H_FILL_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL4_H_FILL_CNT) >> BP_ELCDIF_DVICTRL4_H_FILL_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL4_H_FILL_CNT.
-#define BF_ELCDIF_DVICTRL4_H_FILL_CNT(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL4_H_FILL_CNT) & BM_ELCDIF_DVICTRL4_H_FILL_CNT)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL4_H_FILL_CNT.
-#define BF_ELCDIF_DVICTRL4_H_FILL_CNT(v)   (((v) << BP_ELCDIF_DVICTRL4_H_FILL_CNT) & BM_ELCDIF_DVICTRL4_H_FILL_CNT)
-#endif
+#define BF_ELCDIF_DVICTRL4_H_FILL_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL4_H_FILL_CNT) & BM_ELCDIF_DVICTRL4_H_FILL_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the H_FILL_CNT field to a new value.
@@ -3419,15 +3033,10 @@ typedef union _hw_elcdif_dvictrl4
 #define BM_ELCDIF_DVICTRL4_CR_FILL_VALUE      (0x0000ff00)  //!< Bit mask for ELCDIF_DVICTRL4_CR_FILL_VALUE.
 
 //! @brief Get value of ELCDIF_DVICTRL4_CR_FILL_VALUE from a register value.
-#define BG_ELCDIF_DVICTRL4_CR_FILL_VALUE(r)   (((r) & BM_ELCDIF_DVICTRL4_CR_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_CR_FILL_VALUE)
+#define BG_ELCDIF_DVICTRL4_CR_FILL_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL4_CR_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_CR_FILL_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL4_CR_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_CR_FILL_VALUE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL4_CR_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CR_FILL_VALUE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL4_CR_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_CR_FILL_VALUE(v)   (((v) << BP_ELCDIF_DVICTRL4_CR_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CR_FILL_VALUE)
-#endif
+#define BF_ELCDIF_DVICTRL4_CR_FILL_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL4_CR_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CR_FILL_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CR_FILL_VALUE field to a new value.
@@ -3443,15 +3052,10 @@ typedef union _hw_elcdif_dvictrl4
 #define BM_ELCDIF_DVICTRL4_CB_FILL_VALUE      (0x00ff0000)  //!< Bit mask for ELCDIF_DVICTRL4_CB_FILL_VALUE.
 
 //! @brief Get value of ELCDIF_DVICTRL4_CB_FILL_VALUE from a register value.
-#define BG_ELCDIF_DVICTRL4_CB_FILL_VALUE(r)   (((r) & BM_ELCDIF_DVICTRL4_CB_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_CB_FILL_VALUE)
+#define BG_ELCDIF_DVICTRL4_CB_FILL_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL4_CB_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_CB_FILL_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL4_CB_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_CB_FILL_VALUE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL4_CB_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CB_FILL_VALUE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL4_CB_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_CB_FILL_VALUE(v)   (((v) << BP_ELCDIF_DVICTRL4_CB_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CB_FILL_VALUE)
-#endif
+#define BF_ELCDIF_DVICTRL4_CB_FILL_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL4_CB_FILL_VALUE) & BM_ELCDIF_DVICTRL4_CB_FILL_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CB_FILL_VALUE field to a new value.
@@ -3467,20 +3071,19 @@ typedef union _hw_elcdif_dvictrl4
 #define BM_ELCDIF_DVICTRL4_Y_FILL_VALUE      (0xff000000)  //!< Bit mask for ELCDIF_DVICTRL4_Y_FILL_VALUE.
 
 //! @brief Get value of ELCDIF_DVICTRL4_Y_FILL_VALUE from a register value.
-#define BG_ELCDIF_DVICTRL4_Y_FILL_VALUE(r)   (((r) & BM_ELCDIF_DVICTRL4_Y_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_Y_FILL_VALUE)
+#define BG_ELCDIF_DVICTRL4_Y_FILL_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DVICTRL4_Y_FILL_VALUE) >> BP_ELCDIF_DVICTRL4_Y_FILL_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DVICTRL4_Y_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_Y_FILL_VALUE(v)   ((((reg32_t) v) << BP_ELCDIF_DVICTRL4_Y_FILL_VALUE) & BM_ELCDIF_DVICTRL4_Y_FILL_VALUE)
-#else
-//! @brief Format value for bitfield ELCDIF_DVICTRL4_Y_FILL_VALUE.
-#define BF_ELCDIF_DVICTRL4_Y_FILL_VALUE(v)   (((v) << BP_ELCDIF_DVICTRL4_Y_FILL_VALUE) & BM_ELCDIF_DVICTRL4_Y_FILL_VALUE)
-#endif
+#define BF_ELCDIF_DVICTRL4_Y_FILL_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DVICTRL4_Y_FILL_VALUE) & BM_ELCDIF_DVICTRL4_Y_FILL_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y_FILL_VALUE field to a new value.
 #define BW_ELCDIF_DVICTRL4_Y_FILL_VALUE(v)   (HW_ELCDIF_DVICTRL4_WR((HW_ELCDIF_DVICTRL4_RD() & ~BM_ELCDIF_DVICTRL4_Y_FILL_VALUE) | BF_ELCDIF_DVICTRL4_Y_FILL_VALUE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_COEFF0 - RGB to YCbCr 4:2:2 CSC Coefficient0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3547,15 +3150,10 @@ typedef union _hw_elcdif_csc_coeff0
 #define BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER      (0x00000003)  //!< Bit mask for ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER.
 
 //! @brief Get value of ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER from a register value.
-#define BG_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER(r)   (((r) & BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER) >> BP_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER)
+#define BG_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER) >> BP_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER.
-#define BF_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER) & BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER.
-#define BF_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER(v)   (((v) << BP_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER) & BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER)
-#endif
+#define BF_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER) & BM_ELCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CSC_SUBSAMPLE_FILTER field to a new value.
@@ -3576,20 +3174,19 @@ typedef union _hw_elcdif_csc_coeff0
 #define BM_ELCDIF_CSC_COEFF0_C0      (0x03ff0000)  //!< Bit mask for ELCDIF_CSC_COEFF0_C0.
 
 //! @brief Get value of ELCDIF_CSC_COEFF0_C0 from a register value.
-#define BG_ELCDIF_CSC_COEFF0_C0(r)   (((r) & BM_ELCDIF_CSC_COEFF0_C0) >> BP_ELCDIF_CSC_COEFF0_C0)
+#define BG_ELCDIF_CSC_COEFF0_C0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF0_C0) >> BP_ELCDIF_CSC_COEFF0_C0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF0_C0.
-#define BF_ELCDIF_CSC_COEFF0_C0(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF0_C0) & BM_ELCDIF_CSC_COEFF0_C0)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF0_C0.
-#define BF_ELCDIF_CSC_COEFF0_C0(v)   (((v) << BP_ELCDIF_CSC_COEFF0_C0) & BM_ELCDIF_CSC_COEFF0_C0)
-#endif
+#define BF_ELCDIF_CSC_COEFF0_C0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF0_C0) & BM_ELCDIF_CSC_COEFF0_C0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C0 field to a new value.
 #define BW_ELCDIF_CSC_COEFF0_C0(v)   (HW_ELCDIF_CSC_COEFF0_WR((HW_ELCDIF_CSC_COEFF0_RD() & ~BM_ELCDIF_CSC_COEFF0_C0) | BF_ELCDIF_CSC_COEFF0_C0(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_COEFF1 - RGB to YCbCr 4:2:2 CSC Coefficient1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3643,15 +3240,10 @@ typedef union _hw_elcdif_csc_coeff1
 #define BM_ELCDIF_CSC_COEFF1_C1      (0x000003ff)  //!< Bit mask for ELCDIF_CSC_COEFF1_C1.
 
 //! @brief Get value of ELCDIF_CSC_COEFF1_C1 from a register value.
-#define BG_ELCDIF_CSC_COEFF1_C1(r)   (((r) & BM_ELCDIF_CSC_COEFF1_C1) >> BP_ELCDIF_CSC_COEFF1_C1)
+#define BG_ELCDIF_CSC_COEFF1_C1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF1_C1) >> BP_ELCDIF_CSC_COEFF1_C1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF1_C1.
-#define BF_ELCDIF_CSC_COEFF1_C1(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF1_C1) & BM_ELCDIF_CSC_COEFF1_C1)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF1_C1.
-#define BF_ELCDIF_CSC_COEFF1_C1(v)   (((v) << BP_ELCDIF_CSC_COEFF1_C1) & BM_ELCDIF_CSC_COEFF1_C1)
-#endif
+#define BF_ELCDIF_CSC_COEFF1_C1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF1_C1) & BM_ELCDIF_CSC_COEFF1_C1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C1 field to a new value.
@@ -3667,20 +3259,19 @@ typedef union _hw_elcdif_csc_coeff1
 #define BM_ELCDIF_CSC_COEFF1_C2      (0x03ff0000)  //!< Bit mask for ELCDIF_CSC_COEFF1_C2.
 
 //! @brief Get value of ELCDIF_CSC_COEFF1_C2 from a register value.
-#define BG_ELCDIF_CSC_COEFF1_C2(r)   (((r) & BM_ELCDIF_CSC_COEFF1_C2) >> BP_ELCDIF_CSC_COEFF1_C2)
+#define BG_ELCDIF_CSC_COEFF1_C2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF1_C2) >> BP_ELCDIF_CSC_COEFF1_C2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF1_C2.
-#define BF_ELCDIF_CSC_COEFF1_C2(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF1_C2) & BM_ELCDIF_CSC_COEFF1_C2)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF1_C2.
-#define BF_ELCDIF_CSC_COEFF1_C2(v)   (((v) << BP_ELCDIF_CSC_COEFF1_C2) & BM_ELCDIF_CSC_COEFF1_C2)
-#endif
+#define BF_ELCDIF_CSC_COEFF1_C2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF1_C2) & BM_ELCDIF_CSC_COEFF1_C2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C2 field to a new value.
 #define BW_ELCDIF_CSC_COEFF1_C2(v)   (HW_ELCDIF_CSC_COEFF1_WR((HW_ELCDIF_CSC_COEFF1_RD() & ~BM_ELCDIF_CSC_COEFF1_C2) | BF_ELCDIF_CSC_COEFF1_C2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_COEFF2 - RGB to YCbCr 4:2:2 CSC Coefficent2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3735,15 +3326,10 @@ typedef union _hw_elcdif_csc_coeff2
 #define BM_ELCDIF_CSC_COEFF2_C3      (0x000003ff)  //!< Bit mask for ELCDIF_CSC_COEFF2_C3.
 
 //! @brief Get value of ELCDIF_CSC_COEFF2_C3 from a register value.
-#define BG_ELCDIF_CSC_COEFF2_C3(r)   (((r) & BM_ELCDIF_CSC_COEFF2_C3) >> BP_ELCDIF_CSC_COEFF2_C3)
+#define BG_ELCDIF_CSC_COEFF2_C3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF2_C3) >> BP_ELCDIF_CSC_COEFF2_C3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF2_C3.
-#define BF_ELCDIF_CSC_COEFF2_C3(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF2_C3) & BM_ELCDIF_CSC_COEFF2_C3)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF2_C3.
-#define BF_ELCDIF_CSC_COEFF2_C3(v)   (((v) << BP_ELCDIF_CSC_COEFF2_C3) & BM_ELCDIF_CSC_COEFF2_C3)
-#endif
+#define BF_ELCDIF_CSC_COEFF2_C3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF2_C3) & BM_ELCDIF_CSC_COEFF2_C3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C3 field to a new value.
@@ -3759,20 +3345,19 @@ typedef union _hw_elcdif_csc_coeff2
 #define BM_ELCDIF_CSC_COEFF2_C4      (0x03ff0000)  //!< Bit mask for ELCDIF_CSC_COEFF2_C4.
 
 //! @brief Get value of ELCDIF_CSC_COEFF2_C4 from a register value.
-#define BG_ELCDIF_CSC_COEFF2_C4(r)   (((r) & BM_ELCDIF_CSC_COEFF2_C4) >> BP_ELCDIF_CSC_COEFF2_C4)
+#define BG_ELCDIF_CSC_COEFF2_C4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF2_C4) >> BP_ELCDIF_CSC_COEFF2_C4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF2_C4.
-#define BF_ELCDIF_CSC_COEFF2_C4(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF2_C4) & BM_ELCDIF_CSC_COEFF2_C4)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF2_C4.
-#define BF_ELCDIF_CSC_COEFF2_C4(v)   (((v) << BP_ELCDIF_CSC_COEFF2_C4) & BM_ELCDIF_CSC_COEFF2_C4)
-#endif
+#define BF_ELCDIF_CSC_COEFF2_C4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF2_C4) & BM_ELCDIF_CSC_COEFF2_C4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C4 field to a new value.
 #define BW_ELCDIF_CSC_COEFF2_C4(v)   (HW_ELCDIF_CSC_COEFF2_WR((HW_ELCDIF_CSC_COEFF2_RD() & ~BM_ELCDIF_CSC_COEFF2_C4) | BF_ELCDIF_CSC_COEFF2_C4(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_COEFF3 - RGB to YCbCr 4:2:2 CSC Coefficient3 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3826,15 +3411,10 @@ typedef union _hw_elcdif_csc_coeff3
 #define BM_ELCDIF_CSC_COEFF3_C5      (0x000003ff)  //!< Bit mask for ELCDIF_CSC_COEFF3_C5.
 
 //! @brief Get value of ELCDIF_CSC_COEFF3_C5 from a register value.
-#define BG_ELCDIF_CSC_COEFF3_C5(r)   (((r) & BM_ELCDIF_CSC_COEFF3_C5) >> BP_ELCDIF_CSC_COEFF3_C5)
+#define BG_ELCDIF_CSC_COEFF3_C5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF3_C5) >> BP_ELCDIF_CSC_COEFF3_C5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF3_C5.
-#define BF_ELCDIF_CSC_COEFF3_C5(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF3_C5) & BM_ELCDIF_CSC_COEFF3_C5)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF3_C5.
-#define BF_ELCDIF_CSC_COEFF3_C5(v)   (((v) << BP_ELCDIF_CSC_COEFF3_C5) & BM_ELCDIF_CSC_COEFF3_C5)
-#endif
+#define BF_ELCDIF_CSC_COEFF3_C5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF3_C5) & BM_ELCDIF_CSC_COEFF3_C5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C5 field to a new value.
@@ -3850,20 +3430,19 @@ typedef union _hw_elcdif_csc_coeff3
 #define BM_ELCDIF_CSC_COEFF3_C6      (0x03ff0000)  //!< Bit mask for ELCDIF_CSC_COEFF3_C6.
 
 //! @brief Get value of ELCDIF_CSC_COEFF3_C6 from a register value.
-#define BG_ELCDIF_CSC_COEFF3_C6(r)   (((r) & BM_ELCDIF_CSC_COEFF3_C6) >> BP_ELCDIF_CSC_COEFF3_C6)
+#define BG_ELCDIF_CSC_COEFF3_C6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF3_C6) >> BP_ELCDIF_CSC_COEFF3_C6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF3_C6.
-#define BF_ELCDIF_CSC_COEFF3_C6(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF3_C6) & BM_ELCDIF_CSC_COEFF3_C6)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF3_C6.
-#define BF_ELCDIF_CSC_COEFF3_C6(v)   (((v) << BP_ELCDIF_CSC_COEFF3_C6) & BM_ELCDIF_CSC_COEFF3_C6)
-#endif
+#define BF_ELCDIF_CSC_COEFF3_C6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF3_C6) & BM_ELCDIF_CSC_COEFF3_C6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C6 field to a new value.
 #define BW_ELCDIF_CSC_COEFF3_C6(v)   (HW_ELCDIF_CSC_COEFF3_WR((HW_ELCDIF_CSC_COEFF3_RD() & ~BM_ELCDIF_CSC_COEFF3_C6) | BF_ELCDIF_CSC_COEFF3_C6(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_COEFF4 - RGB to YCbCr 4:2:2 CSC Coefficient4 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3918,15 +3497,10 @@ typedef union _hw_elcdif_csc_coeff4
 #define BM_ELCDIF_CSC_COEFF4_C7      (0x000003ff)  //!< Bit mask for ELCDIF_CSC_COEFF4_C7.
 
 //! @brief Get value of ELCDIF_CSC_COEFF4_C7 from a register value.
-#define BG_ELCDIF_CSC_COEFF4_C7(r)   (((r) & BM_ELCDIF_CSC_COEFF4_C7) >> BP_ELCDIF_CSC_COEFF4_C7)
+#define BG_ELCDIF_CSC_COEFF4_C7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF4_C7) >> BP_ELCDIF_CSC_COEFF4_C7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF4_C7.
-#define BF_ELCDIF_CSC_COEFF4_C7(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF4_C7) & BM_ELCDIF_CSC_COEFF4_C7)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF4_C7.
-#define BF_ELCDIF_CSC_COEFF4_C7(v)   (((v) << BP_ELCDIF_CSC_COEFF4_C7) & BM_ELCDIF_CSC_COEFF4_C7)
-#endif
+#define BF_ELCDIF_CSC_COEFF4_C7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF4_C7) & BM_ELCDIF_CSC_COEFF4_C7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C7 field to a new value.
@@ -3942,20 +3516,19 @@ typedef union _hw_elcdif_csc_coeff4
 #define BM_ELCDIF_CSC_COEFF4_C8      (0x03ff0000)  //!< Bit mask for ELCDIF_CSC_COEFF4_C8.
 
 //! @brief Get value of ELCDIF_CSC_COEFF4_C8 from a register value.
-#define BG_ELCDIF_CSC_COEFF4_C8(r)   (((r) & BM_ELCDIF_CSC_COEFF4_C8) >> BP_ELCDIF_CSC_COEFF4_C8)
+#define BG_ELCDIF_CSC_COEFF4_C8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_COEFF4_C8) >> BP_ELCDIF_CSC_COEFF4_C8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_COEFF4_C8.
-#define BF_ELCDIF_CSC_COEFF4_C8(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_COEFF4_C8) & BM_ELCDIF_CSC_COEFF4_C8)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_COEFF4_C8.
-#define BF_ELCDIF_CSC_COEFF4_C8(v)   (((v) << BP_ELCDIF_CSC_COEFF4_C8) & BM_ELCDIF_CSC_COEFF4_C8)
-#endif
+#define BF_ELCDIF_CSC_COEFF4_C8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_COEFF4_C8) & BM_ELCDIF_CSC_COEFF4_C8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C8 field to a new value.
 #define BW_ELCDIF_CSC_COEFF4_C8(v)   (HW_ELCDIF_CSC_COEFF4_WR((HW_ELCDIF_CSC_COEFF4_RD() & ~BM_ELCDIF_CSC_COEFF4_C8) | BF_ELCDIF_CSC_COEFF4_C8(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_OFFSET - RGB to YCbCr 4:2:2 CSC Offset Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4008,15 +3581,10 @@ typedef union _hw_elcdif_csc_offset
 #define BM_ELCDIF_CSC_OFFSET_Y_OFFSET      (0x000001ff)  //!< Bit mask for ELCDIF_CSC_OFFSET_Y_OFFSET.
 
 //! @brief Get value of ELCDIF_CSC_OFFSET_Y_OFFSET from a register value.
-#define BG_ELCDIF_CSC_OFFSET_Y_OFFSET(r)   (((r) & BM_ELCDIF_CSC_OFFSET_Y_OFFSET) >> BP_ELCDIF_CSC_OFFSET_Y_OFFSET)
+#define BG_ELCDIF_CSC_OFFSET_Y_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_OFFSET_Y_OFFSET) >> BP_ELCDIF_CSC_OFFSET_Y_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_OFFSET_Y_OFFSET.
-#define BF_ELCDIF_CSC_OFFSET_Y_OFFSET(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_OFFSET_Y_OFFSET) & BM_ELCDIF_CSC_OFFSET_Y_OFFSET)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_OFFSET_Y_OFFSET.
-#define BF_ELCDIF_CSC_OFFSET_Y_OFFSET(v)   (((v) << BP_ELCDIF_CSC_OFFSET_Y_OFFSET) & BM_ELCDIF_CSC_OFFSET_Y_OFFSET)
-#endif
+#define BF_ELCDIF_CSC_OFFSET_Y_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_OFFSET_Y_OFFSET) & BM_ELCDIF_CSC_OFFSET_Y_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y_OFFSET field to a new value.
@@ -4032,20 +3600,19 @@ typedef union _hw_elcdif_csc_offset
 #define BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET      (0x01ff0000)  //!< Bit mask for ELCDIF_CSC_OFFSET_CBCR_OFFSET.
 
 //! @brief Get value of ELCDIF_CSC_OFFSET_CBCR_OFFSET from a register value.
-#define BG_ELCDIF_CSC_OFFSET_CBCR_OFFSET(r)   (((r) & BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET) >> BP_ELCDIF_CSC_OFFSET_CBCR_OFFSET)
+#define BG_ELCDIF_CSC_OFFSET_CBCR_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET) >> BP_ELCDIF_CSC_OFFSET_CBCR_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_OFFSET_CBCR_OFFSET.
-#define BF_ELCDIF_CSC_OFFSET_CBCR_OFFSET(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_OFFSET_CBCR_OFFSET) & BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_OFFSET_CBCR_OFFSET.
-#define BF_ELCDIF_CSC_OFFSET_CBCR_OFFSET(v)   (((v) << BP_ELCDIF_CSC_OFFSET_CBCR_OFFSET) & BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET)
-#endif
+#define BF_ELCDIF_CSC_OFFSET_CBCR_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_OFFSET_CBCR_OFFSET) & BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CBCR_OFFSET field to a new value.
 #define BW_ELCDIF_CSC_OFFSET_CBCR_OFFSET(v)   (HW_ELCDIF_CSC_OFFSET_WR((HW_ELCDIF_CSC_OFFSET_RD() & ~BM_ELCDIF_CSC_OFFSET_CBCR_OFFSET) | BF_ELCDIF_CSC_OFFSET_CBCR_OFFSET(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CSC_LIMIT - RGB to YCbCr 4:2:2 CSC Limit Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4101,15 +3668,10 @@ typedef union _hw_elcdif_csc_limit
 #define BM_ELCDIF_CSC_LIMIT_Y_MAX      (0x000000ff)  //!< Bit mask for ELCDIF_CSC_LIMIT_Y_MAX.
 
 //! @brief Get value of ELCDIF_CSC_LIMIT_Y_MAX from a register value.
-#define BG_ELCDIF_CSC_LIMIT_Y_MAX(r)   (((r) & BM_ELCDIF_CSC_LIMIT_Y_MAX) >> BP_ELCDIF_CSC_LIMIT_Y_MAX)
+#define BG_ELCDIF_CSC_LIMIT_Y_MAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_LIMIT_Y_MAX) >> BP_ELCDIF_CSC_LIMIT_Y_MAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_LIMIT_Y_MAX.
-#define BF_ELCDIF_CSC_LIMIT_Y_MAX(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_LIMIT_Y_MAX) & BM_ELCDIF_CSC_LIMIT_Y_MAX)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_LIMIT_Y_MAX.
-#define BF_ELCDIF_CSC_LIMIT_Y_MAX(v)   (((v) << BP_ELCDIF_CSC_LIMIT_Y_MAX) & BM_ELCDIF_CSC_LIMIT_Y_MAX)
-#endif
+#define BF_ELCDIF_CSC_LIMIT_Y_MAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_LIMIT_Y_MAX) & BM_ELCDIF_CSC_LIMIT_Y_MAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y_MAX field to a new value.
@@ -4125,15 +3687,10 @@ typedef union _hw_elcdif_csc_limit
 #define BM_ELCDIF_CSC_LIMIT_Y_MIN      (0x0000ff00)  //!< Bit mask for ELCDIF_CSC_LIMIT_Y_MIN.
 
 //! @brief Get value of ELCDIF_CSC_LIMIT_Y_MIN from a register value.
-#define BG_ELCDIF_CSC_LIMIT_Y_MIN(r)   (((r) & BM_ELCDIF_CSC_LIMIT_Y_MIN) >> BP_ELCDIF_CSC_LIMIT_Y_MIN)
+#define BG_ELCDIF_CSC_LIMIT_Y_MIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_LIMIT_Y_MIN) >> BP_ELCDIF_CSC_LIMIT_Y_MIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_LIMIT_Y_MIN.
-#define BF_ELCDIF_CSC_LIMIT_Y_MIN(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_LIMIT_Y_MIN) & BM_ELCDIF_CSC_LIMIT_Y_MIN)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_LIMIT_Y_MIN.
-#define BF_ELCDIF_CSC_LIMIT_Y_MIN(v)   (((v) << BP_ELCDIF_CSC_LIMIT_Y_MIN) & BM_ELCDIF_CSC_LIMIT_Y_MIN)
-#endif
+#define BF_ELCDIF_CSC_LIMIT_Y_MIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_LIMIT_Y_MIN) & BM_ELCDIF_CSC_LIMIT_Y_MIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the Y_MIN field to a new value.
@@ -4149,15 +3706,10 @@ typedef union _hw_elcdif_csc_limit
 #define BM_ELCDIF_CSC_LIMIT_CBCR_MAX      (0x00ff0000)  //!< Bit mask for ELCDIF_CSC_LIMIT_CBCR_MAX.
 
 //! @brief Get value of ELCDIF_CSC_LIMIT_CBCR_MAX from a register value.
-#define BG_ELCDIF_CSC_LIMIT_CBCR_MAX(r)   (((r) & BM_ELCDIF_CSC_LIMIT_CBCR_MAX) >> BP_ELCDIF_CSC_LIMIT_CBCR_MAX)
+#define BG_ELCDIF_CSC_LIMIT_CBCR_MAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_LIMIT_CBCR_MAX) >> BP_ELCDIF_CSC_LIMIT_CBCR_MAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_LIMIT_CBCR_MAX.
-#define BF_ELCDIF_CSC_LIMIT_CBCR_MAX(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_LIMIT_CBCR_MAX) & BM_ELCDIF_CSC_LIMIT_CBCR_MAX)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_LIMIT_CBCR_MAX.
-#define BF_ELCDIF_CSC_LIMIT_CBCR_MAX(v)   (((v) << BP_ELCDIF_CSC_LIMIT_CBCR_MAX) & BM_ELCDIF_CSC_LIMIT_CBCR_MAX)
-#endif
+#define BF_ELCDIF_CSC_LIMIT_CBCR_MAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_LIMIT_CBCR_MAX) & BM_ELCDIF_CSC_LIMIT_CBCR_MAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CBCR_MAX field to a new value.
@@ -4173,20 +3725,19 @@ typedef union _hw_elcdif_csc_limit
 #define BM_ELCDIF_CSC_LIMIT_CBCR_MIN      (0xff000000)  //!< Bit mask for ELCDIF_CSC_LIMIT_CBCR_MIN.
 
 //! @brief Get value of ELCDIF_CSC_LIMIT_CBCR_MIN from a register value.
-#define BG_ELCDIF_CSC_LIMIT_CBCR_MIN(r)   (((r) & BM_ELCDIF_CSC_LIMIT_CBCR_MIN) >> BP_ELCDIF_CSC_LIMIT_CBCR_MIN)
+#define BG_ELCDIF_CSC_LIMIT_CBCR_MIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CSC_LIMIT_CBCR_MIN) >> BP_ELCDIF_CSC_LIMIT_CBCR_MIN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CSC_LIMIT_CBCR_MIN.
-#define BF_ELCDIF_CSC_LIMIT_CBCR_MIN(v)   ((((reg32_t) v) << BP_ELCDIF_CSC_LIMIT_CBCR_MIN) & BM_ELCDIF_CSC_LIMIT_CBCR_MIN)
-#else
-//! @brief Format value for bitfield ELCDIF_CSC_LIMIT_CBCR_MIN.
-#define BF_ELCDIF_CSC_LIMIT_CBCR_MIN(v)   (((v) << BP_ELCDIF_CSC_LIMIT_CBCR_MIN) & BM_ELCDIF_CSC_LIMIT_CBCR_MIN)
-#endif
+#define BF_ELCDIF_CSC_LIMIT_CBCR_MIN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CSC_LIMIT_CBCR_MIN) & BM_ELCDIF_CSC_LIMIT_CBCR_MIN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CBCR_MIN field to a new value.
 #define BW_ELCDIF_CSC_LIMIT_CBCR_MIN(v)   (HW_ELCDIF_CSC_LIMIT_WR((HW_ELCDIF_CSC_LIMIT_RD() & ~BM_ELCDIF_CSC_LIMIT_CBCR_MIN) | BF_ELCDIF_CSC_LIMIT_CBCR_MIN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DATA - LCD Interface Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4242,15 +3793,10 @@ typedef union _hw_elcdif_data
 #define BM_ELCDIF_DATA_DATA_ZERO      (0x000000ff)  //!< Bit mask for ELCDIF_DATA_DATA_ZERO.
 
 //! @brief Get value of ELCDIF_DATA_DATA_ZERO from a register value.
-#define BG_ELCDIF_DATA_DATA_ZERO(r)   (((r) & BM_ELCDIF_DATA_DATA_ZERO) >> BP_ELCDIF_DATA_DATA_ZERO)
+#define BG_ELCDIF_DATA_DATA_ZERO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DATA_DATA_ZERO) >> BP_ELCDIF_DATA_DATA_ZERO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DATA_DATA_ZERO.
-#define BF_ELCDIF_DATA_DATA_ZERO(v)   ((((reg32_t) v) << BP_ELCDIF_DATA_DATA_ZERO) & BM_ELCDIF_DATA_DATA_ZERO)
-#else
-//! @brief Format value for bitfield ELCDIF_DATA_DATA_ZERO.
-#define BF_ELCDIF_DATA_DATA_ZERO(v)   (((v) << BP_ELCDIF_DATA_DATA_ZERO) & BM_ELCDIF_DATA_DATA_ZERO)
-#endif
+#define BF_ELCDIF_DATA_DATA_ZERO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DATA_DATA_ZERO) & BM_ELCDIF_DATA_DATA_ZERO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_ZERO field to a new value.
@@ -4266,15 +3812,10 @@ typedef union _hw_elcdif_data
 #define BM_ELCDIF_DATA_DATA_ONE      (0x0000ff00)  //!< Bit mask for ELCDIF_DATA_DATA_ONE.
 
 //! @brief Get value of ELCDIF_DATA_DATA_ONE from a register value.
-#define BG_ELCDIF_DATA_DATA_ONE(r)   (((r) & BM_ELCDIF_DATA_DATA_ONE) >> BP_ELCDIF_DATA_DATA_ONE)
+#define BG_ELCDIF_DATA_DATA_ONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DATA_DATA_ONE) >> BP_ELCDIF_DATA_DATA_ONE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DATA_DATA_ONE.
-#define BF_ELCDIF_DATA_DATA_ONE(v)   ((((reg32_t) v) << BP_ELCDIF_DATA_DATA_ONE) & BM_ELCDIF_DATA_DATA_ONE)
-#else
-//! @brief Format value for bitfield ELCDIF_DATA_DATA_ONE.
-#define BF_ELCDIF_DATA_DATA_ONE(v)   (((v) << BP_ELCDIF_DATA_DATA_ONE) & BM_ELCDIF_DATA_DATA_ONE)
-#endif
+#define BF_ELCDIF_DATA_DATA_ONE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DATA_DATA_ONE) & BM_ELCDIF_DATA_DATA_ONE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_ONE field to a new value.
@@ -4290,15 +3831,10 @@ typedef union _hw_elcdif_data
 #define BM_ELCDIF_DATA_DATA_TWO      (0x00ff0000)  //!< Bit mask for ELCDIF_DATA_DATA_TWO.
 
 //! @brief Get value of ELCDIF_DATA_DATA_TWO from a register value.
-#define BG_ELCDIF_DATA_DATA_TWO(r)   (((r) & BM_ELCDIF_DATA_DATA_TWO) >> BP_ELCDIF_DATA_DATA_TWO)
+#define BG_ELCDIF_DATA_DATA_TWO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DATA_DATA_TWO) >> BP_ELCDIF_DATA_DATA_TWO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DATA_DATA_TWO.
-#define BF_ELCDIF_DATA_DATA_TWO(v)   ((((reg32_t) v) << BP_ELCDIF_DATA_DATA_TWO) & BM_ELCDIF_DATA_DATA_TWO)
-#else
-//! @brief Format value for bitfield ELCDIF_DATA_DATA_TWO.
-#define BF_ELCDIF_DATA_DATA_TWO(v)   (((v) << BP_ELCDIF_DATA_DATA_TWO) & BM_ELCDIF_DATA_DATA_TWO)
-#endif
+#define BF_ELCDIF_DATA_DATA_TWO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DATA_DATA_TWO) & BM_ELCDIF_DATA_DATA_TWO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_TWO field to a new value.
@@ -4314,20 +3850,19 @@ typedef union _hw_elcdif_data
 #define BM_ELCDIF_DATA_DATA_THREE      (0xff000000)  //!< Bit mask for ELCDIF_DATA_DATA_THREE.
 
 //! @brief Get value of ELCDIF_DATA_DATA_THREE from a register value.
-#define BG_ELCDIF_DATA_DATA_THREE(r)   (((r) & BM_ELCDIF_DATA_DATA_THREE) >> BP_ELCDIF_DATA_DATA_THREE)
+#define BG_ELCDIF_DATA_DATA_THREE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DATA_DATA_THREE) >> BP_ELCDIF_DATA_DATA_THREE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_DATA_DATA_THREE.
-#define BF_ELCDIF_DATA_DATA_THREE(v)   ((((reg32_t) v) << BP_ELCDIF_DATA_DATA_THREE) & BM_ELCDIF_DATA_DATA_THREE)
-#else
-//! @brief Format value for bitfield ELCDIF_DATA_DATA_THREE.
-#define BF_ELCDIF_DATA_DATA_THREE(v)   (((v) << BP_ELCDIF_DATA_DATA_THREE) & BM_ELCDIF_DATA_DATA_THREE)
-#endif
+#define BF_ELCDIF_DATA_DATA_THREE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_DATA_DATA_THREE) & BM_ELCDIF_DATA_DATA_THREE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA_THREE field to a new value.
 #define BW_ELCDIF_DATA_DATA_THREE(v)   (HW_ELCDIF_DATA_WR((HW_ELCDIF_DATA_RD() & ~BM_ELCDIF_DATA_DATA_THREE) | BF_ELCDIF_DATA_DATA_THREE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_BM_ERROR_STAT - Bus Master Error Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4376,20 +3911,19 @@ typedef union _hw_elcdif_bm_error_stat
 #define BM_ELCDIF_BM_ERROR_STAT_ADDR      (0xffffffff)  //!< Bit mask for ELCDIF_BM_ERROR_STAT_ADDR.
 
 //! @brief Get value of ELCDIF_BM_ERROR_STAT_ADDR from a register value.
-#define BG_ELCDIF_BM_ERROR_STAT_ADDR(r)   (((r) & BM_ELCDIF_BM_ERROR_STAT_ADDR) >> BP_ELCDIF_BM_ERROR_STAT_ADDR)
+#define BG_ELCDIF_BM_ERROR_STAT_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_BM_ERROR_STAT_ADDR) >> BP_ELCDIF_BM_ERROR_STAT_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_BM_ERROR_STAT_ADDR.
-#define BF_ELCDIF_BM_ERROR_STAT_ADDR(v)   ((((reg32_t) v) << BP_ELCDIF_BM_ERROR_STAT_ADDR) & BM_ELCDIF_BM_ERROR_STAT_ADDR)
-#else
-//! @brief Format value for bitfield ELCDIF_BM_ERROR_STAT_ADDR.
-#define BF_ELCDIF_BM_ERROR_STAT_ADDR(v)   (((v) << BP_ELCDIF_BM_ERROR_STAT_ADDR) & BM_ELCDIF_BM_ERROR_STAT_ADDR)
-#endif
+#define BF_ELCDIF_BM_ERROR_STAT_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_BM_ERROR_STAT_ADDR) & BM_ELCDIF_BM_ERROR_STAT_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR field to a new value.
 #define BW_ELCDIF_BM_ERROR_STAT_ADDR(v)   (HW_ELCDIF_BM_ERROR_STAT_WR((HW_ELCDIF_BM_ERROR_STAT_RD() & ~BM_ELCDIF_BM_ERROR_STAT_ADDR) | BF_ELCDIF_BM_ERROR_STAT_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_CRC_STAT - CRC Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4440,20 +3974,19 @@ typedef union _hw_elcdif_crc_stat
 #define BM_ELCDIF_CRC_STAT_CRC_VALUE      (0xffffffff)  //!< Bit mask for ELCDIF_CRC_STAT_CRC_VALUE.
 
 //! @brief Get value of ELCDIF_CRC_STAT_CRC_VALUE from a register value.
-#define BG_ELCDIF_CRC_STAT_CRC_VALUE(r)   (((r) & BM_ELCDIF_CRC_STAT_CRC_VALUE) >> BP_ELCDIF_CRC_STAT_CRC_VALUE)
+#define BG_ELCDIF_CRC_STAT_CRC_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_CRC_STAT_CRC_VALUE) >> BP_ELCDIF_CRC_STAT_CRC_VALUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_CRC_STAT_CRC_VALUE.
-#define BF_ELCDIF_CRC_STAT_CRC_VALUE(v)   ((((reg32_t) v) << BP_ELCDIF_CRC_STAT_CRC_VALUE) & BM_ELCDIF_CRC_STAT_CRC_VALUE)
-#else
-//! @brief Format value for bitfield ELCDIF_CRC_STAT_CRC_VALUE.
-#define BF_ELCDIF_CRC_STAT_CRC_VALUE(v)   (((v) << BP_ELCDIF_CRC_STAT_CRC_VALUE) & BM_ELCDIF_CRC_STAT_CRC_VALUE)
-#endif
+#define BF_ELCDIF_CRC_STAT_CRC_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_CRC_STAT_CRC_VALUE) & BM_ELCDIF_CRC_STAT_CRC_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRC_VALUE field to a new value.
 #define BW_ELCDIF_CRC_STAT_CRC_VALUE(v)   (HW_ELCDIF_CRC_STAT_WR((HW_ELCDIF_CRC_STAT_RD() & ~BM_ELCDIF_CRC_STAT_CRC_VALUE) | BF_ELCDIF_CRC_STAT_CRC_VALUE(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_STAT - LCD Interface Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4507,7 +4040,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_LFIFO_COUNT      (0x000001ff)  //!< Bit mask for ELCDIF_STAT_LFIFO_COUNT.
 
 //! @brief Get value of ELCDIF_STAT_LFIFO_COUNT from a register value.
-#define BG_ELCDIF_STAT_LFIFO_COUNT(r)   (((r) & BM_ELCDIF_STAT_LFIFO_COUNT) >> BP_ELCDIF_STAT_LFIFO_COUNT)
+#define BG_ELCDIF_STAT_LFIFO_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_LFIFO_COUNT) >> BP_ELCDIF_STAT_LFIFO_COUNT)
 
 /* --- Register HW_ELCDIF_STAT, field DVI_CURRENT_FIELD[24] (RO)
  *
@@ -4519,7 +4052,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_DVI_CURRENT_FIELD      (0x01000000)  //!< Bit mask for ELCDIF_STAT_DVI_CURRENT_FIELD.
 
 //! @brief Get value of ELCDIF_STAT_DVI_CURRENT_FIELD from a register value.
-#define BG_ELCDIF_STAT_DVI_CURRENT_FIELD(r)   (((r) & BM_ELCDIF_STAT_DVI_CURRENT_FIELD) >> BP_ELCDIF_STAT_DVI_CURRENT_FIELD)
+#define BG_ELCDIF_STAT_DVI_CURRENT_FIELD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_DVI_CURRENT_FIELD) >> BP_ELCDIF_STAT_DVI_CURRENT_FIELD)
 
 /* --- Register HW_ELCDIF_STAT, field BUSY[25] (RO)
  *
@@ -4530,7 +4063,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_BUSY      (0x02000000)  //!< Bit mask for ELCDIF_STAT_BUSY.
 
 //! @brief Get value of ELCDIF_STAT_BUSY from a register value.
-#define BG_ELCDIF_STAT_BUSY(r)   (((r) & BM_ELCDIF_STAT_BUSY) >> BP_ELCDIF_STAT_BUSY)
+#define BG_ELCDIF_STAT_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_BUSY) >> BP_ELCDIF_STAT_BUSY)
 
 /* --- Register HW_ELCDIF_STAT, field TXFIFO_EMPTY[26] (RO)
  *
@@ -4542,7 +4075,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_TXFIFO_EMPTY      (0x04000000)  //!< Bit mask for ELCDIF_STAT_TXFIFO_EMPTY.
 
 //! @brief Get value of ELCDIF_STAT_TXFIFO_EMPTY from a register value.
-#define BG_ELCDIF_STAT_TXFIFO_EMPTY(r)   (((r) & BM_ELCDIF_STAT_TXFIFO_EMPTY) >> BP_ELCDIF_STAT_TXFIFO_EMPTY)
+#define BG_ELCDIF_STAT_TXFIFO_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_TXFIFO_EMPTY) >> BP_ELCDIF_STAT_TXFIFO_EMPTY)
 
 /* --- Register HW_ELCDIF_STAT, field TXFIFO_FULL[27] (RO)
  *
@@ -4554,7 +4087,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_TXFIFO_FULL      (0x08000000)  //!< Bit mask for ELCDIF_STAT_TXFIFO_FULL.
 
 //! @brief Get value of ELCDIF_STAT_TXFIFO_FULL from a register value.
-#define BG_ELCDIF_STAT_TXFIFO_FULL(r)   (((r) & BM_ELCDIF_STAT_TXFIFO_FULL) >> BP_ELCDIF_STAT_TXFIFO_FULL)
+#define BG_ELCDIF_STAT_TXFIFO_FULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_TXFIFO_FULL) >> BP_ELCDIF_STAT_TXFIFO_FULL)
 
 /* --- Register HW_ELCDIF_STAT, field LFIFO_EMPTY[28] (RO)
  *
@@ -4566,7 +4099,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_LFIFO_EMPTY      (0x10000000)  //!< Bit mask for ELCDIF_STAT_LFIFO_EMPTY.
 
 //! @brief Get value of ELCDIF_STAT_LFIFO_EMPTY from a register value.
-#define BG_ELCDIF_STAT_LFIFO_EMPTY(r)   (((r) & BM_ELCDIF_STAT_LFIFO_EMPTY) >> BP_ELCDIF_STAT_LFIFO_EMPTY)
+#define BG_ELCDIF_STAT_LFIFO_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_LFIFO_EMPTY) >> BP_ELCDIF_STAT_LFIFO_EMPTY)
 
 /* --- Register HW_ELCDIF_STAT, field LFIFO_FULL[29] (RO)
  *
@@ -4578,7 +4111,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_LFIFO_FULL      (0x20000000)  //!< Bit mask for ELCDIF_STAT_LFIFO_FULL.
 
 //! @brief Get value of ELCDIF_STAT_LFIFO_FULL from a register value.
-#define BG_ELCDIF_STAT_LFIFO_FULL(r)   (((r) & BM_ELCDIF_STAT_LFIFO_FULL) >> BP_ELCDIF_STAT_LFIFO_FULL)
+#define BG_ELCDIF_STAT_LFIFO_FULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_LFIFO_FULL) >> BP_ELCDIF_STAT_LFIFO_FULL)
 
 /* --- Register HW_ELCDIF_STAT, field DMA_REQ[30] (RO)
  *
@@ -4590,7 +4123,7 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_DMA_REQ      (0x40000000)  //!< Bit mask for ELCDIF_STAT_DMA_REQ.
 
 //! @brief Get value of ELCDIF_STAT_DMA_REQ from a register value.
-#define BG_ELCDIF_STAT_DMA_REQ(r)   (((r) & BM_ELCDIF_STAT_DMA_REQ) >> BP_ELCDIF_STAT_DMA_REQ)
+#define BG_ELCDIF_STAT_DMA_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_DMA_REQ) >> BP_ELCDIF_STAT_DMA_REQ)
 
 /* --- Register HW_ELCDIF_STAT, field PRESENT[31] (RO)
  *
@@ -4601,7 +4134,11 @@ typedef union _hw_elcdif_stat
 #define BM_ELCDIF_STAT_PRESENT      (0x80000000)  //!< Bit mask for ELCDIF_STAT_PRESENT.
 
 //! @brief Get value of ELCDIF_STAT_PRESENT from a register value.
-#define BG_ELCDIF_STAT_PRESENT(r)   (((r) & BM_ELCDIF_STAT_PRESENT) >> BP_ELCDIF_STAT_PRESENT)
+#define BG_ELCDIF_STAT_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_STAT_PRESENT) >> BP_ELCDIF_STAT_PRESENT)
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_VERSION - LCD Interface Version Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4647,7 +4184,7 @@ typedef union _hw_elcdif_version
 #define BM_ELCDIF_VERSION_STEP      (0x0000ffff)  //!< Bit mask for ELCDIF_VERSION_STEP.
 
 //! @brief Get value of ELCDIF_VERSION_STEP from a register value.
-#define BG_ELCDIF_VERSION_STEP(r)   (((r) & BM_ELCDIF_VERSION_STEP) >> BP_ELCDIF_VERSION_STEP)
+#define BG_ELCDIF_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VERSION_STEP) >> BP_ELCDIF_VERSION_STEP)
 
 /* --- Register HW_ELCDIF_VERSION, field MINOR[23:16] (RO)
  *
@@ -4658,7 +4195,7 @@ typedef union _hw_elcdif_version
 #define BM_ELCDIF_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for ELCDIF_VERSION_MINOR.
 
 //! @brief Get value of ELCDIF_VERSION_MINOR from a register value.
-#define BG_ELCDIF_VERSION_MINOR(r)   (((r) & BM_ELCDIF_VERSION_MINOR) >> BP_ELCDIF_VERSION_MINOR)
+#define BG_ELCDIF_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VERSION_MINOR) >> BP_ELCDIF_VERSION_MINOR)
 
 /* --- Register HW_ELCDIF_VERSION, field MAJOR[31:24] (RO)
  *
@@ -4669,7 +4206,11 @@ typedef union _hw_elcdif_version
 #define BM_ELCDIF_VERSION_MAJOR      (0xff000000)  //!< Bit mask for ELCDIF_VERSION_MAJOR.
 
 //! @brief Get value of ELCDIF_VERSION_MAJOR from a register value.
-#define BG_ELCDIF_VERSION_MAJOR(r)   (((r) & BM_ELCDIF_VERSION_MAJOR) >> BP_ELCDIF_VERSION_MAJOR)
+#define BG_ELCDIF_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_VERSION_MAJOR) >> BP_ELCDIF_VERSION_MAJOR)
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DEBUG0 - LCD Interface Debug0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4730,7 +4271,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_MST_WORDS      (0x0000000f)  //!< Bit mask for ELCDIF_DEBUG0_MST_WORDS.
 
 //! @brief Get value of ELCDIF_DEBUG0_MST_WORDS from a register value.
-#define BG_ELCDIF_DEBUG0_MST_WORDS(r)   (((r) & BM_ELCDIF_DEBUG0_MST_WORDS) >> BP_ELCDIF_DEBUG0_MST_WORDS)
+#define BG_ELCDIF_DEBUG0_MST_WORDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_MST_WORDS) >> BP_ELCDIF_DEBUG0_MST_WORDS)
 
 /* --- Register HW_ELCDIF_DEBUG0, field MST_OUTSTANDING_REQS[8:4] (RO)
  *
@@ -4741,7 +4282,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS      (0x000001f0)  //!< Bit mask for ELCDIF_DEBUG0_MST_OUTSTANDING_REQS.
 
 //! @brief Get value of ELCDIF_DEBUG0_MST_OUTSTANDING_REQS from a register value.
-#define BG_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS(r)   (((r) & BM_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS) >> BP_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS)
+#define BG_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS) >> BP_ELCDIF_DEBUG0_MST_OUTSTANDING_REQS)
 
 /* --- Register HW_ELCDIF_DEBUG0, field MST_AVALID[9] (RO)
  *
@@ -4752,7 +4293,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_MST_AVALID      (0x00000200)  //!< Bit mask for ELCDIF_DEBUG0_MST_AVALID.
 
 //! @brief Get value of ELCDIF_DEBUG0_MST_AVALID from a register value.
-#define BG_ELCDIF_DEBUG0_MST_AVALID(r)   (((r) & BM_ELCDIF_DEBUG0_MST_AVALID) >> BP_ELCDIF_DEBUG0_MST_AVALID)
+#define BG_ELCDIF_DEBUG0_MST_AVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_MST_AVALID) >> BP_ELCDIF_DEBUG0_MST_AVALID)
 
 /* --- Register HW_ELCDIF_DEBUG0, field CUR_REQ_STATE[11:10] (RO)
  *
@@ -4763,7 +4304,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_CUR_REQ_STATE      (0x00000c00)  //!< Bit mask for ELCDIF_DEBUG0_CUR_REQ_STATE.
 
 //! @brief Get value of ELCDIF_DEBUG0_CUR_REQ_STATE from a register value.
-#define BG_ELCDIF_DEBUG0_CUR_REQ_STATE(r)   (((r) & BM_ELCDIF_DEBUG0_CUR_REQ_STATE) >> BP_ELCDIF_DEBUG0_CUR_REQ_STATE)
+#define BG_ELCDIF_DEBUG0_CUR_REQ_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_CUR_REQ_STATE) >> BP_ELCDIF_DEBUG0_CUR_REQ_STATE)
 
 /* --- Register HW_ELCDIF_DEBUG0, field PXP_B1_DONE[12] (RO)
  *
@@ -4774,7 +4315,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_PXP_B1_DONE      (0x00001000)  //!< Bit mask for ELCDIF_DEBUG0_PXP_B1_DONE.
 
 //! @brief Get value of ELCDIF_DEBUG0_PXP_B1_DONE from a register value.
-#define BG_ELCDIF_DEBUG0_PXP_B1_DONE(r)   (((r) & BM_ELCDIF_DEBUG0_PXP_B1_DONE) >> BP_ELCDIF_DEBUG0_PXP_B1_DONE)
+#define BG_ELCDIF_DEBUG0_PXP_B1_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_PXP_B1_DONE) >> BP_ELCDIF_DEBUG0_PXP_B1_DONE)
 
 /* --- Register HW_ELCDIF_DEBUG0, field PXP_LCDIF_B1_READY[13] (RO)
  *
@@ -4785,7 +4326,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY      (0x00002000)  //!< Bit mask for ELCDIF_DEBUG0_PXP_LCDIF_B1_READY.
 
 //! @brief Get value of ELCDIF_DEBUG0_PXP_LCDIF_B1_READY from a register value.
-#define BG_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY(r)   (((r) & BM_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY) >> BP_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY)
+#define BG_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY) >> BP_ELCDIF_DEBUG0_PXP_LCDIF_B1_READY)
 
 /* --- Register HW_ELCDIF_DEBUG0, field PXP_B0_DONE[14] (RO)
  *
@@ -4796,7 +4337,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_PXP_B0_DONE      (0x00004000)  //!< Bit mask for ELCDIF_DEBUG0_PXP_B0_DONE.
 
 //! @brief Get value of ELCDIF_DEBUG0_PXP_B0_DONE from a register value.
-#define BG_ELCDIF_DEBUG0_PXP_B0_DONE(r)   (((r) & BM_ELCDIF_DEBUG0_PXP_B0_DONE) >> BP_ELCDIF_DEBUG0_PXP_B0_DONE)
+#define BG_ELCDIF_DEBUG0_PXP_B0_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_PXP_B0_DONE) >> BP_ELCDIF_DEBUG0_PXP_B0_DONE)
 
 /* --- Register HW_ELCDIF_DEBUG0, field PXP_LCDIF_B0_READY[15] (RO)
  *
@@ -4807,7 +4348,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY      (0x00008000)  //!< Bit mask for ELCDIF_DEBUG0_PXP_LCDIF_B0_READY.
 
 //! @brief Get value of ELCDIF_DEBUG0_PXP_LCDIF_B0_READY from a register value.
-#define BG_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY(r)   (((r) & BM_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY) >> BP_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY)
+#define BG_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY) >> BP_ELCDIF_DEBUG0_PXP_LCDIF_B0_READY)
 
 /* --- Register HW_ELCDIF_DEBUG0, field CUR_STATE[22:16] (RO)
  *
@@ -4818,7 +4359,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_CUR_STATE      (0x007f0000)  //!< Bit mask for ELCDIF_DEBUG0_CUR_STATE.
 
 //! @brief Get value of ELCDIF_DEBUG0_CUR_STATE from a register value.
-#define BG_ELCDIF_DEBUG0_CUR_STATE(r)   (((r) & BM_ELCDIF_DEBUG0_CUR_STATE) >> BP_ELCDIF_DEBUG0_CUR_STATE)
+#define BG_ELCDIF_DEBUG0_CUR_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_CUR_STATE) >> BP_ELCDIF_DEBUG0_CUR_STATE)
 
 /* --- Register HW_ELCDIF_DEBUG0, field EMPTY_WORD[23] (RO)
  *
@@ -4829,7 +4370,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_EMPTY_WORD      (0x00800000)  //!< Bit mask for ELCDIF_DEBUG0_EMPTY_WORD.
 
 //! @brief Get value of ELCDIF_DEBUG0_EMPTY_WORD from a register value.
-#define BG_ELCDIF_DEBUG0_EMPTY_WORD(r)   (((r) & BM_ELCDIF_DEBUG0_EMPTY_WORD) >> BP_ELCDIF_DEBUG0_EMPTY_WORD)
+#define BG_ELCDIF_DEBUG0_EMPTY_WORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_EMPTY_WORD) >> BP_ELCDIF_DEBUG0_EMPTY_WORD)
 
 /* --- Register HW_ELCDIF_DEBUG0, field CUR_FRAME_TX[24] (RO)
  *
@@ -4841,7 +4382,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_CUR_FRAME_TX      (0x01000000)  //!< Bit mask for ELCDIF_DEBUG0_CUR_FRAME_TX.
 
 //! @brief Get value of ELCDIF_DEBUG0_CUR_FRAME_TX from a register value.
-#define BG_ELCDIF_DEBUG0_CUR_FRAME_TX(r)   (((r) & BM_ELCDIF_DEBUG0_CUR_FRAME_TX) >> BP_ELCDIF_DEBUG0_CUR_FRAME_TX)
+#define BG_ELCDIF_DEBUG0_CUR_FRAME_TX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_CUR_FRAME_TX) >> BP_ELCDIF_DEBUG0_CUR_FRAME_TX)
 
 /* --- Register HW_ELCDIF_DEBUG0, field VSYNC[25] (RO)
  *
@@ -4852,7 +4393,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_VSYNC      (0x02000000)  //!< Bit mask for ELCDIF_DEBUG0_VSYNC.
 
 //! @brief Get value of ELCDIF_DEBUG0_VSYNC from a register value.
-#define BG_ELCDIF_DEBUG0_VSYNC(r)   (((r) & BM_ELCDIF_DEBUG0_VSYNC) >> BP_ELCDIF_DEBUG0_VSYNC)
+#define BG_ELCDIF_DEBUG0_VSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_VSYNC) >> BP_ELCDIF_DEBUG0_VSYNC)
 
 /* --- Register HW_ELCDIF_DEBUG0, field HSYNC[26] (RO)
  *
@@ -4863,7 +4404,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_HSYNC      (0x04000000)  //!< Bit mask for ELCDIF_DEBUG0_HSYNC.
 
 //! @brief Get value of ELCDIF_DEBUG0_HSYNC from a register value.
-#define BG_ELCDIF_DEBUG0_HSYNC(r)   (((r) & BM_ELCDIF_DEBUG0_HSYNC) >> BP_ELCDIF_DEBUG0_HSYNC)
+#define BG_ELCDIF_DEBUG0_HSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_HSYNC) >> BP_ELCDIF_DEBUG0_HSYNC)
 
 /* --- Register HW_ELCDIF_DEBUG0, field ENABLE[27] (RO)
  *
@@ -4874,7 +4415,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_ENABLE      (0x08000000)  //!< Bit mask for ELCDIF_DEBUG0_ENABLE.
 
 //! @brief Get value of ELCDIF_DEBUG0_ENABLE from a register value.
-#define BG_ELCDIF_DEBUG0_ENABLE(r)   (((r) & BM_ELCDIF_DEBUG0_ENABLE) >> BP_ELCDIF_DEBUG0_ENABLE)
+#define BG_ELCDIF_DEBUG0_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_ENABLE) >> BP_ELCDIF_DEBUG0_ENABLE)
 
 /* --- Register HW_ELCDIF_DEBUG0, field DMACMDKICK[28] (RO)
  *
@@ -4885,7 +4426,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_DMACMDKICK      (0x10000000)  //!< Bit mask for ELCDIF_DEBUG0_DMACMDKICK.
 
 //! @brief Get value of ELCDIF_DEBUG0_DMACMDKICK from a register value.
-#define BG_ELCDIF_DEBUG0_DMACMDKICK(r)   (((r) & BM_ELCDIF_DEBUG0_DMACMDKICK) >> BP_ELCDIF_DEBUG0_DMACMDKICK)
+#define BG_ELCDIF_DEBUG0_DMACMDKICK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_DMACMDKICK) >> BP_ELCDIF_DEBUG0_DMACMDKICK)
 
 /* --- Register HW_ELCDIF_DEBUG0, field SYNC_SIGNALS_ON_REG[29] (RO)
  *
@@ -4896,7 +4437,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG      (0x20000000)  //!< Bit mask for ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG.
 
 //! @brief Get value of ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG from a register value.
-#define BG_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG(r)   (((r) & BM_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG) >> BP_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG)
+#define BG_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG) >> BP_ELCDIF_DEBUG0_SYNC_SIGNALS_ON_REG)
 
 /* --- Register HW_ELCDIF_DEBUG0, field WAIT_FOR_VSYNC_EDGE_OUT[30] (RO)
  *
@@ -4907,7 +4448,7 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT      (0x40000000)  //!< Bit mask for ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT.
 
 //! @brief Get value of ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT from a register value.
-#define BG_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT(r)   (((r) & BM_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT) >> BP_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT)
+#define BG_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT) >> BP_ELCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT)
 
 /* --- Register HW_ELCDIF_DEBUG0, field STREAMING_END_DETECTED[31] (RO)
  *
@@ -4918,7 +4459,11 @@ typedef union _hw_elcdif_debug0
 #define BM_ELCDIF_DEBUG0_STREAMING_END_DETECTED      (0x80000000)  //!< Bit mask for ELCDIF_DEBUG0_STREAMING_END_DETECTED.
 
 //! @brief Get value of ELCDIF_DEBUG0_STREAMING_END_DETECTED from a register value.
-#define BG_ELCDIF_DEBUG0_STREAMING_END_DETECTED(r)   (((r) & BM_ELCDIF_DEBUG0_STREAMING_END_DETECTED) >> BP_ELCDIF_DEBUG0_STREAMING_END_DETECTED)
+#define BG_ELCDIF_DEBUG0_STREAMING_END_DETECTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG0_STREAMING_END_DETECTED) >> BP_ELCDIF_DEBUG0_STREAMING_END_DETECTED)
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DEBUG1 - LCD Interface Debug1 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4963,7 +4508,7 @@ typedef union _hw_elcdif_debug1
 #define BM_ELCDIF_DEBUG1_V_DATA_COUNT      (0x0000ffff)  //!< Bit mask for ELCDIF_DEBUG1_V_DATA_COUNT.
 
 //! @brief Get value of ELCDIF_DEBUG1_V_DATA_COUNT from a register value.
-#define BG_ELCDIF_DEBUG1_V_DATA_COUNT(r)   (((r) & BM_ELCDIF_DEBUG1_V_DATA_COUNT) >> BP_ELCDIF_DEBUG1_V_DATA_COUNT)
+#define BG_ELCDIF_DEBUG1_V_DATA_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG1_V_DATA_COUNT) >> BP_ELCDIF_DEBUG1_V_DATA_COUNT)
 
 /* --- Register HW_ELCDIF_DEBUG1, field H_DATA_COUNT[31:16] (RO)
  *
@@ -4974,7 +4519,11 @@ typedef union _hw_elcdif_debug1
 #define BM_ELCDIF_DEBUG1_H_DATA_COUNT      (0xffff0000)  //!< Bit mask for ELCDIF_DEBUG1_H_DATA_COUNT.
 
 //! @brief Get value of ELCDIF_DEBUG1_H_DATA_COUNT from a register value.
-#define BG_ELCDIF_DEBUG1_H_DATA_COUNT(r)   (((r) & BM_ELCDIF_DEBUG1_H_DATA_COUNT) >> BP_ELCDIF_DEBUG1_H_DATA_COUNT)
+#define BG_ELCDIF_DEBUG1_H_DATA_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG1_H_DATA_COUNT) >> BP_ELCDIF_DEBUG1_H_DATA_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_DEBUG2 - LCD Interface Debug2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5018,7 +4567,11 @@ typedef union _hw_elcdif_debug2
 #define BM_ELCDIF_DEBUG2_MST_ADDRESS      (0xffffffff)  //!< Bit mask for ELCDIF_DEBUG2_MST_ADDRESS.
 
 //! @brief Get value of ELCDIF_DEBUG2_MST_ADDRESS from a register value.
-#define BG_ELCDIF_DEBUG2_MST_ADDRESS(r)   (((r) & BM_ELCDIF_DEBUG2_MST_ADDRESS) >> BP_ELCDIF_DEBUG2_MST_ADDRESS)
+#define BG_ELCDIF_DEBUG2_MST_ADDRESS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_DEBUG2_MST_ADDRESS) >> BP_ELCDIF_DEBUG2_MST_ADDRESS)
+
+//-------------------------------------------------------------------------------------------
+// HW_ELCDIF_THRES - eLCDIF Threshold Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5073,15 +4626,10 @@ typedef union _hw_elcdif_thres
 #define BM_ELCDIF_THRES_PANIC      (0x000001ff)  //!< Bit mask for ELCDIF_THRES_PANIC.
 
 //! @brief Get value of ELCDIF_THRES_PANIC from a register value.
-#define BG_ELCDIF_THRES_PANIC(r)   (((r) & BM_ELCDIF_THRES_PANIC) >> BP_ELCDIF_THRES_PANIC)
+#define BG_ELCDIF_THRES_PANIC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_THRES_PANIC) >> BP_ELCDIF_THRES_PANIC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_THRES_PANIC.
-#define BF_ELCDIF_THRES_PANIC(v)   ((((reg32_t) v) << BP_ELCDIF_THRES_PANIC) & BM_ELCDIF_THRES_PANIC)
-#else
-//! @brief Format value for bitfield ELCDIF_THRES_PANIC.
-#define BF_ELCDIF_THRES_PANIC(v)   (((v) << BP_ELCDIF_THRES_PANIC) & BM_ELCDIF_THRES_PANIC)
-#endif
+#define BF_ELCDIF_THRES_PANIC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_THRES_PANIC) & BM_ELCDIF_THRES_PANIC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PANIC field to a new value.
@@ -5102,15 +4650,10 @@ typedef union _hw_elcdif_thres
 #define BM_ELCDIF_THRES_FASTCLOCK      (0x01ff0000)  //!< Bit mask for ELCDIF_THRES_FASTCLOCK.
 
 //! @brief Get value of ELCDIF_THRES_FASTCLOCK from a register value.
-#define BG_ELCDIF_THRES_FASTCLOCK(r)   (((r) & BM_ELCDIF_THRES_FASTCLOCK) >> BP_ELCDIF_THRES_FASTCLOCK)
+#define BG_ELCDIF_THRES_FASTCLOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ELCDIF_THRES_FASTCLOCK) >> BP_ELCDIF_THRES_FASTCLOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield ELCDIF_THRES_FASTCLOCK.
-#define BF_ELCDIF_THRES_FASTCLOCK(v)   ((((reg32_t) v) << BP_ELCDIF_THRES_FASTCLOCK) & BM_ELCDIF_THRES_FASTCLOCK)
-#else
-//! @brief Format value for bitfield ELCDIF_THRES_FASTCLOCK.
-#define BF_ELCDIF_THRES_FASTCLOCK(v)   (((v) << BP_ELCDIF_THRES_FASTCLOCK) & BM_ELCDIF_THRES_FASTCLOCK)
-#endif
+#define BF_ELCDIF_THRES_FASTCLOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ELCDIF_THRES_FASTCLOCK) & BM_ELCDIF_THRES_FASTCLOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FASTCLOCK field to a new value.

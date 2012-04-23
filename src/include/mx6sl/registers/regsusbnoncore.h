@@ -31,6 +31,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_OTG1_CTRL - USB OTG1 Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_USBNC_USB_OTG1_CTRL - USB OTG1 Control Register (RW)
@@ -51,14 +66,12 @@ typedef union _hw_usbnc_usb_otg1_ctrl
         unsigned OVER_CUR_POL : 1; //!< [8] OTG1 Polarity of Overcurrent The polarity of OTG1 port overcurrent event
         unsigned PWR_POL : 1; //!< [9] OTG1 Power Polarity This bit should be set according to PMIC Power Pin polarity.
         unsigned WIE : 1; //!< [10] OTG1 Wake-up Interrupt Enable This bit enables or disables the OTG1 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force OTG1 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
-        unsigned SUSPENDM : 1; //!< [12] Force OTG1 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
-        unsigned UTMI_ON_CLOCK : 1; //!< [13] Force OTG1 UTMI PHY clock output on even if suspend mode.
+        unsigned RESERVED1 : 3; //!< [13:11] Reserved
         unsigned WKUP_SW_EN : 1; //!< [14] OTG1 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] OTG1 Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] OTG1 Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] OTG1 wake-up on VBUS change enable
-        unsigned RESERVED1 : 13; //!< [30:18] Reserved
+        unsigned RESERVED2 : 13; //!< [30:18] Reserved
         unsigned WIR : 1; //!< [31] OTG1 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG1 port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_otg1_ctrl_t;
@@ -95,15 +108,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS      (0x00000080)  //!< Bit mask for USBNC_USB_OTG1_CTRL_OVER_CUR_DIS.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_OVER_CUR_DIS from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS) >> BP_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS)
+#define BG_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS) >> BP_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_OVER_CUR_DIS.
-#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_OVER_CUR_DIS.
-#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVER_CUR_DIS field to a new value.
@@ -124,15 +132,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL      (0x00000100)  //!< Bit mask for USBNC_USB_OTG1_CTRL_OVER_CUR_POL.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_OVER_CUR_POL from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_OVER_CUR_POL(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL) >> BP_USBNC_USB_OTG1_CTRL_OVER_CUR_POL)
+#define BG_USBNC_USB_OTG1_CTRL_OVER_CUR_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL) >> BP_USBNC_USB_OTG1_CTRL_OVER_CUR_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_OVER_CUR_POL.
-#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_POL(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_OVER_CUR_POL.
-#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_POL(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_OVER_CUR_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG1_CTRL_OVER_CUR_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVER_CUR_POL field to a new value.
@@ -153,15 +156,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_PWR_POL      (0x00000200)  //!< Bit mask for USBNC_USB_OTG1_CTRL_PWR_POL.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_PWR_POL from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_PWR_POL(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_PWR_POL) >> BP_USBNC_USB_OTG1_CTRL_PWR_POL)
+#define BG_USBNC_USB_OTG1_CTRL_PWR_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_PWR_POL) >> BP_USBNC_USB_OTG1_CTRL_PWR_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_PWR_POL.
-#define BF_USBNC_USB_OTG1_CTRL_PWR_POL(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_PWR_POL) & BM_USBNC_USB_OTG1_CTRL_PWR_POL)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_PWR_POL.
-#define BF_USBNC_USB_OTG1_CTRL_PWR_POL(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_PWR_POL) & BM_USBNC_USB_OTG1_CTRL_PWR_POL)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_PWR_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_PWR_POL) & BM_USBNC_USB_OTG1_CTRL_PWR_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWR_POL field to a new value.
@@ -184,109 +182,14 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WIE.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WIE from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WIE(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WIE) >> BP_USBNC_USB_OTG1_CTRL_WIE)
+#define BG_USBNC_USB_OTG1_CTRL_WIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WIE) >> BP_USBNC_USB_OTG1_CTRL_WIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WIE.
-#define BF_USBNC_USB_OTG1_CTRL_WIE(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_WIE) & BM_USBNC_USB_OTG1_CTRL_WIE)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WIE.
-#define BF_USBNC_USB_OTG1_CTRL_WIE(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_WIE) & BM_USBNC_USB_OTG1_CTRL_WIE)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_WIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_WIE) & BM_USBNC_USB_OTG1_CTRL_WIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_OTG1_CTRL_WIE(v)   (HW_USBNC_USB_OTG1_CTRL_WR((HW_USBNC_USB_OTG1_CTRL_RD() & ~BM_USBNC_USB_OTG1_CTRL_WIE) | BF_USBNC_USB_OTG1_CTRL_WIE(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG1_CTRL, field RESET[11] (RW)
- *
- * Force OTG1 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal
- * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
- *
- * Values:
- * 0 - Inactive
- * 1 - Reset the PHY
- */
-
-#define BP_USBNC_USB_OTG1_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_OTG1_CTRL_RESET.
-#define BM_USBNC_USB_OTG1_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_OTG1_CTRL_RESET.
-
-//! @brief Get value of USBNC_USB_OTG1_CTRL_RESET from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_RESET(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_RESET) >> BP_USBNC_USB_OTG1_CTRL_RESET)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_RESET.
-#define BF_USBNC_USB_OTG1_CTRL_RESET(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_RESET) & BM_USBNC_USB_OTG1_CTRL_RESET)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_RESET.
-#define BF_USBNC_USB_OTG1_CTRL_RESET(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_RESET) & BM_USBNC_USB_OTG1_CTRL_RESET)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RESET field to a new value.
-#define BW_USBNC_USB_OTG1_CTRL_RESET(v)   (HW_USBNC_USB_OTG1_CTRL_WR((HW_USBNC_USB_OTG1_CTRL_RD() & ~BM_USBNC_USB_OTG1_CTRL_RESET) | BF_USBNC_USB_OTG1_CTRL_RESET(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG1_CTRL, field SUSPENDM[12] (RW)
- *
- * Force OTG1 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal
- * operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend
- * mode. For Freescale test only.
- *
- * Values:
- * 0 - Force OTG1 UTMI PHY Suspend
- * 1 - Inactive
- */
-
-#define BP_USBNC_USB_OTG1_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_OTG1_CTRL_SUSPENDM.
-#define BM_USBNC_USB_OTG1_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_SUSPENDM.
-
-//! @brief Get value of USBNC_USB_OTG1_CTRL_SUSPENDM from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_SUSPENDM(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_SUSPENDM) >> BP_USBNC_USB_OTG1_CTRL_SUSPENDM)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_SUSPENDM.
-#define BF_USBNC_USB_OTG1_CTRL_SUSPENDM(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_SUSPENDM) & BM_USBNC_USB_OTG1_CTRL_SUSPENDM)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_SUSPENDM.
-#define BF_USBNC_USB_OTG1_CTRL_SUSPENDM(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_SUSPENDM) & BM_USBNC_USB_OTG1_CTRL_SUSPENDM)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SUSPENDM field to a new value.
-#define BW_USBNC_USB_OTG1_CTRL_SUSPENDM(v)   (HW_USBNC_USB_OTG1_CTRL_WR((HW_USBNC_USB_OTG1_CTRL_RD() & ~BM_USBNC_USB_OTG1_CTRL_SUSPENDM) | BF_USBNC_USB_OTG1_CTRL_SUSPENDM(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG1_CTRL, field UTMI_ON_CLOCK[13] (RW)
- *
- * Force OTG1 UTMI PHY clock output on even if suspend mode.
- *
- * Values:
- * 0 - Inactive
- * 1 - Force clock output on
- */
-
-#define BP_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK      (13)      //!< Bit position for USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK.
-#define BM_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK      (0x00002000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK.
-
-//! @brief Get value of USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK) >> BP_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK.
-#define BF_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK) & BM_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK.
-#define BF_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK) & BM_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the UTMI_ON_CLOCK field to a new value.
-#define BW_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK(v)   (HW_USBNC_USB_OTG1_CTRL_WR((HW_USBNC_USB_OTG1_CTRL_RD() & ~BM_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK) | BF_USBNC_USB_OTG1_CTRL_UTMI_ON_CLOCK(v)))
 #endif
 
 
@@ -303,15 +206,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WKUP_SW_EN.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WKUP_SW_EN from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WKUP_SW_EN(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_SW_EN)
+#define BG_USBNC_USB_OTG1_CTRL_WKUP_SW_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_SW_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW_EN(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW_EN field to a new value.
@@ -332,15 +230,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WKUP_SW.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WKUP_SW from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WKUP_SW(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW) >> BP_USBNC_USB_OTG1_CTRL_WKUP_SW)
+#define BG_USBNC_USB_OTG1_CTRL_WKUP_SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW) >> BP_USBNC_USB_OTG1_CTRL_WKUP_SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_SW.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_SW.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_WKUP_SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_WKUP_SW) & BM_USBNC_USB_OTG1_CTRL_WKUP_SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW field to a new value.
@@ -361,15 +254,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN      (0x00010000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WKUP_ID_EN.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WKUP_ID_EN from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WKUP_ID_EN(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_ID_EN)
+#define BG_USBNC_USB_OTG1_CTRL_WKUP_ID_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_ID_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_ID_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_ID_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_ID_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_ID_EN(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_WKUP_ID_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_ID_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_ID_EN field to a new value.
@@ -390,15 +278,10 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN      (0x00020000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN)
+#define BG_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN) >> BP_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN.
-#define BF_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN(v)   (((v) << BP_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN)
-#endif
+#define BF_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG1_CTRL_WKUP_VBUS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_VBUS_EN field to a new value.
@@ -420,8 +303,12 @@ typedef union _hw_usbnc_usb_otg1_ctrl
 #define BM_USBNC_USB_OTG1_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_OTG1_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_OTG1_CTRL_WIR from a register value.
-#define BG_USBNC_USB_OTG1_CTRL_WIR(r)   (((r) & BM_USBNC_USB_OTG1_CTRL_WIR) >> BP_USBNC_USB_OTG1_CTRL_WIR)
+#define BG_USBNC_USB_OTG1_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_CTRL_WIR) >> BP_USBNC_USB_OTG1_CTRL_WIR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_OTG2_CTRL - USB OTG2 Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -443,14 +330,12 @@ typedef union _hw_usbnc_usb_otg2_ctrl
         unsigned OVER_CUR_POL : 1; //!< [8] OTG2 Polarity of Overcurrent The polarity of OTG2 port overcurrent event
         unsigned PWR_POL : 1; //!< [9] OTG2 Power Polarity This bit should be set according to PMIC Power Pin polarity.
         unsigned WIE : 1; //!< [10] OTG2 Wake-up Interrupt Enable This bit enables or disables the OTG2 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force OTG2 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
-        unsigned SUSPENDM : 1; //!< [12] Force OTG2 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
-        unsigned UTMI_ON_CLOCK : 1; //!< [13] Force OTG2 UTMI PHY clock output on even if suspend mode.
+        unsigned RESERVED1 : 3; //!< [13:11] Reserved
         unsigned WKUP_SW_EN : 1; //!< [14] OTG2 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] OTG2 Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] OTG2 Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] OTG2 wake-up on VBUS change enable
-        unsigned RESERVED1 : 13; //!< [30:18] Reserved
+        unsigned RESERVED2 : 13; //!< [30:18] Reserved
         unsigned WIR : 1; //!< [31] OTG2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
     } B;
 } hw_usbnc_usb_otg2_ctrl_t;
@@ -487,15 +372,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS      (0x00000080)  //!< Bit mask for USBNC_USB_OTG2_CTRL_OVER_CUR_DIS.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_OVER_CUR_DIS from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS) >> BP_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS)
+#define BG_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS) >> BP_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_OVER_CUR_DIS.
-#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_OVER_CUR_DIS.
-#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVER_CUR_DIS field to a new value.
@@ -516,15 +396,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL      (0x00000100)  //!< Bit mask for USBNC_USB_OTG2_CTRL_OVER_CUR_POL.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_OVER_CUR_POL from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_OVER_CUR_POL(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL) >> BP_USBNC_USB_OTG2_CTRL_OVER_CUR_POL)
+#define BG_USBNC_USB_OTG2_CTRL_OVER_CUR_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL) >> BP_USBNC_USB_OTG2_CTRL_OVER_CUR_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_OVER_CUR_POL.
-#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_POL(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_OVER_CUR_POL.
-#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_POL(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_OVER_CUR_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_OVER_CUR_POL) & BM_USBNC_USB_OTG2_CTRL_OVER_CUR_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the OVER_CUR_POL field to a new value.
@@ -545,15 +420,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_PWR_POL      (0x00000200)  //!< Bit mask for USBNC_USB_OTG2_CTRL_PWR_POL.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_PWR_POL from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_PWR_POL(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_PWR_POL) >> BP_USBNC_USB_OTG2_CTRL_PWR_POL)
+#define BG_USBNC_USB_OTG2_CTRL_PWR_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_PWR_POL) >> BP_USBNC_USB_OTG2_CTRL_PWR_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_PWR_POL.
-#define BF_USBNC_USB_OTG2_CTRL_PWR_POL(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_PWR_POL) & BM_USBNC_USB_OTG2_CTRL_PWR_POL)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_PWR_POL.
-#define BF_USBNC_USB_OTG2_CTRL_PWR_POL(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_PWR_POL) & BM_USBNC_USB_OTG2_CTRL_PWR_POL)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_PWR_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_PWR_POL) & BM_USBNC_USB_OTG2_CTRL_PWR_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWR_POL field to a new value.
@@ -576,109 +446,14 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WIE.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WIE from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WIE(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WIE) >> BP_USBNC_USB_OTG2_CTRL_WIE)
+#define BG_USBNC_USB_OTG2_CTRL_WIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WIE) >> BP_USBNC_USB_OTG2_CTRL_WIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WIE.
-#define BF_USBNC_USB_OTG2_CTRL_WIE(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_WIE) & BM_USBNC_USB_OTG2_CTRL_WIE)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WIE.
-#define BF_USBNC_USB_OTG2_CTRL_WIE(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_WIE) & BM_USBNC_USB_OTG2_CTRL_WIE)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_WIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_WIE) & BM_USBNC_USB_OTG2_CTRL_WIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_OTG2_CTRL_WIE(v)   (HW_USBNC_USB_OTG2_CTRL_WR((HW_USBNC_USB_OTG2_CTRL_RD() & ~BM_USBNC_USB_OTG2_CTRL_WIE) | BF_USBNC_USB_OTG2_CTRL_WIE(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG2_CTRL, field RESET[11] (RW)
- *
- * Force OTG2 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal
- * operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
- *
- * Values:
- * 0 - Inactive
- * 1 - Reset the PHY
- */
-
-#define BP_USBNC_USB_OTG2_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_OTG2_CTRL_RESET.
-#define BM_USBNC_USB_OTG2_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_OTG2_CTRL_RESET.
-
-//! @brief Get value of USBNC_USB_OTG2_CTRL_RESET from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_RESET(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_RESET) >> BP_USBNC_USB_OTG2_CTRL_RESET)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_RESET.
-#define BF_USBNC_USB_OTG2_CTRL_RESET(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_RESET) & BM_USBNC_USB_OTG2_CTRL_RESET)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_RESET.
-#define BF_USBNC_USB_OTG2_CTRL_RESET(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_RESET) & BM_USBNC_USB_OTG2_CTRL_RESET)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the RESET field to a new value.
-#define BW_USBNC_USB_OTG2_CTRL_RESET(v)   (HW_USBNC_USB_OTG2_CTRL_WR((HW_USBNC_USB_OTG2_CTRL_RD() & ~BM_USBNC_USB_OTG2_CTRL_RESET) | BF_USBNC_USB_OTG2_CTRL_RESET(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG2_CTRL, field SUSPENDM[12] (RW)
- *
- * Force OTG2 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal
- * operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend
- * mode. For Freescale test only.
- *
- * Values:
- * 0 - Enable
- * 1 - Disable
- */
-
-#define BP_USBNC_USB_OTG2_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_OTG2_CTRL_SUSPENDM.
-#define BM_USBNC_USB_OTG2_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_SUSPENDM.
-
-//! @brief Get value of USBNC_USB_OTG2_CTRL_SUSPENDM from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_SUSPENDM(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_SUSPENDM) >> BP_USBNC_USB_OTG2_CTRL_SUSPENDM)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_SUSPENDM.
-#define BF_USBNC_USB_OTG2_CTRL_SUSPENDM(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_SUSPENDM) & BM_USBNC_USB_OTG2_CTRL_SUSPENDM)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_SUSPENDM.
-#define BF_USBNC_USB_OTG2_CTRL_SUSPENDM(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_SUSPENDM) & BM_USBNC_USB_OTG2_CTRL_SUSPENDM)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the SUSPENDM field to a new value.
-#define BW_USBNC_USB_OTG2_CTRL_SUSPENDM(v)   (HW_USBNC_USB_OTG2_CTRL_WR((HW_USBNC_USB_OTG2_CTRL_RD() & ~BM_USBNC_USB_OTG2_CTRL_SUSPENDM) | BF_USBNC_USB_OTG2_CTRL_SUSPENDM(v)))
-#endif
-
-
-/* --- Register HW_USBNC_USB_OTG2_CTRL, field UTMI_ON_CLOCK[13] (RW)
- *
- * Force OTG2 UTMI PHY clock output on even if suspend mode.
- *
- * Values:
- * 0 - Disable
- * 1 - Enable
- */
-
-#define BP_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK      (13)      //!< Bit position for USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK.
-#define BM_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK      (0x00002000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK.
-
-//! @brief Get value of USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK) >> BP_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK.
-#define BF_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK) & BM_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK.
-#define BF_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK) & BM_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK)
-#endif
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the UTMI_ON_CLOCK field to a new value.
-#define BW_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK(v)   (HW_USBNC_USB_OTG2_CTRL_WR((HW_USBNC_USB_OTG2_CTRL_RD() & ~BM_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK) | BF_USBNC_USB_OTG2_CTRL_UTMI_ON_CLOCK(v)))
 #endif
 
 
@@ -695,15 +470,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WKUP_SW_EN.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WKUP_SW_EN from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WKUP_SW_EN(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_SW_EN)
+#define BG_USBNC_USB_OTG2_CTRL_WKUP_SW_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_SW_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW_EN(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW_EN field to a new value.
@@ -724,15 +494,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WKUP_SW.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WKUP_SW from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WKUP_SW(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW) >> BP_USBNC_USB_OTG2_CTRL_WKUP_SW)
+#define BG_USBNC_USB_OTG2_CTRL_WKUP_SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW) >> BP_USBNC_USB_OTG2_CTRL_WKUP_SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_SW.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_SW.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_WKUP_SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_WKUP_SW) & BM_USBNC_USB_OTG2_CTRL_WKUP_SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW field to a new value.
@@ -753,15 +518,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN      (0x00010000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WKUP_ID_EN.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WKUP_ID_EN from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WKUP_ID_EN(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_ID_EN)
+#define BG_USBNC_USB_OTG2_CTRL_WKUP_ID_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_ID_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_ID_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_ID_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_ID_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_ID_EN(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_WKUP_ID_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_WKUP_ID_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_ID_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_ID_EN field to a new value.
@@ -782,15 +542,10 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN      (0x00020000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN)
+#define BG_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN) >> BP_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN.
-#define BF_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN(v)   (((v) << BP_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN)
-#endif
+#define BF_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN) & BM_USBNC_USB_OTG2_CTRL_WKUP_VBUS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_VBUS_EN field to a new value.
@@ -812,8 +567,12 @@ typedef union _hw_usbnc_usb_otg2_ctrl
 #define BM_USBNC_USB_OTG2_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_OTG2_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_OTG2_CTRL_WIR from a register value.
-#define BG_USBNC_USB_OTG2_CTRL_WIR(r)   (((r) & BM_USBNC_USB_OTG2_CTRL_WIR) >> BP_USBNC_USB_OTG2_CTRL_WIR)
+#define BG_USBNC_USB_OTG2_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_CTRL_WIR) >> BP_USBNC_USB_OTG2_CTRL_WIR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_UH_CTRL - USB Host Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -821,7 +580,7 @@ typedef union _hw_usbnc_usb_otg2_ctrl
  *
  * Reset value: 0x00001000
  *
- * The USB Host control register controls the integration specific features of the USB host2 module.
+ * The USB Host control register controls the integration specific features of the USB host module.
  * These features are not directly related to the USB functionality, but control special features,
  * interfacing on the USB ports, as well as power control and wake-up functionality.
  */
@@ -838,7 +597,7 @@ typedef union _hw_usbnc_usb_uh_ctrl
         unsigned WKUP_SW_EN : 1; //!< [14] Host Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] Host Software Wake-up
         unsigned RESERVED1 : 15; //!< [30:16] Reserved
-        unsigned WIR : 1; //!< [31] Host Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] Host Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host port. This bit is cleared by disabling the wake-up interrupt (clearing bit "WIE").
     } B;
 } hw_usbnc_usb_uh_ctrl_t;
 #endif
@@ -876,15 +635,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_UH_CTRL_WIE.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_WIE from a register value.
-#define BG_USBNC_USB_UH_CTRL_WIE(r)   (((r) & BM_USBNC_USB_UH_CTRL_WIE) >> BP_USBNC_USB_UH_CTRL_WIE)
+#define BG_USBNC_USB_UH_CTRL_WIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_WIE) >> BP_USBNC_USB_UH_CTRL_WIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL_WIE.
-#define BF_USBNC_USB_UH_CTRL_WIE(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL_WIE) & BM_USBNC_USB_UH_CTRL_WIE)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL_WIE.
-#define BF_USBNC_USB_UH_CTRL_WIE(v)   (((v) << BP_USBNC_USB_UH_CTRL_WIE) & BM_USBNC_USB_UH_CTRL_WIE)
-#endif
+#define BF_USBNC_USB_UH_CTRL_WIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL_WIE) & BM_USBNC_USB_UH_CTRL_WIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WIE field to a new value.
@@ -906,15 +660,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_UH_CTRL_RESET.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_RESET from a register value.
-#define BG_USBNC_USB_UH_CTRL_RESET(r)   (((r) & BM_USBNC_USB_UH_CTRL_RESET) >> BP_USBNC_USB_UH_CTRL_RESET)
+#define BG_USBNC_USB_UH_CTRL_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_RESET) >> BP_USBNC_USB_UH_CTRL_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL_RESET.
-#define BF_USBNC_USB_UH_CTRL_RESET(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL_RESET) & BM_USBNC_USB_UH_CTRL_RESET)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL_RESET.
-#define BF_USBNC_USB_UH_CTRL_RESET(v)   (((v) << BP_USBNC_USB_UH_CTRL_RESET) & BM_USBNC_USB_UH_CTRL_RESET)
-#endif
+#define BF_USBNC_USB_UH_CTRL_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL_RESET) & BM_USBNC_USB_UH_CTRL_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RESET field to a new value.
@@ -937,15 +686,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_UH_CTRL_SUSPENDM.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_SUSPENDM from a register value.
-#define BG_USBNC_USB_UH_CTRL_SUSPENDM(r)   (((r) & BM_USBNC_USB_UH_CTRL_SUSPENDM) >> BP_USBNC_USB_UH_CTRL_SUSPENDM)
+#define BG_USBNC_USB_UH_CTRL_SUSPENDM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_SUSPENDM) >> BP_USBNC_USB_UH_CTRL_SUSPENDM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL_SUSPENDM.
-#define BF_USBNC_USB_UH_CTRL_SUSPENDM(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL_SUSPENDM) & BM_USBNC_USB_UH_CTRL_SUSPENDM)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL_SUSPENDM.
-#define BF_USBNC_USB_UH_CTRL_SUSPENDM(v)   (((v) << BP_USBNC_USB_UH_CTRL_SUSPENDM) & BM_USBNC_USB_UH_CTRL_SUSPENDM)
-#endif
+#define BF_USBNC_USB_UH_CTRL_SUSPENDM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL_SUSPENDM) & BM_USBNC_USB_UH_CTRL_SUSPENDM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SUSPENDM field to a new value.
@@ -966,15 +710,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL__480M_CLK_ON      (0x00002000)  //!< Bit mask for USBNC_USB_UH_CTRL__480M_CLK_ON.
 
 //! @brief Get value of USBNC_USB_UH_CTRL__480M_CLK_ON from a register value.
-#define BG_USBNC_USB_UH_CTRL__480M_CLK_ON(r)   (((r) & BM_USBNC_USB_UH_CTRL__480M_CLK_ON) >> BP_USBNC_USB_UH_CTRL__480M_CLK_ON)
+#define BG_USBNC_USB_UH_CTRL__480M_CLK_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL__480M_CLK_ON) >> BP_USBNC_USB_UH_CTRL__480M_CLK_ON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL__480M_CLK_ON.
-#define BF_USBNC_USB_UH_CTRL__480M_CLK_ON(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL__480M_CLK_ON) & BM_USBNC_USB_UH_CTRL__480M_CLK_ON)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL__480M_CLK_ON.
-#define BF_USBNC_USB_UH_CTRL__480M_CLK_ON(v)   (((v) << BP_USBNC_USB_UH_CTRL__480M_CLK_ON) & BM_USBNC_USB_UH_CTRL__480M_CLK_ON)
-#endif
+#define BF_USBNC_USB_UH_CTRL__480M_CLK_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL__480M_CLK_ON) & BM_USBNC_USB_UH_CTRL__480M_CLK_ON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the _480M_CLK_ON field to a new value.
@@ -995,15 +734,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_UH_CTRL_WKUP_SW_EN.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_WKUP_SW_EN from a register value.
-#define BG_USBNC_USB_UH_CTRL_WKUP_SW_EN(r)   (((r) & BM_USBNC_USB_UH_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_UH_CTRL_WKUP_SW_EN)
+#define BG_USBNC_USB_UH_CTRL_WKUP_SW_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_WKUP_SW_EN) >> BP_USBNC_USB_UH_CTRL_WKUP_SW_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_UH_CTRL_WKUP_SW_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL_WKUP_SW_EN) & BM_USBNC_USB_UH_CTRL_WKUP_SW_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL_WKUP_SW_EN.
-#define BF_USBNC_USB_UH_CTRL_WKUP_SW_EN(v)   (((v) << BP_USBNC_USB_UH_CTRL_WKUP_SW_EN) & BM_USBNC_USB_UH_CTRL_WKUP_SW_EN)
-#endif
+#define BF_USBNC_USB_UH_CTRL_WKUP_SW_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL_WKUP_SW_EN) & BM_USBNC_USB_UH_CTRL_WKUP_SW_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW_EN field to a new value.
@@ -1024,15 +758,10 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_UH_CTRL_WKUP_SW.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_WKUP_SW from a register value.
-#define BG_USBNC_USB_UH_CTRL_WKUP_SW(r)   (((r) & BM_USBNC_USB_UH_CTRL_WKUP_SW) >> BP_USBNC_USB_UH_CTRL_WKUP_SW)
+#define BG_USBNC_USB_UH_CTRL_WKUP_SW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_WKUP_SW) >> BP_USBNC_USB_UH_CTRL_WKUP_SW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_CTRL_WKUP_SW.
-#define BF_USBNC_USB_UH_CTRL_WKUP_SW(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_CTRL_WKUP_SW) & BM_USBNC_USB_UH_CTRL_WKUP_SW)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_CTRL_WKUP_SW.
-#define BF_USBNC_USB_UH_CTRL_WKUP_SW(v)   (((v) << BP_USBNC_USB_UH_CTRL_WKUP_SW) & BM_USBNC_USB_UH_CTRL_WKUP_SW)
-#endif
+#define BF_USBNC_USB_UH_CTRL_WKUP_SW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_CTRL_WKUP_SW) & BM_USBNC_USB_UH_CTRL_WKUP_SW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WKUP_SW field to a new value.
@@ -1043,7 +772,7 @@ typedef union _hw_usbnc_usb_uh_ctrl
 /* --- Register HW_USBNC_USB_UH_CTRL, field WIR[31] (RO)
  *
  * Host Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on
- * the Host port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+ * the Host port. This bit is cleared by disabling the wake-up interrupt (clearing bit "WIE").
  *
  * Values:
  * 0 - No wake-up interrupt request received
@@ -1054,8 +783,12 @@ typedef union _hw_usbnc_usb_uh_ctrl
 #define BM_USBNC_USB_UH_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_UH_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_UH_CTRL_WIR from a register value.
-#define BG_USBNC_USB_UH_CTRL_WIR(r)   (((r) & BM_USBNC_USB_UH_CTRL_WIR) >> BP_USBNC_USB_UH_CTRL_WIR)
+#define BG_USBNC_USB_UH_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_CTRL_WIR) >> BP_USBNC_USB_UH_CTRL_WIR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_UH_HSIC_CTRL - USB Host HSIC Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1112,15 +845,10 @@ typedef union _hw_usbnc_usb_uh_hsic_ctrl
 #define BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON      (0x00000800)  //!< Bit mask for USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON.
 
 //! @brief Get value of USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON from a register value.
-#define BG_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON(r)   (((r) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON) >> BP_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON)
+#define BG_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON) >> BP_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON.
-#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON.
-#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON(v)   (((v) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON)
-#endif
+#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_CLK_ON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSIC_CLK_ON field to a new value.
@@ -1141,15 +869,10 @@ typedef union _hw_usbnc_usb_uh_hsic_ctrl
 #define BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN      (0x00001000)  //!< Bit mask for USBNC_USB_UH_HSIC_CTRL_HSIC_EN.
 
 //! @brief Get value of USBNC_USB_UH_HSIC_CTRL_HSIC_EN from a register value.
-#define BG_USBNC_USB_UH_HSIC_CTRL_HSIC_EN(r)   (((r) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN) >> BP_USBNC_USB_UH_HSIC_CTRL_HSIC_EN)
+#define BG_USBNC_USB_UH_HSIC_CTRL_HSIC_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN) >> BP_USBNC_USB_UH_HSIC_CTRL_HSIC_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USBNC_USB_UH_HSIC_CTRL_HSIC_EN.
-#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_EN(v)   ((((reg32_t) v) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_EN) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN)
-#else
-//! @brief Format value for bitfield USBNC_USB_UH_HSIC_CTRL_HSIC_EN.
-#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_EN(v)   (((v) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_EN) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN)
-#endif
+#define BF_USBNC_USB_UH_HSIC_CTRL_HSIC_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_UH_HSIC_CTRL_HSIC_EN) & BM_USBNC_USB_UH_HSIC_CTRL_HSIC_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HSIC_EN field to a new value.
@@ -1170,8 +893,12 @@ typedef union _hw_usbnc_usb_uh_hsic_ctrl
 #define BM_USBNC_USB_UH_HSIC_CTRL_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_UH_HSIC_CTRL_CLK_VLD.
 
 //! @brief Get value of USBNC_USB_UH_HSIC_CTRL_CLK_VLD from a register value.
-#define BG_USBNC_USB_UH_HSIC_CTRL_CLK_VLD(r)   (((r) & BM_USBNC_USB_UH_HSIC_CTRL_CLK_VLD) >> BP_USBNC_USB_UH_HSIC_CTRL_CLK_VLD)
+#define BG_USBNC_USB_UH_HSIC_CTRL_CLK_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH_HSIC_CTRL_CLK_VLD) >> BP_USBNC_USB_UH_HSIC_CTRL_CLK_VLD)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_OTG1_PHY_CTRL_0 - OTG1 UTMI PHY Control 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1210,7 +937,7 @@ typedef union _hw_usbnc_usb_otg1_phy_ctrl_0
  * constants & macros for individual USBNC_USB_OTG1_PHY_CTRL_0 bitfields
  */
 
-/* --- Register HW_USBNC_USB_OTG1_PHY_CTRL_0, field UTMI_CLK_VLD[31] (RC1)
+/* --- Register HW_USBNC_USB_OTG1_PHY_CTRL_0, field UTMI_CLK_VLD[31] (RW)
  *
  * Indicating whether OTG1 UTMI PHY clock is valid
  *
@@ -1223,8 +950,20 @@ typedef union _hw_usbnc_usb_otg1_phy_ctrl_0
 #define BM_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD.
 
 //! @brief Get value of USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD from a register value.
-#define BG_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD(r)   (((r) & BM_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD) >> BP_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD)
+#define BG_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD) >> BP_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD)
 
+//! @brief Format value for bitfield USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD.
+#define BF_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD) & BM_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the UTMI_CLK_VLD field to a new value.
+#define BW_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD(v)   (HW_USBNC_USB_OTG1_PHY_CTRL_0_WR((HW_USBNC_USB_OTG1_PHY_CTRL_0_RD() & ~BM_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD) | BF_USBNC_USB_OTG1_PHY_CTRL_0_UTMI_CLK_VLD(v)))
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_USBNC_USB_OTG2_PHY_CTRL_0 - OTG2 UTMI PHY Control 0 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1263,7 +1002,7 @@ typedef union _hw_usbnc_usb_otg2_phy_ctrl_0
  * constants & macros for individual USBNC_USB_OTG2_PHY_CTRL_0 bitfields
  */
 
-/* --- Register HW_USBNC_USB_OTG2_PHY_CTRL_0, field UTMI_CLK_VLD[31] (RC1)
+/* --- Register HW_USBNC_USB_OTG2_PHY_CTRL_0, field UTMI_CLK_VLD[31] (RW)
  *
  * Indicating whether OTG2 UTMI PHY clock is valid
  *
@@ -1276,7 +1015,15 @@ typedef union _hw_usbnc_usb_otg2_phy_ctrl_0
 #define BM_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD.
 
 //! @brief Get value of USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD from a register value.
-#define BG_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD(r)   (((r) & BM_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD) >> BP_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD)
+#define BG_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD) >> BP_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD)
+
+//! @brief Format value for bitfield USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD.
+#define BF_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD) & BM_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the UTMI_CLK_VLD field to a new value.
+#define BW_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD(v)   (HW_USBNC_USB_OTG2_PHY_CTRL_0_WR((HW_USBNC_USB_OTG2_PHY_CTRL_0_RD() & ~BM_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD) | BF_USBNC_USB_OTG2_PHY_CTRL_0_UTMI_CLK_VLD(v)))
+#endif
 
 
 

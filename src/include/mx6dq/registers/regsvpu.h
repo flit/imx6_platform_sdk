@@ -32,6 +32,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_CODERUN - BIT Processor run start
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_VPU_CODERUN - BIT Processor run start (WO)
@@ -79,16 +94,15 @@ typedef union _hw_vpu_coderun
 #define BM_VPU_CODERUN_VPU_CODERUN      (0x00000001)  //!< Bit mask for VPU_CODERUN_VPU_CODERUN.
 
 //! @brief Get value of VPU_CODERUN_VPU_CODERUN from a register value.
-#define BG_VPU_CODERUN_VPU_CODERUN(r)   (((r) & BM_VPU_CODERUN_VPU_CODERUN) >> BP_VPU_CODERUN_VPU_CODERUN)
+#define BG_VPU_CODERUN_VPU_CODERUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_CODERUN_VPU_CODERUN) >> BP_VPU_CODERUN_VPU_CODERUN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VPU_CODERUN_VPU_CODERUN.
-#define BF_VPU_CODERUN_VPU_CODERUN(v)   ((((reg32_t) v) << BP_VPU_CODERUN_VPU_CODERUN) & BM_VPU_CODERUN_VPU_CODERUN)
-#else
-//! @brief Format value for bitfield VPU_CODERUN_VPU_CODERUN.
-#define BF_VPU_CODERUN_VPU_CODERUN(v)   (((v) << BP_VPU_CODERUN_VPU_CODERUN) & BM_VPU_CODERUN_VPU_CODERUN)
-#endif
+#define BF_VPU_CODERUN_VPU_CODERUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODERUN_VPU_CODERUN) & BM_VPU_CODERUN_VPU_CODERUN)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_CODEDOWN - BIT Boot Code Download Data register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -134,15 +148,10 @@ typedef union _hw_vpu_codedown
 #define BM_VPU_CODEDOWN_CODEDATA      (0x0000ffff)  //!< Bit mask for VPU_CODEDOWN_CODEDATA.
 
 //! @brief Get value of VPU_CODEDOWN_CODEDATA from a register value.
-#define BG_VPU_CODEDOWN_CODEDATA(r)   (((r) & BM_VPU_CODEDOWN_CODEDATA) >> BP_VPU_CODEDOWN_CODEDATA)
+#define BG_VPU_CODEDOWN_CODEDATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_CODEDOWN_CODEDATA) >> BP_VPU_CODEDOWN_CODEDATA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VPU_CODEDOWN_CODEDATA.
-#define BF_VPU_CODEDOWN_CODEDATA(v)   ((((reg32_t) v) << BP_VPU_CODEDOWN_CODEDATA) & BM_VPU_CODEDOWN_CODEDATA)
-#else
-//! @brief Format value for bitfield VPU_CODEDOWN_CODEDATA.
-#define BF_VPU_CODEDOWN_CODEDATA(v)   (((v) << BP_VPU_CODEDOWN_CODEDATA) & BM_VPU_CODEDOWN_CODEDATA)
-#endif
+#define BF_VPU_CODEDOWN_CODEDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODEDOWN_CODEDATA) & BM_VPU_CODEDOWN_CODEDATA)
 
 /* --- Register HW_VPU_CODEDOWN, field CODEADDR[28:16] (WO)
  *
@@ -154,15 +163,14 @@ typedef union _hw_vpu_codedown
 #define BM_VPU_CODEDOWN_CODEADDR      (0x1fff0000)  //!< Bit mask for VPU_CODEDOWN_CODEADDR.
 
 //! @brief Get value of VPU_CODEDOWN_CODEADDR from a register value.
-#define BG_VPU_CODEDOWN_CODEADDR(r)   (((r) & BM_VPU_CODEDOWN_CODEADDR) >> BP_VPU_CODEDOWN_CODEADDR)
+#define BG_VPU_CODEDOWN_CODEADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_CODEDOWN_CODEADDR) >> BP_VPU_CODEDOWN_CODEADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VPU_CODEDOWN_CODEADDR.
-#define BF_VPU_CODEDOWN_CODEADDR(v)   ((((reg32_t) v) << BP_VPU_CODEDOWN_CODEADDR) & BM_VPU_CODEDOWN_CODEADDR)
-#else
-//! @brief Format value for bitfield VPU_CODEDOWN_CODEADDR.
-#define BF_VPU_CODEDOWN_CODEADDR(v)   (((v) << BP_VPU_CODEDOWN_CODEADDR) & BM_VPU_CODEDOWN_CODEADDR)
-#endif
+#define BF_VPU_CODEDOWN_CODEADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODEDOWN_CODEADDR) & BM_VPU_CODEDOWN_CODEADDR)
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_HOSTINTREQ - Host Interrupt Request to BIT
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -211,16 +219,15 @@ typedef union _hw_vpu_hostintreq
 #define BM_VPU_HOSTINTREQ_INTREQ      (0x00000001)  //!< Bit mask for VPU_HOSTINTREQ_INTREQ.
 
 //! @brief Get value of VPU_HOSTINTREQ_INTREQ from a register value.
-#define BG_VPU_HOSTINTREQ_INTREQ(r)   (((r) & BM_VPU_HOSTINTREQ_INTREQ) >> BP_VPU_HOSTINTREQ_INTREQ)
+#define BG_VPU_HOSTINTREQ_INTREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_HOSTINTREQ_INTREQ) >> BP_VPU_HOSTINTREQ_INTREQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VPU_HOSTINTREQ_INTREQ.
-#define BF_VPU_HOSTINTREQ_INTREQ(v)   ((((reg32_t) v) << BP_VPU_HOSTINTREQ_INTREQ) & BM_VPU_HOSTINTREQ_INTREQ)
-#else
-//! @brief Format value for bitfield VPU_HOSTINTREQ_INTREQ.
-#define BF_VPU_HOSTINTREQ_INTREQ(v)   (((v) << BP_VPU_HOSTINTREQ_INTREQ) & BM_VPU_HOSTINTREQ_INTREQ)
-#endif
+#define BF_VPU_HOSTINTREQ_INTREQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_HOSTINTREQ_INTREQ) & BM_VPU_HOSTINTREQ_INTREQ)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_BITINTCLEAR - BIT Interrupt Clear
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -269,16 +276,15 @@ typedef union _hw_vpu_bitintclear
 #define BM_VPU_BITINTCLEAR_INTCLEAR      (0x00000001)  //!< Bit mask for VPU_BITINTCLEAR_INTCLEAR.
 
 //! @brief Get value of VPU_BITINTCLEAR_INTCLEAR from a register value.
-#define BG_VPU_BITINTCLEAR_INTCLEAR(r)   (((r) & BM_VPU_BITINTCLEAR_INTCLEAR) >> BP_VPU_BITINTCLEAR_INTCLEAR)
+#define BG_VPU_BITINTCLEAR_INTCLEAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITINTCLEAR_INTCLEAR) >> BP_VPU_BITINTCLEAR_INTCLEAR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield VPU_BITINTCLEAR_INTCLEAR.
-#define BF_VPU_BITINTCLEAR_INTCLEAR(v)   ((((reg32_t) v) << BP_VPU_BITINTCLEAR_INTCLEAR) & BM_VPU_BITINTCLEAR_INTCLEAR)
-#else
-//! @brief Format value for bitfield VPU_BITINTCLEAR_INTCLEAR.
-#define BF_VPU_BITINTCLEAR_INTCLEAR(v)   (((v) << BP_VPU_BITINTCLEAR_INTCLEAR) & BM_VPU_BITINTCLEAR_INTCLEAR)
-#endif
+#define BF_VPU_BITINTCLEAR_INTCLEAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_BITINTCLEAR_INTCLEAR) & BM_VPU_BITINTCLEAR_INTCLEAR)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_BITINTSTS - BIT Interrupt Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -328,8 +334,12 @@ typedef union _hw_vpu_bitintsts
 #define BM_VPU_BITINTSTS_INTSTS      (0x00000001)  //!< Bit mask for VPU_BITINTSTS_INTSTS.
 
 //! @brief Get value of VPU_BITINTSTS_INTSTS from a register value.
-#define BG_VPU_BITINTSTS_INTSTS(r)   (((r) & BM_VPU_BITINTSTS_INTSTS) >> BP_VPU_BITINTSTS_INTSTS)
+#define BG_VPU_BITINTSTS_INTSTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITINTSTS_INTSTS) >> BP_VPU_BITINTSTS_INTSTS)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_BITCURPC - BIT Current PC
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -375,7 +385,11 @@ typedef union _hw_vpu_bitcurpc
 #define BM_VPU_BITCURPC_CURPC      (0x00003fff)  //!< Bit mask for VPU_BITCURPC_CURPC.
 
 //! @brief Get value of VPU_BITCURPC_CURPC from a register value.
-#define BG_VPU_BITCURPC_CURPC(r)   (((r) & BM_VPU_BITCURPC_CURPC) >> BP_VPU_BITCURPC_CURPC)
+#define BG_VPU_BITCURPC_CURPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITCURPC_CURPC) >> BP_VPU_BITCURPC_CURPC)
+
+//-------------------------------------------------------------------------------------------
+// HW_VPU_BITCODECBUSY - BIT CODEC Busy
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -421,7 +435,7 @@ typedef union _hw_vpu_bitcodecbusy
 #define BM_VPU_BITCODECBUSY_CODECBUSY      (0x00000001)  //!< Bit mask for VPU_BITCODECBUSY_CODECBUSY.
 
 //! @brief Get value of VPU_BITCODECBUSY_CODECBUSY from a register value.
-#define BG_VPU_BITCODECBUSY_CODECBUSY(r)   (((r) & BM_VPU_BITCODECBUSY_CODECBUSY) >> BP_VPU_BITCODECBUSY_CODECBUSY)
+#define BG_VPU_BITCODECBUSY_CODECBUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITCODECBUSY_CODECBUSY) >> BP_VPU_BITCODECBUSY_CODECBUSY)
 
 
 /*!

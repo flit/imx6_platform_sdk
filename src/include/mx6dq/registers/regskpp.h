@@ -29,6 +29,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_KPP_KPCR - Keypad Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_KPP_KPCR - Keypad Control Register (RW)
@@ -88,15 +103,10 @@ typedef union _hw_kpp_kpcr
 #define BM_KPP_KPCR_KRE      (0x000000ff)  //!< Bit mask for KPP_KPCR_KRE.
 
 //! @brief Get value of KPP_KPCR_KRE from a register value.
-#define BG_KPP_KPCR_KRE(r)   (((r) & BM_KPP_KPCR_KRE) >> BP_KPP_KPCR_KRE)
+#define BG_KPP_KPCR_KRE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPCR_KRE) >> BP_KPP_KPCR_KRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPCR_KRE.
-#define BF_KPP_KPCR_KRE(v)   ((((reg16_t) v) << BP_KPP_KPCR_KRE) & BM_KPP_KPCR_KRE)
-#else
-//! @brief Format value for bitfield KPP_KPCR_KRE.
-#define BF_KPP_KPCR_KRE(v)   (((v) << BP_KPP_KPCR_KRE) & BM_KPP_KPCR_KRE)
-#endif
+#define BF_KPP_KPCR_KRE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPCR_KRE) & BM_KPP_KPCR_KRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KRE field to a new value.
@@ -121,21 +131,20 @@ typedef union _hw_kpp_kpcr
 #define BM_KPP_KPCR_KCO      (0x0000ff00)  //!< Bit mask for KPP_KPCR_KCO.
 
 //! @brief Get value of KPP_KPCR_KCO from a register value.
-#define BG_KPP_KPCR_KCO(r)   (((r) & BM_KPP_KPCR_KCO) >> BP_KPP_KPCR_KCO)
+#define BG_KPP_KPCR_KCO(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPCR_KCO) >> BP_KPP_KPCR_KCO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPCR_KCO.
-#define BF_KPP_KPCR_KCO(v)   ((((reg16_t) v) << BP_KPP_KPCR_KCO) & BM_KPP_KPCR_KCO)
-#else
-//! @brief Format value for bitfield KPP_KPCR_KCO.
-#define BF_KPP_KPCR_KCO(v)   (((v) << BP_KPP_KPCR_KCO) & BM_KPP_KPCR_KCO)
-#endif
+#define BF_KPP_KPCR_KCO(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPCR_KCO) & BM_KPP_KPCR_KCO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KCO field to a new value.
 #define BW_KPP_KPCR_KCO(v)   (HW_KPP_KPCR_WR((HW_KPP_KPCR_RD() & ~BM_KPP_KPCR_KCO) | BF_KPP_KPCR_KCO(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_KPP_KPSR - Keypad Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -203,15 +212,10 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KPKD      (0x00000001)  //!< Bit mask for KPP_KPSR_KPKD.
 
 //! @brief Get value of KPP_KPSR_KPKD from a register value.
-#define BG_KPP_KPSR_KPKD(r)   (((r) & BM_KPP_KPSR_KPKD) >> BP_KPP_KPSR_KPKD)
+#define BG_KPP_KPSR_KPKD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KPKD) >> BP_KPP_KPSR_KPKD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KPKD.
-#define BF_KPP_KPSR_KPKD(v)   ((((reg16_t) v) << BP_KPP_KPSR_KPKD) & BM_KPP_KPSR_KPKD)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KPKD.
-#define BF_KPP_KPSR_KPKD(v)   (((v) << BP_KPP_KPSR_KPKD) & BM_KPP_KPSR_KPKD)
-#endif
+#define BF_KPP_KPSR_KPKD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KPKD) & BM_KPP_KPSR_KPKD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KPKD field to a new value.
@@ -240,15 +244,10 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KPKR      (0x00000002)  //!< Bit mask for KPP_KPSR_KPKR.
 
 //! @brief Get value of KPP_KPSR_KPKR from a register value.
-#define BG_KPP_KPSR_KPKR(r)   (((r) & BM_KPP_KPSR_KPKR) >> BP_KPP_KPSR_KPKR)
+#define BG_KPP_KPSR_KPKR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KPKR) >> BP_KPP_KPSR_KPKR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KPKR.
-#define BF_KPP_KPSR_KPKR(v)   ((((reg16_t) v) << BP_KPP_KPSR_KPKR) & BM_KPP_KPSR_KPKR)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KPKR.
-#define BF_KPP_KPSR_KPKR(v)   (((v) << BP_KPP_KPSR_KPKR) & BM_KPP_KPSR_KPKR)
-#endif
+#define BF_KPP_KPSR_KPKR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KPKR) & BM_KPP_KPSR_KPKR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KPKR field to a new value.
@@ -270,15 +269,10 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KDSC      (0x00000004)  //!< Bit mask for KPP_KPSR_KDSC.
 
 //! @brief Get value of KPP_KPSR_KDSC from a register value.
-#define BG_KPP_KPSR_KDSC(r)   (((r) & BM_KPP_KPSR_KDSC) >> BP_KPP_KPSR_KDSC)
+#define BG_KPP_KPSR_KDSC(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KDSC) >> BP_KPP_KPSR_KDSC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KDSC.
-#define BF_KPP_KPSR_KDSC(v)   ((((reg16_t) v) << BP_KPP_KPSR_KDSC) & BM_KPP_KPSR_KDSC)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KDSC.
-#define BF_KPP_KPSR_KDSC(v)   (((v) << BP_KPP_KPSR_KDSC) & BM_KPP_KPSR_KDSC)
-#endif
+#define BF_KPP_KPSR_KDSC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KDSC) & BM_KPP_KPSR_KDSC)
 
 
 /* --- Register HW_KPP_KPSR, field KPP_KRSS[3] (WORZ)
@@ -295,15 +289,10 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KPP_KRSS      (0x00000008)  //!< Bit mask for KPP_KPSR_KPP_KRSS.
 
 //! @brief Get value of KPP_KPSR_KPP_KRSS from a register value.
-#define BG_KPP_KPSR_KPP_KRSS(r)   (((r) & BM_KPP_KPSR_KPP_KRSS) >> BP_KPP_KPSR_KPP_KRSS)
+#define BG_KPP_KPSR_KPP_KRSS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KPP_KRSS) >> BP_KPP_KPSR_KPP_KRSS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KPP_KRSS.
-#define BF_KPP_KPSR_KPP_KRSS(v)   ((((reg16_t) v) << BP_KPP_KPSR_KPP_KRSS) & BM_KPP_KPSR_KPP_KRSS)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KPP_KRSS.
-#define BF_KPP_KPSR_KPP_KRSS(v)   (((v) << BP_KPP_KPSR_KPP_KRSS) & BM_KPP_KPSR_KPP_KRSS)
-#endif
+#define BF_KPP_KPSR_KPP_KRSS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KPP_KRSS) & BM_KPP_KPSR_KPP_KRSS)
 
 
 /* --- Register HW_KPP_KPSR, field KDIE[8] (RW)
@@ -324,15 +313,10 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KDIE      (0x00000100)  //!< Bit mask for KPP_KPSR_KDIE.
 
 //! @brief Get value of KPP_KPSR_KDIE from a register value.
-#define BG_KPP_KPSR_KDIE(r)   (((r) & BM_KPP_KPSR_KDIE) >> BP_KPP_KPSR_KDIE)
+#define BG_KPP_KPSR_KDIE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KDIE) >> BP_KPP_KPSR_KDIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KDIE.
-#define BF_KPP_KPSR_KDIE(v)   ((((reg16_t) v) << BP_KPP_KPSR_KDIE) & BM_KPP_KPSR_KDIE)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KDIE.
-#define BF_KPP_KPSR_KDIE(v)   (((v) << BP_KPP_KPSR_KDIE) & BM_KPP_KPSR_KDIE)
-#endif
+#define BF_KPP_KPSR_KDIE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KDIE) & BM_KPP_KPSR_KDIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KDIE field to a new value.
@@ -358,21 +342,20 @@ typedef union _hw_kpp_kpsr
 #define BM_KPP_KPSR_KRIE      (0x00000200)  //!< Bit mask for KPP_KPSR_KRIE.
 
 //! @brief Get value of KPP_KPSR_KRIE from a register value.
-#define BG_KPP_KPSR_KRIE(r)   (((r) & BM_KPP_KPSR_KRIE) >> BP_KPP_KPSR_KRIE)
+#define BG_KPP_KPSR_KRIE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPSR_KRIE) >> BP_KPP_KPSR_KRIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPSR_KRIE.
-#define BF_KPP_KPSR_KRIE(v)   ((((reg16_t) v) << BP_KPP_KPSR_KRIE) & BM_KPP_KPSR_KRIE)
-#else
-//! @brief Format value for bitfield KPP_KPSR_KRIE.
-#define BF_KPP_KPSR_KRIE(v)   (((v) << BP_KPP_KPSR_KRIE) & BM_KPP_KPSR_KRIE)
-#endif
+#define BF_KPP_KPSR_KRIE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KRIE) & BM_KPP_KPSR_KRIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KRIE field to a new value.
 #define BW_KPP_KPSR_KRIE(v)   (HW_KPP_KPSR_WR((HW_KPP_KPSR_RD() & ~BM_KPP_KPSR_KRIE) | BF_KPP_KPSR_KRIE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_KPP_KDDR - Keypad Data Direction Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -432,15 +415,10 @@ typedef union _hw_kpp_kddr
 #define BM_KPP_KDDR_KRDD      (0x000000ff)  //!< Bit mask for KPP_KDDR_KRDD.
 
 //! @brief Get value of KPP_KDDR_KRDD from a register value.
-#define BG_KPP_KDDR_KRDD(r)   (((r) & BM_KPP_KDDR_KRDD) >> BP_KPP_KDDR_KRDD)
+#define BG_KPP_KDDR_KRDD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KDDR_KRDD) >> BP_KPP_KDDR_KRDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KDDR_KRDD.
-#define BF_KPP_KDDR_KRDD(v)   ((((reg16_t) v) << BP_KPP_KDDR_KRDD) & BM_KPP_KDDR_KRDD)
-#else
-//! @brief Format value for bitfield KPP_KDDR_KRDD.
-#define BF_KPP_KDDR_KRDD(v)   (((v) << BP_KPP_KDDR_KRDD) & BM_KPP_KDDR_KRDD)
-#endif
+#define BF_KPP_KDDR_KRDD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KDDR_KRDD) & BM_KPP_KDDR_KRDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KRDD field to a new value.
@@ -462,21 +440,20 @@ typedef union _hw_kpp_kddr
 #define BM_KPP_KDDR_KCDD      (0x0000ff00)  //!< Bit mask for KPP_KDDR_KCDD.
 
 //! @brief Get value of KPP_KDDR_KCDD from a register value.
-#define BG_KPP_KDDR_KCDD(r)   (((r) & BM_KPP_KDDR_KCDD) >> BP_KPP_KDDR_KCDD)
+#define BG_KPP_KDDR_KCDD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KDDR_KCDD) >> BP_KPP_KDDR_KCDD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KDDR_KCDD.
-#define BF_KPP_KDDR_KCDD(v)   ((((reg16_t) v) << BP_KPP_KDDR_KCDD) & BM_KPP_KDDR_KCDD)
-#else
-//! @brief Format value for bitfield KPP_KDDR_KCDD.
-#define BF_KPP_KDDR_KCDD(v)   (((v) << BP_KPP_KDDR_KCDD) & BM_KPP_KDDR_KCDD)
-#endif
+#define BF_KPP_KDDR_KCDD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KDDR_KCDD) & BM_KPP_KDDR_KCDD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KCDD field to a new value.
 #define BW_KPP_KDDR_KCDD(v)   (HW_KPP_KDDR_WR((HW_KPP_KDDR_RD() & ~BM_KPP_KDDR_KCDD) | BF_KPP_KDDR_KCDD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_KPP_KPDR - Keypad Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -531,15 +508,10 @@ typedef union _hw_kpp_kpdr
 #define BM_KPP_KPDR_KRD      (0x000000ff)  //!< Bit mask for KPP_KPDR_KRD.
 
 //! @brief Get value of KPP_KPDR_KRD from a register value.
-#define BG_KPP_KPDR_KRD(r)   (((r) & BM_KPP_KPDR_KRD) >> BP_KPP_KPDR_KRD)
+#define BG_KPP_KPDR_KRD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPDR_KRD) >> BP_KPP_KPDR_KRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPDR_KRD.
-#define BF_KPP_KPDR_KRD(v)   ((((reg16_t) v) << BP_KPP_KPDR_KRD) & BM_KPP_KPDR_KRD)
-#else
-//! @brief Format value for bitfield KPP_KPDR_KRD.
-#define BF_KPP_KPDR_KRD(v)   (((v) << BP_KPP_KPDR_KRD) & BM_KPP_KPDR_KRD)
-#endif
+#define BF_KPP_KPDR_KRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPDR_KRD) & BM_KPP_KPDR_KRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KRD field to a new value.
@@ -557,15 +529,10 @@ typedef union _hw_kpp_kpdr
 #define BM_KPP_KPDR_KCD      (0x0000ff00)  //!< Bit mask for KPP_KPDR_KCD.
 
 //! @brief Get value of KPP_KPDR_KCD from a register value.
-#define BG_KPP_KPDR_KCD(r)   (((r) & BM_KPP_KPDR_KCD) >> BP_KPP_KPDR_KCD)
+#define BG_KPP_KPDR_KCD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_KPP_KPDR_KCD) >> BP_KPP_KPDR_KCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield KPP_KPDR_KCD.
-#define BF_KPP_KPDR_KCD(v)   ((((reg16_t) v) << BP_KPP_KPDR_KCD) & BM_KPP_KPDR_KCD)
-#else
-//! @brief Format value for bitfield KPP_KPDR_KCD.
-#define BF_KPP_KPDR_KCD(v)   (((v) << BP_KPP_KPDR_KCD) & BM_KPP_KPDR_KCD)
-#endif
+#define BF_KPP_KPDR_KCD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPDR_KCD) & BM_KPP_KPDR_KCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the KCD field to a new value.

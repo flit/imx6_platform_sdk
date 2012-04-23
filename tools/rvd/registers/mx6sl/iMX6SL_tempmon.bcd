@@ -24,11 +24,8 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_TEMPMON_TEMPSENSE0_FINISHED={\
         gui_name="FINISHED":position=2:size=1:read_only=true\
       }:\
-        bit_fields.B_TEMPMON_TEMPSENSE0_VBGADJ={\
-        gui_name="VBGADJ":position=3:size=3:read_only=false\
-      }:\
-        bit_fields.B_TEMPMON_TEMPSENSE0_TEMP_VALUE={\
-        gui_name="TEMP_VALUE":position=8:size=12:read_only=true\
+        bit_fields.B_TEMPMON_TEMPSENSE0_TEMP_CNT={\
+        gui_name="TEMP_CNT":position=8:size=12:read_only=true\
       }:\
         bit_fields.B_TEMPMON_TEMPSENSE0_ALARM_VALUE={\
         gui_name="ALARM_VALUE":position=20:size=12:read_only=false\
@@ -46,8 +43,7 @@ Advanced_Information.Cortex-A9={\
     line="B_TEMPMON_TEMPSENSE0_POWER_DOWN":\
     line="B_TEMPMON_TEMPSENSE0_MEASURE_TE1":\
     line="B_TEMPMON_TEMPSENSE0_FINISHED":\
-    line="B_TEMPMON_TEMPSENSE0_VBGADJ":\
-    line="B_TEMPMON_TEMPSENSE0_TEMP_VALUE":\
+    line="B_TEMPMON_TEMPSENSE0_TEMP_CNT":\
     line="B_TEMPMON_TEMPSENSE0_ALARM_VALUE":\
     line="$$":\
     line="$+":\

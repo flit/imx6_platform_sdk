@@ -42,6 +42,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_THRS - DVFSC Thresholds
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_DVFSC_THRS - DVFSC Thresholds (RW)
@@ -91,15 +106,10 @@ typedef union _hw_dvfsc_thrs
 #define BM_DVFSC_THRS_PNCTHR      (0x0000003f)  //!< Bit mask for DVFSC_THRS_PNCTHR.
 
 //! @brief Get value of DVFSC_THRS_PNCTHR from a register value.
-#define BG_DVFSC_THRS_PNCTHR(r)   (((r) & BM_DVFSC_THRS_PNCTHR) >> BP_DVFSC_THRS_PNCTHR)
+#define BG_DVFSC_THRS_PNCTHR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_THRS_PNCTHR) >> BP_DVFSC_THRS_PNCTHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_THRS_PNCTHR.
-#define BF_DVFSC_THRS_PNCTHR(v)   ((((reg32_t) v) << BP_DVFSC_THRS_PNCTHR) & BM_DVFSC_THRS_PNCTHR)
-#else
-//! @brief Format value for bitfield DVFSC_THRS_PNCTHR.
-#define BF_DVFSC_THRS_PNCTHR(v)   (((v) << BP_DVFSC_THRS_PNCTHR) & BM_DVFSC_THRS_PNCTHR)
-#endif
+#define BF_DVFSC_THRS_PNCTHR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_THRS_PNCTHR) & BM_DVFSC_THRS_PNCTHR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PNCTHR field to a new value.
@@ -115,15 +125,10 @@ typedef union _hw_dvfsc_thrs
 #define BM_DVFSC_THRS_DWTHR      (0x003f0000)  //!< Bit mask for DVFSC_THRS_DWTHR.
 
 //! @brief Get value of DVFSC_THRS_DWTHR from a register value.
-#define BG_DVFSC_THRS_DWTHR(r)   (((r) & BM_DVFSC_THRS_DWTHR) >> BP_DVFSC_THRS_DWTHR)
+#define BG_DVFSC_THRS_DWTHR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_THRS_DWTHR) >> BP_DVFSC_THRS_DWTHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_THRS_DWTHR.
-#define BF_DVFSC_THRS_DWTHR(v)   ((((reg32_t) v) << BP_DVFSC_THRS_DWTHR) & BM_DVFSC_THRS_DWTHR)
-#else
-//! @brief Format value for bitfield DVFSC_THRS_DWTHR.
-#define BF_DVFSC_THRS_DWTHR(v)   (((v) << BP_DVFSC_THRS_DWTHR) & BM_DVFSC_THRS_DWTHR)
-#endif
+#define BF_DVFSC_THRS_DWTHR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_THRS_DWTHR) & BM_DVFSC_THRS_DWTHR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DWTHR field to a new value.
@@ -139,20 +144,19 @@ typedef union _hw_dvfsc_thrs
 #define BM_DVFSC_THRS_UPTHR      (0x0fc00000)  //!< Bit mask for DVFSC_THRS_UPTHR.
 
 //! @brief Get value of DVFSC_THRS_UPTHR from a register value.
-#define BG_DVFSC_THRS_UPTHR(r)   (((r) & BM_DVFSC_THRS_UPTHR) >> BP_DVFSC_THRS_UPTHR)
+#define BG_DVFSC_THRS_UPTHR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_THRS_UPTHR) >> BP_DVFSC_THRS_UPTHR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_THRS_UPTHR.
-#define BF_DVFSC_THRS_UPTHR(v)   ((((reg32_t) v) << BP_DVFSC_THRS_UPTHR) & BM_DVFSC_THRS_UPTHR)
-#else
-//! @brief Format value for bitfield DVFSC_THRS_UPTHR.
-#define BF_DVFSC_THRS_UPTHR(v)   (((v) << BP_DVFSC_THRS_UPTHR) & BM_DVFSC_THRS_UPTHR)
-#endif
+#define BF_DVFSC_THRS_UPTHR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_THRS_UPTHR) & BM_DVFSC_THRS_UPTHR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPTHR field to a new value.
 #define BW_DVFSC_THRS_UPTHR(v)   (HW_DVFSC_THRS_WR((HW_DVFSC_THRS_RD() & ~BM_DVFSC_THRS_UPTHR) | BF_DVFSC_THRS_UPTHR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_COUN - DVFSC Counters thresholds
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -202,15 +206,10 @@ typedef union _hw_dvfsc_coun
 #define BM_DVFSC_COUN_UPCNT      (0x000000ff)  //!< Bit mask for DVFSC_COUN_UPCNT.
 
 //! @brief Get value of DVFSC_COUN_UPCNT from a register value.
-#define BG_DVFSC_COUN_UPCNT(r)   (((r) & BM_DVFSC_COUN_UPCNT) >> BP_DVFSC_COUN_UPCNT)
+#define BG_DVFSC_COUN_UPCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_COUN_UPCNT) >> BP_DVFSC_COUN_UPCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_COUN_UPCNT.
-#define BF_DVFSC_COUN_UPCNT(v)   ((((reg32_t) v) << BP_DVFSC_COUN_UPCNT) & BM_DVFSC_COUN_UPCNT)
-#else
-//! @brief Format value for bitfield DVFSC_COUN_UPCNT.
-#define BF_DVFSC_COUN_UPCNT(v)   (((v) << BP_DVFSC_COUN_UPCNT) & BM_DVFSC_COUN_UPCNT)
-#endif
+#define BF_DVFSC_COUN_UPCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_COUN_UPCNT) & BM_DVFSC_COUN_UPCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPCNT field to a new value.
@@ -226,20 +225,19 @@ typedef union _hw_dvfsc_coun
 #define BM_DVFSC_COUN_DN_CNT      (0x00ff0000)  //!< Bit mask for DVFSC_COUN_DN_CNT.
 
 //! @brief Get value of DVFSC_COUN_DN_CNT from a register value.
-#define BG_DVFSC_COUN_DN_CNT(r)   (((r) & BM_DVFSC_COUN_DN_CNT) >> BP_DVFSC_COUN_DN_CNT)
+#define BG_DVFSC_COUN_DN_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_COUN_DN_CNT) >> BP_DVFSC_COUN_DN_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_COUN_DN_CNT.
-#define BF_DVFSC_COUN_DN_CNT(v)   ((((reg32_t) v) << BP_DVFSC_COUN_DN_CNT) & BM_DVFSC_COUN_DN_CNT)
-#else
-//! @brief Format value for bitfield DVFSC_COUN_DN_CNT.
-#define BF_DVFSC_COUN_DN_CNT(v)   (((v) << BP_DVFSC_COUN_DN_CNT) & BM_DVFSC_COUN_DN_CNT)
-#endif
+#define BF_DVFSC_COUN_DN_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_COUN_DN_CNT) & BM_DVFSC_COUN_DN_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DN_CNT field to a new value.
 #define BW_DVFSC_COUN_DN_CNT(v)   (HW_DVFSC_COUN_WR((HW_DVFSC_COUN_RD() & ~BM_DVFSC_COUN_DN_CNT) | BF_DVFSC_COUN_DN_CNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_SIG1 - DVFSC general purpose bits weight
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -296,15 +294,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW6      (0x0000001c)  //!< Bit mask for DVFSC_SIG1_WSW6.
 
 //! @brief Get value of DVFSC_SIG1_WSW6 from a register value.
-#define BG_DVFSC_SIG1_WSW6(r)   (((r) & BM_DVFSC_SIG1_WSW6) >> BP_DVFSC_SIG1_WSW6)
+#define BG_DVFSC_SIG1_WSW6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW6) >> BP_DVFSC_SIG1_WSW6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW6.
-#define BF_DVFSC_SIG1_WSW6(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW6) & BM_DVFSC_SIG1_WSW6)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW6.
-#define BF_DVFSC_SIG1_WSW6(v)   (((v) << BP_DVFSC_SIG1_WSW6) & BM_DVFSC_SIG1_WSW6)
-#endif
+#define BF_DVFSC_SIG1_WSW6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW6) & BM_DVFSC_SIG1_WSW6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW6 field to a new value.
@@ -320,15 +313,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW7      (0x000000e0)  //!< Bit mask for DVFSC_SIG1_WSW7.
 
 //! @brief Get value of DVFSC_SIG1_WSW7 from a register value.
-#define BG_DVFSC_SIG1_WSW7(r)   (((r) & BM_DVFSC_SIG1_WSW7) >> BP_DVFSC_SIG1_WSW7)
+#define BG_DVFSC_SIG1_WSW7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW7) >> BP_DVFSC_SIG1_WSW7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW7.
-#define BF_DVFSC_SIG1_WSW7(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW7) & BM_DVFSC_SIG1_WSW7)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW7.
-#define BF_DVFSC_SIG1_WSW7(v)   (((v) << BP_DVFSC_SIG1_WSW7) & BM_DVFSC_SIG1_WSW7)
-#endif
+#define BF_DVFSC_SIG1_WSW7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW7) & BM_DVFSC_SIG1_WSW7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW7 field to a new value.
@@ -344,15 +332,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW8      (0x00000700)  //!< Bit mask for DVFSC_SIG1_WSW8.
 
 //! @brief Get value of DVFSC_SIG1_WSW8 from a register value.
-#define BG_DVFSC_SIG1_WSW8(r)   (((r) & BM_DVFSC_SIG1_WSW8) >> BP_DVFSC_SIG1_WSW8)
+#define BG_DVFSC_SIG1_WSW8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW8) >> BP_DVFSC_SIG1_WSW8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW8.
-#define BF_DVFSC_SIG1_WSW8(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW8) & BM_DVFSC_SIG1_WSW8)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW8.
-#define BF_DVFSC_SIG1_WSW8(v)   (((v) << BP_DVFSC_SIG1_WSW8) & BM_DVFSC_SIG1_WSW8)
-#endif
+#define BF_DVFSC_SIG1_WSW8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW8) & BM_DVFSC_SIG1_WSW8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW8 field to a new value.
@@ -368,15 +351,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW9      (0x00003800)  //!< Bit mask for DVFSC_SIG1_WSW9.
 
 //! @brief Get value of DVFSC_SIG1_WSW9 from a register value.
-#define BG_DVFSC_SIG1_WSW9(r)   (((r) & BM_DVFSC_SIG1_WSW9) >> BP_DVFSC_SIG1_WSW9)
+#define BG_DVFSC_SIG1_WSW9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW9) >> BP_DVFSC_SIG1_WSW9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW9.
-#define BF_DVFSC_SIG1_WSW9(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW9) & BM_DVFSC_SIG1_WSW9)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW9.
-#define BF_DVFSC_SIG1_WSW9(v)   (((v) << BP_DVFSC_SIG1_WSW9) & BM_DVFSC_SIG1_WSW9)
-#endif
+#define BF_DVFSC_SIG1_WSW9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW9) & BM_DVFSC_SIG1_WSW9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW9 field to a new value.
@@ -392,15 +370,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW10      (0x0001c000)  //!< Bit mask for DVFSC_SIG1_WSW10.
 
 //! @brief Get value of DVFSC_SIG1_WSW10 from a register value.
-#define BG_DVFSC_SIG1_WSW10(r)   (((r) & BM_DVFSC_SIG1_WSW10) >> BP_DVFSC_SIG1_WSW10)
+#define BG_DVFSC_SIG1_WSW10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW10) >> BP_DVFSC_SIG1_WSW10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW10.
-#define BF_DVFSC_SIG1_WSW10(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW10) & BM_DVFSC_SIG1_WSW10)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW10.
-#define BF_DVFSC_SIG1_WSW10(v)   (((v) << BP_DVFSC_SIG1_WSW10) & BM_DVFSC_SIG1_WSW10)
-#endif
+#define BF_DVFSC_SIG1_WSW10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW10) & BM_DVFSC_SIG1_WSW10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW10 field to a new value.
@@ -416,15 +389,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW11      (0x000e0000)  //!< Bit mask for DVFSC_SIG1_WSW11.
 
 //! @brief Get value of DVFSC_SIG1_WSW11 from a register value.
-#define BG_DVFSC_SIG1_WSW11(r)   (((r) & BM_DVFSC_SIG1_WSW11) >> BP_DVFSC_SIG1_WSW11)
+#define BG_DVFSC_SIG1_WSW11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW11) >> BP_DVFSC_SIG1_WSW11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW11.
-#define BF_DVFSC_SIG1_WSW11(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW11) & BM_DVFSC_SIG1_WSW11)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW11.
-#define BF_DVFSC_SIG1_WSW11(v)   (((v) << BP_DVFSC_SIG1_WSW11) & BM_DVFSC_SIG1_WSW11)
-#endif
+#define BF_DVFSC_SIG1_WSW11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW11) & BM_DVFSC_SIG1_WSW11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW11 field to a new value.
@@ -440,15 +408,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW12      (0x00700000)  //!< Bit mask for DVFSC_SIG1_WSW12.
 
 //! @brief Get value of DVFSC_SIG1_WSW12 from a register value.
-#define BG_DVFSC_SIG1_WSW12(r)   (((r) & BM_DVFSC_SIG1_WSW12) >> BP_DVFSC_SIG1_WSW12)
+#define BG_DVFSC_SIG1_WSW12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW12) >> BP_DVFSC_SIG1_WSW12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW12.
-#define BF_DVFSC_SIG1_WSW12(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW12) & BM_DVFSC_SIG1_WSW12)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW12.
-#define BF_DVFSC_SIG1_WSW12(v)   (((v) << BP_DVFSC_SIG1_WSW12) & BM_DVFSC_SIG1_WSW12)
-#endif
+#define BF_DVFSC_SIG1_WSW12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW12) & BM_DVFSC_SIG1_WSW12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW12 field to a new value.
@@ -464,15 +427,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW13      (0x03800000)  //!< Bit mask for DVFSC_SIG1_WSW13.
 
 //! @brief Get value of DVFSC_SIG1_WSW13 from a register value.
-#define BG_DVFSC_SIG1_WSW13(r)   (((r) & BM_DVFSC_SIG1_WSW13) >> BP_DVFSC_SIG1_WSW13)
+#define BG_DVFSC_SIG1_WSW13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW13) >> BP_DVFSC_SIG1_WSW13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW13.
-#define BF_DVFSC_SIG1_WSW13(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW13) & BM_DVFSC_SIG1_WSW13)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW13.
-#define BF_DVFSC_SIG1_WSW13(v)   (((v) << BP_DVFSC_SIG1_WSW13) & BM_DVFSC_SIG1_WSW13)
-#endif
+#define BF_DVFSC_SIG1_WSW13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW13) & BM_DVFSC_SIG1_WSW13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW13 field to a new value.
@@ -488,15 +446,10 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW14      (0x1c000000)  //!< Bit mask for DVFSC_SIG1_WSW14.
 
 //! @brief Get value of DVFSC_SIG1_WSW14 from a register value.
-#define BG_DVFSC_SIG1_WSW14(r)   (((r) & BM_DVFSC_SIG1_WSW14) >> BP_DVFSC_SIG1_WSW14)
+#define BG_DVFSC_SIG1_WSW14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW14) >> BP_DVFSC_SIG1_WSW14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW14.
-#define BF_DVFSC_SIG1_WSW14(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW14) & BM_DVFSC_SIG1_WSW14)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW14.
-#define BF_DVFSC_SIG1_WSW14(v)   (((v) << BP_DVFSC_SIG1_WSW14) & BM_DVFSC_SIG1_WSW14)
-#endif
+#define BF_DVFSC_SIG1_WSW14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW14) & BM_DVFSC_SIG1_WSW14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW14 field to a new value.
@@ -512,20 +465,19 @@ typedef union _hw_dvfsc_sig1
 #define BM_DVFSC_SIG1_WSW15      (0xe0000000)  //!< Bit mask for DVFSC_SIG1_WSW15.
 
 //! @brief Get value of DVFSC_SIG1_WSW15 from a register value.
-#define BG_DVFSC_SIG1_WSW15(r)   (((r) & BM_DVFSC_SIG1_WSW15) >> BP_DVFSC_SIG1_WSW15)
+#define BG_DVFSC_SIG1_WSW15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG1_WSW15) >> BP_DVFSC_SIG1_WSW15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG1_WSW15.
-#define BF_DVFSC_SIG1_WSW15(v)   ((((reg32_t) v) << BP_DVFSC_SIG1_WSW15) & BM_DVFSC_SIG1_WSW15)
-#else
-//! @brief Format value for bitfield DVFSC_SIG1_WSW15.
-#define BF_DVFSC_SIG1_WSW15(v)   (((v) << BP_DVFSC_SIG1_WSW15) & BM_DVFSC_SIG1_WSW15)
-#endif
+#define BF_DVFSC_SIG1_WSW15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG1_WSW15) & BM_DVFSC_SIG1_WSW15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW15 field to a new value.
 #define BW_DVFSC_SIG1_WSW15(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW15) | BF_DVFSC_SIG1_WSW15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_SIG0 - DVFSC general purpose bits weight
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -579,15 +531,10 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW0      (0x0000003f)  //!< Bit mask for DVFSC_SIG0_WSW0.
 
 //! @brief Get value of DVFSC_SIG0_WSW0 from a register value.
-#define BG_DVFSC_SIG0_WSW0(r)   (((r) & BM_DVFSC_SIG0_WSW0) >> BP_DVFSC_SIG0_WSW0)
+#define BG_DVFSC_SIG0_WSW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW0) >> BP_DVFSC_SIG0_WSW0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW0.
-#define BF_DVFSC_SIG0_WSW0(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW0) & BM_DVFSC_SIG0_WSW0)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW0.
-#define BF_DVFSC_SIG0_WSW0(v)   (((v) << BP_DVFSC_SIG0_WSW0) & BM_DVFSC_SIG0_WSW0)
-#endif
+#define BF_DVFSC_SIG0_WSW0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW0) & BM_DVFSC_SIG0_WSW0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW0 field to a new value.
@@ -604,15 +551,10 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW1      (0x00000fc0)  //!< Bit mask for DVFSC_SIG0_WSW1.
 
 //! @brief Get value of DVFSC_SIG0_WSW1 from a register value.
-#define BG_DVFSC_SIG0_WSW1(r)   (((r) & BM_DVFSC_SIG0_WSW1) >> BP_DVFSC_SIG0_WSW1)
+#define BG_DVFSC_SIG0_WSW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW1) >> BP_DVFSC_SIG0_WSW1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW1.
-#define BF_DVFSC_SIG0_WSW1(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW1) & BM_DVFSC_SIG0_WSW1)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW1.
-#define BF_DVFSC_SIG0_WSW1(v)   (((v) << BP_DVFSC_SIG0_WSW1) & BM_DVFSC_SIG0_WSW1)
-#endif
+#define BF_DVFSC_SIG0_WSW1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW1) & BM_DVFSC_SIG0_WSW1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW1 field to a new value.
@@ -628,15 +570,10 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW2      (0x00700000)  //!< Bit mask for DVFSC_SIG0_WSW2.
 
 //! @brief Get value of DVFSC_SIG0_WSW2 from a register value.
-#define BG_DVFSC_SIG0_WSW2(r)   (((r) & BM_DVFSC_SIG0_WSW2) >> BP_DVFSC_SIG0_WSW2)
+#define BG_DVFSC_SIG0_WSW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW2) >> BP_DVFSC_SIG0_WSW2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW2.
-#define BF_DVFSC_SIG0_WSW2(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW2) & BM_DVFSC_SIG0_WSW2)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW2.
-#define BF_DVFSC_SIG0_WSW2(v)   (((v) << BP_DVFSC_SIG0_WSW2) & BM_DVFSC_SIG0_WSW2)
-#endif
+#define BF_DVFSC_SIG0_WSW2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW2) & BM_DVFSC_SIG0_WSW2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW2 field to a new value.
@@ -652,15 +589,10 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW3      (0x03800000)  //!< Bit mask for DVFSC_SIG0_WSW3.
 
 //! @brief Get value of DVFSC_SIG0_WSW3 from a register value.
-#define BG_DVFSC_SIG0_WSW3(r)   (((r) & BM_DVFSC_SIG0_WSW3) >> BP_DVFSC_SIG0_WSW3)
+#define BG_DVFSC_SIG0_WSW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW3) >> BP_DVFSC_SIG0_WSW3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW3.
-#define BF_DVFSC_SIG0_WSW3(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW3) & BM_DVFSC_SIG0_WSW3)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW3.
-#define BF_DVFSC_SIG0_WSW3(v)   (((v) << BP_DVFSC_SIG0_WSW3) & BM_DVFSC_SIG0_WSW3)
-#endif
+#define BF_DVFSC_SIG0_WSW3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW3) & BM_DVFSC_SIG0_WSW3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW3 field to a new value.
@@ -676,15 +608,10 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW4      (0x1c000000)  //!< Bit mask for DVFSC_SIG0_WSW4.
 
 //! @brief Get value of DVFSC_SIG0_WSW4 from a register value.
-#define BG_DVFSC_SIG0_WSW4(r)   (((r) & BM_DVFSC_SIG0_WSW4) >> BP_DVFSC_SIG0_WSW4)
+#define BG_DVFSC_SIG0_WSW4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW4) >> BP_DVFSC_SIG0_WSW4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW4.
-#define BF_DVFSC_SIG0_WSW4(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW4) & BM_DVFSC_SIG0_WSW4)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW4.
-#define BF_DVFSC_SIG0_WSW4(v)   (((v) << BP_DVFSC_SIG0_WSW4) & BM_DVFSC_SIG0_WSW4)
-#endif
+#define BF_DVFSC_SIG0_WSW4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW4) & BM_DVFSC_SIG0_WSW4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW4 field to a new value.
@@ -700,20 +627,19 @@ typedef union _hw_dvfsc_sig0
 #define BM_DVFSC_SIG0_WSW5      (0xe0000000)  //!< Bit mask for DVFSC_SIG0_WSW5.
 
 //! @brief Get value of DVFSC_SIG0_WSW5 from a register value.
-#define BG_DVFSC_SIG0_WSW5(r)   (((r) & BM_DVFSC_SIG0_WSW5) >> BP_DVFSC_SIG0_WSW5)
+#define BG_DVFSC_SIG0_WSW5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_SIG0_WSW5) >> BP_DVFSC_SIG0_WSW5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_SIG0_WSW5.
-#define BF_DVFSC_SIG0_WSW5(v)   ((((reg32_t) v) << BP_DVFSC_SIG0_WSW5) & BM_DVFSC_SIG0_WSW5)
-#else
-//! @brief Format value for bitfield DVFSC_SIG0_WSW5.
-#define BF_DVFSC_SIG0_WSW5(v)   (((v) << BP_DVFSC_SIG0_WSW5) & BM_DVFSC_SIG0_WSW5)
-#endif
+#define BF_DVFSC_SIG0_WSW5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_SIG0_WSW5) & BM_DVFSC_SIG0_WSW5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WSW5 field to a new value.
 #define BW_DVFSC_SIG0_WSW5(v)   (HW_DVFSC_SIG0_WR((HW_DVFSC_SIG0_RD() & ~BM_DVFSC_SIG0_WSW5) | BF_DVFSC_SIG0_WSW5(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_GPC0 - DVFSC general purpose bit 0 weight counter
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -764,15 +690,10 @@ typedef union _hw_dvfsc_gpc0
 #define BM_DVFSC_GPC0_GPBC0      (0x0001ffff)  //!< Bit mask for DVFSC_GPC0_GPBC0.
 
 //! @brief Get value of DVFSC_GPC0_GPBC0 from a register value.
-#define BG_DVFSC_GPC0_GPBC0(r)   (((r) & BM_DVFSC_GPC0_GPBC0) >> BP_DVFSC_GPC0_GPBC0)
+#define BG_DVFSC_GPC0_GPBC0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC0_GPBC0) >> BP_DVFSC_GPC0_GPBC0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPC0_GPBC0.
-#define BF_DVFSC_GPC0_GPBC0(v)   ((((reg32_t) v) << BP_DVFSC_GPC0_GPBC0) & BM_DVFSC_GPC0_GPBC0)
-#else
-//! @brief Format value for bitfield DVFSC_GPC0_GPBC0.
-#define BF_DVFSC_GPC0_GPBC0(v)   (((v) << BP_DVFSC_GPC0_GPBC0) & BM_DVFSC_GPC0_GPBC0)
-#endif
+#define BF_DVFSC_GPC0_GPBC0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPC0_GPBC0) & BM_DVFSC_GPC0_GPBC0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPBC0 field to a new value.
@@ -793,7 +714,7 @@ typedef union _hw_dvfsc_gpc0
 #define BM_DVFSC_GPC0_C0ACT      (0x40000000)  //!< Bit mask for DVFSC_GPC0_C0ACT.
 
 //! @brief Get value of DVFSC_GPC0_C0ACT from a register value.
-#define BG_DVFSC_GPC0_C0ACT(r)   (((r) & BM_DVFSC_GPC0_C0ACT) >> BP_DVFSC_GPC0_C0ACT)
+#define BG_DVFSC_GPC0_C0ACT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC0_C0ACT) >> BP_DVFSC_GPC0_C0ACT)
 
 
 /* --- Register HW_DVFSC_GPC0, field C0STRT[31] (RW)
@@ -807,20 +728,19 @@ typedef union _hw_dvfsc_gpc0
 #define BM_DVFSC_GPC0_C0STRT      (0x80000000)  //!< Bit mask for DVFSC_GPC0_C0STRT.
 
 //! @brief Get value of DVFSC_GPC0_C0STRT from a register value.
-#define BG_DVFSC_GPC0_C0STRT(r)   (((r) & BM_DVFSC_GPC0_C0STRT) >> BP_DVFSC_GPC0_C0STRT)
+#define BG_DVFSC_GPC0_C0STRT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC0_C0STRT) >> BP_DVFSC_GPC0_C0STRT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPC0_C0STRT.
-#define BF_DVFSC_GPC0_C0STRT(v)   ((((reg32_t) v) << BP_DVFSC_GPC0_C0STRT) & BM_DVFSC_GPC0_C0STRT)
-#else
-//! @brief Format value for bitfield DVFSC_GPC0_C0STRT.
-#define BF_DVFSC_GPC0_C0STRT(v)   (((v) << BP_DVFSC_GPC0_C0STRT) & BM_DVFSC_GPC0_C0STRT)
-#endif
+#define BF_DVFSC_GPC0_C0STRT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPC0_C0STRT) & BM_DVFSC_GPC0_C0STRT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C0STRT field to a new value.
 #define BW_DVFSC_GPC0_C0STRT(v)   (HW_DVFSC_GPC0_WR((HW_DVFSC_GPC0_RD() & ~BM_DVFSC_GPC0_C0STRT) | BF_DVFSC_GPC0_C0STRT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_GPC1 - DVFSC general purpose bit 1 weight counter
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -871,15 +791,10 @@ typedef union _hw_dvfsc_gpc1
 #define BM_DVFSC_GPC1_GPBC1      (0x0001ffff)  //!< Bit mask for DVFSC_GPC1_GPBC1.
 
 //! @brief Get value of DVFSC_GPC1_GPBC1 from a register value.
-#define BG_DVFSC_GPC1_GPBC1(r)   (((r) & BM_DVFSC_GPC1_GPBC1) >> BP_DVFSC_GPC1_GPBC1)
+#define BG_DVFSC_GPC1_GPBC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC1_GPBC1) >> BP_DVFSC_GPC1_GPBC1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPC1_GPBC1.
-#define BF_DVFSC_GPC1_GPBC1(v)   ((((reg32_t) v) << BP_DVFSC_GPC1_GPBC1) & BM_DVFSC_GPC1_GPBC1)
-#else
-//! @brief Format value for bitfield DVFSC_GPC1_GPBC1.
-#define BF_DVFSC_GPC1_GPBC1(v)   (((v) << BP_DVFSC_GPC1_GPBC1) & BM_DVFSC_GPC1_GPBC1)
-#endif
+#define BF_DVFSC_GPC1_GPBC1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPC1_GPBC1) & BM_DVFSC_GPC1_GPBC1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPBC1 field to a new value.
@@ -900,7 +815,7 @@ typedef union _hw_dvfsc_gpc1
 #define BM_DVFSC_GPC1_C1ACT      (0x40000000)  //!< Bit mask for DVFSC_GPC1_C1ACT.
 
 //! @brief Get value of DVFSC_GPC1_C1ACT from a register value.
-#define BG_DVFSC_GPC1_C1ACT(r)   (((r) & BM_DVFSC_GPC1_C1ACT) >> BP_DVFSC_GPC1_C1ACT)
+#define BG_DVFSC_GPC1_C1ACT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC1_C1ACT) >> BP_DVFSC_GPC1_C1ACT)
 
 
 /* --- Register HW_DVFSC_GPC1, field C1STRT[31] (RW)
@@ -915,20 +830,19 @@ typedef union _hw_dvfsc_gpc1
 #define BM_DVFSC_GPC1_C1STRT      (0x80000000)  //!< Bit mask for DVFSC_GPC1_C1STRT.
 
 //! @brief Get value of DVFSC_GPC1_C1STRT from a register value.
-#define BG_DVFSC_GPC1_C1STRT(r)   (((r) & BM_DVFSC_GPC1_C1STRT) >> BP_DVFSC_GPC1_C1STRT)
+#define BG_DVFSC_GPC1_C1STRT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPC1_C1STRT) >> BP_DVFSC_GPC1_C1STRT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPC1_C1STRT.
-#define BF_DVFSC_GPC1_C1STRT(v)   ((((reg32_t) v) << BP_DVFSC_GPC1_C1STRT) & BM_DVFSC_GPC1_C1STRT)
-#else
-//! @brief Format value for bitfield DVFSC_GPC1_C1STRT.
-#define BF_DVFSC_GPC1_C1STRT(v)   (((v) << BP_DVFSC_GPC1_C1STRT) & BM_DVFSC_GPC1_C1STRT)
-#endif
+#define BF_DVFSC_GPC1_C1STRT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPC1_C1STRT) & BM_DVFSC_GPC1_C1STRT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the C1STRT field to a new value.
 #define BW_DVFSC_GPC1_C1STRT(v)   (HW_DVFSC_GPC1_WR((HW_DVFSC_GPC1_RD() & ~BM_DVFSC_GPC1_C1STRT) | BF_DVFSC_GPC1_C1STRT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_GPBT - DVFSC general purpose bits enables
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -992,15 +906,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB0      (0x00000001)  //!< Bit mask for DVFSC_GPBT_GPB0.
 
 //! @brief Get value of DVFSC_GPBT_GPB0 from a register value.
-#define BG_DVFSC_GPBT_GPB0(r)   (((r) & BM_DVFSC_GPBT_GPB0) >> BP_DVFSC_GPBT_GPB0)
+#define BG_DVFSC_GPBT_GPB0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB0) >> BP_DVFSC_GPBT_GPB0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB0.
-#define BF_DVFSC_GPBT_GPB0(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB0) & BM_DVFSC_GPBT_GPB0)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB0.
-#define BF_DVFSC_GPBT_GPB0(v)   (((v) << BP_DVFSC_GPBT_GPB0) & BM_DVFSC_GPBT_GPB0)
-#endif
+#define BF_DVFSC_GPBT_GPB0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB0) & BM_DVFSC_GPBT_GPB0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB0 field to a new value.
@@ -1017,15 +926,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB1      (0x00000002)  //!< Bit mask for DVFSC_GPBT_GPB1.
 
 //! @brief Get value of DVFSC_GPBT_GPB1 from a register value.
-#define BG_DVFSC_GPBT_GPB1(r)   (((r) & BM_DVFSC_GPBT_GPB1) >> BP_DVFSC_GPBT_GPB1)
+#define BG_DVFSC_GPBT_GPB1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB1) >> BP_DVFSC_GPBT_GPB1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB1.
-#define BF_DVFSC_GPBT_GPB1(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB1) & BM_DVFSC_GPBT_GPB1)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB1.
-#define BF_DVFSC_GPBT_GPB1(v)   (((v) << BP_DVFSC_GPBT_GPB1) & BM_DVFSC_GPBT_GPB1)
-#endif
+#define BF_DVFSC_GPBT_GPB1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB1) & BM_DVFSC_GPBT_GPB1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB1 field to a new value.
@@ -1041,15 +945,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB2      (0x00000004)  //!< Bit mask for DVFSC_GPBT_GPB2.
 
 //! @brief Get value of DVFSC_GPBT_GPB2 from a register value.
-#define BG_DVFSC_GPBT_GPB2(r)   (((r) & BM_DVFSC_GPBT_GPB2) >> BP_DVFSC_GPBT_GPB2)
+#define BG_DVFSC_GPBT_GPB2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB2) >> BP_DVFSC_GPBT_GPB2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB2.
-#define BF_DVFSC_GPBT_GPB2(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB2) & BM_DVFSC_GPBT_GPB2)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB2.
-#define BF_DVFSC_GPBT_GPB2(v)   (((v) << BP_DVFSC_GPBT_GPB2) & BM_DVFSC_GPBT_GPB2)
-#endif
+#define BF_DVFSC_GPBT_GPB2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB2) & BM_DVFSC_GPBT_GPB2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB2 field to a new value.
@@ -1065,15 +964,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB3      (0x00000008)  //!< Bit mask for DVFSC_GPBT_GPB3.
 
 //! @brief Get value of DVFSC_GPBT_GPB3 from a register value.
-#define BG_DVFSC_GPBT_GPB3(r)   (((r) & BM_DVFSC_GPBT_GPB3) >> BP_DVFSC_GPBT_GPB3)
+#define BG_DVFSC_GPBT_GPB3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB3) >> BP_DVFSC_GPBT_GPB3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB3.
-#define BF_DVFSC_GPBT_GPB3(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB3) & BM_DVFSC_GPBT_GPB3)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB3.
-#define BF_DVFSC_GPBT_GPB3(v)   (((v) << BP_DVFSC_GPBT_GPB3) & BM_DVFSC_GPBT_GPB3)
-#endif
+#define BF_DVFSC_GPBT_GPB3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB3) & BM_DVFSC_GPBT_GPB3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB3 field to a new value.
@@ -1089,15 +983,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB4      (0x00000010)  //!< Bit mask for DVFSC_GPBT_GPB4.
 
 //! @brief Get value of DVFSC_GPBT_GPB4 from a register value.
-#define BG_DVFSC_GPBT_GPB4(r)   (((r) & BM_DVFSC_GPBT_GPB4) >> BP_DVFSC_GPBT_GPB4)
+#define BG_DVFSC_GPBT_GPB4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB4) >> BP_DVFSC_GPBT_GPB4)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB4.
-#define BF_DVFSC_GPBT_GPB4(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB4) & BM_DVFSC_GPBT_GPB4)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB4.
-#define BF_DVFSC_GPBT_GPB4(v)   (((v) << BP_DVFSC_GPBT_GPB4) & BM_DVFSC_GPBT_GPB4)
-#endif
+#define BF_DVFSC_GPBT_GPB4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB4) & BM_DVFSC_GPBT_GPB4)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB4 field to a new value.
@@ -1113,15 +1002,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB5      (0x00000020)  //!< Bit mask for DVFSC_GPBT_GPB5.
 
 //! @brief Get value of DVFSC_GPBT_GPB5 from a register value.
-#define BG_DVFSC_GPBT_GPB5(r)   (((r) & BM_DVFSC_GPBT_GPB5) >> BP_DVFSC_GPBT_GPB5)
+#define BG_DVFSC_GPBT_GPB5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB5) >> BP_DVFSC_GPBT_GPB5)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB5.
-#define BF_DVFSC_GPBT_GPB5(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB5) & BM_DVFSC_GPBT_GPB5)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB5.
-#define BF_DVFSC_GPBT_GPB5(v)   (((v) << BP_DVFSC_GPBT_GPB5) & BM_DVFSC_GPBT_GPB5)
-#endif
+#define BF_DVFSC_GPBT_GPB5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB5) & BM_DVFSC_GPBT_GPB5)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB5 field to a new value.
@@ -1137,15 +1021,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB6      (0x00000040)  //!< Bit mask for DVFSC_GPBT_GPB6.
 
 //! @brief Get value of DVFSC_GPBT_GPB6 from a register value.
-#define BG_DVFSC_GPBT_GPB6(r)   (((r) & BM_DVFSC_GPBT_GPB6) >> BP_DVFSC_GPBT_GPB6)
+#define BG_DVFSC_GPBT_GPB6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB6) >> BP_DVFSC_GPBT_GPB6)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB6.
-#define BF_DVFSC_GPBT_GPB6(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB6) & BM_DVFSC_GPBT_GPB6)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB6.
-#define BF_DVFSC_GPBT_GPB6(v)   (((v) << BP_DVFSC_GPBT_GPB6) & BM_DVFSC_GPBT_GPB6)
-#endif
+#define BF_DVFSC_GPBT_GPB6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB6) & BM_DVFSC_GPBT_GPB6)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB6 field to a new value.
@@ -1161,15 +1040,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB7      (0x00000080)  //!< Bit mask for DVFSC_GPBT_GPB7.
 
 //! @brief Get value of DVFSC_GPBT_GPB7 from a register value.
-#define BG_DVFSC_GPBT_GPB7(r)   (((r) & BM_DVFSC_GPBT_GPB7) >> BP_DVFSC_GPBT_GPB7)
+#define BG_DVFSC_GPBT_GPB7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB7) >> BP_DVFSC_GPBT_GPB7)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB7.
-#define BF_DVFSC_GPBT_GPB7(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB7) & BM_DVFSC_GPBT_GPB7)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB7.
-#define BF_DVFSC_GPBT_GPB7(v)   (((v) << BP_DVFSC_GPBT_GPB7) & BM_DVFSC_GPBT_GPB7)
-#endif
+#define BF_DVFSC_GPBT_GPB7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB7) & BM_DVFSC_GPBT_GPB7)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB7 field to a new value.
@@ -1185,15 +1059,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB8      (0x00000100)  //!< Bit mask for DVFSC_GPBT_GPB8.
 
 //! @brief Get value of DVFSC_GPBT_GPB8 from a register value.
-#define BG_DVFSC_GPBT_GPB8(r)   (((r) & BM_DVFSC_GPBT_GPB8) >> BP_DVFSC_GPBT_GPB8)
+#define BG_DVFSC_GPBT_GPB8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB8) >> BP_DVFSC_GPBT_GPB8)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB8.
-#define BF_DVFSC_GPBT_GPB8(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB8) & BM_DVFSC_GPBT_GPB8)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB8.
-#define BF_DVFSC_GPBT_GPB8(v)   (((v) << BP_DVFSC_GPBT_GPB8) & BM_DVFSC_GPBT_GPB8)
-#endif
+#define BF_DVFSC_GPBT_GPB8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB8) & BM_DVFSC_GPBT_GPB8)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB8 field to a new value.
@@ -1209,15 +1078,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB9      (0x00000200)  //!< Bit mask for DVFSC_GPBT_GPB9.
 
 //! @brief Get value of DVFSC_GPBT_GPB9 from a register value.
-#define BG_DVFSC_GPBT_GPB9(r)   (((r) & BM_DVFSC_GPBT_GPB9) >> BP_DVFSC_GPBT_GPB9)
+#define BG_DVFSC_GPBT_GPB9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB9) >> BP_DVFSC_GPBT_GPB9)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB9.
-#define BF_DVFSC_GPBT_GPB9(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB9) & BM_DVFSC_GPBT_GPB9)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB9.
-#define BF_DVFSC_GPBT_GPB9(v)   (((v) << BP_DVFSC_GPBT_GPB9) & BM_DVFSC_GPBT_GPB9)
-#endif
+#define BF_DVFSC_GPBT_GPB9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB9) & BM_DVFSC_GPBT_GPB9)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB9 field to a new value.
@@ -1233,15 +1097,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB10      (0x00000400)  //!< Bit mask for DVFSC_GPBT_GPB10.
 
 //! @brief Get value of DVFSC_GPBT_GPB10 from a register value.
-#define BG_DVFSC_GPBT_GPB10(r)   (((r) & BM_DVFSC_GPBT_GPB10) >> BP_DVFSC_GPBT_GPB10)
+#define BG_DVFSC_GPBT_GPB10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB10) >> BP_DVFSC_GPBT_GPB10)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB10.
-#define BF_DVFSC_GPBT_GPB10(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB10) & BM_DVFSC_GPBT_GPB10)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB10.
-#define BF_DVFSC_GPBT_GPB10(v)   (((v) << BP_DVFSC_GPBT_GPB10) & BM_DVFSC_GPBT_GPB10)
-#endif
+#define BF_DVFSC_GPBT_GPB10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB10) & BM_DVFSC_GPBT_GPB10)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB10 field to a new value.
@@ -1257,15 +1116,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB11      (0x00000800)  //!< Bit mask for DVFSC_GPBT_GPB11.
 
 //! @brief Get value of DVFSC_GPBT_GPB11 from a register value.
-#define BG_DVFSC_GPBT_GPB11(r)   (((r) & BM_DVFSC_GPBT_GPB11) >> BP_DVFSC_GPBT_GPB11)
+#define BG_DVFSC_GPBT_GPB11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB11) >> BP_DVFSC_GPBT_GPB11)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB11.
-#define BF_DVFSC_GPBT_GPB11(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB11) & BM_DVFSC_GPBT_GPB11)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB11.
-#define BF_DVFSC_GPBT_GPB11(v)   (((v) << BP_DVFSC_GPBT_GPB11) & BM_DVFSC_GPBT_GPB11)
-#endif
+#define BF_DVFSC_GPBT_GPB11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB11) & BM_DVFSC_GPBT_GPB11)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB11 field to a new value.
@@ -1281,15 +1135,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB12      (0x00001000)  //!< Bit mask for DVFSC_GPBT_GPB12.
 
 //! @brief Get value of DVFSC_GPBT_GPB12 from a register value.
-#define BG_DVFSC_GPBT_GPB12(r)   (((r) & BM_DVFSC_GPBT_GPB12) >> BP_DVFSC_GPBT_GPB12)
+#define BG_DVFSC_GPBT_GPB12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB12) >> BP_DVFSC_GPBT_GPB12)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB12.
-#define BF_DVFSC_GPBT_GPB12(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB12) & BM_DVFSC_GPBT_GPB12)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB12.
-#define BF_DVFSC_GPBT_GPB12(v)   (((v) << BP_DVFSC_GPBT_GPB12) & BM_DVFSC_GPBT_GPB12)
-#endif
+#define BF_DVFSC_GPBT_GPB12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB12) & BM_DVFSC_GPBT_GPB12)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB12 field to a new value.
@@ -1305,15 +1154,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB13      (0x00002000)  //!< Bit mask for DVFSC_GPBT_GPB13.
 
 //! @brief Get value of DVFSC_GPBT_GPB13 from a register value.
-#define BG_DVFSC_GPBT_GPB13(r)   (((r) & BM_DVFSC_GPBT_GPB13) >> BP_DVFSC_GPBT_GPB13)
+#define BG_DVFSC_GPBT_GPB13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB13) >> BP_DVFSC_GPBT_GPB13)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB13.
-#define BF_DVFSC_GPBT_GPB13(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB13) & BM_DVFSC_GPBT_GPB13)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB13.
-#define BF_DVFSC_GPBT_GPB13(v)   (((v) << BP_DVFSC_GPBT_GPB13) & BM_DVFSC_GPBT_GPB13)
-#endif
+#define BF_DVFSC_GPBT_GPB13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB13) & BM_DVFSC_GPBT_GPB13)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB13 field to a new value.
@@ -1329,15 +1173,10 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB14      (0x00004000)  //!< Bit mask for DVFSC_GPBT_GPB14.
 
 //! @brief Get value of DVFSC_GPBT_GPB14 from a register value.
-#define BG_DVFSC_GPBT_GPB14(r)   (((r) & BM_DVFSC_GPBT_GPB14) >> BP_DVFSC_GPBT_GPB14)
+#define BG_DVFSC_GPBT_GPB14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB14) >> BP_DVFSC_GPBT_GPB14)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB14.
-#define BF_DVFSC_GPBT_GPB14(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB14) & BM_DVFSC_GPBT_GPB14)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB14.
-#define BF_DVFSC_GPBT_GPB14(v)   (((v) << BP_DVFSC_GPBT_GPB14) & BM_DVFSC_GPBT_GPB14)
-#endif
+#define BF_DVFSC_GPBT_GPB14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB14) & BM_DVFSC_GPBT_GPB14)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB14 field to a new value.
@@ -1353,20 +1192,19 @@ typedef union _hw_dvfsc_gpbt
 #define BM_DVFSC_GPBT_GPB15      (0x00008000)  //!< Bit mask for DVFSC_GPBT_GPB15.
 
 //! @brief Get value of DVFSC_GPBT_GPB15 from a register value.
-#define BG_DVFSC_GPBT_GPB15(r)   (((r) & BM_DVFSC_GPBT_GPB15) >> BP_DVFSC_GPBT_GPB15)
+#define BG_DVFSC_GPBT_GPB15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_GPBT_GPB15) >> BP_DVFSC_GPBT_GPB15)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_GPBT_GPB15.
-#define BF_DVFSC_GPBT_GPB15(v)   ((((reg32_t) v) << BP_DVFSC_GPBT_GPB15) & BM_DVFSC_GPBT_GPB15)
-#else
-//! @brief Format value for bitfield DVFSC_GPBT_GPB15.
-#define BF_DVFSC_GPBT_GPB15(v)   (((v) << BP_DVFSC_GPBT_GPB15) & BM_DVFSC_GPBT_GPB15)
-#endif
+#define BF_DVFSC_GPBT_GPB15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_GPBT_GPB15) & BM_DVFSC_GPBT_GPB15)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GPB15 field to a new value.
 #define BW_DVFSC_GPBT_GPB15(v)   (HW_DVFSC_GPBT_WR((HW_DVFSC_GPBT_RD() & ~BM_DVFSC_GPBT_GPB15) | BF_DVFSC_GPBT_GPB15(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_EMAC - DVFSC EMAC settings
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1414,20 +1252,19 @@ typedef union _hw_dvfsc_emac
 #define BM_DVFSC_EMAC_EMAC      (0x000001ff)  //!< Bit mask for DVFSC_EMAC_EMAC.
 
 //! @brief Get value of DVFSC_EMAC_EMAC from a register value.
-#define BG_DVFSC_EMAC_EMAC(r)   (((r) & BM_DVFSC_EMAC_EMAC) >> BP_DVFSC_EMAC_EMAC)
+#define BG_DVFSC_EMAC_EMAC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_EMAC_EMAC) >> BP_DVFSC_EMAC_EMAC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_EMAC_EMAC.
-#define BF_DVFSC_EMAC_EMAC(v)   ((((reg32_t) v) << BP_DVFSC_EMAC_EMAC) & BM_DVFSC_EMAC_EMAC)
-#else
-//! @brief Format value for bitfield DVFSC_EMAC_EMAC.
-#define BF_DVFSC_EMAC_EMAC(v)   (((v) << BP_DVFSC_EMAC_EMAC) & BM_DVFSC_EMAC_EMAC)
-#endif
+#define BF_DVFSC_EMAC_EMAC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_EMAC_EMAC) & BM_DVFSC_EMAC_EMAC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EMAC field to a new value.
 #define BW_DVFSC_EMAC_EMAC(v)   (HW_DVFSC_EMAC_WR((HW_DVFSC_EMAC_RD() & ~BM_DVFSC_EMAC_EMAC) | BF_DVFSC_EMAC_EMAC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_CNTR - DVFSC Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1502,15 +1339,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_DVFEN      (0x00000001)  //!< Bit mask for DVFSC_CNTR_DVFEN.
 
 //! @brief Get value of DVFSC_CNTR_DVFEN from a register value.
-#define BG_DVFSC_CNTR_DVFEN(r)   (((r) & BM_DVFSC_CNTR_DVFEN) >> BP_DVFSC_CNTR_DVFEN)
+#define BG_DVFSC_CNTR_DVFEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_DVFEN) >> BP_DVFSC_CNTR_DVFEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_DVFEN.
-#define BF_DVFSC_CNTR_DVFEN(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_DVFEN) & BM_DVFSC_CNTR_DVFEN)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_DVFEN.
-#define BF_DVFSC_CNTR_DVFEN(v)   (((v) << BP_DVFSC_CNTR_DVFEN) & BM_DVFSC_CNTR_DVFEN)
-#endif
+#define BF_DVFSC_CNTR_DVFEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_DVFEN) & BM_DVFSC_CNTR_DVFEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVFEN field to a new value.
@@ -1533,15 +1365,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_LTBRSR      (0x00000018)  //!< Bit mask for DVFSC_CNTR_LTBRSR.
 
 //! @brief Get value of DVFSC_CNTR_LTBRSR from a register value.
-#define BG_DVFSC_CNTR_LTBRSR(r)   (((r) & BM_DVFSC_CNTR_LTBRSR) >> BP_DVFSC_CNTR_LTBRSR)
+#define BG_DVFSC_CNTR_LTBRSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_LTBRSR) >> BP_DVFSC_CNTR_LTBRSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_LTBRSR.
-#define BF_DVFSC_CNTR_LTBRSR(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_LTBRSR) & BM_DVFSC_CNTR_LTBRSR)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_LTBRSR.
-#define BF_DVFSC_CNTR_LTBRSR(v)   (((v) << BP_DVFSC_CNTR_LTBRSR) & BM_DVFSC_CNTR_LTBRSR)
-#endif
+#define BF_DVFSC_CNTR_LTBRSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_LTBRSR) & BM_DVFSC_CNTR_LTBRSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LTBRSR field to a new value.
@@ -1562,15 +1389,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_LTBRSH      (0x00000020)  //!< Bit mask for DVFSC_CNTR_LTBRSH.
 
 //! @brief Get value of DVFSC_CNTR_LTBRSH from a register value.
-#define BG_DVFSC_CNTR_LTBRSH(r)   (((r) & BM_DVFSC_CNTR_LTBRSH) >> BP_DVFSC_CNTR_LTBRSH)
+#define BG_DVFSC_CNTR_LTBRSH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_LTBRSH) >> BP_DVFSC_CNTR_LTBRSH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_LTBRSH.
-#define BF_DVFSC_CNTR_LTBRSH(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_LTBRSH) & BM_DVFSC_CNTR_LTBRSH)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_LTBRSH.
-#define BF_DVFSC_CNTR_LTBRSH(v)   (((v) << BP_DVFSC_CNTR_LTBRSH) & BM_DVFSC_CNTR_LTBRSH)
-#endif
+#define BF_DVFSC_CNTR_LTBRSH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_LTBRSH) & BM_DVFSC_CNTR_LTBRSH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LTBRSH field to a new value.
@@ -1594,7 +1416,7 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_PFUS      (0x000001c0)  //!< Bit mask for DVFSC_CNTR_PFUS.
 
 //! @brief Get value of DVFSC_CNTR_PFUS from a register value.
-#define BG_DVFSC_CNTR_PFUS(r)   (((r) & BM_DVFSC_CNTR_PFUS) >> BP_DVFSC_CNTR_PFUS)
+#define BG_DVFSC_CNTR_PFUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_PFUS) >> BP_DVFSC_CNTR_PFUS)
 
 
 /* --- Register HW_DVFSC_CNTR, field PFUE[9] (RW)
@@ -1610,15 +1432,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_PFUE      (0x00000200)  //!< Bit mask for DVFSC_CNTR_PFUE.
 
 //! @brief Get value of DVFSC_CNTR_PFUE from a register value.
-#define BG_DVFSC_CNTR_PFUE(r)   (((r) & BM_DVFSC_CNTR_PFUE) >> BP_DVFSC_CNTR_PFUE)
+#define BG_DVFSC_CNTR_PFUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_PFUE) >> BP_DVFSC_CNTR_PFUE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_PFUE.
-#define BF_DVFSC_CNTR_PFUE(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_PFUE) & BM_DVFSC_CNTR_PFUE)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_PFUE.
-#define BF_DVFSC_CNTR_PFUE(v)   (((v) << BP_DVFSC_CNTR_PFUE) & BM_DVFSC_CNTR_PFUE)
-#endif
+#define BF_DVFSC_CNTR_PFUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_PFUE) & BM_DVFSC_CNTR_PFUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PFUE field to a new value.
@@ -1635,15 +1452,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_DIV_RATIO      (0x0001f800)  //!< Bit mask for DVFSC_CNTR_DIV_RATIO.
 
 //! @brief Get value of DVFSC_CNTR_DIV_RATIO from a register value.
-#define BG_DVFSC_CNTR_DIV_RATIO(r)   (((r) & BM_DVFSC_CNTR_DIV_RATIO) >> BP_DVFSC_CNTR_DIV_RATIO)
+#define BG_DVFSC_CNTR_DIV_RATIO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_DIV_RATIO) >> BP_DVFSC_CNTR_DIV_RATIO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_DIV_RATIO.
-#define BF_DVFSC_CNTR_DIV_RATIO(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_DIV_RATIO) & BM_DVFSC_CNTR_DIV_RATIO)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_DIV_RATIO.
-#define BF_DVFSC_CNTR_DIV_RATIO(v)   (((v) << BP_DVFSC_CNTR_DIV_RATIO) & BM_DVFSC_CNTR_DIV_RATIO)
-#endif
+#define BF_DVFSC_CNTR_DIV_RATIO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_DIV_RATIO) & BM_DVFSC_CNTR_DIV_RATIO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIV_RATIO field to a new value.
@@ -1664,15 +1476,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_MINF      (0x00020000)  //!< Bit mask for DVFSC_CNTR_MINF.
 
 //! @brief Get value of DVFSC_CNTR_MINF from a register value.
-#define BG_DVFSC_CNTR_MINF(r)   (((r) & BM_DVFSC_CNTR_MINF) >> BP_DVFSC_CNTR_MINF)
+#define BG_DVFSC_CNTR_MINF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_MINF) >> BP_DVFSC_CNTR_MINF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_MINF.
-#define BF_DVFSC_CNTR_MINF(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_MINF) & BM_DVFSC_CNTR_MINF)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_MINF.
-#define BF_DVFSC_CNTR_MINF(v)   (((v) << BP_DVFSC_CNTR_MINF) & BM_DVFSC_CNTR_MINF)
-#endif
+#define BF_DVFSC_CNTR_MINF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_MINF) & BM_DVFSC_CNTR_MINF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MINF field to a new value.
@@ -1694,15 +1501,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_MAXF      (0x00040000)  //!< Bit mask for DVFSC_CNTR_MAXF.
 
 //! @brief Get value of DVFSC_CNTR_MAXF from a register value.
-#define BG_DVFSC_CNTR_MAXF(r)   (((r) & BM_DVFSC_CNTR_MAXF) >> BP_DVFSC_CNTR_MAXF)
+#define BG_DVFSC_CNTR_MAXF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_MAXF) >> BP_DVFSC_CNTR_MAXF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_MAXF.
-#define BF_DVFSC_CNTR_MAXF(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_MAXF) & BM_DVFSC_CNTR_MAXF)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_MAXF.
-#define BF_DVFSC_CNTR_MAXF(v)   (((v) << BP_DVFSC_CNTR_MAXF) & BM_DVFSC_CNTR_MAXF)
-#endif
+#define BF_DVFSC_CNTR_MAXF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_MAXF) & BM_DVFSC_CNTR_MAXF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MAXF field to a new value.
@@ -1723,15 +1525,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_WFIM      (0x00080000)  //!< Bit mask for DVFSC_CNTR_WFIM.
 
 //! @brief Get value of DVFSC_CNTR_WFIM from a register value.
-#define BG_DVFSC_CNTR_WFIM(r)   (((r) & BM_DVFSC_CNTR_WFIM) >> BP_DVFSC_CNTR_WFIM)
+#define BG_DVFSC_CNTR_WFIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_WFIM) >> BP_DVFSC_CNTR_WFIM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_WFIM.
-#define BF_DVFSC_CNTR_WFIM(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_WFIM) & BM_DVFSC_CNTR_WFIM)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_WFIM.
-#define BF_DVFSC_CNTR_WFIM(v)   (((v) << BP_DVFSC_CNTR_WFIM) & BM_DVFSC_CNTR_WFIM)
-#endif
+#define BF_DVFSC_CNTR_WFIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_WFIM) & BM_DVFSC_CNTR_WFIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WFIM field to a new value.
@@ -1758,7 +1555,7 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_FSVAI      (0x00300000)  //!< Bit mask for DVFSC_CNTR_FSVAI.
 
 //! @brief Get value of DVFSC_CNTR_FSVAI from a register value.
-#define BG_DVFSC_CNTR_FSVAI(r)   (((r) & BM_DVFSC_CNTR_FSVAI) >> BP_DVFSC_CNTR_FSVAI)
+#define BG_DVFSC_CNTR_FSVAI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_FSVAI) >> BP_DVFSC_CNTR_FSVAI)
 
 
 /* --- Register HW_DVFSC_CNTR, field FSVAIM[22] (RW)
@@ -1774,15 +1571,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_FSVAIM      (0x00400000)  //!< Bit mask for DVFSC_CNTR_FSVAIM.
 
 //! @brief Get value of DVFSC_CNTR_FSVAIM from a register value.
-#define BG_DVFSC_CNTR_FSVAIM(r)   (((r) & BM_DVFSC_CNTR_FSVAIM) >> BP_DVFSC_CNTR_FSVAIM)
+#define BG_DVFSC_CNTR_FSVAIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_FSVAIM) >> BP_DVFSC_CNTR_FSVAIM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_FSVAIM.
-#define BF_DVFSC_CNTR_FSVAIM(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_FSVAIM) & BM_DVFSC_CNTR_FSVAIM)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_FSVAIM.
-#define BF_DVFSC_CNTR_FSVAIM(v)   (((v) << BP_DVFSC_CNTR_FSVAIM) & BM_DVFSC_CNTR_FSVAIM)
-#endif
+#define BF_DVFSC_CNTR_FSVAIM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_FSVAIM) & BM_DVFSC_CNTR_FSVAIM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FSVAIM field to a new value.
@@ -1804,15 +1596,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_PIRQS      (0x00800000)  //!< Bit mask for DVFSC_CNTR_PIRQS.
 
 //! @brief Get value of DVFSC_CNTR_PIRQS from a register value.
-#define BG_DVFSC_CNTR_PIRQS(r)   (((r) & BM_DVFSC_CNTR_PIRQS) >> BP_DVFSC_CNTR_PIRQS)
+#define BG_DVFSC_CNTR_PIRQS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_PIRQS) >> BP_DVFSC_CNTR_PIRQS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_PIRQS.
-#define BF_DVFSC_CNTR_PIRQS(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_PIRQS) & BM_DVFSC_CNTR_PIRQS)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_PIRQS.
-#define BF_DVFSC_CNTR_PIRQS(v)   (((v) << BP_DVFSC_CNTR_PIRQS) & BM_DVFSC_CNTR_PIRQS)
-#endif
+#define BF_DVFSC_CNTR_PIRQS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_PIRQS) & BM_DVFSC_CNTR_PIRQS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PIRQS field to a new value.
@@ -1833,15 +1620,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_DVFIS      (0x01000000)  //!< Bit mask for DVFSC_CNTR_DVFIS.
 
 //! @brief Get value of DVFSC_CNTR_DVFIS from a register value.
-#define BG_DVFSC_CNTR_DVFIS(r)   (((r) & BM_DVFSC_CNTR_DVFIS) >> BP_DVFSC_CNTR_DVFIS)
+#define BG_DVFSC_CNTR_DVFIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_DVFIS) >> BP_DVFSC_CNTR_DVFIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_DVFIS.
-#define BF_DVFSC_CNTR_DVFIS(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_DVFIS) & BM_DVFSC_CNTR_DVFIS)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_DVFIS.
-#define BF_DVFSC_CNTR_DVFIS(v)   (((v) << BP_DVFSC_CNTR_DVFIS) & BM_DVFSC_CNTR_DVFIS)
-#endif
+#define BF_DVFSC_CNTR_DVFIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_DVFIS) & BM_DVFSC_CNTR_DVFIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVFIS field to a new value.
@@ -1863,15 +1645,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_LBFL0      (0x02000000)  //!< Bit mask for DVFSC_CNTR_LBFL0.
 
 //! @brief Get value of DVFSC_CNTR_LBFL0 from a register value.
-#define BG_DVFSC_CNTR_LBFL0(r)   (((r) & BM_DVFSC_CNTR_LBFL0) >> BP_DVFSC_CNTR_LBFL0)
+#define BG_DVFSC_CNTR_LBFL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_LBFL0) >> BP_DVFSC_CNTR_LBFL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_LBFL0.
-#define BF_DVFSC_CNTR_LBFL0(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_LBFL0) & BM_DVFSC_CNTR_LBFL0)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_LBFL0.
-#define BF_DVFSC_CNTR_LBFL0(v)   (((v) << BP_DVFSC_CNTR_LBFL0) & BM_DVFSC_CNTR_LBFL0)
-#endif
+#define BF_DVFSC_CNTR_LBFL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_LBFL0) & BM_DVFSC_CNTR_LBFL0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LBFL0 field to a new value.
@@ -1893,15 +1670,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_LBFL1      (0x04000000)  //!< Bit mask for DVFSC_CNTR_LBFL1.
 
 //! @brief Get value of DVFSC_CNTR_LBFL1 from a register value.
-#define BG_DVFSC_CNTR_LBFL1(r)   (((r) & BM_DVFSC_CNTR_LBFL1) >> BP_DVFSC_CNTR_LBFL1)
+#define BG_DVFSC_CNTR_LBFL1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_LBFL1) >> BP_DVFSC_CNTR_LBFL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_LBFL1.
-#define BF_DVFSC_CNTR_LBFL1(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_LBFL1) & BM_DVFSC_CNTR_LBFL1)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_LBFL1.
-#define BF_DVFSC_CNTR_LBFL1(v)   (((v) << BP_DVFSC_CNTR_LBFL1) & BM_DVFSC_CNTR_LBFL1)
-#endif
+#define BF_DVFSC_CNTR_LBFL1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_LBFL1) & BM_DVFSC_CNTR_LBFL1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LBFL1 field to a new value.
@@ -1923,15 +1695,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_LBMI      (0x08000000)  //!< Bit mask for DVFSC_CNTR_LBMI.
 
 //! @brief Get value of DVFSC_CNTR_LBMI from a register value.
-#define BG_DVFSC_CNTR_LBMI(r)   (((r) & BM_DVFSC_CNTR_LBMI) >> BP_DVFSC_CNTR_LBMI)
+#define BG_DVFSC_CNTR_LBMI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_LBMI) >> BP_DVFSC_CNTR_LBMI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_LBMI.
-#define BF_DVFSC_CNTR_LBMI(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_LBMI) & BM_DVFSC_CNTR_LBMI)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_LBMI.
-#define BF_DVFSC_CNTR_LBMI(v)   (((v) << BP_DVFSC_CNTR_LBMI) & BM_DVFSC_CNTR_LBMI)
-#endif
+#define BF_DVFSC_CNTR_LBMI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_LBMI) & BM_DVFSC_CNTR_LBMI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LBMI field to a new value.
@@ -1952,15 +1719,10 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_DVFEV      (0x10000000)  //!< Bit mask for DVFSC_CNTR_DVFEV.
 
 //! @brief Get value of DVFSC_CNTR_DVFEV from a register value.
-#define BG_DVFSC_CNTR_DVFEV(r)   (((r) & BM_DVFSC_CNTR_DVFEV) >> BP_DVFSC_CNTR_DVFEV)
+#define BG_DVFSC_CNTR_DVFEV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_DVFEV) >> BP_DVFSC_CNTR_DVFEV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_DVFEV.
-#define BF_DVFSC_CNTR_DVFEV(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_DVFEV) & BM_DVFSC_CNTR_DVFEV)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_DVFEV.
-#define BF_DVFSC_CNTR_DVFEV(v)   (((v) << BP_DVFSC_CNTR_DVFEV) & BM_DVFSC_CNTR_DVFEV)
-#endif
+#define BF_DVFSC_CNTR_DVFEV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_DVFEV) & BM_DVFSC_CNTR_DVFEV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVFEV field to a new value.
@@ -1977,20 +1739,19 @@ typedef union _hw_dvfsc_cntr
 #define BM_DVFSC_CNTR_DIV3CK      (0xe0000000)  //!< Bit mask for DVFSC_CNTR_DIV3CK.
 
 //! @brief Get value of DVFSC_CNTR_DIV3CK from a register value.
-#define BG_DVFSC_CNTR_DIV3CK(r)   (((r) & BM_DVFSC_CNTR_DIV3CK) >> BP_DVFSC_CNTR_DIV3CK)
+#define BG_DVFSC_CNTR_DIV3CK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_DIV3CK) >> BP_DVFSC_CNTR_DIV3CK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_CNTR_DIV3CK.
-#define BF_DVFSC_CNTR_DIV3CK(v)   ((((reg32_t) v) << BP_DVFSC_CNTR_DIV3CK) & BM_DVFSC_CNTR_DIV3CK)
-#else
-//! @brief Format value for bitfield DVFSC_CNTR_DIV3CK.
-#define BF_DVFSC_CNTR_DIV3CK(v)   (((v) << BP_DVFSC_CNTR_DIV3CK) & BM_DVFSC_CNTR_DIV3CK)
-#endif
+#define BF_DVFSC_CNTR_DIV3CK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_CNTR_DIV3CK) & BM_DVFSC_CNTR_DIV3CK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DIV3CK field to a new value.
 #define BW_DVFSC_CNTR_DIV3CK(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_DIV3CK) | BF_DVFSC_CNTR_DIV3CK(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_LTR0_0 - DVFSC Load Tracking Register 0, portion 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2040,7 +1801,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_0      (0x0000000f)  //!< Bit mask for DVFSC_LTR0_0_LTS0_0.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_0 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_0(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_0) >> BP_DVFSC_LTR0_0_LTS0_0)
+#define BG_DVFSC_LTR0_0_LTS0_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_0) >> BP_DVFSC_LTR0_0_LTS0_0)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_1[7:4] (RO)
  *
@@ -2051,7 +1812,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_1      (0x000000f0)  //!< Bit mask for DVFSC_LTR0_0_LTS0_1.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_1 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_1(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_1) >> BP_DVFSC_LTR0_0_LTS0_1)
+#define BG_DVFSC_LTR0_0_LTS0_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_1) >> BP_DVFSC_LTR0_0_LTS0_1)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_2[11:8] (RO)
  *
@@ -2062,7 +1823,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_2      (0x00000f00)  //!< Bit mask for DVFSC_LTR0_0_LTS0_2.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_2 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_2(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_2) >> BP_DVFSC_LTR0_0_LTS0_2)
+#define BG_DVFSC_LTR0_0_LTS0_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_2) >> BP_DVFSC_LTR0_0_LTS0_2)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_3[15:12] (RO)
  *
@@ -2073,7 +1834,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_3      (0x0000f000)  //!< Bit mask for DVFSC_LTR0_0_LTS0_3.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_3 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_3(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_3) >> BP_DVFSC_LTR0_0_LTS0_3)
+#define BG_DVFSC_LTR0_0_LTS0_3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_3) >> BP_DVFSC_LTR0_0_LTS0_3)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_4[19:16] (RO)
  *
@@ -2084,7 +1845,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_4      (0x000f0000)  //!< Bit mask for DVFSC_LTR0_0_LTS0_4.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_4 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_4(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_4) >> BP_DVFSC_LTR0_0_LTS0_4)
+#define BG_DVFSC_LTR0_0_LTS0_4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_4) >> BP_DVFSC_LTR0_0_LTS0_4)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_5[23:20] (RO)
  *
@@ -2095,7 +1856,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_5      (0x00f00000)  //!< Bit mask for DVFSC_LTR0_0_LTS0_5.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_5 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_5(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_5) >> BP_DVFSC_LTR0_0_LTS0_5)
+#define BG_DVFSC_LTR0_0_LTS0_5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_5) >> BP_DVFSC_LTR0_0_LTS0_5)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_6[27:24] (RO)
  *
@@ -2106,7 +1867,7 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_6      (0x0f000000)  //!< Bit mask for DVFSC_LTR0_0_LTS0_6.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_6 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_6(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_6) >> BP_DVFSC_LTR0_0_LTS0_6)
+#define BG_DVFSC_LTR0_0_LTS0_6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_6) >> BP_DVFSC_LTR0_0_LTS0_6)
 
 /* --- Register HW_DVFSC_LTR0_0, field LTS0_7[31:28] (RO)
  *
@@ -2117,7 +1878,11 @@ typedef union _hw_dvfsc_ltr0_0
 #define BM_DVFSC_LTR0_0_LTS0_7      (0xf0000000)  //!< Bit mask for DVFSC_LTR0_0_LTS0_7.
 
 //! @brief Get value of DVFSC_LTR0_0_LTS0_7 from a register value.
-#define BG_DVFSC_LTR0_0_LTS0_7(r)   (((r) & BM_DVFSC_LTR0_0_LTS0_7) >> BP_DVFSC_LTR0_0_LTS0_7)
+#define BG_DVFSC_LTR0_0_LTS0_7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_0_LTS0_7) >> BP_DVFSC_LTR0_0_LTS0_7)
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_LTR0_1 - DVFSC Load Tracking Register 0, portion 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2167,7 +1932,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_8      (0x0000000f)  //!< Bit mask for DVFSC_LTR0_1_LTS0_8.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_8 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_8(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_8) >> BP_DVFSC_LTR0_1_LTS0_8)
+#define BG_DVFSC_LTR0_1_LTS0_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_8) >> BP_DVFSC_LTR0_1_LTS0_8)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_9[7:4] (RO)
  *
@@ -2178,7 +1943,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_9      (0x000000f0)  //!< Bit mask for DVFSC_LTR0_1_LTS0_9.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_9 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_9(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_9) >> BP_DVFSC_LTR0_1_LTS0_9)
+#define BG_DVFSC_LTR0_1_LTS0_9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_9) >> BP_DVFSC_LTR0_1_LTS0_9)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_10[11:8] (RO)
  *
@@ -2189,7 +1954,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_10      (0x00000f00)  //!< Bit mask for DVFSC_LTR0_1_LTS0_10.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_10 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_10(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_10) >> BP_DVFSC_LTR0_1_LTS0_10)
+#define BG_DVFSC_LTR0_1_LTS0_10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_10) >> BP_DVFSC_LTR0_1_LTS0_10)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_11[15:12] (RO)
  *
@@ -2200,7 +1965,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_11      (0x0000f000)  //!< Bit mask for DVFSC_LTR0_1_LTS0_11.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_11 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_11(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_11) >> BP_DVFSC_LTR0_1_LTS0_11)
+#define BG_DVFSC_LTR0_1_LTS0_11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_11) >> BP_DVFSC_LTR0_1_LTS0_11)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_12[19:16] (RO)
  *
@@ -2211,7 +1976,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_12      (0x000f0000)  //!< Bit mask for DVFSC_LTR0_1_LTS0_12.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_12 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_12(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_12) >> BP_DVFSC_LTR0_1_LTS0_12)
+#define BG_DVFSC_LTR0_1_LTS0_12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_12) >> BP_DVFSC_LTR0_1_LTS0_12)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_13[23:20] (RO)
  *
@@ -2222,7 +1987,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_13      (0x00f00000)  //!< Bit mask for DVFSC_LTR0_1_LTS0_13.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_13 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_13(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_13) >> BP_DVFSC_LTR0_1_LTS0_13)
+#define BG_DVFSC_LTR0_1_LTS0_13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_13) >> BP_DVFSC_LTR0_1_LTS0_13)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_14[27:24] (RO)
  *
@@ -2233,7 +1998,7 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_14      (0x0f000000)  //!< Bit mask for DVFSC_LTR0_1_LTS0_14.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_14 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_14(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_14) >> BP_DVFSC_LTR0_1_LTS0_14)
+#define BG_DVFSC_LTR0_1_LTS0_14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_14) >> BP_DVFSC_LTR0_1_LTS0_14)
 
 /* --- Register HW_DVFSC_LTR0_1, field LTS0_15[31:28] (RO)
  *
@@ -2244,7 +2009,11 @@ typedef union _hw_dvfsc_ltr0_1
 #define BM_DVFSC_LTR0_1_LTS0_15      (0xf0000000)  //!< Bit mask for DVFSC_LTR0_1_LTS0_15.
 
 //! @brief Get value of DVFSC_LTR0_1_LTS0_15 from a register value.
-#define BG_DVFSC_LTR0_1_LTS0_15(r)   (((r) & BM_DVFSC_LTR0_1_LTS0_15) >> BP_DVFSC_LTR0_1_LTS0_15)
+#define BG_DVFSC_LTR0_1_LTS0_15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR0_1_LTS0_15) >> BP_DVFSC_LTR0_1_LTS0_15)
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_LTR1_0 - DVFSC Load Tracking Register 1, portion 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2294,7 +2063,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_0      (0x0000000f)  //!< Bit mask for DVFSC_LTR1_0_LTS1_0.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_0 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_0(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_0) >> BP_DVFSC_LTR1_0_LTS1_0)
+#define BG_DVFSC_LTR1_0_LTS1_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_0) >> BP_DVFSC_LTR1_0_LTS1_0)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_1[7:4] (RO)
  *
@@ -2305,7 +2074,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_1      (0x000000f0)  //!< Bit mask for DVFSC_LTR1_0_LTS1_1.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_1 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_1(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_1) >> BP_DVFSC_LTR1_0_LTS1_1)
+#define BG_DVFSC_LTR1_0_LTS1_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_1) >> BP_DVFSC_LTR1_0_LTS1_1)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_2[11:8] (RO)
  *
@@ -2316,7 +2085,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_2      (0x00000f00)  //!< Bit mask for DVFSC_LTR1_0_LTS1_2.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_2 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_2(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_2) >> BP_DVFSC_LTR1_0_LTS1_2)
+#define BG_DVFSC_LTR1_0_LTS1_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_2) >> BP_DVFSC_LTR1_0_LTS1_2)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_3[15:12] (RO)
  *
@@ -2327,7 +2096,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_3      (0x0000f000)  //!< Bit mask for DVFSC_LTR1_0_LTS1_3.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_3 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_3(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_3) >> BP_DVFSC_LTR1_0_LTS1_3)
+#define BG_DVFSC_LTR1_0_LTS1_3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_3) >> BP_DVFSC_LTR1_0_LTS1_3)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_4[19:16] (RO)
  *
@@ -2338,7 +2107,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_4      (0x000f0000)  //!< Bit mask for DVFSC_LTR1_0_LTS1_4.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_4 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_4(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_4) >> BP_DVFSC_LTR1_0_LTS1_4)
+#define BG_DVFSC_LTR1_0_LTS1_4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_4) >> BP_DVFSC_LTR1_0_LTS1_4)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_5[23:20] (RO)
  *
@@ -2349,7 +2118,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_5      (0x00f00000)  //!< Bit mask for DVFSC_LTR1_0_LTS1_5.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_5 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_5(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_5) >> BP_DVFSC_LTR1_0_LTS1_5)
+#define BG_DVFSC_LTR1_0_LTS1_5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_5) >> BP_DVFSC_LTR1_0_LTS1_5)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_6[27:24] (RO)
  *
@@ -2360,7 +2129,7 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_6      (0x0f000000)  //!< Bit mask for DVFSC_LTR1_0_LTS1_6.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_6 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_6(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_6) >> BP_DVFSC_LTR1_0_LTS1_6)
+#define BG_DVFSC_LTR1_0_LTS1_6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_6) >> BP_DVFSC_LTR1_0_LTS1_6)
 
 /* --- Register HW_DVFSC_LTR1_0, field LTS1_7[31:28] (RO)
  *
@@ -2371,7 +2140,11 @@ typedef union _hw_dvfsc_ltr1_0
 #define BM_DVFSC_LTR1_0_LTS1_7      (0xf0000000)  //!< Bit mask for DVFSC_LTR1_0_LTS1_7.
 
 //! @brief Get value of DVFSC_LTR1_0_LTS1_7 from a register value.
-#define BG_DVFSC_LTR1_0_LTS1_7(r)   (((r) & BM_DVFSC_LTR1_0_LTS1_7) >> BP_DVFSC_LTR1_0_LTS1_7)
+#define BG_DVFSC_LTR1_0_LTS1_7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_0_LTS1_7) >> BP_DVFSC_LTR1_0_LTS1_7)
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_LTR1_1 - DVFS Load Tracking Register 3, portion 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2421,7 +2194,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_8      (0x0000000f)  //!< Bit mask for DVFSC_LTR1_1_LTS1_8.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_8 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_8(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_8) >> BP_DVFSC_LTR1_1_LTS1_8)
+#define BG_DVFSC_LTR1_1_LTS1_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_8) >> BP_DVFSC_LTR1_1_LTS1_8)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_9[7:4] (RO)
  *
@@ -2432,7 +2205,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_9      (0x000000f0)  //!< Bit mask for DVFSC_LTR1_1_LTS1_9.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_9 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_9(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_9) >> BP_DVFSC_LTR1_1_LTS1_9)
+#define BG_DVFSC_LTR1_1_LTS1_9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_9) >> BP_DVFSC_LTR1_1_LTS1_9)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_10[11:8] (RO)
  *
@@ -2443,7 +2216,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_10      (0x00000f00)  //!< Bit mask for DVFSC_LTR1_1_LTS1_10.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_10 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_10(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_10) >> BP_DVFSC_LTR1_1_LTS1_10)
+#define BG_DVFSC_LTR1_1_LTS1_10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_10) >> BP_DVFSC_LTR1_1_LTS1_10)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_11[15:12] (RO)
  *
@@ -2454,7 +2227,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_11      (0x0000f000)  //!< Bit mask for DVFSC_LTR1_1_LTS1_11.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_11 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_11(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_11) >> BP_DVFSC_LTR1_1_LTS1_11)
+#define BG_DVFSC_LTR1_1_LTS1_11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_11) >> BP_DVFSC_LTR1_1_LTS1_11)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_12[19:16] (RO)
  *
@@ -2465,7 +2238,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_12      (0x000f0000)  //!< Bit mask for DVFSC_LTR1_1_LTS1_12.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_12 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_12(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_12) >> BP_DVFSC_LTR1_1_LTS1_12)
+#define BG_DVFSC_LTR1_1_LTS1_12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_12) >> BP_DVFSC_LTR1_1_LTS1_12)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_13[23:20] (RO)
  *
@@ -2476,7 +2249,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_13      (0x00f00000)  //!< Bit mask for DVFSC_LTR1_1_LTS1_13.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_13 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_13(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_13) >> BP_DVFSC_LTR1_1_LTS1_13)
+#define BG_DVFSC_LTR1_1_LTS1_13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_13) >> BP_DVFSC_LTR1_1_LTS1_13)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_14[27:24] (RO)
  *
@@ -2487,7 +2260,7 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_14      (0x0f000000)  //!< Bit mask for DVFSC_LTR1_1_LTS1_14.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_14 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_14(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_14) >> BP_DVFSC_LTR1_1_LTS1_14)
+#define BG_DVFSC_LTR1_1_LTS1_14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_14) >> BP_DVFSC_LTR1_1_LTS1_14)
 
 /* --- Register HW_DVFSC_LTR1_1, field LTS1_15[31:28] (RO)
  *
@@ -2498,7 +2271,11 @@ typedef union _hw_dvfsc_ltr1_1
 #define BM_DVFSC_LTR1_1_LTS1_15      (0xf0000000)  //!< Bit mask for DVFSC_LTR1_1_LTS1_15.
 
 //! @brief Get value of DVFSC_LTR1_1_LTS1_15 from a register value.
-#define BG_DVFSC_LTR1_1_LTS1_15(r)   (((r) & BM_DVFSC_LTR1_1_LTS1_15) >> BP_DVFSC_LTR1_1_LTS1_15)
+#define BG_DVFSC_LTR1_1_LTS1_15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_LTR1_1_LTS1_15) >> BP_DVFSC_LTR1_1_LTS1_15)
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_PT0 - DVFSC pattern 0 length
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2548,15 +2325,10 @@ typedef union _hw_dvfsc_pt0
 #define BM_DVFSC_PT0_FPTN0      (0x0001ffff)  //!< Bit mask for DVFSC_PT0_FPTN0.
 
 //! @brief Get value of DVFSC_PT0_FPTN0 from a register value.
-#define BG_DVFSC_PT0_FPTN0(r)   (((r) & BM_DVFSC_PT0_FPTN0) >> BP_DVFSC_PT0_FPTN0)
+#define BG_DVFSC_PT0_FPTN0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT0_FPTN0) >> BP_DVFSC_PT0_FPTN0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_PT0_FPTN0.
-#define BF_DVFSC_PT0_FPTN0(v)   ((((reg32_t) v) << BP_DVFSC_PT0_FPTN0) & BM_DVFSC_PT0_FPTN0)
-#else
-//! @brief Format value for bitfield DVFSC_PT0_FPTN0.
-#define BF_DVFSC_PT0_FPTN0(v)   (((v) << BP_DVFSC_PT0_FPTN0) & BM_DVFSC_PT0_FPTN0)
-#endif
+#define BF_DVFSC_PT0_FPTN0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_PT0_FPTN0) & BM_DVFSC_PT0_FPTN0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FPTN0 field to a new value.
@@ -2576,8 +2348,12 @@ typedef union _hw_dvfsc_pt0
 #define BM_DVFSC_PT0_PT0A      (0x00020000)  //!< Bit mask for DVFSC_PT0_PT0A.
 
 //! @brief Get value of DVFSC_PT0_PT0A from a register value.
-#define BG_DVFSC_PT0_PT0A(r)   (((r) & BM_DVFSC_PT0_PT0A) >> BP_DVFSC_PT0_PT0A)
+#define BG_DVFSC_PT0_PT0A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT0_PT0A) >> BP_DVFSC_PT0_PT0A)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_PT1 - DVFSC pattern 1 length
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2623,7 +2399,7 @@ typedef union _hw_dvfsc_pt1
 #define BM_DVFSC_PT1_FPTN1      (0x0001ffff)  //!< Bit mask for DVFSC_PT1_FPTN1.
 
 //! @brief Get value of DVFSC_PT1_FPTN1 from a register value.
-#define BG_DVFSC_PT1_FPTN1(r)   (((r) & BM_DVFSC_PT1_FPTN1) >> BP_DVFSC_PT1_FPTN1)
+#define BG_DVFSC_PT1_FPTN1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT1_FPTN1) >> BP_DVFSC_PT1_FPTN1)
 
 /* --- Register HW_DVFSC_PT1, field PT1A[17] (RW)
  *
@@ -2638,8 +2414,12 @@ typedef union _hw_dvfsc_pt1
 #define BM_DVFSC_PT1_PT1A      (0x00020000)  //!< Bit mask for DVFSC_PT1_PT1A.
 
 //! @brief Get value of DVFSC_PT1_PT1A from a register value.
-#define BG_DVFSC_PT1_PT1A(r)   (((r) & BM_DVFSC_PT1_PT1A) >> BP_DVFSC_PT1_PT1A)
+#define BG_DVFSC_PT1_PT1A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT1_PT1A) >> BP_DVFSC_PT1_PT1A)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_PT2 - DVFSC pattern 2 length
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2690,15 +2470,10 @@ typedef union _hw_dvfsc_pt2
 #define BM_DVFSC_PT2_FPTN2      (0x0001ffff)  //!< Bit mask for DVFSC_PT2_FPTN2.
 
 //! @brief Get value of DVFSC_PT2_FPTN2 from a register value.
-#define BG_DVFSC_PT2_FPTN2(r)   (((r) & BM_DVFSC_PT2_FPTN2) >> BP_DVFSC_PT2_FPTN2)
+#define BG_DVFSC_PT2_FPTN2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT2_FPTN2) >> BP_DVFSC_PT2_FPTN2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_PT2_FPTN2.
-#define BF_DVFSC_PT2_FPTN2(v)   ((((reg32_t) v) << BP_DVFSC_PT2_FPTN2) & BM_DVFSC_PT2_FPTN2)
-#else
-//! @brief Format value for bitfield DVFSC_PT2_FPTN2.
-#define BF_DVFSC_PT2_FPTN2(v)   (((v) << BP_DVFSC_PT2_FPTN2) & BM_DVFSC_PT2_FPTN2)
-#endif
+#define BF_DVFSC_PT2_FPTN2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_PT2_FPTN2) & BM_DVFSC_PT2_FPTN2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FPTN2 field to a new value.
@@ -2718,7 +2493,7 @@ typedef union _hw_dvfsc_pt2
 #define BM_DVFSC_PT2_PT2A      (0x00020000)  //!< Bit mask for DVFSC_PT2_PT2A.
 
 //! @brief Get value of DVFSC_PT2_PT2A from a register value.
-#define BG_DVFSC_PT2_PT2A(r)   (((r) & BM_DVFSC_PT2_PT2A) >> BP_DVFSC_PT2_PT2A)
+#define BG_DVFSC_PT2_PT2A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT2_PT2A) >> BP_DVFSC_PT2_PT2A)
 
 
 /* --- Register HW_DVFSC_PT2, field P2THR[31:26] (RW)
@@ -2733,20 +2508,19 @@ typedef union _hw_dvfsc_pt2
 #define BM_DVFSC_PT2_P2THR      (0xfc000000)  //!< Bit mask for DVFSC_PT2_P2THR.
 
 //! @brief Get value of DVFSC_PT2_P2THR from a register value.
-#define BG_DVFSC_PT2_P2THR(r)   (((r) & BM_DVFSC_PT2_P2THR) >> BP_DVFSC_PT2_P2THR)
+#define BG_DVFSC_PT2_P2THR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT2_P2THR) >> BP_DVFSC_PT2_P2THR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_PT2_P2THR.
-#define BF_DVFSC_PT2_P2THR(v)   ((((reg32_t) v) << BP_DVFSC_PT2_P2THR) & BM_DVFSC_PT2_P2THR)
-#else
-//! @brief Format value for bitfield DVFSC_PT2_P2THR.
-#define BF_DVFSC_PT2_P2THR(v)   (((v) << BP_DVFSC_PT2_P2THR) & BM_DVFSC_PT2_P2THR)
-#endif
+#define BF_DVFSC_PT2_P2THR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_PT2_P2THR) & BM_DVFSC_PT2_P2THR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the P2THR field to a new value.
 #define BW_DVFSC_PT2_P2THR(v)   (HW_DVFSC_PT2_WR((HW_DVFSC_PT2_RD() & ~BM_DVFSC_PT2_P2THR) | BF_DVFSC_PT2_P2THR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_DVFSC_PT3 - DVFSC pattern 3 length
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2796,15 +2570,10 @@ typedef union _hw_dvfsc_pt3
 #define BM_DVFSC_PT3_FPTN3      (0x0001ffff)  //!< Bit mask for DVFSC_PT3_FPTN3.
 
 //! @brief Get value of DVFSC_PT3_FPTN3 from a register value.
-#define BG_DVFSC_PT3_FPTN3(r)   (((r) & BM_DVFSC_PT3_FPTN3) >> BP_DVFSC_PT3_FPTN3)
+#define BG_DVFSC_PT3_FPTN3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT3_FPTN3) >> BP_DVFSC_PT3_FPTN3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield DVFSC_PT3_FPTN3.
-#define BF_DVFSC_PT3_FPTN3(v)   ((((reg32_t) v) << BP_DVFSC_PT3_FPTN3) & BM_DVFSC_PT3_FPTN3)
-#else
-//! @brief Format value for bitfield DVFSC_PT3_FPTN3.
-#define BF_DVFSC_PT3_FPTN3(v)   (((v) << BP_DVFSC_PT3_FPTN3) & BM_DVFSC_PT3_FPTN3)
-#endif
+#define BF_DVFSC_PT3_FPTN3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_DVFSC_PT3_FPTN3) & BM_DVFSC_PT3_FPTN3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FPTN3 field to a new value.
@@ -2824,7 +2593,7 @@ typedef union _hw_dvfsc_pt3
 #define BM_DVFSC_PT3_PT3A      (0x00020000)  //!< Bit mask for DVFSC_PT3_PT3A.
 
 //! @brief Get value of DVFSC_PT3_PT3A from a register value.
-#define BG_DVFSC_PT3_PT3A(r)   (((r) & BM_DVFSC_PT3_PT3A) >> BP_DVFSC_PT3_PT3A)
+#define BG_DVFSC_PT3_PT3A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_PT3_PT3A) >> BP_DVFSC_PT3_PT3A)
 
 
 

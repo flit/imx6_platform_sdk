@@ -116,6 +116,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDCTL - MMDC Core Control Register
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MMDC_MDCTL - MMDC Core Control Register (RW)
@@ -176,15 +191,10 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_DSIZ      (0x00030000)  //!< Bit mask for MMDC_MDCTL_DSIZ.
 
 //! @brief Get value of MMDC_MDCTL_DSIZ from a register value.
-#define BG_MMDC_MDCTL_DSIZ(r)   (((r) & BM_MMDC_MDCTL_DSIZ) >> BP_MMDC_MDCTL_DSIZ)
+#define BG_MMDC_MDCTL_DSIZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_DSIZ) >> BP_MMDC_MDCTL_DSIZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_DSIZ.
-#define BF_MMDC_MDCTL_DSIZ(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_DSIZ) & BM_MMDC_MDCTL_DSIZ)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_DSIZ.
-#define BF_MMDC_MDCTL_DSIZ(v)   (((v) << BP_MMDC_MDCTL_DSIZ) & BM_MMDC_MDCTL_DSIZ)
-#endif
+#define BF_MMDC_MDCTL_DSIZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_DSIZ) & BM_MMDC_MDCTL_DSIZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSIZ field to a new value.
@@ -206,15 +216,10 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_BL      (0x00080000)  //!< Bit mask for MMDC_MDCTL_BL.
 
 //! @brief Get value of MMDC_MDCTL_BL from a register value.
-#define BG_MMDC_MDCTL_BL(r)   (((r) & BM_MMDC_MDCTL_BL) >> BP_MMDC_MDCTL_BL)
+#define BG_MMDC_MDCTL_BL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_BL) >> BP_MMDC_MDCTL_BL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_BL.
-#define BF_MMDC_MDCTL_BL(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_BL) & BM_MMDC_MDCTL_BL)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_BL.
-#define BF_MMDC_MDCTL_BL(v)   (((v) << BP_MMDC_MDCTL_BL) & BM_MMDC_MDCTL_BL)
-#endif
+#define BF_MMDC_MDCTL_BL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_BL) & BM_MMDC_MDCTL_BL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
@@ -240,15 +245,10 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_COL      (0x00700000)  //!< Bit mask for MMDC_MDCTL_COL.
 
 //! @brief Get value of MMDC_MDCTL_COL from a register value.
-#define BG_MMDC_MDCTL_COL(r)   (((r) & BM_MMDC_MDCTL_COL) >> BP_MMDC_MDCTL_COL)
+#define BG_MMDC_MDCTL_COL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_COL) >> BP_MMDC_MDCTL_COL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_COL.
-#define BF_MMDC_MDCTL_COL(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_COL) & BM_MMDC_MDCTL_COL)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_COL.
-#define BF_MMDC_MDCTL_COL(v)   (((v) << BP_MMDC_MDCTL_COL) & BM_MMDC_MDCTL_COL)
-#endif
+#define BF_MMDC_MDCTL_COL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_COL) & BM_MMDC_MDCTL_COL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COL field to a new value.
@@ -274,15 +274,10 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_ROW      (0x07000000)  //!< Bit mask for MMDC_MDCTL_ROW.
 
 //! @brief Get value of MMDC_MDCTL_ROW from a register value.
-#define BG_MMDC_MDCTL_ROW(r)   (((r) & BM_MMDC_MDCTL_ROW) >> BP_MMDC_MDCTL_ROW)
+#define BG_MMDC_MDCTL_ROW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_ROW) >> BP_MMDC_MDCTL_ROW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_ROW.
-#define BF_MMDC_MDCTL_ROW(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_ROW) & BM_MMDC_MDCTL_ROW)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_ROW.
-#define BF_MMDC_MDCTL_ROW(v)   (((v) << BP_MMDC_MDCTL_ROW) & BM_MMDC_MDCTL_ROW)
-#endif
+#define BF_MMDC_MDCTL_ROW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_ROW) & BM_MMDC_MDCTL_ROW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROW field to a new value.
@@ -306,15 +301,10 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_SDE_1      (0x40000000)  //!< Bit mask for MMDC_MDCTL_SDE_1.
 
 //! @brief Get value of MMDC_MDCTL_SDE_1 from a register value.
-#define BG_MMDC_MDCTL_SDE_1(r)   (((r) & BM_MMDC_MDCTL_SDE_1) >> BP_MMDC_MDCTL_SDE_1)
+#define BG_MMDC_MDCTL_SDE_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_SDE_1) >> BP_MMDC_MDCTL_SDE_1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_SDE_1.
-#define BF_MMDC_MDCTL_SDE_1(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_SDE_1) & BM_MMDC_MDCTL_SDE_1)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_SDE_1.
-#define BF_MMDC_MDCTL_SDE_1(v)   (((v) << BP_MMDC_MDCTL_SDE_1) & BM_MMDC_MDCTL_SDE_1)
-#endif
+#define BF_MMDC_MDCTL_SDE_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_SDE_1) & BM_MMDC_MDCTL_SDE_1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_1 field to a new value.
@@ -338,21 +328,20 @@ typedef union _hw_mmdc_mdctl
 #define BM_MMDC_MDCTL_SDE_0      (0x80000000)  //!< Bit mask for MMDC_MDCTL_SDE_0.
 
 //! @brief Get value of MMDC_MDCTL_SDE_0 from a register value.
-#define BG_MMDC_MDCTL_SDE_0(r)   (((r) & BM_MMDC_MDCTL_SDE_0) >> BP_MMDC_MDCTL_SDE_0)
+#define BG_MMDC_MDCTL_SDE_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCTL_SDE_0) >> BP_MMDC_MDCTL_SDE_0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCTL_SDE_0.
-#define BF_MMDC_MDCTL_SDE_0(v)   ((((reg32_t) v) << BP_MMDC_MDCTL_SDE_0) & BM_MMDC_MDCTL_SDE_0)
-#else
-//! @brief Format value for bitfield MMDC_MDCTL_SDE_0.
-#define BF_MMDC_MDCTL_SDE_0(v)   (((v) << BP_MMDC_MDCTL_SDE_0) & BM_MMDC_MDCTL_SDE_0)
-#endif
+#define BF_MMDC_MDCTL_SDE_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCTL_SDE_0) & BM_MMDC_MDCTL_SDE_0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_0 field to a new value.
 #define BW_MMDC_MDCTL_SDE_0(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_SDE_0) | BF_MMDC_MDCTL_SDE_0(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDPDC - MMDC Core Power Down Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -425,15 +414,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_TCKSRE      (0x00000007)  //!< Bit mask for MMDC_MDPDC_TCKSRE.
 
 //! @brief Get value of MMDC_MDPDC_TCKSRE from a register value.
-#define BG_MMDC_MDPDC_TCKSRE(r)   (((r) & BM_MMDC_MDPDC_TCKSRE) >> BP_MMDC_MDPDC_TCKSRE)
+#define BG_MMDC_MDPDC_TCKSRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_TCKSRE) >> BP_MMDC_MDPDC_TCKSRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_TCKSRE.
-#define BF_MMDC_MDPDC_TCKSRE(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_TCKSRE) & BM_MMDC_MDPDC_TCKSRE)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_TCKSRE.
-#define BF_MMDC_MDPDC_TCKSRE(v)   (((v) << BP_MMDC_MDPDC_TCKSRE) & BM_MMDC_MDPDC_TCKSRE)
-#endif
+#define BF_MMDC_MDPDC_TCKSRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_TCKSRE) & BM_MMDC_MDPDC_TCKSRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKSRE field to a new value.
@@ -457,15 +441,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_TCKSRX      (0x00000038)  //!< Bit mask for MMDC_MDPDC_TCKSRX.
 
 //! @brief Get value of MMDC_MDPDC_TCKSRX from a register value.
-#define BG_MMDC_MDPDC_TCKSRX(r)   (((r) & BM_MMDC_MDPDC_TCKSRX) >> BP_MMDC_MDPDC_TCKSRX)
+#define BG_MMDC_MDPDC_TCKSRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_TCKSRX) >> BP_MMDC_MDPDC_TCKSRX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_TCKSRX.
-#define BF_MMDC_MDPDC_TCKSRX(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_TCKSRX) & BM_MMDC_MDPDC_TCKSRX)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_TCKSRX.
-#define BF_MMDC_MDPDC_TCKSRX(v)   (((v) << BP_MMDC_MDPDC_TCKSRX) & BM_MMDC_MDPDC_TCKSRX)
-#endif
+#define BF_MMDC_MDPDC_TCKSRX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_TCKSRX) & BM_MMDC_MDPDC_TCKSRX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKSRX field to a new value.
@@ -489,15 +468,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_BOTH_CS_PD      (0x00000040)  //!< Bit mask for MMDC_MDPDC_BOTH_CS_PD.
 
 //! @brief Get value of MMDC_MDPDC_BOTH_CS_PD from a register value.
-#define BG_MMDC_MDPDC_BOTH_CS_PD(r)   (((r) & BM_MMDC_MDPDC_BOTH_CS_PD) >> BP_MMDC_MDPDC_BOTH_CS_PD)
+#define BG_MMDC_MDPDC_BOTH_CS_PD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_BOTH_CS_PD) >> BP_MMDC_MDPDC_BOTH_CS_PD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_BOTH_CS_PD.
-#define BF_MMDC_MDPDC_BOTH_CS_PD(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_BOTH_CS_PD) & BM_MMDC_MDPDC_BOTH_CS_PD)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_BOTH_CS_PD.
-#define BF_MMDC_MDPDC_BOTH_CS_PD(v)   (((v) << BP_MMDC_MDPDC_BOTH_CS_PD) & BM_MMDC_MDPDC_BOTH_CS_PD)
-#endif
+#define BF_MMDC_MDPDC_BOTH_CS_PD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_BOTH_CS_PD) & BM_MMDC_MDPDC_BOTH_CS_PD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOTH_CS_PD field to a new value.
@@ -520,15 +494,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_SLOW_PD      (0x00000080)  //!< Bit mask for MMDC_MDPDC_SLOW_PD.
 
 //! @brief Get value of MMDC_MDPDC_SLOW_PD from a register value.
-#define BG_MMDC_MDPDC_SLOW_PD(r)   (((r) & BM_MMDC_MDPDC_SLOW_PD) >> BP_MMDC_MDPDC_SLOW_PD)
+#define BG_MMDC_MDPDC_SLOW_PD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_SLOW_PD) >> BP_MMDC_MDPDC_SLOW_PD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_SLOW_PD.
-#define BF_MMDC_MDPDC_SLOW_PD(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_SLOW_PD) & BM_MMDC_MDPDC_SLOW_PD)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_SLOW_PD.
-#define BF_MMDC_MDPDC_SLOW_PD(v)   (((v) << BP_MMDC_MDPDC_SLOW_PD) & BM_MMDC_MDPDC_SLOW_PD)
-#endif
+#define BF_MMDC_MDPDC_SLOW_PD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_SLOW_PD) & BM_MMDC_MDPDC_SLOW_PD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLOW_PD field to a new value.
@@ -547,15 +516,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_PWDT_0      (0x00000f00)  //!< Bit mask for MMDC_MDPDC_PWDT_0.
 
 //! @brief Get value of MMDC_MDPDC_PWDT_0 from a register value.
-#define BG_MMDC_MDPDC_PWDT_0(r)   (((r) & BM_MMDC_MDPDC_PWDT_0) >> BP_MMDC_MDPDC_PWDT_0)
+#define BG_MMDC_MDPDC_PWDT_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_PWDT_0) >> BP_MMDC_MDPDC_PWDT_0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_PWDT_0.
-#define BF_MMDC_MDPDC_PWDT_0(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_PWDT_0) & BM_MMDC_MDPDC_PWDT_0)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_PWDT_0.
-#define BF_MMDC_MDPDC_PWDT_0(v)   (((v) << BP_MMDC_MDPDC_PWDT_0) & BM_MMDC_MDPDC_PWDT_0)
-#endif
+#define BF_MMDC_MDPDC_PWDT_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_PWDT_0) & BM_MMDC_MDPDC_PWDT_0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWDT_0 field to a new value.
@@ -573,15 +537,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_PWDT_1      (0x0000f000)  //!< Bit mask for MMDC_MDPDC_PWDT_1.
 
 //! @brief Get value of MMDC_MDPDC_PWDT_1 from a register value.
-#define BG_MMDC_MDPDC_PWDT_1(r)   (((r) & BM_MMDC_MDPDC_PWDT_1) >> BP_MMDC_MDPDC_PWDT_1)
+#define BG_MMDC_MDPDC_PWDT_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_PWDT_1) >> BP_MMDC_MDPDC_PWDT_1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_PWDT_1.
-#define BF_MMDC_MDPDC_PWDT_1(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_PWDT_1) & BM_MMDC_MDPDC_PWDT_1)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_PWDT_1.
-#define BF_MMDC_MDPDC_PWDT_1(v)   (((v) << BP_MMDC_MDPDC_PWDT_1) & BM_MMDC_MDPDC_PWDT_1)
-#endif
+#define BF_MMDC_MDPDC_PWDT_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_PWDT_1) & BM_MMDC_MDPDC_PWDT_1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWDT_1 field to a new value.
@@ -603,15 +562,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_TCKE      (0x00070000)  //!< Bit mask for MMDC_MDPDC_TCKE.
 
 //! @brief Get value of MMDC_MDPDC_TCKE from a register value.
-#define BG_MMDC_MDPDC_TCKE(r)   (((r) & BM_MMDC_MDPDC_TCKE) >> BP_MMDC_MDPDC_TCKE)
+#define BG_MMDC_MDPDC_TCKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_TCKE) >> BP_MMDC_MDPDC_TCKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_TCKE.
-#define BF_MMDC_MDPDC_TCKE(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_TCKE) & BM_MMDC_MDPDC_TCKE)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_TCKE.
-#define BF_MMDC_MDPDC_TCKE(v)   (((v) << BP_MMDC_MDPDC_TCKE) & BM_MMDC_MDPDC_TCKE)
-#endif
+#define BF_MMDC_MDPDC_TCKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_TCKE) & BM_MMDC_MDPDC_TCKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKE field to a new value.
@@ -630,15 +584,10 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_PRCT_0      (0x07000000)  //!< Bit mask for MMDC_MDPDC_PRCT_0.
 
 //! @brief Get value of MMDC_MDPDC_PRCT_0 from a register value.
-#define BG_MMDC_MDPDC_PRCT_0(r)   (((r) & BM_MMDC_MDPDC_PRCT_0) >> BP_MMDC_MDPDC_PRCT_0)
+#define BG_MMDC_MDPDC_PRCT_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_PRCT_0) >> BP_MMDC_MDPDC_PRCT_0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_PRCT_0.
-#define BF_MMDC_MDPDC_PRCT_0(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_PRCT_0) & BM_MMDC_MDPDC_PRCT_0)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_PRCT_0.
-#define BF_MMDC_MDPDC_PRCT_0(v)   (((v) << BP_MMDC_MDPDC_PRCT_0) & BM_MMDC_MDPDC_PRCT_0)
-#endif
+#define BF_MMDC_MDPDC_PRCT_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_PRCT_0) & BM_MMDC_MDPDC_PRCT_0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRCT_0 field to a new value.
@@ -656,20 +605,19 @@ typedef union _hw_mmdc_mdpdc
 #define BM_MMDC_MDPDC_PRCT_1      (0x70000000)  //!< Bit mask for MMDC_MDPDC_PRCT_1.
 
 //! @brief Get value of MMDC_MDPDC_PRCT_1 from a register value.
-#define BG_MMDC_MDPDC_PRCT_1(r)   (((r) & BM_MMDC_MDPDC_PRCT_1) >> BP_MMDC_MDPDC_PRCT_1)
+#define BG_MMDC_MDPDC_PRCT_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDPDC_PRCT_1) >> BP_MMDC_MDPDC_PRCT_1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDPDC_PRCT_1.
-#define BF_MMDC_MDPDC_PRCT_1(v)   ((((reg32_t) v) << BP_MMDC_MDPDC_PRCT_1) & BM_MMDC_MDPDC_PRCT_1)
-#else
-//! @brief Format value for bitfield MMDC_MDPDC_PRCT_1.
-#define BF_MMDC_MDPDC_PRCT_1(v)   (((v) << BP_MMDC_MDPDC_PRCT_1) & BM_MMDC_MDPDC_PRCT_1)
-#endif
+#define BF_MMDC_MDPDC_PRCT_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDPDC_PRCT_1) & BM_MMDC_MDPDC_PRCT_1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRCT_1 field to a new value.
 #define BW_MMDC_MDPDC_PRCT_1(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PRCT_1) | BF_MMDC_MDPDC_PRCT_1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDOTC - MMDC Core ODT Timing Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -734,15 +682,10 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TODT_IDLE_OFF      (0x000001f0)  //!< Bit mask for MMDC_MDOTC_TODT_IDLE_OFF.
 
 //! @brief Get value of MMDC_MDOTC_TODT_IDLE_OFF from a register value.
-#define BG_MMDC_MDOTC_TODT_IDLE_OFF(r)   (((r) & BM_MMDC_MDOTC_TODT_IDLE_OFF) >> BP_MMDC_MDOTC_TODT_IDLE_OFF)
+#define BG_MMDC_MDOTC_TODT_IDLE_OFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TODT_IDLE_OFF) >> BP_MMDC_MDOTC_TODT_IDLE_OFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TODT_IDLE_OFF.
-#define BF_MMDC_MDOTC_TODT_IDLE_OFF(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TODT_IDLE_OFF) & BM_MMDC_MDOTC_TODT_IDLE_OFF)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TODT_IDLE_OFF.
-#define BF_MMDC_MDOTC_TODT_IDLE_OFF(v)   (((v) << BP_MMDC_MDOTC_TODT_IDLE_OFF) & BM_MMDC_MDOTC_TODT_IDLE_OFF)
-#endif
+#define BF_MMDC_MDOTC_TODT_IDLE_OFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TODT_IDLE_OFF) & BM_MMDC_MDOTC_TODT_IDLE_OFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TODT_IDLE_OFF field to a new value.
@@ -771,15 +714,10 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TODTLON      (0x00007000)  //!< Bit mask for MMDC_MDOTC_TODTLON.
 
 //! @brief Get value of MMDC_MDOTC_TODTLON from a register value.
-#define BG_MMDC_MDOTC_TODTLON(r)   (((r) & BM_MMDC_MDOTC_TODTLON) >> BP_MMDC_MDOTC_TODTLON)
+#define BG_MMDC_MDOTC_TODTLON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TODTLON) >> BP_MMDC_MDOTC_TODTLON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TODTLON.
-#define BF_MMDC_MDOTC_TODTLON(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TODTLON) & BM_MMDC_MDOTC_TODTLON)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TODTLON.
-#define BF_MMDC_MDOTC_TODTLON(v)   (((v) << BP_MMDC_MDOTC_TODTLON) & BM_MMDC_MDOTC_TODTLON)
-#endif
+#define BF_MMDC_MDOTC_TODTLON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TODTLON) & BM_MMDC_MDOTC_TODTLON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TODTLON field to a new value.
@@ -804,15 +742,10 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TAXPD      (0x000f0000)  //!< Bit mask for MMDC_MDOTC_TAXPD.
 
 //! @brief Get value of MMDC_MDOTC_TAXPD from a register value.
-#define BG_MMDC_MDOTC_TAXPD(r)   (((r) & BM_MMDC_MDOTC_TAXPD) >> BP_MMDC_MDOTC_TAXPD)
+#define BG_MMDC_MDOTC_TAXPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TAXPD) >> BP_MMDC_MDOTC_TAXPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TAXPD.
-#define BF_MMDC_MDOTC_TAXPD(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TAXPD) & BM_MMDC_MDOTC_TAXPD)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TAXPD.
-#define BF_MMDC_MDOTC_TAXPD(v)   (((v) << BP_MMDC_MDOTC_TAXPD) & BM_MMDC_MDOTC_TAXPD)
-#endif
+#define BF_MMDC_MDOTC_TAXPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TAXPD) & BM_MMDC_MDOTC_TAXPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAXPD field to a new value.
@@ -837,15 +770,10 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TANPD      (0x00f00000)  //!< Bit mask for MMDC_MDOTC_TANPD.
 
 //! @brief Get value of MMDC_MDOTC_TANPD from a register value.
-#define BG_MMDC_MDOTC_TANPD(r)   (((r) & BM_MMDC_MDOTC_TANPD) >> BP_MMDC_MDOTC_TANPD)
+#define BG_MMDC_MDOTC_TANPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TANPD) >> BP_MMDC_MDOTC_TANPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TANPD.
-#define BF_MMDC_MDOTC_TANPD(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TANPD) & BM_MMDC_MDOTC_TANPD)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TANPD.
-#define BF_MMDC_MDOTC_TANPD(v)   (((v) << BP_MMDC_MDOTC_TANPD) & BM_MMDC_MDOTC_TANPD)
-#endif
+#define BF_MMDC_MDOTC_TANPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TANPD) & BM_MMDC_MDOTC_TANPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TANPD field to a new value.
@@ -871,15 +799,10 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TAONPD      (0x07000000)  //!< Bit mask for MMDC_MDOTC_TAONPD.
 
 //! @brief Get value of MMDC_MDOTC_TAONPD from a register value.
-#define BG_MMDC_MDOTC_TAONPD(r)   (((r) & BM_MMDC_MDOTC_TAONPD) >> BP_MMDC_MDOTC_TAONPD)
+#define BG_MMDC_MDOTC_TAONPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TAONPD) >> BP_MMDC_MDOTC_TAONPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TAONPD.
-#define BF_MMDC_MDOTC_TAONPD(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TAONPD) & BM_MMDC_MDOTC_TAONPD)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TAONPD.
-#define BF_MMDC_MDOTC_TAONPD(v)   (((v) << BP_MMDC_MDOTC_TAONPD) & BM_MMDC_MDOTC_TAONPD)
-#endif
+#define BF_MMDC_MDOTC_TAONPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TAONPD) & BM_MMDC_MDOTC_TAONPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAONPD field to a new value.
@@ -905,21 +828,20 @@ typedef union _hw_mmdc_mdotc
 #define BM_MMDC_MDOTC_TAOFPD      (0x38000000)  //!< Bit mask for MMDC_MDOTC_TAOFPD.
 
 //! @brief Get value of MMDC_MDOTC_TAOFPD from a register value.
-#define BG_MMDC_MDOTC_TAOFPD(r)   (((r) & BM_MMDC_MDOTC_TAOFPD) >> BP_MMDC_MDOTC_TAOFPD)
+#define BG_MMDC_MDOTC_TAOFPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOTC_TAOFPD) >> BP_MMDC_MDOTC_TAOFPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOTC_TAOFPD.
-#define BF_MMDC_MDOTC_TAOFPD(v)   ((((reg32_t) v) << BP_MMDC_MDOTC_TAOFPD) & BM_MMDC_MDOTC_TAOFPD)
-#else
-//! @brief Format value for bitfield MMDC_MDOTC_TAOFPD.
-#define BF_MMDC_MDOTC_TAOFPD(v)   (((v) << BP_MMDC_MDOTC_TAOFPD) & BM_MMDC_MDOTC_TAOFPD)
-#endif
+#define BF_MMDC_MDOTC_TAOFPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOTC_TAOFPD) & BM_MMDC_MDOTC_TAOFPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAOFPD field to a new value.
 #define BW_MMDC_MDOTC_TAOFPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAOFPD) | BF_MMDC_MDOTC_TAOFPD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDCFG0 - MMDC Core Timing Configuration Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -987,15 +909,10 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TCL      (0x0000000f)  //!< Bit mask for MMDC_MDCFG0_TCL.
 
 //! @brief Get value of MMDC_MDCFG0_TCL from a register value.
-#define BG_MMDC_MDCFG0_TCL(r)   (((r) & BM_MMDC_MDCFG0_TCL) >> BP_MMDC_MDCFG0_TCL)
+#define BG_MMDC_MDCFG0_TCL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TCL) >> BP_MMDC_MDCFG0_TCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TCL.
-#define BF_MMDC_MDCFG0_TCL(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TCL) & BM_MMDC_MDCFG0_TCL)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TCL.
-#define BF_MMDC_MDCFG0_TCL(v)   (((v) << BP_MMDC_MDCFG0_TCL) & BM_MMDC_MDCFG0_TCL)
-#endif
+#define BF_MMDC_MDCFG0_TCL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TCL) & BM_MMDC_MDCFG0_TCL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCL field to a new value.
@@ -1022,15 +939,10 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TFAW      (0x000001f0)  //!< Bit mask for MMDC_MDCFG0_TFAW.
 
 //! @brief Get value of MMDC_MDCFG0_TFAW from a register value.
-#define BG_MMDC_MDCFG0_TFAW(r)   (((r) & BM_MMDC_MDCFG0_TFAW) >> BP_MMDC_MDCFG0_TFAW)
+#define BG_MMDC_MDCFG0_TFAW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TFAW) >> BP_MMDC_MDCFG0_TFAW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TFAW.
-#define BF_MMDC_MDCFG0_TFAW(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TFAW) & BM_MMDC_MDCFG0_TFAW)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TFAW.
-#define BF_MMDC_MDCFG0_TFAW(v)   (((v) << BP_MMDC_MDCFG0_TFAW) & BM_MMDC_MDCFG0_TFAW)
-#endif
+#define BF_MMDC_MDCFG0_TFAW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TFAW) & BM_MMDC_MDCFG0_TFAW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFAW field to a new value.
@@ -1059,15 +971,10 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TXPDLL      (0x00001e00)  //!< Bit mask for MMDC_MDCFG0_TXPDLL.
 
 //! @brief Get value of MMDC_MDCFG0_TXPDLL from a register value.
-#define BG_MMDC_MDCFG0_TXPDLL(r)   (((r) & BM_MMDC_MDCFG0_TXPDLL) >> BP_MMDC_MDCFG0_TXPDLL)
+#define BG_MMDC_MDCFG0_TXPDLL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TXPDLL) >> BP_MMDC_MDCFG0_TXPDLL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TXPDLL.
-#define BF_MMDC_MDCFG0_TXPDLL(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TXPDLL) & BM_MMDC_MDCFG0_TXPDLL)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TXPDLL.
-#define BF_MMDC_MDCFG0_TXPDLL(v)   (((v) << BP_MMDC_MDCFG0_TXPDLL) & BM_MMDC_MDCFG0_TXPDLL)
-#endif
+#define BF_MMDC_MDCFG0_TXPDLL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TXPDLL) & BM_MMDC_MDCFG0_TXPDLL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXPDLL field to a new value.
@@ -1095,15 +1002,10 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TXP      (0x0000e000)  //!< Bit mask for MMDC_MDCFG0_TXP.
 
 //! @brief Get value of MMDC_MDCFG0_TXP from a register value.
-#define BG_MMDC_MDCFG0_TXP(r)   (((r) & BM_MMDC_MDCFG0_TXP) >> BP_MMDC_MDCFG0_TXP)
+#define BG_MMDC_MDCFG0_TXP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TXP) >> BP_MMDC_MDCFG0_TXP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TXP.
-#define BF_MMDC_MDCFG0_TXP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TXP) & BM_MMDC_MDCFG0_TXP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TXP.
-#define BF_MMDC_MDCFG0_TXP(v)   (((v) << BP_MMDC_MDCFG0_TXP) & BM_MMDC_MDCFG0_TXP)
-#endif
+#define BF_MMDC_MDCFG0_TXP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TXP) & BM_MMDC_MDCFG0_TXP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXP field to a new value.
@@ -1121,8 +1023,8 @@ typedef union _hw_mmdc_mdcfg0
  *
  * Values:
  * 0x0 - - 0x15 reserved
- * 0x16 - 17 clocks
- * 0x17 - 18 clocks
+ * 0x16 - 23 clocks
+ * 0x17 - 24 clocks
  * 0xFE - 255 clocks
  * 0xFF - 256 clocks
  */
@@ -1131,15 +1033,10 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TXS      (0x00ff0000)  //!< Bit mask for MMDC_MDCFG0_TXS.
 
 //! @brief Get value of MMDC_MDCFG0_TXS from a register value.
-#define BG_MMDC_MDCFG0_TXS(r)   (((r) & BM_MMDC_MDCFG0_TXS) >> BP_MMDC_MDCFG0_TXS)
+#define BG_MMDC_MDCFG0_TXS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TXS) >> BP_MMDC_MDCFG0_TXS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TXS.
-#define BF_MMDC_MDCFG0_TXS(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TXS) & BM_MMDC_MDCFG0_TXS)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TXS.
-#define BF_MMDC_MDCFG0_TXS(v)   (((v) << BP_MMDC_MDCFG0_TXS) & BM_MMDC_MDCFG0_TXS)
-#endif
+#define BF_MMDC_MDCFG0_TXS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TXS) & BM_MMDC_MDCFG0_TXS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXS field to a new value.
@@ -1166,21 +1063,20 @@ typedef union _hw_mmdc_mdcfg0
 #define BM_MMDC_MDCFG0_TRFC      (0xff000000)  //!< Bit mask for MMDC_MDCFG0_TRFC.
 
 //! @brief Get value of MMDC_MDCFG0_TRFC from a register value.
-#define BG_MMDC_MDCFG0_TRFC(r)   (((r) & BM_MMDC_MDCFG0_TRFC) >> BP_MMDC_MDCFG0_TRFC)
+#define BG_MMDC_MDCFG0_TRFC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG0_TRFC) >> BP_MMDC_MDCFG0_TRFC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG0_TRFC.
-#define BF_MMDC_MDCFG0_TRFC(v)   ((((reg32_t) v) << BP_MMDC_MDCFG0_TRFC) & BM_MMDC_MDCFG0_TRFC)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG0_TRFC.
-#define BF_MMDC_MDCFG0_TRFC(v)   (((v) << BP_MMDC_MDCFG0_TRFC) & BM_MMDC_MDCFG0_TRFC)
-#endif
+#define BF_MMDC_MDCFG0_TRFC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG0_TRFC) & BM_MMDC_MDCFG0_TRFC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRFC field to a new value.
 #define BW_MMDC_MDCFG0_TRFC(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TRFC) | BF_MMDC_MDCFG0_TRFC(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDCFG1 - MMDC Core Timing Configuration Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1247,15 +1143,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TCWL      (0x00000007)  //!< Bit mask for MMDC_MDCFG1_TCWL.
 
 //! @brief Get value of MMDC_MDCFG1_TCWL from a register value.
-#define BG_MMDC_MDCFG1_TCWL(r)   (((r) & BM_MMDC_MDCFG1_TCWL) >> BP_MMDC_MDCFG1_TCWL)
+#define BG_MMDC_MDCFG1_TCWL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TCWL) >> BP_MMDC_MDCFG1_TCWL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TCWL.
-#define BF_MMDC_MDCFG1_TCWL(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TCWL) & BM_MMDC_MDCFG1_TCWL)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TCWL.
-#define BF_MMDC_MDCFG1_TCWL(v)   (((v) << BP_MMDC_MDCFG1_TCWL) & BM_MMDC_MDCFG1_TCWL)
-#endif
+#define BF_MMDC_MDCFG1_TCWL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TCWL) & BM_MMDC_MDCFG1_TCWL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCWL field to a new value.
@@ -1284,15 +1175,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TMRD      (0x000001e0)  //!< Bit mask for MMDC_MDCFG1_TMRD.
 
 //! @brief Get value of MMDC_MDCFG1_TMRD from a register value.
-#define BG_MMDC_MDCFG1_TMRD(r)   (((r) & BM_MMDC_MDCFG1_TMRD) >> BP_MMDC_MDCFG1_TMRD)
+#define BG_MMDC_MDCFG1_TMRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TMRD) >> BP_MMDC_MDCFG1_TMRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TMRD.
-#define BF_MMDC_MDCFG1_TMRD(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TMRD) & BM_MMDC_MDCFG1_TMRD)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TMRD.
-#define BF_MMDC_MDCFG1_TMRD(v)   (((v) << BP_MMDC_MDCFG1_TMRD) & BM_MMDC_MDCFG1_TMRD)
-#endif
+#define BF_MMDC_MDCFG1_TMRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TMRD) & BM_MMDC_MDCFG1_TMRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TMRD field to a new value.
@@ -1322,15 +1208,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TWR      (0x00000e00)  //!< Bit mask for MMDC_MDCFG1_TWR.
 
 //! @brief Get value of MMDC_MDCFG1_TWR from a register value.
-#define BG_MMDC_MDCFG1_TWR(r)   (((r) & BM_MMDC_MDCFG1_TWR) >> BP_MMDC_MDCFG1_TWR)
+#define BG_MMDC_MDCFG1_TWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TWR) >> BP_MMDC_MDCFG1_TWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TWR.
-#define BF_MMDC_MDCFG1_TWR(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TWR) & BM_MMDC_MDCFG1_TWR)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TWR.
-#define BF_MMDC_MDCFG1_TWR(v)   (((v) << BP_MMDC_MDCFG1_TWR) & BM_MMDC_MDCFG1_TWR)
-#endif
+#define BF_MMDC_MDCFG1_TWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TWR) & BM_MMDC_MDCFG1_TWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWR field to a new value.
@@ -1355,15 +1236,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TRPA      (0x00008000)  //!< Bit mask for MMDC_MDCFG1_TRPA.
 
 //! @brief Get value of MMDC_MDCFG1_TRPA from a register value.
-#define BG_MMDC_MDCFG1_TRPA(r)   (((r) & BM_MMDC_MDCFG1_TRPA) >> BP_MMDC_MDCFG1_TRPA)
+#define BG_MMDC_MDCFG1_TRPA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TRPA) >> BP_MMDC_MDCFG1_TRPA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TRPA.
-#define BF_MMDC_MDCFG1_TRPA(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TRPA) & BM_MMDC_MDCFG1_TRPA)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TRPA.
-#define BF_MMDC_MDCFG1_TRPA(v)   (((v) << BP_MMDC_MDCFG1_TRPA) & BM_MMDC_MDCFG1_TRPA)
-#endif
+#define BF_MMDC_MDCFG1_TRPA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TRPA) & BM_MMDC_MDCFG1_TRPA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPA field to a new value.
@@ -1390,15 +1266,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TRAS      (0x001f0000)  //!< Bit mask for MMDC_MDCFG1_TRAS.
 
 //! @brief Get value of MMDC_MDCFG1_TRAS from a register value.
-#define BG_MMDC_MDCFG1_TRAS(r)   (((r) & BM_MMDC_MDCFG1_TRAS) >> BP_MMDC_MDCFG1_TRAS)
+#define BG_MMDC_MDCFG1_TRAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TRAS) >> BP_MMDC_MDCFG1_TRAS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TRAS.
-#define BF_MMDC_MDCFG1_TRAS(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TRAS) & BM_MMDC_MDCFG1_TRAS)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TRAS.
-#define BF_MMDC_MDCFG1_TRAS(v)   (((v) << BP_MMDC_MDCFG1_TRAS) & BM_MMDC_MDCFG1_TRAS)
-#endif
+#define BF_MMDC_MDCFG1_TRAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TRAS) & BM_MMDC_MDCFG1_TRAS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRAS field to a new value.
@@ -1426,15 +1297,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TRC      (0x03e00000)  //!< Bit mask for MMDC_MDCFG1_TRC.
 
 //! @brief Get value of MMDC_MDCFG1_TRC from a register value.
-#define BG_MMDC_MDCFG1_TRC(r)   (((r) & BM_MMDC_MDCFG1_TRC) >> BP_MMDC_MDCFG1_TRC)
+#define BG_MMDC_MDCFG1_TRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TRC) >> BP_MMDC_MDCFG1_TRC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TRC.
-#define BF_MMDC_MDCFG1_TRC(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TRC) & BM_MMDC_MDCFG1_TRC)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TRC.
-#define BF_MMDC_MDCFG1_TRC(v)   (((v) << BP_MMDC_MDCFG1_TRC) & BM_MMDC_MDCFG1_TRC)
-#endif
+#define BF_MMDC_MDCFG1_TRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TRC) & BM_MMDC_MDCFG1_TRC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRC field to a new value.
@@ -1465,15 +1331,10 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TRP      (0x1c000000)  //!< Bit mask for MMDC_MDCFG1_TRP.
 
 //! @brief Get value of MMDC_MDCFG1_TRP from a register value.
-#define BG_MMDC_MDCFG1_TRP(r)   (((r) & BM_MMDC_MDCFG1_TRP) >> BP_MMDC_MDCFG1_TRP)
+#define BG_MMDC_MDCFG1_TRP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TRP) >> BP_MMDC_MDCFG1_TRP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TRP.
-#define BF_MMDC_MDCFG1_TRP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TRP) & BM_MMDC_MDCFG1_TRP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TRP.
-#define BF_MMDC_MDCFG1_TRP(v)   (((v) << BP_MMDC_MDCFG1_TRP) & BM_MMDC_MDCFG1_TRP)
-#endif
+#define BF_MMDC_MDCFG1_TRP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TRP) & BM_MMDC_MDCFG1_TRP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRP field to a new value.
@@ -1504,21 +1365,20 @@ typedef union _hw_mmdc_mdcfg1
 #define BM_MMDC_MDCFG1_TRCD      (0xe0000000)  //!< Bit mask for MMDC_MDCFG1_TRCD.
 
 //! @brief Get value of MMDC_MDCFG1_TRCD from a register value.
-#define BG_MMDC_MDCFG1_TRCD(r)   (((r) & BM_MMDC_MDCFG1_TRCD) >> BP_MMDC_MDCFG1_TRCD)
+#define BG_MMDC_MDCFG1_TRCD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG1_TRCD) >> BP_MMDC_MDCFG1_TRCD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG1_TRCD.
-#define BF_MMDC_MDCFG1_TRCD(v)   ((((reg32_t) v) << BP_MMDC_MDCFG1_TRCD) & BM_MMDC_MDCFG1_TRCD)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG1_TRCD.
-#define BF_MMDC_MDCFG1_TRCD(v)   (((v) << BP_MMDC_MDCFG1_TRCD) & BM_MMDC_MDCFG1_TRCD)
-#endif
+#define BF_MMDC_MDCFG1_TRCD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG1_TRCD) & BM_MMDC_MDCFG1_TRCD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD field to a new value.
 #define BW_MMDC_MDCFG1_TRCD(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRCD) | BF_MMDC_MDCFG1_TRCD(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDCFG2 - MMDC Core Timing Configuration Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1583,15 +1443,10 @@ typedef union _hw_mmdc_mdcfg2
 #define BM_MMDC_MDCFG2_TRRD      (0x00000007)  //!< Bit mask for MMDC_MDCFG2_TRRD.
 
 //! @brief Get value of MMDC_MDCFG2_TRRD from a register value.
-#define BG_MMDC_MDCFG2_TRRD(r)   (((r) & BM_MMDC_MDCFG2_TRRD) >> BP_MMDC_MDCFG2_TRRD)
+#define BG_MMDC_MDCFG2_TRRD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG2_TRRD) >> BP_MMDC_MDCFG2_TRRD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG2_TRRD.
-#define BF_MMDC_MDCFG2_TRRD(v)   ((((reg32_t) v) << BP_MMDC_MDCFG2_TRRD) & BM_MMDC_MDCFG2_TRRD)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG2_TRRD.
-#define BF_MMDC_MDCFG2_TRRD(v)   (((v) << BP_MMDC_MDCFG2_TRRD) & BM_MMDC_MDCFG2_TRRD)
-#endif
+#define BF_MMDC_MDCFG2_TRRD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG2_TRRD) & BM_MMDC_MDCFG2_TRRD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRRD field to a new value.
@@ -1621,15 +1476,10 @@ typedef union _hw_mmdc_mdcfg2
 #define BM_MMDC_MDCFG2_TWTR      (0x00000038)  //!< Bit mask for MMDC_MDCFG2_TWTR.
 
 //! @brief Get value of MMDC_MDCFG2_TWTR from a register value.
-#define BG_MMDC_MDCFG2_TWTR(r)   (((r) & BM_MMDC_MDCFG2_TWTR) >> BP_MMDC_MDCFG2_TWTR)
+#define BG_MMDC_MDCFG2_TWTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG2_TWTR) >> BP_MMDC_MDCFG2_TWTR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG2_TWTR.
-#define BF_MMDC_MDCFG2_TWTR(v)   ((((reg32_t) v) << BP_MMDC_MDCFG2_TWTR) & BM_MMDC_MDCFG2_TWTR)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG2_TWTR.
-#define BF_MMDC_MDCFG2_TWTR(v)   (((v) << BP_MMDC_MDCFG2_TWTR) & BM_MMDC_MDCFG2_TWTR)
-#endif
+#define BF_MMDC_MDCFG2_TWTR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG2_TWTR) & BM_MMDC_MDCFG2_TWTR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWTR field to a new value.
@@ -1659,15 +1509,10 @@ typedef union _hw_mmdc_mdcfg2
 #define BM_MMDC_MDCFG2_TRTP      (0x000001c0)  //!< Bit mask for MMDC_MDCFG2_TRTP.
 
 //! @brief Get value of MMDC_MDCFG2_TRTP from a register value.
-#define BG_MMDC_MDCFG2_TRTP(r)   (((r) & BM_MMDC_MDCFG2_TRTP) >> BP_MMDC_MDCFG2_TRTP)
+#define BG_MMDC_MDCFG2_TRTP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG2_TRTP) >> BP_MMDC_MDCFG2_TRTP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG2_TRTP.
-#define BF_MMDC_MDCFG2_TRTP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG2_TRTP) & BM_MMDC_MDCFG2_TRTP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG2_TRTP.
-#define BF_MMDC_MDCFG2_TRTP(v)   (((v) << BP_MMDC_MDCFG2_TRTP) & BM_MMDC_MDCFG2_TRTP)
-#endif
+#define BF_MMDC_MDCFG2_TRTP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG2_TRTP) & BM_MMDC_MDCFG2_TRTP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRTP field to a new value.
@@ -1696,21 +1541,20 @@ typedef union _hw_mmdc_mdcfg2
 #define BM_MMDC_MDCFG2_TDLLK      (0x01ff0000)  //!< Bit mask for MMDC_MDCFG2_TDLLK.
 
 //! @brief Get value of MMDC_MDCFG2_TDLLK from a register value.
-#define BG_MMDC_MDCFG2_TDLLK(r)   (((r) & BM_MMDC_MDCFG2_TDLLK) >> BP_MMDC_MDCFG2_TDLLK)
+#define BG_MMDC_MDCFG2_TDLLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG2_TDLLK) >> BP_MMDC_MDCFG2_TDLLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG2_TDLLK.
-#define BF_MMDC_MDCFG2_TDLLK(v)   ((((reg32_t) v) << BP_MMDC_MDCFG2_TDLLK) & BM_MMDC_MDCFG2_TDLLK)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG2_TDLLK.
-#define BF_MMDC_MDCFG2_TDLLK(v)   (((v) << BP_MMDC_MDCFG2_TDLLK) & BM_MMDC_MDCFG2_TDLLK)
-#endif
+#define BF_MMDC_MDCFG2_TDLLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG2_TDLLK) & BM_MMDC_MDCFG2_TDLLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDLLK field to a new value.
 #define BW_MMDC_MDCFG2_TDLLK(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TDLLK) | BF_MMDC_MDCFG2_TDLLK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDMISC - MMDC Core Miscellaneous Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1778,15 +1622,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_RST      (0x00000002)  //!< Bit mask for MMDC_MDMISC_RST.
 
 //! @brief Get value of MMDC_MDMISC_RST from a register value.
-#define BG_MMDC_MDMISC_RST(r)   (((r) & BM_MMDC_MDMISC_RST) >> BP_MMDC_MDMISC_RST)
+#define BG_MMDC_MDMISC_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_RST) >> BP_MMDC_MDMISC_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_RST.
-#define BF_MMDC_MDMISC_RST(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_RST) & BM_MMDC_MDMISC_RST)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_RST.
-#define BF_MMDC_MDMISC_RST(v)   (((v) << BP_MMDC_MDMISC_RST) & BM_MMDC_MDMISC_RST)
-#endif
+#define BF_MMDC_MDMISC_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_RST) & BM_MMDC_MDMISC_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST field to a new value.
@@ -1808,15 +1647,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_LPDDR2_2CH      (0x00000004)  //!< Bit mask for MMDC_MDMISC_LPDDR2_2CH.
 
 //! @brief Get value of MMDC_MDMISC_LPDDR2_2CH from a register value.
-#define BG_MMDC_MDMISC_LPDDR2_2CH(r)   (((r) & BM_MMDC_MDMISC_LPDDR2_2CH) >> BP_MMDC_MDMISC_LPDDR2_2CH)
+#define BG_MMDC_MDMISC_LPDDR2_2CH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_LPDDR2_2CH) >> BP_MMDC_MDMISC_LPDDR2_2CH)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_LPDDR2_2CH.
-#define BF_MMDC_MDMISC_LPDDR2_2CH(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_LPDDR2_2CH) & BM_MMDC_MDMISC_LPDDR2_2CH)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_LPDDR2_2CH.
-#define BF_MMDC_MDMISC_LPDDR2_2CH(v)   (((v) << BP_MMDC_MDMISC_LPDDR2_2CH) & BM_MMDC_MDMISC_LPDDR2_2CH)
-#endif
+#define BF_MMDC_MDMISC_LPDDR2_2CH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_LPDDR2_2CH) & BM_MMDC_MDMISC_LPDDR2_2CH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPDDR2_2CH field to a new value.
@@ -1841,15 +1675,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_DDR_TYPE      (0x00000018)  //!< Bit mask for MMDC_MDMISC_DDR_TYPE.
 
 //! @brief Get value of MMDC_MDMISC_DDR_TYPE from a register value.
-#define BG_MMDC_MDMISC_DDR_TYPE(r)   (((r) & BM_MMDC_MDMISC_DDR_TYPE) >> BP_MMDC_MDMISC_DDR_TYPE)
+#define BG_MMDC_MDMISC_DDR_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_DDR_TYPE) >> BP_MMDC_MDMISC_DDR_TYPE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_DDR_TYPE.
-#define BF_MMDC_MDMISC_DDR_TYPE(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_DDR_TYPE) & BM_MMDC_MDMISC_DDR_TYPE)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_DDR_TYPE.
-#define BF_MMDC_MDMISC_DDR_TYPE(v)   (((v) << BP_MMDC_MDMISC_DDR_TYPE) & BM_MMDC_MDMISC_DDR_TYPE)
-#endif
+#define BF_MMDC_MDMISC_DDR_TYPE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_DDR_TYPE) & BM_MMDC_MDMISC_DDR_TYPE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_TYPE field to a new value.
@@ -1871,15 +1700,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_DDR_4_BANK      (0x00000020)  //!< Bit mask for MMDC_MDMISC_DDR_4_BANK.
 
 //! @brief Get value of MMDC_MDMISC_DDR_4_BANK from a register value.
-#define BG_MMDC_MDMISC_DDR_4_BANK(r)   (((r) & BM_MMDC_MDMISC_DDR_4_BANK) >> BP_MMDC_MDMISC_DDR_4_BANK)
+#define BG_MMDC_MDMISC_DDR_4_BANK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_DDR_4_BANK) >> BP_MMDC_MDMISC_DDR_4_BANK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_DDR_4_BANK.
-#define BF_MMDC_MDMISC_DDR_4_BANK(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_DDR_4_BANK) & BM_MMDC_MDMISC_DDR_4_BANK)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_DDR_4_BANK.
-#define BF_MMDC_MDMISC_DDR_4_BANK(v)   (((v) << BP_MMDC_MDMISC_DDR_4_BANK) & BM_MMDC_MDMISC_DDR_4_BANK)
-#endif
+#define BF_MMDC_MDMISC_DDR_4_BANK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_DDR_4_BANK) & BM_MMDC_MDMISC_DDR_4_BANK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_4_BANK field to a new value.
@@ -1909,15 +1733,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_RALAT      (0x000001c0)  //!< Bit mask for MMDC_MDMISC_RALAT.
 
 //! @brief Get value of MMDC_MDMISC_RALAT from a register value.
-#define BG_MMDC_MDMISC_RALAT(r)   (((r) & BM_MMDC_MDMISC_RALAT) >> BP_MMDC_MDMISC_RALAT)
+#define BG_MMDC_MDMISC_RALAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_RALAT) >> BP_MMDC_MDMISC_RALAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_RALAT.
-#define BF_MMDC_MDMISC_RALAT(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_RALAT) & BM_MMDC_MDMISC_RALAT)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_RALAT.
-#define BF_MMDC_MDMISC_RALAT(v)   (((v) << BP_MMDC_MDMISC_RALAT) & BM_MMDC_MDMISC_RALAT)
-#endif
+#define BF_MMDC_MDMISC_RALAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_RALAT) & BM_MMDC_MDMISC_RALAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RALAT field to a new value.
@@ -1942,15 +1761,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_MIF3_MODE      (0x00000600)  //!< Bit mask for MMDC_MDMISC_MIF3_MODE.
 
 //! @brief Get value of MMDC_MDMISC_MIF3_MODE from a register value.
-#define BG_MMDC_MDMISC_MIF3_MODE(r)   (((r) & BM_MMDC_MDMISC_MIF3_MODE) >> BP_MMDC_MDMISC_MIF3_MODE)
+#define BG_MMDC_MDMISC_MIF3_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_MIF3_MODE) >> BP_MMDC_MDMISC_MIF3_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_MIF3_MODE.
-#define BF_MMDC_MDMISC_MIF3_MODE(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_MIF3_MODE) & BM_MMDC_MDMISC_MIF3_MODE)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_MIF3_MODE.
-#define BF_MMDC_MDMISC_MIF3_MODE(v)   (((v) << BP_MMDC_MDMISC_MIF3_MODE) & BM_MMDC_MDMISC_MIF3_MODE)
-#endif
+#define BF_MMDC_MDMISC_MIF3_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_MIF3_MODE) & BM_MMDC_MDMISC_MIF3_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MIF3_MODE field to a new value.
@@ -1972,15 +1786,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_LPDDR2_S2      (0x00000800)  //!< Bit mask for MMDC_MDMISC_LPDDR2_S2.
 
 //! @brief Get value of MMDC_MDMISC_LPDDR2_S2 from a register value.
-#define BG_MMDC_MDMISC_LPDDR2_S2(r)   (((r) & BM_MMDC_MDMISC_LPDDR2_S2) >> BP_MMDC_MDMISC_LPDDR2_S2)
+#define BG_MMDC_MDMISC_LPDDR2_S2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_LPDDR2_S2) >> BP_MMDC_MDMISC_LPDDR2_S2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_LPDDR2_S2.
-#define BF_MMDC_MDMISC_LPDDR2_S2(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_LPDDR2_S2) & BM_MMDC_MDMISC_LPDDR2_S2)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_LPDDR2_S2.
-#define BF_MMDC_MDMISC_LPDDR2_S2(v)   (((v) << BP_MMDC_MDMISC_LPDDR2_S2) & BM_MMDC_MDMISC_LPDDR2_S2)
-#endif
+#define BF_MMDC_MDMISC_LPDDR2_S2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_LPDDR2_S2) & BM_MMDC_MDMISC_LPDDR2_S2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPDDR2_S2 field to a new value.
@@ -2002,15 +1811,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_BI_ON      (0x00001000)  //!< Bit mask for MMDC_MDMISC_BI_ON.
 
 //! @brief Get value of MMDC_MDMISC_BI_ON from a register value.
-#define BG_MMDC_MDMISC_BI_ON(r)   (((r) & BM_MMDC_MDMISC_BI_ON) >> BP_MMDC_MDMISC_BI_ON)
+#define BG_MMDC_MDMISC_BI_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_BI_ON) >> BP_MMDC_MDMISC_BI_ON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_BI_ON.
-#define BF_MMDC_MDMISC_BI_ON(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_BI_ON) & BM_MMDC_MDMISC_BI_ON)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_BI_ON.
-#define BF_MMDC_MDMISC_BI_ON(v)   (((v) << BP_MMDC_MDMISC_BI_ON) & BM_MMDC_MDMISC_BI_ON)
-#endif
+#define BF_MMDC_MDMISC_BI_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_BI_ON) & BM_MMDC_MDMISC_BI_ON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BI_ON field to a new value.
@@ -2036,15 +1840,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_WALAT      (0x00030000)  //!< Bit mask for MMDC_MDMISC_WALAT.
 
 //! @brief Get value of MMDC_MDMISC_WALAT from a register value.
-#define BG_MMDC_MDMISC_WALAT(r)   (((r) & BM_MMDC_MDMISC_WALAT) >> BP_MMDC_MDMISC_WALAT)
+#define BG_MMDC_MDMISC_WALAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_WALAT) >> BP_MMDC_MDMISC_WALAT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_WALAT.
-#define BF_MMDC_MDMISC_WALAT(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_WALAT) & BM_MMDC_MDMISC_WALAT)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_WALAT.
-#define BF_MMDC_MDMISC_WALAT(v)   (((v) << BP_MMDC_MDMISC_WALAT) & BM_MMDC_MDMISC_WALAT)
-#endif
+#define BF_MMDC_MDMISC_WALAT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_WALAT) & BM_MMDC_MDMISC_WALAT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WALAT field to a new value.
@@ -2067,15 +1866,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_LHD      (0x00040000)  //!< Bit mask for MMDC_MDMISC_LHD.
 
 //! @brief Get value of MMDC_MDMISC_LHD from a register value.
-#define BG_MMDC_MDMISC_LHD(r)   (((r) & BM_MMDC_MDMISC_LHD) >> BP_MMDC_MDMISC_LHD)
+#define BG_MMDC_MDMISC_LHD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_LHD) >> BP_MMDC_MDMISC_LHD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_LHD.
-#define BF_MMDC_MDMISC_LHD(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_LHD) & BM_MMDC_MDMISC_LHD)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_LHD.
-#define BF_MMDC_MDMISC_LHD(v)   (((v) << BP_MMDC_MDMISC_LHD) & BM_MMDC_MDMISC_LHD)
-#endif
+#define BF_MMDC_MDMISC_LHD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_LHD) & BM_MMDC_MDMISC_LHD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LHD field to a new value.
@@ -2097,15 +1891,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_ADDR_MIRROR      (0x00080000)  //!< Bit mask for MMDC_MDMISC_ADDR_MIRROR.
 
 //! @brief Get value of MMDC_MDMISC_ADDR_MIRROR from a register value.
-#define BG_MMDC_MDMISC_ADDR_MIRROR(r)   (((r) & BM_MMDC_MDMISC_ADDR_MIRROR) >> BP_MMDC_MDMISC_ADDR_MIRROR)
+#define BG_MMDC_MDMISC_ADDR_MIRROR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_ADDR_MIRROR) >> BP_MMDC_MDMISC_ADDR_MIRROR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_ADDR_MIRROR.
-#define BF_MMDC_MDMISC_ADDR_MIRROR(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_ADDR_MIRROR) & BM_MMDC_MDMISC_ADDR_MIRROR)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_ADDR_MIRROR.
-#define BF_MMDC_MDMISC_ADDR_MIRROR(v)   (((v) << BP_MMDC_MDMISC_ADDR_MIRROR) & BM_MMDC_MDMISC_ADDR_MIRROR)
-#endif
+#define BF_MMDC_MDMISC_ADDR_MIRROR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_ADDR_MIRROR) & BM_MMDC_MDMISC_ADDR_MIRROR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR_MIRROR field to a new value.
@@ -2128,15 +1917,10 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_CALIB_PER_CS      (0x00100000)  //!< Bit mask for MMDC_MDMISC_CALIB_PER_CS.
 
 //! @brief Get value of MMDC_MDMISC_CALIB_PER_CS from a register value.
-#define BG_MMDC_MDMISC_CALIB_PER_CS(r)   (((r) & BM_MMDC_MDMISC_CALIB_PER_CS) >> BP_MMDC_MDMISC_CALIB_PER_CS)
+#define BG_MMDC_MDMISC_CALIB_PER_CS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CALIB_PER_CS) >> BP_MMDC_MDMISC_CALIB_PER_CS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMISC_CALIB_PER_CS.
-#define BF_MMDC_MDMISC_CALIB_PER_CS(v)   ((((reg32_t) v) << BP_MMDC_MDMISC_CALIB_PER_CS) & BM_MMDC_MDMISC_CALIB_PER_CS)
-#else
-//! @brief Format value for bitfield MMDC_MDMISC_CALIB_PER_CS.
-#define BF_MMDC_MDMISC_CALIB_PER_CS(v)   (((v) << BP_MMDC_MDMISC_CALIB_PER_CS) & BM_MMDC_MDMISC_CALIB_PER_CS)
-#endif
+#define BF_MMDC_MDMISC_CALIB_PER_CS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_CALIB_PER_CS) & BM_MMDC_MDMISC_CALIB_PER_CS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CALIB_PER_CS field to a new value.
@@ -2158,7 +1942,7 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_CS1_RDY      (0x40000000)  //!< Bit mask for MMDC_MDMISC_CS1_RDY.
 
 //! @brief Get value of MMDC_MDMISC_CS1_RDY from a register value.
-#define BG_MMDC_MDMISC_CS1_RDY(r)   (((r) & BM_MMDC_MDMISC_CS1_RDY) >> BP_MMDC_MDMISC_CS1_RDY)
+#define BG_MMDC_MDMISC_CS1_RDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CS1_RDY) >> BP_MMDC_MDMISC_CS1_RDY)
 
 
 /* --- Register HW_MMDC_MDMISC, field CS0_RDY[31] (RO)
@@ -2175,8 +1959,12 @@ typedef union _hw_mmdc_mdmisc
 #define BM_MMDC_MDMISC_CS0_RDY      (0x80000000)  //!< Bit mask for MMDC_MDMISC_CS0_RDY.
 
 //! @brief Get value of MMDC_MDMISC_CS0_RDY from a register value.
-#define BG_MMDC_MDMISC_CS0_RDY(r)   (((r) & BM_MMDC_MDMISC_CS0_RDY) >> BP_MMDC_MDMISC_CS0_RDY)
+#define BG_MMDC_MDMISC_CS0_RDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CS0_RDY) >> BP_MMDC_MDMISC_CS0_RDY)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDSCR - MMDC Core Special Command Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2245,15 +2033,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CMD_BA      (0x00000007)  //!< Bit mask for MMDC_MDSCR_CMD_BA.
 
 //! @brief Get value of MMDC_MDSCR_CMD_BA from a register value.
-#define BG_MMDC_MDSCR_CMD_BA(r)   (((r) & BM_MMDC_MDSCR_CMD_BA) >> BP_MMDC_MDSCR_CMD_BA)
+#define BG_MMDC_MDSCR_CMD_BA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_BA) >> BP_MMDC_MDSCR_CMD_BA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CMD_BA.
-#define BF_MMDC_MDSCR_CMD_BA(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CMD_BA) & BM_MMDC_MDSCR_CMD_BA)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_BA.
-#define BF_MMDC_MDSCR_CMD_BA(v)   (((v) << BP_MMDC_MDSCR_CMD_BA) & BM_MMDC_MDSCR_CMD_BA)
-#endif
+#define BF_MMDC_MDSCR_CMD_BA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_BA) & BM_MMDC_MDSCR_CMD_BA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_BA field to a new value.
@@ -2274,15 +2057,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CMD_CS      (0x00000008)  //!< Bit mask for MMDC_MDSCR_CMD_CS.
 
 //! @brief Get value of MMDC_MDSCR_CMD_CS from a register value.
-#define BG_MMDC_MDSCR_CMD_CS(r)   (((r) & BM_MMDC_MDSCR_CMD_CS) >> BP_MMDC_MDSCR_CMD_CS)
+#define BG_MMDC_MDSCR_CMD_CS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_CS) >> BP_MMDC_MDSCR_CMD_CS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CMD_CS.
-#define BF_MMDC_MDSCR_CMD_CS(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CMD_CS) & BM_MMDC_MDSCR_CMD_CS)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_CS.
-#define BF_MMDC_MDSCR_CMD_CS(v)   (((v) << BP_MMDC_MDSCR_CMD_CS) & BM_MMDC_MDSCR_CMD_CS)
-#endif
+#define BF_MMDC_MDSCR_CMD_CS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_CS) & BM_MMDC_MDSCR_CMD_CS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_CS field to a new value.
@@ -2312,15 +2090,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CMD      (0x00000070)  //!< Bit mask for MMDC_MDSCR_CMD.
 
 //! @brief Get value of MMDC_MDSCR_CMD from a register value.
-#define BG_MMDC_MDSCR_CMD(r)   (((r) & BM_MMDC_MDSCR_CMD) >> BP_MMDC_MDSCR_CMD)
+#define BG_MMDC_MDSCR_CMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD) >> BP_MMDC_MDSCR_CMD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CMD.
-#define BF_MMDC_MDSCR_CMD(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CMD) & BM_MMDC_MDSCR_CMD)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CMD.
-#define BF_MMDC_MDSCR_CMD(v)   (((v) << BP_MMDC_MDSCR_CMD) & BM_MMDC_MDSCR_CMD)
-#endif
+#define BF_MMDC_MDSCR_CMD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD) & BM_MMDC_MDSCR_CMD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD field to a new value.
@@ -2343,15 +2116,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_WL_EN      (0x00000200)  //!< Bit mask for MMDC_MDSCR_WL_EN.
 
 //! @brief Get value of MMDC_MDSCR_WL_EN from a register value.
-#define BG_MMDC_MDSCR_WL_EN(r)   (((r) & BM_MMDC_MDSCR_WL_EN) >> BP_MMDC_MDSCR_WL_EN)
+#define BG_MMDC_MDSCR_WL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_WL_EN) >> BP_MMDC_MDSCR_WL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_WL_EN.
-#define BF_MMDC_MDSCR_WL_EN(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_WL_EN) & BM_MMDC_MDSCR_WL_EN)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_WL_EN.
-#define BF_MMDC_MDSCR_WL_EN(v)   (((v) << BP_MMDC_MDSCR_WL_EN) & BM_MMDC_MDSCR_WL_EN)
-#endif
+#define BF_MMDC_MDSCR_WL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_WL_EN) & BM_MMDC_MDSCR_WL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_EN field to a new value.
@@ -2373,7 +2141,7 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_MRR_READ_DATA_VALID      (0x00000400)  //!< Bit mask for MMDC_MDSCR_MRR_READ_DATA_VALID.
 
 //! @brief Get value of MMDC_MDSCR_MRR_READ_DATA_VALID from a register value.
-#define BG_MMDC_MDSCR_MRR_READ_DATA_VALID(r)   (((r) & BM_MMDC_MDSCR_MRR_READ_DATA_VALID) >> BP_MMDC_MDSCR_MRR_READ_DATA_VALID)
+#define BG_MMDC_MDSCR_MRR_READ_DATA_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_MRR_READ_DATA_VALID) >> BP_MMDC_MDSCR_MRR_READ_DATA_VALID)
 
 
 /* --- Register HW_MMDC_MDSCR, field CON_ACK[14] (RO)
@@ -2390,7 +2158,7 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CON_ACK      (0x00004000)  //!< Bit mask for MMDC_MDSCR_CON_ACK.
 
 //! @brief Get value of MMDC_MDSCR_CON_ACK from a register value.
-#define BG_MMDC_MDSCR_CON_ACK(r)   (((r) & BM_MMDC_MDSCR_CON_ACK) >> BP_MMDC_MDSCR_CON_ACK)
+#define BG_MMDC_MDSCR_CON_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CON_ACK) >> BP_MMDC_MDSCR_CON_ACK)
 
 
 /* --- Register HW_MMDC_MDSCR, field CON_REQ[15] (RW)
@@ -2415,15 +2183,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CON_REQ      (0x00008000)  //!< Bit mask for MMDC_MDSCR_CON_REQ.
 
 //! @brief Get value of MMDC_MDSCR_CON_REQ from a register value.
-#define BG_MMDC_MDSCR_CON_REQ(r)   (((r) & BM_MMDC_MDSCR_CON_REQ) >> BP_MMDC_MDSCR_CON_REQ)
+#define BG_MMDC_MDSCR_CON_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CON_REQ) >> BP_MMDC_MDSCR_CON_REQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CON_REQ.
-#define BF_MMDC_MDSCR_CON_REQ(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CON_REQ) & BM_MMDC_MDSCR_CON_REQ)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CON_REQ.
-#define BF_MMDC_MDSCR_CON_REQ(v)   (((v) << BP_MMDC_MDSCR_CON_REQ) & BM_MMDC_MDSCR_CON_REQ)
-#endif
+#define BF_MMDC_MDSCR_CON_REQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CON_REQ) & BM_MMDC_MDSCR_CON_REQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CON_REQ field to a new value.
@@ -2441,15 +2204,10 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CMD_ADDR_LSB      (0x00ff0000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_LSB.
 
 //! @brief Get value of MMDC_MDSCR_CMD_ADDR_LSB from a register value.
-#define BG_MMDC_MDSCR_CMD_ADDR_LSB(r)   (((r) & BM_MMDC_MDSCR_CMD_ADDR_LSB) >> BP_MMDC_MDSCR_CMD_ADDR_LSB)
+#define BG_MMDC_MDSCR_CMD_ADDR_LSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_LSB) >> BP_MMDC_MDSCR_CMD_ADDR_LSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_LSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_LSB(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CMD_ADDR_LSB) & BM_MMDC_MDSCR_CMD_ADDR_LSB)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_LSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_LSB(v)   (((v) << BP_MMDC_MDSCR_CMD_ADDR_LSB) & BM_MMDC_MDSCR_CMD_ADDR_LSB)
-#endif
+#define BF_MMDC_MDSCR_CMD_ADDR_LSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_LSB) & BM_MMDC_MDSCR_CMD_ADDR_LSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_ADDR_LSB field to a new value.
@@ -2466,20 +2224,19 @@ typedef union _hw_mmdc_mdscr
 #define BM_MMDC_MDSCR_CMD_ADDR_MSB      (0xff000000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_MSB.
 
 //! @brief Get value of MMDC_MDSCR_CMD_ADDR_MSB from a register value.
-#define BG_MMDC_MDSCR_CMD_ADDR_MSB(r)   (((r) & BM_MMDC_MDSCR_CMD_ADDR_MSB) >> BP_MMDC_MDSCR_CMD_ADDR_MSB)
+#define BG_MMDC_MDSCR_CMD_ADDR_MSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_MSB) >> BP_MMDC_MDSCR_CMD_ADDR_MSB)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_MSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_MSB(v)   ((((reg32_t) v) << BP_MMDC_MDSCR_CMD_ADDR_MSB) & BM_MMDC_MDSCR_CMD_ADDR_MSB)
-#else
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_MSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_MSB(v)   (((v) << BP_MMDC_MDSCR_CMD_ADDR_MSB) & BM_MMDC_MDSCR_CMD_ADDR_MSB)
-#endif
+#define BF_MMDC_MDSCR_CMD_ADDR_MSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_MSB) & BM_MMDC_MDSCR_CMD_ADDR_MSB)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_ADDR_MSB field to a new value.
 #define BW_MMDC_MDSCR_CMD_ADDR_MSB(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_MSB) | BF_MMDC_MDSCR_CMD_ADDR_MSB(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDREF - MMDC Core Refresh Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2556,15 +2313,10 @@ typedef union _hw_mmdc_mdref
 #define BM_MMDC_MDREF_START_REF      (0x00000001)  //!< Bit mask for MMDC_MDREF_START_REF.
 
 //! @brief Get value of MMDC_MDREF_START_REF from a register value.
-#define BG_MMDC_MDREF_START_REF(r)   (((r) & BM_MMDC_MDREF_START_REF) >> BP_MMDC_MDREF_START_REF)
+#define BG_MMDC_MDREF_START_REF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDREF_START_REF) >> BP_MMDC_MDREF_START_REF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDREF_START_REF.
-#define BF_MMDC_MDREF_START_REF(v)   ((((reg32_t) v) << BP_MMDC_MDREF_START_REF) & BM_MMDC_MDREF_START_REF)
-#else
-//! @brief Format value for bitfield MMDC_MDREF_START_REF.
-#define BF_MMDC_MDREF_START_REF(v)   (((v) << BP_MMDC_MDREF_START_REF) & BM_MMDC_MDREF_START_REF)
-#endif
+#define BF_MMDC_MDREF_START_REF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDREF_START_REF) & BM_MMDC_MDREF_START_REF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START_REF field to a new value.
@@ -2593,15 +2345,10 @@ typedef union _hw_mmdc_mdref
 #define BM_MMDC_MDREF_REFR      (0x00003800)  //!< Bit mask for MMDC_MDREF_REFR.
 
 //! @brief Get value of MMDC_MDREF_REFR from a register value.
-#define BG_MMDC_MDREF_REFR(r)   (((r) & BM_MMDC_MDREF_REFR) >> BP_MMDC_MDREF_REFR)
+#define BG_MMDC_MDREF_REFR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDREF_REFR) >> BP_MMDC_MDREF_REFR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDREF_REFR.
-#define BF_MMDC_MDREF_REFR(v)   ((((reg32_t) v) << BP_MMDC_MDREF_REFR) & BM_MMDC_MDREF_REFR)
-#else
-//! @brief Format value for bitfield MMDC_MDREF_REFR.
-#define BF_MMDC_MDREF_REFR(v)   (((v) << BP_MMDC_MDREF_REFR) & BM_MMDC_MDREF_REFR)
-#endif
+#define BF_MMDC_MDREF_REFR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDREF_REFR) & BM_MMDC_MDREF_REFR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REFR field to a new value.
@@ -2625,15 +2372,10 @@ typedef union _hw_mmdc_mdref
 #define BM_MMDC_MDREF_REF_SEL      (0x0000c000)  //!< Bit mask for MMDC_MDREF_REF_SEL.
 
 //! @brief Get value of MMDC_MDREF_REF_SEL from a register value.
-#define BG_MMDC_MDREF_REF_SEL(r)   (((r) & BM_MMDC_MDREF_REF_SEL) >> BP_MMDC_MDREF_REF_SEL)
+#define BG_MMDC_MDREF_REF_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDREF_REF_SEL) >> BP_MMDC_MDREF_REF_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDREF_REF_SEL.
-#define BF_MMDC_MDREF_REF_SEL(v)   ((((reg32_t) v) << BP_MMDC_MDREF_REF_SEL) & BM_MMDC_MDREF_REF_SEL)
-#else
-//! @brief Format value for bitfield MMDC_MDREF_REF_SEL.
-#define BF_MMDC_MDREF_REF_SEL(v)   (((v) << BP_MMDC_MDREF_REF_SEL) & BM_MMDC_MDREF_REF_SEL)
-#endif
+#define BF_MMDC_MDREF_REF_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDREF_REF_SEL) & BM_MMDC_MDREF_REF_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REF_SEL field to a new value.
@@ -2657,21 +2399,20 @@ typedef union _hw_mmdc_mdref
 #define BM_MMDC_MDREF_REF_CNT      (0xffff0000)  //!< Bit mask for MMDC_MDREF_REF_CNT.
 
 //! @brief Get value of MMDC_MDREF_REF_CNT from a register value.
-#define BG_MMDC_MDREF_REF_CNT(r)   (((r) & BM_MMDC_MDREF_REF_CNT) >> BP_MMDC_MDREF_REF_CNT)
+#define BG_MMDC_MDREF_REF_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDREF_REF_CNT) >> BP_MMDC_MDREF_REF_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDREF_REF_CNT.
-#define BF_MMDC_MDREF_REF_CNT(v)   ((((reg32_t) v) << BP_MMDC_MDREF_REF_CNT) & BM_MMDC_MDREF_REF_CNT)
-#else
-//! @brief Format value for bitfield MMDC_MDREF_REF_CNT.
-#define BF_MMDC_MDREF_REF_CNT(v)   (((v) << BP_MMDC_MDREF_REF_CNT) & BM_MMDC_MDREF_REF_CNT)
-#endif
+#define BF_MMDC_MDREF_REF_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDREF_REF_CNT) & BM_MMDC_MDREF_REF_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REF_CNT field to a new value.
 #define BW_MMDC_MDREF_REF_CNT(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REF_CNT) | BF_MMDC_MDREF_REF_CNT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDRWD - MMDC Core Read/Write Command Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2740,15 +2481,10 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_RTR_DIFF      (0x00000007)  //!< Bit mask for MMDC_MDRWD_RTR_DIFF.
 
 //! @brief Get value of MMDC_MDRWD_RTR_DIFF from a register value.
-#define BG_MMDC_MDRWD_RTR_DIFF(r)   (((r) & BM_MMDC_MDRWD_RTR_DIFF) >> BP_MMDC_MDRWD_RTR_DIFF)
+#define BG_MMDC_MDRWD_RTR_DIFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_RTR_DIFF) >> BP_MMDC_MDRWD_RTR_DIFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_RTR_DIFF.
-#define BF_MMDC_MDRWD_RTR_DIFF(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_RTR_DIFF) & BM_MMDC_MDRWD_RTR_DIFF)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_RTR_DIFF.
-#define BF_MMDC_MDRWD_RTR_DIFF(v)   (((v) << BP_MMDC_MDRWD_RTR_DIFF) & BM_MMDC_MDRWD_RTR_DIFF)
-#endif
+#define BF_MMDC_MDRWD_RTR_DIFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_RTR_DIFF) & BM_MMDC_MDRWD_RTR_DIFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTR_DIFF field to a new value.
@@ -2777,15 +2513,10 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_RTW_DIFF      (0x00000038)  //!< Bit mask for MMDC_MDRWD_RTW_DIFF.
 
 //! @brief Get value of MMDC_MDRWD_RTW_DIFF from a register value.
-#define BG_MMDC_MDRWD_RTW_DIFF(r)   (((r) & BM_MMDC_MDRWD_RTW_DIFF) >> BP_MMDC_MDRWD_RTW_DIFF)
+#define BG_MMDC_MDRWD_RTW_DIFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_RTW_DIFF) >> BP_MMDC_MDRWD_RTW_DIFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_RTW_DIFF.
-#define BF_MMDC_MDRWD_RTW_DIFF(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_RTW_DIFF) & BM_MMDC_MDRWD_RTW_DIFF)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_RTW_DIFF.
-#define BF_MMDC_MDRWD_RTW_DIFF(v)   (((v) << BP_MMDC_MDRWD_RTW_DIFF) & BM_MMDC_MDRWD_RTW_DIFF)
-#endif
+#define BF_MMDC_MDRWD_RTW_DIFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_RTW_DIFF) & BM_MMDC_MDRWD_RTW_DIFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTW_DIFF field to a new value.
@@ -2814,15 +2545,10 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_WTW_DIFF      (0x000001c0)  //!< Bit mask for MMDC_MDRWD_WTW_DIFF.
 
 //! @brief Get value of MMDC_MDRWD_WTW_DIFF from a register value.
-#define BG_MMDC_MDRWD_WTW_DIFF(r)   (((r) & BM_MMDC_MDRWD_WTW_DIFF) >> BP_MMDC_MDRWD_WTW_DIFF)
+#define BG_MMDC_MDRWD_WTW_DIFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_WTW_DIFF) >> BP_MMDC_MDRWD_WTW_DIFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_WTW_DIFF.
-#define BF_MMDC_MDRWD_WTW_DIFF(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_WTW_DIFF) & BM_MMDC_MDRWD_WTW_DIFF)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_WTW_DIFF.
-#define BF_MMDC_MDRWD_WTW_DIFF(v)   (((v) << BP_MMDC_MDRWD_WTW_DIFF) & BM_MMDC_MDRWD_WTW_DIFF)
-#endif
+#define BF_MMDC_MDRWD_WTW_DIFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_WTW_DIFF) & BM_MMDC_MDRWD_WTW_DIFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WTW_DIFF field to a new value.
@@ -2851,15 +2577,10 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_WTR_DIFF      (0x00000e00)  //!< Bit mask for MMDC_MDRWD_WTR_DIFF.
 
 //! @brief Get value of MMDC_MDRWD_WTR_DIFF from a register value.
-#define BG_MMDC_MDRWD_WTR_DIFF(r)   (((r) & BM_MMDC_MDRWD_WTR_DIFF) >> BP_MMDC_MDRWD_WTR_DIFF)
+#define BG_MMDC_MDRWD_WTR_DIFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_WTR_DIFF) >> BP_MMDC_MDRWD_WTR_DIFF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_WTR_DIFF.
-#define BF_MMDC_MDRWD_WTR_DIFF(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_WTR_DIFF) & BM_MMDC_MDRWD_WTR_DIFF)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_WTR_DIFF.
-#define BF_MMDC_MDRWD_WTR_DIFF(v)   (((v) << BP_MMDC_MDRWD_WTR_DIFF) & BM_MMDC_MDRWD_WTR_DIFF)
-#endif
+#define BF_MMDC_MDRWD_WTR_DIFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_WTR_DIFF) & BM_MMDC_MDRWD_WTR_DIFF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WTR_DIFF field to a new value.
@@ -2888,15 +2609,10 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_RTW_SAME      (0x00007000)  //!< Bit mask for MMDC_MDRWD_RTW_SAME.
 
 //! @brief Get value of MMDC_MDRWD_RTW_SAME from a register value.
-#define BG_MMDC_MDRWD_RTW_SAME(r)   (((r) & BM_MMDC_MDRWD_RTW_SAME) >> BP_MMDC_MDRWD_RTW_SAME)
+#define BG_MMDC_MDRWD_RTW_SAME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_RTW_SAME) >> BP_MMDC_MDRWD_RTW_SAME)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_RTW_SAME.
-#define BF_MMDC_MDRWD_RTW_SAME(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_RTW_SAME) & BM_MMDC_MDRWD_RTW_SAME)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_RTW_SAME.
-#define BF_MMDC_MDRWD_RTW_SAME(v)   (((v) << BP_MMDC_MDRWD_RTW_SAME) & BM_MMDC_MDRWD_RTW_SAME)
-#endif
+#define BF_MMDC_MDRWD_RTW_SAME(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_RTW_SAME) & BM_MMDC_MDRWD_RTW_SAME)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTW_SAME field to a new value.
@@ -2918,21 +2634,20 @@ typedef union _hw_mmdc_mdrwd
 #define BM_MMDC_MDRWD_TDAI      (0x1fff0000)  //!< Bit mask for MMDC_MDRWD_TDAI.
 
 //! @brief Get value of MMDC_MDRWD_TDAI from a register value.
-#define BG_MMDC_MDRWD_TDAI(r)   (((r) & BM_MMDC_MDRWD_TDAI) >> BP_MMDC_MDRWD_TDAI)
+#define BG_MMDC_MDRWD_TDAI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDRWD_TDAI) >> BP_MMDC_MDRWD_TDAI)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDRWD_TDAI.
-#define BF_MMDC_MDRWD_TDAI(v)   ((((reg32_t) v) << BP_MMDC_MDRWD_TDAI) & BM_MMDC_MDRWD_TDAI)
-#else
-//! @brief Format value for bitfield MMDC_MDRWD_TDAI.
-#define BF_MMDC_MDRWD_TDAI(v)   (((v) << BP_MMDC_MDRWD_TDAI) & BM_MMDC_MDRWD_TDAI)
-#endif
+#define BF_MMDC_MDRWD_TDAI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDRWD_TDAI) & BM_MMDC_MDRWD_TDAI)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDAI field to a new value.
 #define BW_MMDC_MDRWD_TDAI(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_TDAI) | BF_MMDC_MDRWD_TDAI(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDOR - MMDC Core Out of Reset Delays Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2948,7 +2663,7 @@ typedef union _hw_mmdc_mdor
     reg32_t U;
     struct _hw_mmdc_mdor_bitfields
     {
-        unsigned RST_TO_CKE : 6; //!< [5:0] DDR3: Time from SDE enable to CKE rise. In case that DDR reset# is low, will wait until it's high and then wait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is referred to to the time from SDE enable to CKE rise. (JEDEC value is 200 us) LPDDR2: Idle time ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.625 us.
+        unsigned RST_TO_CKE : 6; //!< [5:0] DDR3: Time from SDE enable to CKE rise. In case that DDR reset# is low, will wait until it's high and thenwait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is referred to to the time from SDE enable to CKE rise. (JEDEC value is 200 us) LPDDR2: Idle time ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.258 us.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
         unsigned SDE_TO_RST : 6; //!< [13:8] DDR3: Time from SDE enable until DDR reset# is high. In DDR2/ LPDDR2 mode this field is not relevant . Each cycle in this field is 15.625 us.
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
@@ -2979,18 +2694,17 @@ typedef union _hw_mmdc_mdor
 /* --- Register HW_MMDC_MDOR, field RST_TO_CKE[5:0] (RW)
  *
  * DDR3: Time from SDE enable to CKE rise. In case that DDR reset# is low, will wait until it's high
- * and then wait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is
+ * and thenwait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is
  * referred to to the time from SDE enable to CKE rise. (JEDEC value is 200 us) LPDDR2: Idle time
- * ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.625 us.
+ * ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.258 us.
  *
  * Values:
  * 0x0 - Reserved
  * 0x1 - Reserved
  * 0x2 - Reserved
  * 0x3 - 1 cycles
- * 0x4 - 2 cycles
- * 0xF - 13 cycles (Jedec value for LPDDR2) - total of 200 us
- * 0x22 - 32 cycles (Jedec value for DDR3) - total of 500 us
+ * 0x10 - 14 cycles (JEDEC value for DDR2/ LPDDR2) - total of 200 us
+ * 0x23 - 33 cycles (JEDEC value for DDR3) - total of 500 us
  * 0x3E - 60 cycles
  * 0x3F - 61 cycles
  */
@@ -2999,15 +2713,10 @@ typedef union _hw_mmdc_mdor
 #define BM_MMDC_MDOR_RST_TO_CKE      (0x0000003f)  //!< Bit mask for MMDC_MDOR_RST_TO_CKE.
 
 //! @brief Get value of MMDC_MDOR_RST_TO_CKE from a register value.
-#define BG_MMDC_MDOR_RST_TO_CKE(r)   (((r) & BM_MMDC_MDOR_RST_TO_CKE) >> BP_MMDC_MDOR_RST_TO_CKE)
+#define BG_MMDC_MDOR_RST_TO_CKE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOR_RST_TO_CKE) >> BP_MMDC_MDOR_RST_TO_CKE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOR_RST_TO_CKE.
-#define BF_MMDC_MDOR_RST_TO_CKE(v)   ((((reg32_t) v) << BP_MMDC_MDOR_RST_TO_CKE) & BM_MMDC_MDOR_RST_TO_CKE)
-#else
-//! @brief Format value for bitfield MMDC_MDOR_RST_TO_CKE.
-#define BF_MMDC_MDOR_RST_TO_CKE(v)   (((v) << BP_MMDC_MDOR_RST_TO_CKE) & BM_MMDC_MDOR_RST_TO_CKE)
-#endif
+#define BF_MMDC_MDOR_RST_TO_CKE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOR_RST_TO_CKE) & BM_MMDC_MDOR_RST_TO_CKE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST_TO_CKE field to a new value.
@@ -3035,15 +2744,10 @@ typedef union _hw_mmdc_mdor
 #define BM_MMDC_MDOR_SDE_TO_RST      (0x00003f00)  //!< Bit mask for MMDC_MDOR_SDE_TO_RST.
 
 //! @brief Get value of MMDC_MDOR_SDE_TO_RST from a register value.
-#define BG_MMDC_MDOR_SDE_TO_RST(r)   (((r) & BM_MMDC_MDOR_SDE_TO_RST) >> BP_MMDC_MDOR_SDE_TO_RST)
+#define BG_MMDC_MDOR_SDE_TO_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOR_SDE_TO_RST) >> BP_MMDC_MDOR_SDE_TO_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOR_SDE_TO_RST.
-#define BF_MMDC_MDOR_SDE_TO_RST(v)   ((((reg32_t) v) << BP_MMDC_MDOR_SDE_TO_RST) & BM_MMDC_MDOR_SDE_TO_RST)
-#else
-//! @brief Format value for bitfield MMDC_MDOR_SDE_TO_RST.
-#define BF_MMDC_MDOR_SDE_TO_RST(v)   (((v) << BP_MMDC_MDOR_SDE_TO_RST) & BM_MMDC_MDOR_SDE_TO_RST)
-#endif
+#define BF_MMDC_MDOR_SDE_TO_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOR_SDE_TO_RST) & BM_MMDC_MDOR_SDE_TO_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_TO_RST field to a new value.
@@ -3068,21 +2772,20 @@ typedef union _hw_mmdc_mdor
 #define BM_MMDC_MDOR_TXPR      (0x00ff0000)  //!< Bit mask for MMDC_MDOR_TXPR.
 
 //! @brief Get value of MMDC_MDOR_TXPR from a register value.
-#define BG_MMDC_MDOR_TXPR(r)   (((r) & BM_MMDC_MDOR_TXPR) >> BP_MMDC_MDOR_TXPR)
+#define BG_MMDC_MDOR_TXPR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDOR_TXPR) >> BP_MMDC_MDOR_TXPR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDOR_TXPR.
-#define BF_MMDC_MDOR_TXPR(v)   ((((reg32_t) v) << BP_MMDC_MDOR_TXPR) & BM_MMDC_MDOR_TXPR)
-#else
-//! @brief Format value for bitfield MMDC_MDOR_TXPR.
-#define BF_MMDC_MDOR_TXPR(v)   (((v) << BP_MMDC_MDOR_TXPR) & BM_MMDC_MDOR_TXPR)
-#endif
+#define BF_MMDC_MDOR_TXPR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDOR_TXPR) & BM_MMDC_MDOR_TXPR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXPR field to a new value.
 #define BW_MMDC_MDOR_TXPR(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_TXPR) | BF_MMDC_MDOR_TXPR(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDMRR - MMDC Core MRR Data Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3131,7 +2834,7 @@ typedef union _hw_mmdc_mdmrr
 #define BM_MMDC_MDMRR_MRR_READ_DATA0      (0x000000ff)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA0.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA0 from a register value.
-#define BG_MMDC_MDMRR_MRR_READ_DATA0(r)   (((r) & BM_MMDC_MDMRR_MRR_READ_DATA0) >> BP_MMDC_MDMRR_MRR_READ_DATA0)
+#define BG_MMDC_MDMRR_MRR_READ_DATA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA0) >> BP_MMDC_MDMRR_MRR_READ_DATA0)
 
 /* --- Register HW_MMDC_MDMRR, field MRR_READ_DATA1[15:8] (RO)
  *
@@ -3142,7 +2845,7 @@ typedef union _hw_mmdc_mdmrr
 #define BM_MMDC_MDMRR_MRR_READ_DATA1      (0x0000ff00)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA1.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA1 from a register value.
-#define BG_MMDC_MDMRR_MRR_READ_DATA1(r)   (((r) & BM_MMDC_MDMRR_MRR_READ_DATA1) >> BP_MMDC_MDMRR_MRR_READ_DATA1)
+#define BG_MMDC_MDMRR_MRR_READ_DATA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA1) >> BP_MMDC_MDMRR_MRR_READ_DATA1)
 
 /* --- Register HW_MMDC_MDMRR, field MRR_READ_DATA2[23:16] (RO)
  *
@@ -3153,7 +2856,7 @@ typedef union _hw_mmdc_mdmrr
 #define BM_MMDC_MDMRR_MRR_READ_DATA2      (0x00ff0000)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA2.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA2 from a register value.
-#define BG_MMDC_MDMRR_MRR_READ_DATA2(r)   (((r) & BM_MMDC_MDMRR_MRR_READ_DATA2) >> BP_MMDC_MDMRR_MRR_READ_DATA2)
+#define BG_MMDC_MDMRR_MRR_READ_DATA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA2) >> BP_MMDC_MDMRR_MRR_READ_DATA2)
 
 /* --- Register HW_MMDC_MDMRR, field MRR_READ_DATA3[31:24] (RO)
  *
@@ -3164,7 +2867,11 @@ typedef union _hw_mmdc_mdmrr
 #define BM_MMDC_MDMRR_MRR_READ_DATA3      (0xff000000)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA3.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA3 from a register value.
-#define BG_MMDC_MDMRR_MRR_READ_DATA3(r)   (((r) & BM_MMDC_MDMRR_MRR_READ_DATA3) >> BP_MMDC_MDMRR_MRR_READ_DATA3)
+#define BG_MMDC_MDMRR_MRR_READ_DATA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA3) >> BP_MMDC_MDMRR_MRR_READ_DATA3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDCFG3LP - MMDC Core Timing Configuration Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3224,15 +2931,10 @@ typedef union _hw_mmdc_mdcfg3lp
 #define BM_MMDC_MDCFG3LP_TRPAB_LP      (0x0000000f)  //!< Bit mask for MMDC_MDCFG3LP_TRPAB_LP.
 
 //! @brief Get value of MMDC_MDCFG3LP_TRPAB_LP from a register value.
-#define BG_MMDC_MDCFG3LP_TRPAB_LP(r)   (((r) & BM_MMDC_MDCFG3LP_TRPAB_LP) >> BP_MMDC_MDCFG3LP_TRPAB_LP)
+#define BG_MMDC_MDCFG3LP_TRPAB_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG3LP_TRPAB_LP) >> BP_MMDC_MDCFG3LP_TRPAB_LP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG3LP_TRPAB_LP.
-#define BF_MMDC_MDCFG3LP_TRPAB_LP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG3LP_TRPAB_LP) & BM_MMDC_MDCFG3LP_TRPAB_LP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG3LP_TRPAB_LP.
-#define BF_MMDC_MDCFG3LP_TRPAB_LP(v)   (((v) << BP_MMDC_MDCFG3LP_TRPAB_LP) & BM_MMDC_MDCFG3LP_TRPAB_LP)
-#endif
+#define BF_MMDC_MDCFG3LP_TRPAB_LP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG3LP_TRPAB_LP) & BM_MMDC_MDCFG3LP_TRPAB_LP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPAB_LP field to a new value.
@@ -3256,15 +2958,10 @@ typedef union _hw_mmdc_mdcfg3lp
 #define BM_MMDC_MDCFG3LP_TRPPB_LP      (0x000000f0)  //!< Bit mask for MMDC_MDCFG3LP_TRPPB_LP.
 
 //! @brief Get value of MMDC_MDCFG3LP_TRPPB_LP from a register value.
-#define BG_MMDC_MDCFG3LP_TRPPB_LP(r)   (((r) & BM_MMDC_MDCFG3LP_TRPPB_LP) >> BP_MMDC_MDCFG3LP_TRPPB_LP)
+#define BG_MMDC_MDCFG3LP_TRPPB_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG3LP_TRPPB_LP) >> BP_MMDC_MDCFG3LP_TRPPB_LP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG3LP_TRPPB_LP.
-#define BF_MMDC_MDCFG3LP_TRPPB_LP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG3LP_TRPPB_LP) & BM_MMDC_MDCFG3LP_TRPPB_LP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG3LP_TRPPB_LP.
-#define BF_MMDC_MDCFG3LP_TRPPB_LP(v)   (((v) << BP_MMDC_MDCFG3LP_TRPPB_LP) & BM_MMDC_MDCFG3LP_TRPPB_LP)
-#endif
+#define BF_MMDC_MDCFG3LP_TRPPB_LP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG3LP_TRPPB_LP) & BM_MMDC_MDCFG3LP_TRPPB_LP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPPB_LP field to a new value.
@@ -3289,15 +2986,10 @@ typedef union _hw_mmdc_mdcfg3lp
 #define BM_MMDC_MDCFG3LP_TRCD_LP      (0x00000f00)  //!< Bit mask for MMDC_MDCFG3LP_TRCD_LP.
 
 //! @brief Get value of MMDC_MDCFG3LP_TRCD_LP from a register value.
-#define BG_MMDC_MDCFG3LP_TRCD_LP(r)   (((r) & BM_MMDC_MDCFG3LP_TRCD_LP) >> BP_MMDC_MDCFG3LP_TRCD_LP)
+#define BG_MMDC_MDCFG3LP_TRCD_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG3LP_TRCD_LP) >> BP_MMDC_MDCFG3LP_TRCD_LP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG3LP_TRCD_LP.
-#define BF_MMDC_MDCFG3LP_TRCD_LP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG3LP_TRCD_LP) & BM_MMDC_MDCFG3LP_TRCD_LP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG3LP_TRCD_LP.
-#define BF_MMDC_MDCFG3LP_TRCD_LP(v)   (((v) << BP_MMDC_MDCFG3LP_TRCD_LP) & BM_MMDC_MDCFG3LP_TRCD_LP)
-#endif
+#define BF_MMDC_MDCFG3LP_TRCD_LP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG3LP_TRCD_LP) & BM_MMDC_MDCFG3LP_TRCD_LP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD_LP field to a new value.
@@ -3322,21 +3014,20 @@ typedef union _hw_mmdc_mdcfg3lp
 #define BM_MMDC_MDCFG3LP_RC_LP      (0x003f0000)  //!< Bit mask for MMDC_MDCFG3LP_RC_LP.
 
 //! @brief Get value of MMDC_MDCFG3LP_RC_LP from a register value.
-#define BG_MMDC_MDCFG3LP_RC_LP(r)   (((r) & BM_MMDC_MDCFG3LP_RC_LP) >> BP_MMDC_MDCFG3LP_RC_LP)
+#define BG_MMDC_MDCFG3LP_RC_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDCFG3LP_RC_LP) >> BP_MMDC_MDCFG3LP_RC_LP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDCFG3LP_RC_LP.
-#define BF_MMDC_MDCFG3LP_RC_LP(v)   ((((reg32_t) v) << BP_MMDC_MDCFG3LP_RC_LP) & BM_MMDC_MDCFG3LP_RC_LP)
-#else
-//! @brief Format value for bitfield MMDC_MDCFG3LP_RC_LP.
-#define BF_MMDC_MDCFG3LP_RC_LP(v)   (((v) << BP_MMDC_MDCFG3LP_RC_LP) & BM_MMDC_MDCFG3LP_RC_LP)
-#endif
+#define BF_MMDC_MDCFG3LP_RC_LP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDCFG3LP_RC_LP) & BM_MMDC_MDCFG3LP_RC_LP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RC_LP field to a new value.
 #define BW_MMDC_MDCFG3LP_RC_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_RC_LP) | BF_MMDC_MDCFG3LP_RC_LP(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDMR4 - MMDC Core MR4 Derating Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3390,8 +3081,8 @@ typedef union _hw_mmdc_mdmr4
  * request is issued.
  *
  * Values:
- * 0x0 - Do nothing.
- * 0x1 - Request to update the following values: tRRD, tRCD, tRP, tRC, tRAS and refresh related fields(MDREF
+ * 0 - Do nothing.
+ * 1 - Request to update the following values: tRRD, tRCD, tRP, tRC, tRAS and refresh related fields(MDREF
  *     register): REF_CNT, REF_SEL, REFR
  */
 
@@ -3399,15 +3090,10 @@ typedef union _hw_mmdc_mdmr4
 #define BM_MMDC_MDMR4_UPDATE_DE_REQ      (0x00000001)  //!< Bit mask for MMDC_MDMR4_UPDATE_DE_REQ.
 
 //! @brief Get value of MMDC_MDMR4_UPDATE_DE_REQ from a register value.
-#define BG_MMDC_MDMR4_UPDATE_DE_REQ(r)   (((r) & BM_MMDC_MDMR4_UPDATE_DE_REQ) >> BP_MMDC_MDMR4_UPDATE_DE_REQ)
+#define BG_MMDC_MDMR4_UPDATE_DE_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_UPDATE_DE_REQ) >> BP_MMDC_MDMR4_UPDATE_DE_REQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_UPDATE_DE_REQ.
-#define BF_MMDC_MDMR4_UPDATE_DE_REQ(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_UPDATE_DE_REQ) & BM_MMDC_MDMR4_UPDATE_DE_REQ)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_UPDATE_DE_REQ.
-#define BF_MMDC_MDMR4_UPDATE_DE_REQ(v)   (((v) << BP_MMDC_MDMR4_UPDATE_DE_REQ) & BM_MMDC_MDMR4_UPDATE_DE_REQ)
-#endif
+#define BF_MMDC_MDMR4_UPDATE_DE_REQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_UPDATE_DE_REQ) & BM_MMDC_MDMR4_UPDATE_DE_REQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPDATE_DE_REQ field to a new value.
@@ -3425,30 +3111,25 @@ typedef union _hw_mmdc_mdmr4
 #define BM_MMDC_MDMR4_UPDATE_DE_ACK      (0x00000002)  //!< Bit mask for MMDC_MDMR4_UPDATE_DE_ACK.
 
 //! @brief Get value of MMDC_MDMR4_UPDATE_DE_ACK from a register value.
-#define BG_MMDC_MDMR4_UPDATE_DE_ACK(r)   (((r) & BM_MMDC_MDMR4_UPDATE_DE_ACK) >> BP_MMDC_MDMR4_UPDATE_DE_ACK)
+#define BG_MMDC_MDMR4_UPDATE_DE_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_UPDATE_DE_ACK) >> BP_MMDC_MDMR4_UPDATE_DE_ACK)
 
 /* --- Register HW_MMDC_MDMR4, field TRCD_DE[4] (RW)
  *
  * tRCD derating value.
  *
  * Values:
- * 0x0 - Original tRCD is used.
- * 0x1 - tRCD is derated in 1 cycle.
+ * 0 - Original tRCD is used.
+ * 1 - tRCD is derated in 1 cycle.
  */
 
 #define BP_MMDC_MDMR4_TRCD_DE      (4)      //!< Bit position for MMDC_MDMR4_TRCD_DE.
 #define BM_MMDC_MDMR4_TRCD_DE      (0x00000010)  //!< Bit mask for MMDC_MDMR4_TRCD_DE.
 
 //! @brief Get value of MMDC_MDMR4_TRCD_DE from a register value.
-#define BG_MMDC_MDMR4_TRCD_DE(r)   (((r) & BM_MMDC_MDMR4_TRCD_DE) >> BP_MMDC_MDMR4_TRCD_DE)
+#define BG_MMDC_MDMR4_TRCD_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_TRCD_DE) >> BP_MMDC_MDMR4_TRCD_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_TRCD_DE.
-#define BF_MMDC_MDMR4_TRCD_DE(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_TRCD_DE) & BM_MMDC_MDMR4_TRCD_DE)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_TRCD_DE.
-#define BF_MMDC_MDMR4_TRCD_DE(v)   (((v) << BP_MMDC_MDMR4_TRCD_DE) & BM_MMDC_MDMR4_TRCD_DE)
-#endif
+#define BF_MMDC_MDMR4_TRCD_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_TRCD_DE) & BM_MMDC_MDMR4_TRCD_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD_DE field to a new value.
@@ -3461,23 +3142,18 @@ typedef union _hw_mmdc_mdmr4
  * tRC derating value.
  *
  * Values:
- * 0x0 - Original tRC is used.
- * 0x1 - tRC is derated in 1 cycle.
+ * 0 - Original tRC is used.
+ * 1 - tRC is derated in 1 cycle.
  */
 
 #define BP_MMDC_MDMR4_TRC_DE      (5)      //!< Bit position for MMDC_MDMR4_TRC_DE.
 #define BM_MMDC_MDMR4_TRC_DE      (0x00000020)  //!< Bit mask for MMDC_MDMR4_TRC_DE.
 
 //! @brief Get value of MMDC_MDMR4_TRC_DE from a register value.
-#define BG_MMDC_MDMR4_TRC_DE(r)   (((r) & BM_MMDC_MDMR4_TRC_DE) >> BP_MMDC_MDMR4_TRC_DE)
+#define BG_MMDC_MDMR4_TRC_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_TRC_DE) >> BP_MMDC_MDMR4_TRC_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_TRC_DE.
-#define BF_MMDC_MDMR4_TRC_DE(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_TRC_DE) & BM_MMDC_MDMR4_TRC_DE)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_TRC_DE.
-#define BF_MMDC_MDMR4_TRC_DE(v)   (((v) << BP_MMDC_MDMR4_TRC_DE) & BM_MMDC_MDMR4_TRC_DE)
-#endif
+#define BF_MMDC_MDMR4_TRC_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_TRC_DE) & BM_MMDC_MDMR4_TRC_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRC_DE field to a new value.
@@ -3490,23 +3166,18 @@ typedef union _hw_mmdc_mdmr4
  * tRAS derating value.
  *
  * Values:
- * 0x0 - Original tRAS is used.
- * 0x1 - tRAS is derated in 1 cycle.
+ * 0 - Original tRAS is used.
+ * 1 - tRAS is derated in 1 cycle.
  */
 
 #define BP_MMDC_MDMR4_TRAS_DE      (6)      //!< Bit position for MMDC_MDMR4_TRAS_DE.
 #define BM_MMDC_MDMR4_TRAS_DE      (0x00000040)  //!< Bit mask for MMDC_MDMR4_TRAS_DE.
 
 //! @brief Get value of MMDC_MDMR4_TRAS_DE from a register value.
-#define BG_MMDC_MDMR4_TRAS_DE(r)   (((r) & BM_MMDC_MDMR4_TRAS_DE) >> BP_MMDC_MDMR4_TRAS_DE)
+#define BG_MMDC_MDMR4_TRAS_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_TRAS_DE) >> BP_MMDC_MDMR4_TRAS_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_TRAS_DE.
-#define BF_MMDC_MDMR4_TRAS_DE(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_TRAS_DE) & BM_MMDC_MDMR4_TRAS_DE)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_TRAS_DE.
-#define BF_MMDC_MDMR4_TRAS_DE(v)   (((v) << BP_MMDC_MDMR4_TRAS_DE) & BM_MMDC_MDMR4_TRAS_DE)
-#endif
+#define BF_MMDC_MDMR4_TRAS_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_TRAS_DE) & BM_MMDC_MDMR4_TRAS_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRAS_DE field to a new value.
@@ -3519,23 +3190,18 @@ typedef union _hw_mmdc_mdmr4
  * tRP derating value.
  *
  * Values:
- * 0x0 - Original tRP is used.
- * 0x1 - tRP is derated in 1 cycle.
+ * 0 - Original tRP is used.
+ * 1 - tRP is derated in 1 cycle.
  */
 
 #define BP_MMDC_MDMR4_TRP_DE      (7)      //!< Bit position for MMDC_MDMR4_TRP_DE.
 #define BM_MMDC_MDMR4_TRP_DE      (0x00000080)  //!< Bit mask for MMDC_MDMR4_TRP_DE.
 
 //! @brief Get value of MMDC_MDMR4_TRP_DE from a register value.
-#define BG_MMDC_MDMR4_TRP_DE(r)   (((r) & BM_MMDC_MDMR4_TRP_DE) >> BP_MMDC_MDMR4_TRP_DE)
+#define BG_MMDC_MDMR4_TRP_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_TRP_DE) >> BP_MMDC_MDMR4_TRP_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_TRP_DE.
-#define BF_MMDC_MDMR4_TRP_DE(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_TRP_DE) & BM_MMDC_MDMR4_TRP_DE)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_TRP_DE.
-#define BF_MMDC_MDMR4_TRP_DE(v)   (((v) << BP_MMDC_MDMR4_TRP_DE) & BM_MMDC_MDMR4_TRP_DE)
-#endif
+#define BF_MMDC_MDMR4_TRP_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_TRP_DE) & BM_MMDC_MDMR4_TRP_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRP_DE field to a new value.
@@ -3548,29 +3214,28 @@ typedef union _hw_mmdc_mdmr4
  * tRRD derating value.
  *
  * Values:
- * 0x0 - Original tRRD is used.
- * 0x1 - tRRD is derated in 1 cycle.
+ * 0 - Original tRRD is used.
+ * 1 - tRRD is derated in 1 cycle.
  */
 
 #define BP_MMDC_MDMR4_TRRD_DE      (8)      //!< Bit position for MMDC_MDMR4_TRRD_DE.
 #define BM_MMDC_MDMR4_TRRD_DE      (0x00000100)  //!< Bit mask for MMDC_MDMR4_TRRD_DE.
 
 //! @brief Get value of MMDC_MDMR4_TRRD_DE from a register value.
-#define BG_MMDC_MDMR4_TRRD_DE(r)   (((r) & BM_MMDC_MDMR4_TRRD_DE) >> BP_MMDC_MDMR4_TRRD_DE)
+#define BG_MMDC_MDMR4_TRRD_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_TRRD_DE) >> BP_MMDC_MDMR4_TRRD_DE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDMR4_TRRD_DE.
-#define BF_MMDC_MDMR4_TRRD_DE(v)   ((((reg32_t) v) << BP_MMDC_MDMR4_TRRD_DE) & BM_MMDC_MDMR4_TRRD_DE)
-#else
-//! @brief Format value for bitfield MMDC_MDMR4_TRRD_DE.
-#define BF_MMDC_MDMR4_TRRD_DE(v)   (((v) << BP_MMDC_MDMR4_TRRD_DE) & BM_MMDC_MDMR4_TRRD_DE)
-#endif
+#define BF_MMDC_MDMR4_TRRD_DE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMR4_TRRD_DE) & BM_MMDC_MDMR4_TRRD_DE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRRD_DE field to a new value.
 #define BW_MMDC_MDMR4_TRRD_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRRD_DE) | BF_MMDC_MDMR4_TRRD_DE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MDASP - MMDC Core Address Space Partition Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3627,21 +3292,20 @@ typedef union _hw_mmdc_mdasp
 #define BM_MMDC_MDASP_CS0_END      (0x0000007f)  //!< Bit mask for MMDC_MDASP_CS0_END.
 
 //! @brief Get value of MMDC_MDASP_CS0_END from a register value.
-#define BG_MMDC_MDASP_CS0_END(r)   (((r) & BM_MMDC_MDASP_CS0_END) >> BP_MMDC_MDASP_CS0_END)
+#define BG_MMDC_MDASP_CS0_END(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDASP_CS0_END) >> BP_MMDC_MDASP_CS0_END)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MDASP_CS0_END.
-#define BF_MMDC_MDASP_CS0_END(v)   ((((reg32_t) v) << BP_MMDC_MDASP_CS0_END) & BM_MMDC_MDASP_CS0_END)
-#else
-//! @brief Format value for bitfield MMDC_MDASP_CS0_END.
-#define BF_MMDC_MDASP_CS0_END(v)   (((v) << BP_MMDC_MDASP_CS0_END) & BM_MMDC_MDASP_CS0_END)
-#endif
+#define BF_MMDC_MDASP_CS0_END(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDASP_CS0_END) & BM_MMDC_MDASP_CS0_END)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CS0_END field to a new value.
 #define BW_MMDC_MDASP_CS0_END(x, v)   (HW_MMDC_MDASP_WR(x, (HW_MMDC_MDASP_RD(x) & ~BM_MMDC_MDASP_CS0_END) | BF_MMDC_MDASP_CS0_END(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MAARCR - MMDC Core AXI Reordering Control Regsiter
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3710,15 +3374,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_GUARD      (0x0000000f)  //!< Bit mask for MMDC_MAARCR_ARCR_GUARD.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_GUARD from a register value.
-#define BG_MMDC_MAARCR_ARCR_GUARD(r)   (((r) & BM_MMDC_MAARCR_ARCR_GUARD) >> BP_MMDC_MAARCR_ARCR_GUARD)
+#define BG_MMDC_MAARCR_ARCR_GUARD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_GUARD) >> BP_MMDC_MAARCR_ARCR_GUARD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_GUARD.
-#define BF_MMDC_MAARCR_ARCR_GUARD(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_GUARD) & BM_MMDC_MAARCR_ARCR_GUARD)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_GUARD.
-#define BF_MMDC_MAARCR_ARCR_GUARD(v)   (((v) << BP_MMDC_MAARCR_ARCR_GUARD) & BM_MMDC_MAARCR_ARCR_GUARD)
-#endif
+#define BF_MMDC_MAARCR_ARCR_GUARD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_GUARD) & BM_MMDC_MAARCR_ARCR_GUARD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_GUARD field to a new value.
@@ -3741,15 +3400,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_DYN_MAX      (0x000000f0)  //!< Bit mask for MMDC_MAARCR_ARCR_DYN_MAX.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_DYN_MAX from a register value.
-#define BG_MMDC_MAARCR_ARCR_DYN_MAX(r)   (((r) & BM_MMDC_MAARCR_ARCR_DYN_MAX) >> BP_MMDC_MAARCR_ARCR_DYN_MAX)
+#define BG_MMDC_MAARCR_ARCR_DYN_MAX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_DYN_MAX) >> BP_MMDC_MAARCR_ARCR_DYN_MAX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_DYN_MAX.
-#define BF_MMDC_MAARCR_ARCR_DYN_MAX(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_DYN_MAX) & BM_MMDC_MAARCR_ARCR_DYN_MAX)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_DYN_MAX.
-#define BF_MMDC_MAARCR_ARCR_DYN_MAX(v)   (((v) << BP_MMDC_MAARCR_ARCR_DYN_MAX) & BM_MMDC_MAARCR_ARCR_DYN_MAX)
-#endif
+#define BF_MMDC_MAARCR_ARCR_DYN_MAX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_DYN_MAX) & BM_MMDC_MAARCR_ARCR_DYN_MAX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_DYN_MAX field to a new value.
@@ -3769,15 +3423,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_DYN_JMP      (0x00000f00)  //!< Bit mask for MMDC_MAARCR_ARCR_DYN_JMP.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_DYN_JMP from a register value.
-#define BG_MMDC_MAARCR_ARCR_DYN_JMP(r)   (((r) & BM_MMDC_MAARCR_ARCR_DYN_JMP) >> BP_MMDC_MAARCR_ARCR_DYN_JMP)
+#define BG_MMDC_MAARCR_ARCR_DYN_JMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_DYN_JMP) >> BP_MMDC_MAARCR_ARCR_DYN_JMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_DYN_JMP.
-#define BF_MMDC_MAARCR_ARCR_DYN_JMP(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_DYN_JMP) & BM_MMDC_MAARCR_ARCR_DYN_JMP)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_DYN_JMP.
-#define BF_MMDC_MAARCR_ARCR_DYN_JMP(v)   (((v) << BP_MMDC_MAARCR_ARCR_DYN_JMP) & BM_MMDC_MAARCR_ARCR_DYN_JMP)
-#endif
+#define BF_MMDC_MAARCR_ARCR_DYN_JMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_DYN_JMP) & BM_MMDC_MAARCR_ARCR_DYN_JMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_DYN_JMP field to a new value.
@@ -3795,15 +3444,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_ACC_HIT      (0x00070000)  //!< Bit mask for MMDC_MAARCR_ARCR_ACC_HIT.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_ACC_HIT from a register value.
-#define BG_MMDC_MAARCR_ARCR_ACC_HIT(r)   (((r) & BM_MMDC_MAARCR_ARCR_ACC_HIT) >> BP_MMDC_MAARCR_ARCR_ACC_HIT)
+#define BG_MMDC_MAARCR_ARCR_ACC_HIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_ACC_HIT) >> BP_MMDC_MAARCR_ARCR_ACC_HIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_ACC_HIT.
-#define BF_MMDC_MAARCR_ARCR_ACC_HIT(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_ACC_HIT) & BM_MMDC_MAARCR_ARCR_ACC_HIT)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_ACC_HIT.
-#define BF_MMDC_MAARCR_ARCR_ACC_HIT(v)   (((v) << BP_MMDC_MAARCR_ARCR_ACC_HIT) & BM_MMDC_MAARCR_ARCR_ACC_HIT)
-#endif
+#define BF_MMDC_MAARCR_ARCR_ACC_HIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_ACC_HIT) & BM_MMDC_MAARCR_ARCR_ACC_HIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_ACC_HIT field to a new value.
@@ -3821,15 +3465,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_PAG_HIT      (0x00700000)  //!< Bit mask for MMDC_MAARCR_ARCR_PAG_HIT.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_PAG_HIT from a register value.
-#define BG_MMDC_MAARCR_ARCR_PAG_HIT(r)   (((r) & BM_MMDC_MAARCR_ARCR_PAG_HIT) >> BP_MMDC_MAARCR_ARCR_PAG_HIT)
+#define BG_MMDC_MAARCR_ARCR_PAG_HIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_PAG_HIT) >> BP_MMDC_MAARCR_ARCR_PAG_HIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_PAG_HIT.
-#define BF_MMDC_MAARCR_ARCR_PAG_HIT(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_PAG_HIT) & BM_MMDC_MAARCR_ARCR_PAG_HIT)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_PAG_HIT.
-#define BF_MMDC_MAARCR_ARCR_PAG_HIT(v)   (((v) << BP_MMDC_MAARCR_ARCR_PAG_HIT) & BM_MMDC_MAARCR_ARCR_PAG_HIT)
-#endif
+#define BF_MMDC_MAARCR_ARCR_PAG_HIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_PAG_HIT) & BM_MMDC_MAARCR_ARCR_PAG_HIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_PAG_HIT field to a new value.
@@ -3851,15 +3490,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_RCH_EN      (0x01000000)  //!< Bit mask for MMDC_MAARCR_ARCR_RCH_EN.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_RCH_EN from a register value.
-#define BG_MMDC_MAARCR_ARCR_RCH_EN(r)   (((r) & BM_MMDC_MAARCR_ARCR_RCH_EN) >> BP_MMDC_MAARCR_ARCR_RCH_EN)
+#define BG_MMDC_MAARCR_ARCR_RCH_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_RCH_EN) >> BP_MMDC_MAARCR_ARCR_RCH_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_RCH_EN.
-#define BF_MMDC_MAARCR_ARCR_RCH_EN(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_RCH_EN) & BM_MMDC_MAARCR_ARCR_RCH_EN)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_RCH_EN.
-#define BF_MMDC_MAARCR_ARCR_RCH_EN(v)   (((v) << BP_MMDC_MAARCR_ARCR_RCH_EN) & BM_MMDC_MAARCR_ARCR_RCH_EN)
-#endif
+#define BF_MMDC_MAARCR_ARCR_RCH_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_RCH_EN) & BM_MMDC_MAARCR_ARCR_RCH_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_RCH_EN field to a new value.
@@ -3881,15 +3515,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_EXC_ERR_EN      (0x10000000)  //!< Bit mask for MMDC_MAARCR_ARCR_EXC_ERR_EN.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_EXC_ERR_EN from a register value.
-#define BG_MMDC_MAARCR_ARCR_EXC_ERR_EN(r)   (((r) & BM_MMDC_MAARCR_ARCR_EXC_ERR_EN) >> BP_MMDC_MAARCR_ARCR_EXC_ERR_EN)
+#define BG_MMDC_MAARCR_ARCR_EXC_ERR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_EXC_ERR_EN) >> BP_MMDC_MAARCR_ARCR_EXC_ERR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_EXC_ERR_EN.
-#define BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_EXC_ERR_EN) & BM_MMDC_MAARCR_ARCR_EXC_ERR_EN)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_EXC_ERR_EN.
-#define BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)   (((v) << BP_MMDC_MAARCR_ARCR_EXC_ERR_EN) & BM_MMDC_MAARCR_ARCR_EXC_ERR_EN)
-#endif
+#define BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_EXC_ERR_EN) & BM_MMDC_MAARCR_ARCR_EXC_ERR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_EXC_ERR_EN field to a new value.
@@ -3911,15 +3540,10 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_SEC_ERR_EN      (0x40000000)  //!< Bit mask for MMDC_MAARCR_ARCR_SEC_ERR_EN.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_SEC_ERR_EN from a register value.
-#define BG_MMDC_MAARCR_ARCR_SEC_ERR_EN(r)   (((r) & BM_MMDC_MAARCR_ARCR_SEC_ERR_EN) >> BP_MMDC_MAARCR_ARCR_SEC_ERR_EN)
+#define BG_MMDC_MAARCR_ARCR_SEC_ERR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_SEC_ERR_EN) >> BP_MMDC_MAARCR_ARCR_SEC_ERR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_SEC_ERR_EN.
-#define BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_SEC_ERR_EN) & BM_MMDC_MAARCR_ARCR_SEC_ERR_EN)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_SEC_ERR_EN.
-#define BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)   (((v) << BP_MMDC_MAARCR_ARCR_SEC_ERR_EN) & BM_MMDC_MAARCR_ARCR_SEC_ERR_EN)
-#endif
+#define BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_SEC_ERR_EN) & BM_MMDC_MAARCR_ARCR_SEC_ERR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_SEC_ERR_EN field to a new value.
@@ -3941,21 +3565,20 @@ typedef union _hw_mmdc_maarcr
 #define BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK      (0x80000000)  //!< Bit mask for MMDC_MAARCR_ARCR_SEC_ERR_LOCK.
 
 //! @brief Get value of MMDC_MAARCR_ARCR_SEC_ERR_LOCK from a register value.
-#define BG_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(r)   (((r) & BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) >> BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK)
+#define BG_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) >> BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAARCR_ARCR_SEC_ERR_LOCK.
-#define BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)   ((((reg32_t) v) << BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) & BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK)
-#else
-//! @brief Format value for bitfield MMDC_MAARCR_ARCR_SEC_ERR_LOCK.
-#define BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)   (((v) << BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) & BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK)
-#endif
+#define BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) & BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_SEC_ERR_LOCK field to a new value.
 #define BW_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) | BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MAPSR - MMDC Core Power Saving Control and Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4023,15 +3646,10 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_PSD      (0x00000001)  //!< Bit mask for MMDC_MAPSR_PSD.
 
 //! @brief Get value of MMDC_MAPSR_PSD from a register value.
-#define BG_MMDC_MAPSR_PSD(r)   (((r) & BM_MMDC_MAPSR_PSD) >> BP_MMDC_MAPSR_PSD)
+#define BG_MMDC_MAPSR_PSD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_PSD) >> BP_MMDC_MAPSR_PSD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAPSR_PSD.
-#define BF_MMDC_MAPSR_PSD(v)   ((((reg32_t) v) << BP_MMDC_MAPSR_PSD) & BM_MMDC_MAPSR_PSD)
-#else
-//! @brief Format value for bitfield MMDC_MAPSR_PSD.
-#define BF_MMDC_MAPSR_PSD(v)   (((v) << BP_MMDC_MAPSR_PSD) & BM_MMDC_MAPSR_PSD)
-#endif
+#define BF_MMDC_MAPSR_PSD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAPSR_PSD) & BM_MMDC_MAPSR_PSD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSD field to a new value.
@@ -4053,7 +3671,7 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_PSS      (0x00000010)  //!< Bit mask for MMDC_MAPSR_PSS.
 
 //! @brief Get value of MMDC_MAPSR_PSS from a register value.
-#define BG_MMDC_MAPSR_PSS(r)   (((r) & BM_MMDC_MAPSR_PSS) >> BP_MMDC_MAPSR_PSS)
+#define BG_MMDC_MAPSR_PSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_PSS) >> BP_MMDC_MAPSR_PSS)
 
 
 /* --- Register HW_MMDC_MAPSR, field RIS[5] (RO)
@@ -4069,7 +3687,7 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_RIS      (0x00000020)  //!< Bit mask for MMDC_MAPSR_RIS.
 
 //! @brief Get value of MMDC_MAPSR_RIS from a register value.
-#define BG_MMDC_MAPSR_RIS(r)   (((r) & BM_MMDC_MAPSR_RIS) >> BP_MMDC_MAPSR_RIS)
+#define BG_MMDC_MAPSR_RIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_RIS) >> BP_MMDC_MAPSR_RIS)
 
 
 /* --- Register HW_MMDC_MAPSR, field WIS[6] (RO)
@@ -4086,7 +3704,7 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_WIS      (0x00000040)  //!< Bit mask for MMDC_MAPSR_WIS.
 
 //! @brief Get value of MMDC_MAPSR_WIS from a register value.
-#define BG_MMDC_MAPSR_WIS(r)   (((r) & BM_MMDC_MAPSR_WIS) >> BP_MMDC_MAPSR_WIS)
+#define BG_MMDC_MAPSR_WIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_WIS) >> BP_MMDC_MAPSR_WIS)
 
 
 /* --- Register HW_MMDC_MAPSR, field PST[15:8] (RW)
@@ -4107,15 +3725,10 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_PST      (0x0000ff00)  //!< Bit mask for MMDC_MAPSR_PST.
 
 //! @brief Get value of MMDC_MAPSR_PST from a register value.
-#define BG_MMDC_MAPSR_PST(r)   (((r) & BM_MMDC_MAPSR_PST) >> BP_MMDC_MAPSR_PST)
+#define BG_MMDC_MAPSR_PST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_PST) >> BP_MMDC_MAPSR_PST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAPSR_PST.
-#define BF_MMDC_MAPSR_PST(v)   ((((reg32_t) v) << BP_MMDC_MAPSR_PST) & BM_MMDC_MAPSR_PST)
-#else
-//! @brief Format value for bitfield MMDC_MAPSR_PST.
-#define BF_MMDC_MAPSR_PST(v)   (((v) << BP_MMDC_MAPSR_PST) & BM_MMDC_MAPSR_PST)
-#endif
+#define BF_MMDC_MAPSR_PST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAPSR_PST) & BM_MMDC_MAPSR_PST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PST field to a new value.
@@ -4137,15 +3750,10 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_LPMD      (0x00100000)  //!< Bit mask for MMDC_MAPSR_LPMD.
 
 //! @brief Get value of MMDC_MAPSR_LPMD from a register value.
-#define BG_MMDC_MAPSR_LPMD(r)   (((r) & BM_MMDC_MAPSR_LPMD) >> BP_MMDC_MAPSR_LPMD)
+#define BG_MMDC_MAPSR_LPMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_LPMD) >> BP_MMDC_MAPSR_LPMD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAPSR_LPMD.
-#define BF_MMDC_MAPSR_LPMD(v)   ((((reg32_t) v) << BP_MMDC_MAPSR_LPMD) & BM_MMDC_MAPSR_LPMD)
-#else
-//! @brief Format value for bitfield MMDC_MAPSR_LPMD.
-#define BF_MMDC_MAPSR_LPMD(v)   (((v) << BP_MMDC_MAPSR_LPMD) & BM_MMDC_MAPSR_LPMD)
-#endif
+#define BF_MMDC_MAPSR_LPMD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAPSR_LPMD) & BM_MMDC_MAPSR_LPMD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPMD field to a new value.
@@ -4167,15 +3775,10 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_DVFS      (0x00200000)  //!< Bit mask for MMDC_MAPSR_DVFS.
 
 //! @brief Get value of MMDC_MAPSR_DVFS from a register value.
-#define BG_MMDC_MAPSR_DVFS(r)   (((r) & BM_MMDC_MAPSR_DVFS) >> BP_MMDC_MAPSR_DVFS)
+#define BG_MMDC_MAPSR_DVFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_DVFS) >> BP_MMDC_MAPSR_DVFS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAPSR_DVFS.
-#define BF_MMDC_MAPSR_DVFS(v)   ((((reg32_t) v) << BP_MMDC_MAPSR_DVFS) & BM_MMDC_MAPSR_DVFS)
-#else
-//! @brief Format value for bitfield MMDC_MAPSR_DVFS.
-#define BF_MMDC_MAPSR_DVFS(v)   (((v) << BP_MMDC_MAPSR_DVFS) & BM_MMDC_MAPSR_DVFS)
-#endif
+#define BF_MMDC_MAPSR_DVFS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAPSR_DVFS) & BM_MMDC_MAPSR_DVFS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVFS field to a new value.
@@ -4193,7 +3796,7 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_LPACK      (0x01000000)  //!< Bit mask for MMDC_MAPSR_LPACK.
 
 //! @brief Get value of MMDC_MAPSR_LPACK from a register value.
-#define BG_MMDC_MAPSR_LPACK(r)   (((r) & BM_MMDC_MAPSR_LPACK) >> BP_MMDC_MAPSR_LPACK)
+#define BG_MMDC_MAPSR_LPACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_LPACK) >> BP_MMDC_MAPSR_LPACK)
 
 /* --- Register HW_MMDC_MAPSR, field DVACK[25] (RO)
  *
@@ -4205,7 +3808,11 @@ typedef union _hw_mmdc_mapsr
 #define BM_MMDC_MAPSR_DVACK      (0x02000000)  //!< Bit mask for MMDC_MAPSR_DVACK.
 
 //! @brief Get value of MMDC_MAPSR_DVACK from a register value.
-#define BG_MMDC_MAPSR_DVACK(r)   (((r) & BM_MMDC_MAPSR_DVACK) >> BP_MMDC_MAPSR_DVACK)
+#define BG_MMDC_MAPSR_DVACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_DVACK) >> BP_MMDC_MAPSR_DVACK)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MAEXIDR0 - MMDC Core Exclusive ID Monitor Register0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4255,15 +3862,10 @@ typedef union _hw_mmdc_maexidr0
 #define BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0      (0x0000ffff)  //!< Bit mask for MMDC_MAEXIDR0_EXC_ID_MONITOR0.
 
 //! @brief Get value of MMDC_MAEXIDR0_EXC_ID_MONITOR0 from a register value.
-#define BG_MMDC_MAEXIDR0_EXC_ID_MONITOR0(r)   (((r) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0) >> BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0)
+#define BG_MMDC_MAEXIDR0_EXC_ID_MONITOR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0) >> BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAEXIDR0_EXC_ID_MONITOR0.
-#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)   ((((reg32_t) v) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0)
-#else
-//! @brief Format value for bitfield MMDC_MAEXIDR0_EXC_ID_MONITOR0.
-#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)   (((v) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0)
-#endif
+#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR0 field to a new value.
@@ -4279,20 +3881,19 @@ typedef union _hw_mmdc_maexidr0
 #define BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1      (0xffff0000)  //!< Bit mask for MMDC_MAEXIDR0_EXC_ID_MONITOR1.
 
 //! @brief Get value of MMDC_MAEXIDR0_EXC_ID_MONITOR1 from a register value.
-#define BG_MMDC_MAEXIDR0_EXC_ID_MONITOR1(r)   (((r) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) >> BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1)
+#define BG_MMDC_MAEXIDR0_EXC_ID_MONITOR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) >> BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAEXIDR0_EXC_ID_MONITOR1.
-#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)   ((((reg32_t) v) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1)
-#else
-//! @brief Format value for bitfield MMDC_MAEXIDR0_EXC_ID_MONITOR1.
-#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)   (((v) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1)
-#endif
+#define BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1) & BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR1 field to a new value.
 #define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR1(x, v)   (HW_MMDC_MAEXIDR0_WR(x, (HW_MMDC_MAEXIDR0_RD(x) & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MAEXIDR1 - MMDC Core Exclusive ID Monitor Register1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4301,7 +3902,7 @@ typedef union _hw_mmdc_maexidr0
  * Reset value: 0x00600040
  *
  * This register defines the ID to be monitored for exclusive accesses of monitor2 and monitor3. For
- * further information see .  Supported Mode Of Operations:  For Channel 0: All  For channel 1:
+ * further information see .  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
  * LP2_2ch_x16, LP2_2ch_x32
  */
 typedef union _hw_mmdc_maexidr1
@@ -4342,15 +3943,10 @@ typedef union _hw_mmdc_maexidr1
 #define BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2      (0x0000ffff)  //!< Bit mask for MMDC_MAEXIDR1_EXC_ID_MONITOR2.
 
 //! @brief Get value of MMDC_MAEXIDR1_EXC_ID_MONITOR2 from a register value.
-#define BG_MMDC_MAEXIDR1_EXC_ID_MONITOR2(r)   (((r) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2) >> BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2)
+#define BG_MMDC_MAEXIDR1_EXC_ID_MONITOR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2) >> BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAEXIDR1_EXC_ID_MONITOR2.
-#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)   ((((reg32_t) v) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2)
-#else
-//! @brief Format value for bitfield MMDC_MAEXIDR1_EXC_ID_MONITOR2.
-#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)   (((v) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2)
-#endif
+#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR2 field to a new value.
@@ -4366,20 +3962,19 @@ typedef union _hw_mmdc_maexidr1
 #define BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3      (0xffff0000)  //!< Bit mask for MMDC_MAEXIDR1_EXC_ID_MONITOR3.
 
 //! @brief Get value of MMDC_MAEXIDR1_EXC_ID_MONITOR3 from a register value.
-#define BG_MMDC_MAEXIDR1_EXC_ID_MONITOR3(r)   (((r) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) >> BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3)
+#define BG_MMDC_MAEXIDR1_EXC_ID_MONITOR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) >> BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAEXIDR1_EXC_ID_MONITOR3.
-#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)   ((((reg32_t) v) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3)
-#else
-//! @brief Format value for bitfield MMDC_MAEXIDR1_EXC_ID_MONITOR3.
-#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)   (((v) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3)
-#endif
+#define BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3) & BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR3 field to a new value.
 #define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR3(x, v)   (HW_MMDC_MAEXIDR1_WR(x, (HW_MMDC_MAEXIDR1_RD(x) & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPCR0 - MMDC Core Debug and Profiling Control Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4440,15 +4035,10 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_DBG_EN      (0x00000001)  //!< Bit mask for MMDC_MADPCR0_DBG_EN.
 
 //! @brief Get value of MMDC_MADPCR0_DBG_EN from a register value.
-#define BG_MMDC_MADPCR0_DBG_EN(r)   (((r) & BM_MMDC_MADPCR0_DBG_EN) >> BP_MMDC_MADPCR0_DBG_EN)
+#define BG_MMDC_MADPCR0_DBG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_DBG_EN) >> BP_MMDC_MADPCR0_DBG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_DBG_EN.
-#define BF_MMDC_MADPCR0_DBG_EN(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_DBG_EN) & BM_MMDC_MADPCR0_DBG_EN)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_DBG_EN.
-#define BF_MMDC_MADPCR0_DBG_EN(v)   (((v) << BP_MMDC_MADPCR0_DBG_EN) & BM_MMDC_MADPCR0_DBG_EN)
-#endif
+#define BF_MMDC_MADPCR0_DBG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_DBG_EN) & BM_MMDC_MADPCR0_DBG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_EN field to a new value.
@@ -4469,15 +4059,10 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_DBG_RST      (0x00000002)  //!< Bit mask for MMDC_MADPCR0_DBG_RST.
 
 //! @brief Get value of MMDC_MADPCR0_DBG_RST from a register value.
-#define BG_MMDC_MADPCR0_DBG_RST(r)   (((r) & BM_MMDC_MADPCR0_DBG_RST) >> BP_MMDC_MADPCR0_DBG_RST)
+#define BG_MMDC_MADPCR0_DBG_RST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_DBG_RST) >> BP_MMDC_MADPCR0_DBG_RST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_DBG_RST.
-#define BF_MMDC_MADPCR0_DBG_RST(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_DBG_RST) & BM_MMDC_MADPCR0_DBG_RST)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_DBG_RST.
-#define BF_MMDC_MADPCR0_DBG_RST(v)   (((v) << BP_MMDC_MADPCR0_DBG_RST) & BM_MMDC_MADPCR0_DBG_RST)
-#endif
+#define BF_MMDC_MADPCR0_DBG_RST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_DBG_RST) & BM_MMDC_MADPCR0_DBG_RST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_RST field to a new value.
@@ -4499,15 +4084,10 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_PRF_FRZ      (0x00000004)  //!< Bit mask for MMDC_MADPCR0_PRF_FRZ.
 
 //! @brief Get value of MMDC_MADPCR0_PRF_FRZ from a register value.
-#define BG_MMDC_MADPCR0_PRF_FRZ(r)   (((r) & BM_MMDC_MADPCR0_PRF_FRZ) >> BP_MMDC_MADPCR0_PRF_FRZ)
+#define BG_MMDC_MADPCR0_PRF_FRZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_PRF_FRZ) >> BP_MMDC_MADPCR0_PRF_FRZ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_PRF_FRZ.
-#define BF_MMDC_MADPCR0_PRF_FRZ(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_PRF_FRZ) & BM_MMDC_MADPCR0_PRF_FRZ)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_PRF_FRZ.
-#define BF_MMDC_MADPCR0_PRF_FRZ(v)   (((v) << BP_MMDC_MADPCR0_PRF_FRZ) & BM_MMDC_MADPCR0_PRF_FRZ)
-#endif
+#define BF_MMDC_MADPCR0_PRF_FRZ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_PRF_FRZ) & BM_MMDC_MADPCR0_PRF_FRZ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_FRZ field to a new value.
@@ -4529,15 +4109,10 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_CYC_OVF      (0x00000008)  //!< Bit mask for MMDC_MADPCR0_CYC_OVF.
 
 //! @brief Get value of MMDC_MADPCR0_CYC_OVF from a register value.
-#define BG_MMDC_MADPCR0_CYC_OVF(r)   (((r) & BM_MMDC_MADPCR0_CYC_OVF) >> BP_MMDC_MADPCR0_CYC_OVF)
+#define BG_MMDC_MADPCR0_CYC_OVF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_CYC_OVF) >> BP_MMDC_MADPCR0_CYC_OVF)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_CYC_OVF.
-#define BF_MMDC_MADPCR0_CYC_OVF(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_CYC_OVF) & BM_MMDC_MADPCR0_CYC_OVF)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_CYC_OVF.
-#define BF_MMDC_MADPCR0_CYC_OVF(v)   (((v) << BP_MMDC_MADPCR0_CYC_OVF) & BM_MMDC_MADPCR0_CYC_OVF)
-#endif
+#define BF_MMDC_MADPCR0_CYC_OVF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_CYC_OVF) & BM_MMDC_MADPCR0_CYC_OVF)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CYC_OVF field to a new value.
@@ -4560,15 +4135,10 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_SBS_EN      (0x00000100)  //!< Bit mask for MMDC_MADPCR0_SBS_EN.
 
 //! @brief Get value of MMDC_MADPCR0_SBS_EN from a register value.
-#define BG_MMDC_MADPCR0_SBS_EN(r)   (((r) & BM_MMDC_MADPCR0_SBS_EN) >> BP_MMDC_MADPCR0_SBS_EN)
+#define BG_MMDC_MADPCR0_SBS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_SBS_EN) >> BP_MMDC_MADPCR0_SBS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_SBS_EN.
-#define BF_MMDC_MADPCR0_SBS_EN(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_SBS_EN) & BM_MMDC_MADPCR0_SBS_EN)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_SBS_EN.
-#define BF_MMDC_MADPCR0_SBS_EN(v)   (((v) << BP_MMDC_MADPCR0_SBS_EN) & BM_MMDC_MADPCR0_SBS_EN)
-#endif
+#define BF_MMDC_MADPCR0_SBS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_SBS_EN) & BM_MMDC_MADPCR0_SBS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SBS_EN field to a new value.
@@ -4591,21 +4161,20 @@ typedef union _hw_mmdc_madpcr0
 #define BM_MMDC_MADPCR0_SBS      (0x00000200)  //!< Bit mask for MMDC_MADPCR0_SBS.
 
 //! @brief Get value of MMDC_MADPCR0_SBS from a register value.
-#define BG_MMDC_MADPCR0_SBS(r)   (((r) & BM_MMDC_MADPCR0_SBS) >> BP_MMDC_MADPCR0_SBS)
+#define BG_MMDC_MADPCR0_SBS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR0_SBS) >> BP_MMDC_MADPCR0_SBS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR0_SBS.
-#define BF_MMDC_MADPCR0_SBS(v)   ((((reg32_t) v) << BP_MMDC_MADPCR0_SBS) & BM_MMDC_MADPCR0_SBS)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR0_SBS.
-#define BF_MMDC_MADPCR0_SBS(v)   (((v) << BP_MMDC_MADPCR0_SBS) & BM_MMDC_MADPCR0_SBS)
-#endif
+#define BF_MMDC_MADPCR0_SBS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR0_SBS) & BM_MMDC_MADPCR0_SBS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SBS field to a new value.
 #define BW_MMDC_MADPCR0_SBS(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_SBS) | BF_MMDC_MADPCR0_SBS(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPCR1 - MMDC Core Debug and Profiling Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4654,15 +4223,10 @@ typedef union _hw_mmdc_madpcr1
 #define BM_MMDC_MADPCR1_PRF_AXI_ID      (0x0000ffff)  //!< Bit mask for MMDC_MADPCR1_PRF_AXI_ID.
 
 //! @brief Get value of MMDC_MADPCR1_PRF_AXI_ID from a register value.
-#define BG_MMDC_MADPCR1_PRF_AXI_ID(r)   (((r) & BM_MMDC_MADPCR1_PRF_AXI_ID) >> BP_MMDC_MADPCR1_PRF_AXI_ID)
+#define BG_MMDC_MADPCR1_PRF_AXI_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR1_PRF_AXI_ID) >> BP_MMDC_MADPCR1_PRF_AXI_ID)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR1_PRF_AXI_ID.
-#define BF_MMDC_MADPCR1_PRF_AXI_ID(v)   ((((reg32_t) v) << BP_MMDC_MADPCR1_PRF_AXI_ID) & BM_MMDC_MADPCR1_PRF_AXI_ID)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR1_PRF_AXI_ID.
-#define BF_MMDC_MADPCR1_PRF_AXI_ID(v)   (((v) << BP_MMDC_MADPCR1_PRF_AXI_ID) & BM_MMDC_MADPCR1_PRF_AXI_ID)
-#endif
+#define BF_MMDC_MADPCR1_PRF_AXI_ID(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR1_PRF_AXI_ID) & BM_MMDC_MADPCR1_PRF_AXI_ID)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_AXI_ID field to a new value.
@@ -4682,21 +4246,20 @@ typedef union _hw_mmdc_madpcr1
 #define BM_MMDC_MADPCR1_PRF_AXI_ID_MASK      (0xffff0000)  //!< Bit mask for MMDC_MADPCR1_PRF_AXI_ID_MASK.
 
 //! @brief Get value of MMDC_MADPCR1_PRF_AXI_ID_MASK from a register value.
-#define BG_MMDC_MADPCR1_PRF_AXI_ID_MASK(r)   (((r) & BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) >> BP_MMDC_MADPCR1_PRF_AXI_ID_MASK)
+#define BG_MMDC_MADPCR1_PRF_AXI_ID_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) >> BP_MMDC_MADPCR1_PRF_AXI_ID_MASK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MADPCR1_PRF_AXI_ID_MASK.
-#define BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)   ((((reg32_t) v) << BP_MMDC_MADPCR1_PRF_AXI_ID_MASK) & BM_MMDC_MADPCR1_PRF_AXI_ID_MASK)
-#else
-//! @brief Format value for bitfield MMDC_MADPCR1_PRF_AXI_ID_MASK.
-#define BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)   (((v) << BP_MMDC_MADPCR1_PRF_AXI_ID_MASK) & BM_MMDC_MADPCR1_PRF_AXI_ID_MASK)
-#endif
+#define BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MADPCR1_PRF_AXI_ID_MASK) & BM_MMDC_MADPCR1_PRF_AXI_ID_MASK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_AXI_ID_MASK field to a new value.
 #define BW_MMDC_MADPCR1_PRF_AXI_ID_MASK(x, v)   (HW_MMDC_MADPCR1_WR(x, (HW_MMDC_MADPCR1_RD(x) & ~BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) | BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR0 - MMDC Core Debug and Profiling Status Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4740,7 +4303,11 @@ typedef union _hw_mmdc_madpsr0
 #define BM_MMDC_MADPSR0_CYC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR0_CYC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR0_CYC_COUNT from a register value.
-#define BG_MMDC_MADPSR0_CYC_COUNT(r)   (((r) & BM_MMDC_MADPSR0_CYC_COUNT) >> BP_MMDC_MADPSR0_CYC_COUNT)
+#define BG_MMDC_MADPSR0_CYC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR0_CYC_COUNT) >> BP_MMDC_MADPSR0_CYC_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR1 - MMDC Core Debug and Profiling Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4787,7 +4354,11 @@ typedef union _hw_mmdc_madpsr1
 #define BM_MMDC_MADPSR1_BUSY_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR1_BUSY_COUNT.
 
 //! @brief Get value of MMDC_MADPSR1_BUSY_COUNT from a register value.
-#define BG_MMDC_MADPSR1_BUSY_COUNT(r)   (((r) & BM_MMDC_MADPSR1_BUSY_COUNT) >> BP_MMDC_MADPSR1_BUSY_COUNT)
+#define BG_MMDC_MADPSR1_BUSY_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR1_BUSY_COUNT) >> BP_MMDC_MADPSR1_BUSY_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR2 - MMDC Core Debug and Profiling Status Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4832,7 +4403,11 @@ typedef union _hw_mmdc_madpsr2
 #define BM_MMDC_MADPSR2_RD_ACC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR2_RD_ACC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR2_RD_ACC_COUNT from a register value.
-#define BG_MMDC_MADPSR2_RD_ACC_COUNT(r)   (((r) & BM_MMDC_MADPSR2_RD_ACC_COUNT) >> BP_MMDC_MADPSR2_RD_ACC_COUNT)
+#define BG_MMDC_MADPSR2_RD_ACC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR2_RD_ACC_COUNT) >> BP_MMDC_MADPSR2_RD_ACC_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR3 - MMDC Core Debug and Profiling Status Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4877,7 +4452,11 @@ typedef union _hw_mmdc_madpsr3
 #define BM_MMDC_MADPSR3_WR_ACC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR3_WR_ACC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR3_WR_ACC_COUNT from a register value.
-#define BG_MMDC_MADPSR3_WR_ACC_COUNT(r)   (((r) & BM_MMDC_MADPSR3_WR_ACC_COUNT) >> BP_MMDC_MADPSR3_WR_ACC_COUNT)
+#define BG_MMDC_MADPSR3_WR_ACC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR3_WR_ACC_COUNT) >> BP_MMDC_MADPSR3_WR_ACC_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR4 - MMDC Core Debug and Profiling Status Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4923,7 +4502,11 @@ typedef union _hw_mmdc_madpsr4
 #define BM_MMDC_MADPSR4_RD_BYTES_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR4_RD_BYTES_COUNT.
 
 //! @brief Get value of MMDC_MADPSR4_RD_BYTES_COUNT from a register value.
-#define BG_MMDC_MADPSR4_RD_BYTES_COUNT(r)   (((r) & BM_MMDC_MADPSR4_RD_BYTES_COUNT) >> BP_MMDC_MADPSR4_RD_BYTES_COUNT)
+#define BG_MMDC_MADPSR4_RD_BYTES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR4_RD_BYTES_COUNT) >> BP_MMDC_MADPSR4_RD_BYTES_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MADPSR5 - MMDC Core Debug and Profiling Status Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4969,7 +4552,11 @@ typedef union _hw_mmdc_madpsr5
 #define BM_MMDC_MADPSR5_WR_BYTES_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR5_WR_BYTES_COUNT.
 
 //! @brief Get value of MMDC_MADPSR5_WR_BYTES_COUNT from a register value.
-#define BG_MMDC_MADPSR5_WR_BYTES_COUNT(r)   (((r) & BM_MMDC_MADPSR5_WR_BYTES_COUNT) >> BP_MMDC_MADPSR5_WR_BYTES_COUNT)
+#define BG_MMDC_MADPSR5_WR_BYTES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR5_WR_BYTES_COUNT) >> BP_MMDC_MADPSR5_WR_BYTES_COUNT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MASBS0 - MMDC Core Step By Step Address Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5013,7 +4600,11 @@ typedef union _hw_mmdc_masbs0
 #define BM_MMDC_MASBS0_SBS_ADDR      (0xffffffff)  //!< Bit mask for MMDC_MASBS0_SBS_ADDR.
 
 //! @brief Get value of MMDC_MASBS0_SBS_ADDR from a register value.
-#define BG_MMDC_MASBS0_SBS_ADDR(r)   (((r) & BM_MMDC_MASBS0_SBS_ADDR) >> BP_MMDC_MASBS0_SBS_ADDR)
+#define BG_MMDC_MASBS0_SBS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS0_SBS_ADDR) >> BP_MMDC_MASBS0_SBS_ADDR)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MASBS1 - MMDC Core Step By Step Address Attributes Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5032,8 +4623,8 @@ typedef union _hw_mmdc_masbs1
         unsigned SBS_TYPE : 1; //!< [1] Step By Step Request Type. These bits reflect the type (read/write) of the pending request in case of step by step mode.
         unsigned SBS_LOCK : 2; //!< [3:2] Step By Step Lock. These bits reflect the AXI LOCK of the pending request in case of step by step mode.
         unsigned SBS_PROT : 3; //!< [6:4] Step By Step Protection. These bits reflect the AXI PROT of the pending request in case of step by step mode.
-        unsigned SBS_BURST : 2; //!< [8:7] Step By Step Burst. These bits reflect the AXI BURST of the pending request in case of step by step mode.
-        unsigned SBS_SIZE : 3; //!< [11:9] Step By Step Size. These bits reflect the AXI SIZE of the pending request in case of step by step mode.
+        unsigned SBS_SIZE : 3; //!< [9:7] Step By Step Size. These bits reflect the AXI SIZE of the pending request in case of step by step mode.
+        unsigned SBS_BURST : 2; //!< [11:10] Step By Step Burst. These bits reflect the AXI BURST of the pending request in case of step by step mode.
         unsigned SBS_BUFF : 1; //!< [12] Step By Step Buffered. This bit reflect the AXI CACHE[0] of the pending request in case of step by step mode. Relevant only for write requests
         unsigned SBS_LEN : 3; //!< [15:13] Step By Step Length. These bits reflect the AXI LENGTH of the pending request in case of step by step mode.
         unsigned SBS_AXI_ID : 16; //!< [31:16] Step By Step AXI ID. These bits reflect the AXI ID of the pending request in case of step by step mode.
@@ -5069,7 +4660,7 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_VLD      (0x00000001)  //!< Bit mask for MMDC_MASBS1_SBS_VLD.
 
 //! @brief Get value of MMDC_MASBS1_SBS_VLD from a register value.
-#define BG_MMDC_MASBS1_SBS_VLD(r)   (((r) & BM_MMDC_MASBS1_SBS_VLD) >> BP_MMDC_MASBS1_SBS_VLD)
+#define BG_MMDC_MASBS1_SBS_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_VLD) >> BP_MMDC_MASBS1_SBS_VLD)
 
 
 /* --- Register HW_MMDC_MASBS1, field SBS_TYPE[1] (RO)
@@ -5086,7 +4677,7 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_TYPE      (0x00000002)  //!< Bit mask for MMDC_MASBS1_SBS_TYPE.
 
 //! @brief Get value of MMDC_MASBS1_SBS_TYPE from a register value.
-#define BG_MMDC_MASBS1_SBS_TYPE(r)   (((r) & BM_MMDC_MASBS1_SBS_TYPE) >> BP_MMDC_MASBS1_SBS_TYPE)
+#define BG_MMDC_MASBS1_SBS_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_TYPE) >> BP_MMDC_MASBS1_SBS_TYPE)
 
 
 /* --- Register HW_MMDC_MASBS1, field SBS_LOCK[3:2] (RO)
@@ -5099,7 +4690,7 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_LOCK      (0x0000000c)  //!< Bit mask for MMDC_MASBS1_SBS_LOCK.
 
 //! @brief Get value of MMDC_MASBS1_SBS_LOCK from a register value.
-#define BG_MMDC_MASBS1_SBS_LOCK(r)   (((r) & BM_MMDC_MASBS1_SBS_LOCK) >> BP_MMDC_MASBS1_SBS_LOCK)
+#define BG_MMDC_MASBS1_SBS_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_LOCK) >> BP_MMDC_MASBS1_SBS_LOCK)
 
 /* --- Register HW_MMDC_MASBS1, field SBS_PROT[6:4] (RO)
  *
@@ -5111,9 +4702,30 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_PROT      (0x00000070)  //!< Bit mask for MMDC_MASBS1_SBS_PROT.
 
 //! @brief Get value of MMDC_MASBS1_SBS_PROT from a register value.
-#define BG_MMDC_MASBS1_SBS_PROT(r)   (((r) & BM_MMDC_MASBS1_SBS_PROT) >> BP_MMDC_MASBS1_SBS_PROT)
+#define BG_MMDC_MASBS1_SBS_PROT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_PROT) >> BP_MMDC_MASBS1_SBS_PROT)
 
-/* --- Register HW_MMDC_MASBS1, field SBS_BURST[8:7] (RO)
+/* --- Register HW_MMDC_MASBS1, field SBS_SIZE[9:7] (RO)
+ *
+ * Step By Step Size. These bits reflect the AXI SIZE of the pending request in case of step by step
+ * mode.
+ *
+ * Values:
+ * 000 - 8 bits
+ * 001 - 16 bits
+ * 010 - 32 bits
+ * 011 - 64 bits
+ * 100 - 128bits
+ * 101-111 - Reserved
+ */
+
+#define BP_MMDC_MASBS1_SBS_SIZE      (7)      //!< Bit position for MMDC_MASBS1_SBS_SIZE.
+#define BM_MMDC_MASBS1_SBS_SIZE      (0x00000380)  //!< Bit mask for MMDC_MASBS1_SBS_SIZE.
+
+//! @brief Get value of MMDC_MASBS1_SBS_SIZE from a register value.
+#define BG_MMDC_MASBS1_SBS_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_SIZE) >> BP_MMDC_MASBS1_SBS_SIZE)
+
+
+/* --- Register HW_MMDC_MASBS1, field SBS_BURST[11:10] (RO)
  *
  * Step By Step Burst. These bits reflect the AXI BURST of the pending request in case of step by
  * step mode.
@@ -5125,31 +4737,11 @@ typedef union _hw_mmdc_masbs1
  * 11 - reserved
  */
 
-#define BP_MMDC_MASBS1_SBS_BURST      (7)      //!< Bit position for MMDC_MASBS1_SBS_BURST.
-#define BM_MMDC_MASBS1_SBS_BURST      (0x00000180)  //!< Bit mask for MMDC_MASBS1_SBS_BURST.
+#define BP_MMDC_MASBS1_SBS_BURST      (10)      //!< Bit position for MMDC_MASBS1_SBS_BURST.
+#define BM_MMDC_MASBS1_SBS_BURST      (0x00000c00)  //!< Bit mask for MMDC_MASBS1_SBS_BURST.
 
 //! @brief Get value of MMDC_MASBS1_SBS_BURST from a register value.
-#define BG_MMDC_MASBS1_SBS_BURST(r)   (((r) & BM_MMDC_MASBS1_SBS_BURST) >> BP_MMDC_MASBS1_SBS_BURST)
-
-
-/* --- Register HW_MMDC_MASBS1, field SBS_SIZE[11:9] (RO)
- *
- * Step By Step Size. These bits reflect the AXI SIZE of the pending request in case of step by step
- * mode.
- *
- * Values:
- * 000 - 8 bits
- * 001 - 16 bits
- * 010 - 32 bits
- * 011 - 64 bits
- * 100 - 128bits
- */
-
-#define BP_MMDC_MASBS1_SBS_SIZE      (9)      //!< Bit position for MMDC_MASBS1_SBS_SIZE.
-#define BM_MMDC_MASBS1_SBS_SIZE      (0x00000e00)  //!< Bit mask for MMDC_MASBS1_SBS_SIZE.
-
-//! @brief Get value of MMDC_MASBS1_SBS_SIZE from a register value.
-#define BG_MMDC_MASBS1_SBS_SIZE(r)   (((r) & BM_MMDC_MASBS1_SBS_SIZE) >> BP_MMDC_MASBS1_SBS_SIZE)
+#define BG_MMDC_MASBS1_SBS_BURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_BURST) >> BP_MMDC_MASBS1_SBS_BURST)
 
 
 /* --- Register HW_MMDC_MASBS1, field SBS_BUFF[12] (RO)
@@ -5162,7 +4754,7 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_BUFF      (0x00001000)  //!< Bit mask for MMDC_MASBS1_SBS_BUFF.
 
 //! @brief Get value of MMDC_MASBS1_SBS_BUFF from a register value.
-#define BG_MMDC_MASBS1_SBS_BUFF(r)   (((r) & BM_MMDC_MASBS1_SBS_BUFF) >> BP_MMDC_MASBS1_SBS_BUFF)
+#define BG_MMDC_MASBS1_SBS_BUFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_BUFF) >> BP_MMDC_MASBS1_SBS_BUFF)
 
 /* --- Register HW_MMDC_MASBS1, field SBS_LEN[15:13] (RO)
  *
@@ -5179,7 +4771,7 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_LEN      (0x0000e000)  //!< Bit mask for MMDC_MASBS1_SBS_LEN.
 
 //! @brief Get value of MMDC_MASBS1_SBS_LEN from a register value.
-#define BG_MMDC_MASBS1_SBS_LEN(r)   (((r) & BM_MMDC_MASBS1_SBS_LEN) >> BP_MMDC_MASBS1_SBS_LEN)
+#define BG_MMDC_MASBS1_SBS_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_LEN) >> BP_MMDC_MASBS1_SBS_LEN)
 
 
 /* --- Register HW_MMDC_MASBS1, field SBS_AXI_ID[31:16] (RO)
@@ -5192,7 +4784,11 @@ typedef union _hw_mmdc_masbs1
 #define BM_MMDC_MASBS1_SBS_AXI_ID      (0xffff0000)  //!< Bit mask for MMDC_MASBS1_SBS_AXI_ID.
 
 //! @brief Get value of MMDC_MASBS1_SBS_AXI_ID from a register value.
-#define BG_MMDC_MASBS1_SBS_AXI_ID(r)   (((r) & BM_MMDC_MASBS1_SBS_AXI_ID) >> BP_MMDC_MASBS1_SBS_AXI_ID)
+#define BG_MMDC_MASBS1_SBS_AXI_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_AXI_ID) >> BP_MMDC_MASBS1_SBS_AXI_ID)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MAGENP - MMDC Core General Purpose Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5240,20 +4836,19 @@ typedef union _hw_mmdc_magenp
 #define BM_MMDC_MAGENP_GP31_GP0      (0xffffffff)  //!< Bit mask for MMDC_MAGENP_GP31_GP0.
 
 //! @brief Get value of MMDC_MAGENP_GP31_GP0 from a register value.
-#define BG_MMDC_MAGENP_GP31_GP0(r)   (((r) & BM_MMDC_MAGENP_GP31_GP0) >> BP_MMDC_MAGENP_GP31_GP0)
+#define BG_MMDC_MAGENP_GP31_GP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAGENP_GP31_GP0) >> BP_MMDC_MAGENP_GP31_GP0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MAGENP_GP31_GP0.
-#define BF_MMDC_MAGENP_GP31_GP0(v)   ((((reg32_t) v) << BP_MMDC_MAGENP_GP31_GP0) & BM_MMDC_MAGENP_GP31_GP0)
-#else
-//! @brief Format value for bitfield MMDC_MAGENP_GP31_GP0.
-#define BF_MMDC_MAGENP_GP31_GP0(v)   (((v) << BP_MMDC_MAGENP_GP31_GP0) & BM_MMDC_MAGENP_GP31_GP0)
-#endif
+#define BF_MMDC_MAGENP_GP31_GP0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MAGENP_GP31_GP0) & BM_MMDC_MAGENP_GP31_GP0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GP31_GP0 field to a new value.
 #define BW_MMDC_MAGENP_GP31_GP0(x, v)   (HW_MMDC_MAGENP_WR(x, (HW_MMDC_MAGENP_RD(x) & ~BM_MMDC_MAGENP_GP31_GP0) | BF_MMDC_MAGENP_GP31_GP0(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPZQHWCTRL - MMDC PHY ZQ HW control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5319,15 +4914,10 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_ZQ_MODE      (0x00000003)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_MODE.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_MODE from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_MODE(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_MODE) >> BP_MMDC_MPZQHWCTRL_ZQ_MODE)
+#define BG_MMDC_MPZQHWCTRL_ZQ_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_MODE) >> BP_MMDC_MPZQHWCTRL_ZQ_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_MODE.
-#define BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_ZQ_MODE) & BM_MMDC_MPZQHWCTRL_ZQ_MODE)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_MODE.
-#define BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)   (((v) << BP_MMDC_MPZQHWCTRL_ZQ_MODE) & BM_MMDC_MPZQHWCTRL_ZQ_MODE)
-#endif
+#define BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_ZQ_MODE) & BM_MMDC_MPZQHWCTRL_ZQ_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_MODE field to a new value.
@@ -5345,25 +4935,22 @@ typedef union _hw_mmdc_mpzqhwctrl
  * equals "00"
  *
  * Values:
- * 0000 - ZQ calibration is performed every 1 ms sec.
- * 0001 - ZQ calibration is performed every 2 ms sec.
- * 0010 - ZQ calibration is performed every 4ms sec.
- * 1111 - ZQ calibration is performed every 32 sec.
+ * 0000 - ZQ calibration is performed every 1 ms.
+ * 0001 - ZQ calibration is performed every 2 ms.
+ * 0010 - ZQ calibration is performed every 4 ms.
+ * 1010 - ZQ calibration is performed every 1 ms.
+ * 1110 - ZQ calibration is performed every 16 ms.
+ * 1111 - ZQ calibration is performed every 32 ms.
  */
 
 #define BP_MMDC_MPZQHWCTRL_ZQ_HW_PER      (2)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_HW_PER.
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PER      (0x0000003c)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PER.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_PER from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PER(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PER) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PER)
+#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PER) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_HW_PER.
-#define BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_ZQ_HW_PER) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PER)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_HW_PER.
-#define BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)   (((v) << BP_MMDC_MPZQHWCTRL_ZQ_HW_PER) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PER)
-#endif
+#define BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_ZQ_HW_PER) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_HW_PER field to a new value.
@@ -5377,7 +4964,7 @@ typedef union _hw_mmdc_mpzqhwctrl
  * at the end of the ZQ automatic calibration process with the i.MX ZQ calibration pad.
  *
  * Values:
- * 0000 - Min. resistance.
+ * 00000 - Min. resistance.
  * 11111 - Max. resistance.
  */
 
@@ -5385,7 +4972,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES      (0x000007c0)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PU_RES.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_PU_RES from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES)
+#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES)
 
 
 /* --- Register HW_MMDC_MPZQHWCTRL, field ZQ_HW_PD_RES[15:11] (RO)
@@ -5402,7 +4989,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES      (0x0000f800)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PD_RES.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_PD_RES from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES)
+#define BG_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES)
 
 
 /* --- Register HW_MMDC_MPZQHWCTRL, field ZQ_HW_FOR[16] (RW)
@@ -5420,15 +5007,10 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR      (0x00010000)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_FOR.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_FOR from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_HW_FOR(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR)
+#define BG_MMDC_MPZQHWCTRL_ZQ_HW_FOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_HW_FOR.
-#define BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR) & BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_HW_FOR.
-#define BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)   (((v) << BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR) & BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR)
-#endif
+#define BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR) & BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_HW_FOR field to a new value.
@@ -5457,15 +5039,10 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_TZQ_INIT      (0x000e0000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_INIT.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_TZQ_INIT from a register value.
-#define BG_MMDC_MPZQHWCTRL_TZQ_INIT(r)   (((r) & BM_MMDC_MPZQHWCTRL_TZQ_INIT) >> BP_MMDC_MPZQHWCTRL_TZQ_INIT)
+#define BG_MMDC_MPZQHWCTRL_TZQ_INIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_TZQ_INIT) >> BP_MMDC_MPZQHWCTRL_TZQ_INIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_INIT.
-#define BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_TZQ_INIT) & BM_MMDC_MPZQHWCTRL_TZQ_INIT)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_INIT.
-#define BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)   (((v) << BP_MMDC_MPZQHWCTRL_TZQ_INIT) & BM_MMDC_MPZQHWCTRL_TZQ_INIT)
-#endif
+#define BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_TZQ_INIT) & BM_MMDC_MPZQHWCTRL_TZQ_INIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_INIT field to a new value.
@@ -5495,15 +5072,10 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_TZQ_OPER      (0x00700000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_OPER.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_TZQ_OPER from a register value.
-#define BG_MMDC_MPZQHWCTRL_TZQ_OPER(r)   (((r) & BM_MMDC_MPZQHWCTRL_TZQ_OPER) >> BP_MMDC_MPZQHWCTRL_TZQ_OPER)
+#define BG_MMDC_MPZQHWCTRL_TZQ_OPER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_TZQ_OPER) >> BP_MMDC_MPZQHWCTRL_TZQ_OPER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_OPER.
-#define BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_TZQ_OPER) & BM_MMDC_MPZQHWCTRL_TZQ_OPER)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_OPER.
-#define BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)   (((v) << BP_MMDC_MPZQHWCTRL_TZQ_OPER) & BM_MMDC_MPZQHWCTRL_TZQ_OPER)
-#endif
+#define BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_TZQ_OPER) & BM_MMDC_MPZQHWCTRL_TZQ_OPER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_OPER field to a new value.
@@ -5533,15 +5105,10 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_TZQ_CS      (0x03800000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_CS.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_TZQ_CS from a register value.
-#define BG_MMDC_MPZQHWCTRL_TZQ_CS(r)   (((r) & BM_MMDC_MPZQHWCTRL_TZQ_CS) >> BP_MMDC_MPZQHWCTRL_TZQ_CS)
+#define BG_MMDC_MPZQHWCTRL_TZQ_CS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_TZQ_CS) >> BP_MMDC_MPZQHWCTRL_TZQ_CS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_CS.
-#define BF_MMDC_MPZQHWCTRL_TZQ_CS(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_TZQ_CS) & BM_MMDC_MPZQHWCTRL_TZQ_CS)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_TZQ_CS.
-#define BF_MMDC_MPZQHWCTRL_TZQ_CS(v)   (((v) << BP_MMDC_MPZQHWCTRL_TZQ_CS) & BM_MMDC_MPZQHWCTRL_TZQ_CS)
-#endif
+#define BF_MMDC_MPZQHWCTRL_TZQ_CS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_TZQ_CS) & BM_MMDC_MPZQHWCTRL_TZQ_CS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_CS field to a new value.
@@ -5558,7 +5125,7 @@ typedef union _hw_mmdc_mpzqhwctrl
  * Values:
  * 0x0 - - 0x6 Reserved
  * 0x7 - 8 cycles
- * 0x13 - 14 cycles (Default)
+ * 0x14 - 21 cycles (Default)
  * 0x1E - 31 cycles
  * 0x1F - 32 cycles
  */
@@ -5567,21 +5134,20 @@ typedef union _hw_mmdc_mpzqhwctrl
 #define BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER      (0xf8000000)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER from a register value.
-#define BG_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(r)   (((r) & BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) >> BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER)
+#define BG_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) >> BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER.
-#define BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)   ((((reg32_t) v) << BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) & BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER)
-#else
-//! @brief Format value for bitfield MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER.
-#define BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)   (((v) << BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) & BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER)
-#endif
+#define BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) & BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_EARLY_COMPARATOR_EN_TIMER field to a new value.
 #define BW_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) | BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPZQSWCTRL - MMDC PHY ZQ SW control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5638,15 +5204,10 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR      (0x00000001)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_FOR.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_FOR from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_SW_FOR(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR)
+#define BG_MMDC_MPZQSWCTRL_ZQ_SW_FOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_FOR.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR) & BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_FOR.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)   (((v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR) & BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR)
-#endif
+#define BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR) & BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_FOR field to a new value.
@@ -5666,7 +5227,7 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_RES      (0x00000002)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_RES.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_RES from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_SW_RES(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_SW_RES) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_RES)
+#define BG_MMDC_MPZQSWCTRL_ZQ_SW_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_RES) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_RES)
 
 
 /* --- Register HW_MMDC_MPZQSWCTRL, field ZQ_SW_PU_VAL[6:2] (RW)
@@ -5683,15 +5244,10 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL      (0x0000007c)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL)
+#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)   (((v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL)
-#endif
+#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PU_VAL field to a new value.
@@ -5713,15 +5269,10 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL      (0x00000f80)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL)
+#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)   (((v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL)
-#endif
+#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PD_VAL field to a new value.
@@ -5742,15 +5293,10 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PD      (0x00001000)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PD.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_PD from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PD(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PD)
+#define BG_MMDC_MPZQSWCTRL_ZQ_SW_PD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_PD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PD.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_SW_PD.
-#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)   (((v) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD)
-#endif
+#define BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_ZQ_SW_PD) & BM_MMDC_MPZQSWCTRL_ZQ_SW_PD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PD field to a new value.
@@ -5774,15 +5320,10 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL      (0x00002000)  //!< Bit mask for MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL from a register value.
-#define BG_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(r)   (((r) & BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) >> BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL)
+#define BG_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) >> BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL.
-#define BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) & BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL.
-#define BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)   (((v) << BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) & BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL)
-#endif
+#define BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) & BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USE_ZQ_SW_VAL field to a new value.
@@ -5806,21 +5347,20 @@ typedef union _hw_mmdc_mpzqswctrl
 #define BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP      (0x00030000)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP from a register value.
-#define BG_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(r)   (((r) & BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) >> BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP)
+#define BG_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) >> BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP.
-#define BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)   ((((reg32_t) v) << BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) & BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP)
-#else
-//! @brief Format value for bitfield MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP.
-#define BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)   (((v) << BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) & BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP)
-#endif
+#define BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) & BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_CMP_OUT_SMP field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) | BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWLGCR - MMDC PHY Write Leveling Configuration and Error Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5885,15 +5425,10 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_HW_WL_EN      (0x00000001)  //!< Bit mask for MMDC_MPWLGCR_HW_WL_EN.
 
 //! @brief Get value of MMDC_MPWLGCR_HW_WL_EN from a register value.
-#define BG_MMDC_MPWLGCR_HW_WL_EN(r)   (((r) & BM_MMDC_MPWLGCR_HW_WL_EN) >> BP_MMDC_MPWLGCR_HW_WL_EN)
+#define BG_MMDC_MPWLGCR_HW_WL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_HW_WL_EN) >> BP_MMDC_MPWLGCR_HW_WL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLGCR_HW_WL_EN.
-#define BF_MMDC_MPWLGCR_HW_WL_EN(v)   ((((reg32_t) v) << BP_MMDC_MPWLGCR_HW_WL_EN) & BM_MMDC_MPWLGCR_HW_WL_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPWLGCR_HW_WL_EN.
-#define BF_MMDC_MPWLGCR_HW_WL_EN(v)   (((v) << BP_MMDC_MPWLGCR_HW_WL_EN) & BM_MMDC_MPWLGCR_HW_WL_EN)
-#endif
+#define BF_MMDC_MPWLGCR_HW_WL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLGCR_HW_WL_EN) & BM_MMDC_MPWLGCR_HW_WL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WL_EN field to a new value.
@@ -5914,15 +5449,10 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_SW_WL_EN      (0x00000002)  //!< Bit mask for MMDC_MPWLGCR_SW_WL_EN.
 
 //! @brief Get value of MMDC_MPWLGCR_SW_WL_EN from a register value.
-#define BG_MMDC_MPWLGCR_SW_WL_EN(r)   (((r) & BM_MMDC_MPWLGCR_SW_WL_EN) >> BP_MMDC_MPWLGCR_SW_WL_EN)
+#define BG_MMDC_MPWLGCR_SW_WL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_SW_WL_EN) >> BP_MMDC_MPWLGCR_SW_WL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLGCR_SW_WL_EN.
-#define BF_MMDC_MPWLGCR_SW_WL_EN(v)   ((((reg32_t) v) << BP_MMDC_MPWLGCR_SW_WL_EN) & BM_MMDC_MPWLGCR_SW_WL_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPWLGCR_SW_WL_EN.
-#define BF_MMDC_MPWLGCR_SW_WL_EN(v)   (((v) << BP_MMDC_MPWLGCR_SW_WL_EN) & BM_MMDC_MPWLGCR_SW_WL_EN)
-#endif
+#define BF_MMDC_MPWLGCR_SW_WL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLGCR_SW_WL_EN) & BM_MMDC_MPWLGCR_SW_WL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_WL_EN field to a new value.
@@ -5945,15 +5475,10 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_SW_WL_CNT_EN      (0x00000004)  //!< Bit mask for MMDC_MPWLGCR_SW_WL_CNT_EN.
 
 //! @brief Get value of MMDC_MPWLGCR_SW_WL_CNT_EN from a register value.
-#define BG_MMDC_MPWLGCR_SW_WL_CNT_EN(r)   (((r) & BM_MMDC_MPWLGCR_SW_WL_CNT_EN) >> BP_MMDC_MPWLGCR_SW_WL_CNT_EN)
+#define BG_MMDC_MPWLGCR_SW_WL_CNT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_SW_WL_CNT_EN) >> BP_MMDC_MPWLGCR_SW_WL_CNT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLGCR_SW_WL_CNT_EN.
-#define BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)   ((((reg32_t) v) << BP_MMDC_MPWLGCR_SW_WL_CNT_EN) & BM_MMDC_MPWLGCR_SW_WL_CNT_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPWLGCR_SW_WL_CNT_EN.
-#define BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)   (((v) << BP_MMDC_MPWLGCR_SW_WL_CNT_EN) & BM_MMDC_MPWLGCR_SW_WL_CNT_EN)
-#endif
+#define BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLGCR_SW_WL_CNT_EN) & BM_MMDC_MPWLGCR_SW_WL_CNT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_WL_CNT_EN field to a new value.
@@ -5975,7 +5500,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_SW_RES0      (0x00000010)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES0.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES0 from a register value.
-#define BG_MMDC_MPWLGCR_WL_SW_RES0(r)   (((r) & BM_MMDC_MPWLGCR_WL_SW_RES0) >> BP_MMDC_MPWLGCR_WL_SW_RES0)
+#define BG_MMDC_MPWLGCR_WL_SW_RES0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES0) >> BP_MMDC_MPWLGCR_WL_SW_RES0)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_SW_RES1[5] (RO)
@@ -5992,7 +5517,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_SW_RES1      (0x00000020)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES1.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES1 from a register value.
-#define BG_MMDC_MPWLGCR_WL_SW_RES1(r)   (((r) & BM_MMDC_MPWLGCR_WL_SW_RES1) >> BP_MMDC_MPWLGCR_WL_SW_RES1)
+#define BG_MMDC_MPWLGCR_WL_SW_RES1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES1) >> BP_MMDC_MPWLGCR_WL_SW_RES1)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_SW_RES2[6] (RO)
@@ -6009,7 +5534,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_SW_RES2      (0x00000040)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES2.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES2 from a register value.
-#define BG_MMDC_MPWLGCR_WL_SW_RES2(r)   (((r) & BM_MMDC_MPWLGCR_WL_SW_RES2) >> BP_MMDC_MPWLGCR_WL_SW_RES2)
+#define BG_MMDC_MPWLGCR_WL_SW_RES2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES2) >> BP_MMDC_MPWLGCR_WL_SW_RES2)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_SW_RES3[7] (RO)
@@ -6026,7 +5551,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_SW_RES3      (0x00000080)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES3.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES3 from a register value.
-#define BG_MMDC_MPWLGCR_WL_SW_RES3(r)   (((r) & BM_MMDC_MPWLGCR_WL_SW_RES3) >> BP_MMDC_MPWLGCR_WL_SW_RES3)
+#define BG_MMDC_MPWLGCR_WL_SW_RES3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES3) >> BP_MMDC_MPWLGCR_WL_SW_RES3)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_HW_ERR0[8] (RO)
@@ -6044,7 +5569,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_HW_ERR0      (0x00000100)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR0.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR0 from a register value.
-#define BG_MMDC_MPWLGCR_WL_HW_ERR0(r)   (((r) & BM_MMDC_MPWLGCR_WL_HW_ERR0) >> BP_MMDC_MPWLGCR_WL_HW_ERR0)
+#define BG_MMDC_MPWLGCR_WL_HW_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR0) >> BP_MMDC_MPWLGCR_WL_HW_ERR0)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_HW_ERR1[9] (RO)
@@ -6062,7 +5587,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_HW_ERR1      (0x00000200)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR1.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR1 from a register value.
-#define BG_MMDC_MPWLGCR_WL_HW_ERR1(r)   (((r) & BM_MMDC_MPWLGCR_WL_HW_ERR1) >> BP_MMDC_MPWLGCR_WL_HW_ERR1)
+#define BG_MMDC_MPWLGCR_WL_HW_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR1) >> BP_MMDC_MPWLGCR_WL_HW_ERR1)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_HW_ERR2[10] (RO)
@@ -6080,7 +5605,7 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_HW_ERR2      (0x00000400)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR2.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR2 from a register value.
-#define BG_MMDC_MPWLGCR_WL_HW_ERR2(r)   (((r) & BM_MMDC_MPWLGCR_WL_HW_ERR2) >> BP_MMDC_MPWLGCR_WL_HW_ERR2)
+#define BG_MMDC_MPWLGCR_WL_HW_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR2) >> BP_MMDC_MPWLGCR_WL_HW_ERR2)
 
 
 /* --- Register HW_MMDC_MPWLGCR, field WL_HW_ERR3[11] (RO)
@@ -6098,8 +5623,12 @@ typedef union _hw_mmdc_mpwlgcr
 #define BM_MMDC_MPWLGCR_WL_HW_ERR3      (0x00000800)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR3.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR3 from a register value.
-#define BG_MMDC_MPWLGCR_WL_HW_ERR3(r)   (((r) & BM_MMDC_MPWLGCR_WL_HW_ERR3) >> BP_MMDC_MPWLGCR_WL_HW_ERR3)
+#define BG_MMDC_MPWLGCR_WL_HW_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR3) >> BP_MMDC_MPWLGCR_WL_HW_ERR3)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWLDECTRL0 - MMDC PHY Write Leveling Delay Control Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6164,15 +5693,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) >> BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0)
+#define BG_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) >> BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0.
-#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0.
-#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET0 field to a new value.
@@ -6199,15 +5723,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_HC_DEL0      (0x00000100)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_HC_DEL0.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_HC_DEL0 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_HC_DEL0(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL0) >> BP_MMDC_MPWLDECTRL0_WL_HC_DEL0)
+#define BG_MMDC_MPWLDECTRL0_WL_HC_DEL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL0) >> BP_MMDC_MPWLDECTRL0_WL_HC_DEL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_HC_DEL0.
-#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL0)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_HC_DEL0.
-#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL0)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL0 field to a new value.
@@ -6237,15 +5756,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0      (0x00000600)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_CYC_DEL0.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_CYC_DEL0 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_CYC_DEL0(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0) >> BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0)
+#define BG_MMDC_MPWLDECTRL0_WL_CYC_DEL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0) >> BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_CYC_DEL0.
-#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_CYC_DEL0.
-#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL0 field to a new value.
@@ -6270,15 +5784,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1      (0x007f0000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) >> BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1)
+#define BG_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) >> BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1.
-#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1.
-#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) & BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET1 field to a new value.
@@ -6305,15 +5814,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_HC_DEL1      (0x01000000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_HC_DEL1.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_HC_DEL1 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_HC_DEL1(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL1) >> BP_MMDC_MPWLDECTRL0_WL_HC_DEL1)
+#define BG_MMDC_MPWLDECTRL0_WL_HC_DEL1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL1) >> BP_MMDC_MPWLDECTRL0_WL_HC_DEL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_HC_DEL1.
-#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL1)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_HC_DEL1.
-#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL1)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_HC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_HC_DEL1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL1 field to a new value.
@@ -6343,15 +5847,10 @@ typedef union _hw_mmdc_mpwldectrl0
 #define BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1      (0x06000000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_CYC_DEL1.
 
 //! @brief Get value of MMDC_MPWLDECTRL0_WL_CYC_DEL1 from a register value.
-#define BG_MMDC_MPWLDECTRL0_WL_CYC_DEL1(r)   (((r) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1) >> BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1)
+#define BG_MMDC_MPWLDECTRL0_WL_CYC_DEL1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1) >> BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_CYC_DEL1.
-#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL0_WL_CYC_DEL1.
-#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)   (((v) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1)
-#endif
+#define BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1) & BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL1 field to a new value.
@@ -6359,13 +5858,17 @@ typedef union _hw_mmdc_mpwldectrl0
 #endif
 
 
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWLDECTRL1 - MMDC PHY Write Leveling Delay Control Register 1
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_MMDC_MPWLDECTRL1 - MMDC PHY Write Leveling Delay Control Register 1 (RW)
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  FOr Channel 1: DDR3_x64, LP2_2ch_x32
+ * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x32
  */
 typedef union _hw_mmdc_mpwldectrl1
 {
@@ -6421,15 +5924,10 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2      (0x0000007f)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) >> BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2)
+#define BG_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) >> BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2.
-#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2.
-#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET2 field to a new value.
@@ -6456,15 +5954,10 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_HC_DEL2      (0x00000100)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_HC_DEL2.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_HC_DEL2 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_HC_DEL2(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL2) >> BP_MMDC_MPWLDECTRL1_WL_HC_DEL2)
+#define BG_MMDC_MPWLDECTRL1_WL_HC_DEL2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL2) >> BP_MMDC_MPWLDECTRL1_WL_HC_DEL2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_HC_DEL2.
-#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL2)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_HC_DEL2.
-#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL2)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL2 field to a new value.
@@ -6494,15 +5987,10 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2      (0x00000600)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_CYC_DEL2.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_CYC_DEL2 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_CYC_DEL2(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2) >> BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2)
+#define BG_MMDC_MPWLDECTRL1_WL_CYC_DEL2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2) >> BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_CYC_DEL2.
-#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_CYC_DEL2.
-#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL2 field to a new value.
@@ -6527,15 +6015,10 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3      (0x007f0000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) >> BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3)
+#define BG_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) >> BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3.
-#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3.
-#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) & BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET3 field to a new value.
@@ -6562,15 +6045,10 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_HC_DEL3      (0x01000000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_HC_DEL3.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_HC_DEL3 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_HC_DEL3(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL3) >> BP_MMDC_MPWLDECTRL1_WL_HC_DEL3)
+#define BG_MMDC_MPWLDECTRL1_WL_HC_DEL3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL3) >> BP_MMDC_MPWLDECTRL1_WL_HC_DEL3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_HC_DEL3.
-#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL3)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_HC_DEL3.
-#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL3)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_HC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_HC_DEL3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL3 field to a new value.
@@ -6600,21 +6078,20 @@ typedef union _hw_mmdc_mpwldectrl1
 #define BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3      (0x06000000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_CYC_DEL3.
 
 //! @brief Get value of MMDC_MPWLDECTRL1_WL_CYC_DEL3 from a register value.
-#define BG_MMDC_MPWLDECTRL1_WL_CYC_DEL3(r)   (((r) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) >> BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3)
+#define BG_MMDC_MPWLDECTRL1_WL_CYC_DEL3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) >> BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_CYC_DEL3.
-#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)   ((((reg32_t) v) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3)
-#else
-//! @brief Format value for bitfield MMDC_MPWLDECTRL1_WL_CYC_DEL3.
-#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)   (((v) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3)
-#endif
+#define BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3) & BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL3 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWLDLST - MMDC PHY Write Leveling delay-line Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6666,7 +6143,7 @@ typedef union _hw_mmdc_mpwldlst
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM0 from a register value.
-#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM0(r)   (((r) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM0) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM0)
+#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM0) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM0)
 
 /* --- Register HW_MMDC_MPWLDLST, field WL_DL_UNIT_NUM1[14:8] (RO)
  *
@@ -6678,7 +6155,7 @@ typedef union _hw_mmdc_mpwldlst
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM1 from a register value.
-#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM1(r)   (((r) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM1) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM1)
+#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM1) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM1)
 
 /* --- Register HW_MMDC_MPWLDLST, field WL_DL_UNIT_NUM2[22:16] (RO)
  *
@@ -6690,7 +6167,7 @@ typedef union _hw_mmdc_mpwldlst
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM2 from a register value.
-#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM2(r)   (((r) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM2) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM2)
+#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM2) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM2)
 
 /* --- Register HW_MMDC_MPWLDLST, field WL_DL_UNIT_NUM3[30:24] (RO)
  *
@@ -6702,7 +6179,11 @@ typedef union _hw_mmdc_mpwldlst
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM3 from a register value.
-#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM3(r)   (((r) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM3) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM3)
+#define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM3) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPODTCTRL - MMDC PHY ODT control register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6766,15 +6247,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN      (0x00000001)  //!< Bit mask for MMDC_MPODTCTRL_ODT_WR_PAS_EN.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT_WR_PAS_EN from a register value.
-#define BG_MMDC_MPODTCTRL_ODT_WR_PAS_EN(r)   (((r) & BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN) >> BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN)
+#define BG_MMDC_MPODTCTRL_ODT_WR_PAS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN) >> BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_WR_PAS_EN.
-#define BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_WR_PAS_EN.
-#define BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)   (((v) << BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_WR_PAS_EN field to a new value.
@@ -6796,15 +6272,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN      (0x00000002)  //!< Bit mask for MMDC_MPODTCTRL_ODT_WR_ACT_EN.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT_WR_ACT_EN from a register value.
-#define BG_MMDC_MPODTCTRL_ODT_WR_ACT_EN(r)   (((r) & BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN) >> BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN)
+#define BG_MMDC_MPODTCTRL_ODT_WR_ACT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN) >> BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_WR_ACT_EN.
-#define BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_WR_ACT_EN.
-#define BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)   (((v) << BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_WR_ACT_EN field to a new value.
@@ -6826,15 +6297,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN      (0x00000004)  //!< Bit mask for MMDC_MPODTCTRL_ODT_RD_PAS_EN.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT_RD_PAS_EN from a register value.
-#define BG_MMDC_MPODTCTRL_ODT_RD_PAS_EN(r)   (((r) & BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN) >> BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN)
+#define BG_MMDC_MPODTCTRL_ODT_RD_PAS_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN) >> BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_RD_PAS_EN.
-#define BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_RD_PAS_EN.
-#define BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)   (((v) << BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN) & BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_RD_PAS_EN field to a new value.
@@ -6856,15 +6322,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN      (0x00000008)  //!< Bit mask for MMDC_MPODTCTRL_ODT_RD_ACT_EN.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT_RD_ACT_EN from a register value.
-#define BG_MMDC_MPODTCTRL_ODT_RD_ACT_EN(r)   (((r) & BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN) >> BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN)
+#define BG_MMDC_MPODTCTRL_ODT_RD_ACT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN) >> BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_RD_ACT_EN.
-#define BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT_RD_ACT_EN.
-#define BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)   (((v) << BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN) & BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_RD_ACT_EN field to a new value.
@@ -6892,15 +6353,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT0_INT_RES      (0x00000070)  //!< Bit mask for MMDC_MPODTCTRL_ODT0_INT_RES.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT0_INT_RES from a register value.
-#define BG_MMDC_MPODTCTRL_ODT0_INT_RES(r)   (((r) & BM_MMDC_MPODTCTRL_ODT0_INT_RES) >> BP_MMDC_MPODTCTRL_ODT0_INT_RES)
+#define BG_MMDC_MPODTCTRL_ODT0_INT_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT0_INT_RES) >> BP_MMDC_MPODTCTRL_ODT0_INT_RES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT0_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT0_INT_RES) & BM_MMDC_MPODTCTRL_ODT0_INT_RES)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT0_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)   (((v) << BP_MMDC_MPODTCTRL_ODT0_INT_RES) & BM_MMDC_MPODTCTRL_ODT0_INT_RES)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT0_INT_RES) & BM_MMDC_MPODTCTRL_ODT0_INT_RES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT0_INT_RES field to a new value.
@@ -6928,15 +6384,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT1_INT_RES      (0x00000700)  //!< Bit mask for MMDC_MPODTCTRL_ODT1_INT_RES.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT1_INT_RES from a register value.
-#define BG_MMDC_MPODTCTRL_ODT1_INT_RES(r)   (((r) & BM_MMDC_MPODTCTRL_ODT1_INT_RES) >> BP_MMDC_MPODTCTRL_ODT1_INT_RES)
+#define BG_MMDC_MPODTCTRL_ODT1_INT_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT1_INT_RES) >> BP_MMDC_MPODTCTRL_ODT1_INT_RES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT1_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT1_INT_RES) & BM_MMDC_MPODTCTRL_ODT1_INT_RES)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT1_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)   (((v) << BP_MMDC_MPODTCTRL_ODT1_INT_RES) & BM_MMDC_MPODTCTRL_ODT1_INT_RES)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT1_INT_RES) & BM_MMDC_MPODTCTRL_ODT1_INT_RES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT1_INT_RES field to a new value.
@@ -6964,15 +6415,10 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT2_INT_RES      (0x00007000)  //!< Bit mask for MMDC_MPODTCTRL_ODT2_INT_RES.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT2_INT_RES from a register value.
-#define BG_MMDC_MPODTCTRL_ODT2_INT_RES(r)   (((r) & BM_MMDC_MPODTCTRL_ODT2_INT_RES) >> BP_MMDC_MPODTCTRL_ODT2_INT_RES)
+#define BG_MMDC_MPODTCTRL_ODT2_INT_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT2_INT_RES) >> BP_MMDC_MPODTCTRL_ODT2_INT_RES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT2_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT2_INT_RES) & BM_MMDC_MPODTCTRL_ODT2_INT_RES)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT2_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)   (((v) << BP_MMDC_MPODTCTRL_ODT2_INT_RES) & BM_MMDC_MPODTCTRL_ODT2_INT_RES)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT2_INT_RES) & BM_MMDC_MPODTCTRL_ODT2_INT_RES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT2_INT_RES field to a new value.
@@ -7000,21 +6446,20 @@ typedef union _hw_mmdc_mpodtctrl
 #define BM_MMDC_MPODTCTRL_ODT3_INT_RES      (0x00070000)  //!< Bit mask for MMDC_MPODTCTRL_ODT3_INT_RES.
 
 //! @brief Get value of MMDC_MPODTCTRL_ODT3_INT_RES from a register value.
-#define BG_MMDC_MPODTCTRL_ODT3_INT_RES(r)   (((r) & BM_MMDC_MPODTCTRL_ODT3_INT_RES) >> BP_MMDC_MPODTCTRL_ODT3_INT_RES)
+#define BG_MMDC_MPODTCTRL_ODT3_INT_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPODTCTRL_ODT3_INT_RES) >> BP_MMDC_MPODTCTRL_ODT3_INT_RES)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPODTCTRL_ODT3_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)   ((((reg32_t) v) << BP_MMDC_MPODTCTRL_ODT3_INT_RES) & BM_MMDC_MPODTCTRL_ODT3_INT_RES)
-#else
-//! @brief Format value for bitfield MMDC_MPODTCTRL_ODT3_INT_RES.
-#define BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)   (((v) << BP_MMDC_MPODTCTRL_ODT3_INT_RES) & BM_MMDC_MPODTCTRL_ODT3_INT_RES)
-#endif
+#define BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPODTCTRL_ODT3_INT_RES) & BM_MMDC_MPODTCTRL_ODT3_INT_RES)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT3_INT_RES field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT3_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT3_INT_RES) | BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDQBY0DL - MMDC PHY Read DQ Byte0 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7090,15 +6535,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ0_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ0_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ0_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ0_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ0_DEL field to a new value.
@@ -7126,15 +6566,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ1_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ1_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ1_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ1_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ1_DEL field to a new value.
@@ -7162,15 +6597,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ2_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ2_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ2_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ2_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ2_DEL field to a new value.
@@ -7198,15 +6628,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ3_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ3_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ3_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ3_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ3_DEL field to a new value.
@@ -7234,15 +6659,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ4_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ4_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ4_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ4_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ4_DEL field to a new value.
@@ -7270,15 +6690,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ5_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ5_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ5_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ5_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ5_DEL field to a new value.
@@ -7306,15 +6721,10 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ6_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ6_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ6_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ6_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ6_DEL field to a new value.
@@ -7342,21 +6752,20 @@ typedef union _hw_mmdc_mprddqby0dl
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ7_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY0DL_RD_DQ7_DEL from a register value.
-#define BG_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(r)   (((r) & BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL)
+#define BG_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) >> BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ7_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY0DL_RD_DQ7_DEL.
-#define BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)   (((v) << BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) & BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ7_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDQBY1DL - MMDC PHY Read DQ Byte1 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7365,7 +6774,7 @@ typedef union _hw_mmdc_mprddqby0dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the read DQ byte1 relative to
- * the read DQS  Supported Mode Of Operations:  FOr Channel 0: All  For Channel 1: DDR3_x64,
+ * the read DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
  * LP2_2ch_x16, LP2_2ch_x32
  */
 typedef union _hw_mmdc_mprddqby1dl
@@ -7431,15 +6840,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ8_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ8_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ8_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ8_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ8_DEL field to a new value.
@@ -7467,15 +6871,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ9_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ9_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ9_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ9_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ9_DEL field to a new value.
@@ -7503,15 +6902,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ10_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ10_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ10_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ10_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ10_DEL field to a new value.
@@ -7539,15 +6933,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ11_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ11_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ11_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ11_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ11_DEL field to a new value.
@@ -7575,15 +6964,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ12_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ12_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ12_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ12_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ12_DEL field to a new value.
@@ -7611,15 +6995,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ13_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ13_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ13_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ13_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ13_DEL field to a new value.
@@ -7647,15 +7026,10 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ14_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ14_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ14_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ14_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ14_DEL field to a new value.
@@ -7683,21 +7057,20 @@ typedef union _hw_mmdc_mprddqby1dl
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ15_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY1DL_RD_DQ15_DEL from a register value.
-#define BG_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(r)   (((r) & BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL)
+#define BG_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) >> BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ15_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY1DL_RD_DQ15_DEL.
-#define BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)   (((v) << BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) & BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ15_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDQBY2DL - MMDC PHY Read DQ Byte2 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7772,15 +7145,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ16_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ16_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ16_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ16_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ16_DEL field to a new value.
@@ -7808,15 +7176,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ17_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ17_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ17_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ17_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ17_DEL field to a new value.
@@ -7844,15 +7207,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ18_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ18_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ18_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ18_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ18_DEL field to a new value.
@@ -7880,15 +7238,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ19_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ19_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ19_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ19_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ19_DEL field to a new value.
@@ -7916,15 +7269,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ20_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ20_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ20_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ20_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ20_DEL field to a new value.
@@ -7952,15 +7300,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ21_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ21_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ21_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ21_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ21_DEL field to a new value.
@@ -7988,15 +7331,10 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ22_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ22_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ22_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ22_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ22_DEL field to a new value.
@@ -8024,21 +7362,20 @@ typedef union _hw_mmdc_mprddqby2dl
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ23_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY2DL_RD_DQ23_DEL from a register value.
-#define BG_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(r)   (((r) & BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL)
+#define BG_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) >> BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ23_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY2DL_RD_DQ23_DEL.
-#define BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)   (((v) << BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) & BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ23_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDQBY3DL - MMDC PHY Read DQ Byte3 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8113,15 +7450,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ24_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ24_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ24_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ24_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ24_DEL field to a new value.
@@ -8149,15 +7481,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ25_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ25_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ25_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ25_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ25_DEL field to a new value.
@@ -8185,15 +7512,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ26_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ26_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ26_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ26_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ26_DEL field to a new value.
@@ -8221,15 +7543,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ27_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ27_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ27_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ27_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ27_DEL field to a new value.
@@ -8257,15 +7574,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ28_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ28_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ28_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ28_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ28_DEL field to a new value.
@@ -8293,15 +7605,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ29_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ29_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ29_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ29_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ29_DEL field to a new value.
@@ -8329,15 +7636,10 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ30_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ30_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ30_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ30_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ30_DEL field to a new value.
@@ -8365,21 +7667,20 @@ typedef union _hw_mmdc_mprddqby3dl
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ31_DEL.
 
 //! @brief Get value of MMDC_MPRDDQBY3DL_RD_DQ31_DEL from a register value.
-#define BG_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(r)   (((r) & BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL)
+#define BG_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) >> BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ31_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDQBY3DL_RD_DQ31_DEL.
-#define BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)   (((v) << BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL)
-#endif
+#define BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) & BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ31_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDQBY0DL - MMDC PHY Write DQ Byte0 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8450,15 +7751,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ0_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ0_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ0_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ0_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ0_DEL field to a new value.
@@ -8482,15 +7778,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ1_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ1_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ1_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ1_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ1_DEL field to a new value.
@@ -8514,15 +7805,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ2_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ2_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ2_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ2_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ2_DEL field to a new value.
@@ -8546,15 +7832,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ3_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ3_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ3_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ3_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ3_DEL field to a new value.
@@ -8578,15 +7859,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ4_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ4_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ4_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ4_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ4_DEL field to a new value.
@@ -8610,15 +7886,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ5_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ5_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ5_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ5_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ5_DEL field to a new value.
@@ -8642,15 +7913,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ6_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ6_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ6_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ6_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ6_DEL field to a new value.
@@ -8674,15 +7940,10 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ7_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DQ7_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ7_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DQ7_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ7_DEL field to a new value.
@@ -8706,21 +7967,20 @@ typedef union _hw_mmdc_mpwrdqby0dl
 #define BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DM0_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY0DL_WR_DM0_DEL from a register value.
-#define BG_MMDC_MPWRDQBY0DL_WR_DM0_DEL(r)   (((r) & BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL)
+#define BG_MMDC_MPWRDQBY0DL_WR_DM0_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) >> BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DM0_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY0DL_WR_DM0_DEL.
-#define BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)   (((v) << BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL) & BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM0_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DM0_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDQBY1DL - MMDC PHY Write DQ Byte1 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -8791,15 +8051,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ8_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ8_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ8_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ8_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ8_DEL field to a new value.
@@ -8823,15 +8078,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ9_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ9_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ9_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ9_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ9_DEL field to a new value.
@@ -8855,15 +8105,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ10_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ10_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ10_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ10_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ10_DEL field to a new value.
@@ -8887,15 +8132,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ11_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ11_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ11_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ11_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ11_DEL field to a new value.
@@ -8919,15 +8159,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ12_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ12_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ12_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ12_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ12_DEL field to a new value.
@@ -8951,15 +8186,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ13_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ13_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ13_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ13_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ13_DEL field to a new value.
@@ -8983,15 +8213,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ14_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ14_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ14_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ14_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ14_DEL field to a new value.
@@ -9015,15 +8240,10 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ15_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DQ15_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ15_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DQ15_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ15_DEL field to a new value.
@@ -9047,21 +8267,20 @@ typedef union _hw_mmdc_mpwrdqby1dl
 #define BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DM1_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY1DL_WR_DM1_DEL from a register value.
-#define BG_MMDC_MPWRDQBY1DL_WR_DM1_DEL(r)   (((r) & BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL)
+#define BG_MMDC_MPWRDQBY1DL_WR_DM1_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) >> BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DM1_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY1DL_WR_DM1_DEL.
-#define BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)   (((v) << BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL) & BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM1_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DM1_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDQBY2DL - MMDC PHY Write DQ Byte2 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9132,15 +8351,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ16_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ16_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ16_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ16_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ16_DEL field to a new value.
@@ -9164,15 +8378,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ17_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ17_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ17_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ17_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ17_DEL field to a new value.
@@ -9196,15 +8405,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ18_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ18_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ18_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ18_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ18_DEL field to a new value.
@@ -9228,15 +8432,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ19_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ19_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ19_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ19_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ19_DEL field to a new value.
@@ -9260,15 +8459,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ20_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ20_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ20_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ20_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ20_DEL field to a new value.
@@ -9292,15 +8486,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ21_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ21_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ21_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ21_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ21_DEL field to a new value.
@@ -9324,15 +8513,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ22_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ22_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ22_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ22_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ22_DEL field to a new value.
@@ -9356,15 +8540,10 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ23_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DQ23_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ23_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DQ23_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ23_DEL field to a new value.
@@ -9388,21 +8567,20 @@ typedef union _hw_mmdc_mpwrdqby2dl
 #define BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DM2_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY2DL_WR_DM2_DEL from a register value.
-#define BG_MMDC_MPWRDQBY2DL_WR_DM2_DEL(r)   (((r) & BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL)
+#define BG_MMDC_MPWRDQBY2DL_WR_DM2_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) >> BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DM2_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY2DL_WR_DM2_DEL.
-#define BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)   (((v) << BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL) & BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM2_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DM2_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDQBY3DL - MMDC PHY Write DQ Byte3 Delay Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9473,15 +8651,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ24_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ24_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ24_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ24_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ24_DEL field to a new value.
@@ -9505,15 +8678,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ25_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ25_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ25_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ25_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ25_DEL field to a new value.
@@ -9537,15 +8705,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ26_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ26_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ26_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ26_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ26_DEL field to a new value.
@@ -9569,15 +8732,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ27_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ27_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ27_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ27_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ27_DEL field to a new value.
@@ -9601,15 +8759,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ28_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ28_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ28_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ28_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ28_DEL field to a new value.
@@ -9633,15 +8786,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ29_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ29_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ29_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ29_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ29_DEL field to a new value.
@@ -9665,15 +8813,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ30_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ30_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ30_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ30_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ30_DEL field to a new value.
@@ -9697,15 +8840,10 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ31_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DQ31_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ31_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DQ31_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ31_DEL field to a new value.
@@ -9729,21 +8867,20 @@ typedef union _hw_mmdc_mpwrdqby3dl
 #define BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DM3_DEL.
 
 //! @brief Get value of MMDC_MPWRDQBY3DL_WR_DM3_DEL from a register value.
-#define BG_MMDC_MPWRDQBY3DL_WR_DM3_DEL(r)   (((r) & BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL)
+#define BG_MMDC_MPWRDQBY3DL_WR_DM3_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) >> BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DM3_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDQBY3DL_WR_DM3_DEL.
-#define BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)   (((v) << BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL)
-#endif
+#define BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL) & BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM3_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DM3_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGCTRL0 - MMDC PHY Read DQS Gating Control Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -9761,12 +8898,12 @@ typedef union _hw_mmdc_mpdgctrl0
     {
         unsigned DG_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte0. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte0 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET0 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW0 + HW_DG_UP0) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned DG_HC_DEL0 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte0 (Channel 0 register) and Byte4 in 64-bit mode (Channel 1 register). This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+        unsigned DG_HC_DEL0 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte0 (Channel 0 register) and Byte4 in 64-bit mode (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
         unsigned HW_DG_ERR : 1; //!< [12] HW DQS gating error. This bit valid is asserted when an error was found during the read DQS gating HW calibration process. Error can occur when no valid value was found during HW calibration. This bit is valid only after HW_DG_EN is de-asserted.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved
         unsigned DG_DL_ABS_OFFSET1 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte1. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte1 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET1 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW1 + HW_DG_UP1) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
         unsigned DG_EXT_UP : 1; //!< [23] DG extend upper boundary. By default the upper boundary of DQS gating HW calibration is set according to first failing comparison after at least one passing comparison. If this bit is asserted then the upper boundary is set accroding to the last passing comparison.
-        unsigned DG_HC_DEL1 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte1 (channel 0 register) and Byte5 in 64-bit mode (channel 1 register). This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+        unsigned DG_HC_DEL1 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte1 (channel 0 register) and Byte5 in 64-bit mode (channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
         unsigned HW_DG_EN : 1; //!< [28] Enable automatic read DQS gating calibration. If this bit is asserted then the MMDC performs automatic read DQS gating calibration. HW negates this bit upon completion of the automatic read DQS gating. Note: Before issuing the first read command the MMDC counts 12 cycles. In LPDDR2 mode automatic (HW) read DQS gating should be disabled and Pull-up/pull-down resistors on DQS/DQS# should be enabled while ODT resistors must be disconnected.
         unsigned DG_DIS : 1; //!< [29] Read DQS gating disable. If this bit is asserted then the MMDC disables the read DQS gating mechnism. If this bits is asserted (read DQS gating is disabled) then pulll-up and pull-down resistors suppose to be used on DQS and DQS# respectively
         unsigned DG_CMP_CYC : 1; //!< [30] Read DQS gating sample cycle. If this bit is asserted then the MMDC waits 32 cycles before comparing the read data, Otherwise it waits 16 DDR cycles.
@@ -9808,15 +8945,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0 from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) >> BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0)
+#define BG_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) >> BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0.
-#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0.
-#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)   (((v) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0)
-#endif
+#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET0 field to a new value.
@@ -9826,11 +8958,11 @@ typedef union _hw_mmdc_mpdgctrl0
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_HC_DEL0[11:8] (RW)
  *
  * Read DQS gating half cycles delay for Byte0 (Channel 0 register) and Byte4 in 64-bit mode
- * (Channel 1 register). This field indicates the delay in half cycles between read DQS gate and the
- * middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is genearted by
- * the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle +
- * (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this
- * field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+ * (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
+ * the middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is
+ * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
+ * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
+ * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9845,15 +8977,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_HC_DEL0      (0x00000f00)  //!< Bit mask for MMDC_MPDGCTRL0_DG_HC_DEL0.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_HC_DEL0 from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_HC_DEL0(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_HC_DEL0) >> BP_MMDC_MPDGCTRL0_DG_HC_DEL0)
+#define BG_MMDC_MPDGCTRL0_DG_HC_DEL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_HC_DEL0) >> BP_MMDC_MPDGCTRL0_DG_HC_DEL0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_HC_DEL0.
-#define BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_DG_HC_DEL0) & BM_MMDC_MPDGCTRL0_DG_HC_DEL0)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_HC_DEL0.
-#define BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)   (((v) << BP_MMDC_MPDGCTRL0_DG_HC_DEL0) & BM_MMDC_MPDGCTRL0_DG_HC_DEL0)
-#endif
+#define BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_DG_HC_DEL0) & BM_MMDC_MPDGCTRL0_DG_HC_DEL0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL0 field to a new value.
@@ -9876,7 +9003,7 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_HW_DG_ERR      (0x00001000)  //!< Bit mask for MMDC_MPDGCTRL0_HW_DG_ERR.
 
 //! @brief Get value of MMDC_MPDGCTRL0_HW_DG_ERR from a register value.
-#define BG_MMDC_MPDGCTRL0_HW_DG_ERR(r)   (((r) & BM_MMDC_MPDGCTRL0_HW_DG_ERR) >> BP_MMDC_MPDGCTRL0_HW_DG_ERR)
+#define BG_MMDC_MPDGCTRL0_HW_DG_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_HW_DG_ERR) >> BP_MMDC_MPDGCTRL0_HW_DG_ERR)
 
 
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_DL_ABS_OFFSET1[22:16] (RW)
@@ -9894,15 +9021,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1      (0x007f0000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1 from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) >> BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1)
+#define BG_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) >> BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1.
-#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1.
-#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)   (((v) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1)
-#endif
+#define BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) & BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET1 field to a new value.
@@ -9920,15 +9042,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_EXT_UP      (0x00800000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_EXT_UP.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_EXT_UP from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_EXT_UP(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_EXT_UP) >> BP_MMDC_MPDGCTRL0_DG_EXT_UP)
+#define BG_MMDC_MPDGCTRL0_DG_EXT_UP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_EXT_UP) >> BP_MMDC_MPDGCTRL0_DG_EXT_UP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_EXT_UP.
-#define BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_DG_EXT_UP) & BM_MMDC_MPDGCTRL0_DG_EXT_UP)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_EXT_UP.
-#define BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)   (((v) << BP_MMDC_MPDGCTRL0_DG_EXT_UP) & BM_MMDC_MPDGCTRL0_DG_EXT_UP)
-#endif
+#define BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_DG_EXT_UP) & BM_MMDC_MPDGCTRL0_DG_EXT_UP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_EXT_UP field to a new value.
@@ -9938,11 +9055,11 @@ typedef union _hw_mmdc_mpdgctrl0
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_HC_DEL1[27:24] (RW)
  *
  * Read DQS gating half cycles delay for Byte1 (channel 0 register) and Byte5 in 64-bit mode
- * (channel 1 register). This field indicates the delay in half cycles between read DQS gate and the
- * middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted by
- * the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle +
- * (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this
- * field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+ * (channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
+ * the middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted
+ * by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle
+ * + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration
+ * this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9957,15 +9074,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_HC_DEL1      (0x0f000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_HC_DEL1.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_HC_DEL1 from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_HC_DEL1(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_HC_DEL1) >> BP_MMDC_MPDGCTRL0_DG_HC_DEL1)
+#define BG_MMDC_MPDGCTRL0_DG_HC_DEL1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_HC_DEL1) >> BP_MMDC_MPDGCTRL0_DG_HC_DEL1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_HC_DEL1.
-#define BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_DG_HC_DEL1) & BM_MMDC_MPDGCTRL0_DG_HC_DEL1)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_DG_HC_DEL1.
-#define BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)   (((v) << BP_MMDC_MPDGCTRL0_DG_HC_DEL1) & BM_MMDC_MPDGCTRL0_DG_HC_DEL1)
-#endif
+#define BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_DG_HC_DEL1) & BM_MMDC_MPDGCTRL0_DG_HC_DEL1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL1 field to a new value.
@@ -9990,15 +9102,10 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_HW_DG_EN      (0x10000000)  //!< Bit mask for MMDC_MPDGCTRL0_HW_DG_EN.
 
 //! @brief Get value of MMDC_MPDGCTRL0_HW_DG_EN from a register value.
-#define BG_MMDC_MPDGCTRL0_HW_DG_EN(r)   (((r) & BM_MMDC_MPDGCTRL0_HW_DG_EN) >> BP_MMDC_MPDGCTRL0_HW_DG_EN)
+#define BG_MMDC_MPDGCTRL0_HW_DG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_HW_DG_EN) >> BP_MMDC_MPDGCTRL0_HW_DG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_HW_DG_EN.
-#define BF_MMDC_MPDGCTRL0_HW_DG_EN(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_HW_DG_EN) & BM_MMDC_MPDGCTRL0_HW_DG_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_HW_DG_EN.
-#define BF_MMDC_MPDGCTRL0_HW_DG_EN(v)   (((v) << BP_MMDC_MPDGCTRL0_HW_DG_EN) & BM_MMDC_MPDGCTRL0_HW_DG_EN)
-#endif
+#define BF_MMDC_MPDGCTRL0_HW_DG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_HW_DG_EN) & BM_MMDC_MPDGCTRL0_HW_DG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_DG_EN field to a new value.
@@ -10021,7 +9128,7 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_DIS      (0x20000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DIS.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_DIS from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_DIS(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_DIS) >> BP_MMDC_MPDGCTRL0_DG_DIS)
+#define BG_MMDC_MPDGCTRL0_DG_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_DIS) >> BP_MMDC_MPDGCTRL0_DG_DIS)
 
 
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_CMP_CYC[30] (RO)
@@ -10038,7 +9145,7 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_DG_CMP_CYC      (0x40000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_CMP_CYC.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_CMP_CYC from a register value.
-#define BG_MMDC_MPDGCTRL0_DG_CMP_CYC(r)   (((r) & BM_MMDC_MPDGCTRL0_DG_CMP_CYC) >> BP_MMDC_MPDGCTRL0_DG_CMP_CYC)
+#define BG_MMDC_MPDGCTRL0_DG_CMP_CYC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_CMP_CYC) >> BP_MMDC_MPDGCTRL0_DG_CMP_CYC)
 
 
 /* --- Register HW_MMDC_MPDGCTRL0, field RST_RD_FIFO[31] (RW)
@@ -10052,20 +9159,19 @@ typedef union _hw_mmdc_mpdgctrl0
 #define BM_MMDC_MPDGCTRL0_RST_RD_FIFO      (0x80000000)  //!< Bit mask for MMDC_MPDGCTRL0_RST_RD_FIFO.
 
 //! @brief Get value of MMDC_MPDGCTRL0_RST_RD_FIFO from a register value.
-#define BG_MMDC_MPDGCTRL0_RST_RD_FIFO(r)   (((r) & BM_MMDC_MPDGCTRL0_RST_RD_FIFO) >> BP_MMDC_MPDGCTRL0_RST_RD_FIFO)
+#define BG_MMDC_MPDGCTRL0_RST_RD_FIFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_RST_RD_FIFO) >> BP_MMDC_MPDGCTRL0_RST_RD_FIFO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL0_RST_RD_FIFO.
-#define BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL0_RST_RD_FIFO) & BM_MMDC_MPDGCTRL0_RST_RD_FIFO)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL0_RST_RD_FIFO.
-#define BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)   (((v) << BP_MMDC_MPDGCTRL0_RST_RD_FIFO) & BM_MMDC_MPDGCTRL0_RST_RD_FIFO)
-#endif
+#define BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL0_RST_RD_FIFO) & BM_MMDC_MPDGCTRL0_RST_RD_FIFO)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST_RD_FIFO field to a new value.
 #define BW_MMDC_MPDGCTRL0_RST_RD_FIFO(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_RST_RD_FIFO) | BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGCTRL1 - MMDC PHY Read DQS Gating Control Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10083,11 +9189,11 @@ typedef union _hw_mmdc_mpdgctrl1
     {
         unsigned DG_DL_ABS_OFFSET2 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte2. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte2 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET2 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW2 + HW_DG_UP2) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned DG_HC_DEL2 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte2 (Channel 0 register) and Byte6 for 64-bit mode(channel 1 register). This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 + HW_DG_UP2) /2).
+        unsigned DG_HC_DEL2 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte2 (Channel 0 register) and Byte6 for 64-bit mode(channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 + HW_DG_UP2) /2).
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
         unsigned DG_DL_ABS_OFFSET3 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte3. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte3 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET3 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW3 + HW_DG_UP3) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned DG_HC_DEL3 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte3 (Channel 0 register) and Byte7 for 64-bit data (Channel 1 register). This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
+        unsigned DG_HC_DEL3 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte3 (Channel 0 register) and Byte7 for 64-bit data (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
         unsigned RESERVED3 : 4; //!< [31:28] Reserved
     } B;
 } hw_mmdc_mpdgctrl1_t;
@@ -10126,15 +9232,10 @@ typedef union _hw_mmdc_mpdgctrl1
 #define BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2      (0x0000007f)  //!< Bit mask for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2.
 
 //! @brief Get value of MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2 from a register value.
-#define BG_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(r)   (((r) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) >> BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2)
+#define BG_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) >> BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2.
-#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2.
-#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)   (((v) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2)
-#endif
+#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET2 field to a new value.
@@ -10144,8 +9245,8 @@ typedef union _hw_mmdc_mpdgctrl1
 /* --- Register HW_MMDC_MPDGCTRL1, field DG_HC_DEL2[11:8] (RW)
  *
  * Read DQS gating half cycles delay for Byte2 (Channel 0 register) and Byte6 for 64-bit
- * mode(channel 1 register). This field indicates the delay in half cycles between read DQS gate and
- * the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is
+ * mode(channel 1 register) . This field indicates the delay in half cycles between read DQS gate
+ * and the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is
  * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
  * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
  * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 + HW_DG_UP2) /2).
@@ -10163,15 +9264,10 @@ typedef union _hw_mmdc_mpdgctrl1
 #define BM_MMDC_MPDGCTRL1_DG_HC_DEL2      (0x00000f00)  //!< Bit mask for MMDC_MPDGCTRL1_DG_HC_DEL2.
 
 //! @brief Get value of MMDC_MPDGCTRL1_DG_HC_DEL2 from a register value.
-#define BG_MMDC_MPDGCTRL1_DG_HC_DEL2(r)   (((r) & BM_MMDC_MPDGCTRL1_DG_HC_DEL2) >> BP_MMDC_MPDGCTRL1_DG_HC_DEL2)
+#define BG_MMDC_MPDGCTRL1_DG_HC_DEL2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL1_DG_HC_DEL2) >> BP_MMDC_MPDGCTRL1_DG_HC_DEL2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_HC_DEL2.
-#define BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL1_DG_HC_DEL2) & BM_MMDC_MPDGCTRL1_DG_HC_DEL2)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_HC_DEL2.
-#define BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)   (((v) << BP_MMDC_MPDGCTRL1_DG_HC_DEL2) & BM_MMDC_MPDGCTRL1_DG_HC_DEL2)
-#endif
+#define BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL1_DG_HC_DEL2) & BM_MMDC_MPDGCTRL1_DG_HC_DEL2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL2 field to a new value.
@@ -10194,15 +9290,10 @@ typedef union _hw_mmdc_mpdgctrl1
 #define BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3      (0x007f0000)  //!< Bit mask for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3.
 
 //! @brief Get value of MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3 from a register value.
-#define BG_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(r)   (((r) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) >> BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3)
+#define BG_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) >> BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3.
-#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3.
-#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)   (((v) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3)
-#endif
+#define BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) & BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET3 field to a new value.
@@ -10212,11 +9303,11 @@ typedef union _hw_mmdc_mpdgctrl1
 /* --- Register HW_MMDC_MPDGCTRL1, field DG_HC_DEL3[27:24] (RW)
  *
  * Read DQS gating half cycles delay for Byte3 (Channel 0 register) and Byte7 for 64-bit data
- * (Channel 1 register). This field indicates the delay in half cycles between read DQS gate and the
- * middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is genearted by
- * the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle +
- * (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this
- * field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
+ * (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
+ * the middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is
+ * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
+ * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
+ * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -10231,21 +9322,20 @@ typedef union _hw_mmdc_mpdgctrl1
 #define BM_MMDC_MPDGCTRL1_DG_HC_DEL3      (0x0f000000)  //!< Bit mask for MMDC_MPDGCTRL1_DG_HC_DEL3.
 
 //! @brief Get value of MMDC_MPDGCTRL1_DG_HC_DEL3 from a register value.
-#define BG_MMDC_MPDGCTRL1_DG_HC_DEL3(r)   (((r) & BM_MMDC_MPDGCTRL1_DG_HC_DEL3) >> BP_MMDC_MPDGCTRL1_DG_HC_DEL3)
+#define BG_MMDC_MPDGCTRL1_DG_HC_DEL3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL1_DG_HC_DEL3) >> BP_MMDC_MPDGCTRL1_DG_HC_DEL3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_HC_DEL3.
-#define BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)   ((((reg32_t) v) << BP_MMDC_MPDGCTRL1_DG_HC_DEL3) & BM_MMDC_MPDGCTRL1_DG_HC_DEL3)
-#else
-//! @brief Format value for bitfield MMDC_MPDGCTRL1_DG_HC_DEL3.
-#define BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)   (((v) << BP_MMDC_MPDGCTRL1_DG_HC_DEL3) & BM_MMDC_MPDGCTRL1_DG_HC_DEL3)
-#endif
+#define BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPDGCTRL1_DG_HC_DEL3) & BM_MMDC_MPDGCTRL1_DG_HC_DEL3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL3 field to a new value.
 #define BW_MMDC_MPDGCTRL1_DG_HC_DEL3(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL3) | BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGDLST0 - MMDC PHY Read DQS Gating delay-line Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10297,7 +9387,7 @@ typedef union _hw_mmdc_mpdgdlst0
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM0 from a register value.
-#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0(r)   (((r) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0)
+#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0)
 
 /* --- Register HW_MMDC_MPDGDLST0, field DG_DL_UNIT_NUM1[14:8] (RO)
  *
@@ -10309,7 +9399,7 @@ typedef union _hw_mmdc_mpdgdlst0
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM1 from a register value.
-#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1(r)   (((r) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1)
+#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1)
 
 /* --- Register HW_MMDC_MPDGDLST0, field DG_DL_UNIT_NUM2[22:16] (RO)
  *
@@ -10321,7 +9411,7 @@ typedef union _hw_mmdc_mpdgdlst0
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM2 from a register value.
-#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2(r)   (((r) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2)
+#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2)
 
 /* --- Register HW_MMDC_MPDGDLST0, field DG_DL_UNIT_NUM3[30:24] (RO)
  *
@@ -10333,7 +9423,11 @@ typedef union _hw_mmdc_mpdgdlst0
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM3 from a register value.
-#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3(r)   (((r) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3)
+#define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDLCTL - MMDC PHY Read delay-lines Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10397,15 +9491,10 @@ typedef union _hw_mmdc_mprddlctl
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0.
 
 //! @brief Get value of MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0 from a register value.
-#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(r)   (((r) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0)
+#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)   (((v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0)
-#endif
+#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET0 field to a new value.
@@ -10428,15 +9517,10 @@ typedef union _hw_mmdc_mprddlctl
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1.
 
 //! @brief Get value of MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1 from a register value.
-#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(r)   (((r) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1)
+#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)   (((v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1)
-#endif
+#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET1 field to a new value.
@@ -10459,15 +9543,10 @@ typedef union _hw_mmdc_mprddlctl
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2.
 
 //! @brief Get value of MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2 from a register value.
-#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(r)   (((r) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2)
+#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)   (((v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2)
-#endif
+#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET2 field to a new value.
@@ -10490,20 +9569,19 @@ typedef union _hw_mmdc_mprddlctl
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3.
 
 //! @brief Get value of MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3 from a register value.
-#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(r)   (((r) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3)
+#define BG_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) >> BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3.
-#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)   (((v) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3)
-#endif
+#define BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) & BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDLST - MMDC PHY Read delay-lines Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10554,7 +9632,7 @@ typedef union _hw_mmdc_mprddlst
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM0 from a register value.
-#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM0(r)   (((r) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM0) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM0)
+#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM0) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM0)
 
 /* --- Register HW_MMDC_MPRDDLST, field RD_DL_UNIT_NUM1[14:8] (RO)
  *
@@ -10565,7 +9643,7 @@ typedef union _hw_mmdc_mprddlst
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM1 from a register value.
-#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM1(r)   (((r) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM1) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM1)
+#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM1) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM1)
 
 /* --- Register HW_MMDC_MPRDDLST, field RD_DL_UNIT_NUM2[22:16] (RO)
  *
@@ -10576,7 +9654,7 @@ typedef union _hw_mmdc_mprddlst
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM2 from a register value.
-#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM2(r)   (((r) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM2) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM2)
+#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM2) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM2)
 
 /* --- Register HW_MMDC_MPRDDLST, field RD_DL_UNIT_NUM3[30:24] (RO)
  *
@@ -10587,7 +9665,11 @@ typedef union _hw_mmdc_mprddlst
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM3 from a register value.
-#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM3(r)   (((r) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM3) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM3)
+#define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM3) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDLCTL - MMDC PHY Write delay-lines Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10651,15 +9733,10 @@ typedef union _hw_mmdc_mpwrdlctl
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0.
 
 //! @brief Get value of MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0 from a register value.
-#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(r)   (((r) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0)
+#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)   (((v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0)
-#endif
+#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET0 field to a new value.
@@ -10682,15 +9759,10 @@ typedef union _hw_mmdc_mpwrdlctl
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1.
 
 //! @brief Get value of MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1 from a register value.
-#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(r)   (((r) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1)
+#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)   (((v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1)
-#endif
+#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET1 field to a new value.
@@ -10713,15 +9785,10 @@ typedef union _hw_mmdc_mpwrdlctl
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2.
 
 //! @brief Get value of MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2 from a register value.
-#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(r)   (((r) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2)
+#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)   (((v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2)
-#endif
+#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET2 field to a new value.
@@ -10744,20 +9811,19 @@ typedef union _hw_mmdc_mpwrdlctl
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3.
 
 //! @brief Get value of MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3 from a register value.
-#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(r)   (((r) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3)
+#define BG_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) >> BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3.
-#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)   (((v) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3)
-#endif
+#define BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) & BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDLST - MMDC PHY Write delay-lines Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10808,7 +9874,7 @@ typedef union _hw_mmdc_mpwrdlst
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM0 from a register value.
-#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM0(r)   (((r) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM0) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM0)
+#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM0) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM0)
 
 /* --- Register HW_MMDC_MPWRDLST, field WR_DL_UNIT_NUM1[14:8] (RO)
  *
@@ -10819,7 +9885,7 @@ typedef union _hw_mmdc_mpwrdlst
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM1 from a register value.
-#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM1(r)   (((r) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM1) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM1)
+#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM1) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM1)
 
 /* --- Register HW_MMDC_MPWRDLST, field WR_DL_UNIT_NUM2[22:16] (RO)
  *
@@ -10830,7 +9896,7 @@ typedef union _hw_mmdc_mpwrdlst
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM2 from a register value.
-#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM2(r)   (((r) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM2) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM2)
+#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM2) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM2)
 
 /* --- Register HW_MMDC_MPWRDLST, field WR_DL_UNIT_NUM3[30:24] (RO)
  *
@@ -10841,7 +9907,11 @@ typedef union _hw_mmdc_mpwrdlst
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM3 from a register value.
-#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM3(r)   (((r) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM3) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM3)
+#define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM3) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSDCTRL - MMDC PHY CK Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10900,21 +9970,20 @@ typedef union _hw_mmdc_mpsdctrl
 #define BM_MMDC_MPSDCTRL_SDCLK0_DEL      (0x00000300)  //!< Bit mask for MMDC_MPSDCTRL_SDCLK0_DEL.
 
 //! @brief Get value of MMDC_MPSDCTRL_SDCLK0_DEL from a register value.
-#define BG_MMDC_MPSDCTRL_SDCLK0_DEL(r)   (((r) & BM_MMDC_MPSDCTRL_SDCLK0_DEL) >> BP_MMDC_MPSDCTRL_SDCLK0_DEL)
+#define BG_MMDC_MPSDCTRL_SDCLK0_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSDCTRL_SDCLK0_DEL) >> BP_MMDC_MPSDCTRL_SDCLK0_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPSDCTRL_SDCLK0_DEL.
-#define BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPSDCTRL_SDCLK0_DEL) & BM_MMDC_MPSDCTRL_SDCLK0_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPSDCTRL_SDCLK0_DEL.
-#define BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)   (((v) << BP_MMDC_MPSDCTRL_SDCLK0_DEL) & BM_MMDC_MPSDCTRL_SDCLK0_DEL)
-#endif
+#define BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPSDCTRL_SDCLK0_DEL) & BM_MMDC_MPSDCTRL_SDCLK0_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLK0_DEL field to a new value.
 #define BW_MMDC_MPSDCTRL_SDCLK0_DEL(x, v)   (HW_MMDC_MPSDCTRL_WR(x, (HW_MMDC_MPSDCTRL_RD(x) & ~BM_MMDC_MPSDCTRL_SDCLK0_DEL) | BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPZQLP2CTL - MMDC ZQ LPDDR2 HW Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -10965,7 +10034,7 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * calibration and before sending other commands.
  *
  * Values:
- * 0x0 - 0x36 Reserved
+ * 0x0-0x36 - Reserved
  * 0x37 - 112 cycles
  * 0x38 - 114 cycles
  * 0x109 - 532 cycles (Default, JEDEC value, tZQINIT, for LPDDR2, 1us @ clock frequency 533MHz)
@@ -10977,15 +10046,10 @@ typedef union _hw_mmdc_mpzqlp2ctl
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT      (0x000001ff)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT.
 
 //! @brief Get value of MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT from a register value.
-#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(r)   (((r) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT)
+#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)   ((((reg32_t) v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT)
-#else
-//! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)   (((v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT)
-#endif
+#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQINIT field to a new value.
@@ -11000,27 +10064,22 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * calibration and before sending other commands.
  *
  * Values:
- * 0x0 - 0x36 Reserved
+ * 0x0-0x36 - Reserved
  * 0x37 - 112 cycles
  * 0x38 - 114 cycles
  * 0x5F - 192 cycles (Default, JEDEC value, tZQCL, for LPDDR2, 360ns @ clock frequency 533MHz)
+ * 0xFE - 510 cycles
  * 0xFF - 512 cycles
- * 0xFE510 - cycles
  */
 
 #define BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL      (16)      //!< Bit position for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL      (0x00ff0000)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
 
 //! @brief Get value of MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL from a register value.
-#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(r)   (((r) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL)
+#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)   ((((reg32_t) v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL)
-#else
-//! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)   (((v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL)
-#endif
+#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQCL field to a new value.
@@ -11035,7 +10094,7 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * calibration and before sending other commands. This delay will also be used if ZQ reset is sent.
  *
  * Values:
- * 0x0 - 0x1A Reserved
+ * 0x0-0x1A - Reserved
  * 0x1B - 112 cycles (default)
  * 0x1C - 116 cycles
  * 0x7E - 508 cycles
@@ -11046,21 +10105,20 @@ typedef union _hw_mmdc_mpzqlp2ctl
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS      (0x7f000000)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS.
 
 //! @brief Get value of MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS from a register value.
-#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(r)   (((r) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS)
+#define BG_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) >> BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)   ((((reg32_t) v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS)
-#else
-//! @brief Format value for bitfield MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS.
-#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)   (((v) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS)
-#endif
+#define BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) & BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQCS field to a new value.
 #define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDLHWCTL - MMDC PHY Read Delay HW Calibration Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11123,7 +10181,7 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0      (0x00000001)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0 from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0)
 
 
 /* --- Register HW_MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR1[1] (RO)
@@ -11144,7 +10202,7 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1      (0x00000002)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1 from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1)
 
 
 /* --- Register HW_MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR2[2] (RO)
@@ -11165,7 +10223,7 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2      (0x00000004)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2 from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2)
 
 
 /* --- Register HW_MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR3[3] (RO)
@@ -11186,7 +10244,7 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3      (0x00000008)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3 from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3)
 
 
 /* --- Register HW_MMDC_MPRDDLHWCTL, field HW_RD_DL_EN[4] (RW)
@@ -11201,15 +10259,10 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN      (0x00000010)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_EN.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_EN from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLHWCTL_HW_RD_DL_EN.
-#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLHWCTL_HW_RD_DL_EN.
-#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)   (((v) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN)
-#endif
+#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_RD_DL_EN field to a new value.
@@ -11227,20 +10280,19 @@ typedef union _hw_mmdc_mprddlhwctl
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC      (0x00000020)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC from a register value.
-#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(r)   (((r) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC)
+#define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC.
-#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)   ((((reg32_t) v) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC)
-#else
-//! @brief Format value for bitfield MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC.
-#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)   (((v) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC)
-#endif
+#define BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_RD_DL_CMP_CYC field to a new value.
 #define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(x, v)   (HW_MMDC_MPRDDLHWCTL_WR(x, (HW_MMDC_MPRDDLHWCTL_RD(x) & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDLHWCTL - MMDC PHY Write Delay HW Calibration Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11301,7 +10353,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0      (0x00000001)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0 from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0)
 
 
 /* --- Register HW_MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR1[1] (RO)
@@ -11320,7 +10372,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1      (0x00000002)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1 from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1)
 
 
 /* --- Register HW_MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR2[2] (RO)
@@ -11339,7 +10391,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2      (0x00000004)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2 from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2)
 
 
 /* --- Register HW_MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR3[3] (RO)
@@ -11358,7 +10410,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3      (0x00000008)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3 from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3)
 
 
 /* --- Register HW_MMDC_MPWRDLHWCTL, field HW_WR_DL_EN[4] (RW)
@@ -11373,15 +10425,10 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN      (0x00000010)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_EN.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_EN from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLHWCTL_HW_WR_DL_EN.
-#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLHWCTL_HW_WR_DL_EN.
-#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)   (((v) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN)
-#endif
+#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WR_DL_EN field to a new value.
@@ -11398,20 +10445,19 @@ typedef union _hw_mmdc_mpwrdlhwctl
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC      (0x00000020)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC from a register value.
-#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(r)   (((r) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC)
+#define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC.
-#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)   ((((reg32_t) v) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC)
-#else
-//! @brief Format value for bitfield MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC.
-#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)   (((v) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC)
-#endif
+#define BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WR_DL_CMP_CYC field to a new value.
 #define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(x, v)   (HW_MMDC_MPWRDLHWCTL_WR(x, (HW_MMDC_MPWRDLHWCTL_RD(x) & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDLHWST0 - MMDC PHY Read Delay HW Calibration Status Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11463,7 +10509,7 @@ typedef union _hw_mmdc_mprddlhwst0
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_LOW0.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_LOW0 from a register value.
-#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0(r)   (((r) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0)
+#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0)
 
 /* --- Register HW_MMDC_MPRDDLHWST0, field HW_RD_DL_UP0[14:8] (RO)
  *
@@ -11475,7 +10521,7 @@ typedef union _hw_mmdc_mprddlhwst0
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP0      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_UP0.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_UP0 from a register value.
-#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP0(r)   (((r) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP0)
+#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP0)
 
 /* --- Register HW_MMDC_MPRDDLHWST0, field HW_RD_DL_LOW1[22:16] (RO)
  *
@@ -11487,7 +10533,7 @@ typedef union _hw_mmdc_mprddlhwst0
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_LOW1.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_LOW1 from a register value.
-#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1(r)   (((r) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1)
+#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1)
 
 /* --- Register HW_MMDC_MPRDDLHWST0, field HW_RD_DL_UP1[30:24] (RO)
  *
@@ -11499,7 +10545,11 @@ typedef union _hw_mmdc_mprddlhwst0
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP1      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_UP1.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_UP1 from a register value.
-#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP1(r)   (((r) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP1)
+#define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP1)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPRDDLHWST1 - MMDC PHY Read Delay HW Calibration Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11551,7 +10601,7 @@ typedef union _hw_mmdc_mprddlhwst1
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_LOW2.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_LOW2 from a register value.
-#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2(r)   (((r) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2)
+#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2)
 
 /* --- Register HW_MMDC_MPRDDLHWST1, field HW_RD_DL_UP2[14:8] (RO)
  *
@@ -11563,7 +10613,7 @@ typedef union _hw_mmdc_mprddlhwst1
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP2      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_UP2.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_UP2 from a register value.
-#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP2(r)   (((r) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP2)
+#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP2)
 
 /* --- Register HW_MMDC_MPRDDLHWST1, field HW_RD_DL_LOW3[22:16] (RO)
  *
@@ -11575,7 +10625,7 @@ typedef union _hw_mmdc_mprddlhwst1
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_LOW3.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_LOW3 from a register value.
-#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3(r)   (((r) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3)
+#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3)
 
 /* --- Register HW_MMDC_MPRDDLHWST1, field HW_RD_DL_UP3[30:24] (RO)
  *
@@ -11587,7 +10637,11 @@ typedef union _hw_mmdc_mprddlhwst1
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_UP3.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_UP3 from a register value.
-#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP3(r)   (((r) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP3)
+#define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDLHWST0 - MMDC PHY Write Delay HW Calibration Status Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11639,7 +10693,7 @@ typedef union _hw_mmdc_mpwrdlhwst0
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_LOW0.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_LOW0 from a register value.
-#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0(r)   (((r) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0)
+#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0)
 
 /* --- Register HW_MMDC_MPWRDLHWST0, field HW_WR_DL_UP0[14:8] (RO)
  *
@@ -11651,7 +10705,7 @@ typedef union _hw_mmdc_mpwrdlhwst0
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP0      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_UP0.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_UP0 from a register value.
-#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP0(r)   (((r) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP0)
+#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP0)
 
 /* --- Register HW_MMDC_MPWRDLHWST0, field HW_WR_DL_LOW1[22:16] (RO)
  *
@@ -11663,7 +10717,7 @@ typedef union _hw_mmdc_mpwrdlhwst0
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_LOW1.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_LOW1 from a register value.
-#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1(r)   (((r) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1)
+#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1)
 
 /* --- Register HW_MMDC_MPWRDLHWST0, field HW_WR_DL_UP1[30:24] (RO)
  *
@@ -11675,7 +10729,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP1      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_UP1.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_UP1 from a register value.
-#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP1(r)   (((r) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP1)
+#define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP1)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRDLHWST1 - MMDC PHY Write Delay HW Calibration Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11726,7 +10784,7 @@ typedef union _hw_mmdc_mpwrdlhwst1
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_LOW2.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_LOW2 from a register value.
-#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2(r)   (((r) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2)
+#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2)
 
 /* --- Register HW_MMDC_MPWRDLHWST1, field HW_WR_DL_UP2[14:8] (RO)
  *
@@ -11738,7 +10796,7 @@ typedef union _hw_mmdc_mpwrdlhwst1
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP2      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_UP2.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_UP2 from a register value.
-#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP2(r)   (((r) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP2)
+#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP2)
 
 /* --- Register HW_MMDC_MPWRDLHWST1, field HW_WR_DL_LOW3[22:16] (RO)
  *
@@ -11750,7 +10808,7 @@ typedef union _hw_mmdc_mpwrdlhwst1
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_LOW3.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_LOW3 from a register value.
-#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3(r)   (((r) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3)
+#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3)
 
 /* --- Register HW_MMDC_MPWRDLHWST1, field HW_WR_DL_UP3[30:24] (RO)
  *
@@ -11762,7 +10820,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_UP3.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_UP3 from a register value.
-#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP3(r)   (((r) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP3)
+#define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWLHWERR - MMDC PHY Write Leveling HW Error Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11816,7 +10878,7 @@ typedef union _hw_mmdc_mpwlhwerr
 #define BM_MMDC_MPWLHWERR_HW_WL0_DQ      (0x000000ff)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL0_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL0_DQ from a register value.
-#define BG_MMDC_MPWLHWERR_HW_WL0_DQ(r)   (((r) & BM_MMDC_MPWLHWERR_HW_WL0_DQ) >> BP_MMDC_MPWLHWERR_HW_WL0_DQ)
+#define BG_MMDC_MPWLHWERR_HW_WL0_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL0_DQ) >> BP_MMDC_MPWLHWERR_HW_WL0_DQ)
 
 /* --- Register HW_MMDC_MPWLHWERR, field HW_WL1_DQ[15:8] (RO)
  *
@@ -11830,7 +10892,7 @@ typedef union _hw_mmdc_mpwlhwerr
 #define BM_MMDC_MPWLHWERR_HW_WL1_DQ      (0x0000ff00)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL1_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL1_DQ from a register value.
-#define BG_MMDC_MPWLHWERR_HW_WL1_DQ(r)   (((r) & BM_MMDC_MPWLHWERR_HW_WL1_DQ) >> BP_MMDC_MPWLHWERR_HW_WL1_DQ)
+#define BG_MMDC_MPWLHWERR_HW_WL1_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL1_DQ) >> BP_MMDC_MPWLHWERR_HW_WL1_DQ)
 
 /* --- Register HW_MMDC_MPWLHWERR, field HW_WL2_DQ[23:16] (RO)
  *
@@ -11844,7 +10906,7 @@ typedef union _hw_mmdc_mpwlhwerr
 #define BM_MMDC_MPWLHWERR_HW_WL2_DQ      (0x00ff0000)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL2_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL2_DQ from a register value.
-#define BG_MMDC_MPWLHWERR_HW_WL2_DQ(r)   (((r) & BM_MMDC_MPWLHWERR_HW_WL2_DQ) >> BP_MMDC_MPWLHWERR_HW_WL2_DQ)
+#define BG_MMDC_MPWLHWERR_HW_WL2_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL2_DQ) >> BP_MMDC_MPWLHWERR_HW_WL2_DQ)
 
 /* --- Register HW_MMDC_MPWLHWERR, field HW_WL3_DQ[31:24] (RO)
  *
@@ -11858,7 +10920,11 @@ typedef union _hw_mmdc_mpwlhwerr
 #define BM_MMDC_MPWLHWERR_HW_WL3_DQ      (0xff000000)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL3_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL3_DQ from a register value.
-#define BG_MMDC_MPWLHWERR_HW_WL3_DQ(r)   (((r) & BM_MMDC_MPWLHWERR_HW_WL3_DQ) >> BP_MMDC_MPWLHWERR_HW_WL3_DQ)
+#define BG_MMDC_MPWLHWERR_HW_WL3_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL3_DQ) >> BP_MMDC_MPWLHWERR_HW_WL3_DQ)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGHWST0 - MMDC PHY Read DQS Gating HW Status Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11906,7 +10972,7 @@ typedef union _hw_mmdc_mpdghwst0
 #define BM_MMDC_MPDGHWST0_HW_DG_LOW0      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST0_HW_DG_LOW0.
 
 //! @brief Get value of MMDC_MPDGHWST0_HW_DG_LOW0 from a register value.
-#define BG_MMDC_MPDGHWST0_HW_DG_LOW0(r)   (((r) & BM_MMDC_MPDGHWST0_HW_DG_LOW0) >> BP_MMDC_MPDGHWST0_HW_DG_LOW0)
+#define BG_MMDC_MPDGHWST0_HW_DG_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST0_HW_DG_LOW0) >> BP_MMDC_MPDGHWST0_HW_DG_LOW0)
 
 /* --- Register HW_MMDC_MPDGHWST0, field HW_DG_UP0[26:16] (RO)
  *
@@ -11918,7 +10984,11 @@ typedef union _hw_mmdc_mpdghwst0
 #define BM_MMDC_MPDGHWST0_HW_DG_UP0      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST0_HW_DG_UP0.
 
 //! @brief Get value of MMDC_MPDGHWST0_HW_DG_UP0 from a register value.
-#define BG_MMDC_MPDGHWST0_HW_DG_UP0(r)   (((r) & BM_MMDC_MPDGHWST0_HW_DG_UP0) >> BP_MMDC_MPDGHWST0_HW_DG_UP0)
+#define BG_MMDC_MPDGHWST0_HW_DG_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST0_HW_DG_UP0) >> BP_MMDC_MPDGHWST0_HW_DG_UP0)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGHWST1 - MMDC PHY Read DQS Gating HW Status Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -11966,7 +11036,7 @@ typedef union _hw_mmdc_mpdghwst1
 #define BM_MMDC_MPDGHWST1_HW_DG_LOW1      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST1_HW_DG_LOW1.
 
 //! @brief Get value of MMDC_MPDGHWST1_HW_DG_LOW1 from a register value.
-#define BG_MMDC_MPDGHWST1_HW_DG_LOW1(r)   (((r) & BM_MMDC_MPDGHWST1_HW_DG_LOW1) >> BP_MMDC_MPDGHWST1_HW_DG_LOW1)
+#define BG_MMDC_MPDGHWST1_HW_DG_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST1_HW_DG_LOW1) >> BP_MMDC_MPDGHWST1_HW_DG_LOW1)
 
 /* --- Register HW_MMDC_MPDGHWST1, field HW_DG_UP1[26:16] (RO)
  *
@@ -11978,7 +11048,11 @@ typedef union _hw_mmdc_mpdghwst1
 #define BM_MMDC_MPDGHWST1_HW_DG_UP1      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST1_HW_DG_UP1.
 
 //! @brief Get value of MMDC_MPDGHWST1_HW_DG_UP1 from a register value.
-#define BG_MMDC_MPDGHWST1_HW_DG_UP1(r)   (((r) & BM_MMDC_MPDGHWST1_HW_DG_UP1) >> BP_MMDC_MPDGHWST1_HW_DG_UP1)
+#define BG_MMDC_MPDGHWST1_HW_DG_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST1_HW_DG_UP1) >> BP_MMDC_MPDGHWST1_HW_DG_UP1)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGHWST2 - MMDC PHY Read DQS Gating HW Status Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12026,7 +11100,7 @@ typedef union _hw_mmdc_mpdghwst2
 #define BM_MMDC_MPDGHWST2_HW_DG_LOW2      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST2_HW_DG_LOW2.
 
 //! @brief Get value of MMDC_MPDGHWST2_HW_DG_LOW2 from a register value.
-#define BG_MMDC_MPDGHWST2_HW_DG_LOW2(r)   (((r) & BM_MMDC_MPDGHWST2_HW_DG_LOW2) >> BP_MMDC_MPDGHWST2_HW_DG_LOW2)
+#define BG_MMDC_MPDGHWST2_HW_DG_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST2_HW_DG_LOW2) >> BP_MMDC_MPDGHWST2_HW_DG_LOW2)
 
 /* --- Register HW_MMDC_MPDGHWST2, field HW_DG_UP2[26:16] (RO)
  *
@@ -12038,7 +11112,11 @@ typedef union _hw_mmdc_mpdghwst2
 #define BM_MMDC_MPDGHWST2_HW_DG_UP2      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST2_HW_DG_UP2.
 
 //! @brief Get value of MMDC_MPDGHWST2_HW_DG_UP2 from a register value.
-#define BG_MMDC_MPDGHWST2_HW_DG_UP2(r)   (((r) & BM_MMDC_MPDGHWST2_HW_DG_UP2) >> BP_MMDC_MPDGHWST2_HW_DG_UP2)
+#define BG_MMDC_MPDGHWST2_HW_DG_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST2_HW_DG_UP2) >> BP_MMDC_MPDGHWST2_HW_DG_UP2)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDGHWST3 - MMDC PHY Read DQS Gating HW Status Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12086,7 +11164,7 @@ typedef union _hw_mmdc_mpdghwst3
 #define BM_MMDC_MPDGHWST3_HW_DG_LOW3      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST3_HW_DG_LOW3.
 
 //! @brief Get value of MMDC_MPDGHWST3_HW_DG_LOW3 from a register value.
-#define BG_MMDC_MPDGHWST3_HW_DG_LOW3(r)   (((r) & BM_MMDC_MPDGHWST3_HW_DG_LOW3) >> BP_MMDC_MPDGHWST3_HW_DG_LOW3)
+#define BG_MMDC_MPDGHWST3_HW_DG_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST3_HW_DG_LOW3) >> BP_MMDC_MPDGHWST3_HW_DG_LOW3)
 
 /* --- Register HW_MMDC_MPDGHWST3, field HW_DG_UP3[26:16] (RO)
  *
@@ -12098,7 +11176,11 @@ typedef union _hw_mmdc_mpdghwst3
 #define BM_MMDC_MPDGHWST3_HW_DG_UP3      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST3_HW_DG_UP3.
 
 //! @brief Get value of MMDC_MPDGHWST3_HW_DG_UP3 from a register value.
-#define BG_MMDC_MPDGHWST3_HW_DG_UP3(r)   (((r) & BM_MMDC_MPDGHWST3_HW_DG_UP3) >> BP_MMDC_MPDGHWST3_HW_DG_UP3)
+#define BG_MMDC_MPDGHWST3_HW_DG_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST3_HW_DG_UP3) >> BP_MMDC_MPDGHWST3_HW_DG_UP3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPPDCMPR1 - MMDC PHY Pre-defined Compare Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12117,7 +11199,7 @@ typedef union _hw_mmdc_mppdcmpr1
     reg32_t U;
     struct _hw_mmdc_mppdcmpr1_bitfields
     {
-        unsigned PDV1 : 16; //!< [15:0] MMDC Pre defined comapre value2. This field holds the 2 LSB of the data that will be driven to the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/ DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the calibration the MMDC will compare the read data with the data that is stored in this field. Note : Before issue the read access the MMDC will invert the value of this field and drive it to the associate entry in the read comparison FIFO. For further information see Section 19.14.3.1.2, "Calibration with pre-defined value , Section 19.14.4.1.2, "Calibration with pre-defined value and Section 19.14.5.1, "HW (automatic) Write Calibraion
+        unsigned PDV1 : 16; //!< [15:0] MMDC Pre defined comapre value2. This field holds the 2 LSB of the data that will be driven to the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/ DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the calibration the MMDC will compare the read data with the data that is stored in this field. Before issuing the read access, the MMDC will invert the value of this field and drive it to the associated entry in the read comparison FIFO.
         unsigned PDV2 : 16; //!< [31:16] MMDC Pre defined comapre value2. This field holds the 2 MSB of the data that will be driven to the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/ DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the calibration the MMDC will compare the read data with the data that is stored in this field. Note : Before issue the read access the MMDC will invert the value of this field and drive it to the associate entry in the read comparison FIFO. For further information see Section 19.14.3.1.2, "Calibration with pre-defined value , Section 19.14.4.1.2, "Calibration with pre-defined value and Section 19.14.5.1, "HW (automatic) Write Calibraion
     } B;
 } hw_mmdc_mppdcmpr1_t;
@@ -12146,26 +11228,19 @@ typedef union _hw_mmdc_mppdcmpr1
  * MMDC Pre defined comapre value2. This field holds the 2 LSB of the data that will be driven to
  * the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/
  * DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the
- * calibration the MMDC will compare the read data with the data that is stored in this field. Note
- * : Before issue the read access the MMDC will invert the value of this field and drive it to the
- * associate entry in the read comparison FIFO. For further information see Section 19.14.3.1.2,
- * "Calibration with pre-defined value , Section 19.14.4.1.2, "Calibration with pre-defined value
- * and Section 19.14.5.1, "HW (automatic) Write Calibraion
+ * calibration the MMDC will compare the read data with the data that is stored in this field.
+ * Before issuing the read access, the MMDC will invert the value of this field and drive it to the
+ * associated entry in the read comparison FIFO.
  */
 
 #define BP_MMDC_MPPDCMPR1_PDV1      (0)      //!< Bit position for MMDC_MPPDCMPR1_PDV1.
 #define BM_MMDC_MPPDCMPR1_PDV1      (0x0000ffff)  //!< Bit mask for MMDC_MPPDCMPR1_PDV1.
 
 //! @brief Get value of MMDC_MPPDCMPR1_PDV1 from a register value.
-#define BG_MMDC_MPPDCMPR1_PDV1(r)   (((r) & BM_MMDC_MPPDCMPR1_PDV1) >> BP_MMDC_MPPDCMPR1_PDV1)
+#define BG_MMDC_MPPDCMPR1_PDV1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR1_PDV1) >> BP_MMDC_MPPDCMPR1_PDV1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR1_PDV1.
-#define BF_MMDC_MPPDCMPR1_PDV1(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR1_PDV1) & BM_MMDC_MPPDCMPR1_PDV1)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR1_PDV1.
-#define BF_MMDC_MPPDCMPR1_PDV1(v)   (((v) << BP_MMDC_MPPDCMPR1_PDV1) & BM_MMDC_MPPDCMPR1_PDV1)
-#endif
+#define BF_MMDC_MPPDCMPR1_PDV1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR1_PDV1) & BM_MMDC_MPPDCMPR1_PDV1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDV1 field to a new value.
@@ -12188,20 +11263,19 @@ typedef union _hw_mmdc_mppdcmpr1
 #define BM_MMDC_MPPDCMPR1_PDV2      (0xffff0000)  //!< Bit mask for MMDC_MPPDCMPR1_PDV2.
 
 //! @brief Get value of MMDC_MPPDCMPR1_PDV2 from a register value.
-#define BG_MMDC_MPPDCMPR1_PDV2(r)   (((r) & BM_MMDC_MPPDCMPR1_PDV2) >> BP_MMDC_MPPDCMPR1_PDV2)
+#define BG_MMDC_MPPDCMPR1_PDV2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR1_PDV2) >> BP_MMDC_MPPDCMPR1_PDV2)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR1_PDV2.
-#define BF_MMDC_MPPDCMPR1_PDV2(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR1_PDV2) & BM_MMDC_MPPDCMPR1_PDV2)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR1_PDV2.
-#define BF_MMDC_MPPDCMPR1_PDV2(v)   (((v) << BP_MMDC_MPPDCMPR1_PDV2) & BM_MMDC_MPPDCMPR1_PDV2)
-#endif
+#define BF_MMDC_MPPDCMPR1_PDV2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR1_PDV2) & BM_MMDC_MPPDCMPR1_PDV2)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDV2 field to a new value.
 #define BW_MMDC_MPPDCMPR1_PDV2(x, v)   (HW_MMDC_MPPDCMPR1_WR(x, (HW_MMDC_MPPDCMPR1_RD(x) & ~BM_MMDC_MPPDCMPR1_PDV2) | BF_MMDC_MPPDCMPR1_PDV2(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPPDCMPR2 - MMDC PHY Pre-defined Compare and CA delay-line Configuration Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12259,15 +11333,10 @@ typedef union _hw_mmdc_mppdcmpr2
 #define BM_MMDC_MPPDCMPR2_MPR_CMP      (0x00000001)  //!< Bit mask for MMDC_MPPDCMPR2_MPR_CMP.
 
 //! @brief Get value of MMDC_MPPDCMPR2_MPR_CMP from a register value.
-#define BG_MMDC_MPPDCMPR2_MPR_CMP(r)   (((r) & BM_MMDC_MPPDCMPR2_MPR_CMP) >> BP_MMDC_MPPDCMPR2_MPR_CMP)
+#define BG_MMDC_MPPDCMPR2_MPR_CMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_MPR_CMP) >> BP_MMDC_MPPDCMPR2_MPR_CMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR2_MPR_CMP.
-#define BF_MMDC_MPPDCMPR2_MPR_CMP(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR2_MPR_CMP) & BM_MMDC_MPPDCMPR2_MPR_CMP)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR2_MPR_CMP.
-#define BF_MMDC_MPPDCMPR2_MPR_CMP(v)   (((v) << BP_MMDC_MPPDCMPR2_MPR_CMP) & BM_MMDC_MPPDCMPR2_MPR_CMP)
-#endif
+#define BF_MMDC_MPPDCMPR2_MPR_CMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR2_MPR_CMP) & BM_MMDC_MPPDCMPR2_MPR_CMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPR_CMP field to a new value.
@@ -12286,15 +11355,10 @@ typedef union _hw_mmdc_mppdcmpr2
 #define BM_MMDC_MPPDCMPR2_MPR_FULL_CMP      (0x00000002)  //!< Bit mask for MMDC_MPPDCMPR2_MPR_FULL_CMP.
 
 //! @brief Get value of MMDC_MPPDCMPR2_MPR_FULL_CMP from a register value.
-#define BG_MMDC_MPPDCMPR2_MPR_FULL_CMP(r)   (((r) & BM_MMDC_MPPDCMPR2_MPR_FULL_CMP) >> BP_MMDC_MPPDCMPR2_MPR_FULL_CMP)
+#define BG_MMDC_MPPDCMPR2_MPR_FULL_CMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_MPR_FULL_CMP) >> BP_MMDC_MPPDCMPR2_MPR_FULL_CMP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR2_MPR_FULL_CMP.
-#define BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR2_MPR_FULL_CMP) & BM_MMDC_MPPDCMPR2_MPR_FULL_CMP)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR2_MPR_FULL_CMP.
-#define BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)   (((v) << BP_MMDC_MPPDCMPR2_MPR_FULL_CMP) & BM_MMDC_MPPDCMPR2_MPR_FULL_CMP)
-#endif
+#define BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR2_MPR_FULL_CMP) & BM_MMDC_MPPDCMPR2_MPR_FULL_CMP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPR_FULL_CMP field to a new value.
@@ -12316,15 +11380,10 @@ typedef union _hw_mmdc_mppdcmpr2
 #define BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN      (0x00000004)  //!< Bit mask for MMDC_MPPDCMPR2_READ_LEVEL_PATTERN.
 
 //! @brief Get value of MMDC_MPPDCMPR2_READ_LEVEL_PATTERN from a register value.
-#define BG_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(r)   (((r) & BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) >> BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN)
+#define BG_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) >> BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR2_READ_LEVEL_PATTERN.
-#define BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) & BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR2_READ_LEVEL_PATTERN.
-#define BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)   (((v) << BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) & BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN)
-#endif
+#define BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) & BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_LEVEL_PATTERN field to a new value.
@@ -12344,15 +11403,10 @@ typedef union _hw_mmdc_mppdcmpr2
 #define BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET      (0x007f0000)  //!< Bit mask for MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET.
 
 //! @brief Get value of MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET from a register value.
-#define BG_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(r)   (((r) & BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) >> BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET)
+#define BG_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) >> BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET.
-#define BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)   ((((reg32_t) v) << BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) & BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET)
-#else
-//! @brief Format value for bitfield MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET.
-#define BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)   (((v) << BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) & BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET)
-#endif
+#define BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) & BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CA_DL_ABS_OFFSET field to a new value.
@@ -12369,7 +11423,11 @@ typedef union _hw_mmdc_mppdcmpr2
 #define BM_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT      (0x7f000000)  //!< Bit mask for MMDC_MPPDCMPR2_PHY_CA_DL_UNIT.
 
 //! @brief Get value of MMDC_MPPDCMPR2_PHY_CA_DL_UNIT from a register value.
-#define BG_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT(r)   (((r) & BM_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT) >> BP_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT)
+#define BG_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT) >> BP_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDAR0 - MMDC PHY SW Dummy Access Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12426,15 +11484,10 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUMMY_WR      (0x00000001)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUMMY_WR.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUMMY_WR from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUMMY_WR(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUMMY_WR) >> BP_MMDC_MPSWDAR0_SW_DUMMY_WR)
+#define BG_MMDC_MPSWDAR0_SW_DUMMY_WR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUMMY_WR) >> BP_MMDC_MPSWDAR0_SW_DUMMY_WR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPSWDAR0_SW_DUMMY_WR.
-#define BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)   ((((reg32_t) v) << BP_MMDC_MPSWDAR0_SW_DUMMY_WR) & BM_MMDC_MPSWDAR0_SW_DUMMY_WR)
-#else
-//! @brief Format value for bitfield MMDC_MPSWDAR0_SW_DUMMY_WR.
-#define BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)   (((v) << BP_MMDC_MPSWDAR0_SW_DUMMY_WR) & BM_MMDC_MPSWDAR0_SW_DUMMY_WR)
-#endif
+#define BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPSWDAR0_SW_DUMMY_WR) & BM_MMDC_MPSWDAR0_SW_DUMMY_WR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_DUMMY_WR field to a new value.
@@ -12455,15 +11508,10 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUMMY_RD      (0x00000002)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUMMY_RD.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUMMY_RD from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUMMY_RD(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUMMY_RD) >> BP_MMDC_MPSWDAR0_SW_DUMMY_RD)
+#define BG_MMDC_MPSWDAR0_SW_DUMMY_RD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUMMY_RD) >> BP_MMDC_MPSWDAR0_SW_DUMMY_RD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPSWDAR0_SW_DUMMY_RD.
-#define BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)   ((((reg32_t) v) << BP_MMDC_MPSWDAR0_SW_DUMMY_RD) & BM_MMDC_MPSWDAR0_SW_DUMMY_RD)
-#else
-//! @brief Format value for bitfield MMDC_MPSWDAR0_SW_DUMMY_RD.
-#define BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)   (((v) << BP_MMDC_MPSWDAR0_SW_DUMMY_RD) & BM_MMDC_MPSWDAR0_SW_DUMMY_RD)
-#endif
+#define BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPSWDAR0_SW_DUMMY_RD) & BM_MMDC_MPSWDAR0_SW_DUMMY_RD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_DUMMY_RD field to a new value.
@@ -12484,7 +11532,7 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP0      (0x00000004)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP0.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP0 from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUM_CMP0(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUM_CMP0) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP0)
+#define BG_MMDC_MPSWDAR0_SW_DUM_CMP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP0) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP0)
 
 
 /* --- Register HW_MMDC_MPSWDAR0, field SW_DUM_CMP1[3] (RO)
@@ -12501,7 +11549,7 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP1      (0x00000008)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP1.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP1 from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUM_CMP1(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUM_CMP1) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP1)
+#define BG_MMDC_MPSWDAR0_SW_DUM_CMP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP1) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP1)
 
 
 /* --- Register HW_MMDC_MPSWDAR0, field SW_DUM_CMP2[4] (RO)
@@ -12518,7 +11566,7 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP2      (0x00000010)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP2.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP2 from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUM_CMP2(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUM_CMP2) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP2)
+#define BG_MMDC_MPSWDAR0_SW_DUM_CMP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP2) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP2)
 
 
 /* --- Register HW_MMDC_MPSWDAR0, field SW_DUM_CMP3[5] (RO)
@@ -12535,8 +11583,12 @@ typedef union _hw_mmdc_mpswdar0
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP3      (0x00000020)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP3.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP3 from a register value.
-#define BG_MMDC_MPSWDAR0_SW_DUM_CMP3(r)   (((r) & BM_MMDC_MPSWDAR0_SW_DUM_CMP3) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP3)
+#define BG_MMDC_MPSWDAR0_SW_DUM_CMP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP3) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP3)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR0 - MMDC PHY SW Dummy Read Data Register 0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12581,7 +11633,11 @@ typedef union _hw_mmdc_mpswdrdr0
 #define BM_MMDC_MPSWDRDR0_DUM_RD0      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR0_DUM_RD0.
 
 //! @brief Get value of MMDC_MPSWDRDR0_DUM_RD0 from a register value.
-#define BG_MMDC_MPSWDRDR0_DUM_RD0(r)   (((r) & BM_MMDC_MPSWDRDR0_DUM_RD0) >> BP_MMDC_MPSWDRDR0_DUM_RD0)
+#define BG_MMDC_MPSWDRDR0_DUM_RD0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR0_DUM_RD0) >> BP_MMDC_MPSWDRDR0_DUM_RD0)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR1 - MMDC PHY SW Dummy Read Data Register 1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12626,7 +11682,11 @@ typedef union _hw_mmdc_mpswdrdr1
 #define BM_MMDC_MPSWDRDR1_DUM_RD1      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR1_DUM_RD1.
 
 //! @brief Get value of MMDC_MPSWDRDR1_DUM_RD1 from a register value.
-#define BG_MMDC_MPSWDRDR1_DUM_RD1(r)   (((r) & BM_MMDC_MPSWDRDR1_DUM_RD1) >> BP_MMDC_MPSWDRDR1_DUM_RD1)
+#define BG_MMDC_MPSWDRDR1_DUM_RD1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR1_DUM_RD1) >> BP_MMDC_MPSWDRDR1_DUM_RD1)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR2 - MMDC PHY SW Dummy Read Data Register 2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12671,7 +11731,11 @@ typedef union _hw_mmdc_mpswdrdr2
 #define BM_MMDC_MPSWDRDR2_DUM_RD2      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR2_DUM_RD2.
 
 //! @brief Get value of MMDC_MPSWDRDR2_DUM_RD2 from a register value.
-#define BG_MMDC_MPSWDRDR2_DUM_RD2(r)   (((r) & BM_MMDC_MPSWDRDR2_DUM_RD2) >> BP_MMDC_MPSWDRDR2_DUM_RD2)
+#define BG_MMDC_MPSWDRDR2_DUM_RD2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR2_DUM_RD2) >> BP_MMDC_MPSWDRDR2_DUM_RD2)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR3 - MMDC PHY SW Dummy Read Data Register 3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12716,7 +11780,11 @@ typedef union _hw_mmdc_mpswdrdr3
 #define BM_MMDC_MPSWDRDR3_DUM_RD3      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR3_DUM_RD3.
 
 //! @brief Get value of MMDC_MPSWDRDR3_DUM_RD3 from a register value.
-#define BG_MMDC_MPSWDRDR3_DUM_RD3(r)   (((r) & BM_MMDC_MPSWDRDR3_DUM_RD3) >> BP_MMDC_MPSWDRDR3_DUM_RD3)
+#define BG_MMDC_MPSWDRDR3_DUM_RD3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR3_DUM_RD3) >> BP_MMDC_MPSWDRDR3_DUM_RD3)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR4 - MMDC PHY SW Dummy Read Data Register 4
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12762,7 +11830,11 @@ typedef union _hw_mmdc_mpswdrdr4
 #define BM_MMDC_MPSWDRDR4_DUM_RD4      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR4_DUM_RD4.
 
 //! @brief Get value of MMDC_MPSWDRDR4_DUM_RD4 from a register value.
-#define BG_MMDC_MPSWDRDR4_DUM_RD4(r)   (((r) & BM_MMDC_MPSWDRDR4_DUM_RD4) >> BP_MMDC_MPSWDRDR4_DUM_RD4)
+#define BG_MMDC_MPSWDRDR4_DUM_RD4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR4_DUM_RD4) >> BP_MMDC_MPSWDRDR4_DUM_RD4)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR5 - MMDC PHY SW Dummy Read Data Register 5
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12808,7 +11880,11 @@ typedef union _hw_mmdc_mpswdrdr5
 #define BM_MMDC_MPSWDRDR5_DUM_RD5      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR5_DUM_RD5.
 
 //! @brief Get value of MMDC_MPSWDRDR5_DUM_RD5 from a register value.
-#define BG_MMDC_MPSWDRDR5_DUM_RD5(r)   (((r) & BM_MMDC_MPSWDRDR5_DUM_RD5) >> BP_MMDC_MPSWDRDR5_DUM_RD5)
+#define BG_MMDC_MPSWDRDR5_DUM_RD5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR5_DUM_RD5) >> BP_MMDC_MPSWDRDR5_DUM_RD5)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR6 - MMDC PHY SW Dummy Read Data Register 6
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12854,7 +11930,11 @@ typedef union _hw_mmdc_mpswdrdr6
 #define BM_MMDC_MPSWDRDR6_DUM_RD6      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR6_DUM_RD6.
 
 //! @brief Get value of MMDC_MPSWDRDR6_DUM_RD6 from a register value.
-#define BG_MMDC_MPSWDRDR6_DUM_RD6(r)   (((r) & BM_MMDC_MPSWDRDR6_DUM_RD6) >> BP_MMDC_MPSWDRDR6_DUM_RD6)
+#define BG_MMDC_MPSWDRDR6_DUM_RD6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR6_DUM_RD6) >> BP_MMDC_MPSWDRDR6_DUM_RD6)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPSWDRDR7 - MMDC PHY SW Dummy Read Data Register 7
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12900,7 +11980,11 @@ typedef union _hw_mmdc_mpswdrdr7
 #define BM_MMDC_MPSWDRDR7_DUM_RD7      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR7_DUM_RD7.
 
 //! @brief Get value of MMDC_MPSWDRDR7_DUM_RD7 from a register value.
-#define BG_MMDC_MPSWDRDR7_DUM_RD7(r)   (((r) & BM_MMDC_MPSWDRDR7_DUM_RD7) >> BP_MMDC_MPSWDRDR7_DUM_RD7)
+#define BG_MMDC_MPSWDRDR7_DUM_RD7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR7_DUM_RD7) >> BP_MMDC_MPSWDRDR7_DUM_RD7)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPMUR0 - MMDC PHY Measure Unit Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -12953,15 +12037,10 @@ typedef union _hw_mmdc_mpmur0
 #define BM_MMDC_MPMUR0_MU_BYP_VAL      (0x000003ff)  //!< Bit mask for MMDC_MPMUR0_MU_BYP_VAL.
 
 //! @brief Get value of MMDC_MPMUR0_MU_BYP_VAL from a register value.
-#define BG_MMDC_MPMUR0_MU_BYP_VAL(r)   (((r) & BM_MMDC_MPMUR0_MU_BYP_VAL) >> BP_MMDC_MPMUR0_MU_BYP_VAL)
+#define BG_MMDC_MPMUR0_MU_BYP_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPMUR0_MU_BYP_VAL) >> BP_MMDC_MPMUR0_MU_BYP_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPMUR0_MU_BYP_VAL.
-#define BF_MMDC_MPMUR0_MU_BYP_VAL(v)   ((((reg32_t) v) << BP_MMDC_MPMUR0_MU_BYP_VAL) & BM_MMDC_MPMUR0_MU_BYP_VAL)
-#else
-//! @brief Format value for bitfield MMDC_MPMUR0_MU_BYP_VAL.
-#define BF_MMDC_MPMUR0_MU_BYP_VAL(v)   (((v) << BP_MMDC_MPMUR0_MU_BYP_VAL) & BM_MMDC_MPMUR0_MU_BYP_VAL)
-#endif
+#define BF_MMDC_MPMUR0_MU_BYP_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPMUR0_MU_BYP_VAL) & BM_MMDC_MPMUR0_MU_BYP_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MU_BYP_VAL field to a new value.
@@ -12984,15 +12063,10 @@ typedef union _hw_mmdc_mpmur0
 #define BM_MMDC_MPMUR0_MU_BYP_EN      (0x00000400)  //!< Bit mask for MMDC_MPMUR0_MU_BYP_EN.
 
 //! @brief Get value of MMDC_MPMUR0_MU_BYP_EN from a register value.
-#define BG_MMDC_MPMUR0_MU_BYP_EN(r)   (((r) & BM_MMDC_MPMUR0_MU_BYP_EN) >> BP_MMDC_MPMUR0_MU_BYP_EN)
+#define BG_MMDC_MPMUR0_MU_BYP_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPMUR0_MU_BYP_EN) >> BP_MMDC_MPMUR0_MU_BYP_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPMUR0_MU_BYP_EN.
-#define BF_MMDC_MPMUR0_MU_BYP_EN(v)   ((((reg32_t) v) << BP_MMDC_MPMUR0_MU_BYP_EN) & BM_MMDC_MPMUR0_MU_BYP_EN)
-#else
-//! @brief Format value for bitfield MMDC_MPMUR0_MU_BYP_EN.
-#define BF_MMDC_MPMUR0_MU_BYP_EN(v)   (((v) << BP_MMDC_MPMUR0_MU_BYP_EN) & BM_MMDC_MPMUR0_MU_BYP_EN)
-#endif
+#define BF_MMDC_MPMUR0_MU_BYP_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPMUR0_MU_BYP_EN) & BM_MMDC_MPMUR0_MU_BYP_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MU_BYP_EN field to a new value.
@@ -13020,15 +12094,10 @@ typedef union _hw_mmdc_mpmur0
 #define BM_MMDC_MPMUR0_FRC_MSR      (0x00000800)  //!< Bit mask for MMDC_MPMUR0_FRC_MSR.
 
 //! @brief Get value of MMDC_MPMUR0_FRC_MSR from a register value.
-#define BG_MMDC_MPMUR0_FRC_MSR(r)   (((r) & BM_MMDC_MPMUR0_FRC_MSR) >> BP_MMDC_MPMUR0_FRC_MSR)
+#define BG_MMDC_MPMUR0_FRC_MSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPMUR0_FRC_MSR) >> BP_MMDC_MPMUR0_FRC_MSR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPMUR0_FRC_MSR.
-#define BF_MMDC_MPMUR0_FRC_MSR(v)   ((((reg32_t) v) << BP_MMDC_MPMUR0_FRC_MSR) & BM_MMDC_MPMUR0_FRC_MSR)
-#else
-//! @brief Format value for bitfield MMDC_MPMUR0_FRC_MSR.
-#define BF_MMDC_MPMUR0_FRC_MSR(v)   (((v) << BP_MMDC_MPMUR0_FRC_MSR) & BM_MMDC_MPMUR0_FRC_MSR)
-#endif
+#define BF_MMDC_MPMUR0_FRC_MSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPMUR0_FRC_MSR) & BM_MMDC_MPMUR0_FRC_MSR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRC_MSR field to a new value.
@@ -13047,7 +12116,11 @@ typedef union _hw_mmdc_mpmur0
 #define BM_MMDC_MPMUR0_MU_UNIT_DEL_NUM      (0x03ff0000)  //!< Bit mask for MMDC_MPMUR0_MU_UNIT_DEL_NUM.
 
 //! @brief Get value of MMDC_MPMUR0_MU_UNIT_DEL_NUM from a register value.
-#define BG_MMDC_MPMUR0_MU_UNIT_DEL_NUM(r)   (((r) & BM_MMDC_MPMUR0_MU_UNIT_DEL_NUM) >> BP_MMDC_MPMUR0_MU_UNIT_DEL_NUM)
+#define BG_MMDC_MPMUR0_MU_UNIT_DEL_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPMUR0_MU_UNIT_DEL_NUM) >> BP_MMDC_MPMUR0_MU_UNIT_DEL_NUM)
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPWRCADL - MMDC Write CA delay-line controller
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13113,15 +12186,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA0_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRCADL_WR_CA0_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA0_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA0_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA0_DEL) >> BP_MMDC_MPWRCADL_WR_CA0_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA0_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA0_DEL) >> BP_MMDC_MPWRCADL_WR_CA0_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA0_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA0_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA0_DEL) & BM_MMDC_MPWRCADL_WR_CA0_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA0_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA0_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA0_DEL) & BM_MMDC_MPWRCADL_WR_CA0_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA0_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA0_DEL) & BM_MMDC_MPWRCADL_WR_CA0_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA0_DEL field to a new value.
@@ -13145,15 +12213,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA1_DEL      (0x0000000c)  //!< Bit mask for MMDC_MPWRCADL_WR_CA1_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA1_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA1_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA1_DEL) >> BP_MMDC_MPWRCADL_WR_CA1_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA1_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA1_DEL) >> BP_MMDC_MPWRCADL_WR_CA1_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA1_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA1_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA1_DEL) & BM_MMDC_MPWRCADL_WR_CA1_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA1_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA1_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA1_DEL) & BM_MMDC_MPWRCADL_WR_CA1_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA1_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA1_DEL) & BM_MMDC_MPWRCADL_WR_CA1_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA1_DEL field to a new value.
@@ -13177,15 +12240,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA2_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRCADL_WR_CA2_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA2_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA2_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA2_DEL) >> BP_MMDC_MPWRCADL_WR_CA2_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA2_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA2_DEL) >> BP_MMDC_MPWRCADL_WR_CA2_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA2_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA2_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA2_DEL) & BM_MMDC_MPWRCADL_WR_CA2_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA2_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA2_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA2_DEL) & BM_MMDC_MPWRCADL_WR_CA2_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA2_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA2_DEL) & BM_MMDC_MPWRCADL_WR_CA2_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA2_DEL field to a new value.
@@ -13209,15 +12267,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA3_DEL      (0x000000c0)  //!< Bit mask for MMDC_MPWRCADL_WR_CA3_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA3_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA3_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA3_DEL) >> BP_MMDC_MPWRCADL_WR_CA3_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA3_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA3_DEL) >> BP_MMDC_MPWRCADL_WR_CA3_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA3_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA3_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA3_DEL) & BM_MMDC_MPWRCADL_WR_CA3_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA3_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA3_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA3_DEL) & BM_MMDC_MPWRCADL_WR_CA3_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA3_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA3_DEL) & BM_MMDC_MPWRCADL_WR_CA3_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA3_DEL field to a new value.
@@ -13241,15 +12294,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA4_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRCADL_WR_CA4_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA4_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA4_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA4_DEL) >> BP_MMDC_MPWRCADL_WR_CA4_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA4_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA4_DEL) >> BP_MMDC_MPWRCADL_WR_CA4_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA4_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA4_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA4_DEL) & BM_MMDC_MPWRCADL_WR_CA4_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA4_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA4_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA4_DEL) & BM_MMDC_MPWRCADL_WR_CA4_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA4_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA4_DEL) & BM_MMDC_MPWRCADL_WR_CA4_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA4_DEL field to a new value.
@@ -13273,15 +12321,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA5_DEL      (0x00000c00)  //!< Bit mask for MMDC_MPWRCADL_WR_CA5_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA5_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA5_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA5_DEL) >> BP_MMDC_MPWRCADL_WR_CA5_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA5_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA5_DEL) >> BP_MMDC_MPWRCADL_WR_CA5_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA5_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA5_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA5_DEL) & BM_MMDC_MPWRCADL_WR_CA5_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA5_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA5_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA5_DEL) & BM_MMDC_MPWRCADL_WR_CA5_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA5_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA5_DEL) & BM_MMDC_MPWRCADL_WR_CA5_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA5_DEL field to a new value.
@@ -13305,15 +12348,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA6_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA6_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA6_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA6_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA6_DEL) >> BP_MMDC_MPWRCADL_WR_CA6_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA6_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA6_DEL) >> BP_MMDC_MPWRCADL_WR_CA6_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA6_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA6_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA6_DEL) & BM_MMDC_MPWRCADL_WR_CA6_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA6_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA6_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA6_DEL) & BM_MMDC_MPWRCADL_WR_CA6_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA6_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA6_DEL) & BM_MMDC_MPWRCADL_WR_CA6_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA6_DEL field to a new value.
@@ -13337,15 +12375,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA7_DEL      (0x0000c000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA7_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA7_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA7_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA7_DEL) >> BP_MMDC_MPWRCADL_WR_CA7_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA7_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA7_DEL) >> BP_MMDC_MPWRCADL_WR_CA7_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA7_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA7_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA7_DEL) & BM_MMDC_MPWRCADL_WR_CA7_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA7_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA7_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA7_DEL) & BM_MMDC_MPWRCADL_WR_CA7_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA7_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA7_DEL) & BM_MMDC_MPWRCADL_WR_CA7_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA7_DEL field to a new value.
@@ -13369,15 +12402,10 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA8_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA8_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA8_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA8_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA8_DEL) >> BP_MMDC_MPWRCADL_WR_CA8_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA8_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA8_DEL) >> BP_MMDC_MPWRCADL_WR_CA8_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA8_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA8_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA8_DEL) & BM_MMDC_MPWRCADL_WR_CA8_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA8_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA8_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA8_DEL) & BM_MMDC_MPWRCADL_WR_CA8_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA8_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA8_DEL) & BM_MMDC_MPWRCADL_WR_CA8_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA8_DEL field to a new value.
@@ -13401,21 +12429,20 @@ typedef union _hw_mmdc_mpwrcadl
 #define BM_MMDC_MPWRCADL_WR_CA9_DEL      (0x000c0000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA9_DEL.
 
 //! @brief Get value of MMDC_MPWRCADL_WR_CA9_DEL from a register value.
-#define BG_MMDC_MPWRCADL_WR_CA9_DEL(r)   (((r) & BM_MMDC_MPWRCADL_WR_CA9_DEL) >> BP_MMDC_MPWRCADL_WR_CA9_DEL)
+#define BG_MMDC_MPWRCADL_WR_CA9_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRCADL_WR_CA9_DEL) >> BP_MMDC_MPWRCADL_WR_CA9_DEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA9_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA9_DEL(v)   ((((reg32_t) v) << BP_MMDC_MPWRCADL_WR_CA9_DEL) & BM_MMDC_MPWRCADL_WR_CA9_DEL)
-#else
-//! @brief Format value for bitfield MMDC_MPWRCADL_WR_CA9_DEL.
-#define BF_MMDC_MPWRCADL_WR_CA9_DEL(v)   (((v) << BP_MMDC_MPWRCADL_WR_CA9_DEL) & BM_MMDC_MPWRCADL_WR_CA9_DEL)
-#endif
+#define BF_MMDC_MPWRCADL_WR_CA9_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPWRCADL_WR_CA9_DEL) & BM_MMDC_MPWRCADL_WR_CA9_DEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA9_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA9_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA9_DEL) | BF_MMDC_MPWRCADL_WR_CA9_DEL(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_MMDC_MPDCCR - MMDC Duty Cycle Control Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -13478,7 +12505,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_WR_DQS0_FT_DCC      (0x00000007)  //!< Bit mask for MMDC_MPDCCR_WR_DQS0_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS0_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_WR_DQS0_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_WR_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS0_FT_DCC)
+#define BG_MMDC_MPDCCR_WR_DQS0_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS0_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field WR_DQS1_FT_DCC[5:3] (RO)
@@ -13496,7 +12523,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_WR_DQS1_FT_DCC      (0x00000038)  //!< Bit mask for MMDC_MPDCCR_WR_DQS1_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS1_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_WR_DQS1_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_WR_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS1_FT_DCC)
+#define BG_MMDC_MPDCCR_WR_DQS1_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS1_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field WR_DQS2_FT_DCC[8:6] (RO)
@@ -13514,7 +12541,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_WR_DQS2_FT_DCC      (0x000001c0)  //!< Bit mask for MMDC_MPDCCR_WR_DQS2_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS2_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_WR_DQS2_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_WR_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS2_FT_DCC)
+#define BG_MMDC_MPDCCR_WR_DQS2_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS2_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field WR_DQS3_FT_DCC[11:9] (RO)
@@ -13532,7 +12559,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_WR_DQS3_FT_DCC      (0x00000e00)  //!< Bit mask for MMDC_MPDCCR_WR_DQS3_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS3_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_WR_DQS3_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_WR_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS3_FT_DCC)
+#define BG_MMDC_MPDCCR_WR_DQS3_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS3_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field CK_FT0_DCC[14:12] (RO)
@@ -13550,7 +12577,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_CK_FT0_DCC      (0x00007000)  //!< Bit mask for MMDC_MPDCCR_CK_FT0_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_CK_FT0_DCC from a register value.
-#define BG_MMDC_MPDCCR_CK_FT0_DCC(r)   (((r) & BM_MMDC_MPDCCR_CK_FT0_DCC) >> BP_MMDC_MPDCCR_CK_FT0_DCC)
+#define BG_MMDC_MPDCCR_CK_FT0_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_CK_FT0_DCC) >> BP_MMDC_MPDCCR_CK_FT0_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field CK_FT1_DCC[18:16] (RO)
@@ -13568,7 +12595,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_CK_FT1_DCC      (0x00070000)  //!< Bit mask for MMDC_MPDCCR_CK_FT1_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_CK_FT1_DCC from a register value.
-#define BG_MMDC_MPDCCR_CK_FT1_DCC(r)   (((r) & BM_MMDC_MPDCCR_CK_FT1_DCC) >> BP_MMDC_MPDCCR_CK_FT1_DCC)
+#define BG_MMDC_MPDCCR_CK_FT1_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_CK_FT1_DCC) >> BP_MMDC_MPDCCR_CK_FT1_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field RD_DQS0_FT_DCC[21:19] (RO)
@@ -13586,7 +12613,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_RD_DQS0_FT_DCC      (0x00380000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS0_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS0_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_RD_DQS0_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_RD_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS0_FT_DCC)
+#define BG_MMDC_MPDCCR_RD_DQS0_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS0_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field RD_DQS1_FT_DCC[24:22] (RO)
@@ -13604,7 +12631,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_RD_DQS1_FT_DCC      (0x01c00000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS1_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS1_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_RD_DQS1_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_RD_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS1_FT_DCC)
+#define BG_MMDC_MPDCCR_RD_DQS1_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS1_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field RD_DQS2_FT_DCC[27:25] (RO)
@@ -13622,7 +12649,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_RD_DQS2_FT_DCC      (0x0e000000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS2_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS2_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_RD_DQS2_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_RD_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS2_FT_DCC)
+#define BG_MMDC_MPDCCR_RD_DQS2_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS2_FT_DCC)
 
 
 /* --- Register HW_MMDC_MPDCCR, field RD_DQS3_FT_DCC[30:28] (RO)
@@ -13640,7 +12667,7 @@ typedef union _hw_mmdc_mpdccr
 #define BM_MMDC_MPDCCR_RD_DQS3_FT_DCC      (0x70000000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS3_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS3_FT_DCC from a register value.
-#define BG_MMDC_MPDCCR_RD_DQS3_FT_DCC(r)   (((r) & BM_MMDC_MPDCCR_RD_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS3_FT_DCC)
+#define BG_MMDC_MPDCCR_RD_DQS3_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS3_FT_DCC)
 
 
 

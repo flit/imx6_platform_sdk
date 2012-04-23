@@ -497,11 +497,11 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_1MMDC_MASBS1_SBS_PROT={\
         gui_name="SBS_PROT":position=4:size=3:read_only=true\
       }:\
-        bit_fields.B_1MMDC_MASBS1_SBS_BURST={\
-        gui_name="SBS_BURST":position=7:size=2:read_only=true\
-      }:\
         bit_fields.B_1MMDC_MASBS1_SBS_SIZE={\
-        gui_name="SBS_SIZE":position=9:size=3:read_only=true\
+        gui_name="SBS_SIZE":position=7:size=3:read_only=true\
+      }:\
+        bit_fields.B_1MMDC_MASBS1_SBS_BURST={\
+        gui_name="SBS_BURST":position=10:size=2:read_only=true\
       }:\
         bit_fields.B_1MMDC_MASBS1_SBS_BUFF={\
         gui_name="SBS_BUFF":position=12:size=1:read_only=true\
@@ -1876,11 +1876,11 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2MMDC_MASBS1_SBS_PROT={\
         gui_name="SBS_PROT":position=4:size=3:read_only=true\
       }:\
-        bit_fields.B_2MMDC_MASBS1_SBS_BURST={\
-        gui_name="SBS_BURST":position=7:size=2:read_only=true\
-      }:\
         bit_fields.B_2MMDC_MASBS1_SBS_SIZE={\
-        gui_name="SBS_SIZE":position=9:size=3:read_only=true\
+        gui_name="SBS_SIZE":position=7:size=3:read_only=true\
+      }:\
+        bit_fields.B_2MMDC_MASBS1_SBS_BURST={\
+        gui_name="SBS_BURST":position=10:size=2:read_only=true\
       }:\
         bit_fields.B_2MMDC_MASBS1_SBS_BUFF={\
         gui_name="SBS_BUFF":position=12:size=1:read_only=true\
@@ -2990,8 +2990,8 @@ Advanced_Information.Cortex-A9={\
     line="B_1MMDC_MASBS1_SBS_TYPE":\
     line="B_1MMDC_MASBS1_SBS_LOCK":\
     line="B_1MMDC_MASBS1_SBS_PROT":\
-    line="B_1MMDC_MASBS1_SBS_BURST":\
     line="B_1MMDC_MASBS1_SBS_SIZE":\
+    line="B_1MMDC_MASBS1_SBS_BURST":\
     line="B_1MMDC_MASBS1_SBS_BUFF":\
     line="B_1MMDC_MASBS1_SBS_LEN":\
     line="B_1MMDC_MASBS1_SBS_AXI_ID":\
@@ -3608,8 +3608,8 @@ Advanced_Information.Cortex-A9={\
     line="B_2MMDC_MASBS1_SBS_TYPE":\
     line="B_2MMDC_MASBS1_SBS_LOCK":\
     line="B_2MMDC_MASBS1_SBS_PROT":\
-    line="B_2MMDC_MASBS1_SBS_BURST":\
     line="B_2MMDC_MASBS1_SBS_SIZE":\
+    line="B_2MMDC_MASBS1_SBS_BURST":\
     line="B_2MMDC_MASBS1_SBS_BUFF":\
     line="B_2MMDC_MASBS1_SBS_LEN":\
     line="B_2MMDC_MASBS1_SBS_AXI_ID":\

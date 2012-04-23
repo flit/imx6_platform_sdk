@@ -962,8 +962,8 @@ typedef union _hw_pmu_misc0
         unsigned REFTOP_SELFBIASOFF : 1; //!< [3] Control bit to disable the self-bias circuit in the analog bandgap. The self-bias circuit is used by the bandgap during startup. This bit should be set after the bandgap has stabilized and is necessary for best noise performance of analog blocks using the outputs of the bandgap. Value should be returned to zero before removing vddhigh_in or asserting bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
         unsigned REFTOP_VBGADJ : 3; //!< [6:4] 
         unsigned REFTOP_VBGUP : 1; //!< [7] Status bit which signals that the analog bandgap voltage is up and stable. 1 - Stable.
-        unsigned RESERVED1 : 4; //!< [11:8] Reserved
-        unsigned STOP_MODE_CONFIG : 1; //!< [12] Configure the analog behavior in stop mode.
+        unsigned RESERVED1 : 3; //!< [10:8] Reserved
+        unsigned STOP_MODE_CONFIG : 2; //!< [12:11] Configure the analog behavior in stop mode.
         unsigned RESERVED2 : 1; //!< [13] Reserved
         unsigned OSC_I : 2; //!< [15:14] This bit field determines the bias current in the 24MHz oscillator. The idea is to start up with the highest bias current which can be decreased after startup if determined to be acceptable. Not related to PMU.
         unsigned OSC_XTALOK : 1; //!< [16] Status bit which signals that the output of the 24MHz crystal oscillator is stable. Generated from a timer and active detection of the actual frequency. Not related to PMU, Clocking content.
@@ -1093,7 +1093,7 @@ typedef union _hw_pmu_misc0
 #define BW_PMU_MISC0_REFTOP_VBGUP(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_REFTOP_VBGUP) | BF_PMU_MISC0_REFTOP_VBGUP(v)))
 #endif
 
-/* --- Register HW_PMU_MISC0, field STOP_MODE_CONFIG[12] (RW)
+/* --- Register HW_PMU_MISC0, field STOP_MODE_CONFIG[12:11] (RW)
  *
  * Configure the analog behavior in stop mode.
  *
@@ -1105,8 +1105,8 @@ typedef union _hw_pmu_misc0
  *     power.
  */
 
-#define BP_PMU_MISC0_STOP_MODE_CONFIG      (12)      //!< Bit position for PMU_MISC0_STOP_MODE_CONFIG.
-#define BM_PMU_MISC0_STOP_MODE_CONFIG      (0x00001000)  //!< Bit mask for PMU_MISC0_STOP_MODE_CONFIG.
+#define BP_PMU_MISC0_STOP_MODE_CONFIG      (11)      //!< Bit position for PMU_MISC0_STOP_MODE_CONFIG.
+#define BM_PMU_MISC0_STOP_MODE_CONFIG      (0x00001800)  //!< Bit mask for PMU_MISC0_STOP_MODE_CONFIG.
 
 //! @brief Get value of PMU_MISC0_STOP_MODE_CONFIG from a register value.
 #define BG_PMU_MISC0_STOP_MODE_CONFIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC0_STOP_MODE_CONFIG) >> BP_PMU_MISC0_STOP_MODE_CONFIG)
@@ -1513,22 +1513,23 @@ typedef union _hw_pmu_misc2
         unsigned RESERVED0 : 1; //!< [4] Reserved.
         unsigned REG0_ENABLE_BO : 1; //!< [5] Enables the brownout detection.
         unsigned RESERVED1 : 1; //!< [6] Reserved
-        unsigned CONTROL0 : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
+        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
         unsigned REG1_BO_OFFSET : 3; //!< [10:8] This bit field defines the brown out voltage offset for the xPU power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET Not all steps will make sense to use either because of input supply limitations or load operation.
         unsigned REG1_BO_STATUS : 1; //!< [11] Reg1 brownout status bit.
         unsigned RESERVED2 : 1; //!< [12] Reserved.
         unsigned REG1_ENABLE_BO : 1; //!< [13] Enables the brownout detection.
-        unsigned RESERVED3 : 2; //!< [15:14] Reserved.
+        unsigned RESERVED3 : 1; //!< [14] Reserved
+        unsigned AUDIO_DIV_LSB : 1; //!< [15] LSB of Audio Pll post divider two bit control: 0x0=div-by-1(default), 0x1=div-by-2, 0x2-div-by-1, 0x3=div-by-4. The output of the clock of the audio PLL should be gated prior to changing this divider to prevent glitches.
         unsigned REG2_BO_OFFSET : 3; //!< [18:16] This bit field defines the brown out voltage offset for the xPU power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET Not all steps will make sense to use either because of input supply limitations or load operation.
         unsigned REG2_BO_STATUS : 1; //!< [19] Reg2 brownout status bit.
         unsigned RESERVED4 : 1; //!< [20] Reserved.
         unsigned REG2_ENABLE_BO : 1; //!< [21] Enables the brownout detection.
         unsigned REG2_OK : 1; //!< [22] Signals that the voltage is above the brownout level for the SOC supply. 1 = regulator output > brownout_target
-        unsigned RESERVED5 : 1; //!< [23] Reserved
+        unsigned AUDIO_DIV_MSB : 1; //!< [23] MSB of 2 bit post-divider field for the Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4. The output clock of the audio PLL should be gated prior to changing this divider to prevent glitches.
         unsigned REG0_STEP_TIME : 2; //!< [25:24] Number of clock periods (24MHz clock).
         unsigned REG1_STEP_TIME : 2; //!< [27:26] Number of clock periods (24MHz clock).
         unsigned REG2_STEP_TIME : 2; //!< [29:28] Number of clock periods (24MHz clock).
-        unsigned CONTROL3 : 2; //!< [31:30] Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
     } B;
 } hw_pmu_misc2_t;
 #endif
@@ -1603,23 +1604,23 @@ typedef union _hw_pmu_misc2
 #define BW_PMU_MISC2_REG0_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG0_ENABLE_BO) | BF_PMU_MISC2_REG0_ENABLE_BO(v)))
 #endif
 
-/* --- Register HW_PMU_MISC2, field CONTROL0[7] (RW)
+/* --- Register HW_PMU_MISC2, field PLL3_DISABLE[7] (RW)
  *
  * Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
  */
 
-#define BP_PMU_MISC2_CONTROL0      (7)      //!< Bit position for PMU_MISC2_CONTROL0.
-#define BM_PMU_MISC2_CONTROL0      (0x00000080)  //!< Bit mask for PMU_MISC2_CONTROL0.
+#define BP_PMU_MISC2_PLL3_DISABLE      (7)      //!< Bit position for PMU_MISC2_PLL3_DISABLE.
+#define BM_PMU_MISC2_PLL3_DISABLE      (0x00000080)  //!< Bit mask for PMU_MISC2_PLL3_DISABLE.
 
-//! @brief Get value of PMU_MISC2_CONTROL0 from a register value.
-#define BG_PMU_MISC2_CONTROL0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_CONTROL0) >> BP_PMU_MISC2_CONTROL0)
+//! @brief Get value of PMU_MISC2_PLL3_DISABLE from a register value.
+#define BG_PMU_MISC2_PLL3_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_PLL3_DISABLE) >> BP_PMU_MISC2_PLL3_DISABLE)
 
-//! @brief Format value for bitfield PMU_MISC2_CONTROL0.
-#define BF_PMU_MISC2_CONTROL0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_CONTROL0) & BM_PMU_MISC2_CONTROL0)
+//! @brief Format value for bitfield PMU_MISC2_PLL3_DISABLE.
+#define BF_PMU_MISC2_PLL3_DISABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_PLL3_DISABLE) & BM_PMU_MISC2_PLL3_DISABLE)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CONTROL0 field to a new value.
-#define BW_PMU_MISC2_CONTROL0(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_CONTROL0) | BF_PMU_MISC2_CONTROL0(v)))
+//! @brief Set the PLL3_DISABLE field to a new value.
+#define BW_PMU_MISC2_PLL3_DISABLE(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_PLL3_DISABLE) | BF_PMU_MISC2_PLL3_DISABLE(v)))
 #endif
 
 /* --- Register HW_PMU_MISC2, field REG1_BO_OFFSET[10:8] (RO)
@@ -1673,6 +1674,27 @@ typedef union _hw_pmu_misc2
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REG1_ENABLE_BO field to a new value.
 #define BW_PMU_MISC2_REG1_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG1_ENABLE_BO) | BF_PMU_MISC2_REG1_ENABLE_BO(v)))
+#endif
+
+/* --- Register HW_PMU_MISC2, field AUDIO_DIV_LSB[15] (RW)
+ *
+ * LSB of Audio Pll post divider two bit control: 0x0=div-by-1(default), 0x1=div-by-2, 0x2-div-by-1,
+ * 0x3=div-by-4. The output of the clock of the audio PLL should be gated prior to changing this
+ * divider to prevent glitches.
+ */
+
+#define BP_PMU_MISC2_AUDIO_DIV_LSB      (15)      //!< Bit position for PMU_MISC2_AUDIO_DIV_LSB.
+#define BM_PMU_MISC2_AUDIO_DIV_LSB      (0x00008000)  //!< Bit mask for PMU_MISC2_AUDIO_DIV_LSB.
+
+//! @brief Get value of PMU_MISC2_AUDIO_DIV_LSB from a register value.
+#define BG_PMU_MISC2_AUDIO_DIV_LSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_AUDIO_DIV_LSB) >> BP_PMU_MISC2_AUDIO_DIV_LSB)
+
+//! @brief Format value for bitfield PMU_MISC2_AUDIO_DIV_LSB.
+#define BF_PMU_MISC2_AUDIO_DIV_LSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_AUDIO_DIV_LSB) & BM_PMU_MISC2_AUDIO_DIV_LSB)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AUDIO_DIV_LSB field to a new value.
+#define BW_PMU_MISC2_AUDIO_DIV_LSB(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_AUDIO_DIV_LSB) | BF_PMU_MISC2_AUDIO_DIV_LSB(v)))
 #endif
 
 /* --- Register HW_PMU_MISC2, field REG2_BO_OFFSET[18:16] (RO)
@@ -1735,6 +1757,27 @@ typedef union _hw_pmu_misc2
 
 //! @brief Get value of PMU_MISC2_REG2_OK from a register value.
 #define BG_PMU_MISC2_REG2_OK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG2_OK) >> BP_PMU_MISC2_REG2_OK)
+
+/* --- Register HW_PMU_MISC2, field AUDIO_DIV_MSB[23] (RW)
+ *
+ * MSB of 2 bit post-divider field for the Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-
+ * by-1, 0x3=div-by-4. The output clock of the audio PLL should be gated prior to changing this
+ * divider to prevent glitches.
+ */
+
+#define BP_PMU_MISC2_AUDIO_DIV_MSB      (23)      //!< Bit position for PMU_MISC2_AUDIO_DIV_MSB.
+#define BM_PMU_MISC2_AUDIO_DIV_MSB      (0x00800000)  //!< Bit mask for PMU_MISC2_AUDIO_DIV_MSB.
+
+//! @brief Get value of PMU_MISC2_AUDIO_DIV_MSB from a register value.
+#define BG_PMU_MISC2_AUDIO_DIV_MSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_AUDIO_DIV_MSB) >> BP_PMU_MISC2_AUDIO_DIV_MSB)
+
+//! @brief Format value for bitfield PMU_MISC2_AUDIO_DIV_MSB.
+#define BF_PMU_MISC2_AUDIO_DIV_MSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_AUDIO_DIV_MSB) & BM_PMU_MISC2_AUDIO_DIV_MSB)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the AUDIO_DIV_MSB field to a new value.
+#define BW_PMU_MISC2_AUDIO_DIV_MSB(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_AUDIO_DIV_MSB) | BF_PMU_MISC2_AUDIO_DIV_MSB(v)))
+#endif
 
 /* --- Register HW_PMU_MISC2, field REG0_STEP_TIME[25:24] (RW)
  *
@@ -1826,7 +1869,7 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_REG2_STEP_TIME__256_CLOCKS (0x2) //!< 256
 #define BV_PMU_MISC2_REG2_STEP_TIME__512_CLOCKS (0x3) //!< 512
 
-/* --- Register HW_PMU_MISC2, field CONTROL3[31:30] (RW)
+/* --- Register HW_PMU_MISC2, field VIDEO_DIV[31:30] (RW)
  *
  * Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing
  * this divider to prevent glitches.
@@ -1838,23 +1881,23 @@ typedef union _hw_pmu_misc2
  * DIV_BY_4 = 11 - div-by-4
  */
 
-#define BP_PMU_MISC2_CONTROL3      (30)      //!< Bit position for PMU_MISC2_CONTROL3.
-#define BM_PMU_MISC2_CONTROL3      (0xc0000000)  //!< Bit mask for PMU_MISC2_CONTROL3.
+#define BP_PMU_MISC2_VIDEO_DIV      (30)      //!< Bit position for PMU_MISC2_VIDEO_DIV.
+#define BM_PMU_MISC2_VIDEO_DIV      (0xc0000000)  //!< Bit mask for PMU_MISC2_VIDEO_DIV.
 
-//! @brief Get value of PMU_MISC2_CONTROL3 from a register value.
-#define BG_PMU_MISC2_CONTROL3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_CONTROL3) >> BP_PMU_MISC2_CONTROL3)
+//! @brief Get value of PMU_MISC2_VIDEO_DIV from a register value.
+#define BG_PMU_MISC2_VIDEO_DIV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_VIDEO_DIV) >> BP_PMU_MISC2_VIDEO_DIV)
 
-//! @brief Format value for bitfield PMU_MISC2_CONTROL3.
-#define BF_PMU_MISC2_CONTROL3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_CONTROL3) & BM_PMU_MISC2_CONTROL3)
+//! @brief Format value for bitfield PMU_MISC2_VIDEO_DIV.
+#define BF_PMU_MISC2_VIDEO_DIV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_MISC2_VIDEO_DIV) & BM_PMU_MISC2_VIDEO_DIV)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CONTROL3 field to a new value.
-#define BW_PMU_MISC2_CONTROL3(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_CONTROL3) | BF_PMU_MISC2_CONTROL3(v)))
+//! @brief Set the VIDEO_DIV field to a new value.
+#define BW_PMU_MISC2_VIDEO_DIV(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_VIDEO_DIV) | BF_PMU_MISC2_VIDEO_DIV(v)))
 #endif
 
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_1 (0x0) //!< div-by-1 (default)
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_2 (0x1) //!< div-by-2
-#define BV_PMU_MISC2_CONTROL3__DIV_BY_4 (0x3) //!< div-by-4
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_1 (0x0) //!< div-by-1 (default)
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_2 (0x1) //!< div-by-2
+#define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_4 (0x3) //!< div-by-4
 
 
 /*!

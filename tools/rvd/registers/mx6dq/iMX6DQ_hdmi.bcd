@@ -997,7 +997,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="SF":position=0:size=3:read_only=false\
       }:\
         bit_fields.B_HDMI_FC_AUDICONF1_SS={\
-        gui_name="SS":position=3:size=2:read_only=false\
+        gui_name="SS":position=4:size=2:read_only=false\
       }\
     }:Register.G_HDMI_FC_AUDICONF2={\
       gui_name="FC_AUDICONF2":start=0x00121027:length=1:\

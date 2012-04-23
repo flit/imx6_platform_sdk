@@ -70,6 +70,21 @@
 #endif
 //@}
 
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions below.
+#ifndef __REG_VALUE_TYPE
+#ifndef __LANGUAGE_ASM__
+#define __REG_VALUE_TYPE(v, t) ((t)(v))
+#else
+#define __REG_VALUE_TYPE(v, t) (v)
+#endif
+#endif
+
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_DS_ADDR - DMA System Address
+//-------------------------------------------------------------------------------------------
+
 #ifndef __LANGUAGE_ASM__
 /*!
  * @brief HW_USDHC_DS_ADDR - DMA System Address (RW)
@@ -130,20 +145,19 @@ typedef union _hw_usdhc_ds_addr
 #define BM_USDHC_DS_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for USDHC_DS_ADDR_DS_ADDR.
 
 //! @brief Get value of USDHC_DS_ADDR_DS_ADDR from a register value.
-#define BG_USDHC_DS_ADDR_DS_ADDR(r)   (((r) & BM_USDHC_DS_ADDR_DS_ADDR) >> BP_USDHC_DS_ADDR_DS_ADDR)
+#define BG_USDHC_DS_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DS_ADDR_DS_ADDR) >> BP_USDHC_DS_ADDR_DS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DS_ADDR_DS_ADDR.
-#define BF_USDHC_DS_ADDR_DS_ADDR(v)   ((((reg32_t) v) << BP_USDHC_DS_ADDR_DS_ADDR) & BM_USDHC_DS_ADDR_DS_ADDR)
-#else
-//! @brief Format value for bitfield USDHC_DS_ADDR_DS_ADDR.
-#define BF_USDHC_DS_ADDR_DS_ADDR(v)   (((v) << BP_USDHC_DS_ADDR_DS_ADDR) & BM_USDHC_DS_ADDR_DS_ADDR)
-#endif
+#define BF_USDHC_DS_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DS_ADDR_DS_ADDR) & BM_USDHC_DS_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_USDHC_DS_ADDR_DS_ADDR(x, v)   (HW_USDHC_DS_ADDR_WR(x, (HW_USDHC_DS_ADDR_RD(x) & ~BM_USDHC_DS_ADDR_DS_ADDR) | BF_USDHC_DS_ADDR_DS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_BLK_ATT - Block Attributes
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -207,15 +221,10 @@ typedef union _hw_usdhc_blk_att
 #define BM_USDHC_BLK_ATT_BLKSIZE      (0x00001fff)  //!< Bit mask for USDHC_BLK_ATT_BLKSIZE.
 
 //! @brief Get value of USDHC_BLK_ATT_BLKSIZE from a register value.
-#define BG_USDHC_BLK_ATT_BLKSIZE(r)   (((r) & BM_USDHC_BLK_ATT_BLKSIZE) >> BP_USDHC_BLK_ATT_BLKSIZE)
+#define BG_USDHC_BLK_ATT_BLKSIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_BLK_ATT_BLKSIZE) >> BP_USDHC_BLK_ATT_BLKSIZE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_BLK_ATT_BLKSIZE.
-#define BF_USDHC_BLK_ATT_BLKSIZE(v)   ((((reg32_t) v) << BP_USDHC_BLK_ATT_BLKSIZE) & BM_USDHC_BLK_ATT_BLKSIZE)
-#else
-//! @brief Format value for bitfield USDHC_BLK_ATT_BLKSIZE.
-#define BF_USDHC_BLK_ATT_BLKSIZE(v)   (((v) << BP_USDHC_BLK_ATT_BLKSIZE) & BM_USDHC_BLK_ATT_BLKSIZE)
-#endif
+#define BF_USDHC_BLK_ATT_BLKSIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_BLK_ATT_BLKSIZE) & BM_USDHC_BLK_ATT_BLKSIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BLKSIZE field to a new value.
@@ -254,21 +263,20 @@ typedef union _hw_usdhc_blk_att
 #define BM_USDHC_BLK_ATT_BLKCNT      (0xffff0000)  //!< Bit mask for USDHC_BLK_ATT_BLKCNT.
 
 //! @brief Get value of USDHC_BLK_ATT_BLKCNT from a register value.
-#define BG_USDHC_BLK_ATT_BLKCNT(r)   (((r) & BM_USDHC_BLK_ATT_BLKCNT) >> BP_USDHC_BLK_ATT_BLKCNT)
+#define BG_USDHC_BLK_ATT_BLKCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_BLK_ATT_BLKCNT) >> BP_USDHC_BLK_ATT_BLKCNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_BLK_ATT_BLKCNT.
-#define BF_USDHC_BLK_ATT_BLKCNT(v)   ((((reg32_t) v) << BP_USDHC_BLK_ATT_BLKCNT) & BM_USDHC_BLK_ATT_BLKCNT)
-#else
-//! @brief Format value for bitfield USDHC_BLK_ATT_BLKCNT.
-#define BF_USDHC_BLK_ATT_BLKCNT(v)   (((v) << BP_USDHC_BLK_ATT_BLKCNT) & BM_USDHC_BLK_ATT_BLKCNT)
-#endif
+#define BF_USDHC_BLK_ATT_BLKCNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_BLK_ATT_BLKCNT) & BM_USDHC_BLK_ATT_BLKCNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BLKCNT field to a new value.
 #define BW_USDHC_BLK_ATT_BLKCNT(x, v)   (HW_USDHC_BLK_ATT_WR(x, (HW_USDHC_BLK_ATT_RD(x) & ~BM_USDHC_BLK_ATT_BLKCNT) | BF_USDHC_BLK_ATT_BLKCNT(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_ARG - Command Argument
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -317,20 +325,19 @@ typedef union _hw_usdhc_cmd_arg
 #define BM_USDHC_CMD_ARG_CMDARG      (0xffffffff)  //!< Bit mask for USDHC_CMD_ARG_CMDARG.
 
 //! @brief Get value of USDHC_CMD_ARG_CMDARG from a register value.
-#define BG_USDHC_CMD_ARG_CMDARG(r)   (((r) & BM_USDHC_CMD_ARG_CMDARG) >> BP_USDHC_CMD_ARG_CMDARG)
+#define BG_USDHC_CMD_ARG_CMDARG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_ARG_CMDARG) >> BP_USDHC_CMD_ARG_CMDARG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_ARG_CMDARG.
-#define BF_USDHC_CMD_ARG_CMDARG(v)   ((((reg32_t) v) << BP_USDHC_CMD_ARG_CMDARG) & BM_USDHC_CMD_ARG_CMDARG)
-#else
-//! @brief Format value for bitfield USDHC_CMD_ARG_CMDARG.
-#define BF_USDHC_CMD_ARG_CMDARG(v)   (((v) << BP_USDHC_CMD_ARG_CMDARG) & BM_USDHC_CMD_ARG_CMDARG)
-#endif
+#define BF_USDHC_CMD_ARG_CMDARG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_ARG_CMDARG) & BM_USDHC_CMD_ARG_CMDARG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMDARG field to a new value.
 #define BW_USDHC_CMD_ARG_CMDARG(x, v)   (HW_USDHC_CMD_ARG_WR(x, (HW_USDHC_CMD_ARG_RD(x) & ~BM_USDHC_CMD_ARG_CMDARG) | BF_USDHC_CMD_ARG_CMDARG(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_XFR_TYP - Command Transfer Type
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -425,15 +432,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_RSPTYP      (0x00030000)  //!< Bit mask for USDHC_CMD_XFR_TYP_RSPTYP.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_RSPTYP from a register value.
-#define BG_USDHC_CMD_XFR_TYP_RSPTYP(r)   (((r) & BM_USDHC_CMD_XFR_TYP_RSPTYP) >> BP_USDHC_CMD_XFR_TYP_RSPTYP)
+#define BG_USDHC_CMD_XFR_TYP_RSPTYP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_RSPTYP) >> BP_USDHC_CMD_XFR_TYP_RSPTYP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_RSPTYP.
-#define BF_USDHC_CMD_XFR_TYP_RSPTYP(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_RSPTYP) & BM_USDHC_CMD_XFR_TYP_RSPTYP)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_RSPTYP.
-#define BF_USDHC_CMD_XFR_TYP_RSPTYP(v)   (((v) << BP_USDHC_CMD_XFR_TYP_RSPTYP) & BM_USDHC_CMD_XFR_TYP_RSPTYP)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_RSPTYP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_RSPTYP) & BM_USDHC_CMD_XFR_TYP_RSPTYP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RSPTYP field to a new value.
@@ -457,15 +459,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_CCCEN      (0x00080000)  //!< Bit mask for USDHC_CMD_XFR_TYP_CCCEN.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_CCCEN from a register value.
-#define BG_USDHC_CMD_XFR_TYP_CCCEN(r)   (((r) & BM_USDHC_CMD_XFR_TYP_CCCEN) >> BP_USDHC_CMD_XFR_TYP_CCCEN)
+#define BG_USDHC_CMD_XFR_TYP_CCCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_CCCEN) >> BP_USDHC_CMD_XFR_TYP_CCCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CCCEN.
-#define BF_USDHC_CMD_XFR_TYP_CCCEN(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_CCCEN) & BM_USDHC_CMD_XFR_TYP_CCCEN)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CCCEN.
-#define BF_USDHC_CMD_XFR_TYP_CCCEN(v)   (((v) << BP_USDHC_CMD_XFR_TYP_CCCEN) & BM_USDHC_CMD_XFR_TYP_CCCEN)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_CCCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_CCCEN) & BM_USDHC_CMD_XFR_TYP_CCCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCCEN field to a new value.
@@ -488,15 +485,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_CICEN      (0x00100000)  //!< Bit mask for USDHC_CMD_XFR_TYP_CICEN.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_CICEN from a register value.
-#define BG_USDHC_CMD_XFR_TYP_CICEN(r)   (((r) & BM_USDHC_CMD_XFR_TYP_CICEN) >> BP_USDHC_CMD_XFR_TYP_CICEN)
+#define BG_USDHC_CMD_XFR_TYP_CICEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_CICEN) >> BP_USDHC_CMD_XFR_TYP_CICEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CICEN.
-#define BF_USDHC_CMD_XFR_TYP_CICEN(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_CICEN) & BM_USDHC_CMD_XFR_TYP_CICEN)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CICEN.
-#define BF_USDHC_CMD_XFR_TYP_CICEN(v)   (((v) << BP_USDHC_CMD_XFR_TYP_CICEN) & BM_USDHC_CMD_XFR_TYP_CICEN)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_CICEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_CICEN) & BM_USDHC_CMD_XFR_TYP_CICEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CICEN field to a new value.
@@ -524,15 +516,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_DPSEL      (0x00200000)  //!< Bit mask for USDHC_CMD_XFR_TYP_DPSEL.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_DPSEL from a register value.
-#define BG_USDHC_CMD_XFR_TYP_DPSEL(r)   (((r) & BM_USDHC_CMD_XFR_TYP_DPSEL) >> BP_USDHC_CMD_XFR_TYP_DPSEL)
+#define BG_USDHC_CMD_XFR_TYP_DPSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_DPSEL) >> BP_USDHC_CMD_XFR_TYP_DPSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_DPSEL.
-#define BF_USDHC_CMD_XFR_TYP_DPSEL(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_DPSEL) & BM_USDHC_CMD_XFR_TYP_DPSEL)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_DPSEL.
-#define BF_USDHC_CMD_XFR_TYP_DPSEL(v)   (((v) << BP_USDHC_CMD_XFR_TYP_DPSEL) & BM_USDHC_CMD_XFR_TYP_DPSEL)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_DPSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_DPSEL) & BM_USDHC_CMD_XFR_TYP_DPSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DPSEL field to a new value.
@@ -571,15 +558,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_CMDTYP      (0x00c00000)  //!< Bit mask for USDHC_CMD_XFR_TYP_CMDTYP.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_CMDTYP from a register value.
-#define BG_USDHC_CMD_XFR_TYP_CMDTYP(r)   (((r) & BM_USDHC_CMD_XFR_TYP_CMDTYP) >> BP_USDHC_CMD_XFR_TYP_CMDTYP)
+#define BG_USDHC_CMD_XFR_TYP_CMDTYP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_CMDTYP) >> BP_USDHC_CMD_XFR_TYP_CMDTYP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CMDTYP.
-#define BF_USDHC_CMD_XFR_TYP_CMDTYP(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_CMDTYP) & BM_USDHC_CMD_XFR_TYP_CMDTYP)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CMDTYP.
-#define BF_USDHC_CMD_XFR_TYP_CMDTYP(v)   (((v) << BP_USDHC_CMD_XFR_TYP_CMDTYP) & BM_USDHC_CMD_XFR_TYP_CMDTYP)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_CMDTYP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_CMDTYP) & BM_USDHC_CMD_XFR_TYP_CMDTYP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMDTYP field to a new value.
@@ -598,20 +580,19 @@ typedef union _hw_usdhc_cmd_xfr_typ
 #define BM_USDHC_CMD_XFR_TYP_CMDINX      (0x3f000000)  //!< Bit mask for USDHC_CMD_XFR_TYP_CMDINX.
 
 //! @brief Get value of USDHC_CMD_XFR_TYP_CMDINX from a register value.
-#define BG_USDHC_CMD_XFR_TYP_CMDINX(r)   (((r) & BM_USDHC_CMD_XFR_TYP_CMDINX) >> BP_USDHC_CMD_XFR_TYP_CMDINX)
+#define BG_USDHC_CMD_XFR_TYP_CMDINX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_XFR_TYP_CMDINX) >> BP_USDHC_CMD_XFR_TYP_CMDINX)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CMDINX.
-#define BF_USDHC_CMD_XFR_TYP_CMDINX(v)   ((((reg32_t) v) << BP_USDHC_CMD_XFR_TYP_CMDINX) & BM_USDHC_CMD_XFR_TYP_CMDINX)
-#else
-//! @brief Format value for bitfield USDHC_CMD_XFR_TYP_CMDINX.
-#define BF_USDHC_CMD_XFR_TYP_CMDINX(v)   (((v) << BP_USDHC_CMD_XFR_TYP_CMDINX) & BM_USDHC_CMD_XFR_TYP_CMDINX)
-#endif
+#define BF_USDHC_CMD_XFR_TYP_CMDINX(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CMD_XFR_TYP_CMDINX) & BM_USDHC_CMD_XFR_TYP_CMDINX)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMDINX field to a new value.
 #define BW_USDHC_CMD_XFR_TYP_CMDINX(x, v)   (HW_USDHC_CMD_XFR_TYP_WR(x, (HW_USDHC_CMD_XFR_TYP_RD(x) & ~BM_USDHC_CMD_XFR_TYP_CMDINX) | BF_USDHC_CMD_XFR_TYP_CMDINX(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_RSP0 - Command Response0
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -655,7 +636,11 @@ typedef union _hw_usdhc_cmd_rsp0
 #define BM_USDHC_CMD_RSP0_CMDRSP0      (0xffffffff)  //!< Bit mask for USDHC_CMD_RSP0_CMDRSP0.
 
 //! @brief Get value of USDHC_CMD_RSP0_CMDRSP0 from a register value.
-#define BG_USDHC_CMD_RSP0_CMDRSP0(r)   (((r) & BM_USDHC_CMD_RSP0_CMDRSP0) >> BP_USDHC_CMD_RSP0_CMDRSP0)
+#define BG_USDHC_CMD_RSP0_CMDRSP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_RSP0_CMDRSP0) >> BP_USDHC_CMD_RSP0_CMDRSP0)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_RSP1 - Command Response1
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -699,7 +684,11 @@ typedef union _hw_usdhc_cmd_rsp1
 #define BM_USDHC_CMD_RSP1_CMDRSP1      (0xffffffff)  //!< Bit mask for USDHC_CMD_RSP1_CMDRSP1.
 
 //! @brief Get value of USDHC_CMD_RSP1_CMDRSP1 from a register value.
-#define BG_USDHC_CMD_RSP1_CMDRSP1(r)   (((r) & BM_USDHC_CMD_RSP1_CMDRSP1) >> BP_USDHC_CMD_RSP1_CMDRSP1)
+#define BG_USDHC_CMD_RSP1_CMDRSP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_RSP1_CMDRSP1) >> BP_USDHC_CMD_RSP1_CMDRSP1)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_RSP2 - Command Response2
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -743,7 +732,11 @@ typedef union _hw_usdhc_cmd_rsp2
 #define BM_USDHC_CMD_RSP2_CMDRSP2      (0xffffffff)  //!< Bit mask for USDHC_CMD_RSP2_CMDRSP2.
 
 //! @brief Get value of USDHC_CMD_RSP2_CMDRSP2 from a register value.
-#define BG_USDHC_CMD_RSP2_CMDRSP2(r)   (((r) & BM_USDHC_CMD_RSP2_CMDRSP2) >> BP_USDHC_CMD_RSP2_CMDRSP2)
+#define BG_USDHC_CMD_RSP2_CMDRSP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_RSP2_CMDRSP2) >> BP_USDHC_CMD_RSP2_CMDRSP2)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CMD_RSP3 - Command Response3
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -813,7 +806,11 @@ typedef union _hw_usdhc_cmd_rsp3
 #define BM_USDHC_CMD_RSP3_CMDRSP3      (0xffffffff)  //!< Bit mask for USDHC_CMD_RSP3_CMDRSP3.
 
 //! @brief Get value of USDHC_CMD_RSP3_CMDRSP3 from a register value.
-#define BG_USDHC_CMD_RSP3_CMDRSP3(r)   (((r) & BM_USDHC_CMD_RSP3_CMDRSP3) >> BP_USDHC_CMD_RSP3_CMDRSP3)
+#define BG_USDHC_CMD_RSP3_CMDRSP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CMD_RSP3_CMDRSP3) >> BP_USDHC_CMD_RSP3_CMDRSP3)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_DATA_BUFF_ACC_PORT - Data Buffer Access Port
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -862,20 +859,19 @@ typedef union _hw_usdhc_data_buff_acc_port
 #define BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT      (0xffffffff)  //!< Bit mask for USDHC_DATA_BUFF_ACC_PORT_DATCONT.
 
 //! @brief Get value of USDHC_DATA_BUFF_ACC_PORT_DATCONT from a register value.
-#define BG_USDHC_DATA_BUFF_ACC_PORT_DATCONT(r)   (((r) & BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT) >> BP_USDHC_DATA_BUFF_ACC_PORT_DATCONT)
+#define BG_USDHC_DATA_BUFF_ACC_PORT_DATCONT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT) >> BP_USDHC_DATA_BUFF_ACC_PORT_DATCONT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DATA_BUFF_ACC_PORT_DATCONT.
-#define BF_USDHC_DATA_BUFF_ACC_PORT_DATCONT(v)   ((((reg32_t) v) << BP_USDHC_DATA_BUFF_ACC_PORT_DATCONT) & BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT)
-#else
-//! @brief Format value for bitfield USDHC_DATA_BUFF_ACC_PORT_DATCONT.
-#define BF_USDHC_DATA_BUFF_ACC_PORT_DATCONT(v)   (((v) << BP_USDHC_DATA_BUFF_ACC_PORT_DATCONT) & BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT)
-#endif
+#define BF_USDHC_DATA_BUFF_ACC_PORT_DATCONT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DATA_BUFF_ACC_PORT_DATCONT) & BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATCONT field to a new value.
 #define BW_USDHC_DATA_BUFF_ACC_PORT_DATCONT(x, v)   (HW_USDHC_DATA_BUFF_ACC_PORT_WR(x, (HW_USDHC_DATA_BUFF_ACC_PORT_RD(x) & ~BM_USDHC_DATA_BUFF_ACC_PORT_DATCONT) | BF_USDHC_DATA_BUFF_ACC_PORT_DATCONT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_PRES_STATE - Present State
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -898,11 +894,11 @@ typedef union _hw_usdhc_pres_state
         unsigned CIHB : 1; //!< [0] Command Inhibit (CMD): If this status bit is 0, it indicates that the CMD line is not in use and the uSDHC can issue a SD/MMC Command using the CMD line. This bit is set also immediately after the Transfer Type register is written. This bit is cleared when the command response is received. Even if the Command Inhibit (DAT) is set to 1, Commands using only the CMD line can be issued if this bit is 0. Changing from 1 to 0 generates a Command Complete interrupt in the Interrupt Status register. If the uSDHC cannot issue the command because of a command conflict error (Refer to Command CRC Error) or because of a Command Not Issued By Auto CMD12 Error, this bit will remain 1 and the Command Complete is not set. The Status of issuing an Auto CMD12 does not show on this bit.
         unsigned CDIHB : 1; //!< [1] Command Inhibit (DAT): This status bit is generated if either the DAT Line Active or the Read Transfer Active is set to 1. If this bit is 0, it indicates that the uSDHC can issue the next SD/MMC Command. Commands with a busy signal belong to Command Inhibit (DAT) (e.g. R1b, R5b type). Except in the case when the command busy is finished, changing from 1 to 0 generates a Transfer Complete interrupt in the Interrupt Status register. Note: The SD Host Driver can save registers for a suspend transaction after this bit has changed from 1 to 0.
         unsigned DLA : 1; //!< [2] Data Line Active This status bit indicates whether one of the DAT lines on the SD Bus is in use. In the case of read transactions: This status indicates if a read transfer is executing on the SD Bus. Changes in this value from 1 to 0, between data blocks, generates a Block Gap Event interrupt in the Interrupt Status register. This bit will be set in either of the following cases: After the end bit of the read command. When writing a 1 to the Continue Request bit in the Protocol Control register to restart a read transfer. This bit will be cleared in either of the following cases: (1) When the end bit of the last data block is sent from the SD Bus to the uSDHC. (2) When the Read Wait state is stopped by a Suspend command and the DAT2 line is released. The uSDHC will wait at the next block gap by driving Read Wait at the start of the interrupt cycle. If the Read Wait signal is already driven (data buffer cannot receive data), the uSDHC can wait for a current block gap by continuing to drive the Read Wait signal. It is necessary to support Read Wait in order to use the suspend / resume function. This bit will remain 1 during Read Wait. In the case of write transactions: This status indicates that a write transfer is executing on the SD Bus. Changes in this value from 1 to 0 generate a Transfer Complete interrupt in the Interrupt Status register. This bit will be set in either of the following cases: After the end bit of the write command. When writing to 1 to the Continue Request bit in the Protocol Control register to continue a write transfer. This bit will be cleared in either of the following cases: When the SD card releases Write Busy of the last data block, the uSDHC will also detect if the output is not busy. If the SD card does not drive the busy signal after the CRC status is received, the uSDHC shall assume the card drive "Not Busy". When the SD card releases write busy, prior to waiting for write transfer, and as a result of a Stop At Block Gap Request. In the case of command with busy pending: This status indicates that a busy state follows the command and the data line is in use. This bit will be cleared when the DAT0 line is released.
-        unsigned SDSTB : 1; //!< [3] SD Clock Stable This status bit indicates that the internal card clock is stable. This bit is for the Host Driver to poll clock status when changing the clock frequency. It is recommended to clear SDCLKEN bit in System Control register to remove glitch on the card clock when the frequency is changing. Before changing clock divisor value(SDCLKFS or DVS), Host Driver should make sure the SDSTB bit is high.
+        unsigned SDSTB : 1; //!< [3] SD Clock Stable This status bit indicates that the internal card clock is stable. This bit is for the Host Driver to poll clock status when changing the clock frequency. It is recommended to clear FRC_SDCLK_ON bit in System Control register to remove glitch on the card clock when the frequency is changing. Before changing clock divisor value(SDCLKFS or DVS), Host Driver should make sure the SDSTB bit is high.
         unsigned IPGOFF : 1; //!< [4] ipg_clk Gated Off Internally: This status bit indicates that the ipg_clk is internally gated off. This bit is for the Host Driver to debug.
         unsigned HCKOFF : 1; //!< [5] hclk Gated Off Internally: This status bit indicates that the hclk is internally gated off. This bit is for the Host Driver to debug during a data transfer.
-        unsigned PEROFF : 1; //!< [6] ipg_perclk Gated Off Internally: This status bit indicates that the ipg_perclk is internally gated off. This bit is for the Host Driver to debug transaction on the SD bus. When INITA bit is set, uSDHC sending 80 clock cycles to the card, the SDCLKEN bit must be '1' to enable the output card clock, otherwise the ipg_perclk will never be gate off, so ipg_perclk and ipg_clk will be always active.
-        unsigned SDOFF : 1; //!< [7] SD Clock Gated Off Internally: This status bit indicates that the SD Clock is internally gated off, because of buffer over/under-run or read pause without read wait assertion, or the driver has cleared SDCLKEN bit to stop the SD clock. This bit is for the Host Driver to debug data transaction on the SD bus.
+        unsigned PEROFF : 1; //!< [6] ipg_perclk Gated Off Internally: This status bit indicates that the ipg_perclk is internally gated off. This bit is for the Host Driver to debug transaction on the SD bus. When IPG_CLK_SOFT_EN is cleared, ipg_perclk will be gated off, otherwise ipg_perclk will be always active.
+        unsigned SDOFF : 1; //!< [7] SD Clock Gated Off Internally: This status bit indicates that the SD Clock is internally gated off, because of buffer over/under-run or read pause without read wait assertion, or the driver set FRC_SDCLK_ON bit is 0 to stop the SD clock in idle status. Set IPG_PERCLK_SOFT_EN and CARD_CLK_SOFT_EN to 0 also gate off SD clock. This bit is for the Host Driver to debug data transaction on the SD bus.
         unsigned WTA : 1; //!< [8] Write Transfer Active: This status bit indicates a write transfer is active. If this bit is 0, it means no valid write data exists in the uSDHC. This bit is set in either of the following cases: After the end bit of the write command. When writing 1 to the Continue Request bit in the Protocol Control register to restart a write transfer. This bit is cleared in either of the following cases: After getting the CRC status of the last data block as specified by the transfer count (Single and Multiple). After getting the CRC status of any block where data transmission is about to be stopped by a Stop At Block Gap Request. During a write transaction, a Block Gap Event interrupt is generated when this bit is changed to 0, as result of the Stop At Block Gap Request being set. This status is useful for the Host Driver in determining when to issue commands during Write Busy state.
         unsigned RTA : 1; //!< [9] Read Transfer Active: This status bit is used for detecting completion of a read transfer. This bit is set for either of the following conditions: After the end bit of the read command. When writing a 1 to the Continue Request bit in the Protocol Control register to restart a read transfer. A Transfer Complete interrupt is generated when this bit changes to 0. This bit is cleared for either of the following conditions: When the last data block as specified by block length is transferred to the System, i.e. all data are read away from uSDHC internal buffer. When all valid data blocks have been transferred from uSDHC internal buffer to the System and no current block transfers are being sent as a result of the Stop At Block Gap Request being set to 1.
         unsigned BWEN : 1; //!< [10] Buffer Write Enable: This status bit is used for non-DMA write transfers. The uSDHC implements an internal buffer to transfer data efficiently. This read only flag indicates if space is available for write data. If this bit is 1, valid data greater than the watermark level can be written to the buffer. A change of this bit from 1 to 0 occurs when some writes to the buffer(write DATPORT(Base + 0x20)) are made and the buffer hasn't valid space greater than the watermake level. . A change of this bit from 0 to 1 occurs when the buffer can hold valid data greater than the write watermark level and the Buffer Write Ready interrupt is generated and enabled.
@@ -911,8 +907,8 @@ typedef union _hw_usdhc_pres_state
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
         unsigned CINST : 1; //!< [16] Card Inserted: This bit indicates whether a card has been inserted. The uSDHC debounces this signal so that the Host Driver will not need to wait for it to stabilize. Changing from a 0 to 1 generates a Card Insertion interrupt in the Interrupt Status register. Changing from a 1 to 0 generates a Card Removal interrupt in the Interrupt Status register. A write to the Force Event Register does not effect this bit. The Software Reset For All in the System Control register does not effect this bit.A software reset does not effect this bit.
         unsigned RESERVED1 : 1; //!< [17] Reserved
-        unsigned CDPL : 1; //!< [18] Card Detect Pin Level: This bit reflects the inverse value of the SD_CD# pin for the card socket. Debouncing is not performed on this bit. This bit may be valid, but is not guaranteed, because of propagation delay. Use of this bit is limited to testing since it must be debounced by software. A software reset does not effect this bit. A write to the Force Event Register does not effect this bit. The reset value is effected by the external card detection pin. This bit shows the value on the SD_CD# pin (i.e. when a card is inserted in the socket, it is 0 on the SD_CD# input, and consequently the CDPL reads 1.)
-        unsigned WPSPL : 1; //!< [19] Write Protect Switch Pin Level: The Write Protect Switch is supported for memory and combo cards.This bit reflects the inverted value of the SD_WP pin of the card socket. A software reset does not affect this bit. The reset value is effected by the external write protect switch. If the SD_WP pin is not used, it should be tied low, so that the reset value of this bit is high and write is enabled.
+        unsigned CDPL : 1; //!< [18] Card Detect Pin Level: This bit reflects the inverse value of the CD# pin for the card socket. Debouncing is not performed on this bit. This bit may be valid, but is not guaranteed, because of propagation delay. Use of this bit is limited to testing since it must be debounced by software. A software reset does not effect this bit. A write to the Force Event Register does not effect this bit. The reset value is effected by the external card detection pin. This bit shows the value on the CD# pin (i.e. when a card is inserted in the socket, it is 0 on the CD# input, and consequently the CDPL reads 1.)
+        unsigned WPSPL : 1; //!< [19] Write Protect Switch Pin Level: The Write Protect Switch is supported for memory and combo cards.This bit reflects the inverted value of the WP pin of the card socket. A software reset does not affect this bit. The reset value is effected by the external write protect switch. If the WP pin is not used, it should be tied low, so that the reset value of this bit is high and write is enabled.
         unsigned RESERVED2 : 3; //!< [22:20] Reserved
         unsigned CLSL : 1; //!< [23] CMD Line Signal Level: This status is used to check the CMD line level to recover from errors, and for debugging. The reset value is effected by the external pull-up/pull-down resistor, by default, the read value of this bit after reset is 1'b1, when the command line is pulled up.
         unsigned DLSL : 8; //!< [31:24] DAT[7:0] Line Signal Level: This status is used to check the DAT line level to recover from errors, and for debugging.This is especially useful in detecting the busy signal level from DAT[0]. The reset value is effected by the external pull-up/pull-down resistors. By default, the read value of this bit field after reset is 8'b11110111, when DAT[3] is pulled down and the other lines are pulled up. DAT[7]: Data 7 line signal level DAT[6]: Data 6 line signal level DAT[5]: Data 5 line signal level DAT[4]: Data 4 line signal level DAT[3]: Data 3 line signal level DAT[2]: Data 2 line signal level DAT[1]: Data 1 line signal level DAT[0]: Data 0 line signal level
@@ -955,7 +951,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_CIHB      (0x00000001)  //!< Bit mask for USDHC_PRES_STATE_CIHB.
 
 //! @brief Get value of USDHC_PRES_STATE_CIHB from a register value.
-#define BG_USDHC_PRES_STATE_CIHB(r)   (((r) & BM_USDHC_PRES_STATE_CIHB) >> BP_USDHC_PRES_STATE_CIHB)
+#define BG_USDHC_PRES_STATE_CIHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_CIHB) >> BP_USDHC_PRES_STATE_CIHB)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field CDIHB[1] (RO)
@@ -976,7 +972,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_CDIHB      (0x00000002)  //!< Bit mask for USDHC_PRES_STATE_CDIHB.
 
 //! @brief Get value of USDHC_PRES_STATE_CDIHB from a register value.
-#define BG_USDHC_PRES_STATE_CDIHB(r)   (((r) & BM_USDHC_PRES_STATE_CDIHB) >> BP_USDHC_PRES_STATE_CDIHB)
+#define BG_USDHC_PRES_STATE_CDIHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_CDIHB) >> BP_USDHC_PRES_STATE_CDIHB)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field DLA[2] (RO)
@@ -1015,14 +1011,14 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_DLA      (0x00000004)  //!< Bit mask for USDHC_PRES_STATE_DLA.
 
 //! @brief Get value of USDHC_PRES_STATE_DLA from a register value.
-#define BG_USDHC_PRES_STATE_DLA(r)   (((r) & BM_USDHC_PRES_STATE_DLA) >> BP_USDHC_PRES_STATE_DLA)
+#define BG_USDHC_PRES_STATE_DLA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_DLA) >> BP_USDHC_PRES_STATE_DLA)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field SDSTB[3] (RO)
  *
  * SD Clock Stable This status bit indicates that the internal card clock is stable. This bit is for
  * the Host Driver to poll clock status when changing the clock frequency. It is recommended to
- * clear SDCLKEN bit in System Control register to remove glitch on the card clock when the
+ * clear FRC_SDCLK_ON bit in System Control register to remove glitch on the card clock when the
  * frequency is changing. Before changing clock divisor value(SDCLKFS or DVS), Host Driver should
  * make sure the SDSTB bit is high.
  *
@@ -1035,7 +1031,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_SDSTB      (0x00000008)  //!< Bit mask for USDHC_PRES_STATE_SDSTB.
 
 //! @brief Get value of USDHC_PRES_STATE_SDSTB from a register value.
-#define BG_USDHC_PRES_STATE_SDSTB(r)   (((r) & BM_USDHC_PRES_STATE_SDSTB) >> BP_USDHC_PRES_STATE_SDSTB)
+#define BG_USDHC_PRES_STATE_SDSTB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_SDSTB) >> BP_USDHC_PRES_STATE_SDSTB)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field IPGOFF[4] (RO)
@@ -1052,7 +1048,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_IPGOFF      (0x00000010)  //!< Bit mask for USDHC_PRES_STATE_IPGOFF.
 
 //! @brief Get value of USDHC_PRES_STATE_IPGOFF from a register value.
-#define BG_USDHC_PRES_STATE_IPGOFF(r)   (((r) & BM_USDHC_PRES_STATE_IPGOFF) >> BP_USDHC_PRES_STATE_IPGOFF)
+#define BG_USDHC_PRES_STATE_IPGOFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_IPGOFF) >> BP_USDHC_PRES_STATE_IPGOFF)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field HCKOFF[5] (RO)
@@ -1069,16 +1065,15 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_HCKOFF      (0x00000020)  //!< Bit mask for USDHC_PRES_STATE_HCKOFF.
 
 //! @brief Get value of USDHC_PRES_STATE_HCKOFF from a register value.
-#define BG_USDHC_PRES_STATE_HCKOFF(r)   (((r) & BM_USDHC_PRES_STATE_HCKOFF) >> BP_USDHC_PRES_STATE_HCKOFF)
+#define BG_USDHC_PRES_STATE_HCKOFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_HCKOFF) >> BP_USDHC_PRES_STATE_HCKOFF)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field PEROFF[6] (RO)
  *
  * ipg_perclk Gated Off Internally: This status bit indicates that the ipg_perclk is internally
- * gated off. This bit is for the Host Driver to debug transaction on the SD bus. When INITA bit is
- * set, uSDHC sending 80 clock cycles to the card, the SDCLKEN bit must be '1' to enable the output
- * card clock, otherwise the ipg_perclk will never be gate off, so ipg_perclk and ipg_clk will be
- * always active.
+ * gated off. This bit is for the Host Driver to debug transaction on the SD bus. When
+ * IPG_CLK_SOFT_EN is cleared, ipg_perclk will be gated off, otherwise ipg_perclk will be always
+ * active.
  *
  * Values:
  * 0 - ipg_perclk is active
@@ -1089,14 +1084,15 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_PEROFF      (0x00000040)  //!< Bit mask for USDHC_PRES_STATE_PEROFF.
 
 //! @brief Get value of USDHC_PRES_STATE_PEROFF from a register value.
-#define BG_USDHC_PRES_STATE_PEROFF(r)   (((r) & BM_USDHC_PRES_STATE_PEROFF) >> BP_USDHC_PRES_STATE_PEROFF)
+#define BG_USDHC_PRES_STATE_PEROFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_PEROFF) >> BP_USDHC_PRES_STATE_PEROFF)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field SDOFF[7] (RO)
  *
  * SD Clock Gated Off Internally: This status bit indicates that the SD Clock is internally gated
  * off, because of buffer over/under-run or read pause without read wait assertion, or the driver
- * has cleared SDCLKEN bit to stop the SD clock. This bit is for the Host Driver to debug data
+ * set FRC_SDCLK_ON bit is 0 to stop the SD clock in idle status. Set IPG_PERCLK_SOFT_EN and
+ * CARD_CLK_SOFT_EN to 0 also gate off SD clock. This bit is for the Host Driver to debug data
  * transaction on the SD bus.
  *
  * Values:
@@ -1108,7 +1104,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_SDOFF      (0x00000080)  //!< Bit mask for USDHC_PRES_STATE_SDOFF.
 
 //! @brief Get value of USDHC_PRES_STATE_SDOFF from a register value.
-#define BG_USDHC_PRES_STATE_SDOFF(r)   (((r) & BM_USDHC_PRES_STATE_SDOFF) >> BP_USDHC_PRES_STATE_SDOFF)
+#define BG_USDHC_PRES_STATE_SDOFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_SDOFF) >> BP_USDHC_PRES_STATE_SDOFF)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field WTA[8] (RO)
@@ -1133,7 +1129,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_WTA      (0x00000100)  //!< Bit mask for USDHC_PRES_STATE_WTA.
 
 //! @brief Get value of USDHC_PRES_STATE_WTA from a register value.
-#define BG_USDHC_PRES_STATE_WTA(r)   (((r) & BM_USDHC_PRES_STATE_WTA) >> BP_USDHC_PRES_STATE_WTA)
+#define BG_USDHC_PRES_STATE_WTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_WTA) >> BP_USDHC_PRES_STATE_WTA)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field RTA[9] (RO)
@@ -1157,7 +1153,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_RTA      (0x00000200)  //!< Bit mask for USDHC_PRES_STATE_RTA.
 
 //! @brief Get value of USDHC_PRES_STATE_RTA from a register value.
-#define BG_USDHC_PRES_STATE_RTA(r)   (((r) & BM_USDHC_PRES_STATE_RTA) >> BP_USDHC_PRES_STATE_RTA)
+#define BG_USDHC_PRES_STATE_RTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_RTA) >> BP_USDHC_PRES_STATE_RTA)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field BWEN[10] (RO)
@@ -1179,7 +1175,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_BWEN      (0x00000400)  //!< Bit mask for USDHC_PRES_STATE_BWEN.
 
 //! @brief Get value of USDHC_PRES_STATE_BWEN from a register value.
-#define BG_USDHC_PRES_STATE_BWEN(r)   (((r) & BM_USDHC_PRES_STATE_BWEN) >> BP_USDHC_PRES_STATE_BWEN)
+#define BG_USDHC_PRES_STATE_BWEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_BWEN) >> BP_USDHC_PRES_STATE_BWEN)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field BREN[11] (RO)
@@ -1201,7 +1197,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_BREN      (0x00000800)  //!< Bit mask for USDHC_PRES_STATE_BREN.
 
 //! @brief Get value of USDHC_PRES_STATE_BREN from a register value.
-#define BG_USDHC_PRES_STATE_BREN(r)   (((r) & BM_USDHC_PRES_STATE_BREN) >> BP_USDHC_PRES_STATE_BREN)
+#define BG_USDHC_PRES_STATE_BREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_BREN) >> BP_USDHC_PRES_STATE_BREN)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field RTR[12] (RO)
@@ -1223,7 +1219,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_RTR      (0x00001000)  //!< Bit mask for USDHC_PRES_STATE_RTR.
 
 //! @brief Get value of USDHC_PRES_STATE_RTR from a register value.
-#define BG_USDHC_PRES_STATE_RTR(r)   (((r) & BM_USDHC_PRES_STATE_RTR) >> BP_USDHC_PRES_STATE_RTR)
+#define BG_USDHC_PRES_STATE_RTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_RTR) >> BP_USDHC_PRES_STATE_RTR)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field CINST[16] (RO)
@@ -1244,49 +1240,49 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_CINST      (0x00010000)  //!< Bit mask for USDHC_PRES_STATE_CINST.
 
 //! @brief Get value of USDHC_PRES_STATE_CINST from a register value.
-#define BG_USDHC_PRES_STATE_CINST(r)   (((r) & BM_USDHC_PRES_STATE_CINST) >> BP_USDHC_PRES_STATE_CINST)
+#define BG_USDHC_PRES_STATE_CINST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_CINST) >> BP_USDHC_PRES_STATE_CINST)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field CDPL[18] (RO)
  *
- * Card Detect Pin Level: This bit reflects the inverse value of the SD_CD# pin for the card socket.
+ * Card Detect Pin Level: This bit reflects the inverse value of the CD# pin for the card socket.
  * Debouncing is not performed on this bit. This bit may be valid, but is not guaranteed, because of
  * propagation delay. Use of this bit is limited to testing since it must be debounced by software.
  * A software reset does not effect this bit. A write to the Force Event Register does not effect
  * this bit. The reset value is effected by the external card detection pin. This bit shows the
- * value on the SD_CD# pin (i.e. when a card is inserted in the socket, it is 0 on the SD_CD# input,
- * and consequently the CDPL reads 1.)
+ * value on the CD# pin (i.e. when a card is inserted in the socket, it is 0 on the CD# input, and
+ * consequently the CDPL reads 1.)
  *
  * Values:
- * 0 - No card present (SD_CD#=1)
- * 1 - Card present (SD_CD#=0)
+ * 0 - No card present (CD#=1)
+ * 1 - Card present (CD#=0)
  */
 
 #define BP_USDHC_PRES_STATE_CDPL      (18)      //!< Bit position for USDHC_PRES_STATE_CDPL.
 #define BM_USDHC_PRES_STATE_CDPL      (0x00040000)  //!< Bit mask for USDHC_PRES_STATE_CDPL.
 
 //! @brief Get value of USDHC_PRES_STATE_CDPL from a register value.
-#define BG_USDHC_PRES_STATE_CDPL(r)   (((r) & BM_USDHC_PRES_STATE_CDPL) >> BP_USDHC_PRES_STATE_CDPL)
+#define BG_USDHC_PRES_STATE_CDPL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_CDPL) >> BP_USDHC_PRES_STATE_CDPL)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field WPSPL[19] (RO)
  *
  * Write Protect Switch Pin Level: The Write Protect Switch is supported for memory and combo
- * cards.This bit reflects the inverted value of the SD_WP pin of the card socket. A software reset
+ * cards.This bit reflects the inverted value of the WP pin of the card socket. A software reset
  * does not affect this bit. The reset value is effected by the external write protect switch. If
- * the SD_WP pin is not used, it should be tied low, so that the reset value of this bit is high and
+ * the WP pin is not used, it should be tied low, so that the reset value of this bit is high and
  * write is enabled.
  *
  * Values:
- * 0 - Write protected (SD_WP=1)
- * 1 - Write enabled (SD_WP=0)
+ * 0 - Write protected (WP=1)
+ * 1 - Write enabled (WP=0)
  */
 
 #define BP_USDHC_PRES_STATE_WPSPL      (19)      //!< Bit position for USDHC_PRES_STATE_WPSPL.
 #define BM_USDHC_PRES_STATE_WPSPL      (0x00080000)  //!< Bit mask for USDHC_PRES_STATE_WPSPL.
 
 //! @brief Get value of USDHC_PRES_STATE_WPSPL from a register value.
-#define BG_USDHC_PRES_STATE_WPSPL(r)   (((r) & BM_USDHC_PRES_STATE_WPSPL) >> BP_USDHC_PRES_STATE_WPSPL)
+#define BG_USDHC_PRES_STATE_WPSPL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_WPSPL) >> BP_USDHC_PRES_STATE_WPSPL)
 
 
 /* --- Register HW_USDHC_PRES_STATE, field CLSL[23] (RO)
@@ -1300,7 +1296,7 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_CLSL      (0x00800000)  //!< Bit mask for USDHC_PRES_STATE_CLSL.
 
 //! @brief Get value of USDHC_PRES_STATE_CLSL from a register value.
-#define BG_USDHC_PRES_STATE_CLSL(r)   (((r) & BM_USDHC_PRES_STATE_CLSL) >> BP_USDHC_PRES_STATE_CLSL)
+#define BG_USDHC_PRES_STATE_CLSL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_CLSL) >> BP_USDHC_PRES_STATE_CLSL)
 
 /* --- Register HW_USDHC_PRES_STATE, field DLSL[31:24] (RO)
  *
@@ -1318,7 +1314,11 @@ typedef union _hw_usdhc_pres_state
 #define BM_USDHC_PRES_STATE_DLSL      (0xff000000)  //!< Bit mask for USDHC_PRES_STATE_DLSL.
 
 //! @brief Get value of USDHC_PRES_STATE_DLSL from a register value.
-#define BG_USDHC_PRES_STATE_DLSL(r)   (((r) & BM_USDHC_PRES_STATE_DLSL) >> BP_USDHC_PRES_STATE_DLSL)
+#define BG_USDHC_PRES_STATE_DLSL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PRES_STATE_DLSL) >> BP_USDHC_PRES_STATE_DLSL)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_PROT_CTRL - Protocol Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -1356,9 +1356,9 @@ typedef union _hw_usdhc_prot_ctrl
         unsigned IABG : 1; //!< [19] Interrupt At Block Gap: This bit is valid only in 4-bit mode, of the SDIO card, and selects a sample point in the interrupt cycle. Setting to 1 enables interrupt detection at the block gap for a multiple block transfer. Setting to 0 disables interrupt detection during a multiple block transfer. If the SDIO card can't signal an interrupt during a multiple block transfer, this bit should be set to 0 to avoid an inadvertent interrupt. When the Host Driver detects an SDIO card insertion, it shall set this bit according to the CCCR of the card.
         unsigned RD_DONE_NO_8CLK : 1; //!< [20] Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block. So, by default(RD_DONE_NO_8CLK=0), 8 clocks will be active after the end bit of the last read data transaction. However, this 8 clocks should not be active if user wants to use stop at block gap(include the auto stop at block gap in boot mode) feature for read and the RWCTL bit(bit18) is not enabled. In this case, software should set RD_DONE_NO_8CLK to avoid this 8 clocks. Otherwise, the device may send extra data to uSDHC while uSDHC ignores these data. In a summary, this bit should be set only if the use case needs to use stop at block gap feature while the device can't support the read wait feature.
         unsigned RD_WAIT_POINT : 3; //!< [23:21] Read wait point : This is only for debug purpose. As a Host controller, uSDHC should pause the SDHC_CLK or assert the DAT[2](if read wait feature is supported by the device) to avoid the device to send extra data. The SDHC_CLK should be paused or the DAT[2] should be asserted in two clock cycles after the end bit of the last transaction. Meanwhile, because the uSDHC controller has async FIFO between the card interface and the internal state machine, we need this "Read wait point" configuration to overcome the latency which is introduced by this async FIFO. The default value is 0x4, which should be accurately overcome the latency.
-        unsigned WECINT : 1; //!< [24] Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register. This bit can be set to 1 if FN_WUS (Wake Up Support) in CIS is set to 1. When this bit is set, the Card Interrupt Status and the uSDHC interrupt can be asserted without SD_CLK toggling. When the wakeup feature is not enabled, the SD_CLK must be active in order to assert the Card Interrupt Status and the uSDHC interrupt.
-        unsigned WECINS : 1; //!< [25] Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Insertion Status and the uSDHC interrupt can be asserted without SD_CLK toggling. When the wakeup feature is not enabled, the SD_CLK must be active in order to assert the Card Insertion Status and the uSDHC interrupt.
-        unsigned WECRM : 1; //!< [26] Wakeup Event Enable On SD Card Removal: This bit enables a wakeup event, via a Card Removal, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Removal Status and the uSDHC interrupt can be asserted without SD_CLK toggling. When the wakeup feature is not enabled, the SD_CLK must be active in order to assert the Card Removal Status and the uSDHC interrupt.
+        unsigned WECINT : 1; //!< [24] Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register. This bit can be set to 1 if FN_WUS (Wake Up Support) in CIS is set to 1. When this bit is set, the Card Interrupt Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Interrupt Status and the uSDHC interrupt.
+        unsigned WECINS : 1; //!< [25] Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Insertion Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Insertion Status and the uSDHC interrupt.
+        unsigned WECRM : 1; //!< [26] Wakeup Event Enable On SD Card Removal: This bit enables a wakeup event, via a Card Removal, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Removal Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Removal Status and the uSDHC interrupt.
         unsigned BURST_LEN_EN : 3; //!< [29:27] BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge. It's useful especially for INCR transfer because without burst length indicator, the AHB2AXI bridge doesn't know the burst length in advance. Without burst length indicator, AHB INCR transfers can only be converted to SINGLEs in AXI side.
         unsigned NON_EXACT_BLK_RD : 1; //!< [30] Current block read is non-exact block read. It's only used for SDIO.
         unsigned RD_NO8CLK_EN : 1; //!< [31] Only for debug. enable S/W RD_DONE_NO_8CLK bit
@@ -1401,15 +1401,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_LCTL      (0x00000001)  //!< Bit mask for USDHC_PROT_CTRL_LCTL.
 
 //! @brief Get value of USDHC_PROT_CTRL_LCTL from a register value.
-#define BG_USDHC_PROT_CTRL_LCTL(r)   (((r) & BM_USDHC_PROT_CTRL_LCTL) >> BP_USDHC_PROT_CTRL_LCTL)
+#define BG_USDHC_PROT_CTRL_LCTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_LCTL) >> BP_USDHC_PROT_CTRL_LCTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_LCTL.
-#define BF_USDHC_PROT_CTRL_LCTL(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_LCTL) & BM_USDHC_PROT_CTRL_LCTL)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_LCTL.
-#define BF_USDHC_PROT_CTRL_LCTL(v)   (((v) << BP_USDHC_PROT_CTRL_LCTL) & BM_USDHC_PROT_CTRL_LCTL)
-#endif
+#define BF_USDHC_PROT_CTRL_LCTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_LCTL) & BM_USDHC_PROT_CTRL_LCTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LCTL field to a new value.
@@ -1434,15 +1429,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_DTW      (0x00000006)  //!< Bit mask for USDHC_PROT_CTRL_DTW.
 
 //! @brief Get value of USDHC_PROT_CTRL_DTW from a register value.
-#define BG_USDHC_PROT_CTRL_DTW(r)   (((r) & BM_USDHC_PROT_CTRL_DTW) >> BP_USDHC_PROT_CTRL_DTW)
+#define BG_USDHC_PROT_CTRL_DTW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_DTW) >> BP_USDHC_PROT_CTRL_DTW)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_DTW.
-#define BF_USDHC_PROT_CTRL_DTW(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_DTW) & BM_USDHC_PROT_CTRL_DTW)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_DTW.
-#define BF_USDHC_PROT_CTRL_DTW(v)   (((v) << BP_USDHC_PROT_CTRL_DTW) & BM_USDHC_PROT_CTRL_DTW)
-#endif
+#define BF_USDHC_PROT_CTRL_DTW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_DTW) & BM_USDHC_PROT_CTRL_DTW)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTW field to a new value.
@@ -1466,15 +1456,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_D3CD      (0x00000008)  //!< Bit mask for USDHC_PROT_CTRL_D3CD.
 
 //! @brief Get value of USDHC_PROT_CTRL_D3CD from a register value.
-#define BG_USDHC_PROT_CTRL_D3CD(r)   (((r) & BM_USDHC_PROT_CTRL_D3CD) >> BP_USDHC_PROT_CTRL_D3CD)
+#define BG_USDHC_PROT_CTRL_D3CD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_D3CD) >> BP_USDHC_PROT_CTRL_D3CD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_D3CD.
-#define BF_USDHC_PROT_CTRL_D3CD(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_D3CD) & BM_USDHC_PROT_CTRL_D3CD)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_D3CD.
-#define BF_USDHC_PROT_CTRL_D3CD(v)   (((v) << BP_USDHC_PROT_CTRL_D3CD) & BM_USDHC_PROT_CTRL_D3CD)
-#endif
+#define BF_USDHC_PROT_CTRL_D3CD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_D3CD) & BM_USDHC_PROT_CTRL_D3CD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the D3CD field to a new value.
@@ -1498,15 +1483,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_EMODE      (0x00000030)  //!< Bit mask for USDHC_PROT_CTRL_EMODE.
 
 //! @brief Get value of USDHC_PROT_CTRL_EMODE from a register value.
-#define BG_USDHC_PROT_CTRL_EMODE(r)   (((r) & BM_USDHC_PROT_CTRL_EMODE) >> BP_USDHC_PROT_CTRL_EMODE)
+#define BG_USDHC_PROT_CTRL_EMODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_EMODE) >> BP_USDHC_PROT_CTRL_EMODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_EMODE.
-#define BF_USDHC_PROT_CTRL_EMODE(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_EMODE) & BM_USDHC_PROT_CTRL_EMODE)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_EMODE.
-#define BF_USDHC_PROT_CTRL_EMODE(v)   (((v) << BP_USDHC_PROT_CTRL_EMODE) & BM_USDHC_PROT_CTRL_EMODE)
-#endif
+#define BF_USDHC_PROT_CTRL_EMODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_EMODE) & BM_USDHC_PROT_CTRL_EMODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EMODE field to a new value.
@@ -1528,15 +1508,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_CDTL      (0x00000040)  //!< Bit mask for USDHC_PROT_CTRL_CDTL.
 
 //! @brief Get value of USDHC_PROT_CTRL_CDTL from a register value.
-#define BG_USDHC_PROT_CTRL_CDTL(r)   (((r) & BM_USDHC_PROT_CTRL_CDTL) >> BP_USDHC_PROT_CTRL_CDTL)
+#define BG_USDHC_PROT_CTRL_CDTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_CDTL) >> BP_USDHC_PROT_CTRL_CDTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_CDTL.
-#define BF_USDHC_PROT_CTRL_CDTL(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_CDTL) & BM_USDHC_PROT_CTRL_CDTL)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_CDTL.
-#define BF_USDHC_PROT_CTRL_CDTL(v)   (((v) << BP_USDHC_PROT_CTRL_CDTL) & BM_USDHC_PROT_CTRL_CDTL)
-#endif
+#define BF_USDHC_PROT_CTRL_CDTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_CDTL) & BM_USDHC_PROT_CTRL_CDTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CDTL field to a new value.
@@ -1557,15 +1532,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_CDSS      (0x00000080)  //!< Bit mask for USDHC_PROT_CTRL_CDSS.
 
 //! @brief Get value of USDHC_PROT_CTRL_CDSS from a register value.
-#define BG_USDHC_PROT_CTRL_CDSS(r)   (((r) & BM_USDHC_PROT_CTRL_CDSS) >> BP_USDHC_PROT_CTRL_CDSS)
+#define BG_USDHC_PROT_CTRL_CDSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_CDSS) >> BP_USDHC_PROT_CTRL_CDSS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_CDSS.
-#define BF_USDHC_PROT_CTRL_CDSS(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_CDSS) & BM_USDHC_PROT_CTRL_CDSS)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_CDSS.
-#define BF_USDHC_PROT_CTRL_CDSS(v)   (((v) << BP_USDHC_PROT_CTRL_CDSS) & BM_USDHC_PROT_CTRL_CDSS)
-#endif
+#define BF_USDHC_PROT_CTRL_CDSS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_CDSS) & BM_USDHC_PROT_CTRL_CDSS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CDSS field to a new value.
@@ -1589,15 +1559,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_DMASEL      (0x00000300)  //!< Bit mask for USDHC_PROT_CTRL_DMASEL.
 
 //! @brief Get value of USDHC_PROT_CTRL_DMASEL from a register value.
-#define BG_USDHC_PROT_CTRL_DMASEL(r)   (((r) & BM_USDHC_PROT_CTRL_DMASEL) >> BP_USDHC_PROT_CTRL_DMASEL)
+#define BG_USDHC_PROT_CTRL_DMASEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_DMASEL) >> BP_USDHC_PROT_CTRL_DMASEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_DMASEL.
-#define BF_USDHC_PROT_CTRL_DMASEL(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_DMASEL) & BM_USDHC_PROT_CTRL_DMASEL)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_DMASEL.
-#define BF_USDHC_PROT_CTRL_DMASEL(v)   (((v) << BP_USDHC_PROT_CTRL_DMASEL) & BM_USDHC_PROT_CTRL_DMASEL)
-#endif
+#define BF_USDHC_PROT_CTRL_DMASEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_DMASEL) & BM_USDHC_PROT_CTRL_DMASEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMASEL field to a new value.
@@ -1632,15 +1597,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_SABGREQ      (0x00010000)  //!< Bit mask for USDHC_PROT_CTRL_SABGREQ.
 
 //! @brief Get value of USDHC_PROT_CTRL_SABGREQ from a register value.
-#define BG_USDHC_PROT_CTRL_SABGREQ(r)   (((r) & BM_USDHC_PROT_CTRL_SABGREQ) >> BP_USDHC_PROT_CTRL_SABGREQ)
+#define BG_USDHC_PROT_CTRL_SABGREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_SABGREQ) >> BP_USDHC_PROT_CTRL_SABGREQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_SABGREQ.
-#define BF_USDHC_PROT_CTRL_SABGREQ(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_SABGREQ) & BM_USDHC_PROT_CTRL_SABGREQ)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_SABGREQ.
-#define BF_USDHC_PROT_CTRL_SABGREQ(v)   (((v) << BP_USDHC_PROT_CTRL_SABGREQ) & BM_USDHC_PROT_CTRL_SABGREQ)
-#endif
+#define BF_USDHC_PROT_CTRL_SABGREQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_SABGREQ) & BM_USDHC_PROT_CTRL_SABGREQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SABGREQ field to a new value.
@@ -1666,15 +1626,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_CREQ      (0x00020000)  //!< Bit mask for USDHC_PROT_CTRL_CREQ.
 
 //! @brief Get value of USDHC_PROT_CTRL_CREQ from a register value.
-#define BG_USDHC_PROT_CTRL_CREQ(r)   (((r) & BM_USDHC_PROT_CTRL_CREQ) >> BP_USDHC_PROT_CTRL_CREQ)
+#define BG_USDHC_PROT_CTRL_CREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_CREQ) >> BP_USDHC_PROT_CTRL_CREQ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_CREQ.
-#define BF_USDHC_PROT_CTRL_CREQ(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_CREQ) & BM_USDHC_PROT_CTRL_CREQ)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_CREQ.
-#define BF_USDHC_PROT_CTRL_CREQ(v)   (((v) << BP_USDHC_PROT_CTRL_CREQ) & BM_USDHC_PROT_CTRL_CREQ)
-#endif
+#define BF_USDHC_PROT_CTRL_CREQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_CREQ) & BM_USDHC_PROT_CTRL_CREQ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CREQ field to a new value.
@@ -1702,15 +1657,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_RWCTL      (0x00040000)  //!< Bit mask for USDHC_PROT_CTRL_RWCTL.
 
 //! @brief Get value of USDHC_PROT_CTRL_RWCTL from a register value.
-#define BG_USDHC_PROT_CTRL_RWCTL(r)   (((r) & BM_USDHC_PROT_CTRL_RWCTL) >> BP_USDHC_PROT_CTRL_RWCTL)
+#define BG_USDHC_PROT_CTRL_RWCTL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_RWCTL) >> BP_USDHC_PROT_CTRL_RWCTL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_RWCTL.
-#define BF_USDHC_PROT_CTRL_RWCTL(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_RWCTL) & BM_USDHC_PROT_CTRL_RWCTL)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_RWCTL.
-#define BF_USDHC_PROT_CTRL_RWCTL(v)   (((v) << BP_USDHC_PROT_CTRL_RWCTL) & BM_USDHC_PROT_CTRL_RWCTL)
-#endif
+#define BF_USDHC_PROT_CTRL_RWCTL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_RWCTL) & BM_USDHC_PROT_CTRL_RWCTL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RWCTL field to a new value.
@@ -1736,15 +1686,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_IABG      (0x00080000)  //!< Bit mask for USDHC_PROT_CTRL_IABG.
 
 //! @brief Get value of USDHC_PROT_CTRL_IABG from a register value.
-#define BG_USDHC_PROT_CTRL_IABG(r)   (((r) & BM_USDHC_PROT_CTRL_IABG) >> BP_USDHC_PROT_CTRL_IABG)
+#define BG_USDHC_PROT_CTRL_IABG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_IABG) >> BP_USDHC_PROT_CTRL_IABG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_IABG.
-#define BF_USDHC_PROT_CTRL_IABG(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_IABG) & BM_USDHC_PROT_CTRL_IABG)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_IABG.
-#define BF_USDHC_PROT_CTRL_IABG(v)   (((v) << BP_USDHC_PROT_CTRL_IABG) & BM_USDHC_PROT_CTRL_IABG)
-#endif
+#define BF_USDHC_PROT_CTRL_IABG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_IABG) & BM_USDHC_PROT_CTRL_IABG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IABG field to a new value.
@@ -1768,15 +1713,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK      (0x00100000)  //!< Bit mask for USDHC_PROT_CTRL_RD_DONE_NO_8CLK.
 
 //! @brief Get value of USDHC_PROT_CTRL_RD_DONE_NO_8CLK from a register value.
-#define BG_USDHC_PROT_CTRL_RD_DONE_NO_8CLK(r)   (((r) & BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK) >> BP_USDHC_PROT_CTRL_RD_DONE_NO_8CLK)
+#define BG_USDHC_PROT_CTRL_RD_DONE_NO_8CLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK) >> BP_USDHC_PROT_CTRL_RD_DONE_NO_8CLK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_RD_DONE_NO_8CLK.
-#define BF_USDHC_PROT_CTRL_RD_DONE_NO_8CLK(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_RD_DONE_NO_8CLK) & BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_RD_DONE_NO_8CLK.
-#define BF_USDHC_PROT_CTRL_RD_DONE_NO_8CLK(v)   (((v) << BP_USDHC_PROT_CTRL_RD_DONE_NO_8CLK) & BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK)
-#endif
+#define BF_USDHC_PROT_CTRL_RD_DONE_NO_8CLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_RD_DONE_NO_8CLK) & BM_USDHC_PROT_CTRL_RD_DONE_NO_8CLK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DONE_NO_8CLK field to a new value.
@@ -1798,15 +1738,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_RD_WAIT_POINT      (0x00e00000)  //!< Bit mask for USDHC_PROT_CTRL_RD_WAIT_POINT.
 
 //! @brief Get value of USDHC_PROT_CTRL_RD_WAIT_POINT from a register value.
-#define BG_USDHC_PROT_CTRL_RD_WAIT_POINT(r)   (((r) & BM_USDHC_PROT_CTRL_RD_WAIT_POINT) >> BP_USDHC_PROT_CTRL_RD_WAIT_POINT)
+#define BG_USDHC_PROT_CTRL_RD_WAIT_POINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_RD_WAIT_POINT) >> BP_USDHC_PROT_CTRL_RD_WAIT_POINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_RD_WAIT_POINT.
-#define BF_USDHC_PROT_CTRL_RD_WAIT_POINT(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_RD_WAIT_POINT) & BM_USDHC_PROT_CTRL_RD_WAIT_POINT)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_RD_WAIT_POINT.
-#define BF_USDHC_PROT_CTRL_RD_WAIT_POINT(v)   (((v) << BP_USDHC_PROT_CTRL_RD_WAIT_POINT) & BM_USDHC_PROT_CTRL_RD_WAIT_POINT)
-#endif
+#define BF_USDHC_PROT_CTRL_RD_WAIT_POINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_RD_WAIT_POINT) & BM_USDHC_PROT_CTRL_RD_WAIT_POINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_WAIT_POINT field to a new value.
@@ -1818,8 +1753,8 @@ typedef union _hw_usdhc_prot_ctrl
  * Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in
  * the Interrupt Status register. This bit can be set to 1 if FN_WUS (Wake Up Support) in CIS is set
  * to 1. When this bit is set, the Card Interrupt Status and the uSDHC interrupt can be asserted
- * without SD_CLK toggling. When the wakeup feature is not enabled, the SD_CLK must be active in
- * order to assert the Card Interrupt Status and the uSDHC interrupt.
+ * without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to
+ * assert the Card Interrupt Status and the uSDHC interrupt.
  *
  * Values:
  * 0 - Disable
@@ -1830,15 +1765,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_WECINT      (0x01000000)  //!< Bit mask for USDHC_PROT_CTRL_WECINT.
 
 //! @brief Get value of USDHC_PROT_CTRL_WECINT from a register value.
-#define BG_USDHC_PROT_CTRL_WECINT(r)   (((r) & BM_USDHC_PROT_CTRL_WECINT) >> BP_USDHC_PROT_CTRL_WECINT)
+#define BG_USDHC_PROT_CTRL_WECINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_WECINT) >> BP_USDHC_PROT_CTRL_WECINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_WECINT.
-#define BF_USDHC_PROT_CTRL_WECINT(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_WECINT) & BM_USDHC_PROT_CTRL_WECINT)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_WECINT.
-#define BF_USDHC_PROT_CTRL_WECINT(v)   (((v) << BP_USDHC_PROT_CTRL_WECINT) & BM_USDHC_PROT_CTRL_WECINT)
-#endif
+#define BF_USDHC_PROT_CTRL_WECINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_WECINT) & BM_USDHC_PROT_CTRL_WECINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WECINT field to a new value.
@@ -1850,9 +1780,9 @@ typedef union _hw_usdhc_prot_ctrl
  *
  * Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion,
  * in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When
- * this bit is set, the Card Insertion Status and the uSDHC interrupt can be asserted without SD_CLK
- * toggling. When the wakeup feature is not enabled, the SD_CLK must be active in order to assert
- * the Card Insertion Status and the uSDHC interrupt.
+ * this bit is set, the Card Insertion Status and the uSDHC interrupt can be asserted without CLK
+ * toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the
+ * Card Insertion Status and the uSDHC interrupt.
  *
  * Values:
  * 0 - Disable
@@ -1863,15 +1793,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_WECINS      (0x02000000)  //!< Bit mask for USDHC_PROT_CTRL_WECINS.
 
 //! @brief Get value of USDHC_PROT_CTRL_WECINS from a register value.
-#define BG_USDHC_PROT_CTRL_WECINS(r)   (((r) & BM_USDHC_PROT_CTRL_WECINS) >> BP_USDHC_PROT_CTRL_WECINS)
+#define BG_USDHC_PROT_CTRL_WECINS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_WECINS) >> BP_USDHC_PROT_CTRL_WECINS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_WECINS.
-#define BF_USDHC_PROT_CTRL_WECINS(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_WECINS) & BM_USDHC_PROT_CTRL_WECINS)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_WECINS.
-#define BF_USDHC_PROT_CTRL_WECINS(v)   (((v) << BP_USDHC_PROT_CTRL_WECINS) & BM_USDHC_PROT_CTRL_WECINS)
-#endif
+#define BF_USDHC_PROT_CTRL_WECINS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_WECINS) & BM_USDHC_PROT_CTRL_WECINS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WECINS field to a new value.
@@ -1883,9 +1808,9 @@ typedef union _hw_usdhc_prot_ctrl
  *
  * Wakeup Event Enable On SD Card Removal: This bit enables a wakeup event, via a Card Removal, in
  * the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When
- * this bit is set, the Card Removal Status and the uSDHC interrupt can be asserted without SD_CLK
- * toggling. When the wakeup feature is not enabled, the SD_CLK must be active in order to assert
- * the Card Removal Status and the uSDHC interrupt.
+ * this bit is set, the Card Removal Status and the uSDHC interrupt can be asserted without CLK
+ * toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the
+ * Card Removal Status and the uSDHC interrupt.
  *
  * Values:
  * 0 - Disable
@@ -1896,15 +1821,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_WECRM      (0x04000000)  //!< Bit mask for USDHC_PROT_CTRL_WECRM.
 
 //! @brief Get value of USDHC_PROT_CTRL_WECRM from a register value.
-#define BG_USDHC_PROT_CTRL_WECRM(r)   (((r) & BM_USDHC_PROT_CTRL_WECRM) >> BP_USDHC_PROT_CTRL_WECRM)
+#define BG_USDHC_PROT_CTRL_WECRM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_WECRM) >> BP_USDHC_PROT_CTRL_WECRM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_WECRM.
-#define BF_USDHC_PROT_CTRL_WECRM(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_WECRM) & BM_USDHC_PROT_CTRL_WECRM)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_WECRM.
-#define BF_USDHC_PROT_CTRL_WECRM(v)   (((v) << BP_USDHC_PROT_CTRL_WECRM) & BM_USDHC_PROT_CTRL_WECRM)
-#endif
+#define BF_USDHC_PROT_CTRL_WECRM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_WECRM) & BM_USDHC_PROT_CTRL_WECRM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WECRM field to a new value.
@@ -1930,15 +1850,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_BURST_LEN_EN      (0x38000000)  //!< Bit mask for USDHC_PROT_CTRL_BURST_LEN_EN.
 
 //! @brief Get value of USDHC_PROT_CTRL_BURST_LEN_EN from a register value.
-#define BG_USDHC_PROT_CTRL_BURST_LEN_EN(r)   (((r) & BM_USDHC_PROT_CTRL_BURST_LEN_EN) >> BP_USDHC_PROT_CTRL_BURST_LEN_EN)
+#define BG_USDHC_PROT_CTRL_BURST_LEN_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_BURST_LEN_EN) >> BP_USDHC_PROT_CTRL_BURST_LEN_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_BURST_LEN_EN.
-#define BF_USDHC_PROT_CTRL_BURST_LEN_EN(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_BURST_LEN_EN) & BM_USDHC_PROT_CTRL_BURST_LEN_EN)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_BURST_LEN_EN.
-#define BF_USDHC_PROT_CTRL_BURST_LEN_EN(v)   (((v) << BP_USDHC_PROT_CTRL_BURST_LEN_EN) & BM_USDHC_PROT_CTRL_BURST_LEN_EN)
-#endif
+#define BF_USDHC_PROT_CTRL_BURST_LEN_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_BURST_LEN_EN) & BM_USDHC_PROT_CTRL_BURST_LEN_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_LEN_EN field to a new value.
@@ -1961,15 +1876,10 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD      (0x40000000)  //!< Bit mask for USDHC_PROT_CTRL_NON_EXACT_BLK_RD.
 
 //! @brief Get value of USDHC_PROT_CTRL_NON_EXACT_BLK_RD from a register value.
-#define BG_USDHC_PROT_CTRL_NON_EXACT_BLK_RD(r)   (((r) & BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD) >> BP_USDHC_PROT_CTRL_NON_EXACT_BLK_RD)
+#define BG_USDHC_PROT_CTRL_NON_EXACT_BLK_RD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD) >> BP_USDHC_PROT_CTRL_NON_EXACT_BLK_RD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_NON_EXACT_BLK_RD.
-#define BF_USDHC_PROT_CTRL_NON_EXACT_BLK_RD(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_NON_EXACT_BLK_RD) & BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_NON_EXACT_BLK_RD.
-#define BF_USDHC_PROT_CTRL_NON_EXACT_BLK_RD(v)   (((v) << BP_USDHC_PROT_CTRL_NON_EXACT_BLK_RD) & BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD)
-#endif
+#define BF_USDHC_PROT_CTRL_NON_EXACT_BLK_RD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_NON_EXACT_BLK_RD) & BM_USDHC_PROT_CTRL_NON_EXACT_BLK_RD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NON_EXACT_BLK_RD field to a new value.
@@ -1990,21 +1900,20 @@ typedef union _hw_usdhc_prot_ctrl
 #define BM_USDHC_PROT_CTRL_RD_NO8CLK_EN      (0x80000000)  //!< Bit mask for USDHC_PROT_CTRL_RD_NO8CLK_EN.
 
 //! @brief Get value of USDHC_PROT_CTRL_RD_NO8CLK_EN from a register value.
-#define BG_USDHC_PROT_CTRL_RD_NO8CLK_EN(r)   (((r) & BM_USDHC_PROT_CTRL_RD_NO8CLK_EN) >> BP_USDHC_PROT_CTRL_RD_NO8CLK_EN)
+#define BG_USDHC_PROT_CTRL_RD_NO8CLK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_PROT_CTRL_RD_NO8CLK_EN) >> BP_USDHC_PROT_CTRL_RD_NO8CLK_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_PROT_CTRL_RD_NO8CLK_EN.
-#define BF_USDHC_PROT_CTRL_RD_NO8CLK_EN(v)   ((((reg32_t) v) << BP_USDHC_PROT_CTRL_RD_NO8CLK_EN) & BM_USDHC_PROT_CTRL_RD_NO8CLK_EN)
-#else
-//! @brief Format value for bitfield USDHC_PROT_CTRL_RD_NO8CLK_EN.
-#define BF_USDHC_PROT_CTRL_RD_NO8CLK_EN(v)   (((v) << BP_USDHC_PROT_CTRL_RD_NO8CLK_EN) & BM_USDHC_PROT_CTRL_RD_NO8CLK_EN)
-#endif
+#define BF_USDHC_PROT_CTRL_RD_NO8CLK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_PROT_CTRL_RD_NO8CLK_EN) & BM_USDHC_PROT_CTRL_RD_NO8CLK_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_NO8CLK_EN field to a new value.
 #define BW_USDHC_PROT_CTRL_RD_NO8CLK_EN(x, v)   (HW_USDHC_PROT_CTRL_WR(x, (HW_USDHC_PROT_CTRL_RD(x) & ~BM_USDHC_PROT_CTRL_RD_NO8CLK_EN) | BF_USDHC_PROT_CTRL_RD_NO8CLK_EN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_SYS_CTRL - System Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2065,15 +1974,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_IPGEN      (0x00000001)  //!< Bit mask for USDHC_SYS_CTRL_IPGEN.
 
 //! @brief Get value of USDHC_SYS_CTRL_IPGEN from a register value.
-#define BG_USDHC_SYS_CTRL_IPGEN(r)   (((r) & BM_USDHC_SYS_CTRL_IPGEN) >> BP_USDHC_SYS_CTRL_IPGEN)
+#define BG_USDHC_SYS_CTRL_IPGEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_IPGEN) >> BP_USDHC_SYS_CTRL_IPGEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_IPGEN.
-#define BF_USDHC_SYS_CTRL_IPGEN(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_IPGEN) & BM_USDHC_SYS_CTRL_IPGEN)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_IPGEN.
-#define BF_USDHC_SYS_CTRL_IPGEN(v)   (((v) << BP_USDHC_SYS_CTRL_IPGEN) & BM_USDHC_SYS_CTRL_IPGEN)
-#endif
+#define BF_USDHC_SYS_CTRL_IPGEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_IPGEN) & BM_USDHC_SYS_CTRL_IPGEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPGEN field to a new value.
@@ -2089,15 +1993,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_HCKEN      (0x00000002)  //!< Bit mask for USDHC_SYS_CTRL_HCKEN.
 
 //! @brief Get value of USDHC_SYS_CTRL_HCKEN from a register value.
-#define BG_USDHC_SYS_CTRL_HCKEN(r)   (((r) & BM_USDHC_SYS_CTRL_HCKEN) >> BP_USDHC_SYS_CTRL_HCKEN)
+#define BG_USDHC_SYS_CTRL_HCKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_HCKEN) >> BP_USDHC_SYS_CTRL_HCKEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_HCKEN.
-#define BF_USDHC_SYS_CTRL_HCKEN(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_HCKEN) & BM_USDHC_SYS_CTRL_HCKEN)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_HCKEN.
-#define BF_USDHC_SYS_CTRL_HCKEN(v)   (((v) << BP_USDHC_SYS_CTRL_HCKEN) & BM_USDHC_SYS_CTRL_HCKEN)
-#endif
+#define BF_USDHC_SYS_CTRL_HCKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_HCKEN) & BM_USDHC_SYS_CTRL_HCKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HCKEN field to a new value.
@@ -2113,15 +2012,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_PEREN      (0x00000004)  //!< Bit mask for USDHC_SYS_CTRL_PEREN.
 
 //! @brief Get value of USDHC_SYS_CTRL_PEREN from a register value.
-#define BG_USDHC_SYS_CTRL_PEREN(r)   (((r) & BM_USDHC_SYS_CTRL_PEREN) >> BP_USDHC_SYS_CTRL_PEREN)
+#define BG_USDHC_SYS_CTRL_PEREN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_PEREN) >> BP_USDHC_SYS_CTRL_PEREN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_PEREN.
-#define BF_USDHC_SYS_CTRL_PEREN(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_PEREN) & BM_USDHC_SYS_CTRL_PEREN)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_PEREN.
-#define BF_USDHC_SYS_CTRL_PEREN(v)   (((v) << BP_USDHC_SYS_CTRL_PEREN) & BM_USDHC_SYS_CTRL_PEREN)
-#endif
+#define BF_USDHC_SYS_CTRL_PEREN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_PEREN) & BM_USDHC_SYS_CTRL_PEREN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PEREN field to a new value.
@@ -2137,15 +2031,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_SDCLKEN      (0x00000008)  //!< Bit mask for USDHC_SYS_CTRL_SDCLKEN.
 
 //! @brief Get value of USDHC_SYS_CTRL_SDCLKEN from a register value.
-#define BG_USDHC_SYS_CTRL_SDCLKEN(r)   (((r) & BM_USDHC_SYS_CTRL_SDCLKEN) >> BP_USDHC_SYS_CTRL_SDCLKEN)
+#define BG_USDHC_SYS_CTRL_SDCLKEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_SDCLKEN) >> BP_USDHC_SYS_CTRL_SDCLKEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_SDCLKEN.
-#define BF_USDHC_SYS_CTRL_SDCLKEN(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_SDCLKEN) & BM_USDHC_SYS_CTRL_SDCLKEN)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_SDCLKEN.
-#define BF_USDHC_SYS_CTRL_SDCLKEN(v)   (((v) << BP_USDHC_SYS_CTRL_SDCLKEN) & BM_USDHC_SYS_CTRL_SDCLKEN)
-#endif
+#define BF_USDHC_SYS_CTRL_SDCLKEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_SDCLKEN) & BM_USDHC_SYS_CTRL_SDCLKEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLKEN field to a new value.
@@ -2170,15 +2059,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_DVS      (0x000000f0)  //!< Bit mask for USDHC_SYS_CTRL_DVS.
 
 //! @brief Get value of USDHC_SYS_CTRL_DVS from a register value.
-#define BG_USDHC_SYS_CTRL_DVS(r)   (((r) & BM_USDHC_SYS_CTRL_DVS) >> BP_USDHC_SYS_CTRL_DVS)
+#define BG_USDHC_SYS_CTRL_DVS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_DVS) >> BP_USDHC_SYS_CTRL_DVS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_DVS.
-#define BF_USDHC_SYS_CTRL_DVS(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_DVS) & BM_USDHC_SYS_CTRL_DVS)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_DVS.
-#define BF_USDHC_SYS_CTRL_DVS(v)   (((v) << BP_USDHC_SYS_CTRL_DVS) & BM_USDHC_SYS_CTRL_DVS)
-#endif
+#define BF_USDHC_SYS_CTRL_DVS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_DVS) & BM_USDHC_SYS_CTRL_DVS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVS field to a new value.
@@ -2221,15 +2105,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_SDCLKFS      (0x0000ff00)  //!< Bit mask for USDHC_SYS_CTRL_SDCLKFS.
 
 //! @brief Get value of USDHC_SYS_CTRL_SDCLKFS from a register value.
-#define BG_USDHC_SYS_CTRL_SDCLKFS(r)   (((r) & BM_USDHC_SYS_CTRL_SDCLKFS) >> BP_USDHC_SYS_CTRL_SDCLKFS)
+#define BG_USDHC_SYS_CTRL_SDCLKFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_SDCLKFS) >> BP_USDHC_SYS_CTRL_SDCLKFS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_SDCLKFS.
-#define BF_USDHC_SYS_CTRL_SDCLKFS(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_SDCLKFS) & BM_USDHC_SYS_CTRL_SDCLKFS)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_SDCLKFS.
-#define BF_USDHC_SYS_CTRL_SDCLKFS(v)   (((v) << BP_USDHC_SYS_CTRL_SDCLKFS) & BM_USDHC_SYS_CTRL_SDCLKFS)
-#endif
+#define BF_USDHC_SYS_CTRL_SDCLKFS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_SDCLKFS) & BM_USDHC_SYS_CTRL_SDCLKFS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLKFS field to a new value.
@@ -2255,15 +2134,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_DTOCV      (0x000f0000)  //!< Bit mask for USDHC_SYS_CTRL_DTOCV.
 
 //! @brief Get value of USDHC_SYS_CTRL_DTOCV from a register value.
-#define BG_USDHC_SYS_CTRL_DTOCV(r)   (((r) & BM_USDHC_SYS_CTRL_DTOCV) >> BP_USDHC_SYS_CTRL_DTOCV)
+#define BG_USDHC_SYS_CTRL_DTOCV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_DTOCV) >> BP_USDHC_SYS_CTRL_DTOCV)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_DTOCV.
-#define BF_USDHC_SYS_CTRL_DTOCV(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_DTOCV) & BM_USDHC_SYS_CTRL_DTOCV)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_DTOCV.
-#define BF_USDHC_SYS_CTRL_DTOCV(v)   (((v) << BP_USDHC_SYS_CTRL_DTOCV) & BM_USDHC_SYS_CTRL_DTOCV)
-#endif
+#define BF_USDHC_SYS_CTRL_DTOCV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_DTOCV) & BM_USDHC_SYS_CTRL_DTOCV)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTOCV field to a new value.
@@ -2281,15 +2155,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_RST_FIFO      (0x00400000)  //!< Bit mask for USDHC_SYS_CTRL_RST_FIFO.
 
 //! @brief Get value of USDHC_SYS_CTRL_RST_FIFO from a register value.
-#define BG_USDHC_SYS_CTRL_RST_FIFO(r)   (((r) & BM_USDHC_SYS_CTRL_RST_FIFO) >> BP_USDHC_SYS_CTRL_RST_FIFO)
+#define BG_USDHC_SYS_CTRL_RST_FIFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_RST_FIFO) >> BP_USDHC_SYS_CTRL_RST_FIFO)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_RST_FIFO.
-#define BF_USDHC_SYS_CTRL_RST_FIFO(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_RST_FIFO) & BM_USDHC_SYS_CTRL_RST_FIFO)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_RST_FIFO.
-#define BF_USDHC_SYS_CTRL_RST_FIFO(v)   (((v) << BP_USDHC_SYS_CTRL_RST_FIFO) & BM_USDHC_SYS_CTRL_RST_FIFO)
-#endif
+#define BF_USDHC_SYS_CTRL_RST_FIFO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_RST_FIFO) & BM_USDHC_SYS_CTRL_RST_FIFO)
 
 /* --- Register HW_USDHC_SYS_CTRL, field IPP_RST_N[23] (RW)
  *
@@ -2301,15 +2170,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_IPP_RST_N      (0x00800000)  //!< Bit mask for USDHC_SYS_CTRL_IPP_RST_N.
 
 //! @brief Get value of USDHC_SYS_CTRL_IPP_RST_N from a register value.
-#define BG_USDHC_SYS_CTRL_IPP_RST_N(r)   (((r) & BM_USDHC_SYS_CTRL_IPP_RST_N) >> BP_USDHC_SYS_CTRL_IPP_RST_N)
+#define BG_USDHC_SYS_CTRL_IPP_RST_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_IPP_RST_N) >> BP_USDHC_SYS_CTRL_IPP_RST_N)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_IPP_RST_N.
-#define BF_USDHC_SYS_CTRL_IPP_RST_N(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_IPP_RST_N) & BM_USDHC_SYS_CTRL_IPP_RST_N)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_IPP_RST_N.
-#define BF_USDHC_SYS_CTRL_IPP_RST_N(v)   (((v) << BP_USDHC_SYS_CTRL_IPP_RST_N) & BM_USDHC_SYS_CTRL_IPP_RST_N)
-#endif
+#define BF_USDHC_SYS_CTRL_IPP_RST_N(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_IPP_RST_N) & BM_USDHC_SYS_CTRL_IPP_RST_N)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPP_RST_N field to a new value.
@@ -2336,15 +2200,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_RSTA      (0x01000000)  //!< Bit mask for USDHC_SYS_CTRL_RSTA.
 
 //! @brief Get value of USDHC_SYS_CTRL_RSTA from a register value.
-#define BG_USDHC_SYS_CTRL_RSTA(r)   (((r) & BM_USDHC_SYS_CTRL_RSTA) >> BP_USDHC_SYS_CTRL_RSTA)
+#define BG_USDHC_SYS_CTRL_RSTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_RSTA) >> BP_USDHC_SYS_CTRL_RSTA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_RSTA.
-#define BF_USDHC_SYS_CTRL_RSTA(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_RSTA) & BM_USDHC_SYS_CTRL_RSTA)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_RSTA.
-#define BF_USDHC_SYS_CTRL_RSTA(v)   (((v) << BP_USDHC_SYS_CTRL_RSTA) & BM_USDHC_SYS_CTRL_RSTA)
-#endif
+#define BF_USDHC_SYS_CTRL_RSTA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_RSTA) & BM_USDHC_SYS_CTRL_RSTA)
 
 
 /* --- Register HW_USDHC_SYS_CTRL, field RSTC[25] (WORZ)
@@ -2362,15 +2221,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_RSTC      (0x02000000)  //!< Bit mask for USDHC_SYS_CTRL_RSTC.
 
 //! @brief Get value of USDHC_SYS_CTRL_RSTC from a register value.
-#define BG_USDHC_SYS_CTRL_RSTC(r)   (((r) & BM_USDHC_SYS_CTRL_RSTC) >> BP_USDHC_SYS_CTRL_RSTC)
+#define BG_USDHC_SYS_CTRL_RSTC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_RSTC) >> BP_USDHC_SYS_CTRL_RSTC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_RSTC.
-#define BF_USDHC_SYS_CTRL_RSTC(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_RSTC) & BM_USDHC_SYS_CTRL_RSTC)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_RSTC.
-#define BF_USDHC_SYS_CTRL_RSTC(v)   (((v) << BP_USDHC_SYS_CTRL_RSTC) & BM_USDHC_SYS_CTRL_RSTC)
-#endif
+#define BF_USDHC_SYS_CTRL_RSTC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_RSTC) & BM_USDHC_SYS_CTRL_RSTC)
 
 
 /* --- Register HW_USDHC_SYS_CTRL, field RSTD[26] (WORZ)
@@ -2391,15 +2245,10 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_RSTD      (0x04000000)  //!< Bit mask for USDHC_SYS_CTRL_RSTD.
 
 //! @brief Get value of USDHC_SYS_CTRL_RSTD from a register value.
-#define BG_USDHC_SYS_CTRL_RSTD(r)   (((r) & BM_USDHC_SYS_CTRL_RSTD) >> BP_USDHC_SYS_CTRL_RSTD)
+#define BG_USDHC_SYS_CTRL_RSTD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_RSTD) >> BP_USDHC_SYS_CTRL_RSTD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_RSTD.
-#define BF_USDHC_SYS_CTRL_RSTD(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_RSTD) & BM_USDHC_SYS_CTRL_RSTD)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_RSTD.
-#define BF_USDHC_SYS_CTRL_RSTD(v)   (((v) << BP_USDHC_SYS_CTRL_RSTD) & BM_USDHC_SYS_CTRL_RSTD)
-#endif
+#define BF_USDHC_SYS_CTRL_RSTD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_RSTD) & BM_USDHC_SYS_CTRL_RSTD)
 
 
 /* --- Register HW_USDHC_SYS_CTRL, field INITA[27] (RW)
@@ -2421,20 +2270,19 @@ typedef union _hw_usdhc_sys_ctrl
 #define BM_USDHC_SYS_CTRL_INITA      (0x08000000)  //!< Bit mask for USDHC_SYS_CTRL_INITA.
 
 //! @brief Get value of USDHC_SYS_CTRL_INITA from a register value.
-#define BG_USDHC_SYS_CTRL_INITA(r)   (((r) & BM_USDHC_SYS_CTRL_INITA) >> BP_USDHC_SYS_CTRL_INITA)
+#define BG_USDHC_SYS_CTRL_INITA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_SYS_CTRL_INITA) >> BP_USDHC_SYS_CTRL_INITA)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_SYS_CTRL_INITA.
-#define BF_USDHC_SYS_CTRL_INITA(v)   ((((reg32_t) v) << BP_USDHC_SYS_CTRL_INITA) & BM_USDHC_SYS_CTRL_INITA)
-#else
-//! @brief Format value for bitfield USDHC_SYS_CTRL_INITA.
-#define BF_USDHC_SYS_CTRL_INITA(v)   (((v) << BP_USDHC_SYS_CTRL_INITA) & BM_USDHC_SYS_CTRL_INITA)
-#endif
+#define BF_USDHC_SYS_CTRL_INITA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_SYS_CTRL_INITA) & BM_USDHC_SYS_CTRL_INITA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the INITA field to a new value.
 #define BW_USDHC_SYS_CTRL_INITA(x, v)   (HW_USDHC_SYS_CTRL_WR(x, (HW_USDHC_SYS_CTRL_RD(x) & ~BM_USDHC_SYS_CTRL_INITA) | BF_USDHC_SYS_CTRL_INITA(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_INT_STATUS - Interrupt Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -2530,15 +2378,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CC      (0x00000001)  //!< Bit mask for USDHC_INT_STATUS_CC.
 
 //! @brief Get value of USDHC_INT_STATUS_CC from a register value.
-#define BG_USDHC_INT_STATUS_CC(r)   (((r) & BM_USDHC_INT_STATUS_CC) >> BP_USDHC_INT_STATUS_CC)
+#define BG_USDHC_INT_STATUS_CC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CC) >> BP_USDHC_INT_STATUS_CC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CC.
-#define BF_USDHC_INT_STATUS_CC(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CC) & BM_USDHC_INT_STATUS_CC)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CC.
-#define BF_USDHC_INT_STATUS_CC(v)   (((v) << BP_USDHC_INT_STATUS_CC) & BM_USDHC_INT_STATUS_CC)
-#endif
+#define BF_USDHC_INT_STATUS_CC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CC) & BM_USDHC_INT_STATUS_CC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CC field to a new value.
@@ -2571,15 +2414,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_TC      (0x00000002)  //!< Bit mask for USDHC_INT_STATUS_TC.
 
 //! @brief Get value of USDHC_INT_STATUS_TC from a register value.
-#define BG_USDHC_INT_STATUS_TC(r)   (((r) & BM_USDHC_INT_STATUS_TC) >> BP_USDHC_INT_STATUS_TC)
+#define BG_USDHC_INT_STATUS_TC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_TC) >> BP_USDHC_INT_STATUS_TC)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_TC.
-#define BF_USDHC_INT_STATUS_TC(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_TC) & BM_USDHC_INT_STATUS_TC)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_TC.
-#define BF_USDHC_INT_STATUS_TC(v)   (((v) << BP_USDHC_INT_STATUS_TC) & BM_USDHC_INT_STATUS_TC)
-#endif
+#define BF_USDHC_INT_STATUS_TC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_TC) & BM_USDHC_INT_STATUS_TC)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TC field to a new value.
@@ -2606,15 +2444,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_BGE      (0x00000004)  //!< Bit mask for USDHC_INT_STATUS_BGE.
 
 //! @brief Get value of USDHC_INT_STATUS_BGE from a register value.
-#define BG_USDHC_INT_STATUS_BGE(r)   (((r) & BM_USDHC_INT_STATUS_BGE) >> BP_USDHC_INT_STATUS_BGE)
+#define BG_USDHC_INT_STATUS_BGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_BGE) >> BP_USDHC_INT_STATUS_BGE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_BGE.
-#define BF_USDHC_INT_STATUS_BGE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_BGE) & BM_USDHC_INT_STATUS_BGE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_BGE.
-#define BF_USDHC_INT_STATUS_BGE(v)   (((v) << BP_USDHC_INT_STATUS_BGE) & BM_USDHC_INT_STATUS_BGE)
-#endif
+#define BF_USDHC_INT_STATUS_BGE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_BGE) & BM_USDHC_INT_STATUS_BGE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BGE field to a new value.
@@ -2637,15 +2470,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_DINT      (0x00000008)  //!< Bit mask for USDHC_INT_STATUS_DINT.
 
 //! @brief Get value of USDHC_INT_STATUS_DINT from a register value.
-#define BG_USDHC_INT_STATUS_DINT(r)   (((r) & BM_USDHC_INT_STATUS_DINT) >> BP_USDHC_INT_STATUS_DINT)
+#define BG_USDHC_INT_STATUS_DINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_DINT) >> BP_USDHC_INT_STATUS_DINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_DINT.
-#define BF_USDHC_INT_STATUS_DINT(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_DINT) & BM_USDHC_INT_STATUS_DINT)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_DINT.
-#define BF_USDHC_INT_STATUS_DINT(v)   (((v) << BP_USDHC_INT_STATUS_DINT) & BM_USDHC_INT_STATUS_DINT)
-#endif
+#define BF_USDHC_INT_STATUS_DINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_DINT) & BM_USDHC_INT_STATUS_DINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DINT field to a new value.
@@ -2668,15 +2496,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_BWR      (0x00000010)  //!< Bit mask for USDHC_INT_STATUS_BWR.
 
 //! @brief Get value of USDHC_INT_STATUS_BWR from a register value.
-#define BG_USDHC_INT_STATUS_BWR(r)   (((r) & BM_USDHC_INT_STATUS_BWR) >> BP_USDHC_INT_STATUS_BWR)
+#define BG_USDHC_INT_STATUS_BWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_BWR) >> BP_USDHC_INT_STATUS_BWR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_BWR.
-#define BF_USDHC_INT_STATUS_BWR(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_BWR) & BM_USDHC_INT_STATUS_BWR)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_BWR.
-#define BF_USDHC_INT_STATUS_BWR(v)   (((v) << BP_USDHC_INT_STATUS_BWR) & BM_USDHC_INT_STATUS_BWR)
-#endif
+#define BF_USDHC_INT_STATUS_BWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_BWR) & BM_USDHC_INT_STATUS_BWR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BWR field to a new value.
@@ -2699,15 +2522,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_BRR      (0x00000020)  //!< Bit mask for USDHC_INT_STATUS_BRR.
 
 //! @brief Get value of USDHC_INT_STATUS_BRR from a register value.
-#define BG_USDHC_INT_STATUS_BRR(r)   (((r) & BM_USDHC_INT_STATUS_BRR) >> BP_USDHC_INT_STATUS_BRR)
+#define BG_USDHC_INT_STATUS_BRR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_BRR) >> BP_USDHC_INT_STATUS_BRR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_BRR.
-#define BF_USDHC_INT_STATUS_BRR(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_BRR) & BM_USDHC_INT_STATUS_BRR)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_BRR.
-#define BF_USDHC_INT_STATUS_BRR(v)   (((v) << BP_USDHC_INT_STATUS_BRR) & BM_USDHC_INT_STATUS_BRR)
-#endif
+#define BF_USDHC_INT_STATUS_BRR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_BRR) & BM_USDHC_INT_STATUS_BRR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BRR field to a new value.
@@ -2733,15 +2551,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CINS      (0x00000040)  //!< Bit mask for USDHC_INT_STATUS_CINS.
 
 //! @brief Get value of USDHC_INT_STATUS_CINS from a register value.
-#define BG_USDHC_INT_STATUS_CINS(r)   (((r) & BM_USDHC_INT_STATUS_CINS) >> BP_USDHC_INT_STATUS_CINS)
+#define BG_USDHC_INT_STATUS_CINS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CINS) >> BP_USDHC_INT_STATUS_CINS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CINS.
-#define BF_USDHC_INT_STATUS_CINS(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CINS) & BM_USDHC_INT_STATUS_CINS)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CINS.
-#define BF_USDHC_INT_STATUS_CINS(v)   (((v) << BP_USDHC_INT_STATUS_CINS) & BM_USDHC_INT_STATUS_CINS)
-#endif
+#define BF_USDHC_INT_STATUS_CINS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CINS) & BM_USDHC_INT_STATUS_CINS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINS field to a new value.
@@ -2767,15 +2580,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CRM      (0x00000080)  //!< Bit mask for USDHC_INT_STATUS_CRM.
 
 //! @brief Get value of USDHC_INT_STATUS_CRM from a register value.
-#define BG_USDHC_INT_STATUS_CRM(r)   (((r) & BM_USDHC_INT_STATUS_CRM) >> BP_USDHC_INT_STATUS_CRM)
+#define BG_USDHC_INT_STATUS_CRM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CRM) >> BP_USDHC_INT_STATUS_CRM)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CRM.
-#define BF_USDHC_INT_STATUS_CRM(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CRM) & BM_USDHC_INT_STATUS_CRM)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CRM.
-#define BF_USDHC_INT_STATUS_CRM(v)   (((v) << BP_USDHC_INT_STATUS_CRM) & BM_USDHC_INT_STATUS_CRM)
-#endif
+#define BF_USDHC_INT_STATUS_CRM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CRM) & BM_USDHC_INT_STATUS_CRM)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRM field to a new value.
@@ -2808,15 +2616,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CINT      (0x00000100)  //!< Bit mask for USDHC_INT_STATUS_CINT.
 
 //! @brief Get value of USDHC_INT_STATUS_CINT from a register value.
-#define BG_USDHC_INT_STATUS_CINT(r)   (((r) & BM_USDHC_INT_STATUS_CINT) >> BP_USDHC_INT_STATUS_CINT)
+#define BG_USDHC_INT_STATUS_CINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CINT) >> BP_USDHC_INT_STATUS_CINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CINT.
-#define BF_USDHC_INT_STATUS_CINT(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CINT) & BM_USDHC_INT_STATUS_CINT)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CINT.
-#define BF_USDHC_INT_STATUS_CINT(v)   (((v) << BP_USDHC_INT_STATUS_CINT) & BM_USDHC_INT_STATUS_CINT)
-#endif
+#define BF_USDHC_INT_STATUS_CINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CINT) & BM_USDHC_INT_STATUS_CINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINT field to a new value.
@@ -2840,15 +2643,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_RTE      (0x00001000)  //!< Bit mask for USDHC_INT_STATUS_RTE.
 
 //! @brief Get value of USDHC_INT_STATUS_RTE from a register value.
-#define BG_USDHC_INT_STATUS_RTE(r)   (((r) & BM_USDHC_INT_STATUS_RTE) >> BP_USDHC_INT_STATUS_RTE)
+#define BG_USDHC_INT_STATUS_RTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_RTE) >> BP_USDHC_INT_STATUS_RTE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_RTE.
-#define BF_USDHC_INT_STATUS_RTE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_RTE) & BM_USDHC_INT_STATUS_RTE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_RTE.
-#define BF_USDHC_INT_STATUS_RTE(v)   (((v) << BP_USDHC_INT_STATUS_RTE) & BM_USDHC_INT_STATUS_RTE)
-#endif
+#define BF_USDHC_INT_STATUS_RTE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_RTE) & BM_USDHC_INT_STATUS_RTE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTE field to a new value.
@@ -2866,15 +2664,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_TP      (0x00004000)  //!< Bit mask for USDHC_INT_STATUS_TP.
 
 //! @brief Get value of USDHC_INT_STATUS_TP from a register value.
-#define BG_USDHC_INT_STATUS_TP(r)   (((r) & BM_USDHC_INT_STATUS_TP) >> BP_USDHC_INT_STATUS_TP)
+#define BG_USDHC_INT_STATUS_TP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_TP) >> BP_USDHC_INT_STATUS_TP)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_TP.
-#define BF_USDHC_INT_STATUS_TP(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_TP) & BM_USDHC_INT_STATUS_TP)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_TP.
-#define BF_USDHC_INT_STATUS_TP(v)   (((v) << BP_USDHC_INT_STATUS_TP) & BM_USDHC_INT_STATUS_TP)
-#endif
+#define BF_USDHC_INT_STATUS_TP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_TP) & BM_USDHC_INT_STATUS_TP)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TP field to a new value.
@@ -2898,15 +2691,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CTOE      (0x00010000)  //!< Bit mask for USDHC_INT_STATUS_CTOE.
 
 //! @brief Get value of USDHC_INT_STATUS_CTOE from a register value.
-#define BG_USDHC_INT_STATUS_CTOE(r)   (((r) & BM_USDHC_INT_STATUS_CTOE) >> BP_USDHC_INT_STATUS_CTOE)
+#define BG_USDHC_INT_STATUS_CTOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CTOE) >> BP_USDHC_INT_STATUS_CTOE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CTOE.
-#define BF_USDHC_INT_STATUS_CTOE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CTOE) & BM_USDHC_INT_STATUS_CTOE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CTOE.
-#define BF_USDHC_INT_STATUS_CTOE(v)   (((v) << BP_USDHC_INT_STATUS_CTOE) & BM_USDHC_INT_STATUS_CTOE)
-#endif
+#define BF_USDHC_INT_STATUS_CTOE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CTOE) & BM_USDHC_INT_STATUS_CTOE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTOE field to a new value.
@@ -2933,15 +2721,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CCE      (0x00020000)  //!< Bit mask for USDHC_INT_STATUS_CCE.
 
 //! @brief Get value of USDHC_INT_STATUS_CCE from a register value.
-#define BG_USDHC_INT_STATUS_CCE(r)   (((r) & BM_USDHC_INT_STATUS_CCE) >> BP_USDHC_INT_STATUS_CCE)
+#define BG_USDHC_INT_STATUS_CCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CCE) >> BP_USDHC_INT_STATUS_CCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CCE.
-#define BF_USDHC_INT_STATUS_CCE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CCE) & BM_USDHC_INT_STATUS_CCE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CCE.
-#define BF_USDHC_INT_STATUS_CCE(v)   (((v) << BP_USDHC_INT_STATUS_CCE) & BM_USDHC_INT_STATUS_CCE)
-#endif
+#define BF_USDHC_INT_STATUS_CCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CCE) & BM_USDHC_INT_STATUS_CCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCE field to a new value.
@@ -2963,15 +2746,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CEBE      (0x00040000)  //!< Bit mask for USDHC_INT_STATUS_CEBE.
 
 //! @brief Get value of USDHC_INT_STATUS_CEBE from a register value.
-#define BG_USDHC_INT_STATUS_CEBE(r)   (((r) & BM_USDHC_INT_STATUS_CEBE) >> BP_USDHC_INT_STATUS_CEBE)
+#define BG_USDHC_INT_STATUS_CEBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CEBE) >> BP_USDHC_INT_STATUS_CEBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CEBE.
-#define BF_USDHC_INT_STATUS_CEBE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CEBE) & BM_USDHC_INT_STATUS_CEBE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CEBE.
-#define BF_USDHC_INT_STATUS_CEBE(v)   (((v) << BP_USDHC_INT_STATUS_CEBE) & BM_USDHC_INT_STATUS_CEBE)
-#endif
+#define BF_USDHC_INT_STATUS_CEBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CEBE) & BM_USDHC_INT_STATUS_CEBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CEBE field to a new value.
@@ -2993,15 +2771,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_CIE      (0x00080000)  //!< Bit mask for USDHC_INT_STATUS_CIE.
 
 //! @brief Get value of USDHC_INT_STATUS_CIE from a register value.
-#define BG_USDHC_INT_STATUS_CIE(r)   (((r) & BM_USDHC_INT_STATUS_CIE) >> BP_USDHC_INT_STATUS_CIE)
+#define BG_USDHC_INT_STATUS_CIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_CIE) >> BP_USDHC_INT_STATUS_CIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_CIE.
-#define BF_USDHC_INT_STATUS_CIE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_CIE) & BM_USDHC_INT_STATUS_CIE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_CIE.
-#define BF_USDHC_INT_STATUS_CIE(v)   (((v) << BP_USDHC_INT_STATUS_CIE) & BM_USDHC_INT_STATUS_CIE)
-#endif
+#define BF_USDHC_INT_STATUS_CIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_CIE) & BM_USDHC_INT_STATUS_CIE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIE field to a new value.
@@ -3024,15 +2797,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_DTOE      (0x00100000)  //!< Bit mask for USDHC_INT_STATUS_DTOE.
 
 //! @brief Get value of USDHC_INT_STATUS_DTOE from a register value.
-#define BG_USDHC_INT_STATUS_DTOE(r)   (((r) & BM_USDHC_INT_STATUS_DTOE) >> BP_USDHC_INT_STATUS_DTOE)
+#define BG_USDHC_INT_STATUS_DTOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_DTOE) >> BP_USDHC_INT_STATUS_DTOE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_DTOE.
-#define BF_USDHC_INT_STATUS_DTOE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_DTOE) & BM_USDHC_INT_STATUS_DTOE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_DTOE.
-#define BF_USDHC_INT_STATUS_DTOE(v)   (((v) << BP_USDHC_INT_STATUS_DTOE) & BM_USDHC_INT_STATUS_DTOE)
-#endif
+#define BF_USDHC_INT_STATUS_DTOE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_DTOE) & BM_USDHC_INT_STATUS_DTOE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTOE field to a new value.
@@ -3055,15 +2823,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_DCE      (0x00200000)  //!< Bit mask for USDHC_INT_STATUS_DCE.
 
 //! @brief Get value of USDHC_INT_STATUS_DCE from a register value.
-#define BG_USDHC_INT_STATUS_DCE(r)   (((r) & BM_USDHC_INT_STATUS_DCE) >> BP_USDHC_INT_STATUS_DCE)
+#define BG_USDHC_INT_STATUS_DCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_DCE) >> BP_USDHC_INT_STATUS_DCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_DCE.
-#define BF_USDHC_INT_STATUS_DCE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_DCE) & BM_USDHC_INT_STATUS_DCE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_DCE.
-#define BF_USDHC_INT_STATUS_DCE(v)   (((v) << BP_USDHC_INT_STATUS_DCE) & BM_USDHC_INT_STATUS_DCE)
-#endif
+#define BF_USDHC_INT_STATUS_DCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_DCE) & BM_USDHC_INT_STATUS_DCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCE field to a new value.
@@ -3086,15 +2849,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_DEBE      (0x00400000)  //!< Bit mask for USDHC_INT_STATUS_DEBE.
 
 //! @brief Get value of USDHC_INT_STATUS_DEBE from a register value.
-#define BG_USDHC_INT_STATUS_DEBE(r)   (((r) & BM_USDHC_INT_STATUS_DEBE) >> BP_USDHC_INT_STATUS_DEBE)
+#define BG_USDHC_INT_STATUS_DEBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_DEBE) >> BP_USDHC_INT_STATUS_DEBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_DEBE.
-#define BF_USDHC_INT_STATUS_DEBE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_DEBE) & BM_USDHC_INT_STATUS_DEBE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_DEBE.
-#define BF_USDHC_INT_STATUS_DEBE(v)   (((v) << BP_USDHC_INT_STATUS_DEBE) & BM_USDHC_INT_STATUS_DEBE)
-#endif
+#define BF_USDHC_INT_STATUS_DEBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_DEBE) & BM_USDHC_INT_STATUS_DEBE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEBE field to a new value.
@@ -3117,15 +2875,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_AC12E      (0x01000000)  //!< Bit mask for USDHC_INT_STATUS_AC12E.
 
 //! @brief Get value of USDHC_INT_STATUS_AC12E from a register value.
-#define BG_USDHC_INT_STATUS_AC12E(r)   (((r) & BM_USDHC_INT_STATUS_AC12E) >> BP_USDHC_INT_STATUS_AC12E)
+#define BG_USDHC_INT_STATUS_AC12E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_AC12E) >> BP_USDHC_INT_STATUS_AC12E)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_AC12E.
-#define BF_USDHC_INT_STATUS_AC12E(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_AC12E) & BM_USDHC_INT_STATUS_AC12E)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_AC12E.
-#define BF_USDHC_INT_STATUS_AC12E(v)   (((v) << BP_USDHC_INT_STATUS_AC12E) & BM_USDHC_INT_STATUS_AC12E)
-#endif
+#define BF_USDHC_INT_STATUS_AC12E(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_AC12E) & BM_USDHC_INT_STATUS_AC12E)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12E field to a new value.
@@ -3144,15 +2897,10 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_TNE      (0x04000000)  //!< Bit mask for USDHC_INT_STATUS_TNE.
 
 //! @brief Get value of USDHC_INT_STATUS_TNE from a register value.
-#define BG_USDHC_INT_STATUS_TNE(r)   (((r) & BM_USDHC_INT_STATUS_TNE) >> BP_USDHC_INT_STATUS_TNE)
+#define BG_USDHC_INT_STATUS_TNE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_TNE) >> BP_USDHC_INT_STATUS_TNE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_TNE.
-#define BF_USDHC_INT_STATUS_TNE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_TNE) & BM_USDHC_INT_STATUS_TNE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_TNE.
-#define BF_USDHC_INT_STATUS_TNE(v)   (((v) << BP_USDHC_INT_STATUS_TNE) & BM_USDHC_INT_STATUS_TNE)
-#endif
+#define BF_USDHC_INT_STATUS_TNE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_TNE) & BM_USDHC_INT_STATUS_TNE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TNE field to a new value.
@@ -3177,21 +2925,20 @@ typedef union _hw_usdhc_int_status
 #define BM_USDHC_INT_STATUS_DMAE      (0x10000000)  //!< Bit mask for USDHC_INT_STATUS_DMAE.
 
 //! @brief Get value of USDHC_INT_STATUS_DMAE from a register value.
-#define BG_USDHC_INT_STATUS_DMAE(r)   (((r) & BM_USDHC_INT_STATUS_DMAE) >> BP_USDHC_INT_STATUS_DMAE)
+#define BG_USDHC_INT_STATUS_DMAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_DMAE) >> BP_USDHC_INT_STATUS_DMAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_DMAE.
-#define BF_USDHC_INT_STATUS_DMAE(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_DMAE) & BM_USDHC_INT_STATUS_DMAE)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_DMAE.
-#define BF_USDHC_INT_STATUS_DMAE(v)   (((v) << BP_USDHC_INT_STATUS_DMAE) & BM_USDHC_INT_STATUS_DMAE)
-#endif
+#define BF_USDHC_INT_STATUS_DMAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_DMAE) & BM_USDHC_INT_STATUS_DMAE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMAE field to a new value.
 #define BW_USDHC_INT_STATUS_DMAE(x, v)   (HW_USDHC_INT_STATUS_WR(x, (HW_USDHC_INT_STATUS_RD(x) & ~BM_USDHC_INT_STATUS_DMAE) | BF_USDHC_INT_STATUS_DMAE(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_INT_STATUS_EN - Interrupt Status Enable
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3272,15 +3019,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CCSEN      (0x00000001)  //!< Bit mask for USDHC_INT_STATUS_EN_CCSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CCSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CCSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CCSEN) >> BP_USDHC_INT_STATUS_EN_CCSEN)
+#define BG_USDHC_INT_STATUS_EN_CCSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CCSEN) >> BP_USDHC_INT_STATUS_EN_CCSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CCSEN.
-#define BF_USDHC_INT_STATUS_EN_CCSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CCSEN) & BM_USDHC_INT_STATUS_EN_CCSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CCSEN.
-#define BF_USDHC_INT_STATUS_EN_CCSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CCSEN) & BM_USDHC_INT_STATUS_EN_CCSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CCSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CCSEN) & BM_USDHC_INT_STATUS_EN_CCSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCSEN field to a new value.
@@ -3300,15 +3042,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_TCSEN      (0x00000002)  //!< Bit mask for USDHC_INT_STATUS_EN_TCSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_TCSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_TCSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_TCSEN) >> BP_USDHC_INT_STATUS_EN_TCSEN)
+#define BG_USDHC_INT_STATUS_EN_TCSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_TCSEN) >> BP_USDHC_INT_STATUS_EN_TCSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_TCSEN.
-#define BF_USDHC_INT_STATUS_EN_TCSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_TCSEN) & BM_USDHC_INT_STATUS_EN_TCSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_TCSEN.
-#define BF_USDHC_INT_STATUS_EN_TCSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_TCSEN) & BM_USDHC_INT_STATUS_EN_TCSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_TCSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_TCSEN) & BM_USDHC_INT_STATUS_EN_TCSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCSEN field to a new value.
@@ -3329,15 +3066,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_BGESEN      (0x00000004)  //!< Bit mask for USDHC_INT_STATUS_EN_BGESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_BGESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_BGESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_BGESEN) >> BP_USDHC_INT_STATUS_EN_BGESEN)
+#define BG_USDHC_INT_STATUS_EN_BGESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_BGESEN) >> BP_USDHC_INT_STATUS_EN_BGESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_BGESEN.
-#define BF_USDHC_INT_STATUS_EN_BGESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_BGESEN) & BM_USDHC_INT_STATUS_EN_BGESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_BGESEN.
-#define BF_USDHC_INT_STATUS_EN_BGESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_BGESEN) & BM_USDHC_INT_STATUS_EN_BGESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_BGESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_BGESEN) & BM_USDHC_INT_STATUS_EN_BGESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BGESEN field to a new value.
@@ -3358,15 +3090,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_DINTSEN      (0x00000008)  //!< Bit mask for USDHC_INT_STATUS_EN_DINTSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_DINTSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_DINTSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_DINTSEN) >> BP_USDHC_INT_STATUS_EN_DINTSEN)
+#define BG_USDHC_INT_STATUS_EN_DINTSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_DINTSEN) >> BP_USDHC_INT_STATUS_EN_DINTSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_DINTSEN.
-#define BF_USDHC_INT_STATUS_EN_DINTSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_DINTSEN) & BM_USDHC_INT_STATUS_EN_DINTSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_DINTSEN.
-#define BF_USDHC_INT_STATUS_EN_DINTSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_DINTSEN) & BM_USDHC_INT_STATUS_EN_DINTSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_DINTSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_DINTSEN) & BM_USDHC_INT_STATUS_EN_DINTSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DINTSEN field to a new value.
@@ -3387,15 +3114,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_BWRSEN      (0x00000010)  //!< Bit mask for USDHC_INT_STATUS_EN_BWRSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_BWRSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_BWRSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_BWRSEN) >> BP_USDHC_INT_STATUS_EN_BWRSEN)
+#define BG_USDHC_INT_STATUS_EN_BWRSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_BWRSEN) >> BP_USDHC_INT_STATUS_EN_BWRSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_BWRSEN.
-#define BF_USDHC_INT_STATUS_EN_BWRSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_BWRSEN) & BM_USDHC_INT_STATUS_EN_BWRSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_BWRSEN.
-#define BF_USDHC_INT_STATUS_EN_BWRSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_BWRSEN) & BM_USDHC_INT_STATUS_EN_BWRSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_BWRSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_BWRSEN) & BM_USDHC_INT_STATUS_EN_BWRSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BWRSEN field to a new value.
@@ -3416,15 +3138,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_BRRSEN      (0x00000020)  //!< Bit mask for USDHC_INT_STATUS_EN_BRRSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_BRRSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_BRRSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_BRRSEN) >> BP_USDHC_INT_STATUS_EN_BRRSEN)
+#define BG_USDHC_INT_STATUS_EN_BRRSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_BRRSEN) >> BP_USDHC_INT_STATUS_EN_BRRSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_BRRSEN.
-#define BF_USDHC_INT_STATUS_EN_BRRSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_BRRSEN) & BM_USDHC_INT_STATUS_EN_BRRSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_BRRSEN.
-#define BF_USDHC_INT_STATUS_EN_BRRSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_BRRSEN) & BM_USDHC_INT_STATUS_EN_BRRSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_BRRSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_BRRSEN) & BM_USDHC_INT_STATUS_EN_BRRSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BRRSEN field to a new value.
@@ -3445,15 +3162,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CINSSEN      (0x00000040)  //!< Bit mask for USDHC_INT_STATUS_EN_CINSSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CINSSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CINSSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CINSSEN) >> BP_USDHC_INT_STATUS_EN_CINSSEN)
+#define BG_USDHC_INT_STATUS_EN_CINSSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CINSSEN) >> BP_USDHC_INT_STATUS_EN_CINSSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CINSSEN.
-#define BF_USDHC_INT_STATUS_EN_CINSSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CINSSEN) & BM_USDHC_INT_STATUS_EN_CINSSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CINSSEN.
-#define BF_USDHC_INT_STATUS_EN_CINSSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CINSSEN) & BM_USDHC_INT_STATUS_EN_CINSSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CINSSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CINSSEN) & BM_USDHC_INT_STATUS_EN_CINSSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINSSEN field to a new value.
@@ -3474,15 +3186,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CRMSEN      (0x00000080)  //!< Bit mask for USDHC_INT_STATUS_EN_CRMSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CRMSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CRMSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CRMSEN) >> BP_USDHC_INT_STATUS_EN_CRMSEN)
+#define BG_USDHC_INT_STATUS_EN_CRMSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CRMSEN) >> BP_USDHC_INT_STATUS_EN_CRMSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CRMSEN.
-#define BF_USDHC_INT_STATUS_EN_CRMSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CRMSEN) & BM_USDHC_INT_STATUS_EN_CRMSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CRMSEN.
-#define BF_USDHC_INT_STATUS_EN_CRMSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CRMSEN) & BM_USDHC_INT_STATUS_EN_CRMSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CRMSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CRMSEN) & BM_USDHC_INT_STATUS_EN_CRMSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRMSEN field to a new value.
@@ -3507,15 +3214,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CINTSEN      (0x00000100)  //!< Bit mask for USDHC_INT_STATUS_EN_CINTSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CINTSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CINTSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CINTSEN) >> BP_USDHC_INT_STATUS_EN_CINTSEN)
+#define BG_USDHC_INT_STATUS_EN_CINTSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CINTSEN) >> BP_USDHC_INT_STATUS_EN_CINTSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CINTSEN.
-#define BF_USDHC_INT_STATUS_EN_CINTSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CINTSEN) & BM_USDHC_INT_STATUS_EN_CINTSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CINTSEN.
-#define BF_USDHC_INT_STATUS_EN_CINTSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CINTSEN) & BM_USDHC_INT_STATUS_EN_CINTSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CINTSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CINTSEN) & BM_USDHC_INT_STATUS_EN_CINTSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINTSEN field to a new value.
@@ -3536,15 +3238,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_RTESEN      (0x00001000)  //!< Bit mask for USDHC_INT_STATUS_EN_RTESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_RTESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_RTESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_RTESEN) >> BP_USDHC_INT_STATUS_EN_RTESEN)
+#define BG_USDHC_INT_STATUS_EN_RTESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_RTESEN) >> BP_USDHC_INT_STATUS_EN_RTESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_RTESEN.
-#define BF_USDHC_INT_STATUS_EN_RTESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_RTESEN) & BM_USDHC_INT_STATUS_EN_RTESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_RTESEN.
-#define BF_USDHC_INT_STATUS_EN_RTESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_RTESEN) & BM_USDHC_INT_STATUS_EN_RTESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_RTESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_RTESEN) & BM_USDHC_INT_STATUS_EN_RTESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTESEN field to a new value.
@@ -3565,15 +3262,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_TPSEN      (0x00004000)  //!< Bit mask for USDHC_INT_STATUS_EN_TPSEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_TPSEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_TPSEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_TPSEN) >> BP_USDHC_INT_STATUS_EN_TPSEN)
+#define BG_USDHC_INT_STATUS_EN_TPSEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_TPSEN) >> BP_USDHC_INT_STATUS_EN_TPSEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_TPSEN.
-#define BF_USDHC_INT_STATUS_EN_TPSEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_TPSEN) & BM_USDHC_INT_STATUS_EN_TPSEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_TPSEN.
-#define BF_USDHC_INT_STATUS_EN_TPSEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_TPSEN) & BM_USDHC_INT_STATUS_EN_TPSEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_TPSEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_TPSEN) & BM_USDHC_INT_STATUS_EN_TPSEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TPSEN field to a new value.
@@ -3594,15 +3286,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CTOESEN      (0x00010000)  //!< Bit mask for USDHC_INT_STATUS_EN_CTOESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CTOESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CTOESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CTOESEN) >> BP_USDHC_INT_STATUS_EN_CTOESEN)
+#define BG_USDHC_INT_STATUS_EN_CTOESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CTOESEN) >> BP_USDHC_INT_STATUS_EN_CTOESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CTOESEN.
-#define BF_USDHC_INT_STATUS_EN_CTOESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CTOESEN) & BM_USDHC_INT_STATUS_EN_CTOESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CTOESEN.
-#define BF_USDHC_INT_STATUS_EN_CTOESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CTOESEN) & BM_USDHC_INT_STATUS_EN_CTOESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CTOESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CTOESEN) & BM_USDHC_INT_STATUS_EN_CTOESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTOESEN field to a new value.
@@ -3623,15 +3310,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CCESEN      (0x00020000)  //!< Bit mask for USDHC_INT_STATUS_EN_CCESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CCESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CCESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CCESEN) >> BP_USDHC_INT_STATUS_EN_CCESEN)
+#define BG_USDHC_INT_STATUS_EN_CCESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CCESEN) >> BP_USDHC_INT_STATUS_EN_CCESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CCESEN.
-#define BF_USDHC_INT_STATUS_EN_CCESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CCESEN) & BM_USDHC_INT_STATUS_EN_CCESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CCESEN.
-#define BF_USDHC_INT_STATUS_EN_CCESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CCESEN) & BM_USDHC_INT_STATUS_EN_CCESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CCESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CCESEN) & BM_USDHC_INT_STATUS_EN_CCESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCESEN field to a new value.
@@ -3652,15 +3334,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CEBESEN      (0x00040000)  //!< Bit mask for USDHC_INT_STATUS_EN_CEBESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CEBESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CEBESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CEBESEN) >> BP_USDHC_INT_STATUS_EN_CEBESEN)
+#define BG_USDHC_INT_STATUS_EN_CEBESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CEBESEN) >> BP_USDHC_INT_STATUS_EN_CEBESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CEBESEN.
-#define BF_USDHC_INT_STATUS_EN_CEBESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CEBESEN) & BM_USDHC_INT_STATUS_EN_CEBESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CEBESEN.
-#define BF_USDHC_INT_STATUS_EN_CEBESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CEBESEN) & BM_USDHC_INT_STATUS_EN_CEBESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CEBESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CEBESEN) & BM_USDHC_INT_STATUS_EN_CEBESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CEBESEN field to a new value.
@@ -3681,15 +3358,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_CIESEN      (0x00080000)  //!< Bit mask for USDHC_INT_STATUS_EN_CIESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_CIESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_CIESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_CIESEN) >> BP_USDHC_INT_STATUS_EN_CIESEN)
+#define BG_USDHC_INT_STATUS_EN_CIESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_CIESEN) >> BP_USDHC_INT_STATUS_EN_CIESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_CIESEN.
-#define BF_USDHC_INT_STATUS_EN_CIESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_CIESEN) & BM_USDHC_INT_STATUS_EN_CIESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_CIESEN.
-#define BF_USDHC_INT_STATUS_EN_CIESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_CIESEN) & BM_USDHC_INT_STATUS_EN_CIESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_CIESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_CIESEN) & BM_USDHC_INT_STATUS_EN_CIESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIESEN field to a new value.
@@ -3710,15 +3382,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_DTOESEN      (0x00100000)  //!< Bit mask for USDHC_INT_STATUS_EN_DTOESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_DTOESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_DTOESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_DTOESEN) >> BP_USDHC_INT_STATUS_EN_DTOESEN)
+#define BG_USDHC_INT_STATUS_EN_DTOESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_DTOESEN) >> BP_USDHC_INT_STATUS_EN_DTOESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_DTOESEN.
-#define BF_USDHC_INT_STATUS_EN_DTOESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_DTOESEN) & BM_USDHC_INT_STATUS_EN_DTOESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_DTOESEN.
-#define BF_USDHC_INT_STATUS_EN_DTOESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_DTOESEN) & BM_USDHC_INT_STATUS_EN_DTOESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_DTOESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_DTOESEN) & BM_USDHC_INT_STATUS_EN_DTOESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTOESEN field to a new value.
@@ -3739,15 +3406,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_DCESEN      (0x00200000)  //!< Bit mask for USDHC_INT_STATUS_EN_DCESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_DCESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_DCESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_DCESEN) >> BP_USDHC_INT_STATUS_EN_DCESEN)
+#define BG_USDHC_INT_STATUS_EN_DCESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_DCESEN) >> BP_USDHC_INT_STATUS_EN_DCESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_DCESEN.
-#define BF_USDHC_INT_STATUS_EN_DCESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_DCESEN) & BM_USDHC_INT_STATUS_EN_DCESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_DCESEN.
-#define BF_USDHC_INT_STATUS_EN_DCESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_DCESEN) & BM_USDHC_INT_STATUS_EN_DCESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_DCESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_DCESEN) & BM_USDHC_INT_STATUS_EN_DCESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCESEN field to a new value.
@@ -3768,15 +3430,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_DEBESEN      (0x00400000)  //!< Bit mask for USDHC_INT_STATUS_EN_DEBESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_DEBESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_DEBESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_DEBESEN) >> BP_USDHC_INT_STATUS_EN_DEBESEN)
+#define BG_USDHC_INT_STATUS_EN_DEBESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_DEBESEN) >> BP_USDHC_INT_STATUS_EN_DEBESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_DEBESEN.
-#define BF_USDHC_INT_STATUS_EN_DEBESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_DEBESEN) & BM_USDHC_INT_STATUS_EN_DEBESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_DEBESEN.
-#define BF_USDHC_INT_STATUS_EN_DEBESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_DEBESEN) & BM_USDHC_INT_STATUS_EN_DEBESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_DEBESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_DEBESEN) & BM_USDHC_INT_STATUS_EN_DEBESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEBESEN field to a new value.
@@ -3797,15 +3454,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_AC12ESEN      (0x01000000)  //!< Bit mask for USDHC_INT_STATUS_EN_AC12ESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_AC12ESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_AC12ESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_AC12ESEN) >> BP_USDHC_INT_STATUS_EN_AC12ESEN)
+#define BG_USDHC_INT_STATUS_EN_AC12ESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_AC12ESEN) >> BP_USDHC_INT_STATUS_EN_AC12ESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_AC12ESEN.
-#define BF_USDHC_INT_STATUS_EN_AC12ESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_AC12ESEN) & BM_USDHC_INT_STATUS_EN_AC12ESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_AC12ESEN.
-#define BF_USDHC_INT_STATUS_EN_AC12ESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_AC12ESEN) & BM_USDHC_INT_STATUS_EN_AC12ESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_AC12ESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_AC12ESEN) & BM_USDHC_INT_STATUS_EN_AC12ESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12ESEN field to a new value.
@@ -3826,15 +3478,10 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_TNESEN      (0x04000000)  //!< Bit mask for USDHC_INT_STATUS_EN_TNESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_TNESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_TNESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_TNESEN) >> BP_USDHC_INT_STATUS_EN_TNESEN)
+#define BG_USDHC_INT_STATUS_EN_TNESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_TNESEN) >> BP_USDHC_INT_STATUS_EN_TNESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_TNESEN.
-#define BF_USDHC_INT_STATUS_EN_TNESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_TNESEN) & BM_USDHC_INT_STATUS_EN_TNESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_TNESEN.
-#define BF_USDHC_INT_STATUS_EN_TNESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_TNESEN) & BM_USDHC_INT_STATUS_EN_TNESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_TNESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_TNESEN) & BM_USDHC_INT_STATUS_EN_TNESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TNESEN field to a new value.
@@ -3855,21 +3502,20 @@ typedef union _hw_usdhc_int_status_en
 #define BM_USDHC_INT_STATUS_EN_DMAESEN      (0x10000000)  //!< Bit mask for USDHC_INT_STATUS_EN_DMAESEN.
 
 //! @brief Get value of USDHC_INT_STATUS_EN_DMAESEN from a register value.
-#define BG_USDHC_INT_STATUS_EN_DMAESEN(r)   (((r) & BM_USDHC_INT_STATUS_EN_DMAESEN) >> BP_USDHC_INT_STATUS_EN_DMAESEN)
+#define BG_USDHC_INT_STATUS_EN_DMAESEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_STATUS_EN_DMAESEN) >> BP_USDHC_INT_STATUS_EN_DMAESEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_STATUS_EN_DMAESEN.
-#define BF_USDHC_INT_STATUS_EN_DMAESEN(v)   ((((reg32_t) v) << BP_USDHC_INT_STATUS_EN_DMAESEN) & BM_USDHC_INT_STATUS_EN_DMAESEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_STATUS_EN_DMAESEN.
-#define BF_USDHC_INT_STATUS_EN_DMAESEN(v)   (((v) << BP_USDHC_INT_STATUS_EN_DMAESEN) & BM_USDHC_INT_STATUS_EN_DMAESEN)
-#endif
+#define BF_USDHC_INT_STATUS_EN_DMAESEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_STATUS_EN_DMAESEN) & BM_USDHC_INT_STATUS_EN_DMAESEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMAESEN field to a new value.
 #define BW_USDHC_INT_STATUS_EN_DMAESEN(x, v)   (HW_USDHC_INT_STATUS_EN_WR(x, (HW_USDHC_INT_STATUS_EN_RD(x) & ~BM_USDHC_INT_STATUS_EN_DMAESEN) | BF_USDHC_INT_STATUS_EN_DMAESEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_INT_SIGNAL_EN - Interrupt Signal Enable
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -3950,15 +3596,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CCIEN      (0x00000001)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CCIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CCIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CCIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CCIEN) >> BP_USDHC_INT_SIGNAL_EN_CCIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CCIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CCIEN) >> BP_USDHC_INT_SIGNAL_EN_CCIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CCIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CCIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CCIEN) & BM_USDHC_INT_SIGNAL_EN_CCIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CCIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CCIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CCIEN) & BM_USDHC_INT_SIGNAL_EN_CCIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CCIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CCIEN) & BM_USDHC_INT_SIGNAL_EN_CCIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCIEN field to a new value.
@@ -3979,15 +3620,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_TCIEN      (0x00000002)  //!< Bit mask for USDHC_INT_SIGNAL_EN_TCIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_TCIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_TCIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_TCIEN) >> BP_USDHC_INT_SIGNAL_EN_TCIEN)
+#define BG_USDHC_INT_SIGNAL_EN_TCIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_TCIEN) >> BP_USDHC_INT_SIGNAL_EN_TCIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TCIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TCIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_TCIEN) & BM_USDHC_INT_SIGNAL_EN_TCIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TCIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TCIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_TCIEN) & BM_USDHC_INT_SIGNAL_EN_TCIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_TCIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_TCIEN) & BM_USDHC_INT_SIGNAL_EN_TCIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCIEN field to a new value.
@@ -4008,15 +3644,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_BGEIEN      (0x00000004)  //!< Bit mask for USDHC_INT_SIGNAL_EN_BGEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_BGEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_BGEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_BGEIEN) >> BP_USDHC_INT_SIGNAL_EN_BGEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_BGEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_BGEIEN) >> BP_USDHC_INT_SIGNAL_EN_BGEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BGEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BGEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_BGEIEN) & BM_USDHC_INT_SIGNAL_EN_BGEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BGEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BGEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_BGEIEN) & BM_USDHC_INT_SIGNAL_EN_BGEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_BGEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_BGEIEN) & BM_USDHC_INT_SIGNAL_EN_BGEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BGEIEN field to a new value.
@@ -4037,15 +3668,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_DINTIEN      (0x00000008)  //!< Bit mask for USDHC_INT_SIGNAL_EN_DINTIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_DINTIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_DINTIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_DINTIEN) >> BP_USDHC_INT_SIGNAL_EN_DINTIEN)
+#define BG_USDHC_INT_SIGNAL_EN_DINTIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_DINTIEN) >> BP_USDHC_INT_SIGNAL_EN_DINTIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DINTIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DINTIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_DINTIEN) & BM_USDHC_INT_SIGNAL_EN_DINTIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DINTIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DINTIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_DINTIEN) & BM_USDHC_INT_SIGNAL_EN_DINTIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_DINTIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_DINTIEN) & BM_USDHC_INT_SIGNAL_EN_DINTIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DINTIEN field to a new value.
@@ -4066,15 +3692,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_BWRIEN      (0x00000010)  //!< Bit mask for USDHC_INT_SIGNAL_EN_BWRIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_BWRIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_BWRIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_BWRIEN) >> BP_USDHC_INT_SIGNAL_EN_BWRIEN)
+#define BG_USDHC_INT_SIGNAL_EN_BWRIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_BWRIEN) >> BP_USDHC_INT_SIGNAL_EN_BWRIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BWRIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BWRIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_BWRIEN) & BM_USDHC_INT_SIGNAL_EN_BWRIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BWRIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BWRIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_BWRIEN) & BM_USDHC_INT_SIGNAL_EN_BWRIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_BWRIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_BWRIEN) & BM_USDHC_INT_SIGNAL_EN_BWRIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BWRIEN field to a new value.
@@ -4095,15 +3716,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_BRRIEN      (0x00000020)  //!< Bit mask for USDHC_INT_SIGNAL_EN_BRRIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_BRRIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_BRRIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_BRRIEN) >> BP_USDHC_INT_SIGNAL_EN_BRRIEN)
+#define BG_USDHC_INT_SIGNAL_EN_BRRIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_BRRIEN) >> BP_USDHC_INT_SIGNAL_EN_BRRIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BRRIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BRRIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_BRRIEN) & BM_USDHC_INT_SIGNAL_EN_BRRIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_BRRIEN.
-#define BF_USDHC_INT_SIGNAL_EN_BRRIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_BRRIEN) & BM_USDHC_INT_SIGNAL_EN_BRRIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_BRRIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_BRRIEN) & BM_USDHC_INT_SIGNAL_EN_BRRIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BRRIEN field to a new value.
@@ -4124,15 +3740,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CINSIEN      (0x00000040)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CINSIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CINSIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CINSIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CINSIEN) >> BP_USDHC_INT_SIGNAL_EN_CINSIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CINSIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CINSIEN) >> BP_USDHC_INT_SIGNAL_EN_CINSIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CINSIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CINSIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CINSIEN) & BM_USDHC_INT_SIGNAL_EN_CINSIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CINSIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CINSIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CINSIEN) & BM_USDHC_INT_SIGNAL_EN_CINSIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CINSIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CINSIEN) & BM_USDHC_INT_SIGNAL_EN_CINSIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINSIEN field to a new value.
@@ -4153,15 +3764,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CRMIEN      (0x00000080)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CRMIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CRMIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CRMIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CRMIEN) >> BP_USDHC_INT_SIGNAL_EN_CRMIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CRMIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CRMIEN) >> BP_USDHC_INT_SIGNAL_EN_CRMIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CRMIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CRMIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CRMIEN) & BM_USDHC_INT_SIGNAL_EN_CRMIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CRMIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CRMIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CRMIEN) & BM_USDHC_INT_SIGNAL_EN_CRMIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CRMIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CRMIEN) & BM_USDHC_INT_SIGNAL_EN_CRMIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRMIEN field to a new value.
@@ -4182,15 +3788,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CINTIEN      (0x00000100)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CINTIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CINTIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CINTIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CINTIEN) >> BP_USDHC_INT_SIGNAL_EN_CINTIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CINTIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CINTIEN) >> BP_USDHC_INT_SIGNAL_EN_CINTIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CINTIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CINTIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CINTIEN) & BM_USDHC_INT_SIGNAL_EN_CINTIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CINTIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CINTIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CINTIEN) & BM_USDHC_INT_SIGNAL_EN_CINTIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CINTIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CINTIEN) & BM_USDHC_INT_SIGNAL_EN_CINTIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CINTIEN field to a new value.
@@ -4211,15 +3812,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_RTEIEN      (0x00001000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_RTEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_RTEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_RTEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_RTEIEN) >> BP_USDHC_INT_SIGNAL_EN_RTEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_RTEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_RTEIEN) >> BP_USDHC_INT_SIGNAL_EN_RTEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_RTEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_RTEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_RTEIEN) & BM_USDHC_INT_SIGNAL_EN_RTEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_RTEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_RTEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_RTEIEN) & BM_USDHC_INT_SIGNAL_EN_RTEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_RTEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_RTEIEN) & BM_USDHC_INT_SIGNAL_EN_RTEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTEIEN field to a new value.
@@ -4240,15 +3836,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_TPIEN      (0x00004000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_TPIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_TPIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_TPIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_TPIEN) >> BP_USDHC_INT_SIGNAL_EN_TPIEN)
+#define BG_USDHC_INT_SIGNAL_EN_TPIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_TPIEN) >> BP_USDHC_INT_SIGNAL_EN_TPIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TPIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TPIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_TPIEN) & BM_USDHC_INT_SIGNAL_EN_TPIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TPIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TPIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_TPIEN) & BM_USDHC_INT_SIGNAL_EN_TPIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_TPIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_TPIEN) & BM_USDHC_INT_SIGNAL_EN_TPIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TPIEN field to a new value.
@@ -4269,15 +3860,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CTOEIEN      (0x00010000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CTOEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CTOEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CTOEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CTOEIEN) >> BP_USDHC_INT_SIGNAL_EN_CTOEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CTOEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CTOEIEN) >> BP_USDHC_INT_SIGNAL_EN_CTOEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CTOEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CTOEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CTOEIEN) & BM_USDHC_INT_SIGNAL_EN_CTOEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CTOEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CTOEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CTOEIEN) & BM_USDHC_INT_SIGNAL_EN_CTOEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CTOEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CTOEIEN) & BM_USDHC_INT_SIGNAL_EN_CTOEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CTOEIEN field to a new value.
@@ -4298,15 +3884,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CCEIEN      (0x00020000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CCEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CCEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CCEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CCEIEN) >> BP_USDHC_INT_SIGNAL_EN_CCEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CCEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CCEIEN) >> BP_USDHC_INT_SIGNAL_EN_CCEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CCEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CCEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CCEIEN) & BM_USDHC_INT_SIGNAL_EN_CCEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CCEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CCEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CCEIEN) & BM_USDHC_INT_SIGNAL_EN_CCEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CCEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CCEIEN) & BM_USDHC_INT_SIGNAL_EN_CCEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CCEIEN field to a new value.
@@ -4327,15 +3908,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CEBEIEN      (0x00040000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CEBEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CEBEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CEBEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CEBEIEN) >> BP_USDHC_INT_SIGNAL_EN_CEBEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CEBEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CEBEIEN) >> BP_USDHC_INT_SIGNAL_EN_CEBEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CEBEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CEBEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CEBEIEN) & BM_USDHC_INT_SIGNAL_EN_CEBEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CEBEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CEBEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CEBEIEN) & BM_USDHC_INT_SIGNAL_EN_CEBEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CEBEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CEBEIEN) & BM_USDHC_INT_SIGNAL_EN_CEBEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CEBEIEN field to a new value.
@@ -4356,15 +3932,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_CIEIEN      (0x00080000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_CIEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_CIEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_CIEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_CIEIEN) >> BP_USDHC_INT_SIGNAL_EN_CIEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_CIEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_CIEIEN) >> BP_USDHC_INT_SIGNAL_EN_CIEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CIEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CIEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_CIEIEN) & BM_USDHC_INT_SIGNAL_EN_CIEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_CIEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_CIEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_CIEIEN) & BM_USDHC_INT_SIGNAL_EN_CIEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_CIEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_CIEIEN) & BM_USDHC_INT_SIGNAL_EN_CIEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CIEIEN field to a new value.
@@ -4385,15 +3956,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_DTOEIEN      (0x00100000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_DTOEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_DTOEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_DTOEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_DTOEIEN) >> BP_USDHC_INT_SIGNAL_EN_DTOEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_DTOEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_DTOEIEN) >> BP_USDHC_INT_SIGNAL_EN_DTOEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DTOEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DTOEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_DTOEIEN) & BM_USDHC_INT_SIGNAL_EN_DTOEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DTOEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DTOEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_DTOEIEN) & BM_USDHC_INT_SIGNAL_EN_DTOEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_DTOEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_DTOEIEN) & BM_USDHC_INT_SIGNAL_EN_DTOEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTOEIEN field to a new value.
@@ -4414,15 +3980,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_DCEIEN      (0x00200000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_DCEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_DCEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_DCEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_DCEIEN) >> BP_USDHC_INT_SIGNAL_EN_DCEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_DCEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_DCEIEN) >> BP_USDHC_INT_SIGNAL_EN_DCEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DCEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DCEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_DCEIEN) & BM_USDHC_INT_SIGNAL_EN_DCEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DCEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DCEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_DCEIEN) & BM_USDHC_INT_SIGNAL_EN_DCEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_DCEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_DCEIEN) & BM_USDHC_INT_SIGNAL_EN_DCEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DCEIEN field to a new value.
@@ -4443,15 +4004,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_DEBEIEN      (0x00400000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_DEBEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_DEBEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_DEBEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_DEBEIEN) >> BP_USDHC_INT_SIGNAL_EN_DEBEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_DEBEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_DEBEIEN) >> BP_USDHC_INT_SIGNAL_EN_DEBEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DEBEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DEBEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_DEBEIEN) & BM_USDHC_INT_SIGNAL_EN_DEBEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DEBEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DEBEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_DEBEIEN) & BM_USDHC_INT_SIGNAL_EN_DEBEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_DEBEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_DEBEIEN) & BM_USDHC_INT_SIGNAL_EN_DEBEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DEBEIEN field to a new value.
@@ -4472,15 +4028,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_AC12EIEN      (0x01000000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_AC12EIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_AC12EIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_AC12EIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_AC12EIEN) >> BP_USDHC_INT_SIGNAL_EN_AC12EIEN)
+#define BG_USDHC_INT_SIGNAL_EN_AC12EIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_AC12EIEN) >> BP_USDHC_INT_SIGNAL_EN_AC12EIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_AC12EIEN.
-#define BF_USDHC_INT_SIGNAL_EN_AC12EIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_AC12EIEN) & BM_USDHC_INT_SIGNAL_EN_AC12EIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_AC12EIEN.
-#define BF_USDHC_INT_SIGNAL_EN_AC12EIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_AC12EIEN) & BM_USDHC_INT_SIGNAL_EN_AC12EIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_AC12EIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_AC12EIEN) & BM_USDHC_INT_SIGNAL_EN_AC12EIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12EIEN field to a new value.
@@ -4501,15 +4052,10 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_TNEIEN      (0x04000000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_TNEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_TNEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_TNEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_TNEIEN) >> BP_USDHC_INT_SIGNAL_EN_TNEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_TNEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_TNEIEN) >> BP_USDHC_INT_SIGNAL_EN_TNEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TNEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TNEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_TNEIEN) & BM_USDHC_INT_SIGNAL_EN_TNEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_TNEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_TNEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_TNEIEN) & BM_USDHC_INT_SIGNAL_EN_TNEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_TNEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_TNEIEN) & BM_USDHC_INT_SIGNAL_EN_TNEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TNEIEN field to a new value.
@@ -4530,21 +4076,20 @@ typedef union _hw_usdhc_int_signal_en
 #define BM_USDHC_INT_SIGNAL_EN_DMAEIEN      (0x10000000)  //!< Bit mask for USDHC_INT_SIGNAL_EN_DMAEIEN.
 
 //! @brief Get value of USDHC_INT_SIGNAL_EN_DMAEIEN from a register value.
-#define BG_USDHC_INT_SIGNAL_EN_DMAEIEN(r)   (((r) & BM_USDHC_INT_SIGNAL_EN_DMAEIEN) >> BP_USDHC_INT_SIGNAL_EN_DMAEIEN)
+#define BG_USDHC_INT_SIGNAL_EN_DMAEIEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_INT_SIGNAL_EN_DMAEIEN) >> BP_USDHC_INT_SIGNAL_EN_DMAEIEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DMAEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DMAEIEN(v)   ((((reg32_t) v) << BP_USDHC_INT_SIGNAL_EN_DMAEIEN) & BM_USDHC_INT_SIGNAL_EN_DMAEIEN)
-#else
-//! @brief Format value for bitfield USDHC_INT_SIGNAL_EN_DMAEIEN.
-#define BF_USDHC_INT_SIGNAL_EN_DMAEIEN(v)   (((v) << BP_USDHC_INT_SIGNAL_EN_DMAEIEN) & BM_USDHC_INT_SIGNAL_EN_DMAEIEN)
-#endif
+#define BF_USDHC_INT_SIGNAL_EN_DMAEIEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_INT_SIGNAL_EN_DMAEIEN) & BM_USDHC_INT_SIGNAL_EN_DMAEIEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMAEIEN field to a new value.
 #define BW_USDHC_INT_SIGNAL_EN_DMAEIEN(x, v)   (HW_USDHC_INT_SIGNAL_EN_WR(x, (HW_USDHC_INT_SIGNAL_EN_RD(x) & ~BM_USDHC_INT_SIGNAL_EN_DMAEIEN) | BF_USDHC_INT_SIGNAL_EN_DMAEIEN(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_AUTOCMD12_ERR_STATUS - Auto CMD12 Error Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4618,7 +4163,7 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_AC12NE      (0x00000001)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_AC12NE.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_AC12NE from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12NE(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12NE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12NE)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12NE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12NE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12NE)
 
 
 /* --- Register HW_USDHC_AUTOCMD12_ERR_STATUS, field AC12TOE[1] (RO)
@@ -4635,7 +4180,7 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE      (0x00000002)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_AC12TOE.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_AC12TOE from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12TOE)
 
 
 /* --- Register HW_USDHC_AUTOCMD12_ERR_STATUS, field AC12EBE[2] (RO)
@@ -4652,7 +4197,7 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE      (0x00000004)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_AC12EBE.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_AC12EBE from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12EBE)
 
 
 /* --- Register HW_USDHC_AUTOCMD12_ERR_STATUS, field AC12CE[3] (RO)
@@ -4668,7 +4213,7 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_AC12CE      (0x00000008)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_AC12CE.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_AC12CE from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12CE(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12CE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12CE)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12CE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12CE)
 
 
 /* --- Register HW_USDHC_AUTOCMD12_ERR_STATUS, field AC12IE[4] (RO)
@@ -4684,7 +4229,7 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_AC12IE      (0x00000010)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_AC12IE.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_AC12IE from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12IE(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12IE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12IE)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_AC12IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_AC12IE) >> BP_USDHC_AUTOCMD12_ERR_STATUS_AC12IE)
 
 
 /* --- Register HW_USDHC_AUTOCMD12_ERR_STATUS, field CNIBAC12E[7] (RO)
@@ -4701,8 +4246,12 @@ typedef union _hw_usdhc_autocmd12_err_status
 #define BM_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E      (0x00000080)  //!< Bit mask for USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E.
 
 //! @brief Get value of USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E from a register value.
-#define BG_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E(r)   (((r) & BM_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E) >> BP_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E)
+#define BG_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E) >> BP_USDHC_AUTOCMD12_ERR_STATUS_CNIBAC12E)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_HOST_CTRL_CAP - Host Controller Capabilities
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4764,7 +4313,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_MBL      (0x00070000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_MBL.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_MBL from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_MBL(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_MBL) >> BP_USDHC_HOST_CTRL_CAP_MBL)
+#define BG_USDHC_HOST_CTRL_CAP_MBL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_MBL) >> BP_USDHC_HOST_CTRL_CAP_MBL)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field ADMAS[20] (RO)
@@ -4780,7 +4329,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_ADMAS      (0x00100000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_ADMAS.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_ADMAS from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_ADMAS(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_ADMAS) >> BP_USDHC_HOST_CTRL_CAP_ADMAS)
+#define BG_USDHC_HOST_CTRL_CAP_ADMAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_ADMAS) >> BP_USDHC_HOST_CTRL_CAP_ADMAS)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field HSS[21] (RO)
@@ -4797,7 +4346,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_HSS      (0x00200000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_HSS.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_HSS from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_HSS(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_HSS) >> BP_USDHC_HOST_CTRL_CAP_HSS)
+#define BG_USDHC_HOST_CTRL_CAP_HSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_HSS) >> BP_USDHC_HOST_CTRL_CAP_HSS)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field DMAS[22] (RO)
@@ -4814,7 +4363,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_DMAS      (0x00400000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_DMAS.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_DMAS from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_DMAS(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_DMAS) >> BP_USDHC_HOST_CTRL_CAP_DMAS)
+#define BG_USDHC_HOST_CTRL_CAP_DMAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_DMAS) >> BP_USDHC_HOST_CTRL_CAP_DMAS)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field SRS[23] (RO)
@@ -4832,7 +4381,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_SRS      (0x00800000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_SRS.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_SRS from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_SRS(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_SRS) >> BP_USDHC_HOST_CTRL_CAP_SRS)
+#define BG_USDHC_HOST_CTRL_CAP_SRS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_SRS) >> BP_USDHC_HOST_CTRL_CAP_SRS)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field VS33[24] (RO)
@@ -4848,7 +4397,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_VS33      (0x01000000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_VS33.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_VS33 from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_VS33(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_VS33) >> BP_USDHC_HOST_CTRL_CAP_VS33)
+#define BG_USDHC_HOST_CTRL_CAP_VS33(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_VS33) >> BP_USDHC_HOST_CTRL_CAP_VS33)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field VS30[25] (RO)
@@ -4864,7 +4413,7 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_VS30      (0x02000000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_VS30.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_VS30 from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_VS30(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_VS30) >> BP_USDHC_HOST_CTRL_CAP_VS30)
+#define BG_USDHC_HOST_CTRL_CAP_VS30(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_VS30) >> BP_USDHC_HOST_CTRL_CAP_VS30)
 
 
 /* --- Register HW_USDHC_HOST_CTRL_CAP, field VS18[26] (RO)
@@ -4880,8 +4429,12 @@ typedef union _hw_usdhc_host_ctrl_cap
 #define BM_USDHC_HOST_CTRL_CAP_VS18      (0x04000000)  //!< Bit mask for USDHC_HOST_CTRL_CAP_VS18.
 
 //! @brief Get value of USDHC_HOST_CTRL_CAP_VS18 from a register value.
-#define BG_USDHC_HOST_CTRL_CAP_VS18(r)   (((r) & BM_USDHC_HOST_CTRL_CAP_VS18) >> BP_USDHC_HOST_CTRL_CAP_VS18)
+#define BG_USDHC_HOST_CTRL_CAP_VS18(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_CAP_VS18) >> BP_USDHC_HOST_CTRL_CAP_VS18)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_WTMK_LVL - Watermark Level
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -4937,15 +4490,10 @@ typedef union _hw_usdhc_wtmk_lvl
 #define BM_USDHC_WTMK_LVL_RD_WML      (0x000000ff)  //!< Bit mask for USDHC_WTMK_LVL_RD_WML.
 
 //! @brief Get value of USDHC_WTMK_LVL_RD_WML from a register value.
-#define BG_USDHC_WTMK_LVL_RD_WML(r)   (((r) & BM_USDHC_WTMK_LVL_RD_WML) >> BP_USDHC_WTMK_LVL_RD_WML)
+#define BG_USDHC_WTMK_LVL_RD_WML(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_WTMK_LVL_RD_WML) >> BP_USDHC_WTMK_LVL_RD_WML)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_WTMK_LVL_RD_WML.
-#define BF_USDHC_WTMK_LVL_RD_WML(v)   ((((reg32_t) v) << BP_USDHC_WTMK_LVL_RD_WML) & BM_USDHC_WTMK_LVL_RD_WML)
-#else
-//! @brief Format value for bitfield USDHC_WTMK_LVL_RD_WML.
-#define BF_USDHC_WTMK_LVL_RD_WML(v)   (((v) << BP_USDHC_WTMK_LVL_RD_WML) & BM_USDHC_WTMK_LVL_RD_WML)
-#endif
+#define BF_USDHC_WTMK_LVL_RD_WML(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_WTMK_LVL_RD_WML) & BM_USDHC_WTMK_LVL_RD_WML)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_WML field to a new value.
@@ -4965,15 +4513,10 @@ typedef union _hw_usdhc_wtmk_lvl
 #define BM_USDHC_WTMK_LVL_RD_BRST_LEN      (0x00001f00)  //!< Bit mask for USDHC_WTMK_LVL_RD_BRST_LEN.
 
 //! @brief Get value of USDHC_WTMK_LVL_RD_BRST_LEN from a register value.
-#define BG_USDHC_WTMK_LVL_RD_BRST_LEN(r)   (((r) & BM_USDHC_WTMK_LVL_RD_BRST_LEN) >> BP_USDHC_WTMK_LVL_RD_BRST_LEN)
+#define BG_USDHC_WTMK_LVL_RD_BRST_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_WTMK_LVL_RD_BRST_LEN) >> BP_USDHC_WTMK_LVL_RD_BRST_LEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_WTMK_LVL_RD_BRST_LEN.
-#define BF_USDHC_WTMK_LVL_RD_BRST_LEN(v)   ((((reg32_t) v) << BP_USDHC_WTMK_LVL_RD_BRST_LEN) & BM_USDHC_WTMK_LVL_RD_BRST_LEN)
-#else
-//! @brief Format value for bitfield USDHC_WTMK_LVL_RD_BRST_LEN.
-#define BF_USDHC_WTMK_LVL_RD_BRST_LEN(v)   (((v) << BP_USDHC_WTMK_LVL_RD_BRST_LEN) & BM_USDHC_WTMK_LVL_RD_BRST_LEN)
-#endif
+#define BF_USDHC_WTMK_LVL_RD_BRST_LEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_WTMK_LVL_RD_BRST_LEN) & BM_USDHC_WTMK_LVL_RD_BRST_LEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_BRST_LEN field to a new value.
@@ -4991,15 +4534,10 @@ typedef union _hw_usdhc_wtmk_lvl
 #define BM_USDHC_WTMK_LVL_WR_WML      (0x00ff0000)  //!< Bit mask for USDHC_WTMK_LVL_WR_WML.
 
 //! @brief Get value of USDHC_WTMK_LVL_WR_WML from a register value.
-#define BG_USDHC_WTMK_LVL_WR_WML(r)   (((r) & BM_USDHC_WTMK_LVL_WR_WML) >> BP_USDHC_WTMK_LVL_WR_WML)
+#define BG_USDHC_WTMK_LVL_WR_WML(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_WTMK_LVL_WR_WML) >> BP_USDHC_WTMK_LVL_WR_WML)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_WTMK_LVL_WR_WML.
-#define BF_USDHC_WTMK_LVL_WR_WML(v)   ((((reg32_t) v) << BP_USDHC_WTMK_LVL_WR_WML) & BM_USDHC_WTMK_LVL_WR_WML)
-#else
-//! @brief Format value for bitfield USDHC_WTMK_LVL_WR_WML.
-#define BF_USDHC_WTMK_LVL_WR_WML(v)   (((v) << BP_USDHC_WTMK_LVL_WR_WML) & BM_USDHC_WTMK_LVL_WR_WML)
-#endif
+#define BF_USDHC_WTMK_LVL_WR_WML(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_WTMK_LVL_WR_WML) & BM_USDHC_WTMK_LVL_WR_WML)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_WML field to a new value.
@@ -5019,20 +4557,19 @@ typedef union _hw_usdhc_wtmk_lvl
 #define BM_USDHC_WTMK_LVL_WR_BRST_LEN      (0x1f000000)  //!< Bit mask for USDHC_WTMK_LVL_WR_BRST_LEN.
 
 //! @brief Get value of USDHC_WTMK_LVL_WR_BRST_LEN from a register value.
-#define BG_USDHC_WTMK_LVL_WR_BRST_LEN(r)   (((r) & BM_USDHC_WTMK_LVL_WR_BRST_LEN) >> BP_USDHC_WTMK_LVL_WR_BRST_LEN)
+#define BG_USDHC_WTMK_LVL_WR_BRST_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_WTMK_LVL_WR_BRST_LEN) >> BP_USDHC_WTMK_LVL_WR_BRST_LEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_WTMK_LVL_WR_BRST_LEN.
-#define BF_USDHC_WTMK_LVL_WR_BRST_LEN(v)   ((((reg32_t) v) << BP_USDHC_WTMK_LVL_WR_BRST_LEN) & BM_USDHC_WTMK_LVL_WR_BRST_LEN)
-#else
-//! @brief Format value for bitfield USDHC_WTMK_LVL_WR_BRST_LEN.
-#define BF_USDHC_WTMK_LVL_WR_BRST_LEN(v)   (((v) << BP_USDHC_WTMK_LVL_WR_BRST_LEN) & BM_USDHC_WTMK_LVL_WR_BRST_LEN)
-#endif
+#define BF_USDHC_WTMK_LVL_WR_BRST_LEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_WTMK_LVL_WR_BRST_LEN) & BM_USDHC_WTMK_LVL_WR_BRST_LEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_BRST_LEN field to a new value.
 #define BW_USDHC_WTMK_LVL_WR_BRST_LEN(x, v)   (HW_USDHC_WTMK_LVL_WR(x, (HW_USDHC_WTMK_LVL_RD(x) & ~BM_USDHC_WTMK_LVL_WR_BRST_LEN) | BF_USDHC_WTMK_LVL_WR_BRST_LEN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_MIX_CTRL - Mixer Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5107,15 +4644,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_DMAEN      (0x00000001)  //!< Bit mask for USDHC_MIX_CTRL_DMAEN.
 
 //! @brief Get value of USDHC_MIX_CTRL_DMAEN from a register value.
-#define BG_USDHC_MIX_CTRL_DMAEN(r)   (((r) & BM_USDHC_MIX_CTRL_DMAEN) >> BP_USDHC_MIX_CTRL_DMAEN)
+#define BG_USDHC_MIX_CTRL_DMAEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_DMAEN) >> BP_USDHC_MIX_CTRL_DMAEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_DMAEN.
-#define BF_USDHC_MIX_CTRL_DMAEN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_DMAEN) & BM_USDHC_MIX_CTRL_DMAEN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_DMAEN.
-#define BF_USDHC_MIX_CTRL_DMAEN(v)   (((v) << BP_USDHC_MIX_CTRL_DMAEN) & BM_USDHC_MIX_CTRL_DMAEN)
-#endif
+#define BF_USDHC_MIX_CTRL_DMAEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_DMAEN) & BM_USDHC_MIX_CTRL_DMAEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DMAEN field to a new value.
@@ -5138,15 +4670,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_BCEN      (0x00000002)  //!< Bit mask for USDHC_MIX_CTRL_BCEN.
 
 //! @brief Get value of USDHC_MIX_CTRL_BCEN from a register value.
-#define BG_USDHC_MIX_CTRL_BCEN(r)   (((r) & BM_USDHC_MIX_CTRL_BCEN) >> BP_USDHC_MIX_CTRL_BCEN)
+#define BG_USDHC_MIX_CTRL_BCEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_BCEN) >> BP_USDHC_MIX_CTRL_BCEN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_BCEN.
-#define BF_USDHC_MIX_CTRL_BCEN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_BCEN) & BM_USDHC_MIX_CTRL_BCEN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_BCEN.
-#define BF_USDHC_MIX_CTRL_BCEN(v)   (((v) << BP_USDHC_MIX_CTRL_BCEN) & BM_USDHC_MIX_CTRL_BCEN)
-#endif
+#define BF_USDHC_MIX_CTRL_BCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_BCEN) & BM_USDHC_MIX_CTRL_BCEN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BCEN field to a new value.
@@ -5172,15 +4699,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_AC12EN      (0x00000004)  //!< Bit mask for USDHC_MIX_CTRL_AC12EN.
 
 //! @brief Get value of USDHC_MIX_CTRL_AC12EN from a register value.
-#define BG_USDHC_MIX_CTRL_AC12EN(r)   (((r) & BM_USDHC_MIX_CTRL_AC12EN) >> BP_USDHC_MIX_CTRL_AC12EN)
+#define BG_USDHC_MIX_CTRL_AC12EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_AC12EN) >> BP_USDHC_MIX_CTRL_AC12EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_AC12EN.
-#define BF_USDHC_MIX_CTRL_AC12EN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_AC12EN) & BM_USDHC_MIX_CTRL_AC12EN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_AC12EN.
-#define BF_USDHC_MIX_CTRL_AC12EN(v)   (((v) << BP_USDHC_MIX_CTRL_AC12EN) & BM_USDHC_MIX_CTRL_AC12EN)
-#endif
+#define BF_USDHC_MIX_CTRL_AC12EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_AC12EN) & BM_USDHC_MIX_CTRL_AC12EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12EN field to a new value.
@@ -5197,15 +4719,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_DDR_EN      (0x00000008)  //!< Bit mask for USDHC_MIX_CTRL_DDR_EN.
 
 //! @brief Get value of USDHC_MIX_CTRL_DDR_EN from a register value.
-#define BG_USDHC_MIX_CTRL_DDR_EN(r)   (((r) & BM_USDHC_MIX_CTRL_DDR_EN) >> BP_USDHC_MIX_CTRL_DDR_EN)
+#define BG_USDHC_MIX_CTRL_DDR_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_DDR_EN) >> BP_USDHC_MIX_CTRL_DDR_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_DDR_EN.
-#define BF_USDHC_MIX_CTRL_DDR_EN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_DDR_EN) & BM_USDHC_MIX_CTRL_DDR_EN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_DDR_EN.
-#define BF_USDHC_MIX_CTRL_DDR_EN(v)   (((v) << BP_USDHC_MIX_CTRL_DDR_EN) & BM_USDHC_MIX_CTRL_DDR_EN)
-#endif
+#define BF_USDHC_MIX_CTRL_DDR_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_DDR_EN) & BM_USDHC_MIX_CTRL_DDR_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_EN field to a new value.
@@ -5227,15 +4744,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_DTDSEL      (0x00000010)  //!< Bit mask for USDHC_MIX_CTRL_DTDSEL.
 
 //! @brief Get value of USDHC_MIX_CTRL_DTDSEL from a register value.
-#define BG_USDHC_MIX_CTRL_DTDSEL(r)   (((r) & BM_USDHC_MIX_CTRL_DTDSEL) >> BP_USDHC_MIX_CTRL_DTDSEL)
+#define BG_USDHC_MIX_CTRL_DTDSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_DTDSEL) >> BP_USDHC_MIX_CTRL_DTDSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_DTDSEL.
-#define BF_USDHC_MIX_CTRL_DTDSEL(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_DTDSEL) & BM_USDHC_MIX_CTRL_DTDSEL)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_DTDSEL.
-#define BF_USDHC_MIX_CTRL_DTDSEL(v)   (((v) << BP_USDHC_MIX_CTRL_DTDSEL) & BM_USDHC_MIX_CTRL_DTDSEL)
-#endif
+#define BF_USDHC_MIX_CTRL_DTDSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_DTDSEL) & BM_USDHC_MIX_CTRL_DTDSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTDSEL field to a new value.
@@ -5258,15 +4770,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_MSBSEL      (0x00000020)  //!< Bit mask for USDHC_MIX_CTRL_MSBSEL.
 
 //! @brief Get value of USDHC_MIX_CTRL_MSBSEL from a register value.
-#define BG_USDHC_MIX_CTRL_MSBSEL(r)   (((r) & BM_USDHC_MIX_CTRL_MSBSEL) >> BP_USDHC_MIX_CTRL_MSBSEL)
+#define BG_USDHC_MIX_CTRL_MSBSEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_MSBSEL) >> BP_USDHC_MIX_CTRL_MSBSEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_MSBSEL.
-#define BF_USDHC_MIX_CTRL_MSBSEL(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_MSBSEL) & BM_USDHC_MIX_CTRL_MSBSEL)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_MSBSEL.
-#define BF_USDHC_MIX_CTRL_MSBSEL(v)   (((v) << BP_USDHC_MIX_CTRL_MSBSEL) & BM_USDHC_MIX_CTRL_MSBSEL)
-#endif
+#define BF_USDHC_MIX_CTRL_MSBSEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_MSBSEL) & BM_USDHC_MIX_CTRL_MSBSEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MSBSEL field to a new value.
@@ -5285,15 +4792,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_NIBBLE_POS      (0x00000040)  //!< Bit mask for USDHC_MIX_CTRL_NIBBLE_POS.
 
 //! @brief Get value of USDHC_MIX_CTRL_NIBBLE_POS from a register value.
-#define BG_USDHC_MIX_CTRL_NIBBLE_POS(r)   (((r) & BM_USDHC_MIX_CTRL_NIBBLE_POS) >> BP_USDHC_MIX_CTRL_NIBBLE_POS)
+#define BG_USDHC_MIX_CTRL_NIBBLE_POS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_NIBBLE_POS) >> BP_USDHC_MIX_CTRL_NIBBLE_POS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_NIBBLE_POS.
-#define BF_USDHC_MIX_CTRL_NIBBLE_POS(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_NIBBLE_POS) & BM_USDHC_MIX_CTRL_NIBBLE_POS)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_NIBBLE_POS.
-#define BF_USDHC_MIX_CTRL_NIBBLE_POS(v)   (((v) << BP_USDHC_MIX_CTRL_NIBBLE_POS) & BM_USDHC_MIX_CTRL_NIBBLE_POS)
-#endif
+#define BF_USDHC_MIX_CTRL_NIBBLE_POS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_NIBBLE_POS) & BM_USDHC_MIX_CTRL_NIBBLE_POS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the NIBBLE_POS field to a new value.
@@ -5310,15 +4812,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_AC23EN      (0x00000080)  //!< Bit mask for USDHC_MIX_CTRL_AC23EN.
 
 //! @brief Get value of USDHC_MIX_CTRL_AC23EN from a register value.
-#define BG_USDHC_MIX_CTRL_AC23EN(r)   (((r) & BM_USDHC_MIX_CTRL_AC23EN) >> BP_USDHC_MIX_CTRL_AC23EN)
+#define BG_USDHC_MIX_CTRL_AC23EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_AC23EN) >> BP_USDHC_MIX_CTRL_AC23EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_AC23EN.
-#define BF_USDHC_MIX_CTRL_AC23EN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_AC23EN) & BM_USDHC_MIX_CTRL_AC23EN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_AC23EN.
-#define BF_USDHC_MIX_CTRL_AC23EN(v)   (((v) << BP_USDHC_MIX_CTRL_AC23EN) & BM_USDHC_MIX_CTRL_AC23EN)
-#endif
+#define BF_USDHC_MIX_CTRL_AC23EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_AC23EN) & BM_USDHC_MIX_CTRL_AC23EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC23EN field to a new value.
@@ -5341,15 +4838,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_EXE_TUNE      (0x00400000)  //!< Bit mask for USDHC_MIX_CTRL_EXE_TUNE.
 
 //! @brief Get value of USDHC_MIX_CTRL_EXE_TUNE from a register value.
-#define BG_USDHC_MIX_CTRL_EXE_TUNE(r)   (((r) & BM_USDHC_MIX_CTRL_EXE_TUNE) >> BP_USDHC_MIX_CTRL_EXE_TUNE)
+#define BG_USDHC_MIX_CTRL_EXE_TUNE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_EXE_TUNE) >> BP_USDHC_MIX_CTRL_EXE_TUNE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_EXE_TUNE.
-#define BF_USDHC_MIX_CTRL_EXE_TUNE(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_EXE_TUNE) & BM_USDHC_MIX_CTRL_EXE_TUNE)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_EXE_TUNE.
-#define BF_USDHC_MIX_CTRL_EXE_TUNE(v)   (((v) << BP_USDHC_MIX_CTRL_EXE_TUNE) & BM_USDHC_MIX_CTRL_EXE_TUNE)
-#endif
+#define BF_USDHC_MIX_CTRL_EXE_TUNE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_EXE_TUNE) & BM_USDHC_MIX_CTRL_EXE_TUNE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXE_TUNE field to a new value.
@@ -5372,15 +4864,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_SMP_CLK_SEL      (0x00800000)  //!< Bit mask for USDHC_MIX_CTRL_SMP_CLK_SEL.
 
 //! @brief Get value of USDHC_MIX_CTRL_SMP_CLK_SEL from a register value.
-#define BG_USDHC_MIX_CTRL_SMP_CLK_SEL(r)   (((r) & BM_USDHC_MIX_CTRL_SMP_CLK_SEL) >> BP_USDHC_MIX_CTRL_SMP_CLK_SEL)
+#define BG_USDHC_MIX_CTRL_SMP_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_SMP_CLK_SEL) >> BP_USDHC_MIX_CTRL_SMP_CLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_SMP_CLK_SEL.
-#define BF_USDHC_MIX_CTRL_SMP_CLK_SEL(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_SMP_CLK_SEL) & BM_USDHC_MIX_CTRL_SMP_CLK_SEL)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_SMP_CLK_SEL.
-#define BF_USDHC_MIX_CTRL_SMP_CLK_SEL(v)   (((v) << BP_USDHC_MIX_CTRL_SMP_CLK_SEL) & BM_USDHC_MIX_CTRL_SMP_CLK_SEL)
-#endif
+#define BF_USDHC_MIX_CTRL_SMP_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_SMP_CLK_SEL) & BM_USDHC_MIX_CTRL_SMP_CLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SMP_CLK_SEL field to a new value.
@@ -5401,15 +4888,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_AUTO_TUNE_EN      (0x01000000)  //!< Bit mask for USDHC_MIX_CTRL_AUTO_TUNE_EN.
 
 //! @brief Get value of USDHC_MIX_CTRL_AUTO_TUNE_EN from a register value.
-#define BG_USDHC_MIX_CTRL_AUTO_TUNE_EN(r)   (((r) & BM_USDHC_MIX_CTRL_AUTO_TUNE_EN) >> BP_USDHC_MIX_CTRL_AUTO_TUNE_EN)
+#define BG_USDHC_MIX_CTRL_AUTO_TUNE_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_AUTO_TUNE_EN) >> BP_USDHC_MIX_CTRL_AUTO_TUNE_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_AUTO_TUNE_EN.
-#define BF_USDHC_MIX_CTRL_AUTO_TUNE_EN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_AUTO_TUNE_EN) & BM_USDHC_MIX_CTRL_AUTO_TUNE_EN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_AUTO_TUNE_EN.
-#define BF_USDHC_MIX_CTRL_AUTO_TUNE_EN(v)   (((v) << BP_USDHC_MIX_CTRL_AUTO_TUNE_EN) & BM_USDHC_MIX_CTRL_AUTO_TUNE_EN)
-#endif
+#define BF_USDHC_MIX_CTRL_AUTO_TUNE_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_AUTO_TUNE_EN) & BM_USDHC_MIX_CTRL_AUTO_TUNE_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUTO_TUNE_EN field to a new value.
@@ -5422,7 +4904,7 @@ typedef union _hw_usdhc_mix_ctrl
  * Feedback clock source selection (Only used for SD3.0, SDR104 mode)
  *
  * Values:
- * 0 - feedback clock comes from the loopback SD_CLK
+ * 0 - feedback clock comes from the loopback CLK
  * 1 - feedback clock comes from the ipp_card_clk_out
  */
 
@@ -5430,15 +4912,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_FBCLK_SEL      (0x02000000)  //!< Bit mask for USDHC_MIX_CTRL_FBCLK_SEL.
 
 //! @brief Get value of USDHC_MIX_CTRL_FBCLK_SEL from a register value.
-#define BG_USDHC_MIX_CTRL_FBCLK_SEL(r)   (((r) & BM_USDHC_MIX_CTRL_FBCLK_SEL) >> BP_USDHC_MIX_CTRL_FBCLK_SEL)
+#define BG_USDHC_MIX_CTRL_FBCLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_FBCLK_SEL) >> BP_USDHC_MIX_CTRL_FBCLK_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_FBCLK_SEL.
-#define BF_USDHC_MIX_CTRL_FBCLK_SEL(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_FBCLK_SEL) & BM_USDHC_MIX_CTRL_FBCLK_SEL)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_FBCLK_SEL.
-#define BF_USDHC_MIX_CTRL_FBCLK_SEL(v)   (((v) << BP_USDHC_MIX_CTRL_FBCLK_SEL) & BM_USDHC_MIX_CTRL_FBCLK_SEL)
-#endif
+#define BF_USDHC_MIX_CTRL_FBCLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_FBCLK_SEL) & BM_USDHC_MIX_CTRL_FBCLK_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FBCLK_SEL field to a new value.
@@ -5457,15 +4934,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_AC12_RD_POINT      (0x20000000)  //!< Bit mask for USDHC_MIX_CTRL_AC12_RD_POINT.
 
 //! @brief Get value of USDHC_MIX_CTRL_AC12_RD_POINT from a register value.
-#define BG_USDHC_MIX_CTRL_AC12_RD_POINT(r)   (((r) & BM_USDHC_MIX_CTRL_AC12_RD_POINT) >> BP_USDHC_MIX_CTRL_AC12_RD_POINT)
+#define BG_USDHC_MIX_CTRL_AC12_RD_POINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_AC12_RD_POINT) >> BP_USDHC_MIX_CTRL_AC12_RD_POINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_AC12_RD_POINT.
-#define BF_USDHC_MIX_CTRL_AC12_RD_POINT(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_AC12_RD_POINT) & BM_USDHC_MIX_CTRL_AC12_RD_POINT)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_AC12_RD_POINT.
-#define BF_USDHC_MIX_CTRL_AC12_RD_POINT(v)   (((v) << BP_USDHC_MIX_CTRL_AC12_RD_POINT) & BM_USDHC_MIX_CTRL_AC12_RD_POINT)
-#endif
+#define BF_USDHC_MIX_CTRL_AC12_RD_POINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_AC12_RD_POINT) & BM_USDHC_MIX_CTRL_AC12_RD_POINT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12_RD_POINT field to a new value.
@@ -5484,15 +4956,10 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG      (0x40000000)  //!< Bit mask for USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG.
 
 //! @brief Get value of USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG from a register value.
-#define BG_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG(r)   (((r) & BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG) >> BP_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG)
+#define BG_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG) >> BP_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG.
-#define BF_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG) & BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG.
-#define BF_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG(v)   (((v) << BP_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG) & BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG)
-#endif
+#define BF_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG) & BM_USDHC_MIX_CTRL_CMD_DMY_WAIT_CFG)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_DMY_WAIT_CFG field to a new value.
@@ -5508,20 +4975,19 @@ typedef union _hw_usdhc_mix_ctrl
 #define BM_USDHC_MIX_CTRL_CMD_DMY_EN      (0x80000000)  //!< Bit mask for USDHC_MIX_CTRL_CMD_DMY_EN.
 
 //! @brief Get value of USDHC_MIX_CTRL_CMD_DMY_EN from a register value.
-#define BG_USDHC_MIX_CTRL_CMD_DMY_EN(r)   (((r) & BM_USDHC_MIX_CTRL_CMD_DMY_EN) >> BP_USDHC_MIX_CTRL_CMD_DMY_EN)
+#define BG_USDHC_MIX_CTRL_CMD_DMY_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MIX_CTRL_CMD_DMY_EN) >> BP_USDHC_MIX_CTRL_CMD_DMY_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MIX_CTRL_CMD_DMY_EN.
-#define BF_USDHC_MIX_CTRL_CMD_DMY_EN(v)   ((((reg32_t) v) << BP_USDHC_MIX_CTRL_CMD_DMY_EN) & BM_USDHC_MIX_CTRL_CMD_DMY_EN)
-#else
-//! @brief Format value for bitfield USDHC_MIX_CTRL_CMD_DMY_EN.
-#define BF_USDHC_MIX_CTRL_CMD_DMY_EN(v)   (((v) << BP_USDHC_MIX_CTRL_CMD_DMY_EN) & BM_USDHC_MIX_CTRL_CMD_DMY_EN)
-#endif
+#define BF_USDHC_MIX_CTRL_CMD_DMY_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MIX_CTRL_CMD_DMY_EN) & BM_USDHC_MIX_CTRL_CMD_DMY_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_DMY_EN field to a new value.
 #define BW_USDHC_MIX_CTRL_CMD_DMY_EN(x, v)   (HW_USDHC_MIX_CTRL_WR(x, (HW_USDHC_MIX_CTRL_RD(x) & ~BM_USDHC_MIX_CTRL_CMD_DMY_EN) | BF_USDHC_MIX_CTRL_CMD_DMY_EN(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_FORCE_EVENT - Force Event
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5595,15 +5061,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12NE      (0x00000001)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12NE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12NE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12NE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12NE) >> BP_USDHC_FORCE_EVENT_FEVTAC12NE)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12NE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12NE) >> BP_USDHC_FORCE_EVENT_FEVTAC12NE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12NE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12NE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12NE) & BM_USDHC_FORCE_EVENT_FEVTAC12NE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12NE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12NE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12NE) & BM_USDHC_FORCE_EVENT_FEVTAC12NE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12NE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12NE) & BM_USDHC_FORCE_EVENT_FEVTAC12NE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12TOE[1] (WORZ)
  *
@@ -5615,15 +5076,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12TOE      (0x00000002)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12TOE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12TOE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12TOE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE) >> BP_USDHC_FORCE_EVENT_FEVTAC12TOE)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12TOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE) >> BP_USDHC_FORCE_EVENT_FEVTAC12TOE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12TOE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12TOE) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12TOE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12TOE) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12TOE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12TOE) & BM_USDHC_FORCE_EVENT_FEVTAC12TOE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12CE[2] (WORZ)
  *
@@ -5635,15 +5091,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12CE      (0x00000004)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12CE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12CE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12CE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12CE) >> BP_USDHC_FORCE_EVENT_FEVTAC12CE)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12CE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12CE) >> BP_USDHC_FORCE_EVENT_FEVTAC12CE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12CE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12CE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12CE) & BM_USDHC_FORCE_EVENT_FEVTAC12CE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12CE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12CE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12CE) & BM_USDHC_FORCE_EVENT_FEVTAC12CE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12CE) & BM_USDHC_FORCE_EVENT_FEVTAC12CE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12EBE[3] (WORZ)
  *
@@ -5655,15 +5106,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12EBE      (0x00000008)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12EBE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12EBE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12EBE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE) >> BP_USDHC_FORCE_EVENT_FEVTAC12EBE)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12EBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE) >> BP_USDHC_FORCE_EVENT_FEVTAC12EBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12EBE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12EBE) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12EBE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12EBE) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12EBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12EBE) & BM_USDHC_FORCE_EVENT_FEVTAC12EBE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12IE[4] (WORZ)
  *
@@ -5675,15 +5121,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12IE      (0x00000010)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12IE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12IE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12IE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12IE) >> BP_USDHC_FORCE_EVENT_FEVTAC12IE)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12IE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12IE) >> BP_USDHC_FORCE_EVENT_FEVTAC12IE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12IE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12IE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12IE) & BM_USDHC_FORCE_EVENT_FEVTAC12IE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12IE.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12IE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12IE) & BM_USDHC_FORCE_EVENT_FEVTAC12IE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12IE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12IE) & BM_USDHC_FORCE_EVENT_FEVTAC12IE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCNIBAC12E[7] (WORZ)
  *
@@ -5695,15 +5136,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E      (0x00000080)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCNIBAC12E.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCNIBAC12E from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCNIBAC12E(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E) >> BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
+#define BG_USDHC_FORCE_EVENT_FEVTCNIBAC12E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E) >> BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCNIBAC12E.
-#define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCNIBAC12E.
-#define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCCE[16] (WORZ)
  *
@@ -5714,15 +5150,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCCE      (0x00010000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCCE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCCE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCCE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCCE) >> BP_USDHC_FORCE_EVENT_FEVTCCE)
+#define BG_USDHC_FORCE_EVENT_FEVTCCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCCE) >> BP_USDHC_FORCE_EVENT_FEVTCCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE.
-#define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCCE) & BM_USDHC_FORCE_EVENT_FEVTCCE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE.
-#define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCCE) & BM_USDHC_FORCE_EVENT_FEVTCCE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCCE) & BM_USDHC_FORCE_EVENT_FEVTCCE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCCE1[17] (WORZ)
  *
@@ -5733,15 +5164,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCCE1      (0x00020000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCCE1.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCCE1 from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCCE1(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCCE1) >> BP_USDHC_FORCE_EVENT_FEVTCCE1)
+#define BG_USDHC_FORCE_EVENT_FEVTCCE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCCE1) >> BP_USDHC_FORCE_EVENT_FEVTCCE1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE1.
-#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCCE1) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE1.
-#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCCE1) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCCE1) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCEBE[18] (WORZ)
  *
@@ -5752,15 +5178,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCEBE      (0x00040000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCEBE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCEBE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCEBE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCEBE) >> BP_USDHC_FORCE_EVENT_FEVTCEBE)
+#define BG_USDHC_FORCE_EVENT_FEVTCEBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCEBE) >> BP_USDHC_FORCE_EVENT_FEVTCEBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCEBE.
-#define BF_USDHC_FORCE_EVENT_FEVTCEBE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCEBE) & BM_USDHC_FORCE_EVENT_FEVTCEBE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCEBE.
-#define BF_USDHC_FORCE_EVENT_FEVTCEBE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCEBE) & BM_USDHC_FORCE_EVENT_FEVTCEBE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCEBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCEBE) & BM_USDHC_FORCE_EVENT_FEVTCEBE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCIE[19] (WORZ)
  *
@@ -5771,15 +5192,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCIE      (0x00080000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCIE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCIE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCIE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCIE) >> BP_USDHC_FORCE_EVENT_FEVTCIE)
+#define BG_USDHC_FORCE_EVENT_FEVTCIE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCIE) >> BP_USDHC_FORCE_EVENT_FEVTCIE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCIE.
-#define BF_USDHC_FORCE_EVENT_FEVTCIE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCIE) & BM_USDHC_FORCE_EVENT_FEVTCIE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCIE.
-#define BF_USDHC_FORCE_EVENT_FEVTCIE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCIE) & BM_USDHC_FORCE_EVENT_FEVTCIE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCIE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCIE) & BM_USDHC_FORCE_EVENT_FEVTCIE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDTOE[20] (WORZ)
  *
@@ -5790,15 +5206,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTDTOE      (0x00100000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTDTOE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTDTOE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTDTOE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTDTOE) >> BP_USDHC_FORCE_EVENT_FEVTDTOE)
+#define BG_USDHC_FORCE_EVENT_FEVTDTOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTDTOE) >> BP_USDHC_FORCE_EVENT_FEVTDTOE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDTOE.
-#define BF_USDHC_FORCE_EVENT_FEVTDTOE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTDTOE) & BM_USDHC_FORCE_EVENT_FEVTDTOE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDTOE.
-#define BF_USDHC_FORCE_EVENT_FEVTDTOE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTDTOE) & BM_USDHC_FORCE_EVENT_FEVTDTOE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTDTOE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTDTOE) & BM_USDHC_FORCE_EVENT_FEVTDTOE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDCE[21] (WORZ)
  *
@@ -5809,15 +5220,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTDCE      (0x00200000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTDCE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTDCE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTDCE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTDCE) >> BP_USDHC_FORCE_EVENT_FEVTDCE)
+#define BG_USDHC_FORCE_EVENT_FEVTDCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTDCE) >> BP_USDHC_FORCE_EVENT_FEVTDCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDCE.
-#define BF_USDHC_FORCE_EVENT_FEVTDCE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTDCE) & BM_USDHC_FORCE_EVENT_FEVTDCE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDCE.
-#define BF_USDHC_FORCE_EVENT_FEVTDCE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTDCE) & BM_USDHC_FORCE_EVENT_FEVTDCE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTDCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTDCE) & BM_USDHC_FORCE_EVENT_FEVTDCE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDEBE[22] (WORZ)
  *
@@ -5828,15 +5234,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTDEBE      (0x00400000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTDEBE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTDEBE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTDEBE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTDEBE) >> BP_USDHC_FORCE_EVENT_FEVTDEBE)
+#define BG_USDHC_FORCE_EVENT_FEVTDEBE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTDEBE) >> BP_USDHC_FORCE_EVENT_FEVTDEBE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDEBE.
-#define BF_USDHC_FORCE_EVENT_FEVTDEBE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTDEBE) & BM_USDHC_FORCE_EVENT_FEVTDEBE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDEBE.
-#define BF_USDHC_FORCE_EVENT_FEVTDEBE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTDEBE) & BM_USDHC_FORCE_EVENT_FEVTDEBE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTDEBE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTDEBE) & BM_USDHC_FORCE_EVENT_FEVTDEBE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTAC12E[24] (WORZ)
  *
@@ -5847,15 +5248,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTAC12E      (0x01000000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTAC12E.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTAC12E from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTAC12E(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTAC12E) >> BP_USDHC_FORCE_EVENT_FEVTAC12E)
+#define BG_USDHC_FORCE_EVENT_FEVTAC12E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTAC12E) >> BP_USDHC_FORCE_EVENT_FEVTAC12E)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12E.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12E(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTAC12E) & BM_USDHC_FORCE_EVENT_FEVTAC12E)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTAC12E.
-#define BF_USDHC_FORCE_EVENT_FEVTAC12E(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTAC12E) & BM_USDHC_FORCE_EVENT_FEVTAC12E)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTAC12E(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTAC12E) & BM_USDHC_FORCE_EVENT_FEVTAC12E)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTTNE[26] (WORZ)
  *
@@ -5866,15 +5262,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTTNE      (0x04000000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTTNE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTTNE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTTNE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTTNE) >> BP_USDHC_FORCE_EVENT_FEVTTNE)
+#define BG_USDHC_FORCE_EVENT_FEVTTNE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTTNE) >> BP_USDHC_FORCE_EVENT_FEVTTNE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTTNE.
-#define BF_USDHC_FORCE_EVENT_FEVTTNE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTTNE) & BM_USDHC_FORCE_EVENT_FEVTTNE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTTNE.
-#define BF_USDHC_FORCE_EVENT_FEVTTNE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTTNE) & BM_USDHC_FORCE_EVENT_FEVTTNE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTTNE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTTNE) & BM_USDHC_FORCE_EVENT_FEVTTNE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTDMAE[28] (WORZ)
  *
@@ -5885,15 +5276,10 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTDMAE      (0x10000000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTDMAE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTDMAE from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTDMAE(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTDMAE) >> BP_USDHC_FORCE_EVENT_FEVTDMAE)
+#define BG_USDHC_FORCE_EVENT_FEVTDMAE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTDMAE) >> BP_USDHC_FORCE_EVENT_FEVTDMAE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDMAE.
-#define BF_USDHC_FORCE_EVENT_FEVTDMAE(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTDMAE) & BM_USDHC_FORCE_EVENT_FEVTDMAE)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTDMAE.
-#define BF_USDHC_FORCE_EVENT_FEVTDMAE(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTDMAE) & BM_USDHC_FORCE_EVENT_FEVTDMAE)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTDMAE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTDMAE) & BM_USDHC_FORCE_EVENT_FEVTDMAE)
 
 /* --- Register HW_USDHC_FORCE_EVENT, field FEVTCINT[31] (WORZ)
  *
@@ -5907,15 +5293,14 @@ typedef union _hw_usdhc_force_event
 #define BM_USDHC_FORCE_EVENT_FEVTCINT      (0x80000000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCINT.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCINT from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCINT(r)   (((r) & BM_USDHC_FORCE_EVENT_FEVTCINT) >> BP_USDHC_FORCE_EVENT_FEVTCINT)
+#define BG_USDHC_FORCE_EVENT_FEVTCINT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCINT) >> BP_USDHC_FORCE_EVENT_FEVTCINT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCINT.
-#define BF_USDHC_FORCE_EVENT_FEVTCINT(v)   ((((reg32_t) v) << BP_USDHC_FORCE_EVENT_FEVTCINT) & BM_USDHC_FORCE_EVENT_FEVTCINT)
-#else
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCINT.
-#define BF_USDHC_FORCE_EVENT_FEVTCINT(v)   (((v) << BP_USDHC_FORCE_EVENT_FEVTCINT) & BM_USDHC_FORCE_EVENT_FEVTCINT)
-#endif
+#define BF_USDHC_FORCE_EVENT_FEVTCINT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCINT) & BM_USDHC_FORCE_EVENT_FEVTCINT)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_ADMA_ERR_STATUS - ADMA Error Status Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -5979,7 +5364,7 @@ typedef union _hw_usdhc_adma_err_status
 #define BM_USDHC_ADMA_ERR_STATUS_ADMAES      (0x00000003)  //!< Bit mask for USDHC_ADMA_ERR_STATUS_ADMAES.
 
 //! @brief Get value of USDHC_ADMA_ERR_STATUS_ADMAES from a register value.
-#define BG_USDHC_ADMA_ERR_STATUS_ADMAES(r)   (((r) & BM_USDHC_ADMA_ERR_STATUS_ADMAES) >> BP_USDHC_ADMA_ERR_STATUS_ADMAES)
+#define BG_USDHC_ADMA_ERR_STATUS_ADMAES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_ADMA_ERR_STATUS_ADMAES) >> BP_USDHC_ADMA_ERR_STATUS_ADMAES)
 
 /* --- Register HW_USDHC_ADMA_ERR_STATUS, field ADMALME[2] (RO)
  *
@@ -5997,7 +5382,7 @@ typedef union _hw_usdhc_adma_err_status
 #define BM_USDHC_ADMA_ERR_STATUS_ADMALME      (0x00000004)  //!< Bit mask for USDHC_ADMA_ERR_STATUS_ADMALME.
 
 //! @brief Get value of USDHC_ADMA_ERR_STATUS_ADMALME from a register value.
-#define BG_USDHC_ADMA_ERR_STATUS_ADMALME(r)   (((r) & BM_USDHC_ADMA_ERR_STATUS_ADMALME) >> BP_USDHC_ADMA_ERR_STATUS_ADMALME)
+#define BG_USDHC_ADMA_ERR_STATUS_ADMALME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_ADMA_ERR_STATUS_ADMALME) >> BP_USDHC_ADMA_ERR_STATUS_ADMALME)
 
 
 /* --- Register HW_USDHC_ADMA_ERR_STATUS, field ADMADCE[3] (RO)
@@ -6013,8 +5398,12 @@ typedef union _hw_usdhc_adma_err_status
 #define BM_USDHC_ADMA_ERR_STATUS_ADMADCE      (0x00000008)  //!< Bit mask for USDHC_ADMA_ERR_STATUS_ADMADCE.
 
 //! @brief Get value of USDHC_ADMA_ERR_STATUS_ADMADCE from a register value.
-#define BG_USDHC_ADMA_ERR_STATUS_ADMADCE(r)   (((r) & BM_USDHC_ADMA_ERR_STATUS_ADMADCE) >> BP_USDHC_ADMA_ERR_STATUS_ADMADCE)
+#define BG_USDHC_ADMA_ERR_STATUS_ADMADCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_ADMA_ERR_STATUS_ADMADCE) >> BP_USDHC_ADMA_ERR_STATUS_ADMADCE)
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_ADMA_SYS_ADDR - ADMA System Address
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6071,20 +5460,19 @@ typedef union _hw_usdhc_adma_sys_addr
 #define BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR      (0xfffffffc)  //!< Bit mask for USDHC_ADMA_SYS_ADDR_ADS_ADDR.
 
 //! @brief Get value of USDHC_ADMA_SYS_ADDR_ADS_ADDR from a register value.
-#define BG_USDHC_ADMA_SYS_ADDR_ADS_ADDR(r)   (((r) & BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR) >> BP_USDHC_ADMA_SYS_ADDR_ADS_ADDR)
+#define BG_USDHC_ADMA_SYS_ADDR_ADS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR) >> BP_USDHC_ADMA_SYS_ADDR_ADS_ADDR)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_ADMA_SYS_ADDR_ADS_ADDR.
-#define BF_USDHC_ADMA_SYS_ADDR_ADS_ADDR(v)   ((((reg32_t) v) << BP_USDHC_ADMA_SYS_ADDR_ADS_ADDR) & BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR)
-#else
-//! @brief Format value for bitfield USDHC_ADMA_SYS_ADDR_ADS_ADDR.
-#define BF_USDHC_ADMA_SYS_ADDR_ADS_ADDR(v)   (((v) << BP_USDHC_ADMA_SYS_ADDR_ADS_ADDR) & BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR)
-#endif
+#define BF_USDHC_ADMA_SYS_ADDR_ADS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_ADMA_SYS_ADDR_ADS_ADDR) & BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADS_ADDR field to a new value.
 #define BW_USDHC_ADMA_SYS_ADDR_ADS_ADDR(x, v)   (HW_USDHC_ADMA_SYS_ADDR_WR(x, (HW_USDHC_ADMA_SYS_ADDR_RD(x) & ~BM_USDHC_ADMA_SYS_ADDR_ADS_ADDR) | BF_USDHC_ADMA_SYS_ADDR_ADS_ADDR(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_DLL_CTRL - DLL (Delay Line) Control
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6143,15 +5531,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE      (0x00000001)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_ENABLE.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_ENABLE from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_ENABLE(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_ENABLE)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_ENABLE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_ENABLE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_ENABLE(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_ENABLE) & BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_ENABLE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_ENABLE(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_ENABLE) & BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_ENABLE) & BM_USDHC_DLL_CTRL_DLL_CTRL_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_ENABLE field to a new value.
@@ -6169,15 +5552,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_RESET      (0x00000002)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_RESET.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_RESET from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_RESET(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_RESET) >> BP_USDHC_DLL_CTRL_DLL_CTRL_RESET)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_RESET) >> BP_USDHC_DLL_CTRL_DLL_CTRL_RESET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_RESET.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_RESET(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_RESET) & BM_USDHC_DLL_CTRL_DLL_CTRL_RESET)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_RESET.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_RESET(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_RESET) & BM_USDHC_DLL_CTRL_DLL_CTRL_RESET)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_RESET) & BM_USDHC_DLL_CTRL_DLL_CTRL_RESET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_RESET field to a new value.
@@ -6197,15 +5575,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD      (0x00000004)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_FORCE_UPD)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_FORCE_UPD field to a new value.
@@ -6223,15 +5596,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET      (0x00000078)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_DLY_TARGET field to a new value.
@@ -6249,15 +5617,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE      (0x00000080)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE) & BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE) & BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE) & BM_USDHC_DLL_CTRL_DLL_CTRL_GATE_UPDATE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_GATE_UPDATE field to a new value.
@@ -6276,15 +5639,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE      (0x00000100)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE field to a new value.
@@ -6301,15 +5659,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL      (0x0000fe00)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_OVERRIDE_VAL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE_VAL field to a new value.
@@ -6325,15 +5678,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1      (0x00070000)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1 from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_DLY_TARGET1 field to a new value.
@@ -6353,15 +5701,10 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT      (0x0ff00000)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_UPDATE_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_SLV_UPDATE_INT field to a new value.
@@ -6380,20 +5723,19 @@ typedef union _hw_usdhc_dll_ctrl
 #define BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT      (0xf0000000)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT.
 
 //! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(r)   (((r) & BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) >> BP_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT)
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) >> BP_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(v)   ((((reg32_t) v) << BP_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT)
-#else
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(v)   (((v) << BP_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT)
-#endif
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) & BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLL_CTRL_REF_UPDATE_INT field to a new value.
 #define BW_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(x, v)   (HW_USDHC_DLL_CTRL_WR(x, (HW_USDHC_DLL_CTRL_RD(x) & ~BM_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT) | BF_USDHC_DLL_CTRL_DLL_CTRL_REF_UPDATE_INT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_DLL_STATUS - DLL Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6442,7 +5784,7 @@ typedef union _hw_usdhc_dll_status
 #define BM_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK      (0x00000001)  //!< Bit mask for USDHC_DLL_STATUS_DLL_STS_SLV_LOCK.
 
 //! @brief Get value of USDHC_DLL_STATUS_DLL_STS_SLV_LOCK from a register value.
-#define BG_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK(r)   (((r) & BM_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK) >> BP_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK)
+#define BG_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK) >> BP_USDHC_DLL_STATUS_DLL_STS_SLV_LOCK)
 
 /* --- Register HW_USDHC_DLL_STATUS, field DLL_STS_REF_LOCK[1] (RO)
  *
@@ -6454,7 +5796,7 @@ typedef union _hw_usdhc_dll_status
 #define BM_USDHC_DLL_STATUS_DLL_STS_REF_LOCK      (0x00000002)  //!< Bit mask for USDHC_DLL_STATUS_DLL_STS_REF_LOCK.
 
 //! @brief Get value of USDHC_DLL_STATUS_DLL_STS_REF_LOCK from a register value.
-#define BG_USDHC_DLL_STATUS_DLL_STS_REF_LOCK(r)   (((r) & BM_USDHC_DLL_STATUS_DLL_STS_REF_LOCK) >> BP_USDHC_DLL_STATUS_DLL_STS_REF_LOCK)
+#define BG_USDHC_DLL_STATUS_DLL_STS_REF_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_STATUS_DLL_STS_REF_LOCK) >> BP_USDHC_DLL_STATUS_DLL_STS_REF_LOCK)
 
 /* --- Register HW_USDHC_DLL_STATUS, field DLL_STS_SLV_SEL[8:2] (RO)
  *
@@ -6467,7 +5809,7 @@ typedef union _hw_usdhc_dll_status
 #define BM_USDHC_DLL_STATUS_DLL_STS_SLV_SEL      (0x000001fc)  //!< Bit mask for USDHC_DLL_STATUS_DLL_STS_SLV_SEL.
 
 //! @brief Get value of USDHC_DLL_STATUS_DLL_STS_SLV_SEL from a register value.
-#define BG_USDHC_DLL_STATUS_DLL_STS_SLV_SEL(r)   (((r) & BM_USDHC_DLL_STATUS_DLL_STS_SLV_SEL) >> BP_USDHC_DLL_STATUS_DLL_STS_SLV_SEL)
+#define BG_USDHC_DLL_STATUS_DLL_STS_SLV_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_STATUS_DLL_STS_SLV_SEL) >> BP_USDHC_DLL_STATUS_DLL_STS_SLV_SEL)
 
 /* --- Register HW_USDHC_DLL_STATUS, field DLL_STS_REF_SEL[15:9] (RO)
  *
@@ -6478,7 +5820,11 @@ typedef union _hw_usdhc_dll_status
 #define BM_USDHC_DLL_STATUS_DLL_STS_REF_SEL      (0x0000fe00)  //!< Bit mask for USDHC_DLL_STATUS_DLL_STS_REF_SEL.
 
 //! @brief Get value of USDHC_DLL_STATUS_DLL_STS_REF_SEL from a register value.
-#define BG_USDHC_DLL_STATUS_DLL_STS_REF_SEL(r)   (((r) & BM_USDHC_DLL_STATUS_DLL_STS_REF_SEL) >> BP_USDHC_DLL_STATUS_DLL_STS_REF_SEL)
+#define BG_USDHC_DLL_STATUS_DLL_STS_REF_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_STATUS_DLL_STS_REF_SEL) >> BP_USDHC_DLL_STATUS_DLL_STS_REF_SEL)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_CLK_TUNE_CTRL_STATUS - CLK Tuning Control and Status
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6534,15 +5880,10 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST      (0x0000000f)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST(v)   ((((reg32_t) v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST)
-#else
-//! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST(v)   (((v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST)
-#endif
+#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_POST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLY_CELL_SET_POST field to a new value.
@@ -6558,15 +5899,10 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT      (0x000000f0)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT(v)   ((((reg32_t) v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT)
-#else
-//! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT(v)   (((v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT)
-#endif
+#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_OUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLY_CELL_SET_OUT field to a new value.
@@ -6582,15 +5918,10 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE      (0x00007f00)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE(v)   ((((reg32_t) v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE)
-#else
-//! @brief Format value for bitfield USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE.
-#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE(v)   (((v) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE)
-#endif
+#define BF_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE) & BM_USDHC_CLK_TUNE_CTRL_STATUS_DLY_CELL_SET_PRE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DLY_CELL_SET_PRE field to a new value.
@@ -6607,7 +5938,7 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR      (0x00008000)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_NXT_ERR)
 
 /* --- Register HW_USDHC_CLK_TUNE_CTRL_STATUS, field TAP_SEL_POST[19:16] (RO)
  *
@@ -6618,7 +5949,7 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST      (0x000f0000)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_POST)
 
 /* --- Register HW_USDHC_CLK_TUNE_CTRL_STATUS, field TAP_SEL_OUT[23:20] (RO)
  *
@@ -6629,7 +5960,7 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT      (0x00f00000)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_OUT)
 
 /* --- Register HW_USDHC_CLK_TUNE_CTRL_STATUS, field TAP_SEL_PRE[30:24] (RO)
  *
@@ -6644,7 +5975,7 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE      (0x7f000000)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_TAP_SEL_PRE)
 
 /* --- Register HW_USDHC_CLK_TUNE_CTRL_STATUS, field PRE_ERR[31] (RO)
  *
@@ -6656,7 +5987,11 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
 #define BM_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR      (0x80000000)  //!< Bit mask for USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR.
 
 //! @brief Get value of USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR from a register value.
-#define BG_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR(r)   (((r) & BM_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR)
+#define BG_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR) >> BP_USDHC_CLK_TUNE_CTRL_STATUS_PRE_ERR)
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_VEND_SPEC - Vendor Specific Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -6672,27 +6007,27 @@ typedef union _hw_usdhc_vend_spec
     struct _hw_usdhc_vend_spec_bitfields
     {
         unsigned EXT_DMA_EN : 1; //!< [0] External DMA Request Enable Enable the request to external DMA. When the internal DMA (either Simple DMA or Advanced DMA) is not in use, and this bit is set, uSDHC will send out DMA request when the internal buffer is ready. This bit is particularly useful when transferring data by ARM platform polling mode, and it is not allowed to send out the external DMA request. By default, this bit is set.
-        unsigned VSELECT : 1; //!< [1] Voltage Selection Change the value of output signal SD_VSELECT, to control the voltage on pads for external card. There must be a control circuit out of uSDHC to change the voltage on pads.
+        unsigned VSELECT : 1; //!< [1] Voltage Selection Change the value of output signal VSELECT, to control the voltage on pads for external card. There must be a control circuit out of uSDHC to change the voltage on pads.
         unsigned CONFLICT_CHK_EN : 1; //!< [2] It's not implemented in uSDHC IP. Conflict check enable.
         unsigned AC12_WR_CHKBUSY_EN : 1; //!< [3] Check busy enable after auto CMD12 for write data packet
         unsigned DAT3_CD_POL : 1; //!< [4] This bit only uses for debugging. Polarity of Dat3 pin when it's used as card detection:
         unsigned CD_POL : 1; //!< [5] This bit only uses for debugging. Polarity of the CD pin:
         unsigned WP_POL : 1; //!< [6] This bit only uses for debugging. Polarity of the WP pin:
-        unsigned CLKONJ_IN_ABORT : 1; //!< [7] This bit only uses for debugging. Force SD_CLK output active when sending Abort command:
-        unsigned FRC_SDCLK_ON : 1; //!< [8] Force SD_CLK output active:
+        unsigned CLKONJ_IN_ABORT : 1; //!< [7] This bit only uses for debugging. Force CLK output active when sending Abort command:
+        unsigned FRC_SDCLK_ON : 1; //!< [8] Force CLK output active:
         unsigned AC12_ISNOT_ABORT : 1; //!< [9] This bit only uses for debugging. Auto CMD12 is not a abort command:
         unsigned DDREN_ACT_ATONCE : 1; //!< [10] This bit only uses for debugging. DDR_EN setting take active at once:
         unsigned IPG_CLK_SOFT_EN : 1; //!< [11] IPG_CLK software enable
         unsigned HCLK_SOFT_EN : 1; //!< [12] Please note, hardware auto-enables the AHB clock when the internal DMA is enabled even if HCLK_SOFT_EN is 0. AHB clock software enable
         unsigned IPG_PERCLK_SOFT_EN : 1; //!< [13] ipg_perclk software enable
-        unsigned RESERVED0 : 1; //!< [14] Reserved
+        unsigned CARD_CLK_SOFT_EN : 1; //!< [14] card clock software enable
         unsigned CRC_CHK_DIS : 1; //!< [15] CRC check disable
         unsigned INT_ST_VAL : 8; //!< [23:16] Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field. This field is read-only and write to this field does not have effect.
         unsigned DBG_SEL : 4; //!< [27:24] Debug Select Select the internal sub-module to show its internal state value.
         unsigned CMD_OE_PRE_EN : 1; //!< [28] Only for debug. Control the assert point of CMD_OE signal
         unsigned AC12_RD_CHKBUSY_EN : 1; //!< [29] Only for debug. Auto CMD12 to terminate multi-block read needs to check busy or not
         unsigned CARD_DET_IN_IDLE_ENJ : 1; //!< [30] Only for debug. Card detection is only detected during data line idle.
-        unsigned RESERVED1 : 1; //!< [31] Reserved
+        unsigned RESERVED0 : 1; //!< [31] Reserved
     } B;
 } hw_usdhc_vend_spec_t;
 #endif
@@ -6732,15 +6067,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_EXT_DMA_EN      (0x00000001)  //!< Bit mask for USDHC_VEND_SPEC_EXT_DMA_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_EXT_DMA_EN from a register value.
-#define BG_USDHC_VEND_SPEC_EXT_DMA_EN(r)   (((r) & BM_USDHC_VEND_SPEC_EXT_DMA_EN) >> BP_USDHC_VEND_SPEC_EXT_DMA_EN)
+#define BG_USDHC_VEND_SPEC_EXT_DMA_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_EXT_DMA_EN) >> BP_USDHC_VEND_SPEC_EXT_DMA_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_EXT_DMA_EN.
-#define BF_USDHC_VEND_SPEC_EXT_DMA_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_EXT_DMA_EN) & BM_USDHC_VEND_SPEC_EXT_DMA_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_EXT_DMA_EN.
-#define BF_USDHC_VEND_SPEC_EXT_DMA_EN(v)   (((v) << BP_USDHC_VEND_SPEC_EXT_DMA_EN) & BM_USDHC_VEND_SPEC_EXT_DMA_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_EXT_DMA_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_EXT_DMA_EN) & BM_USDHC_VEND_SPEC_EXT_DMA_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXT_DMA_EN field to a new value.
@@ -6750,8 +6080,8 @@ typedef union _hw_usdhc_vend_spec
 
 /* --- Register HW_USDHC_VEND_SPEC, field VSELECT[1] (RW)
  *
- * Voltage Selection Change the value of output signal SD_VSELECT, to control the voltage on pads
- * for external card. There must be a control circuit out of uSDHC to change the voltage on pads.
+ * Voltage Selection Change the value of output signal VSELECT, to control the voltage on pads for
+ * external card. There must be a control circuit out of uSDHC to change the voltage on pads.
  *
  * Values:
  * 0 - Change the voltage to high voltage range, around 3.0V
@@ -6762,15 +6092,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_VSELECT      (0x00000002)  //!< Bit mask for USDHC_VEND_SPEC_VSELECT.
 
 //! @brief Get value of USDHC_VEND_SPEC_VSELECT from a register value.
-#define BG_USDHC_VEND_SPEC_VSELECT(r)   (((r) & BM_USDHC_VEND_SPEC_VSELECT) >> BP_USDHC_VEND_SPEC_VSELECT)
+#define BG_USDHC_VEND_SPEC_VSELECT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_VSELECT) >> BP_USDHC_VEND_SPEC_VSELECT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_VSELECT.
-#define BF_USDHC_VEND_SPEC_VSELECT(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_VSELECT) & BM_USDHC_VEND_SPEC_VSELECT)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_VSELECT.
-#define BF_USDHC_VEND_SPEC_VSELECT(v)   (((v) << BP_USDHC_VEND_SPEC_VSELECT) & BM_USDHC_VEND_SPEC_VSELECT)
-#endif
+#define BF_USDHC_VEND_SPEC_VSELECT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_VSELECT) & BM_USDHC_VEND_SPEC_VSELECT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VSELECT field to a new value.
@@ -6791,15 +6116,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN      (0x00000004)  //!< Bit mask for USDHC_VEND_SPEC_CONFLICT_CHK_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_CONFLICT_CHK_EN from a register value.
-#define BG_USDHC_VEND_SPEC_CONFLICT_CHK_EN(r)   (((r) & BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN) >> BP_USDHC_VEND_SPEC_CONFLICT_CHK_EN)
+#define BG_USDHC_VEND_SPEC_CONFLICT_CHK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN) >> BP_USDHC_VEND_SPEC_CONFLICT_CHK_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CONFLICT_CHK_EN.
-#define BF_USDHC_VEND_SPEC_CONFLICT_CHK_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CONFLICT_CHK_EN) & BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CONFLICT_CHK_EN.
-#define BF_USDHC_VEND_SPEC_CONFLICT_CHK_EN(v)   (((v) << BP_USDHC_VEND_SPEC_CONFLICT_CHK_EN) & BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_CONFLICT_CHK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CONFLICT_CHK_EN) & BM_USDHC_VEND_SPEC_CONFLICT_CHK_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CONFLICT_CHK_EN field to a new value.
@@ -6820,15 +6140,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN      (0x00000008)  //!< Bit mask for USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN from a register value.
-#define BG_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN(r)   (((r) & BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN) >> BP_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN)
+#define BG_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN) >> BP_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN.
-#define BF_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN.
-#define BF_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN(v)   (((v) << BP_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_WR_CHKBUSY_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12_WR_CHKBUSY_EN field to a new value.
@@ -6849,15 +6164,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_DAT3_CD_POL      (0x00000010)  //!< Bit mask for USDHC_VEND_SPEC_DAT3_CD_POL.
 
 //! @brief Get value of USDHC_VEND_SPEC_DAT3_CD_POL from a register value.
-#define BG_USDHC_VEND_SPEC_DAT3_CD_POL(r)   (((r) & BM_USDHC_VEND_SPEC_DAT3_CD_POL) >> BP_USDHC_VEND_SPEC_DAT3_CD_POL)
+#define BG_USDHC_VEND_SPEC_DAT3_CD_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_DAT3_CD_POL) >> BP_USDHC_VEND_SPEC_DAT3_CD_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_DAT3_CD_POL.
-#define BF_USDHC_VEND_SPEC_DAT3_CD_POL(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_DAT3_CD_POL) & BM_USDHC_VEND_SPEC_DAT3_CD_POL)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_DAT3_CD_POL.
-#define BF_USDHC_VEND_SPEC_DAT3_CD_POL(v)   (((v) << BP_USDHC_VEND_SPEC_DAT3_CD_POL) & BM_USDHC_VEND_SPEC_DAT3_CD_POL)
-#endif
+#define BF_USDHC_VEND_SPEC_DAT3_CD_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_DAT3_CD_POL) & BM_USDHC_VEND_SPEC_DAT3_CD_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DAT3_CD_POL field to a new value.
@@ -6878,15 +6188,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CD_POL      (0x00000020)  //!< Bit mask for USDHC_VEND_SPEC_CD_POL.
 
 //! @brief Get value of USDHC_VEND_SPEC_CD_POL from a register value.
-#define BG_USDHC_VEND_SPEC_CD_POL(r)   (((r) & BM_USDHC_VEND_SPEC_CD_POL) >> BP_USDHC_VEND_SPEC_CD_POL)
+#define BG_USDHC_VEND_SPEC_CD_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CD_POL) >> BP_USDHC_VEND_SPEC_CD_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CD_POL.
-#define BF_USDHC_VEND_SPEC_CD_POL(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CD_POL) & BM_USDHC_VEND_SPEC_CD_POL)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CD_POL.
-#define BF_USDHC_VEND_SPEC_CD_POL(v)   (((v) << BP_USDHC_VEND_SPEC_CD_POL) & BM_USDHC_VEND_SPEC_CD_POL)
-#endif
+#define BF_USDHC_VEND_SPEC_CD_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CD_POL) & BM_USDHC_VEND_SPEC_CD_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CD_POL field to a new value.
@@ -6907,15 +6212,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_WP_POL      (0x00000040)  //!< Bit mask for USDHC_VEND_SPEC_WP_POL.
 
 //! @brief Get value of USDHC_VEND_SPEC_WP_POL from a register value.
-#define BG_USDHC_VEND_SPEC_WP_POL(r)   (((r) & BM_USDHC_VEND_SPEC_WP_POL) >> BP_USDHC_VEND_SPEC_WP_POL)
+#define BG_USDHC_VEND_SPEC_WP_POL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_WP_POL) >> BP_USDHC_VEND_SPEC_WP_POL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_WP_POL.
-#define BF_USDHC_VEND_SPEC_WP_POL(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_WP_POL) & BM_USDHC_VEND_SPEC_WP_POL)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_WP_POL.
-#define BF_USDHC_VEND_SPEC_WP_POL(v)   (((v) << BP_USDHC_VEND_SPEC_WP_POL) & BM_USDHC_VEND_SPEC_WP_POL)
-#endif
+#define BF_USDHC_VEND_SPEC_WP_POL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_WP_POL) & BM_USDHC_VEND_SPEC_WP_POL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WP_POL field to a new value.
@@ -6925,12 +6225,12 @@ typedef union _hw_usdhc_vend_spec
 
 /* --- Register HW_USDHC_VEND_SPEC, field CLKONJ_IN_ABORT[7] (RW)
  *
- * This bit only uses for debugging. Force SD_CLK output active when sending Abort command:
+ * This bit only uses for debugging. Force CLK output active when sending Abort command:
  *
  * Values:
- * 0 - the SD_CLK output is active when sending abort command while data is transmitting even if the
- *     internal FIFO is full(for read) or empty(for write)
- * 1 - the SD_CLK output is inactive when sending abort command while data is transmitting if the internal
+ * 0 - the CLK output is active when sending abort command while data is transmitting even if the internal
+ *     FIFO is full(for read) or empty(for write)
+ * 1 - the CLK output is inactive when sending abort command while data is transmitting if the internal
  *     FIFO is full(for read) or empty(for write)
  */
 
@@ -6938,15 +6238,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT      (0x00000080)  //!< Bit mask for USDHC_VEND_SPEC_CLKONJ_IN_ABORT.
 
 //! @brief Get value of USDHC_VEND_SPEC_CLKONJ_IN_ABORT from a register value.
-#define BG_USDHC_VEND_SPEC_CLKONJ_IN_ABORT(r)   (((r) & BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT) >> BP_USDHC_VEND_SPEC_CLKONJ_IN_ABORT)
+#define BG_USDHC_VEND_SPEC_CLKONJ_IN_ABORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT) >> BP_USDHC_VEND_SPEC_CLKONJ_IN_ABORT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CLKONJ_IN_ABORT.
-#define BF_USDHC_VEND_SPEC_CLKONJ_IN_ABORT(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CLKONJ_IN_ABORT) & BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CLKONJ_IN_ABORT.
-#define BF_USDHC_VEND_SPEC_CLKONJ_IN_ABORT(v)   (((v) << BP_USDHC_VEND_SPEC_CLKONJ_IN_ABORT) & BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT)
-#endif
+#define BF_USDHC_VEND_SPEC_CLKONJ_IN_ABORT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CLKONJ_IN_ABORT) & BM_USDHC_VEND_SPEC_CLKONJ_IN_ABORT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CLKONJ_IN_ABORT field to a new value.
@@ -6956,26 +6251,21 @@ typedef union _hw_usdhc_vend_spec
 
 /* --- Register HW_USDHC_VEND_SPEC, field FRC_SDCLK_ON[8] (RW)
  *
- * Force SD_CLK output active:
+ * Force CLK output active:
  *
  * Values:
- * 0 - SD_CLK active or inactive is fully controlled by the hardware
- * 1 - force SD_CLK active
+ * 0 - CLK active or inactive is fully controlled by the hardware
+ * 1 - force CLK active
  */
 
 #define BP_USDHC_VEND_SPEC_FRC_SDCLK_ON      (8)      //!< Bit position for USDHC_VEND_SPEC_FRC_SDCLK_ON.
 #define BM_USDHC_VEND_SPEC_FRC_SDCLK_ON      (0x00000100)  //!< Bit mask for USDHC_VEND_SPEC_FRC_SDCLK_ON.
 
 //! @brief Get value of USDHC_VEND_SPEC_FRC_SDCLK_ON from a register value.
-#define BG_USDHC_VEND_SPEC_FRC_SDCLK_ON(r)   (((r) & BM_USDHC_VEND_SPEC_FRC_SDCLK_ON) >> BP_USDHC_VEND_SPEC_FRC_SDCLK_ON)
+#define BG_USDHC_VEND_SPEC_FRC_SDCLK_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_FRC_SDCLK_ON) >> BP_USDHC_VEND_SPEC_FRC_SDCLK_ON)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_FRC_SDCLK_ON.
-#define BF_USDHC_VEND_SPEC_FRC_SDCLK_ON(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_FRC_SDCLK_ON) & BM_USDHC_VEND_SPEC_FRC_SDCLK_ON)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_FRC_SDCLK_ON.
-#define BF_USDHC_VEND_SPEC_FRC_SDCLK_ON(v)   (((v) << BP_USDHC_VEND_SPEC_FRC_SDCLK_ON) & BM_USDHC_VEND_SPEC_FRC_SDCLK_ON)
-#endif
+#define BF_USDHC_VEND_SPEC_FRC_SDCLK_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_FRC_SDCLK_ON) & BM_USDHC_VEND_SPEC_FRC_SDCLK_ON)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRC_SDCLK_ON field to a new value.
@@ -6996,15 +6286,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT      (0x00000200)  //!< Bit mask for USDHC_VEND_SPEC_AC12_ISNOT_ABORT.
 
 //! @brief Get value of USDHC_VEND_SPEC_AC12_ISNOT_ABORT from a register value.
-#define BG_USDHC_VEND_SPEC_AC12_ISNOT_ABORT(r)   (((r) & BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT) >> BP_USDHC_VEND_SPEC_AC12_ISNOT_ABORT)
+#define BG_USDHC_VEND_SPEC_AC12_ISNOT_ABORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT) >> BP_USDHC_VEND_SPEC_AC12_ISNOT_ABORT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_ISNOT_ABORT.
-#define BF_USDHC_VEND_SPEC_AC12_ISNOT_ABORT(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_AC12_ISNOT_ABORT) & BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_ISNOT_ABORT.
-#define BF_USDHC_VEND_SPEC_AC12_ISNOT_ABORT(v)   (((v) << BP_USDHC_VEND_SPEC_AC12_ISNOT_ABORT) & BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT)
-#endif
+#define BF_USDHC_VEND_SPEC_AC12_ISNOT_ABORT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_AC12_ISNOT_ABORT) & BM_USDHC_VEND_SPEC_AC12_ISNOT_ABORT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12_ISNOT_ABORT field to a new value.
@@ -7025,15 +6310,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE      (0x00000400)  //!< Bit mask for USDHC_VEND_SPEC_DDREN_ACT_ATONCE.
 
 //! @brief Get value of USDHC_VEND_SPEC_DDREN_ACT_ATONCE from a register value.
-#define BG_USDHC_VEND_SPEC_DDREN_ACT_ATONCE(r)   (((r) & BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE) >> BP_USDHC_VEND_SPEC_DDREN_ACT_ATONCE)
+#define BG_USDHC_VEND_SPEC_DDREN_ACT_ATONCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE) >> BP_USDHC_VEND_SPEC_DDREN_ACT_ATONCE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_DDREN_ACT_ATONCE.
-#define BF_USDHC_VEND_SPEC_DDREN_ACT_ATONCE(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_DDREN_ACT_ATONCE) & BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_DDREN_ACT_ATONCE.
-#define BF_USDHC_VEND_SPEC_DDREN_ACT_ATONCE(v)   (((v) << BP_USDHC_VEND_SPEC_DDREN_ACT_ATONCE) & BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE)
-#endif
+#define BF_USDHC_VEND_SPEC_DDREN_ACT_ATONCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_DDREN_ACT_ATONCE) & BM_USDHC_VEND_SPEC_DDREN_ACT_ATONCE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDREN_ACT_ATONCE field to a new value.
@@ -7054,15 +6334,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN      (0x00000800)  //!< Bit mask for USDHC_VEND_SPEC_IPG_CLK_SOFT_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_IPG_CLK_SOFT_EN from a register value.
-#define BG_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN(r)   (((r) & BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN)
+#define BG_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_IPG_CLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_IPG_CLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN(v)   (((v) << BP_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_CLK_SOFT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPG_CLK_SOFT_EN field to a new value.
@@ -7084,15 +6359,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_HCLK_SOFT_EN      (0x00001000)  //!< Bit mask for USDHC_VEND_SPEC_HCLK_SOFT_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_HCLK_SOFT_EN from a register value.
-#define BG_USDHC_VEND_SPEC_HCLK_SOFT_EN(r)   (((r) & BM_USDHC_VEND_SPEC_HCLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_HCLK_SOFT_EN)
+#define BG_USDHC_VEND_SPEC_HCLK_SOFT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_HCLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_HCLK_SOFT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_HCLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_HCLK_SOFT_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_HCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_HCLK_SOFT_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_HCLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_HCLK_SOFT_EN(v)   (((v) << BP_USDHC_VEND_SPEC_HCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_HCLK_SOFT_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_HCLK_SOFT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_HCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_HCLK_SOFT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HCLK_SOFT_EN field to a new value.
@@ -7113,20 +6383,31 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN      (0x00002000)  //!< Bit mask for USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN from a register value.
-#define BG_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(r)   (((r) & BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN)
+#define BG_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN.
-#define BF_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(v)   (((v) << BP_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) & BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the IPG_PERCLK_SOFT_EN field to a new value.
 #define BW_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(x, v)   (HW_USDHC_VEND_SPEC_WR(x, (HW_USDHC_VEND_SPEC_RD(x) & ~BM_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN) | BF_USDHC_VEND_SPEC_IPG_PERCLK_SOFT_EN(v)))
 #endif
+
+
+/* --- Register HW_USDHC_VEND_SPEC, field CARD_CLK_SOFT_EN[14] (ROO)
+ *
+ * card clock software enable
+ *
+ * Values:
+ * 0 - gate off the sd_clk
+ * 1 - enable the sd_clk
+ */
+
+#define BP_USDHC_VEND_SPEC_CARD_CLK_SOFT_EN      (14)      //!< Bit position for USDHC_VEND_SPEC_CARD_CLK_SOFT_EN.
+#define BM_USDHC_VEND_SPEC_CARD_CLK_SOFT_EN      (0x00004000)  //!< Bit mask for USDHC_VEND_SPEC_CARD_CLK_SOFT_EN.
+
+//! @brief Get value of USDHC_VEND_SPEC_CARD_CLK_SOFT_EN from a register value.
+#define BG_USDHC_VEND_SPEC_CARD_CLK_SOFT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CARD_CLK_SOFT_EN) >> BP_USDHC_VEND_SPEC_CARD_CLK_SOFT_EN)
 
 
 /* --- Register HW_USDHC_VEND_SPEC, field CRC_CHK_DIS[15] (RW)
@@ -7142,15 +6423,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CRC_CHK_DIS      (0x00008000)  //!< Bit mask for USDHC_VEND_SPEC_CRC_CHK_DIS.
 
 //! @brief Get value of USDHC_VEND_SPEC_CRC_CHK_DIS from a register value.
-#define BG_USDHC_VEND_SPEC_CRC_CHK_DIS(r)   (((r) & BM_USDHC_VEND_SPEC_CRC_CHK_DIS) >> BP_USDHC_VEND_SPEC_CRC_CHK_DIS)
+#define BG_USDHC_VEND_SPEC_CRC_CHK_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CRC_CHK_DIS) >> BP_USDHC_VEND_SPEC_CRC_CHK_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CRC_CHK_DIS.
-#define BF_USDHC_VEND_SPEC_CRC_CHK_DIS(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CRC_CHK_DIS) & BM_USDHC_VEND_SPEC_CRC_CHK_DIS)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CRC_CHK_DIS.
-#define BF_USDHC_VEND_SPEC_CRC_CHK_DIS(v)   (((v) << BP_USDHC_VEND_SPEC_CRC_CHK_DIS) & BM_USDHC_VEND_SPEC_CRC_CHK_DIS)
-#endif
+#define BF_USDHC_VEND_SPEC_CRC_CHK_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CRC_CHK_DIS) & BM_USDHC_VEND_SPEC_CRC_CHK_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CRC_CHK_DIS field to a new value.
@@ -7168,7 +6444,7 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_INT_ST_VAL      (0x00ff0000)  //!< Bit mask for USDHC_VEND_SPEC_INT_ST_VAL.
 
 //! @brief Get value of USDHC_VEND_SPEC_INT_ST_VAL from a register value.
-#define BG_USDHC_VEND_SPEC_INT_ST_VAL(r)   (((r) & BM_USDHC_VEND_SPEC_INT_ST_VAL) >> BP_USDHC_VEND_SPEC_INT_ST_VAL)
+#define BG_USDHC_VEND_SPEC_INT_ST_VAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_INT_ST_VAL) >> BP_USDHC_VEND_SPEC_INT_ST_VAL)
 
 /* --- Register HW_USDHC_VEND_SPEC, field DBG_SEL[27:24] (RW)
  *
@@ -7179,15 +6455,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_DBG_SEL      (0x0f000000)  //!< Bit mask for USDHC_VEND_SPEC_DBG_SEL.
 
 //! @brief Get value of USDHC_VEND_SPEC_DBG_SEL from a register value.
-#define BG_USDHC_VEND_SPEC_DBG_SEL(r)   (((r) & BM_USDHC_VEND_SPEC_DBG_SEL) >> BP_USDHC_VEND_SPEC_DBG_SEL)
+#define BG_USDHC_VEND_SPEC_DBG_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_DBG_SEL) >> BP_USDHC_VEND_SPEC_DBG_SEL)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_DBG_SEL.
-#define BF_USDHC_VEND_SPEC_DBG_SEL(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_DBG_SEL) & BM_USDHC_VEND_SPEC_DBG_SEL)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_DBG_SEL.
-#define BF_USDHC_VEND_SPEC_DBG_SEL(v)   (((v) << BP_USDHC_VEND_SPEC_DBG_SEL) & BM_USDHC_VEND_SPEC_DBG_SEL)
-#endif
+#define BF_USDHC_VEND_SPEC_DBG_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_DBG_SEL) & BM_USDHC_VEND_SPEC_DBG_SEL)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_SEL field to a new value.
@@ -7207,15 +6478,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN      (0x10000000)  //!< Bit mask for USDHC_VEND_SPEC_CMD_OE_PRE_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_CMD_OE_PRE_EN from a register value.
-#define BG_USDHC_VEND_SPEC_CMD_OE_PRE_EN(r)   (((r) & BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN) >> BP_USDHC_VEND_SPEC_CMD_OE_PRE_EN)
+#define BG_USDHC_VEND_SPEC_CMD_OE_PRE_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN) >> BP_USDHC_VEND_SPEC_CMD_OE_PRE_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CMD_OE_PRE_EN.
-#define BF_USDHC_VEND_SPEC_CMD_OE_PRE_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CMD_OE_PRE_EN) & BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CMD_OE_PRE_EN.
-#define BF_USDHC_VEND_SPEC_CMD_OE_PRE_EN(v)   (((v) << BP_USDHC_VEND_SPEC_CMD_OE_PRE_EN) & BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_CMD_OE_PRE_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CMD_OE_PRE_EN) & BM_USDHC_VEND_SPEC_CMD_OE_PRE_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_OE_PRE_EN field to a new value.
@@ -7236,15 +6502,10 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN      (0x20000000)  //!< Bit mask for USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN from a register value.
-#define BG_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN(r)   (((r) & BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN) >> BP_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN)
+#define BG_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN) >> BP_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN.
-#define BF_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN.
-#define BF_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN(v)   (((v) << BP_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN)
-#endif
+#define BF_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN) & BM_USDHC_VEND_SPEC_AC12_RD_CHKBUSY_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AC12_RD_CHKBUSY_EN field to a new value.
@@ -7264,21 +6525,20 @@ typedef union _hw_usdhc_vend_spec
 #define BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ      (0x40000000)  //!< Bit mask for USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ.
 
 //! @brief Get value of USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ from a register value.
-#define BG_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(r)   (((r) & BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) >> BP_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ)
+#define BG_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) >> BP_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ.
-#define BF_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) & BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ.
-#define BF_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(v)   (((v) << BP_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) & BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ)
-#endif
+#define BF_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) & BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CARD_DET_IN_IDLE_ENJ field to a new value.
 #define BW_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(x, v)   (HW_USDHC_VEND_SPEC_WR(x, (HW_USDHC_VEND_SPEC_RD(x) & ~BM_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ) | BF_USDHC_VEND_SPEC_CARD_DET_IN_IDLE_ENJ(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_MMC_BOOT - MMC Boot Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7344,15 +6604,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_DTOCV_ACK      (0x0000000f)  //!< Bit mask for USDHC_MMC_BOOT_DTOCV_ACK.
 
 //! @brief Get value of USDHC_MMC_BOOT_DTOCV_ACK from a register value.
-#define BG_USDHC_MMC_BOOT_DTOCV_ACK(r)   (((r) & BM_USDHC_MMC_BOOT_DTOCV_ACK) >> BP_USDHC_MMC_BOOT_DTOCV_ACK)
+#define BG_USDHC_MMC_BOOT_DTOCV_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_DTOCV_ACK) >> BP_USDHC_MMC_BOOT_DTOCV_ACK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_DTOCV_ACK.
-#define BF_USDHC_MMC_BOOT_DTOCV_ACK(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_DTOCV_ACK) & BM_USDHC_MMC_BOOT_DTOCV_ACK)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_DTOCV_ACK.
-#define BF_USDHC_MMC_BOOT_DTOCV_ACK(v)   (((v) << BP_USDHC_MMC_BOOT_DTOCV_ACK) & BM_USDHC_MMC_BOOT_DTOCV_ACK)
-#endif
+#define BF_USDHC_MMC_BOOT_DTOCV_ACK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_DTOCV_ACK) & BM_USDHC_MMC_BOOT_DTOCV_ACK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DTOCV_ACK field to a new value.
@@ -7369,15 +6624,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_BOOT_ACK      (0x00000010)  //!< Bit mask for USDHC_MMC_BOOT_BOOT_ACK.
 
 //! @brief Get value of USDHC_MMC_BOOT_BOOT_ACK from a register value.
-#define BG_USDHC_MMC_BOOT_BOOT_ACK(r)   (((r) & BM_USDHC_MMC_BOOT_BOOT_ACK) >> BP_USDHC_MMC_BOOT_BOOT_ACK)
+#define BG_USDHC_MMC_BOOT_BOOT_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_BOOT_ACK) >> BP_USDHC_MMC_BOOT_BOOT_ACK)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_ACK.
-#define BF_USDHC_MMC_BOOT_BOOT_ACK(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_BOOT_ACK) & BM_USDHC_MMC_BOOT_BOOT_ACK)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_ACK.
-#define BF_USDHC_MMC_BOOT_BOOT_ACK(v)   (((v) << BP_USDHC_MMC_BOOT_BOOT_ACK) & BM_USDHC_MMC_BOOT_BOOT_ACK)
-#endif
+#define BF_USDHC_MMC_BOOT_BOOT_ACK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_BOOT_ACK) & BM_USDHC_MMC_BOOT_BOOT_ACK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOOT_ACK field to a new value.
@@ -7393,15 +6643,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_BOOT_MODE      (0x00000020)  //!< Bit mask for USDHC_MMC_BOOT_BOOT_MODE.
 
 //! @brief Get value of USDHC_MMC_BOOT_BOOT_MODE from a register value.
-#define BG_USDHC_MMC_BOOT_BOOT_MODE(r)   (((r) & BM_USDHC_MMC_BOOT_BOOT_MODE) >> BP_USDHC_MMC_BOOT_BOOT_MODE)
+#define BG_USDHC_MMC_BOOT_BOOT_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_BOOT_MODE) >> BP_USDHC_MMC_BOOT_BOOT_MODE)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_MODE.
-#define BF_USDHC_MMC_BOOT_BOOT_MODE(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_BOOT_MODE) & BM_USDHC_MMC_BOOT_BOOT_MODE)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_MODE.
-#define BF_USDHC_MMC_BOOT_BOOT_MODE(v)   (((v) << BP_USDHC_MMC_BOOT_BOOT_MODE) & BM_USDHC_MMC_BOOT_BOOT_MODE)
-#endif
+#define BF_USDHC_MMC_BOOT_BOOT_MODE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_BOOT_MODE) & BM_USDHC_MMC_BOOT_BOOT_MODE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOOT_MODE field to a new value.
@@ -7417,15 +6662,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_BOOT_EN      (0x00000040)  //!< Bit mask for USDHC_MMC_BOOT_BOOT_EN.
 
 //! @brief Get value of USDHC_MMC_BOOT_BOOT_EN from a register value.
-#define BG_USDHC_MMC_BOOT_BOOT_EN(r)   (((r) & BM_USDHC_MMC_BOOT_BOOT_EN) >> BP_USDHC_MMC_BOOT_BOOT_EN)
+#define BG_USDHC_MMC_BOOT_BOOT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_BOOT_EN) >> BP_USDHC_MMC_BOOT_BOOT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_EN.
-#define BF_USDHC_MMC_BOOT_BOOT_EN(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_BOOT_EN) & BM_USDHC_MMC_BOOT_BOOT_EN)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_EN.
-#define BF_USDHC_MMC_BOOT_BOOT_EN(v)   (((v) << BP_USDHC_MMC_BOOT_BOOT_EN) & BM_USDHC_MMC_BOOT_BOOT_EN)
-#endif
+#define BF_USDHC_MMC_BOOT_BOOT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_BOOT_EN) & BM_USDHC_MMC_BOOT_BOOT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOOT_EN field to a new value.
@@ -7442,15 +6682,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_AUTO_SABG_EN      (0x00000080)  //!< Bit mask for USDHC_MMC_BOOT_AUTO_SABG_EN.
 
 //! @brief Get value of USDHC_MMC_BOOT_AUTO_SABG_EN from a register value.
-#define BG_USDHC_MMC_BOOT_AUTO_SABG_EN(r)   (((r) & BM_USDHC_MMC_BOOT_AUTO_SABG_EN) >> BP_USDHC_MMC_BOOT_AUTO_SABG_EN)
+#define BG_USDHC_MMC_BOOT_AUTO_SABG_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_AUTO_SABG_EN) >> BP_USDHC_MMC_BOOT_AUTO_SABG_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_AUTO_SABG_EN.
-#define BF_USDHC_MMC_BOOT_AUTO_SABG_EN(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_AUTO_SABG_EN) & BM_USDHC_MMC_BOOT_AUTO_SABG_EN)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_AUTO_SABG_EN.
-#define BF_USDHC_MMC_BOOT_AUTO_SABG_EN(v)   (((v) << BP_USDHC_MMC_BOOT_AUTO_SABG_EN) & BM_USDHC_MMC_BOOT_AUTO_SABG_EN)
-#endif
+#define BF_USDHC_MMC_BOOT_AUTO_SABG_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_AUTO_SABG_EN) & BM_USDHC_MMC_BOOT_AUTO_SABG_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the AUTO_SABG_EN field to a new value.
@@ -7471,15 +6706,10 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT      (0x00000100)  //!< Bit mask for USDHC_MMC_BOOT_DISABLE_TIME_OUT.
 
 //! @brief Get value of USDHC_MMC_BOOT_DISABLE_TIME_OUT from a register value.
-#define BG_USDHC_MMC_BOOT_DISABLE_TIME_OUT(r)   (((r) & BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT) >> BP_USDHC_MMC_BOOT_DISABLE_TIME_OUT)
+#define BG_USDHC_MMC_BOOT_DISABLE_TIME_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT) >> BP_USDHC_MMC_BOOT_DISABLE_TIME_OUT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_DISABLE_TIME_OUT.
-#define BF_USDHC_MMC_BOOT_DISABLE_TIME_OUT(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_DISABLE_TIME_OUT) & BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_DISABLE_TIME_OUT.
-#define BF_USDHC_MMC_BOOT_DISABLE_TIME_OUT(v)   (((v) << BP_USDHC_MMC_BOOT_DISABLE_TIME_OUT) & BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT)
-#endif
+#define BF_USDHC_MMC_BOOT_DISABLE_TIME_OUT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_DISABLE_TIME_OUT) & BM_USDHC_MMC_BOOT_DISABLE_TIME_OUT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DISABLE_TIME_OUT field to a new value.
@@ -7498,20 +6728,19 @@ typedef union _hw_usdhc_mmc_boot
 #define BM_USDHC_MMC_BOOT_BOOT_BLK_CNT      (0xffff0000)  //!< Bit mask for USDHC_MMC_BOOT_BOOT_BLK_CNT.
 
 //! @brief Get value of USDHC_MMC_BOOT_BOOT_BLK_CNT from a register value.
-#define BG_USDHC_MMC_BOOT_BOOT_BLK_CNT(r)   (((r) & BM_USDHC_MMC_BOOT_BOOT_BLK_CNT) >> BP_USDHC_MMC_BOOT_BOOT_BLK_CNT)
+#define BG_USDHC_MMC_BOOT_BOOT_BLK_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_MMC_BOOT_BOOT_BLK_CNT) >> BP_USDHC_MMC_BOOT_BOOT_BLK_CNT)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_BLK_CNT.
-#define BF_USDHC_MMC_BOOT_BOOT_BLK_CNT(v)   ((((reg32_t) v) << BP_USDHC_MMC_BOOT_BOOT_BLK_CNT) & BM_USDHC_MMC_BOOT_BOOT_BLK_CNT)
-#else
-//! @brief Format value for bitfield USDHC_MMC_BOOT_BOOT_BLK_CNT.
-#define BF_USDHC_MMC_BOOT_BOOT_BLK_CNT(v)   (((v) << BP_USDHC_MMC_BOOT_BOOT_BLK_CNT) & BM_USDHC_MMC_BOOT_BOOT_BLK_CNT)
-#endif
+#define BF_USDHC_MMC_BOOT_BOOT_BLK_CNT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_MMC_BOOT_BOOT_BLK_CNT) & BM_USDHC_MMC_BOOT_BOOT_BLK_CNT)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOOT_BLK_CNT field to a new value.
 #define BW_USDHC_MMC_BOOT_BOOT_BLK_CNT(x, v)   (HW_USDHC_MMC_BOOT_WR(x, (HW_USDHC_MMC_BOOT_RD(x) & ~BM_USDHC_MMC_BOOT_BOOT_BLK_CNT) | BF_USDHC_MMC_BOOT_BOOT_BLK_CNT(v)))
 #endif
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_VEND_SPEC2 - Vendor Specific 2 Register
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7570,15 +6799,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS      (0x00000001)  //!< Bit mask for USDHC_VEND_SPEC2_SDR104_TIMING_DIS.
 
 //! @brief Get value of USDHC_VEND_SPEC2_SDR104_TIMING_DIS from a register value.
-#define BG_USDHC_VEND_SPEC2_SDR104_TIMING_DIS(r)   (((r) & BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_TIMING_DIS)
+#define BG_USDHC_VEND_SPEC2_SDR104_TIMING_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_TIMING_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_TIMING_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_TIMING_DIS(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_SDR104_TIMING_DIS) & BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_TIMING_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_TIMING_DIS(v)   (((v) << BP_USDHC_VEND_SPEC2_SDR104_TIMING_DIS) & BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS)
-#endif
+#define BF_USDHC_VEND_SPEC2_SDR104_TIMING_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_SDR104_TIMING_DIS) & BM_USDHC_VEND_SPEC2_SDR104_TIMING_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDR104_TIMING_DIS field to a new value.
@@ -7599,15 +6823,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_SDR104_OE_DIS      (0x00000002)  //!< Bit mask for USDHC_VEND_SPEC2_SDR104_OE_DIS.
 
 //! @brief Get value of USDHC_VEND_SPEC2_SDR104_OE_DIS from a register value.
-#define BG_USDHC_VEND_SPEC2_SDR104_OE_DIS(r)   (((r) & BM_USDHC_VEND_SPEC2_SDR104_OE_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_OE_DIS)
+#define BG_USDHC_VEND_SPEC2_SDR104_OE_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_SDR104_OE_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_OE_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_OE_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_OE_DIS(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_SDR104_OE_DIS) & BM_USDHC_VEND_SPEC2_SDR104_OE_DIS)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_OE_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_OE_DIS(v)   (((v) << BP_USDHC_VEND_SPEC2_SDR104_OE_DIS) & BM_USDHC_VEND_SPEC2_SDR104_OE_DIS)
-#endif
+#define BF_USDHC_VEND_SPEC2_SDR104_OE_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_SDR104_OE_DIS) & BM_USDHC_VEND_SPEC2_SDR104_OE_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDR104_OE_DIS field to a new value.
@@ -7628,15 +6847,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS      (0x00000004)  //!< Bit mask for USDHC_VEND_SPEC2_SDR104_NSD_DIS.
 
 //! @brief Get value of USDHC_VEND_SPEC2_SDR104_NSD_DIS from a register value.
-#define BG_USDHC_VEND_SPEC2_SDR104_NSD_DIS(r)   (((r) & BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_NSD_DIS)
+#define BG_USDHC_VEND_SPEC2_SDR104_NSD_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS) >> BP_USDHC_VEND_SPEC2_SDR104_NSD_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_NSD_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_NSD_DIS(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_SDR104_NSD_DIS) & BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_SDR104_NSD_DIS.
-#define BF_USDHC_VEND_SPEC2_SDR104_NSD_DIS(v)   (((v) << BP_USDHC_VEND_SPEC2_SDR104_NSD_DIS) & BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS)
-#endif
+#define BF_USDHC_VEND_SPEC2_SDR104_NSD_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_SDR104_NSD_DIS) & BM_USDHC_VEND_SPEC2_SDR104_NSD_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDR104_NSD_DIS field to a new value.
@@ -7657,15 +6871,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST      (0x00000008)  //!< Bit mask for USDHC_VEND_SPEC2_CARD_INT_D3_TEST.
 
 //! @brief Get value of USDHC_VEND_SPEC2_CARD_INT_D3_TEST from a register value.
-#define BG_USDHC_VEND_SPEC2_CARD_INT_D3_TEST(r)   (((r) & BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST) >> BP_USDHC_VEND_SPEC2_CARD_INT_D3_TEST)
+#define BG_USDHC_VEND_SPEC2_CARD_INT_D3_TEST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST) >> BP_USDHC_VEND_SPEC2_CARD_INT_D3_TEST)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_CARD_INT_D3_TEST.
-#define BF_USDHC_VEND_SPEC2_CARD_INT_D3_TEST(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_CARD_INT_D3_TEST) & BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_CARD_INT_D3_TEST.
-#define BF_USDHC_VEND_SPEC2_CARD_INT_D3_TEST(v)   (((v) << BP_USDHC_VEND_SPEC2_CARD_INT_D3_TEST) & BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST)
-#endif
+#define BF_USDHC_VEND_SPEC2_CARD_INT_D3_TEST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_CARD_INT_D3_TEST) & BM_USDHC_VEND_SPEC2_CARD_INT_D3_TEST)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CARD_INT_D3_TEST field to a new value.
@@ -7688,15 +6897,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN      (0x00000010)  //!< Bit mask for USDHC_VEND_SPEC2_TUNING_8BIT_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC2_TUNING_8BIT_EN from a register value.
-#define BG_USDHC_VEND_SPEC2_TUNING_8BIT_EN(r)   (((r) & BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN) >> BP_USDHC_VEND_SPEC2_TUNING_8BIT_EN)
+#define BG_USDHC_VEND_SPEC2_TUNING_8BIT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN) >> BP_USDHC_VEND_SPEC2_TUNING_8BIT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_8BIT_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_8BIT_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_TUNING_8BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_8BIT_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_8BIT_EN(v)   (((v) << BP_USDHC_VEND_SPEC2_TUNING_8BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN)
-#endif
+#define BF_USDHC_VEND_SPEC2_TUNING_8BIT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_TUNING_8BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_8BIT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TUNING_8BIT_EN field to a new value.
@@ -7714,15 +6918,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN      (0x00000020)  //!< Bit mask for USDHC_VEND_SPEC2_TUNING_1BIT_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC2_TUNING_1BIT_EN from a register value.
-#define BG_USDHC_VEND_SPEC2_TUNING_1BIT_EN(r)   (((r) & BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN) >> BP_USDHC_VEND_SPEC2_TUNING_1BIT_EN)
+#define BG_USDHC_VEND_SPEC2_TUNING_1BIT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN) >> BP_USDHC_VEND_SPEC2_TUNING_1BIT_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_1BIT_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_1BIT_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_TUNING_1BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_1BIT_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_1BIT_EN(v)   (((v) << BP_USDHC_VEND_SPEC2_TUNING_1BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN)
-#endif
+#define BF_USDHC_VEND_SPEC2_TUNING_1BIT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_TUNING_1BIT_EN) & BM_USDHC_VEND_SPEC2_TUNING_1BIT_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TUNING_1BIT_EN field to a new value.
@@ -7742,15 +6941,10 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_TUNING_CMD_EN      (0x00000040)  //!< Bit mask for USDHC_VEND_SPEC2_TUNING_CMD_EN.
 
 //! @brief Get value of USDHC_VEND_SPEC2_TUNING_CMD_EN from a register value.
-#define BG_USDHC_VEND_SPEC2_TUNING_CMD_EN(r)   (((r) & BM_USDHC_VEND_SPEC2_TUNING_CMD_EN) >> BP_USDHC_VEND_SPEC2_TUNING_CMD_EN)
+#define BG_USDHC_VEND_SPEC2_TUNING_CMD_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_TUNING_CMD_EN) >> BP_USDHC_VEND_SPEC2_TUNING_CMD_EN)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_CMD_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_CMD_EN(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_TUNING_CMD_EN) & BM_USDHC_VEND_SPEC2_TUNING_CMD_EN)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_TUNING_CMD_EN.
-#define BF_USDHC_VEND_SPEC2_TUNING_CMD_EN(v)   (((v) << BP_USDHC_VEND_SPEC2_TUNING_CMD_EN) & BM_USDHC_VEND_SPEC2_TUNING_CMD_EN)
-#endif
+#define BF_USDHC_VEND_SPEC2_TUNING_CMD_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_TUNING_CMD_EN) & BM_USDHC_VEND_SPEC2_TUNING_CMD_EN)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TUNING_CMD_EN field to a new value.
@@ -7772,21 +6966,20 @@ typedef union _hw_usdhc_vend_spec2
 #define BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS      (0x00000080)  //!< Bit mask for USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS.
 
 //! @brief Get value of USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS from a register value.
-#define BG_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(r)   (((r) & BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) >> BP_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS)
+#define BG_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) >> BP_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS)
 
-#ifndef __LANGUAGE_ASM__
 //! @brief Format value for bitfield USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS.
-#define BF_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(v)   ((((reg32_t) v) << BP_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) & BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS)
-#else
-//! @brief Format value for bitfield USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS.
-#define BF_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(v)   (((v) << BP_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) & BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS)
-#endif
+#define BF_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) & BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CARD_INT_AUTO_CLR_DIS field to a new value.
 #define BW_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(x, v)   (HW_USDHC_VEND_SPEC2_WR(x, (HW_USDHC_VEND_SPEC2_RD(x) & ~BM_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS) | BF_USDHC_VEND_SPEC2_CARD_INT_AUTO_CLR_DIS(v)))
 #endif
 
+
+//-------------------------------------------------------------------------------------------
+// HW_USDHC_HOST_CTRL_VER - Host Controller Version
+//-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
@@ -7834,7 +7027,7 @@ typedef union _hw_usdhc_host_ctrl_ver
 #define BM_USDHC_HOST_CTRL_VER_SVN      (0x000000ff)  //!< Bit mask for USDHC_HOST_CTRL_VER_SVN.
 
 //! @brief Get value of USDHC_HOST_CTRL_VER_SVN from a register value.
-#define BG_USDHC_HOST_CTRL_VER_SVN(r)   (((r) & BM_USDHC_HOST_CTRL_VER_SVN) >> BP_USDHC_HOST_CTRL_VER_SVN)
+#define BG_USDHC_HOST_CTRL_VER_SVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_VER_SVN) >> BP_USDHC_HOST_CTRL_VER_SVN)
 
 /* --- Register HW_USDHC_HOST_CTRL_VER, field VVN[15:8] (RO)
  *
@@ -7846,7 +7039,7 @@ typedef union _hw_usdhc_host_ctrl_ver
 #define BM_USDHC_HOST_CTRL_VER_VVN      (0x0000ff00)  //!< Bit mask for USDHC_HOST_CTRL_VER_VVN.
 
 //! @brief Get value of USDHC_HOST_CTRL_VER_VVN from a register value.
-#define BG_USDHC_HOST_CTRL_VER_VVN(r)   (((r) & BM_USDHC_HOST_CTRL_VER_VVN) >> BP_USDHC_HOST_CTRL_VER_VVN)
+#define BG_USDHC_HOST_CTRL_VER_VVN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_HOST_CTRL_VER_VVN) >> BP_USDHC_HOST_CTRL_VER_VVN)
 
 
 /*!

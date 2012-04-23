@@ -42,17 +42,11 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_CSI_CSICR1_FCC={\
         gui_name="FCC":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_CSI_CSICR1_MCLKEN={\
-        gui_name="MCLKEN":position=9:size=1:read_only=false\
-      }:\
         bit_fields.B_CSI_CSICR1_CCIR_EN={\
         gui_name="CCIR_EN":position=10:size=1:read_only=false\
       }:\
         bit_fields.B_CSI_CSICR1_HSYNC_POL={\
         gui_name="HSYNC_POL":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_CSI_CSICR1_MCLKDIV={\
-        gui_name="MCLKDIV":position=12:size=4:read_only=false\
       }:\
         bit_fields.B_CSI_CSICR1_SOF_INTEN={\
         gui_name="SOF_INTEN":position=16:size=1:read_only=false\
@@ -289,10 +283,8 @@ Advanced_Information.Cortex-A9={\
     line="B_CSI_CSICR1_CLR_STATFIFO":\
     line="B_CSI_CSICR1_PACK_DIR":\
     line="B_CSI_CSICR1_FCC":\
-    line="B_CSI_CSICR1_MCLKEN":\
     line="B_CSI_CSICR1_CCIR_EN":\
     line="B_CSI_CSICR1_HSYNC_POL":\
-    line="B_CSI_CSICR1_MCLKDIV":\
     line="B_CSI_CSICR1_SOF_INTEN":\
     line="B_CSI_CSICR1_SOF_POL":\
     line="B_CSI_CSICR1_RXFF_INTEN":\

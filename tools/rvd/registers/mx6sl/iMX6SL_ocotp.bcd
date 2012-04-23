@@ -3,7 +3,7 @@ description="Freescale iMX6SL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
   :Memory_block.M_OCOTP={\
-    start=0x021bc000:length=0x00000d74:description="OCOTP"\
+    start=0x021bc000:length=0x000007f4:description="OCOTP"\
   }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
@@ -117,9 +117,15 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_CRC_VALUE_DATA={\
         gui_name="DATA":position=0:size=32:read_only=false\
       }\
+    }:Register.G_OCOTP_UMC_TIMING={\
+      gui_name="UMC_TIMING":start=0x021bc090:length=4:\
+      read_only=false:write_only=false:\
+        bit_fields.B_OCOTP_UMC_TIMING_STROBE_PROG_4={\
+        gui_name="STROBE_PROG_INT":position=0:size=12:read_only=false\
+      }\
     }:Register.G_OCOTP_VERSION={\
-      gui_name="VERSION":start=0x021bc090:length=4:\
-      read_only=true:write_only=false:\
+      gui_name="VERSION":start=0x021bc0a0:length=4:\
+      read_only=false:write_only=false:\
         bit_fields.B_OCOTP_VERSION_STEP={\
         gui_name="STEP":position=0:size=16:read_only=true\
       }:\
@@ -131,7 +137,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }:Register.G_OCOTP_LOCK={\
       gui_name="LOCK":start=0x021bc400:length=4:\
-      read_only=true:write_only=false:\
+      read_only=false:write_only=false:\
         bit_fields.B_OCOTP_LOCK_TESTER={\
         gui_name="TESTER":position=0:size=2:read_only=true\
       }:\
@@ -156,17 +162,17 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_LOCK_SRK={\
         gui_name="SRK":position=14:size=1:read_only=true\
       }:\
-        bit_fields.B_OCOTP_LOCK_DTCP_KEY={\
-        gui_name="DTCP_KEY":position=16:size=1:read_only=true\
+        bit_fields.B_OCOTP_LOCK_SW_GP={\
+        gui_name="SW_GP":position=16:size=1:read_only=true\
       }:\
-        bit_fields.B_OCOTP_LOCK_OTPMK={\
-        gui_name="OTPMK":position=17:size=1:read_only=true\
+        bit_fields.B_OCOTP_LOCK_DCP={\
+        gui_name="DCP":position=17:size=1:read_only=true\
       }:\
         bit_fields.B_OCOTP_LOCK_ANALOG={\
         gui_name="ANALOG":position=18:size=2:read_only=true\
       }:\
-        bit_fields.B_OCOTP_LOCK_HDCP_KEYS={\
-        gui_name="HDCP_KEYS":position=20:size=2:read_only=true\
+        bit_fields.B_OCOTP_LOCK_CRC_GP_LOCK={\
+        gui_name="CRC_GP_LOCK":position=20:size=2:read_only=true\
       }:\
         bit_fields.B_OCOTP_LOCK_MISC_CONF={\
         gui_name="MISC_CONF":position=22:size=1:read_only=true\
@@ -177,11 +183,11 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_LOCK_PIN={\
         gui_name="PIN":position=25:size=1:read_only=true\
       }:\
-        bit_fields.B_OCOTP_LOCK_CRC_GP_LO_LOCK={\
-        gui_name="CRC_GP_LO_LOCK":position=26:size=2:read_only=true\
+        bit_fields.B_OCOTP_LOCK_GP_LO_LOCK={\
+        gui_name="GP_LO_LOCK":position=26:size=2:read_only=true\
       }:\
-        bit_fields.B_OCOTP_LOCK_CRC_GP_HI_LOCK={\
-        gui_name="CRC_GP_HI_LOCK":position=28:size=2:read_only=true\
+        bit_fields.B_OCOTP_LOCK_GP_HI_LOCK={\
+        gui_name="GP_HI_LOCK":position=28:size=2:read_only=true\
       }:\
         bit_fields.B_OCOTP_LOCK_UNALLOCATED={\
         gui_name="UNALLOCATED":position=30:size=2:read_only=true\
@@ -372,16 +378,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_SRK7_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_RESP0={\
-      gui_name="RESP0":start=0x021bc600:length=4:\
+    }:Register.G_OCOTP_SJC_RESP0={\
+      gui_name="SJC_RESP0":start=0x021bc600:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_RESP0_BITS={\
+        bit_fields.B_OCOTP_SJC_RESP0_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HSJC_RESP1={\
-      gui_name="HSJC_RESP1":start=0x021bc610:length=4:\
+    }:Register.G_OCOTP_SJC_RESP1={\
+      gui_name="SJC_RESP1":start=0x021bc610:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HSJC_RESP1_BITS={\
+        bit_fields.B_OCOTP_SJC_RESP1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
     }:Register.G_OCOTP_MAC0={\
@@ -396,16 +402,16 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_MAC1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KSV0={\
-      gui_name="HDCP_KSV0":start=0x021bc640:length=4:\
+    }:Register.G_OCOTP_CRC0={\
+      gui_name="CRC0":start=0x021bc640:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KSV0_BITS={\
+        bit_fields.B_OCOTP_CRC0_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KSV1={\
-      gui_name="HDCP_KSV1":start=0x021bc650:length=4:\
+    }:Register.G_OCOTP_CRC1={\
+      gui_name="CRC1":start=0x021bc650:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KSV1_BITS={\
+        bit_fields.B_OCOTP_CRC1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
     }:Register.G_OCOTP_GP1={\
@@ -420,34 +426,34 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_GP2_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_DTCP_KEY0={\
-      gui_name="DTCP_KEY0":start=0x021bc680:length=4:\
+    }:Register.G_OCOTP_SW_GP0={\
+      gui_name="SW_GP0":start=0x021bc680:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_DTCP_KEY0_BITS={\
+        bit_fields.B_OCOTP_SW_GP0_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_DTCP_KEY1={\
-      gui_name="DTCP_KEY1":start=0x021bc690:length=4:\
+    }:Register.G_OCOTP_SW_GP1={\
+      gui_name="SW_GP1":start=0x021bc690:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_DTCP_KEY1_BITS={\
+        bit_fields.B_OCOTP_SW_GP1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_DTCP_KEY2={\
-      gui_name="DTCP_KEY2":start=0x021bc6a0:length=4:\
+    }:Register.G_OCOTP_SW_GP2={\
+      gui_name="SW_GP2":start=0x021bc6a0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_DTCP_KEY2_BITS={\
+        bit_fields.B_OCOTP_SW_GP2_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_DTCP_KEY3={\
-      gui_name="DTCP_KEY3":start=0x021bc6b0:length=4:\
+    }:Register.G_OCOTP_SW_GP3={\
+      gui_name="SW_GP3":start=0x021bc6b0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_DTCP_KEY3_BITS={\
+        bit_fields.B_OCOTP_SW_GP3_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_DTCP_KEY4={\
-      gui_name="DTCP_KEY4":start=0x021bc6c0:length=4:\
+    }:Register.G_OCOTP_SW_GP4={\
+      gui_name="SW_GP4":start=0x021bc6c0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_DTCP_KEY4_BITS={\
+        bit_fields.B_OCOTP_SW_GP4_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
     }:Register.G_OCOTP_MISC_CONF={\
@@ -468,484 +474,100 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_OCOTP_SRK_REVOKE_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY0={\
-      gui_name="HDCP_KEY0":start=0x021bc800:length=4:\
+    }:Register.G_OCOTP_GP_LO0={\
+      gui_name="GP_LO0":start=0x021bc700:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY0_BITS={\
+        bit_fields.B_OCOTP_GP_LO0_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY1={\
-      gui_name="HDCP_KEY1":start=0x021bc810:length=4:\
+    }:Register.G_OCOTP_GP_LO1={\
+      gui_name="GP_LO1":start=0x021bc710:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY1_BITS={\
+        bit_fields.B_OCOTP_GP_LO1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY2={\
-      gui_name="HDCP_KEY2":start=0x021bc820:length=4:\
+    }:Register.G_OCOTP_GP_LO2={\
+      gui_name="GP_LO2":start=0x021bc720:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY2_BITS={\
+        bit_fields.B_OCOTP_GP_LO2_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY3={\
-      gui_name="HDCP_KEY3":start=0x021bc830:length=4:\
+    }:Register.G_OCOTP_GP_LO3={\
+      gui_name="GP_LO3":start=0x021bc730:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY3_BITS={\
+        bit_fields.B_OCOTP_GP_LO3_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY4={\
-      gui_name="HDCP_KEY4":start=0x021bc840:length=4:\
+    }:Register.G_OCOTP_GP_LO4={\
+      gui_name="GP_LO4":start=0x021bc740:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY4_BITS={\
+        bit_fields.B_OCOTP_GP_LO4_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY5={\
-      gui_name="HDCP_KEY5":start=0x021bc850:length=4:\
+    }:Register.G_OCOTP_GP_LO5={\
+      gui_name="GP_LO5":start=0x021bc750:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY5_BITS={\
+        bit_fields.B_OCOTP_GP_LO5_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY6={\
-      gui_name="HDCP_KEY6":start=0x021bc860:length=4:\
+    }:Register.G_OCOTP_GP_LO6={\
+      gui_name="GP_LO6":start=0x021bc760:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY6_BITS={\
+        bit_fields.B_OCOTP_GP_LO6_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY7={\
-      gui_name="HDCP_KEY7":start=0x021bc870:length=4:\
+    }:Register.G_OCOTP_GP_LO7={\
+      gui_name="GP_LO7":start=0x021bc770:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY7_BITS={\
+        bit_fields.B_OCOTP_GP_LO7_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY8={\
-      gui_name="HDCP_KEY8":start=0x021bc880:length=4:\
+    }:Register.G_OCOTP_GP_HI0={\
+      gui_name="GP_HI0":start=0x021bc780:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY8_BITS={\
+        bit_fields.B_OCOTP_GP_HI0_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY9={\
-      gui_name="HDCP_KEY9":start=0x021bc890:length=4:\
+    }:Register.G_OCOTP_GP_HI1={\
+      gui_name="GP_HI1":start=0x021bc790:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY9_BITS={\
+        bit_fields.B_OCOTP_GP_HI1_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY10={\
-      gui_name="HDCP_KEY10":start=0x021bc8a0:length=4:\
+    }:Register.G_OCOTP_GP_HI2={\
+      gui_name="GP_HI2":start=0x021bc7a0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY10_BITS={\
+        bit_fields.B_OCOTP_GP_HI2_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY11={\
-      gui_name="HDCP_KEY11":start=0x021bc8b0:length=4:\
+    }:Register.G_OCOTP_GP_HI3={\
+      gui_name="GP_HI3":start=0x021bc7b0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY11_BITS={\
+        bit_fields.B_OCOTP_GP_HI3_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY12={\
-      gui_name="HDCP_KEY12":start=0x021bc8c0:length=4:\
+    }:Register.G_OCOTP_GP_HI4={\
+      gui_name="GP_HI4":start=0x021bc7c0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY12_BITS={\
+        bit_fields.B_OCOTP_GP_HI4_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY13={\
-      gui_name="HDCP_KEY13":start=0x021bc8d0:length=4:\
+    }:Register.G_OCOTP_GP_HI5={\
+      gui_name="GP_HI5":start=0x021bc7d0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY13_BITS={\
+        bit_fields.B_OCOTP_GP_HI5_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY14={\
-      gui_name="HDCP_KEY14":start=0x021bc8e0:length=4:\
+    }:Register.G_OCOTP_GP_HI6={\
+      gui_name="GP_HI6":start=0x021bc7e0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY14_BITS={\
+        bit_fields.B_OCOTP_GP_HI6_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_OCOTP_HDCP_KEY15={\
-      gui_name="HDCP_KEY15":start=0x021bc8f0:length=4:\
+    }:Register.G_OCOTP_GP_HI7={\
+      gui_name="GP_HI7":start=0x021bc7f0:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY15_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY16={\
-      gui_name="HDCP_KEY16":start=0x021bc900:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY16_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY17={\
-      gui_name="HDCP_KEY17":start=0x021bc910:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY17_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY18={\
-      gui_name="HDCP_KEY18":start=0x021bc920:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY18_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY19={\
-      gui_name="HDCP_KEY19":start=0x021bc930:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY19_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY20={\
-      gui_name="HDCP_KEY20":start=0x021bc940:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY20_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY21={\
-      gui_name="HDCP_KEY21":start=0x021bc950:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY21_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY22={\
-      gui_name="HDCP_KEY22":start=0x021bc960:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY22_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY23={\
-      gui_name="HDCP_KEY23":start=0x021bc970:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY23_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY24={\
-      gui_name="HDCP_KEY24":start=0x021bc980:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY24_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY25={\
-      gui_name="HDCP_KEY25":start=0x021bc990:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY25_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY26={\
-      gui_name="HDCP_KEY26":start=0x021bc9a0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY26_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY27={\
-      gui_name="HDCP_KEY27":start=0x021bc9b0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY27_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY28={\
-      gui_name="HDCP_KEY28":start=0x021bc9c0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY28_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY29={\
-      gui_name="HDCP_KEY29":start=0x021bc9d0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY29_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY30={\
-      gui_name="HDCP_KEY30":start=0x021bc9e0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY30_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY31={\
-      gui_name="HDCP_KEY31":start=0x021bc9f0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY31_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY32={\
-      gui_name="HDCP_KEY32":start=0x021bca00:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY32_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY33={\
-      gui_name="HDCP_KEY33":start=0x021bca10:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY33_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY34={\
-      gui_name="HDCP_KEY34":start=0x021bca20:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY34_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY35={\
-      gui_name="HDCP_KEY35":start=0x021bca30:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY35_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY36={\
-      gui_name="HDCP_KEY36":start=0x021bca40:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY36_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY37={\
-      gui_name="HDCP_KEY37":start=0x021bca50:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY37_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY38={\
-      gui_name="HDCP_KEY38":start=0x021bca60:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY38_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY39={\
-      gui_name="HDCP_KEY39":start=0x021bca70:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY39_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY40={\
-      gui_name="HDCP_KEY40":start=0x021bca80:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY40_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY41={\
-      gui_name="HDCP_KEY41":start=0x021bca90:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY41_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY42={\
-      gui_name="HDCP_KEY42":start=0x021bcaa0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY42_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY43={\
-      gui_name="HDCP_KEY43":start=0x021bcab0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY43_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY44={\
-      gui_name="HDCP_KEY44":start=0x021bcac0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY44_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY45={\
-      gui_name="HDCP_KEY45":start=0x021bcad0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY45_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY46={\
-      gui_name="HDCP_KEY46":start=0x021bcae0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY46_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY47={\
-      gui_name="HDCP_KEY47":start=0x021bcaf0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY47_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY48={\
-      gui_name="HDCP_KEY48":start=0x021bcb00:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY48_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY49={\
-      gui_name="HDCP_KEY49":start=0x021bcb10:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY49_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY50={\
-      gui_name="HDCP_KEY50":start=0x021bcb20:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY50_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY51={\
-      gui_name="HDCP_KEY51":start=0x021bcb30:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY51_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY52={\
-      gui_name="HDCP_KEY52":start=0x021bcb40:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY52_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY53={\
-      gui_name="HDCP_KEY53":start=0x021bcb50:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY53_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY54={\
-      gui_name="HDCP_KEY54":start=0x021bcb60:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY54_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY55={\
-      gui_name="HDCP_KEY55":start=0x021bcb70:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY55_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY56={\
-      gui_name="HDCP_KEY56":start=0x021bcb80:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY56_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY57={\
-      gui_name="HDCP_KEY57":start=0x021bcb90:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY57_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY58={\
-      gui_name="HDCP_KEY58":start=0x021bcba0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY58_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY59={\
-      gui_name="HDCP_KEY59":start=0x021bcbb0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY59_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY60={\
-      gui_name="HDCP_KEY60":start=0x021bcbc0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY60_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY61={\
-      gui_name="HDCP_KEY61":start=0x021bcbd0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY61_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY62={\
-      gui_name="HDCP_KEY62":start=0x021bcbe0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY62_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY63={\
-      gui_name="HDCP_KEY63":start=0x021bcbf0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY63_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY64={\
-      gui_name="HDCP_KEY64":start=0x021bcc00:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY64_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY65={\
-      gui_name="HDCP_KEY65":start=0x021bcc10:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY65_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY66={\
-      gui_name="HDCP_KEY66":start=0x021bcc20:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY66_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY67={\
-      gui_name="HDCP_KEY67":start=0x021bcc30:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY67_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY68={\
-      gui_name="HDCP_KEY68":start=0x021bcc40:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY68_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY69={\
-      gui_name="HDCP_KEY69":start=0x021bcc50:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY69_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY70={\
-      gui_name="HDCP_KEY70":start=0x021bcc60:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY70_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_HDCP_KEY71={\
-      gui_name="HDCP_KEY71":start=0x021bcc70:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_HDCP_KEY71_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC0={\
-      gui_name="CRC0":start=0x021bcd00:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC0_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC1={\
-      gui_name="CRC1":start=0x021bcd10:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC1_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC2={\
-      gui_name="CRC2":start=0x021bcd20:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC2_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC3={\
-      gui_name="CRC3":start=0x021bcd30:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC3_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC4={\
-      gui_name="CRC4":start=0x021bcd40:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC4_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC5={\
-      gui_name="CRC5":start=0x021bcd50:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC5_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC6={\
-      gui_name="CRC6":start=0x021bcd60:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC6_BITS={\
-        gui_name="BITS":position=0:size=32:read_only=false\
-      }\
-    }:Register.G_OCOTP_CRC7={\
-      gui_name="CRC7":start=0x021bcd70:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_OCOTP_CRC7_BITS={\
+        bit_fields.B_OCOTP_GP_HI7_BITS={\
         gui_name="BITS":position=0:size=32:read_only=false\
       }\
     }\
@@ -1004,6 +626,10 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_CRC_VALUE_DATA":\
     line="$$":\
     line="$+":\
+    line="=G_OCOTP_UMC_TIMING":\
+    line="B_OCOTP_UMC_TIMING_STROBE_PROG_4":\
+    line="$$":\
+    line="$+":\
     line="=G_OCOTP_VERSION":\
     line="B_OCOTP_VERSION_STEP":\
     line="B_OCOTP_VERSION_MINOR":\
@@ -1019,15 +645,15 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_LOCK_GP1":\
     line="B_OCOTP_LOCK_GP2":\
     line="B_OCOTP_LOCK_SRK":\
-    line="B_OCOTP_LOCK_DTCP_KEY":\
-    line="B_OCOTP_LOCK_OTPMK":\
+    line="B_OCOTP_LOCK_SW_GP":\
+    line="B_OCOTP_LOCK_DCP":\
     line="B_OCOTP_LOCK_ANALOG":\
-    line="B_OCOTP_LOCK_HDCP_KEYS":\
+    line="B_OCOTP_LOCK_CRC_GP_LOCK":\
     line="B_OCOTP_LOCK_MISC_CONF":\
     line="B_OCOTP_LOCK_DTCP_DEV_CERT":\
     line="B_OCOTP_LOCK_PIN":\
-    line="B_OCOTP_LOCK_CRC_GP_LO_LOCK":\
-    line="B_OCOTP_LOCK_CRC_GP_HI_LOCK":\
+    line="B_OCOTP_LOCK_GP_LO_LOCK":\
+    line="B_OCOTP_LOCK_GP_HI_LOCK":\
     line="B_OCOTP_LOCK_UNALLOCATED":\
     line="$$":\
     line="$+":\
@@ -1155,12 +781,12 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_SRK7_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_RESP0":\
-    line="B_OCOTP_RESP0_BITS":\
+    line="=G_OCOTP_SJC_RESP0":\
+    line="B_OCOTP_SJC_RESP0_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HSJC_RESP1":\
-    line="B_OCOTP_HSJC_RESP1_BITS":\
+    line="=G_OCOTP_SJC_RESP1":\
+    line="B_OCOTP_SJC_RESP1_BITS":\
     line="$$":\
     line="$+":\
     line="=G_OCOTP_MAC0":\
@@ -1171,12 +797,12 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_MAC1_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KSV0":\
-    line="B_OCOTP_HDCP_KSV0_BITS":\
+    line="=G_OCOTP_CRC0":\
+    line="B_OCOTP_CRC0_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KSV1":\
-    line="B_OCOTP_HDCP_KSV1_BITS":\
+    line="=G_OCOTP_CRC1":\
+    line="B_OCOTP_CRC1_BITS":\
     line="$$":\
     line="$+":\
     line="=G_OCOTP_GP1":\
@@ -1187,24 +813,24 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_GP2_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_DTCP_KEY0":\
-    line="B_OCOTP_DTCP_KEY0_BITS":\
+    line="=G_OCOTP_SW_GP0":\
+    line="B_OCOTP_SW_GP0_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_DTCP_KEY1":\
-    line="B_OCOTP_DTCP_KEY1_BITS":\
+    line="=G_OCOTP_SW_GP1":\
+    line="B_OCOTP_SW_GP1_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_DTCP_KEY2":\
-    line="B_OCOTP_DTCP_KEY2_BITS":\
+    line="=G_OCOTP_SW_GP2":\
+    line="B_OCOTP_SW_GP2_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_DTCP_KEY3":\
-    line="B_OCOTP_DTCP_KEY3_BITS":\
+    line="=G_OCOTP_SW_GP3":\
+    line="B_OCOTP_SW_GP3_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_DTCP_KEY4":\
-    line="B_OCOTP_DTCP_KEY4_BITS":\
+    line="=G_OCOTP_SW_GP4":\
+    line="B_OCOTP_SW_GP4_BITS":\
     line="$$":\
     line="$+":\
     line="=G_OCOTP_MISC_CONF":\
@@ -1219,324 +845,68 @@ Advanced_Information.Cortex-A9={\
     line="B_OCOTP_SRK_REVOKE_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY0":\
-    line="B_OCOTP_HDCP_KEY0_BITS":\
+    line="=G_OCOTP_GP_LO0":\
+    line="B_OCOTP_GP_LO0_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY1":\
-    line="B_OCOTP_HDCP_KEY1_BITS":\
+    line="=G_OCOTP_GP_LO1":\
+    line="B_OCOTP_GP_LO1_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY2":\
-    line="B_OCOTP_HDCP_KEY2_BITS":\
+    line="=G_OCOTP_GP_LO2":\
+    line="B_OCOTP_GP_LO2_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY3":\
-    line="B_OCOTP_HDCP_KEY3_BITS":\
+    line="=G_OCOTP_GP_LO3":\
+    line="B_OCOTP_GP_LO3_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY4":\
-    line="B_OCOTP_HDCP_KEY4_BITS":\
+    line="=G_OCOTP_GP_LO4":\
+    line="B_OCOTP_GP_LO4_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY5":\
-    line="B_OCOTP_HDCP_KEY5_BITS":\
+    line="=G_OCOTP_GP_LO5":\
+    line="B_OCOTP_GP_LO5_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY6":\
-    line="B_OCOTP_HDCP_KEY6_BITS":\
+    line="=G_OCOTP_GP_LO6":\
+    line="B_OCOTP_GP_LO6_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY7":\
-    line="B_OCOTP_HDCP_KEY7_BITS":\
+    line="=G_OCOTP_GP_LO7":\
+    line="B_OCOTP_GP_LO7_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY8":\
-    line="B_OCOTP_HDCP_KEY8_BITS":\
+    line="=G_OCOTP_GP_HI0":\
+    line="B_OCOTP_GP_HI0_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY9":\
-    line="B_OCOTP_HDCP_KEY9_BITS":\
+    line="=G_OCOTP_GP_HI1":\
+    line="B_OCOTP_GP_HI1_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY10":\
-    line="B_OCOTP_HDCP_KEY10_BITS":\
+    line="=G_OCOTP_GP_HI2":\
+    line="B_OCOTP_GP_HI2_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY11":\
-    line="B_OCOTP_HDCP_KEY11_BITS":\
+    line="=G_OCOTP_GP_HI3":\
+    line="B_OCOTP_GP_HI3_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY12":\
-    line="B_OCOTP_HDCP_KEY12_BITS":\
+    line="=G_OCOTP_GP_HI4":\
+    line="B_OCOTP_GP_HI4_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY13":\
-    line="B_OCOTP_HDCP_KEY13_BITS":\
+    line="=G_OCOTP_GP_HI5":\
+    line="B_OCOTP_GP_HI5_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY14":\
-    line="B_OCOTP_HDCP_KEY14_BITS":\
+    line="=G_OCOTP_GP_HI6":\
+    line="B_OCOTP_GP_HI6_BITS":\
     line="$$":\
     line="$+":\
-    line="=G_OCOTP_HDCP_KEY15":\
-    line="B_OCOTP_HDCP_KEY15_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY16":\
-    line="B_OCOTP_HDCP_KEY16_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY17":\
-    line="B_OCOTP_HDCP_KEY17_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY18":\
-    line="B_OCOTP_HDCP_KEY18_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY19":\
-    line="B_OCOTP_HDCP_KEY19_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY20":\
-    line="B_OCOTP_HDCP_KEY20_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY21":\
-    line="B_OCOTP_HDCP_KEY21_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY22":\
-    line="B_OCOTP_HDCP_KEY22_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY23":\
-    line="B_OCOTP_HDCP_KEY23_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY24":\
-    line="B_OCOTP_HDCP_KEY24_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY25":\
-    line="B_OCOTP_HDCP_KEY25_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY26":\
-    line="B_OCOTP_HDCP_KEY26_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY27":\
-    line="B_OCOTP_HDCP_KEY27_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY28":\
-    line="B_OCOTP_HDCP_KEY28_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY29":\
-    line="B_OCOTP_HDCP_KEY29_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY30":\
-    line="B_OCOTP_HDCP_KEY30_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY31":\
-    line="B_OCOTP_HDCP_KEY31_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY32":\
-    line="B_OCOTP_HDCP_KEY32_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY33":\
-    line="B_OCOTP_HDCP_KEY33_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY34":\
-    line="B_OCOTP_HDCP_KEY34_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY35":\
-    line="B_OCOTP_HDCP_KEY35_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY36":\
-    line="B_OCOTP_HDCP_KEY36_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY37":\
-    line="B_OCOTP_HDCP_KEY37_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY38":\
-    line="B_OCOTP_HDCP_KEY38_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY39":\
-    line="B_OCOTP_HDCP_KEY39_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY40":\
-    line="B_OCOTP_HDCP_KEY40_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY41":\
-    line="B_OCOTP_HDCP_KEY41_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY42":\
-    line="B_OCOTP_HDCP_KEY42_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY43":\
-    line="B_OCOTP_HDCP_KEY43_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY44":\
-    line="B_OCOTP_HDCP_KEY44_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY45":\
-    line="B_OCOTP_HDCP_KEY45_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY46":\
-    line="B_OCOTP_HDCP_KEY46_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY47":\
-    line="B_OCOTP_HDCP_KEY47_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY48":\
-    line="B_OCOTP_HDCP_KEY48_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY49":\
-    line="B_OCOTP_HDCP_KEY49_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY50":\
-    line="B_OCOTP_HDCP_KEY50_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY51":\
-    line="B_OCOTP_HDCP_KEY51_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY52":\
-    line="B_OCOTP_HDCP_KEY52_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY53":\
-    line="B_OCOTP_HDCP_KEY53_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY54":\
-    line="B_OCOTP_HDCP_KEY54_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY55":\
-    line="B_OCOTP_HDCP_KEY55_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY56":\
-    line="B_OCOTP_HDCP_KEY56_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY57":\
-    line="B_OCOTP_HDCP_KEY57_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY58":\
-    line="B_OCOTP_HDCP_KEY58_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY59":\
-    line="B_OCOTP_HDCP_KEY59_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY60":\
-    line="B_OCOTP_HDCP_KEY60_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY61":\
-    line="B_OCOTP_HDCP_KEY61_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY62":\
-    line="B_OCOTP_HDCP_KEY62_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY63":\
-    line="B_OCOTP_HDCP_KEY63_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY64":\
-    line="B_OCOTP_HDCP_KEY64_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY65":\
-    line="B_OCOTP_HDCP_KEY65_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY66":\
-    line="B_OCOTP_HDCP_KEY66_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY67":\
-    line="B_OCOTP_HDCP_KEY67_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY68":\
-    line="B_OCOTP_HDCP_KEY68_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY69":\
-    line="B_OCOTP_HDCP_KEY69_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY70":\
-    line="B_OCOTP_HDCP_KEY70_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_HDCP_KEY71":\
-    line="B_OCOTP_HDCP_KEY71_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC0":\
-    line="B_OCOTP_CRC0_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC1":\
-    line="B_OCOTP_CRC1_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC2":\
-    line="B_OCOTP_CRC2_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC3":\
-    line="B_OCOTP_CRC3_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC4":\
-    line="B_OCOTP_CRC4_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC5":\
-    line="B_OCOTP_CRC5_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC6":\
-    line="B_OCOTP_CRC6_BITS":\
-    line="$$":\
-    line="$+":\
-    line="=G_OCOTP_CRC7":\
-    line="B_OCOTP_CRC7_BITS":\
+    line="=G_OCOTP_GP_HI7":\
+    line="B_OCOTP_GP_HI7_BITS":\
     line="$$":\
   }:ARM_config={}\
 }

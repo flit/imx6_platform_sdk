@@ -750,6 +750,9 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_1USDHC_VEND_SPEC_IPG_PERCLK_S38={\
         gui_name="IPG_PERCLK_SOFT_EN":position=13:size=1:read_only=false\
       }:\
+        bit_fields.B_1USDHC_VEND_SPEC_CARD_CLK_SOF39={\
+        gui_name="CARD_CLK_SOFT_EN":position=14:size=1:read_only=true\
+      }:\
         bit_fields.B_1USDHC_VEND_SPEC_CRC_CHK_DIS={\
         gui_name="CRC_CHK_DIS":position=15:size=1:read_only=false\
       }:\
@@ -762,10 +765,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_1USDHC_VEND_SPEC_CMD_OE_PRE_EN={\
         gui_name="CMD_OE_PRE_EN":position=28:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC_AC12_RD_CHKB39={\
+        bit_fields.B_1USDHC_VEND_SPEC_AC12_RD_CHKB40={\
         gui_name="AC12_RD_CHKBUSY_EN":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC_CARD_DET_IN_40={\
+        bit_fields.B_1USDHC_VEND_SPEC_CARD_DET_IN_41={\
         gui_name="CARD_DET_IN_IDLE_ENJ":position=30:size=1:read_only=false\
       }\
     }:Register.G_1USDHC_MMC_BOOT={\
@@ -786,7 +789,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_1USDHC_MMC_BOOT_AUTO_SABG_EN={\
         gui_name="AUTO_SABG_EN":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_MMC_BOOT_DISABLE_TIME_41={\
+        bit_fields.B_1USDHC_MMC_BOOT_DISABLE_TIME_42={\
         gui_name="DISABLE_TIME_OUT":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_1USDHC_MMC_BOOT_BOOT_BLK_CNT={\
@@ -795,28 +798,28 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_1USDHC_VEND_SPEC2={\
       gui_name="VEND_SPEC2":start=0x021900c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_1USDHC_VEND_SPEC2_SDR104_TIMI42={\
+        bit_fields.B_1USDHC_VEND_SPEC2_SDR104_TIMI43={\
         gui_name="SDR104_TIMING_DIS":position=0:size=1:read_only=false\
       }:\
         bit_fields.B_1USDHC_VEND_SPEC2_SDR104_OE_DIS={\
         gui_name="SDR104_OE_DIS":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC2_SDR104_NSD_43={\
+        bit_fields.B_1USDHC_VEND_SPEC2_SDR104_NSD_44={\
         gui_name="SDR104_NSD_DIS":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC2_CARD_INT_D344={\
+        bit_fields.B_1USDHC_VEND_SPEC2_CARD_INT_D345={\
         gui_name="CARD_INT_D3_TEST":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC2_TUNING_8BIT45={\
+        bit_fields.B_1USDHC_VEND_SPEC2_TUNING_8BIT46={\
         gui_name="TUNING_8BIT_EN":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC2_TUNING_1BIT46={\
+        bit_fields.B_1USDHC_VEND_SPEC2_TUNING_1BIT47={\
         gui_name="TUNING_1BIT_EN":position=5:size=1:read_only=false\
       }:\
         bit_fields.B_1USDHC_VEND_SPEC2_TUNING_CMD_EN={\
         gui_name="TUNING_CMD_EN":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_1USDHC_VEND_SPEC2_CARD_INT_AU47={\
+        bit_fields.B_1USDHC_VEND_SPEC2_CARD_INT_AU48={\
         gui_name="CARD_INT_AUTO_CLR_DIS":position=7:size=1:read_only=false\
       }\
     }:Register.G_1USDHC_HOST_CTRL_VER={\
@@ -899,7 +902,7 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_2USDHC_DATA_BUFF_ACC_PORT={\
       gui_name="DATA_BUFF_ACC_PORT":start=0x02194020:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_2USDHC_DATA_BUFF_ACC_PORT_DAT48={\
+        bit_fields.B_2USDHC_DATA_BUFF_ACC_PORT_DAT49={\
         gui_name="DATCONT":position=0:size=32:read_only=false\
       }\
     }:Register.G_2USDHC_PRES_STATE={\
@@ -995,7 +998,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_PROT_CTRL_IABG={\
         gui_name="IABG":position=19:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_PROT_CTRL_RD_DONE_NO_849={\
+        bit_fields.B_2USDHC_PROT_CTRL_RD_DONE_NO_850={\
         gui_name="RD_DONE_NO_8CLK":position=20:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_PROT_CTRL_RD_WAIT_POINT={\
@@ -1013,7 +1016,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_PROT_CTRL_BURST_LEN_EN={\
         gui_name="BURST_LEN_EN":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_2USDHC_PROT_CTRL_NON_EXACT_BL50={\
+        bit_fields.B_2USDHC_PROT_CTRL_NON_EXACT_BL51={\
         gui_name="NON_EXACT_BLK_RD":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_PROT_CTRL_RD_NO8CLK_EN={\
@@ -1262,22 +1265,22 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_2USDHC_AUTOCMD12_ERR_STATUS={\
       gui_name="AUTOCMD12_ERR_STATUS":start=0x0219403c:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A51={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A52={\
         gui_name="AC12NE":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A52={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A53={\
         gui_name="AC12TOE":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A53={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A54={\
         gui_name="AC12EBE":position=2:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A54={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A55={\
         gui_name="AC12CE":position=3:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A55={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_A56={\
         gui_name="AC12IE":position=4:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_C56={\
+        bit_fields.B_2USDHC_AUTOCMD12_ERR_STATUS_C57={\
         gui_name="CNIBAC12E":position=7:size=1:read_only=true\
       }\
     }:Register.G_2USDHC_HOST_CTRL_CAP={\
@@ -1364,7 +1367,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_MIX_CTRL_AC12_RD_POINT={\
         gui_name="AC12_RD_POINT":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_MIX_CTRL_CMD_DMY_WAIT_57={\
+        bit_fields.B_2USDHC_MIX_CTRL_CMD_DMY_WAIT_58={\
         gui_name="CMD_DMY_WAIT_CFG":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_MIX_CTRL_CMD_DMY_EN={\
@@ -1388,7 +1391,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_FORCE_EVENT_FEVTAC12IE={\
         gui_name="FEVTAC12IE":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_FORCE_EVENT_FEVTCNIBAC58={\
+        bit_fields.B_2USDHC_FORCE_EVENT_FEVTCNIBAC59={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_FORCE_EVENT_FEVTCCE={\
@@ -1451,70 +1454,70 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_RESET={\
         gui_name="DLL_CTRL_RESET":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_59={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_60={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_60={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_61={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_GATE61={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_GATE62={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_62={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_63={\
         gui_name="DLL_CTRL_SLV_OVERRIDE":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_63={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_64={\
         gui_name="DLL_CTRL_SLV_OVERRIDE_VAL":position=9:size=7:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_64={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_65={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_65={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_66={\
         gui_name="DLL_CTRL_SLV_UPDATE_INT":position=20:size=8:read_only=false\
       }:\
-        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_REF_66={\
+        bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_REF_67={\
         gui_name="DLL_CTRL_REF_UPDATE_INT":position=28:size=4:read_only=false\
       }\
     }:Register.G_2USDHC_DLL_STATUS={\
       gui_name="DLL_STATUS":start=0x02194064:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_SLV67={\
+        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_SLV68={\
         gui_name="DLL_STS_SLV_LOCK":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_REF68={\
+        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_REF69={\
         gui_name="DLL_STS_REF_LOCK":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_SLV69={\
+        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_SLV70={\
         gui_name="DLL_STS_SLV_SEL":position=2:size=7:read_only=true\
       }:\
-        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_REF70={\
+        bit_fields.B_2USDHC_DLL_STATUS_DLL_STS_REF71={\
         gui_name="DLL_STS_REF_SEL":position=9:size=7:read_only=true\
       }\
     }:Register.G_2USDHC_CLK_TUNE_CTRL_STATUS={\
       gui_name="CLK_TUNE_CTRL_STATUS":start=0x02194068:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D71={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D72={\
         gui_name="DLY_CELL_SET_POST":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D72={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D73={\
         gui_name="DLY_CELL_SET_OUT":position=4:size=4:read_only=false\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D73={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_D74={\
         gui_name="DLY_CELL_SET_PRE":position=8:size=7:read_only=false\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_N74={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_N75={\
         gui_name="NXT_ERR":position=15:size=1:read_only=true\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T75={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T76={\
         gui_name="TAP_SEL_POST":position=16:size=4:read_only=true\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T76={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T77={\
         gui_name="TAP_SEL_OUT":position=20:size=4:read_only=true\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T77={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_T78={\
         gui_name="TAP_SEL_PRE":position=24:size=7:read_only=true\
       }:\
-        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_P78={\
+        bit_fields.B_2USDHC_CLK_TUNE_CTRL_STATUS_P79={\
         gui_name="PRE_ERR":position=31:size=1:read_only=true\
       }\
     }:Register.G_2USDHC_VEND_SPEC={\
@@ -1526,10 +1529,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_VEND_SPEC_VSELECT={\
         gui_name="VSELECT":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_CONFLICT_CHK79={\
+        bit_fields.B_2USDHC_VEND_SPEC_CONFLICT_CHK80={\
         gui_name="CONFLICT_CHK_EN":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_AC12_WR_CHKB80={\
+        bit_fields.B_2USDHC_VEND_SPEC_AC12_WR_CHKB81={\
         gui_name="AC12_WR_CHKBUSY_EN":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC_DAT3_CD_POL={\
@@ -1541,26 +1544,29 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_VEND_SPEC_WP_POL={\
         gui_name="WP_POL":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_CLKONJ_IN_AB81={\
+        bit_fields.B_2USDHC_VEND_SPEC_CLKONJ_IN_AB82={\
         gui_name="CLKONJ_IN_ABORT":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC_FRC_SDCLK_ON={\
         gui_name="FRC_SDCLK_ON":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_AC12_ISNOT_A82={\
+        bit_fields.B_2USDHC_VEND_SPEC_AC12_ISNOT_A83={\
         gui_name="AC12_ISNOT_ABORT":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_DDREN_ACT_AT83={\
+        bit_fields.B_2USDHC_VEND_SPEC_DDREN_ACT_AT84={\
         gui_name="DDREN_ACT_ATONCE":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_IPG_CLK_SOFT84={\
+        bit_fields.B_2USDHC_VEND_SPEC_IPG_CLK_SOFT85={\
         gui_name="IPG_CLK_SOFT_EN":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC_HCLK_SOFT_EN={\
         gui_name="HCLK_SOFT_EN":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_IPG_PERCLK_S85={\
+        bit_fields.B_2USDHC_VEND_SPEC_IPG_PERCLK_S86={\
         gui_name="IPG_PERCLK_SOFT_EN":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_2USDHC_VEND_SPEC_CARD_CLK_SOF87={\
+        gui_name="CARD_CLK_SOFT_EN":position=14:size=1:read_only=true\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC_CRC_CHK_DIS={\
         gui_name="CRC_CHK_DIS":position=15:size=1:read_only=false\
@@ -1574,10 +1580,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_VEND_SPEC_CMD_OE_PRE_EN={\
         gui_name="CMD_OE_PRE_EN":position=28:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_AC12_RD_CHKB86={\
+        bit_fields.B_2USDHC_VEND_SPEC_AC12_RD_CHKB88={\
         gui_name="AC12_RD_CHKBUSY_EN":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC_CARD_DET_IN_87={\
+        bit_fields.B_2USDHC_VEND_SPEC_CARD_DET_IN_89={\
         gui_name="CARD_DET_IN_IDLE_ENJ":position=30:size=1:read_only=false\
       }\
     }:Register.G_2USDHC_MMC_BOOT={\
@@ -1598,7 +1604,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_2USDHC_MMC_BOOT_AUTO_SABG_EN={\
         gui_name="AUTO_SABG_EN":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_MMC_BOOT_DISABLE_TIME_88={\
+        bit_fields.B_2USDHC_MMC_BOOT_DISABLE_TIME_90={\
         gui_name="DISABLE_TIME_OUT":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_MMC_BOOT_BOOT_BLK_CNT={\
@@ -1607,28 +1613,28 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_2USDHC_VEND_SPEC2={\
       gui_name="VEND_SPEC2":start=0x021940c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_2USDHC_VEND_SPEC2_SDR104_TIMI89={\
+        bit_fields.B_2USDHC_VEND_SPEC2_SDR104_TIMI91={\
         gui_name="SDR104_TIMING_DIS":position=0:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC2_SDR104_OE_DIS={\
         gui_name="SDR104_OE_DIS":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC2_SDR104_NSD_90={\
+        bit_fields.B_2USDHC_VEND_SPEC2_SDR104_NSD_92={\
         gui_name="SDR104_NSD_DIS":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC2_CARD_INT_D391={\
+        bit_fields.B_2USDHC_VEND_SPEC2_CARD_INT_D393={\
         gui_name="CARD_INT_D3_TEST":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC2_TUNING_8BIT92={\
+        bit_fields.B_2USDHC_VEND_SPEC2_TUNING_8BIT94={\
         gui_name="TUNING_8BIT_EN":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC2_TUNING_1BIT93={\
+        bit_fields.B_2USDHC_VEND_SPEC2_TUNING_1BIT95={\
         gui_name="TUNING_1BIT_EN":position=5:size=1:read_only=false\
       }:\
         bit_fields.B_2USDHC_VEND_SPEC2_TUNING_CMD_EN={\
         gui_name="TUNING_CMD_EN":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_2USDHC_VEND_SPEC2_CARD_INT_AU94={\
+        bit_fields.B_2USDHC_VEND_SPEC2_CARD_INT_AU96={\
         gui_name="CARD_INT_AUTO_CLR_DIS":position=7:size=1:read_only=false\
       }\
     }:Register.G_2USDHC_HOST_CTRL_VER={\
@@ -1711,7 +1717,7 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_3USDHC_DATA_BUFF_ACC_PORT={\
       gui_name="DATA_BUFF_ACC_PORT":start=0x02198020:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_3USDHC_DATA_BUFF_ACC_PORT_DAT95={\
+        bit_fields.B_3USDHC_DATA_BUFF_ACC_PORT_DAT97={\
         gui_name="DATCONT":position=0:size=32:read_only=false\
       }\
     }:Register.G_3USDHC_PRES_STATE={\
@@ -1807,7 +1813,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_PROT_CTRL_IABG={\
         gui_name="IABG":position=19:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_PROT_CTRL_RD_DONE_NO_896={\
+        bit_fields.B_3USDHC_PROT_CTRL_RD_DONE_NO_898={\
         gui_name="RD_DONE_NO_8CLK":position=20:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_PROT_CTRL_RD_WAIT_POINT={\
@@ -1825,7 +1831,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_PROT_CTRL_BURST_LEN_EN={\
         gui_name="BURST_LEN_EN":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_3USDHC_PROT_CTRL_NON_EXACT_BL97={\
+        bit_fields.B_3USDHC_PROT_CTRL_NON_EXACT_BL99={\
         gui_name="NON_EXACT_BLK_RD":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_PROT_CTRL_RD_NO8CLK_EN={\
@@ -2074,22 +2080,22 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_3USDHC_AUTOCMD12_ERR_STATUS={\
       gui_name="AUTOCMD12_ERR_STATUS":start=0x0219803c:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_A98={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_100={\
         gui_name="AC12NE":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_A99={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_101={\
         gui_name="AC12TOE":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_100={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_102={\
         gui_name="AC12EBE":position=2:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_101={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_103={\
         gui_name="AC12CE":position=3:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_102={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_104={\
         gui_name="AC12IE":position=4:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_103={\
+        bit_fields.B_3USDHC_AUTOCMD12_ERR_STATUS_105={\
         gui_name="CNIBAC12E":position=7:size=1:read_only=true\
       }\
     }:Register.G_3USDHC_HOST_CTRL_CAP={\
@@ -2176,7 +2182,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_MIX_CTRL_AC12_RD_POINT={\
         gui_name="AC12_RD_POINT":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_MIX_CTRL_CMD_DMY_WAIT104={\
+        bit_fields.B_3USDHC_MIX_CTRL_CMD_DMY_WAIT106={\
         gui_name="CMD_DMY_WAIT_CFG":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_MIX_CTRL_CMD_DMY_EN={\
@@ -2200,7 +2206,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_FORCE_EVENT_FEVTAC12IE={\
         gui_name="FEVTAC12IE":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_FORCE_EVENT_FEVTCNIBA105={\
+        bit_fields.B_3USDHC_FORCE_EVENT_FEVTCNIBA107={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_FORCE_EVENT_FEVTCCE={\
@@ -2263,70 +2269,70 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_RESET={\
         gui_name="DLL_CTRL_RESET":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV106={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV108={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV107={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV109={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_GAT108={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_GAT110={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV109={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV111={\
         gui_name="DLL_CTRL_SLV_OVERRIDE":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV110={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV112={\
         gui_name="DLL_CTRL_SLV_OVERRIDE_VAL":position=9:size=7:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV111={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV113={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV112={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV114={\
         gui_name="DLL_CTRL_SLV_UPDATE_INT":position=20:size=8:read_only=false\
       }:\
-        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_REF113={\
+        bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_REF115={\
         gui_name="DLL_CTRL_REF_UPDATE_INT":position=28:size=4:read_only=false\
       }\
     }:Register.G_3USDHC_DLL_STATUS={\
       gui_name="DLL_STATUS":start=0x02198064:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_SL114={\
+        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_SL116={\
         gui_name="DLL_STS_SLV_LOCK":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_RE115={\
+        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_RE117={\
         gui_name="DLL_STS_REF_LOCK":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_SL116={\
+        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_SL118={\
         gui_name="DLL_STS_SLV_SEL":position=2:size=7:read_only=true\
       }:\
-        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_RE117={\
+        bit_fields.B_3USDHC_DLL_STATUS_DLL_STS_RE119={\
         gui_name="DLL_STS_REF_SEL":position=9:size=7:read_only=true\
       }\
     }:Register.G_3USDHC_CLK_TUNE_CTRL_STATUS={\
       gui_name="CLK_TUNE_CTRL_STATUS":start=0x02198068:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_118={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_120={\
         gui_name="DLY_CELL_SET_POST":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_119={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_121={\
         gui_name="DLY_CELL_SET_OUT":position=4:size=4:read_only=false\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_120={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_122={\
         gui_name="DLY_CELL_SET_PRE":position=8:size=7:read_only=false\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_121={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_123={\
         gui_name="NXT_ERR":position=15:size=1:read_only=true\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_122={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_124={\
         gui_name="TAP_SEL_POST":position=16:size=4:read_only=true\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_123={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_125={\
         gui_name="TAP_SEL_OUT":position=20:size=4:read_only=true\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_124={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_126={\
         gui_name="TAP_SEL_PRE":position=24:size=7:read_only=true\
       }:\
-        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_125={\
+        bit_fields.B_3USDHC_CLK_TUNE_CTRL_STATUS_127={\
         gui_name="PRE_ERR":position=31:size=1:read_only=true\
       }\
     }:Register.G_3USDHC_VEND_SPEC={\
@@ -2338,10 +2344,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_VEND_SPEC_VSELECT={\
         gui_name="VSELECT":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_CONFLICT_CH126={\
+        bit_fields.B_3USDHC_VEND_SPEC_CONFLICT_CH128={\
         gui_name="CONFLICT_CHK_EN":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_AC12_WR_CHK127={\
+        bit_fields.B_3USDHC_VEND_SPEC_AC12_WR_CHK129={\
         gui_name="AC12_WR_CHKBUSY_EN":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC_DAT3_CD_POL={\
@@ -2353,26 +2359,29 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_VEND_SPEC_WP_POL={\
         gui_name="WP_POL":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_CLKONJ_IN_A128={\
+        bit_fields.B_3USDHC_VEND_SPEC_CLKONJ_IN_A130={\
         gui_name="CLKONJ_IN_ABORT":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC_FRC_SDCLK_ON={\
         gui_name="FRC_SDCLK_ON":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_AC12_ISNOT_129={\
+        bit_fields.B_3USDHC_VEND_SPEC_AC12_ISNOT_131={\
         gui_name="AC12_ISNOT_ABORT":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_DDREN_ACT_A130={\
+        bit_fields.B_3USDHC_VEND_SPEC_DDREN_ACT_A132={\
         gui_name="DDREN_ACT_ATONCE":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_IPG_CLK_SOF131={\
+        bit_fields.B_3USDHC_VEND_SPEC_IPG_CLK_SOF133={\
         gui_name="IPG_CLK_SOFT_EN":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC_HCLK_SOFT_EN={\
         gui_name="HCLK_SOFT_EN":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_IPG_PERCLK_132={\
+        bit_fields.B_3USDHC_VEND_SPEC_IPG_PERCLK_134={\
         gui_name="IPG_PERCLK_SOFT_EN":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_3USDHC_VEND_SPEC_CARD_CLK_SO135={\
+        gui_name="CARD_CLK_SOFT_EN":position=14:size=1:read_only=true\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC_CRC_CHK_DIS={\
         gui_name="CRC_CHK_DIS":position=15:size=1:read_only=false\
@@ -2386,10 +2395,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_VEND_SPEC_CMD_OE_PRE_EN={\
         gui_name="CMD_OE_PRE_EN":position=28:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_AC12_RD_CHK133={\
+        bit_fields.B_3USDHC_VEND_SPEC_AC12_RD_CHK136={\
         gui_name="AC12_RD_CHKBUSY_EN":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC_CARD_DET_IN134={\
+        bit_fields.B_3USDHC_VEND_SPEC_CARD_DET_IN137={\
         gui_name="CARD_DET_IN_IDLE_ENJ":position=30:size=1:read_only=false\
       }\
     }:Register.G_3USDHC_MMC_BOOT={\
@@ -2410,7 +2419,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_3USDHC_MMC_BOOT_AUTO_SABG_EN={\
         gui_name="AUTO_SABG_EN":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_MMC_BOOT_DISABLE_TIME135={\
+        bit_fields.B_3USDHC_MMC_BOOT_DISABLE_TIME138={\
         gui_name="DISABLE_TIME_OUT":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_MMC_BOOT_BOOT_BLK_CNT={\
@@ -2419,28 +2428,28 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_3USDHC_VEND_SPEC2={\
       gui_name="VEND_SPEC2":start=0x021980c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_3USDHC_VEND_SPEC2_SDR104_TIM136={\
+        bit_fields.B_3USDHC_VEND_SPEC2_SDR104_TIM139={\
         gui_name="SDR104_TIMING_DIS":position=0:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC2_SDR104_OE_DIS={\
         gui_name="SDR104_OE_DIS":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC2_SDR104_NSD137={\
+        bit_fields.B_3USDHC_VEND_SPEC2_SDR104_NSD140={\
         gui_name="SDR104_NSD_DIS":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC2_CARD_INT_D138={\
+        bit_fields.B_3USDHC_VEND_SPEC2_CARD_INT_D141={\
         gui_name="CARD_INT_D3_TEST":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC2_TUNING_8BI139={\
+        bit_fields.B_3USDHC_VEND_SPEC2_TUNING_8BI142={\
         gui_name="TUNING_8BIT_EN":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC2_TUNING_1BI140={\
+        bit_fields.B_3USDHC_VEND_SPEC2_TUNING_1BI143={\
         gui_name="TUNING_1BIT_EN":position=5:size=1:read_only=false\
       }:\
         bit_fields.B_3USDHC_VEND_SPEC2_TUNING_CMD_EN={\
         gui_name="TUNING_CMD_EN":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_3USDHC_VEND_SPEC2_CARD_INT_A141={\
+        bit_fields.B_3USDHC_VEND_SPEC2_CARD_INT_A144={\
         gui_name="CARD_INT_AUTO_CLR_DIS":position=7:size=1:read_only=false\
       }\
     }:Register.G_3USDHC_HOST_CTRL_VER={\
@@ -2523,7 +2532,7 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_4USDHC_DATA_BUFF_ACC_PORT={\
       gui_name="DATA_BUFF_ACC_PORT":start=0x0219c020:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_4USDHC_DATA_BUFF_ACC_PORT_DA142={\
+        bit_fields.B_4USDHC_DATA_BUFF_ACC_PORT_DA145={\
         gui_name="DATCONT":position=0:size=32:read_only=false\
       }\
     }:Register.G_4USDHC_PRES_STATE={\
@@ -2619,7 +2628,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_PROT_CTRL_IABG={\
         gui_name="IABG":position=19:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_PROT_CTRL_RD_DONE_NO_143={\
+        bit_fields.B_4USDHC_PROT_CTRL_RD_DONE_NO_146={\
         gui_name="RD_DONE_NO_8CLK":position=20:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_PROT_CTRL_RD_WAIT_POINT={\
@@ -2637,7 +2646,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_PROT_CTRL_BURST_LEN_EN={\
         gui_name="BURST_LEN_EN":position=27:size=3:read_only=false\
       }:\
-        bit_fields.B_4USDHC_PROT_CTRL_NON_EXACT_B144={\
+        bit_fields.B_4USDHC_PROT_CTRL_NON_EXACT_B147={\
         gui_name="NON_EXACT_BLK_RD":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_PROT_CTRL_RD_NO8CLK_EN={\
@@ -2886,22 +2895,22 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_4USDHC_AUTOCMD12_ERR_STATUS={\
       gui_name="AUTOCMD12_ERR_STATUS":start=0x0219c03c:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_145={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_148={\
         gui_name="AC12NE":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_146={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_149={\
         gui_name="AC12TOE":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_147={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_150={\
         gui_name="AC12EBE":position=2:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_148={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_151={\
         gui_name="AC12CE":position=3:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_149={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_152={\
         gui_name="AC12IE":position=4:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_150={\
+        bit_fields.B_4USDHC_AUTOCMD12_ERR_STATUS_153={\
         gui_name="CNIBAC12E":position=7:size=1:read_only=true\
       }\
     }:Register.G_4USDHC_HOST_CTRL_CAP={\
@@ -2988,7 +2997,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_MIX_CTRL_AC12_RD_POINT={\
         gui_name="AC12_RD_POINT":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_MIX_CTRL_CMD_DMY_WAIT151={\
+        bit_fields.B_4USDHC_MIX_CTRL_CMD_DMY_WAIT154={\
         gui_name="CMD_DMY_WAIT_CFG":position=30:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_MIX_CTRL_CMD_DMY_EN={\
@@ -3012,7 +3021,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_FORCE_EVENT_FEVTAC12IE={\
         gui_name="FEVTAC12IE":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_FORCE_EVENT_FEVTCNIBA152={\
+        bit_fields.B_4USDHC_FORCE_EVENT_FEVTCNIBA155={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_FORCE_EVENT_FEVTCCE={\
@@ -3075,70 +3084,70 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_RESET={\
         gui_name="DLL_CTRL_RESET":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV153={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV156={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV154={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV157={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_GAT155={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_GAT158={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV156={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV159={\
         gui_name="DLL_CTRL_SLV_OVERRIDE":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV157={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV160={\
         gui_name="DLL_CTRL_SLV_OVERRIDE_VAL":position=9:size=7:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV158={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV161={\
         gui_name="DLL_CTRL_SLV_DLY_TARGET":position=16:size=3:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV159={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV162={\
         gui_name="DLL_CTRL_SLV_UPDATE_INT":position=20:size=8:read_only=false\
       }:\
-        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_REF160={\
+        bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_REF163={\
         gui_name="DLL_CTRL_REF_UPDATE_INT":position=28:size=4:read_only=false\
       }\
     }:Register.G_4USDHC_DLL_STATUS={\
       gui_name="DLL_STATUS":start=0x0219c064:length=4:\
       read_only=true:write_only=false:\
-        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_SL161={\
+        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_SL164={\
         gui_name="DLL_STS_SLV_LOCK":position=0:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_RE162={\
+        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_RE165={\
         gui_name="DLL_STS_REF_LOCK":position=1:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_SL163={\
+        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_SL166={\
         gui_name="DLL_STS_SLV_SEL":position=2:size=7:read_only=true\
       }:\
-        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_RE164={\
+        bit_fields.B_4USDHC_DLL_STATUS_DLL_STS_RE167={\
         gui_name="DLL_STS_REF_SEL":position=9:size=7:read_only=true\
       }\
     }:Register.G_4USDHC_CLK_TUNE_CTRL_STATUS={\
       gui_name="CLK_TUNE_CTRL_STATUS":start=0x0219c068:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_165={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_168={\
         gui_name="DLY_CELL_SET_POST":position=0:size=4:read_only=false\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_166={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_169={\
         gui_name="DLY_CELL_SET_OUT":position=4:size=4:read_only=false\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_167={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_170={\
         gui_name="DLY_CELL_SET_PRE":position=8:size=7:read_only=false\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_168={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_171={\
         gui_name="NXT_ERR":position=15:size=1:read_only=true\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_169={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_172={\
         gui_name="TAP_SEL_POST":position=16:size=4:read_only=true\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_170={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_173={\
         gui_name="TAP_SEL_OUT":position=20:size=4:read_only=true\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_171={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_174={\
         gui_name="TAP_SEL_PRE":position=24:size=7:read_only=true\
       }:\
-        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_172={\
+        bit_fields.B_4USDHC_CLK_TUNE_CTRL_STATUS_175={\
         gui_name="PRE_ERR":position=31:size=1:read_only=true\
       }\
     }:Register.G_4USDHC_VEND_SPEC={\
@@ -3150,10 +3159,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_VEND_SPEC_VSELECT={\
         gui_name="VSELECT":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_CONFLICT_CH173={\
+        bit_fields.B_4USDHC_VEND_SPEC_CONFLICT_CH176={\
         gui_name="CONFLICT_CHK_EN":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_AC12_WR_CHK174={\
+        bit_fields.B_4USDHC_VEND_SPEC_AC12_WR_CHK177={\
         gui_name="AC12_WR_CHKBUSY_EN":position=3:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC_DAT3_CD_POL={\
@@ -3165,26 +3174,29 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_VEND_SPEC_WP_POL={\
         gui_name="WP_POL":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_CLKONJ_IN_A175={\
+        bit_fields.B_4USDHC_VEND_SPEC_CLKONJ_IN_A178={\
         gui_name="CLKONJ_IN_ABORT":position=7:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC_FRC_SDCLK_ON={\
         gui_name="FRC_SDCLK_ON":position=8:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_AC12_ISNOT_176={\
+        bit_fields.B_4USDHC_VEND_SPEC_AC12_ISNOT_179={\
         gui_name="AC12_ISNOT_ABORT":position=9:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_DDREN_ACT_A177={\
+        bit_fields.B_4USDHC_VEND_SPEC_DDREN_ACT_A180={\
         gui_name="DDREN_ACT_ATONCE":position=10:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_IPG_CLK_SOF178={\
+        bit_fields.B_4USDHC_VEND_SPEC_IPG_CLK_SOF181={\
         gui_name="IPG_CLK_SOFT_EN":position=11:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC_HCLK_SOFT_EN={\
         gui_name="HCLK_SOFT_EN":position=12:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_IPG_PERCLK_179={\
+        bit_fields.B_4USDHC_VEND_SPEC_IPG_PERCLK_182={\
         gui_name="IPG_PERCLK_SOFT_EN":position=13:size=1:read_only=false\
+      }:\
+        bit_fields.B_4USDHC_VEND_SPEC_CARD_CLK_SO183={\
+        gui_name="CARD_CLK_SOFT_EN":position=14:size=1:read_only=true\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC_CRC_CHK_DIS={\
         gui_name="CRC_CHK_DIS":position=15:size=1:read_only=false\
@@ -3198,10 +3210,10 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_VEND_SPEC_CMD_OE_PRE_EN={\
         gui_name="CMD_OE_PRE_EN":position=28:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_AC12_RD_CHK180={\
+        bit_fields.B_4USDHC_VEND_SPEC_AC12_RD_CHK184={\
         gui_name="AC12_RD_CHKBUSY_EN":position=29:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC_CARD_DET_IN181={\
+        bit_fields.B_4USDHC_VEND_SPEC_CARD_DET_IN185={\
         gui_name="CARD_DET_IN_IDLE_ENJ":position=30:size=1:read_only=false\
       }\
     }:Register.G_4USDHC_MMC_BOOT={\
@@ -3222,7 +3234,7 @@ Advanced_Information.Cortex-A9={\
         bit_fields.B_4USDHC_MMC_BOOT_AUTO_SABG_EN={\
         gui_name="AUTO_SABG_EN":position=7:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_MMC_BOOT_DISABLE_TIME182={\
+        bit_fields.B_4USDHC_MMC_BOOT_DISABLE_TIME186={\
         gui_name="DISABLE_TIME_OUT":position=8:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_MMC_BOOT_BOOT_BLK_CNT={\
@@ -3231,28 +3243,28 @@ Advanced_Information.Cortex-A9={\
     }:Register.G_4USDHC_VEND_SPEC2={\
       gui_name="VEND_SPEC2":start=0x0219c0c8:length=4:\
       read_only=false:write_only=false:\
-        bit_fields.B_4USDHC_VEND_SPEC2_SDR104_TIM183={\
+        bit_fields.B_4USDHC_VEND_SPEC2_SDR104_TIM187={\
         gui_name="SDR104_TIMING_DIS":position=0:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC2_SDR104_OE_DIS={\
         gui_name="SDR104_OE_DIS":position=1:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC2_SDR104_NSD184={\
+        bit_fields.B_4USDHC_VEND_SPEC2_SDR104_NSD188={\
         gui_name="SDR104_NSD_DIS":position=2:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC2_CARD_INT_D185={\
+        bit_fields.B_4USDHC_VEND_SPEC2_CARD_INT_D189={\
         gui_name="CARD_INT_D3_TEST":position=3:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC2_TUNING_8BI186={\
+        bit_fields.B_4USDHC_VEND_SPEC2_TUNING_8BI190={\
         gui_name="TUNING_8BIT_EN":position=4:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC2_TUNING_1BI187={\
+        bit_fields.B_4USDHC_VEND_SPEC2_TUNING_1BI191={\
         gui_name="TUNING_1BIT_EN":position=5:size=1:read_only=false\
       }:\
         bit_fields.B_4USDHC_VEND_SPEC2_TUNING_CMD_EN={\
         gui_name="TUNING_CMD_EN":position=6:size=1:read_only=false\
       }:\
-        bit_fields.B_4USDHC_VEND_SPEC2_CARD_INT_A188={\
+        bit_fields.B_4USDHC_VEND_SPEC2_CARD_INT_A192={\
         gui_name="CARD_INT_AUTO_CLR_DIS":position=7:size=1:read_only=false\
       }\
     }:Register.G_4USDHC_HOST_CTRL_VER={\
@@ -3306,7 +3318,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_DATA_BUFF_ACC_PORT":\
-    line="B_1USDHC_DATA_BUFF_ACC_PORT_DA142":\
+    line="B_1USDHC_DATA_BUFF_ACC_PORT_DA145":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_PRES_STATE":\
@@ -3342,13 +3354,13 @@ Advanced_Information.Cortex-A9={\
     line="B_1USDHC_PROT_CTRL_CREQ":\
     line="B_1USDHC_PROT_CTRL_RWCTL":\
     line="B_1USDHC_PROT_CTRL_IABG":\
-    line="B_1USDHC_PROT_CTRL_RD_DONE_NO_143":\
+    line="B_1USDHC_PROT_CTRL_RD_DONE_NO_146":\
     line="B_1USDHC_PROT_CTRL_RD_WAIT_POINT":\
     line="B_1USDHC_PROT_CTRL_WECINT":\
     line="B_1USDHC_PROT_CTRL_WECINS":\
     line="B_1USDHC_PROT_CTRL_WECRM":\
     line="B_1USDHC_PROT_CTRL_BURST_LEN_EN":\
-    line="B_1USDHC_PROT_CTRL_NON_EXACT_B144":\
+    line="B_1USDHC_PROT_CTRL_NON_EXACT_B147":\
     line="B_1USDHC_PROT_CTRL_RD_NO8CLK_EN":\
     line="$$":\
     line="$+":\
@@ -3441,12 +3453,12 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_AUTOCMD12_ERR_STATUS":\
-    line="B_1USDHC_AUTOCMD12_ERR_STATUS_145":\
-    line="B_1USDHC_AUTOCMD12_ERR_STATUS_146":\
-    line="B_1USDHC_AUTOCMD12_ERR_STATUS_147":\
     line="B_1USDHC_AUTOCMD12_ERR_STATUS_148":\
     line="B_1USDHC_AUTOCMD12_ERR_STATUS_149":\
     line="B_1USDHC_AUTOCMD12_ERR_STATUS_150":\
+    line="B_1USDHC_AUTOCMD12_ERR_STATUS_151":\
+    line="B_1USDHC_AUTOCMD12_ERR_STATUS_152":\
+    line="B_1USDHC_AUTOCMD12_ERR_STATUS_153":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_HOST_CTRL_CAP":\
@@ -3481,7 +3493,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1USDHC_MIX_CTRL_AUTO_TUNE_EN":\
     line="B_1USDHC_MIX_CTRL_FBCLK_SEL":\
     line="B_1USDHC_MIX_CTRL_AC12_RD_POINT":\
-    line="B_1USDHC_MIX_CTRL_CMD_DMY_WAIT151":\
+    line="B_1USDHC_MIX_CTRL_CMD_DMY_WAIT154":\
     line="B_1USDHC_MIX_CTRL_CMD_DMY_EN":\
     line="$$":\
     line="$+":\
@@ -3491,7 +3503,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1USDHC_FORCE_EVENT_FEVTAC12CE":\
     line="B_1USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_1USDHC_FORCE_EVENT_FEVTAC12IE":\
-    line="B_1USDHC_FORCE_EVENT_FEVTCNIBA152":\
+    line="B_1USDHC_FORCE_EVENT_FEVTCNIBA155":\
     line="B_1USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_1USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_1USDHC_FORCE_EVENT_FEVTCEBE":\
@@ -3518,55 +3530,56 @@ Advanced_Information.Cortex-A9={\
     line="=G_1USDHC_DLL_CTRL":\
     line="B_1USDHC_DLL_CTRL_DLL_CTRL_ENABLE":\
     line="B_1USDHC_DLL_CTRL_DLL_CTRL_RESET":\
-    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV153":\
-    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV154":\
-    line="B_1USDHC_DLL_CTRL_DLL_CTRL_GAT155":\
     line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV156":\
     line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV157":\
-    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV158":\
+    line="B_1USDHC_DLL_CTRL_DLL_CTRL_GAT158":\
     line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV159":\
-    line="B_1USDHC_DLL_CTRL_DLL_CTRL_REF160":\
+    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV160":\
+    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV161":\
+    line="B_1USDHC_DLL_CTRL_DLL_CTRL_SLV162":\
+    line="B_1USDHC_DLL_CTRL_DLL_CTRL_REF163":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_DLL_STATUS":\
-    line="B_1USDHC_DLL_STATUS_DLL_STS_SL161":\
-    line="B_1USDHC_DLL_STATUS_DLL_STS_RE162":\
-    line="B_1USDHC_DLL_STATUS_DLL_STS_SL163":\
-    line="B_1USDHC_DLL_STATUS_DLL_STS_RE164":\
+    line="B_1USDHC_DLL_STATUS_DLL_STS_SL164":\
+    line="B_1USDHC_DLL_STATUS_DLL_STS_RE165":\
+    line="B_1USDHC_DLL_STATUS_DLL_STS_SL166":\
+    line="B_1USDHC_DLL_STATUS_DLL_STS_RE167":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_CLK_TUNE_CTRL_STATUS":\
-    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_165":\
-    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_166":\
-    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_167":\
     line="B_1USDHC_CLK_TUNE_CTRL_STATUS_168":\
     line="B_1USDHC_CLK_TUNE_CTRL_STATUS_169":\
     line="B_1USDHC_CLK_TUNE_CTRL_STATUS_170":\
     line="B_1USDHC_CLK_TUNE_CTRL_STATUS_171":\
     line="B_1USDHC_CLK_TUNE_CTRL_STATUS_172":\
+    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_173":\
+    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_174":\
+    line="B_1USDHC_CLK_TUNE_CTRL_STATUS_175":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_VEND_SPEC":\
     line="B_1USDHC_VEND_SPEC_EXT_DMA_EN":\
     line="B_1USDHC_VEND_SPEC_VSELECT":\
-    line="B_1USDHC_VEND_SPEC_CONFLICT_CH173":\
-    line="B_1USDHC_VEND_SPEC_AC12_WR_CHK174":\
+    line="B_1USDHC_VEND_SPEC_CONFLICT_CH176":\
+    line="B_1USDHC_VEND_SPEC_AC12_WR_CHK177":\
     line="B_1USDHC_VEND_SPEC_DAT3_CD_POL":\
     line="B_1USDHC_VEND_SPEC_CD_POL":\
     line="B_1USDHC_VEND_SPEC_WP_POL":\
-    line="B_1USDHC_VEND_SPEC_CLKONJ_IN_A175":\
+    line="B_1USDHC_VEND_SPEC_CLKONJ_IN_A178":\
     line="B_1USDHC_VEND_SPEC_FRC_SDCLK_ON":\
-    line="B_1USDHC_VEND_SPEC_AC12_ISNOT_176":\
-    line="B_1USDHC_VEND_SPEC_DDREN_ACT_A177":\
-    line="B_1USDHC_VEND_SPEC_IPG_CLK_SOF178":\
+    line="B_1USDHC_VEND_SPEC_AC12_ISNOT_179":\
+    line="B_1USDHC_VEND_SPEC_DDREN_ACT_A180":\
+    line="B_1USDHC_VEND_SPEC_IPG_CLK_SOF181":\
     line="B_1USDHC_VEND_SPEC_HCLK_SOFT_EN":\
-    line="B_1USDHC_VEND_SPEC_IPG_PERCLK_179":\
+    line="B_1USDHC_VEND_SPEC_IPG_PERCLK_182":\
+    line="B_1USDHC_VEND_SPEC_CARD_CLK_SO183":\
     line="B_1USDHC_VEND_SPEC_CRC_CHK_DIS":\
     line="B_1USDHC_VEND_SPEC_INT_ST_VAL":\
     line="B_1USDHC_VEND_SPEC_DBG_SEL":\
     line="B_1USDHC_VEND_SPEC_CMD_OE_PRE_EN":\
-    line="B_1USDHC_VEND_SPEC_AC12_RD_CHK180":\
-    line="B_1USDHC_VEND_SPEC_CARD_DET_IN181":\
+    line="B_1USDHC_VEND_SPEC_AC12_RD_CHK184":\
+    line="B_1USDHC_VEND_SPEC_CARD_DET_IN185":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_MMC_BOOT":\
@@ -3575,19 +3588,19 @@ Advanced_Information.Cortex-A9={\
     line="B_1USDHC_MMC_BOOT_BOOT_MODE":\
     line="B_1USDHC_MMC_BOOT_BOOT_EN":\
     line="B_1USDHC_MMC_BOOT_AUTO_SABG_EN":\
-    line="B_1USDHC_MMC_BOOT_DISABLE_TIME182":\
+    line="B_1USDHC_MMC_BOOT_DISABLE_TIME186":\
     line="B_1USDHC_MMC_BOOT_BOOT_BLK_CNT":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_VEND_SPEC2":\
-    line="B_1USDHC_VEND_SPEC2_SDR104_TIM183":\
+    line="B_1USDHC_VEND_SPEC2_SDR104_TIM187":\
     line="B_1USDHC_VEND_SPEC2_SDR104_OE_DIS":\
-    line="B_1USDHC_VEND_SPEC2_SDR104_NSD184":\
-    line="B_1USDHC_VEND_SPEC2_CARD_INT_D185":\
-    line="B_1USDHC_VEND_SPEC2_TUNING_8BI186":\
-    line="B_1USDHC_VEND_SPEC2_TUNING_1BI187":\
+    line="B_1USDHC_VEND_SPEC2_SDR104_NSD188":\
+    line="B_1USDHC_VEND_SPEC2_CARD_INT_D189":\
+    line="B_1USDHC_VEND_SPEC2_TUNING_8BI190":\
+    line="B_1USDHC_VEND_SPEC2_TUNING_1BI191":\
     line="B_1USDHC_VEND_SPEC2_TUNING_CMD_EN":\
-    line="B_1USDHC_VEND_SPEC2_CARD_INT_A188":\
+    line="B_1USDHC_VEND_SPEC2_CARD_INT_A192":\
     line="$$":\
     line="$+":\
     line="=G_1USDHC_HOST_CTRL_VER":\
@@ -3635,7 +3648,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_DATA_BUFF_ACC_PORT":\
-    line="B_2USDHC_DATA_BUFF_ACC_PORT_DA142":\
+    line="B_2USDHC_DATA_BUFF_ACC_PORT_DA145":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_PRES_STATE":\
@@ -3671,13 +3684,13 @@ Advanced_Information.Cortex-A9={\
     line="B_2USDHC_PROT_CTRL_CREQ":\
     line="B_2USDHC_PROT_CTRL_RWCTL":\
     line="B_2USDHC_PROT_CTRL_IABG":\
-    line="B_2USDHC_PROT_CTRL_RD_DONE_NO_143":\
+    line="B_2USDHC_PROT_CTRL_RD_DONE_NO_146":\
     line="B_2USDHC_PROT_CTRL_RD_WAIT_POINT":\
     line="B_2USDHC_PROT_CTRL_WECINT":\
     line="B_2USDHC_PROT_CTRL_WECINS":\
     line="B_2USDHC_PROT_CTRL_WECRM":\
     line="B_2USDHC_PROT_CTRL_BURST_LEN_EN":\
-    line="B_2USDHC_PROT_CTRL_NON_EXACT_B144":\
+    line="B_2USDHC_PROT_CTRL_NON_EXACT_B147":\
     line="B_2USDHC_PROT_CTRL_RD_NO8CLK_EN":\
     line="$$":\
     line="$+":\
@@ -3770,12 +3783,12 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_AUTOCMD12_ERR_STATUS":\
-    line="B_2USDHC_AUTOCMD12_ERR_STATUS_145":\
-    line="B_2USDHC_AUTOCMD12_ERR_STATUS_146":\
-    line="B_2USDHC_AUTOCMD12_ERR_STATUS_147":\
     line="B_2USDHC_AUTOCMD12_ERR_STATUS_148":\
     line="B_2USDHC_AUTOCMD12_ERR_STATUS_149":\
     line="B_2USDHC_AUTOCMD12_ERR_STATUS_150":\
+    line="B_2USDHC_AUTOCMD12_ERR_STATUS_151":\
+    line="B_2USDHC_AUTOCMD12_ERR_STATUS_152":\
+    line="B_2USDHC_AUTOCMD12_ERR_STATUS_153":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_HOST_CTRL_CAP":\
@@ -3810,7 +3823,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2USDHC_MIX_CTRL_AUTO_TUNE_EN":\
     line="B_2USDHC_MIX_CTRL_FBCLK_SEL":\
     line="B_2USDHC_MIX_CTRL_AC12_RD_POINT":\
-    line="B_2USDHC_MIX_CTRL_CMD_DMY_WAIT151":\
+    line="B_2USDHC_MIX_CTRL_CMD_DMY_WAIT154":\
     line="B_2USDHC_MIX_CTRL_CMD_DMY_EN":\
     line="$$":\
     line="$+":\
@@ -3820,7 +3833,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2USDHC_FORCE_EVENT_FEVTAC12CE":\
     line="B_2USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_2USDHC_FORCE_EVENT_FEVTAC12IE":\
-    line="B_2USDHC_FORCE_EVENT_FEVTCNIBA152":\
+    line="B_2USDHC_FORCE_EVENT_FEVTCNIBA155":\
     line="B_2USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_2USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_2USDHC_FORCE_EVENT_FEVTCEBE":\
@@ -3847,55 +3860,56 @@ Advanced_Information.Cortex-A9={\
     line="=G_2USDHC_DLL_CTRL":\
     line="B_2USDHC_DLL_CTRL_DLL_CTRL_ENABLE":\
     line="B_2USDHC_DLL_CTRL_DLL_CTRL_RESET":\
-    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV153":\
-    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV154":\
-    line="B_2USDHC_DLL_CTRL_DLL_CTRL_GAT155":\
     line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV156":\
     line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV157":\
-    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV158":\
+    line="B_2USDHC_DLL_CTRL_DLL_CTRL_GAT158":\
     line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV159":\
-    line="B_2USDHC_DLL_CTRL_DLL_CTRL_REF160":\
+    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV160":\
+    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV161":\
+    line="B_2USDHC_DLL_CTRL_DLL_CTRL_SLV162":\
+    line="B_2USDHC_DLL_CTRL_DLL_CTRL_REF163":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_DLL_STATUS":\
-    line="B_2USDHC_DLL_STATUS_DLL_STS_SL161":\
-    line="B_2USDHC_DLL_STATUS_DLL_STS_RE162":\
-    line="B_2USDHC_DLL_STATUS_DLL_STS_SL163":\
-    line="B_2USDHC_DLL_STATUS_DLL_STS_RE164":\
+    line="B_2USDHC_DLL_STATUS_DLL_STS_SL164":\
+    line="B_2USDHC_DLL_STATUS_DLL_STS_RE165":\
+    line="B_2USDHC_DLL_STATUS_DLL_STS_SL166":\
+    line="B_2USDHC_DLL_STATUS_DLL_STS_RE167":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_CLK_TUNE_CTRL_STATUS":\
-    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_165":\
-    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_166":\
-    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_167":\
     line="B_2USDHC_CLK_TUNE_CTRL_STATUS_168":\
     line="B_2USDHC_CLK_TUNE_CTRL_STATUS_169":\
     line="B_2USDHC_CLK_TUNE_CTRL_STATUS_170":\
     line="B_2USDHC_CLK_TUNE_CTRL_STATUS_171":\
     line="B_2USDHC_CLK_TUNE_CTRL_STATUS_172":\
+    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_173":\
+    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_174":\
+    line="B_2USDHC_CLK_TUNE_CTRL_STATUS_175":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_VEND_SPEC":\
     line="B_2USDHC_VEND_SPEC_EXT_DMA_EN":\
     line="B_2USDHC_VEND_SPEC_VSELECT":\
-    line="B_2USDHC_VEND_SPEC_CONFLICT_CH173":\
-    line="B_2USDHC_VEND_SPEC_AC12_WR_CHK174":\
+    line="B_2USDHC_VEND_SPEC_CONFLICT_CH176":\
+    line="B_2USDHC_VEND_SPEC_AC12_WR_CHK177":\
     line="B_2USDHC_VEND_SPEC_DAT3_CD_POL":\
     line="B_2USDHC_VEND_SPEC_CD_POL":\
     line="B_2USDHC_VEND_SPEC_WP_POL":\
-    line="B_2USDHC_VEND_SPEC_CLKONJ_IN_A175":\
+    line="B_2USDHC_VEND_SPEC_CLKONJ_IN_A178":\
     line="B_2USDHC_VEND_SPEC_FRC_SDCLK_ON":\
-    line="B_2USDHC_VEND_SPEC_AC12_ISNOT_176":\
-    line="B_2USDHC_VEND_SPEC_DDREN_ACT_A177":\
-    line="B_2USDHC_VEND_SPEC_IPG_CLK_SOF178":\
+    line="B_2USDHC_VEND_SPEC_AC12_ISNOT_179":\
+    line="B_2USDHC_VEND_SPEC_DDREN_ACT_A180":\
+    line="B_2USDHC_VEND_SPEC_IPG_CLK_SOF181":\
     line="B_2USDHC_VEND_SPEC_HCLK_SOFT_EN":\
-    line="B_2USDHC_VEND_SPEC_IPG_PERCLK_179":\
+    line="B_2USDHC_VEND_SPEC_IPG_PERCLK_182":\
+    line="B_2USDHC_VEND_SPEC_CARD_CLK_SO183":\
     line="B_2USDHC_VEND_SPEC_CRC_CHK_DIS":\
     line="B_2USDHC_VEND_SPEC_INT_ST_VAL":\
     line="B_2USDHC_VEND_SPEC_DBG_SEL":\
     line="B_2USDHC_VEND_SPEC_CMD_OE_PRE_EN":\
-    line="B_2USDHC_VEND_SPEC_AC12_RD_CHK180":\
-    line="B_2USDHC_VEND_SPEC_CARD_DET_IN181":\
+    line="B_2USDHC_VEND_SPEC_AC12_RD_CHK184":\
+    line="B_2USDHC_VEND_SPEC_CARD_DET_IN185":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_MMC_BOOT":\
@@ -3904,19 +3918,19 @@ Advanced_Information.Cortex-A9={\
     line="B_2USDHC_MMC_BOOT_BOOT_MODE":\
     line="B_2USDHC_MMC_BOOT_BOOT_EN":\
     line="B_2USDHC_MMC_BOOT_AUTO_SABG_EN":\
-    line="B_2USDHC_MMC_BOOT_DISABLE_TIME182":\
+    line="B_2USDHC_MMC_BOOT_DISABLE_TIME186":\
     line="B_2USDHC_MMC_BOOT_BOOT_BLK_CNT":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_VEND_SPEC2":\
-    line="B_2USDHC_VEND_SPEC2_SDR104_TIM183":\
+    line="B_2USDHC_VEND_SPEC2_SDR104_TIM187":\
     line="B_2USDHC_VEND_SPEC2_SDR104_OE_DIS":\
-    line="B_2USDHC_VEND_SPEC2_SDR104_NSD184":\
-    line="B_2USDHC_VEND_SPEC2_CARD_INT_D185":\
-    line="B_2USDHC_VEND_SPEC2_TUNING_8BI186":\
-    line="B_2USDHC_VEND_SPEC2_TUNING_1BI187":\
+    line="B_2USDHC_VEND_SPEC2_SDR104_NSD188":\
+    line="B_2USDHC_VEND_SPEC2_CARD_INT_D189":\
+    line="B_2USDHC_VEND_SPEC2_TUNING_8BI190":\
+    line="B_2USDHC_VEND_SPEC2_TUNING_1BI191":\
     line="B_2USDHC_VEND_SPEC2_TUNING_CMD_EN":\
-    line="B_2USDHC_VEND_SPEC2_CARD_INT_A188":\
+    line="B_2USDHC_VEND_SPEC2_CARD_INT_A192":\
     line="$$":\
     line="$+":\
     line="=G_2USDHC_HOST_CTRL_VER":\
@@ -3964,7 +3978,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_DATA_BUFF_ACC_PORT":\
-    line="B_3USDHC_DATA_BUFF_ACC_PORT_DA142":\
+    line="B_3USDHC_DATA_BUFF_ACC_PORT_DA145":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_PRES_STATE":\
@@ -4000,13 +4014,13 @@ Advanced_Information.Cortex-A9={\
     line="B_3USDHC_PROT_CTRL_CREQ":\
     line="B_3USDHC_PROT_CTRL_RWCTL":\
     line="B_3USDHC_PROT_CTRL_IABG":\
-    line="B_3USDHC_PROT_CTRL_RD_DONE_NO_143":\
+    line="B_3USDHC_PROT_CTRL_RD_DONE_NO_146":\
     line="B_3USDHC_PROT_CTRL_RD_WAIT_POINT":\
     line="B_3USDHC_PROT_CTRL_WECINT":\
     line="B_3USDHC_PROT_CTRL_WECINS":\
     line="B_3USDHC_PROT_CTRL_WECRM":\
     line="B_3USDHC_PROT_CTRL_BURST_LEN_EN":\
-    line="B_3USDHC_PROT_CTRL_NON_EXACT_B144":\
+    line="B_3USDHC_PROT_CTRL_NON_EXACT_B147":\
     line="B_3USDHC_PROT_CTRL_RD_NO8CLK_EN":\
     line="$$":\
     line="$+":\
@@ -4099,12 +4113,12 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_AUTOCMD12_ERR_STATUS":\
-    line="B_3USDHC_AUTOCMD12_ERR_STATUS_145":\
-    line="B_3USDHC_AUTOCMD12_ERR_STATUS_146":\
-    line="B_3USDHC_AUTOCMD12_ERR_STATUS_147":\
     line="B_3USDHC_AUTOCMD12_ERR_STATUS_148":\
     line="B_3USDHC_AUTOCMD12_ERR_STATUS_149":\
     line="B_3USDHC_AUTOCMD12_ERR_STATUS_150":\
+    line="B_3USDHC_AUTOCMD12_ERR_STATUS_151":\
+    line="B_3USDHC_AUTOCMD12_ERR_STATUS_152":\
+    line="B_3USDHC_AUTOCMD12_ERR_STATUS_153":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_HOST_CTRL_CAP":\
@@ -4139,7 +4153,7 @@ Advanced_Information.Cortex-A9={\
     line="B_3USDHC_MIX_CTRL_AUTO_TUNE_EN":\
     line="B_3USDHC_MIX_CTRL_FBCLK_SEL":\
     line="B_3USDHC_MIX_CTRL_AC12_RD_POINT":\
-    line="B_3USDHC_MIX_CTRL_CMD_DMY_WAIT151":\
+    line="B_3USDHC_MIX_CTRL_CMD_DMY_WAIT154":\
     line="B_3USDHC_MIX_CTRL_CMD_DMY_EN":\
     line="$$":\
     line="$+":\
@@ -4149,7 +4163,7 @@ Advanced_Information.Cortex-A9={\
     line="B_3USDHC_FORCE_EVENT_FEVTAC12CE":\
     line="B_3USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_3USDHC_FORCE_EVENT_FEVTAC12IE":\
-    line="B_3USDHC_FORCE_EVENT_FEVTCNIBA152":\
+    line="B_3USDHC_FORCE_EVENT_FEVTCNIBA155":\
     line="B_3USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_3USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_3USDHC_FORCE_EVENT_FEVTCEBE":\
@@ -4176,55 +4190,56 @@ Advanced_Information.Cortex-A9={\
     line="=G_3USDHC_DLL_CTRL":\
     line="B_3USDHC_DLL_CTRL_DLL_CTRL_ENABLE":\
     line="B_3USDHC_DLL_CTRL_DLL_CTRL_RESET":\
-    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV153":\
-    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV154":\
-    line="B_3USDHC_DLL_CTRL_DLL_CTRL_GAT155":\
     line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV156":\
     line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV157":\
-    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV158":\
+    line="B_3USDHC_DLL_CTRL_DLL_CTRL_GAT158":\
     line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV159":\
-    line="B_3USDHC_DLL_CTRL_DLL_CTRL_REF160":\
+    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV160":\
+    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV161":\
+    line="B_3USDHC_DLL_CTRL_DLL_CTRL_SLV162":\
+    line="B_3USDHC_DLL_CTRL_DLL_CTRL_REF163":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_DLL_STATUS":\
-    line="B_3USDHC_DLL_STATUS_DLL_STS_SL161":\
-    line="B_3USDHC_DLL_STATUS_DLL_STS_RE162":\
-    line="B_3USDHC_DLL_STATUS_DLL_STS_SL163":\
-    line="B_3USDHC_DLL_STATUS_DLL_STS_RE164":\
+    line="B_3USDHC_DLL_STATUS_DLL_STS_SL164":\
+    line="B_3USDHC_DLL_STATUS_DLL_STS_RE165":\
+    line="B_3USDHC_DLL_STATUS_DLL_STS_SL166":\
+    line="B_3USDHC_DLL_STATUS_DLL_STS_RE167":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_CLK_TUNE_CTRL_STATUS":\
-    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_165":\
-    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_166":\
-    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_167":\
     line="B_3USDHC_CLK_TUNE_CTRL_STATUS_168":\
     line="B_3USDHC_CLK_TUNE_CTRL_STATUS_169":\
     line="B_3USDHC_CLK_TUNE_CTRL_STATUS_170":\
     line="B_3USDHC_CLK_TUNE_CTRL_STATUS_171":\
     line="B_3USDHC_CLK_TUNE_CTRL_STATUS_172":\
+    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_173":\
+    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_174":\
+    line="B_3USDHC_CLK_TUNE_CTRL_STATUS_175":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_VEND_SPEC":\
     line="B_3USDHC_VEND_SPEC_EXT_DMA_EN":\
     line="B_3USDHC_VEND_SPEC_VSELECT":\
-    line="B_3USDHC_VEND_SPEC_CONFLICT_CH173":\
-    line="B_3USDHC_VEND_SPEC_AC12_WR_CHK174":\
+    line="B_3USDHC_VEND_SPEC_CONFLICT_CH176":\
+    line="B_3USDHC_VEND_SPEC_AC12_WR_CHK177":\
     line="B_3USDHC_VEND_SPEC_DAT3_CD_POL":\
     line="B_3USDHC_VEND_SPEC_CD_POL":\
     line="B_3USDHC_VEND_SPEC_WP_POL":\
-    line="B_3USDHC_VEND_SPEC_CLKONJ_IN_A175":\
+    line="B_3USDHC_VEND_SPEC_CLKONJ_IN_A178":\
     line="B_3USDHC_VEND_SPEC_FRC_SDCLK_ON":\
-    line="B_3USDHC_VEND_SPEC_AC12_ISNOT_176":\
-    line="B_3USDHC_VEND_SPEC_DDREN_ACT_A177":\
-    line="B_3USDHC_VEND_SPEC_IPG_CLK_SOF178":\
+    line="B_3USDHC_VEND_SPEC_AC12_ISNOT_179":\
+    line="B_3USDHC_VEND_SPEC_DDREN_ACT_A180":\
+    line="B_3USDHC_VEND_SPEC_IPG_CLK_SOF181":\
     line="B_3USDHC_VEND_SPEC_HCLK_SOFT_EN":\
-    line="B_3USDHC_VEND_SPEC_IPG_PERCLK_179":\
+    line="B_3USDHC_VEND_SPEC_IPG_PERCLK_182":\
+    line="B_3USDHC_VEND_SPEC_CARD_CLK_SO183":\
     line="B_3USDHC_VEND_SPEC_CRC_CHK_DIS":\
     line="B_3USDHC_VEND_SPEC_INT_ST_VAL":\
     line="B_3USDHC_VEND_SPEC_DBG_SEL":\
     line="B_3USDHC_VEND_SPEC_CMD_OE_PRE_EN":\
-    line="B_3USDHC_VEND_SPEC_AC12_RD_CHK180":\
-    line="B_3USDHC_VEND_SPEC_CARD_DET_IN181":\
+    line="B_3USDHC_VEND_SPEC_AC12_RD_CHK184":\
+    line="B_3USDHC_VEND_SPEC_CARD_DET_IN185":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_MMC_BOOT":\
@@ -4233,19 +4248,19 @@ Advanced_Information.Cortex-A9={\
     line="B_3USDHC_MMC_BOOT_BOOT_MODE":\
     line="B_3USDHC_MMC_BOOT_BOOT_EN":\
     line="B_3USDHC_MMC_BOOT_AUTO_SABG_EN":\
-    line="B_3USDHC_MMC_BOOT_DISABLE_TIME182":\
+    line="B_3USDHC_MMC_BOOT_DISABLE_TIME186":\
     line="B_3USDHC_MMC_BOOT_BOOT_BLK_CNT":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_VEND_SPEC2":\
-    line="B_3USDHC_VEND_SPEC2_SDR104_TIM183":\
+    line="B_3USDHC_VEND_SPEC2_SDR104_TIM187":\
     line="B_3USDHC_VEND_SPEC2_SDR104_OE_DIS":\
-    line="B_3USDHC_VEND_SPEC2_SDR104_NSD184":\
-    line="B_3USDHC_VEND_SPEC2_CARD_INT_D185":\
-    line="B_3USDHC_VEND_SPEC2_TUNING_8BI186":\
-    line="B_3USDHC_VEND_SPEC2_TUNING_1BI187":\
+    line="B_3USDHC_VEND_SPEC2_SDR104_NSD188":\
+    line="B_3USDHC_VEND_SPEC2_CARD_INT_D189":\
+    line="B_3USDHC_VEND_SPEC2_TUNING_8BI190":\
+    line="B_3USDHC_VEND_SPEC2_TUNING_1BI191":\
     line="B_3USDHC_VEND_SPEC2_TUNING_CMD_EN":\
-    line="B_3USDHC_VEND_SPEC2_CARD_INT_A188":\
+    line="B_3USDHC_VEND_SPEC2_CARD_INT_A192":\
     line="$$":\
     line="$+":\
     line="=G_3USDHC_HOST_CTRL_VER":\
@@ -4293,7 +4308,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_DATA_BUFF_ACC_PORT":\
-    line="B_4USDHC_DATA_BUFF_ACC_PORT_DA142":\
+    line="B_4USDHC_DATA_BUFF_ACC_PORT_DA145":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_PRES_STATE":\
@@ -4329,13 +4344,13 @@ Advanced_Information.Cortex-A9={\
     line="B_4USDHC_PROT_CTRL_CREQ":\
     line="B_4USDHC_PROT_CTRL_RWCTL":\
     line="B_4USDHC_PROT_CTRL_IABG":\
-    line="B_4USDHC_PROT_CTRL_RD_DONE_NO_143":\
+    line="B_4USDHC_PROT_CTRL_RD_DONE_NO_146":\
     line="B_4USDHC_PROT_CTRL_RD_WAIT_POINT":\
     line="B_4USDHC_PROT_CTRL_WECINT":\
     line="B_4USDHC_PROT_CTRL_WECINS":\
     line="B_4USDHC_PROT_CTRL_WECRM":\
     line="B_4USDHC_PROT_CTRL_BURST_LEN_EN":\
-    line="B_4USDHC_PROT_CTRL_NON_EXACT_B144":\
+    line="B_4USDHC_PROT_CTRL_NON_EXACT_B147":\
     line="B_4USDHC_PROT_CTRL_RD_NO8CLK_EN":\
     line="$$":\
     line="$+":\
@@ -4428,12 +4443,12 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_AUTOCMD12_ERR_STATUS":\
-    line="B_4USDHC_AUTOCMD12_ERR_STATUS_145":\
-    line="B_4USDHC_AUTOCMD12_ERR_STATUS_146":\
-    line="B_4USDHC_AUTOCMD12_ERR_STATUS_147":\
     line="B_4USDHC_AUTOCMD12_ERR_STATUS_148":\
     line="B_4USDHC_AUTOCMD12_ERR_STATUS_149":\
     line="B_4USDHC_AUTOCMD12_ERR_STATUS_150":\
+    line="B_4USDHC_AUTOCMD12_ERR_STATUS_151":\
+    line="B_4USDHC_AUTOCMD12_ERR_STATUS_152":\
+    line="B_4USDHC_AUTOCMD12_ERR_STATUS_153":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_HOST_CTRL_CAP":\
@@ -4468,7 +4483,7 @@ Advanced_Information.Cortex-A9={\
     line="B_4USDHC_MIX_CTRL_AUTO_TUNE_EN":\
     line="B_4USDHC_MIX_CTRL_FBCLK_SEL":\
     line="B_4USDHC_MIX_CTRL_AC12_RD_POINT":\
-    line="B_4USDHC_MIX_CTRL_CMD_DMY_WAIT151":\
+    line="B_4USDHC_MIX_CTRL_CMD_DMY_WAIT154":\
     line="B_4USDHC_MIX_CTRL_CMD_DMY_EN":\
     line="$$":\
     line="$+":\
@@ -4478,7 +4493,7 @@ Advanced_Information.Cortex-A9={\
     line="B_4USDHC_FORCE_EVENT_FEVTAC12CE":\
     line="B_4USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_4USDHC_FORCE_EVENT_FEVTAC12IE":\
-    line="B_4USDHC_FORCE_EVENT_FEVTCNIBA152":\
+    line="B_4USDHC_FORCE_EVENT_FEVTCNIBA155":\
     line="B_4USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_4USDHC_FORCE_EVENT_FEVTCCE":\
     line="B_4USDHC_FORCE_EVENT_FEVTCEBE":\
@@ -4505,55 +4520,56 @@ Advanced_Information.Cortex-A9={\
     line="=G_4USDHC_DLL_CTRL":\
     line="B_4USDHC_DLL_CTRL_DLL_CTRL_ENABLE":\
     line="B_4USDHC_DLL_CTRL_DLL_CTRL_RESET":\
-    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV153":\
-    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV154":\
-    line="B_4USDHC_DLL_CTRL_DLL_CTRL_GAT155":\
     line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV156":\
     line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV157":\
-    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV158":\
+    line="B_4USDHC_DLL_CTRL_DLL_CTRL_GAT158":\
     line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV159":\
-    line="B_4USDHC_DLL_CTRL_DLL_CTRL_REF160":\
+    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV160":\
+    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV161":\
+    line="B_4USDHC_DLL_CTRL_DLL_CTRL_SLV162":\
+    line="B_4USDHC_DLL_CTRL_DLL_CTRL_REF163":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_DLL_STATUS":\
-    line="B_4USDHC_DLL_STATUS_DLL_STS_SL161":\
-    line="B_4USDHC_DLL_STATUS_DLL_STS_RE162":\
-    line="B_4USDHC_DLL_STATUS_DLL_STS_SL163":\
-    line="B_4USDHC_DLL_STATUS_DLL_STS_RE164":\
+    line="B_4USDHC_DLL_STATUS_DLL_STS_SL164":\
+    line="B_4USDHC_DLL_STATUS_DLL_STS_RE165":\
+    line="B_4USDHC_DLL_STATUS_DLL_STS_SL166":\
+    line="B_4USDHC_DLL_STATUS_DLL_STS_RE167":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_CLK_TUNE_CTRL_STATUS":\
-    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_165":\
-    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_166":\
-    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_167":\
     line="B_4USDHC_CLK_TUNE_CTRL_STATUS_168":\
     line="B_4USDHC_CLK_TUNE_CTRL_STATUS_169":\
     line="B_4USDHC_CLK_TUNE_CTRL_STATUS_170":\
     line="B_4USDHC_CLK_TUNE_CTRL_STATUS_171":\
     line="B_4USDHC_CLK_TUNE_CTRL_STATUS_172":\
+    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_173":\
+    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_174":\
+    line="B_4USDHC_CLK_TUNE_CTRL_STATUS_175":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_VEND_SPEC":\
     line="B_4USDHC_VEND_SPEC_EXT_DMA_EN":\
     line="B_4USDHC_VEND_SPEC_VSELECT":\
-    line="B_4USDHC_VEND_SPEC_CONFLICT_CH173":\
-    line="B_4USDHC_VEND_SPEC_AC12_WR_CHK174":\
+    line="B_4USDHC_VEND_SPEC_CONFLICT_CH176":\
+    line="B_4USDHC_VEND_SPEC_AC12_WR_CHK177":\
     line="B_4USDHC_VEND_SPEC_DAT3_CD_POL":\
     line="B_4USDHC_VEND_SPEC_CD_POL":\
     line="B_4USDHC_VEND_SPEC_WP_POL":\
-    line="B_4USDHC_VEND_SPEC_CLKONJ_IN_A175":\
+    line="B_4USDHC_VEND_SPEC_CLKONJ_IN_A178":\
     line="B_4USDHC_VEND_SPEC_FRC_SDCLK_ON":\
-    line="B_4USDHC_VEND_SPEC_AC12_ISNOT_176":\
-    line="B_4USDHC_VEND_SPEC_DDREN_ACT_A177":\
-    line="B_4USDHC_VEND_SPEC_IPG_CLK_SOF178":\
+    line="B_4USDHC_VEND_SPEC_AC12_ISNOT_179":\
+    line="B_4USDHC_VEND_SPEC_DDREN_ACT_A180":\
+    line="B_4USDHC_VEND_SPEC_IPG_CLK_SOF181":\
     line="B_4USDHC_VEND_SPEC_HCLK_SOFT_EN":\
-    line="B_4USDHC_VEND_SPEC_IPG_PERCLK_179":\
+    line="B_4USDHC_VEND_SPEC_IPG_PERCLK_182":\
+    line="B_4USDHC_VEND_SPEC_CARD_CLK_SO183":\
     line="B_4USDHC_VEND_SPEC_CRC_CHK_DIS":\
     line="B_4USDHC_VEND_SPEC_INT_ST_VAL":\
     line="B_4USDHC_VEND_SPEC_DBG_SEL":\
     line="B_4USDHC_VEND_SPEC_CMD_OE_PRE_EN":\
-    line="B_4USDHC_VEND_SPEC_AC12_RD_CHK180":\
-    line="B_4USDHC_VEND_SPEC_CARD_DET_IN181":\
+    line="B_4USDHC_VEND_SPEC_AC12_RD_CHK184":\
+    line="B_4USDHC_VEND_SPEC_CARD_DET_IN185":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_MMC_BOOT":\
@@ -4562,19 +4578,19 @@ Advanced_Information.Cortex-A9={\
     line="B_4USDHC_MMC_BOOT_BOOT_MODE":\
     line="B_4USDHC_MMC_BOOT_BOOT_EN":\
     line="B_4USDHC_MMC_BOOT_AUTO_SABG_EN":\
-    line="B_4USDHC_MMC_BOOT_DISABLE_TIME182":\
+    line="B_4USDHC_MMC_BOOT_DISABLE_TIME186":\
     line="B_4USDHC_MMC_BOOT_BOOT_BLK_CNT":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_VEND_SPEC2":\
-    line="B_4USDHC_VEND_SPEC2_SDR104_TIM183":\
+    line="B_4USDHC_VEND_SPEC2_SDR104_TIM187":\
     line="B_4USDHC_VEND_SPEC2_SDR104_OE_DIS":\
-    line="B_4USDHC_VEND_SPEC2_SDR104_NSD184":\
-    line="B_4USDHC_VEND_SPEC2_CARD_INT_D185":\
-    line="B_4USDHC_VEND_SPEC2_TUNING_8BI186":\
-    line="B_4USDHC_VEND_SPEC2_TUNING_1BI187":\
+    line="B_4USDHC_VEND_SPEC2_SDR104_NSD188":\
+    line="B_4USDHC_VEND_SPEC2_CARD_INT_D189":\
+    line="B_4USDHC_VEND_SPEC2_TUNING_8BI190":\
+    line="B_4USDHC_VEND_SPEC2_TUNING_1BI191":\
     line="B_4USDHC_VEND_SPEC2_TUNING_CMD_EN":\
-    line="B_4USDHC_VEND_SPEC2_CARD_INT_A188":\
+    line="B_4USDHC_VEND_SPEC2_CARD_INT_A192":\
     line="$$":\
     line="$+":\
     line="=G_4USDHC_HOST_CTRL_VER":\

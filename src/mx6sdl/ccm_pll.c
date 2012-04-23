@@ -34,7 +34,6 @@ void ccm_init(void)
     HW_CCM_CCGR4_WR(0x00FFFF03);    // GPMI, Perfmon enabled by driver
     HW_CCM_CCGR5_WR(0xF0FFFFCF);    // UART, SATA enabled by driver
     HW_CCM_CCGR6_WR(0xffffffff);
-    HW_CCM_CCGR7_WR(0xffffffff);
 
     /*
      * Keep default settings at reset.
@@ -375,7 +374,7 @@ void sata_clock_enable(void)
 
     //enable ENET_PLL (PLL8) in ANADIG. done in freq_populate()
     //enale SATA_CLK in the ENET_PLL register
-    HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
+    HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
     //config ENET PLL div_select for SATA - 100MHz
     HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x2; // 0b10-100MHz
 }
@@ -389,7 +388,7 @@ void sata_clock_disable(void)
     clock_gating_config(SATA_BASE_ADDR, CLOCK_OFF);
 
     //disable ENET_PLL (PLL8) in ANADIG
-    HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
+    HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
 }
 
 /*!

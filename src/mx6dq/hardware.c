@@ -693,7 +693,7 @@ void pcie_clk_setup(uint32_t enable)
         // Disable bypass
         HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
         // enable pci-e ref clk
-        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_PCIE);
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_125M);
     }
 }
 
@@ -713,7 +713,7 @@ void enable_extrn_100mhz_clk(uint32_t enable)
 {
     if (enable) {
         // Disable SATA clock gating used as external reference
-        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
 
         // Select SATA clock source and switch to output buffer.
         HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
@@ -726,7 +726,7 @@ void enable_extrn_125mhz_clk(uint32_t enable)
 {
     if (enable) {
         // Disable SATA clock gating used as external reference
-        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_SATA);
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
 
         // Select PCIe clock source and switch to output buffer.
         HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);

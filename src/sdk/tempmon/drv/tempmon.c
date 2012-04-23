@@ -166,7 +166,7 @@ float tempmon_get_temp(void)
     while (!HW_TEMPMON_TEMPSENSE0.B.FINISHED);
     
     // Read the measured temperature.
-    int measuredCount = HW_TEMPMON_TEMPSENSE0.B.TEMP_VALUE;
+    int measuredCount = HW_TEMPMON_TEMPSENSE0.B.TEMP_CNT;
     
     // Power down the temp monitor, unless alarms are enabled.
     if (!s_tempmon.isAlarmEnabled)

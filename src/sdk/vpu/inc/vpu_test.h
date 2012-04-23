@@ -13,8 +13,8 @@
 #include "fat_driver.h"
 #include "vpu_util.h"
 #include "ipu/inc/ipu_common.h"
-#include "usdhc/inc/usdhc_ifc.h"
 #include "vdoa/inc/vdoa.h"
+#include "usdhc/inc/usdhc_ifc.h"
 
 #define MAX_FIFO_SIZE 		32
 #define NUM_FRAME_BUFS	64
@@ -58,12 +58,6 @@
 
 #define VDOA_DIS            (0)
 #define VDOA_EN             (1)
-
-#define EPIT_EPITCR_OFFSET	0x00    //  32bit timer 3 control reg
-#define EPIT_EPITSR_OFFSET	0x04    //  32bit timer 3 prescaler reg
-#define EPIT_EPITLR_OFFSET	0x08    //  32bit timer 3 compare reg
-#define EPIT_EPITCMPR_OFFSET	0x0C    //  32bit timer 3 capture reg
-#define EPIT_EPITCNR_OFFSET	0x10    //  32bit timer 3 counter reg
 
 enum {
     MODE420 = 0,
@@ -302,9 +296,6 @@ int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t
 int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id);
 int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
 int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
-void epit2_config(void);
-void epit_isr(void);
-int get_timer_stamp(int periodic);
 void decoder_frame_display(void);
 int decode_test(void *arg);
 int encode_test(void *arg);

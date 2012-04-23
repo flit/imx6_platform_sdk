@@ -11,8 +11,6 @@
 #include "vpu_test.h"
 #include "vpu_debug.h"
 
-static vpu_frame_timer_t vtimer = { 0 };
-
 int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag)
 {
     card_data_read(SD_PORT_BASE_ADDR, buffer, sd_size, sd_addr);
@@ -89,18 +87,6 @@ int vpu_stream_write(struct cmd_line *cmd, char *buf, int n)
     return n;
 }
 
-int video_data_cmp(unsigned char *src, unsigned char *dst, int size)
-{
-    int i = 0;
-    for (i = 0; i < size; i++) {
-        if (src[i] != dst[i]) {
-            err_msg("comparision failed at %d\n", i);
-            return -1;
-        }
-    }
-    return 0;
-}
-
 int ipu_refresh(int ipu_index, uint32_t buffer)
 {
     ipu_dma_update_buffer(ipu_index, 23, 0, buffer);
@@ -117,6 +103,21 @@ void config_system_parameters(void)
     reg32_write(IOMUXC_GPR6, 0x22272227);
     reg32_write(IOMUXC_GPR7, 0x22272227);
 }
+
+#ifdef __NOT_USED__
+int video_data_cmp(unsigned char *src, unsigned char *dst, int size)
+{
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        if (src[i] != dst[i]) {
+            err_msg("comparision failed at %d\n", i);
+            return -1;
+        }
+    }
+    return 0;
+}
+
+static vpu_frame_timer_t vtimer = { 0 };
 
 void epit2_config(void)
 {
@@ -145,3 +146,4 @@ int get_timer_stamp(int periodic)
         return 0;
     }
 }
+#endif

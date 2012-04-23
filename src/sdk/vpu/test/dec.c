@@ -11,6 +11,7 @@
 #include "vpu_test.h"
 #include "vpu_debug.h"
 #include "vpu_lib.h"
+#include "timer/epit.h"
 
 bs_mem_t bsmem;
 int gCurrentActiveInstance = 0;
@@ -614,7 +615,7 @@ void decoder_frame_display(void)
 
 void epit_isr(void)
 {
-    reg32_write(EPIT2_BASE_ADDR + EPIT_EPITSR_OFFSET, 0x1); // clear interrupt
+    epit_get_compare_event(&hw_epit2);
     decoder_frame_display();
 }
 

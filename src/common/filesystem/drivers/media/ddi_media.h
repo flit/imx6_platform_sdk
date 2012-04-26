@@ -1,14 +1,9 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) Freescale Semiconductor. All rights reserved.
-// 
-// Freescale Semiconductor
-// Proprietary & Confidential
-// 
-// This source code and the algorithms implemented therein constitute confidential
-// information and may comprise trade secrets of Freescale Semiconductor or its
-// associates, and any use thereof is subject to the terms and conditions of the
-// Confidential Disclosure Agreement pursual to which this source code was
-// originally received.
+/*
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+ */
 ////////////////////////////////////////////////////////////////////////////////
 //! \addtogroup ddi_media
 //! @{

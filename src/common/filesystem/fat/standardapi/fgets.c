@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 
@@ -33,7 +33,7 @@
 ----------------------------------------------------------------------------*/
 uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytesToRead, uint8_t *Buffer)
 {
-    int i;
+    int32_t i;
     RtStatus_t RetValue;
 
     if((HandleNumber <0)||(HandleNumber >= maxhandles))

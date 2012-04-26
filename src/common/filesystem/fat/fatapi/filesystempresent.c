@@ -14,14 +14,14 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 
 //
 // Prototypes
 //
-RtStatus_t FileSystemBootSectorVerify( uint8_t* buf );
+//RtStatus_t FileSystemBootSectorVerify( uint8_t* buf );
 
 /*----------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ _exit:
 ////////////////////////////////////////////////////////////////////////////////
 RtStatus_t FileSystemBootSectorVerify( uint8_t* buf )
 {
-    int  signature; 
+    int32_t  signature; 
 
     // To determine whether the filesystem is present or not, get the two bytes of Bootsector
     // at offsets 510 and 511, regardless of the sector size.

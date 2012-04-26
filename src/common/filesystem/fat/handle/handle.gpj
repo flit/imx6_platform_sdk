@@ -1,5 +1,0 @@
-#!gbuild
-[Subproject]
-fgetfasthandle.c
-handle.c
-handleres.c

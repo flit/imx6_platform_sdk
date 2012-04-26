@@ -13,14 +13,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t FastOpen(int32_t Key,uint8_t *mode)
+>  Function Name: RtStatus_t FastOpen(int32_t Key,uint8_t *mode)
 
    FunctionType:  Reentrant
 
@@ -34,7 +34,7 @@
                   
 <
 ----------------------------------------------------------------------------*/
-int32_t FastOpen(int64_t Key, uint8_t *mode)
+RtStatus_t FastOpen(int64_t Key, uint8_t *mode)
 {
     int32_t HandleNumber;
     uint8_t  *buf;

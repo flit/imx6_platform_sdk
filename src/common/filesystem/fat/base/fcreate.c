@@ -13,14 +13,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t Fcreate(int32_t HandleNumber,uint8_t *FileName,int32_t stringtype,int32_t length,int32_t index)
+>  Function Name: RtStatus_t Fcreate(int32_t HandleNumber,uint8_t *FileName,int32_t stringtype,int32_t length,int32_t index)
 
    FunctionType:  Reentrant
 
@@ -36,7 +36,7 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t Fcreate(int32_t HandleNumber,uint8_t *FileName,int32_t stringtype,int32_t length,int32_t index)
+RtStatus_t Fcreate(int32_t HandleNumber,uint8_t *FileName,int32_t stringtype,int32_t length,int32_t index)
 {
     RtStatus_t RetValue = SUCCESS;
 	uint8_t UnicodeBuffer[MAX_UNICODE_SIZE];

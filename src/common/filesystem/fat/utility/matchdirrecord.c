@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -44,7 +44,7 @@ RtStatus_t MatchdirRecordW(int32_t HandleNumber,int32_t RecordNo, uint8_t *file,
 {
     RtStatus_t filefound=SUCCESS;
     int32_t dirattribute;
-    int Firstbyte;
+    int32_t Firstbyte;
 	
     // SGTL_HK change
     //int32_t shortname[13],ucs2buffer[13];   

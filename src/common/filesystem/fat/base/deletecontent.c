@@ -14,15 +14,15 @@ Notes:
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h"
 #include "DirOffset.h"
-#include <drivers/sectordef.h>
-#include "drivers/media/cache/media_cache.h"
+#include "sectordef.h"
+#include "drivers/media/media_cache.h"
 
 /*----------------------------------------------------------------------------
->  Function Name: int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
+>  Function Name: RtStatus_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
 
    FunctionType:  Reentrant
 
@@ -36,14 +36,14 @@ Notes:
                   zero in the FAT Table )
 <
 ----------------------------------------------------------------------------*/
-int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
+RtStatus_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
 {
-    int32_t  clusterno, nFileSizeInBytes, nFileSizeInClusters, FATentry;
-    int     FATsector, iCluster, Device, FATNtryOffsetInBytesInThisSector, iFirstFATSectorOnTheDevice;
+    int32_t     clusterno, nFileSizeInBytes, nFileSizeInClusters, FATentry;
+    int32_t     FATsector, iCluster, Device, FATNtryOffsetInBytesInThisSector, iFirstFATSectorOnTheDevice;
     BOOL    exitCondition;
-    int     oldFATSector;
+    int32_t     oldFATSector;
 #ifdef ENABLE_WRITE_FAT2  /* Write FAT2 */
-	int     FATSize;
+	int32_t     FATSize;
 #endif
 
     uint8_t *p_u8_CopyOfASectorOfFAT;       // Like the name says, this points to a copy of
@@ -53,9 +53,9 @@ int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
                                             // procedure is performed, and then the sector is written back
                                             // to the FAT.
 
-    int     SectorMask, BytesPerSector, ret, FAToffsetInBytes;
-	int	    FatType;
-	int     FatShift;
+    int32_t     SectorMask, BytesPerSector, ret, FAToffsetInBytes;
+	int32_t	    FatType;
+	int32_t     FatShift;
     MediaCacheParamBlock_t pb = {0};
 
     if((nFileSizeInBytes = GetFileSize(HandleNumber))==0)
@@ -132,11 +132,11 @@ int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
     }
     else if( FatType == FAT12 )
     {
-		exitCondition = ((((unsigned int)clusterno) > ((unsigned int)0x0FF5)) || (0==clusterno));
+		exitCondition = ((((uint32_t)clusterno) > ((uint32_t)0x0FF5)) || (0==clusterno));
     }
 	else					// FAT16
 	{
-		exitCondition = ((((unsigned int)clusterno) > ((unsigned int)0xFFF0)) || (0==clusterno));
+		exitCondition = ((((uint32_t)clusterno) > ((uint32_t)0xFFF0)) || (0==clusterno));
     }
 
     if (exitCondition)
@@ -283,7 +283,7 @@ int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
         {
             FATentry = FSGetWord(p_u8_CopyOfASectorOfFAT ,FATNtryOffsetInBytesInThisSector);
 			FATentry &= (FATentry & FAT12EOF);
-			exitCondition = ((((unsigned int)FATentry) > ((unsigned int)0x0FF5)) || (0==FATentry));
+			exitCondition = ((((uint32_t)FATentry) > ((uint32_t)0x0FF5)) || (0==FATentry));
 			ret = (FATentry & ~FAT12EOF);
             PutWord(p_u8_CopyOfASectorOfFAT,ret,FATNtryOffsetInBytesInThisSector);
         }
@@ -291,7 +291,7 @@ int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
         {
             FATentry = FSGetWord(p_u8_CopyOfASectorOfFAT ,FATNtryOffsetInBytesInThisSector);
 			PutWord(p_u8_CopyOfASectorOfFAT ,FAT16FREECX,FATNtryOffsetInBytesInThisSector);
-            exitCondition = ((((unsigned int)FATentry) > ((unsigned int)0xFFF0)) || (0==FATentry));
+            exitCondition = ((((uint32_t)FATentry) > ((uint32_t)0xFFF0)) || (0==FATentry));
         }
 
         MediaTable[Device].TotalFreeClusters++;
@@ -343,6 +343,7 @@ int32_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
     media_cache_release(pb.token);
     
     LeaveNonReentrantSection();
+
     return SUCCESS;
 }
 

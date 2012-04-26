@@ -15,8 +15,8 @@
 #ifndef _FS_STEERING_H
 #define _FS_STEERING_H
 
-#include "os/filesystem/fsapi.h"
-#include "os/filesystem/resource/src/os_resource_internal.h"
+#include "filesystem/fsapi.h"
+//#include "filesystem/resource/src/os_resource_internal.h"
 
 // Minimum and maximum file handles for FAT file system
 #define FAT_HANDLE_MIN      (0x00000000)
@@ -30,10 +30,10 @@
 typedef RtStatus_t (*Fclose_t)( int32_t );
 
 //! Pointer to Fread-type function
-typedef int32_t (*Fread_t)( int32_t, uint8_t*, int32_t );
+typedef RtStatus_t (*Fread_t)( int32_t, uint8_t*, int32_t );
 
 //! Pointer to Fwrite-type function
-typedef int32_t (*Fwrite_t)( int32_t, uint8_t*, int32_t );
+typedef RtStatus_t (*Fwrite_t)( int32_t, uint8_t*, int32_t );
 
 //! Pointer to Fseek-type function
 typedef RtStatus_t (*Fseek_t)( int32_t, int32_t, int32_t );
@@ -54,12 +54,12 @@ FsType_t FileSystemType( int32_t handleNumber );
 RtStatus_t Fclose( int32_t handleNumber );
 
 // Function to redirect Fread
-int32_t Fread( int32_t handleNumber,
+RtStatus_t Fread( int32_t handleNumber,
                                  uint8_t *pBuffer,
                                  int32_t numBytesToRead );
                          
 // Function to redirect Fwrite
-int32_t Fwrite( int32_t handleNumber,
+RtStatus_t Fwrite( int32_t handleNumber,
                                   uint8_t *pBuffer,
                                   int32_t numBytesToWrite );
                                   

@@ -11,9 +11,9 @@
 #include "errordefs.h"
 #include "platform.h"
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
+#include "filesystem/fat/include/devicetable.h"
 #include "filespec.h"
-#include "os/filesystem/filesystem.h"
+#include "filesystem/filesystem.h"
 #include "fat_internal.h"
 
 /*----------------------------------------------------------------------------
@@ -38,7 +38,7 @@ uint8_t gCurrentWorkingdirectory[MAX_FILENAME_LENGTH*2];
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int SetCWDHandle (int DeviceNo)
+>  Function Name:  int32_t SetCWDHandle (int32_t DeviceNo)
 
    FunctionType:  
 
@@ -49,7 +49,7 @@ uint8_t gCurrentWorkingdirectory[MAX_FILENAME_LENGTH*2];
    Description:     
 <
 --------- -------------------------------------------------------------------*/
-int  SetCWDHandle(int DeviceNo)
+int32_t  SetCWDHandle(int32_t DeviceNo)
 {
 
     /* set handle CWD_HANDLE (Handle 0) to Root directory of device 0*/

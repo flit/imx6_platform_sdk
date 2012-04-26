@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 /*----------------------------------------------------------------------------
 		Global Declarations
@@ -38,7 +38,7 @@ const uint8_t Short_NameRes_Ch[6]={0x2B,0x2C,0x3B,0x3D,0x5B,0x5D};
 void DBCStoUnicode(uint8_t *filepath,uint8_t *buf,int32_t index,int32_t length)
 {
     int32_t offset=0,word=0,i;
-    int Byte;
+    int32_t Byte;
 
     for(i=index;i<length;i++)
     {
@@ -68,8 +68,8 @@ void DBCStoUnicode(uint8_t *filepath,uint8_t *buf,int32_t index,int32_t length)
 -----------------------------------------------------------------------------*/
 void UnicodeToOEM(uint8_t *file,uint8_t *shortname,int32_t length,int32_t index)
 {
-    int offset=0,j,k=0;
-    int word=0;
+    int32_t offset=0,j,k=0;
+    int32_t word=0;
 
     offset=index;
     while(offset<length)

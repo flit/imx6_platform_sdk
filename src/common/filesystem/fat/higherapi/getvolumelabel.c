@@ -19,11 +19,11 @@
 #include "BootSecOffset.h"
 #include "DirOffset.h"
 //#include "dirrecord.h"
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "fat_internal.h"
 ///*----------------------------------------------------------------------------
 //
-//   Function Name:int _reentrant  GetVolumeLabel(BYTE *Buffer,int DeviceNum)
+//   Function Name:int32_t _reentrant  GetVolumeLabel(BYTE *Buffer,int32_t DeviceNum)
 //
 //   FunctionType:  Reentrant
 //
@@ -36,14 +36,14 @@
 //
 ////----------------------------------------------------------------------------*/
 
-int GetVolumeLabel(BYTE *Buffer,int DeviceNum)
+int32_t GetVolumeLabel(BYTE *Buffer,int32_t DeviceNum)
 
 {
-	int HandleNumber;
-	int buf[11]; //DIRRECORDSIZE];
-	int RecordNo = 0,Char,dirattribute,Retval;
-	int offset,offset_dest;
-	int byte;
+	int32_t HandleNumber;
+	int32_t buf[11]; //DIRRECORDSIZE];
+	int32_t RecordNo = 0,Char,dirattribute,Retval;
+	int32_t offset,offset_dest;
+	int32_t byte;
 
 	/* Search for free handle and allocate it*/
 	if((HandleNumber = Searchfreehandleallocate())<0)

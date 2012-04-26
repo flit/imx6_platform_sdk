@@ -1,14 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) Freescale Semiconductor. All rights reserved.
-// 
-// Freescale Semiconductor
-// Proprietary & Confidential
-// 
-// This source code and the algorithms implemented therein constitute
-// confidential information and may comprise trade secrets of Freescale Semiconductor.
-// or its associates, and any use thereof is subject to the terms and
-// conditions of the Confidential Disclosure Agreement pursual to which this
-// source code was originally received.
+/*
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+ */
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \addtogroup fs_fat
 //! @{
@@ -17,10 +13,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "fat_internal.h"
-#include "drivers/media/cache/media_cache.h"
-#include "drivers/media/buffer_manager/media_buffer_manager.h"
+#include "drivers/media/media_cache.h"
+#include "drivers/media/media_buffer_manager.h"
 #include <string.h>
-#include <arm_ghs.h>
+#include <stdlib.h>
+//#include <arm_ghs.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -35,7 +32,7 @@ static bool IsFATSector(uint32_t drive, uint32_t sector)
 }
 
 //! \brief Returns the appropriate weight for the given sector.
-static inline int GetSectorWeight(uint32_t drive, uint32_t sector)
+static inline int32_t GetSectorWeight(uint32_t drive, uint32_t sector)
 {
     return IsFATSector(drive, sector) ? kMediaCacheWeight_High : kMediaCacheWeight_Medium;
 }
@@ -54,7 +51,7 @@ static inline int GetSectorWeight(uint32_t drive, uint32_t sector)
 RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType)
 {
     RtStatus_t status;
-    
+
     // Setup param block for write.
     MediaCacheParamBlock_t pb = {0};
     pb.drive = deviceNumber;
@@ -102,11 +99,12 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
     uint8_t * buffer;
 
     // Acquire a buffer to hold the empty sector.
-    status = media_buffer_acquire(kMediaBufferType_Sector, 0, (SECTOR_BUFFER **)&buffer);
-    if (status != SUCCESS)
-    {
-        return status;
-    }
+//    status = media_buffer_acquire(kMediaBufferType_Sector, 0, (SECTOR_BUFFER **)&buffer);
+//    if (status != SUCCESS)
+//    {
+//        return status;
+//    }
+    buffer = malloc(sizeof(uint8_t)*MediaTable[deviceNumber].BytesPerSector);
     
     // Clear the sector buffer to all zeroes.
     memset(buffer, 0, MediaTable[deviceNumber].BytesPerSector);
@@ -120,13 +118,14 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
     pb.mode = WRITE_TYPE_RANDOM;
     pb.weight = GetSectorWeight(deviceNumber, sectorNumber);
     pb.flags = kMediaCacheFlag_ApplyWeight;
-    
+
     // Write the empty sector.
     status = media_cache_write(&pb);
-    
+
     // Let go of the sector buffer.
-    media_buffer_release((SECTOR_BUFFER *)buffer);
-    
+//    media_buffer_release((SECTOR_BUFFER *)buffer);
+    free(buffer);
+
     return status;
 }
 

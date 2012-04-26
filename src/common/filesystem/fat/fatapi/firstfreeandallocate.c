@@ -14,11 +14,11 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/filesystem/fsapi.h>
+#include <filesystem/fsapi.h>
 #include "platform.h"
 #include "BootSecOffset.h" 
-#include <os/filesystem/filesystem.h>
-#include <drivers\ddi_media.h>
+#include <filesystem/filesystem.h>
+#include <drivers/media/ddi_media.h>
 
 /*----------------------------------------------------------------------------
 >  Function Name:  REENTRANT int32_t FirstfreeAndallocate(int32_t DeviceNum)

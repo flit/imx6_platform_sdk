@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -35,7 +35,7 @@ RtStatus_t Mkdir(uint8_t *filepath)
 {
     int32_t HandleNumber,strlen1;
     RtStatus_t Retvalue;
-    int index=0,currentposition=0;  
+    int32_t index=0,currentposition=0;  
     int32_t clusterno;	
     int32_t byte,source_offset=0;       
     int32_t length;		          

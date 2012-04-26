@@ -13,8 +13,8 @@
 #include <string.h>
 
 #include <types.h>
-#include <../os/filesystem/fat/include/fstypes.h> //! \todo malinclusion
-#include <os/fsapi.h> //! \todo malinclusion
+#include <../filesystem/fat/include/fstypes.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include <error.h>
 #include "platform.h"
 #include "fat_internal.h"
@@ -35,7 +35,7 @@
 ----------------------------------------------------------------------------*/
 void ArrangeFileName(uint8_t *Buffer,uint8_t *ShortNameDir)
 {
-     int FName=0,i=0,j=0,Length=0;
+     int32_t FName=0,i=0,j=0,Length=0;
 
      if((FName = FSGetByte(Buffer,0))!= 0x2e)
      {

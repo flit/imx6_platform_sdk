@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -42,7 +42,7 @@ RtStatus_t Chdir(uint8_t *filepath)
     uint32_t Firstchar,secondchar;
     int32_t offset=0,currentposition=0, offset_dest=0;
 #endif
-    int index=0;
+    int32_t index=0;
     uint8_t buf[32];
 
 	/* Take temporary(directory)handle for searching the directory by changing path */

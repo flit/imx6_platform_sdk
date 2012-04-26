@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include "filesystem/fsapi.h" //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -22,7 +22,7 @@
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t ReadRootdirRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buffer)
+>  Function Name: RtStatus_t ReadRootdirRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buffer)
 
    FunctionType:  Reentrant
 
@@ -36,7 +36,7 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t ReadRootdirRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buffer)
+RtStatus_t ReadRootdirRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buffer)
 {
     int32_t DeviceNum; 
     RtStatus_t Retval;
@@ -99,7 +99,7 @@ int32_t ReadRootdirRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buf
 ----------------------------------------------------------------------------*/
 RtStatus_t SetcurrentPos(int32_t HandleNumber,int32_t RecordNumber)
 {
-    int DeviceNum; 
+    int32_t DeviceNum; 
     int32_t offset;
     int32_t sectorno;  
  	   

@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h"
@@ -55,7 +55,7 @@ int32_t Searchdirectory(int32_t HandleNumber,uint8_t *file,int32_t stringtype,in
     int32_t Char,dirattribute,Flag1=0;
     uint8_t buf[32];
     int32_t clusterno;
-    int  byte,byte1;
+    int32_t  byte,byte1;
     int32_t RecordNo;   
     
     int64_t Retval;

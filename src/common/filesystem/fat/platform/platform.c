@@ -29,7 +29,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 int32_t FSGetByte(uint8_t *buffer, int32_t iOffsetInUint8)
 {
-    int temp;
+    int32_t temp;
     temp = ((uint8_t)buffer[iOffsetInUint8]);
     return temp;
 }
@@ -49,7 +49,7 @@ int32_t FSGetByte(uint8_t *buffer, int32_t iOffsetInUint8)
 ////////////////////////////////////////////////////////////////////////////////
 int32_t FSGetWord(uint8_t *buffer, int32_t iOffsetInUint8)
 {
-    int temp;
+    int32_t temp;
     temp = (((uint32_t)buffer[iOffsetInUint8]) | ((((uint32_t)buffer[iOffsetInUint8+1]) & 0xff) << 8));
     return temp;
 }

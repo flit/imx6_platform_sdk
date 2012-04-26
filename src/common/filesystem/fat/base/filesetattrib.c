@@ -13,14 +13,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
+>  Function Name: RtStatus_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
 
    FunctionType:  Reentrant
 
@@ -33,7 +33,7 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
+RtStatus_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
 {
     RtStatus_t Retval;
     EnterNonReentrantSection();

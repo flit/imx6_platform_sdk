@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -39,10 +39,10 @@ int32_t SetHandleforsearch(int32_t HandleNumber,uint8_t *filepath,int32_t string
 {
     int32_t Firstword=0,secondword=0,clusterlo,offset=0; 
     int64_t NumBytesRead;
-    int i;
+    int32_t i;
     uint8_t buf[32];
     int32_t clusterno;  
-    int Firstchar=0,secondchar=0;
+    int32_t Firstchar=0,secondchar=0;
     int32_t numdots=0,Byte,Count=0;
 
     *index=0;

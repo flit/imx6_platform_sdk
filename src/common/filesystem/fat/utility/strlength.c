@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ int32_t StrlengthW(uint8_t *filepath)
 int32_t Strlength(uint8_t *filepath)
 {
     int32_t strlength=0, offset=0;     
-    int Char;
+    int32_t Char;
 
     while(1)
     {

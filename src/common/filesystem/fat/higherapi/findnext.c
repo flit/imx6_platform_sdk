@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
@@ -25,7 +25,7 @@ extern FileSpecs_t* FileSpec;
 /*----------------------------------------------------------------------------
 		Global Declarations
 ----------------------------------------------------------------------------*/
-int StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset);
+int32_t StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset);
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 
@@ -42,7 +42,7 @@ int StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int3
 ----------------------------------------------------------------------------*/
 RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 {
-    int RetValue=0,Byte,i=0,j=0;
+    int32_t RetValue=0,Byte,i=0,j=0;
 	uint8_t Buffer[32];
 	RtStatus_t Return= ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
 	int64_t key;
@@ -115,7 +115,7 @@ RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 	return Return;
 }
 /*----------------------------------------------------------------------------
->  Function Name: int StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset)
+>  Function Name: int32_t StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset)
 
    FunctionType:  Non-Reentrant
    
@@ -129,10 +129,10 @@ RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
    Description:   Compares the string.
 <
 ----------------------------------------------------------------------------*/
-int StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset)
+int32_t StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset)
 {
-    int i=0,Byte,j=0;
-	int RetValue=1;
+    int32_t i=0,Byte,j=0;
+	int32_t RetValue=1;
 	for( i=0; i < StringLength; i++)
 	{
 	    if((Byte = FSGetByte(DestBufffer,i))=='\0')

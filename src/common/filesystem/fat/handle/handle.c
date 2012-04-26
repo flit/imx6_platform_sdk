@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 
 /*----------------------------------------------------------------------------
@@ -111,7 +111,7 @@ int32_t Gethandlemode(int32_t HandleNumber)
 ----------------------------------------------------------------------------*/
 FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber)
 { 
-    int i;
+    int32_t i;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
@@ -165,7 +165,7 @@ FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber)
 ----------------------------------------------------------------------------*/
 int32_t Searchfreehandleallocate(void)
 { 
-    int i;
+    int32_t i;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
@@ -205,7 +205,7 @@ int32_t Searchfreehandleallocate(void)
 ----------------------------------------------------------------------------*/
 RtStatus_t Isfileopen(int32_t HandleNumber)
 { 
-    int i;
+    int32_t i;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
@@ -288,7 +288,7 @@ RtStatus_t IsCurrWorkDir(int32_t HandleNumber)
 <----------------------------------------------------------------------------*/
 int32_t GetCWDHandle(void)
 {
-    int    HandleNumber;
+    int32_t    HandleNumber;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);

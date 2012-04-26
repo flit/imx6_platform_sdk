@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
@@ -21,7 +21,7 @@
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int32_t filegetattribhandle(int HandleNumber)
+>  Function Name:  RtStatus_t filegetattribhandle(int32_t HandleNumber)
 
    FunctionType:  Reentrant
 
@@ -33,9 +33,9 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t filegetattribhandle(int HandleNumber)
+RtStatus_t filegetattribhandle(int32_t HandleNumber)
 {
-    int dirattribute;
+    RtStatus_t dirattribute;
     uint8_t *buf;
     uint32_t cacheToken;
         
@@ -45,7 +45,7 @@ int32_t filegetattribhandle(int HandleNumber)
         LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
     }
-    dirattribute = FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].DirOffset));
+    dirattribute = (RtStatus_t) FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].DirOffset));
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();
     

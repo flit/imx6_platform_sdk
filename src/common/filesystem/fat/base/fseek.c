@@ -11,13 +11,14 @@
 		File Includes
 ----------------------------------------------------------------------------*/
 #include <types.h>
+#include <string.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "fs_steering.h"
-#include "os/filesystem.h"
+#include "filesystem/filesystem.h"
 
 
 #define INVALID_CLUSTER     0x7fffffff
@@ -37,7 +38,7 @@
 ----------------------------------------------------------------------------*/
 void SeekPoint_InitializeBuffer(int32_t HandleNumber)
 {
-    int i;
+    int32_t i;
     
     Handle[HandleNumber].SeekPointsClusterStep=INVALID_CLUSTER;
     Handle[HandleNumber].SeekPointsBaseFileSize = 0;
@@ -84,7 +85,7 @@ void SeekPoint_CalculateSeekPointStep(int32_t HandleNumber, int32_t oldFileSize,
         //this case happens when file is opened with mode "w+", 
         if((oldSeekPointsClusterStep != INVALID_CLUSTER) && (oldSeekPointsClusterStep != SeekPointsClusterStep))
         {
-            int i,cnt;
+            int32_t i,cnt;
             int32_t ClusterOffsetInFile = oldSeekPointsClusterStep;
             int32_t SeekPointsClustersBackup[NUM_SEEKPOINTS_CACHED];
             int32_t *pSeekPointsClusters = Handle[HandleNumber].SeekPointsClusters;
@@ -138,7 +139,7 @@ void SeekPoint_FillSeekPoint(int32_t HandleNumber, int32_t ClusterOffsetInFile, 
         ClusterOffsetInFile % Handle[HandleNumber].SeekPointsClusterStep == 0)
     {
         //Calculate the position in Seekpoint buffer
-        int cnt = ClusterOffsetInFile/Handle[HandleNumber].SeekPointsClusterStep - 1;
+        int32_t cnt = ClusterOffsetInFile/Handle[HandleNumber].SeekPointsClusterStep - 1;
         if(Handle[HandleNumber].SeekPointsClusters[cnt] == INVALID_CLUSTER)
         {
             Handle[HandleNumber].SeekPointsClusters[cnt] = CurrentCluster;
@@ -167,7 +168,7 @@ RtStatus_t Fseek_FAT(int32_t HandleNumber, int32_t NumBytesToSeek, int32_t SeekP
 {
     int32_t NumClusterSeek,i;
     RtStatus_t RetValue = SUCCESS;
-    int RemainingByteOffsetInCluster,NumSectors;
+    int32_t RemainingByteOffsetInCluster,NumSectors;
     int32_t CurrentCluster,FileSize,CrtCLuster;
     int32_t Device;
     int32_t CurrentByteOffsetInCluster,RelativeSeekByteoffset;
@@ -343,7 +344,7 @@ RtStatus_t Fseek_FAT(int32_t HandleNumber, int32_t NumBytesToSeek, int32_t SeekP
 }
 
 /*-------------------------------------------------------------------------------------
->  Function Name: int SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
+>  Function Name: int32_t SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
 
    FunctionType:  Reentrant
 
@@ -356,9 +357,9 @@ RtStatus_t Fseek_FAT(int32_t HandleNumber, int32_t NumBytesToSeek, int32_t SeekP
    
 <
 ---------------------------------------------------------------------------------------*/
-int SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
+int32_t SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
 {
-    int RetValue=0;
+    int32_t RetValue=0;
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
 	{
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
@@ -374,7 +375,7 @@ int SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
 }
 
 /*----------------------------------------------------------------------------------------
->  Function Name: int RestoreHandleContext(int32_t HandleNumber, HandleContext_t *Context)
+>  Function Name: int32_t RestoreHandleContext(int32_t HandleNumber, HandleContext_t *Context)
 
    FunctionType:  Reentrant
 
@@ -387,9 +388,9 @@ int SaveHandleContext(int32_t HandleNumber, HandleContext_t *Context)
    
 <
 -----------------------------------------------------------------------------------------*/
-int RestoreHandleContext(int32_t HandleNumber, HandleContext_t *Context)
+int32_t RestoreHandleContext(int32_t HandleNumber, HandleContext_t *Context)
 {
-    int RetValue=0;
+    int32_t RetValue=0;
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
 	{
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;

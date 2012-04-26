@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Firstsectorofcluster(int32_t DeviceNum,int32_t clusterno)
 

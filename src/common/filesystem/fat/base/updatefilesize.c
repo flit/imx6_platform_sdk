@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
@@ -34,7 +34,7 @@
 RtStatus_t UpdateFileSize(int32_t HandleNumber,int32_t DeleteContentFlag)
 {
     int32_t FileSize;
-	int i=0;
+	int32_t i=0;
     
     EnterNonReentrantSection();
 	

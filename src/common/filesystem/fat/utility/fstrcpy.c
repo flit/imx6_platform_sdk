@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include "fat_internal.h"
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include <error.h>
 #include "platform.h"
 #include "BootSecOffset.h" 
@@ -66,7 +66,7 @@ RtStatus_t Strcpy(uint8_t *filepath, uint8_t *file_path1,int32_t length, int32_t
 RtStatus_t Strcpyw(uint8_t *filepath, uint8_t *file_path,int32_t length,int32_t index)
 {
     int32_t word,Strlen,offset=index,offset_dest=0;
-    int j;
+    int32_t j;
 	Strlen = (length - index)>>1;
 	
 	if(Strlen > MAXFILENAME_CH)

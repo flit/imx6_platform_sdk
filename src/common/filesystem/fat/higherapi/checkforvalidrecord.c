@@ -12,7 +12,7 @@
 ----------------------------------------------------------------------------*/
 #include <types.h>
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
@@ -55,7 +55,7 @@ int32_t FindValidFileRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *B
         // first short name found
             break;
     }
-    if(Byte = FSGetByte(Buffer,0) ==0x05)
+    if((Byte = FSGetByte(Buffer,0))==0x05)
         PutByte(Buffer,0xE5,0);
    				
     return RecordNumber;

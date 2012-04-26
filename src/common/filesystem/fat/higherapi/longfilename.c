@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -41,9 +41,9 @@
 int32_t ConstructLongFileName(int32_t HandleNumber, int32_t RecordNumber, int8_t *LFNBuffer)
 {
     int32_t offset,Dirattribute,Signature;
-    int i = 1, j;
+    int32_t i = 1, j;
     uint8_t Buffer[36];
-    int LFNStringOffset=0;
+    int32_t LFNStringOffset=0;
     uint32_t unicodeWord;
 
     RecordNumber--;
@@ -145,7 +145,7 @@ int32_t ConstructLongFileName(int32_t HandleNumber, int32_t RecordNumber, int8_t
 int32_t GetUnicodeWord(uint8_t *Buffer,int32_t LFNOffset)
 {	
     //each Unicode char is 2 bytes
-	int rtn = 0;
+	int32_t rtn = 0;
 	rtn =  FSGetWord(Buffer,LFNOffset); //each unicode character is stored in little endian so reverse it
 	if(rtn == 0x00FFFF)
     {

@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 
@@ -71,7 +71,7 @@ int32_t ExtractPathW(uint8_t *filepath,int32_t *index)
 int32_t ExtractPath(uint8_t *filepath,int32_t *index)
 {
     int32_t Strlen,offset=*index;
-    int Char;
+    int32_t Char;
 	Strlen = Strlength(filepath);
     while(1)
     {

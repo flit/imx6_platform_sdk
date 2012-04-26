@@ -16,7 +16,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -38,7 +38,7 @@
 void DBCStoTwoByteString(uint8_t *filename,uint8_t *string,int32_t length,int32_t index)
 {
     int32_t Char,word=0;
-    int i;
+    int32_t i;
     int32_t offset=0,offset_dest=0;
     
 	offset = index;

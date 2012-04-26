@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h"
@@ -36,7 +36,7 @@
 RtStatus_t FindfreeRecord(int32_t Handlenumber,int32_t Flag)
 {
     RtStatus_t RetValue;
-    int Devicenum, i, Firstbyte;
+    int32_t Devicenum, i, Firstbyte;
     uint8_t Buffer[96];	   
     int32_t Recordno;
     int64_t NumBytesRead;

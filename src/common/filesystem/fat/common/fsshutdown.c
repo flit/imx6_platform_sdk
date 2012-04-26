@@ -13,13 +13,13 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 /*----------------------------------------------------------------------------
 		Extern Declarations
 ----------------------------------------------------------------------------*/
-extern int  FSDriveShutdown(int DeviceNumber);
+//extern int32_t  FSDriveShutdown(int32_t DeviceNumber);
 /*----------------------------------------------------------------------------
 
 >  Function Name:  RtStatus_t FSShutdown(void)

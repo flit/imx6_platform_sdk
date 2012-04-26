@@ -14,13 +14,13 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
 
 /*----------------------------------------------------------------------------
->  Function Name: int32_t ChangeToRootdirectory(int32_t HandleNumber)
+>  Function Name: RtStatus_t ChangeToRootdirectory(int32_t HandleNumber)
 
    FunctionType:  Reentrant
 
@@ -31,9 +31,9 @@
    Description:   Sets the handle to Root directory of given device number
 <	 
 ----------------------------------------------------------------------------*/
-int32_t ChangeToRootdirectory(int32_t HandleNumber)
+RtStatus_t ChangeToRootdirectory(int32_t HandleNumber)
 {
-    int DeviceNum; 
+    int32_t DeviceNum; 
 
 	if((HandleNumber <0)||(HandleNumber >=maxhandles))
 	    return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;

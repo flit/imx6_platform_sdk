@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -49,7 +49,7 @@ RtStatus_t ConverToShortname(uint8_t *file,uint8_t *filenamebuf,int32_t index,in
 ----------------------------------------------------------------------------*/
 RtStatus_t Shortdirmatch(int32_t HandleNumber,int32_t RecordNo,uint8_t *file,uint8_t *Shortname,uint8_t *buf,int32_t Flag,int32_t index,int32_t length,uint8_t *UniCodeBuffer)
 {
-    int byte;
+    int32_t byte;
     RtStatus_t filefound;
     int32_t offset=0, Byteno=0, filenamebyte, strlen;
     uint8_t filenamebuf[15];
@@ -107,7 +107,7 @@ RtStatus_t Shortdirmatch(int32_t HandleNumber,int32_t RecordNo,uint8_t *file,uin
 ----------------------------------------------------------------------------*/
 void Setfilename(uint8_t *buf,uint8_t *buffer_1)
 {
-    int byte, j;
+    int32_t byte, j;
     int32_t offset=0,offset_dest=0;
 
     byte = FSGetByte(buf,0);                    
@@ -156,7 +156,7 @@ void Setfilename(uint8_t *buf,uint8_t *buffer_1)
 void Uppercase(uint8_t *file)
 {
     int32_t offset=0,offset_dest=0, CharPrevious=1;
-    int Char;
+    int32_t Char;
    	while((Char = GetChar(file,&offset))!='\0')
 	{
         if ((Char >=97) && (Char <= 122)&&(CharPrevious)<0x80)   
@@ -185,7 +185,7 @@ void Uppercase(uint8_t *file)
 int32_t ConverToShortname(uint8_t *file,uint8_t *filenamebuf,int32_t index,int32_t length)
 {
     int32_t offset=0,offset_dest=0,count=0,strlen;
-    int Chara,CharaPrevious=1,Flag=0,j,Flag_1=1;		
+    int32_t Chara,CharaPrevious=1,Flag=0,j,Flag_1=1;		
     uint8_t temp[15];
 
    	offset=index;

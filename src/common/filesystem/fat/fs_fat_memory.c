@@ -24,10 +24,10 @@
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
 #include "include/fstypes.h"
-#include "hw/core/vmemory.h"
+//#include "hw/core/vmemory.h"
 #include "include/fat_internal.h"
 #include "include/filespec.h"
-#include "drivers/sectordef.h"
+#include "sectordef.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,9 +37,9 @@
 // Include filesystem memory only if the number of filesystem devices is non-zero.
 #if (NUMDEVICES > 0)
 
-const int maxcaches  = NUMCACHES;
-const int maxdevices = NUMDEVICES;
-const int maxhandles = NUMHANDLES;
+const int32_t maxcaches  = NUMCACHES;
+const int32_t maxdevices = NUMDEVICES;
+const int32_t maxhandles = NUMHANDLES;
 const uint8_t DriveLetter[] = DRIVELETTERS;
 
 //! All other global, custom configurable data is in Y memory.

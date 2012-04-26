@@ -12,7 +12,6 @@
 #include "hardware.h"
 #include "vpu_debug.h"
 #include "vpu_util.h"
-#include "usdhc/inc/usdhc_ifc.h"
 
 tFile files[10];
 
@@ -22,6 +21,8 @@ struct decode *gDecInstance[MAX_NUM_INSTANCE];
 struct encode *gEncInstance[MAX_NUM_INSTANCE];
 int disp_clr_index[MAX_NUM_INSTANCE];
 int multi_instance = 1;
+
+bool g_bFrameworkExternalDriveOrFsInit = 0;
 
 static vpu_test_t vpu_tests[] = {
     {"VPU DECODER TEST", decode_test},
@@ -42,6 +43,8 @@ int vpu_test(void)
     enable_L1_cache();
 
     card_init(SD_PORT_BASE_ADDR, 4);    //SD card must work in 4-bit mode
+    /* used in the FAT driver if a card is present and initialized */
+    g_bFrameworkExternalDriveOrFsInit = 1;
 
     /*uSDHC working in POLLING mode */
     init_fat32_device((void *)fat_read_from_usdhc);

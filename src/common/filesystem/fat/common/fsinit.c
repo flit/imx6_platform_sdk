@@ -15,13 +15,13 @@
 #include "types.h"
 #include "fstypes.h"
 #include <error.h>
-#include "os/filesystem/fsapi.h"
+#include "filesystem/fsapi.h"
 #include "platform.h"
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
+#include "filesystem/fat/include/devicetable.h"
 #include "filespec.h"
-#include "os/filesystem.h"
-#include "hw/profile/hw_profile.h"
+#include "filesystem/filesystem.h"
+//#include "hw/profile/hw_profile.h"
 
 /*----------------------------------------------------------------------------
 		Globals and Declarations

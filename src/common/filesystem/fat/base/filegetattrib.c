@@ -13,14 +13,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int32_t filegetattrib(uint8_t *FilePath)
+>  Function Name:  RtStatus_t filegetattrib(uint8_t *FilePath)
 
    FunctionType:  Reentrant
 
@@ -32,9 +32,9 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t filegetattrib(uint8_t *FilePath)
+RtStatus_t filegetattrib(uint8_t *FilePath)
 {
-    int dirattribute,HandleNumber;
+    int32_t dirattribute,HandleNumber;
     uint8_t *buf;
     uint32_t cacheToken;
 

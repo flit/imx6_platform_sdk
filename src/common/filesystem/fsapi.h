@@ -19,7 +19,7 @@
 #include "os_filesystem_errordefs.h"
 #include <stdio.h>
 #include "fsproj.h"
-#include "os/filesystem/filesystem.h"
+#include "filesystem/filesystem.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Externs
@@ -331,7 +331,7 @@ uint8_t *Fputs(int32_t HandleNumber, uint8_t *Buffer);
 //!
 //! \todo [PUBS] Add definition(s).
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead);
+RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
 //!
@@ -348,7 +348,7 @@ int32_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
 //!
 //! \todo [PUBS] Add definition(s).
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fwrite_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToWrite);
+RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToWrite);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
 //!
@@ -363,7 +363,7 @@ int32_t Fwrite_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToWrit
 //!
 //! \todo [PUBS] Add definition(s).
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fwrite_BypassCache(int32_t i32HandleNumber, 
+RtStatus_t Fwrite_BypassCache(int32_t i32HandleNumber, 
                          uint8_t *pBuffer, 
                          int32_t i32NumBytesToWrite);
 
@@ -381,7 +381,7 @@ int32_t Fwrite_BypassCache(int32_t i32HandleNumber,
 //!
 //! \todo [PUBS] Add definition(s).
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead);
+RtStatus_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
@@ -552,8 +552,8 @@ RtStatus_t FSInit(uint8_t *bufx, uint8_t *bufy, int32_t maxdevices, int32_t maxh
 //! \internal
 //! \see To view the function definition, see fsdriveinit.c.
 ///////////////////////////////////////////////////////////////////////////////
-int FSDriveInit(int DeviceNumber);
-int FSDriveShutdown(int DeviceNumber);
+int32_t FSDriveInit(int32_t DeviceNumber);
+int32_t FSDriveShutdown(int32_t DeviceNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Determines free space by reading the all records 
@@ -568,7 +568,7 @@ int FSDriveShutdown(int DeviceNumber);
 //! \internal
 //! \see To view the function definition, see fsshutdown.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t FSShutdown(void);
+RtStatus_t FSShutdown(void);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Determines total free clusters by first checking FAT type.
 //!
@@ -597,7 +597,7 @@ int32_t Computefreecluster(int32_t DeviceNumber);
 //! \internal
 //! \see To view the function definition, see getfilesize.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t GetFileSize(int32_t HandleNumber);
+RtStatus_t GetFileSize(int32_t HandleNumber);
 
 //! GET_FILE_SIZE macro is a lightweight version of GetFileSize function
 //! There are some places where GetFileSize is called again and again
@@ -787,7 +787,8 @@ int32_t GetCharW(uint8_t *Buffer,int32_t *offset);
 //! \internal
 //! \see To view the function definition, see getchar.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t GetChar(uint8_t *Buffer,int32_t *offset);
+//int32_t GetChar(uint8_t *Buffer,int32_t *offset);
+RtStatus_t GetChar(uint8_t *Buffer,int32_t *offset);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Puts a character in the given string at given offset 
 //!                  and updates the offset accordingly.
@@ -837,7 +838,8 @@ void PutCharW(uint8_t *Buffer,int32_t *offset,int32_t Char);
 //! \internal
 //! \see To view the function definition, see getname.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t GetnameW(uint8_t *filepath,int32_t currentPosition);
+//int32_t GetnameW(uint8_t *filepath,int32_t currentPosition);
+RtStatus_t GetnameW(uint8_t *filepath,int32_t currentPosition);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Copies the string from current position to another string.
 //!
@@ -860,7 +862,8 @@ int32_t GetnameW(uint8_t *filepath,int32_t currentPosition);
 //! \internal
 //! \see To view the function definition, see getname.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Getname(uint8_t *filepath, int32_t currentPosition);
+//int32_t Getname(uint8_t *filepath, int32_t currentPosition);
+RtStatus_t Getname(uint8_t *filepath, int32_t currentPosition);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Copies the string from current position to another string.
 //!
@@ -1070,7 +1073,7 @@ int32_t GetCWDHandle(void);
 //! \internal
 //! \see To view the function definition, see setcwdhandle.c.
 ///////////////////////////////////////////////////////////////////////////////
-int  SetCWDHandle(int DeviceNo);
+int32_t  SetCWDHandle(int32_t DeviceNo);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Converts the given DBCS string to UNICODE.
@@ -1262,7 +1265,7 @@ DIR_TIME;
 //! \internal
 //! \see To view the function definition, see filegetdate.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
+RtStatus_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Sets the creation or modification date or time of 
 //!                  the file referenced by the given handle to the specified date or time.
@@ -1283,7 +1286,7 @@ int32_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DA
 //! \internal
 //! \see To view the function definition, see filesetdate.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t filesetdate(uint8_t *FilePath, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
+RtStatus_t filesetdate(uint8_t *FilePath, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
 
 
 // Use for 'dirattribute' parameter
@@ -1322,7 +1325,7 @@ int32_t filesetdate(uint8_t *FilePath, int32_t crt_mod_date_time_para, DIR_DATE 
 //! \internal
 //! \see To view the function definition, see filegetattribhandle.c.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filegetattribhandle(int HandleNumber);
+RtStatus_t filegetattribhandle(int32_t HandleNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Gets directory attributes for a file.
@@ -1357,7 +1360,7 @@ RtStatus_t filegetattrib(uint8_t *FilePath);
 //! \internal
 //! \see To view the function definition, see filesetattrib.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t filesetattrib(int32_t HandleNumber, int32_t dirattribute);
+RtStatus_t filesetattrib(int32_t HandleNumber, int32_t dirattribute);
  
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Provides long file name.

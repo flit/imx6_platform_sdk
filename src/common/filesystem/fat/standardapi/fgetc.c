@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 
@@ -29,9 +29,9 @@
    Description:   Reads the byte from file 
 <
 ----------------------------------------------------------------------------*/
-int32_t Fgetc(int32_t HandleNumber)
+RtStatus_t Fgetc(int32_t HandleNumber)
 {
-    int ReturnByte=0;
+    int32_t ReturnByte=0;
     RtStatus_t RetValue;
 
     if((HandleNumber <0)||(HandleNumber >= maxhandles))

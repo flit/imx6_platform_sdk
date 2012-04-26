@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include "os/filesystem/fsapi.h" // includes "os/filesystem.h"
+#include "filesystem/fsapi.h" // includes "filesystem/filesystem.h"
 #include <string.h>
 #include "platform.h"
 #include "BootSecOffset.h" 

@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -63,7 +63,7 @@ int32_t GetnameW(uint8_t *filepath,int32_t currentPosition)
 ----------------------------------------------------------------------------*/
 int32_t Getname(uint8_t *filepath, int32_t currentPosition)
 {
-    int Char;
+    int32_t Char;
     while(1)
 	{
 	    Char = GetChar(filepath,&currentPosition);

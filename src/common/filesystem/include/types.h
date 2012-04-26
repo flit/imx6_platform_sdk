@@ -27,7 +27,7 @@ typedef struct
 
 //! \brief TBD
 #ifndef RETCODE
-#define RETCODE int
+#define RETCODE int32_t
 #endif
 
 //------------------------------------------------------------------------------

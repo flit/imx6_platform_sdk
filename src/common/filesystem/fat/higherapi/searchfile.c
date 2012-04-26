@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -22,7 +22,9 @@
 /*----------------------------------------------------------------------------
 		Extern Declarations
 ----------------------------------------------------------------------------*/
-extern int32_t Changedirectory(int32_t HandleNumber,uint8_t *filepath,int32_t stringtype);
+/* hardcoded for now */
+int32_t Changedirectory(int32_t HandleNumber,uint8_t *filepath,int32_t stringtype)
+{return 0;}
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Searchfile(int32_t HandleNumber,uint8_t *filepath,int32_t stringtype)
 
@@ -38,7 +40,7 @@ extern int32_t Changedirectory(int32_t HandleNumber,uint8_t *filepath,int32_t st
 ----------------------------------------------------------------------------*/
 int32_t Searchfile(int32_t HandleNumber,uint8_t *filepath,int32_t stringtype)
 {
-    int filefound, index = 0; 
+    int32_t filefound, index = 0; 
 			  
     SetHandleforsearch(HandleNumber,filepath,stringtype,&index);
     

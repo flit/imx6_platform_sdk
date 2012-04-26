@@ -15,14 +15,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include <stdlib.h>
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length,int32_t index,int32_t stringtype)
+>  Function Name: RtStatus_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length,int32_t index,int32_t stringtype)
 
    FunctionType:  Reentrant
 
@@ -37,28 +37,28 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length,int32_t index,int32_t stringtype)
+RtStatus_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length,int32_t index,int32_t stringtype)
 {
     uint8_t Buffer[33];
     uint8_t ShortName[12];
     int32_t ClusterNumber,NewClusterNum;
     int32_t Device = Handle[HandleNumber].Device;
-    int  TempHandleActive=0;
-    int  TempDevice=0;
+    int32_t  TempHandleActive=0;
+    int32_t  TempDevice=0;
     FileSystemModeTypes_t  TempMode=NOT_WRITE_MODE;
     int32_t TempStartingCluster=0;
     int32_t TempCurrentOffset=0;
     int32_t TempCurrentCluster=0;
     int32_t TempCurrentSector=0;
-    int  TempBytePosInSector=0;
-    int  TempSectorPosInCluster=0;
+    int32_t  TempBytePosInSector=0;
+    int32_t  TempSectorPosInCluster=0;
     int32_t TempDirSector=0;
-    int  TempDirOffset=0;
+    int32_t  TempDirOffset=0;
     int32_t RetValue;
     uint32_t TempFileSize=0;
-    int k,Count,i,j;
+    int32_t k,Count,i,j;
     uint8_t Byte;
-    int Word;
+    int32_t Word;
     int32_t RecordNum=0;
     
 #ifdef FS_USE_MALLOC

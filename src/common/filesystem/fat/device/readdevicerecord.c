@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include "os/filesystem/fsapi.h" // includes "os/filesystem.h"
+#include "filesystem/fsapi.h" // includes "filesystem/filesystem.h"
 #include <string.h>
 #include "platform.h"
 #include "BootSecOffset.h" 
@@ -29,8 +29,7 @@
 /*----------------------------------------------------------------------------
     Extern Declarations
 ----------------------------------------------------------------------------*/
-extern int32_t Totalfreecluster(int32_t DeviceNum);
-
+//extern int32_t Totalfreecluster(int32_t DeviceNum);
 
 /*----------------------------------------------------------------------------
 
@@ -51,8 +50,8 @@ extern int32_t Totalfreecluster(int32_t DeviceNum);
 RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
 { 
     int64_t     DataSec;
-    int         *buf;
-    int         shift,temp;
+    int32_t     *buf;
+    int32_t         shift,temp;
     uint32_t    cacheToken;
     uint16_t    fsInfoSector;
     RtStatus_t  rtStatus;

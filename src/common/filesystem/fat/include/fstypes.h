@@ -8,7 +8,7 @@
 #define _FS_TYPES_H
 
 #include "types.h"
-#include "drivers/media/sectordef.h"
+#include "sectordef.h"
 
 #if 0
 #define ENABLE_WRITE_FAT2

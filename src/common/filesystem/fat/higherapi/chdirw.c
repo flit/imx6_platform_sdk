@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
@@ -40,7 +40,7 @@ RtStatus_t Chdirw(uint8_t *filepath)
     int32_t Firstword,secondword;
     int32_t offset=0,currentposition=0, offset_dest=0;
 #endif
-    int index=0;
+    int32_t index=0;
     uint8_t buf[32];
     int32_t RecordNo;
     int32_t Dir_Attr;  

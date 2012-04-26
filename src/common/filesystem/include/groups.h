@@ -27,7 +27,7 @@
 //!
 
 
-//the below is ugly, but its the only way to solve the int typedef type checking where errors show up as negative
+//the below is ugly, but its the only way to solve the int32_t typedef type checking where errors show up as negative
 #define HW_GROUP                  (0x00100000) //0x80100000
 #define DDI_GROUP                 (0x00200000) //0x80200000
 #define OS_GROUP                  (0x00300000) //0x80300000

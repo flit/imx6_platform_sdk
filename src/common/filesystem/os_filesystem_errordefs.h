@@ -1,7 +1,7 @@
 #ifndef _OS_FILESYSTEM_ERRORDEFS_H
 #define _OS_FILESYSTEM_ERRORDEFS_H
 
-#include "os/os_errordefs.h"
+#include "os_errordefs.h"
 
 #define ERROR_OS_FILESYSTEM_GENERAL                              (ERROR_OS_FILESYSTEM_GROUP)
 #define ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND                 (ERROR_OS_FILESYSTEM_GROUP + 1)

@@ -15,7 +15,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "DIrOffset.h"
@@ -61,7 +61,7 @@ RtStatus_t CreateDirRecord
 
     uint8_t shortfilename[15];
     int32_t chksum, byte, offset=0;
-    int k, i, j;
+    int32_t k, i, j;
 
     for (k = 0; k < 12; k++)
     {
@@ -172,7 +172,7 @@ RtStatus_t CreateDirRecord
 int32_t ChkSum(uint8_t *filename)
 {
     int32_t Sum=0,temp;
-    int i;
+    int32_t i;
 
     for(i=0;i<11;i++)
     {

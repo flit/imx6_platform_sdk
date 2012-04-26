@@ -13,14 +13,14 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
+>  Function Name: RtStatus_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
 
    FunctionType:  Reentrant
 
@@ -35,9 +35,9 @@
                   the file referenced by the given handle number.
 <
 ----------------------------------------------------------------------------*/
-int32_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
+RtStatus_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
 {
-    int date_time,offset=0;
+    int32_t date_time,offset=0;
     uint8_t *buf;
     uint32_t cacheToken;
 

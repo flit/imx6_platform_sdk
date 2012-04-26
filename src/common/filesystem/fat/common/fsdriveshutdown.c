@@ -13,17 +13,17 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
+#include "filesystem/fat/include/devicetable.h"
 #include "filespec.h"
-#include "os/filesystem.h"
+#include "filesystem/filesystem.h"
 #include "fat_internal.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int FSDriveShutdown(int DeviceNumber)
+>  Function Name:  int32_t FSDriveShutdown(int32_t DeviceNumber)
 
    FunctionType:  
 

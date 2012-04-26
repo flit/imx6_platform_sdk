@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ RtStatus_t  WriteFATentry(int32_t DeviceNum,int32_t FATsector,int32_t FATNtryoff
     RtStatus_t RetValue;
 	int32_t FATentry;
 	#ifdef ENABLE_WRITE_FAT2
-	int Flag=0;	
+	int32_t Flag=0;	
 	int32_t FATsize;
 	#endif
     uint8_t *buffer;

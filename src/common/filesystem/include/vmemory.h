@@ -17,7 +17,7 @@
 
    void foo(void) __OCRAM_CODE;  // locate function in 1T-RAM
 
-   int bar __OCRAM_DATA = 1;     // locate data in 1-T RAM
+   int32_t bar __OCRAM_DATA = 1;     // locate data in 1-T RAM
 
    void foo(void)
    {

@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "FileSpec.h"
@@ -22,11 +22,11 @@
 ----------------------------------------------------------------------------*/
 extern FileSpecs_t* FileSpec;
 extern RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata);
-extern int StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset);
+extern int32_t StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset);
 /*----------------------------------------------------------------------------
 		Global Declarations
 ----------------------------------------------------------------------------*/
-uint8_t *CharacterSearch(uint8_t *buf,int32_t Character);
+uint8_t *CharacterSearch(uint8_t *buf,uint8_t Character);
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 
@@ -43,11 +43,11 @@ uint8_t *CharacterSearch(uint8_t *buf,int32_t Character);
 ----------------------------------------------------------------------------*/
 RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 {
-    int StringLength;
+    int32_t StringLength;
     uint8_t Buffer[MAX_FILESNAME*3];
-    int HandleNumber;
+    int32_t HandleNumber;
     uint8_t *Ptr,*Ptr1;
-    int i;
+    int32_t i;
 
 
 	if((StringLength = Strlength(FileName)) > (MAX_FILESNAME-1))
@@ -106,7 +106,7 @@ RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
     }
 }
 /*----------------------------------------------------------------------------
->  Function Name: uint8_t *CharacterSearch(uint8_t *buf,int32_t Character)
+>  Function Name: uint8_t *CharacterSearch(uint8_t *buf,uint8_t Character)
 
    FunctionType:  Non-Reentrant
 
@@ -120,14 +120,16 @@ RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 ----------------------------------------------------------------------------*/
 //Use the exact same prototype of the static function to convert
 
-uint8_t *CharacterSearch(uint8_t *buf,int32_t Character)
+uint8_t *CharacterSearch(uint8_t *buf,uint8_t Character)
 {
     uint8_t *Buf = buf;
     while(Buf[0]!='\0')
     {
         if(*Buf == Character)
             return Buf;
-		*Buf++;
+//      *Buf++; //original code, not sure it is right ???
+		Buf++;
     }
+
     return (uint8_t*)0;
 }

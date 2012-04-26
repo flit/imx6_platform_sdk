@@ -11,13 +11,14 @@
         File Includes
 ----------------------------------------------------------------------------*/
 #include <types.h>
+#include <stdlib.h>
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include <string.h>                 // memcpy() or memset()
-#include <os\os_dmi_api.h>
-#include <drivers\sectordef.h>
+//#include <os\os_dmi_api.h>
+#include "sectordef.h"
 #include "platform.h"
 #include "BootSecOffset.h"
 
@@ -46,7 +47,7 @@ int32_t Totalfreecluster(int32_t DeviceNum)
     uint8_t         *pu8LocalBuf;
     uint8_t         *buf;
     int32_t         FAToffset,clusterNum;
-    RtStatus_t      rVal;
+//    RtStatus_t      rVal;
     uint32_t cacheToken;
 
     totalfreeclusters = 0;
@@ -55,17 +56,19 @@ int32_t Totalfreecluster(int32_t DeviceNum)
     if(MediaTable[DeviceNum].FATType == FAT32)
     {
         // get a buffer
-        rVal = os_dmi_MemAlloc( (void**)&pu8LocalBuf, iSectorSize, true, DMI_MEM_SOURCE_FASTMEM );
-        if ( rVal != SUCCESS )
-        {
-            SystemHalt( );
-        }
+//        rVal = os_dmi_MemAlloc( (void**)&pu8LocalBuf, iSectorSize, true, DMI_MEM_SOURCE_FASTMEM );
+//        if ( rVal != SUCCESS )
+//        {
+//            SystemHalt( );
+//        }
+        pu8LocalBuf = malloc(sizeof(uint8_t)*iSectorSize);
 
         EnterNonReentrantSection();
         if((buf = (uint8_t*)FSReadSector(DeviceNum, FATsectorNo,WRITE_TYPE_RANDOM, &cacheToken)) ==(uint8_t*)0)
         {
             MODULE_ASSERT(false); 
-            os_dmi_MemFree( pu8LocalBuf );
+//            os_dmi_MemFree( pu8LocalBuf );
+            free(pu8LocalBuf);
             LeaveNonReentrantSection();
             return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
         }
@@ -97,7 +100,8 @@ int32_t Totalfreecluster(int32_t DeviceNum)
                 if((buf = (uint8_t*)FSReadSector(DeviceNum, FATsectorNo,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t *)0)
                 {
                     MODULE_ASSERT(false);
-                    os_dmi_MemFree( pu8LocalBuf );
+//                    os_dmi_MemFree( pu8LocalBuf );
+                    free(pu8LocalBuf);
                     LeaveNonReentrantSection();
                     return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
                 }
@@ -107,7 +111,8 @@ int32_t Totalfreecluster(int32_t DeviceNum)
                 LeaveNonReentrantSection();
             }
         }
-        os_dmi_MemFree( pu8LocalBuf );
+//        os_dmi_MemFree( pu8LocalBuf );
+        free(pu8LocalBuf);
     }
     else
     {
@@ -138,7 +143,7 @@ int32_t  TotalfreeclusterFAT16(int32_t DeviceNum)
     int32_t         FATsectorNo,FAToffset,clusterNum,FATentry,FATntryoffset;
     uint8_t         *pu8LocalBuf;
     uint8_t         *buf;
-    RtStatus_t      rVal;
+//    RtStatus_t      rVal;
     uint32_t cacheToken;
 
     totalfreeclusters = 0;
@@ -182,11 +187,13 @@ int32_t  TotalfreeclusterFAT16(int32_t DeviceNum)
     else if(MediaTable[DeviceNum].FATType == FAT16)
     {
         // get a buffer
-        rVal = os_dmi_MemAlloc( (void**)&pu8LocalBuf, iSectorSize, true, DMI_MEM_SOURCE_FASTMEM );
-        if ( rVal != SUCCESS )
-        {
-            SystemHalt( ); // note: powers off in release builds.
-        }
+//        rVal = os_dmi_MemAlloc( (void**)&pu8LocalBuf, iSectorSize, true, DMI_MEM_SOURCE_FASTMEM );
+//        if ( rVal != SUCCESS )
+//        {
+//            SystemHalt( ); // note: powers off in release builds.
+//        }
+        pu8LocalBuf = malloc(sizeof(uint8_t)*iSectorSize);
+
         // copy from cached buffer to local buffer so we can free the mutex protecting the file system(cache)
         memcpy( pu8LocalBuf, buf, iSectorSize );
         FSReleaseSector(cacheToken);
@@ -214,7 +221,8 @@ int32_t  TotalfreeclusterFAT16(int32_t DeviceNum)
                 if((buf = (uint8_t*)FSReadSector(DeviceNum, FATsectorNo,WRITE_TYPE_RANDOM, &cacheToken)) ==(uint8_t *)0)
                 {
                     MODULE_ASSERT(false);
-                    os_dmi_MemFree( pu8LocalBuf );
+//                    os_dmi_MemFree( pu8LocalBuf );
+                    free(pu8LocalBuf);
                     LeaveNonReentrantSection();
                     return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
                 }
@@ -224,7 +232,8 @@ int32_t  TotalfreeclusterFAT16(int32_t DeviceNum)
                 LeaveNonReentrantSection();
             }
         }
-        os_dmi_MemFree( pu8LocalBuf );
+//        os_dmi_MemFree( pu8LocalBuf );
+        free(pu8LocalBuf);
     }
 
     else
@@ -235,7 +244,6 @@ int32_t  TotalfreeclusterFAT16(int32_t DeviceNum)
         LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_MEDIA_TYPE_NOT_SUPPORTED;
     }
-
 
     return(totalfreeclusters);
 }

@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -33,7 +33,7 @@
 ----------------------------------------------------------------------------*/
 int32_t Findnextcluster(int32_t DeviceNum,int32_t clusterno)
 {
-    int FATNtryoffset;
+    int32_t FATNtryoffset;
     int32_t FATsector,FATentry;
        
     ddi_ldl_push_media_task("Findnextcluster");

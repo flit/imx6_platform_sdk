@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -34,7 +34,7 @@
 ----------------------------------------------------------------------------*/
 RtStatus_t Setcwd(uint8_t *filepath, uint8_t *gCworkingDir,int32_t index,int32_t length)
 {
-    int Char,Strlen,j,offset=index;
+    int32_t Char,Strlen,j,offset=index;
 
     EnterNonReentrantSection();
 	Strlen = Strlength(filepath)-index;
@@ -87,7 +87,7 @@ RtStatus_t Setcwd(uint8_t *filepath, uint8_t *gCworkingDir,int32_t index,int32_t
 ----------------------------------------------------------------------------*/
 RtStatus_t SetcwdW(uint8_t *filepath, uint8_t *gCworkingDir,int32_t index,int32_t length)
 {
-    int Char,Strlen,j,offset=index;
+    int32_t Char,Strlen,j,offset=index;
 
     EnterNonReentrantSection();
 	Strlen = StrlengthW(filepath);

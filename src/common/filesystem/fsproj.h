@@ -23,7 +23,7 @@
 //! \brief Maximum number of drives supported by the file system. 
 //! 
 //! Typically, \c maxdevices is 2.
-extern const int maxdevices;
+extern const int32_t maxdevices;
 
 //! \brief Maximum number of handles available in the file system.
 //! 
@@ -31,14 +31,14 @@ extern const int maxdevices;
 //! Two handles are reserved by the file system for internal use only. 
 //! The number of handles decides the number of files, which can 
 //! simultaneously be open. Typically, \c maxhandles is 16.
-extern const int maxhandles;
+extern const int32_t maxhandles;
 
 //! \brief Total number of cache buffers. 
 //! 
 //! Increasing the number of cache buffers improves the performance of 
 //! the file system when several threads are accessing the file system. 
 //! Typically, \c maxcaches is 8.
-extern const int maxcaches;
+extern const int32_t maxcaches;
 
 //! \brief Assigns a drive letter to a drive.
 //! 
@@ -48,20 +48,22 @@ extern const int maxcaches;
 //! \c B is assigned to drive 1, and \n
 //! \c C is assigned to drive 2.
 //! \code
-//! int DriveLetter[] = {'A','B','C'};
+//! int32_t DriveLetter[] = {'A','B','C'};
 //! \endcode
 extern const uint8_t DriveLetter[];
 
 // The cache buffers are allocated in the X buffer.
 //extern BYTE bufx[NUMCACHES*CACHEBUFSIZE];
 #ifndef _WIN32
-#pragma alignvar(32)
+//#pragma alignvar(32)
+__attribute__ ((aligned(32)))
 #endif
 //! \brief X memory buffer.
 extern uint8_t bufx[];
 
 #ifndef _WIN32
-#pragma alignvar(4)
+//#pragma alignvar(4)
+__attribute__ ((aligned(4)))
 #endif
 //! \brief Y memory buffer.
 extern uint8_t bufy[];

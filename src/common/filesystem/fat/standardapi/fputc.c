@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 
@@ -30,7 +30,7 @@
    Description:   Writes the Byte to file 
 <
 ----------------------------------------------------------------------------*/
-int32_t Fputc(int32_t HandleNumber,int32_t ByteToWrite)
+RtStatus_t Fputc(int32_t HandleNumber,int32_t ByteToWrite)
 {
     int32_t RetValue = SUCCESS;
 

@@ -1,17 +1,24 @@
+/*
+ * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+ */
+
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
-#include "os/filesystem/os_filesystem_errordefs.h"
-#include "os/filesystem/fsproj.h"
+#include "filesystem/fat/include/devicetable.h"
+#include "filesystem/os_filesystem_errordefs.h"
+#include "filesystem/fsproj.h"
 #include "drivers/media/ddi_media.h"
 #include "filespec.h"
 
-extern int g_FSinitErrorCode;
+extern int32_t g_FSinitErrorCode;
 extern int32_t gCurrentRecord;
 extern HandleTable_t *Handle;
 extern FileSystemMediaTable_t *MediaTable;
 extern FileSpecs_t * FileSpec;
 extern uint8_t gCurrentWorkingdirectory[];
-extern const uint8_t Short_NameRes_Ch[];  
+extern const uint8_t Short_NameRes_Ch[];
 extern const uint8_t Long_NameRes_Ch[];
 extern const uint8_t DriveLetter[];
 
@@ -87,7 +94,7 @@ RtStatus_t DeleteContent(int32_t HandleNumber, int32_t bUseVestigialClusterErase
 RtStatus_t Fcreate(int32_t HandleNumber,uint8_t *FileName,int32_t stringtype,int32_t length,int32_t index);
 RtStatus_t Updatehandlemode(int32_t HandleNumber,int32_t Mode);
 int32_t Gethandlemode(int32_t HandleNumber);
-RtStatus_t IsHandleWriteAllocated(int32_t HandleNumber);
+FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber);
 RtStatus_t UpdateFileSize(int32_t HandleNumber,int32_t flag);
 RtStatus_t Extractfilenamew(uint8_t *filepath, int32_t *index);
 RtStatus_t Isfileopen(int32_t HandleNumber);
@@ -122,7 +129,7 @@ RtStatus_t CreateDirRecord
   int32_t FileSize
 );
 
-int32_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead);
+RtStatus_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead);
                          
 int32_t Extractdirnamew(uint8_t *filepath,int32_t strlength,int32_t *index);
 RtStatus_t SetcwdW(uint8_t *filepath, uint8_t *gCworkingDir,int32_t index,int32_t length);
@@ -132,13 +139,13 @@ void LeaveNonReentrantSection(void);
 
 int64_t ReadDirectoryRecord(int32_t HandleNumber,int32_t RecordNumber,uint8_t *Buffer);
 
-void FSClearDriveBuf(int DriveNumber, int maxhandles);
+void FSClearDriveBuf(int32_t DriveNumber, int32_t maxhandles);
 
 RtStatus_t Cleardevicerecord(int32_t DeviceNum);
 RtStatus_t GetDeviceFromHandle(int32_t HandleNumber, int32_t *pDeviceNumber);
 
-int         Readdevicerecord(int Device,int32_t sectornum);
-int         FileSystemPresent(int Device);
+RtStatus_t  Readdevicerecord(int32_t Device,int32_t sectornum);
+RtStatus_t  FileSystemPresent(int32_t Device);
 RtStatus_t  FileSystemBootSectorVerify( uint8_t* buf );
 
 void SeekPoint_InitializeBuffer(int32_t HandleNumber);

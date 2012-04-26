@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "FileSpec.h"
@@ -47,7 +47,7 @@ void ClearData(FindData_t *_finddata);
 RtStatus_t DeleteTree(uint8_t *filePath)
 {
     RtStatus_t RetValue = SUCCESS;
-	int HandleNumber=0;
+	int32_t HandleNumber=0;
 	int32_t StartingCluster;
 	FindData_t _finddata; 
 	uint8_t Buf[32];
@@ -106,9 +106,9 @@ RtStatus_t DeleteTree(uint8_t *filePath)
 RtStatus_t DeleteAllRecords(int32_t StartingCluster,FindData_t *_finddata)
 {
     RtStatus_t RetValue = SUCCESS;
-    int HandleNumber=0;
+    int32_t HandleNumber=0;
 	uint8_t Buf[5];
-	int TemphandleNumber=0;
+	int32_t TemphandleNumber=0;
 
 	ClearData(_finddata);
 
@@ -207,7 +207,7 @@ RtStatus_t DeleteAllRecords(int32_t StartingCluster,FindData_t *_finddata)
 ----------------------------------------------------------------------------*/
 void ClearData(FindData_t *_finddata)
 {
-	int i;
+	int32_t i;
     _finddata->startrecord=0;
 	_finddata->attrib=0;
 	_finddata->FileSize=0;
@@ -235,7 +235,7 @@ void ClearData(FindData_t *_finddata)
 RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber,FindData_t *_finddata,int32_t StartingCluster)
 {
     RtStatus_t RetValue=SUCCESS;
-	int RecordNumber;
+	int32_t RecordNumber;
 	uint8_t Buffer[32];
 	int32_t ClusterNumber =0;
 	uint8_t Buf[5];
@@ -308,7 +308,7 @@ RtStatus_t DelGetRecordNumber(int32_t HandleNumber,int32_t StartingCluster)
 
 	int32_t RecordNumber=0;
 	uint8_t Buffer[32];
-	int Byte1,Byte2; 
+	int32_t Byte1,Byte2; 
 	int32_t ClusterNumber; 
     //int64_t lTemp;
 

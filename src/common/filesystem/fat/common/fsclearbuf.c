@@ -15,13 +15,13 @@
 #include "errordefs.h"
 #include "platform.h"
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
-#include "os/filesystem.h"
-#include "os/filesystem/fat/include/fat_internal.h"
+#include "filesystem/fat/include/devicetable.h"
+#include "filesystem/filesystem.h"
+#include "filesystem/fat/include/fat_internal.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int FSInit(int _X *bufx, int _Y *bufy, int maxdevices, int maxhandles, int maxcaches)
+>  Function Name:  int32_t FSInit(int32_t _X *bufx, int32_t _Y *bufy, int32_t maxdevices, int32_t maxhandles, int32_t maxcaches)
 
    FunctionType:  
 
@@ -36,9 +36,9 @@
    Description:    Initialization of FileSystem.
 <
 --------- -------------------------------------------------------------------*/
-void  FSClearDriveBuf(int DriveNumber,int maxhandles)
+void  FSClearDriveBuf(int32_t DriveNumber,int32_t maxhandles)
 {
-    int i;
+    int32_t i;
     
     // setup handle
     for (i=0; i < maxhandles; i++)

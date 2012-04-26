@@ -14,7 +14,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 
@@ -36,7 +36,7 @@
 int32_t DiscardTrailigPeriods(uint8_t *Buffer,int32_t length,int32_t index,int32_t Flag)
 {
     int32_t Char, strlen, offset=index;
-    int dotfound=0;   
+    int32_t dotfound=0;   
 
 	if(Flag)
 	    strlen = length -1;
@@ -76,7 +76,7 @@ int32_t DiscardTrailigPeriods(uint8_t *Buffer,int32_t length,int32_t index,int32
 int32_t  DiscardTrailigPeriodsw(uint8_t *Buffer,int32_t length,int32_t index)
 {
     int32_t Char,offset=index;
-    int dotfound=0;   
+    int32_t dotfound=0;   
 
   	while(offset<length)
 	{

@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include  "DIrOffset.h"
@@ -36,7 +36,7 @@
 RtStatus_t IsShortNameValid(uint8_t *Buffer,int32_t length,int32_t index)
 {
     RtStatus_t Flag=(RtStatus_t)1;      //Set value to OK - reserved.
-    int count=0,i,j,Char;
+    int32_t count=0,i,j,Char;
     int32_t strlen, offset=index;
      
     strlen = length - index;

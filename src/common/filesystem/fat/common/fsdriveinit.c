@@ -13,18 +13,18 @@
 #include "types.h"
 #include "fstypes.h"
 #include "error.h"
-#include "os/filesystem/fsapi.h"
+#include "filesystem/fsapi.h"
 #include "platform.h"
 #include "handletable.h"
-#include "os/filesystem/fat/include/devicetable.h"
+#include "filesystem/fat/include/devicetable.h"
 #include "filespec.h"
-#include "os/filesystem.h"
+#include "filesystem/filesystem.h"
 #include "fat_internal.h"
 #include "drivers/media/ddi_media.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name:  int FSDriveInit(int DeviceNumber)
+>  Function Name:  int32_t FSDriveInit(int32_t DeviceNumber)
 
    FunctionType:  
                    
@@ -39,9 +39,9 @@
    Description:    Initialization of FileSystem.
 <
 --------- -------------------------------------------------------------------*/
-int  FSDriveInit(int DeviceNumber)
+int32_t  FSDriveInit(int32_t DeviceNumber)
 {
-    int RetValue;
+    int32_t RetValue;
     
     /* Clear drive buffer */
 

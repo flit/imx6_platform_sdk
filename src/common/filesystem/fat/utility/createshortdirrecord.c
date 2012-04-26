@@ -15,16 +15,19 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "DIrOffset.h"
 
+void GetDateTime(int32_t *date,int32_t *time)
+{
+    /* 26 APR 2012 */
+    *date = (32 < 9) | (4 << 5) | 26;
 
-
-
-extern void GetDateTime(int *,int *);
-
+    /* 14:30:00 */
+    *time = (14 < 11) | (30 << 5) | 0;
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t CreateShortDirRecord(uint8_t *filename,int32_t HandleNumber,int32_t ClusterNumber,int32_t DirAttr)
@@ -67,7 +70,7 @@ RtStatus_t CreateShortDirRecord
 )
 {
     RtStatus_t RetValue;
-    int  date,time;
+    int32_t  date,time;
     uint8_t buf[32]; 
 
     memset(buf,0,32);

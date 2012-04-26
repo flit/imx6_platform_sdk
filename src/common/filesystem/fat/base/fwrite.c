@@ -13,17 +13,17 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
-#include <os\fsapi.h> 
+//#include <os\fsapi.h> 
 #include "fs_steering.h"   
-#include "components/telemetry/tss_logtext.h"
+//#include "components/telemetry/tss_logtext.h"
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t Fwrite(int32_t HandleNumber, 
+>  Function Name: RtStatus_t Fwrite(int32_t HandleNumber, 
                        uint8_t *Buffer, 
                        int32_t NumBytesToWrite,
                       )
@@ -46,7 +46,7 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t Fwrite_FAT(int32_t HandleNumber, 
+RtStatus_t Fwrite_FAT(int32_t HandleNumber, 
                          uint8_t *Buffer, 
                          int32_t NumBytesToWrite)
                                   
@@ -264,7 +264,7 @@ int32_t Fwrite_FAT(int32_t HandleNumber,
 //!
 //////////////////////////////////////////////////////////////////////////////
 
-int32_t Fwrite_BypassCache(int32_t i32HandleNumber, 
+RtStatus_t Fwrite_BypassCache(int32_t i32HandleNumber, 
                          uint8_t *pBuffer, 
                          int32_t i32NumBytesToWrite)                                  
 {
@@ -463,7 +463,7 @@ int32_t Fwrite_BypassCache(int32_t i32HandleNumber,
     }
         
     ddi_ldl_pop_media_task();
-    return i32NumBytesToWrite;
+    return (RtStatus_t) i32NumBytesToWrite;
 }
 
 //////////////////////////////////////////////////////////////////////////////

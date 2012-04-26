@@ -14,7 +14,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 /*----------------------------------------------------------------------------
@@ -35,10 +35,10 @@
 int32_t CheckspaceinRootdir(int32_t Handlenumber,int32_t Flag)
 {
     int32_t NumBytesread;
-    int Firstbyte;
-    int i;
+    int32_t Firstbyte;
+    int32_t i;
     uint8_t Buffer[96];	   
-    int Recordno;
+    int32_t Recordno;
 
 //   	variable "Devicenum" was set but never used
 //	Devicenum = 	Handle[Handlenumber].Device;

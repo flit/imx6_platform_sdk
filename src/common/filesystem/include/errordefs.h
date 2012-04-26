@@ -30,7 +30,7 @@
 #ifndef __LANGUAGE_ASM__
 #ifndef RT_STATUS_T_DEFINED
 #define RT_STATUS_T_DEFINED
-typedef int RtStatus_t;
+typedef int32_t RtStatus_t;
 #endif
 #endif
 

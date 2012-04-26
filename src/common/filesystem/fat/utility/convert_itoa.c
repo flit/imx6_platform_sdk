@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 
@@ -33,8 +33,8 @@
 int32_t Convert_itoa(int32_t Number,uint8_t *string)
 {
     uint8_t Temp[12];
-    int i=0,j=0,Flag;
-    int Length=0;
+    int32_t i=0,j=0,Flag;
+    int32_t Length=0;
    
     while(Number!=0)
     { 

@@ -14,10 +14,10 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
-#include "components/telemetry/tss_logtext.h"
+//#include "components/telemetry/tss_logtext.h"
 
 // Define as 0 by default or 1 to see Compute Free Clx result and error codes on tss
 #define VERBOSE_CFC_LOGGING 0

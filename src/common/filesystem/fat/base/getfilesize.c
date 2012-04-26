@@ -13,13 +13,13 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 //#include "dirrecord.h"
 
 /*----------------------------------------------------------------------------
->  Function Name: int32_t GetFileSize(int32_t HandleNumber)
+>  Function Name: RtStatus_t GetFileSize(int32_t HandleNumber)
 
    FunctionType:  Reentrant
 
@@ -31,7 +31,7 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t GetFileSize(int32_t HandleNumber)
+RtStatus_t GetFileSize(int32_t HandleNumber)
 {   
     RtStatus_t RetValue;
 

@@ -14,14 +14,14 @@ Notes: This file read provides Base function to Delete a record
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t  DeleteRecord(int32_t HandleNumber, int32_t RecordNo)
+>  Function Name: RtStatus_t  DeleteRecord(int32_t HandleNumber, int32_t RecordNo)
 
    FunctionType:  Reentrant
 
@@ -33,9 +33,9 @@ Notes: This file read provides Base function to Delete a record
    Description:   Mark the directoy record of the given record no. and all the long
                   directory records associated with it as deleted.  
 ----------------------------------------------------------------------------*/
-int32_t DeleteRecord(int32_t HandleNumber, int32_t RecordNo)
+RtStatus_t DeleteRecord(int32_t HandleNumber, int32_t RecordNo)
 {
-    int firstbyteofrecord;
+    int32_t firstbyteofrecord;
     uint8_t DeleteDirrecordch = DELETEDDIRRECORDCHARA;
     uint8_t buf[33];
     RtStatus_t	 Retval;

@@ -11,9 +11,10 @@
 		File Includes
 ----------------------------------------------------------------------------*/
 #include <types.h>
+#include <string.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "fs_steering.h"
@@ -21,7 +22,7 @@
 
 /*----------------------------------------------------------------------------
 
->  Function Name: int32_t Fread(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
+>  Function Name: RtStatus_t Fread(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
 
    FunctionType:  Reentrant
 
@@ -40,13 +41,13 @@
 
 <
 ----------------------------------------------------------------------------*/
-int32_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
+RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
 {
     RtStatus_t RetValue=SUCCESS;
     uint8_t *buf;
     int32_t FileSize,RemainBytesToRead;
-    int Device,BuffOffset=0,BytesToCopy;
-    int RemainBytesInSector,BytesPerSector;
+    int32_t Device,BuffOffset=0,BytesToCopy;
+    int32_t RemainBytesInSector,BytesPerSector;
     uint32_t cacheToken;
     
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
@@ -153,6 +154,3 @@ int32_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
     // Force to RtStatus - all errors are negative so this will still work.
     return (RtStatus_t) NumBytesToRead;
 }
-
-
-

@@ -13,7 +13,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
@@ -34,12 +34,12 @@
 //----------------------------------------------------------------------------*/
 RtStatus_t GetShortfilename(int64_t Key,uint8_t *Buffer)
 {
-    int HandleNumber;
+    int32_t HandleNumber;
     uint8_t *buf;
     int32_t DirSector,DirOffset;
     uint8_t NameBuffer[36];
-    int byte;
-    int offset=0,offset_dest=0,j;
+    int32_t byte;
+    int32_t offset=0,offset_dest=0,j;
     uint32_t cacheToken;
     
     if((HandleNumber = Searchfreehandleallocate())<0)

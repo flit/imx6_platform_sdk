@@ -14,9 +14,9 @@
 
 #include <types.h>
 #include <error.h>
-#include <../os/filesystem/fat/include/fat_internal.h> //! \todo malinclusion
-#include <os/fsapi.h> //! \todo malinclusion
-#include <../os/filesystem/fat/include/platform.h> //! \todo malinclusion
+#include <../filesystem/fat/include/fat_internal.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
+#include <../filesystem/fat/include/platform.h> //! \todo malinclusion
 #include <diroffset.h>
 #include <stdlib.h>
 

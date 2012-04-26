@@ -15,7 +15,7 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 
@@ -35,7 +35,7 @@
 ----------------------------------------------------------------------------*/
 int32_t GetChar(uint8_t *Buffer,int32_t *offset)
 {
-    int Char;
+    int32_t Char;
     Char = FSGetByte(Buffer,*offset);
 	*offset =*offset +1;
     return Char;
@@ -56,7 +56,7 @@ int32_t GetChar(uint8_t *Buffer,int32_t *offset)
 ----------------------------------------------------------------------------*/
 int32_t GetCharW(uint8_t *Buffer,int32_t *offset)
 {
-    int Word;
+    int32_t Word;
     Word = FSGetWord(Buffer,*offset);
 	*offset =*offset +2;
     return Word;

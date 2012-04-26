@@ -14,11 +14,11 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h"
-#include <drivers\ddi_media.h>
+#include "drivers/media/ddi_media.h"
 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t Fremove(uint8_t *filepath)

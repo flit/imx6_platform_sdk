@@ -28,14 +28,15 @@
 //! \see Fclose, Fread, Fwrite, Fseek
 
 #include "fs_steering.h"
-#include "arm_ghs.h"
+//#include "arm_ghs.h"
 
 // Array of fuction pointers for the redirection of Fclose.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
 // to terminate the array.
 Fclose_t const pRedirectFclose[FS_TYPE_MAX+1] = {
     Fclose_FAT,         // For FAT handles
-    os_resource_Close,   // For resource handles
+    NULL,
+//    os_resource_Close,   // For resource handles
     // Future       // Add more file system redirection functions here when needed
     NULL            // For steering of invalid handles
 };
@@ -55,7 +56,8 @@ Fwrite_t const pRedirectFwrite[FS_TYPE_MAX+1] = {
 // to terminate the array.
 Fseek_t const pRedirectFseek[FS_TYPE_MAX+1] = {
     Fseek_FAT,          // For FAT handles
-    os_resource_Seek,    // For resource handles
+    NULL,
+//    os_resource_Seek,    // For resource handles
     // Future       // Add more file system redirection functions here when needed
     NULL            // For steering of invalid handles
 };

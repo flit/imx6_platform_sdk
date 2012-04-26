@@ -15,12 +15,12 @@
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "BootSecOffset.h" 
 #include "DirOffset.h" 
 /*----------------------------------------------------------------------------
->  Function Name:  int32_t GetNewcluster(int32_t Handlenumber)
+>  Function Name:  RtStatus_t GetNewcluster(int32_t Handlenumber)
 
    FunctionType:   Reentrant
 
@@ -35,7 +35,7 @@
 RtStatus_t GetNewcluster(int32_t Handlenumber)
 {
     int32_t  currentcluster,Devicenum;
-    int   FATNtryoffset;	   
+    int32_t   FATNtryoffset;	   
     int32_t FATsector;
    
     Devicenum = Handle[Handlenumber].Device;

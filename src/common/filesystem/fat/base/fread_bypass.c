@@ -11,9 +11,10 @@
 		File Includes
 ----------------------------------------------------------------------------*/
 #include <types.h>
+#include <string.h>
 #include "fstypes.h"
 #include <error.h>
-#include <os/fsapi.h> //! \todo malinclusion
+#include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "fs_steering.h"
@@ -50,7 +51,7 @@
 //!
 ///////////////////////////////////////////////////////////////////////////
 
-int32_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead)
+RtStatus_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead)
 {
     RtStatus_t RetValue=SUCCESS;
     int32_t    FileSize;

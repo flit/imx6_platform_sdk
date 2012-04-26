@@ -1,0 +1,8 @@
+#!gbuild
+[Subproject]
+readdirectoryrecord.c
+fclose.c
+fgetc.c
+fgets.c
+fputc.c
+fputs.c

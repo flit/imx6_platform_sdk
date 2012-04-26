@@ -1,0 +1,20 @@
+#!gbuild
+[Library]
+	:passThrough=-I$ROOT\os\filesystem\fat\include
+	:passThrough=-I$ROOT\include\os
+	:passThrough=-I$ROOT\components\DRM\janus\system\include
+	:passThrough=-I$ROOT\drivers\media\nand\include
+include\os\fsapi.h
+include\os\fsproj.h
+fs_fat_memory.c
+base\base.gpj
+common\common.gpj
+device\device.gpj
+fatapi\fatapi.gpj
+handle\handle.gpj
+higherapi\higherapi.gpj
+include\include.gpj
+platform\platform.gpj
+standardapi\standardapi.gpj
+unicode\unicode.gpj
+utility\utility.gpj

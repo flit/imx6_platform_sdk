@@ -1,0 +1,3 @@
+#!gbuild
+[Subproject]
+platform.c

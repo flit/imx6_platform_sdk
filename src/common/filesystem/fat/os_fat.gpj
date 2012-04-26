@@ -1,0 +1,5 @@
+#!gbuild
+[Library]
+	-los_fat_sub.a
+	
+os_fat_sub.gpj

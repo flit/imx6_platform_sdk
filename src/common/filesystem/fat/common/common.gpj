@@ -1,0 +1,10 @@
+#!gbuild
+[Subproject]
+fsinit.c
+fsshutdown.c
+setcwdhandle.c
+fsclearbuf.c
+fsdriveinit.c
+fsdriveshutdown.c
+cache_wrappers.c
+fsRecoverDrive.c

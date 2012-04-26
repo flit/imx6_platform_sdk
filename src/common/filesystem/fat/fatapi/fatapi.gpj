@@ -1,0 +1,16 @@
+#!gbuild
+[Subproject]
+writefatentry.c
+checkspaceinrootdir.c
+Computefreeclusters.c
+fatsector.c
+filesystempresent.c
+findnextcluster.c
+findnextfreecurrentcluster.c
+firstfreeandallocate.c
+firstrootdirsector.c
+firstsectorofcluster.c
+getnewcluster.c
+readfat12entry.c
+readfatentry.c
+Totalfreecluster.c

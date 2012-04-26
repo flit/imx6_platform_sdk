@@ -1,0 +1,16 @@
+#!gbuild
+[Subproject]
+include\os\fsapi.h
+include\os\fsproj.h
+fs_fat_memory.c
+base\base.gpj		[Subproject]
+common\common.gpj		[Subproject]
+device\device.gpj		[Subproject]
+fatapi\fatapi.gpj		[Subproject]
+handle\handle.gpj		[Subproject]
+higherapi\higherapi.gpj		[Subproject]
+include\include.gpj		[Subproject]
+platform\platform.gpj		[Subproject]
+standardapi\standardapi.gpj		[Subproject]
+unicode\unicode.gpj		[Subproject]
+utility\utility.gpj		[Subproject]

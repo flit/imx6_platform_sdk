@@ -1,0 +1,10 @@
+#!gbuild
+[Subproject]
+bootsecoffset.h
+devicetable.h
+diroffset.h
+fat_internal.h
+filespec.h
+fstypes.h
+handletable.h
+platform.h

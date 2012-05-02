@@ -346,14 +346,12 @@ void gpmi_nand_clk_setup(void)
 void esai_clk_sel_gate_on()
 {
     uint32_t val = 0;
-#if ((defined MX6SDL_SABRE_AI) || (defined MX6SDL_SMART_DEVICE) || (defined MX6SDL_SABRE_LITE) || (defined MX6SDL_EVB))
     val = readl(CCM_CSCMR2);
     val &= ~(0x03 << 19);
     val |= 0x01 << 19;          //source from PLL3_508
     writel(val, CCM_CSCMR2);
 
     clock_gating_config(ESAI1_BASE_ADDR, CLOCK_ON);
-#endif
 }
 
 /*!

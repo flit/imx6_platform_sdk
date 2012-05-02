@@ -11,13 +11,13 @@
 static sdma_test_t sdma_tests[] = {
     {"Memory to memory", mem_2_mem_test},
     {"eCSPI1 loopback - shared memory", ecspi_shp_test},
-#ifdef MX53
+#ifdef CHIP_MX53
     {"eCSPI2 loopback - peripheral", ecspi_app_test},
 #endif
-#ifdef MX53
+#ifdef CHIP_MX53
     {"UART3 loopback  - shared memory", uart_shp_test},
 #else
-#if !defined(MX6DQ_SMART_DEVICE) && !defined(MX6SDL_SMART_DEVICE)   //Since SD board uses UART1 as debug uart.
+#if !defined(BOARD_SMART_DEVICE)   //Since SD board uses UART1 as debug uart.
     {"UART1 loopback  - shared memory", uart_shp_test},
 #endif
 #endif

@@ -12,15 +12,15 @@
 
 #include "sdma_script_info.h"
 
-#if defined(MX53)
+#if defined(CHIP_MX53)
 #include "sdma_script_code_mx53.h"
-#elif defined (MX6DQ)
+#elif defined (CHIP_MX6DQ)
 #include "sdma_script_code_mx6dq.h"
-#elif defined (MX6SDL)
+#elif defined (CHIP_MX6SDL)
 #include "sdma_script_code_mx6sdl.h"
 #endif
 
-#ifdef MX53
+#ifdef CHIP_MX53
 const sdma_script_info_t script_info = {
     0x00000001,
     0x53,

@@ -22,7 +22,7 @@ typedef struct {
 } camera_test_t;
 
 static camera_test_t camera_tests[] = {
-#if defined(MX53_SMD) || defined(MX6DQ_SMART_DEVICE)
+#if defined(MX53_SMD) || defined(BOARD_SMART_DEVICE)
     {"Sensor capture", sensor_capture},
 #endif
 };

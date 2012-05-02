@@ -31,7 +31,7 @@ hw_module_t arm_core = {
     792000000,
 };
 
-#if  defined(MX6SDL_SABRE_LITE)
+#if  defined(BOARD_SABRE_LITE)
 // UART2 is the serial debug/console port for sabre_lite board
 hw_module_t g_debug_uart = {
     "UART2 for debug",
@@ -41,7 +41,7 @@ hw_module_t g_debug_uart = {
     IMX_INT_UART2,
     &default_interrupt_routine,
 };
-#elif defined(MX6SDL_SMART_DEVICE)
+#elif defined(BOARD_SMART_DEVICE)
 // UART1 is the serial debug/console port for smart_device board
 hw_module_t g_debug_uart = {
     "UART1 for debug",
@@ -220,7 +220,7 @@ void show_ddr_config(void)
  */
 void board_init(void)
 {
-#if defined(MX6SDL_EVB) || defined(MX6SDL_ARD)
+#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
     // Configure some board signals through I/O expanders
     max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
@@ -228,7 +228,7 @@ void board_init(void)
     max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
-#if defined(MX6SDL_ARD)
+#if defined(BOARD_SABRE_AI)
     max7310_i2c_req_array[2].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[2].dev_addr = MAX7310_I2C_ID2;    // the I2C DEVICE address
     max7310_init(2, MAX7310_ID2_DEF_DIR, MAX7310_ID2_DEF_VAL);
@@ -349,7 +349,7 @@ void ipu_iomux_config(void)
  */
 void lvds_power_on(void)
 {
-#if defined(MX6SDL_EVB)
+#if defined(BOARD_EVB)
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
@@ -360,7 +360,7 @@ void lvds_power_on(void)
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX6SDL_SMART_DEVICE
+#ifdef BOARD_SMART_DEVICE
     // 3v3 on by default
     // AUX_5V_EN LVDS0 power
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
@@ -373,7 +373,7 @@ void lvds_power_on(void)
     gpio_write_data(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
     /*3.3V power supply through IOexpander */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 
@@ -391,17 +391,17 @@ void lvds_power_on(void)
 void mipi_backlight_en(void)
 {
     //configure pin19 of the mipi dsi/csi connector
-#ifdef MX6SDL_EVB
+#ifdef BOARD_EVB
     //set GPIO1_9 to 0 so clear vbus on board
     gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
     //default be populated by P3V3_DELAYED
 #endif
 
-#ifdef MX6SDL_SMART_DEVICE
+#ifdef BOARD_SMART_DEVICE
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x1B0B0);
     gpio_dir_config(GPIO_PORT2, 0, GPIO_GDIR_OUTPUT);
@@ -414,7 +414,7 @@ void mipi_backlight_en(void)
  */
 void mipi_display_reset(void)
 {
-#ifdef MX6SDL_EVB
+#ifdef BOARD_EVB
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT, 0x1b0b0);
@@ -425,11 +425,11 @@ void mipi_display_reset(void)
     hal_delay_us(1000);
 #endif
 
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
 /*binded with the board reset button*/
 #endif
 
-#ifdef MX6SDL_SMART_DEVICE
+#ifdef BOARD_SMART_DEVICE
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x1b0b0);
@@ -528,7 +528,7 @@ void sii9022_power_on(void)
 void can_iomux_config(uint32_t module_base_add)
 {
 
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
     /* CAN_EN active high output */
     max7310_set_gpio_output(1, 7, GPIO_HIGH_LEVEL); //expander b, io7
 
@@ -539,7 +539,7 @@ void can_iomux_config(uint32_t module_base_add)
     switch (module_base_add) {
     case CAN1_BASE_ADDR:
         can1_iomux_config();
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
         /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
         max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3 
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
@@ -550,7 +550,7 @@ void can_iomux_config(uint32_t module_base_add)
         break;
     case CAN2_BASE_ADDR:
         can2_iomux_config();
-#ifdef MX6SDL_ARD
+#ifdef BOARD_SABRE_AI
         /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);

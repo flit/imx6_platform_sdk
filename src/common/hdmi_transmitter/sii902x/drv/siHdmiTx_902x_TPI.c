@@ -221,7 +221,7 @@ void TxHW_Reset(void)
 {
     TPI_TRACE_PRINT((">>TxHW_Reset()\n"));
 
-#if defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_EVB)||defined(MX6SDL_EVB)
+#if defined(BOARD_SMART_DEVICE)||defined(BOARD_EVB)
     /*sil9024 hardware reset */
     writel(0x5, IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT);
     writel(0xB060, IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);

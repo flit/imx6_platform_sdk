@@ -34,7 +34,7 @@ typedef enum {
     INT_JPU_PARIAL_OVERFLOW = 3
 } InterruptJpu;
 
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 //#define BIT_WORK_SIZE         (47*1024)
 #define BIT_WORK_SIZE			(128*1024)
 #else
@@ -73,7 +73,7 @@ typedef enum {
 #define VPU_SW_RESET_VCE_BUS    0x040
 #define VPU_SW_RESET_GDI_CORE   0x080
 #define VPU_SW_RESET_GDI_BUS    0x100
-#if defined(MX53)
+#if defined(CHIP_MX53)
 enum {
     AVC_DEC = 0,
     VC1_DEC = 1,
@@ -89,7 +89,7 @@ enum {
     AVS_DEC = 0x81,
     VPX_DEC = 0x82
 };
-#elif defined(MX6DQ) || defined(MX6SDL)
+#elif defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 enum {
     AVC_DEC = 0,
     VC1_DEC = 1,

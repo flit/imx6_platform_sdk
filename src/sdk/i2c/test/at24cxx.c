@@ -57,7 +57,7 @@ int32_t i2c_eeprom_at24cxx_test(void)
 
     i2c_init(AT24Cx_I2C_BASE, 170000);
 
-#if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
+#if defined(BOARD_EVB)
     /*Set iomux and daisy chain for eeprom test */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D17, ALT6 | 0x10);
     reg32_write(IOMUXC_I2C3_IPP_SCL_IN_SELECT_INPUT, 0x00);
@@ -81,7 +81,7 @@ int32_t i2c_eeprom_at24cxx_test(void)
     if(ret != 0)
         printf("A problem occured during the EEPROM reading !\n");
 
-#if defined(MX6DQ_EVB) || defined(MX6SDL_EVB)
+#if defined(BOARD_EVB)
     /*Restore iomux and daisy chain setting */
     i2c_init(AT24Cx_I2C_BASE, 170000);
 #endif

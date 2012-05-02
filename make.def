@@ -30,7 +30,7 @@ MAKE = make
 # MX53
 #
 ifeq "$(TARGET)" "mx53"
-C_DEFINES +=-DMX53
+C_DEFINES +=-DCHIP_MX53
 CPU	=cortex-a8
 ifeq "$(BOARD)" "evk"
 C_DEFINES +=-DMX53_EVK
@@ -53,42 +53,21 @@ endif
 # MX6DQ
 #
 ifeq "$(TARGET)" "mx6dq"
-C_DEFINES += -DMX6DQ -DCHIP_MX6DQ
-CPU	=cortex-a9
-ifeq "$(BOARD)" "evb"
-C_DEFINES +=-DMX6DQ_EVB
-endif
-ifeq "$(BOARD)" "sabre_ai"
-C_DEFINES +=-DMX6DQ_SABRE_AI
-endif
-ifeq "$(BOARD)" "sabre_lite"
-C_DEFINES +=-DMX6DQ_SABRE_LITE
-endif
-ifeq "$(BOARD)" "smart_device"
-C_DEFINES +=-DMX6DQ_SMART_DEVICE
-endif
+C_DEFINES += -DCHIP_MX6DQ
+CPU	= cortex-a9
 endif
 
 #
 # MX6SDL
 #
 ifeq "$(TARGET)" "mx6sdl"
-C_DEFINES +=-DMX6SDL -DCHIP_MX6SDL
-CPU	=cortex-a9
-ifeq "$(BOARD)" "evb"
-C_DEFINES +=-DMX6SDL_EVB
-endif
-ifeq "$(BOARD)" "sabre_ai"
-C_DEFINES +=-DMX6SDL_SABRE_AI
-endif
-ifeq "$(BOARD)" "sabre_lite"
-C_DEFINES +=-DMX6SDL_SABRE_LITE
-endif
-ifeq "$(BOARD)" "smart_device"
-C_DEFINES +=-DMX6SDL_SMART_DEVICE
-endif
+C_DEFINES += -DCHIP_MX6SDL
+CPU	= cortex-a9
 endif
 
+#
+# Board
+#
 ifeq "$(BOARD)" "evb"
 C_DEFINES += -DBOARD_EVB
 endif
@@ -102,6 +81,9 @@ ifeq "$(BOARD)" "smart_device"
 C_DEFINES += -DBOARD_SMART_DEVICE
 endif
 
+#
+# Board revision
+#
 ifeq "$(BOARD_REVISION)" "b"
 C_DEFINES +=-DBOARD_VERSION2
 endif

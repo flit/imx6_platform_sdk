@@ -56,14 +56,14 @@
 #define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
 #define WEIM_CS_BASE_ADDR   0x08000000
 
-#if defined(MX6DQ_EVB) || defined(MX6DQ_SMART_DEVICE) || defined(MX6DQ_SABRE_LITE)
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x4FFFFFFF
 /*For SMD and QSB, there is no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
 #define MMDC1_BASE_ADDR			0x50000000
 #define MMDC1_END_ADDR			0x8FFFFFFF
 #endif
-#if defined(MX6DQ_SABRE_AI)
+#if defined(BOARD_SABRE_AI)
 #define MMDC0_BASE_ADDR			0x10000000
 #define MMDC0_END_ADDR			0x8FFFFFFF  //Maybe should be modified according the ddr init file.
 /*Actually, ARD has no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
@@ -105,16 +105,16 @@
 #define ADV7180_I2C_ID      (0x42 >> 1)
 
 /* 
- * MX6DQ_SMART_DEVICE/MX6DQ_SABRE_LITE for compile error
+ * BOARD_SMART_DEVICE/BOARD_SABRE_LITE for compile error
  */
-#if defined(MX6DQ_SMART_DEVICE) || defined(MX6DQ_SABRE_LITE)
+#if defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
 #define MAX7310_NBR 0
 #endif
 /*******************************************************
  *      I/O expander MAX7310 I2C settings
  *******************************************************/
 /* For the ARD board which has 3 MAX7310 */
-#ifdef MX6DQ_SABRE_AI
+#ifdef BOARD_SABRE_AI
 #define MAX7310_NBR 3
 /* I/O expander A */
 #define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
@@ -135,7 +135,7 @@
 #define MAX7310_ID2_DEF_VAL      0x57   // init value for the output
 #endif
 
-#ifdef MX6DQ_EVB
+#ifdef BOARD_EVB
 /* For the EVB board which has 2 MAX7310 */
 #define MAX7310_NBR 2
 /* Number 1 controls: BACKLIGHT_ON, PORT3_P114, CPU_PER_RST_B, PORT3_P110,
@@ -296,13 +296,13 @@ extern void csi_port0_iomux_config(void);
 #error Need to define a board revision
 #endif
 
-#if defined(MX6DQ_SABRE_AI)
+#if defined(BOARD_SABRE_AI)
 #define BOARD_TYPE_ID           BOARD_ID_MX6DQ_SABRE_AI
-#elif defined(MX6DQ_SMART_DEVICE)
+#elif defined(BOARD_SMART_DEVICE)
 #define BOARD_TYPE_ID           BOARD_ID_MX6DQ_SMART_DEVICE
-#elif defined(MX6DQ_EVB)
+#elif defined(BOARD_EVB)
 #define BOARD_TYPE_ID           BOARD_ID_MX6DQ_EVB
-#elif defined(MX6DQ_SABRE_LITE)
+#elif defined(BOARD_SABRE_LITE)
 #define BOARD_TYPE_ID           BOARD_ID_MX6DQ_SABRE_LITE
 #else
 #error Need to define a board type

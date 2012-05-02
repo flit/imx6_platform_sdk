@@ -38,9 +38,7 @@ int usdhc_test(void)
     printf("\n---- Running uSDHC test, type 'x' to exit.\n");
 
     do {
-#if defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_LITE)||defined(MX6SDL_SABRE_LITE)||defined(MX6DQ_EVB)||defined(MX6SDL_EVB)
         printf("Make sure to insert an MMC/SD card into SD slot #3\n");
-#endif
 
         printf("Please select test:\n");
         for (idx = 0; idx < (sizeof(usdhc_tests) / sizeof(usdhc_test_t)); idx++) {
@@ -79,10 +77,8 @@ static int usdhc_test_pio(void)
 {
     int retv = TRUE;
 
-#if defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_LITE)||defined(MX6SDL_SABRE_LITE)||defined(MX6DQ_EVB)||defined(MX6SDL_EVB)
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
-#endif
 
     return retv;
 }
@@ -93,10 +89,8 @@ static int usdhc_test_adma(void)
 
     SDHC_ADMA_mode = TRUE;
 
-#if defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_LITE)||defined(MX6SDL_SABRE_LITE)||defined(MX6DQ_EVB)||defined(MX6SDL_EVB)
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
-#endif
 
     SDHC_ADMA_mode = FALSE;
 
@@ -109,10 +103,8 @@ static int usdhc_test_adma_intr(void)
 
     SDHC_INTR_mode = SDHC_ADMA_mode = TRUE;
 
-#if defined(MX6DQ_SABRE_AI)||defined(MX6SDL_SABRE_AI)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)||defined(MX6DQ_SABRE_LITE)||defined(MX6SDL_SABRE_LITE)||defined(MX6DQ_EVB)||defined(MX6SDL_EVB)
     /* MMC - 8 bit, SD - 4 bit  */
     retv = mmc_test(8, USDHC3_BASE_ADDR);
-#endif
 
     SDHC_INTR_mode = SDHC_ADMA_mode = FALSE;
 

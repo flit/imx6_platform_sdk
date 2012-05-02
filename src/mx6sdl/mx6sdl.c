@@ -122,27 +122,27 @@ void ALL_test(void)
     while (1) {
         printf("Starting the tests suite...\n");
         audio_test();
-#ifdef MX6SDL_SABRE_AI
+#ifdef BOARD_SABRE_AI
         flexcan_test();
-#endif /* MX6SDL_SABRE_AI */
+#endif /* BOARD_SABRE_AI */
         epit_test();
 
         gpt_test();
         hdmi_test();
         i2c_test();
         ipu_test();
-#if defined(MX6SDL_EVB) || defined(MX6SDL_SABRE_AI)
+#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
         mipi_test();
-#endif /* MX6SDL_EVB || MX6SDL_SABRE_AI */
+#endif /* BOARD_EVB || BOARD_SABRE_AI */
         sata_test();
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
-#ifdef MX6SDL_EVB
+#ifdef BOARD_EVB
         gpmi_test();
         spi_test();
         vpu_test();
-#endif /* MX6SDL_EVB */
+#endif /* BOARD_EVB */
         tempmon_test();
         uart_test();
         usdhc_test();

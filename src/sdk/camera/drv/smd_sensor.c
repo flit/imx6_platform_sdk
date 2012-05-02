@@ -13,7 +13,7 @@
 
 #include "camera_def.h"
 
-#if defined (MX6DQ_SMART_DEVICE) && defined (BOARD_VERSION2)
+#if defined (BOARD_SMART_DEVICE) && defined (BOARD_VERSION2)
 #define i2c_base I2C2_BASE_ADDR
 #else
 #define i2c_base I2C1_BASE_ADDR
@@ -34,7 +34,7 @@ void sensor_reset(void)
 
     sensor_standby(0);
 
-#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
     /* MX6DQ/SDL_SMART_DEVICE: camera reset through GPIO1_17 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, 0x5);
     reg32setbit(GPIO1_BASE_ADDR + 0x0004, 17);  //set GPIO1_17 as output
@@ -63,7 +63,7 @@ int32_t sensor_standby(int32_t enable)
 {
     int32_t ret = 0;
 
-#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
     /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0, 0x5);
     reg32setbit(GPIO1_BASE_ADDR + 0x0004, 16);  //set GPIO1_16 as output
@@ -92,7 +92,7 @@ void sensor_clock_setting(void)
 {
     int32_t clock_delay = 1000;
 
-#if defined(MX6DQ_SMART_DEVICE) || defined(MX6SDL_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
     /*config gpio_0 to be clko */
     writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);
     /*MX6DQ/SDL_SMART_DEVICE: config clko */

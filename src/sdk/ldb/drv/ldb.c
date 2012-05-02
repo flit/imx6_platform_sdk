@@ -76,14 +76,14 @@ void ldb_config(int ipu_port, int lvds_port, int data_width, int bit_map)
     case LVDS_PORT0:
         ldb_write_field(LDB_CTRL_REG, 6, 1, bit_map);
         ldb_write_field(LDB_CTRL_REG, 5, 1, data_width);
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
         ldb_write_field(IOMUXC_GPR3, 6, 2, ipu_port);
 #endif
         break;
     case LVDS_PORT1:
         ldb_write_field(LDB_CTRL_REG, 8, 1, bit_map);
         ldb_write_field(LDB_CTRL_REG, 7, 1, data_width);
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
         ldb_write_field(IOMUXC_GPR3, 8, 2, ipu_port);
 #endif
         break;
@@ -95,7 +95,7 @@ void ldb_config(int ipu_port, int lvds_port, int data_width, int bit_map)
         ldb_write_field(LDB_CTRL_REG, 7, 1, data_width);
         ldb_write_field(LDB_CTRL_REG, 6, 1, bit_map);
         ldb_write_field(LDB_CTRL_REG, 5, 1, data_width);
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
         ldb_write_field(IOMUXC_GPR3, 6, 2, ipu_port);
         ldb_write_field(IOMUXC_GPR3, 8, 2, ipu_port);
 #endif

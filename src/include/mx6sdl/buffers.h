@@ -35,12 +35,12 @@
 /* put the TWO video instance on different CS to
    improve the performance.
  */
-#if defined(MX6SDL_EVB)
+#if defined(BOARD_EVB)
 #define FAT_DRIVER_BUFFER       (0x60000000)
 #define VPU_WORK_BUFFERS        (0x60100000)
 #define VIDEO_BUFFERS_START     (0x70000000)
 #define VIDEO_BUFFERS_END       (0x90000000)
-#elif defined(MX6SDL_SMART_DEVICE) || defined(MX6SDL_SABRE_LITE)
+#elif defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
 #define FAT_DRIVER_BUFFER       (0x30000000)
 #define VPU_WORK_BUFFERS        (0x30100000)
 #define VIDEO_BUFFERS_START     (0x20000000)

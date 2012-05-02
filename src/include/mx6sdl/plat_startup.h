@@ -76,7 +76,7 @@ dcd_write_data_cmd: .byte 0xCC      /* Tag=0xCC */
  */
 
 dcd_data_start:
-#if ((defined MX6SDL_SABRE_AI) || (defined MX6SDL_SMART_DEVICE) || (defined MX6SDL_SABRE_LITE) || (defined MX6SDL_EVB))
+#if ((defined BOARD_SABRE_AI) || (defined BOARD_SMART_DEVICE) || (defined BOARD_SABRE_LITE) || (defined BOARD_EVB))
     /*Use default DDR frequency: 528MHz*/
     DCD_DATA(0x020e05a8, 0x00000030)
     DCD_DATA(0x020e05b0, 0x00000030)

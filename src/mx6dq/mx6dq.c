@@ -127,43 +127,43 @@ void ALL_test(void)
 
     while (1) {
         printf("Starting the tests suite...\n");
-#if defined(MX6DQ_EVB)
+#if defined(BOARD_EVB)
         audio_test();
 #endif
 
-#ifdef MX6DQ_SABRE_AI
+#ifdef BOARD_SABRE_AI
         eim_test();
-#endif /* MX6DQ_SABRE_AI */
+#endif /* BOARD_SABRE_AI */
         epit_test();
 
-#if defined(MX6DQ_EVB)
+#if defined(BOARD_EVB)
         gpu_test();
 #endif
         gpt_test();
         hdmi_test();
         i2c_test();
         ipu_test();
-#if defined(MX6DQ_EVB) || defined(MX6DQ_SABRE_AI)
+#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
         mipi_test();
-#endif /* MX6DQ_EVB || MX6DQ_SABRE_AI */
-#if defined(MX6DQ_EVB)
+#endif /* BOARD_EVB || BOARD_SABRE_AI */
+#if defined(BOARD_EVB)
         pcie_test();
         sata_test();
         wdog_test();
 #endif
-#ifndef MX6DQ_SABRE_LITE
+#ifndef BOARD_SABRE_LITE
         pwm_test();
 #endif
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
-#if defined(MX6DQ_EVB) || defined(MX6DQ_SMART_DEVICE)
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
 //        vpu_test();
 #endif
-#ifdef MX6DQ_EVB
+#ifdef BOARD_EVB
         gpmi_test();
         spi_test();
-#endif /* MX6DQ_EVB */
+#endif /* BOARD_EVB */
         tempmon_test();
         uart_test();
         usdhc_test();
@@ -173,12 +173,12 @@ void ALL_test(void)
             gic_test_done = 0xFF;
             gic_test();
         }
-#ifdef MX6DQ_SABRE_AI
+#ifdef BOARD_SABRE_AI
     /* need to be here */
         flexcan_test();
-#endif /* MX6DQ_SABRE_AI */
+#endif /* BOARD_SABRE_AI */
 
-#if defined(MX6DQ_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
         camera_test();
 #endif
 

@@ -80,7 +80,7 @@ dcd_write_data_cmd: .byte 0xCC      /* Tag=0xCC */
  */
 
 dcd_data_start:
-#if defined(MX6DQ_SABRE_AI) || defined(MX6DQ_EVB)
+#if defined(BOARD_SABRE_AI) || defined(BOARD_EVB)
     /*Use default DDR frequency: 528MHz*/
     DCD_DATA(IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS0, 0x00000030)
     DCD_DATA(IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS1, 0x00000030)
@@ -226,9 +226,9 @@ dcd_data_start:
     DCD_DATA(HW_MMDC_MPMUR0_ADDR(1), 0x00000800)
     DCD_DATA(HW_MMDC_MDSCR_ADDR(0), 0x00000000)
 #endif
-#endif /* ((defined MX6DQ_SABRE_AI) || (defined MX6DQ_EVB)) */
+#endif /* ((defined BOARD_SABRE_AI) || (defined BOARD_EVB)) */
 
-#if defined(MX6DQ_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
     /*Use default DDR frequency: 528MHz*/
     DCD_DATA(IOMUXC_BASE_ADDR + 0x5a8, 0x00000028)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x5b0, 0x00000028)
@@ -317,9 +317,9 @@ dcd_data_start:
     DCD_DATA(IOMUXC_BASE_ADDR + 0x010, 0xF00000FF)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x018, 0x00070007)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x01C, 0x00070007)
-#endif /* (defined MX6DQ_SMART_DEVICE) */
+#endif /* (defined BOARD_SMART_DEVICE) */
 
-#if defined(MX6DQ_SABRE_LITE)
+#if defined(BOARD_SABRE_LITE)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x5a8, 0x00000030)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x5b0, 0x00000030)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x524, 0x00000030)
@@ -416,7 +416,7 @@ dcd_data_start:
     /* set IPU AXI-id0 Qos=0xf(bypass) AXI-id1 Qos=0x7 */
     DCD_DATA(IOMUXC_BASE_ADDR + 0x018, 0x007f007f)
     DCD_DATA(IOMUXC_BASE_ADDR + 0x01c, 0x007f007f)
-#endif /* (defined MX6DQ_SABRE_LITE) */
+#endif /* (defined BOARD_SABRE_LITE) */
 dcd_data_end:
 
 .endm   //plat_dcd_startup

@@ -62,7 +62,7 @@ static void ccm_clock_gates_on(void)
     *(volatile int *)(CCM_BASE_ADDR + 0x68 + 0x1C) = 0xFFFFFFFF;
 }
 
-#ifdef MX53
+#ifdef CHIP_MX53
 // UART3 port
 static hw_module_t uart3_sdma_test = {
     "UART3 for SDMA test",
@@ -78,7 +78,7 @@ static hw_module_t uart1_sdma_test = {
     UART1_BASE_ADDR,
     UART_REF_FREQ,
 };
-#endif /* MX53 */
+#endif /* CHIP_MX53 */
 
 // UART5 port
 static hw_module_t uart5_sdma_test = {
@@ -241,7 +241,7 @@ int uart_shp_test(void)
     uart_access_config();
     ccm_clock_gates_on();
 
-#ifdef MX53
+#ifdef CHIP_MX53
     printf("UART3 loopback test starts.\n");
 #else
     printf("UART1 loopback test starts.\n");
@@ -272,7 +272,7 @@ int uart_shp_test(void)
 
     chan_desc[0].script_addr = script_addr;
     chan_desc[0].dma_mask[0] = chan_desc[0].dma_mask[1] = 0;
-#ifdef MX53
+#ifdef CHIP_MX53
     chan_desc[0].dma_mask[SDMA_EVENT_UART3_TX / 32] = 0x01 << (SDMA_EVENT_UART3_TX % 32);   /*uart 3 tx fifo event */
 #else
     chan_desc[0].dma_mask[SDMA_EVENT_UART1_TX / 32] = 0x01 << (SDMA_EVENT_UART1_TX % 32);   /*uart 1 tx fifo event */
@@ -283,7 +283,7 @@ int uart_shp_test(void)
     }
     chan_desc[0].gpr[0] = chan_desc[0].dma_mask[1];
     chan_desc[0].gpr[1] = chan_desc[0].dma_mask[0];
-#ifdef MX53
+#ifdef CHIP_MX53
     chan_desc[0].gpr[6] = UART3_BASE_ADDR + 0x40;   /*tx fifo address */
 #else
     chan_desc[0].gpr[6] = UART1_BASE_ADDR + 0x40;   /*tx fifo address */
@@ -310,7 +310,7 @@ int uart_shp_test(void)
     /* Setup channel descriptor */
     chan_desc[1].script_addr = script_addr;
     chan_desc[1].dma_mask[0] = chan_desc[1].dma_mask[1] = 0;
-#ifdef MX53
+#ifdef CHIP_MX53
     chan_desc[1].dma_mask[SDMA_EVENT_UART3_RX / 32] = 0x01 << (SDMA_EVENT_UART3_RX % 32);   /*uart 3 tx fifo event */
 #else
     chan_desc[1].dma_mask[SDMA_EVENT_UART1_RX / 32] = 0x01 << (SDMA_EVENT_UART1_RX % 32);   /*uart 3 tx fifo event */
@@ -321,7 +321,7 @@ int uart_shp_test(void)
     }
     chan_desc[1].gpr[0] = chan_desc[1].dma_mask[1];
     chan_desc[1].gpr[1] = chan_desc[1].dma_mask[0];
-#ifdef MX53
+#ifdef CHIP_MX53
     chan_desc[1].gpr[6] = UART3_BASE_ADDR + 0x0;    /*rx fifo address */
 #else
     chan_desc[1].gpr[6] = UART1_BASE_ADDR + 0x0;    /*rx fifo address */
@@ -344,7 +344,7 @@ int uart_shp_test(void)
     printf("Channel %d and Channel %d opened, starting transfer...\n", channel[0], channel[1]);
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
-#ifdef MX53
+#ifdef CHIP_MX53
     uart_loopback_init(&uart3_sdma_test, 115200);
 #else
     uart_loopback_init(&uart1_sdma_test, 115200);

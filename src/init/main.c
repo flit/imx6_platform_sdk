@@ -32,7 +32,7 @@ int main(void)
 {
     enable_neon_fpu();
 
-#if defined(MX6DQ_EVB)||defined(MX6SDL_EVB)||defined(MX6DQ_SMART_DEVICE)||defined(MX6SDL_SMART_DEVICE)
+#if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)
     system_memory_arrange();
     disable_strict_align_check();
 #endif

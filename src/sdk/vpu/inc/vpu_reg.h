@@ -100,7 +100,7 @@
 
 #define RET_DEC_SEQ_BIT_RATE            0x1B4   /* MX6Q platform */
 
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #define RET_DEC_SEQ_ASPECT              0x1C8
 #else
 #define RET_DEC_SEQ_ASPECT              0x1B0
@@ -188,7 +188,7 @@
  * [DEC PIC RUN] COMMAND
  *-------------------------------------------------------------------------*/
 #define CMD_DEC_PIC_ROT_INDEX           0x184   /* MX6Q */
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #define CMD_DEC_PIC_ROT_MODE            0x180
 #define CMD_DEC_PIC_ROT_ADDR_Y          0x188
 #define CMD_DEC_PIC_ROT_ADDR_CB         0x18C
@@ -256,7 +256,7 @@
 #define CMD_ENC_PIC_SRC_INDEX           0x180   /* MX6Q */
 #define CMD_ENC_PIC_SRC_STRIDE          0x184   /* MX6Q */
 #define CMD_ENC_PIC_SUB_FRAME_SYNC      0x1A4   /* MX6Q */
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #define CMD_ENC_PIC_SRC_ADDR_Y          0x1A8
 #define CMD_ENC_PIC_SRC_ADDR_CB         0x1AC
 #define CMD_ENC_PIC_SRC_ADDR_CR         0x1B0
@@ -351,7 +351,7 @@
 #define RET_VER_NUM			0x1C0
 #define RET_FW_CODE_REV			0x1C4
 
-#if defined(MX6DQ) || defined(MX6SDL)
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #define CODE_BUF_SIZE                   (240 * 1024)    /* define max is 240k byte currently */
 #define FMO_SLICE_SAVE_BUF_SIZE         (32)
 #define TEMP_BUF_SIZE                   (200 * 1024)

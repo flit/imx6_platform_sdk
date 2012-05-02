@@ -32,13 +32,13 @@ void system_memory_arrange(void)
 
     /*ckear all TLB entries */
     memset((void *)ttb_base, 0, ARM_FIRST_LEVEL_PAGE_TABLE_SIZE);
-#if defined(MX6DQ_EVB)
+#if defined(BOARD_EVB)
     /*params:  ttb_base  phy    virt   size     memory_type         permission */
 //  MMU_CONFIG(ttb_base, 0x000, 0x000, 0x001,   OUTER_INNER_WB_WA,  ARM_ACCESS_PERM_RW_RW); /* ROM */
     MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
     MMU_CONFIG(ttb_base, 0x100, 0x100, 0x200, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
     MMU_CONFIG(ttb_base, 0x300, 0x300, 0x700, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */
-#elif defined(MX6DQ_SMART_DEVICE)
+#elif defined(BOARD_SMART_DEVICE)
     MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
     MMU_CONFIG(ttb_base, 0x100, 0x100, 0x100, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
     MMU_CONFIG(ttb_base, 0x200, 0x200, 0x300, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */

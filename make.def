@@ -18,8 +18,6 @@ OUTPUT_BIN = $(PROJ_OUT)/bin/$(IMAGENAME).bin
 OUTPUT_TXT = $(PROJ_OUT)/bin/$(IMAGENAME).txt
 OUTPUT_ELF = $(PROJ_OUT)/bin/$(IMAGENAME).elf
 MAP_FILE = $(PROJ_OUT)/bin/$(IMAGENAME).map
-INIT_FILE = $(PROJ_DIR)/src/init/main.c $(PROJ_DIR)/src/init/vectors.S
-INIT_FILE += $(PROJ_DIR)/src/init/system_util.c $(PROJ_DIR)/src/init/version.c
 LD_FILE = $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
 
 CP = cp
@@ -28,6 +26,9 @@ MKDIR = mkdir -p
 MAKE = make
 #BOARD_UC=`echo $(BOARD) | tr [:lower:] [:upper:]`
 
+#
+# MX53
+#
 ifeq "$(TARGET)" "mx53"
 C_DEFINES +=-DMX53
 CPU	=cortex-a8
@@ -48,11 +49,12 @@ C_DEFINES +=-DMX53_SMD
 endif
 endif
 
+#
+# MX6DQ
+#
 ifeq "$(TARGET)" "mx6dq"
-C_DEFINES +=-DMX6DQ
+C_DEFINES += -DMX6DQ -DCHIP_MX6DQ
 CPU	=cortex-a9
-INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
-INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
 ifeq "$(BOARD)" "evb"
 C_DEFINES +=-DMX6DQ_EVB
 endif
@@ -67,11 +69,12 @@ C_DEFINES +=-DMX6DQ_SMART_DEVICE
 endif
 endif
 
+#
+# MX6SDL
+#
 ifeq "$(TARGET)" "mx6sdl"
-C_DEFINES +=-DMX6SDL
+C_DEFINES +=-DMX6SDL -DCHIP_MX6SDL
 CPU	=cortex-a9
-INIT_FILE += $(PROJ_DIR)/src/cortex_a9/gic.s $(PROJ_DIR)/src/$(TARGET)/startup.s
-INIT_FILE += $(PROJ_DIR)/src/cortex_a9/cortexA9.s
 ifeq "$(BOARD)" "evb"
 C_DEFINES +=-DMX6SDL_EVB
 endif
@@ -84,6 +87,19 @@ endif
 ifeq "$(BOARD)" "smart_device"
 C_DEFINES +=-DMX6SDL_SMART_DEVICE
 endif
+endif
+
+ifeq "$(BOARD)" "evb"
+C_DEFINES += -DBOARD_EVB
+endif
+ifeq "$(BOARD)" "sabre_ai"
+C_DEFINES += -DBOARD_SABRE_AI
+endif
+ifeq "$(BOARD)" "sabre_lite"
+C_DEFINES += -DBOARD_SABRE_LITE
+endif
+ifeq "$(BOARD)" "smart_device"
+C_DEFINES += -DBOARD_SMART_DEVICE
 endif
 
 ifeq "$(BOARD_REVISION)" "b"
@@ -109,30 +125,29 @@ C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option
 C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-format
 
 # Basic compiler flags. Enable debugging.
-C_FLAGS = $(C_FLAGS_WARNINGS) -g  -fno-exceptions
-
 # Disable placing globals into the common section.
-C_FLAGS += -fno-common
-
-# Set the C standard to C99 with GNU extensions.
-# Use traditional GNU inline function semantics.
-C_FLAGS += -std=gnu99 -fgnu89-inline
+COMMON_C_FLAGS = -g -fno-common
 
 # Optimization flags.
 # No optimization, but turn on dead code elimination.
-C_FLAGS += -O0 -fdce
+OPTIMIZATION_FLAGS += -O0 -fdce
 
 # ARM flags.
 # Set the CPU, enable APCS, and enable ARM/thumb interworking.
-C_FLAGS += -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
+ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
 
 # Turn on NEON FPU.
-C_FLAGS += -mfpu=neon -mfloat-abi=softfp
+ARM_FLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# C flags.
+# Set the C standard to C99 with GNU extensions.
+# Use traditional GNU inline function semantics.
+C_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
+C_FLAGS += -std=gnu99 -fgnu89-inline
 
 # C++ flags. Disable exceptions and RTTI.
-CPP_FLAGS = $(C_FLAGS_WARNINGS) -g -fno-common -fno-exceptions -fno-rtti -O0 -fdce
-CPP_FLAGS += -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
-CPP_FLAGS += -mfpu=neon -mfloat-abi=softfp
+CPP_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
+CPP_FLAGS += -fno-exceptions -fno-rtti
 
 C_INCLUDES = \
     -I$(PROJ_DIR)/src/include  \

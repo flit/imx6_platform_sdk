@@ -30,20 +30,22 @@ MODULE_A_INCLUDES 	:=
 MODULE_A_DEFINES 	:=
 
 S_SRCS := \$(wildcard *.S)
+s_SRCS += \$(wildcard *.s)
 C_SRCS := \$(wildcard *.c)
 CPP_SRCS := \$(wildcard *.cpp)
 
 C_OBJS := \$(C_SRCS:.c=.o)
 CPP_OBJS := \$(CPP_SRCS:.cpp=.o)
 S_OBJS := \$(S_SRCS:.S=.o)
+s_OBJS := \$(s_SRCS:.s=.o)
 A_OBJS :=
 
-MODULE_OBJS_NO_DIR := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS)
+MODULE_OBJS_NO_DIR := \$(A_OBJS) \$(C_OBJS) \$(CPP_OBJS) \$(S_OBJS) \$(s_OBJS)
 MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS_NO_DIR))
 
 SUB_DIRS := -=SUB_DIRS=-
 
-.PHONY: dir \$(SUB_DIRS) all \$(TARGET_LIB)
+.PHONY: dir \$(SUB_DIRS) all # \$(TARGET_LIB)
 
 all::
 	\@echo "*" \$(shell pwd)	

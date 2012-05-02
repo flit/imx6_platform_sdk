@@ -8,13 +8,13 @@ A_FLAGS 	+= $(MODULE_A_FLAGS)
 A_INCLUDES 	+= $(MODULE_A_INCLUDES)
 A_DEFINES 	+= $(MODULE_A_DEFINES)
 
-ifneq "$(MODULE)" "init"
+#ifneq "$(MODULE)" "init"
 all:: $(MODULE_OUT) $(MODULE_OBJS) $(TARGET_LIB)
-else
-all:: $(MODULE_OUT) $(MODULE_OBJS)
-endif
+#else
+#all:: $(MODULE_OUT) $(MODULE_OBJS)
+#endif
 
-ifneq "$(MODULE)" "init"
+#ifneq "$(MODULE)" "init"
 ifneq "$(strip $(MODULE_OBJS))" ""
 $(TARGET_LIB): $(MODULE_OBJS)
 	@echo Archiving $(notdir $?)
@@ -24,7 +24,7 @@ $(TARGET_LIB): $(MODULE_OBJS)
 #	@echo Archiving $(subst $(PROJ_DIR),.,$%)
 #	@$(AR) -roucs $(TARGET_LIB) $%
 endif
-endif
+#endif
 	
 $(MODULE_OUT): 
 	@-$(MKDIR) $(MODULE_OUT)
@@ -45,8 +45,8 @@ $(MODULE_OUT)/%.o: %.cpp
 
 $(MODULE_OUT)/%.o: %.S
 	@echo Assembling $(addprefix $(MODULE_REL_DIR)$(MODULE)/,$<)
-	@$(CC) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -o $@ -c $<
+	@$(CC) $(A_FLAGS) -Wp,-D__LANGUAGE_ASM__ $(C_INCLUDES) $(C_DEFINES) -Wa,-MD,$(MODULE_OUT)/$*.d -o $@ -c $<
 
 $(MODULE_OUT)/%.o: %.s
 	@echo Assembling $(addprefix $(MODULE_REL_DIR)$(MODULE)/,$<)
-	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -o $@ $<
+	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(MODULE_OUT)/$*.d -o $@ $<

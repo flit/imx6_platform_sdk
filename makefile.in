@@ -46,19 +46,13 @@ $(SUB_DIRS): build_dir
 	@make -s -S -C $@ dir # --no-print-directory
 #	@make --debug=b -S -C $@ dir # --no-print-directory
 
-$(OUTPUT_ELF): $(TARGET_LIB) $(INIT_FILE) $(LD_FILE)
+$(OUTPUT_ELF): $(TARGET_LIB) $(LD_FILE)
 	@echo Linking $(OUTPUT_ELF)
-	@$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
+	@$(CC) -o $(OUTPUT_ELF) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
 
 $(OUTPUT_BIN): $(OUTPUT_ELF)
 	@echo Generating $(OUTPUT_BIN)
 	@arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
-
-#bin: $(SUB_DIRS)
-#	@echo Linking $(OUTPUT_ELF)
-#	@$(CC) -o $(OUTPUT_ELF) $(INIT_FILE) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
-#	@echo Generating $(OUTPUT_BIN)
-#	@arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
 
 clean:
 	rm -rf $(PROJ_OUT_REL)

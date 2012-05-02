@@ -55,6 +55,7 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup tempmon Temperature Monitor
 
+@defgroup diag_pmu PMU
 
  */
 

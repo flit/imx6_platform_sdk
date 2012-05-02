@@ -58,7 +58,7 @@ enum _pmu_ramp_rates
 //! @brief Properties of PMU regulators.
 //!
 //! Some properties are read-only. If you call pmu_set_property() on a read-only property,
-//! you will get a #kPMUPropertyIsReadOnlyError error.
+//! you will get a #kPMUError_ReadOnlyProperty error.
 //!
 //! Most properties apply only to the regulator specified in the get/set call. However, some
 //! properties are global, and changing their value will affect other regulators, as well. These
@@ -100,7 +100,7 @@ typedef enum _pmu_regulator_properties {
     //! mode can be used if external regulation is provided, in order to reduce losses.
     //!
     //! Only applies to core regulators. Attempting to get or set this property for the analog
-    //! regulators will result in a #kPMUUnsupportedPropertyError error.
+    //! regulators will result in a #kPMUError_UnsupportedProperty error.
     kPMUProperty_IsBypassed,
     
     //! @brief Enable for the brownout detector. [bool]
@@ -114,7 +114,7 @@ typedef enum _pmu_regulator_properties {
     //! @brief Whether the regulator is functioning properly. [bool, read-only]
     kPMUProperty_IsOK,
     
-    //! @brief Whether the regulator is currently browining out. [bool, read-only]
+    //! @brief Whether the regulator is currently browning out. [bool, read-only]
     kPMUProperty_IsInBrownout,
     
     //! @brief Enable for the regulator pulldown. [bool]
@@ -125,10 +125,10 @@ typedef enum _pmu_regulator_properties {
     //! @brief Ramp rate. [uint32_t]
     //!
     //! One of the ramp rate constants:
-    //! - kPMURate_VerySlow
-    //! - kPMURate_Slow
-    //! - kPMURate_Medium
-    //! - kPMURate_Fast
+    //! - #kPMURate_VerySlow
+    //! - #kPMURate_Slow
+    //! - #kPMURate_Medium
+    //! - #kPMURate_Fast
     kPMUProperty_RampRate,
     
     //! @brief Function to be called when a regulator browns out. [pmu_bo_handler_t]
@@ -170,8 +170,8 @@ extern "C" {
 
 //! @brief Initialize the PMU driver.
 //!
-//! Self-bias of the analog bandgap is turned off, to enable better precision. And interrupts
-//! are set up and enabled.
+//! Self-bias of the analog bandgap is turned off, to enable better precision. Brownout detect 
+//! is turned off for all regulators.
 void pmu_init(void);
 
 //! @brief Get the current value of a regulator's property.

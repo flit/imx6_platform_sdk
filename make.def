@@ -112,13 +112,12 @@ COMMON_C_FLAGS = -g -fno-common
 
 # Optimization flags.
 # No optimization, but turn on dead code elimination.
-OPTIMIZATION_FLAGS += -O0 -fdce
+OPTIMIZATION_FLAGS = -O0 -fdce
 
 # ARM flags.
 # Set the CPU, enable APCS, and enable ARM/thumb interworking.
-ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
-
 # Turn on NEON FPU.
+ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
 ARM_FLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # C flags.

@@ -45,7 +45,7 @@ MODULE_OBJS := \$(addprefix \$(MODULE_OUT)/, \$(MODULE_OBJS_NO_DIR))
 
 SUB_DIRS := -=SUB_DIRS=-
 
-.PHONY: dir \$(SUB_DIRS) all # \$(TARGET_LIB)
+.PHONY: dir \$(SUB_DIRS) all \$(TARGET_LIB)
 
 all::
 	\@echo "*" \$(shell pwd)	
